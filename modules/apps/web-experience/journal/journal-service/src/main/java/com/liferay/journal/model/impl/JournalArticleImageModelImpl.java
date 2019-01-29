@@ -35,8 +35,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the JournalArticleImage service. Represents a row in the &quot;JournalArticleImage&quot; database table, with each column mapped to a property of this class.
@@ -149,15 +153,16 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("articleImageId", getArticleImageId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("articleId", getArticleId());
-		attributes.put("version", getVersion());
-		attributes.put("elInstanceId", getElInstanceId());
-		attributes.put("elName", getElName());
-		attributes.put("languageId", getLanguageId());
-		attributes.put("tempImage", isTempImage());
+		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((JournalArticleImage)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -167,59 +172,223 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long articleImageId = (Long)attributes.get("articleImageId");
+		Map<String, BiConsumer<JournalArticleImage, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (articleImageId != null) {
-			setArticleImageId(articleImageId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<JournalArticleImage, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((JournalArticleImage)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<JournalArticleImage, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<JournalArticleImage, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<JournalArticleImage, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<JournalArticleImage, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<JournalArticleImage, Object>>();
+		Map<String, BiConsumer<JournalArticleImage, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<JournalArticleImage, ?>>();
 
-		String articleId = (String)attributes.get("articleId");
 
-		if (articleId != null) {
-			setArticleId(articleId);
-		}
+		attributeGetterFunctions.put(
+			"articleImageId",
+			new Function<JournalArticleImage, Object>() {
 
-		Double version = (Double)attributes.get("version");
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getArticleImageId();
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"articleImageId",
+			new BiConsumer<JournalArticleImage, Object>() {
 
-		String elInstanceId = (String)attributes.get("elInstanceId");
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object articleImageId) {
+					journalArticleImage.setArticleImageId((Long)articleImageId);
+				}
 
-		if (elInstanceId != null) {
-			setElInstanceId(elInstanceId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<JournalArticleImage, Object>() {
 
-		String elName = (String)attributes.get("elName");
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getGroupId();
+				}
 
-		if (elName != null) {
-			setElName(elName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<JournalArticleImage, Object>() {
 
-		String languageId = (String)attributes.get("languageId");
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object groupId) {
+					journalArticleImage.setGroupId((Long)groupId);
+				}
 
-		if (languageId != null) {
-			setLanguageId(languageId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<JournalArticleImage, Object>() {
 
-		Boolean tempImage = (Boolean)attributes.get("tempImage");
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getCompanyId();
+				}
 
-		if (tempImage != null) {
-			setTempImage(tempImage);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object companyId) {
+					journalArticleImage.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"articleId",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getArticleId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"articleId",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object articleId) {
+					journalArticleImage.setArticleId((String)articleId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object version) {
+					journalArticleImage.setVersion((Double)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"elInstanceId",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getElInstanceId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"elInstanceId",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object elInstanceId) {
+					journalArticleImage.setElInstanceId((String)elInstanceId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"elName",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getElName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"elName",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object elName) {
+					journalArticleImage.setElName((String)elName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"languageId",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getLanguageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"languageId",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object languageId) {
+					journalArticleImage.setLanguageId((String)languageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"tempImage",
+			new Function<JournalArticleImage, Object>() {
+
+				@Override
+				public Object apply(JournalArticleImage journalArticleImage) {
+					return journalArticleImage.getTempImage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"tempImage",
+			new BiConsumer<JournalArticleImage, Object>() {
+
+				@Override
+				public void accept(JournalArticleImage journalArticleImage, Object tempImage) {
+					journalArticleImage.setTempImage((Boolean)tempImage);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -589,26 +758,28 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{articleImageId=");
-		sb.append(getArticleImageId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", articleId=");
-		sb.append(getArticleId());
-		sb.append(", version=");
-		sb.append(getVersion());
-		sb.append(", elInstanceId=");
-		sb.append(getElInstanceId());
-		sb.append(", elName=");
-		sb.append(getElName());
-		sb.append(", languageId=");
-		sb.append(getLanguageId());
-		sb.append(", tempImage=");
-		sb.append(isTempImage());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((JournalArticleImage)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -616,48 +787,26 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.journal.model.JournalArticleImage");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>articleImageId</column-name><column-value><![CDATA[");
-		sb.append(getArticleImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>articleId</column-name><column-value><![CDATA[");
-		sb.append(getArticleId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>elInstanceId</column-name><column-value><![CDATA[");
-		sb.append(getElInstanceId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>elName</column-name><column-value><![CDATA[");
-		sb.append(getElName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>languageId</column-name><column-value><![CDATA[");
-		sb.append(getLanguageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>tempImage</column-name><column-value><![CDATA[");
-		sb.append(isTempImage());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((JournalArticleImage)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

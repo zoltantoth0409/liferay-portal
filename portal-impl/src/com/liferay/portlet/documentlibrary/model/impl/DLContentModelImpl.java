@@ -38,8 +38,12 @@ import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DLContent service. Represents a row in the &quot;DLContent&quot; database table, with each column mapped to a property of this class.
@@ -146,14 +150,15 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("contentId", getContentId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("repositoryId", getRepositoryId());
-		attributes.put("path", getPath());
-		attributes.put("version", getVersion());
-		attributes.put("data", getData());
-		attributes.put("size", getSize());
+		Map<String, Function<DLContent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DLContent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLContent, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DLContent)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -163,53 +168,200 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long contentId = (Long)attributes.get("contentId");
+		Map<String, BiConsumer<DLContent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (contentId != null) {
-			setContentId(contentId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DLContent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DLContent)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<DLContent, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<DLContent, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<DLContent, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLContent, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<DLContent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLContent, Object>>();
+		Map<String, BiConsumer<DLContent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLContent, ?>>();
 
-		Long repositoryId = (Long)attributes.get("repositoryId");
 
-		if (repositoryId != null) {
-			setRepositoryId(repositoryId);
-		}
+		attributeGetterFunctions.put(
+			"contentId",
+			new Function<DLContent, Object>() {
 
-		String path = (String)attributes.get("path");
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getContentId();
+				}
 
-		if (path != null) {
-			setPath(path);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"contentId",
+			new BiConsumer<DLContent, Object>() {
 
-		String version = (String)attributes.get("version");
+				@Override
+				public void accept(DLContent dlContent, Object contentId) {
+					dlContent.setContentId((Long)contentId);
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DLContent, Object>() {
 
-		Blob data = (Blob)attributes.get("data");
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getGroupId();
+				}
 
-		if (data != null) {
-			setData(data);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DLContent, Object>() {
 
-		Long size = (Long)attributes.get("size");
+				@Override
+				public void accept(DLContent dlContent, Object groupId) {
+					dlContent.setGroupId((Long)groupId);
+				}
 
-		if (size != null) {
-			setSize(size);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object companyId) {
+					dlContent.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"repositoryId",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getRepositoryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"repositoryId",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object repositoryId) {
+					dlContent.setRepositoryId((Long)repositoryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"path",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getPath();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"path",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object path) {
+					dlContent.setPath((String)path);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object version) {
+					dlContent.setVersion((String)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"data",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getData();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"data",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object data) {
+					dlContent.setData((Blob)data);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"size",
+			new Function<DLContent, Object>() {
+
+				@Override
+				public Object apply(DLContent dlContent) {
+					return dlContent.getSize();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"size",
+			new BiConsumer<DLContent, Object>() {
+
+				@Override
+				public void accept(DLContent dlContent, Object size) {
+					dlContent.setSize((Long)size);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override

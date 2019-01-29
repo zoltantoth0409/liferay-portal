@@ -42,10 +42,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ShoppingOrder service. Represents a row in the &quot;ShoppingOrder&quot; database table, with each column mapped to a property of this class.
@@ -330,57 +334,15 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("orderId", getOrderId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("number", getNumber());
-		attributes.put("tax", getTax());
-		attributes.put("shipping", getShipping());
-		attributes.put("altShipping", getAltShipping());
-		attributes.put("requiresShipping", isRequiresShipping());
-		attributes.put("insure", isInsure());
-		attributes.put("insurance", getInsurance());
-		attributes.put("couponCodes", getCouponCodes());
-		attributes.put("couponDiscount", getCouponDiscount());
-		attributes.put("billingFirstName", getBillingFirstName());
-		attributes.put("billingLastName", getBillingLastName());
-		attributes.put("billingEmailAddress", getBillingEmailAddress());
-		attributes.put("billingCompany", getBillingCompany());
-		attributes.put("billingStreet", getBillingStreet());
-		attributes.put("billingCity", getBillingCity());
-		attributes.put("billingState", getBillingState());
-		attributes.put("billingZip", getBillingZip());
-		attributes.put("billingCountry", getBillingCountry());
-		attributes.put("billingPhone", getBillingPhone());
-		attributes.put("shipToBilling", isShipToBilling());
-		attributes.put("shippingFirstName", getShippingFirstName());
-		attributes.put("shippingLastName", getShippingLastName());
-		attributes.put("shippingEmailAddress", getShippingEmailAddress());
-		attributes.put("shippingCompany", getShippingCompany());
-		attributes.put("shippingStreet", getShippingStreet());
-		attributes.put("shippingCity", getShippingCity());
-		attributes.put("shippingState", getShippingState());
-		attributes.put("shippingZip", getShippingZip());
-		attributes.put("shippingCountry", getShippingCountry());
-		attributes.put("shippingPhone", getShippingPhone());
-		attributes.put("ccName", getCcName());
-		attributes.put("ccType", getCcType());
-		attributes.put("ccNumber", getCcNumber());
-		attributes.put("ccExpMonth", getCcExpMonth());
-		attributes.put("ccExpYear", getCcExpYear());
-		attributes.put("ccVerNumber", getCcVerNumber());
-		attributes.put("comments", getComments());
-		attributes.put("ppTxnId", getPpTxnId());
-		attributes.put("ppPaymentStatus", getPpPaymentStatus());
-		attributes.put("ppPaymentGross", getPpPaymentGross());
-		attributes.put("ppReceiverEmail", getPpReceiverEmail());
-		attributes.put("ppPayerEmail", getPpPayerEmail());
-		attributes.put("sendOrderEmail", isSendOrderEmail());
-		attributes.put("sendShippingEmail", isSendShippingEmail());
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ShoppingOrder)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -390,313 +352,1061 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long orderId = (Long)attributes.get("orderId");
+		Map<String, BiConsumer<ShoppingOrder, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (orderId != null) {
-			setOrderId(orderId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ShoppingOrder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ShoppingOrder)this,
+					entry.getValue());
+			}
 		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
-
-		Long companyId = (Long)attributes.get("companyId");
-
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
-
-		Long userId = (Long)attributes.get("userId");
-
-		if (userId != null) {
-			setUserId(userId);
-		}
-
-		String userName = (String)attributes.get("userName");
-
-		if (userName != null) {
-			setUserName(userName);
-		}
-
-		Date createDate = (Date)attributes.get("createDate");
-
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
-
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
-
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
-
-		String number = (String)attributes.get("number");
-
-		if (number != null) {
-			setNumber(number);
-		}
-
-		Double tax = (Double)attributes.get("tax");
-
-		if (tax != null) {
-			setTax(tax);
-		}
-
-		Double shipping = (Double)attributes.get("shipping");
-
-		if (shipping != null) {
-			setShipping(shipping);
-		}
-
-		String altShipping = (String)attributes.get("altShipping");
-
-		if (altShipping != null) {
-			setAltShipping(altShipping);
-		}
-
-		Boolean requiresShipping = (Boolean)attributes.get("requiresShipping");
-
-		if (requiresShipping != null) {
-			setRequiresShipping(requiresShipping);
-		}
-
-		Boolean insure = (Boolean)attributes.get("insure");
-
-		if (insure != null) {
-			setInsure(insure);
-		}
-
-		Double insurance = (Double)attributes.get("insurance");
-
-		if (insurance != null) {
-			setInsurance(insurance);
-		}
-
-		String couponCodes = (String)attributes.get("couponCodes");
-
-		if (couponCodes != null) {
-			setCouponCodes(couponCodes);
-		}
-
-		Double couponDiscount = (Double)attributes.get("couponDiscount");
-
-		if (couponDiscount != null) {
-			setCouponDiscount(couponDiscount);
-		}
-
-		String billingFirstName = (String)attributes.get("billingFirstName");
-
-		if (billingFirstName != null) {
-			setBillingFirstName(billingFirstName);
-		}
-
-		String billingLastName = (String)attributes.get("billingLastName");
-
-		if (billingLastName != null) {
-			setBillingLastName(billingLastName);
-		}
-
-		String billingEmailAddress = (String)attributes.get(
-				"billingEmailAddress");
-
-		if (billingEmailAddress != null) {
-			setBillingEmailAddress(billingEmailAddress);
-		}
-
-		String billingCompany = (String)attributes.get("billingCompany");
-
-		if (billingCompany != null) {
-			setBillingCompany(billingCompany);
-		}
-
-		String billingStreet = (String)attributes.get("billingStreet");
-
-		if (billingStreet != null) {
-			setBillingStreet(billingStreet);
-		}
-
-		String billingCity = (String)attributes.get("billingCity");
-
-		if (billingCity != null) {
-			setBillingCity(billingCity);
-		}
-
-		String billingState = (String)attributes.get("billingState");
-
-		if (billingState != null) {
-			setBillingState(billingState);
-		}
-
-		String billingZip = (String)attributes.get("billingZip");
-
-		if (billingZip != null) {
-			setBillingZip(billingZip);
-		}
-
-		String billingCountry = (String)attributes.get("billingCountry");
-
-		if (billingCountry != null) {
-			setBillingCountry(billingCountry);
-		}
-
-		String billingPhone = (String)attributes.get("billingPhone");
-
-		if (billingPhone != null) {
-			setBillingPhone(billingPhone);
-		}
-
-		Boolean shipToBilling = (Boolean)attributes.get("shipToBilling");
-
-		if (shipToBilling != null) {
-			setShipToBilling(shipToBilling);
-		}
-
-		String shippingFirstName = (String)attributes.get("shippingFirstName");
-
-		if (shippingFirstName != null) {
-			setShippingFirstName(shippingFirstName);
-		}
-
-		String shippingLastName = (String)attributes.get("shippingLastName");
-
-		if (shippingLastName != null) {
-			setShippingLastName(shippingLastName);
-		}
-
-		String shippingEmailAddress = (String)attributes.get(
-				"shippingEmailAddress");
-
-		if (shippingEmailAddress != null) {
-			setShippingEmailAddress(shippingEmailAddress);
-		}
-
-		String shippingCompany = (String)attributes.get("shippingCompany");
-
-		if (shippingCompany != null) {
-			setShippingCompany(shippingCompany);
-		}
-
-		String shippingStreet = (String)attributes.get("shippingStreet");
-
-		if (shippingStreet != null) {
-			setShippingStreet(shippingStreet);
-		}
-
-		String shippingCity = (String)attributes.get("shippingCity");
-
-		if (shippingCity != null) {
-			setShippingCity(shippingCity);
-		}
-
-		String shippingState = (String)attributes.get("shippingState");
-
-		if (shippingState != null) {
-			setShippingState(shippingState);
-		}
-
-		String shippingZip = (String)attributes.get("shippingZip");
-
-		if (shippingZip != null) {
-			setShippingZip(shippingZip);
-		}
-
-		String shippingCountry = (String)attributes.get("shippingCountry");
-
-		if (shippingCountry != null) {
-			setShippingCountry(shippingCountry);
-		}
-
-		String shippingPhone = (String)attributes.get("shippingPhone");
-
-		if (shippingPhone != null) {
-			setShippingPhone(shippingPhone);
-		}
-
-		String ccName = (String)attributes.get("ccName");
-
-		if (ccName != null) {
-			setCcName(ccName);
-		}
-
-		String ccType = (String)attributes.get("ccType");
-
-		if (ccType != null) {
-			setCcType(ccType);
-		}
-
-		String ccNumber = (String)attributes.get("ccNumber");
-
-		if (ccNumber != null) {
-			setCcNumber(ccNumber);
-		}
-
-		Integer ccExpMonth = (Integer)attributes.get("ccExpMonth");
-
-		if (ccExpMonth != null) {
-			setCcExpMonth(ccExpMonth);
-		}
-
-		Integer ccExpYear = (Integer)attributes.get("ccExpYear");
-
-		if (ccExpYear != null) {
-			setCcExpYear(ccExpYear);
-		}
-
-		String ccVerNumber = (String)attributes.get("ccVerNumber");
-
-		if (ccVerNumber != null) {
-			setCcVerNumber(ccVerNumber);
-		}
-
-		String comments = (String)attributes.get("comments");
-
-		if (comments != null) {
-			setComments(comments);
-		}
-
-		String ppTxnId = (String)attributes.get("ppTxnId");
-
-		if (ppTxnId != null) {
-			setPpTxnId(ppTxnId);
-		}
-
-		String ppPaymentStatus = (String)attributes.get("ppPaymentStatus");
-
-		if (ppPaymentStatus != null) {
-			setPpPaymentStatus(ppPaymentStatus);
-		}
-
-		Double ppPaymentGross = (Double)attributes.get("ppPaymentGross");
-
-		if (ppPaymentGross != null) {
-			setPpPaymentGross(ppPaymentGross);
-		}
-
-		String ppReceiverEmail = (String)attributes.get("ppReceiverEmail");
-
-		if (ppReceiverEmail != null) {
-			setPpReceiverEmail(ppReceiverEmail);
-		}
-
-		String ppPayerEmail = (String)attributes.get("ppPayerEmail");
-
-		if (ppPayerEmail != null) {
-			setPpPayerEmail(ppPayerEmail);
-		}
-
-		Boolean sendOrderEmail = (Boolean)attributes.get("sendOrderEmail");
-
-		if (sendOrderEmail != null) {
-			setSendOrderEmail(sendOrderEmail);
-		}
-
-		Boolean sendShippingEmail = (Boolean)attributes.get("sendShippingEmail");
-
-		if (sendShippingEmail != null) {
-			setSendShippingEmail(sendShippingEmail);
-		}
+	}
+
+	public Map<String, Function<ShoppingOrder, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
+
+	public Map<String, BiConsumer<ShoppingOrder, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
+
+	private static final Map<String, Function<ShoppingOrder, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingOrder, Object>> _attributeSetterBiConsumers;
+
+	static {
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ShoppingOrder, Object>>();
+		Map<String, BiConsumer<ShoppingOrder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ShoppingOrder, ?>>();
+
+
+		attributeGetterFunctions.put(
+			"orderId",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getOrderId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"orderId",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object orderId) {
+					shoppingOrder.setOrderId((Long)orderId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object groupId) {
+					shoppingOrder.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object companyId) {
+					shoppingOrder.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object userId) {
+					shoppingOrder.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object userName) {
+					shoppingOrder.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object createDate) {
+					shoppingOrder.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object modifiedDate) {
+					shoppingOrder.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"number",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"number",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object number) {
+					shoppingOrder.setNumber((String)number);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"tax",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getTax();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"tax",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object tax) {
+					shoppingOrder.setTax((Double)tax);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shipping",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShipping();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shipping",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shipping) {
+					shoppingOrder.setShipping((Double)shipping);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"altShipping",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getAltShipping();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"altShipping",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object altShipping) {
+					shoppingOrder.setAltShipping((String)altShipping);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"requiresShipping",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getRequiresShipping();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"requiresShipping",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object requiresShipping) {
+					shoppingOrder.setRequiresShipping((Boolean)requiresShipping);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"insure",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getInsure();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"insure",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object insure) {
+					shoppingOrder.setInsure((Boolean)insure);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"insurance",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getInsurance();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"insurance",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object insurance) {
+					shoppingOrder.setInsurance((Double)insurance);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"couponCodes",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCouponCodes();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"couponCodes",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object couponCodes) {
+					shoppingOrder.setCouponCodes((String)couponCodes);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"couponDiscount",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCouponDiscount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"couponDiscount",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object couponDiscount) {
+					shoppingOrder.setCouponDiscount((Double)couponDiscount);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingFirstName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingFirstName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingFirstName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingFirstName) {
+					shoppingOrder.setBillingFirstName((String)billingFirstName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingLastName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingLastName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingLastName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingLastName) {
+					shoppingOrder.setBillingLastName((String)billingLastName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingEmailAddress",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingEmailAddress();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingEmailAddress",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingEmailAddress) {
+					shoppingOrder.setBillingEmailAddress((String)billingEmailAddress);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingCompany",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingCompany();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingCompany",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingCompany) {
+					shoppingOrder.setBillingCompany((String)billingCompany);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingStreet",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingStreet();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingStreet",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingStreet) {
+					shoppingOrder.setBillingStreet((String)billingStreet);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingCity",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingCity();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingCity",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingCity) {
+					shoppingOrder.setBillingCity((String)billingCity);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingState",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingState();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingState",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingState) {
+					shoppingOrder.setBillingState((String)billingState);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingZip",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingZip();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingZip",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingZip) {
+					shoppingOrder.setBillingZip((String)billingZip);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingCountry",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingCountry();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingCountry",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingCountry) {
+					shoppingOrder.setBillingCountry((String)billingCountry);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"billingPhone",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getBillingPhone();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"billingPhone",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object billingPhone) {
+					shoppingOrder.setBillingPhone((String)billingPhone);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shipToBilling",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShipToBilling();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shipToBilling",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shipToBilling) {
+					shoppingOrder.setShipToBilling((Boolean)shipToBilling);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingFirstName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingFirstName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingFirstName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingFirstName) {
+					shoppingOrder.setShippingFirstName((String)shippingFirstName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingLastName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingLastName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingLastName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingLastName) {
+					shoppingOrder.setShippingLastName((String)shippingLastName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingEmailAddress",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingEmailAddress();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingEmailAddress",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingEmailAddress) {
+					shoppingOrder.setShippingEmailAddress((String)shippingEmailAddress);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingCompany",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingCompany();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingCompany",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingCompany) {
+					shoppingOrder.setShippingCompany((String)shippingCompany);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingStreet",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingStreet();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingStreet",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingStreet) {
+					shoppingOrder.setShippingStreet((String)shippingStreet);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingCity",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingCity();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingCity",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingCity) {
+					shoppingOrder.setShippingCity((String)shippingCity);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingState",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingState();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingState",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingState) {
+					shoppingOrder.setShippingState((String)shippingState);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingZip",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingZip();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingZip",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingZip) {
+					shoppingOrder.setShippingZip((String)shippingZip);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingCountry",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingCountry();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingCountry",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingCountry) {
+					shoppingOrder.setShippingCountry((String)shippingCountry);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippingPhone",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getShippingPhone();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippingPhone",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object shippingPhone) {
+					shoppingOrder.setShippingPhone((String)shippingPhone);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccName",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccName",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccName) {
+					shoppingOrder.setCcName((String)ccName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccType",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccType",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccType) {
+					shoppingOrder.setCcType((String)ccType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccNumber",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccNumber",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccNumber) {
+					shoppingOrder.setCcNumber((String)ccNumber);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccExpMonth",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcExpMonth();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccExpMonth",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccExpMonth) {
+					shoppingOrder.setCcExpMonth((Integer)ccExpMonth);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccExpYear",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcExpYear();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccExpYear",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccExpYear) {
+					shoppingOrder.setCcExpYear((Integer)ccExpYear);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ccVerNumber",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getCcVerNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ccVerNumber",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ccVerNumber) {
+					shoppingOrder.setCcVerNumber((String)ccVerNumber);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"comments",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"comments",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object comments) {
+					shoppingOrder.setComments((String)comments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ppTxnId",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getPpTxnId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ppTxnId",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ppTxnId) {
+					shoppingOrder.setPpTxnId((String)ppTxnId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ppPaymentStatus",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getPpPaymentStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ppPaymentStatus",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ppPaymentStatus) {
+					shoppingOrder.setPpPaymentStatus((String)ppPaymentStatus);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ppPaymentGross",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getPpPaymentGross();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ppPaymentGross",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ppPaymentGross) {
+					shoppingOrder.setPpPaymentGross((Double)ppPaymentGross);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ppReceiverEmail",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getPpReceiverEmail();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ppReceiverEmail",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ppReceiverEmail) {
+					shoppingOrder.setPpReceiverEmail((String)ppReceiverEmail);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"ppPayerEmail",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getPpPayerEmail();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"ppPayerEmail",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object ppPayerEmail) {
+					shoppingOrder.setPpPayerEmail((String)ppPayerEmail);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sendOrderEmail",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getSendOrderEmail();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sendOrderEmail",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object sendOrderEmail) {
+					shoppingOrder.setSendOrderEmail((Boolean)sendOrderEmail);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sendShippingEmail",
+			new Function<ShoppingOrder, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrder shoppingOrder) {
+					return shoppingOrder.getSendShippingEmail();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sendShippingEmail",
+			new BiConsumer<ShoppingOrder, Object>() {
+
+				@Override
+				public void accept(ShoppingOrder shoppingOrder, Object sendShippingEmail) {
+					shoppingOrder.setSendShippingEmail((Boolean)sendShippingEmail);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -2022,110 +2732,27 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(103);
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{orderId=");
-		sb.append(getOrderId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", number=");
-		sb.append(getNumber());
-		sb.append(", tax=");
-		sb.append(getTax());
-		sb.append(", shipping=");
-		sb.append(getShipping());
-		sb.append(", altShipping=");
-		sb.append(getAltShipping());
-		sb.append(", requiresShipping=");
-		sb.append(isRequiresShipping());
-		sb.append(", insure=");
-		sb.append(isInsure());
-		sb.append(", insurance=");
-		sb.append(getInsurance());
-		sb.append(", couponCodes=");
-		sb.append(getCouponCodes());
-		sb.append(", couponDiscount=");
-		sb.append(getCouponDiscount());
-		sb.append(", billingFirstName=");
-		sb.append(getBillingFirstName());
-		sb.append(", billingLastName=");
-		sb.append(getBillingLastName());
-		sb.append(", billingEmailAddress=");
-		sb.append(getBillingEmailAddress());
-		sb.append(", billingCompany=");
-		sb.append(getBillingCompany());
-		sb.append(", billingStreet=");
-		sb.append(getBillingStreet());
-		sb.append(", billingCity=");
-		sb.append(getBillingCity());
-		sb.append(", billingState=");
-		sb.append(getBillingState());
-		sb.append(", billingZip=");
-		sb.append(getBillingZip());
-		sb.append(", billingCountry=");
-		sb.append(getBillingCountry());
-		sb.append(", billingPhone=");
-		sb.append(getBillingPhone());
-		sb.append(", shipToBilling=");
-		sb.append(isShipToBilling());
-		sb.append(", shippingFirstName=");
-		sb.append(getShippingFirstName());
-		sb.append(", shippingLastName=");
-		sb.append(getShippingLastName());
-		sb.append(", shippingEmailAddress=");
-		sb.append(getShippingEmailAddress());
-		sb.append(", shippingCompany=");
-		sb.append(getShippingCompany());
-		sb.append(", shippingStreet=");
-		sb.append(getShippingStreet());
-		sb.append(", shippingCity=");
-		sb.append(getShippingCity());
-		sb.append(", shippingState=");
-		sb.append(getShippingState());
-		sb.append(", shippingZip=");
-		sb.append(getShippingZip());
-		sb.append(", shippingCountry=");
-		sb.append(getShippingCountry());
-		sb.append(", shippingPhone=");
-		sb.append(getShippingPhone());
-		sb.append(", ccName=");
-		sb.append(getCcName());
-		sb.append(", ccType=");
-		sb.append(getCcType());
-		sb.append(", ccNumber=");
-		sb.append(getCcNumber());
-		sb.append(", ccExpMonth=");
-		sb.append(getCcExpMonth());
-		sb.append(", ccExpYear=");
-		sb.append(getCcExpYear());
-		sb.append(", ccVerNumber=");
-		sb.append(getCcVerNumber());
-		sb.append(", comments=");
-		sb.append(getComments());
-		sb.append(", ppTxnId=");
-		sb.append(getPpTxnId());
-		sb.append(", ppPaymentStatus=");
-		sb.append(getPpPaymentStatus());
-		sb.append(", ppPaymentGross=");
-		sb.append(getPpPaymentGross());
-		sb.append(", ppReceiverEmail=");
-		sb.append(getPpReceiverEmail());
-		sb.append(", ppPayerEmail=");
-		sb.append(getPpPayerEmail());
-		sb.append(", sendOrderEmail=");
-		sb.append(isSendOrderEmail());
-		sb.append(", sendShippingEmail=");
-		sb.append(isSendShippingEmail());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ShoppingOrder)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -2133,216 +2760,25 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(157);
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.shopping.model.ShoppingOrder");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>orderId</column-name><column-value><![CDATA[");
-		sb.append(getOrderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>number</column-name><column-value><![CDATA[");
-		sb.append(getNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>tax</column-name><column-value><![CDATA[");
-		sb.append(getTax());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shipping</column-name><column-value><![CDATA[");
-		sb.append(getShipping());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>altShipping</column-name><column-value><![CDATA[");
-		sb.append(getAltShipping());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>requiresShipping</column-name><column-value><![CDATA[");
-		sb.append(isRequiresShipping());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>insure</column-name><column-value><![CDATA[");
-		sb.append(isInsure());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>insurance</column-name><column-value><![CDATA[");
-		sb.append(getInsurance());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>couponCodes</column-name><column-value><![CDATA[");
-		sb.append(getCouponCodes());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>couponDiscount</column-name><column-value><![CDATA[");
-		sb.append(getCouponDiscount());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingFirstName</column-name><column-value><![CDATA[");
-		sb.append(getBillingFirstName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingLastName</column-name><column-value><![CDATA[");
-		sb.append(getBillingLastName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingEmailAddress</column-name><column-value><![CDATA[");
-		sb.append(getBillingEmailAddress());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingCompany</column-name><column-value><![CDATA[");
-		sb.append(getBillingCompany());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingStreet</column-name><column-value><![CDATA[");
-		sb.append(getBillingStreet());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingCity</column-name><column-value><![CDATA[");
-		sb.append(getBillingCity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingState</column-name><column-value><![CDATA[");
-		sb.append(getBillingState());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingZip</column-name><column-value><![CDATA[");
-		sb.append(getBillingZip());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingCountry</column-name><column-value><![CDATA[");
-		sb.append(getBillingCountry());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>billingPhone</column-name><column-value><![CDATA[");
-		sb.append(getBillingPhone());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shipToBilling</column-name><column-value><![CDATA[");
-		sb.append(isShipToBilling());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingFirstName</column-name><column-value><![CDATA[");
-		sb.append(getShippingFirstName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingLastName</column-name><column-value><![CDATA[");
-		sb.append(getShippingLastName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingEmailAddress</column-name><column-value><![CDATA[");
-		sb.append(getShippingEmailAddress());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingCompany</column-name><column-value><![CDATA[");
-		sb.append(getShippingCompany());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingStreet</column-name><column-value><![CDATA[");
-		sb.append(getShippingStreet());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingCity</column-name><column-value><![CDATA[");
-		sb.append(getShippingCity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingState</column-name><column-value><![CDATA[");
-		sb.append(getShippingState());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingZip</column-name><column-value><![CDATA[");
-		sb.append(getShippingZip());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingCountry</column-name><column-value><![CDATA[");
-		sb.append(getShippingCountry());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippingPhone</column-name><column-value><![CDATA[");
-		sb.append(getShippingPhone());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccName</column-name><column-value><![CDATA[");
-		sb.append(getCcName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccType</column-name><column-value><![CDATA[");
-		sb.append(getCcType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccNumber</column-name><column-value><![CDATA[");
-		sb.append(getCcNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccExpMonth</column-name><column-value><![CDATA[");
-		sb.append(getCcExpMonth());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccExpYear</column-name><column-value><![CDATA[");
-		sb.append(getCcExpYear());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ccVerNumber</column-name><column-value><![CDATA[");
-		sb.append(getCcVerNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>comments</column-name><column-value><![CDATA[");
-		sb.append(getComments());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ppTxnId</column-name><column-value><![CDATA[");
-		sb.append(getPpTxnId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ppPaymentStatus</column-name><column-value><![CDATA[");
-		sb.append(getPpPaymentStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ppPaymentGross</column-name><column-value><![CDATA[");
-		sb.append(getPpPaymentGross());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ppReceiverEmail</column-name><column-value><![CDATA[");
-		sb.append(getPpReceiverEmail());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>ppPayerEmail</column-name><column-value><![CDATA[");
-		sb.append(getPpPayerEmail());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sendOrderEmail</column-name><column-value><![CDATA[");
-		sb.append(isSendOrderEmail());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sendShippingEmail</column-name><column-value><![CDATA[");
-		sb.append(isSendShippingEmail());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ShoppingOrder)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

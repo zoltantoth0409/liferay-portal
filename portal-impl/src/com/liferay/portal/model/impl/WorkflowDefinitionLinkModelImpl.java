@@ -39,9 +39,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the WorkflowDefinitionLink service. Represents a row in the &quot;WorkflowDefinitionLink&quot; database table, with each column mapped to a property of this class.
@@ -161,20 +165,16 @@ public class WorkflowDefinitionLinkModelImpl extends BaseModelImpl<WorkflowDefin
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("workflowDefinitionLinkId", getWorkflowDefinitionLinkId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("typePK", getTypePK());
-		attributes.put("workflowDefinitionName", getWorkflowDefinitionName());
-		attributes.put("workflowDefinitionVersion",
-			getWorkflowDefinitionVersion());
+		Map<String, Function<WorkflowDefinitionLink, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<WorkflowDefinitionLink, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WorkflowDefinitionLink, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((WorkflowDefinitionLink)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -184,86 +184,304 @@ public class WorkflowDefinitionLinkModelImpl extends BaseModelImpl<WorkflowDefin
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<WorkflowDefinitionLink, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<WorkflowDefinitionLink, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((WorkflowDefinitionLink)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long workflowDefinitionLinkId = (Long)attributes.get(
-				"workflowDefinitionLinkId");
+	public Map<String, Function<WorkflowDefinitionLink, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (workflowDefinitionLinkId != null) {
-			setWorkflowDefinitionLinkId(workflowDefinitionLinkId);
-		}
+	public Map<String, BiConsumer<WorkflowDefinitionLink, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<WorkflowDefinitionLink, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WorkflowDefinitionLink, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<WorkflowDefinitionLink, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<WorkflowDefinitionLink, Object>>();
+		Map<String, BiConsumer<WorkflowDefinitionLink, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<WorkflowDefinitionLink, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<WorkflowDefinitionLink, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object mvccVersion) {
+					workflowDefinitionLink.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"workflowDefinitionLinkId",
+			new Function<WorkflowDefinitionLink, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getWorkflowDefinitionLinkId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"workflowDefinitionLinkId",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object workflowDefinitionLinkId) {
+					workflowDefinitionLink.setWorkflowDefinitionLinkId((Long)workflowDefinitionLinkId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<WorkflowDefinitionLink, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getGroupId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object groupId) {
+					workflowDefinitionLink.setGroupId((Long)groupId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<WorkflowDefinitionLink, Object>() {
 
-		Long typePK = (Long)attributes.get("typePK");
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getCompanyId();
+				}
 
-		if (typePK != null) {
-			setTypePK(typePK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
 
-		String workflowDefinitionName = (String)attributes.get(
-				"workflowDefinitionName");
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object companyId) {
+					workflowDefinitionLink.setCompanyId((Long)companyId);
+				}
 
-		if (workflowDefinitionName != null) {
-			setWorkflowDefinitionName(workflowDefinitionName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<WorkflowDefinitionLink, Object>() {
 
-		Integer workflowDefinitionVersion = (Integer)attributes.get(
-				"workflowDefinitionVersion");
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getUserId();
+				}
 
-		if (workflowDefinitionVersion != null) {
-			setWorkflowDefinitionVersion(workflowDefinitionVersion);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object userId) {
+					workflowDefinitionLink.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object userName) {
+					workflowDefinitionLink.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object createDate) {
+					workflowDefinitionLink.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object modifiedDate) {
+					workflowDefinitionLink.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object classNameId) {
+					workflowDefinitionLink.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object classPK) {
+					workflowDefinitionLink.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typePK",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getTypePK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typePK",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object typePK) {
+					workflowDefinitionLink.setTypePK((Long)typePK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"workflowDefinitionName",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getWorkflowDefinitionName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"workflowDefinitionName",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object workflowDefinitionName) {
+					workflowDefinitionLink.setWorkflowDefinitionName((String)workflowDefinitionName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"workflowDefinitionVersion",
+			new Function<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public Object apply(WorkflowDefinitionLink workflowDefinitionLink) {
+					return workflowDefinitionLink.getWorkflowDefinitionVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"workflowDefinitionVersion",
+			new BiConsumer<WorkflowDefinitionLink, Object>() {
+
+				@Override
+				public void accept(WorkflowDefinitionLink workflowDefinitionLink, Object workflowDefinitionVersion) {
+					workflowDefinitionLink.setWorkflowDefinitionVersion((Integer)workflowDefinitionVersion);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -728,34 +946,29 @@ public class WorkflowDefinitionLinkModelImpl extends BaseModelImpl<WorkflowDefin
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		Map<String, Function<WorkflowDefinitionLink, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", workflowDefinitionLinkId=");
-		sb.append(getWorkflowDefinitionLinkId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", typePK=");
-		sb.append(getTypePK());
-		sb.append(", workflowDefinitionName=");
-		sb.append(getWorkflowDefinitionName());
-		sb.append(", workflowDefinitionVersion=");
-		sb.append(getWorkflowDefinitionVersion());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<WorkflowDefinitionLink, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WorkflowDefinitionLink, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(WorkflowDefinitionLink)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -763,64 +976,27 @@ public class WorkflowDefinitionLinkModelImpl extends BaseModelImpl<WorkflowDefin
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		Map<String, Function<WorkflowDefinitionLink, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.WorkflowDefinitionLink");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>workflowDefinitionLinkId</column-name><column-value><![CDATA[");
-		sb.append(getWorkflowDefinitionLinkId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typePK</column-name><column-value><![CDATA[");
-		sb.append(getTypePK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>workflowDefinitionName</column-name><column-value><![CDATA[");
-		sb.append(getWorkflowDefinitionName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>workflowDefinitionVersion</column-name><column-value><![CDATA[");
-		sb.append(getWorkflowDefinitionVersion());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<WorkflowDefinitionLink, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WorkflowDefinitionLink, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(WorkflowDefinitionLink)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

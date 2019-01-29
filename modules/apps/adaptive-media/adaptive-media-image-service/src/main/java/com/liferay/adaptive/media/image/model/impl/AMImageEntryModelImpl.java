@@ -35,9 +35,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the AMImageEntry service. Represents a row in the &quot;AMImageEntry&quot; database table, with each column mapped to a property of this class.
@@ -152,17 +156,15 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("amImageEntryId", getAmImageEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("configurationUuid", getConfigurationUuid());
-		attributes.put("fileVersionId", getFileVersionId());
-		attributes.put("mimeType", getMimeType());
-		attributes.put("height", getHeight());
-		attributes.put("width", getWidth());
-		attributes.put("size", getSize());
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((AMImageEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -172,71 +174,261 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<AMImageEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<AMImageEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((AMImageEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long amImageEntryId = (Long)attributes.get("amImageEntryId");
+	public Map<String, Function<AMImageEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (amImageEntryId != null) {
-			setAmImageEntryId(amImageEntryId);
-		}
+	public Map<String, BiConsumer<AMImageEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<AMImageEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AMImageEntry, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AMImageEntry, Object>>();
+		Map<String, BiConsumer<AMImageEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AMImageEntry, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<AMImageEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<AMImageEntry, Object>() {
 
-		String configurationUuid = (String)attributes.get("configurationUuid");
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object uuid) {
+					amImageEntry.setUuid((String)uuid);
+				}
 
-		if (configurationUuid != null) {
-			setConfigurationUuid(configurationUuid);
-		}
+			});
+		attributeGetterFunctions.put(
+			"amImageEntryId",
+			new Function<AMImageEntry, Object>() {
 
-		Long fileVersionId = (Long)attributes.get("fileVersionId");
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getAmImageEntryId();
+				}
 
-		if (fileVersionId != null) {
-			setFileVersionId(fileVersionId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"amImageEntryId",
+			new BiConsumer<AMImageEntry, Object>() {
 
-		String mimeType = (String)attributes.get("mimeType");
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object amImageEntryId) {
+					amImageEntry.setAmImageEntryId((Long)amImageEntryId);
+				}
 
-		if (mimeType != null) {
-			setMimeType(mimeType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<AMImageEntry, Object>() {
 
-		Integer height = (Integer)attributes.get("height");
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getGroupId();
+				}
 
-		if (height != null) {
-			setHeight(height);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<AMImageEntry, Object>() {
 
-		Integer width = (Integer)attributes.get("width");
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object groupId) {
+					amImageEntry.setGroupId((Long)groupId);
+				}
 
-		if (width != null) {
-			setWidth(width);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<AMImageEntry, Object>() {
 
-		Long size = (Long)attributes.get("size");
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getCompanyId();
+				}
 
-		if (size != null) {
-			setSize(size);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object companyId) {
+					amImageEntry.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object createDate) {
+					amImageEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"configurationUuid",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getConfigurationUuid();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"configurationUuid",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object configurationUuid) {
+					amImageEntry.setConfigurationUuid((String)configurationUuid);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"fileVersionId",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getFileVersionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"fileVersionId",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object fileVersionId) {
+					amImageEntry.setFileVersionId((Long)fileVersionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mimeType",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getMimeType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mimeType",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object mimeType) {
+					amImageEntry.setMimeType((String)mimeType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"height",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getHeight();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"height",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object height) {
+					amImageEntry.setHeight((Integer)height);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"width",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getWidth();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"width",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object width) {
+					amImageEntry.setWidth((Integer)width);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"size",
+			new Function<AMImageEntry, Object>() {
+
+				@Override
+				public Object apply(AMImageEntry amImageEntry) {
+					return amImageEntry.getSize();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"size",
+			new BiConsumer<AMImageEntry, Object>() {
+
+				@Override
+				public void accept(AMImageEntry amImageEntry, Object size) {
+					amImageEntry.setSize((Long)size);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -599,30 +791,27 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", amImageEntryId=");
-		sb.append(getAmImageEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", configurationUuid=");
-		sb.append(getConfigurationUuid());
-		sb.append(", fileVersionId=");
-		sb.append(getFileVersionId());
-		sb.append(", mimeType=");
-		sb.append(getMimeType());
-		sb.append(", height=");
-		sb.append(getHeight());
-		sb.append(", width=");
-		sb.append(getWidth());
-		sb.append(", size=");
-		sb.append(getSize());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((AMImageEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -630,56 +819,25 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.adaptive.media.image.model.AMImageEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>amImageEntryId</column-name><column-value><![CDATA[");
-		sb.append(getAmImageEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>configurationUuid</column-name><column-value><![CDATA[");
-		sb.append(getConfigurationUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileVersionId</column-name><column-value><![CDATA[");
-		sb.append(getFileVersionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mimeType</column-name><column-value><![CDATA[");
-		sb.append(getMimeType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>height</column-name><column-value><![CDATA[");
-		sb.append(getHeight());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>width</column-name><column-value><![CDATA[");
-		sb.append(getWidth());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>size</column-name><column-value><![CDATA[");
-		sb.append(getSize());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((AMImageEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

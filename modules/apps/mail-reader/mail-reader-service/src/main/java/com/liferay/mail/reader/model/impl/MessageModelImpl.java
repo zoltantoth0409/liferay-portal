@@ -39,9 +39,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Message service. Represents a row in the &quot;Mail_Message&quot; database table, with each column mapped to a property of this class.
@@ -172,26 +176,15 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("messageId", getMessageId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("accountId", getAccountId());
-		attributes.put("folderId", getFolderId());
-		attributes.put("sender", getSender());
-		attributes.put("to", getTo());
-		attributes.put("cc", getCc());
-		attributes.put("bcc", getBcc());
-		attributes.put("sentDate", getSentDate());
-		attributes.put("subject", getSubject());
-		attributes.put("preview", getPreview());
-		attributes.put("body", getBody());
-		attributes.put("flags", getFlags());
-		attributes.put("size", getSize());
-		attributes.put("remoteMessageId", getRemoteMessageId());
-		attributes.put("contentType", getContentType());
+		Map<String, Function<Message, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Message, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Message, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Message)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -201,125 +194,439 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long messageId = (Long)attributes.get("messageId");
+		Map<String, BiConsumer<Message, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (messageId != null) {
-			setMessageId(messageId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Message, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Message)this, entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<Message, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<Message, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<Message, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Message, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<Message, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Message, Object>>();
+		Map<String, BiConsumer<Message, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Message, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"messageId",
+			new Function<Message, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Message message) {
+					return message.getMessageId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"messageId",
+			new BiConsumer<Message, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Message message, Object messageId) {
+					message.setMessageId((Long)messageId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Message, Object>() {
 
-		Long accountId = (Long)attributes.get("accountId");
+				@Override
+				public Object apply(Message message) {
+					return message.getCompanyId();
+				}
 
-		if (accountId != null) {
-			setAccountId(accountId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Message, Object>() {
 
-		Long folderId = (Long)attributes.get("folderId");
+				@Override
+				public void accept(Message message, Object companyId) {
+					message.setCompanyId((Long)companyId);
+				}
 
-		if (folderId != null) {
-			setFolderId(folderId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Message, Object>() {
 
-		String sender = (String)attributes.get("sender");
+				@Override
+				public Object apply(Message message) {
+					return message.getUserId();
+				}
 
-		if (sender != null) {
-			setSender(sender);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Message, Object>() {
 
-		String to = (String)attributes.get("to");
+				@Override
+				public void accept(Message message, Object userId) {
+					message.setUserId((Long)userId);
+				}
 
-		if (to != null) {
-			setTo(to);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Message, Object>() {
 
-		String cc = (String)attributes.get("cc");
+				@Override
+				public Object apply(Message message) {
+					return message.getUserName();
+				}
 
-		if (cc != null) {
-			setCc(cc);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Message, Object>() {
 
-		String bcc = (String)attributes.get("bcc");
+				@Override
+				public void accept(Message message, Object userName) {
+					message.setUserName((String)userName);
+				}
 
-		if (bcc != null) {
-			setBcc(bcc);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Message, Object>() {
 
-		Date sentDate = (Date)attributes.get("sentDate");
+				@Override
+				public Object apply(Message message) {
+					return message.getCreateDate();
+				}
 
-		if (sentDate != null) {
-			setSentDate(sentDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Message, Object>() {
 
-		String subject = (String)attributes.get("subject");
+				@Override
+				public void accept(Message message, Object createDate) {
+					message.setCreateDate((Date)createDate);
+				}
 
-		if (subject != null) {
-			setSubject(subject);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Message, Object>() {
 
-		String preview = (String)attributes.get("preview");
+				@Override
+				public Object apply(Message message) {
+					return message.getModifiedDate();
+				}
 
-		if (preview != null) {
-			setPreview(preview);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Message, Object>() {
 
-		String body = (String)attributes.get("body");
+				@Override
+				public void accept(Message message, Object modifiedDate) {
+					message.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (body != null) {
-			setBody(body);
-		}
+			});
+		attributeGetterFunctions.put(
+			"accountId",
+			new Function<Message, Object>() {
 
-		String flags = (String)attributes.get("flags");
+				@Override
+				public Object apply(Message message) {
+					return message.getAccountId();
+				}
 
-		if (flags != null) {
-			setFlags(flags);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"accountId",
+			new BiConsumer<Message, Object>() {
 
-		Long size = (Long)attributes.get("size");
+				@Override
+				public void accept(Message message, Object accountId) {
+					message.setAccountId((Long)accountId);
+				}
 
-		if (size != null) {
-			setSize(size);
-		}
+			});
+		attributeGetterFunctions.put(
+			"folderId",
+			new Function<Message, Object>() {
 
-		Long remoteMessageId = (Long)attributes.get("remoteMessageId");
+				@Override
+				public Object apply(Message message) {
+					return message.getFolderId();
+				}
 
-		if (remoteMessageId != null) {
-			setRemoteMessageId(remoteMessageId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"folderId",
+			new BiConsumer<Message, Object>() {
 
-		String contentType = (String)attributes.get("contentType");
+				@Override
+				public void accept(Message message, Object folderId) {
+					message.setFolderId((Long)folderId);
+				}
 
-		if (contentType != null) {
-			setContentType(contentType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"sender",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getSender();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sender",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object sender) {
+					message.setSender((String)sender);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"to",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getTo();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"to",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object to) {
+					message.setTo((String)to);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"cc",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getCc();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"cc",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object cc) {
+					message.setCc((String)cc);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"bcc",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getBcc();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"bcc",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object bcc) {
+					message.setBcc((String)bcc);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sentDate",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getSentDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sentDate",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object sentDate) {
+					message.setSentDate((Date)sentDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"subject",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getSubject();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"subject",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object subject) {
+					message.setSubject((String)subject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"preview",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getPreview();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"preview",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object preview) {
+					message.setPreview((String)preview);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"body",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getBody();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"body",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object body) {
+					message.setBody((String)body);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"flags",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getFlags();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"flags",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object flags) {
+					message.setFlags((String)flags);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"size",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getSize();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"size",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object size) {
+					message.setSize((Long)size);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"remoteMessageId",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getRemoteMessageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"remoteMessageId",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object remoteMessageId) {
+					message.setRemoteMessageId((Long)remoteMessageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"contentType",
+			new Function<Message, Object>() {
+
+				@Override
+				public Object apply(Message message) {
+					return message.getContentType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"contentType",
+			new BiConsumer<Message, Object>() {
+
+				@Override
+				public void accept(Message message, Object contentType) {
+					message.setContentType((String)contentType);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -890,48 +1197,27 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(41);
+		Map<String, Function<Message, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{messageId=");
-		sb.append(getMessageId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", accountId=");
-		sb.append(getAccountId());
-		sb.append(", folderId=");
-		sb.append(getFolderId());
-		sb.append(", sender=");
-		sb.append(getSender());
-		sb.append(", to=");
-		sb.append(getTo());
-		sb.append(", cc=");
-		sb.append(getCc());
-		sb.append(", bcc=");
-		sb.append(getBcc());
-		sb.append(", sentDate=");
-		sb.append(getSentDate());
-		sb.append(", subject=");
-		sb.append(getSubject());
-		sb.append(", preview=");
-		sb.append(getPreview());
-		sb.append(", body=");
-		sb.append(getBody());
-		sb.append(", flags=");
-		sb.append(getFlags());
-		sb.append(", size=");
-		sb.append(getSize());
-		sb.append(", remoteMessageId=");
-		sb.append(getRemoteMessageId());
-		sb.append(", contentType=");
-		sb.append(getContentType());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Message, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Message, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Message)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -939,92 +1225,25 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(64);
+		Map<String, Function<Message, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.mail.reader.model.Message");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>messageId</column-name><column-value><![CDATA[");
-		sb.append(getMessageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>accountId</column-name><column-value><![CDATA[");
-		sb.append(getAccountId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>folderId</column-name><column-value><![CDATA[");
-		sb.append(getFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sender</column-name><column-value><![CDATA[");
-		sb.append(getSender());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>to</column-name><column-value><![CDATA[");
-		sb.append(getTo());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>cc</column-name><column-value><![CDATA[");
-		sb.append(getCc());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>bcc</column-name><column-value><![CDATA[");
-		sb.append(getBcc());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sentDate</column-name><column-value><![CDATA[");
-		sb.append(getSentDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>subject</column-name><column-value><![CDATA[");
-		sb.append(getSubject());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>preview</column-name><column-value><![CDATA[");
-		sb.append(getPreview());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>body</column-name><column-value><![CDATA[");
-		sb.append(getBody());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>flags</column-name><column-value><![CDATA[");
-		sb.append(getFlags());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>size</column-name><column-value><![CDATA[");
-		sb.append(getSize());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>remoteMessageId</column-name><column-value><![CDATA[");
-		sb.append(getRemoteMessageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>contentType</column-name><column-value><![CDATA[");
-		sb.append(getContentType());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Message, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Message, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Message)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

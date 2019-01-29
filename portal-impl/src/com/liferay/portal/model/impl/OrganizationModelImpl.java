@@ -43,10 +43,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Organization service. Represents a row in the &quot;Organization_&quot; database table, with each column mapped to a property of this class.
@@ -250,24 +254,15 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("uuid", getUuid());
-		attributes.put("organizationId", getOrganizationId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("parentOrganizationId", getParentOrganizationId());
-		attributes.put("treePath", getTreePath());
-		attributes.put("name", getName());
-		attributes.put("type", getType());
-		attributes.put("recursable", isRecursable());
-		attributes.put("regionId", getRegionId());
-		attributes.put("countryId", getCountryId());
-		attributes.put("statusId", getStatusId());
-		attributes.put("comments", getComments());
-		attributes.put("logoId", getLogoId());
+		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Organization)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -277,113 +272,401 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Organization, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Organization, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Organization)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		String uuid = (String)attributes.get("uuid");
+	public Map<String, Function<Organization, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (uuid != null) {
-			setUuid(uuid);
-		}
+	public Map<String, BiConsumer<Organization, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long organizationId = (Long)attributes.get("organizationId");
+	private static final Map<String, Function<Organization, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Organization, Object>> _attributeSetterBiConsumers;
 
-		if (organizationId != null) {
-			setOrganizationId(organizationId);
-		}
+	static {
+		Map<String, Function<Organization, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Organization, Object>>();
+		Map<String, BiConsumer<Organization, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Organization, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Organization, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Organization, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(Organization organization, Object mvccVersion) {
+					organization.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<Organization, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<Organization, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Organization organization, Object uuid) {
+					organization.setUuid((String)uuid);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"organizationId",
+			new Function<Organization, Object>() {
 
-		Long parentOrganizationId = (Long)attributes.get("parentOrganizationId");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getOrganizationId();
+				}
 
-		if (parentOrganizationId != null) {
-			setParentOrganizationId(parentOrganizationId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"organizationId",
+			new BiConsumer<Organization, Object>() {
 
-		String treePath = (String)attributes.get("treePath");
+				@Override
+				public void accept(Organization organization, Object organizationId) {
+					organization.setOrganizationId((Long)organizationId);
+				}
 
-		if (treePath != null) {
-			setTreePath(treePath);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Organization, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getCompanyId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Organization, Object>() {
 
-		String type = (String)attributes.get("type");
+				@Override
+				public void accept(Organization organization, Object companyId) {
+					organization.setCompanyId((Long)companyId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Organization, Object>() {
 
-		Boolean recursable = (Boolean)attributes.get("recursable");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getUserId();
+				}
 
-		if (recursable != null) {
-			setRecursable(recursable);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Organization, Object>() {
 
-		Long regionId = (Long)attributes.get("regionId");
+				@Override
+				public void accept(Organization organization, Object userId) {
+					organization.setUserId((Long)userId);
+				}
 
-		if (regionId != null) {
-			setRegionId(regionId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Organization, Object>() {
 
-		Long countryId = (Long)attributes.get("countryId");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getUserName();
+				}
 
-		if (countryId != null) {
-			setCountryId(countryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Organization, Object>() {
 
-		Long statusId = (Long)attributes.get("statusId");
+				@Override
+				public void accept(Organization organization, Object userName) {
+					organization.setUserName((String)userName);
+				}
 
-		if (statusId != null) {
-			setStatusId(statusId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Organization, Object>() {
 
-		String comments = (String)attributes.get("comments");
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getCreateDate();
+				}
 
-		if (comments != null) {
-			setComments(comments);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Organization, Object>() {
 
-		Long logoId = (Long)attributes.get("logoId");
+				@Override
+				public void accept(Organization organization, Object createDate) {
+					organization.setCreateDate((Date)createDate);
+				}
 
-		if (logoId != null) {
-			setLogoId(logoId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object modifiedDate) {
+					organization.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentOrganizationId",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getParentOrganizationId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentOrganizationId",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object parentOrganizationId) {
+					organization.setParentOrganizationId((Long)parentOrganizationId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"treePath",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getTreePath();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"treePath",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object treePath) {
+					organization.setTreePath((String)treePath);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object name) {
+					organization.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object type) {
+					organization.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"recursable",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getRecursable();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"recursable",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object recursable) {
+					organization.setRecursable((Boolean)recursable);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"regionId",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getRegionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"regionId",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object regionId) {
+					organization.setRegionId((Long)regionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"countryId",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getCountryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"countryId",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object countryId) {
+					organization.setCountryId((Long)countryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusId",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getStatusId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusId",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object statusId) {
+					organization.setStatusId((Long)statusId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"comments",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"comments",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object comments) {
+					organization.setComments((String)comments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"logoId",
+			new Function<Organization, Object>() {
+
+				@Override
+				public Object apply(Organization organization) {
+					return organization.getLogoId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"logoId",
+			new BiConsumer<Organization, Object>() {
+
+				@Override
+				public void accept(Organization organization, Object logoId) {
+					organization.setLogoId((Long)logoId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -941,44 +1224,27 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", uuid=");
-		sb.append(getUuid());
-		sb.append(", organizationId=");
-		sb.append(getOrganizationId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", parentOrganizationId=");
-		sb.append(getParentOrganizationId());
-		sb.append(", treePath=");
-		sb.append(getTreePath());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", recursable=");
-		sb.append(isRecursable());
-		sb.append(", regionId=");
-		sb.append(getRegionId());
-		sb.append(", countryId=");
-		sb.append(getCountryId());
-		sb.append(", statusId=");
-		sb.append(getStatusId());
-		sb.append(", comments=");
-		sb.append(getComments());
-		sb.append(", logoId=");
-		sb.append(getLogoId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Organization)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -986,84 +1252,25 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Organization");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>organizationId</column-name><column-value><![CDATA[");
-		sb.append(getOrganizationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentOrganizationId</column-name><column-value><![CDATA[");
-		sb.append(getParentOrganizationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>treePath</column-name><column-value><![CDATA[");
-		sb.append(getTreePath());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>recursable</column-name><column-value><![CDATA[");
-		sb.append(isRecursable());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>regionId</column-name><column-value><![CDATA[");
-		sb.append(getRegionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>countryId</column-name><column-value><![CDATA[");
-		sb.append(getCountryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append(getStatusId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>comments</column-name><column-value><![CDATA[");
-		sb.append(getComments());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>logoId</column-name><column-value><![CDATA[");
-		sb.append(getLogoId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Organization)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

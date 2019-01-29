@@ -45,10 +45,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the KBTemplate service. Represents a row in the &quot;KBTemplate&quot; database table, with each column mapped to a property of this class.
@@ -211,17 +215,15 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("kbTemplateId", getKbTemplateId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("title", getTitle());
-		attributes.put("content", getContent());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<KBTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<KBTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((KBTemplate)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -231,71 +233,260 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<KBTemplate, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<KBTemplate, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((KBTemplate)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long kbTemplateId = (Long)attributes.get("kbTemplateId");
+	public Map<String, Function<KBTemplate, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (kbTemplateId != null) {
-			setKbTemplateId(kbTemplateId);
-		}
+	public Map<String, BiConsumer<KBTemplate, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<KBTemplate, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KBTemplate, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<KBTemplate, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KBTemplate, Object>>();
+		Map<String, BiConsumer<KBTemplate, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KBTemplate, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<KBTemplate, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<KBTemplate, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(KBTemplate kbTemplate, Object uuid) {
+					kbTemplate.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"kbTemplateId",
+			new Function<KBTemplate, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getKbTemplateId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"kbTemplateId",
+			new BiConsumer<KBTemplate, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(KBTemplate kbTemplate, Object kbTemplateId) {
+					kbTemplate.setKbTemplateId((Long)kbTemplateId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<KBTemplate, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getGroupId();
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<KBTemplate, Object>() {
 
-		String content = (String)attributes.get("content");
+				@Override
+				public void accept(KBTemplate kbTemplate, Object groupId) {
+					kbTemplate.setGroupId((Long)groupId);
+				}
 
-		if (content != null) {
-			setContent(content);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<KBTemplate, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getCompanyId();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object companyId) {
+					kbTemplate.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object userId) {
+					kbTemplate.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object userName) {
+					kbTemplate.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object createDate) {
+					kbTemplate.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object modifiedDate) {
+					kbTemplate.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object title) {
+					kbTemplate.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"content",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getContent();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"content",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object content) {
+					kbTemplate.setContent((String)content);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<KBTemplate, Object>() {
+
+				@Override
+				public Object apply(KBTemplate kbTemplate) {
+					return kbTemplate.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<KBTemplate, Object>() {
+
+				@Override
+				public void accept(KBTemplate kbTemplate, Object lastPublishDate) {
+					kbTemplate.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -699,30 +890,27 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<KBTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", kbTemplateId=");
-		sb.append(getKbTemplateId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", content=");
-		sb.append(getContent());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<KBTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((KBTemplate)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -730,56 +918,25 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<KBTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.knowledge.base.model.KBTemplate");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kbTemplateId</column-name><column-value><![CDATA[");
-		sb.append(getKbTemplateId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>content</column-name><column-value><![CDATA[");
-		sb.append(getContent());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<KBTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((KBTemplate)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

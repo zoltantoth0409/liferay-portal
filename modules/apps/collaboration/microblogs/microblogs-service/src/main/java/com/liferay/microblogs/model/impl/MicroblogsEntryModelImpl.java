@@ -42,10 +42,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the MicroblogsEntry service. Represents a row in the &quot;MicroblogsEntry&quot; database table, with each column mapped to a property of this class.
@@ -216,18 +220,15 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("microblogsEntryId", getMicroblogsEntryId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("creatorClassNameId", getCreatorClassNameId());
-		attributes.put("creatorClassPK", getCreatorClassPK());
-		attributes.put("content", getContent());
-		attributes.put("type", getType());
-		attributes.put("parentMicroblogsEntryId", getParentMicroblogsEntryId());
-		attributes.put("socialRelationType", getSocialRelationType());
+		Map<String, Function<MicroblogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<MicroblogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MicroblogsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((MicroblogsEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -237,79 +238,281 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long microblogsEntryId = (Long)attributes.get("microblogsEntryId");
+		Map<String, BiConsumer<MicroblogsEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (microblogsEntryId != null) {
-			setMicroblogsEntryId(microblogsEntryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<MicroblogsEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((MicroblogsEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<MicroblogsEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<MicroblogsEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<MicroblogsEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MicroblogsEntry, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<MicroblogsEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MicroblogsEntry, Object>>();
+		Map<String, BiConsumer<MicroblogsEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MicroblogsEntry, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"microblogsEntryId",
+			new Function<MicroblogsEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getMicroblogsEntryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"microblogsEntryId",
+			new BiConsumer<MicroblogsEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object microblogsEntryId) {
+					microblogsEntry.setMicroblogsEntryId((Long)microblogsEntryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<MicroblogsEntry, Object>() {
 
-		Long creatorClassNameId = (Long)attributes.get("creatorClassNameId");
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getCompanyId();
+				}
 
-		if (creatorClassNameId != null) {
-			setCreatorClassNameId(creatorClassNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<MicroblogsEntry, Object>() {
 
-		Long creatorClassPK = (Long)attributes.get("creatorClassPK");
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object companyId) {
+					microblogsEntry.setCompanyId((Long)companyId);
+				}
 
-		if (creatorClassPK != null) {
-			setCreatorClassPK(creatorClassPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<MicroblogsEntry, Object>() {
 
-		String content = (String)attributes.get("content");
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getUserId();
+				}
 
-		if (content != null) {
-			setContent(content);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<MicroblogsEntry, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object userId) {
+					microblogsEntry.setUserId((Long)userId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<MicroblogsEntry, Object>() {
 
-		Long parentMicroblogsEntryId = (Long)attributes.get(
-				"parentMicroblogsEntryId");
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getUserName();
+				}
 
-		if (parentMicroblogsEntryId != null) {
-			setParentMicroblogsEntryId(parentMicroblogsEntryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<MicroblogsEntry, Object>() {
 
-		Integer socialRelationType = (Integer)attributes.get(
-				"socialRelationType");
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object userName) {
+					microblogsEntry.setUserName((String)userName);
+				}
 
-		if (socialRelationType != null) {
-			setSocialRelationType(socialRelationType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object createDate) {
+					microblogsEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object modifiedDate) {
+					microblogsEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"creatorClassNameId",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getCreatorClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"creatorClassNameId",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object creatorClassNameId) {
+					microblogsEntry.setCreatorClassNameId((Long)creatorClassNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"creatorClassPK",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getCreatorClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"creatorClassPK",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object creatorClassPK) {
+					microblogsEntry.setCreatorClassPK((Long)creatorClassPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"content",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getContent();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"content",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object content) {
+					microblogsEntry.setContent((String)content);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object type) {
+					microblogsEntry.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentMicroblogsEntryId",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getParentMicroblogsEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentMicroblogsEntryId",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object parentMicroblogsEntryId) {
+					microblogsEntry.setParentMicroblogsEntryId((Long)parentMicroblogsEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"socialRelationType",
+			new Function<MicroblogsEntry, Object>() {
+
+				@Override
+				public Object apply(MicroblogsEntry microblogsEntry) {
+					return microblogsEntry.getSocialRelationType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"socialRelationType",
+			new BiConsumer<MicroblogsEntry, Object>() {
+
+				@Override
+				public void accept(MicroblogsEntry microblogsEntry, Object socialRelationType) {
+					microblogsEntry.setSocialRelationType((Integer)socialRelationType);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -770,32 +973,27 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<MicroblogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{microblogsEntryId=");
-		sb.append(getMicroblogsEntryId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", creatorClassNameId=");
-		sb.append(getCreatorClassNameId());
-		sb.append(", creatorClassPK=");
-		sb.append(getCreatorClassPK());
-		sb.append(", content=");
-		sb.append(getContent());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", parentMicroblogsEntryId=");
-		sb.append(getParentMicroblogsEntryId());
-		sb.append(", socialRelationType=");
-		sb.append(getSocialRelationType());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<MicroblogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MicroblogsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((MicroblogsEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -803,60 +1001,25 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		Map<String, Function<MicroblogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.microblogs.model.MicroblogsEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>microblogsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getMicroblogsEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>creatorClassNameId</column-name><column-value><![CDATA[");
-		sb.append(getCreatorClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>creatorClassPK</column-name><column-value><![CDATA[");
-		sb.append(getCreatorClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>content</column-name><column-value><![CDATA[");
-		sb.append(getContent());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentMicroblogsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getParentMicroblogsEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>socialRelationType</column-name><column-value><![CDATA[");
-		sb.append(getSocialRelationType());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<MicroblogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MicroblogsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((MicroblogsEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

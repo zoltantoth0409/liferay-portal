@@ -39,9 +39,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the MeetupsEntry service. Represents a row in the &quot;SN_MeetupsEntry&quot; database table, with each column mapped to a property of this class.
@@ -159,20 +163,15 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("meetupsEntryId", getMeetupsEntryId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("title", getTitle());
-		attributes.put("description", getDescription());
-		attributes.put("startDate", getStartDate());
-		attributes.put("endDate", getEndDate());
-		attributes.put("totalAttendees", getTotalAttendees());
-		attributes.put("maxAttendees", getMaxAttendees());
-		attributes.put("price", getPrice());
-		attributes.put("thumbnailId", getThumbnailId());
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((MeetupsEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -182,89 +181,321 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long meetupsEntryId = (Long)attributes.get("meetupsEntryId");
+		Map<String, BiConsumer<MeetupsEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (meetupsEntryId != null) {
-			setMeetupsEntryId(meetupsEntryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<MeetupsEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((MeetupsEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<MeetupsEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<MeetupsEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<MeetupsEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MeetupsEntry, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MeetupsEntry, Object>>();
+		Map<String, BiConsumer<MeetupsEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MeetupsEntry, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"meetupsEntryId",
+			new Function<MeetupsEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getMeetupsEntryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"meetupsEntryId",
+			new BiConsumer<MeetupsEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object meetupsEntryId) {
+					meetupsEntry.setMeetupsEntryId((Long)meetupsEntryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<MeetupsEntry, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getCompanyId();
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<MeetupsEntry, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object companyId) {
+					meetupsEntry.setCompanyId((Long)companyId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<MeetupsEntry, Object>() {
 
-		Date startDate = (Date)attributes.get("startDate");
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getUserId();
+				}
 
-		if (startDate != null) {
-			setStartDate(startDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<MeetupsEntry, Object>() {
 
-		Date endDate = (Date)attributes.get("endDate");
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object userId) {
+					meetupsEntry.setUserId((Long)userId);
+				}
 
-		if (endDate != null) {
-			setEndDate(endDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<MeetupsEntry, Object>() {
 
-		Integer totalAttendees = (Integer)attributes.get("totalAttendees");
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getUserName();
+				}
 
-		if (totalAttendees != null) {
-			setTotalAttendees(totalAttendees);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<MeetupsEntry, Object>() {
 
-		Integer maxAttendees = (Integer)attributes.get("maxAttendees");
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object userName) {
+					meetupsEntry.setUserName((String)userName);
+				}
 
-		if (maxAttendees != null) {
-			setMaxAttendees(maxAttendees);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<MeetupsEntry, Object>() {
 
-		Double price = (Double)attributes.get("price");
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getCreateDate();
+				}
 
-		if (price != null) {
-			setPrice(price);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<MeetupsEntry, Object>() {
 
-		Long thumbnailId = (Long)attributes.get("thumbnailId");
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object createDate) {
+					meetupsEntry.setCreateDate((Date)createDate);
+				}
 
-		if (thumbnailId != null) {
-			setThumbnailId(thumbnailId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object modifiedDate) {
+					meetupsEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object title) {
+					meetupsEntry.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object description) {
+					meetupsEntry.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"startDate",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getStartDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"startDate",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object startDate) {
+					meetupsEntry.setStartDate((Date)startDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"endDate",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getEndDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"endDate",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object endDate) {
+					meetupsEntry.setEndDate((Date)endDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"totalAttendees",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getTotalAttendees();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"totalAttendees",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object totalAttendees) {
+					meetupsEntry.setTotalAttendees((Integer)totalAttendees);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"maxAttendees",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getMaxAttendees();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"maxAttendees",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object maxAttendees) {
+					meetupsEntry.setMaxAttendees((Integer)maxAttendees);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"price",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getPrice();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"price",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object price) {
+					meetupsEntry.setPrice((Double)price);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"thumbnailId",
+			new Function<MeetupsEntry, Object>() {
+
+				@Override
+				public Object apply(MeetupsEntry meetupsEntry) {
+					return meetupsEntry.getThumbnailId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"thumbnailId",
+			new BiConsumer<MeetupsEntry, Object>() {
+
+				@Override
+				public void accept(MeetupsEntry meetupsEntry, Object thumbnailId) {
+					meetupsEntry.setThumbnailId((Long)thumbnailId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -673,36 +904,27 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{meetupsEntryId=");
-		sb.append(getMeetupsEntryId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", startDate=");
-		sb.append(getStartDate());
-		sb.append(", endDate=");
-		sb.append(getEndDate());
-		sb.append(", totalAttendees=");
-		sb.append(getTotalAttendees());
-		sb.append(", maxAttendees=");
-		sb.append(getMaxAttendees());
-		sb.append(", price=");
-		sb.append(getPrice());
-		sb.append(", thumbnailId=");
-		sb.append(getThumbnailId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((MeetupsEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -710,68 +932,25 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.social.networking.model.MeetupsEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>meetupsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getMeetupsEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append(getStartDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append(getEndDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>totalAttendees</column-name><column-value><![CDATA[");
-		sb.append(getTotalAttendees());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>maxAttendees</column-name><column-value><![CDATA[");
-		sb.append(getMaxAttendees());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>price</column-name><column-value><![CDATA[");
-		sb.append(getPrice());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>thumbnailId</column-name><column-value><![CDATA[");
-		sb.append(getThumbnailId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((MeetupsEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

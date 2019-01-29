@@ -44,10 +44,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the KBFolder service. Represents a row in the &quot;KBFolder&quot; database table, with each column mapped to a property of this class.
@@ -219,19 +223,15 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("kbFolderId", getKbFolderId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("parentKBFolderId", getParentKBFolderId());
-		attributes.put("name", getName());
-		attributes.put("urlTitle", getUrlTitle());
-		attributes.put("description", getDescription());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((KBFolder)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -241,83 +241,300 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<KBFolder, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<KBFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((KBFolder)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long kbFolderId = (Long)attributes.get("kbFolderId");
+	public Map<String, Function<KBFolder, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (kbFolderId != null) {
-			setKbFolderId(kbFolderId);
-		}
+	public Map<String, BiConsumer<KBFolder, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<KBFolder, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KBFolder, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KBFolder, Object>>();
+		Map<String, BiConsumer<KBFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KBFolder, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<KBFolder, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<KBFolder, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(KBFolder kbFolder, Object uuid) {
+					kbFolder.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"kbFolderId",
+			new Function<KBFolder, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getKbFolderId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"kbFolderId",
+			new BiConsumer<KBFolder, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(KBFolder kbFolder, Object kbFolderId) {
+					kbFolder.setKbFolderId((Long)kbFolderId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<KBFolder, Object>() {
 
-		Long parentKBFolderId = (Long)attributes.get("parentKBFolderId");
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getGroupId();
+				}
 
-		if (parentKBFolderId != null) {
-			setParentKBFolderId(parentKBFolderId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<KBFolder, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(KBFolder kbFolder, Object groupId) {
+					kbFolder.setGroupId((Long)groupId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<KBFolder, Object>() {
 
-		String urlTitle = (String)attributes.get("urlTitle");
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getCompanyId();
+				}
 
-		if (urlTitle != null) {
-			setUrlTitle(urlTitle);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<KBFolder, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(KBFolder kbFolder, Object companyId) {
+					kbFolder.setCompanyId((Long)companyId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<KBFolder, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getUserId();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object userId) {
+					kbFolder.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object userName) {
+					kbFolder.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object createDate) {
+					kbFolder.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object modifiedDate) {
+					kbFolder.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentKBFolderId",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getParentKBFolderId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentKBFolderId",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object parentKBFolderId) {
+					kbFolder.setParentKBFolderId((Long)parentKBFolderId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object name) {
+					kbFolder.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"urlTitle",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getUrlTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"urlTitle",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object urlTitle) {
+					kbFolder.setUrlTitle((String)urlTitle);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object description) {
+					kbFolder.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<KBFolder, Object>() {
+
+				@Override
+				public Object apply(KBFolder kbFolder) {
+					return kbFolder.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<KBFolder, Object>() {
+
+				@Override
+				public void accept(KBFolder kbFolder, Object lastPublishDate) {
+					kbFolder.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -797,34 +1014,27 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", kbFolderId=");
-		sb.append(getKbFolderId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", parentKBFolderId=");
-		sb.append(getParentKBFolderId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", urlTitle=");
-		sb.append(getUrlTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((KBFolder)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -832,64 +1042,25 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.knowledge.base.model.KBFolder");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kbFolderId</column-name><column-value><![CDATA[");
-		sb.append(getKbFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentKBFolderId</column-name><column-value><![CDATA[");
-		sb.append(getParentKBFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
-		sb.append(getUrlTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((KBFolder)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

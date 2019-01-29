@@ -45,10 +45,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Address service. Represents a row in the &quot;Address&quot; database table, with each column mapped to a property of this class.
@@ -242,26 +246,15 @@ public class AddressModelImpl extends BaseModelImpl<Address>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("uuid", getUuid());
-		attributes.put("addressId", getAddressId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("street1", getStreet1());
-		attributes.put("street2", getStreet2());
-		attributes.put("street3", getStreet3());
-		attributes.put("city", getCity());
-		attributes.put("zip", getZip());
-		attributes.put("regionId", getRegionId());
-		attributes.put("countryId", getCountryId());
-		attributes.put("typeId", getTypeId());
-		attributes.put("mailing", isMailing());
-		attributes.put("primary", isPrimary());
+		Map<String, Function<Address, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Address, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Address, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Address)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -271,125 +264,439 @@ public class AddressModelImpl extends BaseModelImpl<Address>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Address, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Address, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Address)this, entry.getValue());
+			}
 		}
+	}
 
-		String uuid = (String)attributes.get("uuid");
+	public Map<String, Function<Address, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (uuid != null) {
-			setUuid(uuid);
-		}
+	public Map<String, BiConsumer<Address, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long addressId = (Long)attributes.get("addressId");
+	private static final Map<String, Function<Address, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Address, Object>> _attributeSetterBiConsumers;
 
-		if (addressId != null) {
-			setAddressId(addressId);
-		}
+	static {
+		Map<String, Function<Address, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Address, Object>>();
+		Map<String, BiConsumer<Address, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Address, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Address, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(Address address) {
+					return address.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Address, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(Address address, Object mvccVersion) {
+					address.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<Address, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Address address) {
+					return address.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<Address, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Address address, Object uuid) {
+					address.setUuid((String)uuid);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"addressId",
+			new Function<Address, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(Address address) {
+					return address.getAddressId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"addressId",
+			new BiConsumer<Address, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(Address address, Object addressId) {
+					address.setAddressId((Long)addressId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Address, Object>() {
 
-		String street1 = (String)attributes.get("street1");
+				@Override
+				public Object apply(Address address) {
+					return address.getCompanyId();
+				}
 
-		if (street1 != null) {
-			setStreet1(street1);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Address, Object>() {
 
-		String street2 = (String)attributes.get("street2");
+				@Override
+				public void accept(Address address, Object companyId) {
+					address.setCompanyId((Long)companyId);
+				}
 
-		if (street2 != null) {
-			setStreet2(street2);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Address, Object>() {
 
-		String street3 = (String)attributes.get("street3");
+				@Override
+				public Object apply(Address address) {
+					return address.getUserId();
+				}
 
-		if (street3 != null) {
-			setStreet3(street3);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Address, Object>() {
 
-		String city = (String)attributes.get("city");
+				@Override
+				public void accept(Address address, Object userId) {
+					address.setUserId((Long)userId);
+				}
 
-		if (city != null) {
-			setCity(city);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Address, Object>() {
 
-		String zip = (String)attributes.get("zip");
+				@Override
+				public Object apply(Address address) {
+					return address.getUserName();
+				}
 
-		if (zip != null) {
-			setZip(zip);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Address, Object>() {
 
-		Long regionId = (Long)attributes.get("regionId");
+				@Override
+				public void accept(Address address, Object userName) {
+					address.setUserName((String)userName);
+				}
 
-		if (regionId != null) {
-			setRegionId(regionId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Address, Object>() {
 
-		Long countryId = (Long)attributes.get("countryId");
+				@Override
+				public Object apply(Address address) {
+					return address.getCreateDate();
+				}
 
-		if (countryId != null) {
-			setCountryId(countryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Address, Object>() {
 
-		Long typeId = (Long)attributes.get("typeId");
+				@Override
+				public void accept(Address address, Object createDate) {
+					address.setCreateDate((Date)createDate);
+				}
 
-		if (typeId != null) {
-			setTypeId(typeId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Address, Object>() {
 
-		Boolean mailing = (Boolean)attributes.get("mailing");
+				@Override
+				public Object apply(Address address) {
+					return address.getModifiedDate();
+				}
 
-		if (mailing != null) {
-			setMailing(mailing);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Address, Object>() {
 
-		Boolean primary = (Boolean)attributes.get("primary");
+				@Override
+				public void accept(Address address, Object modifiedDate) {
+					address.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (primary != null) {
-			setPrimary(primary);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object classNameId) {
+					address.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object classPK) {
+					address.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"street1",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getStreet1();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"street1",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object street1) {
+					address.setStreet1((String)street1);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"street2",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getStreet2();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"street2",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object street2) {
+					address.setStreet2((String)street2);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"street3",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getStreet3();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"street3",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object street3) {
+					address.setStreet3((String)street3);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"city",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getCity();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"city",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object city) {
+					address.setCity((String)city);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"zip",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getZip();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"zip",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object zip) {
+					address.setZip((String)zip);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"regionId",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getRegionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"regionId",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object regionId) {
+					address.setRegionId((Long)regionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"countryId",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getCountryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"countryId",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object countryId) {
+					address.setCountryId((Long)countryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typeId",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getTypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typeId",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object typeId) {
+					address.setTypeId((Long)typeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mailing",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getMailing();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mailing",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object mailing) {
+					address.setMailing((Boolean)mailing);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"primary",
+			new Function<Address, Object>() {
+
+				@Override
+				public Object apply(Address address) {
+					return address.getPrimary();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"primary",
+			new BiConsumer<Address, Object>() {
+
+				@Override
+				public void accept(Address address, Object primary) {
+					address.setPrimary((Boolean)primary);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1038,48 +1345,27 @@ public class AddressModelImpl extends BaseModelImpl<Address>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(41);
+		Map<String, Function<Address, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", uuid=");
-		sb.append(getUuid());
-		sb.append(", addressId=");
-		sb.append(getAddressId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", street1=");
-		sb.append(getStreet1());
-		sb.append(", street2=");
-		sb.append(getStreet2());
-		sb.append(", street3=");
-		sb.append(getStreet3());
-		sb.append(", city=");
-		sb.append(getCity());
-		sb.append(", zip=");
-		sb.append(getZip());
-		sb.append(", regionId=");
-		sb.append(getRegionId());
-		sb.append(", countryId=");
-		sb.append(getCountryId());
-		sb.append(", typeId=");
-		sb.append(getTypeId());
-		sb.append(", mailing=");
-		sb.append(isMailing());
-		sb.append(", primary=");
-		sb.append(isPrimary());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Address, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Address, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Address)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1087,92 +1373,25 @@ public class AddressModelImpl extends BaseModelImpl<Address>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(64);
+		Map<String, Function<Address, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Address");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>addressId</column-name><column-value><![CDATA[");
-		sb.append(getAddressId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>street1</column-name><column-value><![CDATA[");
-		sb.append(getStreet1());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>street2</column-name><column-value><![CDATA[");
-		sb.append(getStreet2());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>street3</column-name><column-value><![CDATA[");
-		sb.append(getStreet3());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>city</column-name><column-value><![CDATA[");
-		sb.append(getCity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>zip</column-name><column-value><![CDATA[");
-		sb.append(getZip());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>regionId</column-name><column-value><![CDATA[");
-		sb.append(getRegionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>countryId</column-name><column-value><![CDATA[");
-		sb.append(getCountryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typeId</column-name><column-value><![CDATA[");
-		sb.append(getTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mailing</column-name><column-value><![CDATA[");
-		sb.append(isMailing());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>primary</column-name><column-value><![CDATA[");
-		sb.append(isPrimary());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Address, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Address, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Address)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -48,13 +48,17 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DDMTemplate service. Represents a row in the &quot;DDMTemplate&quot; database table, with each column mapped to a property of this class.
@@ -269,32 +273,15 @@ public class DDMTemplateModelImpl extends BaseModelImpl<DDMTemplate>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("templateId", getTemplateId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("versionUserId", getVersionUserId());
-		attributes.put("versionUserName", getVersionUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("resourceClassNameId", getResourceClassNameId());
-		attributes.put("templateKey", getTemplateKey());
-		attributes.put("version", getVersion());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("type", getType());
-		attributes.put("mode", getMode());
-		attributes.put("language", getLanguage());
-		attributes.put("script", getScript());
-		attributes.put("cacheable", isCacheable());
-		attributes.put("smallImage", isSmallImage());
-		attributes.put("smallImageId", getSmallImageId());
-		attributes.put("smallImageURL", getSmallImageURL());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<DDMTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DDMTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDMTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DDMTemplate)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -304,161 +291,560 @@ public class DDMTemplateModelImpl extends BaseModelImpl<DDMTemplate>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<DDMTemplate, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DDMTemplate, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DDMTemplate)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long templateId = (Long)attributes.get("templateId");
+	public Map<String, Function<DDMTemplate, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (templateId != null) {
-			setTemplateId(templateId);
-		}
+	public Map<String, BiConsumer<DDMTemplate, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<DDMTemplate, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDMTemplate, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<DDMTemplate, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DDMTemplate, Object>>();
+		Map<String, BiConsumer<DDMTemplate, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DDMTemplate, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<DDMTemplate, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object uuid) {
+					ddmTemplate.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"templateId",
+			new Function<DDMTemplate, Object>() {
 
-		Long versionUserId = (Long)attributes.get("versionUserId");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getTemplateId();
+				}
 
-		if (versionUserId != null) {
-			setVersionUserId(versionUserId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"templateId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String versionUserName = (String)attributes.get("versionUserName");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object templateId) {
+					ddmTemplate.setTemplateId((Long)templateId);
+				}
 
-		if (versionUserName != null) {
-			setVersionUserName(versionUserName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DDMTemplate, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getGroupId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object groupId) {
+					ddmTemplate.setGroupId((Long)groupId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DDMTemplate, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getCompanyId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object companyId) {
+					ddmTemplate.setCompanyId((Long)companyId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<DDMTemplate, Object>() {
 
-		Long resourceClassNameId = (Long)attributes.get("resourceClassNameId");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getUserId();
+				}
 
-		if (resourceClassNameId != null) {
-			setResourceClassNameId(resourceClassNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String templateKey = (String)attributes.get("templateKey");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object userId) {
+					ddmTemplate.setUserId((Long)userId);
+				}
 
-		if (templateKey != null) {
-			setTemplateKey(templateKey);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<DDMTemplate, Object>() {
 
-		String version = (String)attributes.get("version");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getUserName();
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object userName) {
+					ddmTemplate.setUserName((String)userName);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"versionUserId",
+			new Function<DDMTemplate, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getVersionUserId();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"versionUserId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String type = (String)attributes.get("type");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object versionUserId) {
+					ddmTemplate.setVersionUserId((Long)versionUserId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"versionUserName",
+			new Function<DDMTemplate, Object>() {
 
-		String mode = (String)attributes.get("mode");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getVersionUserName();
+				}
 
-		if (mode != null) {
-			setMode(mode);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"versionUserName",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		String language = (String)attributes.get("language");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object versionUserName) {
+					ddmTemplate.setVersionUserName((String)versionUserName);
+				}
 
-		if (language != null) {
-			setLanguage(language);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<DDMTemplate, Object>() {
 
-		String script = (String)attributes.get("script");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getCreateDate();
+				}
 
-		if (script != null) {
-			setScript(script);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		Boolean cacheable = (Boolean)attributes.get("cacheable");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object createDate) {
+					ddmTemplate.setCreateDate((Date)createDate);
+				}
 
-		if (cacheable != null) {
-			setCacheable(cacheable);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<DDMTemplate, Object>() {
 
-		Boolean smallImage = (Boolean)attributes.get("smallImage");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getModifiedDate();
+				}
 
-		if (smallImage != null) {
-			setSmallImage(smallImage);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		Long smallImageId = (Long)attributes.get("smallImageId");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object modifiedDate) {
+					ddmTemplate.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (smallImageId != null) {
-			setSmallImageId(smallImageId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<DDMTemplate, Object>() {
 
-		String smallImageURL = (String)attributes.get("smallImageURL");
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getClassNameId();
+				}
 
-		if (smallImageURL != null) {
-			setSmallImageURL(smallImageURL);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<DDMTemplate, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object classNameId) {
+					ddmTemplate.setClassNameId((Long)classNameId);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object classPK) {
+					ddmTemplate.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"resourceClassNameId",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getResourceClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"resourceClassNameId",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object resourceClassNameId) {
+					ddmTemplate.setResourceClassNameId((Long)resourceClassNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"templateKey",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getTemplateKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"templateKey",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object templateKey) {
+					ddmTemplate.setTemplateKey((String)templateKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object version) {
+					ddmTemplate.setVersion((String)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object name) {
+					ddmTemplate.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object description) {
+					ddmTemplate.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object type) {
+					ddmTemplate.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mode",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getMode();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mode",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object mode) {
+					ddmTemplate.setMode((String)mode);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"language",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getLanguage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"language",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object language) {
+					ddmTemplate.setLanguage((String)language);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"script",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getScript();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"script",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object script) {
+					ddmTemplate.setScript((String)script);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"cacheable",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getCacheable();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"cacheable",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object cacheable) {
+					ddmTemplate.setCacheable((Boolean)cacheable);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"smallImage",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getSmallImage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"smallImage",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object smallImage) {
+					ddmTemplate.setSmallImage((Boolean)smallImage);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"smallImageId",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getSmallImageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"smallImageId",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object smallImageId) {
+					ddmTemplate.setSmallImageId((Long)smallImageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"smallImageURL",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getSmallImageURL();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"smallImageURL",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object smallImageURL) {
+					ddmTemplate.setSmallImageURL((String)smallImageURL);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<DDMTemplate, Object>() {
+
+				@Override
+				public Object apply(DDMTemplate ddmTemplate) {
+					return ddmTemplate.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<DDMTemplate, Object>() {
+
+				@Override
+				public void accept(DDMTemplate ddmTemplate, Object lastPublishDate) {
+					ddmTemplate.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1553,60 +1939,27 @@ public class DDMTemplateModelImpl extends BaseModelImpl<DDMTemplate>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(53);
+		Map<String, Function<DDMTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", templateId=");
-		sb.append(getTemplateId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", versionUserId=");
-		sb.append(getVersionUserId());
-		sb.append(", versionUserName=");
-		sb.append(getVersionUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", resourceClassNameId=");
-		sb.append(getResourceClassNameId());
-		sb.append(", templateKey=");
-		sb.append(getTemplateKey());
-		sb.append(", version=");
-		sb.append(getVersion());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", mode=");
-		sb.append(getMode());
-		sb.append(", language=");
-		sb.append(getLanguage());
-		sb.append(", script=");
-		sb.append(getScript());
-		sb.append(", cacheable=");
-		sb.append(isCacheable());
-		sb.append(", smallImage=");
-		sb.append(isSmallImage());
-		sb.append(", smallImageId=");
-		sb.append(getSmallImageId());
-		sb.append(", smallImageURL=");
-		sb.append(getSmallImageURL());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DDMTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDMTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DDMTemplate)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1614,116 +1967,25 @@ public class DDMTemplateModelImpl extends BaseModelImpl<DDMTemplate>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(82);
+		Map<String, Function<DDMTemplate, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.dynamic.data.mapping.model.DDMTemplate");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>templateId</column-name><column-value><![CDATA[");
-		sb.append(getTemplateId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>versionUserId</column-name><column-value><![CDATA[");
-		sb.append(getVersionUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>versionUserName</column-name><column-value><![CDATA[");
-		sb.append(getVersionUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resourceClassNameId</column-name><column-value><![CDATA[");
-		sb.append(getResourceClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>templateKey</column-name><column-value><![CDATA[");
-		sb.append(getTemplateKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mode</column-name><column-value><![CDATA[");
-		sb.append(getMode());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>language</column-name><column-value><![CDATA[");
-		sb.append(getLanguage());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>script</column-name><column-value><![CDATA[");
-		sb.append(getScript());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>cacheable</column-name><column-value><![CDATA[");
-		sb.append(isCacheable());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>smallImage</column-name><column-value><![CDATA[");
-		sb.append(isSmallImage());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>smallImageId</column-name><column-value><![CDATA[");
-		sb.append(getSmallImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>smallImageURL</column-name><column-value><![CDATA[");
-		sb.append(getSmallImageURL());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DDMTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDMTemplate, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DDMTemplate)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

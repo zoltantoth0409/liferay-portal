@@ -47,10 +47,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ExportImportConfiguration service. Represents a row in the &quot;ExportImportConfiguration&quot; database table, with each column mapped to a property of this class.
@@ -231,23 +235,16 @@ public class ExportImportConfigurationModelImpl extends BaseModelImpl<ExportImpo
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("exportImportConfigurationId",
-			getExportImportConfigurationId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("type", getType());
-		attributes.put("settings", getSettings());
-		attributes.put("status", getStatus());
-		attributes.put("statusByUserId", getStatusByUserId());
-		attributes.put("statusByUserName", getStatusByUserName());
-		attributes.put("statusDate", getStatusDate());
+		Map<String, Function<ExportImportConfiguration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ExportImportConfiguration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExportImportConfiguration, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ExportImportConfiguration)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -257,102 +254,364 @@ public class ExportImportConfigurationModelImpl extends BaseModelImpl<ExportImpo
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<ExportImportConfiguration, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ExportImportConfiguration, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ExportImportConfiguration)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long exportImportConfigurationId = (Long)attributes.get(
-				"exportImportConfigurationId");
+	public Map<String, Function<ExportImportConfiguration, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (exportImportConfigurationId != null) {
-			setExportImportConfigurationId(exportImportConfigurationId);
-		}
+	public Map<String, BiConsumer<ExportImportConfiguration, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<ExportImportConfiguration, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ExportImportConfiguration, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<ExportImportConfiguration, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ExportImportConfiguration, Object>>();
+		Map<String, BiConsumer<ExportImportConfiguration, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ExportImportConfiguration, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<ExportImportConfiguration, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object mvccVersion) {
+					exportImportConfiguration.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"exportImportConfigurationId",
+			new Function<ExportImportConfiguration, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getExportImportConfigurationId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"exportImportConfigurationId",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object exportImportConfigurationId) {
+					exportImportConfiguration.setExportImportConfigurationId((Long)exportImportConfigurationId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ExportImportConfiguration, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getGroupId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object groupId) {
+					exportImportConfiguration.setGroupId((Long)groupId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ExportImportConfiguration, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getCompanyId();
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		String settings = (String)attributes.get("settings");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object companyId) {
+					exportImportConfiguration.setCompanyId((Long)companyId);
+				}
 
-		if (settings != null) {
-			setSettings(settings);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<ExportImportConfiguration, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getUserId();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		Long statusByUserId = (Long)attributes.get("statusByUserId");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object userId) {
+					exportImportConfiguration.setUserId((Long)userId);
+				}
 
-		if (statusByUserId != null) {
-			setStatusByUserId(statusByUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<ExportImportConfiguration, Object>() {
 
-		String statusByUserName = (String)attributes.get("statusByUserName");
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getUserName();
+				}
 
-		if (statusByUserName != null) {
-			setStatusByUserName(statusByUserName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<ExportImportConfiguration, Object>() {
 
-		Date statusDate = (Date)attributes.get("statusDate");
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object userName) {
+					exportImportConfiguration.setUserName((String)userName);
+				}
 
-		if (statusDate != null) {
-			setStatusDate(statusDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object createDate) {
+					exportImportConfiguration.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object modifiedDate) {
+					exportImportConfiguration.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object name) {
+					exportImportConfiguration.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object description) {
+					exportImportConfiguration.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object type) {
+					exportImportConfiguration.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"settings",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"settings",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object settings) {
+					exportImportConfiguration.setSettings((String)settings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object status) {
+					exportImportConfiguration.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserId",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getStatusByUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserId",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object statusByUserId) {
+					exportImportConfiguration.setStatusByUserId((Long)statusByUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserName",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getStatusByUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserName",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object statusByUserName) {
+					exportImportConfiguration.setStatusByUserName((String)statusByUserName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusDate",
+			new Function<ExportImportConfiguration, Object>() {
+
+				@Override
+				public Object apply(ExportImportConfiguration exportImportConfiguration) {
+					return exportImportConfiguration.getStatusDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusDate",
+			new BiConsumer<ExportImportConfiguration, Object>() {
+
+				@Override
+				public void accept(ExportImportConfiguration exportImportConfiguration, Object statusDate) {
+					exportImportConfiguration.setStatusDate((Date)statusDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1076,40 +1335,29 @@ public class ExportImportConfigurationModelImpl extends BaseModelImpl<ExportImpo
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		Map<String, Function<ExportImportConfiguration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", exportImportConfigurationId=");
-		sb.append(getExportImportConfigurationId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", settings=");
-		sb.append(getSettings());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusByUserId=");
-		sb.append(getStatusByUserId());
-		sb.append(", statusByUserName=");
-		sb.append(getStatusByUserName());
-		sb.append(", statusDate=");
-		sb.append(getStatusDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ExportImportConfiguration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExportImportConfiguration, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(ExportImportConfiguration)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1117,77 +1365,27 @@ public class ExportImportConfigurationModelImpl extends BaseModelImpl<ExportImpo
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		Map<String, Function<ExportImportConfiguration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append(
-			"com.liferay.exportimport.kernel.model.ExportImportConfiguration");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>exportImportConfigurationId</column-name><column-value><![CDATA[");
-		sb.append(getExportImportConfigurationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>settings</column-name><column-value><![CDATA[");
-		sb.append(getSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserName</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
-		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ExportImportConfiguration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExportImportConfiguration, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(ExportImportConfiguration)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

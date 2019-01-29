@@ -34,8 +34,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ResourceAction service. Represents a row in the &quot;ResourceAction&quot; database table, with each column mapped to a property of this class.
@@ -135,11 +139,15 @@ public class ResourceActionModelImpl extends BaseModelImpl<ResourceAction>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("resourceActionId", getResourceActionId());
-		attributes.put("name", getName());
-		attributes.put("actionId", getActionId());
-		attributes.put("bitwiseValue", getBitwiseValue());
+		Map<String, Function<ResourceAction, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ResourceAction, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceAction, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ResourceAction)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -149,35 +157,141 @@ public class ResourceActionModelImpl extends BaseModelImpl<ResourceAction>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<ResourceAction, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ResourceAction, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ResourceAction)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long resourceActionId = (Long)attributes.get("resourceActionId");
+	public Map<String, Function<ResourceAction, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (resourceActionId != null) {
-			setResourceActionId(resourceActionId);
-		}
+	public Map<String, BiConsumer<ResourceAction, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		String name = (String)attributes.get("name");
+	private static final Map<String, Function<ResourceAction, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ResourceAction, Object>> _attributeSetterBiConsumers;
 
-		if (name != null) {
-			setName(name);
-		}
+	static {
+		Map<String, Function<ResourceAction, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ResourceAction, Object>>();
+		Map<String, BiConsumer<ResourceAction, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ResourceAction, ?>>();
 
-		String actionId = (String)attributes.get("actionId");
 
-		if (actionId != null) {
-			setActionId(actionId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<ResourceAction, Object>() {
 
-		Long bitwiseValue = (Long)attributes.get("bitwiseValue");
+				@Override
+				public Object apply(ResourceAction resourceAction) {
+					return resourceAction.getMvccVersion();
+				}
 
-		if (bitwiseValue != null) {
-			setBitwiseValue(bitwiseValue);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<ResourceAction, Object>() {
+
+				@Override
+				public void accept(ResourceAction resourceAction, Object mvccVersion) {
+					resourceAction.setMvccVersion((Long)mvccVersion);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"resourceActionId",
+			new Function<ResourceAction, Object>() {
+
+				@Override
+				public Object apply(ResourceAction resourceAction) {
+					return resourceAction.getResourceActionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"resourceActionId",
+			new BiConsumer<ResourceAction, Object>() {
+
+				@Override
+				public void accept(ResourceAction resourceAction, Object resourceActionId) {
+					resourceAction.setResourceActionId((Long)resourceActionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ResourceAction, Object>() {
+
+				@Override
+				public Object apply(ResourceAction resourceAction) {
+					return resourceAction.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ResourceAction, Object>() {
+
+				@Override
+				public void accept(ResourceAction resourceAction, Object name) {
+					resourceAction.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"actionId",
+			new Function<ResourceAction, Object>() {
+
+				@Override
+				public Object apply(ResourceAction resourceAction) {
+					return resourceAction.getActionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"actionId",
+			new BiConsumer<ResourceAction, Object>() {
+
+				@Override
+				public void accept(ResourceAction resourceAction, Object actionId) {
+					resourceAction.setActionId((String)actionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"bitwiseValue",
+			new Function<ResourceAction, Object>() {
+
+				@Override
+				public Object apply(ResourceAction resourceAction) {
+					return resourceAction.getBitwiseValue();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"bitwiseValue",
+			new BiConsumer<ResourceAction, Object>() {
+
+				@Override
+				public void accept(ResourceAction resourceAction, Object bitwiseValue) {
+					resourceAction.setBitwiseValue((Long)bitwiseValue);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -410,18 +524,27 @@ public class ResourceActionModelImpl extends BaseModelImpl<ResourceAction>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		Map<String, Function<ResourceAction, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", resourceActionId=");
-		sb.append(getResourceActionId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", actionId=");
-		sb.append(getActionId());
-		sb.append(", bitwiseValue=");
-		sb.append(getBitwiseValue());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ResourceAction, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceAction, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ResourceAction)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -429,32 +552,25 @@ public class ResourceActionModelImpl extends BaseModelImpl<ResourceAction>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<ResourceAction, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.ResourceAction");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resourceActionId</column-name><column-value><![CDATA[");
-		sb.append(getResourceActionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>actionId</column-name><column-value><![CDATA[");
-		sb.append(getActionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>bitwiseValue</column-name><column-value><![CDATA[");
-		sb.append(getBitwiseValue());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ResourceAction, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceAction, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ResourceAction)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

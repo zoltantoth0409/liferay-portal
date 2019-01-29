@@ -35,8 +35,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ShoppingItemField service. Represents a row in the &quot;ShoppingItemField&quot; database table, with each column mapped to a property of this class.
@@ -137,12 +141,16 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("itemFieldId", getItemFieldId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("itemId", getItemId());
-		attributes.put("name", getName());
-		attributes.put("values", getValues());
-		attributes.put("description", getDescription());
+		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ShoppingItemField)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -152,41 +160,163 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long itemFieldId = (Long)attributes.get("itemFieldId");
+		Map<String, BiConsumer<ShoppingItemField, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (itemFieldId != null) {
-			setItemFieldId(itemFieldId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ShoppingItemField, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ShoppingItemField)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<ShoppingItemField, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<ShoppingItemField, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long itemId = (Long)attributes.get("itemId");
+	private static final Map<String, Function<ShoppingItemField, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingItemField, Object>> _attributeSetterBiConsumers;
 
-		if (itemId != null) {
-			setItemId(itemId);
-		}
+	static {
+		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ShoppingItemField, Object>>();
+		Map<String, BiConsumer<ShoppingItemField, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ShoppingItemField, ?>>();
 
-		String name = (String)attributes.get("name");
 
-		if (name != null) {
-			setName(name);
-		}
+		attributeGetterFunctions.put(
+			"itemFieldId",
+			new Function<ShoppingItemField, Object>() {
 
-		String values = (String)attributes.get("values");
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getItemFieldId();
+				}
 
-		if (values != null) {
-			setValues(values);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"itemFieldId",
+			new BiConsumer<ShoppingItemField, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object itemFieldId) {
+					shoppingItemField.setItemFieldId((Long)itemFieldId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ShoppingItemField, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ShoppingItemField, Object>() {
+
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object companyId) {
+					shoppingItemField.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"itemId",
+			new Function<ShoppingItemField, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getItemId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"itemId",
+			new BiConsumer<ShoppingItemField, Object>() {
+
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object itemId) {
+					shoppingItemField.setItemId((Long)itemId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ShoppingItemField, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ShoppingItemField, Object>() {
+
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object name) {
+					shoppingItemField.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"values",
+			new Function<ShoppingItemField, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getValues();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"values",
+			new BiConsumer<ShoppingItemField, Object>() {
+
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object values) {
+					shoppingItemField.setValues((String)values);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<ShoppingItemField, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemField shoppingItemField) {
+					return shoppingItemField.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<ShoppingItemField, Object>() {
+
+				@Override
+				public void accept(ShoppingItemField shoppingItemField, Object description) {
+					shoppingItemField.setDescription((String)description);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -435,20 +565,28 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{itemFieldId=");
-		sb.append(getItemFieldId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", itemId=");
-		sb.append(getItemId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", values=");
-		sb.append(getValues());
-		sb.append(", description=");
-		sb.append(getDescription());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ShoppingItemField)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -456,36 +594,26 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.shopping.model.ShoppingItemField");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>itemFieldId</column-name><column-value><![CDATA[");
-		sb.append(getItemFieldId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>itemId</column-name><column-value><![CDATA[");
-		sb.append(getItemId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>values</column-name><column-value><![CDATA[");
-		sb.append(getValues());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ShoppingItemField)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

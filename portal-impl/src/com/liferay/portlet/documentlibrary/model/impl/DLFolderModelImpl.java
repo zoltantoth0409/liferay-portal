@@ -49,10 +49,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DLFolder service. Represents a row in the &quot;DLFolder&quot; database table, with each column mapped to a property of this class.
@@ -270,29 +274,15 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("folderId", getFolderId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("repositoryId", getRepositoryId());
-		attributes.put("mountPoint", isMountPoint());
-		attributes.put("parentFolderId", getParentFolderId());
-		attributes.put("treePath", getTreePath());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("lastPostDate", getLastPostDate());
-		attributes.put("defaultFileEntryTypeId", getDefaultFileEntryTypeId());
-		attributes.put("hidden", isHidden());
-		attributes.put("restrictionType", getRestrictionType());
-		attributes.put("lastPublishDate", getLastPublishDate());
-		attributes.put("status", getStatus());
-		attributes.put("statusByUserId", getStatusByUserId());
-		attributes.put("statusByUserName", getStatusByUserName());
-		attributes.put("statusDate", getStatusDate());
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DLFolder)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -302,144 +292,500 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<DLFolder, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DLFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DLFolder)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long folderId = (Long)attributes.get("folderId");
+	public Map<String, Function<DLFolder, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (folderId != null) {
-			setFolderId(folderId);
-		}
+	public Map<String, BiConsumer<DLFolder, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<DLFolder, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFolder, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFolder, Object>>();
+		Map<String, BiConsumer<DLFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFolder, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<DLFolder, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<DLFolder, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(DLFolder dlFolder, Object uuid) {
+					dlFolder.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"folderId",
+			new Function<DLFolder, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getFolderId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"folderId",
+			new BiConsumer<DLFolder, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(DLFolder dlFolder, Object folderId) {
+					dlFolder.setFolderId((Long)folderId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DLFolder, Object>() {
 
-		Long repositoryId = (Long)attributes.get("repositoryId");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getGroupId();
+				}
 
-		if (repositoryId != null) {
-			setRepositoryId(repositoryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DLFolder, Object>() {
 
-		Boolean mountPoint = (Boolean)attributes.get("mountPoint");
+				@Override
+				public void accept(DLFolder dlFolder, Object groupId) {
+					dlFolder.setGroupId((Long)groupId);
+				}
 
-		if (mountPoint != null) {
-			setMountPoint(mountPoint);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DLFolder, Object>() {
 
-		Long parentFolderId = (Long)attributes.get("parentFolderId");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getCompanyId();
+				}
 
-		if (parentFolderId != null) {
-			setParentFolderId(parentFolderId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DLFolder, Object>() {
 
-		String treePath = (String)attributes.get("treePath");
+				@Override
+				public void accept(DLFolder dlFolder, Object companyId) {
+					dlFolder.setCompanyId((Long)companyId);
+				}
 
-		if (treePath != null) {
-			setTreePath(treePath);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<DLFolder, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getUserId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<DLFolder, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(DLFolder dlFolder, Object userId) {
+					dlFolder.setUserId((Long)userId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<DLFolder, Object>() {
 
-		Date lastPostDate = (Date)attributes.get("lastPostDate");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getUserName();
+				}
 
-		if (lastPostDate != null) {
-			setLastPostDate(lastPostDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<DLFolder, Object>() {
 
-		Long defaultFileEntryTypeId = (Long)attributes.get(
-				"defaultFileEntryTypeId");
+				@Override
+				public void accept(DLFolder dlFolder, Object userName) {
+					dlFolder.setUserName((String)userName);
+				}
 
-		if (defaultFileEntryTypeId != null) {
-			setDefaultFileEntryTypeId(defaultFileEntryTypeId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<DLFolder, Object>() {
 
-		Boolean hidden = (Boolean)attributes.get("hidden");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getCreateDate();
+				}
 
-		if (hidden != null) {
-			setHidden(hidden);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<DLFolder, Object>() {
 
-		Integer restrictionType = (Integer)attributes.get("restrictionType");
+				@Override
+				public void accept(DLFolder dlFolder, Object createDate) {
+					dlFolder.setCreateDate((Date)createDate);
+				}
 
-		if (restrictionType != null) {
-			setRestrictionType(restrictionType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<DLFolder, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getModifiedDate();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<DLFolder, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public void accept(DLFolder dlFolder, Object modifiedDate) {
+					dlFolder.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeGetterFunctions.put(
+			"repositoryId",
+			new Function<DLFolder, Object>() {
 
-		Long statusByUserId = (Long)attributes.get("statusByUserId");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getRepositoryId();
+				}
 
-		if (statusByUserId != null) {
-			setStatusByUserId(statusByUserId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"repositoryId",
+			new BiConsumer<DLFolder, Object>() {
 
-		String statusByUserName = (String)attributes.get("statusByUserName");
+				@Override
+				public void accept(DLFolder dlFolder, Object repositoryId) {
+					dlFolder.setRepositoryId((Long)repositoryId);
+				}
 
-		if (statusByUserName != null) {
-			setStatusByUserName(statusByUserName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"mountPoint",
+			new Function<DLFolder, Object>() {
 
-		Date statusDate = (Date)attributes.get("statusDate");
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getMountPoint();
+				}
 
-		if (statusDate != null) {
-			setStatusDate(statusDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mountPoint",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object mountPoint) {
+					dlFolder.setMountPoint((Boolean)mountPoint);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentFolderId",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getParentFolderId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentFolderId",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object parentFolderId) {
+					dlFolder.setParentFolderId((Long)parentFolderId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"treePath",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getTreePath();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"treePath",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object treePath) {
+					dlFolder.setTreePath((String)treePath);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object name) {
+					dlFolder.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object description) {
+					dlFolder.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPostDate",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getLastPostDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPostDate",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object lastPostDate) {
+					dlFolder.setLastPostDate((Date)lastPostDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"defaultFileEntryTypeId",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getDefaultFileEntryTypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"defaultFileEntryTypeId",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object defaultFileEntryTypeId) {
+					dlFolder.setDefaultFileEntryTypeId((Long)defaultFileEntryTypeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"hidden",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getHidden();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"hidden",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object hidden) {
+					dlFolder.setHidden((Boolean)hidden);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"restrictionType",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getRestrictionType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"restrictionType",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object restrictionType) {
+					dlFolder.setRestrictionType((Integer)restrictionType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object lastPublishDate) {
+					dlFolder.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object status) {
+					dlFolder.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserId",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getStatusByUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserId",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object statusByUserId) {
+					dlFolder.setStatusByUserId((Long)statusByUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserName",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getStatusByUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserName",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object statusByUserName) {
+					dlFolder.setStatusByUserName((String)statusByUserName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusDate",
+			new Function<DLFolder, Object>() {
+
+				@Override
+				public Object apply(DLFolder dlFolder) {
+					return dlFolder.getStatusDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusDate",
+			new BiConsumer<DLFolder, Object>() {
+
+				@Override
+				public void accept(DLFolder dlFolder, Object statusDate) {
+					dlFolder.setStatusDate((Date)statusDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1440,54 +1786,27 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(47);
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", folderId=");
-		sb.append(getFolderId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", repositoryId=");
-		sb.append(getRepositoryId());
-		sb.append(", mountPoint=");
-		sb.append(isMountPoint());
-		sb.append(", parentFolderId=");
-		sb.append(getParentFolderId());
-		sb.append(", treePath=");
-		sb.append(getTreePath());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", lastPostDate=");
-		sb.append(getLastPostDate());
-		sb.append(", defaultFileEntryTypeId=");
-		sb.append(getDefaultFileEntryTypeId());
-		sb.append(", hidden=");
-		sb.append(isHidden());
-		sb.append(", restrictionType=");
-		sb.append(getRestrictionType());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusByUserId=");
-		sb.append(getStatusByUserId());
-		sb.append(", statusByUserName=");
-		sb.append(getStatusByUserName());
-		sb.append(", statusDate=");
-		sb.append(getStatusDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DLFolder)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1495,104 +1814,25 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(73);
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.document.library.kernel.model.DLFolder");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>folderId</column-name><column-value><![CDATA[");
-		sb.append(getFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>repositoryId</column-name><column-value><![CDATA[");
-		sb.append(getRepositoryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mountPoint</column-name><column-value><![CDATA[");
-		sb.append(isMountPoint());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentFolderId</column-name><column-value><![CDATA[");
-		sb.append(getParentFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>treePath</column-name><column-value><![CDATA[");
-		sb.append(getTreePath());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPostDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPostDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultFileEntryTypeId</column-name><column-value><![CDATA[");
-		sb.append(getDefaultFileEntryTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>hidden</column-name><column-value><![CDATA[");
-		sb.append(isHidden());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>restrictionType</column-name><column-value><![CDATA[");
-		sb.append(getRestrictionType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserName</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
-		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DLFolder)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

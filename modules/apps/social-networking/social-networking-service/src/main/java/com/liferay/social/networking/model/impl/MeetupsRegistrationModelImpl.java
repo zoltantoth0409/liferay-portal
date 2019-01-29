@@ -39,9 +39,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the MeetupsRegistration service. Represents a row in the &quot;SN_MeetupsRegistration&quot; database table, with each column mapped to a property of this class.
@@ -150,15 +154,16 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("meetupsRegistrationId", getMeetupsRegistrationId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("meetupsEntryId", getMeetupsEntryId());
-		attributes.put("status", getStatus());
-		attributes.put("comments", getComments());
+		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((MeetupsRegistration)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -168,60 +173,223 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long meetupsRegistrationId = (Long)attributes.get(
-				"meetupsRegistrationId");
+		Map<String, BiConsumer<MeetupsRegistration, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (meetupsRegistrationId != null) {
-			setMeetupsRegistrationId(meetupsRegistrationId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<MeetupsRegistration, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((MeetupsRegistration)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<MeetupsRegistration, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<MeetupsRegistration, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<MeetupsRegistration, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MeetupsRegistration, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MeetupsRegistration, Object>>();
+		Map<String, BiConsumer<MeetupsRegistration, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MeetupsRegistration, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"meetupsRegistrationId",
+			new Function<MeetupsRegistration, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getMeetupsRegistrationId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"meetupsRegistrationId",
+			new BiConsumer<MeetupsRegistration, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object meetupsRegistrationId) {
+					meetupsRegistration.setMeetupsRegistrationId((Long)meetupsRegistrationId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<MeetupsRegistration, Object>() {
 
-		Long meetupsEntryId = (Long)attributes.get("meetupsEntryId");
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getCompanyId();
+				}
 
-		if (meetupsEntryId != null) {
-			setMeetupsEntryId(meetupsEntryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<MeetupsRegistration, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object companyId) {
+					meetupsRegistration.setCompanyId((Long)companyId);
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<MeetupsRegistration, Object>() {
 
-		String comments = (String)attributes.get("comments");
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getUserId();
+				}
 
-		if (comments != null) {
-			setComments(comments);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object userId) {
+					meetupsRegistration.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object userName) {
+					meetupsRegistration.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object createDate) {
+					meetupsRegistration.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object modifiedDate) {
+					meetupsRegistration.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"meetupsEntryId",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getMeetupsEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"meetupsEntryId",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object meetupsEntryId) {
+					meetupsRegistration.setMeetupsEntryId((Long)meetupsEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object status) {
+					meetupsRegistration.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"comments",
+			new Function<MeetupsRegistration, Object>() {
+
+				@Override
+				public Object apply(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"comments",
+			new BiConsumer<MeetupsRegistration, Object>() {
+
+				@Override
+				public void accept(MeetupsRegistration meetupsRegistration, Object comments) {
+					meetupsRegistration.setComments((String)comments);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -557,26 +725,28 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{meetupsRegistrationId=");
-		sb.append(getMeetupsRegistrationId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", meetupsEntryId=");
-		sb.append(getMeetupsEntryId());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", comments=");
-		sb.append(getComments());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((MeetupsRegistration)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -584,48 +754,26 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.social.networking.model.MeetupsRegistration");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>meetupsRegistrationId</column-name><column-value><![CDATA[");
-		sb.append(getMeetupsRegistrationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>meetupsEntryId</column-name><column-value><![CDATA[");
-		sb.append(getMeetupsEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>comments</column-name><column-value><![CDATA[");
-		sb.append(getComments());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((MeetupsRegistration)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

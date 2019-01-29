@@ -40,9 +40,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the SystemEvent service. Represents a row in the &quot;SystemEvent&quot; database table, with each column mapped to a property of this class.
@@ -165,21 +169,15 @@ public class SystemEventModelImpl extends BaseModelImpl<SystemEvent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("systemEventId", getSystemEventId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("classUuid", getClassUuid());
-		attributes.put("referrerClassNameId", getReferrerClassNameId());
-		attributes.put("parentSystemEventId", getParentSystemEventId());
-		attributes.put("systemEventSetKey", getSystemEventSetKey());
-		attributes.put("type", getType());
-		attributes.put("extraData", getExtraData());
+		Map<String, Function<SystemEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<SystemEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SystemEvent, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((SystemEvent)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -189,95 +187,340 @@ public class SystemEventModelImpl extends BaseModelImpl<SystemEvent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<SystemEvent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<SystemEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((SystemEvent)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long systemEventId = (Long)attributes.get("systemEventId");
+	public Map<String, Function<SystemEvent, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (systemEventId != null) {
-			setSystemEventId(systemEventId);
-		}
+	public Map<String, BiConsumer<SystemEvent, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<SystemEvent, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SystemEvent, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<SystemEvent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<SystemEvent, Object>>();
+		Map<String, BiConsumer<SystemEvent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<SystemEvent, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<SystemEvent, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<SystemEvent, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(SystemEvent systemEvent, Object mvccVersion) {
+					systemEvent.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"systemEventId",
+			new Function<SystemEvent, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getSystemEventId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"systemEventId",
+			new BiConsumer<SystemEvent, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(SystemEvent systemEvent, Object systemEventId) {
+					systemEvent.setSystemEventId((Long)systemEventId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<SystemEvent, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getGroupId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<SystemEvent, Object>() {
 
-		String classUuid = (String)attributes.get("classUuid");
+				@Override
+				public void accept(SystemEvent systemEvent, Object groupId) {
+					systemEvent.setGroupId((Long)groupId);
+				}
 
-		if (classUuid != null) {
-			setClassUuid(classUuid);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<SystemEvent, Object>() {
 
-		Long referrerClassNameId = (Long)attributes.get("referrerClassNameId");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getCompanyId();
+				}
 
-		if (referrerClassNameId != null) {
-			setReferrerClassNameId(referrerClassNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<SystemEvent, Object>() {
 
-		Long parentSystemEventId = (Long)attributes.get("parentSystemEventId");
+				@Override
+				public void accept(SystemEvent systemEvent, Object companyId) {
+					systemEvent.setCompanyId((Long)companyId);
+				}
 
-		if (parentSystemEventId != null) {
-			setParentSystemEventId(parentSystemEventId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<SystemEvent, Object>() {
 
-		Long systemEventSetKey = (Long)attributes.get("systemEventSetKey");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getUserId();
+				}
 
-		if (systemEventSetKey != null) {
-			setSystemEventSetKey(systemEventSetKey);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<SystemEvent, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public void accept(SystemEvent systemEvent, Object userId) {
+					systemEvent.setUserId((Long)userId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<SystemEvent, Object>() {
 
-		String extraData = (String)attributes.get("extraData");
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getUserName();
+				}
 
-		if (extraData != null) {
-			setExtraData(extraData);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object userName) {
+					systemEvent.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object createDate) {
+					systemEvent.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object classNameId) {
+					systemEvent.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object classPK) {
+					systemEvent.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classUuid",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getClassUuid();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classUuid",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object classUuid) {
+					systemEvent.setClassUuid((String)classUuid);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"referrerClassNameId",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getReferrerClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"referrerClassNameId",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object referrerClassNameId) {
+					systemEvent.setReferrerClassNameId((Long)referrerClassNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentSystemEventId",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getParentSystemEventId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentSystemEventId",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object parentSystemEventId) {
+					systemEvent.setParentSystemEventId((Long)parentSystemEventId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"systemEventSetKey",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getSystemEventSetKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"systemEventSetKey",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object systemEventSetKey) {
+					systemEvent.setSystemEventSetKey((Long)systemEventSetKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object type) {
+					systemEvent.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"extraData",
+			new Function<SystemEvent, Object>() {
+
+				@Override
+				public Object apply(SystemEvent systemEvent) {
+					return systemEvent.getExtraData();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"extraData",
+			new BiConsumer<SystemEvent, Object>() {
+
+				@Override
+				public void accept(SystemEvent systemEvent, Object extraData) {
+					systemEvent.setExtraData((String)extraData);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -738,38 +981,27 @@ public class SystemEventModelImpl extends BaseModelImpl<SystemEvent>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<SystemEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", systemEventId=");
-		sb.append(getSystemEventId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", classUuid=");
-		sb.append(getClassUuid());
-		sb.append(", referrerClassNameId=");
-		sb.append(getReferrerClassNameId());
-		sb.append(", parentSystemEventId=");
-		sb.append(getParentSystemEventId());
-		sb.append(", systemEventSetKey=");
-		sb.append(getSystemEventSetKey());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", extraData=");
-		sb.append(getExtraData());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<SystemEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SystemEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((SystemEvent)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -777,72 +1009,25 @@ public class SystemEventModelImpl extends BaseModelImpl<SystemEvent>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		Map<String, Function<SystemEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.SystemEvent");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>systemEventId</column-name><column-value><![CDATA[");
-		sb.append(getSystemEventId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classUuid</column-name><column-value><![CDATA[");
-		sb.append(getClassUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>referrerClassNameId</column-name><column-value><![CDATA[");
-		sb.append(getReferrerClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentSystemEventId</column-name><column-value><![CDATA[");
-		sb.append(getParentSystemEventId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>systemEventSetKey</column-name><column-value><![CDATA[");
-		sb.append(getSystemEventSetKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>extraData</column-name><column-value><![CDATA[");
-		sb.append(getExtraData());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<SystemEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SystemEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((SystemEvent)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

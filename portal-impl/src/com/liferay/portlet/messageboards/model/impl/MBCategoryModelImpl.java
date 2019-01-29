@@ -49,10 +49,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the MBCategory service. Represents a row in the &quot;MBCategory&quot; database table, with each column mapped to a property of this class.
@@ -245,26 +249,15 @@ public class MBCategoryModelImpl extends BaseModelImpl<MBCategory>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("categoryId", getCategoryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("parentCategoryId", getParentCategoryId());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("displayStyle", getDisplayStyle());
-		attributes.put("threadCount", getThreadCount());
-		attributes.put("messageCount", getMessageCount());
-		attributes.put("lastPostDate", getLastPostDate());
-		attributes.put("lastPublishDate", getLastPublishDate());
-		attributes.put("status", getStatus());
-		attributes.put("statusByUserId", getStatusByUserId());
-		attributes.put("statusByUserName", getStatusByUserName());
-		attributes.put("statusDate", getStatusDate());
+		Map<String, Function<MBCategory, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<MBCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MBCategory, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((MBCategory)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -274,125 +267,440 @@ public class MBCategoryModelImpl extends BaseModelImpl<MBCategory>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<MBCategory, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<MBCategory, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((MBCategory)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long categoryId = (Long)attributes.get("categoryId");
+	public Map<String, Function<MBCategory, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (categoryId != null) {
-			setCategoryId(categoryId);
-		}
+	public Map<String, BiConsumer<MBCategory, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<MBCategory, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MBCategory, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<MBCategory, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MBCategory, Object>>();
+		Map<String, BiConsumer<MBCategory, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MBCategory, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<MBCategory, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<MBCategory, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(MBCategory mbCategory, Object uuid) {
+					mbCategory.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"categoryId",
+			new Function<MBCategory, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getCategoryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"categoryId",
+			new BiConsumer<MBCategory, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(MBCategory mbCategory, Object categoryId) {
+					mbCategory.setCategoryId((Long)categoryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<MBCategory, Object>() {
 
-		Long parentCategoryId = (Long)attributes.get("parentCategoryId");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getGroupId();
+				}
 
-		if (parentCategoryId != null) {
-			setParentCategoryId(parentCategoryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<MBCategory, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(MBCategory mbCategory, Object groupId) {
+					mbCategory.setGroupId((Long)groupId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<MBCategory, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getCompanyId();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<MBCategory, Object>() {
 
-		String displayStyle = (String)attributes.get("displayStyle");
+				@Override
+				public void accept(MBCategory mbCategory, Object companyId) {
+					mbCategory.setCompanyId((Long)companyId);
+				}
 
-		if (displayStyle != null) {
-			setDisplayStyle(displayStyle);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<MBCategory, Object>() {
 
-		Integer threadCount = (Integer)attributes.get("threadCount");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getUserId();
+				}
 
-		if (threadCount != null) {
-			setThreadCount(threadCount);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<MBCategory, Object>() {
 
-		Integer messageCount = (Integer)attributes.get("messageCount");
+				@Override
+				public void accept(MBCategory mbCategory, Object userId) {
+					mbCategory.setUserId((Long)userId);
+				}
 
-		if (messageCount != null) {
-			setMessageCount(messageCount);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<MBCategory, Object>() {
 
-		Date lastPostDate = (Date)attributes.get("lastPostDate");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getUserName();
+				}
 
-		if (lastPostDate != null) {
-			setLastPostDate(lastPostDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<MBCategory, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(MBCategory mbCategory, Object userName) {
+					mbCategory.setUserName((String)userName);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<MBCategory, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getCreateDate();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<MBCategory, Object>() {
 
-		Long statusByUserId = (Long)attributes.get("statusByUserId");
+				@Override
+				public void accept(MBCategory mbCategory, Object createDate) {
+					mbCategory.setCreateDate((Date)createDate);
+				}
 
-		if (statusByUserId != null) {
-			setStatusByUserId(statusByUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<MBCategory, Object>() {
 
-		String statusByUserName = (String)attributes.get("statusByUserName");
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getModifiedDate();
+				}
 
-		if (statusByUserName != null) {
-			setStatusByUserName(statusByUserName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<MBCategory, Object>() {
 
-		Date statusDate = (Date)attributes.get("statusDate");
+				@Override
+				public void accept(MBCategory mbCategory, Object modifiedDate) {
+					mbCategory.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (statusDate != null) {
-			setStatusDate(statusDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"parentCategoryId",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getParentCategoryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentCategoryId",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object parentCategoryId) {
+					mbCategory.setParentCategoryId((Long)parentCategoryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object name) {
+					mbCategory.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object description) {
+					mbCategory.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"displayStyle",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getDisplayStyle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"displayStyle",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object displayStyle) {
+					mbCategory.setDisplayStyle((String)displayStyle);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"threadCount",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getThreadCount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"threadCount",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object threadCount) {
+					mbCategory.setThreadCount((Integer)threadCount);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"messageCount",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getMessageCount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"messageCount",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object messageCount) {
+					mbCategory.setMessageCount((Integer)messageCount);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPostDate",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getLastPostDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPostDate",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object lastPostDate) {
+					mbCategory.setLastPostDate((Date)lastPostDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object lastPublishDate) {
+					mbCategory.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object status) {
+					mbCategory.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserId",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getStatusByUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserId",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object statusByUserId) {
+					mbCategory.setStatusByUserId((Long)statusByUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserName",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getStatusByUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserName",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object statusByUserName) {
+					mbCategory.setStatusByUserName((String)statusByUserName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusDate",
+			new Function<MBCategory, Object>() {
+
+				@Override
+				public Object apply(MBCategory mbCategory) {
+					return mbCategory.getStatusDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusDate",
+			new BiConsumer<MBCategory, Object>() {
+
+				@Override
+				public void accept(MBCategory mbCategory, Object statusDate) {
+					mbCategory.setStatusDate((Date)statusDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1269,48 +1577,27 @@ public class MBCategoryModelImpl extends BaseModelImpl<MBCategory>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(41);
+		Map<String, Function<MBCategory, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", categoryId=");
-		sb.append(getCategoryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", parentCategoryId=");
-		sb.append(getParentCategoryId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", displayStyle=");
-		sb.append(getDisplayStyle());
-		sb.append(", threadCount=");
-		sb.append(getThreadCount());
-		sb.append(", messageCount=");
-		sb.append(getMessageCount());
-		sb.append(", lastPostDate=");
-		sb.append(getLastPostDate());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusByUserId=");
-		sb.append(getStatusByUserId());
-		sb.append(", statusByUserName=");
-		sb.append(getStatusByUserName());
-		sb.append(", statusDate=");
-		sb.append(getStatusDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<MBCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MBCategory, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((MBCategory)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1318,92 +1605,25 @@ public class MBCategoryModelImpl extends BaseModelImpl<MBCategory>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(64);
+		Map<String, Function<MBCategory, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.message.boards.kernel.model.MBCategory");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>categoryId</column-name><column-value><![CDATA[");
-		sb.append(getCategoryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentCategoryId</column-name><column-value><![CDATA[");
-		sb.append(getParentCategoryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>displayStyle</column-name><column-value><![CDATA[");
-		sb.append(getDisplayStyle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>threadCount</column-name><column-value><![CDATA[");
-		sb.append(getThreadCount());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>messageCount</column-name><column-value><![CDATA[");
-		sb.append(getMessageCount());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPostDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPostDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserName</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
-		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<MBCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MBCategory, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((MBCategory)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -35,8 +35,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ShoppingItemPrice service. Represents a row in the &quot;ShoppingItemPrice&quot; database table, with each column mapped to a property of this class.
@@ -147,17 +151,16 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("itemPriceId", getItemPriceId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("itemId", getItemId());
-		attributes.put("minQuantity", getMinQuantity());
-		attributes.put("maxQuantity", getMaxQuantity());
-		attributes.put("price", getPrice());
-		attributes.put("discount", getDiscount());
-		attributes.put("taxable", isTaxable());
-		attributes.put("shipping", getShipping());
-		attributes.put("useShippingFormula", isUseShippingFormula());
-		attributes.put("status", getStatus());
+		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ShoppingItemPrice)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -167,72 +170,263 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long itemPriceId = (Long)attributes.get("itemPriceId");
+		Map<String, BiConsumer<ShoppingItemPrice, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (itemPriceId != null) {
-			setItemPriceId(itemPriceId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ShoppingItemPrice, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ShoppingItemPrice)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<ShoppingItemPrice, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<ShoppingItemPrice, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long itemId = (Long)attributes.get("itemId");
+	private static final Map<String, Function<ShoppingItemPrice, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingItemPrice, Object>> _attributeSetterBiConsumers;
 
-		if (itemId != null) {
-			setItemId(itemId);
-		}
+	static {
+		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ShoppingItemPrice, Object>>();
+		Map<String, BiConsumer<ShoppingItemPrice, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ShoppingItemPrice, ?>>();
 
-		Integer minQuantity = (Integer)attributes.get("minQuantity");
 
-		if (minQuantity != null) {
-			setMinQuantity(minQuantity);
-		}
+		attributeGetterFunctions.put(
+			"itemPriceId",
+			new Function<ShoppingItemPrice, Object>() {
 
-		Integer maxQuantity = (Integer)attributes.get("maxQuantity");
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getItemPriceId();
+				}
 
-		if (maxQuantity != null) {
-			setMaxQuantity(maxQuantity);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"itemPriceId",
+			new BiConsumer<ShoppingItemPrice, Object>() {
 
-		Double price = (Double)attributes.get("price");
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object itemPriceId) {
+					shoppingItemPrice.setItemPriceId((Long)itemPriceId);
+				}
 
-		if (price != null) {
-			setPrice(price);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ShoppingItemPrice, Object>() {
 
-		Double discount = (Double)attributes.get("discount");
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getCompanyId();
+				}
 
-		if (discount != null) {
-			setDiscount(discount);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ShoppingItemPrice, Object>() {
 
-		Boolean taxable = (Boolean)attributes.get("taxable");
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object companyId) {
+					shoppingItemPrice.setCompanyId((Long)companyId);
+				}
 
-		if (taxable != null) {
-			setTaxable(taxable);
-		}
+			});
+		attributeGetterFunctions.put(
+			"itemId",
+			new Function<ShoppingItemPrice, Object>() {
 
-		Double shipping = (Double)attributes.get("shipping");
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getItemId();
+				}
 
-		if (shipping != null) {
-			setShipping(shipping);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"itemId",
+			new BiConsumer<ShoppingItemPrice, Object>() {
 
-		Boolean useShippingFormula = (Boolean)attributes.get(
-				"useShippingFormula");
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object itemId) {
+					shoppingItemPrice.setItemId((Long)itemId);
+				}
 
-		if (useShippingFormula != null) {
-			setUseShippingFormula(useShippingFormula);
-		}
+			});
+		attributeGetterFunctions.put(
+			"minQuantity",
+			new Function<ShoppingItemPrice, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getMinQuantity();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"minQuantity",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object minQuantity) {
+					shoppingItemPrice.setMinQuantity((Integer)minQuantity);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"maxQuantity",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getMaxQuantity();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"maxQuantity",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object maxQuantity) {
+					shoppingItemPrice.setMaxQuantity((Integer)maxQuantity);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"price",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getPrice();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"price",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object price) {
+					shoppingItemPrice.setPrice((Double)price);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"discount",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getDiscount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"discount",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object discount) {
+					shoppingItemPrice.setDiscount((Double)discount);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"taxable",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getTaxable();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"taxable",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object taxable) {
+					shoppingItemPrice.setTaxable((Boolean)taxable);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shipping",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getShipping();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shipping",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object shipping) {
+					shoppingItemPrice.setShipping((Double)shipping);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"useShippingFormula",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getUseShippingFormula();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"useShippingFormula",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object useShippingFormula) {
+					shoppingItemPrice.setUseShippingFormula((Boolean)useShippingFormula);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<ShoppingItemPrice, Object>() {
+
+				@Override
+				public Object apply(ShoppingItemPrice shoppingItemPrice) {
+					return shoppingItemPrice.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<ShoppingItemPrice, Object>() {
+
+				@Override
+				public void accept(ShoppingItemPrice shoppingItemPrice, Object status) {
+					shoppingItemPrice.setStatus((Integer)status);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -531,30 +725,28 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{itemPriceId=");
-		sb.append(getItemPriceId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", itemId=");
-		sb.append(getItemId());
-		sb.append(", minQuantity=");
-		sb.append(getMinQuantity());
-		sb.append(", maxQuantity=");
-		sb.append(getMaxQuantity());
-		sb.append(", price=");
-		sb.append(getPrice());
-		sb.append(", discount=");
-		sb.append(getDiscount());
-		sb.append(", taxable=");
-		sb.append(isTaxable());
-		sb.append(", shipping=");
-		sb.append(getShipping());
-		sb.append(", useShippingFormula=");
-		sb.append(isUseShippingFormula());
-		sb.append(", status=");
-		sb.append(getStatus());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ShoppingItemPrice)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -562,56 +754,26 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.shopping.model.ShoppingItemPrice");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>itemPriceId</column-name><column-value><![CDATA[");
-		sb.append(getItemPriceId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>itemId</column-name><column-value><![CDATA[");
-		sb.append(getItemId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>minQuantity</column-name><column-value><![CDATA[");
-		sb.append(getMinQuantity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>maxQuantity</column-name><column-value><![CDATA[");
-		sb.append(getMaxQuantity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>price</column-name><column-value><![CDATA[");
-		sb.append(getPrice());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>discount</column-name><column-value><![CDATA[");
-		sb.append(getDiscount());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>taxable</column-name><column-value><![CDATA[");
-		sb.append(isTaxable());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shipping</column-name><column-value><![CDATA[");
-		sb.append(getShipping());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>useShippingFormula</column-name><column-value><![CDATA[");
-		sb.append(isUseShippingFormula());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ShoppingItemPrice)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -44,10 +44,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the App service. Represents a row in the &quot;Marketplace_App&quot; database table, with each column mapped to a property of this class.
@@ -219,20 +223,15 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("appId", getAppId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("remoteAppId", getRemoteAppId());
-		attributes.put("title", getTitle());
-		attributes.put("description", getDescription());
-		attributes.put("category", getCategory());
-		attributes.put("iconURL", getIconURL());
-		attributes.put("version", getVersion());
-		attributes.put("required", isRequired());
+		Map<String, Function<App, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<App, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<App, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((App)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -242,89 +241,319 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<App, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<App, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((App)this, entry.getValue());
+			}
 		}
+	}
 
-		Long appId = (Long)attributes.get("appId");
+	public Map<String, Function<App, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (appId != null) {
-			setAppId(appId);
-		}
+	public Map<String, BiConsumer<App, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<App, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<App, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<App, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<App, Object>>();
+		Map<String, BiConsumer<App, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<App, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<App, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(App app) {
+					return app.getUuid();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<App, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(App app, Object uuid) {
+					app.setUuid((String)uuid);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"appId",
+			new Function<App, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(App app) {
+					return app.getAppId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"appId",
+			new BiConsumer<App, Object>() {
 
-		Long remoteAppId = (Long)attributes.get("remoteAppId");
+				@Override
+				public void accept(App app, Object appId) {
+					app.setAppId((Long)appId);
+				}
 
-		if (remoteAppId != null) {
-			setRemoteAppId(remoteAppId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<App, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public Object apply(App app) {
+					return app.getCompanyId();
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<App, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(App app, Object companyId) {
+					app.setCompanyId((Long)companyId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<App, Object>() {
 
-		String category = (String)attributes.get("category");
+				@Override
+				public Object apply(App app) {
+					return app.getUserId();
+				}
 
-		if (category != null) {
-			setCategory(category);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<App, Object>() {
 
-		String iconURL = (String)attributes.get("iconURL");
+				@Override
+				public void accept(App app, Object userId) {
+					app.setUserId((Long)userId);
+				}
 
-		if (iconURL != null) {
-			setIconURL(iconURL);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<App, Object>() {
 
-		String version = (String)attributes.get("version");
+				@Override
+				public Object apply(App app) {
+					return app.getUserName();
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<App, Object>() {
 
-		Boolean required = (Boolean)attributes.get("required");
+				@Override
+				public void accept(App app, Object userName) {
+					app.setUserName((String)userName);
+				}
 
-		if (required != null) {
-			setRequired(required);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object createDate) {
+					app.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object modifiedDate) {
+					app.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"remoteAppId",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getRemoteAppId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"remoteAppId",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object remoteAppId) {
+					app.setRemoteAppId((Long)remoteAppId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object title) {
+					app.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object description) {
+					app.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"category",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getCategory();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"category",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object category) {
+					app.setCategory((String)category);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"iconURL",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getIconURL();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"iconURL",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object iconURL) {
+					app.setIconURL((String)iconURL);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object version) {
+					app.setVersion((String)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"required",
+			new Function<App, Object>() {
+
+				@Override
+				public Object apply(App app) {
+					return app.getRequired();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"required",
+			new BiConsumer<App, Object>() {
+
+				@Override
+				public void accept(App app, Object required) {
+					app.setRequired((Boolean)required);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -811,36 +1040,27 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<App, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", appId=");
-		sb.append(getAppId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", remoteAppId=");
-		sb.append(getRemoteAppId());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", category=");
-		sb.append(getCategory());
-		sb.append(", iconURL=");
-		sb.append(getIconURL());
-		sb.append(", version=");
-		sb.append(getVersion());
-		sb.append(", required=");
-		sb.append(isRequired());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<App, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<App, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((App)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -848,68 +1068,25 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<App, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.marketplace.model.App");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>appId</column-name><column-value><![CDATA[");
-		sb.append(getAppId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>remoteAppId</column-name><column-value><![CDATA[");
-		sb.append(getRemoteAppId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>category</column-name><column-value><![CDATA[");
-		sb.append(getCategory());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>iconURL</column-name><column-value><![CDATA[");
-		sb.append(getIconURL());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>required</column-name><column-value><![CDATA[");
-		sb.append(isRequired());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<App, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<App, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((App)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

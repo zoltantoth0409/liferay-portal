@@ -42,10 +42,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the UserThread service. Represents a row in the &quot;PM_UserThread&quot; database table, with each column mapped to a property of this class.
@@ -206,16 +210,15 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("userThreadId", getUserThreadId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("mbThreadId", getMbThreadId());
-		attributes.put("topMBMessageId", getTopMBMessageId());
-		attributes.put("read", isRead());
-		attributes.put("deleted", isDeleted());
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((UserThread)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -225,65 +228,240 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long userThreadId = (Long)attributes.get("userThreadId");
+		Map<String, BiConsumer<UserThread, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (userThreadId != null) {
-			setUserThreadId(userThreadId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<UserThread, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((UserThread)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<UserThread, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<UserThread, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<UserThread, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserThread, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<UserThread, Object>>();
+		Map<String, BiConsumer<UserThread, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<UserThread, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"userThreadId",
+			new Function<UserThread, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getUserThreadId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userThreadId",
+			new BiConsumer<UserThread, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(UserThread userThread, Object userThreadId) {
+					userThread.setUserThreadId((Long)userThreadId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<UserThread, Object>() {
 
-		Long mbThreadId = (Long)attributes.get("mbThreadId");
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getCompanyId();
+				}
 
-		if (mbThreadId != null) {
-			setMbThreadId(mbThreadId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<UserThread, Object>() {
 
-		Long topMBMessageId = (Long)attributes.get("topMBMessageId");
+				@Override
+				public void accept(UserThread userThread, Object companyId) {
+					userThread.setCompanyId((Long)companyId);
+				}
 
-		if (topMBMessageId != null) {
-			setTopMBMessageId(topMBMessageId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<UserThread, Object>() {
 
-		Boolean read = (Boolean)attributes.get("read");
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getUserId();
+				}
 
-		if (read != null) {
-			setRead(read);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<UserThread, Object>() {
 
-		Boolean deleted = (Boolean)attributes.get("deleted");
+				@Override
+				public void accept(UserThread userThread, Object userId) {
+					userThread.setUserId((Long)userId);
+				}
 
-		if (deleted != null) {
-			setDeleted(deleted);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object userName) {
+					userThread.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object createDate) {
+					userThread.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object modifiedDate) {
+					userThread.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mbThreadId",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getMbThreadId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mbThreadId",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object mbThreadId) {
+					userThread.setMbThreadId((Long)mbThreadId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"topMBMessageId",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getTopMBMessageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"topMBMessageId",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object topMBMessageId) {
+					userThread.setTopMBMessageId((Long)topMBMessageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"read",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getRead();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"read",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object read) {
+					userThread.setRead((Boolean)read);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deleted",
+			new Function<UserThread, Object>() {
+
+				@Override
+				public Object apply(UserThread userThread) {
+					return userThread.getDeleted();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deleted",
+			new BiConsumer<UserThread, Object>() {
+
+				@Override
+				public void accept(UserThread userThread, Object deleted) {
+					userThread.setDeleted((Boolean)deleted);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -659,28 +837,27 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{userThreadId=");
-		sb.append(getUserThreadId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", mbThreadId=");
-		sb.append(getMbThreadId());
-		sb.append(", topMBMessageId=");
-		sb.append(getTopMBMessageId());
-		sb.append(", read=");
-		sb.append(isRead());
-		sb.append(", deleted=");
-		sb.append(isDeleted());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((UserThread)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -688,52 +865,25 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.social.privatemessaging.model.UserThread");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>userThreadId</column-name><column-value><![CDATA[");
-		sb.append(getUserThreadId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mbThreadId</column-name><column-value><![CDATA[");
-		sb.append(getMbThreadId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>topMBMessageId</column-name><column-value><![CDATA[");
-		sb.append(getTopMBMessageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>read</column-name><column-value><![CDATA[");
-		sb.append(isRead());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>deleted</column-name><column-value><![CDATA[");
-		sb.append(isDeleted());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((UserThread)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

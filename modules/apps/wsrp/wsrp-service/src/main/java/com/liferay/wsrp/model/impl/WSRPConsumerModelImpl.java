@@ -38,9 +38,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the WSRPConsumer service. Represents a row in the &quot;WSRP_WSRPConsumer&quot; database table, with each column mapped to a property of this class.
@@ -158,22 +162,15 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("wsrpConsumerId", getWsrpConsumerId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("name", getName());
-		attributes.put("url", getUrl());
-		attributes.put("wsdl", getWsdl());
-		attributes.put("registrationContextString",
-			getRegistrationContextString());
-		attributes.put("registrationPropertiesString",
-			getRegistrationPropertiesString());
-		attributes.put("forwardCookies", getForwardCookies());
-		attributes.put("forwardHeaders", getForwardHeaders());
-		attributes.put("markupCharacterSets", getMarkupCharacterSets());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((WSRPConsumer)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -183,92 +180,321 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<WSRPConsumer, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<WSRPConsumer, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((WSRPConsumer)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long wsrpConsumerId = (Long)attributes.get("wsrpConsumerId");
+	public Map<String, Function<WSRPConsumer, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (wsrpConsumerId != null) {
-			setWsrpConsumerId(wsrpConsumerId);
-		}
+	public Map<String, BiConsumer<WSRPConsumer, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<WSRPConsumer, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WSRPConsumer, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<WSRPConsumer, Object>>();
+		Map<String, BiConsumer<WSRPConsumer, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<WSRPConsumer, ?>>();
 
-		Date createDate = (Date)attributes.get("createDate");
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<WSRPConsumer, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getUuid();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<WSRPConsumer, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object uuid) {
+					wsrpConsumer.setUuid((String)uuid);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"wsrpConsumerId",
+			new Function<WSRPConsumer, Object>() {
 
-		String url = (String)attributes.get("url");
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getWsrpConsumerId();
+				}
 
-		if (url != null) {
-			setUrl(url);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"wsrpConsumerId",
+			new BiConsumer<WSRPConsumer, Object>() {
 
-		String wsdl = (String)attributes.get("wsdl");
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object wsrpConsumerId) {
+					wsrpConsumer.setWsrpConsumerId((Long)wsrpConsumerId);
+				}
 
-		if (wsdl != null) {
-			setWsdl(wsdl);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<WSRPConsumer, Object>() {
 
-		String registrationContextString = (String)attributes.get(
-				"registrationContextString");
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getCompanyId();
+				}
 
-		if (registrationContextString != null) {
-			setRegistrationContextString(registrationContextString);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<WSRPConsumer, Object>() {
 
-		String registrationPropertiesString = (String)attributes.get(
-				"registrationPropertiesString");
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object companyId) {
+					wsrpConsumer.setCompanyId((Long)companyId);
+				}
 
-		if (registrationPropertiesString != null) {
-			setRegistrationPropertiesString(registrationPropertiesString);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<WSRPConsumer, Object>() {
 
-		String forwardCookies = (String)attributes.get("forwardCookies");
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getCreateDate();
+				}
 
-		if (forwardCookies != null) {
-			setForwardCookies(forwardCookies);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<WSRPConsumer, Object>() {
 
-		String forwardHeaders = (String)attributes.get("forwardHeaders");
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object createDate) {
+					wsrpConsumer.setCreateDate((Date)createDate);
+				}
 
-		if (forwardHeaders != null) {
-			setForwardHeaders(forwardHeaders);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<WSRPConsumer, Object>() {
 
-		String markupCharacterSets = (String)attributes.get(
-				"markupCharacterSets");
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getModifiedDate();
+				}
 
-		if (markupCharacterSets != null) {
-			setMarkupCharacterSets(markupCharacterSets);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<WSRPConsumer, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object modifiedDate) {
+					wsrpConsumer.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object name) {
+					wsrpConsumer.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"url",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getUrl();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"url",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object url) {
+					wsrpConsumer.setUrl((String)url);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"wsdl",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getWsdl();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"wsdl",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object wsdl) {
+					wsrpConsumer.setWsdl((String)wsdl);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"registrationContextString",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getRegistrationContextString();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"registrationContextString",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object registrationContextString) {
+					wsrpConsumer.setRegistrationContextString((String)registrationContextString);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"registrationPropertiesString",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getRegistrationPropertiesString();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"registrationPropertiesString",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object registrationPropertiesString) {
+					wsrpConsumer.setRegistrationPropertiesString((String)registrationPropertiesString);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"forwardCookies",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getForwardCookies();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"forwardCookies",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object forwardCookies) {
+					wsrpConsumer.setForwardCookies((String)forwardCookies);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"forwardHeaders",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getForwardHeaders();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"forwardHeaders",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object forwardHeaders) {
+					wsrpConsumer.setForwardHeaders((String)forwardHeaders);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"markupCharacterSets",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getMarkupCharacterSets();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"markupCharacterSets",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object markupCharacterSets) {
+					wsrpConsumer.setMarkupCharacterSets((String)markupCharacterSets);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<WSRPConsumer, Object>() {
+
+				@Override
+				public Object apply(WSRPConsumer wsrpConsumer) {
+					return wsrpConsumer.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<WSRPConsumer, Object>() {
+
+				@Override
+				public void accept(WSRPConsumer wsrpConsumer, Object lastPublishDate) {
+					wsrpConsumer.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -724,36 +950,27 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", wsrpConsumerId=");
-		sb.append(getWsrpConsumerId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", url=");
-		sb.append(getUrl());
-		sb.append(", wsdl=");
-		sb.append(getWsdl());
-		sb.append(", registrationContextString=");
-		sb.append(getRegistrationContextString());
-		sb.append(", registrationPropertiesString=");
-		sb.append(getRegistrationPropertiesString());
-		sb.append(", forwardCookies=");
-		sb.append(getForwardCookies());
-		sb.append(", forwardHeaders=");
-		sb.append(getForwardHeaders());
-		sb.append(", markupCharacterSets=");
-		sb.append(getMarkupCharacterSets());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((WSRPConsumer)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -761,68 +978,25 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.wsrp.model.WSRPConsumer");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>wsrpConsumerId</column-name><column-value><![CDATA[");
-		sb.append(getWsrpConsumerId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>url</column-name><column-value><![CDATA[");
-		sb.append(getUrl());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>wsdl</column-name><column-value><![CDATA[");
-		sb.append(getWsdl());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>registrationContextString</column-name><column-value><![CDATA[");
-		sb.append(getRegistrationContextString());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>registrationPropertiesString</column-name><column-value><![CDATA[");
-		sb.append(getRegistrationPropertiesString());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>forwardCookies</column-name><column-value><![CDATA[");
-		sb.append(getForwardCookies());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>forwardHeaders</column-name><column-value><![CDATA[");
-		sb.append(getForwardHeaders());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>markupCharacterSets</column-name><column-value><![CDATA[");
-		sb.append(getMarkupCharacterSets());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((WSRPConsumer)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

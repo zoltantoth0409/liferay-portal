@@ -48,13 +48,17 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Calendar service. Represents a row in the &quot;Calendar&quot; database table, with each column mapped to a property of this class.
@@ -241,24 +245,15 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("calendarId", getCalendarId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("resourceBlockId", getResourceBlockId());
-		attributes.put("calendarResourceId", getCalendarResourceId());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("timeZoneId", getTimeZoneId());
-		attributes.put("color", getColor());
-		attributes.put("defaultCalendar", isDefaultCalendar());
-		attributes.put("enableComments", isEnableComments());
-		attributes.put("enableRatings", isEnableRatings());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Calendar)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -268,113 +263,400 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<Calendar, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Calendar, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Calendar)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long calendarId = (Long)attributes.get("calendarId");
+	public Map<String, Function<Calendar, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (calendarId != null) {
-			setCalendarId(calendarId);
-		}
+	public Map<String, BiConsumer<Calendar, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<Calendar, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Calendar, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Calendar, Object>>();
+		Map<String, BiConsumer<Calendar, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Calendar, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<Calendar, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<Calendar, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(Calendar calendar, Object uuid) {
+					calendar.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"calendarId",
+			new Function<Calendar, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getCalendarId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"calendarId",
+			new BiConsumer<Calendar, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Calendar calendar, Object calendarId) {
+					calendar.setCalendarId((Long)calendarId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<Calendar, Object>() {
 
-		Long resourceBlockId = (Long)attributes.get("resourceBlockId");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getGroupId();
+				}
 
-		if (resourceBlockId != null) {
-			setResourceBlockId(resourceBlockId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<Calendar, Object>() {
 
-		Long calendarResourceId = (Long)attributes.get("calendarResourceId");
+				@Override
+				public void accept(Calendar calendar, Object groupId) {
+					calendar.setGroupId((Long)groupId);
+				}
 
-		if (calendarResourceId != null) {
-			setCalendarResourceId(calendarResourceId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Calendar, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getCompanyId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Calendar, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(Calendar calendar, Object companyId) {
+					calendar.setCompanyId((Long)companyId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Calendar, Object>() {
 
-		String timeZoneId = (String)attributes.get("timeZoneId");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getUserId();
+				}
 
-		if (timeZoneId != null) {
-			setTimeZoneId(timeZoneId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Calendar, Object>() {
 
-		Integer color = (Integer)attributes.get("color");
+				@Override
+				public void accept(Calendar calendar, Object userId) {
+					calendar.setUserId((Long)userId);
+				}
 
-		if (color != null) {
-			setColor(color);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Calendar, Object>() {
 
-		Boolean defaultCalendar = (Boolean)attributes.get("defaultCalendar");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getUserName();
+				}
 
-		if (defaultCalendar != null) {
-			setDefaultCalendar(defaultCalendar);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Calendar, Object>() {
 
-		Boolean enableComments = (Boolean)attributes.get("enableComments");
+				@Override
+				public void accept(Calendar calendar, Object userName) {
+					calendar.setUserName((String)userName);
+				}
 
-		if (enableComments != null) {
-			setEnableComments(enableComments);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Calendar, Object>() {
 
-		Boolean enableRatings = (Boolean)attributes.get("enableRatings");
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getCreateDate();
+				}
 
-		if (enableRatings != null) {
-			setEnableRatings(enableRatings);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Calendar, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(Calendar calendar, Object createDate) {
+					calendar.setCreateDate((Date)createDate);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object modifiedDate) {
+					calendar.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"resourceBlockId",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getResourceBlockId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"resourceBlockId",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object resourceBlockId) {
+					calendar.setResourceBlockId((Long)resourceBlockId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"calendarResourceId",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getCalendarResourceId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"calendarResourceId",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object calendarResourceId) {
+					calendar.setCalendarResourceId((Long)calendarResourceId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object name) {
+					calendar.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object description) {
+					calendar.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"timeZoneId",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getTimeZoneId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"timeZoneId",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object timeZoneId) {
+					calendar.setTimeZoneId((String)timeZoneId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"color",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getColor();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"color",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object color) {
+					calendar.setColor((Integer)color);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"defaultCalendar",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getDefaultCalendar();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"defaultCalendar",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object defaultCalendar) {
+					calendar.setDefaultCalendar((Boolean)defaultCalendar);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"enableComments",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getEnableComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"enableComments",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object enableComments) {
+					calendar.setEnableComments((Boolean)enableComments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"enableRatings",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getEnableRatings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"enableRatings",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object enableRatings) {
+					calendar.setEnableRatings((Boolean)enableRatings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<Calendar, Object>() {
+
+				@Override
+				public Object apply(Calendar calendar) {
+					return calendar.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<Calendar, Object>() {
+
+				@Override
+				public void accept(Calendar calendar, Object lastPublishDate) {
+					calendar.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1202,44 +1484,27 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", calendarId=");
-		sb.append(getCalendarId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", resourceBlockId=");
-		sb.append(getResourceBlockId());
-		sb.append(", calendarResourceId=");
-		sb.append(getCalendarResourceId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", timeZoneId=");
-		sb.append(getTimeZoneId());
-		sb.append(", color=");
-		sb.append(getColor());
-		sb.append(", defaultCalendar=");
-		sb.append(isDefaultCalendar());
-		sb.append(", enableComments=");
-		sb.append(isEnableComments());
-		sb.append(", enableRatings=");
-		sb.append(isEnableRatings());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Calendar)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1247,84 +1512,25 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(58);
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.calendar.model.Calendar");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>calendarId</column-name><column-value><![CDATA[");
-		sb.append(getCalendarId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resourceBlockId</column-name><column-value><![CDATA[");
-		sb.append(getResourceBlockId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>calendarResourceId</column-name><column-value><![CDATA[");
-		sb.append(getCalendarResourceId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>timeZoneId</column-name><column-value><![CDATA[");
-		sb.append(getTimeZoneId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>color</column-name><column-value><![CDATA[");
-		sb.append(getColor());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultCalendar</column-name><column-value><![CDATA[");
-		sb.append(isDefaultCalendar());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>enableComments</column-name><column-value><![CDATA[");
-		sb.append(isEnableComments());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>enableRatings</column-name><column-value><![CDATA[");
-		sb.append(isEnableRatings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Calendar)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

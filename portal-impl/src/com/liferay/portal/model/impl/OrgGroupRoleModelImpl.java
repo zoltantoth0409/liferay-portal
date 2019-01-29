@@ -31,8 +31,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the OrgGroupRole service. Represents a row in the &quot;OrgGroupRole&quot; database table, with each column mapped to a property of this class.
@@ -134,11 +138,15 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("organizationId", getOrganizationId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("roleId", getRoleId());
-		attributes.put("companyId", getCompanyId());
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((OrgGroupRole)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -148,35 +156,141 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<OrgGroupRole, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<OrgGroupRole, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((OrgGroupRole)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long organizationId = (Long)attributes.get("organizationId");
+	public Map<String, Function<OrgGroupRole, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (organizationId != null) {
-			setOrganizationId(organizationId);
-		}
+	public Map<String, BiConsumer<OrgGroupRole, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<OrgGroupRole, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<OrgGroupRole, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<OrgGroupRole, Object>>();
+		Map<String, BiConsumer<OrgGroupRole, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<OrgGroupRole, ?>>();
 
-		Long roleId = (Long)attributes.get("roleId");
 
-		if (roleId != null) {
-			setRoleId(roleId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<OrgGroupRole, Object>() {
 
-		Long companyId = (Long)attributes.get("companyId");
+				@Override
+				public Object apply(OrgGroupRole orgGroupRole) {
+					return orgGroupRole.getMvccVersion();
+				}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<OrgGroupRole, Object>() {
+
+				@Override
+				public void accept(OrgGroupRole orgGroupRole, Object mvccVersion) {
+					orgGroupRole.setMvccVersion((Long)mvccVersion);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"organizationId",
+			new Function<OrgGroupRole, Object>() {
+
+				@Override
+				public Object apply(OrgGroupRole orgGroupRole) {
+					return orgGroupRole.getOrganizationId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"organizationId",
+			new BiConsumer<OrgGroupRole, Object>() {
+
+				@Override
+				public void accept(OrgGroupRole orgGroupRole, Object organizationId) {
+					orgGroupRole.setOrganizationId((Long)organizationId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<OrgGroupRole, Object>() {
+
+				@Override
+				public Object apply(OrgGroupRole orgGroupRole) {
+					return orgGroupRole.getGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<OrgGroupRole, Object>() {
+
+				@Override
+				public void accept(OrgGroupRole orgGroupRole, Object groupId) {
+					orgGroupRole.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"roleId",
+			new Function<OrgGroupRole, Object>() {
+
+				@Override
+				public Object apply(OrgGroupRole orgGroupRole) {
+					return orgGroupRole.getRoleId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"roleId",
+			new BiConsumer<OrgGroupRole, Object>() {
+
+				@Override
+				public void accept(OrgGroupRole orgGroupRole, Object roleId) {
+					orgGroupRole.setRoleId((Long)roleId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<OrgGroupRole, Object>() {
+
+				@Override
+				public Object apply(OrgGroupRole orgGroupRole) {
+					return orgGroupRole.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<OrgGroupRole, Object>() {
+
+				@Override
+				public void accept(OrgGroupRole orgGroupRole, Object companyId) {
+					orgGroupRole.setCompanyId((Long)companyId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -362,18 +476,27 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", organizationId=");
-		sb.append(getOrganizationId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", roleId=");
-		sb.append(getRoleId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((OrgGroupRole)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -381,32 +504,25 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.OrgGroupRole");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>organizationId</column-name><column-value><![CDATA[");
-		sb.append(getOrganizationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>roleId</column-name><column-value><![CDATA[");
-		sb.append(getRoleId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((OrgGroupRole)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

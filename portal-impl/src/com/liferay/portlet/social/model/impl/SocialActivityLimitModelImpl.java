@@ -40,8 +40,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the SocialActivityLimit service. Represents a row in the &quot;SocialActivityLimit&quot; database table, with each column mapped to a property of this class.
@@ -153,15 +157,16 @@ public class SocialActivityLimitModelImpl extends BaseModelImpl<SocialActivityLi
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("activityLimitId", getActivityLimitId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("activityType", getActivityType());
-		attributes.put("activityCounterName", getActivityCounterName());
-		attributes.put("value", getValue());
+		Map<String, Function<SocialActivityLimit, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<SocialActivityLimit, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivityLimit, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((SocialActivityLimit)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -171,60 +176,223 @@ public class SocialActivityLimitModelImpl extends BaseModelImpl<SocialActivityLi
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long activityLimitId = (Long)attributes.get("activityLimitId");
+		Map<String, BiConsumer<SocialActivityLimit, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (activityLimitId != null) {
-			setActivityLimitId(activityLimitId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<SocialActivityLimit, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((SocialActivityLimit)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<SocialActivityLimit, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<SocialActivityLimit, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<SocialActivityLimit, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SocialActivityLimit, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<SocialActivityLimit, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<SocialActivityLimit, Object>>();
+		Map<String, BiConsumer<SocialActivityLimit, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<SocialActivityLimit, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"activityLimitId",
+			new Function<SocialActivityLimit, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getActivityLimitId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"activityLimitId",
+			new BiConsumer<SocialActivityLimit, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object activityLimitId) {
+					socialActivityLimit.setActivityLimitId((Long)activityLimitId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<SocialActivityLimit, Object>() {
 
-		Integer activityType = (Integer)attributes.get("activityType");
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getGroupId();
+				}
 
-		if (activityType != null) {
-			setActivityType(activityType);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<SocialActivityLimit, Object>() {
 
-		String activityCounterName = (String)attributes.get(
-				"activityCounterName");
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object groupId) {
+					socialActivityLimit.setGroupId((Long)groupId);
+				}
 
-		if (activityCounterName != null) {
-			setActivityCounterName(activityCounterName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<SocialActivityLimit, Object>() {
 
-		String value = (String)attributes.get("value");
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getCompanyId();
+				}
 
-		if (value != null) {
-			setValue(value);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object companyId) {
+					socialActivityLimit.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object userId) {
+					socialActivityLimit.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object classNameId) {
+					socialActivityLimit.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object classPK) {
+					socialActivityLimit.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"activityType",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getActivityType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"activityType",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object activityType) {
+					socialActivityLimit.setActivityType((Integer)activityType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"activityCounterName",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getActivityCounterName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"activityCounterName",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object activityCounterName) {
+					socialActivityLimit.setActivityCounterName((String)activityCounterName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"value",
+			new Function<SocialActivityLimit, Object>() {
+
+				@Override
+				public Object apply(SocialActivityLimit socialActivityLimit) {
+					return socialActivityLimit.getValue();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"value",
+			new BiConsumer<SocialActivityLimit, Object>() {
+
+				@Override
+				public void accept(SocialActivityLimit socialActivityLimit, Object value) {
+					socialActivityLimit.setValue((String)value);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -600,26 +768,28 @@ public class SocialActivityLimitModelImpl extends BaseModelImpl<SocialActivityLi
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<SocialActivityLimit, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{activityLimitId=");
-		sb.append(getActivityLimitId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", activityType=");
-		sb.append(getActivityType());
-		sb.append(", activityCounterName=");
-		sb.append(getActivityCounterName());
-		sb.append(", value=");
-		sb.append(getValue());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<SocialActivityLimit, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivityLimit, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((SocialActivityLimit)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -627,48 +797,26 @@ public class SocialActivityLimitModelImpl extends BaseModelImpl<SocialActivityLi
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<SocialActivityLimit, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.social.kernel.model.SocialActivityLimit");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>activityLimitId</column-name><column-value><![CDATA[");
-		sb.append(getActivityLimitId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>activityType</column-name><column-value><![CDATA[");
-		sb.append(getActivityType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>activityCounterName</column-name><column-value><![CDATA[");
-		sb.append(getActivityCounterName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>value</column-name><column-value><![CDATA[");
-		sb.append(getValue());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<SocialActivityLimit, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivityLimit, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((SocialActivityLimit)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

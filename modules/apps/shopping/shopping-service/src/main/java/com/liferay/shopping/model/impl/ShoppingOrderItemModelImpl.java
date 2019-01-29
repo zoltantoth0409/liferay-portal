@@ -35,9 +35,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ShoppingOrderItem service. Represents a row in the &quot;ShoppingOrderItem&quot; database table, with each column mapped to a property of this class.
@@ -149,17 +153,16 @@ public class ShoppingOrderItemModelImpl extends BaseModelImpl<ShoppingOrderItem>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("orderItemId", getOrderItemId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("orderId", getOrderId());
-		attributes.put("itemId", getItemId());
-		attributes.put("sku", getSku());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("properties", getProperties());
-		attributes.put("price", getPrice());
-		attributes.put("quantity", getQuantity());
-		attributes.put("shippedDate", getShippedDate());
+		Map<String, Function<ShoppingOrderItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ShoppingOrderItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrderItem, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ShoppingOrderItem)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -169,71 +172,263 @@ public class ShoppingOrderItemModelImpl extends BaseModelImpl<ShoppingOrderItem>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long orderItemId = (Long)attributes.get("orderItemId");
+		Map<String, BiConsumer<ShoppingOrderItem, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (orderItemId != null) {
-			setOrderItemId(orderItemId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ShoppingOrderItem, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ShoppingOrderItem)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<ShoppingOrderItem, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<ShoppingOrderItem, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long orderId = (Long)attributes.get("orderId");
+	private static final Map<String, Function<ShoppingOrderItem, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingOrderItem, Object>> _attributeSetterBiConsumers;
 
-		if (orderId != null) {
-			setOrderId(orderId);
-		}
+	static {
+		Map<String, Function<ShoppingOrderItem, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ShoppingOrderItem, Object>>();
+		Map<String, BiConsumer<ShoppingOrderItem, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ShoppingOrderItem, ?>>();
 
-		String itemId = (String)attributes.get("itemId");
 
-		if (itemId != null) {
-			setItemId(itemId);
-		}
+		attributeGetterFunctions.put(
+			"orderItemId",
+			new Function<ShoppingOrderItem, Object>() {
 
-		String sku = (String)attributes.get("sku");
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getOrderItemId();
+				}
 
-		if (sku != null) {
-			setSku(sku);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"orderItemId",
+			new BiConsumer<ShoppingOrderItem, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object orderItemId) {
+					shoppingOrderItem.setOrderItemId((Long)orderItemId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ShoppingOrderItem, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getCompanyId();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ShoppingOrderItem, Object>() {
 
-		String properties = (String)attributes.get("properties");
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object companyId) {
+					shoppingOrderItem.setCompanyId((Long)companyId);
+				}
 
-		if (properties != null) {
-			setProperties(properties);
-		}
+			});
+		attributeGetterFunctions.put(
+			"orderId",
+			new Function<ShoppingOrderItem, Object>() {
 
-		Double price = (Double)attributes.get("price");
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getOrderId();
+				}
 
-		if (price != null) {
-			setPrice(price);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"orderId",
+			new BiConsumer<ShoppingOrderItem, Object>() {
 
-		Integer quantity = (Integer)attributes.get("quantity");
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object orderId) {
+					shoppingOrderItem.setOrderId((Long)orderId);
+				}
 
-		if (quantity != null) {
-			setQuantity(quantity);
-		}
+			});
+		attributeGetterFunctions.put(
+			"itemId",
+			new Function<ShoppingOrderItem, Object>() {
 
-		Date shippedDate = (Date)attributes.get("shippedDate");
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getItemId();
+				}
 
-		if (shippedDate != null) {
-			setShippedDate(shippedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"itemId",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object itemId) {
+					shoppingOrderItem.setItemId((String)itemId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sku",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getSku();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sku",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object sku) {
+					shoppingOrderItem.setSku((String)sku);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object name) {
+					shoppingOrderItem.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object description) {
+					shoppingOrderItem.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"properties",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getProperties();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"properties",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object properties) {
+					shoppingOrderItem.setProperties((String)properties);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"price",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getPrice();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"price",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object price) {
+					shoppingOrderItem.setPrice((Double)price);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"quantity",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getQuantity();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"quantity",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object quantity) {
+					shoppingOrderItem.setQuantity((Integer)quantity);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"shippedDate",
+			new Function<ShoppingOrderItem, Object>() {
+
+				@Override
+				public Object apply(ShoppingOrderItem shoppingOrderItem) {
+					return shoppingOrderItem.getShippedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"shippedDate",
+			new BiConsumer<ShoppingOrderItem, Object>() {
+
+				@Override
+				public void accept(ShoppingOrderItem shoppingOrderItem, Object shippedDate) {
+					shoppingOrderItem.setShippedDate((Date)shippedDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -570,30 +765,28 @@ public class ShoppingOrderItemModelImpl extends BaseModelImpl<ShoppingOrderItem>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<ShoppingOrderItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{orderItemId=");
-		sb.append(getOrderItemId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", orderId=");
-		sb.append(getOrderId());
-		sb.append(", itemId=");
-		sb.append(getItemId());
-		sb.append(", sku=");
-		sb.append(getSku());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", properties=");
-		sb.append(getProperties());
-		sb.append(", price=");
-		sb.append(getPrice());
-		sb.append(", quantity=");
-		sb.append(getQuantity());
-		sb.append(", shippedDate=");
-		sb.append(getShippedDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ShoppingOrderItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrderItem, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ShoppingOrderItem)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -601,56 +794,26 @@ public class ShoppingOrderItemModelImpl extends BaseModelImpl<ShoppingOrderItem>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<ShoppingOrderItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.shopping.model.ShoppingOrderItem");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>orderItemId</column-name><column-value><![CDATA[");
-		sb.append(getOrderItemId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>orderId</column-name><column-value><![CDATA[");
-		sb.append(getOrderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>itemId</column-name><column-value><![CDATA[");
-		sb.append(getItemId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sku</column-name><column-value><![CDATA[");
-		sb.append(getSku());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>properties</column-name><column-value><![CDATA[");
-		sb.append(getProperties());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>price</column-name><column-value><![CDATA[");
-		sb.append(getPrice());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>quantity</column-name><column-value><![CDATA[");
-		sb.append(getQuantity());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>shippedDate</column-name><column-value><![CDATA[");
-		sb.append(getShippedDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ShoppingOrderItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ShoppingOrderItem, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ShoppingOrderItem)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

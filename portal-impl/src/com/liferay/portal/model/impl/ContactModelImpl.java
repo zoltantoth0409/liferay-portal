@@ -42,10 +42,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Contact service. Represents a row in the &quot;Contact_&quot; database table, with each column mapped to a property of this class.
@@ -263,35 +267,15 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("contactId", getContactId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("accountId", getAccountId());
-		attributes.put("parentContactId", getParentContactId());
-		attributes.put("emailAddress", getEmailAddress());
-		attributes.put("firstName", getFirstName());
-		attributes.put("middleName", getMiddleName());
-		attributes.put("lastName", getLastName());
-		attributes.put("prefixId", getPrefixId());
-		attributes.put("suffixId", getSuffixId());
-		attributes.put("male", isMale());
-		attributes.put("birthday", getBirthday());
-		attributes.put("smsSn", getSmsSn());
-		attributes.put("facebookSn", getFacebookSn());
-		attributes.put("jabberSn", getJabberSn());
-		attributes.put("skypeSn", getSkypeSn());
-		attributes.put("twitterSn", getTwitterSn());
-		attributes.put("employeeStatusId", getEmployeeStatusId());
-		attributes.put("employeeNumber", getEmployeeNumber());
-		attributes.put("jobTitle", getJobTitle());
-		attributes.put("jobClass", getJobClass());
-		attributes.put("hoursOfOperation", getHoursOfOperation());
+		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Contact)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -301,179 +285,619 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Contact, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Contact, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Contact)this, entry.getValue());
+			}
 		}
+	}
 
-		Long contactId = (Long)attributes.get("contactId");
+	public Map<String, Function<Contact, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (contactId != null) {
-			setContactId(contactId);
-		}
+	public Map<String, BiConsumer<Contact, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<Contact, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Contact, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<Contact, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Contact, Object>>();
+		Map<String, BiConsumer<Contact, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Contact, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Contact, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getMvccVersion();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Contact, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(Contact contact, Object mvccVersion) {
+					contact.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"contactId",
+			new Function<Contact, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getContactId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"contactId",
+			new BiConsumer<Contact, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(Contact contact, Object contactId) {
+					contact.setContactId((Long)contactId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Contact, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getCompanyId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Contact, Object>() {
 
-		Long accountId = (Long)attributes.get("accountId");
+				@Override
+				public void accept(Contact contact, Object companyId) {
+					contact.setCompanyId((Long)companyId);
+				}
 
-		if (accountId != null) {
-			setAccountId(accountId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Contact, Object>() {
 
-		Long parentContactId = (Long)attributes.get("parentContactId");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getUserId();
+				}
 
-		if (parentContactId != null) {
-			setParentContactId(parentContactId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Contact, Object>() {
 
-		String emailAddress = (String)attributes.get("emailAddress");
+				@Override
+				public void accept(Contact contact, Object userId) {
+					contact.setUserId((Long)userId);
+				}
 
-		if (emailAddress != null) {
-			setEmailAddress(emailAddress);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Contact, Object>() {
 
-		String firstName = (String)attributes.get("firstName");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getUserName();
+				}
 
-		if (firstName != null) {
-			setFirstName(firstName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Contact, Object>() {
 
-		String middleName = (String)attributes.get("middleName");
+				@Override
+				public void accept(Contact contact, Object userName) {
+					contact.setUserName((String)userName);
+				}
 
-		if (middleName != null) {
-			setMiddleName(middleName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Contact, Object>() {
 
-		String lastName = (String)attributes.get("lastName");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getCreateDate();
+				}
 
-		if (lastName != null) {
-			setLastName(lastName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Contact, Object>() {
 
-		Long prefixId = (Long)attributes.get("prefixId");
+				@Override
+				public void accept(Contact contact, Object createDate) {
+					contact.setCreateDate((Date)createDate);
+				}
 
-		if (prefixId != null) {
-			setPrefixId(prefixId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Contact, Object>() {
 
-		Long suffixId = (Long)attributes.get("suffixId");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getModifiedDate();
+				}
 
-		if (suffixId != null) {
-			setSuffixId(suffixId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Contact, Object>() {
 
-		Boolean male = (Boolean)attributes.get("male");
+				@Override
+				public void accept(Contact contact, Object modifiedDate) {
+					contact.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (male != null) {
-			setMale(male);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<Contact, Object>() {
 
-		Date birthday = (Date)attributes.get("birthday");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getClassNameId();
+				}
 
-		if (birthday != null) {
-			setBirthday(birthday);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<Contact, Object>() {
 
-		String smsSn = (String)attributes.get("smsSn");
+				@Override
+				public void accept(Contact contact, Object classNameId) {
+					contact.setClassNameId((Long)classNameId);
+				}
 
-		if (smsSn != null) {
-			setSmsSn(smsSn);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<Contact, Object>() {
 
-		String facebookSn = (String)attributes.get("facebookSn");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getClassPK();
+				}
 
-		if (facebookSn != null) {
-			setFacebookSn(facebookSn);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<Contact, Object>() {
 
-		String jabberSn = (String)attributes.get("jabberSn");
+				@Override
+				public void accept(Contact contact, Object classPK) {
+					contact.setClassPK((Long)classPK);
+				}
 
-		if (jabberSn != null) {
-			setJabberSn(jabberSn);
-		}
+			});
+		attributeGetterFunctions.put(
+			"accountId",
+			new Function<Contact, Object>() {
 
-		String skypeSn = (String)attributes.get("skypeSn");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getAccountId();
+				}
 
-		if (skypeSn != null) {
-			setSkypeSn(skypeSn);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"accountId",
+			new BiConsumer<Contact, Object>() {
 
-		String twitterSn = (String)attributes.get("twitterSn");
+				@Override
+				public void accept(Contact contact, Object accountId) {
+					contact.setAccountId((Long)accountId);
+				}
 
-		if (twitterSn != null) {
-			setTwitterSn(twitterSn);
-		}
+			});
+		attributeGetterFunctions.put(
+			"parentContactId",
+			new Function<Contact, Object>() {
 
-		String employeeStatusId = (String)attributes.get("employeeStatusId");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getParentContactId();
+				}
 
-		if (employeeStatusId != null) {
-			setEmployeeStatusId(employeeStatusId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"parentContactId",
+			new BiConsumer<Contact, Object>() {
 
-		String employeeNumber = (String)attributes.get("employeeNumber");
+				@Override
+				public void accept(Contact contact, Object parentContactId) {
+					contact.setParentContactId((Long)parentContactId);
+				}
 
-		if (employeeNumber != null) {
-			setEmployeeNumber(employeeNumber);
-		}
+			});
+		attributeGetterFunctions.put(
+			"emailAddress",
+			new Function<Contact, Object>() {
 
-		String jobTitle = (String)attributes.get("jobTitle");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getEmailAddress();
+				}
 
-		if (jobTitle != null) {
-			setJobTitle(jobTitle);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"emailAddress",
+			new BiConsumer<Contact, Object>() {
 
-		String jobClass = (String)attributes.get("jobClass");
+				@Override
+				public void accept(Contact contact, Object emailAddress) {
+					contact.setEmailAddress((String)emailAddress);
+				}
 
-		if (jobClass != null) {
-			setJobClass(jobClass);
-		}
+			});
+		attributeGetterFunctions.put(
+			"firstName",
+			new Function<Contact, Object>() {
 
-		String hoursOfOperation = (String)attributes.get("hoursOfOperation");
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getFirstName();
+				}
 
-		if (hoursOfOperation != null) {
-			setHoursOfOperation(hoursOfOperation);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"firstName",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object firstName) {
+					contact.setFirstName((String)firstName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"middleName",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getMiddleName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"middleName",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object middleName) {
+					contact.setMiddleName((String)middleName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastName",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getLastName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastName",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object lastName) {
+					contact.setLastName((String)lastName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"prefixId",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getPrefixId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"prefixId",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object prefixId) {
+					contact.setPrefixId((Long)prefixId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"suffixId",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getSuffixId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"suffixId",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object suffixId) {
+					contact.setSuffixId((Long)suffixId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"male",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getMale();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"male",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object male) {
+					contact.setMale((Boolean)male);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"birthday",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getBirthday();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"birthday",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object birthday) {
+					contact.setBirthday((Date)birthday);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"smsSn",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getSmsSn();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"smsSn",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object smsSn) {
+					contact.setSmsSn((String)smsSn);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"facebookSn",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getFacebookSn();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"facebookSn",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object facebookSn) {
+					contact.setFacebookSn((String)facebookSn);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"jabberSn",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getJabberSn();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"jabberSn",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object jabberSn) {
+					contact.setJabberSn((String)jabberSn);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"skypeSn",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getSkypeSn();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"skypeSn",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object skypeSn) {
+					contact.setSkypeSn((String)skypeSn);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"twitterSn",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getTwitterSn();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"twitterSn",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object twitterSn) {
+					contact.setTwitterSn((String)twitterSn);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"employeeStatusId",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getEmployeeStatusId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"employeeStatusId",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object employeeStatusId) {
+					contact.setEmployeeStatusId((String)employeeStatusId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"employeeNumber",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getEmployeeNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"employeeNumber",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object employeeNumber) {
+					contact.setEmployeeNumber((String)employeeNumber);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"jobTitle",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getJobTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"jobTitle",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object jobTitle) {
+					contact.setJobTitle((String)jobTitle);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"jobClass",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getJobClass();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"jobClass",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object jobClass) {
+					contact.setJobClass((String)jobClass);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"hoursOfOperation",
+			new Function<Contact, Object>() {
+
+				@Override
+				public Object apply(Contact contact) {
+					return contact.getHoursOfOperation();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"hoursOfOperation",
+			new BiConsumer<Contact, Object>() {
+
+				@Override
+				public void accept(Contact contact, Object hoursOfOperation) {
+					contact.setHoursOfOperation((String)hoursOfOperation);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1295,66 +1719,27 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(59);
+		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", contactId=");
-		sb.append(getContactId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", accountId=");
-		sb.append(getAccountId());
-		sb.append(", parentContactId=");
-		sb.append(getParentContactId());
-		sb.append(", emailAddress=");
-		sb.append(getEmailAddress());
-		sb.append(", firstName=");
-		sb.append(getFirstName());
-		sb.append(", middleName=");
-		sb.append(getMiddleName());
-		sb.append(", lastName=");
-		sb.append(getLastName());
-		sb.append(", prefixId=");
-		sb.append(getPrefixId());
-		sb.append(", suffixId=");
-		sb.append(getSuffixId());
-		sb.append(", male=");
-		sb.append(isMale());
-		sb.append(", birthday=");
-		sb.append(getBirthday());
-		sb.append(", smsSn=");
-		sb.append(getSmsSn());
-		sb.append(", facebookSn=");
-		sb.append(getFacebookSn());
-		sb.append(", jabberSn=");
-		sb.append(getJabberSn());
-		sb.append(", skypeSn=");
-		sb.append(getSkypeSn());
-		sb.append(", twitterSn=");
-		sb.append(getTwitterSn());
-		sb.append(", employeeStatusId=");
-		sb.append(getEmployeeStatusId());
-		sb.append(", employeeNumber=");
-		sb.append(getEmployeeNumber());
-		sb.append(", jobTitle=");
-		sb.append(getJobTitle());
-		sb.append(", jobClass=");
-		sb.append(getJobClass());
-		sb.append(", hoursOfOperation=");
-		sb.append(getHoursOfOperation());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Contact)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1362,128 +1747,25 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(91);
+		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Contact");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>contactId</column-name><column-value><![CDATA[");
-		sb.append(getContactId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>accountId</column-name><column-value><![CDATA[");
-		sb.append(getAccountId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentContactId</column-name><column-value><![CDATA[");
-		sb.append(getParentContactId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>emailAddress</column-name><column-value><![CDATA[");
-		sb.append(getEmailAddress());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>firstName</column-name><column-value><![CDATA[");
-		sb.append(getFirstName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>middleName</column-name><column-value><![CDATA[");
-		sb.append(getMiddleName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastName</column-name><column-value><![CDATA[");
-		sb.append(getLastName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>prefixId</column-name><column-value><![CDATA[");
-		sb.append(getPrefixId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>suffixId</column-name><column-value><![CDATA[");
-		sb.append(getSuffixId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>male</column-name><column-value><![CDATA[");
-		sb.append(isMale());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>birthday</column-name><column-value><![CDATA[");
-		sb.append(getBirthday());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>smsSn</column-name><column-value><![CDATA[");
-		sb.append(getSmsSn());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>facebookSn</column-name><column-value><![CDATA[");
-		sb.append(getFacebookSn());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>jabberSn</column-name><column-value><![CDATA[");
-		sb.append(getJabberSn());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>skypeSn</column-name><column-value><![CDATA[");
-		sb.append(getSkypeSn());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>twitterSn</column-name><column-value><![CDATA[");
-		sb.append(getTwitterSn());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>employeeStatusId</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeStatusId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>employeeNumber</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>jobTitle</column-name><column-value><![CDATA[");
-		sb.append(getJobTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>jobClass</column-name><column-value><![CDATA[");
-		sb.append(getJobClass());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>hoursOfOperation</column-name><column-value><![CDATA[");
-		sb.append(getHoursOfOperation());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Contact)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

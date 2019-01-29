@@ -37,10 +37,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Image service. Represents a row in the &quot;Image&quot; database table, with each column mapped to a property of this class.
@@ -191,14 +195,15 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("imageId", getImageId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("type", getType());
-		attributes.put("height", getHeight());
-		attributes.put("width", getWidth());
-		attributes.put("size", getSize());
+		Map<String, Function<Image, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Image, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Image, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Image)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -208,53 +213,199 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Image, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Image, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Image)this, entry.getValue());
+			}
 		}
+	}
 
-		Long imageId = (Long)attributes.get("imageId");
+	public Map<String, Function<Image, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (imageId != null) {
-			setImageId(imageId);
-		}
+	public Map<String, BiConsumer<Image, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<Image, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Image, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<Image, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Image, Object>>();
+		Map<String, BiConsumer<Image, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Image, ?>>();
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Image, Object>() {
 
-		String type = (String)attributes.get("type");
+				@Override
+				public Object apply(Image image) {
+					return image.getMvccVersion();
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Image, Object>() {
 
-		Integer height = (Integer)attributes.get("height");
+				@Override
+				public void accept(Image image, Object mvccVersion) {
+					image.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (height != null) {
-			setHeight(height);
-		}
+			});
+		attributeGetterFunctions.put(
+			"imageId",
+			new Function<Image, Object>() {
 
-		Integer width = (Integer)attributes.get("width");
+				@Override
+				public Object apply(Image image) {
+					return image.getImageId();
+				}
 
-		if (width != null) {
-			setWidth(width);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"imageId",
+			new BiConsumer<Image, Object>() {
 
-		Integer size = (Integer)attributes.get("size");
+				@Override
+				public void accept(Image image, Object imageId) {
+					image.setImageId((Long)imageId);
+				}
 
-		if (size != null) {
-			setSize(size);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object companyId) {
+					image.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object modifiedDate) {
+					image.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object type) {
+					image.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"height",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getHeight();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"height",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object height) {
+					image.setHeight((Integer)height);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"width",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getWidth();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"width",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object width) {
+					image.setWidth((Integer)width);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"size",
+			new Function<Image, Object>() {
+
+				@Override
+				public Object apply(Image image) {
+					return image.getSize();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"size",
+			new BiConsumer<Image, Object>() {
+
+				@Override
+				public void accept(Image image, Object size) {
+					image.setSize((Integer)size);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -516,24 +667,27 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		Map<String, Function<Image, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", imageId=");
-		sb.append(getImageId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", height=");
-		sb.append(getHeight());
-		sb.append(", width=");
-		sb.append(getWidth());
-		sb.append(", size=");
-		sb.append(getSize());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Image, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Image, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Image)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -541,44 +695,25 @@ public class ImageModelImpl extends BaseModelImpl<Image> implements ImageModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		Map<String, Function<Image, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Image");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>imageId</column-name><column-value><![CDATA[");
-		sb.append(getImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>height</column-name><column-value><![CDATA[");
-		sb.append(getHeight());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>width</column-name><column-value><![CDATA[");
-		sb.append(getWidth());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>size</column-name><column-value><![CDATA[");
-		sb.append(getSize());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Image, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Image, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Image)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -34,9 +34,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Release service. Represents a row in the &quot;Release_&quot; database table, with each column mapped to a property of this class.
@@ -147,17 +151,15 @@ public class ReleaseModelImpl extends BaseModelImpl<Release>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("releaseId", getReleaseId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("servletContextName", getServletContextName());
-		attributes.put("schemaVersion", getSchemaVersion());
-		attributes.put("buildNumber", getBuildNumber());
-		attributes.put("buildDate", getBuildDate());
-		attributes.put("verified", isVerified());
-		attributes.put("state", getState());
-		attributes.put("testString", getTestString());
+		Map<String, Function<Release, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Release, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Release, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Release)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -167,71 +169,259 @@ public class ReleaseModelImpl extends BaseModelImpl<Release>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Release, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Release, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Release)this, entry.getValue());
+			}
 		}
+	}
 
-		Long releaseId = (Long)attributes.get("releaseId");
+	public Map<String, Function<Release, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (releaseId != null) {
-			setReleaseId(releaseId);
-		}
+	public Map<String, BiConsumer<Release, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Date createDate = (Date)attributes.get("createDate");
+	private static final Map<String, Function<Release, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Release, Object>> _attributeSetterBiConsumers;
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+	static {
+		Map<String, Function<Release, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Release, Object>>();
+		Map<String, BiConsumer<Release, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Release, ?>>();
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Release, Object>() {
 
-		String servletContextName = (String)attributes.get("servletContextName");
+				@Override
+				public Object apply(Release release) {
+					return release.getMvccVersion();
+				}
 
-		if (servletContextName != null) {
-			setServletContextName(servletContextName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Release, Object>() {
 
-		String schemaVersion = (String)attributes.get("schemaVersion");
+				@Override
+				public void accept(Release release, Object mvccVersion) {
+					release.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (schemaVersion != null) {
-			setSchemaVersion(schemaVersion);
-		}
+			});
+		attributeGetterFunctions.put(
+			"releaseId",
+			new Function<Release, Object>() {
 
-		Integer buildNumber = (Integer)attributes.get("buildNumber");
+				@Override
+				public Object apply(Release release) {
+					return release.getReleaseId();
+				}
 
-		if (buildNumber != null) {
-			setBuildNumber(buildNumber);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"releaseId",
+			new BiConsumer<Release, Object>() {
 
-		Date buildDate = (Date)attributes.get("buildDate");
+				@Override
+				public void accept(Release release, Object releaseId) {
+					release.setReleaseId((Long)releaseId);
+				}
 
-		if (buildDate != null) {
-			setBuildDate(buildDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Release, Object>() {
 
-		Boolean verified = (Boolean)attributes.get("verified");
+				@Override
+				public Object apply(Release release) {
+					return release.getCreateDate();
+				}
 
-		if (verified != null) {
-			setVerified(verified);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Release, Object>() {
 
-		Integer state = (Integer)attributes.get("state");
+				@Override
+				public void accept(Release release, Object createDate) {
+					release.setCreateDate((Date)createDate);
+				}
 
-		if (state != null) {
-			setState(state);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Release, Object>() {
 
-		String testString = (String)attributes.get("testString");
+				@Override
+				public Object apply(Release release) {
+					return release.getModifiedDate();
+				}
 
-		if (testString != null) {
-			setTestString(testString);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object modifiedDate) {
+					release.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"servletContextName",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getServletContextName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"servletContextName",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object servletContextName) {
+					release.setServletContextName((String)servletContextName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"schemaVersion",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getSchemaVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"schemaVersion",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object schemaVersion) {
+					release.setSchemaVersion((String)schemaVersion);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"buildNumber",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getBuildNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"buildNumber",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object buildNumber) {
+					release.setBuildNumber((Integer)buildNumber);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"buildDate",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getBuildDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"buildDate",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object buildDate) {
+					release.setBuildDate((Date)buildDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"verified",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getVerified();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"verified",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object verified) {
+					release.setVerified((Boolean)verified);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"state",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getState();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"state",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object state) {
+					release.setState((Integer)state);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"testString",
+			new Function<Release, Object>() {
+
+				@Override
+				public Object apply(Release release) {
+					return release.getTestString();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"testString",
+			new BiConsumer<Release, Object>() {
+
+				@Override
+				public void accept(Release release, Object testString) {
+					release.setTestString((String)testString);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -561,30 +751,27 @@ public class ReleaseModelImpl extends BaseModelImpl<Release>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<Release, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", releaseId=");
-		sb.append(getReleaseId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", servletContextName=");
-		sb.append(getServletContextName());
-		sb.append(", schemaVersion=");
-		sb.append(getSchemaVersion());
-		sb.append(", buildNumber=");
-		sb.append(getBuildNumber());
-		sb.append(", buildDate=");
-		sb.append(getBuildDate());
-		sb.append(", verified=");
-		sb.append(isVerified());
-		sb.append(", state=");
-		sb.append(getState());
-		sb.append(", testString=");
-		sb.append(getTestString());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Release, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Release, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Release)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -592,56 +779,25 @@ public class ReleaseModelImpl extends BaseModelImpl<Release>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<Release, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Release");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>releaseId</column-name><column-value><![CDATA[");
-		sb.append(getReleaseId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>servletContextName</column-name><column-value><![CDATA[");
-		sb.append(getServletContextName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>schemaVersion</column-name><column-value><![CDATA[");
-		sb.append(getSchemaVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>buildNumber</column-name><column-value><![CDATA[");
-		sb.append(getBuildNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>buildDate</column-name><column-value><![CDATA[");
-		sb.append(getBuildDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>verified</column-name><column-value><![CDATA[");
-		sb.append(isVerified());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>state</column-name><column-value><![CDATA[");
-		sb.append(getState());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>testString</column-name><column-value><![CDATA[");
-		sb.append(getTestString());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Release, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Release, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Release)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

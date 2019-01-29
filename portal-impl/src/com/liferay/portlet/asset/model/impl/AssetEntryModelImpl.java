@@ -46,13 +46,17 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the AssetEntry service. Represents a row in the &quot;AssetEntry&quot; database table, with each column mapped to a property of this class.
@@ -292,33 +296,15 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("entryId", getEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("classUuid", getClassUuid());
-		attributes.put("classTypeId", getClassTypeId());
-		attributes.put("listable", isListable());
-		attributes.put("visible", isVisible());
-		attributes.put("startDate", getStartDate());
-		attributes.put("endDate", getEndDate());
-		attributes.put("publishDate", getPublishDate());
-		attributes.put("expirationDate", getExpirationDate());
-		attributes.put("mimeType", getMimeType());
-		attributes.put("title", getTitle());
-		attributes.put("description", getDescription());
-		attributes.put("summary", getSummary());
-		attributes.put("url", getUrl());
-		attributes.put("layoutUuid", getLayoutUuid());
-		attributes.put("height", getHeight());
-		attributes.put("width", getWidth());
-		attributes.put("priority", getPriority());
-		attributes.put("viewCount", getViewCount());
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((AssetEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -328,167 +314,580 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long entryId = (Long)attributes.get("entryId");
+		Map<String, BiConsumer<AssetEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (entryId != null) {
-			setEntryId(entryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<AssetEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((AssetEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<AssetEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<AssetEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<AssetEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AssetEntry, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AssetEntry, Object>>();
+		Map<String, BiConsumer<AssetEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AssetEntry, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"entryId",
+			new Function<AssetEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getEntryId();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"entryId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(AssetEntry assetEntry, Object entryId) {
+					assetEntry.setEntryId((Long)entryId);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<AssetEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getGroupId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(AssetEntry assetEntry, Object groupId) {
+					assetEntry.setGroupId((Long)groupId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<AssetEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getCompanyId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		String classUuid = (String)attributes.get("classUuid");
+				@Override
+				public void accept(AssetEntry assetEntry, Object companyId) {
+					assetEntry.setCompanyId((Long)companyId);
+				}
 
-		if (classUuid != null) {
-			setClassUuid(classUuid);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<AssetEntry, Object>() {
 
-		Long classTypeId = (Long)attributes.get("classTypeId");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getUserId();
+				}
 
-		if (classTypeId != null) {
-			setClassTypeId(classTypeId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Boolean listable = (Boolean)attributes.get("listable");
+				@Override
+				public void accept(AssetEntry assetEntry, Object userId) {
+					assetEntry.setUserId((Long)userId);
+				}
 
-		if (listable != null) {
-			setListable(listable);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<AssetEntry, Object>() {
 
-		Boolean visible = (Boolean)attributes.get("visible");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getUserName();
+				}
 
-		if (visible != null) {
-			setVisible(visible);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Date startDate = (Date)attributes.get("startDate");
+				@Override
+				public void accept(AssetEntry assetEntry, Object userName) {
+					assetEntry.setUserName((String)userName);
+				}
 
-		if (startDate != null) {
-			setStartDate(startDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<AssetEntry, Object>() {
 
-		Date endDate = (Date)attributes.get("endDate");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getCreateDate();
+				}
 
-		if (endDate != null) {
-			setEndDate(endDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Date publishDate = (Date)attributes.get("publishDate");
+				@Override
+				public void accept(AssetEntry assetEntry, Object createDate) {
+					assetEntry.setCreateDate((Date)createDate);
+				}
 
-		if (publishDate != null) {
-			setPublishDate(publishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<AssetEntry, Object>() {
 
-		Date expirationDate = (Date)attributes.get("expirationDate");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getModifiedDate();
+				}
 
-		if (expirationDate != null) {
-			setExpirationDate(expirationDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<AssetEntry, Object>() {
 
-		String mimeType = (String)attributes.get("mimeType");
+				@Override
+				public void accept(AssetEntry assetEntry, Object modifiedDate) {
+					assetEntry.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (mimeType != null) {
-			setMimeType(mimeType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<AssetEntry, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getClassNameId();
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(AssetEntry assetEntry, Object classNameId) {
+					assetEntry.setClassNameId((Long)classNameId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<AssetEntry, Object>() {
 
-		String summary = (String)attributes.get("summary");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getClassPK();
+				}
 
-		if (summary != null) {
-			setSummary(summary);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<AssetEntry, Object>() {
 
-		String url = (String)attributes.get("url");
+				@Override
+				public void accept(AssetEntry assetEntry, Object classPK) {
+					assetEntry.setClassPK((Long)classPK);
+				}
 
-		if (url != null) {
-			setUrl(url);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classUuid",
+			new Function<AssetEntry, Object>() {
 
-		String layoutUuid = (String)attributes.get("layoutUuid");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getClassUuid();
+				}
 
-		if (layoutUuid != null) {
-			setLayoutUuid(layoutUuid);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classUuid",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Integer height = (Integer)attributes.get("height");
+				@Override
+				public void accept(AssetEntry assetEntry, Object classUuid) {
+					assetEntry.setClassUuid((String)classUuid);
+				}
 
-		if (height != null) {
-			setHeight(height);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classTypeId",
+			new Function<AssetEntry, Object>() {
 
-		Integer width = (Integer)attributes.get("width");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getClassTypeId();
+				}
 
-		if (width != null) {
-			setWidth(width);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classTypeId",
+			new BiConsumer<AssetEntry, Object>() {
 
-		Double priority = (Double)attributes.get("priority");
+				@Override
+				public void accept(AssetEntry assetEntry, Object classTypeId) {
+					assetEntry.setClassTypeId((Long)classTypeId);
+				}
 
-		if (priority != null) {
-			setPriority(priority);
-		}
+			});
+		attributeGetterFunctions.put(
+			"listable",
+			new Function<AssetEntry, Object>() {
 
-		Integer viewCount = (Integer)attributes.get("viewCount");
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getListable();
+				}
 
-		if (viewCount != null) {
-			setViewCount(viewCount);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"listable",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object listable) {
+					assetEntry.setListable((Boolean)listable);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"visible",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getVisible();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"visible",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object visible) {
+					assetEntry.setVisible((Boolean)visible);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"startDate",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getStartDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"startDate",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object startDate) {
+					assetEntry.setStartDate((Date)startDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"endDate",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getEndDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"endDate",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object endDate) {
+					assetEntry.setEndDate((Date)endDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"publishDate",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"publishDate",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object publishDate) {
+					assetEntry.setPublishDate((Date)publishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"expirationDate",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getExpirationDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"expirationDate",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object expirationDate) {
+					assetEntry.setExpirationDate((Date)expirationDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mimeType",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getMimeType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mimeType",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object mimeType) {
+					assetEntry.setMimeType((String)mimeType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object title) {
+					assetEntry.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object description) {
+					assetEntry.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"summary",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getSummary();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"summary",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object summary) {
+					assetEntry.setSummary((String)summary);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"url",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getUrl();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"url",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object url) {
+					assetEntry.setUrl((String)url);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"layoutUuid",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getLayoutUuid();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"layoutUuid",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object layoutUuid) {
+					assetEntry.setLayoutUuid((String)layoutUuid);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"height",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getHeight();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"height",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object height) {
+					assetEntry.setHeight((Integer)height);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"width",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getWidth();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"width",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object width) {
+					assetEntry.setWidth((Integer)width);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"priority",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getPriority();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"priority",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object priority) {
+					assetEntry.setPriority((Double)priority);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"viewCount",
+			new Function<AssetEntry, Object>() {
+
+				@Override
+				public Object apply(AssetEntry assetEntry) {
+					return assetEntry.getViewCount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"viewCount",
+			new BiConsumer<AssetEntry, Object>() {
+
+				@Override
+				public void accept(AssetEntry assetEntry, Object viewCount) {
+					assetEntry.setViewCount((Integer)viewCount);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1644,62 +2043,27 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(55);
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{entryId=");
-		sb.append(getEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", classUuid=");
-		sb.append(getClassUuid());
-		sb.append(", classTypeId=");
-		sb.append(getClassTypeId());
-		sb.append(", listable=");
-		sb.append(isListable());
-		sb.append(", visible=");
-		sb.append(isVisible());
-		sb.append(", startDate=");
-		sb.append(getStartDate());
-		sb.append(", endDate=");
-		sb.append(getEndDate());
-		sb.append(", publishDate=");
-		sb.append(getPublishDate());
-		sb.append(", expirationDate=");
-		sb.append(getExpirationDate());
-		sb.append(", mimeType=");
-		sb.append(getMimeType());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", summary=");
-		sb.append(getSummary());
-		sb.append(", url=");
-		sb.append(getUrl());
-		sb.append(", layoutUuid=");
-		sb.append(getLayoutUuid());
-		sb.append(", height=");
-		sb.append(getHeight());
-		sb.append(", width=");
-		sb.append(getWidth());
-		sb.append(", priority=");
-		sb.append(getPriority());
-		sb.append(", viewCount=");
-		sb.append(getViewCount());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((AssetEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1707,120 +2071,25 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(85);
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.asset.kernel.model.AssetEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>entryId</column-name><column-value><![CDATA[");
-		sb.append(getEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classUuid</column-name><column-value><![CDATA[");
-		sb.append(getClassUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classTypeId</column-name><column-value><![CDATA[");
-		sb.append(getClassTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>listable</column-name><column-value><![CDATA[");
-		sb.append(isListable());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>visible</column-name><column-value><![CDATA[");
-		sb.append(isVisible());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>startDate</column-name><column-value><![CDATA[");
-		sb.append(getStartDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>endDate</column-name><column-value><![CDATA[");
-		sb.append(getEndDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>publishDate</column-name><column-value><![CDATA[");
-		sb.append(getPublishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>expirationDate</column-name><column-value><![CDATA[");
-		sb.append(getExpirationDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mimeType</column-name><column-value><![CDATA[");
-		sb.append(getMimeType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>summary</column-name><column-value><![CDATA[");
-		sb.append(getSummary());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>url</column-name><column-value><![CDATA[");
-		sb.append(getUrl());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutUuid</column-name><column-value><![CDATA[");
-		sb.append(getLayoutUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>height</column-name><column-value><![CDATA[");
-		sb.append(getHeight());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>width</column-name><column-value><![CDATA[");
-		sb.append(getWidth());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>priority</column-name><column-value><![CDATA[");
-		sb.append(getPriority());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>viewCount</column-name><column-value><![CDATA[");
-		sb.append(getViewCount());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((AssetEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

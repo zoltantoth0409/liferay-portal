@@ -48,13 +48,17 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DDLRecordSet service. Represents a row in the &quot;DDLRecordSet&quot; database table, with each column mapped to a property of this class.
@@ -233,22 +237,15 @@ public class DDLRecordSetModelImpl extends BaseModelImpl<DDLRecordSet>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("recordSetId", getRecordSetId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("DDMStructureId", getDDMStructureId());
-		attributes.put("recordSetKey", getRecordSetKey());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("minDisplayRows", getMinDisplayRows());
-		attributes.put("scope", getScope());
-		attributes.put("settings", getSettings());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<DDLRecordSet, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DDLRecordSet, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDLRecordSet, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DDLRecordSet)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -258,101 +255,361 @@ public class DDLRecordSetModelImpl extends BaseModelImpl<DDLRecordSet>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<DDLRecordSet, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DDLRecordSet, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DDLRecordSet)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long recordSetId = (Long)attributes.get("recordSetId");
+	public Map<String, Function<DDLRecordSet, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (recordSetId != null) {
-			setRecordSetId(recordSetId);
-		}
+	public Map<String, BiConsumer<DDLRecordSet, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<DDLRecordSet, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDLRecordSet, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<DDLRecordSet, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DDLRecordSet, Object>>();
+		Map<String, BiConsumer<DDLRecordSet, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DDLRecordSet, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<DDLRecordSet, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object uuid) {
+					ddlRecordSet.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"recordSetId",
+			new Function<DDLRecordSet, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getRecordSetId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"recordSetId",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object recordSetId) {
+					ddlRecordSet.setRecordSetId((Long)recordSetId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DDLRecordSet, Object>() {
 
-		Long DDMStructureId = (Long)attributes.get("DDMStructureId");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getGroupId();
+				}
 
-		if (DDMStructureId != null) {
-			setDDMStructureId(DDMStructureId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		String recordSetKey = (String)attributes.get("recordSetKey");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object groupId) {
+					ddlRecordSet.setGroupId((Long)groupId);
+				}
 
-		if (recordSetKey != null) {
-			setRecordSetKey(recordSetKey);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DDLRecordSet, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getCompanyId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object companyId) {
+					ddlRecordSet.setCompanyId((Long)companyId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<DDLRecordSet, Object>() {
 
-		Integer minDisplayRows = (Integer)attributes.get("minDisplayRows");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getUserId();
+				}
 
-		if (minDisplayRows != null) {
-			setMinDisplayRows(minDisplayRows);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		Integer scope = (Integer)attributes.get("scope");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object userId) {
+					ddlRecordSet.setUserId((Long)userId);
+				}
 
-		if (scope != null) {
-			setScope(scope);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<DDLRecordSet, Object>() {
 
-		String settings = (String)attributes.get("settings");
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getUserName();
+				}
 
-		if (settings != null) {
-			setSettings(settings);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<DDLRecordSet, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object userName) {
+					ddlRecordSet.setUserName((String)userName);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object createDate) {
+					ddlRecordSet.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object modifiedDate) {
+					ddlRecordSet.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"DDMStructureId",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getDDMStructureId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"DDMStructureId",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object DDMStructureId) {
+					ddlRecordSet.setDDMStructureId((Long)DDMStructureId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"recordSetKey",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getRecordSetKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"recordSetKey",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object recordSetKey) {
+					ddlRecordSet.setRecordSetKey((String)recordSetKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object name) {
+					ddlRecordSet.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object description) {
+					ddlRecordSet.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"minDisplayRows",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getMinDisplayRows();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"minDisplayRows",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object minDisplayRows) {
+					ddlRecordSet.setMinDisplayRows((Integer)minDisplayRows);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"scope",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getScope();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"scope",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object scope) {
+					ddlRecordSet.setScope((Integer)scope);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"settings",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"settings",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object settings) {
+					ddlRecordSet.setSettings((String)settings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<DDLRecordSet, Object>() {
+
+				@Override
+				public Object apply(DDLRecordSet ddlRecordSet) {
+					return ddlRecordSet.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<DDLRecordSet, Object>() {
+
+				@Override
+				public void accept(DDLRecordSet ddlRecordSet, Object lastPublishDate) {
+					ddlRecordSet.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1121,40 +1378,27 @@ public class DDLRecordSetModelImpl extends BaseModelImpl<DDLRecordSet>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		Map<String, Function<DDLRecordSet, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", recordSetId=");
-		sb.append(getRecordSetId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", DDMStructureId=");
-		sb.append(getDDMStructureId());
-		sb.append(", recordSetKey=");
-		sb.append(getRecordSetKey());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", minDisplayRows=");
-		sb.append(getMinDisplayRows());
-		sb.append(", scope=");
-		sb.append(getScope());
-		sb.append(", settings=");
-		sb.append(getSettings());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DDLRecordSet, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDLRecordSet, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DDLRecordSet)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1162,76 +1406,25 @@ public class DDLRecordSetModelImpl extends BaseModelImpl<DDLRecordSet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		Map<String, Function<DDLRecordSet, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.dynamic.data.lists.model.DDLRecordSet");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>recordSetId</column-name><column-value><![CDATA[");
-		sb.append(getRecordSetId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>DDMStructureId</column-name><column-value><![CDATA[");
-		sb.append(getDDMStructureId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>recordSetKey</column-name><column-value><![CDATA[");
-		sb.append(getRecordSetKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>minDisplayRows</column-name><column-value><![CDATA[");
-		sb.append(getMinDisplayRows());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>scope</column-name><column-value><![CDATA[");
-		sb.append(getScope());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>settings</column-name><column-value><![CDATA[");
-		sb.append(getSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DDLRecordSet, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DDLRecordSet, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DDLRecordSet)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

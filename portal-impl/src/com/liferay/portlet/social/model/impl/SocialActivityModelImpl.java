@@ -43,9 +43,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the SocialActivity service. Represents a row in the &quot;SocialActivity&quot; database table, with each column mapped to a property of this class.
@@ -223,20 +227,15 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("activityId", getActivityId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("activitySetId", getActivitySetId());
-		attributes.put("mirrorActivityId", getMirrorActivityId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("parentClassNameId", getParentClassNameId());
-		attributes.put("parentClassPK", getParentClassPK());
-		attributes.put("type", getType());
-		attributes.put("extraData", getExtraData());
-		attributes.put("receiverUserId", getReceiverUserId());
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((SocialActivity)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -246,89 +245,321 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long activityId = (Long)attributes.get("activityId");
+		Map<String, BiConsumer<SocialActivity, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (activityId != null) {
-			setActivityId(activityId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<SocialActivity, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((SocialActivity)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<SocialActivity, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<SocialActivity, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<SocialActivity, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SocialActivity, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<SocialActivity, Object>>();
+		Map<String, BiConsumer<SocialActivity, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<SocialActivity, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"activityId",
+			new Function<SocialActivity, Object>() {
 
-		Long createDate = (Long)attributes.get("createDate");
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getActivityId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"activityId",
+			new BiConsumer<SocialActivity, Object>() {
 
-		Long activitySetId = (Long)attributes.get("activitySetId");
+				@Override
+				public void accept(SocialActivity socialActivity, Object activityId) {
+					socialActivity.setActivityId((Long)activityId);
+				}
 
-		if (activitySetId != null) {
-			setActivitySetId(activitySetId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<SocialActivity, Object>() {
 
-		Long mirrorActivityId = (Long)attributes.get("mirrorActivityId");
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getGroupId();
+				}
 
-		if (mirrorActivityId != null) {
-			setMirrorActivityId(mirrorActivityId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<SocialActivity, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(SocialActivity socialActivity, Object groupId) {
+					socialActivity.setGroupId((Long)groupId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<SocialActivity, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getCompanyId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<SocialActivity, Object>() {
 
-		Long parentClassNameId = (Long)attributes.get("parentClassNameId");
+				@Override
+				public void accept(SocialActivity socialActivity, Object companyId) {
+					socialActivity.setCompanyId((Long)companyId);
+				}
 
-		if (parentClassNameId != null) {
-			setParentClassNameId(parentClassNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<SocialActivity, Object>() {
 
-		Long parentClassPK = (Long)attributes.get("parentClassPK");
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getUserId();
+				}
 
-		if (parentClassPK != null) {
-			setParentClassPK(parentClassPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<SocialActivity, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public void accept(SocialActivity socialActivity, Object userId) {
+					socialActivity.setUserId((Long)userId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<SocialActivity, Object>() {
 
-		String extraData = (String)attributes.get("extraData");
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getCreateDate();
+				}
 
-		if (extraData != null) {
-			setExtraData(extraData);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<SocialActivity, Object>() {
 
-		Long receiverUserId = (Long)attributes.get("receiverUserId");
+				@Override
+				public void accept(SocialActivity socialActivity, Object createDate) {
+					socialActivity.setCreateDate((Long)createDate);
+				}
 
-		if (receiverUserId != null) {
-			setReceiverUserId(receiverUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"activitySetId",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getActivitySetId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"activitySetId",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object activitySetId) {
+					socialActivity.setActivitySetId((Long)activitySetId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mirrorActivityId",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getMirrorActivityId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mirrorActivityId",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object mirrorActivityId) {
+					socialActivity.setMirrorActivityId((Long)mirrorActivityId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object classNameId) {
+					socialActivity.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object classPK) {
+					socialActivity.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentClassNameId",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getParentClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentClassNameId",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object parentClassNameId) {
+					socialActivity.setParentClassNameId((Long)parentClassNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"parentClassPK",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getParentClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"parentClassPK",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object parentClassPK) {
+					socialActivity.setParentClassPK((Long)parentClassPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object type) {
+					socialActivity.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"extraData",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getExtraData();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"extraData",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object extraData) {
+					socialActivity.setExtraData((String)extraData);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"receiverUserId",
+			new Function<SocialActivity, Object>() {
+
+				@Override
+				public Object apply(SocialActivity socialActivity) {
+					return socialActivity.getReceiverUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"receiverUserId",
+			new BiConsumer<SocialActivity, Object>() {
+
+				@Override
+				public void accept(SocialActivity socialActivity, Object receiverUserId) {
+					socialActivity.setReceiverUserId((Long)receiverUserId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -863,36 +1094,27 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{activityId=");
-		sb.append(getActivityId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", activitySetId=");
-		sb.append(getActivitySetId());
-		sb.append(", mirrorActivityId=");
-		sb.append(getMirrorActivityId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", parentClassNameId=");
-		sb.append(getParentClassNameId());
-		sb.append(", parentClassPK=");
-		sb.append(getParentClassPK());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", extraData=");
-		sb.append(getExtraData());
-		sb.append(", receiverUserId=");
-		sb.append(getReceiverUserId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((SocialActivity)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -900,68 +1122,25 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.social.kernel.model.SocialActivity");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>activityId</column-name><column-value><![CDATA[");
-		sb.append(getActivityId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>activitySetId</column-name><column-value><![CDATA[");
-		sb.append(getActivitySetId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mirrorActivityId</column-name><column-value><![CDATA[");
-		sb.append(getMirrorActivityId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentClassNameId</column-name><column-value><![CDATA[");
-		sb.append(getParentClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>parentClassPK</column-name><column-value><![CDATA[");
-		sb.append(getParentClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>extraData</column-name><column-value><![CDATA[");
-		sb.append(getExtraData());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>receiverUserId</column-name><column-value><![CDATA[");
-		sb.append(getReceiverUserId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((SocialActivity)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

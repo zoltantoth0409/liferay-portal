@@ -37,8 +37,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the UserNotificationEvent service. Represents a row in the &quot;UserNotificationEvent&quot; database table, with each column mapped to a property of this class.
@@ -160,19 +164,16 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("uuid", getUuid());
-		attributes.put("userNotificationEventId", getUserNotificationEventId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("type", getType());
-		attributes.put("timestamp", getTimestamp());
-		attributes.put("deliveryType", getDeliveryType());
-		attributes.put("deliverBy", getDeliverBy());
-		attributes.put("delivered", isDelivered());
-		attributes.put("payload", getPayload());
-		attributes.put("actionRequired", isActionRequired());
-		attributes.put("archived", isArchived());
+		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((UserNotificationEvent)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -182,84 +183,303 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<UserNotificationEvent, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<UserNotificationEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((UserNotificationEvent)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		String uuid = (String)attributes.get("uuid");
+	public Map<String, Function<UserNotificationEvent, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (uuid != null) {
-			setUuid(uuid);
-		}
+	public Map<String, BiConsumer<UserNotificationEvent, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userNotificationEventId = (Long)attributes.get(
-				"userNotificationEventId");
+	private static final Map<String, Function<UserNotificationEvent, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserNotificationEvent, Object>> _attributeSetterBiConsumers;
 
-		if (userNotificationEventId != null) {
-			setUserNotificationEventId(userNotificationEventId);
-		}
+	static {
+		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<UserNotificationEvent, Object>>();
+		Map<String, BiConsumer<UserNotificationEvent, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<UserNotificationEvent, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<UserNotificationEvent, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<UserNotificationEvent, Object>() {
 
-		String type = (String)attributes.get("type");
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object mvccVersion) {
+					userNotificationEvent.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<UserNotificationEvent, Object>() {
 
-		Long timestamp = (Long)attributes.get("timestamp");
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getUuid();
+				}
 
-		if (timestamp != null) {
-			setTimestamp(timestamp);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<UserNotificationEvent, Object>() {
 
-		Integer deliveryType = (Integer)attributes.get("deliveryType");
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object uuid) {
+					userNotificationEvent.setUuid((String)uuid);
+				}
 
-		if (deliveryType != null) {
-			setDeliveryType(deliveryType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userNotificationEventId",
+			new Function<UserNotificationEvent, Object>() {
 
-		Long deliverBy = (Long)attributes.get("deliverBy");
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getUserNotificationEventId();
+				}
 
-		if (deliverBy != null) {
-			setDeliverBy(deliverBy);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userNotificationEventId",
+			new BiConsumer<UserNotificationEvent, Object>() {
 
-		Boolean delivered = (Boolean)attributes.get("delivered");
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object userNotificationEventId) {
+					userNotificationEvent.setUserNotificationEventId((Long)userNotificationEventId);
+				}
 
-		if (delivered != null) {
-			setDelivered(delivered);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<UserNotificationEvent, Object>() {
 
-		String payload = (String)attributes.get("payload");
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getCompanyId();
+				}
 
-		if (payload != null) {
-			setPayload(payload);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<UserNotificationEvent, Object>() {
 
-		Boolean actionRequired = (Boolean)attributes.get("actionRequired");
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object companyId) {
+					userNotificationEvent.setCompanyId((Long)companyId);
+				}
 
-		if (actionRequired != null) {
-			setActionRequired(actionRequired);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<UserNotificationEvent, Object>() {
 
-		Boolean archived = (Boolean)attributes.get("archived");
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getUserId();
+				}
 
-		if (archived != null) {
-			setArchived(archived);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object userId) {
+					userNotificationEvent.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object type) {
+					userNotificationEvent.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"timestamp",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getTimestamp();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"timestamp",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object timestamp) {
+					userNotificationEvent.setTimestamp((Long)timestamp);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliveryType",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getDeliveryType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryType",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object deliveryType) {
+					userNotificationEvent.setDeliveryType((Integer)deliveryType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliverBy",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getDeliverBy();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliverBy",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object deliverBy) {
+					userNotificationEvent.setDeliverBy((Long)deliverBy);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"delivered",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getDelivered();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"delivered",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object delivered) {
+					userNotificationEvent.setDelivered((Boolean)delivered);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"payload",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getPayload();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"payload",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object payload) {
+					userNotificationEvent.setPayload((String)payload);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"actionRequired",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getActionRequired();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"actionRequired",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object actionRequired) {
+					userNotificationEvent.setActionRequired((Boolean)actionRequired);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"archived",
+			new Function<UserNotificationEvent, Object>() {
+
+				@Override
+				public Object apply(UserNotificationEvent userNotificationEvent) {
+					return userNotificationEvent.getArchived();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"archived",
+			new BiConsumer<UserNotificationEvent, Object>() {
+
+				@Override
+				public void accept(UserNotificationEvent userNotificationEvent, Object archived) {
+					userNotificationEvent.setArchived((Boolean)archived);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -730,34 +950,28 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", uuid=");
-		sb.append(getUuid());
-		sb.append(", userNotificationEventId=");
-		sb.append(getUserNotificationEventId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", timestamp=");
-		sb.append(getTimestamp());
-		sb.append(", deliveryType=");
-		sb.append(getDeliveryType());
-		sb.append(", deliverBy=");
-		sb.append(getDeliverBy());
-		sb.append(", delivered=");
-		sb.append(isDelivered());
-		sb.append(", payload=");
-		sb.append(getPayload());
-		sb.append(", actionRequired=");
-		sb.append(isActionRequired());
-		sb.append(", archived=");
-		sb.append(isArchived());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((UserNotificationEvent)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -765,64 +979,26 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.UserNotificationEvent");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userNotificationEventId</column-name><column-value><![CDATA[");
-		sb.append(getUserNotificationEventId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>timestamp</column-name><column-value><![CDATA[");
-		sb.append(getTimestamp());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>deliveryType</column-name><column-value><![CDATA[");
-		sb.append(getDeliveryType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>deliverBy</column-name><column-value><![CDATA[");
-		sb.append(getDeliverBy());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>delivered</column-name><column-value><![CDATA[");
-		sb.append(isDelivered());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>payload</column-name><column-value><![CDATA[");
-		sb.append(getPayload());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>actionRequired</column-name><column-value><![CDATA[");
-		sb.append(isActionRequired());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>archived</column-name><column-value><![CDATA[");
-		sb.append(isArchived());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((UserNotificationEvent)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

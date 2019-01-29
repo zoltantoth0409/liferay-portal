@@ -49,10 +49,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DLFileEntry service. Represents a row in the &quot;DLFileEntry&quot; database table, with each column mapped to a property of this class.
@@ -283,36 +287,15 @@ public class DLFileEntryModelImpl extends BaseModelImpl<DLFileEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("fileEntryId", getFileEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("repositoryId", getRepositoryId());
-		attributes.put("folderId", getFolderId());
-		attributes.put("treePath", getTreePath());
-		attributes.put("name", getName());
-		attributes.put("fileName", getFileName());
-		attributes.put("extension", getExtension());
-		attributes.put("mimeType", getMimeType());
-		attributes.put("title", getTitle());
-		attributes.put("description", getDescription());
-		attributes.put("extraSettings", getExtraSettings());
-		attributes.put("fileEntryTypeId", getFileEntryTypeId());
-		attributes.put("version", getVersion());
-		attributes.put("size", getSize());
-		attributes.put("readCount", getReadCount());
-		attributes.put("smallImageId", getSmallImageId());
-		attributes.put("largeImageId", getLargeImageId());
-		attributes.put("custom1ImageId", getCustom1ImageId());
-		attributes.put("custom2ImageId", getCustom2ImageId());
-		attributes.put("manualCheckInRequired", isManualCheckInRequired());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<DLFileEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DLFileEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DLFileEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -322,186 +305,640 @@ public class DLFileEntryModelImpl extends BaseModelImpl<DLFileEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<DLFileEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DLFileEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DLFileEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long fileEntryId = (Long)attributes.get("fileEntryId");
+	public Map<String, Function<DLFileEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (fileEntryId != null) {
-			setFileEntryId(fileEntryId);
-		}
+	public Map<String, BiConsumer<DLFileEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<DLFileEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFileEntry, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<DLFileEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFileEntry, Object>>();
+		Map<String, BiConsumer<DLFileEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFileEntry, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<DLFileEntry, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object uuid) {
+					dlFileEntry.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"fileEntryId",
+			new Function<DLFileEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getFileEntryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"fileEntryId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object fileEntryId) {
+					dlFileEntry.setFileEntryId((Long)fileEntryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DLFileEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getGroupId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object groupId) {
+					dlFileEntry.setGroupId((Long)groupId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DLFileEntry, Object>() {
 
-		Long repositoryId = (Long)attributes.get("repositoryId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getCompanyId();
+				}
 
-		if (repositoryId != null) {
-			setRepositoryId(repositoryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Long folderId = (Long)attributes.get("folderId");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object companyId) {
+					dlFileEntry.setCompanyId((Long)companyId);
+				}
 
-		if (folderId != null) {
-			setFolderId(folderId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<DLFileEntry, Object>() {
 
-		String treePath = (String)attributes.get("treePath");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getUserId();
+				}
 
-		if (treePath != null) {
-			setTreePath(treePath);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object userId) {
+					dlFileEntry.setUserId((Long)userId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<DLFileEntry, Object>() {
 
-		String fileName = (String)attributes.get("fileName");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getUserName();
+				}
 
-		if (fileName != null) {
-			setFileName(fileName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String extension = (String)attributes.get("extension");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object userName) {
+					dlFileEntry.setUserName((String)userName);
+				}
 
-		if (extension != null) {
-			setExtension(extension);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<DLFileEntry, Object>() {
 
-		String mimeType = (String)attributes.get("mimeType");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getCreateDate();
+				}
 
-		if (mimeType != null) {
-			setMimeType(mimeType);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object createDate) {
+					dlFileEntry.setCreateDate((Date)createDate);
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<DLFileEntry, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getModifiedDate();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String extraSettings = (String)attributes.get("extraSettings");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object modifiedDate) {
+					dlFileEntry.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (extraSettings != null) {
-			setExtraSettings(extraSettings);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<DLFileEntry, Object>() {
 
-		Long fileEntryTypeId = (Long)attributes.get("fileEntryTypeId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getClassNameId();
+				}
 
-		if (fileEntryTypeId != null) {
-			setFileEntryTypeId(fileEntryTypeId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		String version = (String)attributes.get("version");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object classNameId) {
+					dlFileEntry.setClassNameId((Long)classNameId);
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<DLFileEntry, Object>() {
 
-		Long size = (Long)attributes.get("size");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getClassPK();
+				}
 
-		if (size != null) {
-			setSize(size);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Integer readCount = (Integer)attributes.get("readCount");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object classPK) {
+					dlFileEntry.setClassPK((Long)classPK);
+				}
 
-		if (readCount != null) {
-			setReadCount(readCount);
-		}
+			});
+		attributeGetterFunctions.put(
+			"repositoryId",
+			new Function<DLFileEntry, Object>() {
 
-		Long smallImageId = (Long)attributes.get("smallImageId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getRepositoryId();
+				}
 
-		if (smallImageId != null) {
-			setSmallImageId(smallImageId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"repositoryId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Long largeImageId = (Long)attributes.get("largeImageId");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object repositoryId) {
+					dlFileEntry.setRepositoryId((Long)repositoryId);
+				}
 
-		if (largeImageId != null) {
-			setLargeImageId(largeImageId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"folderId",
+			new Function<DLFileEntry, Object>() {
 
-		Long custom1ImageId = (Long)attributes.get("custom1ImageId");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getFolderId();
+				}
 
-		if (custom1ImageId != null) {
-			setCustom1ImageId(custom1ImageId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"folderId",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Long custom2ImageId = (Long)attributes.get("custom2ImageId");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object folderId) {
+					dlFileEntry.setFolderId((Long)folderId);
+				}
 
-		if (custom2ImageId != null) {
-			setCustom2ImageId(custom2ImageId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"treePath",
+			new Function<DLFileEntry, Object>() {
 
-		Boolean manualCheckInRequired = (Boolean)attributes.get(
-				"manualCheckInRequired");
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getTreePath();
+				}
 
-		if (manualCheckInRequired != null) {
-			setManualCheckInRequired(manualCheckInRequired);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"treePath",
+			new BiConsumer<DLFileEntry, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object treePath) {
+					dlFileEntry.setTreePath((String)treePath);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object name) {
+					dlFileEntry.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"fileName",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getFileName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"fileName",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object fileName) {
+					dlFileEntry.setFileName((String)fileName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"extension",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getExtension();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"extension",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object extension) {
+					dlFileEntry.setExtension((String)extension);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mimeType",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getMimeType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mimeType",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object mimeType) {
+					dlFileEntry.setMimeType((String)mimeType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object title) {
+					dlFileEntry.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object description) {
+					dlFileEntry.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"extraSettings",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getExtraSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"extraSettings",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object extraSettings) {
+					dlFileEntry.setExtraSettings((String)extraSettings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"fileEntryTypeId",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getFileEntryTypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"fileEntryTypeId",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object fileEntryTypeId) {
+					dlFileEntry.setFileEntryTypeId((Long)fileEntryTypeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object version) {
+					dlFileEntry.setVersion((String)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"size",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getSize();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"size",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object size) {
+					dlFileEntry.setSize((Long)size);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"readCount",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getReadCount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"readCount",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object readCount) {
+					dlFileEntry.setReadCount((Integer)readCount);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"smallImageId",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getSmallImageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"smallImageId",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object smallImageId) {
+					dlFileEntry.setSmallImageId((Long)smallImageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"largeImageId",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getLargeImageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"largeImageId",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object largeImageId) {
+					dlFileEntry.setLargeImageId((Long)largeImageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"custom1ImageId",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getCustom1ImageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"custom1ImageId",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object custom1ImageId) {
+					dlFileEntry.setCustom1ImageId((Long)custom1ImageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"custom2ImageId",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getCustom2ImageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"custom2ImageId",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object custom2ImageId) {
+					dlFileEntry.setCustom2ImageId((Long)custom2ImageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"manualCheckInRequired",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getManualCheckInRequired();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"manualCheckInRequired",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object manualCheckInRequired) {
+					dlFileEntry.setManualCheckInRequired((Boolean)manualCheckInRequired);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<DLFileEntry, Object>() {
+
+				@Override
+				public Object apply(DLFileEntry dlFileEntry) {
+					return dlFileEntry.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<DLFileEntry, Object>() {
+
+				@Override
+				public void accept(DLFileEntry dlFileEntry, Object lastPublishDate) {
+					dlFileEntry.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1595,68 +2032,27 @@ public class DLFileEntryModelImpl extends BaseModelImpl<DLFileEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(61);
+		Map<String, Function<DLFileEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", fileEntryId=");
-		sb.append(getFileEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", repositoryId=");
-		sb.append(getRepositoryId());
-		sb.append(", folderId=");
-		sb.append(getFolderId());
-		sb.append(", treePath=");
-		sb.append(getTreePath());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", fileName=");
-		sb.append(getFileName());
-		sb.append(", extension=");
-		sb.append(getExtension());
-		sb.append(", mimeType=");
-		sb.append(getMimeType());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", extraSettings=");
-		sb.append(getExtraSettings());
-		sb.append(", fileEntryTypeId=");
-		sb.append(getFileEntryTypeId());
-		sb.append(", version=");
-		sb.append(getVersion());
-		sb.append(", size=");
-		sb.append(getSize());
-		sb.append(", readCount=");
-		sb.append(getReadCount());
-		sb.append(", smallImageId=");
-		sb.append(getSmallImageId());
-		sb.append(", largeImageId=");
-		sb.append(getLargeImageId());
-		sb.append(", custom1ImageId=");
-		sb.append(getCustom1ImageId());
-		sb.append(", custom2ImageId=");
-		sb.append(getCustom2ImageId());
-		sb.append(", manualCheckInRequired=");
-		sb.append(isManualCheckInRequired());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DLFileEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DLFileEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1664,132 +2060,25 @@ public class DLFileEntryModelImpl extends BaseModelImpl<DLFileEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(94);
+		Map<String, Function<DLFileEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.document.library.kernel.model.DLFileEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFileEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>repositoryId</column-name><column-value><![CDATA[");
-		sb.append(getRepositoryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>folderId</column-name><column-value><![CDATA[");
-		sb.append(getFolderId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>treePath</column-name><column-value><![CDATA[");
-		sb.append(getTreePath());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileName</column-name><column-value><![CDATA[");
-		sb.append(getFileName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>extension</column-name><column-value><![CDATA[");
-		sb.append(getExtension());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mimeType</column-name><column-value><![CDATA[");
-		sb.append(getMimeType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>extraSettings</column-name><column-value><![CDATA[");
-		sb.append(getExtraSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileEntryTypeId</column-name><column-value><![CDATA[");
-		sb.append(getFileEntryTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>size</column-name><column-value><![CDATA[");
-		sb.append(getSize());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>readCount</column-name><column-value><![CDATA[");
-		sb.append(getReadCount());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>smallImageId</column-name><column-value><![CDATA[");
-		sb.append(getSmallImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>largeImageId</column-name><column-value><![CDATA[");
-		sb.append(getLargeImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>custom1ImageId</column-name><column-value><![CDATA[");
-		sb.append(getCustom1ImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>custom2ImageId</column-name><column-value><![CDATA[");
-		sb.append(getCustom2ImageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>manualCheckInRequired</column-name><column-value><![CDATA[");
-		sb.append(isManualCheckInRequired());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DLFileEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DLFileEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

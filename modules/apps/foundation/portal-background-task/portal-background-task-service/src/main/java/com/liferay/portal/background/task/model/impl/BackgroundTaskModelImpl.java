@@ -41,10 +41,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the BackgroundTask service. Represents a row in the &quot;BackgroundTask&quot; database table, with each column mapped to a property of this class.
@@ -225,22 +229,15 @@ public class BackgroundTaskModelImpl extends BaseModelImpl<BackgroundTask>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("backgroundTaskId", getBackgroundTaskId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("name", getName());
-		attributes.put("servletContextNames", getServletContextNames());
-		attributes.put("taskExecutorClassName", getTaskExecutorClassName());
-		attributes.put("taskContextMap", getTaskContextMap());
-		attributes.put("completed", isCompleted());
-		attributes.put("completionDate", getCompletionDate());
-		attributes.put("status", getStatus());
-		attributes.put("statusMessage", getStatusMessage());
+		Map<String, Function<BackgroundTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<BackgroundTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<BackgroundTask, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((BackgroundTask)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -250,104 +247,361 @@ public class BackgroundTaskModelImpl extends BaseModelImpl<BackgroundTask>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<BackgroundTask, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<BackgroundTask, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((BackgroundTask)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long backgroundTaskId = (Long)attributes.get("backgroundTaskId");
+	public Map<String, Function<BackgroundTask, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (backgroundTaskId != null) {
-			setBackgroundTaskId(backgroundTaskId);
-		}
+	public Map<String, BiConsumer<BackgroundTask, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<BackgroundTask, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<BackgroundTask, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<BackgroundTask, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<BackgroundTask, Object>>();
+		Map<String, BiConsumer<BackgroundTask, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<BackgroundTask, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<BackgroundTask, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object mvccVersion) {
+					backgroundTask.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"backgroundTaskId",
+			new Function<BackgroundTask, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getBackgroundTaskId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"backgroundTaskId",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object backgroundTaskId) {
+					backgroundTask.setBackgroundTaskId((Long)backgroundTaskId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<BackgroundTask, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getGroupId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		String servletContextNames = (String)attributes.get(
-				"servletContextNames");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object groupId) {
+					backgroundTask.setGroupId((Long)groupId);
+				}
 
-		if (servletContextNames != null) {
-			setServletContextNames(servletContextNames);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<BackgroundTask, Object>() {
 
-		String taskExecutorClassName = (String)attributes.get(
-				"taskExecutorClassName");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getCompanyId();
+				}
 
-		if (taskExecutorClassName != null) {
-			setTaskExecutorClassName(taskExecutorClassName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		Map<String, Serializable> taskContextMap = (Map<String, Serializable>)attributes.get(
-				"taskContextMap");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object companyId) {
+					backgroundTask.setCompanyId((Long)companyId);
+				}
 
-		if (taskContextMap != null) {
-			setTaskContextMap(taskContextMap);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<BackgroundTask, Object>() {
 
-		Boolean completed = (Boolean)attributes.get("completed");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getUserId();
+				}
 
-		if (completed != null) {
-			setCompleted(completed);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		Date completionDate = (Date)attributes.get("completionDate");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object userId) {
+					backgroundTask.setUserId((Long)userId);
+				}
 
-		if (completionDate != null) {
-			setCompletionDate(completionDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<BackgroundTask, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getUserName();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<BackgroundTask, Object>() {
 
-		String statusMessage = (String)attributes.get("statusMessage");
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object userName) {
+					backgroundTask.setUserName((String)userName);
+				}
 
-		if (statusMessage != null) {
-			setStatusMessage(statusMessage);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object createDate) {
+					backgroundTask.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object modifiedDate) {
+					backgroundTask.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object name) {
+					backgroundTask.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"servletContextNames",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getServletContextNames();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"servletContextNames",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object servletContextNames) {
+					backgroundTask.setServletContextNames((String)servletContextNames);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"taskExecutorClassName",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getTaskExecutorClassName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"taskExecutorClassName",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object taskExecutorClassName) {
+					backgroundTask.setTaskExecutorClassName((String)taskExecutorClassName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"taskContextMap",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getTaskContextMap();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"taskContextMap",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object taskContextMap) {
+					backgroundTask.setTaskContextMap((Map<String, Serializable>)taskContextMap);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"completed",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getCompleted();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"completed",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object completed) {
+					backgroundTask.setCompleted((Boolean)completed);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"completionDate",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getCompletionDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"completionDate",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object completionDate) {
+					backgroundTask.setCompletionDate((Date)completionDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object status) {
+					backgroundTask.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusMessage",
+			new Function<BackgroundTask, Object>() {
+
+				@Override
+				public Object apply(BackgroundTask backgroundTask) {
+					return backgroundTask.getStatusMessage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusMessage",
+			new BiConsumer<BackgroundTask, Object>() {
+
+				@Override
+				public void accept(BackgroundTask backgroundTask, Object statusMessage) {
+					backgroundTask.setStatusMessage((String)statusMessage);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -876,40 +1130,27 @@ public class BackgroundTaskModelImpl extends BaseModelImpl<BackgroundTask>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		Map<String, Function<BackgroundTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", backgroundTaskId=");
-		sb.append(getBackgroundTaskId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", servletContextNames=");
-		sb.append(getServletContextNames());
-		sb.append(", taskExecutorClassName=");
-		sb.append(getTaskExecutorClassName());
-		sb.append(", taskContextMap=");
-		sb.append(getTaskContextMap());
-		sb.append(", completed=");
-		sb.append(isCompleted());
-		sb.append(", completionDate=");
-		sb.append(getCompletionDate());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusMessage=");
-		sb.append(getStatusMessage());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<BackgroundTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<BackgroundTask, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((BackgroundTask)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -917,76 +1158,25 @@ public class BackgroundTaskModelImpl extends BaseModelImpl<BackgroundTask>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		Map<String, Function<BackgroundTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.background.task.model.BackgroundTask");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>backgroundTaskId</column-name><column-value><![CDATA[");
-		sb.append(getBackgroundTaskId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>servletContextNames</column-name><column-value><![CDATA[");
-		sb.append(getServletContextNames());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>taskExecutorClassName</column-name><column-value><![CDATA[");
-		sb.append(getTaskExecutorClassName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>taskContextMap</column-name><column-value><![CDATA[");
-		sb.append(getTaskContextMap());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>completed</column-name><column-value><![CDATA[");
-		sb.append(isCompleted());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>completionDate</column-name><column-value><![CDATA[");
-		sb.append(getCompletionDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusMessage</column-name><column-value><![CDATA[");
-		sb.append(getStatusMessage());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<BackgroundTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<BackgroundTask, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((BackgroundTask)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

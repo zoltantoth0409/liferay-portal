@@ -34,9 +34,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ExpandoColumn service. Represents a row in the &quot;ExpandoColumn&quot; database table, with each column mapped to a property of this class.
@@ -185,13 +189,15 @@ public class ExpandoColumnModelImpl extends BaseModelImpl<ExpandoColumn>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("columnId", getColumnId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("tableId", getTableId());
-		attributes.put("name", getName());
-		attributes.put("type", getType());
-		attributes.put("defaultData", getDefaultData());
-		attributes.put("typeSettings", getTypeSettings());
+		Map<String, Function<ExpandoColumn, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ExpandoColumn, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExpandoColumn, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ExpandoColumn)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -201,47 +207,181 @@ public class ExpandoColumnModelImpl extends BaseModelImpl<ExpandoColumn>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long columnId = (Long)attributes.get("columnId");
+		Map<String, BiConsumer<ExpandoColumn, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (columnId != null) {
-			setColumnId(columnId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ExpandoColumn, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ExpandoColumn)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<ExpandoColumn, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<ExpandoColumn, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long tableId = (Long)attributes.get("tableId");
+	private static final Map<String, Function<ExpandoColumn, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ExpandoColumn, Object>> _attributeSetterBiConsumers;
 
-		if (tableId != null) {
-			setTableId(tableId);
-		}
+	static {
+		Map<String, Function<ExpandoColumn, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ExpandoColumn, Object>>();
+		Map<String, BiConsumer<ExpandoColumn, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ExpandoColumn, ?>>();
 
-		String name = (String)attributes.get("name");
 
-		if (name != null) {
-			setName(name);
-		}
+		attributeGetterFunctions.put(
+			"columnId",
+			new Function<ExpandoColumn, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getColumnId();
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"columnId",
+			new BiConsumer<ExpandoColumn, Object>() {
 
-		String defaultData = (String)attributes.get("defaultData");
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object columnId) {
+					expandoColumn.setColumnId((Long)columnId);
+				}
 
-		if (defaultData != null) {
-			setDefaultData(defaultData);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ExpandoColumn, Object>() {
 
-		String typeSettings = (String)attributes.get("typeSettings");
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getCompanyId();
+				}
 
-		if (typeSettings != null) {
-			setTypeSettings(typeSettings);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object companyId) {
+					expandoColumn.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"tableId",
+			new Function<ExpandoColumn, Object>() {
+
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getTableId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"tableId",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object tableId) {
+					expandoColumn.setTableId((Long)tableId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ExpandoColumn, Object>() {
+
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object name) {
+					expandoColumn.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<ExpandoColumn, Object>() {
+
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object type) {
+					expandoColumn.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"defaultData",
+			new Function<ExpandoColumn, Object>() {
+
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getDefaultData();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"defaultData",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object defaultData) {
+					expandoColumn.setDefaultData((String)defaultData);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typeSettings",
+			new Function<ExpandoColumn, Object>() {
+
+				@Override
+				public Object apply(ExpandoColumn expandoColumn) {
+					return expandoColumn.getTypeSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typeSettings",
+			new BiConsumer<ExpandoColumn, Object>() {
+
+				@Override
+				public void accept(ExpandoColumn expandoColumn, Object typeSettings) {
+					expandoColumn.setTypeSettings((String)typeSettings);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -493,22 +633,27 @@ public class ExpandoColumnModelImpl extends BaseModelImpl<ExpandoColumn>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<ExpandoColumn, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{columnId=");
-		sb.append(getColumnId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", tableId=");
-		sb.append(getTableId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", defaultData=");
-		sb.append(getDefaultData());
-		sb.append(", typeSettings=");
-		sb.append(getTypeSettings());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ExpandoColumn, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExpandoColumn, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ExpandoColumn)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -516,40 +661,25 @@ public class ExpandoColumnModelImpl extends BaseModelImpl<ExpandoColumn>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<ExpandoColumn, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.expando.kernel.model.ExpandoColumn");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>columnId</column-name><column-value><![CDATA[");
-		sb.append(getColumnId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>tableId</column-name><column-value><![CDATA[");
-		sb.append(getTableId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultData</column-name><column-value><![CDATA[");
-		sb.append(getDefaultData());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typeSettings</column-name><column-value><![CDATA[");
-		sb.append(getTypeSettings());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ExpandoColumn, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ExpandoColumn, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ExpandoColumn)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

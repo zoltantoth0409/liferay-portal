@@ -38,9 +38,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Feed service. Represents a row in the &quot;Twitter_Feed&quot; database table, with each column mapped to a property of this class.
@@ -147,15 +151,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("feedId", getFeedId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("twitterUserId", getTwitterUserId());
-		attributes.put("twitterScreenName", getTwitterScreenName());
-		attributes.put("lastStatusId", getLastStatusId());
+		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Feed, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Feed)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -165,59 +169,219 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long feedId = (Long)attributes.get("feedId");
+		Map<String, BiConsumer<Feed, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (feedId != null) {
-			setFeedId(feedId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Feed, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Feed)this, entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<Feed, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<Feed, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<Feed, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Feed, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<Feed, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Feed, Object>>();
+		Map<String, BiConsumer<Feed, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Feed, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"feedId",
+			new Function<Feed, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getFeedId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"feedId",
+			new BiConsumer<Feed, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Feed feed, Object feedId) {
+					feed.setFeedId((Long)feedId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Feed, Object>() {
 
-		Long twitterUserId = (Long)attributes.get("twitterUserId");
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getCompanyId();
+				}
 
-		if (twitterUserId != null) {
-			setTwitterUserId(twitterUserId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Feed, Object>() {
 
-		String twitterScreenName = (String)attributes.get("twitterScreenName");
+				@Override
+				public void accept(Feed feed, Object companyId) {
+					feed.setCompanyId((Long)companyId);
+				}
 
-		if (twitterScreenName != null) {
-			setTwitterScreenName(twitterScreenName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Feed, Object>() {
 
-		Long lastStatusId = (Long)attributes.get("lastStatusId");
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getUserId();
+				}
 
-		if (lastStatusId != null) {
-			setLastStatusId(lastStatusId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object userId) {
+					feed.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object userName) {
+					feed.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object createDate) {
+					feed.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object modifiedDate) {
+					feed.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"twitterUserId",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getTwitterUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"twitterUserId",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object twitterUserId) {
+					feed.setTwitterUserId((Long)twitterUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"twitterScreenName",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getTwitterScreenName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"twitterScreenName",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object twitterScreenName) {
+					feed.setTwitterScreenName((String)twitterScreenName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastStatusId",
+			new Function<Feed, Object>() {
+
+				@Override
+				public Object apply(Feed feed) {
+					return feed.getLastStatusId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastStatusId",
+			new BiConsumer<Feed, Object>() {
+
+				@Override
+				public void accept(Feed feed, Object lastStatusId) {
+					feed.setLastStatusId((Long)lastStatusId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -546,26 +710,27 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{feedId=");
-		sb.append(getFeedId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", twitterUserId=");
-		sb.append(getTwitterUserId());
-		sb.append(", twitterScreenName=");
-		sb.append(getTwitterScreenName());
-		sb.append(", lastStatusId=");
-		sb.append(getLastStatusId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Feed, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Feed)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -573,48 +738,25 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.twitter.model.Feed");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>feedId</column-name><column-value><![CDATA[");
-		sb.append(getFeedId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
-		sb.append(getTwitterUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
-		sb.append(getTwitterScreenName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
-		sb.append(getLastStatusId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Feed, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Feed)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

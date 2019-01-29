@@ -42,10 +42,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the TasksEntry service. Represents a row in the &quot;TMS_TasksEntry&quot; database table, with each column mapped to a property of this class.
@@ -221,20 +225,15 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("tasksEntryId", getTasksEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("title", getTitle());
-		attributes.put("priority", getPriority());
-		attributes.put("assigneeUserId", getAssigneeUserId());
-		attributes.put("resolverUserId", getResolverUserId());
-		attributes.put("dueDate", getDueDate());
-		attributes.put("finishDate", getFinishDate());
-		attributes.put("status", getStatus());
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((TasksEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -244,89 +243,320 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long tasksEntryId = (Long)attributes.get("tasksEntryId");
+		Map<String, BiConsumer<TasksEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (tasksEntryId != null) {
-			setTasksEntryId(tasksEntryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<TasksEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((TasksEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<TasksEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<TasksEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<TasksEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<TasksEntry, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<TasksEntry, Object>>();
+		Map<String, BiConsumer<TasksEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<TasksEntry, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"tasksEntryId",
+			new Function<TasksEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getTasksEntryId();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"tasksEntryId",
+			new BiConsumer<TasksEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(TasksEntry tasksEntry, Object tasksEntryId) {
+					tasksEntry.setTasksEntryId((Long)tasksEntryId);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<TasksEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getGroupId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<TasksEntry, Object>() {
 
-		String title = (String)attributes.get("title");
+				@Override
+				public void accept(TasksEntry tasksEntry, Object groupId) {
+					tasksEntry.setGroupId((Long)groupId);
+				}
 
-		if (title != null) {
-			setTitle(title);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<TasksEntry, Object>() {
 
-		Integer priority = (Integer)attributes.get("priority");
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getCompanyId();
+				}
 
-		if (priority != null) {
-			setPriority(priority);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<TasksEntry, Object>() {
 
-		Long assigneeUserId = (Long)attributes.get("assigneeUserId");
+				@Override
+				public void accept(TasksEntry tasksEntry, Object companyId) {
+					tasksEntry.setCompanyId((Long)companyId);
+				}
 
-		if (assigneeUserId != null) {
-			setAssigneeUserId(assigneeUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<TasksEntry, Object>() {
 
-		Long resolverUserId = (Long)attributes.get("resolverUserId");
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getUserId();
+				}
 
-		if (resolverUserId != null) {
-			setResolverUserId(resolverUserId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<TasksEntry, Object>() {
 
-		Date dueDate = (Date)attributes.get("dueDate");
+				@Override
+				public void accept(TasksEntry tasksEntry, Object userId) {
+					tasksEntry.setUserId((Long)userId);
+				}
 
-		if (dueDate != null) {
-			setDueDate(dueDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<TasksEntry, Object>() {
 
-		Date finishDate = (Date)attributes.get("finishDate");
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getUserName();
+				}
 
-		if (finishDate != null) {
-			setFinishDate(finishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<TasksEntry, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public void accept(TasksEntry tasksEntry, Object userName) {
+					tasksEntry.setUserName((String)userName);
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object createDate) {
+					tasksEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object modifiedDate) {
+					tasksEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object title) {
+					tasksEntry.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"priority",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getPriority();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"priority",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object priority) {
+					tasksEntry.setPriority((Integer)priority);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"assigneeUserId",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getAssigneeUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"assigneeUserId",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object assigneeUserId) {
+					tasksEntry.setAssigneeUserId((Long)assigneeUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"resolverUserId",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getResolverUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"resolverUserId",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object resolverUserId) {
+					tasksEntry.setResolverUserId((Long)resolverUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"dueDate",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getDueDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"dueDate",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object dueDate) {
+					tasksEntry.setDueDate((Date)dueDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"finishDate",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getFinishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"finishDate",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object finishDate) {
+					tasksEntry.setFinishDate((Date)finishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<TasksEntry, Object>() {
+
+				@Override
+				public Object apply(TasksEntry tasksEntry) {
+					return tasksEntry.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<TasksEntry, Object>() {
+
+				@Override
+				public void accept(TasksEntry tasksEntry, Object status) {
+					tasksEntry.setStatus((Integer)status);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -840,36 +1070,27 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{tasksEntryId=");
-		sb.append(getTasksEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", title=");
-		sb.append(getTitle());
-		sb.append(", priority=");
-		sb.append(getPriority());
-		sb.append(", assigneeUserId=");
-		sb.append(getAssigneeUserId());
-		sb.append(", resolverUserId=");
-		sb.append(getResolverUserId());
-		sb.append(", dueDate=");
-		sb.append(getDueDate());
-		sb.append(", finishDate=");
-		sb.append(getFinishDate());
-		sb.append(", status=");
-		sb.append(getStatus());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((TasksEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -877,68 +1098,25 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.tasks.model.TasksEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>tasksEntryId</column-name><column-value><![CDATA[");
-		sb.append(getTasksEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>title</column-name><column-value><![CDATA[");
-		sb.append(getTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>priority</column-name><column-value><![CDATA[");
-		sb.append(getPriority());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>assigneeUserId</column-name><column-value><![CDATA[");
-		sb.append(getAssigneeUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resolverUserId</column-name><column-value><![CDATA[");
-		sb.append(getResolverUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>dueDate</column-name><column-value><![CDATA[");
-		sb.append(getDueDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>finishDate</column-name><column-value><![CDATA[");
-		sb.append(getFinishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((TasksEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

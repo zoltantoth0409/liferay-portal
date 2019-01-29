@@ -41,10 +41,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the AuditEvent service. Represents a row in the &quot;Audit_AuditEvent&quot; database table, with each column mapped to a property of this class.
@@ -217,21 +221,15 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("auditEventId", getAuditEventId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("eventType", getEventType());
-		attributes.put("className", getClassName());
-		attributes.put("classPK", getClassPK());
-		attributes.put("message", getMessage());
-		attributes.put("clientHost", getClientHost());
-		attributes.put("clientIP", getClientIP());
-		attributes.put("serverName", getServerName());
-		attributes.put("serverPort", getServerPort());
-		attributes.put("sessionID", getSessionID());
-		attributes.put("additionalInfo", getAdditionalInfo());
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((AuditEvent)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -241,95 +239,340 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long auditEventId = (Long)attributes.get("auditEventId");
+		Map<String, BiConsumer<AuditEvent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (auditEventId != null) {
-			setAuditEventId(auditEventId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<AuditEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((AuditEvent)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<AuditEvent, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<AuditEvent, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<AuditEvent, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AuditEvent, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AuditEvent, Object>>();
+		Map<String, BiConsumer<AuditEvent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AuditEvent, ?>>();
 
-		String userName = (String)attributes.get("userName");
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+		attributeGetterFunctions.put(
+			"auditEventId",
+			new Function<AuditEvent, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getAuditEventId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"auditEventId",
+			new BiConsumer<AuditEvent, Object>() {
 
-		String eventType = (String)attributes.get("eventType");
+				@Override
+				public void accept(AuditEvent auditEvent, Object auditEventId) {
+					auditEvent.setAuditEventId((Long)auditEventId);
+				}
 
-		if (eventType != null) {
-			setEventType(eventType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<AuditEvent, Object>() {
 
-		String className = (String)attributes.get("className");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getCompanyId();
+				}
 
-		if (className != null) {
-			setClassName(className);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<AuditEvent, Object>() {
 
-		String classPK = (String)attributes.get("classPK");
+				@Override
+				public void accept(AuditEvent auditEvent, Object companyId) {
+					auditEvent.setCompanyId((Long)companyId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<AuditEvent, Object>() {
 
-		String message = (String)attributes.get("message");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getUserId();
+				}
 
-		if (message != null) {
-			setMessage(message);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<AuditEvent, Object>() {
 
-		String clientHost = (String)attributes.get("clientHost");
+				@Override
+				public void accept(AuditEvent auditEvent, Object userId) {
+					auditEvent.setUserId((Long)userId);
+				}
 
-		if (clientHost != null) {
-			setClientHost(clientHost);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<AuditEvent, Object>() {
 
-		String clientIP = (String)attributes.get("clientIP");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getUserName();
+				}
 
-		if (clientIP != null) {
-			setClientIP(clientIP);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<AuditEvent, Object>() {
 
-		String serverName = (String)attributes.get("serverName");
+				@Override
+				public void accept(AuditEvent auditEvent, Object userName) {
+					auditEvent.setUserName((String)userName);
+				}
 
-		if (serverName != null) {
-			setServerName(serverName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<AuditEvent, Object>() {
 
-		Integer serverPort = (Integer)attributes.get("serverPort");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getCreateDate();
+				}
 
-		if (serverPort != null) {
-			setServerPort(serverPort);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<AuditEvent, Object>() {
 
-		String sessionID = (String)attributes.get("sessionID");
+				@Override
+				public void accept(AuditEvent auditEvent, Object createDate) {
+					auditEvent.setCreateDate((Date)createDate);
+				}
 
-		if (sessionID != null) {
-			setSessionID(sessionID);
-		}
+			});
+		attributeGetterFunctions.put(
+			"eventType",
+			new Function<AuditEvent, Object>() {
 
-		String additionalInfo = (String)attributes.get("additionalInfo");
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getEventType();
+				}
 
-		if (additionalInfo != null) {
-			setAdditionalInfo(additionalInfo);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"eventType",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object eventType) {
+					auditEvent.setEventType((String)eventType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"className",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getClassName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"className",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object className) {
+					auditEvent.setClassName((String)className);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object classPK) {
+					auditEvent.setClassPK((String)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"message",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getMessage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"message",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object message) {
+					auditEvent.setMessage((String)message);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"clientHost",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getClientHost();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"clientHost",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object clientHost) {
+					auditEvent.setClientHost((String)clientHost);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"clientIP",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getClientIP();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"clientIP",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object clientIP) {
+					auditEvent.setClientIP((String)clientIP);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"serverName",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getServerName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"serverName",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object serverName) {
+					auditEvent.setServerName((String)serverName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"serverPort",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getServerPort();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"serverPort",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object serverPort) {
+					auditEvent.setServerPort((Integer)serverPort);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sessionID",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getSessionID();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sessionID",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object sessionID) {
+					auditEvent.setSessionID((String)sessionID);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"additionalInfo",
+			new Function<AuditEvent, Object>() {
+
+				@Override
+				public Object apply(AuditEvent auditEvent) {
+					return auditEvent.getAdditionalInfo();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"additionalInfo",
+			new BiConsumer<AuditEvent, Object>() {
+
+				@Override
+				public void accept(AuditEvent auditEvent, Object additionalInfo) {
+					auditEvent.setAdditionalInfo((String)additionalInfo);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -798,38 +1041,27 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{auditEventId=");
-		sb.append(getAuditEventId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", eventType=");
-		sb.append(getEventType());
-		sb.append(", className=");
-		sb.append(getClassName());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", message=");
-		sb.append(getMessage());
-		sb.append(", clientHost=");
-		sb.append(getClientHost());
-		sb.append(", clientIP=");
-		sb.append(getClientIP());
-		sb.append(", serverName=");
-		sb.append(getServerName());
-		sb.append(", serverPort=");
-		sb.append(getServerPort());
-		sb.append(", sessionID=");
-		sb.append(getSessionID());
-		sb.append(", additionalInfo=");
-		sb.append(getAdditionalInfo());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((AuditEvent)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -837,72 +1069,25 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.security.audit.storage.model.AuditEvent");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>auditEventId</column-name><column-value><![CDATA[");
-		sb.append(getAuditEventId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>eventType</column-name><column-value><![CDATA[");
-		sb.append(getEventType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>className</column-name><column-value><![CDATA[");
-		sb.append(getClassName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>message</column-name><column-value><![CDATA[");
-		sb.append(getMessage());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>clientHost</column-name><column-value><![CDATA[");
-		sb.append(getClientHost());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>clientIP</column-name><column-value><![CDATA[");
-		sb.append(getClientIP());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>serverName</column-name><column-value><![CDATA[");
-		sb.append(getServerName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>serverPort</column-name><column-value><![CDATA[");
-		sb.append(getServerPort());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sessionID</column-name><column-value><![CDATA[");
-		sb.append(getSessionID());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>additionalInfo</column-name><column-value><![CDATA[");
-		sb.append(getAdditionalInfo());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((AuditEvent)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -38,9 +38,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the WSRPProducer service. Represents a row in the &quot;WSRP_WSRPProducer&quot; database table, with each column mapped to a property of this class.
@@ -151,16 +155,15 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("wsrpProducerId", getWsrpProducerId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("name", getName());
-		attributes.put("version", getVersion());
-		attributes.put("portletIds", getPortletIds());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<WSRPProducer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<WSRPProducer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPProducer, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((WSRPProducer)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -170,65 +173,241 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<WSRPProducer, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<WSRPProducer, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((WSRPProducer)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long wsrpProducerId = (Long)attributes.get("wsrpProducerId");
+	public Map<String, Function<WSRPProducer, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (wsrpProducerId != null) {
-			setWsrpProducerId(wsrpProducerId);
-		}
+	public Map<String, BiConsumer<WSRPProducer, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<WSRPProducer, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WSRPProducer, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<WSRPProducer, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<WSRPProducer, Object>>();
+		Map<String, BiConsumer<WSRPProducer, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<WSRPProducer, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<WSRPProducer, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<WSRPProducer, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object uuid) {
+					wsrpProducer.setUuid((String)uuid);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"wsrpProducerId",
+			new Function<WSRPProducer, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getWsrpProducerId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"wsrpProducerId",
+			new BiConsumer<WSRPProducer, Object>() {
 
-		String version = (String)attributes.get("version");
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object wsrpProducerId) {
+					wsrpProducer.setWsrpProducerId((Long)wsrpProducerId);
+				}
 
-		if (version != null) {
-			setVersion(version);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<WSRPProducer, Object>() {
 
-		String portletIds = (String)attributes.get("portletIds");
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getGroupId();
+				}
 
-		if (portletIds != null) {
-			setPortletIds(portletIds);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<WSRPProducer, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object groupId) {
+					wsrpProducer.setGroupId((Long)groupId);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object companyId) {
+					wsrpProducer.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object createDate) {
+					wsrpProducer.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object modifiedDate) {
+					wsrpProducer.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object name) {
+					wsrpProducer.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"version",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"version",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object version) {
+					wsrpProducer.setVersion((String)version);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"portletIds",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getPortletIds();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"portletIds",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object portletIds) {
+					wsrpProducer.setPortletIds((String)portletIds);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<WSRPProducer, Object>() {
+
+				@Override
+				public Object apply(WSRPProducer wsrpProducer) {
+					return wsrpProducer.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<WSRPProducer, Object>() {
+
+				@Override
+				public void accept(WSRPProducer wsrpProducer, Object lastPublishDate) {
+					wsrpProducer.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -589,28 +768,27 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		Map<String, Function<WSRPProducer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", wsrpProducerId=");
-		sb.append(getWsrpProducerId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", version=");
-		sb.append(getVersion());
-		sb.append(", portletIds=");
-		sb.append(getPortletIds());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<WSRPProducer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPProducer, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((WSRPProducer)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -618,52 +796,25 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		Map<String, Function<WSRPProducer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.wsrp.model.WSRPProducer");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>wsrpProducerId</column-name><column-value><![CDATA[");
-		sb.append(getWsrpProducerId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
-		sb.append(getPortletIds());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<WSRPProducer, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WSRPProducer, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((WSRPProducer)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 
