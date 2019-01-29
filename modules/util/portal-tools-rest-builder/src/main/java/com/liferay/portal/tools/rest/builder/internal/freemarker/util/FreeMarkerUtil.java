@@ -23,16 +23,6 @@ import java.util.Map;
  */
 public class FreeMarkerUtil {
 
-	public static final String APPLICATION_FTL = "application.ftl";
-
-	public static final String COLLECTION_FTL = "collection.ftl";
-
-	public static final String DTO_FTL = "dto.ftl";
-
-	public static final String RESOURCE_FTL = "resource.ftl";
-
-	public static final String RESOURCE_IMPL_FTL = "resource_impl.ftl";
-
 	public static String processTemplate(
 			String copyrightFileName, String name, Map<String, Object> context)
 		throws Exception {

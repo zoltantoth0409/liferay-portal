@@ -116,7 +116,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerUtil.APPLICATION_FTL, context);
+			copyrightFileName, "application.ftl", context);
 
 		FileUtil.write(content, file);
 
@@ -150,7 +150,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerUtil.COLLECTION_FTL, context);
+			copyrightFileName, "collection.ftl", context);
 
 		FileUtil.write(content, file);
 
@@ -186,7 +186,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerUtil.DTO_FTL, context);
+			copyrightFileName, "dto.ftl", context);
 
 		FileUtil.write(content, file);
 
@@ -223,7 +223,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerUtil.RESOURCE_FTL, context);
+			copyrightFileName, "resource.ftl", context);
 
 		FileUtil.write(content, file);
 
@@ -259,7 +259,7 @@ public class RESTBuilder {
 		context.put("validator", Validator_IW.getInstance());
 
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerUtil.RESOURCE_IMPL_FTL, context);
+			copyrightFileName, "resource_impl.ftl", context);
 
 		FileUtil.write(content, file);
 
