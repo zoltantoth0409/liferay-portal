@@ -20,6 +20,6 @@ package com.liferay.bulk.selection;
 public class BulkSelectionInputParameters {
 
 	public static final String ASSET_ENTRY_BULK_SELECTION =
-		BulkSelection.class.getName() + ".assetEntryBulkSelection";
+		BulkSelection.class.getName() + "#assetEntryBulkSelection";
 
 }
