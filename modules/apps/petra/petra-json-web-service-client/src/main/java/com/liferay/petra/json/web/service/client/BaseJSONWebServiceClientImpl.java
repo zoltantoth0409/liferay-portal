@@ -999,13 +999,11 @@ public abstract class BaseJSONWebServiceClientImpl
 		PoolingNHttpClientConnectionManager
 			poolingNHttpClientConnectionManager = null;
 
-		ConnectingIOReactor connectingIOReactor =
-			new DefaultConnectingIOReactor();
-
 		poolingNHttpClientConnectionManager =
 			new PoolingNHttpClientConnectionManager(
-				connectingIOReactor, null, getSchemeIOSessionStrategyRegistry(),
-				null, null, 60000, TimeUnit.MILLISECONDS);
+				new DefaultConnectingIOReactor(), null,
+				getSchemeIOSessionStrategyRegistry(), null, null, 60000,
+				TimeUnit.MILLISECONDS);
 
 		poolingNHttpClientConnectionManager.setMaxTotal(20);
 
