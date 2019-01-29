@@ -96,10 +96,10 @@ public class BulkAssetEntryResource {
 			BulkSelection<AssetEntry> assetEntryBulkSelection =
 				bulkSelection.toAssetEntryBulkSelection();
 
-			Stream<AssetEntry> assetEntryStream =
+			Stream<AssetEntry> stream =
 				assetEntryBulkSelection.stream();
 
-			Set<AssetCategory> commonCategories = assetEntryStream.map(
+			Set<AssetCategory> commonCategories = stream.map(
 				_getAssetEntryCategoriesFunction(
 					PermissionCheckerFactoryUtil.create(user))
 			).reduce(
@@ -137,10 +137,10 @@ public class BulkAssetEntryResource {
 			BulkSelection<AssetEntry> assetEntryBulkSelection =
 				bulkSelection.toAssetEntryBulkSelection();
 
-			Stream<AssetEntry> assetEntryStream =
+			Stream<AssetEntry> stream =
 				assetEntryBulkSelection.stream();
 
-			Set<String> commonTags = assetEntryStream.map(
+			Set<String> commonTags = stream.map(
 				_getAssetEntryTagsFunction(
 					PermissionCheckerFactoryUtil.create(user))
 			).reduce(
