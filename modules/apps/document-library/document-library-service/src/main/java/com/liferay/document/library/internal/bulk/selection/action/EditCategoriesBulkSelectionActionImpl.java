@@ -66,12 +66,12 @@ public class EditCategoriesBulkSelectionActionImpl
 		Set<Long> toRemoveCategoryIdsSet = SetUtil.fromArray(
 			(long[])inputMap.getOrDefault("toRemoveCategoryIds", new long[0]));
 
-		Stream<AssetEntry> assetEntryStream = bulkSelection.stream();
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);
 
-		assetEntryStream.forEach(
+		Stream<AssetEntry> stream = bulkSelection.stream();
+
+		stream.forEach(
 			assetEntry -> {
 				try {
 					if (!BaseModelPermissionCheckerUtil.
