@@ -1,6 +1,6 @@
 package ${configYAML.apiPackagePath}.dto;
 
-import com.liferay.rest.booster.apio.context.BaseCollection;
+import com.liferay.portal.vulcan.collection.BaseCollection;
 
 import java.util.Collection;
 import java.util.Collections;
