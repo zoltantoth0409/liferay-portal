@@ -117,6 +117,7 @@ DDMTemplate ddmTemplate = (DDMTemplate)request.getAttribute("edit_article.jsp-te
 		<label for="<portlet:namespace />descriptionMapAsXML"><liferay-ui:message key="summary" /></label>
 
 		<liferay-ui:input-localized
+			availableLocales="<%= journalEditArticleDisplayContext.getAvailableLocales() %>"
 			cssClass="form-control"
 			defaultLanguageId="<%= journalEditArticleDisplayContext.getDefaultLanguageId() %>"
 			editorName="alloyeditor"
