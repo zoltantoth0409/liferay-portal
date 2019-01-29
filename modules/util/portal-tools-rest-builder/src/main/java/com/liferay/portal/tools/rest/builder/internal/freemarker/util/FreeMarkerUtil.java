@@ -29,7 +29,8 @@ public class FreeMarkerUtil {
 
 		return _freeMarker.processTemplate(
 			copyrightFileName,
-			"com/liferay/portal/tools/rest/builder/dependencies/" + name,
+			"com/liferay/portal/tools/rest/builder/dependencies/" + name +
+				".ftl",
 			context);
 	}
 
