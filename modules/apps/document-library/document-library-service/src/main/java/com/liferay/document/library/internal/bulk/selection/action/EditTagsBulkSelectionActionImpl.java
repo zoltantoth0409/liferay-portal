@@ -66,12 +66,12 @@ public class EditTagsBulkSelectionActionImpl
 		Set<String> toRemoveTagNamesSet = SetUtil.fromArray(
 			(String[])inputMap.getOrDefault("toRemoveTagNames", new String[0]));
 
-		Stream<AssetEntry> assetEntryStream = bulkSelection.stream();
-
 		PermissionChecker permissionChecker =
 			PermissionCheckerFactoryUtil.create(user);
 
-		assetEntryStream.forEach(
+		Stream<AssetEntry> stream = bulkSelection.stream();
+
+		stream.forEach(
 			assetEntry -> {
 				try {
 					if (!BaseModelPermissionCheckerUtil.
