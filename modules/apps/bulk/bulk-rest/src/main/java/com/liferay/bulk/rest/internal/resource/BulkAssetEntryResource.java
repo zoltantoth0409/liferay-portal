@@ -96,8 +96,7 @@ public class BulkAssetEntryResource {
 			BulkSelection<AssetEntry> assetEntryBulkSelection =
 				bulkSelection.toAssetEntryBulkSelection();
 
-			Stream<AssetEntry> stream =
-				assetEntryBulkSelection.stream();
+			Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
 
 			Set<AssetCategory> commonCategories = stream.map(
 				_getAssetEntryCategoriesFunction(
@@ -137,8 +136,7 @@ public class BulkAssetEntryResource {
 			BulkSelection<AssetEntry> assetEntryBulkSelection =
 				bulkSelection.toAssetEntryBulkSelection();
 
-			Stream<AssetEntry> stream =
-				assetEntryBulkSelection.stream();
+			Stream<AssetEntry> stream = assetEntryBulkSelection.stream();
 
 			Set<String> commonTags = stream.map(
 				_getAssetEntryTagsFunction(
