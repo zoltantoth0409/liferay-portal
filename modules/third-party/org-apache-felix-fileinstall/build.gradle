@@ -3,7 +3,6 @@ import com.liferay.gradle.plugins.patcher.PatchTask
 apply plugin: "com.liferay.patcher"
 
 task patch(type: PatchTask)
-task copyConfigurationHandler(type: Copy)
 
 sourceCompatibility = "1.6"
 targetCompatibility = "1.6"
@@ -28,19 +27,3 @@ patch {
 
 	originalLibModuleName = "org.apache.felix.fileinstall"
 }
-
-copyConfigurationHandler {
-	File configAdminJar = configurations.compileOnly.find {
-		it.name.startsWith("org.apache.felix.configadmin-")
-	}
-
-	from {
-		zipTree(configAdminJar).matching {
-			include "org/apache/felix/cm/file/ConfigurationHandler.class"
-		}
-	}
-
-	into "classes"
-}
-
-jar.dependsOn copyConfigurationHandler
