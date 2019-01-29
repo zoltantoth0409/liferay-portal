@@ -539,6 +539,17 @@ definition {
 		Click(locator1 = "Icon#CLOSE");
 	}
 
+	macro reactivateInactiveWorkflowDefinition {
+		LexiconEntry.gotoEntryMenuItemNoError(
+			menuItem = "Edit",
+			rowEntry = "${workflowDefinitionTitle}"
+		);
+
+		SelectFrame(locator1 = "IFrame#DIALOG");
+
+		KaleoFormsAdmin.publishWorkflow();
+	}
+
 	macro saveAndContinueForm {
 		DynamicDataMapping.selectDynamicDataMappingFrame();
 
