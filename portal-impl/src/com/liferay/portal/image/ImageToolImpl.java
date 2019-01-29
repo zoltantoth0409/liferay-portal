@@ -806,11 +806,9 @@ public class ImageToolImpl implements ImageTool {
 			scaledGraphics2D.setRenderingHint(
 				RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-
 			scaledGraphics2D.setRenderingHint(
 				RenderingHints.KEY_INTERPOLATION,
 				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-
 			scaledGraphics2D.setRenderingHint(
 				RenderingHints.KEY_RENDERING,
 				RenderingHints.VALUE_RENDER_QUALITY);
