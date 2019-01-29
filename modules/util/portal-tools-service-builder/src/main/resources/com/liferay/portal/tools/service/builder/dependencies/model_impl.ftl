@@ -488,7 +488,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		Map<String, Function<${entity.name}, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<${entity.name}, Object>>();
 		Map<String, BiConsumer<${entity.name}, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<${entity.name}, ?>>();
 
-/** Jalopy ignore start */
+@start-ignoring-jalopy@
+
 <#list entity.regularEntityColumns as entityColumn>
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
 		attributeGetterFunctions.put(
@@ -525,7 +526,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#if>
 </#list>
 
-/** Jalopy ignore end */
+@stop-ignoring-jalopy@
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
 		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
