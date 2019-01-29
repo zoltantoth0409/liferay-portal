@@ -102,7 +102,11 @@ AUI.add(
 
 					handles.length = 0;
 
-					instance._overlay.hide();
+					var overlay = instance._overlay;
+
+					if (overlay) {
+						overlay.hide();
+					}
 
 					var trigger = instance._activeTrigger;
 
@@ -521,7 +525,13 @@ AUI.add(
 
 							var selectedItem = descendants.item(event.newVal);
 
-							bodyNode.one('ul').setAttribute('aria-activedescendant', selectedItem.guid());
+							if (selectedItem) {
+								var overlayList = bodyNode.one('ul');
+
+								if (overlayList) {
+									overlayList.setAttribute('aria-activedescendant', selectedItem.guid());
+								}
+							}
 						}
 					);
 
