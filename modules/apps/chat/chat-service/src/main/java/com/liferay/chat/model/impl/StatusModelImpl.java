@@ -38,8 +38,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Status service. Represents a row in the &quot;Chat_Status&quot; database table, with each column mapped to a property of this class.
@@ -146,14 +150,15 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("statusId", getStatusId());
-		attributes.put("userId", getUserId());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("online", isOnline());
-		attributes.put("awake", isAwake());
-		attributes.put("activePanelIds", getActivePanelIds());
-		attributes.put("message", getMessage());
-		attributes.put("playSound", isPlaySound());
+		Map<String, Function<Status, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Status, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Status, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Status)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -163,53 +168,199 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long statusId = (Long)attributes.get("statusId");
+		Map<String, BiConsumer<Status, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (statusId != null) {
-			setStatusId(statusId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Status, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Status)this, entry.getValue());
+			}
 		}
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	public Map<String, Function<Status, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	public Map<String, BiConsumer<Status, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long modifiedDate = (Long)attributes.get("modifiedDate");
+	private static final Map<String, Function<Status, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Status, Object>> _attributeSetterBiConsumers;
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+	static {
+		Map<String, Function<Status, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Status, Object>>();
+		Map<String, BiConsumer<Status, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Status, ?>>();
 
-		Boolean online = (Boolean)attributes.get("online");
 
-		if (online != null) {
-			setOnline(online);
-		}
+		attributeGetterFunctions.put(
+			"statusId",
+			new Function<Status, Object>() {
 
-		Boolean awake = (Boolean)attributes.get("awake");
+				@Override
+				public Object apply(Status status) {
+					return status.getStatusId();
+				}
 
-		if (awake != null) {
-			setAwake(awake);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"statusId",
+			new BiConsumer<Status, Object>() {
 
-		String activePanelIds = (String)attributes.get("activePanelIds");
+				@Override
+				public void accept(Status status, Object statusId) {
+					status.setStatusId((Long)statusId);
+				}
 
-		if (activePanelIds != null) {
-			setActivePanelIds(activePanelIds);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Status, Object>() {
 
-		String message = (String)attributes.get("message");
+				@Override
+				public Object apply(Status status) {
+					return status.getUserId();
+				}
 
-		if (message != null) {
-			setMessage(message);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Status, Object>() {
 
-		Boolean playSound = (Boolean)attributes.get("playSound");
+				@Override
+				public void accept(Status status, Object userId) {
+					status.setUserId((Long)userId);
+				}
 
-		if (playSound != null) {
-			setPlaySound(playSound);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object modifiedDate) {
+					status.setModifiedDate((Long)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"online",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getOnline();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"online",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object online) {
+					status.setOnline((Boolean)online);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"awake",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getAwake();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"awake",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object awake) {
+					status.setAwake((Boolean)awake);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"activePanelIds",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getActivePanelIds();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"activePanelIds",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object activePanelIds) {
+					status.setActivePanelIds((String)activePanelIds);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"message",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getMessage();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"message",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object message) {
+					status.setMessage((String)message);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"playSound",
+			new Function<Status, Object>() {
+
+				@Override
+				public Object apply(Status status) {
+					return status.getPlaySound();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"playSound",
+			new BiConsumer<Status, Object>() {
+
+				@Override
+				public void accept(Status status, Object playSound) {
+					status.setPlaySound((Boolean)playSound);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -522,24 +673,27 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		Map<String, Function<Status, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{statusId=");
-		sb.append(getStatusId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", online=");
-		sb.append(isOnline());
-		sb.append(", awake=");
-		sb.append(isAwake());
-		sb.append(", activePanelIds=");
-		sb.append(getActivePanelIds());
-		sb.append(", message=");
-		sb.append(getMessage());
-		sb.append(", playSound=");
-		sb.append(isPlaySound());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Status, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Status, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Status)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -547,44 +701,25 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		Map<String, Function<Status, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.chat.model.Status");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append(getStatusId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>online</column-name><column-value><![CDATA[");
-		sb.append(isOnline());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>awake</column-name><column-value><![CDATA[");
-		sb.append(isAwake());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>activePanelIds</column-name><column-value><![CDATA[");
-		sb.append(getActivePanelIds());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>message</column-name><column-value><![CDATA[");
-		sb.append(getMessage());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>playSound</column-name><column-value><![CDATA[");
-		sb.append(isPlaySound());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Status, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Status, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Status)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

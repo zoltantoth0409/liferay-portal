@@ -40,9 +40,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ChangesetEntry service. Represents a row in the &quot;ChangesetEntry&quot; database table, with each column mapped to a property of this class.
@@ -155,16 +159,15 @@ public class ChangesetEntryModelImpl extends BaseModelImpl<ChangesetEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("changesetEntryId", getChangesetEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("changesetCollectionId", getChangesetCollectionId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
+		Map<String, Function<ChangesetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ChangesetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ChangesetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ChangesetEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -174,66 +177,241 @@ public class ChangesetEntryModelImpl extends BaseModelImpl<ChangesetEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long changesetEntryId = (Long)attributes.get("changesetEntryId");
+		Map<String, BiConsumer<ChangesetEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (changesetEntryId != null) {
-			setChangesetEntryId(changesetEntryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ChangesetEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ChangesetEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<ChangesetEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<ChangesetEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<ChangesetEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ChangesetEntry, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<ChangesetEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ChangesetEntry, Object>>();
+		Map<String, BiConsumer<ChangesetEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ChangesetEntry, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"changesetEntryId",
+			new Function<ChangesetEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getChangesetEntryId();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"changesetEntryId",
+			new BiConsumer<ChangesetEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object changesetEntryId) {
+					changesetEntry.setChangesetEntryId((Long)changesetEntryId);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ChangesetEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getGroupId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ChangesetEntry, Object>() {
 
-		Long changesetCollectionId = (Long)attributes.get(
-				"changesetCollectionId");
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object groupId) {
+					changesetEntry.setGroupId((Long)groupId);
+				}
 
-		if (changesetCollectionId != null) {
-			setChangesetCollectionId(changesetCollectionId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ChangesetEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getCompanyId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ChangesetEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object companyId) {
+					changesetEntry.setCompanyId((Long)companyId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object userId) {
+					changesetEntry.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object userName) {
+					changesetEntry.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object createDate) {
+					changesetEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object modifiedDate) {
+					changesetEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"changesetCollectionId",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getChangesetCollectionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"changesetCollectionId",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object changesetCollectionId) {
+					changesetEntry.setChangesetCollectionId((Long)changesetCollectionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object classNameId) {
+					changesetEntry.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<ChangesetEntry, Object>() {
+
+				@Override
+				public Object apply(ChangesetEntry changesetEntry) {
+					return changesetEntry.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<ChangesetEntry, Object>() {
+
+				@Override
+				public void accept(ChangesetEntry changesetEntry, Object classPK) {
+					changesetEntry.setClassPK((Long)classPK);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -620,28 +798,27 @@ public class ChangesetEntryModelImpl extends BaseModelImpl<ChangesetEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		Map<String, Function<ChangesetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{changesetEntryId=");
-		sb.append(getChangesetEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", changesetCollectionId=");
-		sb.append(getChangesetCollectionId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ChangesetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ChangesetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ChangesetEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -649,52 +826,25 @@ public class ChangesetEntryModelImpl extends BaseModelImpl<ChangesetEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		Map<String, Function<ChangesetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.changeset.model.ChangesetEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>changesetEntryId</column-name><column-value><![CDATA[");
-		sb.append(getChangesetEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>changesetCollectionId</column-name><column-value><![CDATA[");
-		sb.append(getChangesetCollectionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ChangesetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ChangesetEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ChangesetEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

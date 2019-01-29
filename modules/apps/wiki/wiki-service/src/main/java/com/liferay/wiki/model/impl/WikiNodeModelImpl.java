@@ -49,10 +49,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the WikiNode service. Represents a row in the &quot;WikiNode&quot; database table, with each column mapped to a property of this class.
@@ -231,22 +235,15 @@ public class WikiNodeModelImpl extends BaseModelImpl<WikiNode>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("nodeId", getNodeId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("lastPostDate", getLastPostDate());
-		attributes.put("lastPublishDate", getLastPublishDate());
-		attributes.put("status", getStatus());
-		attributes.put("statusByUserId", getStatusByUserId());
-		attributes.put("statusByUserName", getStatusByUserName());
-		attributes.put("statusDate", getStatusDate());
+		Map<String, Function<WikiNode, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<WikiNode, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WikiNode, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((WikiNode)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -256,101 +253,360 @@ public class WikiNodeModelImpl extends BaseModelImpl<WikiNode>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<WikiNode, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<WikiNode, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((WikiNode)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long nodeId = (Long)attributes.get("nodeId");
+	public Map<String, Function<WikiNode, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (nodeId != null) {
-			setNodeId(nodeId);
-		}
+	public Map<String, BiConsumer<WikiNode, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<WikiNode, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WikiNode, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<WikiNode, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<WikiNode, Object>>();
+		Map<String, BiConsumer<WikiNode, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<WikiNode, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<WikiNode, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<WikiNode, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(WikiNode wikiNode, Object uuid) {
+					wikiNode.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"nodeId",
+			new Function<WikiNode, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getNodeId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"nodeId",
+			new BiConsumer<WikiNode, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(WikiNode wikiNode, Object nodeId) {
+					wikiNode.setNodeId((Long)nodeId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<WikiNode, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getGroupId();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<WikiNode, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public void accept(WikiNode wikiNode, Object groupId) {
+					wikiNode.setGroupId((Long)groupId);
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<WikiNode, Object>() {
 
-		Date lastPostDate = (Date)attributes.get("lastPostDate");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getCompanyId();
+				}
 
-		if (lastPostDate != null) {
-			setLastPostDate(lastPostDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<WikiNode, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public void accept(WikiNode wikiNode, Object companyId) {
+					wikiNode.setCompanyId((Long)companyId);
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<WikiNode, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getUserId();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<WikiNode, Object>() {
 
-		Long statusByUserId = (Long)attributes.get("statusByUserId");
+				@Override
+				public void accept(WikiNode wikiNode, Object userId) {
+					wikiNode.setUserId((Long)userId);
+				}
 
-		if (statusByUserId != null) {
-			setStatusByUserId(statusByUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<WikiNode, Object>() {
 
-		String statusByUserName = (String)attributes.get("statusByUserName");
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getUserName();
+				}
 
-		if (statusByUserName != null) {
-			setStatusByUserName(statusByUserName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<WikiNode, Object>() {
 
-		Date statusDate = (Date)attributes.get("statusDate");
+				@Override
+				public void accept(WikiNode wikiNode, Object userName) {
+					wikiNode.setUserName((String)userName);
+				}
 
-		if (statusDate != null) {
-			setStatusDate(statusDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object createDate) {
+					wikiNode.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object modifiedDate) {
+					wikiNode.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object name) {
+					wikiNode.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object description) {
+					wikiNode.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPostDate",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getLastPostDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPostDate",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object lastPostDate) {
+					wikiNode.setLastPostDate((Date)lastPostDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object lastPublishDate) {
+					wikiNode.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object status) {
+					wikiNode.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserId",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getStatusByUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserId",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object statusByUserId) {
+					wikiNode.setStatusByUserId((Long)statusByUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserName",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getStatusByUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserName",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object statusByUserName) {
+					wikiNode.setStatusByUserName((String)statusByUserName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusDate",
+			new Function<WikiNode, Object>() {
+
+				@Override
+				public Object apply(WikiNode wikiNode) {
+					return wikiNode.getStatusDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusDate",
+			new BiConsumer<WikiNode, Object>() {
+
+				@Override
+				public void accept(WikiNode wikiNode, Object statusDate) {
+					wikiNode.setStatusDate((Date)statusDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1123,40 +1379,27 @@ public class WikiNodeModelImpl extends BaseModelImpl<WikiNode>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(33);
+		Map<String, Function<WikiNode, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", nodeId=");
-		sb.append(getNodeId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", lastPostDate=");
-		sb.append(getLastPostDate());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusByUserId=");
-		sb.append(getStatusByUserId());
-		sb.append(", statusByUserName=");
-		sb.append(getStatusByUserName());
-		sb.append(", statusDate=");
-		sb.append(getStatusDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<WikiNode, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WikiNode, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((WikiNode)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1164,76 +1407,25 @@ public class WikiNodeModelImpl extends BaseModelImpl<WikiNode>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(52);
+		Map<String, Function<WikiNode, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.wiki.model.WikiNode");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>nodeId</column-name><column-value><![CDATA[");
-		sb.append(getNodeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPostDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPostDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserName</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
-		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<WikiNode, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<WikiNode, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((WikiNode)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -41,9 +41,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the AnnouncementsDelivery service. Represents a row in the &quot;AnnouncementsDelivery&quot; database table, with each column mapped to a property of this class.
@@ -195,13 +199,16 @@ public class AnnouncementsDeliveryModelImpl extends BaseModelImpl<AnnouncementsD
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("deliveryId", getDeliveryId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("type", getType());
-		attributes.put("email", isEmail());
-		attributes.put("sms", isSms());
-		attributes.put("website", isWebsite());
+		Map<String, Function<AnnouncementsDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<AnnouncementsDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AnnouncementsDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((AnnouncementsDelivery)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -211,47 +218,183 @@ public class AnnouncementsDeliveryModelImpl extends BaseModelImpl<AnnouncementsD
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long deliveryId = (Long)attributes.get("deliveryId");
+		Map<String, BiConsumer<AnnouncementsDelivery, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (deliveryId != null) {
-			setDeliveryId(deliveryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<AnnouncementsDelivery, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((AnnouncementsDelivery)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<AnnouncementsDelivery, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<AnnouncementsDelivery, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long userId = (Long)attributes.get("userId");
+	private static final Map<String, Function<AnnouncementsDelivery, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AnnouncementsDelivery, Object>> _attributeSetterBiConsumers;
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+	static {
+		Map<String, Function<AnnouncementsDelivery, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<AnnouncementsDelivery, Object>>();
+		Map<String, BiConsumer<AnnouncementsDelivery, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AnnouncementsDelivery, ?>>();
 
-		String type = (String)attributes.get("type");
 
-		if (type != null) {
-			setType(type);
-		}
+		attributeGetterFunctions.put(
+			"deliveryId",
+			new Function<AnnouncementsDelivery, Object>() {
 
-		Boolean email = (Boolean)attributes.get("email");
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getDeliveryId();
+				}
 
-		if (email != null) {
-			setEmail(email);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryId",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
 
-		Boolean sms = (Boolean)attributes.get("sms");
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object deliveryId) {
+					announcementsDelivery.setDeliveryId((Long)deliveryId);
+				}
 
-		if (sms != null) {
-			setSms(sms);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<AnnouncementsDelivery, Object>() {
 
-		Boolean website = (Boolean)attributes.get("website");
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getCompanyId();
+				}
 
-		if (website != null) {
-			setWebsite(website);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object companyId) {
+					announcementsDelivery.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object userId) {
+					announcementsDelivery.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object type) {
+					announcementsDelivery.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"email",
+			new Function<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getEmail();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"email",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object email) {
+					announcementsDelivery.setEmail((Boolean)email);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"sms",
+			new Function<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getSms();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"sms",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object sms) {
+					announcementsDelivery.setSms((Boolean)sms);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"website",
+			new Function<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public Object apply(AnnouncementsDelivery announcementsDelivery) {
+					return announcementsDelivery.getWebsite();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"website",
+			new BiConsumer<AnnouncementsDelivery, Object>() {
+
+				@Override
+				public void accept(AnnouncementsDelivery announcementsDelivery, Object website) {
+					announcementsDelivery.setWebsite((Boolean)website);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -530,22 +673,28 @@ public class AnnouncementsDeliveryModelImpl extends BaseModelImpl<AnnouncementsD
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<AnnouncementsDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{deliveryId=");
-		sb.append(getDeliveryId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", email=");
-		sb.append(isEmail());
-		sb.append(", sms=");
-		sb.append(isSms());
-		sb.append(", website=");
-		sb.append(isWebsite());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<AnnouncementsDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AnnouncementsDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((AnnouncementsDelivery)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -553,41 +702,26 @@ public class AnnouncementsDeliveryModelImpl extends BaseModelImpl<AnnouncementsD
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<AnnouncementsDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append(
-			"com.liferay.announcements.kernel.model.AnnouncementsDelivery");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>deliveryId</column-name><column-value><![CDATA[");
-		sb.append(getDeliveryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>email</column-name><column-value><![CDATA[");
-		sb.append(isEmail());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>sms</column-name><column-value><![CDATA[");
-		sb.append(isSms());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>website</column-name><column-value><![CDATA[");
-		sb.append(isWebsite());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<AnnouncementsDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AnnouncementsDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((AnnouncementsDelivery)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

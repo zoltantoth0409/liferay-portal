@@ -37,8 +37,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the TrashVersion service. Represents a row in the &quot;TrashVersion&quot; database table, with each column mapped to a property of this class.
@@ -143,13 +147,15 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("versionId", getVersionId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("entryId", getEntryId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("typeSettings", getTypeSettings());
-		attributes.put("status", getStatus());
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((TrashVersion)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -159,47 +165,181 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long versionId = (Long)attributes.get("versionId");
+		Map<String, BiConsumer<TrashVersion, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (versionId != null) {
-			setVersionId(versionId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<TrashVersion, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((TrashVersion)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<TrashVersion, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<TrashVersion, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long entryId = (Long)attributes.get("entryId");
+	private static final Map<String, Function<TrashVersion, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<TrashVersion, Object>> _attributeSetterBiConsumers;
 
-		if (entryId != null) {
-			setEntryId(entryId);
-		}
+	static {
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<TrashVersion, Object>>();
+		Map<String, BiConsumer<TrashVersion, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<TrashVersion, ?>>();
 
-		Long classNameId = (Long)attributes.get("classNameId");
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+		attributeGetterFunctions.put(
+			"versionId",
+			new Function<TrashVersion, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getVersionId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"versionId",
+			new BiConsumer<TrashVersion, Object>() {
 
-		String typeSettings = (String)attributes.get("typeSettings");
+				@Override
+				public void accept(TrashVersion trashVersion, Object versionId) {
+					trashVersion.setVersionId((Long)versionId);
+				}
 
-		if (typeSettings != null) {
-			setTypeSettings(typeSettings);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<TrashVersion, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getCompanyId();
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object companyId) {
+					trashVersion.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"entryId",
+			new Function<TrashVersion, Object>() {
+
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"entryId",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object entryId) {
+					trashVersion.setEntryId((Long)entryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<TrashVersion, Object>() {
+
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object classNameId) {
+					trashVersion.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<TrashVersion, Object>() {
+
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object classPK) {
+					trashVersion.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typeSettings",
+			new Function<TrashVersion, Object>() {
+
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getTypeSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typeSettings",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object typeSettings) {
+					trashVersion.setTypeSettings((String)typeSettings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<TrashVersion, Object>() {
+
+				@Override
+				public Object apply(TrashVersion trashVersion) {
+					return trashVersion.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<TrashVersion, Object>() {
+
+				@Override
+				public void accept(TrashVersion trashVersion, Object status) {
+					trashVersion.setStatus((Integer)status);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -477,22 +617,27 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{versionId=");
-		sb.append(getVersionId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", entryId=");
-		sb.append(getEntryId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", typeSettings=");
-		sb.append(getTypeSettings());
-		sb.append(", status=");
-		sb.append(getStatus());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((TrashVersion)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -500,40 +645,25 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.trash.model.TrashVersion");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>versionId</column-name><column-value><![CDATA[");
-		sb.append(getVersionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>entryId</column-name><column-value><![CDATA[");
-		sb.append(getEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typeSettings</column-name><column-value><![CDATA[");
-		sb.append(getTypeSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((TrashVersion)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

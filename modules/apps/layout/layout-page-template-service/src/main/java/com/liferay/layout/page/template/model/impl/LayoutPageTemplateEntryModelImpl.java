@@ -46,10 +46,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the LayoutPageTemplateEntry service. Represents a row in the &quot;LayoutPageTemplateEntry&quot; database table, with each column mapped to a property of this class.
@@ -251,29 +255,16 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("layoutPageTemplateEntryId",
-			getLayoutPageTemplateEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("layoutPageTemplateCollectionId",
-			getLayoutPageTemplateCollectionId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classTypeId", getClassTypeId());
-		attributes.put("name", getName());
-		attributes.put("type", getType());
-		attributes.put("previewFileEntryId", getPreviewFileEntryId());
-		attributes.put("defaultTemplate", isDefaultTemplate());
-		attributes.put("layoutPrototypeId", getLayoutPrototypeId());
-		attributes.put("lastPublishDate", getLastPublishDate());
-		attributes.put("status", getStatus());
-		attributes.put("statusByUserId", getStatusByUserId());
-		attributes.put("statusByUserName", getStatusByUserName());
-		attributes.put("statusDate", getStatusDate());
+		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((LayoutPageTemplateEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -283,133 +274,464 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<LayoutPageTemplateEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((LayoutPageTemplateEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long layoutPageTemplateEntryId = (Long)attributes.get(
-				"layoutPageTemplateEntryId");
+	public Map<String, Function<LayoutPageTemplateEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (layoutPageTemplateEntryId != null) {
-			setLayoutPageTemplateEntryId(layoutPageTemplateEntryId);
-		}
+	public Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<LayoutPageTemplateEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<LayoutPageTemplateEntry, Object>>();
+		Map<String, BiConsumer<LayoutPageTemplateEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<LayoutPageTemplateEntry, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object uuid) {
+					layoutPageTemplateEntry.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"layoutPageTemplateEntryId",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getLayoutPageTemplateEntryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"layoutPageTemplateEntryId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPageTemplateEntryId) {
+					layoutPageTemplateEntry.setLayoutPageTemplateEntryId((Long)layoutPageTemplateEntryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Long layoutPageTemplateCollectionId = (Long)attributes.get(
-				"layoutPageTemplateCollectionId");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getGroupId();
+				}
 
-		if (layoutPageTemplateCollectionId != null) {
-			setLayoutPageTemplateCollectionId(layoutPageTemplateCollectionId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object groupId) {
+					layoutPageTemplateEntry.setGroupId((Long)groupId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Long classTypeId = (Long)attributes.get("classTypeId");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getCompanyId();
+				}
 
-		if (classTypeId != null) {
-			setClassTypeId(classTypeId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object companyId) {
+					layoutPageTemplateEntry.setCompanyId((Long)companyId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getUserId();
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		Long previewFileEntryId = (Long)attributes.get("previewFileEntryId");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object userId) {
+					layoutPageTemplateEntry.setUserId((Long)userId);
+				}
 
-		if (previewFileEntryId != null) {
-			setPreviewFileEntryId(previewFileEntryId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Boolean defaultTemplate = (Boolean)attributes.get("defaultTemplate");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getUserName();
+				}
 
-		if (defaultTemplate != null) {
-			setDefaultTemplate(defaultTemplate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		Long layoutPrototypeId = (Long)attributes.get("layoutPrototypeId");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object userName) {
+					layoutPageTemplateEntry.setUserName((String)userName);
+				}
 
-		if (layoutPrototypeId != null) {
-			setLayoutPrototypeId(layoutPrototypeId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getCreateDate();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		Integer status = (Integer)attributes.get("status");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object createDate) {
+					layoutPageTemplateEntry.setCreateDate((Date)createDate);
+				}
 
-		if (status != null) {
-			setStatus(status);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Long statusByUserId = (Long)attributes.get("statusByUserId");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getModifiedDate();
+				}
 
-		if (statusByUserId != null) {
-			setStatusByUserId(statusByUserId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
-		String statusByUserName = (String)attributes.get("statusByUserName");
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object modifiedDate) {
+					layoutPageTemplateEntry.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (statusByUserName != null) {
-			setStatusByUserName(statusByUserName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"layoutPageTemplateCollectionId",
+			new Function<LayoutPageTemplateEntry, Object>() {
 
-		Date statusDate = (Date)attributes.get("statusDate");
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getLayoutPageTemplateCollectionId();
+				}
 
-		if (statusDate != null) {
-			setStatusDate(statusDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"layoutPageTemplateCollectionId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPageTemplateCollectionId) {
+					layoutPageTemplateEntry.setLayoutPageTemplateCollectionId((Long)layoutPageTemplateCollectionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object classNameId) {
+					layoutPageTemplateEntry.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classTypeId",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getClassTypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classTypeId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object classTypeId) {
+					layoutPageTemplateEntry.setClassTypeId((Long)classTypeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object name) {
+					layoutPageTemplateEntry.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object type) {
+					layoutPageTemplateEntry.setType((Integer)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"previewFileEntryId",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getPreviewFileEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"previewFileEntryId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object previewFileEntryId) {
+					layoutPageTemplateEntry.setPreviewFileEntryId((Long)previewFileEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"defaultTemplate",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getDefaultTemplate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"defaultTemplate",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object defaultTemplate) {
+					layoutPageTemplateEntry.setDefaultTemplate((Boolean)defaultTemplate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"layoutPrototypeId",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getLayoutPrototypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"layoutPrototypeId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPrototypeId) {
+					layoutPageTemplateEntry.setLayoutPrototypeId((Long)layoutPrototypeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object lastPublishDate) {
+					layoutPageTemplateEntry.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"status",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getStatus();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"status",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object status) {
+					layoutPageTemplateEntry.setStatus((Integer)status);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserId",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getStatusByUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserId",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusByUserId) {
+					layoutPageTemplateEntry.setStatusByUserId((Long)statusByUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusByUserName",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getStatusByUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusByUserName",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusByUserName) {
+					layoutPageTemplateEntry.setStatusByUserName((String)statusByUserName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusDate",
+			new Function<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+					return layoutPageTemplateEntry.getStatusDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusDate",
+			new BiConsumer<LayoutPageTemplateEntry, Object>() {
+
+				@Override
+				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusDate) {
+					layoutPageTemplateEntry.setStatusDate((Date)statusDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1202,50 +1524,29 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", layoutPageTemplateEntryId=");
-		sb.append(getLayoutPageTemplateEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", layoutPageTemplateCollectionId=");
-		sb.append(getLayoutPageTemplateCollectionId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classTypeId=");
-		sb.append(getClassTypeId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", previewFileEntryId=");
-		sb.append(getPreviewFileEntryId());
-		sb.append(", defaultTemplate=");
-		sb.append(isDefaultTemplate());
-		sb.append(", layoutPrototypeId=");
-		sb.append(getLayoutPrototypeId());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
-		sb.append(", status=");
-		sb.append(getStatus());
-		sb.append(", statusByUserId=");
-		sb.append(getStatusByUserId());
-		sb.append(", statusByUserName=");
-		sb.append(getStatusByUserName());
-		sb.append(", statusDate=");
-		sb.append(getStatusDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(LayoutPageTemplateEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1253,97 +1554,27 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(67);
+		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append(
-			"com.liferay.layout.page.template.model.LayoutPageTemplateEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutPageTemplateEntryId</column-name><column-value><![CDATA[");
-		sb.append(getLayoutPageTemplateEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutPageTemplateCollectionId</column-name><column-value><![CDATA[");
-		sb.append(getLayoutPageTemplateCollectionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classTypeId</column-name><column-value><![CDATA[");
-		sb.append(getClassTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>previewFileEntryId</column-name><column-value><![CDATA[");
-		sb.append(getPreviewFileEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultTemplate</column-name><column-value><![CDATA[");
-		sb.append(isDefaultTemplate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutPrototypeId</column-name><column-value><![CDATA[");
-		sb.append(getLayoutPrototypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>status</column-name><column-value><![CDATA[");
-		sb.append(getStatus());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusByUserName</column-name><column-value><![CDATA[");
-		sb.append(getStatusByUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
-		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(LayoutPageTemplateEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

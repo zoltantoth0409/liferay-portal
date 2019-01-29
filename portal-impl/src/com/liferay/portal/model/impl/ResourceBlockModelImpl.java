@@ -37,9 +37,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ResourceBlock service. Represents a row in the &quot;ResourceBlock&quot; database table, with each column mapped to a property of this class.
@@ -193,13 +197,15 @@ public class ResourceBlockModelImpl extends BaseModelImpl<ResourceBlock>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("resourceBlockId", getResourceBlockId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("name", getName());
-		attributes.put("permissionsHash", getPermissionsHash());
-		attributes.put("referenceCount", getReferenceCount());
+		Map<String, Function<ResourceBlock, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ResourceBlock, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceBlock, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ResourceBlock)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -209,47 +215,181 @@ public class ResourceBlockModelImpl extends BaseModelImpl<ResourceBlock>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<ResourceBlock, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ResourceBlock, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ResourceBlock)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long resourceBlockId = (Long)attributes.get("resourceBlockId");
+	public Map<String, Function<ResourceBlock, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (resourceBlockId != null) {
-			setResourceBlockId(resourceBlockId);
-		}
+	public Map<String, BiConsumer<ResourceBlock, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<ResourceBlock, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ResourceBlock, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<ResourceBlock, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ResourceBlock, Object>>();
+		Map<String, BiConsumer<ResourceBlock, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ResourceBlock, ?>>();
 
-		Long groupId = (Long)attributes.get("groupId");
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<ResourceBlock, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getMvccVersion();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<ResourceBlock, Object>() {
 
-		String permissionsHash = (String)attributes.get("permissionsHash");
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object mvccVersion) {
+					resourceBlock.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (permissionsHash != null) {
-			setPermissionsHash(permissionsHash);
-		}
+			});
+		attributeGetterFunctions.put(
+			"resourceBlockId",
+			new Function<ResourceBlock, Object>() {
 
-		Long referenceCount = (Long)attributes.get("referenceCount");
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getResourceBlockId();
+				}
 
-		if (referenceCount != null) {
-			setReferenceCount(referenceCount);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"resourceBlockId",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object resourceBlockId) {
+					resourceBlock.setResourceBlockId((Long)resourceBlockId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ResourceBlock, Object>() {
+
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object companyId) {
+					resourceBlock.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ResourceBlock, Object>() {
+
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object groupId) {
+					resourceBlock.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ResourceBlock, Object>() {
+
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object name) {
+					resourceBlock.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"permissionsHash",
+			new Function<ResourceBlock, Object>() {
+
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getPermissionsHash();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"permissionsHash",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object permissionsHash) {
+					resourceBlock.setPermissionsHash((String)permissionsHash);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"referenceCount",
+			new Function<ResourceBlock, Object>() {
+
+				@Override
+				public Object apply(ResourceBlock resourceBlock) {
+					return resourceBlock.getReferenceCount();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"referenceCount",
+			new BiConsumer<ResourceBlock, Object>() {
+
+				@Override
+				public void accept(ResourceBlock resourceBlock, Object referenceCount) {
+					resourceBlock.setReferenceCount((Long)referenceCount);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -533,22 +673,27 @@ public class ResourceBlockModelImpl extends BaseModelImpl<ResourceBlock>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<ResourceBlock, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", resourceBlockId=");
-		sb.append(getResourceBlockId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", permissionsHash=");
-		sb.append(getPermissionsHash());
-		sb.append(", referenceCount=");
-		sb.append(getReferenceCount());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ResourceBlock, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceBlock, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ResourceBlock)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -556,40 +701,25 @@ public class ResourceBlockModelImpl extends BaseModelImpl<ResourceBlock>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<ResourceBlock, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.ResourceBlock");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resourceBlockId</column-name><column-value><![CDATA[");
-		sb.append(getResourceBlockId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>permissionsHash</column-name><column-value><![CDATA[");
-		sb.append(getPermissionsHash());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>referenceCount</column-name><column-value><![CDATA[");
-		sb.append(getReferenceCount());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ResourceBlock, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceBlock, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ResourceBlock)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

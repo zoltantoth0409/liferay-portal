@@ -41,10 +41,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the MembershipRequest service. Represents a row in the &quot;MembershipRequest&quot; database table, with each column mapped to a property of this class.
@@ -208,17 +212,16 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("membershipRequestId", getMembershipRequestId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("comments", getComments());
-		attributes.put("replyComments", getReplyComments());
-		attributes.put("replyDate", getReplyDate());
-		attributes.put("replierUserId", getReplierUserId());
-		attributes.put("statusId", getStatusId());
+		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((MembershipRequest)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -228,71 +231,263 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<MembershipRequest, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<MembershipRequest, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((MembershipRequest)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long membershipRequestId = (Long)attributes.get("membershipRequestId");
+	public Map<String, Function<MembershipRequest, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (membershipRequestId != null) {
-			setMembershipRequestId(membershipRequestId);
-		}
+	public Map<String, BiConsumer<MembershipRequest, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<MembershipRequest, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MembershipRequest, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MembershipRequest, Object>>();
+		Map<String, BiConsumer<MembershipRequest, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MembershipRequest, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<MembershipRequest, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<MembershipRequest, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object mvccVersion) {
+					membershipRequest.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"membershipRequestId",
+			new Function<MembershipRequest, Object>() {
 
-		String comments = (String)attributes.get("comments");
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getMembershipRequestId();
+				}
 
-		if (comments != null) {
-			setComments(comments);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"membershipRequestId",
+			new BiConsumer<MembershipRequest, Object>() {
 
-		String replyComments = (String)attributes.get("replyComments");
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object membershipRequestId) {
+					membershipRequest.setMembershipRequestId((Long)membershipRequestId);
+				}
 
-		if (replyComments != null) {
-			setReplyComments(replyComments);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<MembershipRequest, Object>() {
 
-		Date replyDate = (Date)attributes.get("replyDate");
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getGroupId();
+				}
 
-		if (replyDate != null) {
-			setReplyDate(replyDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<MembershipRequest, Object>() {
 
-		Long replierUserId = (Long)attributes.get("replierUserId");
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object groupId) {
+					membershipRequest.setGroupId((Long)groupId);
+				}
 
-		if (replierUserId != null) {
-			setReplierUserId(replierUserId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<MembershipRequest, Object>() {
 
-		Long statusId = (Long)attributes.get("statusId");
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getCompanyId();
+				}
 
-		if (statusId != null) {
-			setStatusId(statusId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object companyId) {
+					membershipRequest.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object userId) {
+					membershipRequest.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object createDate) {
+					membershipRequest.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"comments",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"comments",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object comments) {
+					membershipRequest.setComments((String)comments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"replyComments",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getReplyComments();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"replyComments",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object replyComments) {
+					membershipRequest.setReplyComments((String)replyComments);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"replyDate",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getReplyDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"replyDate",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object replyDate) {
+					membershipRequest.setReplyDate((Date)replyDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"replierUserId",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getReplierUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"replierUserId",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object replierUserId) {
+					membershipRequest.setReplierUserId((Long)replierUserId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"statusId",
+			new Function<MembershipRequest, Object>() {
+
+				@Override
+				public Object apply(MembershipRequest membershipRequest) {
+					return membershipRequest.getStatusId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"statusId",
+			new BiConsumer<MembershipRequest, Object>() {
+
+				@Override
+				public void accept(MembershipRequest membershipRequest, Object statusId) {
+					membershipRequest.setStatusId((Long)statusId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -673,30 +868,28 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", membershipRequestId=");
-		sb.append(getMembershipRequestId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", comments=");
-		sb.append(getComments());
-		sb.append(", replyComments=");
-		sb.append(getReplyComments());
-		sb.append(", replyDate=");
-		sb.append(getReplyDate());
-		sb.append(", replierUserId=");
-		sb.append(getReplierUserId());
-		sb.append(", statusId=");
-		sb.append(getStatusId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((MembershipRequest)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -704,56 +897,26 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.MembershipRequest");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>membershipRequestId</column-name><column-value><![CDATA[");
-		sb.append(getMembershipRequestId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>comments</column-name><column-value><![CDATA[");
-		sb.append(getComments());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>replyComments</column-name><column-value><![CDATA[");
-		sb.append(getReplyComments());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>replyDate</column-name><column-value><![CDATA[");
-		sb.append(getReplyDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>replierUserId</column-name><column-value><![CDATA[");
-		sb.append(getReplierUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append(getStatusId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((MembershipRequest)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

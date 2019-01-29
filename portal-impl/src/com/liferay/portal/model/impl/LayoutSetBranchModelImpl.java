@@ -40,10 +40,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the LayoutSetBranch service. Represents a row in the &quot;LayoutSetBranch&quot; database table, with each column mapped to a property of this class.
@@ -231,26 +235,15 @@ public class LayoutSetBranchModelImpl extends BaseModelImpl<LayoutSetBranch>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("layoutSetBranchId", getLayoutSetBranchId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("privateLayout", isPrivateLayout());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("master", isMaster());
-		attributes.put("logoId", getLogoId());
-		attributes.put("themeId", getThemeId());
-		attributes.put("colorSchemeId", getColorSchemeId());
-		attributes.put("css", getCss());
-		attributes.put("settings", getSettings());
-		attributes.put("layoutSetPrototypeUuid", getLayoutSetPrototypeUuid());
-		attributes.put("layoutSetPrototypeLinkEnabled",
-			isLayoutSetPrototypeLinkEnabled());
+		Map<String, Function<LayoutSetBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<LayoutSetBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutSetBranch, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((LayoutSetBranch)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -260,121 +253,421 @@ public class LayoutSetBranchModelImpl extends BaseModelImpl<LayoutSetBranch>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<LayoutSetBranch, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<LayoutSetBranch, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((LayoutSetBranch)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long layoutSetBranchId = (Long)attributes.get("layoutSetBranchId");
+	public Map<String, Function<LayoutSetBranch, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (layoutSetBranchId != null) {
-			setLayoutSetBranchId(layoutSetBranchId);
-		}
+	public Map<String, BiConsumer<LayoutSetBranch, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<LayoutSetBranch, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<LayoutSetBranch, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<LayoutSetBranch, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<LayoutSetBranch, Object>>();
+		Map<String, BiConsumer<LayoutSetBranch, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<LayoutSetBranch, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<LayoutSetBranch, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object mvccVersion) {
+					layoutSetBranch.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"layoutSetBranchId",
+			new Function<LayoutSetBranch, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getLayoutSetBranchId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"layoutSetBranchId",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object layoutSetBranchId) {
+					layoutSetBranch.setLayoutSetBranchId((Long)layoutSetBranchId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<LayoutSetBranch, Object>() {
 
-		Boolean privateLayout = (Boolean)attributes.get("privateLayout");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getGroupId();
+				}
 
-		if (privateLayout != null) {
-			setPrivateLayout(privateLayout);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object groupId) {
+					layoutSetBranch.setGroupId((Long)groupId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<LayoutSetBranch, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getCompanyId();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		Boolean master = (Boolean)attributes.get("master");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object companyId) {
+					layoutSetBranch.setCompanyId((Long)companyId);
+				}
 
-		if (master != null) {
-			setMaster(master);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<LayoutSetBranch, Object>() {
 
-		Long logoId = (Long)attributes.get("logoId");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getUserId();
+				}
 
-		if (logoId != null) {
-			setLogoId(logoId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		String themeId = (String)attributes.get("themeId");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object userId) {
+					layoutSetBranch.setUserId((Long)userId);
+				}
 
-		if (themeId != null) {
-			setThemeId(themeId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<LayoutSetBranch, Object>() {
 
-		String colorSchemeId = (String)attributes.get("colorSchemeId");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getUserName();
+				}
 
-		if (colorSchemeId != null) {
-			setColorSchemeId(colorSchemeId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		String css = (String)attributes.get("css");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object userName) {
+					layoutSetBranch.setUserName((String)userName);
+				}
 
-		if (css != null) {
-			setCss(css);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<LayoutSetBranch, Object>() {
 
-		String settings = (String)attributes.get("settings");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getCreateDate();
+				}
 
-		if (settings != null) {
-			setSettings(settings);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<LayoutSetBranch, Object>() {
 
-		String layoutSetPrototypeUuid = (String)attributes.get(
-				"layoutSetPrototypeUuid");
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object createDate) {
+					layoutSetBranch.setCreateDate((Date)createDate);
+				}
 
-		if (layoutSetPrototypeUuid != null) {
-			setLayoutSetPrototypeUuid(layoutSetPrototypeUuid);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<LayoutSetBranch, Object>() {
 
-		Boolean layoutSetPrototypeLinkEnabled = (Boolean)attributes.get(
-				"layoutSetPrototypeLinkEnabled");
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getModifiedDate();
+				}
 
-		if (layoutSetPrototypeLinkEnabled != null) {
-			setLayoutSetPrototypeLinkEnabled(layoutSetPrototypeLinkEnabled);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object modifiedDate) {
+					layoutSetBranch.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"privateLayout",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getPrivateLayout();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"privateLayout",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object privateLayout) {
+					layoutSetBranch.setPrivateLayout((Boolean)privateLayout);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object name) {
+					layoutSetBranch.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object description) {
+					layoutSetBranch.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"master",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getMaster();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"master",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object master) {
+					layoutSetBranch.setMaster((Boolean)master);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"logoId",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getLogoId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"logoId",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object logoId) {
+					layoutSetBranch.setLogoId((Long)logoId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"themeId",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getThemeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"themeId",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object themeId) {
+					layoutSetBranch.setThemeId((String)themeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"colorSchemeId",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getColorSchemeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"colorSchemeId",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object colorSchemeId) {
+					layoutSetBranch.setColorSchemeId((String)colorSchemeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"css",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getCss();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"css",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object css) {
+					layoutSetBranch.setCss((String)css);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"settings",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"settings",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object settings) {
+					layoutSetBranch.setSettings((String)settings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"layoutSetPrototypeUuid",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getLayoutSetPrototypeUuid();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"layoutSetPrototypeUuid",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object layoutSetPrototypeUuid) {
+					layoutSetBranch.setLayoutSetPrototypeUuid((String)layoutSetPrototypeUuid);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"layoutSetPrototypeLinkEnabled",
+			new Function<LayoutSetBranch, Object>() {
+
+				@Override
+				public Object apply(LayoutSetBranch layoutSetBranch) {
+					return layoutSetBranch.getLayoutSetPrototypeLinkEnabled();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"layoutSetPrototypeLinkEnabled",
+			new BiConsumer<LayoutSetBranch, Object>() {
+
+				@Override
+				public void accept(LayoutSetBranch layoutSetBranch, Object layoutSetPrototypeLinkEnabled) {
+					layoutSetBranch.setLayoutSetPrototypeLinkEnabled((Boolean)layoutSetPrototypeLinkEnabled);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -952,46 +1245,27 @@ public class LayoutSetBranchModelImpl extends BaseModelImpl<LayoutSetBranch>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(39);
+		Map<String, Function<LayoutSetBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", layoutSetBranchId=");
-		sb.append(getLayoutSetBranchId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", privateLayout=");
-		sb.append(isPrivateLayout());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", master=");
-		sb.append(isMaster());
-		sb.append(", logoId=");
-		sb.append(getLogoId());
-		sb.append(", themeId=");
-		sb.append(getThemeId());
-		sb.append(", colorSchemeId=");
-		sb.append(getColorSchemeId());
-		sb.append(", css=");
-		sb.append(getCss());
-		sb.append(", settings=");
-		sb.append(getSettings());
-		sb.append(", layoutSetPrototypeUuid=");
-		sb.append(getLayoutSetPrototypeUuid());
-		sb.append(", layoutSetPrototypeLinkEnabled=");
-		sb.append(isLayoutSetPrototypeLinkEnabled());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<LayoutSetBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutSetBranch, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((LayoutSetBranch)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -999,88 +1273,25 @@ public class LayoutSetBranchModelImpl extends BaseModelImpl<LayoutSetBranch>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(61);
+		Map<String, Function<LayoutSetBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.LayoutSetBranch");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutSetBranchId</column-name><column-value><![CDATA[");
-		sb.append(getLayoutSetBranchId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>privateLayout</column-name><column-value><![CDATA[");
-		sb.append(isPrivateLayout());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>master</column-name><column-value><![CDATA[");
-		sb.append(isMaster());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>logoId</column-name><column-value><![CDATA[");
-		sb.append(getLogoId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>themeId</column-name><column-value><![CDATA[");
-		sb.append(getThemeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>colorSchemeId</column-name><column-value><![CDATA[");
-		sb.append(getColorSchemeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>css</column-name><column-value><![CDATA[");
-		sb.append(getCss());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>settings</column-name><column-value><![CDATA[");
-		sb.append(getSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutSetPrototypeUuid</column-name><column-value><![CDATA[");
-		sb.append(getLayoutSetPrototypeUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutSetPrototypeLinkEnabled</column-name><column-value><![CDATA[");
-		sb.append(isLayoutSetPrototypeLinkEnabled());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<LayoutSetBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<LayoutSetBranch, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((LayoutSetBranch)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

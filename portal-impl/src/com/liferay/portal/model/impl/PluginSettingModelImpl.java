@@ -37,9 +37,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the PluginSetting service. Represents a row in the &quot;PluginSetting&quot; database table, with each column mapped to a property of this class.
@@ -190,13 +194,15 @@ public class PluginSettingModelImpl extends BaseModelImpl<PluginSetting>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("pluginSettingId", getPluginSettingId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("pluginId", getPluginId());
-		attributes.put("pluginType", getPluginType());
-		attributes.put("roles", getRoles());
-		attributes.put("active", isActive());
+		Map<String, Function<PluginSetting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<PluginSetting, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<PluginSetting, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((PluginSetting)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -206,47 +212,181 @@ public class PluginSettingModelImpl extends BaseModelImpl<PluginSetting>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<PluginSetting, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<PluginSetting, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((PluginSetting)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long pluginSettingId = (Long)attributes.get("pluginSettingId");
+	public Map<String, Function<PluginSetting, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (pluginSettingId != null) {
-			setPluginSettingId(pluginSettingId);
-		}
+	public Map<String, BiConsumer<PluginSetting, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<PluginSetting, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PluginSetting, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<PluginSetting, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PluginSetting, Object>>();
+		Map<String, BiConsumer<PluginSetting, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PluginSetting, ?>>();
 
-		String pluginId = (String)attributes.get("pluginId");
 
-		if (pluginId != null) {
-			setPluginId(pluginId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<PluginSetting, Object>() {
 
-		String pluginType = (String)attributes.get("pluginType");
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getMvccVersion();
+				}
 
-		if (pluginType != null) {
-			setPluginType(pluginType);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<PluginSetting, Object>() {
 
-		String roles = (String)attributes.get("roles");
+				@Override
+				public void accept(PluginSetting pluginSetting, Object mvccVersion) {
+					pluginSetting.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (roles != null) {
-			setRoles(roles);
-		}
+			});
+		attributeGetterFunctions.put(
+			"pluginSettingId",
+			new Function<PluginSetting, Object>() {
 
-		Boolean active = (Boolean)attributes.get("active");
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getPluginSettingId();
+				}
 
-		if (active != null) {
-			setActive(active);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"pluginSettingId",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object pluginSettingId) {
+					pluginSetting.setPluginSettingId((Long)pluginSettingId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<PluginSetting, Object>() {
+
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object companyId) {
+					pluginSetting.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"pluginId",
+			new Function<PluginSetting, Object>() {
+
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getPluginId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"pluginId",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object pluginId) {
+					pluginSetting.setPluginId((String)pluginId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"pluginType",
+			new Function<PluginSetting, Object>() {
+
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getPluginType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"pluginType",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object pluginType) {
+					pluginSetting.setPluginType((String)pluginType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"roles",
+			new Function<PluginSetting, Object>() {
+
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getRoles();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"roles",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object roles) {
+					pluginSetting.setRoles((String)roles);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"active",
+			new Function<PluginSetting, Object>() {
+
+				@Override
+				public Object apply(PluginSetting pluginSetting) {
+					return pluginSetting.getActive();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"active",
+			new BiConsumer<PluginSetting, Object>() {
+
+				@Override
+				public void accept(PluginSetting pluginSetting, Object active) {
+					pluginSetting.setActive((Boolean)active);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -531,22 +671,27 @@ public class PluginSettingModelImpl extends BaseModelImpl<PluginSetting>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<PluginSetting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", pluginSettingId=");
-		sb.append(getPluginSettingId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", pluginId=");
-		sb.append(getPluginId());
-		sb.append(", pluginType=");
-		sb.append(getPluginType());
-		sb.append(", roles=");
-		sb.append(getRoles());
-		sb.append(", active=");
-		sb.append(isActive());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<PluginSetting, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<PluginSetting, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((PluginSetting)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -554,40 +699,25 @@ public class PluginSettingModelImpl extends BaseModelImpl<PluginSetting>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<PluginSetting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.PluginSetting");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>pluginSettingId</column-name><column-value><![CDATA[");
-		sb.append(getPluginSettingId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>pluginId</column-name><column-value><![CDATA[");
-		sb.append(getPluginId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>pluginType</column-name><column-value><![CDATA[");
-		sb.append(getPluginType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>roles</column-name><column-value><![CDATA[");
-		sb.append(getRoles());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>active</column-name><column-value><![CDATA[");
-		sb.append(isActive());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<PluginSetting, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<PluginSetting, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((PluginSetting)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -34,9 +34,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the UserTrackerPath service. Represents a row in the &quot;UserTrackerPath&quot; database table, with each column mapped to a property of this class.
@@ -137,12 +141,15 @@ public class UserTrackerPathModelImpl extends BaseModelImpl<UserTrackerPath>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("userTrackerPathId", getUserTrackerPathId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userTrackerId", getUserTrackerId());
-		attributes.put("path", getPath());
-		attributes.put("pathDate", getPathDate());
+		Map<String, Function<UserTrackerPath, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<UserTrackerPath, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserTrackerPath, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((UserTrackerPath)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -152,41 +159,161 @@ public class UserTrackerPathModelImpl extends BaseModelImpl<UserTrackerPath>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<UserTrackerPath, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<UserTrackerPath, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((UserTrackerPath)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long userTrackerPathId = (Long)attributes.get("userTrackerPathId");
+	public Map<String, Function<UserTrackerPath, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (userTrackerPathId != null) {
-			setUserTrackerPathId(userTrackerPathId);
-		}
+	public Map<String, BiConsumer<UserTrackerPath, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<UserTrackerPath, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserTrackerPath, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<UserTrackerPath, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<UserTrackerPath, Object>>();
+		Map<String, BiConsumer<UserTrackerPath, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<UserTrackerPath, ?>>();
 
-		Long userTrackerId = (Long)attributes.get("userTrackerId");
 
-		if (userTrackerId != null) {
-			setUserTrackerId(userTrackerId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<UserTrackerPath, Object>() {
 
-		String path = (String)attributes.get("path");
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getMvccVersion();
+				}
 
-		if (path != null) {
-			setPath(path);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<UserTrackerPath, Object>() {
 
-		Date pathDate = (Date)attributes.get("pathDate");
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object mvccVersion) {
+					userTrackerPath.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (pathDate != null) {
-			setPathDate(pathDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userTrackerPathId",
+			new Function<UserTrackerPath, Object>() {
+
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getUserTrackerPathId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userTrackerPathId",
+			new BiConsumer<UserTrackerPath, Object>() {
+
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object userTrackerPathId) {
+					userTrackerPath.setUserTrackerPathId((Long)userTrackerPathId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<UserTrackerPath, Object>() {
+
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<UserTrackerPath, Object>() {
+
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object companyId) {
+					userTrackerPath.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userTrackerId",
+			new Function<UserTrackerPath, Object>() {
+
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getUserTrackerId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userTrackerId",
+			new BiConsumer<UserTrackerPath, Object>() {
+
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object userTrackerId) {
+					userTrackerPath.setUserTrackerId((Long)userTrackerId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"path",
+			new Function<UserTrackerPath, Object>() {
+
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getPath();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"path",
+			new BiConsumer<UserTrackerPath, Object>() {
+
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object path) {
+					userTrackerPath.setPath((String)path);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"pathDate",
+			new Function<UserTrackerPath, Object>() {
+
+				@Override
+				public Object apply(UserTrackerPath userTrackerPath) {
+					return userTrackerPath.getPathDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"pathDate",
+			new BiConsumer<UserTrackerPath, Object>() {
+
+				@Override
+				public void accept(UserTrackerPath userTrackerPath, Object pathDate) {
+					userTrackerPath.setPathDate((Date)pathDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -406,20 +533,27 @@ public class UserTrackerPathModelImpl extends BaseModelImpl<UserTrackerPath>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		Map<String, Function<UserTrackerPath, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", userTrackerPathId=");
-		sb.append(getUserTrackerPathId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userTrackerId=");
-		sb.append(getUserTrackerId());
-		sb.append(", path=");
-		sb.append(getPath());
-		sb.append(", pathDate=");
-		sb.append(getPathDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<UserTrackerPath, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserTrackerPath, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((UserTrackerPath)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -427,36 +561,25 @@ public class UserTrackerPathModelImpl extends BaseModelImpl<UserTrackerPath>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		Map<String, Function<UserTrackerPath, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.UserTrackerPath");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userTrackerPathId</column-name><column-value><![CDATA[");
-		sb.append(getUserTrackerPathId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userTrackerId</column-name><column-value><![CDATA[");
-		sb.append(getUserTrackerId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>path</column-name><column-value><![CDATA[");
-		sb.append(getPath());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>pathDate</column-name><column-value><![CDATA[");
-		sb.append(getPathDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<UserTrackerPath, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserTrackerPath, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((UserTrackerPath)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

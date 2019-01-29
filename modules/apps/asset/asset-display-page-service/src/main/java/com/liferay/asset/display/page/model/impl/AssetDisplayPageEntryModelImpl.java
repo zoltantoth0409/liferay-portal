@@ -42,9 +42,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the AssetDisplayPageEntry service. Represents a row in the &quot;AssetDisplayPageEntry&quot; database table, with each column mapped to a property of this class.
@@ -162,19 +166,16 @@ public class AssetDisplayPageEntryModelImpl extends BaseModelImpl<AssetDisplayPa
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("assetDisplayPageEntryId", getAssetDisplayPageEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("layoutPageTemplateEntryId",
-			getLayoutPageTemplateEntryId());
-		attributes.put("type", getType());
+		Map<String, Function<AssetDisplayPageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<AssetDisplayPageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetDisplayPageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((AssetDisplayPageEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -184,79 +185,283 @@ public class AssetDisplayPageEntryModelImpl extends BaseModelImpl<AssetDisplayPa
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<AssetDisplayPageEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<AssetDisplayPageEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((AssetDisplayPageEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long assetDisplayPageEntryId = (Long)attributes.get(
-				"assetDisplayPageEntryId");
+	public Map<String, Function<AssetDisplayPageEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (assetDisplayPageEntryId != null) {
-			setAssetDisplayPageEntryId(assetDisplayPageEntryId);
-		}
+	public Map<String, BiConsumer<AssetDisplayPageEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<AssetDisplayPageEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AssetDisplayPageEntry, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<AssetDisplayPageEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<AssetDisplayPageEntry, Object>>();
+		Map<String, BiConsumer<AssetDisplayPageEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AssetDisplayPageEntry, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<AssetDisplayPageEntry, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object uuid) {
+					assetDisplayPageEntry.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"assetDisplayPageEntryId",
+			new Function<AssetDisplayPageEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getAssetDisplayPageEntryId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"assetDisplayPageEntryId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object assetDisplayPageEntryId) {
+					assetDisplayPageEntry.setAssetDisplayPageEntryId((Long)assetDisplayPageEntryId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<AssetDisplayPageEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getGroupId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object groupId) {
+					assetDisplayPageEntry.setGroupId((Long)groupId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<AssetDisplayPageEntry, Object>() {
 
-		Long layoutPageTemplateEntryId = (Long)attributes.get(
-				"layoutPageTemplateEntryId");
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getCompanyId();
+				}
 
-		if (layoutPageTemplateEntryId != null) {
-			setLayoutPageTemplateEntryId(layoutPageTemplateEntryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
 
-		Integer type = (Integer)attributes.get("type");
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object companyId) {
+					assetDisplayPageEntry.setCompanyId((Long)companyId);
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object userId) {
+					assetDisplayPageEntry.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object userName) {
+					assetDisplayPageEntry.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object createDate) {
+					assetDisplayPageEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object modifiedDate) {
+					assetDisplayPageEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object classNameId) {
+					assetDisplayPageEntry.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object classPK) {
+					assetDisplayPageEntry.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"layoutPageTemplateEntryId",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getLayoutPageTemplateEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"layoutPageTemplateEntryId",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object layoutPageTemplateEntryId) {
+					assetDisplayPageEntry.setLayoutPageTemplateEntryId((Long)layoutPageTemplateEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public Object apply(AssetDisplayPageEntry assetDisplayPageEntry) {
+					return assetDisplayPageEntry.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<AssetDisplayPageEntry, Object>() {
+
+				@Override
+				public void accept(AssetDisplayPageEntry assetDisplayPageEntry, Object type) {
+					assetDisplayPageEntry.setType((Integer)type);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -698,32 +903,28 @@ public class AssetDisplayPageEntryModelImpl extends BaseModelImpl<AssetDisplayPa
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<AssetDisplayPageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", assetDisplayPageEntryId=");
-		sb.append(getAssetDisplayPageEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", layoutPageTemplateEntryId=");
-		sb.append(getLayoutPageTemplateEntryId());
-		sb.append(", type=");
-		sb.append(getType());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<AssetDisplayPageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetDisplayPageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((AssetDisplayPageEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -731,60 +932,26 @@ public class AssetDisplayPageEntryModelImpl extends BaseModelImpl<AssetDisplayPa
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		Map<String, Function<AssetDisplayPageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.asset.display.page.model.AssetDisplayPageEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>assetDisplayPageEntryId</column-name><column-value><![CDATA[");
-		sb.append(getAssetDisplayPageEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>layoutPageTemplateEntryId</column-name><column-value><![CDATA[");
-		sb.append(getLayoutPageTemplateEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<AssetDisplayPageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<AssetDisplayPageEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((AssetDisplayPageEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -39,8 +39,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the UserNotificationDelivery service. Represents a row in the &quot;UserNotificationDelivery&quot; database table, with each column mapped to a property of this class.
@@ -151,16 +155,16 @@ public class UserNotificationDeliveryModelImpl extends BaseModelImpl<UserNotific
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("userNotificationDeliveryId",
-			getUserNotificationDeliveryId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("portletId", getPortletId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("notificationType", getNotificationType());
-		attributes.put("deliveryType", getDeliveryType());
-		attributes.put("deliver", isDeliver());
+		Map<String, Function<UserNotificationDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<UserNotificationDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((UserNotificationDelivery)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -170,60 +174,224 @@ public class UserNotificationDeliveryModelImpl extends BaseModelImpl<UserNotific
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<UserNotificationDelivery, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<UserNotificationDelivery, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((UserNotificationDelivery)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long userNotificationDeliveryId = (Long)attributes.get(
-				"userNotificationDeliveryId");
+	public Map<String, Function<UserNotificationDelivery, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (userNotificationDeliveryId != null) {
-			setUserNotificationDeliveryId(userNotificationDeliveryId);
-		}
+	public Map<String, BiConsumer<UserNotificationDelivery, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<UserNotificationDelivery, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserNotificationDelivery, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<UserNotificationDelivery, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<UserNotificationDelivery, Object>>();
+		Map<String, BiConsumer<UserNotificationDelivery, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<UserNotificationDelivery, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<UserNotificationDelivery, Object>() {
 
-		String portletId = (String)attributes.get("portletId");
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getMvccVersion();
+				}
 
-		if (portletId != null) {
-			setPortletId(portletId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<UserNotificationDelivery, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object mvccVersion) {
+					userNotificationDelivery.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userNotificationDeliveryId",
+			new Function<UserNotificationDelivery, Object>() {
 
-		Integer notificationType = (Integer)attributes.get("notificationType");
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getUserNotificationDeliveryId();
+				}
 
-		if (notificationType != null) {
-			setNotificationType(notificationType);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userNotificationDeliveryId",
+			new BiConsumer<UserNotificationDelivery, Object>() {
 
-		Integer deliveryType = (Integer)attributes.get("deliveryType");
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object userNotificationDeliveryId) {
+					userNotificationDelivery.setUserNotificationDeliveryId((Long)userNotificationDeliveryId);
+				}
 
-		if (deliveryType != null) {
-			setDeliveryType(deliveryType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<UserNotificationDelivery, Object>() {
 
-		Boolean deliver = (Boolean)attributes.get("deliver");
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getCompanyId();
+				}
 
-		if (deliver != null) {
-			setDeliver(deliver);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object companyId) {
+					userNotificationDelivery.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object userId) {
+					userNotificationDelivery.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"portletId",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getPortletId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"portletId",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object portletId) {
+					userNotificationDelivery.setPortletId((String)portletId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object classNameId) {
+					userNotificationDelivery.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"notificationType",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getNotificationType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"notificationType",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object notificationType) {
+					userNotificationDelivery.setNotificationType((Integer)notificationType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliveryType",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getDeliveryType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliveryType",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object deliveryType) {
+					userNotificationDelivery.setDeliveryType((Integer)deliveryType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"deliver",
+			new Function<UserNotificationDelivery, Object>() {
+
+				@Override
+				public Object apply(UserNotificationDelivery userNotificationDelivery) {
+					return userNotificationDelivery.getDeliver();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"deliver",
+			new BiConsumer<UserNotificationDelivery, Object>() {
+
+				@Override
+				public void accept(UserNotificationDelivery userNotificationDelivery, Object deliver) {
+					userNotificationDelivery.setDeliver((Boolean)deliver);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -576,26 +744,29 @@ public class UserNotificationDeliveryModelImpl extends BaseModelImpl<UserNotific
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<UserNotificationDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", userNotificationDeliveryId=");
-		sb.append(getUserNotificationDeliveryId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", portletId=");
-		sb.append(getPortletId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", notificationType=");
-		sb.append(getNotificationType());
-		sb.append(", deliveryType=");
-		sb.append(getDeliveryType());
-		sb.append(", deliver=");
-		sb.append(isDeliver());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<UserNotificationDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(UserNotificationDelivery)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -603,48 +774,27 @@ public class UserNotificationDeliveryModelImpl extends BaseModelImpl<UserNotific
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<UserNotificationDelivery, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.UserNotificationDelivery");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userNotificationDeliveryId</column-name><column-value><![CDATA[");
-		sb.append(getUserNotificationDeliveryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>portletId</column-name><column-value><![CDATA[");
-		sb.append(getPortletId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>notificationType</column-name><column-value><![CDATA[");
-		sb.append(getNotificationType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>deliveryType</column-name><column-value><![CDATA[");
-		sb.append(getDeliveryType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>deliver</column-name><column-value><![CDATA[");
-		sb.append(isDeliver());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<UserNotificationDelivery, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<UserNotificationDelivery, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(UserNotificationDelivery)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

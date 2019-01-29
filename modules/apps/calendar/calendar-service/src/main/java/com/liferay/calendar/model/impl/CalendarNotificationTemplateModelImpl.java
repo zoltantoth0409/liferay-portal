@@ -44,10 +44,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the CalendarNotificationTemplate service. Represents a row in the &quot;CalendarNotificationTemplate&quot; database table, with each column mapped to a property of this class.
@@ -227,22 +231,18 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("calendarNotificationTemplateId",
-			getCalendarNotificationTemplateId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("calendarId", getCalendarId());
-		attributes.put("notificationType", getNotificationType());
-		attributes.put("notificationTypeSettings", getNotificationTypeSettings());
-		attributes.put("notificationTemplateType", getNotificationTemplateType());
-		attributes.put("subject", getSubject());
-		attributes.put("body", getBody());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<CalendarNotificationTemplate, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<CalendarNotificationTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<CalendarNotificationTemplate, Object> attributeGetterFunction =
+				entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply(
+					(CalendarNotificationTemplate)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -252,98 +252,344 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<CalendarNotificationTemplate, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<CalendarNotificationTemplate, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((CalendarNotificationTemplate)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long calendarNotificationTemplateId = (Long)attributes.get(
-				"calendarNotificationTemplateId");
+	public Map<String, Function<CalendarNotificationTemplate, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (calendarNotificationTemplateId != null) {
-			setCalendarNotificationTemplateId(calendarNotificationTemplateId);
-		}
+	public Map<String, BiConsumer<CalendarNotificationTemplate, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<CalendarNotificationTemplate, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<CalendarNotificationTemplate, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<CalendarNotificationTemplate, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<CalendarNotificationTemplate, Object>>();
+		Map<String, BiConsumer<CalendarNotificationTemplate, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<CalendarNotificationTemplate, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object uuid) {
+					calendarNotificationTemplate.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"calendarNotificationTemplateId",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getCalendarNotificationTemplateId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"calendarNotificationTemplateId",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object calendarNotificationTemplateId) {
+					calendarNotificationTemplate.setCalendarNotificationTemplateId((Long)calendarNotificationTemplateId);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		Long calendarId = (Long)attributes.get("calendarId");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getGroupId();
+				}
 
-		if (calendarId != null) {
-			setCalendarId(calendarId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
 
-		String notificationType = (String)attributes.get("notificationType");
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object groupId) {
+					calendarNotificationTemplate.setGroupId((Long)groupId);
+				}
 
-		if (notificationType != null) {
-			setNotificationType(notificationType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		String notificationTypeSettings = (String)attributes.get(
-				"notificationTypeSettings");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getCompanyId();
+				}
 
-		if (notificationTypeSettings != null) {
-			setNotificationTypeSettings(notificationTypeSettings);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
 
-		String notificationTemplateType = (String)attributes.get(
-				"notificationTemplateType");
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object companyId) {
+					calendarNotificationTemplate.setCompanyId((Long)companyId);
+				}
 
-		if (notificationTemplateType != null) {
-			setNotificationTemplateType(notificationTemplateType);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		String subject = (String)attributes.get("subject");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getUserId();
+				}
 
-		if (subject != null) {
-			setSubject(subject);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
 
-		String body = (String)attributes.get("body");
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object userId) {
+					calendarNotificationTemplate.setUserId((Long)userId);
+				}
 
-		if (body != null) {
-			setBody(body);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<CalendarNotificationTemplate, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getUserName();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object userName) {
+					calendarNotificationTemplate.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object createDate) {
+					calendarNotificationTemplate.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object modifiedDate) {
+					calendarNotificationTemplate.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"calendarId",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getCalendarId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"calendarId",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object calendarId) {
+					calendarNotificationTemplate.setCalendarId((Long)calendarId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"notificationType",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getNotificationType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"notificationType",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object notificationType) {
+					calendarNotificationTemplate.setNotificationType((String)notificationType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"notificationTypeSettings",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getNotificationTypeSettings();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"notificationTypeSettings",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object notificationTypeSettings) {
+					calendarNotificationTemplate.setNotificationTypeSettings((String)notificationTypeSettings);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"notificationTemplateType",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getNotificationTemplateType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"notificationTemplateType",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object notificationTemplateType) {
+					calendarNotificationTemplate.setNotificationTemplateType((String)notificationTemplateType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"subject",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getSubject();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"subject",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object subject) {
+					calendarNotificationTemplate.setSubject((String)subject);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"body",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getBody();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"body",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object body) {
+					calendarNotificationTemplate.setBody((String)body);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public Object apply(CalendarNotificationTemplate calendarNotificationTemplate) {
+					return calendarNotificationTemplate.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<CalendarNotificationTemplate, Object>() {
+
+				@Override
+				public void accept(CalendarNotificationTemplate calendarNotificationTemplate, Object lastPublishDate) {
+					calendarNotificationTemplate.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -879,38 +1125,30 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<CalendarNotificationTemplate, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", calendarNotificationTemplateId=");
-		sb.append(getCalendarNotificationTemplateId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", calendarId=");
-		sb.append(getCalendarId());
-		sb.append(", notificationType=");
-		sb.append(getNotificationType());
-		sb.append(", notificationTypeSettings=");
-		sb.append(getNotificationTypeSettings());
-		sb.append(", notificationTemplateType=");
-		sb.append(getNotificationTemplateType());
-		sb.append(", subject=");
-		sb.append(getSubject());
-		sb.append(", body=");
-		sb.append(getBody());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<CalendarNotificationTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<CalendarNotificationTemplate, Object> attributeGetterFunction =
+				entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(CalendarNotificationTemplate)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -918,72 +1156,28 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(49);
+		Map<String, Function<CalendarNotificationTemplate, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.calendar.model.CalendarNotificationTemplate");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>calendarNotificationTemplateId</column-name><column-value><![CDATA[");
-		sb.append(getCalendarNotificationTemplateId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>calendarId</column-name><column-value><![CDATA[");
-		sb.append(getCalendarId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>notificationType</column-name><column-value><![CDATA[");
-		sb.append(getNotificationType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>notificationTypeSettings</column-name><column-value><![CDATA[");
-		sb.append(getNotificationTypeSettings());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>notificationTemplateType</column-name><column-value><![CDATA[");
-		sb.append(getNotificationTemplateType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>subject</column-name><column-value><![CDATA[");
-		sb.append(getSubject());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>body</column-name><column-value><![CDATA[");
-		sb.append(getBody());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<CalendarNotificationTemplate, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<CalendarNotificationTemplate, Object> attributeGetterFunction =
+				entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(CalendarNotificationTemplate)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -34,8 +34,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ResourceTypePermission service. Represents a row in the &quot;ResourceTypePermission&quot; database table, with each column mapped to a property of this class.
@@ -143,13 +147,16 @@ public class ResourceTypePermissionModelImpl extends BaseModelImpl<ResourceTypeP
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("resourceTypePermissionId", getResourceTypePermissionId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("name", getName());
-		attributes.put("roleId", getRoleId());
-		attributes.put("actionIds", getActionIds());
+		Map<String, Function<ResourceTypePermission, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ResourceTypePermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceTypePermission, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ResourceTypePermission)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -159,48 +166,184 @@ public class ResourceTypePermissionModelImpl extends BaseModelImpl<ResourceTypeP
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<ResourceTypePermission, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ResourceTypePermission, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ResourceTypePermission)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long resourceTypePermissionId = (Long)attributes.get(
-				"resourceTypePermissionId");
+	public Map<String, Function<ResourceTypePermission, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (resourceTypePermissionId != null) {
-			setResourceTypePermissionId(resourceTypePermissionId);
-		}
+	public Map<String, BiConsumer<ResourceTypePermission, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<ResourceTypePermission, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ResourceTypePermission, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<ResourceTypePermission, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ResourceTypePermission, Object>>();
+		Map<String, BiConsumer<ResourceTypePermission, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ResourceTypePermission, ?>>();
 
-		Long groupId = (Long)attributes.get("groupId");
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<ResourceTypePermission, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getMvccVersion();
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<ResourceTypePermission, Object>() {
 
-		Long roleId = (Long)attributes.get("roleId");
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object mvccVersion) {
+					resourceTypePermission.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (roleId != null) {
-			setRoleId(roleId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"resourceTypePermissionId",
+			new Function<ResourceTypePermission, Object>() {
 
-		Long actionIds = (Long)attributes.get("actionIds");
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getResourceTypePermissionId();
+				}
 
-		if (actionIds != null) {
-			setActionIds(actionIds);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"resourceTypePermissionId",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object resourceTypePermissionId) {
+					resourceTypePermission.setResourceTypePermissionId((Long)resourceTypePermissionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ResourceTypePermission, Object>() {
+
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object companyId) {
+					resourceTypePermission.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ResourceTypePermission, Object>() {
+
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object groupId) {
+					resourceTypePermission.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<ResourceTypePermission, Object>() {
+
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object name) {
+					resourceTypePermission.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"roleId",
+			new Function<ResourceTypePermission, Object>() {
+
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getRoleId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"roleId",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object roleId) {
+					resourceTypePermission.setRoleId((Long)roleId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"actionIds",
+			new Function<ResourceTypePermission, Object>() {
+
+				@Override
+				public Object apply(ResourceTypePermission resourceTypePermission) {
+					return resourceTypePermission.getActionIds();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"actionIds",
+			new BiConsumer<ResourceTypePermission, Object>() {
+
+				@Override
+				public void accept(ResourceTypePermission resourceTypePermission, Object actionIds) {
+					resourceTypePermission.setActionIds((Long)actionIds);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -470,22 +613,29 @@ public class ResourceTypePermissionModelImpl extends BaseModelImpl<ResourceTypeP
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<ResourceTypePermission, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", resourceTypePermissionId=");
-		sb.append(getResourceTypePermissionId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", roleId=");
-		sb.append(getRoleId());
-		sb.append(", actionIds=");
-		sb.append(getActionIds());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ResourceTypePermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceTypePermission, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(ResourceTypePermission)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -493,40 +643,27 @@ public class ResourceTypePermissionModelImpl extends BaseModelImpl<ResourceTypeP
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<ResourceTypePermission, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.ResourceTypePermission");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>resourceTypePermissionId</column-name><column-value><![CDATA[");
-		sb.append(getResourceTypePermissionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>roleId</column-name><column-value><![CDATA[");
-		sb.append(getRoleId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>actionIds</column-name><column-value><![CDATA[");
-		sb.append(getActionIds());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ResourceTypePermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ResourceTypePermission, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(ResourceTypePermission)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -35,8 +35,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DLSyncEvent service. Represents a row in the &quot;DLSyncEvent&quot; database table, with each column mapped to a property of this class.
@@ -137,12 +141,15 @@ public class DLSyncEventModelImpl extends BaseModelImpl<DLSyncEvent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("syncEventId", getSyncEventId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("modifiedTime", getModifiedTime());
-		attributes.put("event", getEvent());
-		attributes.put("type", getType());
-		attributes.put("typePK", getTypePK());
+		Map<String, Function<DLSyncEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DLSyncEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLSyncEvent, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DLSyncEvent)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -152,41 +159,160 @@ public class DLSyncEventModelImpl extends BaseModelImpl<DLSyncEvent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long syncEventId = (Long)attributes.get("syncEventId");
+		Map<String, BiConsumer<DLSyncEvent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (syncEventId != null) {
-			setSyncEventId(syncEventId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DLSyncEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DLSyncEvent)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<DLSyncEvent, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<DLSyncEvent, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long modifiedTime = (Long)attributes.get("modifiedTime");
+	private static final Map<String, Function<DLSyncEvent, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLSyncEvent, Object>> _attributeSetterBiConsumers;
 
-		if (modifiedTime != null) {
-			setModifiedTime(modifiedTime);
-		}
+	static {
+		Map<String, Function<DLSyncEvent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLSyncEvent, Object>>();
+		Map<String, BiConsumer<DLSyncEvent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLSyncEvent, ?>>();
 
-		String event = (String)attributes.get("event");
 
-		if (event != null) {
-			setEvent(event);
-		}
+		attributeGetterFunctions.put(
+			"syncEventId",
+			new Function<DLSyncEvent, Object>() {
 
-		String type = (String)attributes.get("type");
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getSyncEventId();
+				}
 
-		if (type != null) {
-			setType(type);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"syncEventId",
+			new BiConsumer<DLSyncEvent, Object>() {
 
-		Long typePK = (Long)attributes.get("typePK");
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object syncEventId) {
+					dlSyncEvent.setSyncEventId((Long)syncEventId);
+				}
 
-		if (typePK != null) {
-			setTypePK(typePK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DLSyncEvent, Object>() {
+
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DLSyncEvent, Object>() {
+
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object companyId) {
+					dlSyncEvent.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedTime",
+			new Function<DLSyncEvent, Object>() {
+
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getModifiedTime();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedTime",
+			new BiConsumer<DLSyncEvent, Object>() {
+
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object modifiedTime) {
+					dlSyncEvent.setModifiedTime((Long)modifiedTime);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"event",
+			new Function<DLSyncEvent, Object>() {
+
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getEvent();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"event",
+			new BiConsumer<DLSyncEvent, Object>() {
+
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object event) {
+					dlSyncEvent.setEvent((String)event);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"type",
+			new Function<DLSyncEvent, Object>() {
+
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"type",
+			new BiConsumer<DLSyncEvent, Object>() {
+
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object type) {
+					dlSyncEvent.setType((String)type);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typePK",
+			new Function<DLSyncEvent, Object>() {
+
+				@Override
+				public Object apply(DLSyncEvent dlSyncEvent) {
+					return dlSyncEvent.getTypePK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typePK",
+			new BiConsumer<DLSyncEvent, Object>() {
+
+				@Override
+				public void accept(DLSyncEvent dlSyncEvent, Object typePK) {
+					dlSyncEvent.setTypePK((Long)typePK);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -432,20 +558,27 @@ public class DLSyncEventModelImpl extends BaseModelImpl<DLSyncEvent>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		Map<String, Function<DLSyncEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{syncEventId=");
-		sb.append(getSyncEventId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", modifiedTime=");
-		sb.append(getModifiedTime());
-		sb.append(", event=");
-		sb.append(getEvent());
-		sb.append(", type=");
-		sb.append(getType());
-		sb.append(", typePK=");
-		sb.append(getTypePK());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DLSyncEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLSyncEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DLSyncEvent)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -453,36 +586,25 @@ public class DLSyncEventModelImpl extends BaseModelImpl<DLSyncEvent>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		Map<String, Function<DLSyncEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.document.library.sync.model.DLSyncEvent");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>syncEventId</column-name><column-value><![CDATA[");
-		sb.append(getSyncEventId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedTime</column-name><column-value><![CDATA[");
-		sb.append(getModifiedTime());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>event</column-name><column-value><![CDATA[");
-		sb.append(getEvent());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typePK</column-name><column-value><![CDATA[");
-		sb.append(getTypePK());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DLSyncEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLSyncEvent, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DLSyncEvent)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

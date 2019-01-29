@@ -37,9 +37,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Country service. Represents a row in the &quot;Country&quot; database table, with each column mapped to a property of this class.
@@ -196,15 +200,15 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("countryId", getCountryId());
-		attributes.put("name", getName());
-		attributes.put("a2", getA2());
-		attributes.put("a3", getA3());
-		attributes.put("number", getNumber());
-		attributes.put("idd", getIdd());
-		attributes.put("zipRequired", isZipRequired());
-		attributes.put("active", isActive());
+		Map<String, Function<Country, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Country, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Country, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Country)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -214,59 +218,219 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Country, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Country, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Country)this, entry.getValue());
+			}
 		}
+	}
 
-		Long countryId = (Long)attributes.get("countryId");
+	public Map<String, Function<Country, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (countryId != null) {
-			setCountryId(countryId);
-		}
+	public Map<String, BiConsumer<Country, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		String name = (String)attributes.get("name");
+	private static final Map<String, Function<Country, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Country, Object>> _attributeSetterBiConsumers;
 
-		if (name != null) {
-			setName(name);
-		}
+	static {
+		Map<String, Function<Country, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Country, Object>>();
+		Map<String, BiConsumer<Country, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Country, ?>>();
 
-		String a2 = (String)attributes.get("a2");
 
-		if (a2 != null) {
-			setA2(a2);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Country, Object>() {
 
-		String a3 = (String)attributes.get("a3");
+				@Override
+				public Object apply(Country country) {
+					return country.getMvccVersion();
+				}
 
-		if (a3 != null) {
-			setA3(a3);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Country, Object>() {
 
-		String number = (String)attributes.get("number");
+				@Override
+				public void accept(Country country, Object mvccVersion) {
+					country.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (number != null) {
-			setNumber(number);
-		}
+			});
+		attributeGetterFunctions.put(
+			"countryId",
+			new Function<Country, Object>() {
 
-		String idd = (String)attributes.get("idd");
+				@Override
+				public Object apply(Country country) {
+					return country.getCountryId();
+				}
 
-		if (idd != null) {
-			setIdd(idd);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"countryId",
+			new BiConsumer<Country, Object>() {
 
-		Boolean zipRequired = (Boolean)attributes.get("zipRequired");
+				@Override
+				public void accept(Country country, Object countryId) {
+					country.setCountryId((Long)countryId);
+				}
 
-		if (zipRequired != null) {
-			setZipRequired(zipRequired);
-		}
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<Country, Object>() {
 
-		Boolean active = (Boolean)attributes.get("active");
+				@Override
+				public Object apply(Country country) {
+					return country.getName();
+				}
 
-		if (active != null) {
-			setActive(active);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object name) {
+					country.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"a2",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getA2();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"a2",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object a2) {
+					country.setA2((String)a2);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"a3",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getA3();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"a3",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object a3) {
+					country.setA3((String)a3);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"number",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"number",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object number) {
+					country.setNumber((String)number);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"idd",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getIdd();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"idd",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object idd) {
+					country.setIdd((String)idd);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"zipRequired",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getZipRequired();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"zipRequired",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object zipRequired) {
+					country.setZipRequired((Boolean)zipRequired);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"active",
+			new Function<Country, Object>() {
+
+				@Override
+				public Object apply(Country country) {
+					return country.getActive();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"active",
+			new BiConsumer<Country, Object>() {
+
+				@Override
+				public void accept(Country country, Object active) {
+					country.setActive((Boolean)active);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -617,26 +781,27 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<Country, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", countryId=");
-		sb.append(getCountryId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", a2=");
-		sb.append(getA2());
-		sb.append(", a3=");
-		sb.append(getA3());
-		sb.append(", number=");
-		sb.append(getNumber());
-		sb.append(", idd=");
-		sb.append(getIdd());
-		sb.append(", zipRequired=");
-		sb.append(isZipRequired());
-		sb.append(", active=");
-		sb.append(isActive());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Country, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Country, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Country)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -644,48 +809,25 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<Country, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Country");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>countryId</column-name><column-value><![CDATA[");
-		sb.append(getCountryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>a2</column-name><column-value><![CDATA[");
-		sb.append(getA2());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>a3</column-name><column-value><![CDATA[");
-		sb.append(getA3());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>number</column-name><column-value><![CDATA[");
-		sb.append(getNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>idd</column-name><column-value><![CDATA[");
-		sb.append(getIdd());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>zipRequired</column-name><column-value><![CDATA[");
-		sb.append(isZipRequired());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>active</column-name><column-value><![CDATA[");
-		sb.append(isActive());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Country, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Country, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Country)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

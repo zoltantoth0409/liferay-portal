@@ -39,9 +39,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the DLFileRank service. Represents a row in the &quot;DLFileRank&quot; database table, with each column mapped to a property of this class.
@@ -148,13 +152,15 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("fileRankId", getFileRankId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("fileEntryId", getFileEntryId());
-		attributes.put("active", isActive());
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((DLFileRank)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -164,47 +170,180 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long fileRankId = (Long)attributes.get("fileRankId");
+		Map<String, BiConsumer<DLFileRank, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (fileRankId != null) {
-			setFileRankId(fileRankId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<DLFileRank, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((DLFileRank)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<DLFileRank, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<DLFileRank, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<DLFileRank, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFileRank, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFileRank, Object>>();
+		Map<String, BiConsumer<DLFileRank, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFileRank, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"fileRankId",
+			new Function<DLFileRank, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getFileRankId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"fileRankId",
+			new BiConsumer<DLFileRank, Object>() {
 
-		Long fileEntryId = (Long)attributes.get("fileEntryId");
+				@Override
+				public void accept(DLFileRank dlFileRank, Object fileRankId) {
+					dlFileRank.setFileRankId((Long)fileRankId);
+				}
 
-		if (fileEntryId != null) {
-			setFileEntryId(fileEntryId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<DLFileRank, Object>() {
 
-		Boolean active = (Boolean)attributes.get("active");
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getGroupId();
+				}
 
-		if (active != null) {
-			setActive(active);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object groupId) {
+					dlFileRank.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<DLFileRank, Object>() {
+
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object companyId) {
+					dlFileRank.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<DLFileRank, Object>() {
+
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object userId) {
+					dlFileRank.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<DLFileRank, Object>() {
+
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object createDate) {
+					dlFileRank.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"fileEntryId",
+			new Function<DLFileRank, Object>() {
+
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getFileEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"fileEntryId",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object fileEntryId) {
+					dlFileRank.setFileEntryId((Long)fileEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"active",
+			new Function<DLFileRank, Object>() {
+
+				@Override
+				public Object apply(DLFileRank dlFileRank) {
+					return dlFileRank.getActive();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"active",
+			new BiConsumer<DLFileRank, Object>() {
+
+				@Override
+				public void accept(DLFileRank dlFileRank, Object active) {
+					dlFileRank.setActive((Boolean)active);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -513,22 +652,27 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{fileRankId=");
-		sb.append(getFileRankId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", fileEntryId=");
-		sb.append(getFileEntryId());
-		sb.append(", active=");
-		sb.append(isActive());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((DLFileRank)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -536,40 +680,25 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.document.library.file.rank.model.DLFileRank");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>fileRankId</column-name><column-value><![CDATA[");
-		sb.append(getFileRankId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFileEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>active</column-name><column-value><![CDATA[");
-		sb.append(isActive());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((DLFileRank)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -45,10 +45,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Phone service. Represents a row in the &quot;Phone&quot; database table, with each column mapped to a property of this class.
@@ -222,20 +226,15 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("uuid", getUuid());
-		attributes.put("phoneId", getPhoneId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("number", getNumber());
-		attributes.put("extension", getExtension());
-		attributes.put("typeId", getTypeId());
-		attributes.put("primary", isPrimary());
+		Map<String, Function<Phone, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Phone, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Phone, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Phone)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -245,89 +244,319 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Phone, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Phone, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Phone)this, entry.getValue());
+			}
 		}
+	}
 
-		String uuid = (String)attributes.get("uuid");
+	public Map<String, Function<Phone, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (uuid != null) {
-			setUuid(uuid);
-		}
+	public Map<String, BiConsumer<Phone, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long phoneId = (Long)attributes.get("phoneId");
+	private static final Map<String, Function<Phone, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Phone, Object>> _attributeSetterBiConsumers;
 
-		if (phoneId != null) {
-			setPhoneId(phoneId);
-		}
+	static {
+		Map<String, Function<Phone, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Phone, Object>>();
+		Map<String, BiConsumer<Phone, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Phone, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Phone, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getMvccVersion();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Phone, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(Phone phone, Object mvccVersion) {
+					phone.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<Phone, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<Phone, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(Phone phone, Object uuid) {
+					phone.setUuid((String)uuid);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"phoneId",
+			new Function<Phone, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getPhoneId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"phoneId",
+			new BiConsumer<Phone, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(Phone phone, Object phoneId) {
+					phone.setPhoneId((Long)phoneId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Phone, Object>() {
 
-		String number = (String)attributes.get("number");
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getCompanyId();
+				}
 
-		if (number != null) {
-			setNumber(number);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Phone, Object>() {
 
-		String extension = (String)attributes.get("extension");
+				@Override
+				public void accept(Phone phone, Object companyId) {
+					phone.setCompanyId((Long)companyId);
+				}
 
-		if (extension != null) {
-			setExtension(extension);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<Phone, Object>() {
 
-		Long typeId = (Long)attributes.get("typeId");
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getUserId();
+				}
 
-		if (typeId != null) {
-			setTypeId(typeId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<Phone, Object>() {
 
-		Boolean primary = (Boolean)attributes.get("primary");
+				@Override
+				public void accept(Phone phone, Object userId) {
+					phone.setUserId((Long)userId);
+				}
 
-		if (primary != null) {
-			setPrimary(primary);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object userName) {
+					phone.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object createDate) {
+					phone.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object modifiedDate) {
+					phone.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object classNameId) {
+					phone.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object classPK) {
+					phone.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"number",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getNumber();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"number",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object number) {
+					phone.setNumber((String)number);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"extension",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getExtension();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"extension",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object extension) {
+					phone.setExtension((String)extension);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"typeId",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getTypeId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"typeId",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object typeId) {
+					phone.setTypeId((Long)typeId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"primary",
+			new Function<Phone, Object>() {
+
+				@Override
+				public Object apply(Phone phone) {
+					return phone.getPrimary();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"primary",
+			new BiConsumer<Phone, Object>() {
+
+				@Override
+				public void accept(Phone phone, Object primary) {
+					phone.setPrimary((Boolean)primary);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -837,36 +1066,27 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(29);
+		Map<String, Function<Phone, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", uuid=");
-		sb.append(getUuid());
-		sb.append(", phoneId=");
-		sb.append(getPhoneId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", number=");
-		sb.append(getNumber());
-		sb.append(", extension=");
-		sb.append(getExtension());
-		sb.append(", typeId=");
-		sb.append(getTypeId());
-		sb.append(", primary=");
-		sb.append(isPrimary());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Phone, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Phone, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Phone)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -874,68 +1094,25 @@ public class PhoneModelImpl extends BaseModelImpl<Phone> implements PhoneModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(46);
+		Map<String, Function<Phone, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Phone");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>phoneId</column-name><column-value><![CDATA[");
-		sb.append(getPhoneId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>number</column-name><column-value><![CDATA[");
-		sb.append(getNumber());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>extension</column-name><column-value><![CDATA[");
-		sb.append(getExtension());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>typeId</column-name><column-value><![CDATA[");
-		sb.append(getTypeId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>primary</column-name><column-value><![CDATA[");
-		sb.append(isPrimary());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Phone, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Phone, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Phone)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

@@ -40,9 +40,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the HtmlPreviewEntry service. Represents a row in the &quot;HtmlPreviewEntry&quot; database table, with each column mapped to a property of this class.
@@ -153,16 +157,16 @@ public class HtmlPreviewEntryModelImpl extends BaseModelImpl<HtmlPreviewEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("htmlPreviewEntryId", getHtmlPreviewEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("fileEntryId", getFileEntryId());
+		Map<String, Function<HtmlPreviewEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<HtmlPreviewEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<HtmlPreviewEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((HtmlPreviewEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -172,65 +176,242 @@ public class HtmlPreviewEntryModelImpl extends BaseModelImpl<HtmlPreviewEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long htmlPreviewEntryId = (Long)attributes.get("htmlPreviewEntryId");
+		Map<String, BiConsumer<HtmlPreviewEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (htmlPreviewEntryId != null) {
-			setHtmlPreviewEntryId(htmlPreviewEntryId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<HtmlPreviewEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((HtmlPreviewEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<HtmlPreviewEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<HtmlPreviewEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<HtmlPreviewEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<HtmlPreviewEntry, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<HtmlPreviewEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<HtmlPreviewEntry, Object>>();
+		Map<String, BiConsumer<HtmlPreviewEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<HtmlPreviewEntry, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"htmlPreviewEntryId",
+			new Function<HtmlPreviewEntry, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getHtmlPreviewEntryId();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"htmlPreviewEntryId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object htmlPreviewEntryId) {
+					htmlPreviewEntry.setHtmlPreviewEntryId((Long)htmlPreviewEntryId);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<HtmlPreviewEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getGroupId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object groupId) {
+					htmlPreviewEntry.setGroupId((Long)groupId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<HtmlPreviewEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getCompanyId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
 
-		Long fileEntryId = (Long)attributes.get("fileEntryId");
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object companyId) {
+					htmlPreviewEntry.setCompanyId((Long)companyId);
+				}
 
-		if (fileEntryId != null) {
-			setFileEntryId(fileEntryId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getUserId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object userId) {
+					htmlPreviewEntry.setUserId((Long)userId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getUserName();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object userName) {
+					htmlPreviewEntry.setUserName((String)userName);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object createDate) {
+					htmlPreviewEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object modifiedDate) {
+					htmlPreviewEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object classNameId) {
+					htmlPreviewEntry.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object classPK) {
+					htmlPreviewEntry.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"fileEntryId",
+			new Function<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public Object apply(HtmlPreviewEntry htmlPreviewEntry) {
+					return htmlPreviewEntry.getFileEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"fileEntryId",
+			new BiConsumer<HtmlPreviewEntry, Object>() {
+
+				@Override
+				public void accept(HtmlPreviewEntry htmlPreviewEntry, Object fileEntryId) {
+					htmlPreviewEntry.setFileEntryId((Long)fileEntryId);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -585,28 +766,28 @@ public class HtmlPreviewEntryModelImpl extends BaseModelImpl<HtmlPreviewEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		Map<String, Function<HtmlPreviewEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{htmlPreviewEntryId=");
-		sb.append(getHtmlPreviewEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", fileEntryId=");
-		sb.append(getFileEntryId());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<HtmlPreviewEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<HtmlPreviewEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((HtmlPreviewEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -614,52 +795,26 @@ public class HtmlPreviewEntryModelImpl extends BaseModelImpl<HtmlPreviewEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		Map<String, Function<HtmlPreviewEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.html.preview.model.HtmlPreviewEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>htmlPreviewEntryId</column-name><column-value><![CDATA[");
-		sb.append(getHtmlPreviewEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>fileEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFileEntryId());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<HtmlPreviewEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<HtmlPreviewEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((HtmlPreviewEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

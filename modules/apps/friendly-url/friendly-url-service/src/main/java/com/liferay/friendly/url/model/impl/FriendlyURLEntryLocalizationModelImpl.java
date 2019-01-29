@@ -37,8 +37,12 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the FriendlyURLEntryLocalization service. Represents a row in the &quot;FriendlyURLEntryLocalization&quot; database table, with each column mapped to a property of this class.
@@ -149,16 +153,18 @@ public class FriendlyURLEntryLocalizationModelImpl extends BaseModelImpl<Friendl
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("friendlyURLEntryLocalizationId",
-			getFriendlyURLEntryLocalizationId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("friendlyURLEntryId", getFriendlyURLEntryId());
-		attributes.put("languageId", getLanguageId());
-		attributes.put("urlTitle", getUrlTitle());
-		attributes.put("groupId", getGroupId());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
+		Map<String, Function<FriendlyURLEntryLocalization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<FriendlyURLEntryLocalization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<FriendlyURLEntryLocalization, Object> attributeGetterFunction =
+				entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply(
+					(FriendlyURLEntryLocalization)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -168,60 +174,224 @@ public class FriendlyURLEntryLocalizationModelImpl extends BaseModelImpl<Friendl
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<FriendlyURLEntryLocalization, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<FriendlyURLEntryLocalization, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((FriendlyURLEntryLocalization)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long friendlyURLEntryLocalizationId = (Long)attributes.get(
-				"friendlyURLEntryLocalizationId");
+	public Map<String, Function<FriendlyURLEntryLocalization, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (friendlyURLEntryLocalizationId != null) {
-			setFriendlyURLEntryLocalizationId(friendlyURLEntryLocalizationId);
-		}
+	public Map<String, BiConsumer<FriendlyURLEntryLocalization, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<FriendlyURLEntryLocalization, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<FriendlyURLEntryLocalization, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<FriendlyURLEntryLocalization, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<FriendlyURLEntryLocalization, Object>>();
+		Map<String, BiConsumer<FriendlyURLEntryLocalization, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<FriendlyURLEntryLocalization, ?>>();
 
-		Long friendlyURLEntryId = (Long)attributes.get("friendlyURLEntryId");
 
-		if (friendlyURLEntryId != null) {
-			setFriendlyURLEntryId(friendlyURLEntryId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<FriendlyURLEntryLocalization, Object>() {
 
-		String languageId = (String)attributes.get("languageId");
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getMvccVersion();
+				}
 
-		if (languageId != null) {
-			setLanguageId(languageId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
 
-		String urlTitle = (String)attributes.get("urlTitle");
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object mvccVersion) {
+					friendlyURLEntryLocalization.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (urlTitle != null) {
-			setUrlTitle(urlTitle);
-		}
+			});
+		attributeGetterFunctions.put(
+			"friendlyURLEntryLocalizationId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
 
-		Long groupId = (Long)attributes.get("groupId");
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getFriendlyURLEntryLocalizationId();
+				}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"friendlyURLEntryLocalizationId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object friendlyURLEntryLocalizationId) {
+					friendlyURLEntryLocalization.setFriendlyURLEntryLocalizationId((Long)friendlyURLEntryLocalizationId);
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getCompanyId();
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object companyId) {
+					friendlyURLEntryLocalization.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"friendlyURLEntryId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getFriendlyURLEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"friendlyURLEntryId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object friendlyURLEntryId) {
+					friendlyURLEntryLocalization.setFriendlyURLEntryId((Long)friendlyURLEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"languageId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getLanguageId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"languageId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object languageId) {
+					friendlyURLEntryLocalization.setLanguageId((String)languageId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"urlTitle",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getUrlTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"urlTitle",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object urlTitle) {
+					friendlyURLEntryLocalization.setUrlTitle((String)urlTitle);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object groupId) {
+					friendlyURLEntryLocalization.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object classNameId) {
+					friendlyURLEntryLocalization.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public Object apply(FriendlyURLEntryLocalization friendlyURLEntryLocalization) {
+					return friendlyURLEntryLocalization.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<FriendlyURLEntryLocalization, Object>() {
+
+				@Override
+				public void accept(FriendlyURLEntryLocalization friendlyURLEntryLocalization, Object classPK) {
+					friendlyURLEntryLocalization.setClassPK((Long)classPK);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -564,26 +734,30 @@ public class FriendlyURLEntryLocalizationModelImpl extends BaseModelImpl<Friendl
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<FriendlyURLEntryLocalization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", friendlyURLEntryLocalizationId=");
-		sb.append(getFriendlyURLEntryLocalizationId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", friendlyURLEntryId=");
-		sb.append(getFriendlyURLEntryId());
-		sb.append(", languageId=");
-		sb.append(getLanguageId());
-		sb.append(", urlTitle=");
-		sb.append(getUrlTitle());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<FriendlyURLEntryLocalization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<FriendlyURLEntryLocalization, Object> attributeGetterFunction =
+				entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply(
+					(FriendlyURLEntryLocalization)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -591,48 +765,28 @@ public class FriendlyURLEntryLocalizationModelImpl extends BaseModelImpl<Friendl
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<FriendlyURLEntryLocalization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.friendly.url.model.FriendlyURLEntryLocalization");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>friendlyURLEntryLocalizationId</column-name><column-value><![CDATA[");
-		sb.append(getFriendlyURLEntryLocalizationId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>friendlyURLEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFriendlyURLEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>languageId</column-name><column-value><![CDATA[");
-		sb.append(getLanguageId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
-		sb.append(getUrlTitle());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<FriendlyURLEntryLocalization, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<FriendlyURLEntryLocalization, Object> attributeGetterFunction =
+				entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply(
+					(FriendlyURLEntryLocalization)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

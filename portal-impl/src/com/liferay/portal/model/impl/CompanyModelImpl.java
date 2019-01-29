@@ -37,9 +37,13 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the Company service. Represents a row in the &quot;Company&quot; database table, with each column mapped to a property of this class.
@@ -203,17 +207,15 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("accountId", getAccountId());
-		attributes.put("webId", getWebId());
-		attributes.put("key", getKey());
-		attributes.put("mx", getMx());
-		attributes.put("homeURL", getHomeURL());
-		attributes.put("logoId", getLogoId());
-		attributes.put("system", isSystem());
-		attributes.put("maxUsers", getMaxUsers());
-		attributes.put("active", isActive());
+		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Company, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((Company)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -223,71 +225,259 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long mvccVersion = (Long)attributes.get("mvccVersion");
+		Map<String, BiConsumer<Company, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (mvccVersion != null) {
-			setMvccVersion(mvccVersion);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<Company, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((Company)this, entry.getValue());
+			}
 		}
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	public Map<String, Function<Company, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	public Map<String, BiConsumer<Company, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long accountId = (Long)attributes.get("accountId");
+	private static final Map<String, Function<Company, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Company, Object>> _attributeSetterBiConsumers;
 
-		if (accountId != null) {
-			setAccountId(accountId);
-		}
+	static {
+		Map<String, Function<Company, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Company, Object>>();
+		Map<String, BiConsumer<Company, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Company, ?>>();
 
-		String webId = (String)attributes.get("webId");
 
-		if (webId != null) {
-			setWebId(webId);
-		}
+		attributeGetterFunctions.put(
+			"mvccVersion",
+			new Function<Company, Object>() {
 
-		String key = (String)attributes.get("key");
+				@Override
+				public Object apply(Company company) {
+					return company.getMvccVersion();
+				}
 
-		if (key != null) {
-			setKey(key);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"mvccVersion",
+			new BiConsumer<Company, Object>() {
 
-		String mx = (String)attributes.get("mx");
+				@Override
+				public void accept(Company company, Object mvccVersion) {
+					company.setMvccVersion((Long)mvccVersion);
+				}
 
-		if (mx != null) {
-			setMx(mx);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<Company, Object>() {
 
-		String homeURL = (String)attributes.get("homeURL");
+				@Override
+				public Object apply(Company company) {
+					return company.getCompanyId();
+				}
 
-		if (homeURL != null) {
-			setHomeURL(homeURL);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<Company, Object>() {
 
-		Long logoId = (Long)attributes.get("logoId");
+				@Override
+				public void accept(Company company, Object companyId) {
+					company.setCompanyId((Long)companyId);
+				}
 
-		if (logoId != null) {
-			setLogoId(logoId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"accountId",
+			new Function<Company, Object>() {
 
-		Boolean system = (Boolean)attributes.get("system");
+				@Override
+				public Object apply(Company company) {
+					return company.getAccountId();
+				}
 
-		if (system != null) {
-			setSystem(system);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"accountId",
+			new BiConsumer<Company, Object>() {
 
-		Integer maxUsers = (Integer)attributes.get("maxUsers");
+				@Override
+				public void accept(Company company, Object accountId) {
+					company.setAccountId((Long)accountId);
+				}
 
-		if (maxUsers != null) {
-			setMaxUsers(maxUsers);
-		}
+			});
+		attributeGetterFunctions.put(
+			"webId",
+			new Function<Company, Object>() {
 
-		Boolean active = (Boolean)attributes.get("active");
+				@Override
+				public Object apply(Company company) {
+					return company.getWebId();
+				}
 
-		if (active != null) {
-			setActive(active);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"webId",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object webId) {
+					company.setWebId((String)webId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"key",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"key",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object key) {
+					company.setKey((String)key);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"mx",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getMx();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"mx",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object mx) {
+					company.setMx((String)mx);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"homeURL",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getHomeURL();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"homeURL",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object homeURL) {
+					company.setHomeURL((String)homeURL);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"logoId",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getLogoId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"logoId",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object logoId) {
+					company.setLogoId((Long)logoId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"system",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getSystem();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"system",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object system) {
+					company.setSystem((Boolean)system);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"maxUsers",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getMaxUsers();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"maxUsers",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object maxUsers) {
+					company.setMaxUsers((Integer)maxUsers);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"active",
+			new Function<Company, Object>() {
+
+				@Override
+				public Object apply(Company company) {
+					return company.getActive();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"active",
+			new BiConsumer<Company, Object>() {
+
+				@Override
+				public void accept(Company company, Object active) {
+					company.setActive((Boolean)active);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -695,30 +885,27 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{mvccVersion=");
-		sb.append(getMvccVersion());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", accountId=");
-		sb.append(getAccountId());
-		sb.append(", webId=");
-		sb.append(getWebId());
-		sb.append(", key=");
-		sb.append(getKey());
-		sb.append(", mx=");
-		sb.append(getMx());
-		sb.append(", homeURL=");
-		sb.append(getHomeURL());
-		sb.append(", logoId=");
-		sb.append(getLogoId());
-		sb.append(", system=");
-		sb.append(isSystem());
-		sb.append(", maxUsers=");
-		sb.append(getMaxUsers());
-		sb.append(", active=");
-		sb.append(isActive());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Company, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((Company)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -726,56 +913,25 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.portal.kernel.model.Company");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
-		sb.append(getMvccVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>accountId</column-name><column-value><![CDATA[");
-		sb.append(getAccountId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>webId</column-name><column-value><![CDATA[");
-		sb.append(getWebId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>key</column-name><column-value><![CDATA[");
-		sb.append(getKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>mx</column-name><column-value><![CDATA[");
-		sb.append(getMx());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>homeURL</column-name><column-value><![CDATA[");
-		sb.append(getHomeURL());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>logoId</column-name><column-value><![CDATA[");
-		sb.append(getLogoId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>system</column-name><column-value><![CDATA[");
-		sb.append(isSystem());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>maxUsers</column-name><column-value><![CDATA[");
-		sb.append(getMaxUsers());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>active</column-name><column-value><![CDATA[");
-		sb.append(isActive());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<Company, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((Company)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

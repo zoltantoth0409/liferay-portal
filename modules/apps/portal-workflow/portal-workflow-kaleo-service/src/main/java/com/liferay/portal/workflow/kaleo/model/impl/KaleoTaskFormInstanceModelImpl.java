@@ -37,9 +37,13 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the KaleoTaskFormInstance service. Represents a row in the &quot;KaleoTaskFormInstance&quot; database table, with each column mapped to a property of this class.
@@ -167,23 +171,16 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("kaleoTaskFormInstanceId", getKaleoTaskFormInstanceId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("kaleoDefinitionVersionId", getKaleoDefinitionVersionId());
-		attributes.put("kaleoInstanceId", getKaleoInstanceId());
-		attributes.put("kaleoTaskId", getKaleoTaskId());
-		attributes.put("kaleoTaskInstanceTokenId", getKaleoTaskInstanceTokenId());
-		attributes.put("kaleoTaskFormId", getKaleoTaskFormId());
-		attributes.put("formValues", getFormValues());
-		attributes.put("formValueEntryGroupId", getFormValueEntryGroupId());
-		attributes.put("formValueEntryId", getFormValueEntryId());
-		attributes.put("formValueEntryUuid", getFormValueEntryUuid());
-		attributes.put("metadata", getMetadata());
+		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((KaleoTaskFormInstance)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -193,111 +190,383 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long kaleoTaskFormInstanceId = (Long)attributes.get(
-				"kaleoTaskFormInstanceId");
+		Map<String, BiConsumer<KaleoTaskFormInstance, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (kaleoTaskFormInstanceId != null) {
-			setKaleoTaskFormInstanceId(kaleoTaskFormInstanceId);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<KaleoTaskFormInstance, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((KaleoTaskFormInstance)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	public Map<String, Function<KaleoTaskFormInstance, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	public Map<String, BiConsumer<KaleoTaskFormInstance, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long companyId = (Long)attributes.get("companyId");
+	private static final Map<String, Function<KaleoTaskFormInstance, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoTaskFormInstance, Object>> _attributeSetterBiConsumers;
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+	static {
+		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KaleoTaskFormInstance, Object>>();
+		Map<String, BiConsumer<KaleoTaskFormInstance, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KaleoTaskFormInstance, ?>>();
 
-		Long userId = (Long)attributes.get("userId");
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+		attributeGetterFunctions.put(
+			"kaleoTaskFormInstanceId",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoTaskFormInstanceId();
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoTaskFormInstanceId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskFormInstanceId) {
+					kaleoTaskFormInstance.setKaleoTaskFormInstanceId((Long)kaleoTaskFormInstanceId);
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getGroupId();
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		Long kaleoDefinitionVersionId = (Long)attributes.get(
-				"kaleoDefinitionVersionId");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object groupId) {
+					kaleoTaskFormInstance.setGroupId((Long)groupId);
+				}
 
-		if (kaleoDefinitionVersionId != null) {
-			setKaleoDefinitionVersionId(kaleoDefinitionVersionId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		Long kaleoInstanceId = (Long)attributes.get("kaleoInstanceId");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getCompanyId();
+				}
 
-		if (kaleoInstanceId != null) {
-			setKaleoInstanceId(kaleoInstanceId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		Long kaleoTaskId = (Long)attributes.get("kaleoTaskId");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object companyId) {
+					kaleoTaskFormInstance.setCompanyId((Long)companyId);
+				}
 
-		if (kaleoTaskId != null) {
-			setKaleoTaskId(kaleoTaskId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		Long kaleoTaskInstanceTokenId = (Long)attributes.get(
-				"kaleoTaskInstanceTokenId");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getUserId();
+				}
 
-		if (kaleoTaskInstanceTokenId != null) {
-			setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		Long kaleoTaskFormId = (Long)attributes.get("kaleoTaskFormId");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object userId) {
+					kaleoTaskFormInstance.setUserId((Long)userId);
+				}
 
-		if (kaleoTaskFormId != null) {
-			setKaleoTaskFormId(kaleoTaskFormId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		String formValues = (String)attributes.get("formValues");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getUserName();
+				}
 
-		if (formValues != null) {
-			setFormValues(formValues);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		Long formValueEntryGroupId = (Long)attributes.get(
-				"formValueEntryGroupId");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object userName) {
+					kaleoTaskFormInstance.setUserName((String)userName);
+				}
 
-		if (formValueEntryGroupId != null) {
-			setFormValueEntryGroupId(formValueEntryGroupId);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		Long formValueEntryId = (Long)attributes.get("formValueEntryId");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getCreateDate();
+				}
 
-		if (formValueEntryId != null) {
-			setFormValueEntryId(formValueEntryId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
-		String formValueEntryUuid = (String)attributes.get("formValueEntryUuid");
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object createDate) {
+					kaleoTaskFormInstance.setCreateDate((Date)createDate);
+				}
 
-		if (formValueEntryUuid != null) {
-			setFormValueEntryUuid(formValueEntryUuid);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<KaleoTaskFormInstance, Object>() {
 
-		String metadata = (String)attributes.get("metadata");
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getModifiedDate();
+				}
 
-		if (metadata != null) {
-			setMetadata(metadata);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object modifiedDate) {
+					kaleoTaskFormInstance.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"kaleoDefinitionVersionId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoDefinitionVersionId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoDefinitionVersionId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoDefinitionVersionId) {
+					kaleoTaskFormInstance.setKaleoDefinitionVersionId((Long)kaleoDefinitionVersionId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"kaleoInstanceId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoInstanceId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoInstanceId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoInstanceId) {
+					kaleoTaskFormInstance.setKaleoInstanceId((Long)kaleoInstanceId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"kaleoTaskId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoTaskId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoTaskId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskId) {
+					kaleoTaskFormInstance.setKaleoTaskId((Long)kaleoTaskId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"kaleoTaskInstanceTokenId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoTaskInstanceTokenId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoTaskInstanceTokenId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskInstanceTokenId) {
+					kaleoTaskFormInstance.setKaleoTaskInstanceTokenId((Long)kaleoTaskInstanceTokenId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"kaleoTaskFormId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getKaleoTaskFormId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"kaleoTaskFormId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskFormId) {
+					kaleoTaskFormInstance.setKaleoTaskFormId((Long)kaleoTaskFormId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"formValues",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getFormValues();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"formValues",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValues) {
+					kaleoTaskFormInstance.setFormValues((String)formValues);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"formValueEntryGroupId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getFormValueEntryGroupId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"formValueEntryGroupId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryGroupId) {
+					kaleoTaskFormInstance.setFormValueEntryGroupId((Long)formValueEntryGroupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"formValueEntryId",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getFormValueEntryId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"formValueEntryId",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryId) {
+					kaleoTaskFormInstance.setFormValueEntryId((Long)formValueEntryId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"formValueEntryUuid",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getFormValueEntryUuid();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"formValueEntryUuid",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryUuid) {
+					kaleoTaskFormInstance.setFormValueEntryUuid((String)formValueEntryUuid);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"metadata",
+			new Function<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+					return kaleoTaskFormInstance.getMetadata();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"metadata",
+			new BiConsumer<KaleoTaskFormInstance, Object>() {
+
+				@Override
+				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object metadata) {
+					kaleoTaskFormInstance.setMetadata((String)metadata);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -812,42 +1081,28 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(35);
+		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{kaleoTaskFormInstanceId=");
-		sb.append(getKaleoTaskFormInstanceId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", kaleoDefinitionVersionId=");
-		sb.append(getKaleoDefinitionVersionId());
-		sb.append(", kaleoInstanceId=");
-		sb.append(getKaleoInstanceId());
-		sb.append(", kaleoTaskId=");
-		sb.append(getKaleoTaskId());
-		sb.append(", kaleoTaskInstanceTokenId=");
-		sb.append(getKaleoTaskInstanceTokenId());
-		sb.append(", kaleoTaskFormId=");
-		sb.append(getKaleoTaskFormId());
-		sb.append(", formValues=");
-		sb.append(getFormValues());
-		sb.append(", formValueEntryGroupId=");
-		sb.append(getFormValueEntryGroupId());
-		sb.append(", formValueEntryId=");
-		sb.append(getFormValueEntryId());
-		sb.append(", formValueEntryUuid=");
-		sb.append(getFormValueEntryUuid());
-		sb.append(", metadata=");
-		sb.append(getMetadata());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((KaleoTaskFormInstance)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -855,81 +1110,26 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(55);
+		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append(
-			"com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>kaleoTaskFormInstanceId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoTaskFormInstanceId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoDefinitionVersionId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoDefinitionVersionId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoInstanceId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoInstanceId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoTaskId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoTaskId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoTaskInstanceTokenId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoTaskInstanceTokenId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>kaleoTaskFormId</column-name><column-value><![CDATA[");
-		sb.append(getKaleoTaskFormId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>formValues</column-name><column-value><![CDATA[");
-		sb.append(getFormValues());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>formValueEntryGroupId</column-name><column-value><![CDATA[");
-		sb.append(getFormValueEntryGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>formValueEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFormValueEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>formValueEntryUuid</column-name><column-value><![CDATA[");
-		sb.append(getFormValueEntryUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>metadata</column-name><column-value><![CDATA[");
-		sb.append(getMetadata());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((KaleoTaskFormInstance)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

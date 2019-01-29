@@ -48,10 +48,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the ReadingTimeEntry service. Represents a row in the &quot;ReadingTimeEntry&quot; database table, with each column mapped to a property of this class.
@@ -211,15 +215,16 @@ public class ReadingTimeEntryModelImpl extends BaseModelImpl<ReadingTimeEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("readingTimeEntryId", getReadingTimeEntryId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("classNameId", getClassNameId());
-		attributes.put("classPK", getClassPK());
-		attributes.put("readingTime", getReadingTime());
+		Map<String, Function<ReadingTimeEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<ReadingTimeEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ReadingTimeEntry, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((ReadingTimeEntry)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -229,59 +234,222 @@ public class ReadingTimeEntryModelImpl extends BaseModelImpl<ReadingTimeEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<ReadingTimeEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<ReadingTimeEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((ReadingTimeEntry)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long readingTimeEntryId = (Long)attributes.get("readingTimeEntryId");
+	public Map<String, Function<ReadingTimeEntry, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (readingTimeEntryId != null) {
-			setReadingTimeEntryId(readingTimeEntryId);
-		}
+	public Map<String, BiConsumer<ReadingTimeEntry, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<ReadingTimeEntry, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ReadingTimeEntry, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<ReadingTimeEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ReadingTimeEntry, Object>>();
+		Map<String, BiConsumer<ReadingTimeEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ReadingTimeEntry, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<ReadingTimeEntry, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getUuid();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<ReadingTimeEntry, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object uuid) {
+					readingTimeEntry.setUuid((String)uuid);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"readingTimeEntryId",
+			new Function<ReadingTimeEntry, Object>() {
 
-		Long classNameId = (Long)attributes.get("classNameId");
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getReadingTimeEntryId();
+				}
 
-		if (classNameId != null) {
-			setClassNameId(classNameId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"readingTimeEntryId",
+			new BiConsumer<ReadingTimeEntry, Object>() {
 
-		Long classPK = (Long)attributes.get("classPK");
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object readingTimeEntryId) {
+					readingTimeEntry.setReadingTimeEntryId((Long)readingTimeEntryId);
+				}
 
-		if (classPK != null) {
-			setClassPK(classPK);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<ReadingTimeEntry, Object>() {
 
-		Long readingTime = (Long)attributes.get("readingTime");
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getGroupId();
+				}
 
-		if (readingTime != null) {
-			setReadingTime(readingTime);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object groupId) {
+					readingTimeEntry.setGroupId((Long)groupId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getCompanyId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object companyId) {
+					readingTimeEntry.setCompanyId((Long)companyId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getCreateDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object createDate) {
+					readingTimeEntry.setCreateDate((Date)createDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getModifiedDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object modifiedDate) {
+					readingTimeEntry.setModifiedDate((Date)modifiedDate);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classNameId",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getClassNameId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object classNameId) {
+					readingTimeEntry.setClassNameId((Long)classNameId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"classPK",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getClassPK();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"classPK",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object classPK) {
+					readingTimeEntry.setClassPK((Long)classPK);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"readingTime",
+			new Function<ReadingTimeEntry, Object>() {
+
+				@Override
+				public Object apply(ReadingTimeEntry readingTimeEntry) {
+					return readingTimeEntry.getReadingTime();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"readingTime",
+			new BiConsumer<ReadingTimeEntry, Object>() {
+
+				@Override
+				public void accept(ReadingTimeEntry readingTimeEntry, Object readingTime) {
+					readingTimeEntry.setReadingTime((Long)readingTime);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -789,26 +957,28 @@ public class ReadingTimeEntryModelImpl extends BaseModelImpl<ReadingTimeEntry>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		Map<String, Function<ReadingTimeEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", readingTimeEntryId=");
-		sb.append(getReadingTimeEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", classNameId=");
-		sb.append(getClassNameId());
-		sb.append(", classPK=");
-		sb.append(getClassPK());
-		sb.append(", readingTime=");
-		sb.append(getReadingTime());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<ReadingTimeEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ReadingTimeEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((ReadingTimeEntry)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -816,48 +986,26 @@ public class ReadingTimeEntryModelImpl extends BaseModelImpl<ReadingTimeEntry>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		Map<String, Function<ReadingTimeEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.reading.time.model.ReadingTimeEntry");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>readingTimeEntryId</column-name><column-value><![CDATA[");
-		sb.append(getReadingTimeEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classNameId</column-name><column-value><![CDATA[");
-		sb.append(getClassNameId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>classPK</column-name><column-value><![CDATA[");
-		sb.append(getClassPK());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>readingTime</column-name><column-value><![CDATA[");
-		sb.append(getReadingTime());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<ReadingTimeEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<ReadingTimeEntry, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((ReadingTimeEntry)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 

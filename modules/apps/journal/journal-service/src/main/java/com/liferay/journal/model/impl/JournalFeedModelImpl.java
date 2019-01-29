@@ -44,10 +44,14 @@ import java.io.Serializable;
 import java.sql.Types;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 /**
  * The base model implementation for the JournalFeed service. Represents a row in the &quot;JournalFeed&quot; database table, with each column mapped to a property of this class.
@@ -246,29 +250,15 @@ public class JournalFeedModelImpl extends BaseModelImpl<JournalFeed>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
-		attributes.put("id", getId());
-		attributes.put("groupId", getGroupId());
-		attributes.put("companyId", getCompanyId());
-		attributes.put("userId", getUserId());
-		attributes.put("userName", getUserName());
-		attributes.put("createDate", getCreateDate());
-		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("feedId", getFeedId());
-		attributes.put("name", getName());
-		attributes.put("description", getDescription());
-		attributes.put("DDMStructureKey", getDDMStructureKey());
-		attributes.put("DDMTemplateKey", getDDMTemplateKey());
-		attributes.put("DDMRendererTemplateKey", getDDMRendererTemplateKey());
-		attributes.put("delta", getDelta());
-		attributes.put("orderByCol", getOrderByCol());
-		attributes.put("orderByType", getOrderByType());
-		attributes.put("targetLayoutFriendlyUrl", getTargetLayoutFriendlyUrl());
-		attributes.put("targetPortletId", getTargetPortletId());
-		attributes.put("contentField", getContentField());
-		attributes.put("feedFormat", getFeedFormat());
-		attributes.put("feedVersion", getFeedVersion());
-		attributes.put("lastPublishDate", getLastPublishDate());
+		Map<String, Function<JournalFeed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		for (Map.Entry<String, Function<JournalFeed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalFeed, Object> attributeGetterFunction = entry.getValue();
+
+			attributes.put(attributeName,
+				attributeGetterFunction.apply((JournalFeed)this));
+		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -278,145 +268,500 @@ public class JournalFeedModelImpl extends BaseModelImpl<JournalFeed>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
+		Map<String, BiConsumer<JournalFeed, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
-		if (uuid != null) {
-			setUuid(uuid);
+		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
+			String attributeName = entry.getKey();
+
+			BiConsumer<JournalFeed, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+
+			if (attributeSetterBiConsumer != null) {
+				attributeSetterBiConsumer.accept((JournalFeed)this,
+					entry.getValue());
+			}
 		}
+	}
 
-		Long id = (Long)attributes.get("id");
+	public Map<String, Function<JournalFeed, Object>> getAttributeGetterFunctions() {
+		return _attributeGetterFunctions;
+	}
 
-		if (id != null) {
-			setId(id);
-		}
+	public Map<String, BiConsumer<JournalFeed, Object>> getAttributeSetterBiConsumers() {
+		return _attributeSetterBiConsumers;
+	}
 
-		Long groupId = (Long)attributes.get("groupId");
+	private static final Map<String, Function<JournalFeed, Object>> _attributeGetterFunctions;
+	private static final Map<String, BiConsumer<JournalFeed, Object>> _attributeSetterBiConsumers;
 
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
+	static {
+		Map<String, Function<JournalFeed, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<JournalFeed, Object>>();
+		Map<String, BiConsumer<JournalFeed, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<JournalFeed, ?>>();
 
-		Long companyId = (Long)attributes.get("companyId");
 
-		if (companyId != null) {
-			setCompanyId(companyId);
-		}
+		attributeGetterFunctions.put(
+			"uuid",
+			new Function<JournalFeed, Object>() {
 
-		Long userId = (Long)attributes.get("userId");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getUuid();
+				}
 
-		if (userId != null) {
-			setUserId(userId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"uuid",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String userName = (String)attributes.get("userName");
+				@Override
+				public void accept(JournalFeed journalFeed, Object uuid) {
+					journalFeed.setUuid((String)uuid);
+				}
 
-		if (userName != null) {
-			setUserName(userName);
-		}
+			});
+		attributeGetterFunctions.put(
+			"id",
+			new Function<JournalFeed, Object>() {
 
-		Date createDate = (Date)attributes.get("createDate");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getId();
+				}
 
-		if (createDate != null) {
-			setCreateDate(createDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"id",
+			new BiConsumer<JournalFeed, Object>() {
 
-		Date modifiedDate = (Date)attributes.get("modifiedDate");
+				@Override
+				public void accept(JournalFeed journalFeed, Object id) {
+					journalFeed.setId((Long)id);
+				}
 
-		if (modifiedDate != null) {
-			setModifiedDate(modifiedDate);
-		}
+			});
+		attributeGetterFunctions.put(
+			"groupId",
+			new Function<JournalFeed, Object>() {
 
-		String feedId = (String)attributes.get("feedId");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getGroupId();
+				}
 
-		if (feedId != null) {
-			setFeedId(feedId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"groupId",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String name = (String)attributes.get("name");
+				@Override
+				public void accept(JournalFeed journalFeed, Object groupId) {
+					journalFeed.setGroupId((Long)groupId);
+				}
 
-		if (name != null) {
-			setName(name);
-		}
+			});
+		attributeGetterFunctions.put(
+			"companyId",
+			new Function<JournalFeed, Object>() {
 
-		String description = (String)attributes.get("description");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getCompanyId();
+				}
 
-		if (description != null) {
-			setDescription(description);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"companyId",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String DDMStructureKey = (String)attributes.get("DDMStructureKey");
+				@Override
+				public void accept(JournalFeed journalFeed, Object companyId) {
+					journalFeed.setCompanyId((Long)companyId);
+				}
 
-		if (DDMStructureKey != null) {
-			setDDMStructureKey(DDMStructureKey);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userId",
+			new Function<JournalFeed, Object>() {
 
-		String DDMTemplateKey = (String)attributes.get("DDMTemplateKey");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getUserId();
+				}
 
-		if (DDMTemplateKey != null) {
-			setDDMTemplateKey(DDMTemplateKey);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userId",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String DDMRendererTemplateKey = (String)attributes.get(
-				"DDMRendererTemplateKey");
+				@Override
+				public void accept(JournalFeed journalFeed, Object userId) {
+					journalFeed.setUserId((Long)userId);
+				}
 
-		if (DDMRendererTemplateKey != null) {
-			setDDMRendererTemplateKey(DDMRendererTemplateKey);
-		}
+			});
+		attributeGetterFunctions.put(
+			"userName",
+			new Function<JournalFeed, Object>() {
 
-		Integer delta = (Integer)attributes.get("delta");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getUserName();
+				}
 
-		if (delta != null) {
-			setDelta(delta);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"userName",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String orderByCol = (String)attributes.get("orderByCol");
+				@Override
+				public void accept(JournalFeed journalFeed, Object userName) {
+					journalFeed.setUserName((String)userName);
+				}
 
-		if (orderByCol != null) {
-			setOrderByCol(orderByCol);
-		}
+			});
+		attributeGetterFunctions.put(
+			"createDate",
+			new Function<JournalFeed, Object>() {
 
-		String orderByType = (String)attributes.get("orderByType");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getCreateDate();
+				}
 
-		if (orderByType != null) {
-			setOrderByType(orderByType);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"createDate",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String targetLayoutFriendlyUrl = (String)attributes.get(
-				"targetLayoutFriendlyUrl");
+				@Override
+				public void accept(JournalFeed journalFeed, Object createDate) {
+					journalFeed.setCreateDate((Date)createDate);
+				}
 
-		if (targetLayoutFriendlyUrl != null) {
-			setTargetLayoutFriendlyUrl(targetLayoutFriendlyUrl);
-		}
+			});
+		attributeGetterFunctions.put(
+			"modifiedDate",
+			new Function<JournalFeed, Object>() {
 
-		String targetPortletId = (String)attributes.get("targetPortletId");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getModifiedDate();
+				}
 
-		if (targetPortletId != null) {
-			setTargetPortletId(targetPortletId);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			new BiConsumer<JournalFeed, Object>() {
 
-		String contentField = (String)attributes.get("contentField");
+				@Override
+				public void accept(JournalFeed journalFeed, Object modifiedDate) {
+					journalFeed.setModifiedDate((Date)modifiedDate);
+				}
 
-		if (contentField != null) {
-			setContentField(contentField);
-		}
+			});
+		attributeGetterFunctions.put(
+			"feedId",
+			new Function<JournalFeed, Object>() {
 
-		String feedFormat = (String)attributes.get("feedFormat");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getFeedId();
+				}
 
-		if (feedFormat != null) {
-			setFeedFormat(feedFormat);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"feedId",
+			new BiConsumer<JournalFeed, Object>() {
 
-		Double feedVersion = (Double)attributes.get("feedVersion");
+				@Override
+				public void accept(JournalFeed journalFeed, Object feedId) {
+					journalFeed.setFeedId((String)feedId);
+				}
 
-		if (feedVersion != null) {
-			setFeedVersion(feedVersion);
-		}
+			});
+		attributeGetterFunctions.put(
+			"name",
+			new Function<JournalFeed, Object>() {
 
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getName();
+				}
 
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
-		}
+			});
+		attributeSetterBiConsumers.put(
+			"name",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object name) {
+					journalFeed.setName((String)name);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"description",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getDescription();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"description",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object description) {
+					journalFeed.setDescription((String)description);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"DDMStructureKey",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getDDMStructureKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"DDMStructureKey",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object DDMStructureKey) {
+					journalFeed.setDDMStructureKey((String)DDMStructureKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"DDMTemplateKey",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getDDMTemplateKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"DDMTemplateKey",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object DDMTemplateKey) {
+					journalFeed.setDDMTemplateKey((String)DDMTemplateKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"DDMRendererTemplateKey",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getDDMRendererTemplateKey();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"DDMRendererTemplateKey",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object DDMRendererTemplateKey) {
+					journalFeed.setDDMRendererTemplateKey((String)DDMRendererTemplateKey);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"delta",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getDelta();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"delta",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object delta) {
+					journalFeed.setDelta((Integer)delta);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"orderByCol",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getOrderByCol();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"orderByCol",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object orderByCol) {
+					journalFeed.setOrderByCol((String)orderByCol);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"orderByType",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getOrderByType();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"orderByType",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object orderByType) {
+					journalFeed.setOrderByType((String)orderByType);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"targetLayoutFriendlyUrl",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getTargetLayoutFriendlyUrl();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"targetLayoutFriendlyUrl",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object targetLayoutFriendlyUrl) {
+					journalFeed.setTargetLayoutFriendlyUrl((String)targetLayoutFriendlyUrl);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"targetPortletId",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getTargetPortletId();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"targetPortletId",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object targetPortletId) {
+					journalFeed.setTargetPortletId((String)targetPortletId);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"contentField",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getContentField();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"contentField",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object contentField) {
+					journalFeed.setContentField((String)contentField);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"feedFormat",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getFeedFormat();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"feedFormat",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object feedFormat) {
+					journalFeed.setFeedFormat((String)feedFormat);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"feedVersion",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getFeedVersion();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"feedVersion",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object feedVersion) {
+					journalFeed.setFeedVersion((Double)feedVersion);
+				}
+
+			});
+		attributeGetterFunctions.put(
+			"lastPublishDate",
+			new Function<JournalFeed, Object>() {
+
+				@Override
+				public Object apply(JournalFeed journalFeed) {
+					return journalFeed.getLastPublishDate();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"lastPublishDate",
+			new BiConsumer<JournalFeed, Object>() {
+
+				@Override
+				public void accept(JournalFeed journalFeed, Object lastPublishDate) {
+					journalFeed.setLastPublishDate((Date)lastPublishDate);
+				}
+
+			});
+
+
+		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1107,54 +1452,27 @@ public class JournalFeedModelImpl extends BaseModelImpl<JournalFeed>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(47);
+		Map<String, Function<JournalFeed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", id=");
-		sb.append(getId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
-		sb.append(", companyId=");
-		sb.append(getCompanyId());
-		sb.append(", userId=");
-		sb.append(getUserId());
-		sb.append(", userName=");
-		sb.append(getUserName());
-		sb.append(", createDate=");
-		sb.append(getCreateDate());
-		sb.append(", modifiedDate=");
-		sb.append(getModifiedDate());
-		sb.append(", feedId=");
-		sb.append(getFeedId());
-		sb.append(", name=");
-		sb.append(getName());
-		sb.append(", description=");
-		sb.append(getDescription());
-		sb.append(", DDMStructureKey=");
-		sb.append(getDDMStructureKey());
-		sb.append(", DDMTemplateKey=");
-		sb.append(getDDMTemplateKey());
-		sb.append(", DDMRendererTemplateKey=");
-		sb.append(getDDMRendererTemplateKey());
-		sb.append(", delta=");
-		sb.append(getDelta());
-		sb.append(", orderByCol=");
-		sb.append(getOrderByCol());
-		sb.append(", orderByType=");
-		sb.append(getOrderByType());
-		sb.append(", targetLayoutFriendlyUrl=");
-		sb.append(getTargetLayoutFriendlyUrl());
-		sb.append(", targetPortletId=");
-		sb.append(getTargetPortletId());
-		sb.append(", contentField=");
-		sb.append(getContentField());
-		sb.append(", feedFormat=");
-		sb.append(getFeedFormat());
-		sb.append(", feedVersion=");
-		sb.append(getFeedVersion());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
+		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
+				2);
+
+		sb.append("{");
+
+		for (Map.Entry<String, Function<JournalFeed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalFeed, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append(attributeName);
+			sb.append("=");
+			sb.append(attributeGetterFunction.apply((JournalFeed)this));
+			sb.append(", ");
+		}
+
+		if (sb.index() > 1) {
+			sb.setIndex(sb.index() - 1);
+		}
+
 		sb.append("}");
 
 		return sb.toString();
@@ -1162,104 +1480,25 @@ public class JournalFeedModelImpl extends BaseModelImpl<JournalFeed>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(73);
+		Map<String, Function<JournalFeed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+
+		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
+				4);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.journal.model.JournalFeed");
+		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>id</column-name><column-value><![CDATA[");
-		sb.append(getId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>companyId</column-name><column-value><![CDATA[");
-		sb.append(getCompanyId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>userName</column-name><column-value><![CDATA[");
-		sb.append(getUserName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>createDate</column-name><column-value><![CDATA[");
-		sb.append(getCreateDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
-		sb.append(getModifiedDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>feedId</column-name><column-value><![CDATA[");
-		sb.append(getFeedId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>name</column-name><column-value><![CDATA[");
-		sb.append(getName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>description</column-name><column-value><![CDATA[");
-		sb.append(getDescription());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>DDMStructureKey</column-name><column-value><![CDATA[");
-		sb.append(getDDMStructureKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>DDMTemplateKey</column-name><column-value><![CDATA[");
-		sb.append(getDDMTemplateKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>DDMRendererTemplateKey</column-name><column-value><![CDATA[");
-		sb.append(getDDMRendererTemplateKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>delta</column-name><column-value><![CDATA[");
-		sb.append(getDelta());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>orderByCol</column-name><column-value><![CDATA[");
-		sb.append(getOrderByCol());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>orderByType</column-name><column-value><![CDATA[");
-		sb.append(getOrderByType());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>targetLayoutFriendlyUrl</column-name><column-value><![CDATA[");
-		sb.append(getTargetLayoutFriendlyUrl());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>targetPortletId</column-name><column-value><![CDATA[");
-		sb.append(getTargetPortletId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>contentField</column-name><column-value><![CDATA[");
-		sb.append(getContentField());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>feedFormat</column-name><column-value><![CDATA[");
-		sb.append(getFeedFormat());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>feedVersion</column-name><column-value><![CDATA[");
-		sb.append(getFeedVersion());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
-		sb.append("]]></column-value></column>");
+		for (Map.Entry<String, Function<JournalFeed, Object>> entry : attributeGetterFunctions.entrySet()) {
+			String attributeName = entry.getKey();
+			Function<JournalFeed, Object> attributeGetterFunction = entry.getValue();
+
+			sb.append("<column><column-name>");
+			sb.append(attributeName);
+			sb.append("</column-name><column-value><![CDATA[");
+			sb.append(attributeGetterFunction.apply((JournalFeed)this));
+			sb.append("]]></column-value></column>");
+		}
 
 		sb.append("</model>");
 
