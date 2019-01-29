@@ -110,8 +110,7 @@ public class SelectSiteInitializerDisplayContext {
 	private List<SiteInitializerItem> _getSiteInitializerItems()
 		throws PortalException {
 
-		List<SiteInitializerItem> siteInitializerItemDisplayContexts =
-			new ArrayList<>();
+		List<SiteInitializerItem> siteInitializerItems = new ArrayList<>();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -121,7 +120,7 @@ public class SelectSiteInitializerDisplayContext {
 				themeDisplay.getCompanyId(), Boolean.TRUE, null);
 
 		for (LayoutSetPrototype layoutSetPrototype : layoutSetPrototypes) {
-			siteInitializerItemDisplayContexts.add(
+			siteInitializerItems.add(
 				new SiteInitializerItem(
 					layoutSetPrototype, themeDisplay.getLocale()));
 		}
@@ -131,19 +130,16 @@ public class SelectSiteInitializerDisplayContext {
 				themeDisplay.getCompanyId());
 
 		for (SiteInitializer siteInitializer : siteInitializers) {
-			SiteInitializerItem siteInitializerItemDisplayContext =
-				new SiteInitializerItem(
-					siteInitializer, themeDisplay.getLocale());
+			SiteInitializerItem siteInitializerItem = new SiteInitializerItem(
+				siteInitializer, themeDisplay.getLocale());
 
-			siteInitializerItemDisplayContexts.add(
-				siteInitializerItemDisplayContext);
+			siteInitializerItems.add(siteInitializerItem);
 		}
 
-		siteInitializerItemDisplayContexts = ListUtil.sort(
-			siteInitializerItemDisplayContexts,
-			new SiteInitializerNameComparator(true));
+		siteInitializerItems = ListUtil.sort(
+			siteInitializerItems, new SiteInitializerNameComparator(true));
 
-		return siteInitializerItemDisplayContexts;
+		return siteInitializerItems;
 	}
 
 	private String _backURL;

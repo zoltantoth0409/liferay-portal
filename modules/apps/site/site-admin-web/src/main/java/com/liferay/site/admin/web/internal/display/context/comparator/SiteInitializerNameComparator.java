@@ -33,11 +33,11 @@ public class SiteInitializerNameComparator
 
 	@Override
 	public int compare(
-		SiteInitializerItem siteInitializerItemDisplayContext1,
-		SiteInitializerItem siteInitializerItemDisplayContext2) {
+		SiteInitializerItem siteInitializerItem1,
+		SiteInitializerItem siteInitializerItem2) {
 
-		String name1 = siteInitializerItemDisplayContext1.getName();
-		String name2 = siteInitializerItemDisplayContext2.getName();
+		String name1 = siteInitializerItem1.getName();
+		String name2 = siteInitializerItem2.getName();
 
 		int value = name1.compareToIgnoreCase(name2);
 
