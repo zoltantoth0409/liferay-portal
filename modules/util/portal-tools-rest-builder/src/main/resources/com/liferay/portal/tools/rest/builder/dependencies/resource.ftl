@@ -4,7 +4,7 @@ import ${configYAML.apiPackagePath}.dto.${schemaName};
 import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.rest.booster.apio.context.Pagination;
+import com.liferay.portal.vulcan.context.Pagination;
 
 import javax.annotation.Generated;
 
@@ -25,8 +25,8 @@ public interface ${schemaName}Resource {
 	@GET
 	@Produces("application/json")
 	@RequiresScope("${configYAML.application.name}.read")
-	public ${schemaName}Collection<${schemaName}> get${schemaName}s(
-			@QueryParam("size") String size, @Context Pagination pagination)
+	public ${schemaName}Collection<${schemaName}> get${schemaName}Collection(
+			@Context Pagination pagination, @QueryParam("size") String size)
 		throws Exception;
 
 }

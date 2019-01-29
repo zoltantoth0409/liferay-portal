@@ -4,7 +4,7 @@ import ${configYAML.apiPackagePath}.dto.${schemaName};
 import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
 
-import com.liferay.rest.booster.apio.context.Pagination;
+import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.Collections;
 
@@ -28,7 +28,7 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 
 	@Override
-	public ${schemaName}Collection<${schemaName}> get${schemaName}s(String size, Pagination pagination)
+	public ${schemaName}Collection<${schemaName}> get${schemaName}Collection(Pagination pagination, String size)
 		throws Exception {
 
 		return new ${schemaName}Collection(Collections.emptyList(), 0);
