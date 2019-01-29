@@ -238,52 +238,25 @@ definition {
 
 		KaleoFormsAdmin.viewNoPublishedWorkflowDefinitions();
 
-		KaleoFormsAdmin.viewNoUnpublishedWorkflowDefinitions();
-
-		ProductMenu.gotoPortlet(
-			category = "Configuration",
-			panel = "Control Panel",
-			portlet = "Workflow Definition"
-		);
-
-		Workflow.reactivateInactiveWorkflowDefinition(
-			workflowDefinitionName = "Single Approver"
-		);
-
-		Navigator.openURL();
-
-		ProductMenu.gotoPortlet(
-			category = "Content",
-			panel = "Site Administration",
-			portlet = "Kaleo Forms Admin"
-		);
-
-		KaleoFormsAdmin.addProcess();
-
-		KaleoFormsAdmin.addProcessDetails(
-			kfProcessDescription = "Kaleo Forms Process Description",
-			kfProcessName = "Kaleo Forms Process"
-		);
-
-		KaleoFormsAdmin.next();
-
-		KaleoFormsAdmin.chooseFieldSet(
-			kfFieldSetName = "New Kaleo Field Set",
-			kfProcessName = "Kaleo Forms Process"
-		);
-
-		KaleoFormsAdmin.next();
-
-		var key_workflowDefinitionTitle = "Single Approver";
+		KaleoFormsAdmin.viewUnpublishedWorkflowDefinitions();
 
 		AssertTextEquals(
 			locator1 = "KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE",
-			value1 = "Single Approver"
+			value1 = "Single Approver",
+			key_workflowDefinitionTitle = "Single Approver"
 		);
 
-		var key_rowEntry = "Single Approver";
+		KaleoFormsAdmin.reactivateInactiveWorkflowDefinition(
+			workflowDefinitionTitle = "Single Approver"
+		);
 
-		AssertElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS");
+		KaleoFormsAdmin.viewPublishedWorkflowDefinitions();
+
+		AssertTextEquals(
+			locator1 = "KaleoFormsAdminEditProcess#WORKFLOW_TABLE_TITLE",
+			value1 = "Single Approver",
+			key_workflowDefinitionTitle = "Single Approver"
+		);
 
 		KaleoFormsAdmin.viewNoUnpublishedWorkflowDefinitions();
 	}
