@@ -251,7 +251,7 @@ public class CTManagerImpl implements CTManager {
 		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
-			_log.error("Unable to find user " + userId);
+			_log.error("Unable to get user " + userId);
 
 			return 0L;
 		}
