@@ -532,7 +532,7 @@ definition {
 
 		var key_text = "RSS";
 
-		AssertTextEquals(locator1 = "Button#ANY", value1 = "RSS");
+		AssertTextEquals.assertPartialText(locator1 = "Button#ANY", value1 = "RSS");
 	}
 
 	macro viewNoEntryCP {

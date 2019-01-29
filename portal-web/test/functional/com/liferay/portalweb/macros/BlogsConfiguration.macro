@@ -218,7 +218,7 @@ definition {
 
 		var key_text = "RSS";
 
-		AssertTextEquals(locator1 = "Button#ANY", value1 = "RSS");
+		AssertTextEquals.assertPartialText(locator1 = "Button#ANY", value1 = "RSS");
 
 		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
 			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
