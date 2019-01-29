@@ -63,14 +63,14 @@ public class CopyDDMStructureMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 
-		boolean copyTemplates = ParamUtil.getBoolean(
-			actionRequest, "copyTemplates");
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDMStructure.class.getName(), actionRequest);
 
 		DDMStructure ddmStructure = _ddmStructureService.copyStructure(
 			ddmStructureId, nameMap, descriptionMap, serviceContext);
+
+		boolean copyTemplates = ParamUtil.getBoolean(
+			actionRequest, "copyTemplates");
 
 		if (copyTemplates) {
 			_ddmTemplateService.copyTemplates(
