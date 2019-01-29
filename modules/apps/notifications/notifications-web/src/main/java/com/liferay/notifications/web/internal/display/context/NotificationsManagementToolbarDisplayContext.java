@@ -149,7 +149,6 @@ public class NotificationsManagementToolbarDisplayContext {
 									removeLabelURL.toString());
 
 								labelItem.setCloseable(true);
-
 								labelItem.setLabel(
 									LanguageUtil.get(_request, navigation));
 							}));
