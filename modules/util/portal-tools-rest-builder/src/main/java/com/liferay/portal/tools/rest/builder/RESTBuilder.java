@@ -67,10 +67,6 @@ public class RESTBuilder {
 
 		context.put("configYAML", _configYAML);
 		context.put("openAPIYAML", _openAPIYAML);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
-		_createApplicationFile(context);
 
 		Application application = _configYAML.getApplication();
 
@@ -79,6 +75,10 @@ public class RESTBuilder {
 
 		context.put("resourceName", resourceName);
 
+		context.put("stringUtil", StringUtil_IW.getInstance());
+		context.put("validator", Validator_IW.getInstance());
+
+		_createApplicationFile(context);
 		_createResourceFile(context, resourceName);
 		_createResourceImplFile(context, resourceName);
 
