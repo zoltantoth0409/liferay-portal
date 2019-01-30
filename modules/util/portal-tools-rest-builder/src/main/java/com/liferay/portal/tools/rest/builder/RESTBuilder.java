@@ -59,8 +59,6 @@ public class RESTBuilder {
 		throws Exception {
 
 		_copyrightFileName = copyrightFileName;
-		_restConfigFileName = restConfigFileName;
-		_restOpenAPIFileName = restOpenAPIFileName;
 
 		_configYAML = YAMLUtil.loadConfigYAML(restConfigFileName);
 		_openAPIYAML = YAMLUtil.loadOpenAPIYAML(restOpenAPIFileName);
@@ -235,7 +233,5 @@ public class RESTBuilder {
 	private final ConfigYAML _configYAML;
 	private final String _copyrightFileName;
 	private final OpenAPIYAML _openAPIYAML;
-	private final String _restConfigFileName;
-	private final String _restOpenAPIFileName;
 
 }
