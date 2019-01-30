@@ -12,11 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools.rest.builder.internal.yaml;
-
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Components;
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Info;
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.PathItem;
+package com.liferay.portal.tools.rest.builder.internal.yaml.openapi;
 
 import java.util.Map;
 

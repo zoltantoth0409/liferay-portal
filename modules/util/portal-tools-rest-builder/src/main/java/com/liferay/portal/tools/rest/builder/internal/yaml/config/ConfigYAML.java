@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools.rest.builder.internal.yaml;
-
-import com.liferay.portal.tools.rest.builder.internal.yaml.config.Application;
+package com.liferay.portal.tools.rest.builder.internal.yaml.config;
 
 /**
  * @author Peter Shin
