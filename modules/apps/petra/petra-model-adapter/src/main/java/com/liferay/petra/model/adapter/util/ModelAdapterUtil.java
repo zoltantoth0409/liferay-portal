@@ -163,7 +163,9 @@ public class ModelAdapterUtil {
 
 			Class<?> returnType = method.getReturnType();
 
-			if (returnType.isAssignableFrom(result.getClass())) {
+			if (returnType.isAssignableFrom(result.getClass()) ||
+				returnType.isPrimitive()) {
+
 				return result;
 			}
 
