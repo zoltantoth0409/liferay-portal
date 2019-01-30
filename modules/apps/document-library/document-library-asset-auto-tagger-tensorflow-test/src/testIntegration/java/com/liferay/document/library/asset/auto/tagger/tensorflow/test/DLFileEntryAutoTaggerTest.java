@@ -23,6 +23,7 @@ import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.petra.function.UnsafeRunnable;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -144,17 +145,18 @@ public class DLFileEntryAutoTaggerTest {
 			UnsafeRunnable<Exception> unsafeRunnable)
 		throws Exception {
 
+		StringBundler sb = new StringBundler(3);
+
+		sb.append("com.liferay.document.library.asset.auto.tagger.tensorflow.");
+		sb.append("internal.configuration.");
+		sb.append("TensorFlowImageAssetAutoTagProviderCompanyConfiguration");
+
 		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
 
 		dictionary.put("enabled", true);
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
-				new ConfigurationTemporarySwapper(
-					"com.liferay.document.library.asset.auto.tagger." +
-						"tensorflow.internal.configuration." +
-							"TensorFlowImageAssetAutoTagProviderCompany" +
-								"Configuration",
-					dictionary)) {
+				new ConfigurationTemporarySwapper(sb.toString(), dictionary)) {
 
 			unsafeRunnable.run();
 		}
