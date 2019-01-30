@@ -58,50 +58,58 @@ public class RESTBuilder {
 			String restOpenAPIFileName)
 		throws Exception {
 
-		ConfigYAML configYAML = YAMLUtil.loadConfigYAML(restConfigFileName);
+		_copyrightFileName = copyrightFileName;
+		_restConfigFileName = restConfigFileName;
+		_restOpenAPIFileName = restOpenAPIFileName;
 
-		OpenAPIYAML openAPIYAML = YAMLUtil.loadOpenAPIYAML(restOpenAPIFileName);
+		_configYAML = YAMLUtil.loadConfigYAML(restConfigFileName);
+		_openAPIYAML = YAMLUtil.loadOpenAPIYAML(restOpenAPIFileName);
 
-		Components components = openAPIYAML.getComponents();
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("configYAML", _configYAML);
+		context.put("openAPIYAML", _openAPIYAML);
+		context.put("stringUtil", StringUtil_IW.getInstance());
+		context.put("validator", Validator_IW.getInstance());
+
+		_createApplicationFile(context);
+
+		Components components = _openAPIYAML.getComponents();
 
 		Map<String, Schema> schemas = components.getSchemas();
 
 		for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
+			context.put("schema", entry.getValue());
+
 			String schemaName = entry.getKey();
-			Schema schema = entry.getValue();
 
-			_createCollectionFile(configYAML, copyrightFileName, schemaName);
+			context.put("schemaName", schemaName);
+			context.put("schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
 
-			_createDTOFile(configYAML, copyrightFileName, schema, schemaName);
-
-			_createResourceFile(
-				configYAML, copyrightFileName, openAPIYAML, schemaName);
-
-			_createResourceImplFile(
-				configYAML, copyrightFileName, openAPIYAML, schemaName);
+			_createCollectionFile(context, schemaName);
+			_createDTOFile(context, schemaName);
+			_createResourceFile(context, schemaName);
+			_createResourceImplFile(context, schemaName);
 		}
 
-		_createApplicationFile(configYAML, copyrightFileName);
-
-		System.out.println(YAMLUtil.dump(openAPIYAML));
+		System.out.println(YAMLUtil.dump(_openAPIYAML));
 	}
 
-	private File _createApplicationFile(
-			ConfigYAML configYAML, String copyrightFileName)
+	private File _createApplicationFile(Map<String, Object> context)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(configYAML.getImplDir());
+		sb.append(_configYAML.getImplDir());
 		sb.append("/");
 
-		String apiPackagePath = configYAML.getApiPackagePath();
+		String apiPackagePath = _configYAML.getApiPackagePath();
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
 		sb.append("/internal/jaxrs/application/");
 
-		Application application = configYAML.getApplication();
+		Application application = _configYAML.getApplication();
 
 		sb.append(application.getClassName());
 
@@ -109,14 +117,8 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, "application", context);
+			_copyrightFileName, "application", context);
 
 		FileUtil.write(content, file);
 
@@ -124,15 +126,15 @@ public class RESTBuilder {
 	}
 
 	private File _createCollectionFile(
-			ConfigYAML configYAML, String copyrightFileName, String schemaName)
+			Map<String, Object> context, String schemaName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(configYAML.getApiDir());
+		sb.append(_configYAML.getApiDir());
 		sb.append("/");
 
-		String apiPackagePath = configYAML.getApiPackagePath();
+		String apiPackagePath = _configYAML.getApiPackagePath();
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
@@ -142,32 +144,23 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("schemaName", schemaName);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, "collection", context);
+			_copyrightFileName, "collection", context);
 
 		FileUtil.write(content, file);
 
 		return file;
 	}
 
-	private File _createDTOFile(
-			ConfigYAML configYAML, String copyrightFileName, Schema schema,
-			String schemaName)
+	private File _createDTOFile(Map<String, Object> context, String schemaName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(configYAML.getApiDir());
+		sb.append(_configYAML.getApiDir());
 		sb.append("/");
 
-		String apiPackagePath = configYAML.getApiPackagePath();
+		String apiPackagePath = _configYAML.getApiPackagePath();
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
@@ -177,16 +170,8 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("schema", schema);
-		context.put("schemaName", schemaName);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, "dto", context);
+			_copyrightFileName, "dto", context);
 
 		FileUtil.write(content, file);
 
@@ -194,16 +179,15 @@ public class RESTBuilder {
 	}
 
 	private File _createResourceFile(
-			ConfigYAML configYAML, String copyrightFileName,
-			OpenAPIYAML openAPIYAML, String schemaName)
+			Map<String, Object> context, String schemaName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(configYAML.getApiDir());
+		sb.append(_configYAML.getApiDir());
 		sb.append("/");
 
-		String apiPackagePath = configYAML.getApiPackagePath();
+		String apiPackagePath = _configYAML.getApiPackagePath();
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
@@ -213,17 +197,8 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("openAPIYAML", openAPIYAML);
-		context.put("schemaName", schemaName);
-		context.put("schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, "resource", context);
+			_copyrightFileName, "resource", context);
 
 		FileUtil.write(content, file);
 
@@ -231,16 +206,15 @@ public class RESTBuilder {
 	}
 
 	private File _createResourceImplFile(
-			ConfigYAML configYAML, String copyrightFileName,
-			OpenAPIYAML openAPIYAML, String schemaName)
+			Map<String, Object> context, String schemaName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(configYAML.getImplDir());
+		sb.append(_configYAML.getImplDir());
 		sb.append("/");
 
-		String apiPackagePath = configYAML.getApiPackagePath();
+		String apiPackagePath = _configYAML.getApiPackagePath();
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
@@ -250,20 +224,18 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("openAPIYAML", openAPIYAML);
-		context.put("schemaName", schemaName);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
 		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, "resource_impl", context);
+			_copyrightFileName, "resource_impl", context);
 
 		FileUtil.write(content, file);
 
 		return file;
 	}
+
+	private final ConfigYAML _configYAML;
+	private final String _copyrightFileName;
+	private final OpenAPIYAML _openAPIYAML;
+	private final String _restConfigFileName;
+	private final String _restOpenAPIFileName;
 
 }
