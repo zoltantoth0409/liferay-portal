@@ -77,10 +77,10 @@ public class Index {
 	public String toString() {
 		StringBundler sb = new StringBundler(7);
 
-		sb.append("{tableName=");
-		sb.append(_tableName);
-		sb.append(", indexName=");
+		sb.append("{indexName=");
 		sb.append(_indexName);
+		sb.append(", tableName=");
+		sb.append(_tableName);
 		sb.append(", unique=");
 		sb.append(_unique);
 		sb.append("}");
