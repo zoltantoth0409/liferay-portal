@@ -241,12 +241,12 @@ definition {
 
 		if (IsElementNotPresent(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE_URL")) {
 			Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
-			}
+		}
 		else {
 			Click(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
 
 			Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
-			}
+		}
 
 		Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE_URL");
 
