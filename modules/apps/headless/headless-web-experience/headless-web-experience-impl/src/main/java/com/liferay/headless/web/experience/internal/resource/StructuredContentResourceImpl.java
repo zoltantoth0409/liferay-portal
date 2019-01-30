@@ -33,17 +33,16 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.SearchResultPermissionFilter;
 import com.liferay.portal.kernel.search.SearchResultPermissionFilterFactory;
+import com.liferay.portal.kernel.search.SearchResultPermissionFilterSearcher;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.CompanyService;
-import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -139,8 +138,16 @@ public class StructuredContentResourceImpl
 
 			SearchResultPermissionFilter searchResultPermissionFilter =
 				_searchResultPermissionFilterFactory.create(
-					searchContext1 -> IndexSearcherHelperUtil.search(
-						searchContext1, query),
+					new SearchResultPermissionFilterSearcher() {
+
+						public Hits search(SearchContext searchContext)
+							throws SearchException {
+
+							return IndexSearcherHelperUtil.search(
+								searchContext, query);
+						}
+
+					},
 					permissionChecker);
 
 			return searchResultPermissionFilter.search(searchContext);
