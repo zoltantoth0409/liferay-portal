@@ -21,8 +21,6 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.config.Application;
  */
 public class ConfigYAML {
 
-	public static final String IMPL_DIR = "src/main/java";
-
 	public String getApiDir() {
 		return _apiDir;
 	}
@@ -67,6 +65,6 @@ public class ConfigYAML {
 	private String _apiPackagePath;
 	private Application _application;
 	private String _author;
-	private String _implDir = IMPL_DIR;
+	private String _implDir = "src/main/java";
 
 }
