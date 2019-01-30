@@ -41,20 +41,19 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.context.Pagination;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
-import javax.annotation.Generated;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
+import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
+
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -63,49 +62,15 @@ import java.util.stream.Stream;
 	},
 	scope = ServiceScope.PROTOTYPE, service = StructuredContentResource.class
 )
-@Generated("")
 public class StructuredContentResourceImpl
 	implements StructuredContentResource {
 
 	@Override
-	public StructuredContentCollection<StructuredContent> getStructuredContentCollection(
-			Pagination pagination, String size)
+	public StructuredContentCollection<StructuredContent>
+			getStructuredContentCollection(Pagination pagination, String size)
 		throws Exception {
 
-		Company company = _companyService.getCompanyByWebId(
-			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
-
-		Group group = company.getGroup();
-
-		Locale locale = LocaleUtil.getDefault();
-
-		SearchContext searchContext = _createSearchContext(
-			company.getCompanyId(), group.getGroupId(), locale,
-			pagination.getStartPosition(), pagination.getEndPosition());
-
-		Query fullQuery = _getFullQuery(locale, searchContext);
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		Hits hits = null;
-
-		if (permissionChecker != null) {
-			if (searchContext.getUserId() == 0) {
-				searchContext.setUserId(permissionChecker.getUserId());
-			}
-
-			SearchResultPermissionFilter searchResultPermissionFilter =
-				_searchResultPermissionFilterFactory.create(
-					searchContext1 -> IndexSearcherHelperUtil.search(
-						searchContext1, fullQuery),
-					permissionChecker);
-
-			hits = searchResultPermissionFilter.search(searchContext);
-		}
-		else {
-			hits = IndexSearcherHelperUtil.search(searchContext, fullQuery);
-		}
+		Hits hits = _getHits(pagination);
 
 		List<StructuredContent> structuredContents = Stream.of(
 			_journalHelper.getArticles(hits)
@@ -128,20 +93,18 @@ public class StructuredContentResourceImpl
 	}
 
 	private SearchContext _createSearchContext(
-		long companyId, long groupId, Locale locale, int start,
-		int end) {
+		long companyId, long groupId, int start, int end) {
 
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAttribute(
 			Field.CLASS_NAME_ID, JournalArticleConstants.CLASSNAME_ID_DEFAULT);
-		searchContext.setAttribute("head", Boolean.TRUE);
 		searchContext.setAttribute(
 			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+		searchContext.setAttribute("head", Boolean.TRUE);
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});
-
 		searchContext.setStart(start);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
@@ -154,9 +117,39 @@ public class StructuredContentResourceImpl
 		return searchContext;
 	}
 
-	private Query _getFullQuery(Locale locale, SearchContext searchContext)
-		throws SearchException {
+	private Hits _getHits(Pagination pagination) throws Exception {
+		Company company = _companyService.getCompanyByWebId(
+			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
 
+		Group group = company.getGroup();
+
+		SearchContext searchContext = _createSearchContext(
+			company.getCompanyId(), group.getGroupId(),
+			pagination.getStartPosition(), pagination.getEndPosition());
+
+		Query query = _getQuery(searchContext);
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (permissionChecker != null) {
+			if (searchContext.getUserId() == 0) {
+				searchContext.setUserId(permissionChecker.getUserId());
+			}
+
+			SearchResultPermissionFilter searchResultPermissionFilter =
+				_searchResultPermissionFilterFactory.create(
+					searchContext1 -> IndexSearcherHelperUtil.search(
+						searchContext1, query),
+					permissionChecker);
+
+			return searchResultPermissionFilter.search(searchContext);
+		}
+
+		return IndexSearcherHelperUtil.search(searchContext, query);
+	}
+
+	private Query _getQuery(SearchContext searchContext) throws Exception {
 		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
 			JournalArticle.class);
 
@@ -175,4 +168,5 @@ public class StructuredContentResourceImpl
 	@Reference
 	private SearchResultPermissionFilterFactory
 		_searchResultPermissionFilterFactory;
+
 }

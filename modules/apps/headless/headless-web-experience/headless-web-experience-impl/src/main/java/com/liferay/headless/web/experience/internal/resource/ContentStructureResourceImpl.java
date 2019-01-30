@@ -29,18 +29,17 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.vulcan.context.Pagination;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ServiceScope;
 import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
-import javax.annotation.Generated;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -49,47 +48,42 @@ import java.util.List;
 	},
 	scope = ServiceScope.PROTOTYPE, service = ContentStructureResource.class
 )
-@Generated("")
 public class ContentStructureResourceImpl implements ContentStructureResource {
 
 	@Override
 	public ContentStructureCollection<ContentStructure>
-		getContentStructureCollection(
-			Pagination pagination, String size)
+			getContentStructureCollection(Pagination pagination, String size)
 		throws Exception {
 
-		String webId = PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID);
+		Company company = _companyService.getCompanyByWebId(
+			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
 
-		Company company = _companyService.getCompanyByWebId(webId);
 		Group group = company.getGroup();
-
-		long groupId = group.getGroupId();
 
 		ClassName className = _classNameService.fetchClassName(
 			JournalArticle.class.getName());
 
-		Long classNameId = className.getClassNameId();
+		List<DDMStructure> ddmStructures = _ddmStructureService.getStructures(
+			company.getCompanyId(), new long[] {group.getGroupId()},
+			className.getClassNameId(), pagination.getStartPosition(),
+			pagination.getEndPosition(), null);
 
-		List<DDMStructure> ddmStructures =
-			_ddmStructureService.getStructures(
-				company.getCompanyId(), new long[]{groupId}, classNameId,
-				pagination.getStartPosition(), pagination.getEndPosition(),
-				null);
-
-		int count = _ddmStructureService.getStructuresCount(
-			groupId, new long[]{classNameId}, classNameId);
-
-		ArrayList<ContentStructure> contentStructures = new ArrayList<>();
+		List<ContentStructure> contentStructures = new ArrayList<>(
+			ddmStructures.size());
 
 		for (DDMStructure ddmStructure : ddmStructures) {
 			ContentStructure contentStructure = new ContentStructure();
+
 			contentStructure.setId(ddmStructure.getStructureId());
 
 			contentStructures.add(contentStructure);
 		}
 
-		return new ContentStructureCollection(
-			contentStructures, contentStructures.size());
+		int count = _ddmStructureService.getStructuresCount(
+			group.getGroupId(), new long[] {className.getClassNameId()},
+			className.getClassNameId());
+
+		return new ContentStructureCollection(contentStructures, count);
 	}
 
 	@Reference
