@@ -131,29 +131,29 @@ public class StructuredContentResourceImpl
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		if (permissionChecker != null) {
-			if (searchContext.getUserId() == 0) {
-				searchContext.setUserId(permissionChecker.getUserId());
-			}
-
-			SearchResultPermissionFilter searchResultPermissionFilter =
-				_searchResultPermissionFilterFactory.create(
-					new SearchResultPermissionFilterSearcher() {
-
-						public Hits search(SearchContext searchContext)
-							throws SearchException {
-
-							return IndexSearcherHelperUtil.search(
-								searchContext, query);
-						}
-
-					},
-					permissionChecker);
-
-			return searchResultPermissionFilter.search(searchContext);
+		if (permissionChecker == null) {
+			return IndexSearcherHelperUtil.search(searchContext, query);
 		}
 
-		return IndexSearcherHelperUtil.search(searchContext, query);
+		if (searchContext.getUserId() == 0) {
+			searchContext.setUserId(permissionChecker.getUserId());
+		}
+
+		SearchResultPermissionFilter searchResultPermissionFilter =
+			_searchResultPermissionFilterFactory.create(
+				new SearchResultPermissionFilterSearcher() {
+
+					public Hits search(SearchContext searchContext)
+						throws SearchException {
+
+						return IndexSearcherHelperUtil.search(
+							searchContext, query);
+					}
+
+				},
+				permissionChecker);
+
+		return searchResultPermissionFilter.search(searchContext);
 	}
 
 	private Query _getQuery(SearchContext searchContext) throws Exception {
