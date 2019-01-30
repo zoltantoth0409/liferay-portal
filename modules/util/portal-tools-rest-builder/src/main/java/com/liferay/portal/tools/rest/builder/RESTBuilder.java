@@ -74,9 +74,8 @@ public class RESTBuilder {
 
 		Application application = _configYAML.getApplication();
 
-		String baseURI = application.getBaseURI();
-
-		String resourceName = CamelCaseUtil.toCamelCase(baseURI, true);
+		String resourceName = CamelCaseUtil.toCamelCase(
+			application.getBaseURI(), true);
 
 		context.put("resourceName", resourceName);
 
