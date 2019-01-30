@@ -51,6 +51,7 @@ public class JUnitBridgeAuxiliaryArchiveAppender
 			JavaArchive.class, "arquillian-junit-bridge.jar");
 
 		javaArchive.add(EmptyAsset.INSTANCE, "/arquillian.remote.marker");
+		javaArchive.add(_createManifestAsset(), "/META-INF/MANIFEST.MF");
 		javaArchive.addAsServiceProviderAndClasses(
 			RemoteLoadableExtension.class,
 			LiferayArquillianJUnitBridgeExtension.class);
@@ -58,7 +59,6 @@ public class JUnitBridgeAuxiliaryArchiveAppender
 			TestRunner.class, JUnitTestRunner.class);
 		javaArchive.addClasses(Arquillian.class, JUnitBridgeObserver.class);
 		javaArchive.addPackages(false, Arquillian.class.getPackage());
-		javaArchive.add(_createManifestAsset(), "/META-INF/MANIFEST.MF");
 
 		return javaArchive;
 	}

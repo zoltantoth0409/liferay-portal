@@ -45,10 +45,10 @@ public class LiferayArquillianJUnitBridgeExtension
 		if (url == null) {
 			extensionBuilder.observer(ConfigurationRegistrar.class);
 			extensionBuilder.service(
+				ApplicationArchiveProcessor.class, OSGiAllInProcessor.class);
+			extensionBuilder.service(
 				AuxiliaryArchiveAppender.class,
 				JUnitBridgeAuxiliaryArchiveAppender.class);
-			extensionBuilder.service(
-				ApplicationArchiveProcessor.class, OSGiAllInProcessor.class);
 			extensionBuilder.service(
 				DeployableContainer.class,
 				LiferayRemoteDeployableContainer.class);
