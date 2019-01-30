@@ -77,9 +77,7 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 				return false;
 			}
 
-			Long realUserId = (Long)session.getAttribute(WebKeys.USER_ID);
-
-			if (!_isValidRealUserId(realUserId, user)) {
+			if (!_isValidRealUserId(session, user)) {
 				return false;
 			}
 
@@ -104,7 +102,9 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 		}
 	}
 
-	private boolean _isValidRealUserId(Long realUserId, User user) {
+	private boolean _isValidRealUserId(HttpSession session, User user) {
+		Long realUserId = (Long)session.getAttribute(WebKeys.USER_ID);
+
 		if ((realUserId == null) || (user.getUserId() != realUserId)) {
 			return false;
 		}
