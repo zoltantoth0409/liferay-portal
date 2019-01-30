@@ -562,8 +562,6 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		DDMFormFieldValue ddmFormFieldValue, Set<Locale> availableLocales,
 		Locale defaultLocale) {
 
-
-
 		String ddmFormFieldParameterValue = getDDMFormFieldParameterValue(
 			httpServletRequest, fieldType, ddmFormFieldParameterName,
 			predefinedValue.getString(defaultLocale), defaultLocale);
