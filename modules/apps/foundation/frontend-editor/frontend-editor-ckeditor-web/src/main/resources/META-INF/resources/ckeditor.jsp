@@ -163,6 +163,19 @@ name = HtmlUtil.escapeJS(name);
 	var instanceDataReady = false;
 	var instancePendingData;
 
+	var getInitialContent = function() {
+		var data;
+
+		if (window['<%= HtmlUtil.escapeJS(namespace + initMethod) %>']) {
+			data = <%= HtmlUtil.escapeJS(namespace + initMethod) %>();
+		}
+		else {
+			data = '<%= (contents != null) ? HtmlUtil.escapeJS(contents) : StringPool.BLANK %>';
+		}
+
+		return data;
+	};
+
 	window.addEventListener('dragover', function(event) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -189,19 +202,6 @@ name = HtmlUtil.escapeJS(name);
 				type: 'danger'
 			}
 		);
-	};
-
-	var getInitialContent = function() {
-		var data;
-
-		if (window['<%= HtmlUtil.escapeJS(namespace + initMethod) %>']) {
-			data = <%= HtmlUtil.escapeJS(namespace + initMethod) %>();
-		}
-		else {
-			data = '<%= (contents != null) ? HtmlUtil.escapeJS(contents) : StringPool.BLANK %>';
-		}
-
-		return data;
 	};
 
 	window['<%= name %>'] = {
