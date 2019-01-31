@@ -60,11 +60,12 @@ public class UpgradeLayout extends UpgradeProcess {
 	}
 
 	protected void upgradeLayout() throws Exception {
-		StringBundler sb = new StringBundler(3);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append("select layoutPageTemplateEntryId, userId, groupId, ");
 		sb.append("classNameId, classTypeId, layoutPrototypeId, name, type_ ");
-		sb.append("from LayoutPageTemplateEntry where plid is null or plid = 0");
+		sb.append("from LayoutPageTemplateEntry where plid is null or plid = ");
+		sb.append("0");
 
 		ServiceContext serviceContext = new ServiceContext();
 
