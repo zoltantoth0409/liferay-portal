@@ -193,7 +193,7 @@ public class RESTBuilder {
 		File file = new File(sb.toString());
 
 		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "properties", context);
+			null, "properties", context);
 
 		FileUtil.write(content, file);
 
