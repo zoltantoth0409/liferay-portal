@@ -160,8 +160,6 @@ name = HtmlUtil.escapeJS(name);
 
 	var windowNode = A.getWin();
 
-	var contents = '<%= HtmlUtil.escapeJS(contents) %>';
-
 	var instanceDataReady = false;
 	var instancePendingData;
 
@@ -347,9 +345,6 @@ name = HtmlUtil.escapeJS(name);
 
 			if (win.instanceReady) {
 				setHTML(value);
-			}
-			else {
-				contents = value;
 			}
 		}
 	};
@@ -557,7 +552,6 @@ name = HtmlUtil.escapeJS(name);
 		ckEditor.on(
 			'instanceReady',
 			function() {
-
 				<c:choose>
 					<c:when test="<%= useCustomDataProcessor %>">
 						instanceReady = true;
