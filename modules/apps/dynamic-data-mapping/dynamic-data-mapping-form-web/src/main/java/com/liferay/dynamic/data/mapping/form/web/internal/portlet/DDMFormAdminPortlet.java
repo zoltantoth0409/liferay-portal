@@ -203,11 +203,11 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortalException {
 
-		String currentTab = ParamUtil.getString(
-			renderRequest, "currentTab", "forms");
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String currentTab = ParamUtil.getString(
+			renderRequest, "currentTab", "forms");
 
 		if (currentTab.equals("element-set")) {
 			DDMForm ddmForm = createSettingsDDMForm(0L, themeDisplay);
