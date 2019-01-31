@@ -16,8 +16,9 @@ package com.liferay.headless.web.experience.internal.resource;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
+import com.liferay.headless.web.experience.dto.Comment;
 import com.liferay.headless.web.experience.dto.ContentStructure;
-import com.liferay.headless.web.experience.dto.ContentStructureCollection;
+import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.headless.web.experience.resource.ContentStructureResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.model.ClassName;
@@ -27,9 +28,12 @@ import com.liferay.portal.kernel.service.ClassNameService;
 import com.liferay.portal.kernel.service.CompanyService;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
@@ -50,8 +54,9 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 public class ContentStructureResourceImpl implements ContentStructureResource {
 
 	@Override
-	public ContentStructureCollection<ContentStructure>
-			getContentStructureCollection(Pagination pagination, String size)
+	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
+			Integer parentId, String filter, String sort,
+			AcceptLanguage acceptLanguage, Pagination pagination)
 		throws Exception {
 
 		Company company = _companyService.getCompanyByWebId(
@@ -73,7 +78,9 @@ public class ContentStructureResourceImpl implements ContentStructureResource {
 		for (DDMStructure ddmStructure : ddmStructures) {
 			ContentStructure contentStructure = new ContentStructure();
 
-			contentStructure.setId(ddmStructure.getStructureId());
+			// TODO Do not cast to int
+
+			contentStructure.setId((int)ddmStructure.getStructureId());
 
 			contentStructures.add(contentStructure);
 		}
@@ -82,7 +89,20 @@ public class ContentStructureResourceImpl implements ContentStructureResource {
 			group.getGroupId(), new long[] {className.getClassNameId()},
 			className.getClassNameId());
 
-		return new ContentStructureCollection(contentStructures, count);
+		return new Page(contentStructures, count);
+	}
+
+	@Override
+	public ContentStructure getContentStructure(Integer id) throws Exception {
+		return new ContentStructure();
+	}
+
+	@Override
+	public Page<Comment> getStructuredContentsCommentPage(
+			StructuredContent parentId, Pagination pagination)
+		throws Exception {
+
+		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Reference

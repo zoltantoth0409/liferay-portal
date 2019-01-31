@@ -14,8 +14,8 @@
 
 package com.liferay.headless.web.experience.internal.resource;
 
+import com.liferay.headless.web.experience.dto.Comment;
 import com.liferay.headless.web.experience.dto.StructuredContent;
-import com.liferay.headless.web.experience.dto.StructuredContentCollection;
 import com.liferay.headless.web.experience.resource.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
@@ -40,8 +40,11 @@ import com.liferay.portal.kernel.service.CompanyService;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -65,8 +68,9 @@ public class StructuredContentResourceImpl
 	implements StructuredContentResource {
 
 	@Override
-	public StructuredContentCollection<StructuredContent>
-			getStructuredContentCollection(Pagination pagination, String size)
+	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
+			Integer parentId, String filter, String sort,
+			AcceptLanguage acceptLanguage, Pagination pagination)
 		throws Exception {
 
 		Hits hits = _getHits(pagination);
@@ -79,7 +83,8 @@ public class StructuredContentResourceImpl
 			journalArticle -> {
 				StructuredContent structuredContent = new StructuredContent();
 
-				structuredContent.setId(journalArticle.getResourcePrimKey());
+				structuredContent.setId(
+					(int)journalArticle.getResourcePrimKey());
 
 				return structuredContent;
 			}
@@ -87,8 +92,23 @@ public class StructuredContentResourceImpl
 			Collectors.toList()
 		);
 
-		return new StructuredContentCollection(
-			structuredContents, hits.getLength());
+		return new Page(structuredContents, hits.getLength());
+	}
+
+	@Override
+	public Page<Comment> getStructuredContentsCommentPage(
+			StructuredContent parentId, Pagination pagination)
+		throws Exception {
+
+		return new Page(Collections.emptyList(), 0);
+	}
+
+	@Override
+	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
+			Integer parentId, AcceptLanguage acceptLanguage)
+		throws Exception {
+
+		return new StructuredContent();
 	}
 
 	private SearchContext _createSearchContext(
