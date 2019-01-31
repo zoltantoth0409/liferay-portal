@@ -19,7 +19,6 @@ import javax.annotation.Generated;
 import javax.ws.rs.core.Application;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
@@ -27,14 +26,14 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_BASE + "=/headless-document-library",
-		JaxrsWhiteboardConstants.JAX_RS_EXTENSION_SELECT + "=(osgi.jaxrs.name=Liferay.OAuth2)",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=headless-document-library-application.rest",
 		"auth.verifier.auth.verifier.BasicAuthHeaderAuthVerifier.urls.includes=/*",
 		"auth.verifier.auth.verifier.OAuth2RestAuthVerifier.urls.includes=/*",
 		"auth.verifier.auth.verifier.PortalSessionAuthVerifier.urls.includes=/*",
 		"auth.verifier.guest.allowed=true",
-		"oauth2.scopechecker.type=annotations"
+		"oauth2.scopechecker.type=annotations",
+		"osgi.jaxrs.application.base=/headless-document-library",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.OAuth2)",
+		"osgi.jaxrs.name=headless-document-library-application.rest"
 	},
 	service = Application.class
 )

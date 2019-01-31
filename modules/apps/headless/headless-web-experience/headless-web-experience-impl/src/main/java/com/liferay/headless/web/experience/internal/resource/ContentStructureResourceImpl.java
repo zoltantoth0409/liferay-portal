@@ -18,15 +18,14 @@ import com.liferay.headless.web.experience.resource.ContentStructureResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=headless-web-experience-application.rest)",
-		JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true", "api.version=1.0.0"
+		"api.version=1.0.0",
+		"osgi.jaxrs.application.select=(osgi.jaxrs.name=headless-web-experience-application.rest)", "osgi.jaxrs.resource=true"
 	},
 	scope = ServiceScope.PROTOTYPE, service = ContentStructureResource.class
 )
