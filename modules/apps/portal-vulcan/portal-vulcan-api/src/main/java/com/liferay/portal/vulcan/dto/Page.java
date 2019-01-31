@@ -21,7 +21,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.Collection;
-import java.util.Collections;
 
 /**
  * @author Alejandro Hernández
