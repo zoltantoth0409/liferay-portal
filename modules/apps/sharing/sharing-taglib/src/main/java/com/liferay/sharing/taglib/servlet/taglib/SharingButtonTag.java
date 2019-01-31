@@ -46,6 +46,14 @@ public class SharingButtonTag extends IncludeTag {
 	}
 
 	@Override
+	protected void cleanUp() {
+		super.cleanUp();
+
+		_className = null;
+		_classPK = 0;
+	}
+
+	@Override
 	protected String getPage() {
 		return _PAGE;
 	}
