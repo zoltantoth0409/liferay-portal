@@ -86,6 +86,7 @@ public class RESTBuilder {
 
 			_createBaseResourceImplFile(context, schemaName);
 			_createDTOFile(context, schemaName);
+			_createPropertiesFile(context, schemaName);
 			_createResourceFile(context, schemaName);
 			_createResourceImplFile(context, schemaName);
 		}
@@ -172,6 +173,27 @@ public class RESTBuilder {
 
 		String content = FreeMarkerUtil.processTemplate(
 			_copyrightFileName, "dto", context);
+
+		FileUtil.write(content, file);
+
+		return file;
+	}
+
+	private File _createPropertiesFile(
+			Map<String, Object> context, String schemaName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/../resources/OSGI-INF/");
+		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
+		sb.append(".properties");
+
+		File file = new File(sb.toString());
+
+		String content = FreeMarkerUtil.processTemplate(
+			_copyrightFileName, "properties", context);
 
 		FileUtil.write(content, file);
 

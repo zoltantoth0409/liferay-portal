@@ -9,11 +9,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author ${configYAML.author}
  */
 @Component(
-	property = {
-		"api.version=${openAPIYAML.info.version}",
-		"osgi.jaxrs.application.select=(osgi.jaxrs.name=${configYAML.application.name}.rest)",
-		"osgi.jaxrs.resource=true"
-	},
+	properties = "OSGI-INF/${schemaPath}.properties",
 	scope = ServiceScope.PROTOTYPE, service = ${schemaName}Resource.class)
 public class ${schemaName}ResourceImpl extends Base${schemaName}ResourceImpl {
 }
