@@ -14,10 +14,11 @@
 
 package com.liferay.headless.workflow.internal.resource;
 
+import com.liferay.headless.workflow.dto.WorkflowLog;
 import com.liferay.headless.workflow.dto.WorkflowTask;
-import com.liferay.headless.workflow.dto.WorkflowTaskCollection;
 import com.liferay.headless.workflow.resource.WorkflowTaskResource;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import java.util.Collections;
 
@@ -42,11 +43,11 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 public class WorkflowTaskResourceImpl implements WorkflowTaskResource {
 
 	@Override
-	public WorkflowTaskCollection<WorkflowTask> getRolesWorkflowTasks(
+	public Page<WorkflowTask> getRolesWorkflowTasks(
 			String parentId, Pagination pagination)
 		throws Exception {
 
-		return new WorkflowTaskCollection(Collections.emptyList(), 0);
+		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -55,11 +56,19 @@ public class WorkflowTaskResourceImpl implements WorkflowTaskResource {
 	}
 
 	@Override
-	public WorkflowTaskCollection<WorkflowTask> getWorkflowTasks(
+	public Page<WorkflowTask> getWorkflowTasks(
 			Object genericparentid, Pagination pagination)
 		throws Exception {
 
-		return new WorkflowTaskCollection(Collections.emptyList(), 0);
+		return new Page(Collections.emptyList(), 0);
+	}
+
+	@Override
+	public Page<WorkflowLog> getWorkflowTasksWorkflowLogs(
+			Integer parentId, Pagination pagination)
+		throws Exception {
+
+		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override

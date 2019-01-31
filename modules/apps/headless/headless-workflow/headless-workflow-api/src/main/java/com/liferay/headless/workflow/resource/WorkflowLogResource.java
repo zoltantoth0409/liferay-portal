@@ -15,9 +15,10 @@
 package com.liferay.headless.workflow.resource;
 
 import com.liferay.headless.workflow.dto.WorkflowLog;
-import com.liferay.headless.workflow.dto.WorkflowLogCollection;
+import com.liferay.headless.workflow.dto.WorkflowTask;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import javax.annotation.Generated;
 
@@ -40,6 +41,15 @@ import javax.ws.rs.core.Context;
 public interface WorkflowLogResource {
 
 	@GET
+	@Path("/roles/{parent-id}/workflow-tasks")
+	@Produces({"*/*"})
+	@RequiresScope("headless-workflow-application.read")
+	public Page<WorkflowTask> getRolesWorkflowTasks(
+			@PathParam("parent-id") String parentId,
+			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
 	@Path("/workflow-logs/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-workflow-application.read")
@@ -47,10 +57,19 @@ public interface WorkflowLogResource {
 		throws Exception;
 
 	@GET
+	@Path("/workflow-tasks")
+	@Produces({"*/*"})
+	@RequiresScope("headless-workflow-application.read")
+	public Page<WorkflowTask> getWorkflowTasks(
+			@PathParam("genericparentid") Object genericparentid,
+			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
 	@Path("/workflow-tasks/{parent-id}/workflow-logs")
 	@Produces({"*/*"})
 	@RequiresScope("headless-workflow-application.read")
-	public WorkflowLogCollection<WorkflowLog> getWorkflowTasksWorkflowLogs(
+	public Page<WorkflowLog> getWorkflowTasksWorkflowLogs(
 			@PathParam("parent-id") Integer parentId,
 			@Context Pagination pagination)
 		throws Exception;
