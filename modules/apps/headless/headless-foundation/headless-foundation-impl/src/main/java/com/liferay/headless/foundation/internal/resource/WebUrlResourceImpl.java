@@ -23,11 +23,8 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	property = {
-		"api.version=1.0.0",
-		"osgi.jaxrs.application.select=(osgi.jaxrs.name=headless-foundation-application.rest)", "osgi.jaxrs.resource=true"
-	},
-	scope = ServiceScope.PROTOTYPE, service = WebUrlResource.class
+	properties = "OSGI-INF/web-url.properties", scope = ServiceScope.PROTOTYPE,
+	service = WebUrlResource.class
 )
 public class WebUrlResourceImpl extends BaseWebUrlResourceImpl {
 }

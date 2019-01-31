@@ -23,10 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	property = {
-		"api.version=1.0.0",
-		"osgi.jaxrs.application.select=(osgi.jaxrs.name=headless-foundation-application.rest)", "osgi.jaxrs.resource=true"
-	},
+	properties = "OSGI-INF/postal-address.properties",
 	scope = ServiceScope.PROTOTYPE, service = PostalAddressResource.class
 )
 public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
