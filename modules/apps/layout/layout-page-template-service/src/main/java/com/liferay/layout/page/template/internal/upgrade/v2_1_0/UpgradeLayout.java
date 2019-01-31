@@ -80,6 +80,7 @@ public class UpgradeLayout extends UpgradeProcess {
 			while (rs.next()) {
 				long layoutPageTemplateEntryId = rs.getLong(
 					"layoutPageTemplateEntryId");
+
 				long userId = rs.getLong("userId");
 				long groupId = rs.getLong("groupId");
 				long classNameId = rs.getLong("classNameId");
@@ -110,8 +111,8 @@ public class UpgradeLayout extends UpgradeProcess {
 	}
 
 	private long _getPlid(
-			long userId, long groupId, long classNameId,
-			long classTypeId, String name, int type, long layoutPrototypeId,
+			long userId, long groupId, long classNameId, long classTypeId,
+			String name, int type, long layoutPrototypeId,
 			ServiceContext serviceContext)
 		throws Exception {
 
