@@ -14,15 +14,7 @@
 
 package com.liferay.headless.document.library.internal.resource;
 
-import com.liferay.headless.document.library.dto.Document;
-import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.DocumentResource;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
-
-import java.util.Collections;
-
-import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -30,7 +22,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -39,53 +30,5 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	},
 	scope = ServiceScope.PROTOTYPE, service = DocumentResource.class
 )
-@Generated("")
-public class DocumentResourceImpl implements DocumentResource {
-
-	@Override
-	public Page<Document> getDocumentsRepositoryDocumentPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Folder> getDocumentsRepositoryFolderPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Document> getFolderDocumentPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Folder> getFolderFolderPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Document postDocumentsRepositoryDocumentBatchCreate(Long parentId)
-		throws Exception {
-
-		return new Document();
-	}
-
-	@Override
-	public Document postFolderDocumentBatchCreate(Long parentId)
-		throws Exception {
-
-		return new Document();
-	}
-
+public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 }

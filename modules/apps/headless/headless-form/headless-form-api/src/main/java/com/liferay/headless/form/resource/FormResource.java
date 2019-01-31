@@ -15,8 +15,6 @@
 package com.liferay.headless.form.resource;
 
 import com.liferay.headless.form.dto.Form;
-import com.liferay.headless.form.dto.FormRecord;
-import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -45,15 +43,6 @@ import javax.ws.rs.core.Context;
 public interface FormResource {
 
 	@GET
-	@Path("/content-space/{parent-id}/content-structures")
-	@Produces({"*/*"})
-	@RequiresScope("headless-form-application.read")
-	public Page<FormStructure> getContentSpaceContentStructuresPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
 	@Path("/content-space/{parent-id}/form")
 	@Produces({"*/*"})
 	@RequiresScope("headless-form-application.read")
@@ -73,15 +62,6 @@ public interface FormResource {
 	@Produces({"*/*"})
 	@RequiresScope("headless-form-application.read")
 	public Form getFormFetchLatestDraft(@PathParam("id") Integer id)
-		throws Exception;
-
-	@GET
-	@Path("/form/{parent-id}/form-record")
-	@Produces({"*/*"})
-	@RequiresScope("headless-form-application.read")
-	public Page<FormRecord> getFormFormRecordPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
 		throws Exception;
 
 	@Consumes({"*/*"})

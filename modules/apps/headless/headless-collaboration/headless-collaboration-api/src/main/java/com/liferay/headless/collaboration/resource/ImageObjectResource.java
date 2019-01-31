@@ -14,8 +14,6 @@
 
 package com.liferay.headless.collaboration.resource;
 
-import com.liferay.headless.collaboration.dto.BlogPosting;
-import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -23,7 +21,9 @@ import com.liferay.portal.vulcan.dto.Page;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -42,30 +42,10 @@ import javax.ws.rs.core.Context;
 public interface ImageObjectResource {
 
 	@GET
-	@Path("/blog-posting/{parent-id}/comment")
+	@Path("/image-object/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getBlogPostingCommentPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/comment/{parent-id}/comment")
-	@Produces({"*/*"})
-	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getCommentCommentPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/content-space/{parent-id}/blog-posting")
-	@Produces({"*/*"})
-	@RequiresScope("headless-collaboration-application.read")
-	public Page<BlogPosting> getContentSpaceBlogPostingPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
+	public ImageObject getImageObject(@PathParam("id") Integer id)
 		throws Exception;
 
 	@GET
@@ -75,6 +55,14 @@ public interface ImageObjectResource {
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
 			@PathParam("parent-id") Integer parentId,
 			@Context Pagination pagination)
+		throws Exception;
+
+	@Consumes({"*/*"})
+	@Path("/image-object-repository/{parent-id}/image-object")
+	@POST
+	@Produces({"*/*"})
+	@RequiresScope("headless-collaboration-application.read")
+	public ImageObject postImageObjectRepositoryImageObject(parentId)
 		throws Exception;
 
 }

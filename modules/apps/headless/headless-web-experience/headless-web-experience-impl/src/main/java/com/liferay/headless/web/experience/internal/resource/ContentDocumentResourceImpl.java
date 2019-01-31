@@ -14,16 +14,7 @@
 
 package com.liferay.headless.web.experience.internal.resource;
 
-import com.liferay.headless.web.experience.dto.Comment;
-import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.headless.web.experience.resource.ContentDocumentResource;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
-
-import java.util.Collections;
-
-import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -31,7 +22,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -40,24 +30,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	},
 	scope = ServiceScope.PROTOTYPE, service = ContentDocumentResource.class
 )
-@Generated("")
-public class ContentDocumentResourceImpl implements ContentDocumentResource {
-
-	@Override
-	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Integer parentId, String filter, String sort,
-			AcceptLanguage acceptLanguage, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Comment> getStructuredContentsCommentPage(
-			StructuredContent parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
+public class ContentDocumentResourceImpl
+	extends BaseContentDocumentResourceImpl {
 }

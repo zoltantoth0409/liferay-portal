@@ -14,8 +14,6 @@
 
 package com.liferay.headless.form.resource;
 
-import com.liferay.headless.form.dto.Form;
-import com.liferay.headless.form.dto.FormRecord;
 import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -46,24 +44,6 @@ public interface FormStructureResource {
 	@Produces({"*/*"})
 	@RequiresScope("headless-form-application.read")
 	public Page<FormStructure> getContentSpaceContentStructuresPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/content-space/{parent-id}/form")
-	@Produces({"*/*"})
-	@RequiresScope("headless-form-application.read")
-	public Page<Form> getContentSpaceFormPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/form/{parent-id}/form-record")
-	@Produces({"*/*"})
-	@RequiresScope("headless-form-application.read")
-	public Page<FormRecord> getFormFormRecordPage(
 			@PathParam("parent-id") Integer parentId,
 			@Context Pagination pagination)
 		throws Exception;

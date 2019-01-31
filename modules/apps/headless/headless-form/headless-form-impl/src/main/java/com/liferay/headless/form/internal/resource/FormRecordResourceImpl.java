@@ -14,16 +14,7 @@
 
 package com.liferay.headless.form.internal.resource;
 
-import com.liferay.headless.form.dto.Form;
-import com.liferay.headless.form.dto.FormRecord;
-import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.headless.form.resource.FormRecordResource;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
-
-import java.util.Collections;
-
-import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -31,7 +22,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -40,44 +30,5 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	},
 	scope = ServiceScope.PROTOTYPE, service = FormRecordResource.class
 )
-@Generated("")
-public class FormRecordResourceImpl implements FormRecordResource {
-
-	@Override
-	public Page<FormStructure> getContentSpaceContentStructuresPage(
-			Integer parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Form> getContentSpaceFormPage(
-			Integer parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<FormRecord> getFormFormRecordPage(
-			Integer parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public FormRecord getFormRecord(Integer id) throws Exception {
-		return new FormRecord();
-	}
-
-	@Override
-	public FormRecord postFormFormRecordBatchCreate(
-			Integer parentId, String acceptlocale)
-		throws Exception {
-
-		return new FormRecord();
-	}
-
+public class FormRecordResourceImpl extends BaseFormRecordResourceImpl {
 }

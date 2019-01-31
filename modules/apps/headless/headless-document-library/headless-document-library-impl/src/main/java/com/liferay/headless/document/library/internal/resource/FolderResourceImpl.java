@@ -14,15 +14,7 @@
 
 package com.liferay.headless.document.library.internal.resource;
 
-import com.liferay.headless.document.library.dto.Document;
-import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.FolderResource;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
-
-import java.util.Collections;
-
-import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -30,7 +22,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -39,56 +30,5 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	},
 	scope = ServiceScope.PROTOTYPE, service = FolderResource.class
 )
-@Generated("")
-public class FolderResourceImpl implements FolderResource {
-
-	@Override
-	public Folder getDocumentsRepository(Integer id) throws Exception {
-		return new Folder();
-	}
-
-	@Override
-	public Page<Document> getDocumentsRepositoryDocumentPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Folder> getDocumentsRepositoryFolderPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Document> getFolderDocumentPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Folder> getFolderFolderPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Folder postDocumentsRepositoryFolderBatchCreate(Long parentId)
-		throws Exception {
-
-		return new Folder();
-	}
-
-	@Override
-	public Folder postFolderFolderBatchCreate(Long parentId) throws Exception {
-		return new Folder();
-	}
-
+public class FolderResourceImpl extends BaseFolderResourceImpl {
 }

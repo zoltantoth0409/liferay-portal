@@ -14,17 +14,7 @@
 
 package com.liferay.headless.foundation.resource;
 
-import com.liferay.headless.foundation.dto.Category;
-import com.liferay.headless.foundation.dto.Email;
-import com.liferay.headless.foundation.dto.Keyword;
-import com.liferay.headless.foundation.dto.Organization;
-import com.liferay.headless.foundation.dto.Phone;
-import com.liferay.headless.foundation.dto.PostalAddress;
-import com.liferay.headless.foundation.dto.Role;
-import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.dto.Vocabulary;
-import com.liferay.headless.foundation.dto.WebSite;
-import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -34,10 +24,10 @@ import javax.annotation.Generated;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
 /**
@@ -53,33 +43,6 @@ import javax.ws.rs.core.Context;
 public interface VocabularyResource {
 
 	@GET
-	@Path("/addresses")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<PostalAddress> getAddressesPage(
-			@PathParam("genericparentid") Integer genericparentid,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/categories/{parent-id}/categories")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getCategoriesCategoriesPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/content-space/{parent-id}/keywords")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Keyword> getContentSpaceKeywordsPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
 	@Path("/content-space/{parent-id}/vocabularies")
 	@Produces({"*/*"})
 	@RequiresScope("headless-foundation-application.read")
@@ -89,161 +52,19 @@ public interface VocabularyResource {
 		throws Exception;
 
 	@GET
-	@Path("/emails")
+	@Path("/vocabularies/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Email> getEmailsPage(
-			@PathParam("genericparentid") Object genericparentid,
-			@Context Pagination pagination)
+	public Vocabulary getVocabularies(@PathParam("id") Integer id)
 		throws Exception;
 
-	@GET
-	@Path("/my-user-account/{parent-id}/organization")
+	@Consumes({"*/*"})
+	@Path("/content-space/{parent-id}/vocabularies")
+	@POST
 	@Produces({"*/*"})
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getMyUserAccountOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/my-user-account")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getMyUserAccountPage(
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/my-user-account/{parent-id}/roles")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getMyUserAccountRolesPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/my-user-account/{parent-id}/web-site")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getMyUserAccountWebSitePage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/organization/{parent-id}/organization")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getOrganizationOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/organization")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getOrganizationPage(
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/organization/{parent-id}/user-account")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getOrganizationUserAccountPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/phones")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Phone> getPhonesPage(
-			@PathParam("genericparentid") Object genericparentid,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/roles")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getRolesPage(@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/user-account/{parent-id}/organization")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getUserAccountOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/user-account")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getUserAccountPage(
-			@QueryParam("fullnamequery") String fullnamequery,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/user-account/{parent-id}/roles")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getUserAccountRolesPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/user-account/{parent-id}/web-site")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getUserAccountWebSitePage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/vocabularies/{parent-id}/categories")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getVocabulariesCategoriesPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/web-site/{parent-id}/user-account")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getWebSiteUserAccountPage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/web-site/{parent-id}/web-site")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getWebSiteWebSitePage(
-			@PathParam("parent-id") Integer parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/web-urls")
-	@Produces({"*/*"})
-	@RequiresScope("headless-foundation-application.read")
-	public Page<WebUrl> getWebUrlsPage(
-			@PathParam("genericparentid") Object genericparentid,
-			@Context Pagination pagination)
+	public Vocabulary postContentSpaceVocabularies(
+			@PathParam("parent-id") Integer parentId)
 		throws Exception;
 
 	@Consumes({"*/*"})
@@ -253,6 +74,14 @@ public interface VocabularyResource {
 	@RequiresScope("headless-foundation-application.write")
 	public Vocabulary postContentSpaceVocabulariesBatchCreate(
 			@PathParam("parent-id") Integer parentId)
+		throws Exception;
+
+	@Consumes({"*/*"})
+	@Path("/vocabularies/{id}")
+	@Produces({"*/*"})
+	@PUT
+	@RequiresScope("headless-foundation-application.read")
+	public Vocabulary putVocabularies(@PathParam("id") Integer id)
 		throws Exception;
 
 }

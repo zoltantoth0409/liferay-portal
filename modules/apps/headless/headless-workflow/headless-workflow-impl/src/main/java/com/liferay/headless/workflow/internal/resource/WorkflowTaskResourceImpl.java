@@ -14,14 +14,7 @@
 
 package com.liferay.headless.workflow.internal.resource;
 
-import com.liferay.headless.workflow.dto.WorkflowTask;
 import com.liferay.headless.workflow.resource.WorkflowTaskResource;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
-
-import java.util.Collections;
-
-import javax.annotation.Generated;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -29,7 +22,6 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
 @Component(
 	property = {
@@ -38,56 +30,5 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	},
 	scope = ServiceScope.PROTOTYPE, service = WorkflowTaskResource.class
 )
-@Generated("")
-public class WorkflowTaskResourceImpl implements WorkflowTaskResource {
-
-	@Override
-	public Page<WorkflowTask> getRolesWorkflowTasksPage(
-			String parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public WorkflowTask getWorkflowTask(Integer id) throws Exception {
-		return new WorkflowTask();
-	}
-
-	@Override
-	public Page<WorkflowTask> getWorkflowTasksPage(
-			Object genericparentid, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public WorkflowTask postWorkflowTasksAssignToMe(Integer id)
-		throws Exception {
-
-		return new WorkflowTask();
-	}
-
-	@Override
-	public WorkflowTask postWorkflowTasksAssignToUser(Integer id)
-		throws Exception {
-
-		return new WorkflowTask();
-	}
-
-	@Override
-	public WorkflowTask postWorkflowTasksChangeTransition(Integer id)
-		throws Exception {
-
-		return new WorkflowTask();
-	}
-
-	@Override
-	public WorkflowTask postWorkflowTasksUpdateDueDate(Integer id)
-		throws Exception {
-
-		return new WorkflowTask();
-	}
-
+public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 }

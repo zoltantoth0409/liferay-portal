@@ -14,7 +14,6 @@
 
 package com.liferay.headless.web.experience.resource;
 
-import com.liferay.headless.web.experience.dto.Comment;
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
@@ -26,6 +25,7 @@ import javax.annotation.Generated;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -57,11 +57,21 @@ public interface StructuredContentResource {
 		throws Exception;
 
 	@GET
-	@Path("/structured-contents/{parent-id}/comment")
+	@Path("/structured-contents/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-web-experience-application.read")
-	public Page<Comment> getStructuredContentsCommentPage(
-			StructuredContent parentId, @Context Pagination pagination)
+	public StructuredContent getStructuredContent(
+			@PathParam("id") Integer id, @Context AcceptLanguage acceptLanguage)
+		throws Exception;
+
+	@Consumes({"*/*"})
+	@Path("/content-space/{parent-id}/structured-contents")
+	@POST
+	@Produces({"*/*"})
+	@RequiresScope("headless-web-experience-application.read")
+	public StructuredContent postContentSpaceStructuredContent(
+			@PathParam("parent-id") Integer parentId,
+			@Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
 	@Consumes({"*/*"})
@@ -72,6 +82,15 @@ public interface StructuredContentResource {
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
 			@PathParam("parent-id") Integer parentId,
 			@Context AcceptLanguage acceptLanguage)
+		throws Exception;
+
+	@Consumes({"*/*"})
+	@Path("/structured-contents/{id}")
+	@Produces({"*/*"})
+	@PUT
+	@RequiresScope("headless-web-experience-application.read")
+	public StructuredContent putStructuredContent(
+			@PathParam("id") Integer id, @Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
 }
