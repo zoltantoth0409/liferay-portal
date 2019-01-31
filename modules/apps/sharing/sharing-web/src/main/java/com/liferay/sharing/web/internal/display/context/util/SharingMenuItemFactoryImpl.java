@@ -51,7 +51,7 @@ public class SharingMenuItemFactoryImpl
 		javaScriptMenuItem.setKey("#share");
 		javaScriptMenuItem.setLabel(_language.get(request, "share"));
 		javaScriptMenuItem.setOnClick(
-			_sharingJavaScriptFactory.createSharingOnclickMethod(
+			_sharingJavaScriptFactory.createSharingOnClickMethod(
 				className, classPK, request));
 
 		return javaScriptMenuItem;
@@ -70,7 +70,7 @@ public class SharingMenuItemFactoryImpl
 		javaScriptToolbarItem.setKey("#share");
 		javaScriptToolbarItem.setLabel(_language.get(request, "share"));
 		javaScriptToolbarItem.setOnClick(
-			_sharingJavaScriptFactory.createSharingOnclickMethod(
+			_sharingJavaScriptFactory.createSharingOnClickMethod(
 				className, classPK, request));
 
 		return javaScriptToolbarItem;

@@ -82,7 +82,7 @@ public class SharingJavascriptFactoryImpl implements SharingJavaScriptFactory {
 	}
 
 	@Override
-	public String createSharingOnclickMethod(
+	public String createSharingOnClickMethod(
 		String className, long classPK, HttpServletRequest request) {
 
 		String sharingPortletId = PortletProviderUtil.getPortletId(

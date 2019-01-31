@@ -26,7 +26,7 @@ public interface SharingJavaScriptFactory {
 	public String createSharingJavaScript(HttpServletRequest request)
 		throws PortalException;
 
-	public String createSharingOnclickMethod(
+	public String createSharingOnClickMethod(
 			String className, long classPK, HttpServletRequest request)
 		throws PortalException;
 
