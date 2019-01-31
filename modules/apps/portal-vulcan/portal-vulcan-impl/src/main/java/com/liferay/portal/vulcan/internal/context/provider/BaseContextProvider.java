@@ -12,18 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.context;
+package com.liferay.portal.vulcan.internal.context.provider;
 
-import java.util.List;
-import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.cxf.jaxrs.ext.ContextProvider;
+import org.apache.cxf.message.Message;
 
 /**
- * @author Alejandro Hernández
+ * @author Brian Wing Shun Chan
  */
-public interface AcceptLanguage {
+public abstract class BaseContextProvider<T> implements ContextProvider<T> {
 
-	public List<Locale> getLocales();
-
-	public Locale getPreferredLocale();
+	protected HttpServletRequest getHttpServletRequest(Message message) {
+		return (HttpServletRequest)message.getContextualProperty(
+			"HTTP.REQUEST");
+	}
 
 }

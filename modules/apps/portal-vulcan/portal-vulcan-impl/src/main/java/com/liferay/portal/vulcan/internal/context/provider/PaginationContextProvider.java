@@ -16,6 +16,7 @@ package com.liferay.portal.vulcan.internal.context.provider;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.internal.context.PaginationImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -35,18 +36,17 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 	service = ContextProvider.class
 )
 @Provider
-public class PaginationContextProvider implements ContextProvider<Pagination> {
+public class PaginationContextProvider extends BaseContextProvider<Pagination> {
 
 	@Override
 	public Pagination createContext(Message message) {
-		HttpServletRequest httpServletRequest =
-			(HttpServletRequest)message.getContextualProperty("HTTP.REQUEST");
+		HttpServletRequest httpServletRequest = getHttpServletRequest(message);
 
 		int pageNumber = ParamUtil.getInteger(httpServletRequest, "page", 1);
 		int itemsPerPage = ParamUtil.getInteger(
 			httpServletRequest, "pageSize", 20);
 
-		return new Pagination(itemsPerPage, pageNumber);
+		return new PaginationImpl(itemsPerPage, pageNumber);
 	}
 
 }

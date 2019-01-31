@@ -12,19 +12,37 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.context;
+package com.liferay.portal.vulcan.internal.context;
+
+import com.liferay.portal.vulcan.context.Pagination;
 
 /**
  * @author Zoltán Takács
  */
-public interface Pagination {
+public class PaginationImpl implements Pagination {
 
-	public int getEndPosition();
+	public PaginationImpl(int itemsPerPage, int pageNumber) {
+		_itemsPerPage = itemsPerPage;
+		_pageNumber = pageNumber;
+	}
 
-	public int getItemsPerPage();
+	public int getEndPosition() {
+		return _pageNumber * _itemsPerPage;
+	}
 
-	public int getPageNumber();
+	public int getItemsPerPage() {
+		return _itemsPerPage;
+	}
 
-	public int getStartPosition();
+	public int getPageNumber() {
+		return _pageNumber;
+	}
+
+	public int getStartPosition() {
+		return (_pageNumber - 1) * _itemsPerPage;
+	}
+
+	private final int _itemsPerPage;
+	private final int _pageNumber;
 
 }
