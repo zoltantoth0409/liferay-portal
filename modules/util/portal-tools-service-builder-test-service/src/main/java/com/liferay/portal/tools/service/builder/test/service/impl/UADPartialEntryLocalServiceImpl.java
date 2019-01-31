@@ -17,26 +17,8 @@ package com.liferay.portal.tools.service.builder.test.service.impl;
 import com.liferay.portal.tools.service.builder.test.service.base.UADPartialEntryLocalServiceBaseImpl;
 
 /**
- * The implementation of the uad partial entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.portal.tools.service.builder.test.service.UADPartialEntryLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see UADPartialEntryLocalServiceBaseImpl
- * @see com.liferay.portal.tools.service.builder.test.service.UADPartialEntryLocalServiceUtil
  */
 public class UADPartialEntryLocalServiceImpl
 	extends UADPartialEntryLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.portal.tools.service.builder.test.service.UADPartialEntryLocalServiceUtil} to access the uad partial entry local service.
-	 */
-
 }
