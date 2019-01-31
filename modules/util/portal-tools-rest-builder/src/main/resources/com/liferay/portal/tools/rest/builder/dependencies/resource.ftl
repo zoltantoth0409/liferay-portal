@@ -3,12 +3,12 @@ package ${configYAML.apiPackagePath}.resource;
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${schemaName};
-		import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 	</#list>
 </#compress>
 
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import javax.annotation.Generated;
 
@@ -204,8 +204,8 @@ public interface ${schemaName}Resource {
 										<#assign name = "${reference[(reference?last_index_of('/') + 1)..(reference?length - 1)]}" />
 
 										<#assign
-											methodReturnType = "${name}Collection"
-											methodReturnValue = "${name}Collection<${name}>"
+											methodReturnType = "Page"
+											methodReturnValue = "Page<${name}>"
 										/>
 									</#if>
 								</#if>
@@ -243,7 +243,7 @@ public interface ${schemaName}Resource {
 
 		<#assign name = "${name?replace(' ', '')}" />
 
-		<#if stringUtil.equals(methodReturnType, schemaName) || stringUtil.equals(methodReturnType, schemaName + "Collection")>
+		<#if stringUtil.equals(methodReturnType, schemaName) || stringUtil.equals(methodReturnType, "Page")>
 			<#assign template>
 				@Path("${path}")
 				${annotationConsumes}

@@ -3,13 +3,13 @@ package ${configYAML.apiPackagePath}.internal.resource;
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${schemaName};
-		import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 	</#list>
 </#compress>
 
 import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
 
 import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import java.util.Collections;
 
@@ -148,8 +148,8 @@ public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 										<#assign name = "${reference[(reference?last_index_of('/') + 1)..(reference?length - 1)]}" />
 
 										<#assign
-											methodReturnType = "${name}Collection"
-											methodReturnValue = "${name}Collection<${name}>"
+											methodReturnType = "Page"
+											methodReturnValue = "Page<${name}>"
 										/>
 									</#if>
 								</#if>
@@ -187,7 +187,7 @@ public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 
 		<#assign name = "${name?replace(' ', '')}" />
 
-		<#if stringUtil.equals(methodReturnType, schemaName) || stringUtil.equals(methodReturnType, schemaName + "Collection")>
+		<#if stringUtil.equals(methodReturnType, schemaName) || stringUtil.equals(methodReturnType, "Page")>
 			<#if stringUtil.equals(methodReturnType, "Response")>
 				<#assign template>
 					@Override
@@ -197,7 +197,7 @@ public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 						return responseBuilder.build();
 					}
 				</#assign>
-			<#elseif methodReturnValue?contains("Collection<")>
+			<#elseif methodReturnValue?contains("Page<")>
 				<#assign template>
 					@Override
 					public ${methodReturnValue} ${name}(${methodParameters}) throws Exception {
