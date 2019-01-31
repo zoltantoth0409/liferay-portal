@@ -18,20 +18,10 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.Response;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
-
 /**
  * @author ${configYAML.author}
  * @generated
  */
-@Component(
-	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=${configYAML.application.name}.rest)",
-		JaxrsWhiteboardConstants.JAX_RS_RESOURCE + "=true", "api.version=${openAPIYAML.info.version}"
-	},
-	scope = ServiceScope.PROTOTYPE, service = ${schemaName}Resource.class)
 @Generated("")
 public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Resource {
 
