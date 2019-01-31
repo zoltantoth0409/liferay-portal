@@ -91,8 +91,8 @@ public class UpgradeLayout extends UpgradeProcess {
 				ps.setLong(
 					1,
 					_getPlid(
-						name, userId, groupId, classNameId, classTypeId,
-						layoutPrototypeId, type, serviceContext));
+						userId, groupId, classNameId, classTypeId, name, type,
+						layoutPrototypeId, serviceContext));
 
 				ps.setLong(2, layoutPageTemplateEntryId);
 
@@ -110,8 +110,8 @@ public class UpgradeLayout extends UpgradeProcess {
 	}
 
 	private long _getPlid(
-			String name, long userId, long groupId, long classNameId,
-			long classTypeId, long layoutPrototypeId, int type,
+			long userId, long groupId, long classNameId,
+			long classTypeId, String name, int type, long layoutPrototypeId,
 			ServiceContext serviceContext)
 		throws Exception {
 
