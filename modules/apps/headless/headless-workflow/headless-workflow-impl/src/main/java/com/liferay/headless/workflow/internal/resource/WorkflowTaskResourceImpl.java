@@ -14,7 +14,6 @@
 
 package com.liferay.headless.workflow.internal.resource;
 
-import com.liferay.headless.workflow.dto.WorkflowLog;
 import com.liferay.headless.workflow.dto.WorkflowTask;
 import com.liferay.headless.workflow.resource.WorkflowTaskResource;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -58,14 +57,6 @@ public class WorkflowTaskResourceImpl implements WorkflowTaskResource {
 	@Override
 	public Page<WorkflowTask> getWorkflowTasksPage(
 			Object genericparentid, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage(
-			Integer parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
