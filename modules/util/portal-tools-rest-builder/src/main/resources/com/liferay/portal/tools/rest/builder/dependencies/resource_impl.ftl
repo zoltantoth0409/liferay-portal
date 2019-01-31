@@ -113,7 +113,7 @@ public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 						</#if>
 
 						<#if parameter.schema.type??>
-							<#if stringUtil.equals(parameter.schema.type, "integer") && parameter.schema.format?? && stringUtil.equals(parameter.schema.format, "int64")>
+							<#if parameter.schema.format?? && stringUtil.equals(parameter.schema.format, "int64") && stringUtil.equals(parameter.schema.type, "integer")>
 								Long
 							<#else>
 								${parameter.schema.type?cap_first}
