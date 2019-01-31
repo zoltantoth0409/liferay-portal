@@ -178,33 +178,36 @@ name = HtmlUtil.escapeJS(name);
 		return data;
 	};
 
-	var preventImageDragoverHandler = windowNode.on('dragover', function(event) {
-		event.preventDefault();
-		event.stopPropagation();
-	});
+	var preventImageDragoverHandler = windowNode.on(
+		'dragover',
+		function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+		}
+	);
 
-	var preventImageDropHandler = windowNode.on('drop', function(event) {
-		event.preventDefault();
-		event.stopImmediatePropagation();
-		showError();
-	});
+	var preventImageDropHandler = windowNode.on(
+		'drop',
+		function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
 
-	var showError = function() {
-		new Liferay.Notification(
-			{
-				closeable: true,
-				delay: {
-					hide: 5000,
-					show: 0
-				},
-				duration: 250,
-				message: '<%= UnicodeLanguageUtil.get(resourceBundle, "your-request-failed-to-complete") %>',
-				render: true,
-				title: '<%= UnicodeLanguageUtil.get(resourceBundle, "error") %>',
-				type: 'danger'
-			}
-		);
-	};
+			new Liferay.Notification(
+				{
+					closeable: true,
+					delay: {
+						hide: 5000,
+						show: 0
+					},
+					duration: 500,
+					message: '<liferay-ui:message key="your-request-failed-to-complete" />',
+					render: true,
+					title: '<liferay-ui:message key="error" />',
+					type: 'danger'
+				}
+			);
+		}
+	);
 
 	var eventHandles = [
 		preventImageDragoverHandler,
