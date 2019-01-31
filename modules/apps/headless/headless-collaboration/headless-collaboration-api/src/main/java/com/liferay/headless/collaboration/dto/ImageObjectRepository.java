@@ -25,4 +25,60 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Generated("")
 @XmlRootElement(name = "ImageObjectRepository")
 public class ImageObjectRepository {
+
+	public String getDateCreated() {
+		return _dateCreated;
+	}
+
+	public String getDateModified() {
+		return _dateModified;
+	}
+
+	public Integer getId() {
+		return _id;
+	}
+
+	public ImageObject getImages() {
+		return _images;
+	}
+
+	public String getName() {
+		return _name;
+	}
+
+	public String getSelf() {
+		return _self;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		_dateCreated = dateCreated;
+	}
+
+	public void setDateModified(String dateModified) {
+		_dateModified = dateModified;
+	}
+
+	public void setId(Integer id) {
+		_id = id;
+	}
+
+	public void setImages(ImageObject images) {
+		_images = images;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setSelf(String self) {
+		_self = self;
+	}
+
+	private String _dateCreated;
+	private String _dateModified;
+	private Integer _id;
+	private ImageObject _images;
+	private String _name;
+	private String _self;
+
 }

@@ -25,4 +25,51 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Generated("")
 @XmlRootElement(name = "Comment")
 public class Comment {
+
+	public Comment getComments() {
+		return _comments;
+	}
+
+	public String getCreator() {
+		return _creator;
+	}
+
+	public Integer getId() {
+		return _id;
+	}
+
+	public String getSelf() {
+		return _self;
+	}
+
+	public String getText() {
+		return _text;
+	}
+
+	public void setComments(Comment comments) {
+		_comments = comments;
+	}
+
+	public void setCreator(String creator) {
+		_creator = creator;
+	}
+
+	public void setId(Integer id) {
+		_id = id;
+	}
+
+	public void setSelf(String self) {
+		_self = self;
+	}
+
+	public void setText(String text) {
+		_text = text;
+	}
+
+	private Comment _comments;
+	private String _creator;
+	private Integer _id;
+	private String _self;
+	private String _text;
+
 }
