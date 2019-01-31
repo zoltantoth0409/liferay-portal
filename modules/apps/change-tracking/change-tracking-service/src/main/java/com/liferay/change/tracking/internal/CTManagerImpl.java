@@ -262,7 +262,7 @@ public class CTManagerImpl implements CTManager {
 
 		if (companyId <= 0) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to determine companyId");
+				_log.warn("Unable to get company ID");
 			}
 		}
 
