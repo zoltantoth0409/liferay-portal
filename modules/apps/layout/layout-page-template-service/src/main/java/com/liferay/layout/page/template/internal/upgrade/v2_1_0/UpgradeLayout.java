@@ -78,9 +78,6 @@ public class UpgradeLayout extends UpgradeProcess {
 						"layoutPageTemplateEntryId = ?"))) {
 
 			while (rs.next()) {
-				long layoutPageTemplateEntryId = rs.getLong(
-					"layoutPageTemplateEntryId");
-
 				long userId = rs.getLong("userId");
 				long groupId = rs.getLong("groupId");
 				long classNameId = rs.getLong("classNameId");
@@ -94,6 +91,9 @@ public class UpgradeLayout extends UpgradeProcess {
 					_getPlid(
 						userId, groupId, classNameId, classTypeId, name, type,
 						layoutPrototypeId, serviceContext));
+
+				long layoutPageTemplateEntryId = rs.getLong(
+					"layoutPageTemplateEntryId");
 
 				ps.setLong(2, layoutPageTemplateEntryId);
 
