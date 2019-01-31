@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Tardín
  */
 @Component(immediate = true, service = SharingJavaScriptFactory.class)
-public class SharingJavascriptFactoryImpl implements SharingJavaScriptFactory {
+public class SharingJavaScriptFactoryImpl implements SharingJavaScriptFactory {
 
 	@Override
 	public String createSharingJavaScript(HttpServletRequest request)
