@@ -64,7 +64,7 @@ public class UpgradeLayout extends UpgradeProcess {
 
 		sb.append("select layoutPageTemplateEntryId, userId, groupId, ");
 		sb.append("classNameId, classTypeId, layoutPrototypeId, name, type_ ");
-		sb.append("from LayoutPageTemplateEntry where plid is null or plid=0");
+		sb.append("from LayoutPageTemplateEntry where plid is null or plid = 0");
 
 		ServiceContext serviceContext = new ServiceContext();
 
