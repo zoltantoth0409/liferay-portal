@@ -63,7 +63,7 @@ public class UpgradeLayout extends UpgradeProcess {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append("select layoutPageTemplateEntryId, userId, groupId, ");
-		sb.append("classNameId, classTypeId, layoutPrototypeId, name, type_ ");
+		sb.append("classNameId, classTypeId, name, type_, layoutPrototypeId ");
 		sb.append("from LayoutPageTemplateEntry where plid is null or plid = ");
 		sb.append("0");
 
@@ -78,15 +78,15 @@ public class UpgradeLayout extends UpgradeProcess {
 						"layoutPageTemplateEntryId = ?"))) {
 
 			while (rs.next()) {
-				long classNameId = rs.getLong("classNameId");
-				long classTypeId = rs.getLong("classTypeId");
-				long groupId = rs.getLong("groupId");
 				long layoutPageTemplateEntryId = rs.getLong(
 					"layoutPageTemplateEntryId");
-				long layoutPrototypeId = rs.getLong("layoutPrototypeId");
+				long userId = rs.getLong("userId");
+				long groupId = rs.getLong("groupId");
+				long classNameId = rs.getLong("classNameId");
+				long classTypeId = rs.getLong("classTypeId");
 				String name = rs.getString("name");
 				int type = rs.getInt("type_");
-				long userId = rs.getLong("userId");
+				long layoutPrototypeId = rs.getLong("layoutPrototypeId");
 
 				ps.setLong(
 					1,
