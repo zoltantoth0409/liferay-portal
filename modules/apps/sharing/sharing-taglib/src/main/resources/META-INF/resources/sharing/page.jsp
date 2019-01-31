@@ -35,9 +35,9 @@ String buttonComponentId = randomNamespace + "shareButton";
 	button.addEventListener(
 		'click',
 		function() {
-			<%= request.getAttribute("liferay-sharing:button:onclick") %>
+			<%= request.getAttribute("liferay-sharing:button:onClick") %>
 		}
 	);
 
-	<%= request.getAttribute("liferay-sharing:button:javascript") %>
+	<%= request.getAttribute("liferay-sharing:button:javaScript") %>
 </aui:script>

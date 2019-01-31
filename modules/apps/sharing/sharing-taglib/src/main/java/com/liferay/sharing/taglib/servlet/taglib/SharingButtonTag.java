@@ -65,10 +65,10 @@ public class SharingButtonTag extends IncludeTag {
 
 		try {
 			request.setAttribute(
-				"liferay-sharing:button:javascript",
+				"liferay-sharing:button:javaScript",
 				sharingJavaScriptFactory.createSharingJavaScript(request));
 			request.setAttribute(
-				"liferay-sharing:button:onclick",
+				"liferay-sharing:button:onClick",
 				sharingJavaScriptFactory.createSharingOnClickMethod(
 					_className, _classPK, request));
 		}
