@@ -18,10 +18,8 @@
 
 <%
 String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_sharing_button_page") + StringPool.UNDERLINE;
-String buttonComponentId = randomNamespace + "shareButton";
 
-String sharingJavaScript = (String)request.getAttribute("liferay-sharing:button:javascript");
-String sharingOnclickMethod = (String)request.getAttribute("liferay-sharing:button:onclick");
+String buttonComponentId = randomNamespace + "shareButton";
 %>
 
 <clay:button
@@ -37,9 +35,9 @@ String sharingOnclickMethod = (String)request.getAttribute("liferay-sharing:butt
 	button.addEventListener(
 		'click',
 		function() {
-			<%= sharingOnclickMethod %>
+			<%= request.getAttribute("liferay-sharing:button:onclick") %>
 		}
 	);
 
-	<%= sharingJavaScript %>
+	<%= request.getAttribute("liferay-sharing:button:javascript") %>
 </aui:script>
