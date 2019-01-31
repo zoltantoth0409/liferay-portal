@@ -24,7 +24,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
