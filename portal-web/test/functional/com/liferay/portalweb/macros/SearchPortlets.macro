@@ -28,7 +28,7 @@ definition {
 		);
 
 		for (var portletName : list "${searchPortletList}") {
-			Portlet._clickAddPortlet(portletName = "Search-${portletName}");
+			Portlet._clickAddPortlet(portletName = "${portletName}");
 
 			var key_portletName = "${portletName}";
 
