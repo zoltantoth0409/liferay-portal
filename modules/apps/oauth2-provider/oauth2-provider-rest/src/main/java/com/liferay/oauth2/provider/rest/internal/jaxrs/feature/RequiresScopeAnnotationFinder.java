@@ -58,10 +58,10 @@ public class RequiresScopeAnnotationFinder {
 		Annotation[] annotations = annotatedElement.getAnnotations();
 
 		for (Annotation annotation : annotations) {
-			Class<? extends Annotation> annotationType =
+			Class<? extends Annotation> annotationClass =
 				annotation.annotationType();
 
-			requiresScope = annotationType.getAnnotation(RequiresScope.class);
+			requiresScope = annotationClass.getAnnotation(RequiresScope.class);
 
 			if (requiresScope != null) {
 				return requiresScope;
