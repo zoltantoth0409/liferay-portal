@@ -6,12 +6,9 @@ definition {
 			Click(locator1 = "ControlMenuAddPanel#ADD_PORTLET_DRAG_LINK");
 		}
 		else {
-			MouseOver(locator1 = "ControlMenuAddPanel#ADD_PORTLET_DRAG_LINK");
+			MouseOver(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK");
+			Click(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK", value1 = "Add");
 		}
-
-		MouseOver(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK");
-
-		Click(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK", value1 = "Add");
 	}
 
 	macro addDuplicatePG {
