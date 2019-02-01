@@ -483,12 +483,15 @@ public class Arquillian extends Runner implements Filterable {
 
 		@Override
 		protected void scanAnnotatedMembers(
-			Map<Class<? extends Annotation>, List<FrameworkMethod>> methods,
-			Map<Class<? extends Annotation>, List<FrameworkField>> fields) {
+			Map<Class<? extends Annotation>, List<FrameworkMethod>>
+				frameworkMethodsMap,
+			Map<Class<? extends Annotation>, List<FrameworkField>>
+				frameworkFieldsMap) {
 
-			super.scanAnnotatedMembers(methods, fields);
+			super.scanAnnotatedMembers(frameworkMethodsMap, frameworkFieldsMap);
 
-			List<FrameworkMethod> frameworkMethods = methods.get(Test.class);
+			List<FrameworkMethod> frameworkMethods = frameworkMethodsMap.get(
+				Test.class);
 
 			if (_filter != null) {
 				Iterator<FrameworkMethod> iterator =
