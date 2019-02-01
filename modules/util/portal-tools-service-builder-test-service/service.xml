@@ -53,6 +53,9 @@
 		<!-- Group instance -->
 
 		<column name="groupId" type="long" />
+
+		<!-- Other fields -->
+
 		<column name="uniqueGroupKey" type="String" />
 
 		<!-- Localized entity -->
