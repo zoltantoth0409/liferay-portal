@@ -24,7 +24,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.item.selector.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.api", version: "1.4.0"
-	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.service", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.layout.page.template.service", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.prototype.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "3.0.0"
