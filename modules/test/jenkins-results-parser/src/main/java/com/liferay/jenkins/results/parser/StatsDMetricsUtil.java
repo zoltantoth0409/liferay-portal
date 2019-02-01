@@ -25,7 +25,7 @@ public class StatsDMetricsUtil {
 		String metricName, int metricValue, Map<String, String> labels) {
 
 		if (metricValue < 0) {
-			System.out.println("Count metric values cannot be negative");
+			System.out.println("Count metric values must not be negative");
 
 			return null;
 		}
@@ -45,7 +45,7 @@ public class StatsDMetricsUtil {
 		String metricName, int metricValue, Map<String, String> labels) {
 
 		if (metricValue == 0) {
-			System.out.println("Gauge metric values cannot be zero");
+			System.out.println("Gauge metric values must not be zero");
 
 			return null;
 		}

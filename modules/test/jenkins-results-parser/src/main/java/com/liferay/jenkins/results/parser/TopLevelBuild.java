@@ -379,9 +379,9 @@ public class TopLevelBuild extends BaseBuild {
 
 			if ((_metricsHostName == null) || (metricsHostPortString == null)) {
 				throw new IllegalArgumentException(
-					"Properties 'build.metrics.host.name' and " +
-						"'build.metrics.host.port' must be set to send build " +
-							"metrics");
+					"Properties \"build.metrics.host.name\" and " +
+						"\"build.metrics.host.port\" must be set to send " +
+							"build metrics");
 			}
 
 			try {
@@ -389,7 +389,7 @@ public class TopLevelBuild extends BaseBuild {
 			}
 			catch (NumberFormatException nfe) {
 				throw new IllegalArgumentException(
-					"Please set 'build.metrics.host.port' to an integer");
+					"Please set \"build.metrics.host.port\" to an integer");
 			}
 		}
 	}
