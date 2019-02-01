@@ -63,11 +63,9 @@ public class StructuredContentResourceImpl
 
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Integer parentId, String filter, String sort,
+			Long parentId, String filter, String sort,
 			AcceptLanguage acceptLanguage, Pagination pagination)
 		throws Exception {
-
-		// TODO setId should not require a cast to (int)
 
 		Hits hits = _getHits(pagination);
 
@@ -79,8 +77,7 @@ public class StructuredContentResourceImpl
 			journalArticle -> {
 				StructuredContent structuredContent = new StructuredContent();
 
-				structuredContent.setId(
-					(int)journalArticle.getResourcePrimKey());
+				structuredContent.setId(journalArticle.getResourcePrimKey());
 
 				return structuredContent;
 			}
