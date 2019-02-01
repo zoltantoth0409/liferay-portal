@@ -61,7 +61,6 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 
 		_announcementsAdminViewDisplayContext =
 			new DefaultAnnouncementsAdminViewDisplayContext(_request);
-
 		_currentURLObj = PortletURLUtil.getCurrent(
 			_liferayPortletRequest, _liferayPortletResponse);
 	}
