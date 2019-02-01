@@ -68,6 +68,8 @@ public class InactiveRequestHandlerImpl implements InactiveRequestHandler {
 
 		response.setContentType(ContentTypes.TEXT_HTML_UTF8);
 
+		PrintWriter printWriter = response.getWriter();
+
 		Locale locale = _portal.getLocale(request);
 
 		String message = null;
@@ -80,8 +82,6 @@ public class InactiveRequestHandlerImpl implements InactiveRequestHandler {
 		}
 
 		String html = StringUtil.replace(_content, "[$MESSAGE$]", message);
-
-		PrintWriter printWriter = response.getWriter();
 
 		printWriter.print(html);
 	}
