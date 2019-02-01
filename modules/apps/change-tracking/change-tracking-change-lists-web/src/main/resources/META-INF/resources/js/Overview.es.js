@@ -24,15 +24,22 @@ class Overview extends PortletBase {
 
 					this.description = response.ctcollection.description;
 					this.headerTitle = response.ctcollection.name;
-					this.initialFetch = true;
 					this.headerDropDownMenu = [
-						{label: 'Change List 01',
-link: 'link01'},
-						{label: 'Change List 02',
-link: 'link02'},
-						{label: 'Change List 03',
-link: 'link03'}
+						{
+							label: 'Change List 01',
+							link: 'link01'
+						},
+						{
+							label: 'Change List 02',
+							link: 'link02'
+						},
+						{
+							label: 'Change List 03',
+							link: 'link03'
+						}
 					];
+
+					this.initialFetch = true;
 
 					let publishDate = new Date(response.date);
 					let publishDateFormatOptions = {
@@ -95,12 +102,12 @@ link: 'link03'}
 Overview.STATE = {
 
 	/**
-	 * Changes
+	 * Contains the number of changes for the active change list
 	 * @default
 	 * @instance
-	 * @memberOf ChangeList
+	 * @memberOf Overview
 	 * @review
-	 * @type {Object}
+	 * @type {object}
 	 */
 	changes: Config.shapeOf(
 		{
@@ -124,7 +131,7 @@ Overview.STATE = {
 	 * List of drop down menu items
 	 * @default []
 	 * @instance
-	 * @memberOf ChangeList
+	 * @memberOf Overview
 	 * @review
 	 * @type {Array}
 	 */
