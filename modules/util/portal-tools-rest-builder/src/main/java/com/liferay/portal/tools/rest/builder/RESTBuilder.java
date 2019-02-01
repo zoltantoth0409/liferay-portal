@@ -246,6 +246,10 @@ public class RESTBuilder {
 
 		File file = new File(sb.toString());
 
+		if (file.exists()) {
+			return;
+		}
+
 		String content = FreeMarkerUtil.processTemplate(
 			_copyrightFileName, "resource_impl", context);
 
