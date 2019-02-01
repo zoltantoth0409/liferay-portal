@@ -349,10 +349,8 @@ public class FriendlyURLEntryLocalServiceImpl
 				Math.min(
 					maxLength - suffix.length(), normalizedUrlTitle.length()));
 
-			String decodedUrlTitle = HttpUtil.decodePath(prefix + suffix);
-
 			curUrlTitle = FriendlyURLNormalizerUtil.normalizeWithEncoding(
-				decodedUrlTitle);
+				HttpUtil.decodePath(prefix + suffix));
 		}
 
 		return curUrlTitle;
@@ -451,10 +449,9 @@ public class FriendlyURLEntryLocalServiceImpl
 		int maxLength = ModelHintsUtil.getMaxLength(
 			FriendlyURLEntryLocalization.class.getName(), "urlTitle");
 
-		String decodedUrlTitle = HttpUtil.decodePath(urlTitle);
-
 		String normalizedUrlTitle =
-			FriendlyURLNormalizerUtil.normalizeWithEncoding(decodedUrlTitle);
+			FriendlyURLNormalizerUtil.normalizeWithEncoding(
+				HttpUtil.decodePath(urlTitle));
 
 		if (normalizedUrlTitle.length() > maxLength) {
 			throw new FriendlyURLLengthException(
