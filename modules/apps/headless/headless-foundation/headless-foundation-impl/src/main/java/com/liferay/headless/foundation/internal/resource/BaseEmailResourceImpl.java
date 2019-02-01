@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 public abstract class BaseEmailResourceImpl implements EmailResource {
 
 	@Override
-	public Email getEmail(Integer id) throws Exception {
+	public Email getEmail(Long id) throws Exception {
 		return new Email();
 	}
 

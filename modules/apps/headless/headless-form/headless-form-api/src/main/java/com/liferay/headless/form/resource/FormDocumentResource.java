@@ -38,9 +38,9 @@ public interface FormDocumentResource {
 
 	@GET
 	@Path("/form-document/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
-	public FormDocument getFormDocument(@PathParam("id") Integer id)
+	public FormDocument getFormDocument(@PathParam("id") Long id)
 		throws Exception;
 
 }

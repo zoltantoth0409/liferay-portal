@@ -32,20 +32,20 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Page<Comment> getBlogPostingCommentPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Comment getComment(Integer id) throws Exception {
+	public Comment getComment(Long id) throws Exception {
 		return new Comment();
 	}
 
 	@Override
 	public Page<Comment> getCommentCommentPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);

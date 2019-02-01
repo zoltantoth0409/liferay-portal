@@ -33,14 +33,14 @@ public abstract class BaseWorkflowTaskResourceImpl
 
 	@Override
 	public Page<WorkflowTask> getRolesWorkflowTasksPage(
-			String parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public WorkflowTask getWorkflowTask(Integer id) throws Exception {
+	public WorkflowTask getWorkflowTask(Long id) throws Exception {
 		return new WorkflowTask();
 	}
 
@@ -53,28 +53,26 @@ public abstract class BaseWorkflowTaskResourceImpl
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksAssignToMe(Integer id)
+	public WorkflowTask postWorkflowTasksAssignToMe(Long id) throws Exception {
+		return new WorkflowTask();
+	}
+
+	@Override
+	public WorkflowTask postWorkflowTasksAssignToUser(Long id)
 		throws Exception {
 
 		return new WorkflowTask();
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksAssignToUser(Integer id)
+	public WorkflowTask postWorkflowTasksChangeTransition(Long id)
 		throws Exception {
 
 		return new WorkflowTask();
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksChangeTransition(Integer id)
-		throws Exception {
-
-		return new WorkflowTask();
-	}
-
-	@Override
-	public WorkflowTask postWorkflowTasksUpdateDueDate(Integer id)
+	public WorkflowTask postWorkflowTasksUpdateDueDate(Long id)
 		throws Exception {
 
 		return new WorkflowTask();

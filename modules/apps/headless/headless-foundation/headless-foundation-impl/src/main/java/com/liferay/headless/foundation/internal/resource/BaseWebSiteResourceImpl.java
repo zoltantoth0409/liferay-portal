@@ -32,7 +32,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getMyUserAccountWebSitePage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
@@ -40,20 +40,20 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getUserAccountWebSitePage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public WebSite getWebSite(Integer id) throws Exception {
+	public WebSite getWebSite(Long id) throws Exception {
 		return new WebSite();
 	}
 
 	@Override
 	public Page<WebSite> getWebSiteWebSitePage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);

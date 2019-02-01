@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 
 	@Override
-	public WebUrl getWebUrl(Integer id) throws Exception {
+	public WebUrl getWebUrl(Long id) throws Exception {
 		return new WebUrl();
 	}
 

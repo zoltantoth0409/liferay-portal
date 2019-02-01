@@ -44,41 +44,40 @@ public interface FormResource {
 
 	@GET
 	@Path("/content-space/{parent-id}/form")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
 	public Page<Form> getContentSpaceFormPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/form/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
-	public Form getForm(@PathParam("id") Integer id) throws Exception;
+	public Form getForm(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/form/{id}/fetch-latest-draft")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
-	public Form getFormFetchLatestDraft(@PathParam("id") Integer id)
+	public Form getFormFetchLatestDraft(@PathParam("id") Long id)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/form/{id}/evaluate-context")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.write")
 	public Form postFormEvaluateContext(
-			@PathParam("id") Integer id, @Context AcceptLanguage acceptLanguage)
+			@PathParam("id") Long id, @Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/form/{id}/upload-file")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.write")
-	public Form postFormUploadFile(@PathParam("id") Integer id)
-		throws Exception;
+	public Form postFormUploadFile(@PathParam("id") Long id) throws Exception;
 
 }

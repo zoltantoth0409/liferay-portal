@@ -30,7 +30,7 @@ public class AggregateRating {
 		return _bestRating;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -54,7 +54,7 @@ public class AggregateRating {
 		_bestRating = bestRating;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -75,7 +75,7 @@ public class AggregateRating {
 	}
 
 	private Number _bestRating;
-	private Integer _id;
+	private Long _id;
 	private Number _ratingCount;
 	private Number _ratingValue;
 	private String _self;

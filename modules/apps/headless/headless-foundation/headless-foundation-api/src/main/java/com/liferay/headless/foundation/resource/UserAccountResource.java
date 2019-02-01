@@ -45,14 +45,14 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/my-user-account/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount getMyUserAccount(@PathParam("id") Integer id)
+	public UserAccount getMyUserAccount(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/my-user-account")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getMyUserAccountPage(
 			@Context Pagination pagination)
@@ -60,23 +60,23 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/organization/{parent-id}/user-account")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getOrganizationUserAccountPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/user-account/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount getUserAccount(@PathParam("id") Integer id)
+	public UserAccount getUserAccount(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/user-account")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getUserAccountPage(
 			@QueryParam("fullnamequery") String fullnamequery,
@@ -85,33 +85,33 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/web-site/{parent-id}/user-account")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getWebSiteUserAccountPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/user-account")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public UserAccount postUserAccount() throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/user-account/batch-create")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.write")
 	public UserAccount postUserAccountBatchCreate() throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/user-account/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@PUT
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount putUserAccount(@PathParam("id") Integer id)
+	public UserAccount putUserAccount(@PathParam("id") Long id)
 		throws Exception;
 
 }

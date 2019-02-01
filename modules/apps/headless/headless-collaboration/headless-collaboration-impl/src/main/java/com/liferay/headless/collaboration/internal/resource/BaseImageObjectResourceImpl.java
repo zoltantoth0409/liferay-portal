@@ -32,20 +32,28 @@ public abstract class BaseImageObjectResourceImpl
 	implements ImageObjectResource {
 
 	@Override
-	public ImageObject getImageObject(Integer id) throws Exception {
+	public ImageObject getImageObject(Long id) throws Exception {
 		return new ImageObject();
 	}
 
 	@Override
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public ImageObject postImageObjectRepositoryImageObject(parentId)
+	public ImageObject postImageObjectRepositoryImageObject(Long parentId)
+		throws Exception {
+
+		return new ImageObject();
+	}
+
+	@Override
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
+			Long parentId)
 		throws Exception {
 
 		return new ImageObject();

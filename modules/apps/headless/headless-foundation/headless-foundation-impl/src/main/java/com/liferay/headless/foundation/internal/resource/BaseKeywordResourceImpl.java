@@ -32,31 +32,31 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
 	@Override
 	public Page<Keyword> getContentSpaceKeywordsPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Keyword getKeyword(Integer id) throws Exception {
+	public Keyword getKeyword(Long id) throws Exception {
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword postContentSpaceKeyword(Integer parentId) throws Exception {
+	public Keyword postContentSpaceKeyword(Long parentId) throws Exception {
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword postContentSpaceKeywordsBatchCreate(Integer parentId)
+	public Keyword postContentSpaceKeywordsBatchCreate(Long parentId)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword putKeyword(Integer id) throws Exception {
+	public Keyword putKeyword(Long id) throws Exception {
 		return new Keyword();
 	}
 

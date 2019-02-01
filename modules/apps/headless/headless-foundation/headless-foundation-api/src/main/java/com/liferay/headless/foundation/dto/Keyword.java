@@ -42,7 +42,7 @@ public class Keyword {
 		return _dateModified;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -74,7 +74,7 @@ public class Keyword {
 		_dateModified = dateModified;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -94,7 +94,7 @@ public class Keyword {
 	private UserAccount _creator;
 	private String _dateCreated;
 	private String _dateModified;
-	private Integer _id;
+	private Long _id;
 	private Number _keywordUsageCount;
 	private String _name;
 	private String _self;

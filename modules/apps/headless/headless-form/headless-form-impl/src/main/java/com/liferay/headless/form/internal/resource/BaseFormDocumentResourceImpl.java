@@ -28,7 +28,7 @@ public abstract class BaseFormDocumentResourceImpl
 	implements FormDocumentResource {
 
 	@Override
-	public FormDocument getFormDocument(Integer id) throws Exception {
+	public FormDocument getFormDocument(Long id) throws Exception {
 		return new FormDocument();
 	}
 

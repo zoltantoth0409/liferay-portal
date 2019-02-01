@@ -31,13 +31,13 @@ import javax.annotation.Generated;
 public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
-	public Category getCategories(Integer id) throws Exception {
+	public Category getCategories(Long id) throws Exception {
 		return new Category();
 	}
 
 	@Override
 	public Page<Category> getCategoriesCategoriesPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
@@ -45,42 +45,38 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
 	public Page<Category> getVocabulariesCategoriesPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Category postCategoriesCategories(Integer parentId)
+	public Category postCategoriesCategories(Long parentId) throws Exception {
+		return new Category();
+	}
+
+	@Override
+	public Category postCategoriesCategoriesBatchCreate(Long parentId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postCategoriesCategoriesBatchCreate(Integer parentId)
+	public Category postVocabulariesCategories(Long parentId) throws Exception {
+		return new Category();
+	}
+
+	@Override
+	public Category postVocabulariesCategoriesBatchCreate(Long parentId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategories(Integer parentId)
-		throws Exception {
-
-		return new Category();
-	}
-
-	@Override
-	public Category postVocabulariesCategoriesBatchCreate(Integer parentId)
-		throws Exception {
-
-		return new Category();
-	}
-
-	@Override
-	public Category putCategories(Integer id) throws Exception {
+	public Category putCategories(Long id) throws Exception {
 		return new Category();
 	}
 

@@ -38,7 +38,7 @@ public class WorkflowLog {
 		return _dateCreated;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -82,7 +82,7 @@ public class WorkflowLog {
 		_dateCreated = dateCreated;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -117,7 +117,7 @@ public class WorkflowLog {
 	private String _auditPerson;
 	private String _commentLog;
 	private String _dateCreated;
-	private Integer _id;
+	private Long _id;
 	private String _person;
 	private String _previousPerson;
 	private String _previousState;

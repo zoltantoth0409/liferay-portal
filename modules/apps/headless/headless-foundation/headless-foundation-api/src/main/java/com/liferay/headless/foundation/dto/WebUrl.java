@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "WebUrl")
 public class WebUrl {
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -42,7 +42,7 @@ public class WebUrl {
 		return _urlType;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -58,7 +58,7 @@ public class WebUrl {
 		_urlType = urlType;
 	}
 
-	private Integer _id;
+	private Long _id;
 	private String _self;
 	private String _url;
 	private String _urlType;

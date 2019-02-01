@@ -16,6 +16,10 @@ package com.liferay.headless.web.experience.internal.resource;
 
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.headless.web.experience.resource.ContentStructureResource;
+import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
+
+import java.util.Collections;
 
 import javax.annotation.Generated;
 
@@ -28,7 +32,15 @@ public abstract class BaseContentStructureResourceImpl
 	implements ContentStructureResource {
 
 	@Override
-	public ContentStructure getContentStructure(Integer id) throws Exception {
+	public Page<ContentStructure> getContentSpaceContentStructuresPage(
+			Long parentId, Pagination pagination)
+		throws Exception {
+
+		return new Page(Collections.emptyList(), 0);
+	}
+
+	@Override
+	public ContentStructure getContentStructure(Long id) throws Exception {
 		return new ContentStructure();
 	}
 

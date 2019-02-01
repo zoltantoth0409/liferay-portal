@@ -12,36 +12,40 @@
  * details.
  */
 
-package com.liferay.headless.form.internal.resource;
+package com.liferay.headless.document.library.resource;
 
-import com.liferay.headless.form.dto.FormStructure;
-import com.liferay.headless.form.resource.FormStructureResource;
+import com.liferay.headless.document.library.dto.Comment;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
-import java.util.Collections;
-
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+
 /**
+ * To access this resource, run:
+ *
+ *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-document-library/1.0.0
+ *
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseFormStructureResourceImpl
-	implements FormStructureResource {
+@Path("/1.0.0")
+public interface CommentResource {
 
-	@Override
-	public Page<FormStructure> getContentSpaceFormStructuresPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public FormStructure getFormStructure(Long id) throws Exception {
-		return new FormStructure();
-	}
+	@GET
+	@Path("/document/{parent-id}/comment")
+	@Produces({"application/json"})
+	@RequiresScope("headless-document-library-application.read")
+	public Page<Comment> getDocumentCommentPage(
+			@PathParam("parent-id") Long parentId,
+			@Context Pagination pagination)
+		throws Exception;
 
 }

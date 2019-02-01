@@ -45,47 +45,46 @@ public interface FormRecordResource {
 
 	@GET
 	@Path("/form/{parent-id}/form-record")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
 	public Page<FormRecord> getFormFormRecordPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/form-record/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
-	public FormRecord getFormRecord(@PathParam("id") Integer id)
-		throws Exception;
+	public FormRecord getFormRecord(@PathParam("id") Long id) throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/form/{parent-id}/form-record")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
 	public FormRecord postFormFormRecord(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@QueryParam("acceptlocale") String acceptlocale)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/form/{parent-id}/form-record/batch-create")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.write")
 	public FormRecord postFormFormRecordBatchCreate(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@QueryParam("acceptlocale") String acceptlocale)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/form-record/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@PUT
 	@RequiresScope("headless-form-application.read")
 	public FormRecord putFormRecord(
-			@PathParam("id") Integer id,
+			@PathParam("id") Long id,
 			@QueryParam("acceptlocale") String acceptlocale)
 		throws Exception;
 

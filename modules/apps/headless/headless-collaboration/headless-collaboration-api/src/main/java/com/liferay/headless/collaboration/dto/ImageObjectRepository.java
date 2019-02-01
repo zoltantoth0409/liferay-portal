@@ -34,7 +34,7 @@ public class ImageObjectRepository {
 		return _dateModified;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -58,7 +58,7 @@ public class ImageObjectRepository {
 		_dateModified = dateModified;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -76,7 +76,7 @@ public class ImageObjectRepository {
 
 	private String _dateCreated;
 	private String _dateModified;
-	private Integer _id;
+	private Long _id;
 	private ImageObject _images;
 	private String _name;
 	private String _self;

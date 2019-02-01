@@ -40,12 +40,19 @@ import javax.ws.rs.core.Context;
 public interface FormStructureResource {
 
 	@GET
-	@Path("/content-space/{parent-id}/content-structures")
-	@Produces({"*/*"})
+	@Path("/content-space/{parent-id}/form-structures")
+	@Produces({"application/json"})
 	@RequiresScope("headless-form-application.read")
-	public Page<FormStructure> getContentSpaceContentStructuresPage(
-			@PathParam("parent-id") Integer parentId,
+	public Page<FormStructure> getContentSpaceFormStructuresPage(
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
+	@Path("/form-structures/{id}")
+	@Produces({"application/json"})
+	@RequiresScope("headless-form-application.read")
+	public FormStructure getFormStructure(@PathParam("id") Long id)
 		throws Exception;
 
 }

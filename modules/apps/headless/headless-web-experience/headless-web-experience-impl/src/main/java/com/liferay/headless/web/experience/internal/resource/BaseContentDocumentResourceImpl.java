@@ -28,7 +28,7 @@ public abstract class BaseContentDocumentResourceImpl
 	implements ContentDocumentResource {
 
 	@Override
-	public ContentDocument getContentDocument(Integer id) throws Exception {
+	public ContentDocument getContentDocument(Long id) throws Exception {
 		return new ContentDocument();
 	}
 

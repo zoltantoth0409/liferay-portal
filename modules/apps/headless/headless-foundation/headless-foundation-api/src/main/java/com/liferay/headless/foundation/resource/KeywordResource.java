@@ -44,42 +44,42 @@ public interface KeywordResource {
 
 	@GET
 	@Path("/content-space/{parent-id}/keywords")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Keyword> getContentSpaceKeywordsPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/keywords/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
-	public Keyword getKeyword(@PathParam("id") Integer id) throws Exception;
+	public Keyword getKeyword(@PathParam("id") Long id) throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/content-space/{parent-id}/keywords")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Keyword postContentSpaceKeyword(
-			@PathParam("parent-id") Integer parentId)
+			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/content-space/{parent-id}/keywords/batch-create")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.write")
 	public Keyword postContentSpaceKeywordsBatchCreate(
-			@PathParam("parent-id") Integer parentId)
+			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/keywords/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@PUT
 	@RequiresScope("headless-foundation-application.read")
-	public Keyword putKeyword(@PathParam("id") Integer id) throws Exception;
+	public Keyword putKeyword(@PathParam("id") Long id) throws Exception;
 
 }

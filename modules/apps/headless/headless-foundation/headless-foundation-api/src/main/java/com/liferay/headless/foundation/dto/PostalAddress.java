@@ -42,7 +42,7 @@ public class PostalAddress {
 		return _addressType;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -82,7 +82,7 @@ public class PostalAddress {
 		_addressType = addressType;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -110,7 +110,7 @@ public class PostalAddress {
 	private String _addressLocality;
 	private String _addressRegion;
 	private String _addressType;
-	private Integer _id;
+	private Long _id;
 	private String _postalCode;
 	private String _self;
 	private String _streetAddressLine1;

@@ -32,33 +32,33 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Page<Vocabulary> getContentSpaceVocabulariesPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Vocabulary getVocabularies(Integer id) throws Exception {
+	public Vocabulary getVocabularies(Long id) throws Exception {
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary postContentSpaceVocabularies(Integer parentId)
+	public Vocabulary postContentSpaceVocabularies(Long parentId)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary postContentSpaceVocabulariesBatchCreate(Integer parentId)
+	public Vocabulary postContentSpaceVocabulariesBatchCreate(Long parentId)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary putVocabularies(Integer id) throws Exception {
+	public Vocabulary putVocabularies(Long id) throws Exception {
 		return new Vocabulary();
 	}
 

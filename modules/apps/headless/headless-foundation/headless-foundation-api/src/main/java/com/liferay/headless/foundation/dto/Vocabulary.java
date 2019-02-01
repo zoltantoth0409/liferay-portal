@@ -50,7 +50,7 @@ public class Vocabulary {
 		return _description;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -90,7 +90,7 @@ public class Vocabulary {
 		_description = description;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -112,7 +112,7 @@ public class Vocabulary {
 	private String _dateCreated;
 	private String _dateModified;
 	private String _description;
-	private Integer _id;
+	private Long _id;
 	private String _name;
 	private String _self;
 	private Category _vocabularyCategories;

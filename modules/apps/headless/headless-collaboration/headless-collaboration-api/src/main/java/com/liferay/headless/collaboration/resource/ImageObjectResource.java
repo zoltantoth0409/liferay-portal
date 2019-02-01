@@ -43,26 +43,36 @@ public interface ImageObjectResource {
 
 	@GET
 	@Path("/image-object/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObject getImageObject(@PathParam("id") Integer id)
+	public ImageObject getImageObject(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/image-object-repository/{parent-id}/image-object")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/image-object-repository/{parent-id}/image-object")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObject postImageObjectRepositoryImageObject(parentId)
+	public ImageObject postImageObjectRepositoryImageObject(
+			@PathParam("parent-id") Long parentId)
+		throws Exception;
+
+	@Consumes({"application/json"})
+	@Path("/image-object-repository/{parent-id}/image-object/batch-create")
+	@POST
+	@Produces({"application/json"})
+	@RequiresScope("headless-collaboration-application.write")
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
+			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
 }

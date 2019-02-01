@@ -34,7 +34,7 @@ public class Organization {
 		return _contactInformation;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -82,7 +82,7 @@ public class Organization {
 		_contactInformation = contactInformation;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -124,7 +124,7 @@ public class Organization {
 
 	private String _comment;
 	private Object _contactInformation;
-	private Integer _id;
+	private Long _id;
 	private Object _location;
 	private String _logo;
 	private UserAccount _members;

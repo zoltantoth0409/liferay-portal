@@ -54,7 +54,7 @@ public class FormStructure {
 		return _formPages;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -98,7 +98,7 @@ public class FormStructure {
 		_formPages = formPages;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -121,7 +121,7 @@ public class FormStructure {
 	private String _dateModified;
 	private String _description;
 	private Object _formPages;
-	private Integer _id;
+	private Long _id;
 	private String _name;
 	private String _self;
 	private Object _successPage;

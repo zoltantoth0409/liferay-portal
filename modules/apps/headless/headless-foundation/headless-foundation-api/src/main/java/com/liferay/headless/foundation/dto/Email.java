@@ -30,7 +30,7 @@ public class Email {
 		return _email;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -46,7 +46,7 @@ public class Email {
 		_email = email;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -59,7 +59,7 @@ public class Email {
 	}
 
 	private String _email;
-	private Integer _id;
+	private Long _id;
 	private String _self;
 	private String _type;
 

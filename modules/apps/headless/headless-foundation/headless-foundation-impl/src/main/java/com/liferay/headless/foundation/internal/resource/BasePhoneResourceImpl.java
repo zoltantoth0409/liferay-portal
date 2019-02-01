@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 public abstract class BasePhoneResourceImpl implements PhoneResource {
 
 	@Override
-	public Phone getPhone(Integer id) throws Exception {
+	public Phone getPhone(Long id) throws Exception {
 		return new Phone();
 	}
 

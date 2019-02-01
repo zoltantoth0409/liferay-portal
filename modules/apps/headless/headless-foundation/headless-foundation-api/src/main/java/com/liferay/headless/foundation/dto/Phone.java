@@ -30,7 +30,7 @@ public class Phone {
 		return _extension;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -50,7 +50,7 @@ public class Phone {
 		_extension = extension;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -67,7 +67,7 @@ public class Phone {
 	}
 
 	private String _extension;
-	private Integer _id;
+	private Long _id;
 	private String _phoneNumber;
 	private String _phoneType;
 	private String _self;

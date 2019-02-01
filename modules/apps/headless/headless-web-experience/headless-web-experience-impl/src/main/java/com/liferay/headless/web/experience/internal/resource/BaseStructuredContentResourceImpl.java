@@ -34,7 +34,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Integer parentId, String filter, String sort,
+			Long parentId, String filter, String sort,
 			AcceptLanguage acceptLanguage, Pagination pagination)
 		throws Exception {
 
@@ -43,7 +43,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent getStructuredContent(
-			Integer id, AcceptLanguage acceptLanguage)
+			Long id, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new StructuredContent();
@@ -51,7 +51,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContent(
-			Integer parentId, AcceptLanguage acceptLanguage)
+			Long parentId, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new StructuredContent();
@@ -59,7 +59,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
-			Integer parentId, AcceptLanguage acceptLanguage)
+			Long parentId, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new StructuredContent();
@@ -67,7 +67,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent putStructuredContent(
-			Integer id, AcceptLanguage acceptLanguage)
+			Long id, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new StructuredContent();

@@ -50,11 +50,7 @@ public class ContentStructure {
 		return _description;
 	}
 
-	public Object getFormPages() {
-		return _formPages;
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -64,10 +60,6 @@ public class ContentStructure {
 
 	public String getSelf() {
 		return _self;
-	}
-
-	public Object getSuccessPage() {
-		return _successPage;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
@@ -94,11 +86,7 @@ public class ContentStructure {
 		_description = description;
 	}
 
-	public void setFormPages(Object formPages) {
-		_formPages = formPages;
-	}
-
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -110,20 +98,14 @@ public class ContentStructure {
 		_self = self;
 	}
 
-	public void setSuccessPage(Object successPage) {
-		_successPage = successPage;
-	}
-
 	private String[] _availableLanguages;
 	private String _contentSpace;
 	private String _creator;
 	private String _dateCreated;
 	private String _dateModified;
 	private String _description;
-	private Object _formPages;
-	private Integer _id;
+	private Long _id;
 	private String _name;
 	private String _self;
-	private Object _successPage;
 
 }

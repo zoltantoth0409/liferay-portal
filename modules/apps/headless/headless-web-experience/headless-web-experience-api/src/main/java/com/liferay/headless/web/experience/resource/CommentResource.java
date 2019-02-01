@@ -15,7 +15,6 @@
 package com.liferay.headless.web.experience.resource;
 
 import com.liferay.headless.web.experience.dto.Comment;
-import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -24,6 +23,7 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
@@ -40,11 +40,36 @@ import javax.ws.rs.core.Context;
 public interface CommentResource {
 
 	@GET
+	@Path("/comment/{id}")
+	@Produces({"application/json"})
+	@RequiresScope("headless-web-experience-application.read")
+	public Comment getComment(@PathParam("id") Long id) throws Exception;
+
+	@GET
+	@Path("/comment/{parent-id}/comment")
+	@Produces({"application/json"})
+	@RequiresScope("headless-web-experience-application.read")
+	public Page<Comment> getCommentCommentPage(
+			@PathParam("parent-id") Long parentId,
+			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
+	@Path("/content-document/{parent-id}/comment")
+	@Produces({"application/json"})
+	@RequiresScope("headless-web-experience-application.read")
+	public Page<Comment> getContentDocumentCommentPage(
+			@PathParam("parent-id") Long parentId,
+			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
 	@Path("/structured-contents/{parent-id}/comment")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<Comment> getStructuredContentsCommentPage(
-			StructuredContent parentId, @Context Pagination pagination)
+			@PathParam("parent-id") Long parentId,
+			@Context Pagination pagination)
 		throws Exception;
 
 }

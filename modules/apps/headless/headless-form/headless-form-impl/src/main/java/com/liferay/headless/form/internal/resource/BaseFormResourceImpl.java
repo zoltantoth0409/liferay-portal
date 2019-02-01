@@ -33,32 +33,31 @@ public abstract class BaseFormResourceImpl implements FormResource {
 
 	@Override
 	public Page<Form> getContentSpaceFormPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Form getForm(Integer id) throws Exception {
+	public Form getForm(Long id) throws Exception {
 		return new Form();
 	}
 
 	@Override
-	public Form getFormFetchLatestDraft(Integer id) throws Exception {
+	public Form getFormFetchLatestDraft(Long id) throws Exception {
 		return new Form();
 	}
 
 	@Override
-	public Form postFormEvaluateContext(
-			Integer id, AcceptLanguage acceptLanguage)
+	public Form postFormEvaluateContext(Long id, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new Form();
 	}
 
 	@Override
-	public Form postFormUploadFile(Integer id) throws Exception {
+	public Form postFormUploadFile(Long id) throws Exception {
 		return new Form();
 	}
 

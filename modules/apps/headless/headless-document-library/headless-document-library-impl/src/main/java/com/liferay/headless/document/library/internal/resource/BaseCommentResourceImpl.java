@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.form.internal.resource;
+package com.liferay.headless.document.library.internal.resource;
 
-import com.liferay.headless.form.dto.FormStructure;
-import com.liferay.headless.form.resource.FormStructureResource;
+import com.liferay.headless.document.library.dto.Comment;
+import com.liferay.headless.document.library.resource.CommentResource;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -28,20 +28,14 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public abstract class BaseFormStructureResourceImpl
-	implements FormStructureResource {
+public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
-	public Page<FormStructure> getContentSpaceFormStructuresPage(
+	public Page<Comment> getDocumentCommentPage(
 			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public FormStructure getFormStructure(Long id) throws Exception {
-		return new FormStructure();
 	}
 
 }

@@ -42,8 +42,8 @@ public class Folder {
 		return _documents;
 	}
 
-	public Folder getDocumentsRepository() {
-		return _documentsRepository;
+	public Folder getFolders() {
+		return _folders;
 	}
 
 	public Long getId() {
@@ -78,8 +78,8 @@ public class Folder {
 		_documents = documents;
 	}
 
-	public void setDocumentsRepository(Folder documentsRepository) {
-		_documentsRepository = documentsRepository;
+	public void setFolders(Folder folders) {
+		_folders = folders;
 	}
 
 	public void setId(Long id) {
@@ -102,7 +102,7 @@ public class Folder {
 	private String _dateModified;
 	private String _description;
 	private Document _documents;
-	private Folder _documentsRepository;
+	private Folder _folders;
 	private Long _id;
 	private String _name;
 	private String _self;

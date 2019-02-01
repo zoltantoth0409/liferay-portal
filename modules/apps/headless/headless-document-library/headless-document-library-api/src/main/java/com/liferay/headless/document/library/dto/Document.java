@@ -30,6 +30,10 @@ public class Document {
 		return _adaptedMedia;
 	}
 
+	public String getCategory() {
+		return _category;
+	}
+
 	public String getContentUrl() {
 		return _contentUrl;
 	}
@@ -86,6 +90,10 @@ public class Document {
 		_adaptedMedia = adaptedMedia;
 	}
 
+	public void setCategory(String category) {
+		_category = category;
+	}
+
 	public void setContentUrl(String contentUrl) {
 		_contentUrl = contentUrl;
 	}
@@ -139,6 +147,7 @@ public class Document {
 	}
 
 	private Object _adaptedMedia;
+	private String _category;
 	private String _contentUrl;
 	private String _creator;
 	private String _dateCreated;

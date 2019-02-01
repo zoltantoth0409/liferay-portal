@@ -62,7 +62,7 @@ public class Form {
 		return _formRecords;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -114,7 +114,7 @@ public class Form {
 		_formRecords = formRecords;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -139,7 +139,7 @@ public class Form {
 	private String _defaultLanguage;
 	private String _description;
 	private FormRecord _formRecords;
-	private Integer _id;
+	private Long _id;
 	private String _name;
 	private String _self;
 	private FormStructure _structure;

@@ -32,19 +32,19 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 	@Override
 	public Page<FormRecord> getFormFormRecordPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public FormRecord getFormRecord(Integer id) throws Exception {
+	public FormRecord getFormRecord(Long id) throws Exception {
 		return new FormRecord();
 	}
 
 	@Override
-	public FormRecord postFormFormRecord(Integer parentId, String acceptlocale)
+	public FormRecord postFormFormRecord(Long parentId, String acceptlocale)
 		throws Exception {
 
 		return new FormRecord();
@@ -52,14 +52,14 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 	@Override
 	public FormRecord postFormFormRecordBatchCreate(
-			Integer parentId, String acceptlocale)
+			Long parentId, String acceptlocale)
 		throws Exception {
 
 		return new FormRecord();
 	}
 
 	@Override
-	public FormRecord putFormRecord(Integer id, String acceptlocale)
+	public FormRecord putFormRecord(Long id, String acceptlocale)
 		throws Exception {
 
 		return new FormRecord();

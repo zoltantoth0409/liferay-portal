@@ -50,7 +50,7 @@ public class ContentDocument {
 		return _fileExtension;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -90,7 +90,7 @@ public class ContentDocument {
 		_fileExtension = fileExtension;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -112,7 +112,7 @@ public class ContentDocument {
 	private String _dateModified;
 	private String _encodingFormat;
 	private String _fileExtension;
-	private Integer _id;
+	private Long _id;
 	private String _self;
 	private Number _sizeInBytes;
 	private String _title;

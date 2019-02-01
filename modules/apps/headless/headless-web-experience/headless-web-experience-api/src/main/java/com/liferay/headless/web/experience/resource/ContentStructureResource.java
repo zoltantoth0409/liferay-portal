@@ -16,6 +16,8 @@ package com.liferay.headless.web.experience.resource;
 
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.vulcan.dto.Page;
 
 import javax.annotation.Generated;
 
@@ -23,6 +25,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -37,10 +40,19 @@ import javax.ws.rs.Produces;
 public interface ContentStructureResource {
 
 	@GET
-	@Path("/content-structures/{id}")
-	@Produces({"*/*"})
+	@Path("/content-space/{parent-id}/content-structures")
+	@Produces({"application/json"})
 	@RequiresScope("headless-web-experience-application.read")
-	public ContentStructure getContentStructure(@PathParam("id") Integer id)
+	public Page<ContentStructure> getContentSpaceContentStructuresPage(
+			@PathParam("parent-id") Long parentId,
+			@Context Pagination pagination)
+		throws Exception;
+
+	@GET
+	@Path("/content-structures/{id}")
+	@Produces({"application/json"})
+	@RequiresScope("headless-web-experience-application.read")
+	public ContentStructure getContentStructure(@PathParam("id") Long id)
 		throws Exception;
 
 }

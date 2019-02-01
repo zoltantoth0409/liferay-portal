@@ -42,7 +42,7 @@ public class WebSite {
 		return _description;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -94,7 +94,7 @@ public class WebSite {
 		_description = description;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -134,7 +134,7 @@ public class WebSite {
 	private ContentSpace _contentSpace;
 	private UserAccount _creator;
 	private String _description;
-	private Integer _id;
+	private Long _id;
 	private UserAccount _members;
 	private String _membershipType;
 	private String _name;

@@ -41,34 +41,34 @@ public interface WebSiteResource {
 
 	@GET
 	@Path("/my-user-account/{parent-id}/web-site")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getMyUserAccountWebSitePage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/user-account/{parent-id}/web-site")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getUserAccountWebSitePage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/web-site/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
-	public WebSite getWebSite(@PathParam("id") Integer id) throws Exception;
+	public WebSite getWebSite(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/web-site/{parent-id}/web-site")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getWebSiteWebSitePage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 

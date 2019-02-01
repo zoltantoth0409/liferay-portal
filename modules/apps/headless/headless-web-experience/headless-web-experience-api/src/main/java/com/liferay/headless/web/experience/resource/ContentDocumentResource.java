@@ -38,9 +38,9 @@ public interface ContentDocumentResource {
 
 	@GET
 	@Path("/content-document/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-web-experience-application.read")
-	public ContentDocument getContentDocument(@PathParam("id") Integer id)
+	public ContentDocument getContentDocument(@PathParam("id") Long id)
 		throws Exception;
 
 }

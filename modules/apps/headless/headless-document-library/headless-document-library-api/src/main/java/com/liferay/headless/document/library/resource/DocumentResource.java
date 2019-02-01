@@ -43,13 +43,13 @@ public interface DocumentResource {
 
 	@GET
 	@Path("/document/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.read")
 	public Document getDocument(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/documents-repository/{parent-id}/document")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.read")
 	public Page<Document> getDocumentsRepositoryDocumentPage(
 			@PathParam("parent-id") Long parentId,
@@ -58,43 +58,43 @@ public interface DocumentResource {
 
 	@GET
 	@Path("/folder/{parent-id}/document")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.read")
 	public Page<Document> getFolderDocumentPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/documents-repository/{parent-id}/document")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.read")
 	public Document postDocumentsRepositoryDocument(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/documents-repository/{parent-id}/document/batch-create")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.write")
 	public Document postDocumentsRepositoryDocumentBatchCreate(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/folder/{parent-id}/document")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.read")
 	public Document postFolderDocument(@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/folder/{parent-id}/document/batch-create")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-document-library-application.write")
 	public Document postFolderDocumentBatchCreate(
 			@PathParam("parent-id") Long parentId)

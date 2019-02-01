@@ -32,34 +32,34 @@ public abstract class BaseBlogPostingResourceImpl
 	implements BlogPostingResource {
 
 	@Override
-	public BlogPosting getBlogPosting(Integer id) throws Exception {
+	public BlogPosting getBlogPosting(Long id) throws Exception {
 		return new BlogPosting();
 	}
 
 	@Override
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public BlogPosting postContentSpaceBlogPosting(Integer parentId)
+	public BlogPosting postContentSpaceBlogPosting(Long parentId)
 		throws Exception {
 
 		return new BlogPosting();
 	}
 
 	@Override
-	public BlogPosting postContentSpaceBlogPostingBatchCreate(Integer parentId)
+	public BlogPosting postContentSpaceBlogPostingBatchCreate(Long parentId)
 		throws Exception {
 
 		return new BlogPosting();
 	}
 
 	@Override
-	public BlogPosting putBlogPosting(Integer id) throws Exception {
+	public BlogPosting putBlogPosting(Long id) throws Exception {
 		return new BlogPosting();
 	}
 

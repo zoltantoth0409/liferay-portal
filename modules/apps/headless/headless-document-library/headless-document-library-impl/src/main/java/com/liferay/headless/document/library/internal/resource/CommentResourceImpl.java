@@ -12,24 +12,19 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.resource;
+package com.liferay.headless.document.library.internal.resource;
 
-import com.liferay.headless.collaboration.dto.AggregateRating;
-import com.liferay.headless.collaboration.resource.AggregateRatingResource;
+import com.liferay.headless.document.library.resource.CommentResource;
 
-import javax.annotation.Generated;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
- * @generated
  */
-@Generated("")
-public abstract class BaseAggregateRatingResourceImpl
-	implements AggregateRatingResource {
-
-	@Override
-	public AggregateRating getAggregateRating(Long id) throws Exception {
-		return new AggregateRating();
-	}
-
+@Component(
+	properties = "OSGI-INF/comment.properties", scope = ServiceScope.PROTOTYPE,
+	service = CommentResource.class
+)
+public class CommentResourceImpl extends BaseCommentResourceImpl {
 }

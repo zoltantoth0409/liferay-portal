@@ -43,62 +43,60 @@ public interface WorkflowTaskResource {
 
 	@GET
 	@Path("/roles/{parent-id}/workflow-tasks")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.read")
 	public Page<WorkflowTask> getRolesWorkflowTasksPage(
-			@PathParam("parent-id") String parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/workflow-tasks/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.read")
-	public WorkflowTask getWorkflowTask(@PathParam("id") Integer id)
+	public WorkflowTask getWorkflowTask(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/workflow-tasks")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.read")
 	public Page<WorkflowTask> getWorkflowTasksPage(
 			@PathParam("genericparentid") Object genericparentid,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/workflow-tasks/{id}/assign-to-me")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksAssignToMe(@PathParam("id") Integer id)
+	public WorkflowTask postWorkflowTasksAssignToMe(@PathParam("id") Long id)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/workflow-tasks/{id}/assign-to-user")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksAssignToUser(
-			@PathParam("id") Integer id)
+	public WorkflowTask postWorkflowTasksAssignToUser(@PathParam("id") Long id)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/workflow-tasks/{id}/change-transition")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.write")
 	public WorkflowTask postWorkflowTasksChangeTransition(
-			@PathParam("id") Integer id)
+			@PathParam("id") Long id)
 		throws Exception;
 
-	@Consumes({"*/*"})
+	@Consumes({"application/json"})
 	@Path("/workflow-tasks/{id}/update-due-date")
 	@POST
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksUpdateDueDate(
-			@PathParam("id") Integer id)
+	public WorkflowTask postWorkflowTasksUpdateDueDate(@PathParam("id") Long id)
 		throws Exception;
 
 }

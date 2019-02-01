@@ -41,32 +41,32 @@ public interface OrganizationResource {
 
 	@GET
 	@Path("/my-user-account/{parent-id}/organization")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Organization> getMyUserAccountOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/organization/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
-	public Organization getOrganization(@PathParam("id") Integer id)
+	public Organization getOrganization(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/organization/{parent-id}/organization")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Organization> getOrganizationOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/organization")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Organization> getOrganizationPage(
 			@Context Pagination pagination)
@@ -74,10 +74,10 @@ public interface OrganizationResource {
 
 	@GET
 	@Path("/user-account/{parent-id}/organization")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Organization> getUserAccountOrganizationPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 

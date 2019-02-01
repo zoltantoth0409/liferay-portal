@@ -41,25 +41,25 @@ public interface CommentResource {
 
 	@GET
 	@Path("/blog-posting/{parent-id}/comment")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<Comment> getBlogPostingCommentPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
 	@GET
 	@Path("/comment/{id}")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
-	public Comment getComment(@PathParam("id") Integer id) throws Exception;
+	public Comment getComment(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/comment/{parent-id}/comment")
-	@Produces({"*/*"})
+	@Produces({"application/json"})
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<Comment> getCommentCommentPage(
-			@PathParam("parent-id") Integer parentId,
+			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 

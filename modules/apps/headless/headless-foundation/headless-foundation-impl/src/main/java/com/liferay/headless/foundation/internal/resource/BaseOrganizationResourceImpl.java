@@ -33,20 +33,20 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	public Page<Organization> getMyUserAccountOrganizationPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Organization getOrganization(Integer id) throws Exception {
+	public Organization getOrganization(Long id) throws Exception {
 		return new Organization();
 	}
 
 	@Override
 	public Page<Organization> getOrganizationOrganizationPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
@@ -61,7 +61,7 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	public Page<Organization> getUserAccountOrganizationPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);

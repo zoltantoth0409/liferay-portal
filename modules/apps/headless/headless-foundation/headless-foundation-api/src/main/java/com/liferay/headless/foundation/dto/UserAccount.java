@@ -66,7 +66,7 @@ public class UserAccount {
 		return _honorificSuffix;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -100,6 +100,14 @@ public class UserAccount {
 
 	public String getSelf() {
 		return _self;
+	}
+
+	public String getTasksAssignedToMe() {
+		return _tasksAssignedToMe;
+	}
+
+	public String getTasksAssignedToMyRoles() {
+		return _tasksAssignedToMyRoles;
 	}
 
 	public void setAdditionalName(String additionalName) {
@@ -142,7 +150,7 @@ public class UserAccount {
 		_honorificSuffix = honorificSuffix;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -178,6 +186,14 @@ public class UserAccount {
 		_self = self;
 	}
 
+	public void setTasksAssignedToMe(String tasksAssignedToMe) {
+		_tasksAssignedToMe = tasksAssignedToMe;
+	}
+
+	public void setTasksAssignedToMyRoles(String tasksAssignedToMyRoles) {
+		_tasksAssignedToMyRoles = tasksAssignedToMyRoles;
+	}
+
 	private String _additionalName;
 	private String _alternateName;
 	private String _birthDate;
@@ -188,7 +204,7 @@ public class UserAccount {
 	private String _givenName;
 	private String _honorificPrefix;
 	private String _honorificSuffix;
-	private Integer _id;
+	private Long _id;
 	private String _image;
 	private String _jobTitle;
 	private Organization _myOrganizations;
@@ -197,5 +213,7 @@ public class UserAccount {
 	private String _profileURL;
 	private Role _roles;
 	private String _self;
+	private String _tasksAssignedToMe;
+	private String _tasksAssignedToMyRoles;
 
 }

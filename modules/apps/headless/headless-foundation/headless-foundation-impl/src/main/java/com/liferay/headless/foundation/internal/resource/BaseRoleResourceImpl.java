@@ -32,14 +32,14 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 	@Override
 	public Page<Role> getMyUserAccountRolesPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Role getRole(Integer id) throws Exception {
+	public Role getRole(Long id) throws Exception {
 		return new Role();
 	}
 
@@ -50,7 +50,7 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 	@Override
 	public Page<Role> getUserAccountRolesPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);

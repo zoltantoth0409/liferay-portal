@@ -34,7 +34,7 @@ public class Comment {
 		return _creator;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -54,7 +54,7 @@ public class Comment {
 		_creator = creator;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -68,7 +68,7 @@ public class Comment {
 
 	private Comment _comments;
 	private String _creator;
-	private Integer _id;
+	private Long _id;
 	private String _self;
 	private String _text;
 

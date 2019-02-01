@@ -42,6 +42,10 @@ public class BlogPosting {
 		return _caption;
 	}
 
+	public String getCategory() {
+		return _category;
+	}
+
 	public Comment getComment() {
 		return _comment;
 	}
@@ -82,7 +86,7 @@ public class BlogPosting {
 		return _headline;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -116,6 +120,10 @@ public class BlogPosting {
 
 	public void setCaption(String caption) {
 		_caption = caption;
+	}
+
+	public void setCategory(String category) {
+		_category = category;
 	}
 
 	public void setComment(Comment comment) {
@@ -158,7 +166,7 @@ public class BlogPosting {
 		_headline = headline;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -182,6 +190,7 @@ public class BlogPosting {
 	private String _alternativeHeadline;
 	private String _articleBody;
 	private String _caption;
+	private String _category;
 	private Comment _comment;
 	private String _contentSpace;
 	private String _creator;
@@ -192,7 +201,7 @@ public class BlogPosting {
 	private String _encodingFormat;
 	private String _friendlyUrlPath;
 	private String _headline;
-	private Integer _id;
+	private Long _id;
 	private ImageObject _image;
 	private String[] _keywords;
 	private ImageObjectRepository _repository;

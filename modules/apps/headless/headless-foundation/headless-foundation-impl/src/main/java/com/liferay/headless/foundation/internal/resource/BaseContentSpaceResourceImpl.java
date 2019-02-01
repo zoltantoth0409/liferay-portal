@@ -28,7 +28,7 @@ public abstract class BaseContentSpaceResourceImpl
 	implements ContentSpaceResource {
 
 	@Override
-	public ContentSpace getContentSpace(Integer id) throws Exception {
+	public ContentSpace getContentSpace(Long id) throws Exception {
 		return new ContentSpace();
 	}
 

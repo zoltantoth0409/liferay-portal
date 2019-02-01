@@ -14,6 +14,7 @@
 
 package com.liferay.headless.collaboration.internal.resource;
 
+import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.headless.collaboration.resource.ImageObjectRepositoryResource;
 
 import javax.annotation.Generated;
@@ -25,4 +26,12 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseImageObjectRepositoryResourceImpl
 	implements ImageObjectRepositoryResource {
+
+	@Override
+	public ImageObjectRepository getImageObjectRepository(Long id)
+		throws Exception {
+
+		return new ImageObjectRepository();
+	}
+
 }

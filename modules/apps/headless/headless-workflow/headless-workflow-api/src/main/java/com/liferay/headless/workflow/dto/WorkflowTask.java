@@ -50,7 +50,7 @@ public class WorkflowTask {
 		return _dueDate;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -98,7 +98,7 @@ public class WorkflowTask {
 		_dueDate = dueDate;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -128,7 +128,7 @@ public class WorkflowTask {
 	private String _definitionName;
 	private String _description;
 	private String _dueDate;
-	private Integer _id;
+	private Long _id;
 	private WorkflowLog _logs;
 	private String _name;
 	private Object _object;

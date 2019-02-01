@@ -38,7 +38,7 @@ public class ImageObject {
 		return _fileExtension;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -66,7 +66,7 @@ public class ImageObject {
 		_fileExtension = fileExtension;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -85,7 +85,7 @@ public class ImageObject {
 	private String _contentUrl;
 	private String _encodingFormat;
 	private String _fileExtension;
-	private Integer _id;
+	private Long _id;
 	private String _self;
 	private Number _sizeInBytes;
 	private String _title;

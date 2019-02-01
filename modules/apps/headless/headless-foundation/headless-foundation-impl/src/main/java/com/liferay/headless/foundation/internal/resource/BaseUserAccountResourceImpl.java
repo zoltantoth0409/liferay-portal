@@ -32,7 +32,7 @@ public abstract class BaseUserAccountResourceImpl
 	implements UserAccountResource {
 
 	@Override
-	public UserAccount getMyUserAccount(Integer id) throws Exception {
+	public UserAccount getMyUserAccount(Long id) throws Exception {
 		return new UserAccount();
 	}
 
@@ -45,14 +45,14 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public Page<UserAccount> getOrganizationUserAccountPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public UserAccount getUserAccount(Integer id) throws Exception {
+	public UserAccount getUserAccount(Long id) throws Exception {
 		return new UserAccount();
 	}
 
@@ -66,7 +66,7 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public Page<UserAccount> getWebSiteUserAccountPage(
-			Integer parentId, Pagination pagination)
+			Long parentId, Pagination pagination)
 		throws Exception {
 
 		return new Page(Collections.emptyList(), 0);
@@ -83,7 +83,7 @@ public abstract class BaseUserAccountResourceImpl
 	}
 
 	@Override
-	public UserAccount putUserAccount(Integer id) throws Exception {
+	public UserAccount putUserAccount(Long id) throws Exception {
 		return new UserAccount();
 	}
 

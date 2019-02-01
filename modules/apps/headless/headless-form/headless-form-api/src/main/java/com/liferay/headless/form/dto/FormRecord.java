@@ -54,7 +54,7 @@ public class FormRecord {
 		return _form;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -90,7 +90,7 @@ public class FormRecord {
 		_form = form;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -105,7 +105,7 @@ public class FormRecord {
 	private Boolean _draft;
 	private Object _fieldValues;
 	private Form _form;
-	private Integer _id;
+	private Long _id;
 	private String _self;
 
 }

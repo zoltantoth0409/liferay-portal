@@ -58,7 +58,7 @@ public class ContentSpace {
 		return _formStructures;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return _id;
 	}
 
@@ -118,7 +118,7 @@ public class ContentSpace {
 		_formStructures = formStructures;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		_id = id;
 	}
 
@@ -154,7 +154,7 @@ public class ContentSpace {
 	private String _documentsRepository;
 	private String _forms;
 	private String _formStructures;
-	private Integer _id;
+	private Long _id;
 	private Keyword _keywords;
 	private String _name;
 	private String _self;
