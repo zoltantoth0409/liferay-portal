@@ -86,5 +86,5 @@
 		"webpack": "webpack --config webpack.prod.js",
 		"webpack:dev": "webpack --config webpack.dev.js"
 	},
-	"version": "2.0.38"
+	"version": "2.0.39"
 }
