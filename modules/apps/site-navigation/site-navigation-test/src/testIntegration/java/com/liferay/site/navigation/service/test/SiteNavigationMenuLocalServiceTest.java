@@ -347,7 +347,7 @@ public class SiteNavigationMenuLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		int startingCount =
+		int startCount =
 			SiteNavigationMenuLocalServiceUtil.getSiteNavigationMenusCount(
 				_group.getGroupId());
 
@@ -359,11 +359,11 @@ public class SiteNavigationMenuLocalServiceTest {
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			RandomTestUtil.randomString(), serviceContext);
 
-		int endingCount =
+		int endCount =
 			SiteNavigationMenuLocalServiceUtil.getSiteNavigationMenusCount(
 				_group.getGroupId());
 
-		Assert.assertEquals(startingCount + 2, endingCount);
+		Assert.assertEquals(startCount + 2, endCount);
 	}
 
 	@Test
@@ -372,7 +372,7 @@ public class SiteNavigationMenuLocalServiceTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		int startingCount =
+		int startCount =
 			SiteNavigationMenuLocalServiceUtil.getSiteNavigationMenusCount(
 				_group.getGroupId(), "Menu");
 
@@ -388,11 +388,11 @@ public class SiteNavigationMenuLocalServiceTest {
 			TestPropsValues.getUserId(), _group.getGroupId(), "Test Name",
 			serviceContext);
 
-		int endingCount =
+		int endCount =
 			SiteNavigationMenuLocalServiceUtil.getSiteNavigationMenusCount(
 				_group.getGroupId(), "Menu");
 
-		Assert.assertEquals(startingCount + 2, endingCount);
+		Assert.assertEquals(startCount + 2, endCount);
 	}
 
 	@Test
