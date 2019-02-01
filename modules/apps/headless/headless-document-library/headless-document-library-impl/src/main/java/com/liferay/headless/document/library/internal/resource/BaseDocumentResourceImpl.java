@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
-	public Document getDocument(Integer id) throws Exception {
+	public Document getDocument(Long id) throws Exception {
 		return new Document();
 	}
 

@@ -31,7 +31,7 @@ import javax.annotation.Generated;
 public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
-	public Folder getDocumentsRepository(Integer id) throws Exception {
+	public Folder getDocumentsRepository(Long id) throws Exception {
 		return new Folder();
 	}
 
@@ -44,7 +44,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	}
 
 	@Override
-	public Folder getFolder(Integer id) throws Exception {
+	public Folder getFolder(Long id) throws Exception {
 		return new Folder();
 	}
 
@@ -81,7 +81,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	}
 
 	@Override
-	public Folder putFolder(Integer id) throws Exception {
+	public Folder putFolder(Long id) throws Exception {
 		return new Folder();
 	}
 

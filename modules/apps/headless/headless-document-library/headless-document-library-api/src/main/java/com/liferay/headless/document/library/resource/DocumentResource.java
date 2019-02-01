@@ -45,7 +45,7 @@ public interface DocumentResource {
 	@Path("/document/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-document-library-application.read")
-	public Document getDocument(@PathParam("id") Integer id) throws Exception;
+	public Document getDocument(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/documents-repository/{parent-id}/document")

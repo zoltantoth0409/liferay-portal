@@ -46,7 +46,7 @@ public interface FolderResource {
 	@Path("/documents-repository/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-document-library-application.read")
-	public Folder getDocumentsRepository(@PathParam("id") Integer id)
+	public Folder getDocumentsRepository(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
@@ -62,7 +62,7 @@ public interface FolderResource {
 	@Path("/folder/{id}")
 	@Produces({"*/*"})
 	@RequiresScope("headless-document-library-application.read")
-	public Folder getFolder(@PathParam("id") Integer id) throws Exception;
+	public Folder getFolder(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/folder/{parent-id}/folder")
@@ -113,6 +113,6 @@ public interface FolderResource {
 	@Produces({"*/*"})
 	@PUT
 	@RequiresScope("headless-document-library-application.read")
-	public Folder putFolder(@PathParam("id") Integer id) throws Exception;
+	public Folder putFolder(@PathParam("id") Long id) throws Exception;
 
 }
