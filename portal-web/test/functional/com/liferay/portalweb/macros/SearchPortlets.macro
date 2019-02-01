@@ -22,18 +22,17 @@ definition {
 
 		Panel.expandSidebarApplicationsPanel();
 
-		Type.sendKeysApplicationSearch(
-			locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
-			value1 = "search"
-		);
-
 		for (var portletName : list "${searchPortletList}") {
+			Type.sendKeysApplicationSearch(
+				locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
+				value1 = "Search-${portletName}"
+			);
+
 			Portlet._clickAddPortlet(portletName = "${portletName}");
 
 			var key_portletName = "${portletName}";
 
 			AssertElementPresent(locator1 = "Portlet#LOADED");
-
 			AssertElementPresent(locator1 = "Home#PORTLET");
 		}
 	}
