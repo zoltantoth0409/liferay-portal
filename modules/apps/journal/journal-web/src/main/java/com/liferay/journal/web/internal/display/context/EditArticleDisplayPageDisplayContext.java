@@ -60,11 +60,10 @@ public class EditArticleDisplayPageDisplayContext {
 			return ddmStructureId;
 		}
 
-		String ddmStructureKey = ParamUtil.getString(
-			_request, "ddmStructureKey");
-
 		long groupId = ParamUtil.getLong(
 			_request, "groupId", themeDisplay.getSiteGroupId());
+		String ddmStructureKey = ParamUtil.getString(
+			_request, "ddmStructureKey");
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(
 			groupId, PortalUtil.getClassNameId(JournalArticle.class),
