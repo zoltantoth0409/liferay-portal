@@ -96,7 +96,7 @@ public class RESTBuilder {
 
 	}
 
-	private File _createApplicationFile(Map<String, Object> context)
+	private void _createApplicationFile(Map<String, Object> context)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -122,11 +122,9 @@ public class RESTBuilder {
 			_copyrightFileName, "application", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
-	private File _createBaseResourceImplFile(
+	private void _createBaseResourceImplFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
 
@@ -149,11 +147,9 @@ public class RESTBuilder {
 			_copyrightFileName, "base_resource_impl", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
-	private File _createDTOFile(Map<String, Object> context, String schemaName)
+	private void _createDTOFile(Map<String, Object> context, String schemaName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -175,11 +171,9 @@ public class RESTBuilder {
 			_copyrightFileName, "dto", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
-	private File _createPropertiesFile(
+	private void _createPropertiesFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
 
@@ -196,11 +190,9 @@ public class RESTBuilder {
 			null, "properties", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
-	private File _createResourceFile(
+	private void _createResourceFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
 
@@ -223,11 +215,9 @@ public class RESTBuilder {
 			_copyrightFileName, "resource", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
-	private File _createResourceImplFile(
+	private void _createResourceImplFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
 
@@ -254,8 +244,6 @@ public class RESTBuilder {
 			_copyrightFileName, "resource_impl", context);
 
 		FileUtil.write(content, file);
-
-		return file;
 	}
 
 	private final ConfigYAML _configYAML;
