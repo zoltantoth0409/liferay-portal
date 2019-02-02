@@ -22,7 +22,6 @@ import com.liferay.friendly.url.service.FriendlyURLEntryLocalService;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.service.ImageLocalService;
-import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 
 import org.osgi.service.component.annotations.Component;
@@ -46,8 +45,7 @@ public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register(
 			"1.1.1", "1.1.2",
-			new UpgradeBlogsImages(
-				_imageLocalService, _portletFileRepository, _userLocalService));
+			new UpgradeBlogsImages(_imageLocalService, _portletFileRepository));
 	}
 
 	@Reference
@@ -61,8 +59,5 @@ public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Reference
 	private PortletFileRepository _portletFileRepository;
-
-	@Reference
-	private UserLocalService _userLocalService;
 
 }
