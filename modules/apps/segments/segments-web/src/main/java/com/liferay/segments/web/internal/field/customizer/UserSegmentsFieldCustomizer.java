@@ -86,7 +86,7 @@ public class UserSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 			Locale locale = _portal.getLocale(portletRequest);
 
 			String title = ResourceActionsUtil.getModelResource(
-				_portal.getLocale(portletRequest), User.class.getName());
+				locale, User.class.getName());
 
 			String selectEntityTitle = LanguageUtil.format(
 				locale, "select-x", title);

@@ -100,7 +100,7 @@ public class UserGroupSegmentsFieldCustomizer
 			Locale locale = _portal.getLocale(portletRequest);
 
 			String title = ResourceActionsUtil.getModelResource(
-				_portal.getLocale(portletRequest), UserGroup.class.getName());
+				locale, UserGroup.class.getName());
 
 			String selectEntityTitle = LanguageUtil.format(
 				locale, "select-x", title);

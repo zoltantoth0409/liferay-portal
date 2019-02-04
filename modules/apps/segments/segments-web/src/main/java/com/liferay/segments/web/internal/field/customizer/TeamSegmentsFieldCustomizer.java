@@ -96,7 +96,7 @@ public class TeamSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			String title = ResourceActionsUtil.getModelResource(
-				_portal.getLocale(portletRequest), Team.class.getName());
+				locale, Team.class.getName());
 
 			Locale locale = _portal.getLocale(portletRequest);
 

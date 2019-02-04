@@ -106,7 +106,7 @@ public class RoleSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			String title = ResourceActionsUtil.getModelResource(
-				_portal.getLocale(portletRequest), Role.class.getName());
+				locale, Role.class.getName());
 
 			Locale locale = _portal.getLocale(portletRequest);
 
