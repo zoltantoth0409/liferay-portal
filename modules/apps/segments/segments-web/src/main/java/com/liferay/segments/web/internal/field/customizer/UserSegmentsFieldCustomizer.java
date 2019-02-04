@@ -83,14 +83,6 @@ public class UserSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 	@Override
 	public Field.SelectEntity getSelectEntity(PortletRequest portletRequest) {
 		try {
-			PortletURL portletURL = _portal.getControlPanelPortletURL(
-				portletRequest, SegmentsPortletKeys.SEGMENTS,
-				PortletRequest.RENDER_PHASE);
-
-			portletURL.setParameter("mvcRenderCommandName", "selectUsers");
-			portletURL.setParameter("eventName", "selectEntity");
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
-
 			Locale locale = _portal.getLocale(portletRequest);
 
 			String title = ResourceActionsUtil.getModelResource(
@@ -98,6 +90,14 @@ public class UserSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 
 			String selectEntityTitle = LanguageUtil.format(
 				locale, "select-x", title);
+
+			PortletURL portletURL = _portal.getControlPanelPortletURL(
+				portletRequest, SegmentsPortletKeys.SEGMENTS,
+				PortletRequest.RENDER_PHASE);
+
+			portletURL.setParameter("mvcRenderCommandName", "selectUsers");
+			portletURL.setParameter("eventName", "selectEntity");
+			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			return new Field.SelectEntity(
 				"selectEntity", selectEntityTitle, portletURL.toString(), true);
