@@ -624,8 +624,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 			}
 			else {
 				missingReferenceElement.addAttribute(
-					"element-path",
-					ExportImportPathUtil.getPortletDataPath(this));
+					"element-path", _getPortletXmlPath());
 			}
 		}
 	}
@@ -2619,6 +2618,28 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	private void _addUserUuid(Element element, String userUuid) {
 		element.addAttribute("user-uuid", userUuid);
+	}
+
+	private String _getPortletXmlPath() {
+		if (_exportDataRootElement == null) {
+			return StringPool.BLANK;
+		}
+
+		Element element = _exportDataRootElement.getParent();
+
+		Element parentElement = null;
+
+		while (element != null) {
+			parentElement = element;
+
+			element = element.getParent();
+		}
+
+		if (parentElement == null) {
+			return StringPool.BLANK;
+		}
+
+		return parentElement.attributeValue("self-path");
 	}
 
 	private static final Class<?>[] _XSTREAM_DEFAULT_ALLOWED_TYPES = {

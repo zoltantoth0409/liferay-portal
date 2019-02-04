@@ -678,6 +678,17 @@ public class PortletExportController implements ExportController {
 		portletElement.addAttribute(
 			"private-layout", String.valueOf(layout.isPrivateLayout()));
 
+		StringBundler pathSB = new StringBundler(4);
+
+		pathSB.append(ExportImportPathUtil.getPortletPath(portletDataContext));
+		pathSB.append(StringPool.SLASH);
+		pathSB.append(plid);
+		pathSB.append("/portlet.xml");
+
+		String path = pathSB.toString();
+
+		portletElement.addAttribute("self-path", path);
+
 		// Data
 
 		if (exportPortletData) {
@@ -838,15 +849,6 @@ public class PortletExportController implements ExportController {
 		}
 
 		// Zip
-
-		StringBundler pathSB = new StringBundler(4);
-
-		pathSB.append(ExportImportPathUtil.getPortletPath(portletDataContext));
-		pathSB.append(StringPool.SLASH);
-		pathSB.append(plid);
-		pathSB.append("/portlet.xml");
-
-		String path = pathSB.toString();
 
 		Element element = parentElement.addElement("portlet");
 
