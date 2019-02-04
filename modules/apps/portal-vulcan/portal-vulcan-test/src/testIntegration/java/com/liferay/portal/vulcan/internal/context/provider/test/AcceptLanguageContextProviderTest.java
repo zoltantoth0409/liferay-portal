@@ -114,7 +114,7 @@ public class AcceptLanguageContextProviderTest {
 
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
-				_getMessage(
+				_createMessage(
 					new AcceptLanguageMockHttpServletRequest(Locale.JAPAN)));
 
 		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
@@ -122,7 +122,7 @@ public class AcceptLanguageContextProviderTest {
 		// Three locales
 
 		acceptLanguage = _acceptLanguageContextProvider.createContext(
-			_getMessage(
+			_createMessage(
 				new AcceptLanguageMockHttpServletRequest(
 					Locale.GERMAN, Locale.JAPAN, Locale.US)));
 
@@ -131,7 +131,7 @@ public class AcceptLanguageContextProviderTest {
 		// No locales
 
 		acceptLanguage = _acceptLanguageContextProvider.createContext(
-			_getMessage(
+			_createMessage(
 				new MockHttpServletRequest() {
 					{
 						addHeader("Host", _company.getVirtualHostname());
@@ -154,7 +154,7 @@ public class AcceptLanguageContextProviderTest {
 
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
-				_getMessage(
+				_createMessage(
 					new MockHttpServletRequest() {
 						{
 							setAttribute(WebKeys.USER_ID, user.getUserId());
@@ -167,7 +167,7 @@ public class AcceptLanguageContextProviderTest {
 			user.getLocale(), acceptLanguage.getPreferredLocale());
 	}
 
-	private Message _getMessage(HttpServletRequest httpServletRequest) {
+	private Message _createMessage(HttpServletRequest httpServletRequest) {
 		return new Message() {
 
 			@Override
