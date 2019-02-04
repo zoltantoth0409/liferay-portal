@@ -43,10 +43,6 @@ import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -68,23 +64,10 @@ public class StructuredContentResourceImpl
 
 		Hits hits = _getHits(pagination);
 
-		List<StructuredContent> structuredContents = Stream.of(
-			_journalHelper.getArticles(hits)
-		).flatMap(
-			List::stream
-		).map(
-			journalArticle -> {
-				StructuredContent structuredContent = new StructuredContent();
-
-				structuredContent.setId(journalArticle.getResourcePrimKey());
-
-				return structuredContent;
-			}
-		).collect(
-			Collectors.toList()
-		);
-
-		return new Page(structuredContents, hits.getLength());
+		return new Page<>(
+			transform(
+				_journalHelper.getArticles(hits), this::_toStructuredContent),
+			hits.getLength());
 	}
 
 	private SearchContext _createSearchContext(
@@ -157,6 +140,16 @@ public class StructuredContentResourceImpl
 			JournalArticle.class);
 
 		return indexer.getFullQuery(searchContext);
+	}
+
+	private StructuredContent _toStructuredContent(
+		JournalArticle journalArticle) {
+
+		StructuredContent structuredContent = new StructuredContent();
+
+		structuredContent.setId(journalArticle.getResourcePrimKey());
+
+		return structuredContent;
 	}
 
 	@Reference

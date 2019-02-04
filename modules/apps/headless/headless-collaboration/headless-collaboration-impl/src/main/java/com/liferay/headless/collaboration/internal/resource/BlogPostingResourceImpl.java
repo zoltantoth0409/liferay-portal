@@ -23,8 +23,6 @@ import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -42,25 +40,17 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
 		Long parentId, Pagination pagination) {
 
-		List<BlogsEntry> blogsEntries = _blogsEntryService.getGroupEntries(
-			parentId, WorkflowConstants.STATUS_APPROVED,
-			pagination.getStartPosition(), pagination.getEndPosition());
-
-		Stream<BlogsEntry> stream = blogsEntries.stream();
-
-		List<BlogPosting> blogPostings = stream.map(
-			this::_transform
-		).collect(
-			Collectors.toList()
-		);
-
-		int count = _blogsEntryService.getGroupEntriesCount(
-			parentId, WorkflowConstants.STATUS_APPROVED);
-
-		return new Page<>(blogPostings, count);
+		return new Page<>(
+			transform(
+				_blogsEntryService.getGroupEntries(
+					parentId, WorkflowConstants.STATUS_APPROVED,
+					pagination.getStartPosition(), pagination.getEndPosition()),
+				this::_toBlogPosting),
+			_blogsEntryService.getGroupEntriesCount(
+				parentId, WorkflowConstants.STATUS_APPROVED));
 	}
 
-	private BlogPosting _transform(BlogsEntry blogsEntry) {
+	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) {
 		BlogPosting blogPosting = new BlogPosting();
 
 		blogPosting.setAlternativeHeadline(blogsEntry.getSubtitle());
