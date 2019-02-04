@@ -226,8 +226,14 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
+		File file = new File(sb.toString());
+
+		if (file.exists()) {
+			return;
+		}
+
 		FileUtil.write(
-			sb.toString(),
+			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_impl", context));
 	}
