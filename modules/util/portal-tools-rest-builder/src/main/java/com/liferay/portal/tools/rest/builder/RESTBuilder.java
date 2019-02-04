@@ -123,7 +123,7 @@ public class RESTBuilder {
 
 		sb.append(".java");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createBaseResourceImplFile(
@@ -146,7 +146,7 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createDTOFile(Map<String, Object> context, String schemaName)
@@ -168,7 +168,7 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append(".java");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createPropertiesFile(
@@ -185,7 +185,7 @@ public class RESTBuilder {
 		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
 		sb.append(".properties");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createResourceFile(
@@ -208,7 +208,7 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("Resource.java");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createResourceImplFile(
@@ -231,7 +231,7 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		FileUtil.write(content, new File(sb.toString()));
+		FileUtil.write(new File(sb.toString()), content);
 	}
 
 	private void _createSourceFormatterPropertiesFile() throws Exception {
@@ -251,7 +251,7 @@ public class RESTBuilder {
 				file = new File("source-formatter.properties");
 			}
 
-			FileUtil.write(content, file);
+			FileUtil.write(file, content);
 		}
 	}
 

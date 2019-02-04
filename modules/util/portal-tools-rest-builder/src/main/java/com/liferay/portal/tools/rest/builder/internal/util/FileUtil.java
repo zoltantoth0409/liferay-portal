@@ -32,7 +32,7 @@ import java.util.Collections;
  */
 public class FileUtil {
 
-	public static String format(String content, File file) throws Exception {
+	public static String format(File file, String content) throws Exception {
 		if (!file.exists()) {
 			Path path = file.toPath();
 
@@ -43,7 +43,7 @@ public class FileUtil {
 			Files.createFile(file.toPath());
 		}
 
-		String newContent = _fixWhitespace(content, file);
+		String newContent = _fixWhitespace(file, content);
 
 		Files.write(file.toPath(), newContent.getBytes(StandardCharsets.UTF_8));
 
@@ -73,15 +73,15 @@ public class FileUtil {
 		return s.replace("\r\n", "\n");
 	}
 
-	public static void write(String content, File file) throws Exception {
+	public static void write(File file, String content) throws Exception {
 		String oldContent = read(file);
 
-		if (!oldContent.equals(format(content, file))) {
+		if (!oldContent.equals(format(file, content))) {
 			System.out.println("Writing " + file.getCanonicalPath());
 		}
 	}
 
-	private static String _fixWhitespace(String content, File file) {
+	private static String _fixWhitespace(File file, String content) {
 		String newContent = content.replaceAll("(?m)^\n+", "\n");
 
 		newContent = newContent.trim();
