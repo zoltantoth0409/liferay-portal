@@ -167,8 +167,7 @@ name = HtmlUtil.escapeJS(name);
 						},
 						title: Liferay.Language.get('select-item'),
 						url: linkHref
-					}
-				);
+					});
 
 				itemSelectorDialog.open();
 			});
