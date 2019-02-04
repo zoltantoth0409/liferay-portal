@@ -37,19 +37,14 @@ import com.liferay.portal.vulcan.context.AcceptLanguage;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
 import javax.ws.rs.core.HttpHeaders;
-
-import junit.framework.AssertionFailedError;
 
 import org.apache.cxf.interceptor.InterceptorChain;
 import org.apache.cxf.jaxrs.ext.ContextProvider;
@@ -108,13 +103,6 @@ public class AcceptLanguageContextProviderTest {
 	}
 
 	@Test
-	public void testCreateContextWithDefaultUser() throws Exception {
-		User user = _company.getDefaultUser();
-
-		_testCreateContext(LocaleUtil.TAIWAN, user);
-	}
-
-	@Test
 	public void testCreateContextWithAuthenticatedUser() throws Exception {
 		User user = UserTestUtil.addUser(
 			_group.getGroupId(), LocaleUtil.BRAZIL);
@@ -122,38 +110,11 @@ public class AcceptLanguageContextProviderTest {
 		_testCreateContext(LocaleUtil.BRAZIL, user);
 	}
 
-	private void _testCreateContext(Locale userLocale, User user)
-		throws Exception {
+	@Test
+	public void testCreateContextWithDefaultUser() throws Exception {
+		User user = _company.getDefaultUser();
 
-		// One locale
-
-		AcceptLanguage acceptLanguage =
-			_acceptLanguageContextProvider.createContext(
-				_createMessage(
-					new AcceptLanguageMockHttpServletRequest(
-						user, Locale.JAPAN)));
-
-		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
-
-		// Three locales
-
-		acceptLanguage = _acceptLanguageContextProvider.createContext(
-			_createMessage(
-				new AcceptLanguageMockHttpServletRequest(
-					user, Locale.GERMAN, Locale.JAPAN, Locale.US)));
-
-		Assert.assertEquals(Locale.GERMAN, acceptLanguage.getPreferredLocale());
-
-		// No locales
-
-		Assert.assertEquals(userLocale, user.getLocale());
-
-		acceptLanguage = _acceptLanguageContextProvider.createContext(
-			_createMessage(
-				new AcceptLanguageMockHttpServletRequest(user)));
-
-		Assert.assertEquals(
-			user.getLocale(), acceptLanguage.getPreferredLocale());
+		_testCreateContext(LocaleUtil.TAIWAN, user);
 	}
 
 	private Message _createMessage(HttpServletRequest httpServletRequest) {
@@ -311,6 +272,39 @@ public class AcceptLanguageContextProviderTest {
 		};
 	}
 
+	private void _testCreateContext(Locale userLocale, User user)
+		throws Exception {
+
+		// One locale
+
+		AcceptLanguage acceptLanguage =
+			_acceptLanguageContextProvider.createContext(
+				_createMessage(
+					new AcceptLanguageMockHttpServletRequest(
+						user, Locale.JAPAN)));
+
+		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
+
+		// Three locales
+
+		acceptLanguage = _acceptLanguageContextProvider.createContext(
+			_createMessage(
+				new AcceptLanguageMockHttpServletRequest(
+					user, Locale.GERMAN, Locale.JAPAN, Locale.US)));
+
+		Assert.assertEquals(Locale.GERMAN, acceptLanguage.getPreferredLocale());
+
+		// No locales
+
+		Assert.assertEquals(userLocale, user.getLocale());
+
+		acceptLanguage = _acceptLanguageContextProvider.createContext(
+			_createMessage(new AcceptLanguageMockHttpServletRequest(user)));
+
+		Assert.assertEquals(
+			user.getLocale(), acceptLanguage.getPreferredLocale());
+	}
+
 	private static Set<Locale> _availableLocales;
 	private static Company _company;
 	private static Locale _defaultLocale;
@@ -333,7 +327,8 @@ public class AcceptLanguageContextProviderTest {
 				addHeader(
 					HttpHeaders.ACCEPT_LANGUAGE,
 					StringUtil.merge(
-						LocaleUtil.toW3cLanguageIds(locales), StringPool.COMMA));
+						LocaleUtil.toW3cLanguageIds(locales),
+						StringPool.COMMA));
 			}
 
 			addHeader("Host", _company.getVirtualHostname());
