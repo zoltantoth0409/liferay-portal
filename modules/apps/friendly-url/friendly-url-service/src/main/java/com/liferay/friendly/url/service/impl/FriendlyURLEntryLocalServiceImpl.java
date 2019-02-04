@@ -449,8 +449,7 @@ public class FriendlyURLEntryLocalServiceImpl
 			FriendlyURLEntryLocalization.class.getName(), "urlTitle");
 
 		String normalizedUrlTitle =
-			FriendlyURLNormalizerUtil.normalizeWithEncoding(
-				HttpUtil.decodePath(urlTitle));
+			FriendlyURLNormalizerUtil.normalizeWithEncoding(urlTitle);
 
 		if (normalizedUrlTitle.length() > maxLength) {
 			throw new FriendlyURLLengthException(
