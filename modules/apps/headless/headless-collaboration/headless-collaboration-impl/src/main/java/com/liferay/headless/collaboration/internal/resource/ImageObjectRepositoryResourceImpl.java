@@ -17,15 +17,12 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.resource.ImageObjectRepositoryResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/image-object-repository.properties",
-	scope = ServiceScope.PROTOTYPE,
-	service = ImageObjectRepositoryResource.class
+	properties = "OSGI-INF/image-object-repository.properties", service = ImageObjectRepositoryResource.class
 )
 public class ImageObjectRepositoryResourceImpl
 	extends BaseImageObjectRepositoryResourceImpl {

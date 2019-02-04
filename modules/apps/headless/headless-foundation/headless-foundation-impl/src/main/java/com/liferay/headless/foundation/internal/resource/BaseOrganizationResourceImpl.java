@@ -18,8 +18,11 @@ import com.liferay.headless.foundation.dto.Organization;
 import com.liferay.headless.foundation.resource.OrganizationResource;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -65,6 +68,12 @@ public abstract class BaseOrganizationResourceImpl
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
+	}
+
+	protected <T, R> List<R> transform(
+		List<T> list, Function<T, R> transformFunction) {
+
+		return TransformUtil.transform(list, transformFunction);
 	}
 
 }

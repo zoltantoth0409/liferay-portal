@@ -17,14 +17,12 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.resource.CommentResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/comment.properties", scope = ServiceScope.PROTOTYPE,
-	service = CommentResource.class
+	properties = "OSGI-INF/comment.properties", service = CommentResource.class
 )
 public class CommentResourceImpl extends BaseCommentResourceImpl {
 }

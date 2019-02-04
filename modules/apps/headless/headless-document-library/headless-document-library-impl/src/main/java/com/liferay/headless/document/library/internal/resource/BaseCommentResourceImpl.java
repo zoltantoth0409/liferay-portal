@@ -18,8 +18,11 @@ import com.liferay.headless.document.library.dto.Comment;
 import com.liferay.headless.document.library.resource.CommentResource;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -36,6 +39,12 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
+	}
+
+	protected <T, R> List<R> transform(
+		List<T> list, Function<T, R> transformFunction) {
+
+		return TransformUtil.transform(list, transformFunction);
 	}
 
 }
