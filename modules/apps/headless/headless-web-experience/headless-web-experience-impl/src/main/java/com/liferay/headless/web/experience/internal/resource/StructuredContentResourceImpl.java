@@ -145,11 +145,11 @@ public class StructuredContentResourceImpl
 	private StructuredContent _toStructuredContent(
 		JournalArticle journalArticle) {
 
-		StructuredContent structuredContent = new StructuredContent();
-
-		structuredContent.setId(journalArticle.getResourcePrimKey());
-
-		return structuredContent;
+		return new StructuredContent() {
+			{
+				setId(journalArticle.getResourcePrimKey());
+			}
+		};
 	}
 
 	@Reference

@@ -101,13 +101,13 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	private Folder _toFolder(
 		com.liferay.portal.kernel.repository.model.Folder folder) {
 
-		Folder folder1 = new Folder();
-
-		folder1.setDescription(folder.getDescription());
-		folder1.setId(folder.getFolderId());
-		folder1.setName(folder.getName());
-
-		return folder1;
+		return new Folder() {
+			{
+				setDescription(folder.getDescription());
+				setId(folder.getFolderId());
+				setName(folder.getName());
+			}
+		};
 	}
 
 	@Reference

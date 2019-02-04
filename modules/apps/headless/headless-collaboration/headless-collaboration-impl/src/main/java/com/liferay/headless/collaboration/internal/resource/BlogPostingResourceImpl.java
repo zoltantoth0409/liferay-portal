@@ -51,17 +51,17 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) {
-		BlogPosting blogPosting = new BlogPosting();
-
-		blogPosting.setAlternativeHeadline(blogsEntry.getSubtitle());
-		blogPosting.setArticleBody(blogsEntry.getContent());
-		blogPosting.setCaption(blogsEntry.getCoverImageCaption());
-		blogPosting.setDescription(blogsEntry.getDescription());
-		blogPosting.setFriendlyUrlPath(blogsEntry.getUrlTitle());
-		blogPosting.setHeadline(blogsEntry.getTitle());
-		blogPosting.setId(blogsEntry.getEntryId());
-
-		return blogPosting;
+		return new BlogPosting() {
+			{
+				setAlternativeHeadline(blogsEntry.getSubtitle());
+				setArticleBody(blogsEntry.getContent());
+				setCaption(blogsEntry.getCoverImageCaption());
+				setDescription(blogsEntry.getDescription());
+				setFriendlyUrlPath(blogsEntry.getUrlTitle());
+				setHeadline(blogsEntry.getTitle());
+				setId(blogsEntry.getEntryId());
+			}
+		};
 	}
 
 	@Reference
