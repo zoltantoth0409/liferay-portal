@@ -17,14 +17,13 @@ package com.liferay.headless.web.experience.internal.resource;
 import com.liferay.headless.web.experience.resource.StructuredContentResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/structured-content.properties",
-	scope = ServiceScope.PROTOTYPE, service = StructuredContentResource.class
+	service = StructuredContentResource.class
 )
 public class StructuredContentResourceImpl
 	extends BaseStructuredContentResourceImpl {

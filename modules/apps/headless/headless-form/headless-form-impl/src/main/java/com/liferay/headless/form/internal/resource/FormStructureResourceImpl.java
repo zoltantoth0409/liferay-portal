@@ -17,14 +17,13 @@ package com.liferay.headless.form.internal.resource;
 import com.liferay.headless.form.resource.FormStructureResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/form-structure.properties",
-	scope = ServiceScope.PROTOTYPE, service = FormStructureResource.class
+	service = FormStructureResource.class
 )
 public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {
 }

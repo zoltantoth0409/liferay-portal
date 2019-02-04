@@ -17,14 +17,13 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.UserAccountResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/user-account.properties",
-	scope = ServiceScope.PROTOTYPE, service = UserAccountResource.class
+	service = UserAccountResource.class
 )
 public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {
 }

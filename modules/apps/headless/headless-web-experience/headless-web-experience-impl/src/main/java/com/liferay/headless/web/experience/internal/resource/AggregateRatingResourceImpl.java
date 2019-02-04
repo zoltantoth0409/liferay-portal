@@ -17,14 +17,13 @@ package com.liferay.headless.web.experience.internal.resource;
 import com.liferay.headless.web.experience.resource.AggregateRatingResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/aggregate-rating.properties",
-	scope = ServiceScope.PROTOTYPE, service = AggregateRatingResource.class
+	service = AggregateRatingResource.class
 )
 public class AggregateRatingResourceImpl
 	extends BaseAggregateRatingResourceImpl {

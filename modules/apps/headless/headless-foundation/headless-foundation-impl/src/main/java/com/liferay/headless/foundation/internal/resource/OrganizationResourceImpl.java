@@ -17,14 +17,13 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.OrganizationResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/organization.properties",
-	scope = ServiceScope.PROTOTYPE, service = OrganizationResource.class
+	service = OrganizationResource.class
 )
 public class OrganizationResourceImpl extends BaseOrganizationResourceImpl {
 }
