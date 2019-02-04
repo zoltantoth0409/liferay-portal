@@ -74,20 +74,12 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 		Long groupId, Long parentFolderId, Pagination pagination) {
 
 		try {
-			List<com.liferay.portal.kernel.repository.model.Folder> folders =
-				_dlAppService.getFolders(
-					groupId, parentFolderId, pagination.getStartPosition(),
-					pagination.getEndPosition(), null);
-
-			Stream<com.liferay.portal.kernel.repository.model.Folder> stream =
-				folders.stream();
-
 			return new Page<>(
-				stream.map(
-					this::_toFolder
-				).collect(
-					Collectors.toList()
-				),
+				transform(
+					_dlAppService.getFolders(
+						groupId, parentFolderId, pagination.getStartPosition(),
+						pagination.getEndPosition(), null),
+					this::_toFolder),
 				_dlAppService.getFoldersCount(groupId, parentFolderId));
 		}
 		catch (NoSuchGroupException nsge) {
