@@ -121,7 +121,7 @@ public class AcceptLanguageContextProviderTest {
 	}
 
 	@Test
-	public void testCreateContextWithMultipleAcceptLanguageAndNoUser()
+	public void testCreateContextWithMultipleAcceptLanguagesAndNoUser()
 		throws PortalException {
 
 		AcceptLanguage acceptLanguage =
@@ -142,7 +142,6 @@ public class AcceptLanguageContextProviderTest {
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.addHeader("Host", _company.getVirtualHostname());
-
 		mockHttpServletRequest.setRemoteHost(
 			_company.getPortalURL(_group.getGroupId()));
 
@@ -219,7 +218,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public <T> T getContent(Class<T> aClass) {
+			public <T> T getContent(Class<T> clazz) {
 				return null;
 			}
 
@@ -273,7 +272,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public <T> void put(Class<T> aClass, T t) {
+			public <T> void put(Class<T> clazz, T t) {
 			}
 
 			@Override
@@ -282,7 +281,12 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public void putAll(Map<? extends String, ?> m) {
+			public void putAll(Map<? extends String, ?> map) {
+			}
+
+			@Override
+			public <T> T remove(Class<T> clazz) {
+				return null;
 			}
 
 			@Override
@@ -291,7 +295,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public <T> void removeContent(Class<T> aClass) {
+			public <T> void removeContent(Class<T> clazz) {
 			}
 
 			@Override
@@ -303,11 +307,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public <T> void setContent(Class<T> aClass, Object o) {
-			}
-
-			@Override
-			public void setContextualProperty(String s, Object o) {
+			public <T> void setContent(Class<T> clazz, Object object) {
 			}
 
 			@Override
@@ -315,7 +315,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public void setId(String s) {
+			public void setId(String id) {
 			}
 
 			@Override
@@ -353,7 +353,6 @@ public class AcceptLanguageContextProviderTest {
 			throws PortalException {
 
 			addHeader("Host", _company.getVirtualHostname());
-
 			setRemoteHost(_company.getPortalURL(_group.getGroupId()));
 
 			if (Objects.nonNull(locales) && !locales.isEmpty()) {
@@ -364,8 +363,7 @@ public class AcceptLanguageContextProviderTest {
 							locales.toArray(new Locale[locales.size()]))
 					).collect(
 						Collectors.joining(StringPool.COMMA)
-					)
-				);
+					));
 
 				setPreferredLocales(locales);
 			}
