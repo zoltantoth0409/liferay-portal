@@ -354,12 +354,11 @@ public class AcceptLanguageContextProviderTest {
 		public AcceptLanguageMockHttpServletRequest(List<Locale> locales)
 			throws PortalException {
 
-			addHeader("Host", _company.getVirtualHostname());
-
 			if (ListUtil.isEmpty(locales)) {
 				throw new AssertionFailedError("Locales are empty");
 			}
 
+			addHeader("Host", _company.getVirtualHostname());
 			addHeader(
 				HttpHeaders.ACCEPT_LANGUAGE,
 				StringUtil.merge(
