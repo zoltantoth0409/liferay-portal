@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.CompanyTestUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -115,8 +115,7 @@ public class AcceptLanguageContextProviderTest {
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
 				_getMessage(
-					new AcceptLanguageMockHttpServletRequest(
-						Collections.singletonList(Locale.JAPAN))));
+					new AcceptLanguageMockHttpServletRequest(Locale.JAPAN)));
 
 		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
 
@@ -125,7 +124,7 @@ public class AcceptLanguageContextProviderTest {
 		acceptLanguage = _acceptLanguageContextProvider.createContext(
 			_getMessage(
 				new AcceptLanguageMockHttpServletRequest(
-					Arrays.asList(Locale.GERMAN, Locale.JAPAN, Locale.US))));
+					Locale.GERMAN, Locale.JAPAN, Locale.US)));
 
 		Assert.assertEquals(Locale.GERMAN, acceptLanguage.getPreferredLocale());
 
@@ -337,10 +336,10 @@ public class AcceptLanguageContextProviderTest {
 	private class AcceptLanguageMockHttpServletRequest
 		extends MockHttpServletRequest {
 
-		public AcceptLanguageMockHttpServletRequest(List<Locale> locales)
+		public AcceptLanguageMockHttpServletRequest(Locale... locales)
 			throws PortalException {
 
-			if (ListUtil.isEmpty(locales)) {
+			if (ArrayUtil.isEmpty(locales)) {
 				throw new AssertionFailedError("Locales are empty");
 			}
 
@@ -348,10 +347,8 @@ public class AcceptLanguageContextProviderTest {
 			addHeader(
 				HttpHeaders.ACCEPT_LANGUAGE,
 				StringUtil.merge(
-					LocaleUtil.toW3cLanguageIds(
-						locales.toArray(new Locale[locales.size()])),
-					StringPool.COMMA));
-			setPreferredLocales(locales);
+					LocaleUtil.toW3cLanguageIds(locales), StringPool.COMMA));
+			setPreferredLocales(Arrays.asList(locales));
 			setRemoteHost(_company.getPortalURL(_group.getGroupId()));
 		}
 
