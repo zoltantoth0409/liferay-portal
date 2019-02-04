@@ -51,7 +51,7 @@ public interface PostalAddressResource {
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<PostalAddress> getAddressesPage(
-			@PathParam("genericparentid") Object genericparentid,
+			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception;
 

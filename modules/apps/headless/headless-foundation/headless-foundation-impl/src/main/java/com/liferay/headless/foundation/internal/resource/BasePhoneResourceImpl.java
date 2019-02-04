@@ -40,7 +40,7 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 
 	@Override
 	public Page<Phone> getPhonesPage(
-			Object genericparentid, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

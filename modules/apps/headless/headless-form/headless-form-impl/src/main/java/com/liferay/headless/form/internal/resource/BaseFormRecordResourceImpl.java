@@ -16,6 +16,7 @@ package com.liferay.headless.form.internal.resource;
 
 import com.liferay.headless.form.dto.FormRecord;
 import com.liferay.headless.form.resource.FormRecordResource;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -47,7 +48,8 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	}
 
 	@Override
-	public FormRecord postFormFormRecord(Long parentId, String acceptlocale)
+	public FormRecord postFormFormRecord(
+			Long parentId, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new FormRecord();
@@ -55,14 +57,14 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 	@Override
 	public FormRecord postFormFormRecordBatchCreate(
-			Long parentId, String acceptlocale)
+			Long parentId, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new FormRecord();
 	}
 
 	@Override
-	public FormRecord putFormRecord(Long id, String acceptlocale)
+	public FormRecord putFormRecord(Long id, AcceptLanguage acceptLanguage)
 		throws Exception {
 
 		return new FormRecord();

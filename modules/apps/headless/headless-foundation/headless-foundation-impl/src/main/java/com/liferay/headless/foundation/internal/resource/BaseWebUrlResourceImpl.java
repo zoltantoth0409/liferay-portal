@@ -40,7 +40,7 @@ public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 
 	@Override
 	public Page<WebUrl> getWebUrlsPage(
-			Object genericparentid, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

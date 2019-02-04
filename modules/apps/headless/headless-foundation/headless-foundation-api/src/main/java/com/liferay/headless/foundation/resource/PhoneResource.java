@@ -50,7 +50,7 @@ public interface PhoneResource {
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Phone> getPhonesPage(
-			@PathParam("genericparentid") Object genericparentid,
+			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception;
 

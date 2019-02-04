@@ -50,7 +50,7 @@ public interface EmailResource {
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Email> getEmailsPage(
-			@PathParam("genericparentid") Object genericparentid,
+			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception;
 

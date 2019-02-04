@@ -16,6 +16,7 @@ package com.liferay.headless.form.resource;
 
 import com.liferay.headless.form.dto.FormRecord;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -28,7 +29,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
 /**
@@ -65,7 +65,7 @@ public interface FormRecordResource {
 	@RequiresScope("headless-form-application.read")
 	public FormRecord postFormFormRecord(
 			@PathParam("parent-id") Long parentId,
-			@QueryParam("acceptlocale") String acceptlocale)
+			@Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
 	@Consumes("application/json")
@@ -75,7 +75,7 @@ public interface FormRecordResource {
 	@RequiresScope("headless-form-application.write")
 	public FormRecord postFormFormRecordBatchCreate(
 			@PathParam("parent-id") Long parentId,
-			@QueryParam("acceptlocale") String acceptlocale)
+			@Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
 	@Consumes("application/json")
@@ -84,8 +84,7 @@ public interface FormRecordResource {
 	@PUT
 	@RequiresScope("headless-form-application.read")
 	public FormRecord putFormRecord(
-			@PathParam("id") Long id,
-			@QueryParam("acceptlocale") String acceptlocale)
+			@PathParam("id") Long id, @Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
 }

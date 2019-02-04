@@ -40,7 +40,7 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 
 	@Override
 	public Page<Email> getEmailsPage(
-			Object genericparentid, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

@@ -50,7 +50,7 @@ public interface WebUrlResource {
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebUrl> getWebUrlsPage(
-			@PathParam("genericparentid") Object genericparentid,
+			@PathParam("generic-parent-id") Object genericParentId,
 			@Context Pagination pagination)
 		throws Exception;
 
