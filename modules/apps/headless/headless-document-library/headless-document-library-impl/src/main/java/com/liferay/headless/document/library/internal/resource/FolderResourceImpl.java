@@ -103,15 +103,9 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 		Folder folder1 = new Folder();
 
-		folder1.setDateCreated(null);
-		folder1.setDateModified(null);
 		folder1.setDescription(folder.getDescription());
-		folder1.setDocuments(null);
-		folder1.setDocumentsRepository(null);
 		folder1.setId(folder.getFolderId());
 		folder1.setName(folder.getName());
-		folder1.setSelf(null);
-		folder1.setSubFolders(null);
 
 		return folder1;
 	}
