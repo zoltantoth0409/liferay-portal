@@ -17,14 +17,12 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.EmailResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/email.properties", scope = ServiceScope.PROTOTYPE,
-	service = EmailResource.class
+	properties = "OSGI-INF/email.properties", service = EmailResource.class
 )
 public class EmailResourceImpl extends BaseEmailResourceImpl {
 }

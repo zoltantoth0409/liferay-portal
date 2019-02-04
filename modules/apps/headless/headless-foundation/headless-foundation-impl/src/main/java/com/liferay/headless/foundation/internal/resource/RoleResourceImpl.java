@@ -17,14 +17,12 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.RoleResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/role.properties", scope = ServiceScope.PROTOTYPE,
-	service = RoleResource.class
+	properties = "OSGI-INF/role.properties", service = RoleResource.class
 )
 public class RoleResourceImpl extends BaseRoleResourceImpl {
 }

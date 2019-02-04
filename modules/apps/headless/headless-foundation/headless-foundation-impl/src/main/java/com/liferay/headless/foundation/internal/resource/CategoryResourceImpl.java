@@ -17,13 +17,12 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.CategoryResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/category.properties", scope = ServiceScope.PROTOTYPE,
+	properties = "OSGI-INF/category.properties",
 	service = CategoryResource.class
 )
 public class CategoryResourceImpl extends BaseCategoryResourceImpl {

@@ -17,14 +17,12 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.PhoneResource;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/phone.properties", scope = ServiceScope.PROTOTYPE,
-	service = PhoneResource.class
+	properties = "OSGI-INF/phone.properties", service = PhoneResource.class
 )
 public class PhoneResourceImpl extends BasePhoneResourceImpl {
 }
