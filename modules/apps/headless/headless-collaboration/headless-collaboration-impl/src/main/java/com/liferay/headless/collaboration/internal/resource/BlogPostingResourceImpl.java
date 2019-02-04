@@ -49,7 +49,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		Stream<BlogsEntry> stream = blogsEntries.stream();
 
 		List<BlogPosting> blogPostings = stream.map(
-			this::_toBlogPosting
+			this::_transform
 		).collect(
 			Collectors.toList()
 		);
@@ -60,7 +60,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return new Page<>(blogPostings, count);
 	}
 
-	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) {
+	private BlogPosting _transform(BlogsEntry blogsEntry) {
 		BlogPosting blogPosting = new BlogPosting();
 
 		blogPosting.setAlternativeHeadline(blogsEntry.getSubtitle());
