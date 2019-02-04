@@ -363,12 +363,10 @@ public class AcceptLanguageContextProviderTest {
 						LocaleUtil.toW3cLanguageIds(
 							locales.toArray(new Locale[locales.size()])),
 						StringPool.COMMA));
-
 				setPreferredLocales(locales);
 			}
 			else {
-				throw new AssertionFailedError(
-					"Request preferred locales should be provided");
+				throw new AssertionFailedError("Locales are not specified");
 			}
 		}
 
