@@ -81,6 +81,10 @@ public class FileUtil {
 		}
 	}
 
+	public static void write(String fileName, String content) throws Exception {
+		write (new File(fileName), content);
+	}
+
 	private static String _fixWhitespace(File file, String content) {
 		String newContent = content.replaceAll("(?m)^\n+", "\n");
 

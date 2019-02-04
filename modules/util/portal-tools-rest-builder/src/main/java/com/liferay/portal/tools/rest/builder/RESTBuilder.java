@@ -103,9 +103,6 @@ public class RESTBuilder {
 	private void _createApplicationFile(Map<String, Object> context)
 		throws Exception {
 
-		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "application", context);
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_configYAML.getImplDir());
@@ -123,15 +120,15 @@ public class RESTBuilder {
 
 		sb.append(".java");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "application", context));
 	}
 
 	private void _createBaseResourceImplFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
-
-		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "base_resource_impl", context);
 
 		StringBuilder sb = new StringBuilder();
 
@@ -146,14 +143,14 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "base_resource_impl", context));
 	}
 
 	private void _createDTOFile(Map<String, Object> context, String schemaName)
 		throws Exception {
-
-		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "dto", context);
 
 		StringBuilder sb = new StringBuilder();
 
@@ -168,15 +165,14 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append(".java");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
 	}
 
 	private void _createPropertiesFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
-
-		String content = FreeMarkerUtil.processTemplate(
-			null, "properties", context);
 
 		StringBuilder sb = new StringBuilder();
 
@@ -185,15 +181,14 @@ public class RESTBuilder {
 		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
 		sb.append(".properties");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(null, "properties", context));
 	}
 
 	private void _createResourceFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
-
-		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "resource", context);
 
 		StringBuilder sb = new StringBuilder();
 
@@ -208,15 +203,15 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("Resource.java");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "resource", context));
 	}
 
 	private void _createResourceImplFile(
 			Map<String, Object> context, String schemaName)
 		throws Exception {
-
-		String content = FreeMarkerUtil.processTemplate(
-			_copyrightFileName, "resource_impl", context);
 
 		StringBuilder sb = new StringBuilder();
 
@@ -231,7 +226,10 @@ public class RESTBuilder {
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		FileUtil.write(new File(sb.toString()), content);
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "resource_impl", context));
 	}
 
 	private void _createSourceFormatterPropertiesFile() throws Exception {
