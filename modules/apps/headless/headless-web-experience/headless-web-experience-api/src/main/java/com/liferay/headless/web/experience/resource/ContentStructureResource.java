@@ -41,7 +41,7 @@ public interface ContentStructureResource {
 
 	@GET
 	@Path("/content-space/{parent-id}/content-structures")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<ContentStructure> getContentSpaceContentStructuresPage(
 			@PathParam("parent-id") Long parentId,
@@ -50,7 +50,7 @@ public interface ContentStructureResource {
 
 	@GET
 	@Path("/content-structures/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public ContentStructure getContentStructure(@PathParam("id") Long id)
 		throws Exception;

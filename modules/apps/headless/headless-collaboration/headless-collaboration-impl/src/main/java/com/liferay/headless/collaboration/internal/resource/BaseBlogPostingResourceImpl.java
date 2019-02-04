@@ -23,6 +23,8 @@ import java.util.Collections;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -30,6 +32,13 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseBlogPostingResourceImpl
 	implements BlogPostingResource {
+
+	@Override
+	public Response deleteBlogPosting(Long id) throws Exception {
+		Response.ResponseBuilder responseBuilder = Response.ok();
+
+		return responseBuilder.build();
+	}
 
 	@Override
 	public BlogPosting getBlogPosting(Long id) throws Exception {
@@ -41,7 +50,7 @@ public abstract class BaseBlogPostingResourceImpl
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override

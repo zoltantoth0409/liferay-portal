@@ -41,13 +41,13 @@ public interface EmailResource {
 
 	@GET
 	@Path("/emails/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Email getEmail(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/emails")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Email> getEmailsPage(
 			@PathParam("genericparentid") Object genericparentid,

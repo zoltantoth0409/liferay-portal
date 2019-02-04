@@ -41,13 +41,13 @@ public interface CommentResource {
 
 	@GET
 	@Path("/comment/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Comment getComment(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/comment/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<Comment> getCommentCommentPage(
 			@PathParam("parent-id") Long parentId,
@@ -56,7 +56,7 @@ public interface CommentResource {
 
 	@GET
 	@Path("/content-document/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<Comment> getContentDocumentCommentPage(
 			@PathParam("parent-id") Long parentId,
@@ -65,7 +65,7 @@ public interface CommentResource {
 
 	@GET
 	@Path("/structured-contents/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<Comment> getStructuredContentsCommentPage(
 			@PathParam("parent-id") Long parentId,

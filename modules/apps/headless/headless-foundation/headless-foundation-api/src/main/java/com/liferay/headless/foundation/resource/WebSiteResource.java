@@ -41,7 +41,7 @@ public interface WebSiteResource {
 
 	@GET
 	@Path("/my-user-account/{parent-id}/web-site")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getMyUserAccountWebSitePage(
 			@PathParam("parent-id") Long parentId,
@@ -50,7 +50,7 @@ public interface WebSiteResource {
 
 	@GET
 	@Path("/user-account/{parent-id}/web-site")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getUserAccountWebSitePage(
 			@PathParam("parent-id") Long parentId,
@@ -59,13 +59,13 @@ public interface WebSiteResource {
 
 	@GET
 	@Path("/web-site/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public WebSite getWebSite(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/web-site/{parent-id}/web-site")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebSite> getWebSiteWebSitePage(
 			@PathParam("parent-id") Long parentId,

@@ -22,6 +22,7 @@ import com.liferay.portal.vulcan.dto.Page;
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -30,6 +31,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -43,16 +45,23 @@ import javax.ws.rs.core.Context;
 @Path("/1.0.0")
 public interface UserAccountResource {
 
+	@DELETE
+	@Path("/user-account/{id}")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Response deleteUserAccount(@PathParam("id") Long id)
+		throws Exception;
+
 	@GET
 	@Path("/my-user-account/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public UserAccount getMyUserAccount(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/my-user-account")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getMyUserAccountPage(
 			@Context Pagination pagination)
@@ -60,7 +69,7 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/organization/{parent-id}/user-account")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getOrganizationUserAccountPage(
 			@PathParam("parent-id") Long parentId,
@@ -69,14 +78,14 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/user-account/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public UserAccount getUserAccount(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/user-account")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getUserAccountPage(
 			@QueryParam("fullnamequery") String fullnamequery,
@@ -85,30 +94,30 @@ public interface UserAccountResource {
 
 	@GET
 	@Path("/web-site/{parent-id}/user-account")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<UserAccount> getWebSiteUserAccountPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/user-account")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public UserAccount postUserAccount() throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/user-account/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
 	public UserAccount postUserAccountBatchCreate() throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/user-account/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@PUT
 	@RequiresScope("headless-foundation-application.read")
 	public UserAccount putUserAccount(@PathParam("id") Long id)

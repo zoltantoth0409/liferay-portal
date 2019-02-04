@@ -23,12 +23,21 @@ import java.util.Collections;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
 public abstract class BaseDocumentResourceImpl implements DocumentResource {
+
+	@Override
+	public Response deleteDocument(Long id) throws Exception {
+		Response.ResponseBuilder responseBuilder = Response.ok();
+
+		return responseBuilder.build();
+	}
 
 	@Override
 	public Document getDocument(Long id) throws Exception {
@@ -40,7 +49,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -48,7 +57,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override

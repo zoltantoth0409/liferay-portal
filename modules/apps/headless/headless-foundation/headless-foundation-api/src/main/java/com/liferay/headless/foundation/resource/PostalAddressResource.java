@@ -41,14 +41,14 @@ public interface PostalAddressResource {
 
 	@GET
 	@Path("/addresses/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public PostalAddress getAddresses(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/addresses")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<PostalAddress> getAddressesPage(
 			@PathParam("genericparentid") Object genericparentid,

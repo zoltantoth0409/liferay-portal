@@ -41,14 +41,14 @@ public interface WorkflowLogResource {
 
 	@GET
 	@Path("/workflow-logs/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
 	public WorkflowLog getWorkflowLog(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/workflow-tasks/{parent-id}/workflow-logs")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
 	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage(
 			@PathParam("parent-id") Long parentId,

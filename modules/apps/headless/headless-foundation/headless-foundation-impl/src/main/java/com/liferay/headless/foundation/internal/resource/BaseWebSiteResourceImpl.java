@@ -35,7 +35,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 }

@@ -23,6 +23,8 @@ import java.util.Collections;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -30,6 +32,13 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseUserAccountResourceImpl
 	implements UserAccountResource {
+
+	@Override
+	public Response deleteUserAccount(Long id) throws Exception {
+		Response.ResponseBuilder responseBuilder = Response.ok();
+
+		return responseBuilder.build();
+	}
 
 	@Override
 	public UserAccount getMyUserAccount(Long id) throws Exception {
@@ -40,7 +49,7 @@ public abstract class BaseUserAccountResourceImpl
 	public Page<UserAccount> getMyUserAccountPage(Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -48,7 +57,7 @@ public abstract class BaseUserAccountResourceImpl
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -61,7 +70,7 @@ public abstract class BaseUserAccountResourceImpl
 			String fullnamequery, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -69,7 +78,7 @@ public abstract class BaseUserAccountResourceImpl
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override

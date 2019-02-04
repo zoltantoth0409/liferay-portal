@@ -22,12 +22,14 @@ import com.liferay.portal.vulcan.dto.Page;
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -41,35 +43,42 @@ import javax.ws.rs.core.Context;
 @Path("/1.0.0")
 public interface ImageObjectResource {
 
+	@DELETE
+	@Path("/image-object/{id}")
+	@Produces("application/json")
+	@RequiresScope("headless-collaboration-application.read")
+	public Response deleteImageObject(@PathParam("id") Long id)
+		throws Exception;
+
 	@GET
 	@Path("/image-object/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public ImageObject getImageObject(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/image-object-repository/{parent-id}/image-object")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/image-object-repository/{parent-id}/image-object")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public ImageObject postImageObjectRepositoryImageObject(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/image-object-repository/{parent-id}/image-object/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
 	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
 			@PathParam("parent-id") Long parentId)

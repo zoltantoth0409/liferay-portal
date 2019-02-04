@@ -41,13 +41,13 @@ public interface WebUrlResource {
 
 	@GET
 	@Path("/web-urls/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public WebUrl getWebUrl(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/web-urls")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<WebUrl> getWebUrlsPage(
 			@PathParam("genericparentid") Object genericparentid,

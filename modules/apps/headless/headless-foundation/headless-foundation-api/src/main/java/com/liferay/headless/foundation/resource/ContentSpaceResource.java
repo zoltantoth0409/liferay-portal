@@ -38,7 +38,7 @@ public interface ContentSpaceResource {
 
 	@GET
 	@Path("/content-space/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public ContentSpace getContentSpace(@PathParam("id") Long id)
 		throws Exception;

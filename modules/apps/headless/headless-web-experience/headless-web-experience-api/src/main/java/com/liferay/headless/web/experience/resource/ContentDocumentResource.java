@@ -19,10 +19,12 @@ import com.liferay.oauth2.provider.scope.RequiresScope;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -36,9 +38,16 @@ import javax.ws.rs.Produces;
 @Path("/1.0.0")
 public interface ContentDocumentResource {
 
+	@DELETE
+	@Path("/content-document/{id}")
+	@Produces("application/json")
+	@RequiresScope("headless-web-experience-application.read")
+	public Response deleteContentDocument(@PathParam("id") Long id)
+		throws Exception;
+
 	@GET
 	@Path("/content-document/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public ContentDocument getContentDocument(@PathParam("id") Long id)
 		throws Exception;

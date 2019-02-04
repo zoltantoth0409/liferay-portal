@@ -19,6 +19,8 @@ import com.liferay.headless.web.experience.resource.ContentDocumentResource;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -26,6 +28,13 @@ import javax.annotation.Generated;
 @Generated("")
 public abstract class BaseContentDocumentResourceImpl
 	implements ContentDocumentResource {
+
+	@Override
+	public Response deleteContentDocument(Long id) throws Exception {
+		Response.ResponseBuilder responseBuilder = Response.ok();
+
+		return responseBuilder.build();
+	}
 
 	@Override
 	public ContentDocument getContentDocument(Long id) throws Exception {

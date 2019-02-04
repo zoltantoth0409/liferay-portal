@@ -23,12 +23,21 @@ import java.util.Collections;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Response;
+
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
 public abstract class BaseFolderResourceImpl implements FolderResource {
+
+	@Override
+	public Response deleteFolder(Long id) throws Exception {
+		Response.ResponseBuilder responseBuilder = Response.ok();
+
+		return responseBuilder.build();
+	}
 
 	@Override
 	public Folder getDocumentsRepository(Long id) throws Exception {
@@ -40,7 +49,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -53,7 +62,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override

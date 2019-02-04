@@ -35,7 +35,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			Long parentId, Pagination pagination)
 		throws Exception {
 
-		return new Page(Collections.emptyList(), 0);
+		return new Page<>(Collections.emptyList(), 0);
 	}
 
 }

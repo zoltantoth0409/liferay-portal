@@ -22,12 +22,14 @@ import com.liferay.portal.vulcan.dto.Page;
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -41,15 +43,21 @@ import javax.ws.rs.core.Context;
 @Path("/1.0.0")
 public interface DocumentResource {
 
+	@DELETE
+	@Path("/document/{id}")
+	@Produces("application/json")
+	@RequiresScope("headless-document-library-application.read")
+	public Response deleteDocument(@PathParam("id") Long id) throws Exception;
+
 	@GET
 	@Path("/document/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Document getDocument(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/documents-repository/{parent-id}/document")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Page<Document> getDocumentsRepositoryDocumentPage(
 			@PathParam("parent-id") Long parentId,
@@ -58,43 +66,43 @@ public interface DocumentResource {
 
 	@GET
 	@Path("/folder/{parent-id}/document")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Page<Document> getFolderDocumentPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/documents-repository/{parent-id}/document")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Document postDocumentsRepositoryDocument(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/documents-repository/{parent-id}/document/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
 	public Document postDocumentsRepositoryDocumentBatchCreate(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/folder/{parent-id}/document")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Document postFolderDocument(@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/folder/{parent-id}/document/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
 	public Document postFolderDocumentBatchCreate(
 			@PathParam("parent-id") Long parentId)

@@ -44,13 +44,13 @@ public interface CategoryResource {
 
 	@GET
 	@Path("/categories/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Category getCategories(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/categories/{parent-id}/categories")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Category> getCategoriesCategoriesPage(
 			@PathParam("parent-id") Long parentId,
@@ -59,52 +59,52 @@ public interface CategoryResource {
 
 	@GET
 	@Path("/vocabularies/{parent-id}/categories")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Page<Category> getVocabulariesCategoriesPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/categories/{parent-id}/categories")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Category postCategoriesCategories(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/categories/{parent-id}/categories/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
 	public Category postCategoriesCategoriesBatchCreate(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/vocabularies/{parent-id}/categories")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
 	public Category postVocabulariesCategories(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/vocabularies/{parent-id}/categories/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
 	public Category postVocabulariesCategoriesBatchCreate(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/categories/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@PUT
 	@RequiresScope("headless-foundation-application.read")
 	public Category putCategories(@PathParam("id") Long id) throws Exception;

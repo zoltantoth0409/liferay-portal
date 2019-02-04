@@ -46,7 +46,7 @@ public interface StructuredContentResource {
 
 	@GET
 	@Path("/content-space/{parent-id}/structured-contents")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			@PathParam("parent-id") Long parentId,
@@ -58,35 +58,35 @@ public interface StructuredContentResource {
 
 	@GET
 	@Path("/structured-contents/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public StructuredContent getStructuredContent(
 			@PathParam("id") Long id, @Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/content-space/{parent-id}/structured-contents")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
 	public StructuredContent postContentSpaceStructuredContent(
 			@PathParam("parent-id") Long parentId,
 			@Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/content-space/{parent-id}/structured-contents/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.write")
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
 			@PathParam("parent-id") Long parentId,
 			@Context AcceptLanguage acceptLanguage)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/structured-contents/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@PUT
 	@RequiresScope("headless-web-experience-application.read")
 	public StructuredContent putStructuredContent(

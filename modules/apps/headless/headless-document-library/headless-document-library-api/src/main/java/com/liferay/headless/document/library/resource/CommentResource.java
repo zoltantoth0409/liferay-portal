@@ -41,7 +41,7 @@ public interface CommentResource {
 
 	@GET
 	@Path("/document/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
 	public Page<Comment> getDocumentCommentPage(
 			@PathParam("parent-id") Long parentId,

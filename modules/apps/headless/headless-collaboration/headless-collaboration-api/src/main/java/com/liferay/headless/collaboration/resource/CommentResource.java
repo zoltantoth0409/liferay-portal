@@ -41,7 +41,7 @@ public interface CommentResource {
 
 	@GET
 	@Path("/blog-posting/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<Comment> getBlogPostingCommentPage(
 			@PathParam("parent-id") Long parentId,
@@ -50,13 +50,13 @@ public interface CommentResource {
 
 	@GET
 	@Path("/comment/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public Comment getComment(@PathParam("id") Long id) throws Exception;
 
 	@GET
 	@Path("/comment/{parent-id}/comment")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<Comment> getCommentCommentPage(
 			@PathParam("parent-id") Long parentId,

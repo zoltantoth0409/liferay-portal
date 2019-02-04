@@ -41,7 +41,7 @@ public interface FormStructureResource {
 
 	@GET
 	@Path("/content-space/{parent-id}/form-structures")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
 	public Page<FormStructure> getContentSpaceFormStructuresPage(
 			@PathParam("parent-id") Long parentId,
@@ -50,7 +50,7 @@ public interface FormStructureResource {
 
 	@GET
 	@Path("/form-structures/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
 	public FormStructure getFormStructure(@PathParam("id") Long id)
 		throws Exception;

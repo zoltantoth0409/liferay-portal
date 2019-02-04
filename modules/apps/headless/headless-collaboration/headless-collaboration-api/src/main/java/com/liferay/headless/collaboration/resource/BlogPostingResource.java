@@ -22,6 +22,7 @@ import com.liferay.portal.vulcan.dto.Page;
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -29,6 +30,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -42,43 +44,50 @@ import javax.ws.rs.core.Context;
 @Path("/1.0.0")
 public interface BlogPostingResource {
 
+	@DELETE
+	@Path("/blog-posting/{id}")
+	@Produces("application/json")
+	@RequiresScope("headless-collaboration-application.read")
+	public Response deleteBlogPosting(@PathParam("id") Long id)
+		throws Exception;
+
 	@GET
 	@Path("/blog-posting/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public BlogPosting getBlogPosting(@PathParam("id") Long id)
 		throws Exception;
 
 	@GET
 	@Path("/content-space/{parent-id}/blog-posting")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
 			@PathParam("parent-id") Long parentId,
 			@Context Pagination pagination)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/content-space/{parent-id}/blog-posting")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
 	public BlogPosting postContentSpaceBlogPosting(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/content-space/{parent-id}/blog-posting/batch-create")
 	@POST
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
 	public BlogPosting postContentSpaceBlogPostingBatchCreate(
 			@PathParam("parent-id") Long parentId)
 		throws Exception;
 
-	@Consumes({"application/json"})
+	@Consumes("application/json")
 	@Path("/blog-posting/{id}")
-	@Produces({"application/json"})
+	@Produces("application/json")
 	@PUT
 	@RequiresScope("headless-collaboration-application.read")
 	public BlogPosting putBlogPosting(@PathParam("id") Long id)
