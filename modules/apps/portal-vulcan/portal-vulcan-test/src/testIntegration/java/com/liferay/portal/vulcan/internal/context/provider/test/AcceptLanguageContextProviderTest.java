@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.CompanyTestUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -354,20 +355,19 @@ public class AcceptLanguageContextProviderTest {
 			throws PortalException {
 
 			addHeader("Host", _company.getVirtualHostname());
-			setRemoteHost(_company.getPortalURL(_group.getGroupId()));
 
-			if (Objects.nonNull(locales) && !locales.isEmpty()) {
-				addHeader(
-					HttpHeaders.ACCEPT_LANGUAGE,
-					StringUtil.merge(
-						LocaleUtil.toW3cLanguageIds(
-							locales.toArray(new Locale[locales.size()])),
-						StringPool.COMMA));
-				setPreferredLocales(locales);
+			if (ListUtil.isEmpty(locales)) {
+				throw new AssertionFailedError("Locales are empty");
 			}
-			else {
-				throw new AssertionFailedError("Locales are not specified");
-			}
+
+			addHeader(
+				HttpHeaders.ACCEPT_LANGUAGE,
+				StringUtil.merge(
+					LocaleUtil.toW3cLanguageIds(
+						locales.toArray(new Locale[locales.size()])),
+					StringPool.COMMA));
+			setPreferredLocales(locales);
+			setRemoteHost(_company.getPortalURL(_group.getGroupId()));
 		}
 
 	}
