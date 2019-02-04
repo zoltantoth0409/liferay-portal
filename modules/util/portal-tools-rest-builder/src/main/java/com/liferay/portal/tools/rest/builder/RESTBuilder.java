@@ -74,7 +74,7 @@ public class RESTBuilder {
 
 		_createApplicationFile(context);
 
-		_createSourceFormatterPropertiesFile();
+		//_createSourceFormatterPropertiesFile();
 
 		Components components = _openAPIYAML.getComponents();
 
