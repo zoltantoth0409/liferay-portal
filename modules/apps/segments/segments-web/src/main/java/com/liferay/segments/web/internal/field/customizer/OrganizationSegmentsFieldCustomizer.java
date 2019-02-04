@@ -94,11 +94,11 @@ public class OrganizationSegmentsFieldCustomizer
 			portletURL.setParameter("eventName", "selectEntity");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
+			Locale locale = _portal.getLocale(portletRequest);
+
 			String title = ResourceActionsUtil.getModelResource(
 				_portal.getLocale(portletRequest),
 				Organization.class.getName());
-
-			Locale locale = _portal.getLocale(portletRequest);
 
 			String selectEntityTitle = LanguageUtil.format(
 				locale, "select-x", title);

@@ -105,10 +105,10 @@ public class GroupSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 			portletURL.setParameter("eventName", "selectEntity");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
+			Locale locale = _portal.getLocale(portletRequest);
+
 			String title = ResourceActionsUtil.getModelResource(
 				locale, Group.class.getName());
-
-			Locale locale = _portal.getLocale(portletRequest);
 
 			String selectEntityTitle = LanguageUtil.format(
 				locale, "select-x", title);
