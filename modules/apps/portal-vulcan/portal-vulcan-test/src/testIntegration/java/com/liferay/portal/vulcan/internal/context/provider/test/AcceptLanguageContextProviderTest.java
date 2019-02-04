@@ -132,12 +132,7 @@ public class AcceptLanguageContextProviderTest {
 
 		acceptLanguage = _acceptLanguageContextProvider.createContext(
 			_createMessage(
-				new MockHttpServletRequest() {
-					{
-						addHeader("Host", _company.getVirtualHostname());
-						setRemoteHost(_company.getPortalURL(_group.getGroupId()));
-					}
-				}));
+				new AcceptLanguageMockHttpServletRequest()));
 
 		User defaultUser = _company.getDefaultUser();
 
@@ -155,11 +150,9 @@ public class AcceptLanguageContextProviderTest {
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
 				_createMessage(
-					new MockHttpServletRequest() {
+					new AcceptLanguageMockHttpServletRequest() {
 						{
 							setAttribute(WebKeys.USER_ID, user.getUserId());
-							setRemoteHost(
-								_company.getPortalURL(_group.getGroupId()));
 						}
 					}));
 
@@ -339,17 +332,16 @@ public class AcceptLanguageContextProviderTest {
 		public AcceptLanguageMockHttpServletRequest(Locale... locales)
 			throws PortalException {
 
-			if (ArrayUtil.isEmpty(locales)) {
-				throw new AssertionFailedError("Locales are empty");
-			}
-
 			addHeader("Host", _company.getVirtualHostname());
-			addHeader(
-				HttpHeaders.ACCEPT_LANGUAGE,
-				StringUtil.merge(
-					LocaleUtil.toW3cLanguageIds(locales), StringPool.COMMA));
-			setPreferredLocales(Arrays.asList(locales));
 			setRemoteHost(_company.getPortalURL(_group.getGroupId()));
+
+			if (ArrayUtil.isNotEmpty(locales)) {
+				addHeader(
+					HttpHeaders.ACCEPT_LANGUAGE,
+					StringUtil.merge(
+						LocaleUtil.toW3cLanguageIds(locales), StringPool.COMMA));
+				setPreferredLocales(Arrays.asList(locales));
+			}
 		}
 
 	}
