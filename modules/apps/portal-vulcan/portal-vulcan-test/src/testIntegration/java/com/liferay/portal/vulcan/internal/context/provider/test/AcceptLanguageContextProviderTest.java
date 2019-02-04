@@ -109,13 +109,13 @@ public class AcceptLanguageContextProviderTest {
 	public void testCreateContextWithAcceptLanguageAndNoUser()
 		throws PortalException {
 
-		MockLanguageHttpServletRequest mockLanguageHttpServletRequest =
-			new MockLanguageHttpServletRequest(
+		AcceptLanguageMockHttpServletRequest acceptLanguageMockHttpServletRequest =
+			new AcceptLanguageMockHttpServletRequest(
 				Collections.singletonList(Locale.JAPAN));
 
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
-				_getMessage(mockLanguageHttpServletRequest));
+				_getMessage(acceptLanguageMockHttpServletRequest));
 
 		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
 	}
@@ -127,7 +127,7 @@ public class AcceptLanguageContextProviderTest {
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
 				_getMessage(
-					new MockLanguageHttpServletRequest(
+					new AcceptLanguageMockHttpServletRequest(
 						Arrays.asList(
 							Locale.GERMAN, Locale.JAPAN, Locale.US))));
 
@@ -346,10 +346,10 @@ public class AcceptLanguageContextProviderTest {
 	)
 	private ContextProvider<AcceptLanguage> _acceptLanguageContextProvider;
 
-	private class MockLanguageHttpServletRequest
+	private class AcceptLanguageMockHttpServletRequest
 		extends MockHttpServletRequest {
 
-		public MockLanguageHttpServletRequest(List<Locale> locales)
+		public AcceptLanguageMockHttpServletRequest(List<Locale> locales)
 			throws PortalException {
 
 			addHeader("Host", _company.getVirtualHostname());
