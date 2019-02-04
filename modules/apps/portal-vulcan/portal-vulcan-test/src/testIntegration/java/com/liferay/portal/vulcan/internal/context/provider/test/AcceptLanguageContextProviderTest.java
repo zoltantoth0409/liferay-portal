@@ -16,6 +16,7 @@ package com.liferay.portal.vulcan.internal.context.provider.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -358,12 +359,10 @@ public class AcceptLanguageContextProviderTest {
 			if (Objects.nonNull(locales) && !locales.isEmpty()) {
 				addHeader(
 					HttpHeaders.ACCEPT_LANGUAGE,
-					Stream.of(
+					StringUtil.merge(
 						LocaleUtil.toW3cLanguageIds(
-							locales.toArray(new Locale[locales.size()]))
-					).collect(
-						Collectors.joining(StringPool.COMMA)
-					));
+							locales.toArray(new Locale[locales.size()])),
+						StringPool.COMMA));
 
 				setPreferredLocales(locales);
 			}
