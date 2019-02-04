@@ -108,48 +108,37 @@ public class AcceptLanguageContextProviderTest {
 	}
 
 	@Test
-	public void testCreateContextWithAcceptLanguageAndNoUser()
-		throws PortalException {
+	public void testCreateContextWithDefaultUser() throws PortalException {
 
-		AcceptLanguageMockHttpServletRequest acceptLanguageMockHttpServletRequest =
-			new AcceptLanguageMockHttpServletRequest(
-				Collections.singletonList(Locale.JAPAN));
-
-		AcceptLanguage acceptLanguage =
-			_acceptLanguageContextProvider.createContext(
-				_getMessage(acceptLanguageMockHttpServletRequest));
-
-		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
-	}
-
-	@Test
-	public void testCreateContextWithMultipleAcceptLanguagesAndNoUser()
-		throws PortalException {
+		// One locale
 
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
 				_getMessage(
 					new AcceptLanguageMockHttpServletRequest(
-						Arrays.asList(
-							Locale.GERMAN, Locale.JAPAN, Locale.US))));
+						Collections.singletonList(Locale.JAPAN))));
+
+		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
+
+		// Three locales
+
+		acceptLanguage = _acceptLanguageContextProvider.createContext(
+			_getMessage(
+				new AcceptLanguageMockHttpServletRequest(
+					Arrays.asList(Locale.GERMAN, Locale.JAPAN, Locale.US))));
 
 		Assert.assertEquals(Locale.GERMAN, acceptLanguage.getPreferredLocale());
-	}
 
-	@Test
-	public void testCreateContextWithNoAcceptLanguageAndNoUser()
-		throws PortalException {
+		// No locales
 
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader("Host", _company.getVirtualHostname());
-		mockHttpServletRequest.setRemoteHost(
-			_company.getPortalURL(_group.getGroupId()));
-
-		AcceptLanguage acceptLanguage =
-			_acceptLanguageContextProvider.createContext(
-				_getMessage(mockHttpServletRequest));
+		acceptLanguage = _acceptLanguageContextProvider.createContext(
+			_getMessage(
+				new MockHttpServletRequest() {
+					{
+						addHeader("Host", _company.getVirtualHostname());
+						setRemoteHost(_company.getPortalURL(_group.getGroupId()));
+					}
+				}));
 
 		User defaultUser = _company.getDefaultUser();
 
@@ -160,23 +149,20 @@ public class AcceptLanguageContextProviderTest {
 	}
 
 	@Test
-	public void testCreateContextWithNoAcceptLanguageAndUser()
-		throws Exception {
-
-		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setRemoteHost(
-			_company.getPortalURL(_group.getGroupId()));
-
+	public void testCreateContextWithAuthenticatedUser() throws Exception {
 		User user = UserTestUtil.addUser(
 			_group.getGroupId(), LocaleUtil.BRAZIL);
 
-		mockHttpServletRequest.setAttribute(WebKeys.USER_ID, user.getUserId());
-
 		AcceptLanguage acceptLanguage =
 			_acceptLanguageContextProvider.createContext(
-				_getMessage(mockHttpServletRequest));
+				_getMessage(
+					new MockHttpServletRequest() {
+						{
+							setAttribute(WebKeys.USER_ID, user.getUserId());
+							setRemoteHost(
+								_company.getPortalURL(_group.getGroupId()));
+						}
+					}));
 
 		Assert.assertEquals(
 			user.getLocale(), acceptLanguage.getPreferredLocale());
@@ -205,7 +191,7 @@ public class AcceptLanguageContextProviderTest {
 			}
 
 			@Override
-			public <T> T get(Class<T> aClass) {
+			public <T> T get(Class<T> clazz) {
 				return null;
 			}
 
