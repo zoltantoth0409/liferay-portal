@@ -50,24 +50,24 @@ public class CompanyContextProviderTest {
 
 	@Test
 	public void testCreateContext() throws Exception {
-		Company actualCompany = CompanyTestUtil.addCompany();
+		Company company = CompanyTestUtil.addCompany();
 
 		try {
-			User user = UserTestUtil.addCompanyAdminUser(actualCompany);
+			User user = UserTestUtil.addCompanyAdminUser(company);
 
 			Group group = GroupTestUtil.addGroup(
-				actualCompany.getCompanyId(), user.getUserId(), 0L);
+				company.getCompanyId(), user.getUserId(), 0L);
 
-			CompanyMockHttpServletRequest companyMockHttpServletRequest =
-				new CompanyMockHttpServletRequest(actualCompany, group);
+			MockHttpServletRequest mockHttpServletRequest =
+				new CompanyMockHttpServletRequest(company, group);
 
-			Company finalCompany = _companyContextProvider.createContext(
-				new MockMessage(companyMockHttpServletRequest));
-
-			Assert.assertEquals(actualCompany, finalCompany);
+			Assert.assertEquals(
+				company,
+				_companyContextProvider.createContext(
+					new MockMessage(companyMockHttpServletRequest)));
 		}
 		finally {
-			CompanyLocalServiceUtil.deleteCompany(actualCompany.getCompanyId());
+			CompanyLocalServiceUtil.deleteCompany(company.getCompanyId());
 		}
 	}
 
