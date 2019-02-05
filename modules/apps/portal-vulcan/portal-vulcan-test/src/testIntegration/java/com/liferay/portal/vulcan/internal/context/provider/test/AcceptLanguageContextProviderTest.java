@@ -114,7 +114,7 @@ public class AcceptLanguageContextProviderTest {
 		// One locale
 
 		AcceptLanguage acceptLanguage =
-			_acceptLanguageContextProvider.createContext(
+			_contextProvider.createContext(
 				new MockMessage(
 					new AcceptLanguageMockHttpServletRequest(
 						user, Locale.JAPAN)));
@@ -123,7 +123,7 @@ public class AcceptLanguageContextProviderTest {
 
 		// Three locales
 
-		acceptLanguage = _acceptLanguageContextProvider.createContext(
+		acceptLanguage = _contextProvider.createContext(
 			new MockMessage(
 				new AcceptLanguageMockHttpServletRequest(
 					user, Locale.GERMAN, Locale.JAPAN, Locale.US)));
@@ -134,7 +134,7 @@ public class AcceptLanguageContextProviderTest {
 
 		Assert.assertEquals(userLocale, user.getLocale());
 
-		acceptLanguage = _acceptLanguageContextProvider.createContext(
+		acceptLanguage = _contextProvider.createContext(
 			new MockMessage(new AcceptLanguageMockHttpServletRequest(user)));
 
 		Assert.assertEquals(
@@ -150,7 +150,7 @@ public class AcceptLanguageContextProviderTest {
 	@Inject(
 		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.AcceptLanguageContextProvider"
 	)
-	private ContextProvider<AcceptLanguage> _acceptLanguageContextProvider;
+	private ContextProvider<AcceptLanguage> _contextProvider;
 
 	private class AcceptLanguageMockHttpServletRequest
 		extends MockHttpServletRequest {

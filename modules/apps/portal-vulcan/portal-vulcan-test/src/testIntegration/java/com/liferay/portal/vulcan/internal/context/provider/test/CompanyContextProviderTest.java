@@ -68,7 +68,7 @@ public class CompanyContextProviderTest {
 
 			Assert.assertEquals(
 				company,
-				_companyContextProvider.createContext(
+				_contextProvider.createContext(
 					new MockMessage(mockHttpServletRequest)));
 		}
 		finally {
@@ -79,6 +79,6 @@ public class CompanyContextProviderTest {
 	@Inject(
 		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.CompanyContextProvider"
 	)
-	private ContextProvider<Company> _companyContextProvider;
+	private ContextProvider<Company> _contextProvider;
 
 }
