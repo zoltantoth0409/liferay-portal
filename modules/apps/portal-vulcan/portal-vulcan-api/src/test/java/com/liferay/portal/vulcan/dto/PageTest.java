@@ -23,7 +23,6 @@ import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -33,10 +32,11 @@ import org.junit.Test;
 public class PageTest {
 
 	@Test
-	public void testPageFromEmptyListCreatesOnePageCollectionPage() {
-		List<Integer> items = Collections.emptyList();
+	public void testOf() {
 
-		Page<Integer> page = Page.of(items);
+		// Empty list
+
+		Page<Integer> page = Page.of(Collections.emptyList());
 
 		assertThat(page.getItems(), is(empty()));
 		assertThat(page.getItemsPerPage(), is(0));
@@ -45,13 +45,10 @@ public class PageTest {
 		assertThat(page.getTotalCount(), is(0));
 		assertThat(page.hasNext(), is(false));
 		assertThat(page.hasPrevious(), is(false));
-	}
 
-	@Test
-	public void testPageFromListCreatesOnePageCollectionPage() {
-		List<Integer> items = Arrays.asList(1, 2, 3);
+		// List without pagination
 
-		Page<Integer> page = Page.of(items);
+		page = Page.of(Arrays.asList(1, 2, 3));
 
 		assertThat(page.getItems(), contains(1, 2, 3));
 		assertThat(page.getItemsPerPage(), is(3));
@@ -60,15 +57,10 @@ public class PageTest {
 		assertThat(page.getTotalCount(), is(3));
 		assertThat(page.hasNext(), is(false));
 		assertThat(page.hasPrevious(), is(false));
-	}
 
-	@Test
-	public void testPageWithPaginationCreateMultiPageCollectionPage() {
-		List<Integer> items = Arrays.asList(1, 2, 3);
+		// List with pagination
 
-		Pagination pagination = Pagination.of(3, 3);
-
-		Page<Integer> page = Page.of(items, pagination, 25);
+		page = Page.of(Arrays.asList(1, 2, 3), Pagination.of(3, 3), 25);
 
 		assertThat(page.getItems(), contains(1, 2, 3));
 		assertThat(page.getItemsPerPage(), is(3));
