@@ -36,6 +36,7 @@ import com.liferay.dynamic.data.mapping.validator.DDMFormValuesValidationExcepti
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.ProxyFactory;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.List;
@@ -771,7 +772,7 @@ public class DDMFormValuesValidatorTest extends PowerMockito {
 			DDMFormValuesValidatorImpl.class, "_ddmFormFieldTypeServicesTracker"
 		).set(
 			_ddmFormValuesValidatorImpl,
-			mock(DDMFormFieldTypeServicesTracker.class)
+			ProxyFactory.newDummyInstance(DDMFormFieldTypeServicesTracker.class)
 		);
 	}
 
