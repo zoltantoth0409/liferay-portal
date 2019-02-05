@@ -32,10 +32,10 @@ public class BuildMetricLabelsTest extends BuildTest {
 
 			@Override
 			public String getMessage(TestSample testSample) {
+				StringBuilder sb = new StringBuilder();
+
 				Build build = BuildFactory.newBuildFromArchive(
 					testSample.getSampleDirName());
-
-				StringBuilder sb = new StringBuilder();
 
 				sb.append(_getMetricLabelsString(build));
 
