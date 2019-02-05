@@ -113,11 +113,9 @@ public class AcceptLanguageContextProviderTest {
 
 		// One locale
 
-		AcceptLanguage acceptLanguage =
-			_contextProvider.createContext(
-				new MockMessage(
-					new AcceptLanguageMockHttpServletRequest(
-						user, Locale.JAPAN)));
+		AcceptLanguage acceptLanguage = _contextProvider.createContext(
+			new MockMessage(
+				new AcceptLanguageMockHttpServletRequest(user, Locale.JAPAN)));
 
 		Assert.assertEquals(Locale.JAPAN, acceptLanguage.getPreferredLocale());
 
