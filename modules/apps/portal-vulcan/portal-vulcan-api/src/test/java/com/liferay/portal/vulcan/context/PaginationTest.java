@@ -25,21 +25,13 @@ import org.junit.Test;
 public class PaginationTest {
 
 	@Test
-	public void testPaginationOfCreatesValidPagination() {
+	public void testOf() {
 		Pagination pagination = Pagination.of(30, 3);
 
 		assertThat(pagination.getEndPosition(), is(90));
 		assertThat(pagination.getItemsPerPage(), is(30));
 		assertThat(pagination.getPageNumber(), is(3));
 		assertThat(pagination.getStartPosition(), is(60));
-	}
-
-	@Test
-	public void testPositionsAreCorrectlyCalculated() {
-		Pagination pagination = Pagination.of(35, 3);
-
-		assertThat(pagination.getEndPosition(), is(105));
-		assertThat(pagination.getStartPosition(), is(70));
 	}
 
 }
