@@ -34,7 +34,7 @@ public class ContainsFunction
 
 	@Override
 	public Boolean apply(Object object, String key) {
-		if (Validator.isNull(object)) {
+		if (object == null) {
 			return false;
 		}
 
