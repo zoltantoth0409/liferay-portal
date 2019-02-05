@@ -16,6 +16,7 @@ package com.liferay.headless.web.experience.internal.resource;
 
 import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.resource.ContentDocumentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -34,14 +35,20 @@ public abstract class BaseContentDocumentResourceImpl
 	implements ContentDocumentResource {
 
 	@Override
-	public Response deleteContentDocument(Long id) throws Exception {
+	public Response deleteContentDocument(
+			Long contentDocumentId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public ContentDocument getContentDocument(Long id) throws Exception {
+	public ContentDocument getContentDocument(
+			Long contentDocumentId, Company company)
+		throws Exception {
+
 		return new ContentDocument();
 	}
 

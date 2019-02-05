@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.resource.VocabularyResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,33 +36,39 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Page<Vocabulary> getContentSpaceVocabulariesPage(
-			Long parentId, Pagination pagination)
+			Long contentSpaceId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Vocabulary getVocabularies(Long id) throws Exception {
-		return new Vocabulary();
-	}
-
-	@Override
-	public Vocabulary postContentSpaceVocabularies(Long parentId)
+	public Vocabulary getVocabularies(Long vocabulariesId, Company company)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary postContentSpaceVocabulariesBatchCreate(Long parentId)
+	public Vocabulary postContentSpaceVocabularies(
+			Long contentSpaceId, Company company)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary putVocabularies(Long id) throws Exception {
+	public Vocabulary postContentSpaceVocabulariesBatchCreate(
+			Long contentSpaceId, Company company)
+		throws Exception {
+
+		return new Vocabulary();
+	}
+
+	@Override
+	public Vocabulary putVocabularies(Long vocabulariesId, Company company)
+		throws Exception {
+
 		return new Vocabulary();
 	}
 

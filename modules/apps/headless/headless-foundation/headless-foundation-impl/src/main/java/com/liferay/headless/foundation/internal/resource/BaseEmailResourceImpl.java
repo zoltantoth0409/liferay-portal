@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.resource.EmailResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -34,13 +35,13 @@ import javax.annotation.Generated;
 public abstract class BaseEmailResourceImpl implements EmailResource {
 
 	@Override
-	public Email getEmail(Long id) throws Exception {
+	public Email getEmail(Long emailsId, Company company) throws Exception {
 		return new Email();
 	}
 
 	@Override
 	public Page<Email> getEmailsPage(
-			Object genericParentId, Pagination pagination)
+			Object genericParentId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

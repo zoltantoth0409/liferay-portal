@@ -16,6 +16,7 @@ package com.liferay.headless.document.library.internal.resource;
 
 import com.liferay.headless.document.library.dto.Document;
 import com.liferay.headless.document.library.resource.DocumentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -36,20 +37,24 @@ import javax.ws.rs.core.Response;
 public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
-	public Response deleteDocument(Long id) throws Exception {
+	public Response deleteDocument(Long documentId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public Document getDocument(Long id) throws Exception {
+	public Document getDocument(Long documentId, Company company)
+		throws Exception {
+
 		return new Document();
 	}
 
 	@Override
 	public Page<Document> getDocumentsRepositoryDocumentPage(
-			Long parentId, Pagination pagination)
+			Long documentsRepositoryId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -57,33 +62,38 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Page<Document> getFolderDocumentPage(
-			Long parentId, Pagination pagination)
+			Long folderId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Document postDocumentsRepositoryDocument(Long parentId)
+	public Document postDocumentsRepositoryDocument(
+			Long documentsRepositoryId, Company company)
 		throws Exception {
 
 		return new Document();
 	}
 
 	@Override
-	public Document postDocumentsRepositoryDocumentBatchCreate(Long parentId)
+	public Document postDocumentsRepositoryDocumentBatchCreate(
+			Long documentsRepositoryId, Company company)
 		throws Exception {
 
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocument(Long parentId) throws Exception {
+	public Document postFolderDocument(Long folderId, Company company)
+		throws Exception {
+
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocumentBatchCreate(Long parentId)
+	public Document postFolderDocumentBatchCreate(
+			Long folderId, Company company)
 		throws Exception {
 
 		return new Document();

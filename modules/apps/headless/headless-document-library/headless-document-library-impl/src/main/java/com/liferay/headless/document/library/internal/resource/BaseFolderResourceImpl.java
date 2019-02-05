@@ -16,6 +16,7 @@ package com.liferay.headless.document.library.internal.resource;
 
 import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.FolderResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -36,64 +37,74 @@ import javax.ws.rs.core.Response;
 public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
-	public Response deleteFolder(Long id) throws Exception {
+	public Response deleteFolder(Long folderId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public Folder getDocumentsRepository(Long id) throws Exception {
+	public Folder getDocumentsRepository(Long id, Company company)
+		throws Exception {
+
 		return new Folder();
 	}
 
 	@Override
 	public Page<Folder> getDocumentsRepositoryFolderPage(
-			Long parentId, Pagination pagination)
+			Long documentsRepositoryId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Folder getFolder(Long id) throws Exception {
+	public Folder getFolder(Long folderId, Company company) throws Exception {
 		return new Folder();
 	}
 
 	@Override
 	public Page<Folder> getFolderFolderPage(
-			Long parentId, Pagination pagination)
+			Long folderId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Folder postDocumentsRepositoryFolder(Long parentId)
+	public Folder postDocumentsRepositoryFolder(
+			Long documentsRepositoryId, Company company)
 		throws Exception {
 
 		return new Folder();
 	}
 
 	@Override
-	public Folder postDocumentsRepositoryFolderBatchCreate(Long parentId)
+	public Folder postDocumentsRepositoryFolderBatchCreate(
+			Long documentsRepositoryId, Company company)
 		throws Exception {
 
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolder(Long parentId) throws Exception {
+	public Folder postFolderFolder(Long folderId, Company company)
+		throws Exception {
+
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolderBatchCreate(Long parentId) throws Exception {
+	public Folder postFolderFolderBatchCreate(Long folderId, Company company)
+		throws Exception {
+
 		return new Folder();
 	}
 
 	@Override
-	public Folder putFolder(Long id) throws Exception {
+	public Folder putFolder(Long folderId, Company company) throws Exception {
 		return new Folder();
 	}
 

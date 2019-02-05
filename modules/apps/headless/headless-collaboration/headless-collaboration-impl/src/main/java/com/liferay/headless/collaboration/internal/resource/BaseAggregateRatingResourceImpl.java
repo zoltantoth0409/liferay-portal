@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.internal.resource;
 
 import com.liferay.headless.collaboration.dto.AggregateRating;
 import com.liferay.headless.collaboration.resource.AggregateRatingResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -32,7 +33,10 @@ public abstract class BaseAggregateRatingResourceImpl
 	implements AggregateRatingResource {
 
 	@Override
-	public AggregateRating getAggregateRating(Long id) throws Exception {
+	public AggregateRating getAggregateRating(
+			Long aggregateRatingId, Company company)
+		throws Exception {
+
 		return new AggregateRating();
 	}
 

@@ -14,16 +14,34 @@
 
 package com.liferay.headless.foundation.resource;
 
+import com.liferay.headless.foundation.dto.Category;
+import com.liferay.headless.foundation.dto.ContentSpace;
+import com.liferay.headless.foundation.dto.Email;
+import com.liferay.headless.foundation.dto.Keyword;
+import com.liferay.headless.foundation.dto.Organization;
+import com.liferay.headless.foundation.dto.Phone;
+import com.liferay.headless.foundation.dto.PostalAddress;
+import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.dto.UserAccount;
+import com.liferay.headless.foundation.dto.Vocabulary;
+import com.liferay.headless.foundation.dto.WebSite;
+import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
+
+import java.util.Date;
 
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -45,82 +63,67 @@ import javax.ws.rs.core.Response;
 @Path("/1.0.0")
 public interface UserAccountResource {
 
-	@DELETE
-	@Path("/user-account/{id}")
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Response deleteUserAccount(@PathParam("id") Long id)
-		throws Exception;
-
-	@GET
-	@Path("/my-user-account/{id}")
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public UserAccount getMyUserAccount(@PathParam("id") Long id)
-		throws Exception;
-
 	@GET
 	@Path("/my-user-account")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getMyUserAccountPage(
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<UserAccount> getMyUserAccountPage( @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/organization/{parent-id}/user-account")
+	@Path("/my-user-account/{my-user-account-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getOrganizationUserAccountPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public UserAccount getMyUserAccount( @PathParam("my-user-account-id") Long myUserAccountId , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/user-account/{id}")
+	@Path("/organization/{organization-id}/user-account")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount getUserAccount(@PathParam("id") Long id)
-		throws Exception;
+	public Page<UserAccount> getOrganizationUserAccountPage( @PathParam("organization-id") Long organizationId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/user-account")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getUserAccountPage(
-			@QueryParam("fullnamequery") String fullnamequery,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/web-site/{parent-id}/user-account")
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Page<UserAccount> getWebSiteUserAccountPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<UserAccount> getUserAccountPage( @QueryParam("fullnamequery") String fullnamequery , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/user-account")
 	@POST
+	@Path("/user-account")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount postUserAccount() throws Exception;
+	public UserAccount postUserAccount( @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
+	@POST
 	@Path("/user-account/batch-create")
-	@POST
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public UserAccount postUserAccountBatchCreate() throws Exception;
+	public UserAccount postUserAccountBatchCreate( @Context Company company ) throws Exception;
+
+	@DELETE
+	@Path("/user-account/{user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Response deleteUserAccount( @PathParam("user-account-id") Long userAccountId , @Context Company company ) throws Exception;
+
+	@GET
+	@Path("/user-account/{user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public UserAccount getUserAccount( @PathParam("user-account-id") Long userAccountId , @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/user-account/{id}")
-	@Produces("application/json")
 	@PUT
+	@Path("/user-account/{user-account-id}")
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount putUserAccount(@PathParam("id") Long id)
-		throws Exception;
+	public UserAccount putUserAccount( @PathParam("user-account-id") Long userAccountId , @Context Company company ) throws Exception;
+
+	@GET
+	@Path("/web-site/{web-site-id}/user-account")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Page<UserAccount> getWebSiteUserAccountPage( @PathParam("web-site-id") Long webSiteId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 }

@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.resource.RoleResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,25 +36,27 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 	@Override
 	public Page<Role> getMyUserAccountRolesPage(
-			Long parentId, Pagination pagination)
+			Long myUserAccountId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Role getRole(Long id) throws Exception {
+	public Role getRole(Long rolesId, Company company) throws Exception {
 		return new Role();
 	}
 
 	@Override
-	public Page<Role> getRolesPage(Pagination pagination) throws Exception {
+	public Page<Role> getRolesPage(Company company, Pagination pagination)
+		throws Exception {
+
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
 	public Page<Role> getUserAccountRolesPage(
-			Long parentId, Pagination pagination)
+			Long userAccountId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

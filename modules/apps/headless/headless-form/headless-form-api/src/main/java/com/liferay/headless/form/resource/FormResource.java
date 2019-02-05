@@ -15,20 +15,33 @@
 package com.liferay.headless.form.resource;
 
 import com.liferay.headless.form.dto.Form;
+import com.liferay.headless.form.dto.FormDocument;
+import com.liferay.headless.form.dto.FormRecord;
+import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -43,41 +56,34 @@ import javax.ws.rs.core.Context;
 public interface FormResource {
 
 	@GET
-	@Path("/content-space/{parent-id}/form")
+	@Path("/content-space/{content-space-id}/form")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public Page<Form> getContentSpaceFormPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<Form> getContentSpaceFormPage( @PathParam("content-space-id") Long contentSpaceId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/form/{id}")
+	@Path("/form/{form-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public Form getForm(@PathParam("id") Long id) throws Exception;
+	public Form getForm( @PathParam("form-id") Long formId , @Context Company company ) throws Exception;
+
+	@Consumes("application/json")
+	@POST
+	@Path("/form/{form-id}/evaluate-context")
+	@Produces("application/json")
+	@RequiresScope("headless-form-application.write")
+	public Form postFormEvaluateContext( @PathParam("form-id") Long formId , @Context AcceptLanguage acceptLanguage , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/form/{id}/fetch-latest-draft")
+	@Path("/form/{form-id}/fetch-latest-draft")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public Form getFormFetchLatestDraft(@PathParam("id") Long id)
-		throws Exception;
+	public Form getFormFetchLatestDraft( @PathParam("form-id") Long formId , @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/form/{id}/evaluate-context")
 	@POST
+	@Path("/form/{form-id}/upload-file")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.write")
-	public Form postFormEvaluateContext(
-			@PathParam("id") Long id, @Context AcceptLanguage acceptLanguage)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/form/{id}/upload-file")
-	@POST
-	@Produces("application/json")
-	@RequiresScope("headless-form-application.write")
-	public Form postFormUploadFile(@PathParam("id") Long id) throws Exception;
-
+	public Form postFormUploadFile( @PathParam("form-id") Long formId , @Context Company company ) throws Exception;
 }

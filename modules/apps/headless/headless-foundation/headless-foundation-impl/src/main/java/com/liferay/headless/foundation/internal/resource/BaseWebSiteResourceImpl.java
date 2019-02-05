@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.resource.WebSiteResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,7 +36,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getMyUserAccountWebSitePage(
-			Long parentId, Pagination pagination)
+			Long myUserAccountId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -43,20 +44,22 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getUserAccountWebSitePage(
-			Long parentId, Pagination pagination)
+			Long userAccountId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public WebSite getWebSite(Long id) throws Exception {
+	public WebSite getWebSite(Long webSiteId, Company company)
+		throws Exception {
+
 		return new WebSite();
 	}
 
 	@Override
 	public Page<WebSite> getWebSiteWebSitePage(
-			Long parentId, Pagination pagination)
+			Long webSiteId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

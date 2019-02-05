@@ -14,21 +14,33 @@
 
 package com.liferay.headless.collaboration.resource;
 
+import com.liferay.headless.collaboration.dto.AggregateRating;
 import com.liferay.headless.collaboration.dto.BlogPosting;
+import com.liferay.headless.collaboration.dto.Comment;
+import com.liferay.headless.collaboration.dto.ImageObject;
+import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
+
+import java.util.Date;
 
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
@@ -45,52 +57,42 @@ import javax.ws.rs.core.Response;
 public interface BlogPostingResource {
 
 	@DELETE
-	@Path("/blog-posting/{id}")
+	@Path("/blog-posting/{blog-posting-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Response deleteBlogPosting(@PathParam("id") Long id)
-		throws Exception;
+	public Response deleteBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/blog-posting/{id}")
+	@Path("/blog-posting/{blog-posting-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting getBlogPosting(@PathParam("id") Long id)
-		throws Exception;
+	public BlogPosting getBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
+
+	@Consumes("application/json")
+	@PUT
+	@Path("/blog-posting/{blog-posting-id}")
+	@Produces("application/json")
+	@RequiresScope("headless-collaboration-application.read")
+	public BlogPosting putBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/content-space/{parent-id}/blog-posting")
+	@Path("/content-space/{content-space-id}/blog-posting")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<BlogPosting> getContentSpaceBlogPostingPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<BlogPosting> getContentSpaceBlogPostingPage( @PathParam("content-space-id") Long contentSpaceId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/content-space/{parent-id}/blog-posting")
 	@POST
+	@Path("/content-space/{content-space-id}/blog-posting")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting postContentSpaceBlogPosting(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
+	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId , @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/content-space/{parent-id}/blog-posting/batch-create")
 	@POST
+	@Path("/content-space/{content-space-id}/blog-posting/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
-	public BlogPosting postContentSpaceBlogPostingBatchCreate(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/blog-posting/{id}")
-	@Produces("application/json")
-	@PUT
-	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting putBlogPosting(@PathParam("id") Long id)
-		throws Exception;
+	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , @Context Company company ) throws Exception;
 
 }

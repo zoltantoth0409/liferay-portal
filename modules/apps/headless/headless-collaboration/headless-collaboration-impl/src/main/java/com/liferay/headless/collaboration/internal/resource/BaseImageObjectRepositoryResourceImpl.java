@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.internal.resource;
 
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.headless.collaboration.resource.ImageObjectRepositoryResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -32,7 +33,8 @@ public abstract class BaseImageObjectRepositoryResourceImpl
 	implements ImageObjectRepositoryResource {
 
 	@Override
-	public ImageObjectRepository getImageObjectRepository(Long id)
+	public ImageObjectRepository getImageObjectRepository(
+			Long imageObjectRepositoryId, Company company)
 		throws Exception {
 
 		return new ImageObjectRepository();

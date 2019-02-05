@@ -14,18 +14,34 @@
 
 package com.liferay.headless.form.resource;
 
+import com.liferay.headless.form.dto.Form;
+import com.liferay.headless.form.dto.FormDocument;
+import com.liferay.headless.form.dto.FormRecord;
 import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -40,19 +56,15 @@ import javax.ws.rs.core.Context;
 public interface FormStructureResource {
 
 	@GET
-	@Path("/content-space/{parent-id}/form-structures")
+	@Path("/content-space/{content-space-id}/form-structures")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public Page<FormStructure> getContentSpaceFormStructuresPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<FormStructure> getContentSpaceFormStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/form-structures/{id}")
+	@Path("/form-structures/{form-structures-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public FormStructure getFormStructure(@PathParam("id") Long id)
-		throws Exception;
+	public FormStructure getFormStructure( @PathParam("form-structures-id") Long formStructuresId , @Context Company company ) throws Exception;
 
 }

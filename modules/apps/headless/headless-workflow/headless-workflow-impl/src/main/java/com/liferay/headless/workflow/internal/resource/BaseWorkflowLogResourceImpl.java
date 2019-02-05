@@ -16,6 +16,7 @@ package com.liferay.headless.workflow.internal.resource;
 
 import com.liferay.headless.workflow.dto.WorkflowLog;
 import com.liferay.headless.workflow.resource.WorkflowLogResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,13 +36,15 @@ public abstract class BaseWorkflowLogResourceImpl
 	implements WorkflowLogResource {
 
 	@Override
-	public WorkflowLog getWorkflowLog(Long id) throws Exception {
+	public WorkflowLog getWorkflowLog(Long workflowLogsId, Company company)
+		throws Exception {
+
 		return new WorkflowLog();
 	}
 
 	@Override
 	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage(
-			Long parentId, Pagination pagination)
+			Long workflowTasksId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

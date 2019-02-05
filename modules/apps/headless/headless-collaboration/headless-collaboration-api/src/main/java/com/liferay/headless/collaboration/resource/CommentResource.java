@@ -14,18 +14,35 @@
 
 package com.liferay.headless.collaboration.resource;
 
+import com.liferay.headless.collaboration.dto.AggregateRating;
+import com.liferay.headless.collaboration.dto.BlogPosting;
 import com.liferay.headless.collaboration.dto.Comment;
+import com.liferay.headless.collaboration.dto.ImageObject;
+import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -40,27 +57,21 @@ import javax.ws.rs.core.Context;
 public interface CommentResource {
 
 	@GET
-	@Path("/blog-posting/{parent-id}/comment")
+	@Path("/blog-posting/{blog-posting-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getBlogPostingCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<Comment> getBlogPostingCommentPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/comment/{id}")
+	@Path("/comment/{comment-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Comment getComment(@PathParam("id") Long id) throws Exception;
+	public Comment getComment( @PathParam("comment-id") Long commentId , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/comment/{parent-id}/comment")
+	@Path("/comment/{comment-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getCommentCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 }

@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.resource.ContentSpaceResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -32,7 +33,9 @@ public abstract class BaseContentSpaceResourceImpl
 	implements ContentSpaceResource {
 
 	@Override
-	public ContentSpace getContentSpace(Long id) throws Exception {
+	public ContentSpace getContentSpace(Long contentSpaceId, Company company)
+		throws Exception {
+
 		return new ContentSpace();
 	}
 

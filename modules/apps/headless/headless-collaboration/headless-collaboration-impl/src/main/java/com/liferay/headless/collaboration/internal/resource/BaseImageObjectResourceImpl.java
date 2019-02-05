@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.internal.resource;
 
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.resource.ImageObjectResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -37,27 +38,33 @@ public abstract class BaseImageObjectResourceImpl
 	implements ImageObjectResource {
 
 	@Override
-	public Response deleteImageObject(Long id) throws Exception {
+	public Response deleteImageObject(Long imageObjectId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public ImageObject getImageObject(Long id) throws Exception {
+	public ImageObject getImageObject(Long imageObjectId, Company company)
+		throws Exception {
+
 		return new ImageObject();
 	}
 
 	@Override
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
-			Long parentId, Pagination pagination)
+			Long imageObjectRepositoryId, Company company,
+			Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public ImageObject postImageObjectRepositoryImageObject(Long parentId)
+	public ImageObject postImageObjectRepositoryImageObject(
+			Long imageObjectRepositoryId, Company company)
 		throws Exception {
 
 		return new ImageObject();
@@ -65,7 +72,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
-			Long parentId)
+			Long imageObjectRepositoryId, Company company)
 		throws Exception {
 
 		return new ImageObject();

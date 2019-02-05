@@ -16,6 +16,7 @@ package com.liferay.headless.collaboration.internal.resource;
 
 import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.resource.CommentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,20 +36,22 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Page<Comment> getBlogPostingCommentPage(
-			Long parentId, Pagination pagination)
+			Long blogPostingId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Comment getComment(Long id) throws Exception {
+	public Comment getComment(Long commentId, Company company)
+		throws Exception {
+
 		return new Comment();
 	}
 
 	@Override
 	public Page<Comment> getCommentCommentPage(
-			Long parentId, Pagination pagination)
+			Long commentId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.Category;
 import com.liferay.headless.foundation.resource.CategoryResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -34,13 +35,15 @@ import javax.annotation.Generated;
 public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
-	public Category getCategories(Long id) throws Exception {
+	public Category getCategories(Long categoriesId, Company company)
+		throws Exception {
+
 		return new Category();
 	}
 
 	@Override
 	public Page<Category> getCategoriesCategoriesPage(
-			Long parentId, Pagination pagination)
+			Long categoriesId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -48,38 +51,47 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
 	public Page<Category> getVocabulariesCategoriesPage(
-			Long parentId, Pagination pagination)
+			Long vocabulariesId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Category postCategoriesCategories(Long parentId) throws Exception {
-		return new Category();
-	}
-
-	@Override
-	public Category postCategoriesCategoriesBatchCreate(Long parentId)
+	public Category postCategoriesCategories(Long categoriesId, Company company)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategories(Long parentId) throws Exception {
-		return new Category();
-	}
-
-	@Override
-	public Category postVocabulariesCategoriesBatchCreate(Long parentId)
+	public Category postCategoriesCategoriesBatchCreate(
+			Long categoriesId, Company company)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category putCategories(Long id) throws Exception {
+	public Category postVocabulariesCategories(
+			Long vocabulariesId, Company company)
+		throws Exception {
+
+		return new Category();
+	}
+
+	@Override
+	public Category postVocabulariesCategoriesBatchCreate(
+			Long vocabulariesId, Company company)
+		throws Exception {
+
+		return new Category();
+	}
+
+	@Override
+	public Category putCategories(Long categoriesId, Company company)
+		throws Exception {
+
 		return new Category();
 	}
 

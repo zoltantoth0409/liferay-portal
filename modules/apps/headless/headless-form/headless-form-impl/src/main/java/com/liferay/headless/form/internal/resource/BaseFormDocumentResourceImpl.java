@@ -16,6 +16,7 @@ package com.liferay.headless.form.internal.resource;
 
 import com.liferay.headless.form.dto.FormDocument;
 import com.liferay.headless.form.resource.FormDocumentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -34,14 +35,18 @@ public abstract class BaseFormDocumentResourceImpl
 	implements FormDocumentResource {
 
 	@Override
-	public Response deleteFormDocument(Long id) throws Exception {
+	public Response deleteFormDocument(Long formDocumentId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public FormDocument getFormDocument(Long id) throws Exception {
+	public FormDocument getFormDocument(Long formDocumentId, Company company)
+		throws Exception {
+
 		return new FormDocument();
 	}
 

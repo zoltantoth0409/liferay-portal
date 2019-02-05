@@ -16,6 +16,7 @@ package com.liferay.headless.web.experience.internal.resource;
 
 import com.liferay.headless.web.experience.dto.Comment;
 import com.liferay.headless.web.experience.resource.CommentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -34,21 +35,15 @@ import javax.annotation.Generated;
 public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
-	public Comment getComment(Long id) throws Exception {
+	public Comment getComment(Long commentId, Company company)
+		throws Exception {
+
 		return new Comment();
 	}
 
 	@Override
 	public Page<Comment> getCommentCommentPage(
-			Long parentId, Pagination pagination)
-		throws Exception {
-
-		return new Page<>(Collections.emptyList(), 0);
-	}
-
-	@Override
-	public Page<Comment> getContentDocumentCommentPage(
-			Long parentId, Pagination pagination)
+			Long commentId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -56,7 +51,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Page<Comment> getStructuredContentsCommentPage(
-			Long parentId, Pagination pagination)
+			Long structuredContentsId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.resource.KeywordResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,31 +36,38 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
 	@Override
 	public Page<Keyword> getContentSpaceKeywordsPage(
-			Long parentId, Pagination pagination)
+			Long contentSpaceId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public Keyword getKeyword(Long id) throws Exception {
-		return new Keyword();
-	}
-
-	@Override
-	public Keyword postContentSpaceKeyword(Long parentId) throws Exception {
-		return new Keyword();
-	}
-
-	@Override
-	public Keyword postContentSpaceKeywordsBatchCreate(Long parentId)
+	public Keyword getKeyword(Long keywordsId, Company company)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword putKeyword(Long id) throws Exception {
+	public Keyword postContentSpaceKeyword(Long contentSpaceId, Company company)
+		throws Exception {
+
+		return new Keyword();
+	}
+
+	@Override
+	public Keyword postContentSpaceKeywordsBatchCreate(
+			Long contentSpaceId, Company company)
+		throws Exception {
+
+		return new Keyword();
+	}
+
+	@Override
+	public Keyword putKeyword(Long keywordsId, Company company)
+		throws Exception {
+
 		return new Keyword();
 	}
 

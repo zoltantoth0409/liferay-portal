@@ -16,6 +16,7 @@ package com.liferay.headless.web.experience.internal.resource;
 
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.headless.web.experience.resource.StructuredContentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -37,8 +38,9 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Long parentId, String filter, String sort,
-			AcceptLanguage acceptLanguage, Pagination pagination)
+			Long contentSpaceId, String filter, String sort,
+			AcceptLanguage acceptLanguage, Company company,
+			Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -46,7 +48,8 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent getStructuredContent(
-			Long id, AcceptLanguage acceptLanguage)
+			Long structuredContentsId, AcceptLanguage acceptLanguage,
+			Company company)
 		throws Exception {
 
 		return new StructuredContent();
@@ -54,7 +57,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContent(
-			Long parentId, AcceptLanguage acceptLanguage)
+			Long contentSpaceId, AcceptLanguage acceptLanguage, Company company)
 		throws Exception {
 
 		return new StructuredContent();
@@ -62,7 +65,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
-			Long parentId, AcceptLanguage acceptLanguage)
+			Long contentSpaceId, AcceptLanguage acceptLanguage, Company company)
 		throws Exception {
 
 		return new StructuredContent();
@@ -70,7 +73,8 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent putStructuredContent(
-			Long id, AcceptLanguage acceptLanguage)
+			Long structuredContentsId, AcceptLanguage acceptLanguage,
+			Company company)
 		throws Exception {
 
 		return new StructuredContent();

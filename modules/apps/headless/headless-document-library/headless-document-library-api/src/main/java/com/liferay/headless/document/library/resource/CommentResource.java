@@ -15,17 +15,32 @@
 package com.liferay.headless.document.library.resource;
 
 import com.liferay.headless.document.library.dto.Comment;
+import com.liferay.headless.document.library.dto.Document;
+import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -40,12 +55,9 @@ import javax.ws.rs.core.Context;
 public interface CommentResource {
 
 	@GET
-	@Path("/document/{parent-id}/comment")
+	@Path("/document/{document-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Page<Comment> getDocumentCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<Comment> getDocumentCommentPage( @PathParam("document-id") Long documentId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 }

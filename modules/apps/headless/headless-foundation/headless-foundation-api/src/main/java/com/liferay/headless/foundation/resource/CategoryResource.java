@@ -15,20 +15,41 @@
 package com.liferay.headless.foundation.resource;
 
 import com.liferay.headless.foundation.dto.Category;
+import com.liferay.headless.foundation.dto.ContentSpace;
+import com.liferay.headless.foundation.dto.Email;
+import com.liferay.headless.foundation.dto.Keyword;
+import com.liferay.headless.foundation.dto.Organization;
+import com.liferay.headless.foundation.dto.Phone;
+import com.liferay.headless.foundation.dto.PostalAddress;
+import com.liferay.headless.foundation.dto.Role;
+import com.liferay.headless.foundation.dto.UserAccount;
+import com.liferay.headless.foundation.dto.Vocabulary;
+import com.liferay.headless.foundation.dto.WebSite;
+import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
+
+import java.util.Date;
 
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -43,70 +64,56 @@ import javax.ws.rs.core.Context;
 public interface CategoryResource {
 
 	@GET
-	@Path("/categories/{id}")
+	@Path("/categories/{categories-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category getCategories(@PathParam("id") Long id) throws Exception;
-
-	@GET
-	@Path("/categories/{parent-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getCategoriesCategoriesPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/vocabularies/{parent-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getVocabulariesCategoriesPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Category getCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/categories/{parent-id}/categories")
-	@POST
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Category postCategoriesCategories(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/categories/{parent-id}/categories/batch-create")
-	@POST
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.write")
-	public Category postCategoriesCategoriesBatchCreate(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/vocabularies/{parent-id}/categories")
-	@POST
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
-	public Category postVocabulariesCategories(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/vocabularies/{parent-id}/categories/batch-create")
-	@POST
-	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.write")
-	public Category postVocabulariesCategoriesBatchCreate(
-			@PathParam("parent-id") Long parentId)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/categories/{id}")
-	@Produces("application/json")
 	@PUT
+	@Path("/categories/{categories-id}")
+	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category putCategories(@PathParam("id") Long id) throws Exception;
+	public Category putCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+
+	@GET
+	@Path("/categories/{categories-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Page<Category> getCategoriesCategoriesPage( @PathParam("categories-id") Long categoriesId , @Context Company company , @Context Pagination pagination ) throws Exception;
+
+	@Consumes("application/json")
+	@POST
+	@Path("/categories/{categories-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Category postCategoriesCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+
+	@Consumes("application/json")
+	@POST
+	@Path("/categories/{categories-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.write")
+	public Category postCategoriesCategoriesBatchCreate( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+
+	@GET
+	@Path("/vocabularies/{vocabularies-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Page<Category> getVocabulariesCategoriesPage( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company , @Context Pagination pagination ) throws Exception;
+
+	@Consumes("application/json")
+	@POST
+	@Path("/vocabularies/{vocabularies-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.read")
+	public Category postVocabulariesCategories( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company ) throws Exception;
+
+	@Consumes("application/json")
+	@POST
+	@Path("/vocabularies/{vocabularies-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("headless-foundation-application.write")
+	public Category postVocabulariesCategoriesBatchCreate( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company ) throws Exception;
 
 }

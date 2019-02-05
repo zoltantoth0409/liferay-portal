@@ -14,22 +14,34 @@
 
 package com.liferay.headless.form.resource;
 
+import com.liferay.headless.form.dto.Form;
+import com.liferay.headless.form.dto.FormDocument;
 import com.liferay.headless.form.dto.FormRecord;
+import com.liferay.headless.form.dto.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -44,47 +56,36 @@ import javax.ws.rs.core.Context;
 public interface FormRecordResource {
 
 	@GET
-	@Path("/form/{parent-id}/form-record")
+	@Path("/form-record/{form-record-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public Page<FormRecord> getFormFormRecordPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public FormRecord getFormRecord( @PathParam("form-record-id") Long formRecordId , @Context Company company ) throws Exception;
+
+	@Consumes("application/json")
+	@PUT
+	@Path("/form-record/{form-record-id}")
+	@Produces("application/json")
+	@RequiresScope("headless-form-application.read")
+	public FormRecord putFormRecord( @PathParam("form-record-id") Long formRecordId , @Context AcceptLanguage acceptLanguage , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/form-record/{id}")
+	@Path("/form/{form-id}/form-record")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public FormRecord getFormRecord(@PathParam("id") Long id) throws Exception;
+	public Page<FormRecord> getFormFormRecordPage( @PathParam("form-id") Long formId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/form/{parent-id}/form-record")
 	@POST
+	@Path("/form/{form-id}/form-record")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public FormRecord postFormFormRecord(
-			@PathParam("parent-id") Long parentId,
-			@Context AcceptLanguage acceptLanguage)
-		throws Exception;
+	public FormRecord postFormFormRecord( @PathParam("form-id") Long formId , @Context AcceptLanguage acceptLanguage , @Context Company company ) throws Exception;
 
 	@Consumes("application/json")
-	@Path("/form/{parent-id}/form-record/batch-create")
 	@POST
+	@Path("/form/{form-id}/form-record/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.write")
-	public FormRecord postFormFormRecordBatchCreate(
-			@PathParam("parent-id") Long parentId,
-			@Context AcceptLanguage acceptLanguage)
-		throws Exception;
-
-	@Consumes("application/json")
-	@Path("/form-record/{id}")
-	@Produces("application/json")
-	@PUT
-	@RequiresScope("headless-form-application.read")
-	public FormRecord putFormRecord(
-			@PathParam("id") Long id, @Context AcceptLanguage acceptLanguage)
-		throws Exception;
+	public FormRecord postFormFormRecordBatchCreate( @PathParam("form-id") Long formId , @Context AcceptLanguage acceptLanguage , @Context Company company ) throws Exception;
 
 }

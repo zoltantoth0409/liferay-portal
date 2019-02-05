@@ -16,6 +16,7 @@ package com.liferay.headless.document.library.internal.resource;
 
 import com.liferay.headless.document.library.dto.Comment;
 import com.liferay.headless.document.library.resource.CommentResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -35,7 +36,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Page<Comment> getDocumentCommentPage(
-			Long parentId, Pagination pagination)
+			Long documentId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);

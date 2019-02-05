@@ -14,18 +14,35 @@
 
 package com.liferay.headless.web.experience.resource;
 
+import com.liferay.headless.web.experience.dto.AggregateRating;
 import com.liferay.headless.web.experience.dto.Comment;
+import com.liferay.headless.web.experience.dto.ContentDocument;
+import com.liferay.headless.web.experience.dto.ContentStructure;
+import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.OPTIONS;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -40,36 +57,20 @@ import javax.ws.rs.core.Context;
 public interface CommentResource {
 
 	@GET
-	@Path("/comment/{id}")
+	@Path("/comment/{comment-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public Comment getComment(@PathParam("id") Long id) throws Exception;
+	public Comment getComment( @PathParam("comment-id") Long commentId , @Context Company company ) throws Exception;
 
 	@GET
-	@Path("/comment/{parent-id}/comment")
+	@Path("/comment/{comment-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public Page<Comment> getCommentCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
+	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Company company , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/content-document/{parent-id}/comment")
+	@Path("/structured-contents/{structured-contents-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public Page<Comment> getContentDocumentCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
-	@GET
-	@Path("/structured-contents/{parent-id}/comment")
-	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
-	public Page<Comment> getStructuredContentsCommentPage(
-			@PathParam("parent-id") Long parentId,
-			@Context Pagination pagination)
-		throws Exception;
-
+	public Page<Comment> getStructuredContentsCommentPage( @PathParam("structured-contents-id") Long structuredContentsId , @Context Company company , @Context Pagination pagination ) throws Exception;
 }

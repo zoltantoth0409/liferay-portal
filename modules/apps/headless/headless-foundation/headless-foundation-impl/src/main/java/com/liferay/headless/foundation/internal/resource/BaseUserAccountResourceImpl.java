@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource;
 
 import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.resource.UserAccountResource;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -37,19 +38,24 @@ public abstract class BaseUserAccountResourceImpl
 	implements UserAccountResource {
 
 	@Override
-	public Response deleteUserAccount(Long id) throws Exception {
+	public Response deleteUserAccount(Long userAccountId, Company company)
+		throws Exception {
+
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public UserAccount getMyUserAccount(Long id) throws Exception {
+	public UserAccount getMyUserAccount(Long myUserAccountId, Company company)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
 	@Override
-	public Page<UserAccount> getMyUserAccountPage(Pagination pagination)
+	public Page<UserAccount> getMyUserAccountPage(
+			Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -57,20 +63,22 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public Page<UserAccount> getOrganizationUserAccountPage(
-			Long parentId, Pagination pagination)
+			Long organizationId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public UserAccount getUserAccount(Long id) throws Exception {
+	public UserAccount getUserAccount(Long userAccountId, Company company)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
 	@Override
 	public Page<UserAccount> getUserAccountPage(
-			String fullnamequery, Pagination pagination)
+			String fullnamequery, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
@@ -78,24 +86,28 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public Page<UserAccount> getWebSiteUserAccountPage(
-			Long parentId, Pagination pagination)
+			Long webSiteId, Company company, Pagination pagination)
 		throws Exception {
 
 		return new Page<>(Collections.emptyList(), 0);
 	}
 
 	@Override
-	public UserAccount postUserAccount() throws Exception {
+	public UserAccount postUserAccount(Company company) throws Exception {
 		return new UserAccount();
 	}
 
 	@Override
-	public UserAccount postUserAccountBatchCreate() throws Exception {
+	public UserAccount postUserAccountBatchCreate(Company company)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
 	@Override
-	public UserAccount putUserAccount(Long id) throws Exception {
+	public UserAccount putUserAccount(Long userAccountId, Company company)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
