@@ -17,13 +17,14 @@ package com.liferay.headless.web.experience.internal.resource;
 import com.liferay.headless.web.experience.resource.ContentDocumentResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/content-document.properties",
-	service = ContentDocumentResource.class
+	scope = ServiceScope.PROTOTYPE, service = ContentDocumentResource.class
 )
 public class ContentDocumentResourceImpl
 	extends BaseContentDocumentResourceImpl {

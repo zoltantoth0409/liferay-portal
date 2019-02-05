@@ -17,13 +17,14 @@ package com.liferay.headless.workflow.internal.resource;
 import com.liferay.headless.workflow.resource.WorkflowTaskResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/workflow-task.properties",
-	service = WorkflowTaskResource.class
+	scope = ServiceScope.PROTOTYPE, service = WorkflowTaskResource.class
 )
 public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 }

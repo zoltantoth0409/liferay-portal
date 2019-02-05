@@ -25,13 +25,14 @@ import com.liferay.portal.vulcan.dto.Page;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/blog-posting.properties",
-	service = BlogPostingResource.class
+	scope = ServiceScope.PROTOTYPE, service = BlogPostingResource.class
 )
 public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 

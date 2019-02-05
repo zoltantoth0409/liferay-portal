@@ -17,13 +17,14 @@ package com.liferay.headless.workflow.internal.resource;
 import com.liferay.headless.workflow.resource.WorkflowLogResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/workflow-log.properties",
-	service = WorkflowLogResource.class
+	scope = ServiceScope.PROTOTYPE, service = WorkflowLogResource.class
 )
 public class WorkflowLogResourceImpl extends BaseWorkflowLogResourceImpl {
 }

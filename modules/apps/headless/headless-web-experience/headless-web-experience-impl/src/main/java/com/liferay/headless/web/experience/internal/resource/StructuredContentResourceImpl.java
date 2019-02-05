@@ -43,13 +43,14 @@ import com.liferay.portal.vulcan.dto.Page;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/structured-content.properties",
-	service = StructuredContentResource.class
+	scope = ServiceScope.PROTOTYPE, service = StructuredContentResource.class
 )
 public class StructuredContentResourceImpl
 	extends BaseStructuredContentResourceImpl {

@@ -17,12 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.WebUrlResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/web-url.properties", service = WebUrlResource.class
+	properties = "OSGI-INF/web-url.properties", scope = ServiceScope.PROTOTYPE,
+	service = WebUrlResource.class
 )
 public class WebUrlResourceImpl extends BaseWebUrlResourceImpl {
 }

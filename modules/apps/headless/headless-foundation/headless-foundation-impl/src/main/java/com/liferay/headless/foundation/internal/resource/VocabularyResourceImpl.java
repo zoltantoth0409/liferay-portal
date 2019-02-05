@@ -17,13 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.VocabularyResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/vocabulary.properties",
-	service = VocabularyResource.class
+	scope = ServiceScope.PROTOTYPE, service = VocabularyResource.class
 )
 public class VocabularyResourceImpl extends BaseVocabularyResourceImpl {
 }

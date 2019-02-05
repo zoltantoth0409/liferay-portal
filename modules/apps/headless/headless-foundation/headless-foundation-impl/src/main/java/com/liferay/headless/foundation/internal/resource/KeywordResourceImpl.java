@@ -17,12 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.KeywordResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/keyword.properties", service = KeywordResource.class
+	properties = "OSGI-INF/keyword.properties", scope = ServiceScope.PROTOTYPE,
+	service = KeywordResource.class
 )
 public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 }

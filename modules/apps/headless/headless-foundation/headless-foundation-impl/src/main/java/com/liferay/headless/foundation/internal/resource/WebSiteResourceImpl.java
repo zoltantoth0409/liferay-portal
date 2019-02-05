@@ -17,12 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.WebSiteResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/web-site.properties", service = WebSiteResource.class
+	properties = "OSGI-INF/web-site.properties", scope = ServiceScope.PROTOTYPE,
+	service = WebSiteResource.class
 )
 public class WebSiteResourceImpl extends BaseWebSiteResourceImpl {
 }

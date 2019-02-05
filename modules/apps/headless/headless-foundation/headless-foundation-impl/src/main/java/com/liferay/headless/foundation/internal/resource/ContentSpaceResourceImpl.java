@@ -17,13 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.ContentSpaceResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/content-space.properties",
-	service = ContentSpaceResource.class
+	scope = ServiceScope.PROTOTYPE, service = ContentSpaceResource.class
 )
 public class ContentSpaceResourceImpl extends BaseContentSpaceResourceImpl {
 }

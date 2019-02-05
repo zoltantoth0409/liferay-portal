@@ -17,12 +17,13 @@ package com.liferay.headless.document.library.internal.resource;
 import com.liferay.headless.document.library.resource.DocumentResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/document.properties",
+	properties = "OSGI-INF/document.properties", scope = ServiceScope.PROTOTYPE,
 	service = DocumentResource.class
 )
 public class DocumentResourceImpl extends BaseDocumentResourceImpl {

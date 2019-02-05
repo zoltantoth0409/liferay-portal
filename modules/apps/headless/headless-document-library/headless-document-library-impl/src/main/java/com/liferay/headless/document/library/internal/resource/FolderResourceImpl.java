@@ -30,12 +30,14 @@ import javax.ws.rs.NotFoundException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/folder.properties", service = FolderResource.class
+	properties = "OSGI-INF/folder.properties", scope = ServiceScope.PROTOTYPE,
+	service = FolderResource.class
 )
 public class FolderResourceImpl extends BaseFolderResourceImpl {
 

@@ -17,13 +17,14 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.resource.PostalAddressResource;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
 
 /**
  * @author Javier Gamarra
  */
 @Component(
 	properties = "OSGI-INF/postal-address.properties",
-	service = PostalAddressResource.class
+	scope = ServiceScope.PROTOTYPE, service = PostalAddressResource.class
 )
 public class PostalAddressResourceImpl extends BasePostalAddressResourceImpl {
 }
