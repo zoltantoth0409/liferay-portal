@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Component;
 	service = SegmentsFieldCustomizer.class
 )
 public class LanguageSegmentsFieldCustomizer
-	implements SegmentsFieldCustomizer {
+	extends BaseSegmentsFieldCustomizer {
 
 	public static final String KEY = "language";
 

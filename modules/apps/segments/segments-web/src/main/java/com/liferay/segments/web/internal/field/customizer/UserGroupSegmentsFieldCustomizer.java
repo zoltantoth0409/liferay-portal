@@ -14,14 +14,12 @@
 
 package com.liferay.segments.web.internal.field.customizer;
 
-import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
-import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.UserGroupLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -51,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 	service = SegmentsFieldCustomizer.class
 )
 public class UserGroupSegmentsFieldCustomizer
-	implements SegmentsFieldCustomizer {
+	extends BaseSegmentsFieldCustomizer {
 
 	public static final String KEY = "userGroup";
 
@@ -94,20 +92,15 @@ public class UserGroupSegmentsFieldCustomizer
 				return null;
 			}
 
-			Locale locale = _portal.getLocale(portletRequest);
-
-			String title = ResourceActionsUtil.getModelResource(
-				locale, UserGroup.class.getName());
-
-			String selectEntityTitle = LanguageUtil.format(
-				locale, "select-x", title);
-
 			portletURL.setParameter("eventName", "selectEntity");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			return new Field.SelectEntity(
-				"selectEntity", selectEntityTitle, portletURL.toString(),
-				false);
+				"selectEntity",
+				getSelectEntityTitle(
+					_portal.getLocale(portletRequest),
+					UserGroup.class.getName()),
+				portletURL.toString(), false);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
