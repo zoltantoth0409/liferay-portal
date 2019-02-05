@@ -39,7 +39,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
 		Long parentId, Company company, Pagination pagination) {
 
-		return new Page<>(
+		return Page.of(
 			transform(
 				_blogsEntryService.getGroupEntries(
 					parentId, WorkflowConstants.STATUS_APPROVED,
