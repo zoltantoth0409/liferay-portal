@@ -310,6 +310,10 @@ public class JavaTool {
 			javaParameters.add(javaParameter);
 		}
 
+		javaParameters.add(
+			new JavaParameter(
+				Collections.singletonList("@Context"), "company", "Company"));
+
 		if (pagination) {
 			JavaParameter javaParameter = new JavaParameter(
 				Collections.singletonList("@Context"), "pagination",
@@ -317,10 +321,6 @@ public class JavaTool {
 
 			javaParameters.add(javaParameter);
 		}
-
-		javaParameters.add(
-			new JavaParameter(
-				Collections.singletonList("@Context"), "company", "Company"));
 
 		return javaParameters;
 	}
