@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,11 +36,11 @@ public class Role {
 		return _creator;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
-	public String getDateModified() {
+	public Date getDateModified() {
 		return _dateModified;
 	}
 
@@ -70,11 +72,11 @@ public class Role {
 		_creator = creator;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateModified(String dateModified) {
+	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
@@ -100,8 +102,8 @@ public class Role {
 
 	private String[] _availableLanguages;
 	private UserAccount _creator;
-	private String _dateCreated;
-	private String _dateModified;
+	private Date _dateCreated;
+	private Date _dateModified;
 	private String _description;
 	private Long _id;
 	private String _name;

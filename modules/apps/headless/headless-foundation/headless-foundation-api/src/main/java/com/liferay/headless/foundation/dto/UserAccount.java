@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,7 +36,7 @@ public class UserAccount {
 		return _alternateName;
 	}
 
-	public String getBirthDate() {
+	public Date getBirthDate() {
 		return _birthDate;
 	}
 
@@ -118,7 +120,7 @@ public class UserAccount {
 		_alternateName = alternateName;
 	}
 
-	public void setBirthDate(String birthDate) {
+	public void setBirthDate(Date birthDate) {
 		_birthDate = birthDate;
 	}
 
@@ -196,7 +198,7 @@ public class UserAccount {
 
 	private String _additionalName;
 	private String _alternateName;
-	private String _birthDate;
+	private Date _birthDate;
 	private Object _contactInformation;
 	private String _dashboardURL;
 	private String _email;

@@ -14,6 +14,8 @@
 
 package com.liferay.headless.workflow.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,7 +36,7 @@ public class WorkflowLog {
 		return _commentLog;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
@@ -78,7 +80,7 @@ public class WorkflowLog {
 		_commentLog = commentLog;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
@@ -116,7 +118,7 @@ public class WorkflowLog {
 
 	private String _auditPerson;
 	private String _commentLog;
-	private String _dateCreated;
+	private Date _dateCreated;
 	private Long _id;
 	private String _person;
 	private String _previousPerson;

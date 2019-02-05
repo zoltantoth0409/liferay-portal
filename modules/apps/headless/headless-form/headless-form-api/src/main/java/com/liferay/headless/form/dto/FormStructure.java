@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,11 +40,11 @@ public class FormStructure {
 		return _creator;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
-	public String getDateModified() {
+	public Date getDateModified() {
 		return _dateModified;
 	}
 
@@ -82,11 +84,11 @@ public class FormStructure {
 		_creator = creator;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateModified(String dateModified) {
+	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
@@ -117,8 +119,8 @@ public class FormStructure {
 	private String[] _availableLanguages;
 	private String _contentSpace;
 	private String _creator;
-	private String _dateCreated;
-	private String _dateModified;
+	private Date _dateCreated;
+	private Date _dateModified;
 	private String _description;
 	private Object _formPages;
 	private Long _id;

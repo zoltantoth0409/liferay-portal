@@ -14,6 +14,8 @@
 
 package com.liferay.headless.workflow.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,11 +32,11 @@ public class WorkflowTask {
 		return _completed;
 	}
 
-	public String getDateCompleted() {
+	public Date getDateCompleted() {
 		return _dateCompleted;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
@@ -46,7 +48,7 @@ public class WorkflowTask {
 		return _description;
 	}
 
-	public String getDueDate() {
+	public Date getDueDate() {
 		return _dueDate;
 	}
 
@@ -78,11 +80,11 @@ public class WorkflowTask {
 		_completed = completed;
 	}
 
-	public void setDateCompleted(String dateCompleted) {
+	public void setDateCompleted(Date dateCompleted) {
 		_dateCompleted = dateCompleted;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
@@ -94,7 +96,7 @@ public class WorkflowTask {
 		_description = description;
 	}
 
-	public void setDueDate(String dueDate) {
+	public void setDueDate(Date dueDate) {
 		_dueDate = dueDate;
 	}
 
@@ -123,11 +125,11 @@ public class WorkflowTask {
 	}
 
 	private Boolean _completed;
-	private String _dateCompleted;
-	private String _dateCreated;
+	private Date _dateCompleted;
+	private Date _dateCreated;
 	private String _definitionName;
 	private String _description;
-	private String _dueDate;
+	private Date _dueDate;
 	private Long _id;
 	private WorkflowLog _logs;
 	private String _name;

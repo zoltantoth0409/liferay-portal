@@ -14,6 +14,8 @@
 
 package com.liferay.headless.document.library.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -26,11 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Folder")
 public class Folder {
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
-	public String getDateModified() {
+	public Date getDateModified() {
 		return _dateModified;
 	}
 
@@ -62,11 +64,11 @@ public class Folder {
 		return _subFolders;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateModified(String dateModified) {
+	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
@@ -98,8 +100,8 @@ public class Folder {
 		_subFolders = subFolders;
 	}
 
-	private String _dateCreated;
-	private String _dateModified;
+	private Date _dateCreated;
+	private Date _dateModified;
 	private String _description;
 	private Document _documents;
 	private Folder _folders;

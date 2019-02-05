@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto;
 
+import java.util.Date;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,15 +32,15 @@ public class FormRecord {
 		return _creator;
 	}
 
-	public String getDateCreated() {
+	public Date getDateCreated() {
 		return _dateCreated;
 	}
 
-	public String getDateModified() {
+	public Date getDateModified() {
 		return _dateModified;
 	}
 
-	public String getDatePublished() {
+	public Date getDatePublished() {
 		return _datePublished;
 	}
 
@@ -66,15 +68,15 @@ public class FormRecord {
 		_creator = creator;
 	}
 
-	public void setDateCreated(String dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateModified(String dateModified) {
+	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDatePublished(String datePublished) {
+	public void setDatePublished(Date datePublished) {
 		_datePublished = datePublished;
 	}
 
@@ -99,9 +101,9 @@ public class FormRecord {
 	}
 
 	private String _creator;
-	private String _dateCreated;
-	private String _dateModified;
-	private String _datePublished;
+	private Date _dateCreated;
+	private Date _dateModified;
+	private Date _datePublished;
 	private Boolean _draft;
 	private Object _fieldValues;
 	private Form _form;
