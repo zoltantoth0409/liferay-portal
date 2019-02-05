@@ -28,6 +28,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.cache.MultiVMPool;
 import com.liferay.portal.kernel.cache.PortalCache;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -131,7 +132,7 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 
 			url = StringUtil.replaceFirst(
 				url, String.format("{%s}", pathParameter.getKey()),
-				pathParameter.getValue());
+				HtmlUtil.escapeURL(pathParameter.getValue()));
 		}
 
 		return url;
