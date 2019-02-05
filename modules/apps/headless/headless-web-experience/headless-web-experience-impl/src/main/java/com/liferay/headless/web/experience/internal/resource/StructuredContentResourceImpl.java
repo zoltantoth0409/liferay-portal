@@ -36,8 +36,6 @@ import com.liferay.portal.kernel.search.SearchResultPermissionFilterSearcher;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.CompanyService;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -59,10 +57,11 @@ public class StructuredContentResourceImpl
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			Long parentId, String filter, String sort,
-			AcceptLanguage acceptLanguage, Pagination pagination)
+			AcceptLanguage acceptLanguage, Company company,
+			Pagination pagination)
 		throws Exception {
 
-		Hits hits = _getHits(pagination);
+		Hits hits = _getHits(company, pagination);
 
 		return new Page<>(
 			transform(
@@ -95,9 +94,8 @@ public class StructuredContentResourceImpl
 		return searchContext;
 	}
 
-	private Hits _getHits(Pagination pagination) throws Exception {
-		Company company = _companyService.getCompanyByWebId(
-			PropsUtil.get(PropsKeys.COMPANY_DEFAULT_WEB_ID));
+	private Hits _getHits(Company company, Pagination pagination)
+		throws Exception {
 
 		Group group = company.getGroup();
 
