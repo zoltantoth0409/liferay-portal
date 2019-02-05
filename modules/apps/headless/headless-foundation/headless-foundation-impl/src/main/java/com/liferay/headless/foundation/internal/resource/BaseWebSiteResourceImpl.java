@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.resource.WebSiteResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,7 +39,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getMyUserAccountWebSitePage(
-			Long myUserAccountId, Company company, Pagination pagination)
+			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -44,22 +47,20 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 	@Override
 	public Page<WebSite> getUserAccountWebSitePage(
-			Long userAccountId, Company company, Pagination pagination)
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public WebSite getWebSite(Long webSiteId, Company company)
-		throws Exception {
-
+	public WebSite getWebSite(Long webSiteId) throws Exception {
 		return new WebSite();
 	}
 
 	@Override
 	public Page<WebSite> getWebSiteWebSitePage(
-			Long webSiteId, Company company, Pagination pagination)
+			Long webSiteId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -70,5 +71,11 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

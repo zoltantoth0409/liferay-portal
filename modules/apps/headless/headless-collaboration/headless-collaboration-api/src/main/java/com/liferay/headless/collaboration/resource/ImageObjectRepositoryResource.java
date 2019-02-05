@@ -20,8 +20,6 @@ import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,6 +58,6 @@ public interface ImageObjectRepositoryResource {
 	@Path("/image-object-repository/{image-object-repository-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObjectRepository getImageObjectRepository( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Company company ) throws Exception;
+	public ImageObjectRepository getImageObjectRepository( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
 
 }

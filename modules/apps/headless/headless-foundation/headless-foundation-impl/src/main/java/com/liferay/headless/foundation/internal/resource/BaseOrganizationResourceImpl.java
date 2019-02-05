@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Organization;
 import com.liferay.headless.foundation.resource.OrganizationResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -26,6 +27,8 @@ import java.util.List;
 import java.util.function.Function;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.Context;
 
 /**
  * @author Javier Gamarra
@@ -37,30 +40,27 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	public Page<Organization> getMyUserAccountOrganizationPage(
-			Long myUserAccountId, Company company, Pagination pagination)
+			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Organization getOrganization(Long organizationId, Company company)
-		throws Exception {
-
+	public Organization getOrganization(Long organizationId) throws Exception {
 		return new Organization();
 	}
 
 	@Override
 	public Page<Organization> getOrganizationOrganizationPage(
-			Long organizationId, Company company, Pagination pagination)
+			Long organizationId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Page<Organization> getOrganizationPage(
-			Company company, Pagination pagination)
+	public Page<Organization> getOrganizationPage(Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -68,7 +68,7 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	public Page<Organization> getUserAccountOrganizationPage(
-			Long userAccountId, Company company, Pagination pagination)
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -79,5 +79,11 @@ public abstract class BaseOrganizationResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

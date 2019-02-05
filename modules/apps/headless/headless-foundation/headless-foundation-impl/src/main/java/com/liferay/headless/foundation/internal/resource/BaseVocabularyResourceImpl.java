@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.resource.VocabularyResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,22 +39,19 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Page<Vocabulary> getContentSpaceVocabulariesPage(
-			Long contentSpaceId, Company company, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Vocabulary getVocabularies(Long vocabulariesId, Company company)
-		throws Exception {
-
+	public Vocabulary getVocabularies(Long vocabulariesId) throws Exception {
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary postContentSpaceVocabularies(
-			Long contentSpaceId, Company company)
+	public Vocabulary postContentSpaceVocabularies(Long contentSpaceId)
 		throws Exception {
 
 		return new Vocabulary();
@@ -59,16 +59,14 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Vocabulary postContentSpaceVocabulariesBatchCreate(
-			Long contentSpaceId, Company company)
+			Long contentSpaceId)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary putVocabularies(Long vocabulariesId, Company company)
-		throws Exception {
-
+	public Vocabulary putVocabularies(Long vocabulariesId) throws Exception {
 		return new Vocabulary();
 	}
 
@@ -77,5 +75,11 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

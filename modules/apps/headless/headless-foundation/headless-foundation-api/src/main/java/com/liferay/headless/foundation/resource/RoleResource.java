@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,24 +65,24 @@ public interface RoleResource {
 	@Path("/my-user-account/{my-user-account-id}/roles")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getMyUserAccountRolesPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Role> getMyUserAccountRolesPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/roles")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getRolesPage( @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Role> getRolesPage( @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/roles/{roles-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Role getRole( @PathParam("roles-id") Long rolesId , @Context Company company ) throws Exception;
+	public Role getRole( @PathParam("roles-id") Long rolesId ) throws Exception;
 
 	@GET
 	@Path("/user-account/{user-account-id}/roles")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Role> getUserAccountRolesPage( @PathParam("user-account-id") Long userAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Role> getUserAccountRolesPage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception;
 
 }

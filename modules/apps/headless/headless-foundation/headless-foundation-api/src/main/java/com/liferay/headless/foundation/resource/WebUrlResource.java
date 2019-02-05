@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,11 +65,11 @@ public interface WebUrlResource {
 	@Path("/web-urls")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<WebUrl> getWebUrlsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WebUrl> getWebUrlsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/web-urls/{web-urls-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public WebUrl getWebUrl( @PathParam("web-urls-id") Long webUrlsId , @Context Company company ) throws Exception;
+	public WebUrl getWebUrl( @PathParam("web-urls-id") Long webUrlsId ) throws Exception;
 }

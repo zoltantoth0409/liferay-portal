@@ -20,8 +20,6 @@ import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,12 +58,12 @@ public interface ContentStructureResource {
 	@Path("/content-space/{content-space-id}/content-structures")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public Page<ContentStructure> getContentSpaceContentStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<ContentStructure> getContentSpaceContentStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/content-structures/{content-structures-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public ContentStructure getContentStructure( @PathParam("content-structures-id") Long contentStructuresId , @Context Company company ) throws Exception;
+	public ContentStructure getContentStructure( @PathParam("content-structures-id") Long contentStructuresId ) throws Exception;
 
 }

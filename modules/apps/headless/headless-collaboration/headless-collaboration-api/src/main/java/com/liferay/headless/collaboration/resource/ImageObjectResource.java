@@ -20,8 +20,6 @@ import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,31 +58,31 @@ public interface ImageObjectResource {
 	@Path("/image-object-repository/{image-object-repository-id}/image-object")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<ImageObject> getImageObjectRepositoryImageObjectPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<ImageObject> getImageObjectRepositoryImageObjectPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/image-object-repository/{image-object-repository-id}/image-object")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Company company ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/image-object-repository/{image-object-repository-id}/image-object/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Company company ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
 
 	@DELETE
 	@Path("/image-object/{image-object-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Response deleteImageObject( @PathParam("image-object-id") Long imageObjectId , @Context Company company ) throws Exception;
+	public Response deleteImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception;
 
 	@GET
 	@Path("/image-object/{image-object-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId , @Context Company company ) throws Exception;
+	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception;
 }

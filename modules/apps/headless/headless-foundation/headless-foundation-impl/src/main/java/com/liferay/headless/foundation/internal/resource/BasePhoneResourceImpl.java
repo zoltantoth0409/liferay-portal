@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Phone;
 import com.liferay.headless.foundation.resource.PhoneResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -35,13 +38,13 @@ import javax.annotation.Generated;
 public abstract class BasePhoneResourceImpl implements PhoneResource {
 
 	@Override
-	public Phone getPhone(Long phonesId, Company company) throws Exception {
+	public Phone getPhone(Long phonesId) throws Exception {
 		return new Phone();
 	}
 
 	@Override
 	public Page<Phone> getPhonesPage(
-			Object genericParentId, Company company, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -52,5 +55,11 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

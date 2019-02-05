@@ -17,6 +17,7 @@ package com.liferay.headless.document.library.internal.resource;
 import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.FolderResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,7 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 /**
@@ -37,45 +39,40 @@ import javax.ws.rs.core.Response;
 public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
-	public Response deleteFolder(Long folderId, Company company)
-		throws Exception {
-
+	public Response deleteFolder(Long folderId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public Folder getDocumentsRepository(Long id, Company company)
-		throws Exception {
-
+	public Folder getDocumentsRepository(Long id) throws Exception {
 		return new Folder();
 	}
 
 	@Override
 	public Page<Folder> getDocumentsRepositoryFolderPage(
-			Long documentsRepositoryId, Company company, Pagination pagination)
+			Long documentsRepositoryId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Folder getFolder(Long folderId, Company company) throws Exception {
+	public Folder getFolder(Long folderId) throws Exception {
 		return new Folder();
 	}
 
 	@Override
 	public Page<Folder> getFolderFolderPage(
-			Long folderId, Company company, Pagination pagination)
+			Long folderId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Folder postDocumentsRepositoryFolder(
-			Long documentsRepositoryId, Company company)
+	public Folder postDocumentsRepositoryFolder(Long documentsRepositoryId)
 		throws Exception {
 
 		return new Folder();
@@ -83,28 +80,24 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
 	public Folder postDocumentsRepositoryFolderBatchCreate(
-			Long documentsRepositoryId, Company company)
+			Long documentsRepositoryId)
 		throws Exception {
 
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolder(Long folderId, Company company)
-		throws Exception {
-
+	public Folder postFolderFolder(Long folderId) throws Exception {
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolderBatchCreate(Long folderId, Company company)
-		throws Exception {
-
+	public Folder postFolderFolderBatchCreate(Long folderId) throws Exception {
 		return new Folder();
 	}
 
 	@Override
-	public Folder putFolder(Long folderId, Company company) throws Exception {
+	public Folder putFolder(Long folderId) throws Exception {
 		return new Folder();
 	}
 
@@ -113,5 +106,11 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

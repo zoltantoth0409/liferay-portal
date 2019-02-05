@@ -20,8 +20,6 @@ import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,6 +58,6 @@ public interface AggregateRatingResource {
 	@Path("/aggregate-rating/{aggregate-rating-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public AggregateRating getAggregateRating( @PathParam("aggregate-rating-id") Long aggregateRatingId , @Context Company company ) throws Exception;
+	public AggregateRating getAggregateRating( @PathParam("aggregate-rating-id") Long aggregateRatingId ) throws Exception;
 
 }

@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.resource.RoleResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,27 +39,25 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 	@Override
 	public Page<Role> getMyUserAccountRolesPage(
-			Long myUserAccountId, Company company, Pagination pagination)
+			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Role getRole(Long rolesId, Company company) throws Exception {
+	public Role getRole(Long rolesId) throws Exception {
 		return new Role();
 	}
 
 	@Override
-	public Page<Role> getRolesPage(Company company, Pagination pagination)
-		throws Exception {
-
+	public Page<Role> getRolesPage(Pagination pagination) throws Exception {
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
 	public Page<Role> getUserAccountRolesPage(
-			Long userAccountId, Company company, Pagination pagination)
+			Long userAccountId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -67,5 +68,11 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

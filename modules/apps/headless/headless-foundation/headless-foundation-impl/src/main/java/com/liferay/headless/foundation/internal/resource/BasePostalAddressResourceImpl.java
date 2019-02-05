@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.PostalAddress;
 import com.liferay.headless.foundation.resource.PostalAddressResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,15 +39,13 @@ public abstract class BasePostalAddressResourceImpl
 	implements PostalAddressResource {
 
 	@Override
-	public PostalAddress getAddresses(Long addressesId, Company company)
-		throws Exception {
-
+	public PostalAddress getAddresses(Long addressesId) throws Exception {
 		return new PostalAddress();
 	}
 
 	@Override
 	public Page<PostalAddress> getAddressesPage(
-			Object genericParentId, Company company, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -55,5 +56,11 @@ public abstract class BasePostalAddressResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

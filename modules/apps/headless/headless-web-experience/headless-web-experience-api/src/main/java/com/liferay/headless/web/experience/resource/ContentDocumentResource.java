@@ -20,8 +20,6 @@ import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,12 +58,12 @@ public interface ContentDocumentResource {
 	@Path("/content-document/{content-document-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public Response deleteContentDocument( @PathParam("content-document-id") Long contentDocumentId , @Context Company company ) throws Exception;
+	public Response deleteContentDocument( @PathParam("content-document-id") Long contentDocumentId ) throws Exception;
 
 	@GET
 	@Path("/content-document/{content-document-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public ContentDocument getContentDocument( @PathParam("content-document-id") Long contentDocumentId , @Context Company company ) throws Exception;
+	public ContentDocument getContentDocument( @PathParam("content-document-id") Long contentDocumentId ) throws Exception;
 
 }

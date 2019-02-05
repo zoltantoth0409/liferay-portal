@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,30 +65,30 @@ public interface OrganizationResource {
 	@Path("/my-user-account/{my-user-account-id}/organization")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getMyUserAccountOrganizationPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Organization> getMyUserAccountOrganizationPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/organization")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getOrganizationPage( @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Organization> getOrganizationPage( @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/organization/{organization-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Organization getOrganization( @PathParam("organization-id") Long organizationId , @Context Company company ) throws Exception;
+	public Organization getOrganization( @PathParam("organization-id") Long organizationId ) throws Exception;
 
 	@GET
 	@Path("/organization/{organization-id}/organization")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getOrganizationOrganizationPage( @PathParam("organization-id") Long organizationId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Organization> getOrganizationOrganizationPage( @PathParam("organization-id") Long organizationId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/user-account/{user-account-id}/organization")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Organization> getUserAccountOrganizationPage( @PathParam("user-account-id") Long userAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Organization> getUserAccountOrganizationPage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception;
 
 }

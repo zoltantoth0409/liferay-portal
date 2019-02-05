@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.resource.KeywordResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,38 +39,33 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
 	@Override
 	public Page<Keyword> getContentSpaceKeywordsPage(
-			Long contentSpaceId, Company company, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Keyword getKeyword(Long keywordsId, Company company)
+	public Keyword getKeyword(Long keywordsId) throws Exception {
+		return new Keyword();
+	}
+
+	@Override
+	public Keyword postContentSpaceKeyword(Long contentSpaceId)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword postContentSpaceKeyword(Long contentSpaceId, Company company)
+	public Keyword postContentSpaceKeywordsBatchCreate(Long contentSpaceId)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword postContentSpaceKeywordsBatchCreate(
-			Long contentSpaceId, Company company)
-		throws Exception {
-
-		return new Keyword();
-	}
-
-	@Override
-	public Keyword putKeyword(Long keywordsId, Company company)
-		throws Exception {
-
+	public Keyword putKeyword(Long keywordsId) throws Exception {
 		return new Keyword();
 	}
 
@@ -76,5 +74,11 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

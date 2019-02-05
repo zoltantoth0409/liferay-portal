@@ -17,8 +17,6 @@ package com.liferay.headless.workflow.resource;
 import com.liferay.headless.workflow.dto.WorkflowLog;
 import com.liferay.headless.workflow.dto.WorkflowTask;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -57,46 +55,46 @@ public interface WorkflowTaskResource {
 	@Path("/roles/{roles-id}/workflow-tasks")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
-	public Page<WorkflowTask> getRolesWorkflowTasksPage( @PathParam("roles-id") Long rolesId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WorkflowTask> getRolesWorkflowTasksPage( @PathParam("roles-id") Long rolesId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/workflow-tasks")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
-	public Page<WorkflowTask> getWorkflowTasksPage( @PathParam("generic-parent-id") Object genericParentId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WorkflowTask> getWorkflowTasksPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/workflow-tasks/{workflow-tasks-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
-	public WorkflowTask getWorkflowTask( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company ) throws Exception;
+	public WorkflowTask getWorkflowTask( @PathParam("workflow-tasks-id") Long workflowTasksId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/workflow-tasks/{workflow-tasks-id}/assign-to-me")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksAssignToMe( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company ) throws Exception;
+	public WorkflowTask postWorkflowTasksAssignToMe( @PathParam("workflow-tasks-id") Long workflowTasksId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/workflow-tasks/{workflow-tasks-id}/assign-to-user")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksAssignToUser( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company ) throws Exception;
+	public WorkflowTask postWorkflowTasksAssignToUser( @PathParam("workflow-tasks-id") Long workflowTasksId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/workflow-tasks/{workflow-tasks-id}/change-transition")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksChangeTransition( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company ) throws Exception;
+	public WorkflowTask postWorkflowTasksChangeTransition( @PathParam("workflow-tasks-id") Long workflowTasksId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/workflow-tasks/{workflow-tasks-id}/update-due-date")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.write")
-	public WorkflowTask postWorkflowTasksUpdateDueDate( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company ) throws Exception;
+	public WorkflowTask postWorkflowTasksUpdateDueDate( @PathParam("workflow-tasks-id") Long workflowTasksId ) throws Exception;
 
 }

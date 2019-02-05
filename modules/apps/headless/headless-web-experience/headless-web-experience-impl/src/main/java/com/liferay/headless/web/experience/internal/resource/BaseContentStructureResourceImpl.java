@@ -17,6 +17,7 @@ package com.liferay.headless.web.experience.internal.resource;
 import com.liferay.headless.web.experience.dto.ContentStructure;
 import com.liferay.headless.web.experience.resource.ContentStructureResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -26,6 +27,8 @@ import java.util.List;
 import java.util.function.Function;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.Context;
 
 /**
  * @author Javier Gamarra
@@ -37,15 +40,14 @@ public abstract class BaseContentStructureResourceImpl
 
 	@Override
 	public Page<ContentStructure> getContentSpaceContentStructuresPage(
-			Long contentSpaceId, Company company, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public ContentStructure getContentStructure(
-			Long contentStructuresId, Company company)
+	public ContentStructure getContentStructure(Long contentStructuresId)
 		throws Exception {
 
 		return new ContentStructure();
@@ -56,5 +58,11 @@ public abstract class BaseContentStructureResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

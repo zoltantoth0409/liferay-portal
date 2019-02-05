@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,24 +65,24 @@ public interface WebSiteResource {
 	@Path("/my-user-account/{my-user-account-id}/web-site")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getMyUserAccountWebSitePage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WebSite> getMyUserAccountWebSitePage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/user-account/{user-account-id}/web-site")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getUserAccountWebSitePage( @PathParam("user-account-id") Long userAccountId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WebSite> getUserAccountWebSitePage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/web-site/{web-site-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public WebSite getWebSite( @PathParam("web-site-id") Long webSiteId , @Context Company company ) throws Exception;
+	public WebSite getWebSite( @PathParam("web-site-id") Long webSiteId ) throws Exception;
 
 	@GET
 	@Path("/web-site/{web-site-id}/web-site")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<WebSite> getWebSiteWebSitePage( @PathParam("web-site-id") Long webSiteId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WebSite> getWebSiteWebSitePage( @PathParam("web-site-id") Long webSiteId , @Context Pagination pagination ) throws Exception;
 
 }

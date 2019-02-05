@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.resource.EmailResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -35,13 +38,13 @@ import javax.annotation.Generated;
 public abstract class BaseEmailResourceImpl implements EmailResource {
 
 	@Override
-	public Email getEmail(Long emailsId, Company company) throws Exception {
+	public Email getEmail(Long emailsId) throws Exception {
 		return new Email();
 	}
 
 	@Override
 	public Page<Email> getEmailsPage(
-			Object genericParentId, Company company, Pagination pagination)
+			Object genericParentId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -52,5 +55,11 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

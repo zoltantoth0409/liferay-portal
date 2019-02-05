@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.Category;
 import com.liferay.headless.foundation.resource.CategoryResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -35,15 +38,13 @@ import javax.annotation.Generated;
 public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
-	public Category getCategories(Long categoriesId, Company company)
-		throws Exception {
-
+	public Category getCategories(Long categoriesId) throws Exception {
 		return new Category();
 	}
 
 	@Override
 	public Page<Category> getCategoriesCategoriesPage(
-			Long categoriesId, Company company, Pagination pagination)
+			Long categoriesId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -51,47 +52,42 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
 	public Page<Category> getVocabulariesCategoriesPage(
-			Long vocabulariesId, Company company, Pagination pagination)
+			Long vocabulariesId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Category postCategoriesCategories(Long categoriesId, Company company)
+	public Category postCategoriesCategories(Long categoriesId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postCategoriesCategoriesBatchCreate(
-			Long categoriesId, Company company)
+	public Category postCategoriesCategoriesBatchCreate(Long categoriesId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategories(
-			Long vocabulariesId, Company company)
+	public Category postVocabulariesCategories(Long vocabulariesId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategoriesBatchCreate(
-			Long vocabulariesId, Company company)
+	public Category postVocabulariesCategoriesBatchCreate(Long vocabulariesId)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category putCategories(Long categoriesId, Company company)
-		throws Exception {
-
+	public Category putCategories(Long categoriesId) throws Exception {
 		return new Category();
 	}
 
@@ -100,5 +96,11 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

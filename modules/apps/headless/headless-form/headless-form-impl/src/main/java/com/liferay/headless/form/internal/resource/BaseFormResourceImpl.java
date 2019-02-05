@@ -28,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -37,36 +39,29 @@ public abstract class BaseFormResourceImpl implements FormResource {
 
 	@Override
 	public Page<Form> getContentSpaceFormPage(
-			Long contentSpaceId, Company company, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Form getForm(Long formId, Company company) throws Exception {
+	public Form getForm(Long formId) throws Exception {
 		return new Form();
 	}
 
 	@Override
-	public Form getFormFetchLatestDraft(Long formId, Company company)
-		throws Exception {
-
+	public Form getFormFetchLatestDraft(Long formId) throws Exception {
 		return new Form();
 	}
 
 	@Override
-	public Form postFormEvaluateContext(
-			Long formId, AcceptLanguage acceptLanguage, Company company)
-		throws Exception {
-
+	public Form postFormEvaluateContext(Long formId) throws Exception {
 		return new Form();
 	}
 
 	@Override
-	public Form postFormUploadFile(Long formId, Company company)
-		throws Exception {
-
+	public Form postFormUploadFile(Long formId) throws Exception {
 		return new Form();
 	}
 
@@ -75,5 +70,11 @@ public abstract class BaseFormResourceImpl implements FormResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

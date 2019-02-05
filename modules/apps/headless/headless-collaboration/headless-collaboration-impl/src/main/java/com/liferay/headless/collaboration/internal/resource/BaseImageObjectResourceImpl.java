@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.resource.ImageObjectResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,7 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 /**
@@ -38,25 +40,20 @@ public abstract class BaseImageObjectResourceImpl
 	implements ImageObjectResource {
 
 	@Override
-	public Response deleteImageObject(Long imageObjectId, Company company)
-		throws Exception {
-
+	public Response deleteImageObject(Long imageObjectId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public ImageObject getImageObject(Long imageObjectId, Company company)
-		throws Exception {
-
+	public ImageObject getImageObject(Long imageObjectId) throws Exception {
 		return new ImageObject();
 	}
 
 	@Override
 	public Page<ImageObject> getImageObjectRepositoryImageObjectPage(
-			Long imageObjectRepositoryId, Company company,
-			Pagination pagination)
+			Long imageObjectRepositoryId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -64,7 +61,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject postImageObjectRepositoryImageObject(
-			Long imageObjectRepositoryId, Company company)
+			Long imageObjectRepositoryId)
 		throws Exception {
 
 		return new ImageObject();
@@ -72,7 +69,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
-			Long imageObjectRepositoryId, Company company)
+			Long imageObjectRepositoryId)
 		throws Exception {
 
 		return new ImageObject();
@@ -83,5 +80,11 @@ public abstract class BaseImageObjectResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

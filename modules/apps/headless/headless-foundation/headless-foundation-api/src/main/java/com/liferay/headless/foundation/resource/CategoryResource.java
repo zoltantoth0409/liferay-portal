@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,53 +65,53 @@ public interface CategoryResource {
 	@Path("/categories/{categories-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category getCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+	public Category getCategories( @PathParam("categories-id") Long categoriesId ) throws Exception;
 
 	@Consumes("application/json")
 	@PUT
 	@Path("/categories/{categories-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category putCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+	public Category putCategories( @PathParam("categories-id") Long categoriesId ) throws Exception;
 
 	@GET
 	@Path("/categories/{categories-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getCategoriesCategoriesPage( @PathParam("categories-id") Long categoriesId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Category> getCategoriesCategoriesPage( @PathParam("categories-id") Long categoriesId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/categories/{categories-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category postCategoriesCategories( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+	public Category postCategoriesCategories( @PathParam("categories-id") Long categoriesId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/categories/{categories-id}/categories/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Category postCategoriesCategoriesBatchCreate( @PathParam("categories-id") Long categoriesId , @Context Company company ) throws Exception;
+	public Category postCategoriesCategoriesBatchCreate( @PathParam("categories-id") Long categoriesId ) throws Exception;
 
 	@GET
 	@Path("/vocabularies/{vocabularies-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<Category> getVocabulariesCategoriesPage( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Category> getVocabulariesCategoriesPage( @PathParam("vocabularies-id") Long vocabulariesId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/vocabularies/{vocabularies-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category postVocabulariesCategories( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company ) throws Exception;
+	public Category postVocabulariesCategories( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/vocabularies/{vocabularies-id}/categories/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Category postVocabulariesCategoriesBatchCreate( @PathParam("vocabularies-id") Long vocabulariesId , @Context Company company ) throws Exception;
+	public Category postVocabulariesCategoriesBatchCreate( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
 
 }

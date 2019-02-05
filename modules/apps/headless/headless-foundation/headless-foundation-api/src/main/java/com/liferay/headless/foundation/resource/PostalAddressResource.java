@@ -27,8 +27,6 @@ import com.liferay.headless.foundation.dto.Vocabulary;
 import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -67,12 +65,12 @@ public interface PostalAddressResource {
 	@Path("/addresses")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Page<PostalAddress> getAddressesPage( @PathParam("generic-parent-id") Object genericParentId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<PostalAddress> getAddressesPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/addresses/{addresses-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public PostalAddress getAddresses( @PathParam("addresses-id") Long addressesId , @Context Company company ) throws Exception;
+	public PostalAddress getAddresses( @PathParam("addresses-id") Long addressesId ) throws Exception;
 
 }

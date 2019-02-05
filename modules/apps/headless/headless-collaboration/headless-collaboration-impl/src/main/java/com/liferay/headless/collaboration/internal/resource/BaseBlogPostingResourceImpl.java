@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.dto.BlogPosting;
 import com.liferay.headless.collaboration.resource.BlogPostingResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,7 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 /**
@@ -38,32 +40,27 @@ public abstract class BaseBlogPostingResourceImpl
 	implements BlogPostingResource {
 
 	@Override
-	public Response deleteBlogPosting(Long blogPostingId, Company company)
-		throws Exception {
-
+	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public BlogPosting getBlogPosting(Long blogPostingId, Company company)
-		throws Exception {
-
+	public BlogPosting getBlogPosting(Long blogPostingId) throws Exception {
 		return new BlogPosting();
 	}
 
 	@Override
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
-			Long contentSpaceId, Company company, Pagination pagination)
+			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public BlogPosting postContentSpaceBlogPosting(
-			Long contentSpaceId, Company company)
+	public BlogPosting postContentSpaceBlogPosting(Long contentSpaceId)
 		throws Exception {
 
 		return new BlogPosting();
@@ -71,16 +68,14 @@ public abstract class BaseBlogPostingResourceImpl
 
 	@Override
 	public BlogPosting postContentSpaceBlogPostingBatchCreate(
-			Long contentSpaceId, Company company)
+			Long contentSpaceId)
 		throws Exception {
 
 		return new BlogPosting();
 	}
 
 	@Override
-	public BlogPosting putBlogPosting(Long blogPostingId, Company company)
-		throws Exception {
-
+	public BlogPosting putBlogPosting(Long blogPostingId) throws Exception {
 		return new BlogPosting();
 	}
 
@@ -89,5 +84,11 @@ public abstract class BaseBlogPostingResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

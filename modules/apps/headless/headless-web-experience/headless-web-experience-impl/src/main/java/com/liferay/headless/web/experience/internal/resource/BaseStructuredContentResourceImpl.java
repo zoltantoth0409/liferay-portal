@@ -28,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -39,7 +41,6 @@ public abstract class BaseStructuredContentResourceImpl
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			Long contentSpaceId, String filter, String sort,
-			AcceptLanguage acceptLanguage, Company company,
 			Pagination pagination)
 		throws Exception {
 
@@ -47,9 +48,7 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getStructuredContent(
-			Long structuredContentsId, AcceptLanguage acceptLanguage,
-			Company company)
+	public StructuredContent getStructuredContent(Long structuredContentsId)
 		throws Exception {
 
 		return new StructuredContent();
@@ -57,7 +56,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContent(
-			Long contentSpaceId, AcceptLanguage acceptLanguage, Company company)
+			Long contentSpaceId)
 		throws Exception {
 
 		return new StructuredContent();
@@ -65,16 +64,14 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
-			Long contentSpaceId, AcceptLanguage acceptLanguage, Company company)
+			Long contentSpaceId)
 		throws Exception {
 
 		return new StructuredContent();
 	}
 
 	@Override
-	public StructuredContent putStructuredContent(
-			Long structuredContentsId, AcceptLanguage acceptLanguage,
-			Company company)
+	public StructuredContent putStructuredContent(Long structuredContentsId)
 		throws Exception {
 
 		return new StructuredContent();
@@ -85,5 +82,11 @@ public abstract class BaseStructuredContentResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

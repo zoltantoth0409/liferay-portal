@@ -17,12 +17,15 @@ package com.liferay.headless.foundation.internal.resource;
 import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.resource.ContentSpaceResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
 import java.util.function.Function;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.Context;
 
 /**
  * @author Javier Gamarra
@@ -33,9 +36,7 @@ public abstract class BaseContentSpaceResourceImpl
 	implements ContentSpaceResource {
 
 	@Override
-	public ContentSpace getContentSpace(Long contentSpaceId, Company company)
-		throws Exception {
-
+	public ContentSpace getContentSpace(Long contentSpaceId) throws Exception {
 		return new ContentSpace();
 	}
 
@@ -44,5 +45,11 @@ public abstract class BaseContentSpaceResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

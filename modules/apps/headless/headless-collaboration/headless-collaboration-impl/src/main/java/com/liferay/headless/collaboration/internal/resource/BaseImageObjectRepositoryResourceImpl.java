@@ -17,12 +17,15 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.headless.collaboration.resource.ImageObjectRepositoryResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
 import java.util.function.Function;
 
 import javax.annotation.Generated;
+
+import javax.ws.rs.core.Context;
 
 /**
  * @author Javier Gamarra
@@ -34,7 +37,7 @@ public abstract class BaseImageObjectRepositoryResourceImpl
 
 	@Override
 	public ImageObjectRepository getImageObjectRepository(
-			Long imageObjectRepositoryId, Company company)
+			Long imageObjectRepositoryId)
 		throws Exception {
 
 		return new ImageObjectRepository();
@@ -45,5 +48,11 @@ public abstract class BaseImageObjectRepositoryResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

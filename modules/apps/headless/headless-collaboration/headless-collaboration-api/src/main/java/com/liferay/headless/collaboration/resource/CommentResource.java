@@ -20,8 +20,6 @@ import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,18 +58,18 @@ public interface CommentResource {
 	@Path("/blog-posting/{blog-posting-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getBlogPostingCommentPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Comment> getBlogPostingCommentPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/comment/{comment-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Comment getComment( @PathParam("comment-id") Long commentId , @Context Company company ) throws Exception;
+	public Comment getComment( @PathParam("comment-id") Long commentId ) throws Exception;
 
 	@GET
 	@Path("/comment/{comment-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Pagination pagination ) throws Exception;
 
 }

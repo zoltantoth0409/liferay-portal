@@ -20,8 +20,6 @@ import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,39 +58,39 @@ public interface BlogPostingResource {
 	@Path("/blog-posting/{blog-posting-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Response deleteBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
+	public Response deleteBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception;
 
 	@GET
 	@Path("/blog-posting/{blog-posting-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting getBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
+	public BlogPosting getBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception;
 
 	@Consumes("application/json")
 	@PUT
 	@Path("/blog-posting/{blog-posting-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting putBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , @Context Company company ) throws Exception;
+	public BlogPosting putBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception;
 
 	@GET
 	@Path("/content-space/{content-space-id}/blog-posting")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public Page<BlogPosting> getContentSpaceBlogPostingPage( @PathParam("content-space-id") Long contentSpaceId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<BlogPosting> getContentSpaceBlogPostingPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/blog-posting")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId , @Context Company company ) throws Exception;
+	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/blog-posting/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
-	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , @Context Company company ) throws Exception;
+	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
 
 }

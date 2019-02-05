@@ -17,6 +17,7 @@ package com.liferay.headless.web.experience.internal.resource;
 import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.resource.ContentDocumentResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
@@ -24,6 +25,7 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 /**
@@ -35,8 +37,7 @@ public abstract class BaseContentDocumentResourceImpl
 	implements ContentDocumentResource {
 
 	@Override
-	public Response deleteContentDocument(
-			Long contentDocumentId, Company company)
+	public Response deleteContentDocument(Long contentDocumentId)
 		throws Exception {
 
 		Response.ResponseBuilder responseBuilder = Response.ok();
@@ -45,8 +46,7 @@ public abstract class BaseContentDocumentResourceImpl
 	}
 
 	@Override
-	public ContentDocument getContentDocument(
-			Long contentDocumentId, Company company)
+	public ContentDocument getContentDocument(Long contentDocumentId)
 		throws Exception {
 
 		return new ContentDocument();
@@ -57,5 +57,11 @@ public abstract class BaseContentDocumentResourceImpl
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

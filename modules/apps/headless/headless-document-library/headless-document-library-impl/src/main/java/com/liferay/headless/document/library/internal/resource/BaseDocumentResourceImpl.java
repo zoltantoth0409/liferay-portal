@@ -17,6 +17,7 @@ package com.liferay.headless.document.library.internal.resource;
 import com.liferay.headless.document.library.dto.Document;
 import com.liferay.headless.document.library.resource.DocumentResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,7 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
 /**
@@ -37,24 +39,20 @@ import javax.ws.rs.core.Response;
 public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
-	public Response deleteDocument(Long documentId, Company company)
-		throws Exception {
-
+	public Response deleteDocument(Long documentId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();
 
 		return responseBuilder.build();
 	}
 
 	@Override
-	public Document getDocument(Long documentId, Company company)
-		throws Exception {
-
+	public Document getDocument(Long documentId) throws Exception {
 		return new Document();
 	}
 
 	@Override
 	public Page<Document> getDocumentsRepositoryDocumentPage(
-			Long documentsRepositoryId, Company company, Pagination pagination)
+			Long documentsRepositoryId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -62,15 +60,14 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Page<Document> getFolderDocumentPage(
-			Long folderId, Company company, Pagination pagination)
+			Long folderId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Document postDocumentsRepositoryDocument(
-			Long documentsRepositoryId, Company company)
+	public Document postDocumentsRepositoryDocument(Long documentsRepositoryId)
 		throws Exception {
 
 		return new Document();
@@ -78,22 +75,19 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Document postDocumentsRepositoryDocumentBatchCreate(
-			Long documentsRepositoryId, Company company)
+			Long documentsRepositoryId)
 		throws Exception {
 
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocument(Long folderId, Company company)
-		throws Exception {
-
+	public Document postFolderDocument(Long folderId) throws Exception {
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocumentBatchCreate(
-			Long folderId, Company company)
+	public Document postFolderDocumentBatchCreate(Long folderId)
 		throws Exception {
 
 		return new Document();
@@ -104,5 +98,11 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

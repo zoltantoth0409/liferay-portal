@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource;
 import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.resource.CommentResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 import com.liferay.portal.vulcan.util.TransformUtil;
@@ -27,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -36,22 +39,20 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Page<Comment> getBlogPostingCommentPage(
-			Long blogPostingId, Company company, Pagination pagination)
+			Long blogPostingId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public Comment getComment(Long commentId, Company company)
-		throws Exception {
-
+	public Comment getComment(Long commentId) throws Exception {
 		return new Comment();
 	}
 
 	@Override
 	public Page<Comment> getCommentCommentPage(
-			Long commentId, Company company, Pagination pagination)
+			Long commentId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
@@ -62,5 +63,11 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

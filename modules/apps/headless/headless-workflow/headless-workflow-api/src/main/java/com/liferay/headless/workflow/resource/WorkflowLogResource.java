@@ -17,8 +17,6 @@ package com.liferay.headless.workflow.resource;
 import com.liferay.headless.workflow.dto.WorkflowLog;
 import com.liferay.headless.workflow.dto.WorkflowTask;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -57,11 +55,11 @@ public interface WorkflowLogResource {
 	@Path("/workflow-logs/{workflow-logs-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
-	public WorkflowLog getWorkflowLog( @PathParam("workflow-logs-id") Long workflowLogsId , @Context Company company ) throws Exception;
+	public WorkflowLog getWorkflowLog( @PathParam("workflow-logs-id") Long workflowLogsId ) throws Exception;
 
 	@GET
 	@Path("/workflow-tasks/{workflow-tasks-id}/workflow-logs")
 	@Produces("application/json")
 	@RequiresScope("headless-workflow-application.read")
-	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Company company , @Context Pagination pagination ) throws Exception;
+	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Pagination pagination ) throws Exception;
 }

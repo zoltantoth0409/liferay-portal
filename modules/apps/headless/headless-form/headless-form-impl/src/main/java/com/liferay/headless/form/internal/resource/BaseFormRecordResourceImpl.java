@@ -28,6 +28,8 @@ import java.util.function.Function;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.core.Context;
+
 /**
  * @author Javier Gamarra
  * @generated
@@ -37,40 +39,31 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 	@Override
 	public Page<FormRecord> getFormFormRecordPage(
-			Long formId, Company company, Pagination pagination)
+			Long formId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
 	}
 
 	@Override
-	public FormRecord getFormRecord(Long formRecordId, Company company)
+	public FormRecord getFormRecord(Long formRecordId) throws Exception {
+		return new FormRecord();
+	}
+
+	@Override
+	public FormRecord postFormFormRecord(Long formId) throws Exception {
+		return new FormRecord();
+	}
+
+	@Override
+	public FormRecord postFormFormRecordBatchCreate(Long formId)
 		throws Exception {
 
 		return new FormRecord();
 	}
 
 	@Override
-	public FormRecord postFormFormRecord(
-			Long formId, AcceptLanguage acceptLanguage, Company company)
-		throws Exception {
-
-		return new FormRecord();
-	}
-
-	@Override
-	public FormRecord postFormFormRecordBatchCreate(
-			Long formId, AcceptLanguage acceptLanguage, Company company)
-		throws Exception {
-
-		return new FormRecord();
-	}
-
-	@Override
-	public FormRecord putFormRecord(
-			Long formRecordId, AcceptLanguage acceptLanguage, Company company)
-		throws Exception {
-
+	public FormRecord putFormRecord(Long formRecordId) throws Exception {
 		return new FormRecord();
 	}
 
@@ -79,5 +72,11 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 		return TransformUtil.transform(list, transformFunction);
 	}
+
+	@Context
+	protected AcceptLanguage acceptLanguage;
+
+	@Context
+	protected Company company;
 
 }

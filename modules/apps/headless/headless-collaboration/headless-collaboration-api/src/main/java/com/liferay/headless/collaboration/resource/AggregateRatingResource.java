@@ -20,8 +20,6 @@ import com.liferay.headless.collaboration.dto.Comment;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
-import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -60,6 +58,6 @@ public interface AggregateRatingResource {
 	@Path("/aggregate-rating/{aggregate-rating-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public AggregateRating getAggregateRating( @PathParam("aggregate-rating-id") Long aggregateRatingId , @Context Company company ) throws Exception;
+	public AggregateRating getAggregateRating( @PathParam("aggregate-rating-id") Long aggregateRatingId ) throws Exception;
 
 }
