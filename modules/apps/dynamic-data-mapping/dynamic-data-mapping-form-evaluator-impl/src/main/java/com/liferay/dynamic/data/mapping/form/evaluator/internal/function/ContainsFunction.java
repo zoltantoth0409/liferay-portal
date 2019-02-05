@@ -38,12 +38,12 @@ public class ContainsFunction
 			return false;
 		}
 
-		if (object instanceof String) {
-			return apply((String)object, key);
-		}
-
 		if (object instanceof JSONArray) {
 			return apply(object.toString(), key);
+		}
+
+		if (object instanceof String) {
+			return apply((String)object, key);
 		}
 
 		return false;

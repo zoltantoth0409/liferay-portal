@@ -35,11 +35,12 @@ public class EqualsFunction
 	@Override
 	public Boolean apply(Object object1, Object object2) {
 		Object value1 = object1;
-		Object value2 = object2;
 
 		if (object1 instanceof JSONArray) {
 			value1 = _getValue((JSONArray)object1);
 		}
+
+		Object value2 = object2;
 
 		if (object2 instanceof JSONArray) {
 			value2 = _getValue((JSONArray)object2);
