@@ -49,7 +49,7 @@ public class CompanyContextProviderTest {
 		new LiferayIntegrationTestRule();
 
 	@Test
-	public void testCreateContextWithCustomCompany() throws Exception {
+	public void testCreateContext() throws Exception {
 		Company actualCompany = CompanyTestUtil.addCompany();
 
 		try {
