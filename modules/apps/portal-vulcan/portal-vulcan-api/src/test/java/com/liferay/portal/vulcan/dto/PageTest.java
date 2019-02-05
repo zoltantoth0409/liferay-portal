@@ -38,13 +38,13 @@ public class PageTest {
 
 		Page<Integer> page = Page.of(items);
 
-		assertThat(page.hasNext(), is(false));
-		assertThat(page.hasPrevious(), is(false));
-		assertThat(page.getItemsPerPage(), is(0));
 		assertThat(page.getItems(), is(empty()));
+		assertThat(page.getItemsPerPage(), is(0));
 		assertThat(page.getLastPageNumber(), is(1));
 		assertThat(page.getPageNumber(), is(1));
 		assertThat(page.getTotalCount(), is(0));
+		assertThat(page.hasNext(), is(false));
+		assertThat(page.hasPrevious(), is(false));
 	}
 
 	@Test
@@ -53,13 +53,13 @@ public class PageTest {
 
 		Page<Integer> page = Page.of(items);
 
-		assertThat(page.hasNext(), is(false));
-		assertThat(page.hasPrevious(), is(false));
-		assertThat(page.getItemsPerPage(), is(3));
 		assertThat(page.getItems(), contains(1, 2, 3));
+		assertThat(page.getItemsPerPage(), is(3));
 		assertThat(page.getLastPageNumber(), is(1));
 		assertThat(page.getPageNumber(), is(1));
 		assertThat(page.getTotalCount(), is(3));
+		assertThat(page.hasNext(), is(false));
+		assertThat(page.hasPrevious(), is(false));
 	}
 
 	@Test
@@ -70,13 +70,13 @@ public class PageTest {
 
 		Page<Integer> page = Page.of(items, pagination, 25);
 
-		assertThat(page.hasNext(), is(true));
-		assertThat(page.hasPrevious(), is(true));
-		assertThat(page.getItemsPerPage(), is(3));
 		assertThat(page.getItems(), contains(1, 2, 3));
+		assertThat(page.getItemsPerPage(), is(3));
 		assertThat(page.getLastPageNumber(), is(9));
 		assertThat(page.getPageNumber(), is(3));
 		assertThat(page.getTotalCount(), is(25));
+		assertThat(page.hasNext(), is(true));
+		assertThat(page.hasPrevious(), is(true));
 	}
 
 }
