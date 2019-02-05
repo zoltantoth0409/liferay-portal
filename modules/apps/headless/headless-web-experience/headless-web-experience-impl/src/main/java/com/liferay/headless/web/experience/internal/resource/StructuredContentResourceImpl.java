@@ -58,11 +58,10 @@ public class StructuredContentResourceImpl
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			Long parentId, String filter, String sort,
-			AcceptLanguage acceptLanguage, Company company,
 			Pagination pagination)
 		throws Exception {
 
-		Hits hits = _getHits(company, pagination);
+		Hits hits = _getHits(pagination);
 
 		return Page.of(
 			transform(
@@ -71,7 +70,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private SearchContext _createSearchContext(
-		long companyId, long groupId, int start, int end) {
+		Group group, Pagination pagination) {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -80,10 +79,10 @@ public class StructuredContentResourceImpl
 		searchContext.setAttribute(
 			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
 		searchContext.setAttribute("head", Boolean.TRUE);
-		searchContext.setCompanyId(companyId);
-		searchContext.setEnd(end);
-		searchContext.setGroupIds(new long[] {groupId});
-		searchContext.setStart(start);
+		searchContext.setCompanyId(company.getCompanyId());
+		searchContext.setEnd(pagination.getEndPosition());
+		searchContext.setGroupIds(new long[] {group.getGroupId()});
+		searchContext.setStart(pagination.getStartPosition());
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
@@ -95,14 +94,9 @@ public class StructuredContentResourceImpl
 		return searchContext;
 	}
 
-	private Hits _getHits(Company company, Pagination pagination)
-		throws Exception {
-
-		Group group = company.getGroup();
-
+	private Hits _getHits(Pagination pagination) throws Exception {
 		SearchContext searchContext = _createSearchContext(
-			company.getCompanyId(), group.getGroupId(),
-			pagination.getStartPosition(), pagination.getEndPosition());
+			company.getGroup(), pagination);
 
 		Query query = _getQuery(searchContext);
 
@@ -150,9 +144,6 @@ public class StructuredContentResourceImpl
 			}
 		};
 	}
-
-	@Reference
-	private CompanyService _companyService;
 
 	@Reference
 	private IndexerRegistry _indexerRegistry;
