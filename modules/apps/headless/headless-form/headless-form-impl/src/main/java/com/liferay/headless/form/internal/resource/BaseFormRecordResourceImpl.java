@@ -40,7 +40,7 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 			Long formId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override

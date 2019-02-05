@@ -58,7 +58,7 @@ public abstract class BaseUserAccountResourceImpl
 			Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public abstract class BaseUserAccountResourceImpl
 			Long organizationId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public abstract class BaseUserAccountResourceImpl
 			String fullnamequery, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public abstract class BaseUserAccountResourceImpl
 			Long webSiteId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override

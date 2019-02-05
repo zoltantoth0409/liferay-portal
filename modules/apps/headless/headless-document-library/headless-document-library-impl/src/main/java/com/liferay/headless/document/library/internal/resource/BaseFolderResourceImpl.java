@@ -57,7 +57,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long documentsRepositoryId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long folderId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override

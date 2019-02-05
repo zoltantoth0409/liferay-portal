@@ -39,7 +39,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long myUserAccountId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long userAccountId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public abstract class BaseWebSiteResourceImpl implements WebSiteResource {
 			Long webSiteId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	protected <T, R> List<R> transform(

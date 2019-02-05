@@ -40,7 +40,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Long rolesId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Object genericParentId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override

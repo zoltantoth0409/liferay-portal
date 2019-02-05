@@ -57,7 +57,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long documentsRepositoryId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long folderId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override

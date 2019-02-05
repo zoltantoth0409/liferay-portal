@@ -39,7 +39,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			Long blogPostingId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			Long commentId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	protected <T, R> List<R> transform(

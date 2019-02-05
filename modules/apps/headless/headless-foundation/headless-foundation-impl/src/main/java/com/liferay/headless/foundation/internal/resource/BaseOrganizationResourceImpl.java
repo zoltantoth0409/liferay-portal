@@ -40,7 +40,7 @@ public abstract class BaseOrganizationResourceImpl
 			Long myUserAccountId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public abstract class BaseOrganizationResourceImpl
 			Long organizationId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public abstract class BaseOrganizationResourceImpl
 			Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public abstract class BaseOrganizationResourceImpl
 			Long userAccountId, Company company, Pagination pagination)
 		throws Exception {
 
-		return new Page<>(Collections.emptyList(), 0);
+		return Page.of(Collections.emptyList());
 	}
 
 	protected <T, R> List<R> transform(
