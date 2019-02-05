@@ -21,6 +21,7 @@ import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.FolderResource;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -40,7 +41,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Page<Folder> getDocumentsRepositoryFolderPage(
-		Long parentId, Pagination pagination) {
+		Long parentId, Company company, Pagination pagination) {
 
 		return _getFolderPage(
 			parentId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, pagination);
@@ -48,7 +49,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Page<Folder> getFolderFolderPage(
-		Long parentId, Pagination pagination) {
+		Long parentId, Company company, Pagination pagination) {
 
 		try {
 			com.liferay.portal.kernel.repository.model.Folder parentFolder =
