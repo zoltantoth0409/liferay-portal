@@ -22,14 +22,14 @@ import org.osgi.service.component.annotations.Component;
 
 		<#if javaTool.hasJavaParameterAcceptLanguage(openAPIYAML) || javaTool.hasJavaParameterPagination(openAPIYAML)>
 			<#if javaTool.hasJavaParameterAcceptLanguage(openAPIYAML)>
-				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=vulcan.AcceptLanguageContextProvider)",
+				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.AcceptLanguageContextProvider)",
 			</#if>
 
-			"osgi.jaxrs.extension.select=(osgi.jaxrs.name=vulcan.JSONMessageBodyReader)",
-			"osgi.jaxrs.extension.select=(osgi.jaxrs.name=vulcan.JSONMessageBodyWriter)",
+			"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyReader)",
+			"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyWriter)",
 
 			<#if javaTool.hasJavaParameterPagination(openAPIYAML)>
-				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=vulcan.PaginationContextProvider)",
+				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PaginationContextProvider)",
 			</#if>
 		</#if>
 

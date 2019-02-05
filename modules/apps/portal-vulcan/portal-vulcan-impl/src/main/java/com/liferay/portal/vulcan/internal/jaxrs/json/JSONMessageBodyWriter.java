@@ -41,12 +41,11 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=vulcan.JSONMessageBodyWriter\\))",
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyWriter\\))",
 		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=vulcan.JSONMessageBodyWriter",
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.JSONMessageBodyWriter"
 	},
-	scope = ServiceScope.PROTOTYPE,
-	service = MessageBodyWriter.class
+	scope = ServiceScope.PROTOTYPE, service = MessageBodyWriter.class
 )
 @Produces(MediaType.APPLICATION_JSON)
 @Provider

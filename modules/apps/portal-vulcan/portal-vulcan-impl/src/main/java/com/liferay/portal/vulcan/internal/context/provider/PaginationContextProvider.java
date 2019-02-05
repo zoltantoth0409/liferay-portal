@@ -34,12 +34,11 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=vulcan.PaginationContextProvider\\))",
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.PaginationContextProvider\\))",
 		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=vulcan.PaginationContextProvider",
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.PaginationContextProvider"
 	},
-	scope = ServiceScope.PROTOTYPE,
-	service = ContextProvider.class
+	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
 )
 @Provider
 public class PaginationContextProvider implements ContextProvider<Pagination> {
