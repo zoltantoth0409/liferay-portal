@@ -25,20 +25,9 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
+import com.liferay.portal.vulcan.internal.context.provider.test.util.MockMessage;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.cxf.interceptor.InterceptorChain;
 import org.apache.cxf.jaxrs.ext.ContextProvider;
-import org.apache.cxf.message.Attachment;
-import org.apache.cxf.message.Exchange;
-import org.apache.cxf.message.Message;
-import org.apache.cxf.transport.Destination;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
@@ -73,168 +62,13 @@ public class CompanyContextProviderTest {
 				new CompanyMockHttpServletRequest(actualCompany, group);
 
 			Company finalCompany = _companyContextProvider.createContext(
-				_createMessage(companyMockHttpServletRequest));
+				new MockMessage(companyMockHttpServletRequest));
 
 			Assert.assertEquals(actualCompany, finalCompany);
 		}
 		finally {
 			CompanyLocalServiceUtil.deleteCompany(actualCompany.getCompanyId());
 		}
-	}
-
-	private Message _createMessage(HttpServletRequest httpServletRequest) {
-		return new Message() {
-
-			@Override
-			public void clear() {
-			}
-
-			@Override
-			public boolean containsKey(Object key) {
-				return false;
-			}
-
-			@Override
-			public boolean containsValue(Object value) {
-				return false;
-			}
-
-			@Override
-			public Set<Entry<String, Object>> entrySet() {
-				return null;
-			}
-
-			@Override
-			public <T> T get(Class<T> clazz) {
-				return null;
-			}
-
-			@Override
-			public Object get(Object key) {
-				return null;
-			}
-
-			@Override
-			public Collection<Attachment> getAttachments() {
-				return null;
-			}
-
-			@Override
-			public <T> T getContent(Class<T> clazz) {
-				return null;
-			}
-
-			@Override
-			public Set<Class<?>> getContentFormats() {
-				return null;
-			}
-
-			@Override
-			public Object getContextualProperty(String contextProperty) {
-				if (Objects.equals(contextProperty, "HTTP.REQUEST")) {
-					return httpServletRequest;
-				}
-
-				return null;
-			}
-
-			@Override
-			public Set<String> getContextualPropertyKeys() {
-				return null;
-			}
-
-			@Override
-			public Destination getDestination() {
-				return null;
-			}
-
-			@Override
-			public Exchange getExchange() {
-				return null;
-			}
-
-			@Override
-			public String getId() {
-				return null;
-			}
-
-			@Override
-			public InterceptorChain getInterceptorChain() {
-				return null;
-			}
-
-			@Override
-			public boolean isEmpty() {
-				return false;
-			}
-
-			@Override
-			public Set<String> keySet() {
-				return null;
-			}
-
-			@Override
-			public <T> void put(Class<T> clazz, T t) {
-			}
-
-			@Override
-			public Object put(String key, Object value) {
-				return null;
-			}
-
-			@Override
-			public void putAll(Map<? extends String, ?> map) {
-			}
-
-			@Override
-			public <T> T remove(Class<T> clazz) {
-				return null;
-			}
-
-			@Override
-			public Object remove(Object key) {
-				return null;
-			}
-
-			@Override
-			public <T> void removeContent(Class<T> clazz) {
-			}
-
-			@Override
-			public void resetContextCache() {
-			}
-
-			@Override
-			public void setAttachments(Collection<Attachment> collection) {
-			}
-
-			@Override
-			public <T> void setContent(Class<T> clazz, Object object) {
-			}
-
-			@Override
-			public void setExchange(Exchange exchange) {
-			}
-
-			@Override
-			public void setId(String id) {
-			}
-
-			@Override
-			public void setInterceptorChain(InterceptorChain interceptorChain) {
-			}
-
-			@Override
-			public int size() {
-				return 0;
-			}
-
-			@Override
-			public Collection<Object> values() {
-				return null;
-			}
-
-		};
 	}
 
 	@Inject(
