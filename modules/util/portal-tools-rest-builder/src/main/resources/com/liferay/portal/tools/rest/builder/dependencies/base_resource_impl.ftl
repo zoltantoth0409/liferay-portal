@@ -8,6 +8,7 @@ package ${configYAML.apiPackagePath}.internal.resource;
 
 import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
 
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;

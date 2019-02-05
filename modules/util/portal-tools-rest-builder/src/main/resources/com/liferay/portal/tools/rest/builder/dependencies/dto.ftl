@@ -6,8 +6,6 @@ package ${configYAML.apiPackagePath}.dto;
 	</#list>
 </#compress>
 
-import com.liferay.portal.kernel.model.Company;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
