@@ -2,6 +2,8 @@ package ${configYAML.apiPackagePath}.internal.resource;
 
 import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
 
+import com.liferay.portal.kernel.model.Company;
+
 import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;

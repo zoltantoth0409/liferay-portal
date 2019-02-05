@@ -1,5 +1,7 @@
 package ${configYAML.apiPackagePath}.internal.jaxrs.application;
 
+import com.liferay.portal.kernel.model.Company;
+
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.Application;
@@ -43,6 +45,7 @@ import org.osgi.service.component.annotations.Component;
 
 		"auth.verifier.auth.verifier.PortalSessionAuthVerifier.urls.includes=/*",
 		"osgi.jaxrs.application.base=${configYAML.application.baseURI}",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.CompanyContextProvider)",
 		"osgi.jaxrs.name=${configYAML.application.name}.rest"
 	},
 	service = Application.class

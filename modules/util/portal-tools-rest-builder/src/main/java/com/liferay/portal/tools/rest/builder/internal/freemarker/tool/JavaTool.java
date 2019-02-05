@@ -318,6 +318,10 @@ public class JavaTool {
 			javaParameters.add(javaParameter);
 		}
 
+		javaParameters.add(
+			new JavaParameter(
+				Collections.singletonList("@Context"), "company", "Company"));
+
 		return javaParameters;
 	}
 
