@@ -45,6 +45,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 					parentId, WorkflowConstants.STATUS_APPROVED,
 					pagination.getStartPosition(), pagination.getEndPosition()),
 				this::_toBlogPosting),
+			pagination,
 			_blogsEntryService.getGroupEntriesCount(
 				parentId, WorkflowConstants.STATUS_APPROVED));
 	}

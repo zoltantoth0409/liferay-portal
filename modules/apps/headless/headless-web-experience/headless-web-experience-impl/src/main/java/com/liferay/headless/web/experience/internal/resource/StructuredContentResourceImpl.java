@@ -66,7 +66,7 @@ public class StructuredContentResourceImpl
 		return Page.of(
 			transform(
 				_journalHelper.getArticles(hits), this::_toStructuredContent),
-			hits.getLength());
+			pagination, hits.getLength());
 	}
 
 	private SearchContext _createSearchContext(
