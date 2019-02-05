@@ -59,12 +59,17 @@ public class CompanyContextProviderTest {
 				company.getCompanyId(), user.getUserId(), 0L);
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new CompanyMockHttpServletRequest(company, group);
+				new MockHttpServletRequest() {
+					{
+						addHeader("Host", company.getVirtualHostname());
+						setRemoteHost(company.getPortalURL(group.getGroupId()));
+					}
+				};
 
 			Assert.assertEquals(
 				company,
 				_companyContextProvider.createContext(
-					new MockMessage(companyMockHttpServletRequest)));
+					new MockMessage(mockHttpServletRequest)));
 		}
 		finally {
 			CompanyLocalServiceUtil.deleteCompany(company.getCompanyId());
@@ -75,17 +80,5 @@ public class CompanyContextProviderTest {
 		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.CompanyContextProvider"
 	)
 	private ContextProvider<Company> _companyContextProvider;
-
-	private class CompanyMockHttpServletRequest extends MockHttpServletRequest {
-
-		public CompanyMockHttpServletRequest(Company company, Group group)
-			throws PortalException {
-
-			addHeader("Host", company.getVirtualHostname());
-
-			setRemoteHost(company.getPortalURL(group.getGroupId()));
-		}
-
-	}
 
 }
