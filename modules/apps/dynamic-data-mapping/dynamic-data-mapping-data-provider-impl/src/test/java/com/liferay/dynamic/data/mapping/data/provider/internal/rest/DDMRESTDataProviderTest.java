@@ -24,9 +24,11 @@ import com.liferay.dynamic.data.mapping.util.DDMFormInstanceFactory;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.util.HtmlImpl;
 
 import java.util.Locale;
 import java.util.Map;
@@ -52,6 +54,7 @@ public class DDMRESTDataProviderTest {
 
 	@Before
 	public void setUp() throws Exception {
+		setUpHtmlUtil();
 		setUpLanguageUtil();
 		setUpPortalUtil();
 		setUpResourceBundleUtil();
@@ -167,6 +170,12 @@ public class DDMRESTDataProviderTest {
 
 		return DDMFormInstanceFactory.create(
 			DDMRESTDataProviderSettings.class, ddmFormValues);
+	}
+
+	protected void setUpHtmlUtil() {
+		HtmlUtil htmlUtil = new HtmlUtil();
+
+		htmlUtil.setHtml(new HtmlImpl());
 	}
 
 	protected void setUpLanguageUtil() {
