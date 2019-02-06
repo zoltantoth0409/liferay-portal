@@ -116,13 +116,14 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private LocalDateTime _getLocalDateTime(Date date) {
-		Date publishedDate = Optional.ofNullable(
-			date
-		).orElseGet(
-			Date::new
-		);
+		Timestamp timestamp = null;
 
-		Timestamp timestamp = new Timestamp(publishedDate.getTime());
+		if (date != null) {
+			timestamp = new Timestamp(date.getTime());
+		}
+		else {
+			timestamp = new Timestamp(System.currentTimeMillis());
+		}
 
 		return timestamp.toLocalDateTime();
 	}
