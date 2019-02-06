@@ -308,7 +308,8 @@ public class JavaTool {
 
 		if (StringUtil.equals(type, "array") && (items != null)) {
 			if (items.getType() != null) {
-				return StringUtil.upperCaseFirstLetter(items.getType()) + "[]";
+				return _getSingleType(items.getType(), items.getFormat()) +
+					"[]";
 			}
 
 			if (items.getReference() != null) {
@@ -317,19 +318,7 @@ public class JavaTool {
 		}
 
 		if (type != null) {
-			if (StringUtil.equals(format, "date-time") &&
-				StringUtil.equals(type, "string")) {
-
-				return "Date";
-			}
-
-			if (StringUtil.equals(format, "int64") &&
-				StringUtil.equals(type, "integer")) {
-
-				return "Long";
-			}
-
-			return StringUtil.upperCaseFirstLetter(type);
+			return _getSingleType(type, format);
 		}
 
 		if (allOfSchemas != null) {
@@ -515,6 +504,22 @@ public class JavaTool {
 		}
 
 		return "Response";
+	}
+
+	private String _getSingleType(String type, String format) {
+		if (StringUtil.equals(format, "date-time") &&
+			StringUtil.equals(type, "string")) {
+
+			return "Date";
+		}
+
+		if (StringUtil.equals(format, "int64") &&
+			StringUtil.equals(type, "integer")) {
+
+			return "Long";
+		}
+
+		return StringUtil.upperCaseFirstLetter(type);
 	}
 
 	private boolean _hasJavaParameterAcceptLanguage(Operation operation) {
