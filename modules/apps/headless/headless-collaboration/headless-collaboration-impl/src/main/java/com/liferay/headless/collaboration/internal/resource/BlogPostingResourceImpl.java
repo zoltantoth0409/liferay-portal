@@ -18,7 +18,6 @@ import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.headless.collaboration.dto.BlogPosting;
 import com.liferay.headless.collaboration.resource.BlogPostingResource;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -38,7 +37,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 	@Override
 	public Page<BlogPosting> getContentSpaceBlogPostingPage(
-		Long parentId, Company company, Pagination pagination) {
+		Long parentId, Pagination pagination) {
 
 		return Page.of(
 			transform(
