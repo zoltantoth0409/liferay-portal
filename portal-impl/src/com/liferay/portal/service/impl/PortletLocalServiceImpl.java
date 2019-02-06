@@ -1180,9 +1180,16 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 					portlet.getCompanyId(), roleName);
 
 				if (role == null) {
-					_log.warn("No role exist with companyId: " +
-								portlet.getCompanyId() + " and role name: " +
-									roleName);
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							StringBundler.concat(
+								"No role exist with companyId: ",
+								String.valueOf(portlet.getCompanyId()),
+								" and role name: ", roleName,
+								" required by portlet ",
+								portlet.getPortletName(),
+								". Create role and redeploy the portlet."));
+					}
 
 					continue;
 				}
