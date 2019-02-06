@@ -42,7 +42,8 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Page<Folder> getDocumentsRepositoryFolderPage(
-		Long parentId, Pagination pagination) {
+			Long parentId, Pagination pagination)
+		throws Exception {
 
 		return _getFolderPage(
 			parentId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, pagination);
@@ -50,43 +51,29 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Page<Folder> getFolderFolderPage(
-		Long parentId, Pagination pagination) {
+			Long parentId, Pagination pagination)
+		throws Exception {
 
-		try {
-			com.liferay.portal.kernel.repository.model.Folder parentFolder =
-				_dlAppService.getFolder(parentId);
+		com.liferay.portal.kernel.repository.model.Folder parentFolder =
+			_dlAppService.getFolder(parentId);
 
-			return _getFolderPage(
-				parentFolder.getGroupId(), parentFolder.getFolderId(),
-				pagination);
-		}
-		catch (NoSuchFolderException nsfe) {
-			throw new NotFoundException(nsfe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return _getFolderPage(
+			parentFolder.getGroupId(), parentFolder.getFolderId(),
+			pagination);
 	}
 
 	private Page<Folder> _getFolderPage(
-		Long groupId, Long parentFolderId, Pagination pagination) {
+			Long groupId, Long parentFolderId, Pagination pagination)
+		throws Exception {
 
-		try {
-			return Page.of(
-				transform(
-					_dlAppService.getFolders(
-						groupId, parentFolderId, pagination.getStartPosition(),
-						pagination.getEndPosition(), null),
-					this::_toFolder),
-				pagination,
-				_dlAppService.getFoldersCount(groupId, parentFolderId));
-		}
-		catch (NoSuchGroupException nsge) {
-			throw new NotFoundException(nsge);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return Page.of(
+			transform(
+				_dlAppService.getFolders(
+					groupId, parentFolderId, pagination.getStartPosition(),
+					pagination.getEndPosition(), null),
+				this::_toFolder),
+			pagination,
+			_dlAppService.getFoldersCount(groupId, parentFolderId));
 	}
 
 	private Folder _toFolder(
