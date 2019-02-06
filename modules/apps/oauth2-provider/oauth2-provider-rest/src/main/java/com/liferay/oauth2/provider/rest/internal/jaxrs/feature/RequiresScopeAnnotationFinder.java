@@ -55,7 +55,7 @@ public class RequiresScopeAnnotationFinder {
 			return t;
 		}
 
-		List<Annotation> annotations;
+		List<Annotation> annotations = Collections.emptyList();
 
 		if (annotatedElement instanceof Class<?>) {
 			annotations = AnnotationLocator.locate((Class<?>)annotatedElement);
@@ -63,9 +63,6 @@ public class RequiresScopeAnnotationFinder {
 		else if (annotatedElement instanceof Method) {
 			annotations = AnnotationLocator.locate(
 				(Method)annotatedElement, null);
-		}
-		else {
-			annotations = Collections.emptyList();
 		}
 
 		for (Annotation annotation : annotations) {
