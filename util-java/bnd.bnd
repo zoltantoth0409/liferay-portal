@@ -1,6 +1,6 @@
 Bundle-Name: ${manifest.bundle.name}
 Bundle-SymbolicName: ${manifest.bundle.symbolic.name}
-Bundle-Version: 2.5.22
+Bundle-Version: 2.5.23
 Export-Package: com.liferay.util.*
 Import-Package:\
 	com.liferay.*,\
