@@ -177,7 +177,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		}
 		catch (Exception e) {
 			throw new BadRequestException(
-				"Unable to find file entry with id " + imageId, e);
+				"Unable to get file entry " + imageId, e);
 		}
 	}
 
