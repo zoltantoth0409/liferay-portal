@@ -726,7 +726,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		uri = uri.normalize();
 
-		properties.put("osgi.home", uri.getPath());
+		properties.put("osgi.home", uri.toString());
 
 		ProtectionDomain protectionDomain = clazz.getProtectionDomain();
 
