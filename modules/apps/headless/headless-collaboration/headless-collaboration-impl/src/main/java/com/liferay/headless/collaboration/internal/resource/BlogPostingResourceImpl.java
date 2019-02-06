@@ -36,7 +36,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.Objects;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.ClientErrorException;
@@ -163,7 +163,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 		Long imageId = imageObject.getId();
 
-		if ((imageId == null) || imageId.equals(0L)) {
+		if (Objects.equals(imageId, 0L)) {
 			return null;
 		}
 
