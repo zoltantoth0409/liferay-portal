@@ -18,6 +18,7 @@
 
 <%
 OrphanPortletsDisplayContext orphanPortletsDisplayContext = new OrphanPortletsDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
+OrphanPortletsManagementToolbarDisplayContext  = new OrphanPortletsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, orphanPortletsDisplayContext);
 
 Layout selLayout = orphanPortletsDisplayContext.getSelLayout();
 
@@ -26,8 +27,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(orphanPortletsDisplayContext.getBackURL());
 
 renderResponse.setTitle(LanguageUtil.get(request, "orphan-widgets"));
-
-OrphanPortletsManagementToolbarDisplayContext orphanPortletsManagementToolbarDisplayContext = new OrphanPortletsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, orphanPortletsDisplayContext);
 %>
 
 <clay:management-toolbar
