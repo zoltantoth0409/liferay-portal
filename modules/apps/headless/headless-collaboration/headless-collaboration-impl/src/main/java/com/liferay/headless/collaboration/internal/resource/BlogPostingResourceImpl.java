@@ -173,7 +173,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 			return new ImageSelector(
 				FileUtil.getBytes(fileEntry.getContentStream()),
 				fileEntry.getFileName(), fileEntry.getMimeType(),
-				"{\"height\": 0,\"width\": 0,\"x\": 0,\"y\": 0}");
+				"{\"height\": 0, \"width\": 0, \"x\": 0, \"y\": 0}");
 		}
 		catch (Exception e) {
 			throw new BadRequestException(
