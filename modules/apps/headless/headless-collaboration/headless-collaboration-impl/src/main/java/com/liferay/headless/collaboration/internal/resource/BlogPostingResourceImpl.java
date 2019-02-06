@@ -105,7 +105,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				localDateTime.getHour(), localDateTime.getMinute(), true, true,
 				new String[0], blogPosting.getCaption(),
 				_getImageSelector(blogPosting), null,
-				_getServiceContext(contentSpaceId, blogPosting));
+				_createServiceContext(contentSpaceId, blogPosting));
 
 			return _toBlogPosting(blogsEntry);
 		}
@@ -148,7 +148,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				localDateTime.getHour(), localDateTime.getMinute(), true, true,
 				new String[0], blogPosting.getCaption(),
 				_getImageSelector(blogPosting), null,
-				_getServiceContext(blogsEntry.getGroupId(), blogPosting));
+				_createServiceContext(blogsEntry.getGroupId(), blogPosting));
 
 			return _toBlogPosting(updatedBlogsEntry);
 		}
@@ -181,7 +181,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		}
 	}
 
-	private ServiceContext _getServiceContext(
+	private ServiceContext _createServiceContext(
 		long groupId, BlogPosting blogPosting) {
 
 		ServiceContext serviceContext = new ServiceContext();
