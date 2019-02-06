@@ -93,15 +93,8 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-		Date publishedDate = Optional.ofNullable(
-			blogPosting.getDatePublished()
-		).orElseGet(
-			Date::new
-		);
-
-		Timestamp timestamp = new Timestamp(publishedDate.getTime());
-
-		LocalDateTime localDateTime = timestamp.toLocalDateTime();
+		LocalDateTime localDateTime = _getLocalDateTime(
+			blogPosting.getDatePublished());
 
 		try {
 			BlogsEntry blogsEntry = _blogsEntryService.addEntry(
@@ -122,20 +115,25 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		}
 	}
 
-	@Override
-	public BlogPosting putBlogPosting(
-			Long blogPostingId, BlogPosting blogPosting)
-		throws Exception {
-
+	private LocalDateTime _getLocalDateTime(Date date) {
 		Date publishedDate = Optional.ofNullable(
-			blogPosting.getDatePublished()
+			date
 		).orElseGet(
 			Date::new
 		);
 
 		Timestamp timestamp = new Timestamp(publishedDate.getTime());
 
-		LocalDateTime localDateTime = timestamp.toLocalDateTime();
+		return timestamp.toLocalDateTime();
+	}
+
+	@Override
+	public BlogPosting putBlogPosting(
+			Long blogPostingId, BlogPosting blogPosting)
+		throws Exception {
+
+		LocalDateTime localDateTime = _getLocalDateTime(
+			blogPosting.getDatePublished());
 
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
