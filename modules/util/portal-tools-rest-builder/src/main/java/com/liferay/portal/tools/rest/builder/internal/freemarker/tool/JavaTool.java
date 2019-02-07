@@ -136,7 +136,7 @@ public class JavaTool {
 
 		String parameterName = CamelCaseUtil.toCamelCase(
 			parameter.getName(), false);
-		String parameterType = _getJavaType(
+		String parameterType = _getJavaParameterType(
 			null, schema.getFormat(), schema.getItems(), schema.getReference(),
 			schema.getType());
 
@@ -148,7 +148,7 @@ public class JavaTool {
 		Properties properties, String propertyName) {
 
 		String parameterName = CamelCaseUtil.toCamelCase(propertyName, false);
-		String parameterType = _getJavaType(
+		String parameterType = _getJavaParameterType(
 			properties.getAllOfSchemas(), properties.getFormat(),
 			properties.getItems(), properties.getReference(),
 			properties.getType());
@@ -250,6 +250,22 @@ public class JavaTool {
 	private JavaTool() {
 	}
 
+	private String _getJavaDataType(String type, String format) {
+		if (StringUtil.equals(format, "date-time") &&
+			StringUtil.equals(type, "string")) {
+
+			return "Date";
+		}
+
+		if (StringUtil.equals(format, "int64") &&
+			StringUtil.equals(type, "integer")) {
+
+			return "Long";
+		}
+
+		return StringUtil.upperCaseFirstLetter(type);
+	}
+
 	private List<JavaParameter> _getJavaParameters(
 		Operation operation, String returnType, String schemaName) {
 
@@ -302,14 +318,16 @@ public class JavaTool {
 		return javaParameters;
 	}
 
-	private String _getJavaType(
+	private String _getJavaParameterType(
 		List<Schema> allOfSchemas, String format, Items items, String reference,
 		String type) {
 
 		if (StringUtil.equals(type, "array") && (items != null)) {
 			if (items.getType() != null) {
-				return _getSingleType(items.getType(), items.getFormat()) +
-					"[]";
+				String itemsFormat = items.getFormat();
+				String itemsType = items.getType();
+
+				return _getJavaDataType(itemsType, itemsFormat) + "[]";
 			}
 
 			if (items.getReference() != null) {
@@ -318,7 +336,7 @@ public class JavaTool {
 		}
 
 		if (type != null) {
-			return _getSingleType(type, format);
+			return _getJavaDataType(type, format);
 		}
 
 		if (allOfSchemas != null) {
@@ -484,7 +502,7 @@ public class JavaTool {
 					continue;
 				}
 
-				String javaType = _getJavaType(
+				String javaType = _getJavaParameterType(
 					null, schema.getFormat(), schema.getItems(),
 					schema.getReference(), schema.getType());
 
@@ -504,22 +522,6 @@ public class JavaTool {
 		}
 
 		return "Response";
-	}
-
-	private String _getSingleType(String type, String format) {
-		if (StringUtil.equals(format, "date-time") &&
-			StringUtil.equals(type, "string")) {
-
-			return "Date";
-		}
-
-		if (StringUtil.equals(format, "int64") &&
-			StringUtil.equals(type, "integer")) {
-
-			return "Long";
-		}
-
-		return StringUtil.upperCaseFirstLetter(type);
 	}
 
 	private boolean _hasJavaParameterAcceptLanguage(Operation operation) {
