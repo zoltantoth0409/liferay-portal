@@ -14,21 +14,13 @@
 
 package com.liferay.headless.document.library.internal.resource;
 
-import com.liferay.document.library.kernel.exception.NoSuchFolderException;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.headless.document.library.resource.FolderResource;
-import com.liferay.portal.kernel.exception.NoSuchGroupException;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
-
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.NotAuthorizedException;
-import javax.ws.rs.NotFoundException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,7 +37,8 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Page<Folder> getDocumentsRepositoryFolderPage(
-		Long documentsRepositoryId, Pagination pagination) {
+			Long documentsRepositoryId, Pagination pagination)
+		throws Exception {
 
 		return _getFolderPage(
 			documentsRepositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
@@ -53,42 +46,34 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	}
 
 	@Override
-	public Folder getFolder(Long folderId) {
+	public Folder getFolder(Long folderId) throws Exception {
 		return _toFolder(_getFolder(folderId));
 	}
 
 	@Override
 	public Page<Folder> getFolderFolderPage(
-		Long folderId, Pagination pagination) {
+			Long folderId, Pagination pagination)
+		throws Exception {
 
-		try {
-			com.liferay.portal.kernel.repository.model.Folder parentFolder =
-				_dlAppService.getFolder(folderId);
+		com.liferay.portal.kernel.repository.model.Folder parentFolder =
+			_dlAppService.getFolder(folderId);
 
-			return _getFolderPage(
-				parentFolder.getGroupId(), parentFolder.getFolderId(),
-				pagination);
-		}
-		catch (NoSuchFolderException nsfe) {
-			throw new NotFoundException(nsfe);
-		}
-		catch (PrincipalException pe) {
-			throw new NotAuthorizedException(pe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return _getFolderPage(
+			parentFolder.getGroupId(), parentFolder.getFolderId(), pagination);
 	}
 
 	@Override
 	public Folder postDocumentsRepositoryFolder(
-		Long documentsRepositoryId, Folder folder) {
+			Long documentsRepositoryId, Folder folder)
+		throws Exception {
 
 		return _addFolder(documentsRepositoryId, 0L, folder);
 	}
 
 	@Override
-	public Folder postFolderFolder(Long folderId, Folder folder) {
+	public Folder postFolderFolder(Long folderId, Folder folder)
+		throws Exception {
+
 		com.liferay.portal.kernel.repository.model.Folder parentFolder =
 			_getFolder(folderId);
 
@@ -97,83 +82,45 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	}
 
 	@Override
-	public Folder putFolder(Long folderId, Folder folder) {
-		try {
-			return _toFolder(
-				_dlAppService.updateFolder(
-					folderId, folder.getName(), folder.getDescription(),
-					new ServiceContext()));
-		}
-		catch (NoSuchFolderException nsfe) {
-			throw new NotFoundException(nsfe);
-		}
-		catch (PrincipalException pe) {
-			throw new NotAuthorizedException(pe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+	public Folder putFolder(Long folderId, Folder folder) throws Exception {
+		return _toFolder(
+			_dlAppService.updateFolder(
+				folderId, folder.getName(), folder.getDescription(),
+				new ServiceContext()));
 	}
 
 	private Folder _addFolder(
-		Long documentsRepositoryId, Long parentFolderId, Folder folder) {
+			Long documentsRepositoryId, Long parentFolderId, Folder folder)
+		throws Exception {
 
-		try {
-			return _toFolder(
-				_dlAppService.addFolder(
-					documentsRepositoryId, parentFolderId, folder.getName(),
-					folder.getDescription(), new ServiceContext()));
-		}
-		catch (NoSuchGroupException nsge) {
-			throw new NotFoundException(nsge);
-		}
-		catch (PrincipalException pe) {
-			throw new NotAuthorizedException(pe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return _toFolder(
+			_dlAppService.addFolder(
+				documentsRepositoryId, parentFolderId, folder.getName(),
+				folder.getDescription(), new ServiceContext()));
 	}
 
 	private com.liferay.portal.kernel.repository.model.Folder _getFolder(
-		Long folderId) {
+			Long folderId)
+		throws Exception {
 
-		try {
-			return _dlAppService.getFolder(folderId);
-		}
-		catch (NoSuchFolderException nsfe) {
-			throw new NotFoundException(nsfe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return _dlAppService.getFolder(folderId);
 	}
 
 	private Page<Folder> _getFolderPage(
-		Long documentsRepositoryId, Long parentFolderId,
-		Pagination pagination) {
+			Long documentsRepositoryId, Long parentFolderId,
+			Pagination pagination)
+		throws Exception {
 
-		try {
-			return Page.of(
-				transform(
-					_dlAppService.getFolders(
-						documentsRepositoryId, parentFolderId,
-						pagination.getStartPosition(),
-						pagination.getEndPosition(), null),
-					this::_toFolder),
-				pagination,
-				_dlAppService.getFoldersCount(
-					documentsRepositoryId, parentFolderId));
-		}
-		catch (NoSuchGroupException nsge) {
-			throw new NotFoundException(nsge);
-		}
-		catch (PrincipalException pe) {
-			throw new NotAuthorizedException(pe);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return Page.of(
+			transform(
+				_dlAppService.getFolders(
+					documentsRepositoryId, parentFolderId,
+					pagination.getStartPosition(), pagination.getEndPosition(),
+					null),
+				this::_toFolder),
+			pagination,
+			_dlAppService.getFoldersCount(
+				documentsRepositoryId, parentFolderId));
 	}
 
 	private Folder _toFolder(
