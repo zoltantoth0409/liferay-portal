@@ -46,6 +46,7 @@ import org.osgi.service.component.annotations.Component;
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.CompanyContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.NoSuchModelExceptionMapper)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PortalExceptionMapper)",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PrincipalExceptionMapper)",
 		"osgi.jaxrs.name=${configYAML.application.name}.rest"
 	},
 	service = Application.class
