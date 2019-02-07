@@ -11,7 +11,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author ${configYAML.author}
  */
 @Component(
-	properties = "OSGI-INF/${versionDirName}/${schemaPath}.properties",
+	properties = "OSGI-INF/rest/${versionDirName}/${schemaPath}.properties",
 	scope = ServiceScope.PROTOTYPE, service = ${schemaName}Resource.class
 )
 public class ${schemaName}ResourceImpl extends Base${schemaName}ResourceImpl {

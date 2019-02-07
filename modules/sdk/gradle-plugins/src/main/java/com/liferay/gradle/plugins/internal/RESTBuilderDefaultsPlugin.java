@@ -73,7 +73,7 @@ public class RESTBuilderDefaultsPlugin
 			project, JavaPlugin.PROCESS_RESOURCES_TASK_NAME);
 
 		copy.into(
-			"META-INF/yaml",
+			"META-INF/rest",
 			new Closure<Void>(copy) {
 
 				@SuppressWarnings("unused")

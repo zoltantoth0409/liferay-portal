@@ -65,10 +65,13 @@ public class RESTBuilder {
 	public RESTBuilder(String copyrightFileName, String restConfigDirName)
 		throws Exception {
 
-		_configDir = new File(restConfigDirName);
+		long startTime = System.currentTimeMillis();
+
 		_copyrightFileName = copyrightFileName;
 
-		File configFile = new File(_configDir, _REST_CONFIG_FILE_NAME);
+		_configDir = new File(restConfigDirName);
+
+		File configFile = new File(_configDir, "rest-config.yaml");
 
 		_configYAML = YAMLUtil.loadConfigYAML(configFile);
 
@@ -121,13 +124,11 @@ public class RESTBuilder {
 			}
 		}
 
-		FileUtil.deleteFiles(_configYAML.getApiDir(), _START_TIME_MILLIS);
-
-		FileUtil.deleteFiles(_configYAML.getImplDir(), _START_TIME_MILLIS);
-
+		FileUtil.deleteFiles(_configYAML.getApiDir(), startTime);
+		FileUtil.deleteFiles(_configYAML.getImplDir(), startTime);
 		FileUtil.deleteFiles(
 			_configYAML.getImplDir() + "/../resources/OSGI-INF/",
-			_START_TIME_MILLIS);
+			startTime);
 	}
 
 	private void _createApplicationFile(Map<String, Object> context)
@@ -215,7 +216,7 @@ public class RESTBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_configYAML.getImplDir());
-		sb.append("/../resources/OSGI-INF/");
+		sb.append("/../resources/OSGI-INF/rest/");
 		sb.append(versionDirName);
 		sb.append("/");
 		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
@@ -301,7 +302,7 @@ public class RESTBuilder {
 
 			content = content.replace(
 				"properties = \"OSGI-INF/",
-				"properties = \"OSGI-INF/" + versionDirName + "/");
+				"properties = \"OSGI-INF/rest/" + versionDirName + "/");
 
 			File dir = newFile.getParentFile();
 
@@ -328,10 +329,6 @@ public class RESTBuilder {
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_impl", context));
 	}
-
-	private static final String _REST_CONFIG_FILE_NAME = "rest-config.yaml";
-
-	private static final long _START_TIME_MILLIS = System.currentTimeMillis();
 
 	private final File _configDir;
 	private final ConfigYAML _configYAML;

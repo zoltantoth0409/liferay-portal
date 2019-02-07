@@ -32,7 +32,7 @@ import java.nio.file.attribute.FileTime;
  */
 public class FileUtil {
 
-	public static void deleteFiles(String dirName, long startTimeMillis)
+	public static void deleteFiles(String dirName, long startTime)
 		throws Exception {
 
 		Files.walkFileTree(
@@ -46,7 +46,7 @@ public class FileUtil {
 
 					FileTime fileTime = basicFileAttributes.lastModifiedTime();
 
-					if (startTimeMillis < fileTime.toMillis()) {
+					if (startTime < fileTime.toMillis()) {
 						return FileVisitResult.CONTINUE;
 					}
 
