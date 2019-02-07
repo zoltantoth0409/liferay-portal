@@ -269,8 +269,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		long groupId = fragmentEntryLink.getGroupId();
 
-		long plid = PortletKeys.PREFS_PLID_SHARED;
-
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
@@ -279,6 +277,8 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 
 		Group group = _groupLocalService.getGroup(groupId);
+
+		long plid = PortletKeys.PREFS_PLID_SHARED;
 
 		if (fragmentEntryLink.getClassNameId() ==
 				_portal.getClassNameId(Layout.class)) {
