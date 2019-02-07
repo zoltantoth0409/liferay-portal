@@ -144,9 +144,9 @@ public class UADHierarchyDisplayTest {
 		}
 	}
 
-	private static final long _USER_ID_OTHER = 200;
-
 	private static final long _USER_ID = 100;
+
+	private static final long _USER_ID_OTHER = 200;
 
 	private final DummyService<DummyContainer> _dummyContainerService =
 		new DummyService<>(200, DummyContainer::new);
