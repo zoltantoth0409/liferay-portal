@@ -47,18 +47,18 @@ public class UADHierarchyDisplayTest {
 		_folderA = _dummyContainerService.create("dummyContainerA", _USER_ID);
 
 		_dummyEntryService.create(
-			"dummyEntryAA", _OTHER_USER_ID, _folderA.getId());
+			"dummyEntryAA", _USER_ID_OTHER, _folderA.getId());
 		_dummyEntryService.create("dummyEntryAB", _USER_ID, _folderA.getId());
 
 		DummyContainer folderAA = _dummyContainerService.create(
-			"dummyContainerAA", _OTHER_USER_ID, _folderA.getId());
+			"dummyContainerAA", _USER_ID_OTHER, _folderA.getId());
 		DummyContainer folderAB = _dummyContainerService.create(
 			"dummyContainerAB", _USER_ID, _folderA.getId());
 
 		_dummyEntryService.create(
-			"dummyEntryAAA", _OTHER_USER_ID, folderAA.getId());
+			"dummyEntryAAA", _USER_ID_OTHER, folderAA.getId());
 		_dummyEntryService.create(
-			"dummyEntryABA", _OTHER_USER_ID, folderAB.getId());
+			"dummyEntryABA", _USER_ID_OTHER, folderAB.getId());
 		_dummyEntryService.create("dummyEntryAAB", _USER_ID, folderAA.getId());
 		_dummyEntryService.create("dummyEntryABB", _USER_ID, folderAB.getId());
 
@@ -70,17 +70,17 @@ public class UADHierarchyDisplayTest {
 			"dummyContainerB", _USER_ID);
 
 		_dummyEntryService.create(
-			"dummyEntryBA", _OTHER_USER_ID, folderB.getId());
+			"dummyEntryBA", _USER_ID_OTHER, folderB.getId());
 		_dummyEntryService.create("dummyEntryBB", _USER_ID, folderB.getId());
 		_dummyEntryService.create("dummyEntryBC", _USER_ID, folderB.getId());
 
 		DummyContainer folderBA = _dummyContainerService.create(
-			"dummyContainerBA", _OTHER_USER_ID, folderB.getId());
+			"dummyContainerBA", _USER_ID_OTHER, folderB.getId());
 		DummyContainer folderBB = _dummyContainerService.create(
 			"dummyContainerBA", _USER_ID, folderB.getId());
 
 		_dummyEntryService.create(
-			"dummyContainerBAA", _OTHER_USER_ID, folderBA.getId());
+			"dummyContainerBAA", _USER_ID_OTHER, folderBA.getId());
 		_dummyEntryService.create(
 			"dummyContainerBAB", _USER_ID, folderBA.getId());
 
@@ -89,7 +89,7 @@ public class UADHierarchyDisplayTest {
 		_userFolderAndItemCountMap.put(folderBB.getId(), 0);
 
 		DummyContainer folderC = _dummyContainerService.create(
-			"dummyContainerC", _OTHER_USER_ID);
+			"dummyContainerC", _USER_ID_OTHER);
 
 		_userFolderAndItemCountMap.put(folderC.getId(), 0);
 
@@ -102,7 +102,7 @@ public class UADHierarchyDisplayTest {
 	@Test
 	public void testCountAll() {
 		Assert.assertEquals(11, _uadHierarchyDisplay.countAll(_USER_ID));
-		Assert.assertEquals(8, _uadHierarchyDisplay.countAll(_OTHER_USER_ID));
+		Assert.assertEquals(8, _uadHierarchyDisplay.countAll(_USER_ID_OTHER));
 	}
 
 	@Test
@@ -144,7 +144,7 @@ public class UADHierarchyDisplayTest {
 		}
 	}
 
-	private static final long _OTHER_USER_ID = 200;
+	private static final long _USER_ID_OTHER = 200;
 
 	private static final long _USER_ID = 100;
 
