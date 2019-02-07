@@ -211,7 +211,7 @@ public class RESTBuilder {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_configYAML.getImplDir());
-		sb.append("/../resources/OSGI-INF/rest/");
+		sb.append("/../resources/OSGI-INF/liferay/rest/");
 		sb.append(versionDirName);
 		sb.append("/");
 		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
