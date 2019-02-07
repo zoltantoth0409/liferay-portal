@@ -36,7 +36,7 @@ public class CTJaxRsUtil {
 		if (!ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingNotEnabledException(
 				companyId,
-				"Cannot create Change Tracking Collection, Change Tracking " +
+				"Cannot create change tracking collection, change tracking " +
 					"is disabled in the company");
 		}
 	}
@@ -55,7 +55,7 @@ public class CTJaxRsUtil {
 
 		if (user == null) {
 			throw new NoSuchUserException(
-				0, "No user is found with id " + userId);
+				0, "No user is found with ID " + userId);
 		}
 
 		return user;
