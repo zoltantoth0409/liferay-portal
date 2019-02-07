@@ -88,11 +88,11 @@ public class ContentPageLayoutEditorDisplayContext
 				SoyContextFactoryUtil.createSoyContext();
 
 			segmentsSoyContext.put(
-				"segmentLabel",
-				segmentsEntry.getName(themeDisplay.getLocale()));
-			segmentsSoyContext.put(
 				"segmentId", segmentsEntry.getSegmentsEntryId());
 			segmentsSoyContext.put("segmentKey", segmentsEntry.getKey());
+			segmentsSoyContext.put(
+				"segmentLabel",
+				segmentsEntry.getName(themeDisplay.getLocale()));
 
 			availableSegmentsEntriesSoyContext.put(
 				segmentsEntry.getKey(), segmentsSoyContext);
