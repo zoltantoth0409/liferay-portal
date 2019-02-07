@@ -168,23 +168,6 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 	}
 
 	private void _renderJavaScript() throws IOException {
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Map<String, Object> context = getContext();
-
-		if (context == null) {
-			context = new HashMap<>();
-		}
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		context.put("namespace", portletDisplay.getNamespace());
-
-		context.put(
-			"spritemap",
-			themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
-
 		StringBundler sb = new StringBundler(9);
 
 		sb.append("Liferay.component('");
@@ -198,7 +181,26 @@ public class ComponentTag extends ParamAndPropertyAncestorTagImpl {
 		sb.append(moduleName);
 
 		sb.append(".default(");
+
+		Map<String, Object> context = getContext();
+
+		if (context == null) {
+			context = new HashMap<>();
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		context.put("namespace", portletDisplay.getNamespace());
+
+		context.put(
+			"spritemap",
+			themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
+
 		sb.append(_jsonSerializer.serializeDeep(context));
+
 		sb.append("), { portletId: '");
 		sb.append(portletDisplay.getId());
 		sb.append("'});");
