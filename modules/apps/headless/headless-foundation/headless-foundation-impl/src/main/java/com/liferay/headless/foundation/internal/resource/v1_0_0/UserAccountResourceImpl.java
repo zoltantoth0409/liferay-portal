@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/rest/v1_0_0/user-account.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0_0/user-account.properties",
 	scope = ServiceScope.PROTOTYPE, service = UserAccountResource.class
 )
 public class UserAccountResourceImpl extends BaseUserAccountResourceImpl {

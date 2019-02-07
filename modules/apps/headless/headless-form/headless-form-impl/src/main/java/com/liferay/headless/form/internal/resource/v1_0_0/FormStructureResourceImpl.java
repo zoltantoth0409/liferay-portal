@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/rest/v1_0_0/form-structure.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0_0/form-structure.properties",
 	scope = ServiceScope.PROTOTYPE, service = FormStructureResource.class
 )
 public class FormStructureResourceImpl extends BaseFormStructureResourceImpl {

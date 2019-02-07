@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/rest/v1_0_0/web-url.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0_0/web-url.properties",
 	scope = ServiceScope.PROTOTYPE, service = WebUrlResource.class
 )
 public class WebUrlResourceImpl extends BaseWebUrlResourceImpl {
