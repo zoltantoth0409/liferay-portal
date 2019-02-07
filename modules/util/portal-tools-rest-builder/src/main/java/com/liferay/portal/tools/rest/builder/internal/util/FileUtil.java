@@ -26,8 +26,9 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Peter Shin
@@ -37,7 +38,7 @@ public class FileUtil {
 	public static void deleteFiles(String dirName, List<File> files)
 		throws Exception {
 
-		List<String> canonicalPaths = new ArrayList<>();
+		Set<String> canonicalPaths = new HashSet<>();
 
 		for (File file : files) {
 			canonicalPaths.add(file.getCanonicalPath());
