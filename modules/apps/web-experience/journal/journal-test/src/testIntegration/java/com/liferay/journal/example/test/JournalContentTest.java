@@ -131,7 +131,7 @@ public class JournalContentTest {
 
 	protected Layout getLayout() throws PortalException {
 		List<Layout> layouts = _layoutLocalService.getLayouts(
-			TestPropsValues.getGroupId(), false, 0, 1, null);
+			TestPropsValues.getGroupId(), false);
 
 		return layouts.get(0);
 	}
