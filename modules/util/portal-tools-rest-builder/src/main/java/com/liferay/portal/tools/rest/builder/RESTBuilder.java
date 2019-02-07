@@ -23,6 +23,7 @@ import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.JavaTool;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.util.FreeMarkerUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.CamelCaseUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
+import com.liferay.portal.tools.rest.builder.internal.util.FormatUtil;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.Application;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.ConfigYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Components;
@@ -32,6 +33,9 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Schema;
 import com.liferay.portal.tools.rest.builder.internal.yaml.util.YAMLUtil;
 
 import java.io.File;
+
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -263,19 +267,64 @@ public class RESTBuilder {
 		sb.append(apiPackagePath.replace('.', '/'));
 
 		sb.append("/internal/resource/");
+		sb.append(schemaName);
+		sb.append("ResourceImpl.java");
+
+		File oldFile = new File(sb.toString());
+
+		sb.setLength(0);
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append("/internal/resource/");
 		sb.append(versionDirName);
 		sb.append("/");
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		File file = new File(sb.toString());
+		File newFile = new File(sb.toString());
 
-		if (file.exists()) {
+		if (oldFile.exists()) {
+			String content = FileUtil.read(oldFile);
+
+			content = content.replace(
+				apiPackagePath + ".dto",
+				apiPackagePath + ".dto." + versionDirName);
+
+			content = content.replace(
+				".resource.", ".resource." + versionDirName + ".");
+
+			content = content.replace(
+				".internal.resource;",
+				".internal.resource." + versionDirName + ";");
+
+			content = content.replace(
+				"properties = \"OSGI-INF/",
+				"properties = \"OSGI-INF/" + versionDirName + "/");
+
+			File dir = newFile.getParentFile();
+
+			Files.createDirectories(dir.toPath());
+
+			Files.write(
+				newFile.toPath(), content.getBytes(StandardCharsets.UTF_8));
+
+			FormatUtil.format(newFile);
+
+			Files.delete(oldFile.toPath());
+
+			System.out.println("Moving " + oldFile.getCanonicalPath());
+
+			return;
+		}
+
+		if (newFile.exists()) {
 			return;
 		}
 
 		FileUtil.write(
-			file,
+			sb.toString(),
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_impl", context));
 	}
