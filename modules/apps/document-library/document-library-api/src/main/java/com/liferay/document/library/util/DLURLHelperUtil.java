@@ -32,7 +32,7 @@ public class DLURLHelperUtil {
 
 	public static DLURLHelper getDLURLHelper() {
 		if (_dlurlHelper == null) {
-			throw new NullPointerException("DL URL Helper is null");
+			throw new NullPointerException("DL URL helper is null");
 		}
 
 		return _dlurlHelper;
