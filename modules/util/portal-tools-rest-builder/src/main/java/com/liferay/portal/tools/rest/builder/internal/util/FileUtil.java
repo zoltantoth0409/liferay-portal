@@ -19,13 +19,58 @@ import java.io.FileFilter;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 
 /**
  * @author Peter Shin
  */
 public class FileUtil {
+
+	public static void deleteFiles(String dirName, long startTimeMillis)
+		throws Exception {
+
+		Files.walkFileTree(
+			Paths.get(dirName),
+			new SimpleFileVisitor<Path>() {
+
+				@Override
+				public FileVisitResult visitFile(
+						Path path, BasicFileAttributes basicFileAttributes)
+					throws IOException {
+
+					FileTime fileTime = basicFileAttributes.lastModifiedTime();
+
+					if (startTimeMillis < fileTime.toMillis()) {
+						return FileVisitResult.CONTINUE;
+					}
+
+					File file = path.toFile();
+
+					String fileName = file.getName();
+
+					if (fileName.endsWith(".java")) {
+						String content = read(file);
+
+						if (!content.contains("@generated")) {
+							return FileVisitResult.CONTINUE;
+						}
+					}
+
+					Files.delete(path);
+
+					System.out.println("Deleting " + file.getCanonicalPath());
+
+					return FileVisitResult.CONTINUE;
+				}
+
+			});
+	}
 
 	public static File[] getFiles(File dir, String prefix, String suffix) {
 		return dir.listFiles(

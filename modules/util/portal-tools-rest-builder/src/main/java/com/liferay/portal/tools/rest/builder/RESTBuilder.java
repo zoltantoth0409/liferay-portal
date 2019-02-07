@@ -117,9 +117,13 @@ public class RESTBuilder {
 			}
 		}
 
-		// FileUtil.format(new File(restConfigFileName));
-		// FileUtil.format(new File(restOpenAPIFileName));
+		FileUtil.deleteFiles(_configYAML.getApiDir(), _START_TIME_MILLIS);
 
+		FileUtil.deleteFiles(_configYAML.getImplDir(), _START_TIME_MILLIS);
+
+		FileUtil.deleteFiles(
+			_configYAML.getImplDir() + "/../resources/OSGI-INF/",
+			_START_TIME_MILLIS);
 	}
 
 	private void _createApplicationFile(Map<String, Object> context)
@@ -277,6 +281,8 @@ public class RESTBuilder {
 	}
 
 	private static final String _REST_CONFIG_FILE_NAME = "rest-config.yaml";
+
+	private static final long _START_TIME_MILLIS = System.currentTimeMillis();
 
 	private final File _configDir;
 	private final ConfigYAML _configYAML;
