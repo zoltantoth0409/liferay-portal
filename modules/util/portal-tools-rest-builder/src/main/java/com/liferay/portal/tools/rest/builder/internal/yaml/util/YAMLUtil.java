@@ -155,7 +155,7 @@ public class YAMLUtil {
 		typeDescription.addPropertyParameters("anyOf", Schema.class);
 
 		typeDescription.substituteProperty(
-			"oneOf", List.class, "getOneOfSchemas", "setAnyOfSchemas");
+			"oneOf", List.class, "getOneOfSchemas", "setOneOfSchemas");
 
 		typeDescription.addPropertyParameters("oneOf", Schema.class);
 
