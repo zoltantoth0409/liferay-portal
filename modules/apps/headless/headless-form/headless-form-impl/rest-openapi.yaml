@@ -282,8 +282,6 @@ components:
                   type: string
                 tooltip:
                   type: string
-                transient:
-                  type: boolean
                 validation:
                   description: https://www.schema.org/FormFieldProperties
                   properties:
