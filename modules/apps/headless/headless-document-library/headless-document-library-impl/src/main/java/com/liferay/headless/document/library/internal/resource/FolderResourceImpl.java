@@ -55,11 +55,11 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			Long folderId, Pagination pagination)
 		throws Exception {
 
-		com.liferay.portal.kernel.repository.model.Folder parentFolder =
-			_dlAppService.getFolder(folderId);
+		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
 
 		return _getFolderPage(
-			parentFolder.getGroupId(), parentFolder.getFolderId(), pagination);
+			parentFolder.getDocumentsRepositoryId(), parentFolder.getId(),
+			pagination);
 	}
 
 	@Override
@@ -74,11 +74,11 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	public Folder postFolderFolder(Long folderId, Folder folder)
 		throws Exception {
 
-		com.liferay.portal.kernel.repository.model.Folder parentFolder =
-			_dlAppService.getFolder(folderId);
+		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
 
 		return _addFolder(
-			parentFolder.getGroupId(), parentFolder.getFolderId(), folder);
+			parentFolder.getDocumentsRepositoryId(), parentFolder.getId(),
+			folder);
 	}
 
 	@Override
