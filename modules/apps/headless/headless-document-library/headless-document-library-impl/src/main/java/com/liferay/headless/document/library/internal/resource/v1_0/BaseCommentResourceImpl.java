@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.document.library.internal.resource.v1_0_0;
+package com.liferay.headless.document.library.internal.resource.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0_0.Comment;
-import com.liferay.headless.document.library.resource.v1_0_0.CommentResource;
+import com.liferay.headless.document.library.dto.v1_0.Comment;
+import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;

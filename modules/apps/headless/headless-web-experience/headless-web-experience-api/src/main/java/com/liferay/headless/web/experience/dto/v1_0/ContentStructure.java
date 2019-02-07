@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.dto.v1_0_0;
+package com.liferay.headless.web.experience.dto.v1_0;
 
 import java.util.Date;
 

@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.resource.v1_0_0;
+package com.liferay.headless.collaboration.resource.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0_0.AggregateRating;
-import com.liferay.headless.collaboration.dto.v1_0_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0_0.Comment;
-import com.liferay.headless.collaboration.dto.v1_0_0.Creator;
-import com.liferay.headless.collaboration.dto.v1_0_0.ImageObject;
-import com.liferay.headless.collaboration.dto.v1_0_0.ImageObjectRepository;
+import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.dto.v1_0.Creator;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;

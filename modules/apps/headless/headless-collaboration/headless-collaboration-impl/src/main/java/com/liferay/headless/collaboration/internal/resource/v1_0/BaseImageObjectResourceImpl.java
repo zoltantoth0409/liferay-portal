@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.resource.v1_0_0;
+package com.liferay.headless.collaboration.internal.resource.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0_0.ImageObject;
-import com.liferay.headless.collaboration.resource.v1_0_0.ImageObjectResource;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.resource.v1_0.ImageObjectResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;

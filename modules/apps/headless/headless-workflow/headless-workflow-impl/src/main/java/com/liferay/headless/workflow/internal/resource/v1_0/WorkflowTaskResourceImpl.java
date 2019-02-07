@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.workflow.internal.resource.v1_0_0;
+package com.liferay.headless.workflow.internal.resource.v1_0;
 
-import com.liferay.headless.workflow.resource.v1_0_0.WorkflowTaskResource;
+import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/workflow-task.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/workflow-task.properties",
 	scope = ServiceScope.PROTOTYPE, service = WorkflowTaskResource.class
 )
 public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {

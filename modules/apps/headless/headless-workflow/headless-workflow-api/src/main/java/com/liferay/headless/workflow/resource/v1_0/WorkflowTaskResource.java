@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.workflow.resource.v1_0_0;
+package com.liferay.headless.workflow.resource.v1_0;
 
-import com.liferay.headless.workflow.dto.v1_0_0.WorkflowLog;
-import com.liferay.headless.workflow.dto.v1_0_0.WorkflowTask;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;

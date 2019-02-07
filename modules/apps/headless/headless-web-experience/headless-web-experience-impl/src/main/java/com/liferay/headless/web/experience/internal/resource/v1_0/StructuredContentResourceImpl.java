@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.resource.v1_0_0;
+package com.liferay.headless.web.experience.internal.resource.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0_0.StructuredContent;
-import com.liferay.headless.web.experience.resource.v1_0_0.StructuredContentResource;
+import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.util.JournalHelper;
@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/structured-content.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/structured-content.properties",
 	scope = ServiceScope.PROTOTYPE, service = StructuredContentResource.class
 )
 public class StructuredContentResourceImpl

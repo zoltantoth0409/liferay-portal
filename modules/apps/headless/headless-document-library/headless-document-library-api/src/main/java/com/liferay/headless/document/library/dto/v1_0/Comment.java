@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.document.library.dto.v1_0_0;
+package com.liferay.headless.document.library.dto.v1_0;
 
 import javax.annotation.Generated;
 

@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.headless.document.library.internal.resource.v1_0_0;
+package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppService;
-import com.liferay.headless.document.library.dto.v1_0_0.Folder;
-import com.liferay.headless.document.library.resource.v1_0_0.FolderResource;
+import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/folder.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/folder.properties",
 	scope = ServiceScope.PROTOTYPE, service = FolderResource.class
 )
 public class FolderResourceImpl extends BaseFolderResourceImpl {

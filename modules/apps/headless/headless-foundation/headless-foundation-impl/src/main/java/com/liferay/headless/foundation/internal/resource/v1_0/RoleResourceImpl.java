@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.resource.v1_0_0;
+package com.liferay.headless.foundation.internal.resource.v1_0;
 
-import com.liferay.headless.foundation.resource.v1_0_0.RoleResource;
+import com.liferay.headless.foundation.resource.v1_0.RoleResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/role.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/role.properties",
 	scope = ServiceScope.PROTOTYPE, service = RoleResource.class
 )
 public class RoleResourceImpl extends BaseRoleResourceImpl {

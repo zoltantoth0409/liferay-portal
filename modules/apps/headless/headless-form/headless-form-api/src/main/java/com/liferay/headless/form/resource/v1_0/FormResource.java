@@ -12,13 +12,13 @@
  * details.
  */
 
-package com.liferay.headless.form.resource.v1_0_0;
+package com.liferay.headless.form.resource.v1_0;
 
-import com.liferay.headless.form.dto.v1_0_0.Creator;
-import com.liferay.headless.form.dto.v1_0_0.Form;
-import com.liferay.headless.form.dto.v1_0_0.FormDocument;
-import com.liferay.headless.form.dto.v1_0_0.FormRecord;
-import com.liferay.headless.form.dto.v1_0_0.FormStructure;
+import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.form.dto.v1_0.Form;
+import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;

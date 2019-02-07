@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.document.library.internal.resource.v1_0_0;
+package com.liferay.headless.document.library.internal.resource.v1_0;
 
-import com.liferay.headless.document.library.resource.v1_0_0.DocumentResource;
+import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/document.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/document.properties",
 	scope = ServiceScope.PROTOTYPE, service = DocumentResource.class
 )
 public class DocumentResourceImpl extends BaseDocumentResourceImpl {

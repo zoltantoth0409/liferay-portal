@@ -12,15 +12,15 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.resource.v1_0_0;
+package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.friendly.url.exception.DuplicateFriendlyURLEntryException;
-import com.liferay.headless.collaboration.dto.v1_0_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0_0.ImageObject;
-import com.liferay.headless.collaboration.resource.v1_0_0.BlogPostingResource;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector;
@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/blog-posting.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/blog-posting.properties",
 	scope = ServiceScope.PROTOTYPE, service = BlogPostingResource.class
 )
 public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {

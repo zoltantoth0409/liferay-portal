@@ -12,18 +12,18 @@
  * details.
  */
 
-package com.liferay.headless.foundation.resource.v1_0_0;
+package com.liferay.headless.foundation.resource.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0_0.Category;
-import com.liferay.headless.foundation.dto.v1_0_0.Email;
-import com.liferay.headless.foundation.dto.v1_0_0.Keyword;
-import com.liferay.headless.foundation.dto.v1_0_0.Organization;
-import com.liferay.headless.foundation.dto.v1_0_0.Phone;
-import com.liferay.headless.foundation.dto.v1_0_0.PostalAddress;
-import com.liferay.headless.foundation.dto.v1_0_0.Role;
-import com.liferay.headless.foundation.dto.v1_0_0.UserAccount;
-import com.liferay.headless.foundation.dto.v1_0_0.Vocabulary;
-import com.liferay.headless.foundation.dto.v1_0_0.WebUrl;
+import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.headless.foundation.dto.v1_0.Keyword;
+import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.headless.foundation.dto.v1_0.Phone;
+import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
+import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
+import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;

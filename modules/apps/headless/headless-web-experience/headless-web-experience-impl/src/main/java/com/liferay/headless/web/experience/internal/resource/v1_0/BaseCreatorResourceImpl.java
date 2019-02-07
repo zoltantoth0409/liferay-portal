@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.resource.v1_0_0;
+package com.liferay.headless.web.experience.internal.resource.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0_0.Creator;
-import com.liferay.headless.web.experience.resource.v1_0_0.CreatorResource;
+import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.resource.v1_0.CreatorResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;

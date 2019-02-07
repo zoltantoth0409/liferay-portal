@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.resource.v1_0_0;
+package com.liferay.headless.foundation.internal.resource.v1_0;
 
-import com.liferay.headless.foundation.resource.v1_0_0.CategoryResource;
+import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0_0/category.properties",
+	properties = "OSGI-INF/liferay/rest/v1_0/category.properties",
 	scope = ServiceScope.PROTOTYPE, service = CategoryResource.class
 )
 public class CategoryResourceImpl extends BaseCategoryResourceImpl {

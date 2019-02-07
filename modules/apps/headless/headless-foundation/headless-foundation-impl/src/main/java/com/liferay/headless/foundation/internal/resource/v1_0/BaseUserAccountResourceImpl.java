@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.resource.v1_0_0;
+package com.liferay.headless.foundation.internal.resource.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0_0.UserAccount;
-import com.liferay.headless.foundation.resource.v1_0_0.UserAccountResource;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
