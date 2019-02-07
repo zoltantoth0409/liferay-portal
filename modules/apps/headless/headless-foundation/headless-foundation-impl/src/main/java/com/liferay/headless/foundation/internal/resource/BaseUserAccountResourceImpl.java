@@ -88,17 +88,24 @@ public abstract class BaseUserAccountResourceImpl
 	}
 
 	@Override
-	public UserAccount postUserAccount() throws Exception {
+	public UserAccount postUserAccount(UserAccount userAccount)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
 	@Override
-	public UserAccount postUserAccountBatchCreate() throws Exception {
+	public UserAccount postUserAccountBatchCreate(UserAccount userAccount)
+		throws Exception {
+
 		return new UserAccount();
 	}
 
 	@Override
-	public UserAccount putUserAccount(Long userAccountId) throws Exception {
+	public UserAccount putUserAccount(
+			Long userAccountId, UserAccount userAccount)
+		throws Exception {
+
 		return new UserAccount();
 	}
 

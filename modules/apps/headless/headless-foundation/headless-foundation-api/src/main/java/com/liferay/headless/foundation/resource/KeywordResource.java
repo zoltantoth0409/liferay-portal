@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.resource;
 
 import com.liferay.headless.foundation.dto.Category;
-import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.dto.Organization;
@@ -24,7 +23,6 @@ import com.liferay.headless.foundation.dto.PostalAddress;
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.dto.Vocabulary;
-import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -72,14 +70,14 @@ public interface KeywordResource {
 	@Path("/content-space/{content-space-id}/keywords")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Keyword postContentSpaceKeyword( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public Keyword postContentSpaceKeyword( @PathParam("content-space-id") Long contentSpaceId , Keyword keyword ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/keywords/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Keyword postContentSpaceKeywordsBatchCreate( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public Keyword postContentSpaceKeywordsBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Keyword keyword ) throws Exception;
 
 	@GET
 	@Path("/keywords/{keywords-id}")
@@ -92,6 +90,6 @@ public interface KeywordResource {
 	@Path("/keywords/{keywords-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Keyword putKeyword( @PathParam("keywords-id") Long keywordsId ) throws Exception;
+	public Keyword putKeyword( @PathParam("keywords-id") Long keywordsId , Keyword keyword ) throws Exception;
 
 }

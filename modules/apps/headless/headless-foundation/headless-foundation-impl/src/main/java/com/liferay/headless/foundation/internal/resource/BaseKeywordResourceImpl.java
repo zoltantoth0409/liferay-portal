@@ -51,21 +51,24 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	}
 
 	@Override
-	public Keyword postContentSpaceKeyword(Long contentSpaceId)
+	public Keyword postContentSpaceKeyword(Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword postContentSpaceKeywordsBatchCreate(Long contentSpaceId)
+	public Keyword postContentSpaceKeywordsBatchCreate(
+			Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
 		return new Keyword();
 	}
 
 	@Override
-	public Keyword putKeyword(Long keywordsId) throws Exception {
+	public Keyword putKeyword(Long keywordsId, Keyword keyword)
+		throws Exception {
+
 		return new Keyword();
 	}
 

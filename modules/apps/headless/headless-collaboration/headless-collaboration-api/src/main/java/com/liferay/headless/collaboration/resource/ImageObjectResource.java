@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.resource;
 import com.liferay.headless.collaboration.dto.AggregateRating;
 import com.liferay.headless.collaboration.dto.BlogPosting;
 import com.liferay.headless.collaboration.dto.Comment;
+import com.liferay.headless.collaboration.dto.Creator;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
@@ -65,14 +66,14 @@ public interface ImageObjectResource {
 	@Path("/image-object-repository/{image-object-repository-id}/image-object")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.read")
-	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/image-object-repository/{image-object-repository-id}/image-object/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
 
 	@DELETE
 	@Path("/image-object/{image-object-id}")

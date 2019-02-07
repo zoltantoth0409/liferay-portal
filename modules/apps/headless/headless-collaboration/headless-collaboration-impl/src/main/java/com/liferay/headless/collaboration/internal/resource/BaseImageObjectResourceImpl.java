@@ -61,7 +61,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject postImageObjectRepositoryImageObject(
-			Long imageObjectRepositoryId)
+			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
 		return new ImageObject();
@@ -69,7 +69,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
-			Long imageObjectRepositoryId)
+			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
 		return new ImageObject();

@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.resource;
 
 import com.liferay.headless.document.library.dto.Comment;
+import com.liferay.headless.document.library.dto.Creator;
 import com.liferay.headless.document.library.dto.Document;
 import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.oauth2.provider.scope.RequiresScope;
@@ -69,14 +70,14 @@ public interface FolderResource {
 	@Path("/documents-repository/{documents-repository-id}/folder")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Folder postDocumentsRepositoryFolder( @PathParam("documents-repository-id") Long documentsRepositoryId ) throws Exception;
+	public Folder postDocumentsRepositoryFolder( @PathParam("documents-repository-id") Long documentsRepositoryId , Folder folder ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/documents-repository/{documents-repository-id}/folder/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
-	public Folder postDocumentsRepositoryFolderBatchCreate( @PathParam("documents-repository-id") Long documentsRepositoryId ) throws Exception;
+	public Folder postDocumentsRepositoryFolderBatchCreate( @PathParam("documents-repository-id") Long documentsRepositoryId , Folder folder ) throws Exception;
 
 	@DELETE
 	@Path("/folder/{folder-id}")
@@ -95,7 +96,7 @@ public interface FolderResource {
 	@Path("/folder/{folder-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Folder putFolder( @PathParam("folder-id") Long folderId ) throws Exception;
+	public Folder putFolder( @PathParam("folder-id") Long folderId , Folder folder ) throws Exception;
 
 	@GET
 	@Path("/folder/{folder-id}/folder")
@@ -108,12 +109,12 @@ public interface FolderResource {
 	@Path("/folder/{folder-id}/folder")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Folder postFolderFolder( @PathParam("folder-id") Long folderId ) throws Exception;
+	public Folder postFolderFolder( @PathParam("folder-id") Long folderId , Folder folder ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/folder/{folder-id}/folder/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
-	public Folder postFolderFolderBatchCreate( @PathParam("folder-id") Long folderId ) throws Exception;
+	public Folder postFolderFolderBatchCreate( @PathParam("folder-id") Long folderId , Folder folder ) throws Exception;
 }

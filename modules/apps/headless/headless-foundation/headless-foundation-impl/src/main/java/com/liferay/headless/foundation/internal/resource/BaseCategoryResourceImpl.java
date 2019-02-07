@@ -59,35 +59,41 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	}
 
 	@Override
-	public Category postCategoriesCategories(Long categoriesId)
+	public Category postCategoriesCategories(
+			Long categoriesId, Category category)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postCategoriesCategoriesBatchCreate(Long categoriesId)
+	public Category postCategoriesCategoriesBatchCreate(
+			Long categoriesId, Category category)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategories(Long vocabulariesId)
+	public Category postVocabulariesCategories(
+			Long vocabulariesId, Category category)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category postVocabulariesCategoriesBatchCreate(Long vocabulariesId)
+	public Category postVocabulariesCategoriesBatchCreate(
+			Long vocabulariesId, Category category)
 		throws Exception {
 
 		return new Category();
 	}
 
 	@Override
-	public Category putCategories(Long categoriesId) throws Exception {
+	public Category putCategories(Long categoriesId, Category category)
+		throws Exception {
+
 		return new Category();
 	}
 

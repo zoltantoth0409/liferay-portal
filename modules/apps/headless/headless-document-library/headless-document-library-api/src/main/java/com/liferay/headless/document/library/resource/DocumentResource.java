@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.resource;
 
 import com.liferay.headless.document.library.dto.Comment;
+import com.liferay.headless.document.library.dto.Creator;
 import com.liferay.headless.document.library.dto.Document;
 import com.liferay.headless.document.library.dto.Folder;
 import com.liferay.oauth2.provider.scope.RequiresScope;
@@ -75,14 +76,14 @@ public interface DocumentResource {
 	@Path("/documents-repository/{documents-repository-id}/document")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Document postDocumentsRepositoryDocument( @PathParam("documents-repository-id") Long documentsRepositoryId ) throws Exception;
+	public Document postDocumentsRepositoryDocument( @PathParam("documents-repository-id") Long documentsRepositoryId , Document document ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/documents-repository/{documents-repository-id}/document/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
-	public Document postDocumentsRepositoryDocumentBatchCreate( @PathParam("documents-repository-id") Long documentsRepositoryId ) throws Exception;
+	public Document postDocumentsRepositoryDocumentBatchCreate( @PathParam("documents-repository-id") Long documentsRepositoryId , Document document ) throws Exception;
 
 	@GET
 	@Path("/folder/{folder-id}/document")
@@ -95,13 +96,13 @@ public interface DocumentResource {
 	@Path("/folder/{folder-id}/document")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.read")
-	public Document postFolderDocument( @PathParam("folder-id") Long folderId ) throws Exception;
+	public Document postFolderDocument( @PathParam("folder-id") Long folderId , Document document ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/folder/{folder-id}/document/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-document-library-application.write")
-	public Document postFolderDocumentBatchCreate( @PathParam("folder-id") Long folderId ) throws Exception;
+	public Document postFolderDocumentBatchCreate( @PathParam("folder-id") Long folderId , Document document ) throws Exception;
 
 }

@@ -80,12 +80,12 @@ public class UserAccount {
 		return _jobTitle;
 	}
 
-	public Organization getMyOrganizations() {
+	public Organization[] getMyOrganizations() {
 		return _myOrganizations;
 	}
 
-	public WebSite getMyWebSites() {
-		return _myWebSites;
+	public Long[] getMyOrganizationsIds() {
+		return _myOrganizationsIds;
 	}
 
 	public String getName() {
@@ -96,19 +96,23 @@ public class UserAccount {
 		return _profileURL;
 	}
 
-	public Role getRoles() {
+	public Role[] getRoles() {
 		return _roles;
+	}
+
+	public Long[] getRolesIds() {
+		return _rolesIds;
 	}
 
 	public String getSelf() {
 		return _self;
 	}
 
-	public String getTasksAssignedToMe() {
+	public String[] getTasksAssignedToMe() {
 		return _tasksAssignedToMe;
 	}
 
-	public String getTasksAssignedToMyRoles() {
+	public String[] getTasksAssignedToMyRoles() {
 		return _tasksAssignedToMyRoles;
 	}
 
@@ -164,12 +168,12 @@ public class UserAccount {
 		_jobTitle = jobTitle;
 	}
 
-	public void setMyOrganizations(Organization myOrganizations) {
+	public void setMyOrganizations(Organization[] myOrganizations) {
 		_myOrganizations = myOrganizations;
 	}
 
-	public void setMyWebSites(WebSite myWebSites) {
-		_myWebSites = myWebSites;
+	public void setMyOrganizationsIds(Long[] myOrganizationsIds) {
+		_myOrganizationsIds = myOrganizationsIds;
 	}
 
 	public void setName(String name) {
@@ -180,19 +184,23 @@ public class UserAccount {
 		_profileURL = profileURL;
 	}
 
-	public void setRoles(Role roles) {
+	public void setRoles(Role[] roles) {
 		_roles = roles;
+	}
+
+	public void setRolesIds(Long[] rolesIds) {
+		_rolesIds = rolesIds;
 	}
 
 	public void setSelf(String self) {
 		_self = self;
 	}
 
-	public void setTasksAssignedToMe(String tasksAssignedToMe) {
+	public void setTasksAssignedToMe(String[] tasksAssignedToMe) {
 		_tasksAssignedToMe = tasksAssignedToMe;
 	}
 
-	public void setTasksAssignedToMyRoles(String tasksAssignedToMyRoles) {
+	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles) {
 		_tasksAssignedToMyRoles = tasksAssignedToMyRoles;
 	}
 
@@ -209,13 +217,14 @@ public class UserAccount {
 	private Long _id;
 	private String _image;
 	private String _jobTitle;
-	private Organization _myOrganizations;
-	private WebSite _myWebSites;
+	private Organization[] _myOrganizations;
+	private Long[] _myOrganizationsIds;
 	private String _name;
 	private String _profileURL;
-	private Role _roles;
+	private Role[] _roles;
+	private Long[] _rolesIds;
 	private String _self;
-	private String _tasksAssignedToMe;
-	private String _tasksAssignedToMyRoles;
+	private String[] _tasksAssignedToMe;
+	private String[] _tasksAssignedToMyRoles;
 
 }

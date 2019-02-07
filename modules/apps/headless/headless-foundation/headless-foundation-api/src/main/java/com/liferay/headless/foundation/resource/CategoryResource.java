@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.resource;
 
 import com.liferay.headless.foundation.dto.Category;
-import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.dto.Organization;
@@ -24,7 +23,6 @@ import com.liferay.headless.foundation.dto.PostalAddress;
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.dto.Vocabulary;
-import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -72,7 +70,7 @@ public interface CategoryResource {
 	@Path("/categories/{categories-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category putCategories( @PathParam("categories-id") Long categoriesId ) throws Exception;
+	public Category putCategories( @PathParam("categories-id") Long categoriesId , Category category ) throws Exception;
 
 	@GET
 	@Path("/categories/{categories-id}/categories")
@@ -85,14 +83,14 @@ public interface CategoryResource {
 	@Path("/categories/{categories-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category postCategoriesCategories( @PathParam("categories-id") Long categoriesId ) throws Exception;
+	public Category postCategoriesCategories( @PathParam("categories-id") Long categoriesId , Category category ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/categories/{categories-id}/categories/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Category postCategoriesCategoriesBatchCreate( @PathParam("categories-id") Long categoriesId ) throws Exception;
+	public Category postCategoriesCategoriesBatchCreate( @PathParam("categories-id") Long categoriesId , Category category ) throws Exception;
 
 	@GET
 	@Path("/vocabularies/{vocabularies-id}/categories")
@@ -105,13 +103,13 @@ public interface CategoryResource {
 	@Path("/vocabularies/{vocabularies-id}/categories")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Category postVocabulariesCategories( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
+	public Category postVocabulariesCategories( @PathParam("vocabularies-id") Long vocabulariesId , Category category ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/vocabularies/{vocabularies-id}/categories/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Category postVocabulariesCategoriesBatchCreate( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
+	public Category postVocabulariesCategoriesBatchCreate( @PathParam("vocabularies-id") Long vocabulariesId , Category category ) throws Exception;
 
 }

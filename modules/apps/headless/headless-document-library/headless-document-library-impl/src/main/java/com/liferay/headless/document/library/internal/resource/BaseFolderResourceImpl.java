@@ -72,7 +72,8 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	}
 
 	@Override
-	public Folder postDocumentsRepositoryFolder(Long documentsRepositoryId)
+	public Folder postDocumentsRepositoryFolder(
+			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
 		return new Folder();
@@ -80,24 +81,28 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
 	public Folder postDocumentsRepositoryFolderBatchCreate(
-			Long documentsRepositoryId)
+			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolder(Long folderId) throws Exception {
+	public Folder postFolderFolder(Long folderId, Folder folder)
+		throws Exception {
+
 		return new Folder();
 	}
 
 	@Override
-	public Folder postFolderFolderBatchCreate(Long folderId) throws Exception {
+	public Folder postFolderFolderBatchCreate(Long folderId, Folder folder)
+		throws Exception {
+
 		return new Folder();
 	}
 
 	@Override
-	public Folder putFolder(Long folderId) throws Exception {
+	public Folder putFolder(Long folderId, Folder folder) throws Exception {
 		return new Folder();
 	}
 

@@ -56,7 +56,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContent(
-			Long contentSpaceId)
+			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
 		return new StructuredContent();
@@ -64,14 +64,15 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
-			Long contentSpaceId)
+			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
 		return new StructuredContent();
 	}
 
 	@Override
-	public StructuredContent putStructuredContent(Long structuredContentsId)
+	public StructuredContent putStructuredContent(
+			Long structuredContentsId, StructuredContent structuredContent)
 		throws Exception {
 
 		return new StructuredContent();

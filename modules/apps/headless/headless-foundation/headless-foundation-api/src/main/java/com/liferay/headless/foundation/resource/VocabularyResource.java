@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.resource;
 
 import com.liferay.headless.foundation.dto.Category;
-import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.dto.Organization;
@@ -24,7 +23,6 @@ import com.liferay.headless.foundation.dto.PostalAddress;
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.dto.Vocabulary;
-import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -72,14 +70,14 @@ public interface VocabularyResource {
 	@Path("/content-space/{content-space-id}/vocabularies")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Vocabulary postContentSpaceVocabularies( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public Vocabulary postContentSpaceVocabularies( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/vocabularies/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public Vocabulary postContentSpaceVocabulariesBatchCreate( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public Vocabulary postContentSpaceVocabulariesBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
 	@GET
 	@Path("/vocabularies/{vocabularies-id}")
@@ -92,6 +90,6 @@ public interface VocabularyResource {
 	@Path("/vocabularies/{vocabularies-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public Vocabulary putVocabularies( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
+	public Vocabulary putVocabularies( @PathParam("vocabularies-id") Long vocabulariesId , Vocabulary vocabulary ) throws Exception;
 
 }

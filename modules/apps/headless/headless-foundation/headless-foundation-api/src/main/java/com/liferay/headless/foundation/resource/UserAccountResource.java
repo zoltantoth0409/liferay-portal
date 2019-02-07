@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.resource;
 
 import com.liferay.headless.foundation.dto.Category;
-import com.liferay.headless.foundation.dto.ContentSpace;
 import com.liferay.headless.foundation.dto.Email;
 import com.liferay.headless.foundation.dto.Keyword;
 import com.liferay.headless.foundation.dto.Organization;
@@ -24,7 +23,6 @@ import com.liferay.headless.foundation.dto.PostalAddress;
 import com.liferay.headless.foundation.dto.Role;
 import com.liferay.headless.foundation.dto.UserAccount;
 import com.liferay.headless.foundation.dto.Vocabulary;
-import com.liferay.headless.foundation.dto.WebSite;
 import com.liferay.headless.foundation.dto.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -90,14 +88,14 @@ public interface UserAccountResource {
 	@Path("/user-account")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount postUserAccount( ) throws Exception;
+	public UserAccount postUserAccount( UserAccount userAccount ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/user-account/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.write")
-	public UserAccount postUserAccountBatchCreate( ) throws Exception;
+	public UserAccount postUserAccountBatchCreate( UserAccount userAccount ) throws Exception;
 
 	@DELETE
 	@Path("/user-account/{user-account-id}")
@@ -116,7 +114,7 @@ public interface UserAccountResource {
 	@Path("/user-account/{user-account-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-foundation-application.read")
-	public UserAccount putUserAccount( @PathParam("user-account-id") Long userAccountId ) throws Exception;
+	public UserAccount putUserAccount( @PathParam("user-account-id") Long userAccountId , UserAccount userAccount ) throws Exception;
 
 	@GET
 	@Path("/web-site/{web-site-id}/user-account")

@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.resource;
 
+import com.liferay.headless.form.dto.Creator;
 import com.liferay.headless.form.dto.Form;
 import com.liferay.headless.form.dto.FormDocument;
 import com.liferay.headless.form.dto.FormRecord;
@@ -70,7 +71,7 @@ public interface FormResource {
 	@Path("/form/{form-id}/evaluate-context")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.write")
-	public Form postFormEvaluateContext( @PathParam("form-id") Long formId ) throws Exception;
+	public Form postFormEvaluateContext( @PathParam("form-id") Long formId , Form form ) throws Exception;
 
 	@GET
 	@Path("/form/{form-id}/fetch-latest-draft")
@@ -83,5 +84,5 @@ public interface FormResource {
 	@Path("/form/{form-id}/upload-file")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.write")
-	public Form postFormUploadFile( @PathParam("form-id") Long formId ) throws Exception;
+	public Form postFormUploadFile( @PathParam("form-id") Long formId , Form form ) throws Exception;
 }

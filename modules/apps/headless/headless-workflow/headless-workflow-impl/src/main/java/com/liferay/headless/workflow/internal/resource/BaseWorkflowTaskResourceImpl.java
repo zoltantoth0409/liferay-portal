@@ -60,28 +60,32 @@ public abstract class BaseWorkflowTaskResourceImpl
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksAssignToMe(Long workflowTasksId)
+	public WorkflowTask postWorkflowTasksAssignToMe(
+			Long workflowTasksId, WorkflowTask workflowTask)
 		throws Exception {
 
 		return new WorkflowTask();
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksAssignToUser(Long workflowTasksId)
+	public WorkflowTask postWorkflowTasksAssignToUser(
+			Long workflowTasksId, WorkflowTask workflowTask)
 		throws Exception {
 
 		return new WorkflowTask();
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksChangeTransition(Long workflowTasksId)
+	public WorkflowTask postWorkflowTasksChangeTransition(
+			Long workflowTasksId, WorkflowTask workflowTask)
 		throws Exception {
 
 		return new WorkflowTask();
 	}
 
 	@Override
-	public WorkflowTask postWorkflowTasksUpdateDueDate(Long workflowTasksId)
+	public WorkflowTask postWorkflowTasksUpdateDueDate(
+			Long workflowTasksId, WorkflowTask workflowTask)
 		throws Exception {
 
 		return new WorkflowTask();

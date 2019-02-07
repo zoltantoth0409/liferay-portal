@@ -14,6 +14,7 @@
 
 package com.liferay.headless.form.resource;
 
+import com.liferay.headless.form.dto.Creator;
 import com.liferay.headless.form.dto.Form;
 import com.liferay.headless.form.dto.FormDocument;
 import com.liferay.headless.form.dto.FormRecord;
@@ -64,7 +65,7 @@ public interface FormRecordResource {
 	@Path("/form-record/{form-record-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public FormRecord putFormRecord( @PathParam("form-record-id") Long formRecordId ) throws Exception;
+	public FormRecord putFormRecord( @PathParam("form-record-id") Long formRecordId , FormRecord formRecord ) throws Exception;
 
 	@GET
 	@Path("/form/{form-id}/form-record")
@@ -77,13 +78,13 @@ public interface FormRecordResource {
 	@Path("/form/{form-id}/form-record")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.read")
-	public FormRecord postFormFormRecord( @PathParam("form-id") Long formId ) throws Exception;
+	public FormRecord postFormFormRecord( @PathParam("form-id") Long formId , FormRecord formRecord ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/form/{form-id}/form-record/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-form-application.write")
-	public FormRecord postFormFormRecordBatchCreate( @PathParam("form-id") Long formId ) throws Exception;
+	public FormRecord postFormFormRecordBatchCreate( @PathParam("form-id") Long formId , FormRecord formRecord ) throws Exception;
 
 }

@@ -69,7 +69,7 @@ public abstract class BaseBlogPostingResourceImpl
 
 	@Override
 	public BlogPosting postContentSpaceBlogPostingBatchCreate(
-			Long contentSpaceId)
+			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
 		return new BlogPosting();

@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.resource;
 import com.liferay.headless.collaboration.dto.AggregateRating;
 import com.liferay.headless.collaboration.dto.BlogPosting;
 import com.liferay.headless.collaboration.dto.Comment;
+import com.liferay.headless.collaboration.dto.Creator;
 import com.liferay.headless.collaboration.dto.ImageObject;
 import com.liferay.headless.collaboration.dto.ImageObjectRepository;
 import com.liferay.oauth2.provider.scope.RequiresScope;
@@ -91,6 +92,6 @@ public interface BlogPostingResource {
 	@Path("/content-space/{content-space-id}/blog-posting/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-collaboration-application.write")
-	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
 
 }

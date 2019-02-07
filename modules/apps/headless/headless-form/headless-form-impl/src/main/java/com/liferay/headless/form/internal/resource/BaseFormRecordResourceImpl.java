@@ -51,19 +51,24 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 	}
 
 	@Override
-	public FormRecord postFormFormRecord(Long formId) throws Exception {
-		return new FormRecord();
-	}
-
-	@Override
-	public FormRecord postFormFormRecordBatchCreate(Long formId)
+	public FormRecord postFormFormRecord(Long formId, FormRecord formRecord)
 		throws Exception {
 
 		return new FormRecord();
 	}
 
 	@Override
-	public FormRecord putFormRecord(Long formRecordId) throws Exception {
+	public FormRecord postFormFormRecordBatchCreate(
+			Long formId, FormRecord formRecord)
+		throws Exception {
+
+		return new FormRecord();
+	}
+
+	@Override
+	public FormRecord putFormRecord(Long formRecordId, FormRecord formRecord)
+		throws Exception {
+
 		return new FormRecord();
 	}
 

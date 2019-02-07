@@ -51,7 +51,8 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	}
 
 	@Override
-	public Vocabulary postContentSpaceVocabularies(Long contentSpaceId)
+	public Vocabulary postContentSpaceVocabularies(
+			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
 		return new Vocabulary();
@@ -59,14 +60,17 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Vocabulary postContentSpaceVocabulariesBatchCreate(
-			Long contentSpaceId)
+			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
 		return new Vocabulary();
 	}
 
 	@Override
-	public Vocabulary putVocabularies(Long vocabulariesId) throws Exception {
+	public Vocabulary putVocabularies(
+			Long vocabulariesId, Vocabulary vocabulary)
+		throws Exception {
+
 		return new Vocabulary();
 	}
 

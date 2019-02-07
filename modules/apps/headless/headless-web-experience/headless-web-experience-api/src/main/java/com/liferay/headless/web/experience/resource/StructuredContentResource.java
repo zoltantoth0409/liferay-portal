@@ -18,6 +18,7 @@ import com.liferay.headless.web.experience.dto.AggregateRating;
 import com.liferay.headless.web.experience.dto.Comment;
 import com.liferay.headless.web.experience.dto.ContentDocument;
 import com.liferay.headless.web.experience.dto.ContentStructure;
+import com.liferay.headless.web.experience.dto.Creator;
 import com.liferay.headless.web.experience.dto.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -65,14 +66,14 @@ public interface StructuredContentResource {
 	@Path("/content-space/{content-space-id}/structured-contents")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public StructuredContent postContentSpaceStructuredContent( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public StructuredContent postContentSpaceStructuredContent( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/structured-contents/batch-create")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.write")
-	public StructuredContent postContentSpaceStructuredContentsBatchCreate( @PathParam("content-space-id") Long contentSpaceId ) throws Exception;
+	public StructuredContent postContentSpaceStructuredContentsBatchCreate( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
 	@GET
 	@Path("/structured-contents/{structured-contents-id}")
@@ -85,6 +86,6 @@ public interface StructuredContentResource {
 	@Path("/structured-contents/{structured-contents-id}")
 	@Produces("application/json")
 	@RequiresScope("headless-web-experience-application.read")
-	public StructuredContent putStructuredContent( @PathParam("structured-contents-id") Long structuredContentsId ) throws Exception;
+	public StructuredContent putStructuredContent( @PathParam("structured-contents-id") Long structuredContentsId , StructuredContent structuredContent ) throws Exception;
 
 }

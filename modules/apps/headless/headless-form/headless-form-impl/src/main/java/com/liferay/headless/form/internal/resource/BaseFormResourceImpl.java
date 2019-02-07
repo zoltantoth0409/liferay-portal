@@ -56,12 +56,14 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	}
 
 	@Override
-	public Form postFormEvaluateContext(Long formId) throws Exception {
+	public Form postFormEvaluateContext(Long formId, Form form)
+		throws Exception {
+
 		return new Form();
 	}
 
 	@Override
-	public Form postFormUploadFile(Long formId) throws Exception {
+	public Form postFormUploadFile(Long formId, Form form) throws Exception {
 		return new Form();
 	}
 

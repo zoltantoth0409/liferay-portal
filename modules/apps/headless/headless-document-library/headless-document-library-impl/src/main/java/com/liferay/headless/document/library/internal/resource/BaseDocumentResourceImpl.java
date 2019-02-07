@@ -67,7 +67,8 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	}
 
 	@Override
-	public Document postDocumentsRepositoryDocument(Long documentsRepositoryId)
+	public Document postDocumentsRepositoryDocument(
+			Long documentsRepositoryId, Document document)
 		throws Exception {
 
 		return new Document();
@@ -75,19 +76,22 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Document postDocumentsRepositoryDocumentBatchCreate(
-			Long documentsRepositoryId)
+			Long documentsRepositoryId, Document document)
 		throws Exception {
 
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocument(Long folderId) throws Exception {
+	public Document postFolderDocument(Long folderId, Document document)
+		throws Exception {
+
 		return new Document();
 	}
 
 	@Override
-	public Document postFolderDocumentBatchCreate(Long folderId)
+	public Document postFolderDocumentBatchCreate(
+			Long folderId, Document document)
 		throws Exception {
 
 		return new Document();
