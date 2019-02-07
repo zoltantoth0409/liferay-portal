@@ -52,7 +52,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 			return _updateCTEntry(ctEntry, user, changeType, serviceContext);
 		}
 
-		return _createCTEntry(
+		return _addCTEntry(
 			user, classNameId, classPK, resourcePrimKey, changeType,
 			ctCollectionId, serviceContext);
 	}
@@ -85,7 +85,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		return ctEntryFinder.findByC_C_C(ctCollectionId, classNameId, classPK);
 	}
 
-	private CTEntry _createCTEntry(
+	private CTEntry _addCTEntry(
 		User user, long classNameId, long classPK, long resourcePrimKey,
 		int changeType, long ctCollectionId, ServiceContext serviceContext) {
 
