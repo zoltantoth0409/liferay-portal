@@ -268,59 +268,14 @@ public class RESTBuilder {
 		sb.append(apiPackagePath.replace('.', '/'));
 
 		sb.append("/internal/resource/");
-		sb.append(schemaName);
-		sb.append("ResourceImpl.java");
-
-		File oldFile = new File(sb.toString());
-
-		sb.setLength(0);
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/");
-		sb.append(apiPackagePath.replace('.', '/'));
-		sb.append("/internal/resource/");
 		sb.append(versionDirName);
 		sb.append("/");
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
-		File newFile = new File(sb.toString());
+		File file = new File(sb.toString());
 
-		if (oldFile.exists()) {
-			String content = FileUtil.read(oldFile);
-
-			content = content.replace(
-				apiPackagePath + ".dto",
-				apiPackagePath + ".dto." + versionDirName);
-
-			content = content.replace(
-				".resource.", ".resource." + versionDirName + ".");
-
-			content = content.replace(
-				".internal.resource;",
-				".internal.resource." + versionDirName + ";");
-
-			content = content.replace(
-				"properties = \"OSGI-INF/",
-				"properties = \"OSGI-INF/rest/" + versionDirName + "/");
-
-			File dir = newFile.getParentFile();
-
-			Files.createDirectories(dir.toPath());
-
-			Files.write(
-				newFile.toPath(), content.getBytes(StandardCharsets.UTF_8));
-
-			FormatUtil.format(newFile);
-
-			Files.delete(oldFile.toPath());
-
-			System.out.println("Moving " + oldFile.getCanonicalPath());
-
-			return;
-		}
-
-		if (newFile.exists()) {
+		if (file.exists()) {
 			return;
 		}
 
