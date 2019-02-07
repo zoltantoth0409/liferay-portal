@@ -120,10 +120,10 @@ public class RESTBuilder {
 			}
 		}
 
-		FileUtil.deleteFiles(_configYAML.getApiDir(), startTime);
+		/*FileUtil.deleteFiles(_configYAML.getApiDir(), startTime);
 		FileUtil.deleteFiles(_configYAML.getImplDir(), startTime);
 		FileUtil.deleteFiles(
-			_configYAML.getImplDir() + "/../resources/OSGI-INF/", startTime);
+			_configYAML.getImplDir() + "/../resources/OSGI-INF/", startTime);*/
 	}
 
 	private void _createApplicationFile(Map<String, Object> context)
