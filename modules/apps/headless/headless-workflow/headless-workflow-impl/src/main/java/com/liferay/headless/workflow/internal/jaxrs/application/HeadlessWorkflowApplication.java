@@ -26,13 +26,8 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"auth.verifier.auth.verifier.BasicAuthHeaderAuthVerifier.urls.includes=/*",
-		"auth.verifier.auth.verifier.OAuth2RestAuthVerifier.urls.includes=/*",
-		"auth.verifier.auth.verifier.PortalSessionAuthVerifier.urls.includes=/*",
-		"auth.verifier.guest.allowed=true",
 		"oauth2.scope.checker.type=annotations",
 		"osgi.jaxrs.application.base=/headless-workflow",
-		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.OAuth2)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.AcceptLanguageContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.CompanyContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyReader)",
@@ -41,7 +36,7 @@ import org.osgi.service.component.annotations.Component;
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PaginationContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PortalExceptionMapper)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PrincipalExceptionMapper)",
-		"osgi.jaxrs.name=headless-workflow-application.rest"
+		"osgi.jaxrs.name=headless-workflow-application"
 	},
 	service = Application.class
 )
