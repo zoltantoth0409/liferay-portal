@@ -20,7 +20,6 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Items;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.OpenAPIYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Parameter;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.PathItem;
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Properties;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Schema;
 
 import java.io.File;
@@ -138,28 +137,27 @@ public class YAMLUtil {
 
 		typeDescriptions.add(typeDescription);
 
-		// Properties
-
-		typeDescription = new TypeDescription(Properties.class);
-
-		typeDescription.substituteProperty(
-			"allOf", List.class, "getAllOfSchemas", "setAllOfSchemas");
-
-		typeDescription.addPropertyParameters("allOf", Schema.class);
-
-		typeDescriptions.add(typeDescription);
-
-		typeDescription.substituteProperty(
-			"$ref", String.class, "getReference", "setReference");
-
-		typeDescriptions.add(typeDescription);
-
 		// Schema
 
 		typeDescription = new TypeDescription(Schema.class);
 
 		typeDescription.substituteProperty(
 			"$ref", String.class, "getReference", "setReference");
+
+		typeDescription.substituteProperty(
+			"allOf", List.class, "getAllOfSchemas", "setAllOfSchemas");
+
+		typeDescription.addPropertyParameters("allOf", Schema.class);
+
+		typeDescription.substituteProperty(
+			"anyOf", List.class, "getAnyOfSchemas", "setAnyOfSchemas");
+
+		typeDescription.addPropertyParameters("anyOf", Schema.class);
+
+		typeDescription.substituteProperty(
+			"oneOf", List.class, "getOneOfSchemas", "setAnyOfSchemas");
+
+		typeDescription.addPropertyParameters("oneOf", Schema.class);
 
 		typeDescriptions.add(typeDescription);
 

@@ -33,7 +33,6 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Options;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Parameter;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.PathItem;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Post;
-import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Properties;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Put;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.RequestBody;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Response;
@@ -136,22 +135,15 @@ public class JavaTool {
 
 		String parameterName = CamelCaseUtil.toCamelCase(
 			parameter.getName(), false);
-		String parameterType = _getJavaParameterType(
-			null, schema.getFormat(), schema.getItems(), schema.getReference(),
-			schema.getType());
+		String parameterType = _getJavaParameterType(schema, null);
 
 		return new JavaParameter(
 			parameterAnnotations, parameterName, parameterType);
 	}
 
-	public JavaParameter getJavaParameter(
-		Properties properties, String propertyName) {
-
+	public JavaParameter getJavaParameter(Schema schema, String propertyName) {
 		String parameterName = CamelCaseUtil.toCamelCase(propertyName, false);
-		String parameterType = _getJavaParameterType(
-			properties.getAllOfSchemas(), properties.getFormat(),
-			properties.getItems(), properties.getReference(),
-			properties.getType());
+		String parameterType = _getJavaParameterType(schema, propertyName);
 
 		return new JavaParameter(null, parameterName, parameterType);
 	}
@@ -250,7 +242,9 @@ public class JavaTool {
 	private JavaTool() {
 	}
 
-	private String _getJavaDataType(String type, String format) {
+	private String _getJavaDataType(
+		String type, String format, String propertyName) {
+
 		if (StringUtil.equals(format, "date-time") &&
 			StringUtil.equals(type, "string")) {
 
@@ -261,6 +255,10 @@ public class JavaTool {
 			StringUtil.equals(type, "integer")) {
 
 			return "Long";
+		}
+
+		if (StringUtil.equals(type, "object") && (propertyName != null)) {
+			return StringUtil.upperCaseFirstLetter(propertyName);
 		}
 
 		return StringUtil.upperCaseFirstLetter(type);
@@ -318,16 +316,15 @@ public class JavaTool {
 		return javaParameters;
 	}
 
-	private String _getJavaParameterType(
-		List<Schema> allOfSchemas, String format, Items items, String reference,
-		String type) {
+	private String _getJavaParameterType(Schema schema, String propertyName) {
+		String type = schema.getType();
+
+		Items items = schema.getItems();
 
 		if (StringUtil.equals(type, "array") && (items != null)) {
 			if (items.getType() != null) {
-				String itemsFormat = items.getFormat();
-				String itemsType = items.getType();
-
-				return _getJavaDataType(itemsType, itemsFormat) + "[]";
+				return _getJavaDataType(
+					items.getType(), items.getFormat(), propertyName) + "[]";
 			}
 
 			if (items.getReference() != null) {
@@ -335,19 +332,29 @@ public class JavaTool {
 			}
 		}
 
+		String format = schema.getFormat();
+
 		if (type != null) {
-			return _getJavaDataType(type, format);
+			return _getJavaDataType(type, format, propertyName);
 		}
 
+		List<Schema> allOfSchemas = schema.getAllOfSchemas();
+
 		if (allOfSchemas != null) {
-			for (Schema schema : allOfSchemas) {
-				if (Validator.isNotNull(schema.getReference())) {
-					return getComponentType(schema.getReference());
+			for (Schema childSchema : allOfSchemas) {
+				if (Validator.isNotNull(childSchema.getReference())) {
+					return getComponentType(childSchema.getReference());
 				}
 			}
 		}
 
-		return getComponentType(reference);
+		if ((schema.getAnyOfSchemas() != null) ||
+			(schema.getOneOfSchemas() != null)) {
+
+			return "Object";
+		}
+
+		return getComponentType(schema.getReference());
 	}
 
 	private String _getMethodAnnotationConsumes(Operation operation) {
@@ -502,9 +509,7 @@ public class JavaTool {
 					continue;
 				}
 
-				String javaType = _getJavaParameterType(
-					null, schema.getFormat(), schema.getItems(),
-					schema.getReference(), schema.getType());
+				String javaType = _getJavaParameterType(schema, null);
 
 				if (javaType.endsWith("[]")) {
 					String s = javaType.substring(0, javaType.length() - 2);

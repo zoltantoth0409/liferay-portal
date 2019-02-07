@@ -14,12 +14,21 @@
 
 package com.liferay.portal.tools.rest.builder.internal.yaml.openapi;
 
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author Peter Shin
  */
 public class Schema {
+
+	public List<Schema> getAllOfSchemas() {
+		return _allOfSchemas;
+	}
+
+	public List<Schema> getAnyOfSchemas() {
+		return _anyOfSchemas;
+	}
 
 	public String getDescription() {
 		return _description;
@@ -33,7 +42,11 @@ public class Schema {
 		return _items;
 	}
 
-	public Map<String, Properties> getProperties() {
+	public List<Schema> getOneOfSchemas() {
+		return _oneOfSchemas;
+	}
+
+	public Map<String, Schema> getProperties() {
 		return _properties;
 	}
 
@@ -43,6 +56,14 @@ public class Schema {
 
 	public String getType() {
 		return _type;
+	}
+
+	public void setAllOfSchemas(List<Schema> allOfSchemas) {
+		_allOfSchemas = allOfSchemas;
+	}
+
+	public void setAnyOfSchemas(List<Schema> anyOfSchemas) {
+		_anyOfSchemas = anyOfSchemas;
 	}
 
 	public void setDescription(String description) {
@@ -57,8 +78,12 @@ public class Schema {
 		_items = items;
 	}
 
-	public void setProperties(Map<String, Properties> properties) {
-		_properties = properties;
+	public void setOneOfSchemas(List<Schema> oneOfSchemas) {
+		_oneOfSchemas = oneOfSchemas;
+	}
+
+	public void setProperties(Map<String, Schema> schemas) {
+		_properties = schemas;
 	}
 
 	public void setReference(String reference) {
@@ -69,10 +94,13 @@ public class Schema {
 		_type = type;
 	}
 
+	private List<Schema> _allOfSchemas;
+	private List<Schema> _anyOfSchemas;
 	private String _description;
 	private String _format;
 	private Items _items;
-	private Map<String, Properties> _properties;
+	private List<Schema> _oneOfSchemas;
+	private Map<String, Schema> _properties;
 	private String _reference;
 	private String _type;
 

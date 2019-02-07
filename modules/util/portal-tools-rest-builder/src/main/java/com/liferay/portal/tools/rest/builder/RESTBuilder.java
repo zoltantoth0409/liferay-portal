@@ -15,6 +15,7 @@
 package com.liferay.portal.tools.rest.builder;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.StringUtil_IW;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.Validator_IW;
@@ -115,10 +116,11 @@ public class RESTBuilder {
 
 				_createBaseResourceImplFile(
 					context, schemaName, versionDirName);
-				_createDTOFile(context, schemaName, versionDirName);
 				_createPropertiesFile(context, schemaName, versionDirName);
 				_createResourceFile(context, schemaName, versionDirName);
 				_createResourceImplFile(context, schemaName, versionDirName);
+
+				_createDTOFileFromSchema(context, entry, versionDirName);
 			}
 		}
 
@@ -215,6 +217,32 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
+	}
+
+	private void _createDTOFileFromSchema(
+			Map<String, Object> context, Map.Entry<String, Schema> entry,
+			String versionDirName)
+		throws Exception {
+
+		Schema value = entry.getValue();
+
+		if (value.getProperties() != null) {
+			String key = entry.getKey();
+
+			String keyName = StringUtil.upperCaseFirstLetter(key);
+
+			context.put("schema", value);
+			context.put("schemaName", keyName);
+			context.put("schemaPath", CamelCaseUtil.fromCamelCase(keyName));
+
+			_createDTOFile(context, keyName, versionDirName);
+
+			Map<String, Schema> schemaMap = value.getProperties();
+
+			for (Map.Entry<String, Schema> schemaEntry : schemaMap.entrySet()) {
+				_createDTOFileFromSchema(context, schemaEntry, versionDirName);
+			}
+		}
 	}
 
 	private void _createPropertiesFile(
