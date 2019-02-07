@@ -1101,8 +1101,8 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Role ", name, " with companyId ",
-						String.valueOf(companyId), " does not exist."));
+						"Role ", name, " with company ID ",
+						String.valueOf(companyId), " does not exist"));
 			}
 
 			return false;

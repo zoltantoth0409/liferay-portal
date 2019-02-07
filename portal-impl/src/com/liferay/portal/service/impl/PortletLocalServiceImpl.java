@@ -1238,12 +1238,11 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"No role exist with companyId: ",
+								"Portlet ", portlet.getPortletName(),
+								" requires role with company ID ",
 								String.valueOf(portlet.getCompanyId()),
-								" and role name: ", roleName,
-								" required by portlet ",
-								portlet.getPortletName(),
-								". Create role and redeploy the portlet."));
+								" and name ", roleName,
+								". Create the role and redeploy the portlet."));
 					}
 
 					continue;
