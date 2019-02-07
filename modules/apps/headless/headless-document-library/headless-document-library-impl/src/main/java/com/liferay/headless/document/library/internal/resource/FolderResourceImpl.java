@@ -47,7 +47,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Folder getFolder(Long folderId) throws Exception {
-		return _toFolder(_getFolder(folderId));
+		return _toFolder(_dlAppService.getFolder(folderId));
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 		throws Exception {
 
 		com.liferay.portal.kernel.repository.model.Folder parentFolder =
-			_getFolder(folderId);
+			_dlAppService.getFolder(folderId);
 
 		return _addFolder(
 			parentFolder.getGroupId(), parentFolder.getFolderId(), folder);
@@ -97,13 +97,6 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			_dlAppService.addFolder(
 				documentsRepositoryId, parentFolderId, folder.getName(),
 				folder.getDescription(), new ServiceContext()));
-	}
-
-	private com.liferay.portal.kernel.repository.model.Folder _getFolder(
-			Long folderId)
-		throws Exception {
-
-		return _dlAppService.getFolder(folderId);
 	}
 
 	private Page<Folder> _getFolderPage(
