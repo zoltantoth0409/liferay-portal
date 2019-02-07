@@ -336,7 +336,7 @@ components:
 info:
   description: ""
   title: ""
-  version: 1.0.0
+  version: v1.0
 openapi: 3.0.1
 paths:
   "/content-space/{content-space-id}/form":
