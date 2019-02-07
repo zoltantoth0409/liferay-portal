@@ -21,7 +21,6 @@ import com.liferay.friendly.url.exception.DuplicateFriendlyURLEntryException;
 import com.liferay.headless.collaboration.dto.v1_0_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0_0.ImageObject;
 import com.liferay.headless.collaboration.resource.v1_0_0.BlogPostingResource;
-import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector;
@@ -57,11 +56,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 	@Override
 	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
-		try {
-			_blogsEntryService.deleteEntry(blogPostingId);
-		}
-		catch (NoSuchModelException nsme) {
-		}
+		_blogsEntryService.deleteEntry(blogPostingId);
 
 		return null;
 	}
