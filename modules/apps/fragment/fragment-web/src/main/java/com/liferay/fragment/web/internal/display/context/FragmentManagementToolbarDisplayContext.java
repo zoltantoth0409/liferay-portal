@@ -136,7 +136,6 @@ public class FragmentManagementToolbarDisplayContext
 
 		copyFragmentEntryURL.setParameter(
 			ActionRequest.ACTION_NAME, "/fragment/copy_fragment_entry");
-
 		copyFragmentEntryURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
@@ -148,7 +147,6 @@ public class FragmentManagementToolbarDisplayContext
 
 		deleteFragmentEntriesURL.setParameter(
 			ActionRequest.ACTION_NAME, "/fragment/delete_fragment_entries");
-
 		deleteFragmentEntriesURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
@@ -169,7 +167,6 @@ public class FragmentManagementToolbarDisplayContext
 
 		moveFragmentEntryURL.setParameter(
 			ActionRequest.ACTION_NAME, "/fragment/move_fragment_entry");
-
 		moveFragmentEntryURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
