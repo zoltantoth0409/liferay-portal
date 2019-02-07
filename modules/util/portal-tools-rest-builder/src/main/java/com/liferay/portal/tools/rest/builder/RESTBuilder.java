@@ -23,7 +23,6 @@ import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.JavaTool;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.util.FreeMarkerUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.CamelCaseUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
-import com.liferay.portal.tools.rest.builder.internal.util.FormatUtil;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.Application;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.ConfigYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Components;
@@ -33,9 +32,6 @@ import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Schema;
 import com.liferay.portal.tools.rest.builder.internal.yaml.util.YAMLUtil;
 
 import java.io.File;
-
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -127,8 +123,7 @@ public class RESTBuilder {
 		FileUtil.deleteFiles(_configYAML.getApiDir(), startTime);
 		FileUtil.deleteFiles(_configYAML.getImplDir(), startTime);
 		FileUtil.deleteFiles(
-			_configYAML.getImplDir() + "/../resources/OSGI-INF/",
-			startTime);
+			_configYAML.getImplDir() + "/../resources/OSGI-INF/", startTime);
 	}
 
 	private void _createApplicationFile(Map<String, Object> context)
