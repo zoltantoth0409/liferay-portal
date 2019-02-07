@@ -129,6 +129,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 		return new Folder() {
 			{
 				setDescription(folder.getDescription());
+				setDocumentsRepositoryId(folder.getGroupId());
 				setId(folder.getFolderId());
 				setName(folder.getName());
 			}
