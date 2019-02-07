@@ -1,8 +1,8 @@
-package ${configYAML.apiPackagePath}.resource;
+package ${configYAML.apiPackagePath}.resource.${versionDirName};
 
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
-		import ${configYAML.apiPackagePath}.dto.${schemaName};
+		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
 	</#list>
 </#compress>
 

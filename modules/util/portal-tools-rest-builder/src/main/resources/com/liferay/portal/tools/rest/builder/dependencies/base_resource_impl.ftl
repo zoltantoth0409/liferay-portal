@@ -1,12 +1,12 @@
-package ${configYAML.apiPackagePath}.internal.resource;
+package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
-		import ${configYAML.apiPackagePath}.dto.${schemaName};
+		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
 	</#list>
 </#compress>
 
-import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
+import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;

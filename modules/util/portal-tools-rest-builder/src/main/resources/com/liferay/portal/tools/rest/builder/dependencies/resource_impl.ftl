@@ -1,6 +1,6 @@
-package ${configYAML.apiPackagePath}.internal.resource;
+package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 
-import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
+import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
 import java.util.Date;
 
@@ -11,8 +11,8 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author ${configYAML.author}
  */
 @Component(
-	properties = "OSGI-INF/${schemaPath}.properties", scope = ServiceScope.PROTOTYPE,
-	service = ${schemaName}Resource.class
+	properties = "OSGI-INF/${versionDirName}/${schemaPath}.properties",
+	scope = ServiceScope.PROTOTYPE, service = ${schemaName}Resource.class
 )
 public class ${schemaName}ResourceImpl extends Base${schemaName}ResourceImpl {
 }

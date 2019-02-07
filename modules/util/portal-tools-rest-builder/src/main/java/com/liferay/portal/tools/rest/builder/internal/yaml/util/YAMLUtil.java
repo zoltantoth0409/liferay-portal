@@ -56,9 +56,7 @@ public class YAMLUtil {
 	}
 
 	public static <T> T load(
-		Class<T> clazz, String fileName, TypeDescription... typeDescriptions) {
-
-		File file = new File(fileName);
+		Class<T> clazz, File file, TypeDescription... typeDescriptions) {
 
 		try (InputStream inputStream = new FileInputStream(file)) {
 			Constructor constructor = new Constructor(clazz);
@@ -89,7 +87,7 @@ public class YAMLUtil {
 		}
 	}
 
-	public static ConfigYAML loadConfigYAML(String fileName) {
+	public static ConfigYAML loadConfigYAML(File file) {
 		List<TypeDescription> typeDescriptions = new ArrayList<>();
 
 		// Security
@@ -104,10 +102,10 @@ public class YAMLUtil {
 		TypeDescription[] typeDescriptionsArray = typeDescriptions.toArray(
 			new TypeDescription[typeDescriptions.size()]);
 
-		return load(ConfigYAML.class, fileName, typeDescriptionsArray);
+		return load(ConfigYAML.class, file, typeDescriptionsArray);
 	}
 
-	public static OpenAPIYAML loadOpenAPIYAML(String fileName) {
+	public static OpenAPIYAML loadOpenAPIYAML(File file) {
 		List<TypeDescription> typeDescriptions = new ArrayList<>();
 
 		// Items
@@ -168,7 +166,7 @@ public class YAMLUtil {
 		TypeDescription[] typeDescriptionsArray = typeDescriptions.toArray(
 			new TypeDescription[typeDescriptions.size()]);
 
-		return load(OpenAPIYAML.class, fileName, typeDescriptionsArray);
+		return load(OpenAPIYAML.class, file, typeDescriptionsArray);
 	}
 
 }

@@ -14,7 +14,9 @@
 
 package com.liferay.portal.tools.rest.builder;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil_IW;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.Validator_IW;
 import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.JavaTool;
@@ -24,6 +26,7 @@ import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.Application;
 import com.liferay.portal.tools.rest.builder.internal.yaml.config.ConfigYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Components;
+import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Info;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.OpenAPIYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.openapi.Schema;
 import com.liferay.portal.tools.rest.builder.internal.yaml.util.YAMLUtil;
@@ -41,56 +44,77 @@ public class RESTBuilder {
 	public static void main(String[] args) throws Exception {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
-		String copyrightFileName = arguments.get("copyright.file");
-		String restConfigFileName = arguments.get("rest.config.file");
-		String restOpenAPIFileName = arguments.get("rest.openapi.file");
+		String copyrightFileName = GetterUtil.getString(
+			arguments.get("copyright.file"));
+		String restConfigDirName = GetterUtil.getString(
+			arguments.get("rest.config.dir"),
+			RESTBuilderArgs.REST_CONFIG_DIR_NAME);
 
 		try {
-			new RESTBuilder(
-				copyrightFileName, restConfigFileName, restOpenAPIFileName);
+			new RESTBuilder(copyrightFileName, restConfigDirName);
 		}
 		catch (Exception e) {
 			ArgumentsUtil.processMainException(arguments, e);
 		}
 	}
 
-	public RESTBuilder(
-			String copyrightFileName, String restConfigFileName,
-			String restOpenAPIFileName)
+	public RESTBuilder(String copyrightFileName, String restConfigDirName)
 		throws Exception {
 
+		_configDir = new File(restConfigDirName);
 		_copyrightFileName = copyrightFileName;
 
-		_configYAML = YAMLUtil.loadConfigYAML(restConfigFileName);
-		_openAPIYAML = YAMLUtil.loadOpenAPIYAML(restOpenAPIFileName);
+		File configFile = new File(_configDir, _REST_CONFIG_FILE_NAME);
+
+		_configYAML = YAMLUtil.loadConfigYAML(configFile);
 
 		Map<String, Object> context = new HashMap<>();
 
 		context.put("configYAML", _configYAML);
 		context.put("javaTool", JavaTool.getInstance());
-		context.put("openAPIYAML", _openAPIYAML);
 		context.put("stringUtil", StringUtil_IW.getInstance());
 		context.put("validator", Validator_IW.getInstance());
 
 		_createApplicationFile(context);
 
-		Components components = _openAPIYAML.getComponents();
+		File[] files = FileUtil.getFiles(_configDir, "rest-openapi", ".yaml");
 
-		Map<String, Schema> schemas = components.getSchemas();
+		for (File file : files) {
+			OpenAPIYAML openAPIYAML = YAMLUtil.loadOpenAPIYAML(file);
 
-		for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
-			context.put("schema", entry.getValue());
+			Info info = openAPIYAML.getInfo();
 
-			String schemaName = entry.getKey();
+			String version = info.getVersion();
 
-			context.put("schemaName", schemaName);
-			context.put("schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
+			if (Validator.isNull(version)) {
+				continue;
+			}
 
-			_createBaseResourceImplFile(context, schemaName);
-			_createDTOFile(context, schemaName);
-			_createPropertiesFile(context, schemaName);
-			_createResourceFile(context, schemaName);
-			_createResourceImplFile(context, schemaName);
+			String versionDirName = "v" + version.replaceAll("\\D", "_");
+
+			context.put("openAPIYAML", openAPIYAML);
+			context.put("versionDirName", versionDirName);
+
+			Components components = openAPIYAML.getComponents();
+
+			Map<String, Schema> schemas = components.getSchemas();
+
+			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
+				context.put("schema", entry.getValue());
+
+				String schemaName = entry.getKey();
+
+				context.put("schemaName", schemaName);
+				context.put(
+					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
+
+				_createBaseResourceImplFile(
+					context, schemaName, versionDirName);
+				_createDTOFile(context, schemaName, versionDirName);
+				_createPropertiesFile(context, schemaName, versionDirName);
+				_createResourceFile(context, schemaName, versionDirName);
+				_createResourceImplFile(context, schemaName, versionDirName);
+			}
 		}
 
 		// FileUtil.format(new File(restConfigFileName));
@@ -125,90 +149,8 @@ public class RESTBuilder {
 	}
 
 	private void _createBaseResourceImplFile(
-			Map<String, Object> context, String schemaName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/internal/resource/Base");
-		sb.append(schemaName);
-		sb.append("ResourceImpl.java");
-
-		FileUtil.write(
-			sb.toString(),
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "base_resource_impl", context));
-	}
-
-	private void _createDTOFile(Map<String, Object> context, String schemaName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getApiDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/dto/");
-		sb.append(schemaName);
-		sb.append(".java");
-
-		FileUtil.write(
-			sb.toString(),
-			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
-	}
-
-	private void _createPropertiesFile(
-			Map<String, Object> context, String schemaName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/../resources/OSGI-INF/");
-		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
-		sb.append(".properties");
-
-		FileUtil.write(
-			sb.toString(),
-			FreeMarkerUtil.processTemplate(null, "properties", context));
-	}
-
-	private void _createResourceFile(
-			Map<String, Object> context, String schemaName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getApiDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/resource/");
-		sb.append(schemaName);
-		sb.append("Resource.java");
-
-		FileUtil.write(
-			sb.toString(),
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "resource", context));
-	}
-
-	private void _createResourceImplFile(
-			Map<String, Object> context, String schemaName)
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
 		throws Exception {
 
 		StringBuilder sb = new StringBuilder();
@@ -221,6 +163,104 @@ public class RESTBuilder {
 		sb.append(apiPackagePath.replace('.', '/'));
 
 		sb.append("/internal/resource/");
+		sb.append(versionDirName);
+		sb.append("/Base");
+		sb.append(schemaName);
+		sb.append("ResourceImpl.java");
+
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "base_resource_impl", context));
+	}
+
+	private void _createDTOFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getApiDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/dto/");
+		sb.append(versionDirName);
+		sb.append("/");
+		sb.append(schemaName);
+		sb.append(".java");
+
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
+	}
+
+	private void _createPropertiesFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/../resources/OSGI-INF/");
+		sb.append(versionDirName);
+		sb.append("/");
+		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
+		sb.append(".properties");
+
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(null, "properties", context));
+	}
+
+	private void _createResourceFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getApiDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/resource/");
+		sb.append(versionDirName);
+		sb.append("/");
+		sb.append(schemaName);
+		sb.append("Resource.java");
+
+		FileUtil.write(
+			sb.toString(),
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "resource", context));
+	}
+
+	private void _createResourceImplFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/internal/resource/");
+		sb.append(versionDirName);
+		sb.append("/");
 		sb.append(schemaName);
 		sb.append("ResourceImpl.java");
 
@@ -236,8 +276,10 @@ public class RESTBuilder {
 				_copyrightFileName, "resource_impl", context));
 	}
 
+	private static final String _REST_CONFIG_FILE_NAME = "rest-config.yaml";
+
+	private final File _configDir;
 	private final ConfigYAML _configYAML;
 	private final String _copyrightFileName;
-	private final OpenAPIYAML _openAPIYAML;
 
 }

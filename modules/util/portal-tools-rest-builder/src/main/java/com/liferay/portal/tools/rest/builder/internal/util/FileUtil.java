@@ -14,56 +14,43 @@
 
 package com.liferay.portal.tools.rest.builder.internal.util;
 
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.source.formatter.SourceFormatter;
-import com.liferay.source.formatter.SourceFormatterArgs;
-
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import java.util.Collections;
-
 /**
  * @author Peter Shin
  */
 public class FileUtil {
 
-	public static String format(File file, String content) throws Exception {
-		if (!file.exists()) {
-			Path path = file.toPath();
+	public static File[] getFiles(File dir, String prefix, String suffix) {
+		return dir.listFiles(
+			new FileFilter() {
 
-			if (path.getParent() != null) {
-				Files.createDirectories(path.getParent());
-			}
+				@Override
+				public boolean accept(File file) {
+					if (file.isDirectory()) {
+						return false;
+					}
 
-			Files.createFile(file.toPath());
-		}
+					String name = file.getName();
 
-		String newContent = _fixWhitespace(file, content);
+					if (!name.startsWith(prefix)) {
+						return false;
+					}
 
-		Files.write(file.toPath(), newContent.getBytes(StandardCharsets.UTF_8));
+					if (!name.endsWith(suffix)) {
+						return false;
+					}
 
-		SourceFormatterArgs sourceFormatterArgs = new SourceFormatterArgs();
+					return true;
+				}
 
-		sourceFormatterArgs.setFileNames(
-			Collections.singletonList(file.getCanonicalPath()));
-		sourceFormatterArgs.setIncludeGeneratedFiles(true);
-		sourceFormatterArgs.setPrintErrors(false);
-		sourceFormatterArgs.setSkipCheckNames(
-			Collections.singletonList("JavaOSGiReferenceCheck"));
-
-		SourceFormatter sourceFormatter = new SourceFormatter(
-			sourceFormatterArgs);
-
-		if (!StringUtil.endsWith(file.getName(), "Resource.java")) {
-			sourceFormatter.format();
-		}
-
-		return read(file);
+			});
 	}
 
 	public static String read(File file) throws IOException {
@@ -78,49 +65,29 @@ public class FileUtil {
 	}
 
 	public static void write(File file, String content) throws Exception {
+		if (!file.exists()) {
+			Path path = file.toPath();
+
+			if (path.getParent() != null) {
+				Files.createDirectories(path.getParent());
+			}
+
+			Files.createFile(file.toPath());
+		}
+
 		String oldContent = read(file);
 
-		if (!oldContent.equals(format(file, content))) {
+		String newContent = FormatUtil.fixWhitespace(file, content);
+
+		Files.write(file.toPath(), newContent.getBytes(StandardCharsets.UTF_8));
+
+		if (!oldContent.equals(FormatUtil.format(file))) {
 			System.out.println("Writing " + file.getCanonicalPath());
 		}
 	}
 
 	public static void write(String fileName, String content) throws Exception {
 		write(new File(fileName), content);
-	}
-
-	private static String _fixWhitespace(File file, String content) {
-		String newContent = content.replaceAll("(?m)^\n+", "\n");
-
-		newContent = newContent.trim();
-
-		if (!StringUtil.endsWith(file.getName(), ".java")) {
-			return newContent;
-		}
-
-		int index = newContent.indexOf("\npublic ");
-
-		if (index == -1) {
-			return newContent;
-		}
-
-		String oldSub = newContent.substring(0, index);
-
-		String newSub = oldSub.replaceAll("(?m)^\".+\",$", "\t\t$0");
-
-		newContent = newContent.replace(oldSub, newSub);
-
-		index = newContent.indexOf("\npublic ");
-
-		oldSub = newContent.substring(
-			newContent.indexOf("\n", index + 2), newContent.lastIndexOf("}"));
-
-		newSub = oldSub.replaceAll(
-			"(?m)^\t*(@|public|protected|private)", "\t$1");
-
-		newSub = newSub.replaceAll("(?m)^\t*}$", "\t}");
-
-		return newContent.replace(oldSub, newSub);
 	}
 
 }

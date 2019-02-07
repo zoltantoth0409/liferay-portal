@@ -26,25 +26,16 @@ import org.osgi.service.component.annotations.Component;
 				"oauth2.scope.checker.type=annotations",
 				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.OAuth2)",
 			</#if>
-
-			<#if javaTool.hasJavaParameterAcceptLanguage(openAPIYAML) || javaTool.hasJavaParameterPagination(openAPIYAML)>
-				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyReader)",
-				"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyWriter)",
-
-				<#if javaTool.hasJavaParameterAcceptLanguage(openAPIYAML)>
-					"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.AcceptLanguageContextProvider)",
-				</#if>
-
-				<#if javaTool.hasJavaParameterPagination(openAPIYAML)>
-					"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PaginationContextProvider)",
-				</#if>
-			</#if>
 		</#compress>
 
 		"auth.verifier.auth.verifier.PortalSessionAuthVerifier.urls.includes=/*",
 		"osgi.jaxrs.application.base=${configYAML.application.baseURI}",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.AcceptLanguageContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.CompanyContextProvider)",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyReader)",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.JSONMessageBodyWriter)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.NoSuchModelExceptionMapper)",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PaginationContextProvider)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PortalExceptionMapper)",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan.PrincipalExceptionMapper)",
 		"osgi.jaxrs.name=${configYAML.application.name}.rest"
