@@ -44,13 +44,13 @@ import javax.ws.rs.core.Response;
 /**
  * To access this resource, run:
  *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-document-library/1.0.0
+ *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-document-library/v1.0
  *
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@Path("/1.0.0")
+@Path("/v1.0")
 public interface CommentResource {
 
 	@GET
