@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.exception.mapper;
+package com.liferay.headless.collaboration.internal.jaxrs.exception.mapper;
 
 import com.liferay.friendly.url.exception.DuplicateFriendlyURLEntryException;
 

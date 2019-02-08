@@ -12,15 +12,15 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.feature;
+package com.liferay.portal.vulcan.internal.jaxrs.feature;
 
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.vulcan.internal.context.provider.AcceptLanguageContextProvider;
-import com.liferay.portal.vulcan.internal.context.provider.CompanyContextProvider;
-import com.liferay.portal.vulcan.internal.context.provider.PaginationContextProvider;
-import com.liferay.portal.vulcan.internal.exception.mapper.NoSuchModelExceptionMapper;
-import com.liferay.portal.vulcan.internal.exception.mapper.PortalExceptionMapper;
-import com.liferay.portal.vulcan.internal.exception.mapper.PrincipalExceptionMapper;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.AcceptLanguageContextProvider;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.CompanyContextProvider;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.PaginationContextProvider;
+import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.NoSuchModelExceptionMapper;
+import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PortalExceptionMapper;
+import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PrincipalExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.json.JSONMessageBodyReader;
 import com.liferay.portal.vulcan.internal.jaxrs.json.JSONMessageBodyWriter;
 

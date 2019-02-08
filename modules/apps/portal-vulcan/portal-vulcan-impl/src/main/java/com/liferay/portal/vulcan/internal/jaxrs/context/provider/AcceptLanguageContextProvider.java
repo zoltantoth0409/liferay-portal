@@ -12,10 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.vulcan.context.Pagination;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.vulcan.context.AcceptLanguage;
+import com.liferay.portal.vulcan.internal.context.AcceptLanguageImpl;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,21 +26,24 @@ import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
 /**
- * @author Zoltán Takács
+ * @author Cristina González
  */
 @Provider
-public class PaginationContextProvider implements ContextProvider<Pagination> {
+public class AcceptLanguageContextProvider
+	implements ContextProvider<AcceptLanguage> {
+
+	public AcceptLanguageContextProvider(Portal portal) {
+		_portal = portal;
+	}
 
 	@Override
-	public Pagination createContext(Message message) {
+	public AcceptLanguage createContext(Message message) {
 		HttpServletRequest httpServletRequest =
 			ContextProviderUtil.getHttpServletRequest(message);
 
-		int itemsPerPage = ParamUtil.getInteger(
-			httpServletRequest, "pageSize", 20);
-		int pageNumber = ParamUtil.getInteger(httpServletRequest, "page", 1);
-
-		return Pagination.of(itemsPerPage, pageNumber);
+		return new AcceptLanguageImpl(httpServletRequest, _portal);
 	}
+
+	private final Portal _portal;
 
 }

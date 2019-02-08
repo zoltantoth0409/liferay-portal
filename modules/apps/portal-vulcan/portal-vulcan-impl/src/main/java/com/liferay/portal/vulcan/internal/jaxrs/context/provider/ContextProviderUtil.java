@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
 import javax.servlet.http.HttpServletRequest;
 

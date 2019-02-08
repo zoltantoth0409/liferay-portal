@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.exception.mapper;
+package com.liferay.portal.vulcan.internal.jaxrs.exception.mapper;
 
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 
