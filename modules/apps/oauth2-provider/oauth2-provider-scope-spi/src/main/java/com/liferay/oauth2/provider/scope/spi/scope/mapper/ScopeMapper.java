@@ -32,6 +32,14 @@ public interface ScopeMapper {
 		Collections::singleton;
 
 	/**
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #PASS_THROUGH_SCOPE_MAPPER}
+	 */
+	@Deprecated
+	public static final ScopeMapper PASSTHROUGH_SCOPEMAPPER =
+		PASS_THROUGH_SCOPE_MAPPER;
+
+	/**
 	 * Renames an application provided scope to new scope names
 	 *
 	 * @param  scope application provided scope
