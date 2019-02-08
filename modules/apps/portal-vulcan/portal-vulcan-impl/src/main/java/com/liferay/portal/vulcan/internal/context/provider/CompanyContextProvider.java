@@ -14,14 +14,11 @@
 
 package com.liferay.portal.vulcan.internal.context.provider;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.util.Portal;
 
-import io.vavr.CheckedFunction1;
-
-import java.util.function.Function;
-
-import javax.servlet.http.HttpServletRequest;
-
+import javax.ws.rs.ServerErrorException;
 import javax.ws.rs.ext.Provider;
 
 import org.apache.cxf.jaxrs.ext.ContextProvider;
@@ -39,23 +36,21 @@ import org.apache.cxf.message.Message;
 @Provider
 public class CompanyContextProvider implements ContextProvider<Company> {
 
-	public CompanyContextProvider(
-		CheckedFunction1<HttpServletRequest, Company>
-			companyProviderCheckedFunction1) {
-
-		_companyProviderFunction = companyProviderCheckedFunction1.unchecked();
+	public CompanyContextProvider(Portal portal) {
+		_portal = portal;
 	}
 
 	@Override
 	public Company createContext(Message message) {
-		return _companyProviderFunction.compose(
-			ContextProviderUtil::getHttpServletRequest
-		).apply(
-			message
-		);
+		try {
+			return _portal.getCompany(
+				ContextProviderUtil.getHttpServletRequest(message));
+		}
+		catch (PortalException pe) {
+			throw new ServerErrorException(500, pe);
+		}
 	}
 
-	private final Function<HttpServletRequest, Company>
-		_companyProviderFunction;
+	private final Portal _portal;
 
 }

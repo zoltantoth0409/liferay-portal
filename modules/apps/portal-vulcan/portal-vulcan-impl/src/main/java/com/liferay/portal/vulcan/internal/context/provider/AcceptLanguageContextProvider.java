@@ -14,11 +14,9 @@
 
 package com.liferay.portal.vulcan.internal.context.provider;
 
-import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.internal.context.AcceptLanguageImpl;
-
-import io.vavr.CheckedFunction1;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,10 +32,8 @@ import org.apache.cxf.message.Message;
 public class AcceptLanguageContextProvider
 	implements ContextProvider<AcceptLanguage> {
 
-	public AcceptLanguageContextProvider(
-		CheckedFunction1<HttpServletRequest, User> userCheckedFunction1) {
-
-		_userCheckedFunction1 = userCheckedFunction1;
+	public AcceptLanguageContextProvider(Portal portal) {
+		_portal = portal;
 	}
 
 	@Override
@@ -45,12 +41,9 @@ public class AcceptLanguageContextProvider
 		HttpServletRequest httpServletRequest =
 			ContextProviderUtil.getHttpServletRequest(message);
 
-		return new AcceptLanguageImpl(
-			httpServletRequest,
-			() -> _userCheckedFunction1.apply(httpServletRequest));
+		return new AcceptLanguageImpl(httpServletRequest, _portal);
 	}
 
-	private final CheckedFunction1<HttpServletRequest, User>
-		_userCheckedFunction1;
+	private final Portal _portal;
 
 }

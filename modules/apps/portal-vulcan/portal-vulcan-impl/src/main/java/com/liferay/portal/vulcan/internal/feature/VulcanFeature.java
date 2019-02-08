@@ -58,11 +58,8 @@ public class VulcanFeature implements Feature {
 		featureContext.register(PortalExceptionMapper.class);
 		featureContext.register(PrincipalExceptionMapper.class);
 
-		featureContext.register(
-			new CompanyContextProvider(_portal::getCompany));
-
-		featureContext.register(
-			new AcceptLanguageContextProvider(_portal::initUser));
+		featureContext.register(new CompanyContextProvider(_portal));
+		featureContext.register(new AcceptLanguageContextProvider(_portal));
 
 		return false;
 	}

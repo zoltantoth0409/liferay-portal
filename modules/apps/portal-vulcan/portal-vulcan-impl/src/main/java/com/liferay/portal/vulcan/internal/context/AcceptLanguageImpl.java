@@ -17,9 +17,8 @@ package com.liferay.portal.vulcan.internal.context;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
-
-import io.vavr.CheckedFunction0;
 
 import java.util.Collections;
 import java.util.List;
@@ -37,11 +36,10 @@ import javax.ws.rs.core.HttpHeaders;
 public class AcceptLanguageImpl implements AcceptLanguage {
 
 	public AcceptLanguageImpl(
-		HttpServletRequest httpServletRequest,
-		CheckedFunction0<User> userCheckedFunction0) {
+		HttpServletRequest httpServletRequest, Portal portal) {
 
 		_httpServletRequest = httpServletRequest;
-		_userCheckedFunction0 = userCheckedFunction0;
+		_portal = portal;
 	}
 
 	@Override
@@ -65,7 +63,7 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 		}
 
 		try {
-			User user = _userCheckedFunction0.apply();
+			User user = _portal.initUser(_httpServletRequest);
 
 			return user.getLocale();
 		}
@@ -80,6 +78,6 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 	}
 
 	private final HttpServletRequest _httpServletRequest;
-	private final CheckedFunction0<User> _userCheckedFunction0;
+	private final Portal _portal;
 
 }
