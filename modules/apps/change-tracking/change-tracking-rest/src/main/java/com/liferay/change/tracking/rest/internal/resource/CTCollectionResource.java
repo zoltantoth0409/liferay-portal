@@ -151,7 +151,7 @@ public class CTCollectionResource {
 				productionCTCollectionOptional.orElseThrow(
 					() -> new NoSuchProductionCTCollectionException(
 						companyId,
-						"Cannot find production Change Tracking Collection"));
+						"Unable to get production change tracking collection"));
 
 			ctCollections.add(ctCollection);
 		}
