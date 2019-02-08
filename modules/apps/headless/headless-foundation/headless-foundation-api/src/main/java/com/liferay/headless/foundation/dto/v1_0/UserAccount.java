@@ -40,7 +40,7 @@ public class UserAccount {
 		return _birthDate;
 	}
 
-	public Object getContactInformation() {
+	public ContactInformation getContactInformation() {
 		return _contactInformation;
 	}
 
@@ -128,7 +128,7 @@ public class UserAccount {
 		_birthDate = birthDate;
 	}
 
-	public void setContactInformation(Object contactInformation) {
+	public void setContactInformation(ContactInformation contactInformation) {
 		_contactInformation = contactInformation;
 	}
 
@@ -207,7 +207,7 @@ public class UserAccount {
 	private String _additionalName;
 	private String _alternateName;
 	private Date _birthDate;
-	private Object _contactInformation;
+	private ContactInformation _contactInformation;
 	private String _dashboardURL;
 	private String _email;
 	private String _familyName;

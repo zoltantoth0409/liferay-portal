@@ -88,7 +88,7 @@ public class StructuredContent {
 		return _lastReviewed;
 	}
 
-	public Object getRenderedContentsByTemplate() {
+	public RenderedContentsByTemplate getRenderedContentsByTemplate() {
 		return _renderedContentsByTemplate;
 	}
 
@@ -100,7 +100,7 @@ public class StructuredContent {
 		return _title;
 	}
 
-	public Object getValues() {
+	public Values getValues() {
 		return _values;
 	}
 
@@ -165,7 +165,7 @@ public class StructuredContent {
 	}
 
 	public void setRenderedContentsByTemplate(
-		Object renderedContentsByTemplate) {
+		RenderedContentsByTemplate renderedContentsByTemplate) {
 
 		_renderedContentsByTemplate = renderedContentsByTemplate;
 	}
@@ -178,7 +178,7 @@ public class StructuredContent {
 		_title = title;
 	}
 
-	public void setValues(Object values) {
+	public void setValues(Values values) {
 		_values = values;
 	}
 
@@ -197,9 +197,9 @@ public class StructuredContent {
 	private Long _id;
 	private String[] _keywords;
 	private String _lastReviewed;
-	private Object _renderedContentsByTemplate;
+	private RenderedContentsByTemplate _renderedContentsByTemplate;
 	private String _self;
 	private String _title;
-	private Object _values;
+	private Values _values;
 
 }

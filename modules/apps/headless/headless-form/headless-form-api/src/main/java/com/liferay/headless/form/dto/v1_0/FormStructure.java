@@ -52,7 +52,7 @@ public class FormStructure {
 		return _description;
 	}
 
-	public Object getFormPages() {
+	public FormPages getFormPages() {
 		return _formPages;
 	}
 
@@ -68,7 +68,7 @@ public class FormStructure {
 		return _self;
 	}
 
-	public Object getSuccessPage() {
+	public SuccessPage getSuccessPage() {
 		return _successPage;
 	}
 
@@ -96,7 +96,7 @@ public class FormStructure {
 		_description = description;
 	}
 
-	public void setFormPages(Object formPages) {
+	public void setFormPages(FormPages formPages) {
 		_formPages = formPages;
 	}
 
@@ -112,7 +112,7 @@ public class FormStructure {
 		_self = self;
 	}
 
-	public void setSuccessPage(Object successPage) {
+	public void setSuccessPage(SuccessPage successPage) {
 		_successPage = successPage;
 	}
 
@@ -122,10 +122,10 @@ public class FormStructure {
 	private Date _dateCreated;
 	private Date _dateModified;
 	private String _description;
-	private Object _formPages;
+	private FormPages _formPages;
 	private Long _id;
 	private String _name;
 	private String _self;
-	private Object _successPage;
+	private SuccessPage _successPage;
 
 }

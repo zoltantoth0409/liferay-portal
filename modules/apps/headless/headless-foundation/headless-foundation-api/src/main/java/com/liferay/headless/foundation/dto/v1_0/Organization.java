@@ -30,7 +30,7 @@ public class Organization {
 		return _comment;
 	}
 
-	public Object getContactInformation() {
+	public ContactInformation getContactInformation() {
 		return _contactInformation;
 	}
 
@@ -38,7 +38,7 @@ public class Organization {
 		return _id;
 	}
 
-	public Object getLocation() {
+	public Location getLocation() {
 		return _location;
 	}
 
@@ -70,7 +70,7 @@ public class Organization {
 		return _self;
 	}
 
-	public Object getServices() {
+	public Services getServices() {
 		return _services;
 	}
 
@@ -86,7 +86,7 @@ public class Organization {
 		_comment = comment;
 	}
 
-	public void setContactInformation(Object contactInformation) {
+	public void setContactInformation(ContactInformation contactInformation) {
 		_contactInformation = contactInformation;
 	}
 
@@ -94,7 +94,7 @@ public class Organization {
 		_id = id;
 	}
 
-	public void setLocation(Object location) {
+	public void setLocation(Location location) {
 		_location = location;
 	}
 
@@ -126,7 +126,7 @@ public class Organization {
 		_self = self;
 	}
 
-	public void setServices(Object services) {
+	public void setServices(Services services) {
 		_services = services;
 	}
 
@@ -139,9 +139,9 @@ public class Organization {
 	}
 
 	private String _comment;
-	private Object _contactInformation;
+	private ContactInformation _contactInformation;
 	private Long _id;
-	private Object _location;
+	private Location _location;
 	private String _logo;
 	private UserAccount[] _members;
 	private Long[] _membersIds;
@@ -149,7 +149,7 @@ public class Organization {
 	private Organization _parentOrganization;
 	private Long _parentOrganizationId;
 	private String _self;
-	private Object _services;
+	private Services _services;
 	private Organization[] _subOrganization;
 	private Long[] _subOrganizationIds;
 
