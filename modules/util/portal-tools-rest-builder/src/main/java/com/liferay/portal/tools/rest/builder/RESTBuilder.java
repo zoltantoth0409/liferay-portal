@@ -36,8 +36,10 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * @author Peter Shin
@@ -106,10 +108,10 @@ public class RESTBuilder {
 			Map<String, Schema> schemas = components.getSchemas();
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
-				context.put("schema", entry.getValue());
-
+				Schema schema = entry.getValue();
 				String schemaName = entry.getKey();
 
+				context.put("schema", schema);
 				context.put("schemaName", schemaName);
 				context.put(
 					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
@@ -119,8 +121,34 @@ public class RESTBuilder {
 				_createPropertiesFile(context, schemaName, versionDirName);
 				_createResourceFile(context, schemaName, versionDirName);
 				_createResourceImplFile(context, schemaName, versionDirName);
+			}
 
-				_createDTOFileFromSchema(context, entry, versionDirName);
+			Queue<Map<String, Schema>> queue = new LinkedList<>();
+
+			queue.add(schemas);
+
+			Map<String, Schema> curSchemas = null;
+
+			while ((curSchemas = queue.poll()) != null) {
+				for (Map.Entry<String, Schema> entry : curSchemas.entrySet()) {
+					Schema schema = entry.getValue();
+					String schemaName = entry.getKey();
+
+					if (schema.getProperties() == null) {
+						continue;
+					}
+
+					schemaName = StringUtil.upperCaseFirstLetter(schemaName);
+
+					context.put("schema", schema);
+					context.put("schemaName", schemaName);
+					context.put(
+						"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
+
+					_createDTOFile(context, schemaName, versionDirName);
+
+					queue.add(schema.getProperties());
+				}
 			}
 		}
 
@@ -217,32 +245,6 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
-	}
-
-	private void _createDTOFileFromSchema(
-			Map<String, Object> context, Map.Entry<String, Schema> entry,
-			String versionDirName)
-		throws Exception {
-
-		Schema value = entry.getValue();
-
-		if (value.getProperties() != null) {
-			String key = entry.getKey();
-
-			String keyName = StringUtil.upperCaseFirstLetter(key);
-
-			context.put("schema", value);
-			context.put("schemaName", keyName);
-			context.put("schemaPath", CamelCaseUtil.fromCamelCase(keyName));
-
-			_createDTOFile(context, keyName, versionDirName);
-
-			Map<String, Schema> schemaMap = value.getProperties();
-
-			for (Map.Entry<String, Schema> schemaEntry : schemaMap.entrySet()) {
-				_createDTOFileFromSchema(context, schemaEntry, versionDirName);
-			}
-		}
 	}
 
 	private void _createPropertiesFile(
