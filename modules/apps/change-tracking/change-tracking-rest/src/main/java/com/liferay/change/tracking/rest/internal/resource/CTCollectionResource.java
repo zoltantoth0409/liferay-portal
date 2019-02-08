@@ -271,7 +271,6 @@ public class CTCollectionResource {
 
 		QueryDefinition<CTCollection> queryDefinition = new QueryDefinition<>();
 
-		queryDefinition.setStart(0);
 		queryDefinition.setEnd(CTJaxRsUtil.checkLimit(limit));
 
 		OrderByComparator<CTCollection> orderByComparator =
@@ -280,6 +279,8 @@ public class CTCollectionResource {
 				CTJaxRsUtil.checkSortColumns(sort, _orderByColumnNames));
 
 		queryDefinition.setOrderByComparator(orderByComparator);
+
+		queryDefinition.setStart(0);
 
 		return queryDefinition;
 	}
