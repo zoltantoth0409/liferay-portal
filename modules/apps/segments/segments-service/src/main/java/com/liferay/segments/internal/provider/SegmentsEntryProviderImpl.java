@@ -163,18 +163,18 @@ public class SegmentsEntryProviderImpl implements SegmentsEntryProvider {
 			segmentsEntry -> _isMember(
 				className, classPK, context, segmentsEntry)
 		).sorted(
-			(o1, o2) -> {
-				if (o1.isDefaultSegment()) {
+			(segmentsEntry1, segmentsEntry2) -> {
+				if (segmentsEntry1.isDefaultSegment()) {
 					return 1;
 				}
 
-				if (o2.isDefaultSegment()) {
+				if (segmentsEntry2.isDefaultSegment()) {
 					return -1;
 				}
 
-				Date modifiedDate = o2.getModifiedDate();
+				Date modifiedDate = segmentsEntry2.getModifiedDate();
 
-				return modifiedDate.compareTo(o1.getModifiedDate());
+				return modifiedDate.compareTo(segmentsEntry1.getModifiedDate());
 			}
 		).mapToLong(
 			SegmentsEntry::getSegmentsEntryId
