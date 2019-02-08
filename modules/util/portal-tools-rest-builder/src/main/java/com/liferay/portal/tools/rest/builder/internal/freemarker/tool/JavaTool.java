@@ -206,42 +206,6 @@ public class JavaTool {
 		return operations;
 	}
 
-	public boolean hasJavaParameterAcceptLanguage(OpenAPIYAML openAPIYAML) {
-		Map<String, PathItem> pathItems = openAPIYAML.getPathItems();
-
-		if (pathItems == null) {
-			return false;
-		}
-
-		for (PathItem pathItem : pathItems.values()) {
-			for (Operation operation : getOperations(pathItem)) {
-				if (_hasJavaParameterAcceptLanguage(operation)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
-	public boolean hasJavaParameterPagination(OpenAPIYAML openAPIYAML) {
-		Map<String, PathItem> pathItems = openAPIYAML.getPathItems();
-
-		if (pathItems == null) {
-			return false;
-		}
-
-		for (PathItem pathItem : pathItems.values()) {
-			for (Operation operation : getOperations(pathItem)) {
-				if (_hasJavaParameterPagination(operation)) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
 	private JavaTool() {
 	}
 
@@ -533,22 +497,6 @@ public class JavaTool {
 		}
 
 		return "Response";
-	}
-
-	private boolean _hasJavaParameterAcceptLanguage(Operation operation) {
-		if ((operation == null) || (operation.getParameters() == null)) {
-			return false;
-		}
-
-		for (Parameter parameter : operation.getParameters()) {
-			String parameterName = parameter.getName();
-
-			if (StringUtil.equals(parameterName, "Accept-Language")) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	private boolean _hasJavaParameterPagination(Operation operation) {
