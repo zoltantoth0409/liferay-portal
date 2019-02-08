@@ -62,12 +62,12 @@ public interface WebUrlResource {
 	@GET
 	@Path("/web-urls")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<WebUrl> getWebUrlsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/web-urls/{web-urls-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public WebUrl getWebUrl( @PathParam("web-urls-id") Long webUrlsId ) throws Exception;
 }

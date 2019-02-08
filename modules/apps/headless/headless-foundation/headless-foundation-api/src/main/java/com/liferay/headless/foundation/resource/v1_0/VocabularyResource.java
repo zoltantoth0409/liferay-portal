@@ -62,34 +62,34 @@ public interface VocabularyResource {
 	@GET
 	@Path("/content-space/{content-space-id}/vocabularies")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Vocabulary> getContentSpaceVocabulariesPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/vocabularies")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Vocabulary postContentSpaceVocabularies( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/vocabularies/batch-create")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.write")
+	@RequiresScope("everything.write")
 	public Vocabulary postContentSpaceVocabulariesBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
 	@GET
 	@Path("/vocabularies/{vocabularies-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Vocabulary getVocabularies( @PathParam("vocabularies-id") Long vocabulariesId ) throws Exception;
 
 	@Consumes("application/json")
 	@PUT
 	@Path("/vocabularies/{vocabularies-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Vocabulary putVocabularies( @PathParam("vocabularies-id") Long vocabulariesId , Vocabulary vocabulary ) throws Exception;
 
 }

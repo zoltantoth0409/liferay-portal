@@ -58,34 +58,34 @@ public interface StructuredContentResource {
 	@GET
 	@Path("/content-space/{content-space-id}/structured-contents")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @QueryParam("filter") String filter , @QueryParam("sort") String sort , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/structured-contents")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public StructuredContent postContentSpaceStructuredContent( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/structured-contents/batch-create")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.write")
+	@RequiresScope("everything.write")
 	public StructuredContent postContentSpaceStructuredContentsBatchCreate( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
 	@GET
 	@Path("/structured-contents/{structured-contents-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public StructuredContent getStructuredContent( @PathParam("structured-contents-id") Long structuredContentsId ) throws Exception;
 
 	@Consumes("application/json")
 	@PUT
 	@Path("/structured-contents/{structured-contents-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public StructuredContent putStructuredContent( @PathParam("structured-contents-id") Long structuredContentsId , StructuredContent structuredContent ) throws Exception;
 
 }

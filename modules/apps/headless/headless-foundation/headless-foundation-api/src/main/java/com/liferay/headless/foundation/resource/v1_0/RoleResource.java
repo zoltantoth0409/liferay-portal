@@ -62,25 +62,25 @@ public interface RoleResource {
 	@GET
 	@Path("/my-user-account/{my-user-account-id}/roles")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Role> getMyUserAccountRolesPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/roles")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Role> getRolesPage( @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/roles/{roles-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Role getRole( @PathParam("roles-id") Long rolesId ) throws Exception;
 
 	@GET
 	@Path("/user-account/{user-account-id}/roles")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Role> getUserAccountRolesPage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception;
 
 }

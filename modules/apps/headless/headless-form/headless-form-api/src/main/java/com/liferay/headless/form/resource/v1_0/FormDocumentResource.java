@@ -57,13 +57,13 @@ public interface FormDocumentResource {
 	@DELETE
 	@Path("/form-document/{form-document-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-form-application.read")
+	@RequiresScope("everything.read")
 	public Response deleteFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception;
 
 	@GET
 	@Path("/form-document/{form-document-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-form-application.read")
+	@RequiresScope("everything.read")
 	public FormDocument getFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception;
 
 }

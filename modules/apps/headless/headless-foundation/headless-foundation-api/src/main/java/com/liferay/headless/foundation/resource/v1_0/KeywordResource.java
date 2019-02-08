@@ -62,34 +62,34 @@ public interface KeywordResource {
 	@GET
 	@Path("/content-space/{content-space-id}/keywords")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Keyword> getContentSpaceKeywordsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/keywords")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Keyword postContentSpaceKeyword( @PathParam("content-space-id") Long contentSpaceId , Keyword keyword ) throws Exception;
 
 	@Consumes("application/json")
 	@POST
 	@Path("/content-space/{content-space-id}/keywords/batch-create")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.write")
+	@RequiresScope("everything.write")
 	public Keyword postContentSpaceKeywordsBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Keyword keyword ) throws Exception;
 
 	@GET
 	@Path("/keywords/{keywords-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Keyword getKeyword( @PathParam("keywords-id") Long keywordsId ) throws Exception;
 
 	@Consumes("application/json")
 	@PUT
 	@Path("/keywords/{keywords-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Keyword putKeyword( @PathParam("keywords-id") Long keywordsId , Keyword keyword ) throws Exception;
 
 }

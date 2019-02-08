@@ -58,18 +58,18 @@ public interface CommentResource {
 	@GET
 	@Path("/comment/{comment-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Comment getComment( @PathParam("comment-id") Long commentId ) throws Exception;
 
 	@GET
 	@Path("/comment/{comment-id}/comment")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/structured-contents/{structured-contents-id}/comment")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Page<Comment> getStructuredContentsCommentPage( @PathParam("structured-contents-id") Long structuredContentsId , @Context Pagination pagination ) throws Exception;
 }

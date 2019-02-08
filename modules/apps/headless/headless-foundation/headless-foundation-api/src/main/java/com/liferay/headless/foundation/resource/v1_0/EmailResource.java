@@ -62,13 +62,13 @@ public interface EmailResource {
 	@GET
 	@Path("/emails")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Page<Email> getEmailsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/emails/{emails-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-foundation-application.read")
+	@RequiresScope("everything.read")
 	public Email getEmail( @PathParam("emails-id") Long emailsId ) throws Exception;
 
 }

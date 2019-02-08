@@ -57,13 +57,13 @@ public interface FormStructureResource {
 	@GET
 	@Path("/content-space/{content-space-id}/form-structures")
 	@Produces("application/json")
-	@RequiresScope("headless-form-application.read")
+	@RequiresScope("everything.read")
 	public Page<FormStructure> getContentSpaceFormStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/form-structures/{form-structures-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-form-application.read")
+	@RequiresScope("everything.read")
 	public FormStructure getFormStructure( @PathParam("form-structures-id") Long formStructuresId ) throws Exception;
 
 }

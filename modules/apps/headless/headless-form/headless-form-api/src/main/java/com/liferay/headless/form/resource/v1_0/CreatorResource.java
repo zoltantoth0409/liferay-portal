@@ -57,7 +57,7 @@ public interface CreatorResource {
 	@GET
 	@Path("/creator/{creator-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-form-application.read")
+	@RequiresScope("everything.read")
 	public Creator getCreator( @PathParam("creator-id") Long creatorId ) throws Exception;
 
 }

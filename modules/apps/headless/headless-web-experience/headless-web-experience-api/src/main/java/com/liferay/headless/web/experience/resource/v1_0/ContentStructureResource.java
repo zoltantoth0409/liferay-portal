@@ -58,13 +58,13 @@ public interface ContentStructureResource {
 	@GET
 	@Path("/content-space/{content-space-id}/content-structures")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Page<ContentStructure> getContentSpaceContentStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
 
 	@GET
 	@Path("/content-structures/{content-structures-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public ContentStructure getContentStructure( @PathParam("content-structures-id") Long contentStructuresId ) throws Exception;
 
 }

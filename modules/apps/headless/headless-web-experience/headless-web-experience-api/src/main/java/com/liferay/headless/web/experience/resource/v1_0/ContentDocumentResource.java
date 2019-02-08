@@ -58,13 +58,13 @@ public interface ContentDocumentResource {
 	@DELETE
 	@Path("/content-document/{content-document-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public Response deleteContentDocument( @PathParam("content-document-id") Long contentDocumentId ) throws Exception;
 
 	@GET
 	@Path("/content-document/{content-document-id}")
 	@Produces("application/json")
-	@RequiresScope("headless-web-experience-application.read")
+	@RequiresScope("everything.read")
 	public ContentDocument getContentDocument( @PathParam("content-document-id") Long contentDocumentId ) throws Exception;
 
 }
