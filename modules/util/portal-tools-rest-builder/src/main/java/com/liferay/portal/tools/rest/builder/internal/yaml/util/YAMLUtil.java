@@ -159,6 +159,13 @@ public class YAMLUtil {
 
 		typeDescription.addPropertyParameters("oneOf", Schema.class);
 
+		typeDescription.substituteProperty(
+			"properties", Map.class, "getPropertySchemas",
+			"setPropertySchemas");
+
+		typeDescription.addPropertyParameters(
+			"properties", String.class, Schema.class);
+
 		typeDescriptions.add(typeDescription);
 
 		TypeDescription[] typeDescriptionsArray = typeDescriptions.toArray(

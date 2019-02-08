@@ -135,15 +135,19 @@ public class JavaTool {
 
 		String parameterName = CamelCaseUtil.toCamelCase(
 			parameter.getName(), false);
-		String parameterType = _getJavaParameterType(schema, null);
+		String parameterType = _getJavaParameterType(null, schema);
 
 		return new JavaParameter(
 			parameterAnnotations, parameterName, parameterType);
 	}
 
-	public JavaParameter getJavaParameter(Schema schema, String propertyName) {
-		String parameterName = CamelCaseUtil.toCamelCase(propertyName, false);
-		String parameterType = _getJavaParameterType(schema, propertyName);
+	public JavaParameter getJavaParameter(
+		String propertySchemaName, Schema schema) {
+
+		String parameterName = CamelCaseUtil.toCamelCase(
+			propertySchemaName, false);
+		String parameterType = _getJavaParameterType(
+			propertySchemaName, schema);
 
 		return new JavaParameter(null, parameterName, parameterType);
 	}
@@ -243,7 +247,7 @@ public class JavaTool {
 	}
 
 	private String _getJavaDataType(
-		String type, String format, String propertyName) {
+		String type, String format, String propertySchemaName) {
 
 		if (StringUtil.equals(format, "date-time") &&
 			StringUtil.equals(type, "string")) {
@@ -257,8 +261,10 @@ public class JavaTool {
 			return "Long";
 		}
 
-		if (StringUtil.equals(type, "object") && (propertyName != null)) {
-			return StringUtil.upperCaseFirstLetter(propertyName);
+		if (StringUtil.equalsIgnoreCase(type, "object") &&
+			(propertySchemaName != null)) {
+
+			return StringUtil.upperCaseFirstLetter(propertySchemaName);
 		}
 
 		return StringUtil.upperCaseFirstLetter(type);
@@ -316,15 +322,21 @@ public class JavaTool {
 		return javaParameters;
 	}
 
-	private String _getJavaParameterType(Schema schema, String propertyName) {
-		String type = schema.getType();
+	private String _getJavaParameterType(
+		String propertySchemaName, Schema schema) {
 
 		Items items = schema.getItems();
+		String type = schema.getType();
 
 		if (StringUtil.equals(type, "array") && (items != null)) {
 			if (items.getType() != null) {
-				return _getJavaDataType(
-					items.getType(), items.getFormat(), propertyName) + "[]";
+				String itemsFormat = items.getFormat();
+				String itemsType = items.getType();
+
+				String javaDataType = _getJavaDataType(
+					itemsType, itemsFormat, propertySchemaName);
+
+				return javaDataType + "[]";
 			}
 
 			if (items.getReference() != null) {
@@ -332,18 +344,17 @@ public class JavaTool {
 			}
 		}
 
-		String format = schema.getFormat();
-
 		if (type != null) {
-			return _getJavaDataType(type, format, propertyName);
+			return _getJavaDataType(
+				type, schema.getFormat(), propertySchemaName);
 		}
 
 		List<Schema> allOfSchemas = schema.getAllOfSchemas();
 
 		if (allOfSchemas != null) {
-			for (Schema childSchema : allOfSchemas) {
-				if (Validator.isNotNull(childSchema.getReference())) {
-					return getComponentType(childSchema.getReference());
+			for (Schema allOfSchema : allOfSchemas) {
+				if (Validator.isNotNull(allOfSchema.getReference())) {
+					return getComponentType(allOfSchema.getReference());
 				}
 			}
 		}
@@ -509,10 +520,11 @@ public class JavaTool {
 					continue;
 				}
 
-				String javaType = _getJavaParameterType(schema, null);
+				String javaParameterType = _getJavaParameterType(null, schema);
 
-				if (javaType.endsWith("[]")) {
-					String s = javaType.substring(0, javaType.length() - 2);
+				if (javaParameterType.endsWith("[]")) {
+					String s = javaParameterType.substring(
+						0, javaParameterType.length() - 2);
 
 					return "Page<" + s + ">";
 				}

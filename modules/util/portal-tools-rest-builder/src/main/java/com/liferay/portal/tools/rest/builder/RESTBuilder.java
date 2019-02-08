@@ -132,13 +132,13 @@ public class RESTBuilder {
 			while ((curSchemas = queue.poll()) != null) {
 				for (Map.Entry<String, Schema> entry : curSchemas.entrySet()) {
 					Schema schema = entry.getValue();
-					String schemaName = entry.getKey();
 
-					if (schema.getProperties() == null) {
+					if (schema.getPropertySchemas() == null) {
 						continue;
 					}
 
-					schemaName = StringUtil.upperCaseFirstLetter(schemaName);
+					String schemaName = StringUtil.upperCaseFirstLetter(
+						entry.getKey());
 
 					context.put("schema", schema);
 					context.put("schemaName", schemaName);
@@ -147,7 +147,7 @@ public class RESTBuilder {
 
 					_createDTOFile(context, schemaName, versionDirName);
 
-					queue.add(schema.getProperties());
+					queue.add(schema.getPropertySchemas());
 				}
 			}
 		}

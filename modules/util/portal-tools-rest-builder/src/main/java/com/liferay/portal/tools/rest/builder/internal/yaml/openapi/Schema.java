@@ -46,8 +46,8 @@ public class Schema {
 		return _oneOfSchemas;
 	}
 
-	public Map<String, Schema> getProperties() {
-		return _properties;
+	public Map<String, Schema> getPropertySchemas() {
+		return _propertySchemas;
 	}
 
 	public String getReference() {
@@ -82,8 +82,8 @@ public class Schema {
 		_oneOfSchemas = oneOfSchemas;
 	}
 
-	public void setProperties(Map<String, Schema> schemas) {
-		_properties = schemas;
+	public void setPropertySchemas(Map<String, Schema> propertySchemas) {
+		_propertySchemas = propertySchemas;
 	}
 
 	public void setReference(String reference) {
@@ -100,7 +100,7 @@ public class Schema {
 	private String _format;
 	private Items _items;
 	private List<Schema> _oneOfSchemas;
-	private Map<String, Schema> _properties;
+	private Map<String, Schema> _propertySchemas;
 	private String _reference;
 	private String _type;
 
