@@ -160,7 +160,7 @@ public class JavaTool {
 
 		return new JavaSignature(
 			_getJavaParameters(operation, returnType, schemaName),
-			_getMethodAnnotations(configYAML, operation, pathItem, path),
+			_getMethodAnnotations(operation, pathItem, path),
 			_getMethodName(operation, path, returnType, schemaName),
 			returnType);
 	}
@@ -435,8 +435,7 @@ public class JavaTool {
 	}
 
 	private List<String> _getMethodAnnotations(
-		ConfigYAML configYAML, Operation operation, PathItem pathItem,
-		String path) {
+		Operation operation, PathItem pathItem, String path) {
 
 		List<String> methodAnnotations = new ArrayList<>();
 
@@ -446,15 +445,11 @@ public class JavaTool {
 
 		methodAnnotations.add("@" + StringUtil.toUpperCase(httpMethod));
 
-		Application application = configYAML.getApplication();
-
-		String name = application.getName();
-
 		if (pathItem.getGet() != null) {
-			methodAnnotations.add("@RequiresScope(\"" + name + ".read\")");
+			methodAnnotations.add("@RequiresScope(\"everything.read\")");
 		}
 		else {
-			methodAnnotations.add("@RequiresScope(\"" + name + ".write\")");
+			methodAnnotations.add("@RequiresScope(\"everything.write\")");
 		}
 
 		String methodAnnotation = _getMethodAnnotationConsumes(operation);
