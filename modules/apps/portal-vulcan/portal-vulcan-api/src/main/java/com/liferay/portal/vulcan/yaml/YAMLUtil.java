@@ -37,16 +37,16 @@ import org.yaml.snakeyaml.representer.Representer;
 public class YAMLUtil {
 
 	public static ConfigYAML loadConfigYAML(String yamlString) {
-		return _CONFIG_YAML.loadAs(yamlString, ConfigYAML.class);
+		return _YAML_CONFIG.loadAs(yamlString, ConfigYAML.class);
 	}
 
 	public static OpenAPIYAML loadOpenAPIYAML(String yamlString) {
-		return _OPEN_API_YAML.loadAs(yamlString, OpenAPIYAML.class);
+		return _YAML_OPEN_API.loadAs(yamlString, OpenAPIYAML.class);
 	}
 
-	private static final Yaml _CONFIG_YAML;
+	private static final Yaml _YAML_CONFIG;
 
-	private static final Yaml _OPEN_API_YAML;
+	private static final Yaml _YAML_OPEN_API;
 
 	static {
 		Representer representer = new Representer();
@@ -65,7 +65,7 @@ public class YAMLUtil {
 
 		configYAMLConstructor.addTypeDescription(securityTypeDescription);
 
-		_CONFIG_YAML = new Yaml(configYAMLConstructor, representer);
+		_YAML_CONFIG = new Yaml(configYAMLConstructor, representer);
 
 		Constructor openAPIYAMLConstructor = new Constructor(OpenAPIYAML.class);
 
@@ -127,7 +127,7 @@ public class YAMLUtil {
 
 		openAPIYAMLConstructor.addTypeDescription(schemaTypeDescription);
 
-		_OPEN_API_YAML = new Yaml(openAPIYAMLConstructor, representer);
+		_YAML_OPEN_API = new Yaml(openAPIYAMLConstructor, representer);
 	}
 
 }
