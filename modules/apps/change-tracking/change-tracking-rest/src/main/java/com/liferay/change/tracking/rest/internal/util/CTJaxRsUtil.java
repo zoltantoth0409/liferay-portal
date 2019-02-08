@@ -36,7 +36,7 @@ public class CTJaxRsUtil {
 		if (!ctEngineManager.isChangeTrackingEnabled(companyId)) {
 			throw new ChangeTrackingNotEnabledException(
 				companyId,
-				"Cannot create change tracking collection, change tracking " +
+				"Unble to create change tracking collection, change tracking " +
 					"is disabled in the company");
 		}
 	}
