@@ -18,6 +18,7 @@
 
 <%
 User selUser = userDisplayContext.getSelectedUser();
+
 List<Group> groups = new ArrayList<>();
 
 groups.addAll(userDisplayContext.getGroups());
