@@ -255,7 +255,10 @@ public class JavaTool {
 		for (Parameter parameter : parameters) {
 			String parameterName = parameter.getName();
 
-			if (StringUtil.equals(parameterName, "Accept-Language")) {
+			if (StringUtil.equals(parameterName, "Accept-Language") ||
+				StringUtil.equals(parameterName, "filter") ||
+				StringUtil.equals(parameterName, "sort")) {
+
 				continue;
 			}
 
@@ -272,12 +275,26 @@ public class JavaTool {
 			javaParameters.add(getJavaParameter(parameter));
 		}
 
+		if (parameterNames.contains("filter")) {
+			JavaParameter javaParameter = new JavaParameter(
+				Collections.singletonList("@Context"), "filter", "Filter");
+
+			javaParameters.add(javaParameter);
+		}
+
 		if (parameterNames.contains("page") &&
 			parameterNames.contains("per_page")) {
 
 			JavaParameter javaParameter = new JavaParameter(
 				Collections.singletonList("@Context"), "pagination",
 				"Pagination");
+
+			javaParameters.add(javaParameter);
+		}
+
+		if (parameterNames.contains("sort")) {
+			JavaParameter javaParameter = new JavaParameter(
+				Collections.singletonList("@Context"), "sorts", "Sort[]");
 
 			javaParameters.add(javaParameter);
 		}

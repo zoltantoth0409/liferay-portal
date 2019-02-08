@@ -2,6 +2,9 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 
 import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
+
 import java.util.Date;
 
 import org.osgi.service.component.annotations.Component;

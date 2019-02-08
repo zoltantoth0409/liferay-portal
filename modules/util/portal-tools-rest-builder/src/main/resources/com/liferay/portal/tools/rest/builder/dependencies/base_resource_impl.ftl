@@ -9,6 +9,8 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
