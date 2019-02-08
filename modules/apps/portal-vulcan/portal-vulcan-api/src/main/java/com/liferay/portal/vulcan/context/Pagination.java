@@ -21,7 +21,7 @@ package com.liferay.portal.vulcan.context;
 public class Pagination {
 
 	public static Pagination of(int itemsPerPage, int pageNumber) {
-		return new Pagination(pageNumber, itemsPerPage);
+		return new Pagination(itemsPerPage, pageNumber);
 	}
 
 	public int getEndPosition() {
@@ -40,9 +40,9 @@ public class Pagination {
 		return (_pageNumber - 1) * _itemsPerPage;
 	}
 
-	private Pagination(int pageNumber, int itemsPerPage) {
-		_pageNumber = pageNumber;
+	private Pagination(int itemsPerPage, int pageNumber) {
 		_itemsPerPage = itemsPerPage;
+		_pageNumber = pageNumber;
 	}
 
 	private final int _itemsPerPage;
