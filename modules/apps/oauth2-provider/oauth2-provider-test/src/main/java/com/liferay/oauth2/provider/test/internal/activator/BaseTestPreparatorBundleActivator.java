@@ -83,8 +83,8 @@ public abstract class BaseTestPreparatorBundleActivator
 		properties.put("service.ranking", Integer.MAX_VALUE);
 
 		registerPrefixHandler(
-			PrefixHandler.PASSTHROUGH_PREFIXHANDLER, properties);
-		registerScopeMapper(ScopeMapper.PASSTHROUGH_SCOPEMAPPER, properties);
+			PrefixHandler.PASS_THROUGH_PREFIX_HANDLER, properties);
+		registerScopeMapper(ScopeMapper.PASS_THROUGH_SCOPE_MAPPER, properties);
 
 		try {
 			prepareTest();
