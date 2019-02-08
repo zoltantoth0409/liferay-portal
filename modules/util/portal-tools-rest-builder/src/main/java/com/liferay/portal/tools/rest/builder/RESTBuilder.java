@@ -109,9 +109,11 @@ public class RESTBuilder {
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
 				Schema schema = entry.getValue();
-				String schemaName = entry.getKey();
 
 				context.put("schema", schema);
+
+				String schemaName = entry.getKey();
+
 				context.put("schemaName", schemaName);
 				context.put(
 					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
@@ -123,14 +125,14 @@ public class RESTBuilder {
 				_createResourceImplFile(context, schemaName, versionDirName);
 			}
 
-			Queue<Map<String, Schema>> queue = new LinkedList<>();
+			Queue<Map<String, Schema>> schemasMapsQueue = new LinkedList<>();
 
-			queue.add(schemas);
+			schemasMapsQueue.add(schemas);
 
-			Map<String, Schema> curSchemas = null;
+			Map<String, Schema> schemasMap = null;
 
-			while ((curSchemas = queue.poll()) != null) {
-				for (Map.Entry<String, Schema> entry : curSchemas.entrySet()) {
+			while ((schemasMap = schemasMapsQueue.poll()) != null) {
+				for (Map.Entry<String, Schema> entry : schemasMap.entrySet()) {
 					Schema schema = entry.getValue();
 
 					if (schema.getPropertySchemas() == null) {
@@ -147,7 +149,7 @@ public class RESTBuilder {
 
 					_createDTOFile(context, schemaName, versionDirName);
 
-					queue.add(schema.getPropertySchemas());
+					schemasMapsQueue.add(schema.getPropertySchemas());
 				}
 			}
 		}
