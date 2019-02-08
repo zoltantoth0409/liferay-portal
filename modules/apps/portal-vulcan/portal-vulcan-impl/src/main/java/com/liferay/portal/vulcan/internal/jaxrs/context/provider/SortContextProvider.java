@@ -36,25 +36,17 @@ import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Brian Wing Shun Chan
  */
-@Component(
-	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.SortContextProvider\\))",
-		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.SortContextProvider"
-	},
-	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
-)
 @Provider
 public class SortContextProvider implements ContextProvider<Sort[]> {
+
+	public SortContextProvider(BundleContext bundleContext, Portal portal) {
+		_bundleContext = bundleContext;
+		_portal = portal;
+	}
 
 	@Override
 	public Sort[] createContext(Message message) {
@@ -64,11 +56,6 @@ public class SortContextProvider implements ContextProvider<Sort[]> {
 		catch (Exception e) {
 			throw new ServerErrorException(500, e);
 		}
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
 	}
 
 	private Sort[] _createContext(Message message) throws Exception {
@@ -137,9 +124,7 @@ public class SortContextProvider implements ContextProvider<Sort[]> {
 	private static final Log _log = LogFactoryUtil.getLog(
 		SortContextProvider.class);
 
-	private BundleContext _bundleContext;
-
-	@Reference
-	private Portal _portal;
+	private final BundleContext _bundleContext;
+	private final Portal _portal;
 
 }

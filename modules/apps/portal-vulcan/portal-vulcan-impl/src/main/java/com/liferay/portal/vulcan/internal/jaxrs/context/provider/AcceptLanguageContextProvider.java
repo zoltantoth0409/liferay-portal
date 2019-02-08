@@ -25,25 +25,16 @@ import javax.ws.rs.ext.Provider;
 import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
-
 /**
  * @author Cristina González
  */
-@Component(
-	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.AcceptLanguageContextProvider\\))",
-		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.AcceptLanguageContextProvider"
-	},
-	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
-)
 @Provider
 public class AcceptLanguageContextProvider
 	implements ContextProvider<AcceptLanguage> {
+
+	public AcceptLanguageContextProvider(Portal portal) {
+		_portal = portal;
+	}
 
 	@Override
 	public AcceptLanguage createContext(Message message) {
@@ -53,7 +44,6 @@ public class AcceptLanguageContextProvider
 		return new AcceptLanguageImpl(httpServletRequest, _portal);
 	}
 
-	@Reference
-	private Portal _portal;
+	private final Portal _portal;
 
 }

@@ -35,25 +35,21 @@ import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
 import org.osgi.framework.BundleContext;
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ServiceScope;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * @author Brian Wing Shun Chan
  */
-@Component(
-	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.FilterContextProvider\\))",
-		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.FilterContextProvider"
-	},
-	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
-)
 @Provider
 public class FilterContextProvider implements ContextProvider<Filter> {
+
+	public FilterContextProvider(
+		BundleContext bundleContext,
+		ExpressionConvert<Filter> expressionConvert, Portal portal) {
+
+		_bundleContext = bundleContext;
+		_expressionConvert = expressionConvert;
+		_portal = portal;
+	}
 
 	@Override
 	public Filter createContext(Message message) {
@@ -63,11 +59,6 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 		catch (Exception e) {
 			throw new ServerErrorException(500, e);
 		}
-	}
-
-	@Activate
-	protected void activate(BundleContext bundleContext) {
-		_bundleContext = bundleContext;
 	}
 
 	private Filter _createContext(Message message) throws Exception {
@@ -144,14 +135,8 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 	private static final Log _log = LogFactoryUtil.getLog(
 		FilterContextProvider.class);
 
-	private BundleContext _bundleContext;
-
-	@Reference(
-		target = "(result.class.name=com.liferay.portal.kernel.search.filter.Filter)"
-	)
-	private ExpressionConvert<Filter> _expressionConvert;
-
-	@Reference
-	private Portal _portal;
+	private final BundleContext _bundleContext;
+	private final ExpressionConvert<Filter> _expressionConvert;
+	private final Portal _portal;
 
 }
