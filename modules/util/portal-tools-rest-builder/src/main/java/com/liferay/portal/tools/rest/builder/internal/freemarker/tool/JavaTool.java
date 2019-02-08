@@ -39,9 +39,11 @@ import com.liferay.portal.vulcan.yaml.openapi.Schema;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Peter Shin
@@ -242,18 +244,26 @@ public class JavaTool {
 
 		List<JavaParameter> javaParameters = new ArrayList<>();
 
-		boolean pagination = _hasJavaParameterPagination(operation);
+		List<Parameter> parameters = operation.getParameters();
 
-		for (Parameter parameter : operation.getParameters()) {
+		Set<String> parameterNames = new HashSet<>();
+
+		for (Parameter parameter : parameters) {
+			parameterNames.add(parameter.getName());
+		}
+
+		for (Parameter parameter : parameters) {
 			String parameterName = parameter.getName();
 
 			if (StringUtil.equals(parameterName, "Accept-Language")) {
 				continue;
 			}
 
-			if (pagination) {
-				if (StringUtil.equals(parameterName, "page") ||
-					StringUtil.equals(parameterName, "per_page")) {
+			if (StringUtil.equals(parameterName, "page") ||
+				StringUtil.equals(parameterName, "per_page")) {
+
+				if (parameterNames.contains("page") &&
+					parameterNames.contains("per_page")) {
 
 					continue;
 				}
@@ -262,7 +272,9 @@ public class JavaTool {
 			javaParameters.add(getJavaParameter(parameter));
 		}
 
-		if (pagination) {
+		if (parameterNames.contains("page") &&
+			parameterNames.contains("per_page")) {
+
 			JavaParameter javaParameter = new JavaParameter(
 				Collections.singletonList("@Context"), "pagination",
 				"Pagination");
@@ -497,26 +509,6 @@ public class JavaTool {
 		}
 
 		return "Response";
-	}
-
-	private boolean _hasJavaParameterPagination(Operation operation) {
-		if ((operation == null) || (operation.getParameters() == null)) {
-			return false;
-		}
-
-		List<String> parameterNames = new ArrayList<>();
-
-		for (Parameter parameter : operation.getParameters()) {
-			parameterNames.add(parameter.getName());
-		}
-
-		if (parameterNames.contains("page") &&
-			parameterNames.contains("per_page")) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private static JavaTool _instance = new JavaTool();
