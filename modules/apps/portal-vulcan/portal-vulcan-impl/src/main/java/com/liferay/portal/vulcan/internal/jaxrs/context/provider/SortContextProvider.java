@@ -16,15 +16,16 @@ package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.odata.entity.EntityModel;
-import com.liferay.portal.odata.filter.ExpressionConvert;
-import com.liferay.portal.odata.filter.FilterParser;
+import com.liferay.portal.odata.sort.SortField;
+import com.liferay.portal.odata.sort.SortParser;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.internal.context.AcceptLanguageImpl;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,29 +47,28 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.FilterContextProvider\\))",
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.SortContextProvider\\))",
 		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.FilterContextProvider"
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.SortContextProvider"
 	},
 	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
 )
 @Provider
-public class FilterContextProvider implements ContextProvider<Filter> {
+public class SortContextProvider implements ContextProvider<Sort[]> {
 
 	@Override
-	public Filter createContext(Message message) {
+	public Sort[] createContext(Message message) {
 		try {
 			HttpServletRequest httpServletRequest =
 				ContextProviderUtil.getHttpServletRequest(message);
 
-			String filterString = ParamUtil.getString(
-				httpServletRequest, "filter");
+			String sortString = ParamUtil.getString(httpServletRequest, "sort");
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Filter parameter value: " + filterString);
+				_log.debug("Sort parameter value: " + sortString);
 			}
 
-			if (Validator.isNull(filterString)) {
+			if (Validator.isNull(sortString)) {
 				return null;
 			}
 
@@ -83,50 +83,43 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 				return null;
 			}
 
-			FilterParser filterParser =
+			SortParser sortParser =
 				ContextProviderUtil.getODataEntityModelService(
-					_bundleContext, FilterParser.class, oDataEntityModelName);
+					_bundleContext, SortParser.class, oDataEntityModelName);
 
-			if (filterParser == null) {
+			if (sortParser == null) {
 				return null;
 			}
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("OData filter parser: " + filterParser);
+				_log.debug("OData sort parser: " + sortParser);
 			}
 
-			com.liferay.portal.odata.filter.Filter oDataFilter =
-				new com.liferay.portal.odata.filter.Filter(
-					filterParser.parse(filterString));
+			com.liferay.portal.odata.sort.Sort oDataSort =
+				new com.liferay.portal.odata.sort.Sort(
+					sortParser.parse(sortString));
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("OData filter: " + oDataFilter);
-			}
-
-			EntityModel entityModel =
-				ContextProviderUtil.getODataEntityModelService(
-					_bundleContext, EntityModel.class, oDataEntityModelName);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Entity model: " + entityModel);
-			}
-
-			if (entityModel == null) {
-				return null;
+				_log.debug("OData sort: " + oDataSort);
 			}
 
 			AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
 				httpServletRequest, _portal);
 
-			Filter filter = _expressionConvert.convert(
-				oDataFilter.getExpression(),
-				acceptLanguage.getPreferredLocale(), entityModel);
+			List<SortField> sortFields = oDataSort.getSortFields();
 
-			if (_log.isDebugEnabled()) {
-				_log.debug("Search filter: " + filter);
+			Sort[] sorts = new Sort[sortFields.size()];
+
+			for (int i = 0; i < sortFields.size(); i++) {
+				SortField sortField = sortFields.get(i);
+
+				sorts[i] = new Sort(
+					sortField.getSortableFieldName(
+						acceptLanguage.getPreferredLocale()),
+					!sortField.isAscending());
 			}
 
-			return filter;
+			return sorts;
 		}
 		catch (Exception e) {
 			throw new ServerErrorException(500, e);
@@ -139,14 +132,9 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		FilterContextProvider.class);
+		SortContextProvider.class);
 
 	private BundleContext _bundleContext;
-
-	@Reference(
-		target = "(result.class.name=com.liferay.portal.kernel.search.filter.Filter)"
-	)
-	private ExpressionConvert<Filter> _expressionConvert;
 
 	@Reference
 	private Portal _portal;

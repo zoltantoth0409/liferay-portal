@@ -14,9 +14,18 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import java.util.Collection;
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.cxf.message.Message;
+
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 /**
  * @author Víctor Galán
@@ -26,6 +35,46 @@ public class ContextProviderUtil {
 	public static HttpServletRequest getHttpServletRequest(Message message) {
 		return (HttpServletRequest)message.getContextualProperty(
 			"HTTP.REQUEST");
+	}
+
+	public static String getODataEntityModelName(Message message)
+		throws Exception {
+
+		Method method = (Method)message.get("org.apache.cxf.resource.method");
+
+		if (method == null) {
+			return null;
+		}
+
+		Class<?> clazz = method.getDeclaringClass();
+
+		Field field = clazz.getField("ODATA_ENTITY_MODEL_NAME");
+
+		if (field == null) {
+			return null;
+		}
+
+		return (String)field.get(null);
+	}
+
+	public static <T> T getODataEntityModelService(
+			BundleContext bundleContext, Class<T> clazz,
+			String oDataEntityModelName)
+		throws Exception {
+
+		Collection<ServiceReference<T>> serviceReferences =
+			bundleContext.getServiceReferences(
+				clazz, "(entity.model.name=" + oDataEntityModelName + ")");
+
+		if (serviceReferences.isEmpty()) {
+			return null;
+		}
+
+		Iterator<ServiceReference<T>> iterator = serviceReferences.iterator();
+
+		ServiceReference<T> serviceReference = iterator.next();
+
+		return bundleContext.getService(serviceReference);
 	}
 
 }

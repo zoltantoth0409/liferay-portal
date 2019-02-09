@@ -5,4 +5,8 @@
 	<category name="com.liferay.portal.vulcan.internal.jaxrs.context.provider.FilterContextProvider">
 		<priority value="ERROR" />
 	</category>
+
+	<category name="com.liferay.portal.vulcan.internal.jaxrs.context.provider.SortContextProvider">
+		<priority value="ERROR" />
+	</category>
 </log4j:configuration>
