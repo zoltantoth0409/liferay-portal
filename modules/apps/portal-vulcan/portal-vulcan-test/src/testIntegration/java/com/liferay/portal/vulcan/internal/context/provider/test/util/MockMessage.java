@@ -35,13 +35,13 @@ import org.apache.cxf.transport.Destination;
 public class MockMessage implements Message {
 
 	public MockMessage(HttpServletRequest httpServletRequest) {
-		_method = null;
 		_httpServletRequest = httpServletRequest;
+		_method = null;
 	}
 
-	public MockMessage(Method method, HttpServletRequest httpServletRequest) {
-		_method = method;
+	public MockMessage(HttpServletRequest httpServletRequest, Method method) {
 		_httpServletRequest = httpServletRequest;
+		_method = method;
 	}
 
 	@Override

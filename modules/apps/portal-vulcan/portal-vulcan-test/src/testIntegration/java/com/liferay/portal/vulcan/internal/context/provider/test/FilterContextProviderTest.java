@@ -94,22 +94,22 @@ public class FilterContextProviderTest {
 
 		Filter filter = _contextProvider.createContext(
 			new MockMessage(
+				mockHttpServletRequest,
 				ExampleResource.class.getMethod(
-					"exampleJaxRSMethod", String.class),
-				mockHttpServletRequest));
+					"exampleJaxRSMethod", String.class)));
 
 		Assert.assertTrue(filter instanceof TermFilter);
 
 		TermFilter termFilter = (TermFilter)filter;
 
-		Assert.assertEquals("internalTitle", termFilter.getField());
 		Assert.assertEquals("example", termFilter.getValue());
+		Assert.assertEquals("internalTitle", termFilter.getField());
 	}
 
 	public class ExampleResource {
 
 		public static final String ODATA_ENTITY_MODEL_NAME =
-			"ExampleEntityModel";
+			"ExampleResourceEntityModel";
 
 		public String exampleJaxRSMethod(String param) {
 			return "";
@@ -118,7 +118,7 @@ public class FilterContextProviderTest {
 	}
 
 	@Inject(
-		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.FilterContextProvider"
+		filter = "component.name=com.liferay.portal.vulcan.internal.jaxrs.context.provider.FilterContextProvider"
 	)
 	private ContextProvider<Filter> _contextProvider;
 
