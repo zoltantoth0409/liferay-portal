@@ -41,9 +41,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	public Response deleteFolder(Long folderId) throws Exception {
 		_dlAppService.deleteFolder(folderId);
 
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
+		return null;
 	}
 
 	@Override
