@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true, service = {UADDisplay.class, DLFolderUADDisplay.class}
+	immediate = true, service = {DLFolderUADDisplay.class, UADDisplay.class}
 )
 public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 
@@ -96,7 +96,7 @@ public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 		Object childObject) {
 
 		try {
-			DLFolder childFolder;
+			DLFolder childFolder = null;
 
 			if (childObject instanceof DLFileEntry) {
 				DLFileEntry dlFileEntry = (DLFileEntry)childObject;

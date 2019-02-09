@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true, service = {UADDisplay.class, DLFileEntryUADDisplay.class}
+	immediate = true, service = {DLFileEntryUADDisplay.class, UADDisplay.class}
 )
 public class DLFileEntryUADDisplay extends BaseDLFileEntryUADDisplay {
 
