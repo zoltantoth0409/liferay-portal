@@ -57,7 +57,6 @@ public class ChangeListsDisplayContext {
 		soyContext.put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
-
 		soyContext.put(
 			"urlActiveCollection",
 			_themeDisplay.getPortalURL() +
