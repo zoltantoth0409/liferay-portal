@@ -63,7 +63,7 @@ public class StructuredContentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		Hits hits = _getHits(filter, pagination);
+		Hits hits = _getHits(filter, pagination, sorts);
 
 		return Page.of(
 			transform(
@@ -72,8 +72,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private SearchContext _createSearchContext(
-		Group group, Pagination pagination,
-		PermissionChecker permissionChecker) {
+		Group group, Pagination pagination, PermissionChecker permissionChecker,
+		sorts) {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -85,6 +85,7 @@ public class StructuredContentResourceImpl
 		searchContext.setCompanyId(company.getCompanyId());
 		searchContext.setEnd(pagination.getEndPosition());
 		searchContext.setGroupIds(new long[] {group.getGroupId()});
+		searchContext.setSorts(sorts);
 		searchContext.setStart(pagination.getStartPosition());
 		searchContext.setUserId(permissionChecker.getUserId());
 
