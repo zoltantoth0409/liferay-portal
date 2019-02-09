@@ -25,6 +25,8 @@ import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 

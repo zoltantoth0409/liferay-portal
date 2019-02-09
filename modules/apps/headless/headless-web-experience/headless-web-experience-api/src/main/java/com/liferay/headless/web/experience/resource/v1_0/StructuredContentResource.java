@@ -21,6 +21,8 @@ import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
@@ -59,7 +61,7 @@ public interface StructuredContentResource {
 	@Path("/content-space/{content-space-id}/structured-contents")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
-	public Page<StructuredContent> getContentSpaceStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @QueryParam("filter") String filter , @QueryParam("sort") String sort , @Context Pagination pagination ) throws Exception;
+	public Page<StructuredContent> getContentSpaceStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
 
 	@Consumes("application/json")
 	@POST

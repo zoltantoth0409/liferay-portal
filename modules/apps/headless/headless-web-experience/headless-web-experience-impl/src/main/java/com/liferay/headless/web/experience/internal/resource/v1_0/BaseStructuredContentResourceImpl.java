@@ -17,6 +17,8 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
@@ -40,8 +42,8 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Long contentSpaceId, String filter, String sort,
-			Pagination pagination)
+			Long contentSpaceId, Filter filter, Pagination pagination,
+			Sort[] sorts)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());

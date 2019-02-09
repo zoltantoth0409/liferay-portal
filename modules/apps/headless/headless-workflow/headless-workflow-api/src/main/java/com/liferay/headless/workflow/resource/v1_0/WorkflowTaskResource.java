@@ -17,6 +17,8 @@ package com.liferay.headless.workflow.resource.v1_0;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
 
