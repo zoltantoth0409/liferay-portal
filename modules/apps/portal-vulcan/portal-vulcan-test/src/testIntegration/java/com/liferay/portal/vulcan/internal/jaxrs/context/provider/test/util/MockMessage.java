@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider.test.util;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider.test.util;
 
 import java.lang.reflect.Method;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider.test;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
@@ -33,7 +33,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
-import com.liferay.portal.vulcan.internal.context.provider.test.util.MockMessage;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.test.util.MockMessage;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -146,7 +146,7 @@ public class AcceptLanguageContextProviderTest {
 	private static User _user;
 
 	@Inject(
-		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.AcceptLanguageContextProvider"
+		filter = "component.name=com.liferay.portal.vulcan.internal.jaxrs.context.provider.AcceptLanguageContextProvider"
 	)
 	private ContextProvider<AcceptLanguage> _contextProvider;
 

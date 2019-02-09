@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider.test;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -22,7 +22,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.StringEntityField;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.internal.context.provider.test.util.MockMessage;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.test.util.MockMessage;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context.provider.test;
+package com.liferay.portal.vulcan.internal.jaxrs.context.provider.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.model.Company;
@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portal.vulcan.internal.context.provider.test.util.MockMessage;
+import com.liferay.portal.vulcan.internal.jaxrs.context.provider.test.util.MockMessage;
 
 import org.apache.cxf.jaxrs.ext.ContextProvider;
 
@@ -76,7 +76,7 @@ public class CompanyContextProviderTest {
 	}
 
 	@Inject(
-		filter = "component.name=com.liferay.portal.vulcan.internal.context.provider.CompanyContextProvider"
+		filter = "component.name=com.liferay.portal.vulcan.internal.jaxrs.context.provider.CompanyContextProvider"
 	)
 	private ContextProvider<Company> _contextProvider;
 
