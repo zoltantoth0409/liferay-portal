@@ -73,7 +73,7 @@ public class StructuredContentResourceImpl
 
 	private SearchContext _createSearchContext(
 		Group group, Pagination pagination, PermissionChecker permissionChecker,
-		sorts) {
+		Sort[] sorts) {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -99,14 +99,14 @@ public class StructuredContentResourceImpl
 		return searchContext;
 	}
 
-	private Hits _getHits(Filter filter, Pagination pagination)
+	private Hits _getHits(Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		SearchContext searchContext = _createSearchContext(
-			company.getGroup(), pagination, permissionChecker);
+			company.getGroup(), pagination, permissionChecker, sorts);
 
 		Query query = _getQuery(filter, searchContext);
 
