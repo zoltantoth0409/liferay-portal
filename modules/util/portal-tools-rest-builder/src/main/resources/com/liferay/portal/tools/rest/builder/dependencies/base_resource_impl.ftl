@@ -32,6 +32,8 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Resource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME = "${stringUtil.replace("${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName}EntityModel", ".", "_")}";
+
 	<#if openAPIYAML.pathItems??>
 		<#list openAPIYAML.pathItems?keys as path>
 			<#assign pathItem = openAPIYAML.pathItems[path] />
