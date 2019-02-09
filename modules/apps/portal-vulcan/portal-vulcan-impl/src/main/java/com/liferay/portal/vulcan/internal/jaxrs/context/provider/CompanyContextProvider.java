@@ -24,6 +24,11 @@ import javax.ws.rs.ext.Provider;
 import org.apache.cxf.jaxrs.ext.ContextProvider;
 import org.apache.cxf.message.Message;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ServiceScope;
+import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
+
 /**
  * Allows JAX-RS resources to provide {@link Company} objects in method
  * parameters, fields or setters by annotating them with {@code
@@ -33,12 +38,16 @@ import org.apache.cxf.message.Message;
  * @author Cristina González
  * @review
  */
+@Component(
+	property = {
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.CompanyContextProvider\\))",
+		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.CompanyContextProvider"
+	},
+	scope = ServiceScope.PROTOTYPE, service = ContextProvider.class
+)
 @Provider
 public class CompanyContextProvider implements ContextProvider<Company> {
-
-	public CompanyContextProvider(Portal portal) {
-		_portal = portal;
-	}
 
 	@Override
 	public Company createContext(Message message) {
@@ -51,6 +60,7 @@ public class CompanyContextProvider implements ContextProvider<Company> {
 		}
 	}
 
-	private final Portal _portal;
+	@Reference
+	private Portal _portal;
 
 }
