@@ -38,6 +38,9 @@ import javax.ws.rs.core.Context;
 public abstract class BaseContentStructureResourceImpl
 	implements ContentStructureResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_web_experience_dto_v1_0_ContentStructureEntityModel";
+
 	@Override
 	public Page<ContentStructure> getContentSpaceContentStructuresPage(
 			Long contentSpaceId, Pagination pagination)

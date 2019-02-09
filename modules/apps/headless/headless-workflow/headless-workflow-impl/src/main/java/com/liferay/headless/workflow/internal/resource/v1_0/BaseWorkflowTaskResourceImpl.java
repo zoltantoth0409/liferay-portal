@@ -38,6 +38,9 @@ import javax.ws.rs.core.Context;
 public abstract class BaseWorkflowTaskResourceImpl
 	implements WorkflowTaskResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_workflow_dto_v1_0_WorkflowTaskEntityModel";
+
 	@Override
 	public Page<WorkflowTask> getRolesWorkflowTasksPage(
 			Long rolesId, Pagination pagination)

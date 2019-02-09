@@ -38,6 +38,9 @@ import javax.ws.rs.core.Context;
 public abstract class BaseWorkflowLogResourceImpl
 	implements WorkflowLogResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_workflow_dto_v1_0_WorkflowLogEntityModel";
+
 	@Override
 	public WorkflowLog getWorkflowLog(Long workflowLogsId) throws Exception {
 		return new WorkflowLog();

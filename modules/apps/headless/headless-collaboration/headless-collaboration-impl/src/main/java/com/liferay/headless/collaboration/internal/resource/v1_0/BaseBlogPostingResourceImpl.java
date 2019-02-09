@@ -39,6 +39,9 @@ import javax.ws.rs.core.Response;
 public abstract class BaseBlogPostingResourceImpl
 	implements BlogPostingResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_collaboration_dto_v1_0_BlogPostingEntityModel";
+
 	@Override
 	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

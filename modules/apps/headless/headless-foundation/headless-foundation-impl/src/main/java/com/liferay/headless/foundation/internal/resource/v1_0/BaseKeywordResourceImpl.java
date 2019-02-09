@@ -37,6 +37,9 @@ import javax.ws.rs.core.Context;
 @Generated("")
 public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_foundation_dto_v1_0_KeywordEntityModel";
+
 	@Override
 	public Page<Keyword> getContentSpaceKeywordsPage(
 			Long contentSpaceId, Pagination pagination)

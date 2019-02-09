@@ -40,6 +40,9 @@ import javax.ws.rs.core.Context;
 public abstract class BaseStructuredContentResourceImpl
 	implements StructuredContentResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_web_experience_dto_v1_0_StructuredContentEntityModel";
+
 	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,

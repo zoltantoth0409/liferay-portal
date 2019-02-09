@@ -34,6 +34,9 @@ import javax.ws.rs.core.Context;
 @Generated("")
 public abstract class BaseCreatorResourceImpl implements CreatorResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_form_dto_v1_0_CreatorEntityModel";
+
 	@Override
 	public Creator getCreator(Long creatorId) throws Exception {
 		return new Creator();

@@ -36,6 +36,9 @@ import javax.ws.rs.core.Response;
 public abstract class BaseFormDocumentResourceImpl
 	implements FormDocumentResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_form_dto_v1_0_FormDocumentEntityModel";
+
 	@Override
 	public Response deleteFormDocument(Long formDocumentId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

@@ -38,6 +38,9 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseFolderResourceImpl implements FolderResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_document_library_dto_v1_0_FolderEntityModel";
+
 	@Override
 	public Response deleteFolder(Long folderId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

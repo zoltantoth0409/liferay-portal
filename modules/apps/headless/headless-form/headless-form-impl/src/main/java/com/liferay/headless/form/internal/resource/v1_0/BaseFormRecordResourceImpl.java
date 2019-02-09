@@ -37,6 +37,9 @@ import javax.ws.rs.core.Context;
 @Generated("")
 public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
+	public static final String ODATA_ENTITY_MODEL_NAME =
+		"com_liferay_headless_form_dto_v1_0_FormRecordEntityModel";
+
 	@Override
 	public Page<FormRecord> getFormFormRecordPage(
 			Long formId, Pagination pagination)
