@@ -58,75 +58,7 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 	@Override
 	public Filter createContext(Message message) {
 		try {
-			HttpServletRequest httpServletRequest =
-				ContextProviderUtil.getHttpServletRequest(message);
-
-			String filterString = ParamUtil.getString(
-				httpServletRequest, "filter");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Filter parameter value: " + filterString);
-			}
-
-			if (Validator.isNull(filterString)) {
-				return null;
-			}
-
-			String oDataEntityModelName =
-				ContextProviderUtil.getODataEntityModelName(message);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData entity model name: " + oDataEntityModelName);
-			}
-
-			if (oDataEntityModelName == null) {
-				return null;
-			}
-
-			FilterParser filterParser =
-				ContextProviderUtil.getODataEntityModelService(
-					_bundleContext, FilterParser.class, oDataEntityModelName);
-
-			if (filterParser == null) {
-				return null;
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData filter parser: " + filterParser);
-			}
-
-			com.liferay.portal.odata.filter.Filter oDataFilter =
-				new com.liferay.portal.odata.filter.Filter(
-					filterParser.parse(filterString));
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData filter: " + oDataFilter);
-			}
-
-			EntityModel entityModel =
-				ContextProviderUtil.getODataEntityModelService(
-					_bundleContext, EntityModel.class, oDataEntityModelName);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Entity model: " + entityModel);
-			}
-
-			if (entityModel == null) {
-				return null;
-			}
-
-			AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
-				httpServletRequest, _portal);
-
-			Filter filter = _expressionConvert.convert(
-				oDataFilter.getExpression(),
-				acceptLanguage.getPreferredLocale(), entityModel);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Search filter: " + filter);
-			}
-
-			return filter;
+			return _createContext(message);
 		}
 		catch (Exception e) {
 			throw new ServerErrorException(500, e);
@@ -136,6 +68,77 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
+	}
+
+	private Filter _createContext(Message message) throws Exception {
+		HttpServletRequest httpServletRequest =
+			ContextProviderUtil.getHttpServletRequest(message);
+
+		String filterString = ParamUtil.getString(httpServletRequest, "filter");
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Filter parameter value: " + filterString);
+		}
+
+		if (Validator.isNull(filterString)) {
+			return null;
+		}
+
+		String oDataEntityModelName =
+			ContextProviderUtil.getODataEntityModelName(message);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData entity model name: " + oDataEntityModelName);
+		}
+
+		if (oDataEntityModelName == null) {
+			return null;
+		}
+
+		FilterParser filterParser =
+			ContextProviderUtil.getODataEntityModelService(
+				_bundleContext, FilterParser.class, oDataEntityModelName);
+
+		if (filterParser == null) {
+			return null;
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData filter parser: " + filterParser);
+		}
+
+		com.liferay.portal.odata.filter.Filter oDataFilter =
+			new com.liferay.portal.odata.filter.Filter(
+				filterParser.parse(filterString));
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData filter: " + oDataFilter);
+		}
+
+		EntityModel entityModel =
+			ContextProviderUtil.getODataEntityModelService(
+				_bundleContext, EntityModel.class, oDataEntityModelName);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Entity model: " + entityModel);
+		}
+
+		if (entityModel == null) {
+			return null;
+		}
+
+		AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
+			httpServletRequest, _portal);
+
+		Filter filter = _expressionConvert.convert(
+			oDataFilter.getExpression(), acceptLanguage.getPreferredLocale(),
+			entityModel);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Search filter: " + filter);
+		}
+
+		return filter;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

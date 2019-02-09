@@ -59,67 +59,7 @@ public class SortContextProvider implements ContextProvider<Sort[]> {
 	@Override
 	public Sort[] createContext(Message message) {
 		try {
-			HttpServletRequest httpServletRequest =
-				ContextProviderUtil.getHttpServletRequest(message);
-
-			String sortString = ParamUtil.getString(httpServletRequest, "sort");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Sort parameter value: " + sortString);
-			}
-
-			if (Validator.isNull(sortString)) {
-				return null;
-			}
-
-			String oDataEntityModelName =
-				ContextProviderUtil.getODataEntityModelName(message);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData entity model name: " + oDataEntityModelName);
-			}
-
-			if (oDataEntityModelName == null) {
-				return null;
-			}
-
-			SortParser sortParser =
-				ContextProviderUtil.getODataEntityModelService(
-					_bundleContext, SortParser.class, oDataEntityModelName);
-
-			if (sortParser == null) {
-				return null;
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData sort parser: " + sortParser);
-			}
-
-			com.liferay.portal.odata.sort.Sort oDataSort =
-				new com.liferay.portal.odata.sort.Sort(
-					sortParser.parse(sortString));
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("OData sort: " + oDataSort);
-			}
-
-			AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
-				httpServletRequest, _portal);
-
-			List<SortField> sortFields = oDataSort.getSortFields();
-
-			Sort[] sorts = new Sort[sortFields.size()];
-
-			for (int i = 0; i < sortFields.size(); i++) {
-				SortField sortField = sortFields.get(i);
-
-				sorts[i] = new Sort(
-					sortField.getSortableFieldName(
-						acceptLanguage.getPreferredLocale()),
-					!sortField.isAscending());
-			}
-
-			return sorts;
+			return _createContext(message);
 		}
 		catch (Exception e) {
 			throw new ServerErrorException(500, e);
@@ -129,6 +69,69 @@ public class SortContextProvider implements ContextProvider<Sort[]> {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_bundleContext = bundleContext;
+	}
+
+	private Sort[] _createContext(Message message) throws Exception {
+		HttpServletRequest httpServletRequest =
+			ContextProviderUtil.getHttpServletRequest(message);
+
+		String sortString = ParamUtil.getString(httpServletRequest, "sort");
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Sort parameter value: " + sortString);
+		}
+
+		if (Validator.isNull(sortString)) {
+			return null;
+		}
+
+		String oDataEntityModelName =
+			ContextProviderUtil.getODataEntityModelName(message);
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData entity model name: " + oDataEntityModelName);
+		}
+
+		if (oDataEntityModelName == null) {
+			return null;
+		}
+
+		SortParser sortParser = ContextProviderUtil.getODataEntityModelService(
+			_bundleContext, SortParser.class, oDataEntityModelName);
+
+		if (sortParser == null) {
+			return null;
+		}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData sort parser: " + sortParser);
+		}
+
+		com.liferay.portal.odata.sort.Sort oDataSort =
+			new com.liferay.portal.odata.sort.Sort(
+				sortParser.parse(sortString));
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("OData sort: " + oDataSort);
+		}
+
+		AcceptLanguage acceptLanguage = new AcceptLanguageImpl(
+			httpServletRequest, _portal);
+
+		List<SortField> sortFields = oDataSort.getSortFields();
+
+		Sort[] sorts = new Sort[sortFields.size()];
+
+		for (int i = 0; i < sortFields.size(); i++) {
+			SortField sortField = sortFields.get(i);
+
+			sorts[i] = new Sort(
+				sortField.getSortableFieldName(
+					acceptLanguage.getPreferredLocale()),
+				!sortField.isAscending());
+		}
+
+		return sorts;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
