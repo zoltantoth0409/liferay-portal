@@ -5,3 +5,4 @@ application:
     className: "HeadlessDocumentLibraryApplication"
     name: "headless-document-library-application"
 author: "Javier Gamarra"
+testDir: "../headless-document-library-test/src/testIntegration/java"

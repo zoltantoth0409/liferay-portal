@@ -5,3 +5,4 @@ application:
     className: "HeadlessCollaborationApplication"
     name: "headless-collaboration-application"
 author: "Javier Gamarra"
+testDir: "../headless-collaboration-test/src/testIntegration/java"

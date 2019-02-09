@@ -5,3 +5,4 @@ application:
     className: "HeadlessWorkflowApplication"
     name: "headless-workflow-application"
 author: "Javier Gamarra"
+testDir: "../headless-workflow-test/src/testIntegration/java"

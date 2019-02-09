@@ -5,3 +5,4 @@ application:
     className: "HeadlessFoundationApplication"
     name: "headless-foundation-application"
 author: "Javier Gamarra"
+testDir: "../headless-foundation-test/src/testIntegration/java"

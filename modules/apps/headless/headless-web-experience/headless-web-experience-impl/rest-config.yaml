@@ -5,3 +5,4 @@ application:
     className: "HeadlessWebExperienceApplication"
     name: "headless-web-experience-application"
 author: "Javier Gamarra"
+testDir: "../headless-web-experience-test/src/testIntegration/java"
