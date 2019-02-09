@@ -20,6 +20,8 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.util.JournalHelper;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.IndexSearcherHelperUtil;
@@ -33,6 +35,7 @@ import com.liferay.portal.kernel.search.SearchResultPermissionFilter;
 import com.liferay.portal.kernel.search.SearchResultPermissionFilterFactory;
 import com.liferay.portal.kernel.search.SearchResultPermissionFilterSearcher;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -60,7 +63,7 @@ public class StructuredContentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		Hits hits = _getHits(pagination);
+		Hits hits = _getHits(filter, pagination);
 
 		return Page.of(
 			transform(
@@ -69,7 +72,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private SearchContext _createSearchContext(
-		Group group, Pagination pagination) {
+		Group group, Pagination pagination,
+		PermissionChecker permissionChecker) {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -82,6 +86,7 @@ public class StructuredContentResourceImpl
 		searchContext.setEnd(pagination.getEndPosition());
 		searchContext.setGroupIds(new long[] {group.getGroupId()});
 		searchContext.setStart(pagination.getStartPosition());
+		searchContext.setUserId(permissionChecker.getUserId());
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
@@ -93,22 +98,16 @@ public class StructuredContentResourceImpl
 		return searchContext;
 	}
 
-	private Hits _getHits(Pagination pagination) throws Exception {
-		SearchContext searchContext = _createSearchContext(
-			company.getGroup(), pagination);
-
-		Query query = _getQuery(searchContext);
+	private Hits _getHits(Filter filter, Pagination pagination)
+		throws Exception {
 
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		if (permissionChecker == null) {
-			return IndexSearcherHelperUtil.search(searchContext, query);
-		}
+		SearchContext searchContext = _createSearchContext(
+			company.getGroup(), pagination, permissionChecker);
 
-		if (searchContext.getUserId() == 0) {
-			searchContext.setUserId(permissionChecker.getUserId());
-		}
+		Query query = _getQuery(filter, searchContext);
 
 		SearchResultPermissionFilter searchResultPermissionFilter =
 			_searchResultPermissionFilterFactory.create(
@@ -127,11 +126,21 @@ public class StructuredContentResourceImpl
 		return searchResultPermissionFilter.search(searchContext);
 	}
 
-	private Query _getQuery(SearchContext searchContext) throws Exception {
+	private Query _getQuery(Filter filter, SearchContext searchContext)
+		throws Exception {
+
 		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
 			JournalArticle.class);
 
-		return indexer.getFullQuery(searchContext);
+		BooleanQuery booleanQuery = indexer.getFullQuery(searchContext);
+
+		if (filter != null) {
+			BooleanFilter booleanFilter = booleanQuery.getPreBooleanFilter();
+
+			booleanFilter.add(filter, BooleanClauseOccur.MUST);
+		}
+
+		return booleanQuery;
 	}
 
 	private StructuredContent _toStructuredContent(
