@@ -25,6 +25,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ServiceScope;
+import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
+
 /**
  * Converts any {@code NoSuchModelException} to a {@code 404} error.
  *
@@ -34,6 +38,14 @@ import javax.ws.rs.ext.ExceptionMapper;
  * @author Alejandro Hernández
  * @review
  */
+@Component(
+	property = {
+		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.extension.select=\\(osgi.jaxrs.name=Liferay.Vulcan.NoSuchModelExceptionMapper\\))",
+		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
+		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.NoSuchModelExceptionMapper"
+	},
+	scope = ServiceScope.PROTOTYPE, service = ExceptionMapper.class
+)
 public class NoSuchModelExceptionMapper
 	implements ExceptionMapper<NoSuchModelException> {
 
