@@ -32,7 +32,7 @@ class Overview extends PortletBase {
 				error => {
 					const message = typeof error === 'string' ?
 						error :
-						Liferay.Language.get('an-error-occured-during-parsing-data');
+						Liferay.Language.get('an-error-occured-while-parsing-data');
 
 					openToast(
 						{
@@ -123,7 +123,7 @@ class Overview extends PortletBase {
 						error => {
 							const message = typeof error === 'string' ?
 								error :
-								Lang.sub(Liferay.Language.get('an-error-occured-during-getting-data-from-x'), [url]);
+								Lang.sub(Liferay.Language.get('an-error-occured-while-getting-data-from-x'), [url]);
 
 							openToast(
 								{
