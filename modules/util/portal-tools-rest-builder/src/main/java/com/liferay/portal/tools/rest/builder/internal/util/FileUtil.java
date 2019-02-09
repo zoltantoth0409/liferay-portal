@@ -59,6 +59,12 @@ public class FileUtil {
 						return FileVisitResult.CONTINUE;
 					}
 
+					String content = read(file);
+
+					if (!content.contains("@generated")) {
+						return FileVisitResult.CONTINUE;
+					}
+
 					Files.delete(path);
 
 					System.out.println("Deleting " + file.getCanonicalPath());
