@@ -30,9 +30,6 @@ backURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
 portletDisplay.setURLBack(backURL.toString());
 
 renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", LanguageUtil.get(request, "personal-data-erasure")));
-
-String statusLabelDone = StringUtil.toUpperCase(LanguageUtil.get(request, "done"), locale);
-String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pending"), locale);
 %>
 
 <liferay-util:include page="/uad_data_navigation_bar.jsp" servletContext="<%= application %>" />
@@ -109,7 +106,7 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 							name="status"
 						>
 							<clay:label
-								label="<%= uadApplicationSummaryDisplay.hasItems() ? statusLabelPending : statusLabelDone %>"
+								label="<%= uadApplicationSummaryDisplay.hasItems() ? StringUtil.toUpperCase(LanguageUtil.get(request, "pending"), locale) : StringUtil.toUpperCase(LanguageUtil.get(request, "done"), locale) %>"
 								style='<%= uadApplicationSummaryDisplay.hasItems() ? "warning" : "success" %>'
 							/>
 						</liferay-ui:search-container-column-text>
