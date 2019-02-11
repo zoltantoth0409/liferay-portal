@@ -20,7 +20,6 @@ import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.resource.v1_0.ContentStructureResource;
 import com.liferay.journal.model.JournalArticle;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -30,8 +29,6 @@ import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.vulcan.context.Pagination;
 import com.liferay.portal.vulcan.dto.Page;
-
-import javax.ws.rs.InternalServerErrorException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -69,29 +66,26 @@ public class ContentStructureResourceImpl
 				className.getClassNameId()));
 	}
 
-	private Creator _getCreator(long userId) {
-		try {
-			User user = _userService.getUserById(userId);
+	private Creator _getCreator(long userId) throws Exception {
+		User user = _userService.getUserById(userId);
 
-			return new Creator() {
-				{
-					setAdditionalName(user.getMiddleName());
-					setAlternateName(user.getScreenName());
-					setEmail(user.getEmailAddress());
-					setFamilyName(user.getLastName());
-					setGivenName(user.getFirstName());
-					setId(user.getUserId());
-					setJobTitle(user.getJobTitle());
-					setName(user.getFullName());
-				}
-			};
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return new Creator() {
+			{
+				setAdditionalName(user.getMiddleName());
+				setAlternateName(user.getScreenName());
+				setEmail(user.getEmailAddress());
+				setFamilyName(user.getLastName());
+				setGivenName(user.getFirstName());
+				setId(user.getUserId());
+				setJobTitle(user.getJobTitle());
+				setName(user.getFullName());
+			}
+		};
 	}
 
-	private ContentStructure _toContentStructure(DDMStructure ddmStructure) {
+	private ContentStructure _toContentStructure(DDMStructure ddmStructure)
+		throws Exception {
+
 		return new ContentStructure() {
 			{
 				setAvailableLanguages(

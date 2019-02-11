@@ -8,6 +8,7 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 
 import ${configYAML.apiPackagePath}.resource.${versionDirName}.${schemaName}Resource;
 
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -18,7 +19,6 @@ import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -87,8 +87,8 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		return responseBuilder.build();
 	}
 
-	protected <T, R> List<R> transform(List<T> list, Function<T, R> transformFunction) {
-		return TransformUtil.transform(list, transformFunction);
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
+		return TransformUtil.transform(list, unsafeFunction);
 	}
 
 	@Context

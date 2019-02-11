@@ -14,8 +14,10 @@
 
 package com.liferay.portal.vulcan.util;
 
+import com.liferay.petra.function.UnsafeFunction;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,15 +27,24 @@ import java.util.stream.Stream;
 public class TransformUtil {
 
 	public static <T, R> List<R> transform(
-		List<T> list, Function<T, R> transformFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
-		Stream<T> stream = list.stream();
+		List<R> newList = new ArrayList<>();
 
-		return stream.map(
-			transformFunction
-		).collect(
-			Collectors.toList()
-		);
+		for (int i = 0 ; i < list.size(); i++) {
+			try {
+				T item = list.get(i);
+
+				R newItem = unsafeFunction.apply(item);
+
+				newList.add(newItem);
+			}
+			catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+		return newList;
 	}
 
 }
