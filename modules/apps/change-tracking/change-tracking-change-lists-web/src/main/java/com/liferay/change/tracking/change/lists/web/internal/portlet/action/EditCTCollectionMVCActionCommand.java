@@ -54,10 +54,9 @@ public class EditCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = themeDisplay.getUserId();
-
 		long ctCollectionId = ParamUtil.getLong(
-			actionRequest, "ctCollectionId");
+
+		actionRequest, "ctCollectionId");
 		String description = ParamUtil.getString(actionRequest, "description");
 		String name = ParamUtil.getString(actionRequest, "name");
 
@@ -65,7 +64,7 @@ public class EditCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 			_updateCTCollection(ctCollectionId, name, description);
 		}
 		else {
-			_addCTCollection(userId, name, description);
+			_addCTCollection(themeDisplay.getUserId(), name, description);
 		}
 	}
 
@@ -89,8 +88,8 @@ public class EditCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 
 		ctCollectionOptional.ifPresent(
 			ctCollection -> {
-				ctCollection.setDescription(description);
 				ctCollection.setName(name);
+				ctCollection.setDescription(description);
 
 				_ctCollectionLocalService.updateCTCollection(ctCollection);
 			});

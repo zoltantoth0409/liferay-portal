@@ -49,12 +49,11 @@ public class PublishCTCollectionMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = themeDisplay.getUserId();
-
 		long ctCollectionId = ParamUtil.getLong(
 			actionRequest, "ctCollectionId");
 
-		_ctEngineManager.publishCTCollection(userId, ctCollectionId);
+		_ctEngineManager.publishCTCollection(
+			themeDisplay.getUserId(), ctCollectionId);
 	}
 
 	@Reference

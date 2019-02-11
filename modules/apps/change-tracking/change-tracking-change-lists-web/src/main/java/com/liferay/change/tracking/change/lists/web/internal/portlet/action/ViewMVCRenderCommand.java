@@ -58,10 +58,9 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = themeDisplay.getUserId();
-
 		Optional<CTCollection> activeCTCollectionOptional =
-			_ctEngineManager.getActiveCTCollectionOptional(userId);
+			_ctEngineManager.getActiveCTCollectionOptional(
+				themeDisplay.getUserId());
 
 		if (!activeCTCollectionOptional.isPresent()) {
 			return "/view.jsp";
