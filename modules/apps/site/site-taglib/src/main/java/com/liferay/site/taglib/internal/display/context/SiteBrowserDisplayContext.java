@@ -99,9 +99,8 @@ public class SiteBrowserDisplayContext {
 
 		searchContainer.setOrderByCol(getOrderByCol());
 		searchContainer.setOrderByType(getOrderByType());
-
-		searchContainer.setTotal(_groupsCount);
 		searchContainer.setResults(_groups);
+		searchContainer.setTotal(_groupsCount);
 
 		_searchContainer = searchContainer;
 
