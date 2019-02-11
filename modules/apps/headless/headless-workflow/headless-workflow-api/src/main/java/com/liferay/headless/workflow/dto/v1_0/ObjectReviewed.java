@@ -23,8 +23,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@XmlRootElement(name = "Object")
-public class Object {
+@XmlRootElement(name = "ObjectReviewed")
+public class ObjectReviewed {
 
 	public Long getId() {
 		return _id;
@@ -36,10 +36,6 @@ public class Object {
 
 	public String getResourceType() {
 		return _resourceType;
-	}
-
-	public String getSelf() {
-		return _self;
 	}
 
 	public void setId(Long id) {
@@ -54,13 +50,8 @@ public class Object {
 		_resourceType = resourceType;
 	}
 
-	public void setSelf(String self) {
-		_self = self;
-	}
-
 	private Long _id;
 	private String _identifier;
 	private String _resourceType;
-	private String _self;
 
 }

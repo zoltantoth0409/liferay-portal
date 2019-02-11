@@ -58,6 +58,12 @@ import javax.ws.rs.core.Response;
 public interface StructuredContentResource {
 
 	@GET
+	@Path("/content-space/{content-space-id}/content-structure/{content-structure-id}/structured-contents")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @PathParam("content-structure-id") Long contentStructureId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
+
+	@GET
 	@Path("/content-space/{content-space-id}/structured-contents")
 	@Produces("application/json")
 	@RequiresScope("everything.read")

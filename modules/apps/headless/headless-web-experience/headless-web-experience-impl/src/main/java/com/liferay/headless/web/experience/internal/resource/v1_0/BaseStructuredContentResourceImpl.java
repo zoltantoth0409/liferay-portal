@@ -44,6 +44,15 @@ public abstract class BaseStructuredContentResourceImpl
 		"com_liferay_headless_web_experience_dto_v1_0_StructuredContentEntityModel";
 
 	@Override
+	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage(
+			Long contentSpaceId, Long contentStructureId, Filter filter,
+			Pagination pagination, Sort[] sorts)
+		throws Exception {
+
+		return Page.of(Collections.emptyList());
+	}
+
+	@Override
 	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
