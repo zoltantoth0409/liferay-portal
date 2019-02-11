@@ -345,13 +345,9 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", articleId=");
-
 		sb.append(articleId);
 
 		throw new NoSuchArticleException(sb.toString());
@@ -374,17 +370,11 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(7);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", articleId=");
-
 		sb.append(articleId);
-
 		sb.append(", version=");
-
 		sb.append(version);
 
 		throw new NoSuchArticleException(sb.toString());
@@ -407,17 +397,11 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(7);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", className=");
-
 		sb.append(className);
-
 		sb.append(", classPK=");
-
 		sb.append(classPK);
 
 		throw new NoSuchArticleException(sb.toString());
@@ -439,13 +423,9 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", urlTitle=");
-
 		sb.append(urlTitle);
 
 		throw new NoSuchArticleException(sb.toString());
@@ -728,13 +708,9 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", articleId=");
-
 		sb.append(articleId);
 
 		throw new NoSuchArticleException(sb.toString());
@@ -755,13 +731,9 @@ public class CTJournalArticleLocalServiceWrapper
 		StringBundler sb = new StringBundler(5);
 
 		sb.append(_NO_SUCH_ARTICLE_IN_CURRENT_CHANGE_COLLECTION);
-
 		sb.append("groupId=");
-
 		sb.append(groupId);
-
 		sb.append(", urlTitle=");
-
 		sb.append(urlTitle);
 
 		throw new NoSuchArticleException(sb.toString());
