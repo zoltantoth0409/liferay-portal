@@ -16,6 +16,7 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -26,7 +27,6 @@ import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -117,9 +117,9 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	protected <T, R> List<R> transform(
-		List<T> list, Function<T, R> transformFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
-		return TransformUtil.transform(list, transformFunction);
+		return TransformUtil.transform(list, unsafeFunction);
 	}
 
 	@Context

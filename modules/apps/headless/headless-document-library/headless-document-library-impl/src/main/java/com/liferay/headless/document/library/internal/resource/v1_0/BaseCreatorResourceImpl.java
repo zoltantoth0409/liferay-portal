@@ -16,12 +16,12 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.resource.v1_0.CreatorResource;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
-import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -50,9 +50,9 @@ public abstract class BaseCreatorResourceImpl implements CreatorResource {
 	}
 
 	protected <T, R> List<R> transform(
-		List<T> list, Function<T, R> transformFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
-		return TransformUtil.transform(list, transformFunction);
+		return TransformUtil.transform(list, unsafeFunction);
 	}
 
 	@Context

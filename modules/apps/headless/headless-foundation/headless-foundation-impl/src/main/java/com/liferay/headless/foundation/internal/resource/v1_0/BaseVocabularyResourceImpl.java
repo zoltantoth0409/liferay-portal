@@ -16,6 +16,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.context.AcceptLanguage;
 import com.liferay.portal.vulcan.context.Pagination;
@@ -24,7 +25,6 @@ import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 
 import javax.annotation.Generated;
 
@@ -85,9 +85,9 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 	}
 
 	protected <T, R> List<R> transform(
-		List<T> list, Function<T, R> transformFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
-		return TransformUtil.transform(list, transformFunction);
+		return TransformUtil.transform(list, unsafeFunction);
 	}
 
 	@Context
