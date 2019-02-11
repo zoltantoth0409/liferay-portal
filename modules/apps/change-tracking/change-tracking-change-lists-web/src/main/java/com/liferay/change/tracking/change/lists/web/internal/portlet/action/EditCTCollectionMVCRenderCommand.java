@@ -58,7 +58,7 @@ public class EditCTCollectionMVCRenderCommand implements MVCRenderCommand {
 			ctCollection -> renderRequest.setAttribute(
 				"ctCollection", ctCollection));
 
-		return "/edit_collection.jsp";
+		return "/edit_ct_collection.jsp";
 	}
 
 	@Reference
