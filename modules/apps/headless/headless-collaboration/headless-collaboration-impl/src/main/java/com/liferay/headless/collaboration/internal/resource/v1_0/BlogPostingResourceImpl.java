@@ -56,9 +56,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
 		_blogsEntryService.deleteEntry(blogPostingId);
 
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
+		return buildNoContentResponse();
 	}
 
 	@Override

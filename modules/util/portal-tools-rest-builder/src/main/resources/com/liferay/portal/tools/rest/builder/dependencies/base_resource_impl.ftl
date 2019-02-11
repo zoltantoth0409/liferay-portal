@@ -81,6 +81,12 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		</#list>
 	</#if>
 
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
+	}
+
 	protected <T, R> List<R> transform(List<T> list, Function<T, R> transformFunction) {
 		return TransformUtil.transform(list, transformFunction);
 	}
