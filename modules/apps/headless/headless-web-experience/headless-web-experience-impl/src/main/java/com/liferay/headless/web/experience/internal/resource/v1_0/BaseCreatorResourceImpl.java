@@ -26,6 +26,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
@@ -40,6 +41,12 @@ public abstract class BaseCreatorResourceImpl implements CreatorResource {
 	@Override
 	public Creator getCreator(Long creatorId) throws Exception {
 		return new Creator();
+	}
+
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
 	}
 
 	protected <T, R> List<R> transform(

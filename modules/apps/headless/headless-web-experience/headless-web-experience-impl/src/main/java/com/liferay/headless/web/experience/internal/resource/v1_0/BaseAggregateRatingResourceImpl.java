@@ -26,6 +26,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
@@ -43,6 +44,12 @@ public abstract class BaseAggregateRatingResourceImpl
 		throws Exception {
 
 		return new AggregateRating();
+	}
+
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
 	}
 
 	protected <T, R> List<R> transform(

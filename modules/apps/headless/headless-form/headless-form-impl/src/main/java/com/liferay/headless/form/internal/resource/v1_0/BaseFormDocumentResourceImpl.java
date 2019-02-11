@@ -51,6 +51,12 @@ public abstract class BaseFormDocumentResourceImpl
 		return new FormDocument();
 	}
 
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, Function<T, R> transformFunction) {
 

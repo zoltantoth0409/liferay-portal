@@ -112,6 +112,12 @@ public abstract class BaseUserAccountResourceImpl
 		return new UserAccount();
 	}
 
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, Function<T, R> transformFunction) {
 

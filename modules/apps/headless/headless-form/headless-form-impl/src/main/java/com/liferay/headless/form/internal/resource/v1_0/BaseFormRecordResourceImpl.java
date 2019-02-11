@@ -29,6 +29,7 @@ import java.util.function.Function;
 import javax.annotation.Generated;
 
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
@@ -73,6 +74,12 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 		throws Exception {
 
 		return new FormRecord();
+	}
+
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
 	}
 
 	protected <T, R> List<R> transform(

@@ -96,18 +96,18 @@ public interface DocumentResource {
 	@RequiresScope("everything.read")
 	public Page<Document> getFolderDocumentPage( @PathParam("folder-id") Long folderId , @Context Pagination pagination ) throws Exception;
 
-	@Consumes("multipart/form-data")
+	@Consumes("application/json")
 	@POST
 	@Path("/folder/{folder-id}/document")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
-	public Document postFolderDocument( @PathParam("folder-id") Long folderId , MultipartBody multipartBody ) throws Exception;
+	public Document postFolderDocument( @PathParam("folder-id") Long folderId , Document document ) throws Exception;
 
-	@Consumes("application/json")
+	@Consumes("multipart/form-data")
 	@POST
 	@Path("/folder/{folder-id}/document/batch-create")
 	@Produces("application/json")
 	@RequiresScope("everything.write")
-	public Document postFolderDocumentBatchCreate( @PathParam("folder-id") Long folderId , Document document ) throws Exception;
+	public Document postFolderDocumentBatchCreate( @PathParam("folder-id") Long folderId , MultipartBody multipartBody ) throws Exception;
 
 }

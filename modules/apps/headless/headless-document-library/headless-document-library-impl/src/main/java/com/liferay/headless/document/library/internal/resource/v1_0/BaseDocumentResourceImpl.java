@@ -88,8 +88,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	}
 
 	@Override
-	public Document postFolderDocument(
-			Long folderId, MultipartBody multipartBody)
+	public Document postFolderDocument(Long folderId, Document document)
 		throws Exception {
 
 		return new Document();
@@ -97,10 +96,16 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Document postFolderDocumentBatchCreate(
-			Long folderId, Document document)
+			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
 		return new Document();
+	}
+
+	protected Response buildNoContentResponse() {
+		Response.ResponseBuilder responseBuilder = Response.noContent();
+
+		return responseBuilder.build();
 	}
 
 	protected <T, R> List<R> transform(
