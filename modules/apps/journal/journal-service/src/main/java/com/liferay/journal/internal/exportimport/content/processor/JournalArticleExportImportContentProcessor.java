@@ -135,6 +135,9 @@ public class JournalArticleExportImportContentProcessor
 
 		JournalArticle article = (JournalArticle)stagedModel;
 
+		content = replaceImportJournalArticleReferences(
+			portletDataContext, stagedModel, content);
+
 		DDMStructure ddmStructure = _fetchDDMStructure(
 			portletDataContext, article);
 
