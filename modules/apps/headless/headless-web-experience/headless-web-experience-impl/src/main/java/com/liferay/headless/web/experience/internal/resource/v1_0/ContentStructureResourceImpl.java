@@ -62,7 +62,7 @@ public class ContentStructureResourceImpl
 				this::_toContentStructure),
 			pagination,
 			_ddmStructureService.getStructuresCount(
-				group.getGroupId(), new long[] {className.getClassNameId()},
+				company.getCompanyId(), new long[] {group.getGroupId()},
 				className.getClassNameId()));
 	}
 
