@@ -1101,14 +1101,15 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 			StringUtil.split(assetCategoryIds, 0L));
 		searchContext.setAssetTagNames(StringUtil.split(assetTagNames));
 		searchContext.setAttribute("paginationType", "regular");
+
+		if (showNonindexable) {
+			searchContext.setAttribute("showNonindexable", Boolean.TRUE);
+		}
+
 		searchContext.setAttribute("status", statuses);
 
 		if (classTypeId > 0) {
 			searchContext.setClassTypeIds(new long[] {classTypeId});
-		}
-
-		if (showNonindexable) {
-			searchContext.setAttribute("showNonindexable", Boolean.TRUE);
 		}
 
 		searchContext.setCompanyId(companyId);
@@ -1263,6 +1264,21 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
+		assetEntryQuery.setClassNameIds(classNameIds);
+
+		if (ArrayUtil.isNotEmpty(classTypeIds)) {
+			assetEntryQuery.setClassTypeIds(classTypeIds);
+		}
+
+		assetEntryQuery.setEnd(end);
+		assetEntryQuery.setGroupIds(groupIds);
+		assetEntryQuery.setListable(listable);
+		assetEntryQuery.setOrderByCol1(orderByCol1);
+		assetEntryQuery.setOrderByCol2(orderByCol2);
+		assetEntryQuery.setOrderByType1(orderByType1);
+		assetEntryQuery.setOrderByType2(orderByType2);
+		assetEntryQuery.setStart(start);
+
 		if (advancedSearch) {
 			assetEntryQuery.setAndOperator(andOperator);
 			assetEntryQuery.setDescription(description);
@@ -1272,20 +1288,6 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 		else {
 			assetEntryQuery.setKeywords(keywords);
 		}
-
-		if (ArrayUtil.isNotEmpty(classTypeIds)) {
-			assetEntryQuery.setClassTypeIds(classTypeIds);
-		}
-
-		assetEntryQuery.setClassNameIds(classNameIds);
-		assetEntryQuery.setEnd(end);
-		assetEntryQuery.setGroupIds(groupIds);
-		assetEntryQuery.setListable(listable);
-		assetEntryQuery.setOrderByCol1(orderByCol1);
-		assetEntryQuery.setOrderByCol2(orderByCol2);
-		assetEntryQuery.setOrderByType1(orderByType1);
-		assetEntryQuery.setOrderByType2(orderByType2);
-		assetEntryQuery.setStart(start);
 
 		return assetEntryQuery;
 	}
