@@ -53,7 +53,6 @@ public class ContentStructureResourceImpl
 		throws Exception {
 
 		Group group = _groupService.getGroup(contentSpaceId);
-
 		ClassName className = _classNameService.fetchClassName(
 			JournalArticle.class.getName());
 
