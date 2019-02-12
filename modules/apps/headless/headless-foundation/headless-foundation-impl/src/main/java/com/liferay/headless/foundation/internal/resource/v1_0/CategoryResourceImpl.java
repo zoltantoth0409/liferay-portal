@@ -30,6 +30,7 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import org.osgi.service.component.annotations.Component;
@@ -127,11 +128,10 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	private Category[] _toCategories(AssetCategory assetCategory)
 		throws Exception {
 
-		return transform(
-			assetCategory.getAncestors(), this::_toCategory
-		).toArray(
-			new Category[0]
-		);
+		List<Category> categories = transform(
+			assetCategory.getAncestors(), this::_toCategory);
+
+		return categories.toArray(new Category[categories.size()]);
 	}
 
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
