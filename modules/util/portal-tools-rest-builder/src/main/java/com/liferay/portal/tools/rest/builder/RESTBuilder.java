@@ -135,12 +135,11 @@ public class RESTBuilder {
 				_createResourceFile(context, schemaName, versionDirName);
 				_createResourceImplFile(context, schemaName, versionDirName);
 
-				if (Validator.isNull(_configYAML.getTestDir())) {
-					continue;
+				if (Validator.isNotNull(_configYAML.getTestDir())) {
+					_createBaseTestCaseFile(
+						context, schemaName, versionDirName);
+					_createTestFile(context, schemaName, versionDirName);
 				}
-
-				_createBaseTestCaseFile(context, schemaName, versionDirName);
-				_createTestFile(context, schemaName, versionDirName);
 			}
 
 			Queue<Map<String, Schema>> schemasMapsQueue = new LinkedList<>();
