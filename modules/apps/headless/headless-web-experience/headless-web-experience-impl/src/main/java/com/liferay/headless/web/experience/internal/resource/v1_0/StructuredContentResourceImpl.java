@@ -27,7 +27,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldHelper;
+import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldsProvider;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.StructuredContentEntityModel;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
@@ -145,7 +145,7 @@ public class StructuredContentResourceImpl
 			DDMStructure ddmStructure = _ddmStructureService.getStructure(
 				contentStructureId);
 
-			entityFields = _entityFieldHelper.getEntityFields(ddmStructure);
+			entityFields = _entityFieldsProvider.provide(ddmStructure);
 		}
 		else {
 			entityFields = Collections.emptyList();
@@ -464,7 +464,7 @@ public class StructuredContentResourceImpl
 	private DDMStructureService _ddmStructureService;
 
 	@Reference
-	private EntityFieldHelper _entityFieldHelper;
+	private EntityFieldsProvider _entityFieldsProvider;
 
 	@Reference
 	private IndexerRegistry _indexerRegistry;

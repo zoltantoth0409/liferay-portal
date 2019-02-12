@@ -50,10 +50,10 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Cristina González
  */
-@Component(service = EntityFieldHelper.class)
-public class EntityFieldHelper {
+@Component(service = EntityFieldsProvider.class)
+public class EntityFieldsProvider {
 
-	public List<EntityField> getEntityFields(DDMStructure ddmStructure)
+	public List<EntityField> provide(DDMStructure ddmStructure)
 		throws PortalException {
 
 		List<EntityField> entityFields = new ArrayList<>();
