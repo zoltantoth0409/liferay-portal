@@ -48,10 +48,11 @@ public class UADExportProcessManagementToolbarDisplayContext
 
 		super(liferayPortletRequest, liferayPortletResponse, request);
 
-		_currentURL = PortletURLUtil.getCurrent(
-			liferayPortletRequest, liferayPortletResponse);
 		_liferayPortletResponse = liferayPortletResponse;
 		_searchContainer = searchContainer;
+
+		_currentURL = PortletURLUtil.getCurrent(
+			liferayPortletRequest, liferayPortletResponse);
 	}
 
 	@Override
