@@ -193,7 +193,6 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 		return new BlogPosting() {
 			{
-				setImage(imageObject);
 				setAlternativeHeadline(blogsEntry.getSubtitle());
 				setArticleBody(blogsEntry.getContent());
 				setCaption(blogsEntry.getCoverImageCaption());
@@ -206,6 +205,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				setFriendlyUrlPath(blogsEntry.getUrlTitle());
 				setHeadline(blogsEntry.getTitle());
 				setId(blogsEntry.getEntryId());
+				setImage(imageObject);
 			}
 		};
 	}
