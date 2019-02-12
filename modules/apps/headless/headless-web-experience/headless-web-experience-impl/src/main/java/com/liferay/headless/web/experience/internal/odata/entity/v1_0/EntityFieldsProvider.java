@@ -61,11 +61,11 @@ public class EntityFieldsProvider {
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			Optional<EntityField> entityFieldOptional = _createEntityField(
+			EntityField entityField = _createEntityField(
 				ddmStructure, ddmFormField);
 
-			if (entityFieldOptional.isPresent()) {
-				entityFields.add(entityFieldOptional.get());
+			if (entityField != null) {
+				entityFields.add(entityField);
 			}
 		}
 
@@ -80,7 +80,7 @@ public class EntityFieldsProvider {
 			StringPool.UNDERLINE, name);
 	}
 
-	private Optional<EntityField> _createEntityField(
+	private EntityField _createEntityField(
 			DDMStructure ddmStructure, DDMFormField ddmFormField)
 		throws PortalException {
 
@@ -88,58 +88,54 @@ public class EntityFieldsProvider {
 			ddmFormField.getName(), "indexType");
 
 		if (Validator.isNull(indexType)) {
-			return Optional.empty();
+			return null;
 		}
 
 		if (Objects.equals(ddmFormField.getType(), DDMFormFieldType.CHECKBOX)) {
-			return Optional.of(
-				new BooleanEntityField(
-					_encodeFilterAndSortIdentifier(
-						ddmStructure, ddmFormField.getName()),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "String")));
+			return new BooleanEntityField(
+				_encodeFilterAndSortIdentifier(
+					ddmStructure, ddmFormField.getName()),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "String"));
 		}
 		else if (Objects.equals(
 					ddmFormField.getDataType(), FieldConstants.DATE)) {
 
-			return Optional.of(
-				new DateEntityField(
-					_encodeFilterAndSortIdentifier(
-						ddmStructure, ddmFormField.getName()),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "String"),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "String"),
-					this::_getDDMDateFieldValue));
+			return new DateEntityField(
+				_encodeFilterAndSortIdentifier(
+					ddmStructure, ddmFormField.getName()),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "String"),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "String"),
+				this::_getDDMDateFieldValue);
 		}
 		else if (Objects.equals(
 					ddmFormField.getDataType(), FieldConstants.DOUBLE) ||
 				 Objects.equals(
 					 ddmFormField.getDataType(), FieldConstants.NUMBER)) {
 
-			return Optional.of(
-				new DoubleEntityField(
-					_encodeFilterAndSortIdentifier(
-						ddmStructure, ddmFormField.getName()),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "Number")));
+			return new DoubleEntityField(
+				_encodeFilterAndSortIdentifier(
+					ddmStructure, ddmFormField.getName()),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "Number"));
 		}
 		else if (Objects.equals(
 					ddmFormField.getDataType(), FieldConstants.LONG) ||
 				 Objects.equals(
 					 ddmFormField.getDataType(), FieldConstants.INTEGER)) {
 
-			return Optional.of(
-				new IntegerEntityField(
-					_encodeFilterAndSortIdentifier(
-						ddmStructure, ddmFormField.getName()),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "Number")));
+			return new IntegerEntityField(
+				_encodeFilterAndSortIdentifier(
+					ddmStructure, ddmFormField.getName()),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "Number"));
 		}
 		else if (Objects.equals(
 					ddmFormField.getDataType(), DDMFormFieldType.RADIO) ||
@@ -147,16 +143,15 @@ public class EntityFieldsProvider {
 					 ddmFormField.getType(), DDMFormFieldType.TEXT) &&
 				  Objects.equals(ddmFormField.getIndexType(), "keyword"))) {
 
-			return Optional.of(
-				new StringEntityField(
-					_encodeFilterAndSortIdentifier(
-						ddmStructure, ddmFormField.getName()),
-					locale -> _encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "String")));
+			return new StringEntityField(
+				_encodeFilterAndSortIdentifier(
+					ddmStructure, ddmFormField.getName()),
+				locale -> _encodeName(
+					ddmStructure.getStructureId(), ddmFormField.getName(),
+					locale, "String"));
 		}
 
-		return Optional.empty();
+		return null;
 	}
 
 	private String _encodeName(
