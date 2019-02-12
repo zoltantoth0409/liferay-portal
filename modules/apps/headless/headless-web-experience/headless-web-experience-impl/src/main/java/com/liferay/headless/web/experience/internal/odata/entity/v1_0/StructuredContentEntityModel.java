@@ -42,6 +42,7 @@ public class StructuredContentEntityModel implements EntityModel {
 			new CollectionEntityField(
 				new StringEntityField(
 					"keywords", locale -> "assetTagNames.raw")),
+			new ComplexEntityField("values", entityFields),
 			new DateTimeEntityField(
 				"dateCreated",
 				locale -> Field.getSortableFieldName(Field.CREATE_DATE),
@@ -54,7 +55,6 @@ public class StructuredContentEntityModel implements EntityModel {
 				"datePublished",
 				locale -> Field.getSortableFieldName(Field.DISPLAY_DATE),
 				locale -> Field.DISPLAY_DATE),
-			new ComplexEntityField("values", entityFields),
 			new StringEntityField(
 				"contentStructureId", locale -> Field.CLASS_TYPE_ID),
 			new StringEntityField("creatorId", locale -> Field.USER_ID),
