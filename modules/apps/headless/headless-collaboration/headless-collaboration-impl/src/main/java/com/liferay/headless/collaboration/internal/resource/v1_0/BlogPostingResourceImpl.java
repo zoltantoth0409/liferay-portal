@@ -14,6 +14,8 @@
 
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
+import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
+
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
@@ -29,11 +31,8 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.sql.Timestamp;
-
 import java.time.LocalDateTime;
 
-import java.util.Date;
 import java.util.Objects;
 
 import javax.ws.rs.BadRequestException;
@@ -86,7 +85,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-		LocalDateTime localDateTime = _getLocalDateTime(
+		LocalDateTime localDateTime = toLocalDateTime(
 			blogPosting.getDatePublished());
 
 		return _toBlogPosting(
@@ -106,7 +105,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 			Long blogPostingId, BlogPosting blogPosting)
 		throws Exception {
 
-		LocalDateTime localDateTime = _getLocalDateTime(
+		LocalDateTime localDateTime = toLocalDateTime(
 			blogPosting.getDatePublished());
 
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
@@ -164,19 +163,6 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 			throw new BadRequestException(
 				"Unable to get file entry " + imageId, e);
 		}
-	}
-
-	private LocalDateTime _getLocalDateTime(Date date) {
-		Timestamp timestamp = null;
-
-		if (date != null) {
-			timestamp = new Timestamp(date.getTime());
-		}
-		else {
-			timestamp = new Timestamp(System.currentTimeMillis());
-		}
-
-		return timestamp.toLocalDateTime();
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) {

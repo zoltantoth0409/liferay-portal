@@ -14,6 +14,8 @@
 
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
+import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
+
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
 import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
@@ -58,10 +60,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
 import java.util.AbstractMap;
 import java.util.Date;
@@ -116,9 +115,8 @@ public class StructuredContentResourceImpl
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
 			structuredContent.getContentStructureId());
-
-		LocalDateTime localDateTime = _getLocalDateTime(
-			structuredContent.getDatePublished(), new Date());
+		LocalDateTime localDateTime = toLocalDateTime(
+			structuredContent.getDatePublished());
 
 		return _toStructuredContent(
 			_journalArticleService.addArticle(
@@ -156,7 +154,7 @@ public class StructuredContentResourceImpl
 			structuredContentId);
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-		LocalDateTime localDateTime = _getLocalDateTime(
+		LocalDateTime localDateTime = toLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
 
@@ -292,21 +290,6 @@ public class StructuredContentResourceImpl
 				permissionChecker);
 
 		return searchResultPermissionFilter.search(searchContext);
-	}
-
-	private LocalDateTime _getLocalDateTime(Date date, Date defaultDate) {
-		Instant instant;
-
-		if (date == null) {
-			instant = defaultDate.toInstant();
-		}
-		else {
-			instant = date.toInstant();
-		}
-
-		ZonedDateTime zonedDateTime = instant.atZone(ZoneId.systemDefault());
-
-		return zonedDateTime.toLocalDateTime();
 	}
 
 	private Query _getQuery(Filter filter, SearchContext searchContext)
