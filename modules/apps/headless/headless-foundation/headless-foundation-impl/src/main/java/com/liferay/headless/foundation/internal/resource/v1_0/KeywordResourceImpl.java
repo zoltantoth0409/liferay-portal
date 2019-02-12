@@ -65,14 +65,14 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 				_assetTagService.addTag(
 					contentSpaceId, keyword.getName(), serviceContext));
 		}
+		catch (AssetTagNameException atne) {
+			throw new ClientErrorException(
+				"Name contains invalid characters", 422, atne);
+		}
 		catch (DuplicateTagException dte) {
 			throw new ClientErrorException(
 				"A tag with the name " + keyword.getName() + " already exists",
 				422, dte);
-		}
-		catch (AssetTagNameException atne) {
-			throw new ClientErrorException(
-				"Name contains invalid characters", 422, atne);
 		}
 	}
 
@@ -85,14 +85,14 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 				_assetTagService.updateTag(
 					keywordsId, keyword.getName(), null));
 		}
+		catch (AssetTagNameException atne) {
+			throw new ClientErrorException(
+				"Name contains invalid characters", 422, atne);
+		}
 		catch (DuplicateTagException dte) {
 			throw new ClientErrorException(
 				"A tag with the name " + keyword.getName() + " already exists",
 				422, dte);
-		}
-		catch (AssetTagNameException atne) {
-			throw new ClientErrorException(
-				"Name contains invalid characters", 422, atne);
 		}
 	}
 
