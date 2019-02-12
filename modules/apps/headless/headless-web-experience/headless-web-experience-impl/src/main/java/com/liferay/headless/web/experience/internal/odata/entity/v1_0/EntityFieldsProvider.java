@@ -126,9 +126,9 @@ public class EntityFieldsProvider {
 					locale, "Number"));
 		}
 		else if (Objects.equals(
-					ddmFormField.getDataType(), FieldConstants.LONG) ||
+					ddmFormField.getDataType(), FieldConstants.INTEGER) ||
 				 Objects.equals(
-					 ddmFormField.getDataType(), FieldConstants.INTEGER)) {
+					 ddmFormField.getDataType(), FieldConstants.LONG)) {
 
 			return new IntegerEntityField(
 				_toFieldName(
