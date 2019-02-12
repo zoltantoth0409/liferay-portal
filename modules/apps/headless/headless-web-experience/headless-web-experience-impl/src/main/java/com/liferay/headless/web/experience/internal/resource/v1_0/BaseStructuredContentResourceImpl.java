@@ -20,9 +20,9 @@ import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
@@ -45,7 +45,7 @@ public abstract class BaseStructuredContentResourceImpl
 		"com_liferay_headless_web_experience_dto_v1_0_StructuredContentEntityModel";
 
 	@Override
-	public Response deleteStructuredContent(Long structuredContentsId)
+	public Response deleteStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		Response.ResponseBuilder responseBuilder = Response.ok();
@@ -54,7 +54,7 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	@Override
-	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage(
+	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentPage(
 			Long contentSpaceId, Long contentStructureId, Filter filter,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
@@ -63,7 +63,7 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	@Override
-	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
+	public Page<StructuredContent> getContentSpaceStructuredContentPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
 		throws Exception {
@@ -72,7 +72,7 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getStructuredContent(Long structuredContentsId)
+	public StructuredContent getStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		return new StructuredContent();
@@ -95,7 +95,7 @@ public abstract class BaseStructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent postContentSpaceStructuredContentsBatchCreate(
+	public StructuredContent postContentSpaceStructuredContentBatchCreate(
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
@@ -104,7 +104,7 @@ public abstract class BaseStructuredContentResourceImpl
 
 	@Override
 	public StructuredContent putStructuredContent(
-			Long structuredContentsId, StructuredContent structuredContent)
+			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
 
 		return new StructuredContent();

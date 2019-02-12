@@ -23,8 +23,9 @@ import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
+import com.liferay.portal.vulcan.multipart.MultipartBody;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.util.Date;
 
@@ -45,8 +46,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-
-import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 
 /**
  * To access this resource, run:
@@ -73,8 +72,8 @@ public interface CommentResource {
 	public Page<Comment> getCommentCommentPage( @PathParam("comment-id") Long commentId , @Context Pagination pagination ) throws Exception;
 
 	@GET
-	@Path("/structured-contents/{structured-contents-id}/comment")
+	@Path("/structured-content/{structured-content-id}/comment")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
-	public Page<Comment> getStructuredContentsCommentPage( @PathParam("structured-contents-id") Long structuredContentsId , @Context Pagination pagination ) throws Exception;
+	public Page<Comment> getStructuredContentCommentPage( @PathParam("structured-content-id") Long structuredContentId , @Context Pagination pagination ) throws Exception;
 }

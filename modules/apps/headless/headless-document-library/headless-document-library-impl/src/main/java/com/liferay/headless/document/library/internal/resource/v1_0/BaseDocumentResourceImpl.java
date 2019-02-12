@@ -18,9 +18,10 @@ import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
-import com.liferay.portal.vulcan.context.Pagination;
-import com.liferay.portal.vulcan.dto.Page;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
+import com.liferay.portal.vulcan.multipart.MultipartBody;
+import com.liferay.portal.vulcan.pagination.Page;
+import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.Collections;
@@ -30,8 +31,6 @@ import javax.annotation.Generated;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-
-import org.apache.cxf.jaxrs.ext.multipart.MultipartBody;
 
 /**
  * @author Javier Gamarra
@@ -88,7 +87,8 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	}
 
 	@Override
-	public Document postFolderDocument(Long folderId, Document document)
+	public Document postFolderDocument(
+			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
 		return new Document();
