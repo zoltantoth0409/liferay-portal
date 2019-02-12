@@ -14,8 +14,6 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.message.body;
 
-import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
-
 import com.liferay.portal.vulcan.multipart.BinaryFile;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 
@@ -26,7 +24,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +38,6 @@ import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.util.Streams;
@@ -72,34 +67,27 @@ public class MultipartBodyMessageBodyReader
 			InputStream inputStream)
 		throws IOException {
 
-		if (!isMultipartContent(_httpServletRequest)) {
+		if (!ServletFileUpload.isMultipartContent(_httpServletRequest)) {
 			throw new BadRequestException(
 				"Request body is not a valid multipart form");
 		}
-
-		FileItemFactory fileItemFactory = new DiskFileItemFactory();
-
-		ServletFileUpload servletFileUpload = new ServletFileUpload(
-			fileItemFactory);
 
 		try {
 			Map<String, BinaryFile> binaryFiles = new HashMap<>();
 			Map<String, String> values = new HashMap<>();
 
+			ServletFileUpload servletFileUpload = new ServletFileUpload(
+				new DiskFileItemFactory());
+
 			List<FileItem> fileItems = servletFileUpload.parseRequest(
 				_httpServletRequest);
 
-			Iterator<FileItem> iterator = fileItems.iterator();
-
-			while (iterator.hasNext()) {
-				FileItem fileItem = iterator.next();
-
+			for (FileItem fileItem : fileItems) {
 				String name = fileItem.getFieldName();
 
 				if (fileItem.isFormField()) {
-					InputStream stream = fileItem.getInputStream();
-
-					values.put(name, Streams.asString(stream));
+					values.put(
+						name, Streams.asString(fileItem.getInputStream()));
 				}
 				else {
 					BinaryFile binaryFile = new BinaryFile(
@@ -112,9 +100,9 @@ public class MultipartBodyMessageBodyReader
 
 			return MultipartBody.of(binaryFiles, values);
 		}
-		catch (FileUploadException fue) {
+		catch (Exception e) {
 			throw new BadRequestException(
-				"Request body is not a valid multipart form", fue);
+				"Request body is not a valid multipart form", e);
 		}
 	}
 
