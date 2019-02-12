@@ -143,8 +143,6 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 
 		return new Category() {
 			{
-				Locale preferredLocale = acceptLanguage.getPreferredLocale();
-
 				setAvailableLanguages(assetCategory.getAvailableLanguageIds());
 
 				if (assetCategory.getParentCategory() != null) {
@@ -156,9 +154,13 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				setCreatorId(assetCategory.getUserId());
 				setDateCreated(assetCategory.getCreateDate());
 				setDateModified(assetCategory.getModifiedDate());
-				setDescription(assetCategory.getDescription(preferredLocale));
+				setDescription(
+					assetCategory.getDescription(
+						acceptLanguage.getPreferredLocale()));
 				setId(assetCategory.getCategoryId());
-				setName(assetCategory.getTitle(preferredLocale));
+				setName(
+					assetCategory.getTitle(
+						acceptLanguage.getPreferredLocale()));
 				setSubcategories(_toCategories(assetCategory));
 				setVocabularyId(assetCategory.getVocabularyId());
 			}
