@@ -127,10 +127,6 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				vocabularyId, null, new ServiceContext()));
 	}
 
-	private UserAccount _getUserAccount(long userId) throws PortalException {
-		return UserAccountUtil.toUserAccount(_userService.getUserById(userId));
-	}
-
 	private Category[] _toCategories(AssetCategory assetCategory)
 		throws PortalException {
 
@@ -141,9 +137,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 		);
 	}
 
-	private Category _toCategory(AssetCategory assetCategory)
-		throws PortalException {
-
+	private Category _toCategory(AssetCategory assetCategory) throws Exception {
 		return new Category() {
 			{
 				setAvailableLanguages(assetCategory.getAvailableLanguageIds());
@@ -153,7 +147,9 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 					setCategoryId(assetCategory.getParentCategoryId());
 				}
 
-				setCreator(_getUserAccount(assetCategory.getUserId()));
+				setCreator(
+					UserAccountUtil.toUserAccount(
+						_userService.getUserById(assetCategory.getUserId())));
 				setCreatorId(assetCategory.getUserId());
 				setDateCreated(assetCategory.getCreateDate());
 				setDateModified(assetCategory.getModifiedDate());
