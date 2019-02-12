@@ -48,7 +48,7 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 	public FilterContextProvider(
 		BundleContext bundleContext,
 		ExpressionConvert<Filter> expressionConvert,
-		FilterParserProvider filterParserProvider,  Portal portal) {
+		FilterParserProvider filterParserProvider, Portal portal) {
 
 		_bundleContext = bundleContext;
 		_expressionConvert = expressionConvert;

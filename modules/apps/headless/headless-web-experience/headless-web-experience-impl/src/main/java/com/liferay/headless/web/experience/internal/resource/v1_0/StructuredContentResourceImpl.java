@@ -64,6 +64,7 @@ import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.time.LocalDateTime;
 
@@ -77,8 +78,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -92,7 +93,7 @@ import org.osgi.service.component.annotations.ServiceScope;
 	scope = ServiceScope.PROTOTYPE, service = StructuredContentResource.class
 )
 public class StructuredContentResourceImpl
-	extends BaseStructuredContentResourceImpl {
+	extends BaseStructuredContentResourceImpl implements EntityModelResource {
 
 	@Override
 	public Response deleteStructuredContent(Long structuredContentId)
@@ -133,6 +134,7 @@ public class StructuredContentResourceImpl
 			pagination, hits.getLength());
 	}
 
+	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws PortalException {
 

@@ -17,6 +17,7 @@ package com.liferay.portal.vulcan.internal.jaxrs.context.provider.test.util;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.StringEntityField;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.util.Collections;
 import java.util.Map;
@@ -26,9 +27,20 @@ import javax.ws.rs.core.MultivaluedMap;
 /**
  * @author Cristina González
  */
-public class MockResource {
+public class MockResource implements EntityModelResource {
 
-	public static final EntityModel ENTITY_MODEL = new EntityModel() {
+	public static final String METHOD_NAME = "exampleJaxRSMethod";
+
+	public String exampleJaxRSMethod(String param) {
+		return "";
+	}
+
+	@Override
+	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
+		return _ENTITY_MODEL;
+	}
+
+	private static final EntityModel _ENTITY_MODEL = new EntityModel() {
 
 		@Override
 		public Map<String, EntityField> getEntityFieldsMap() {
@@ -43,15 +55,5 @@ public class MockResource {
 		}
 
 	};
-
-	public static final String METHOD_NAME = "exampleJaxRSMethod";
-
-	public String exampleJaxRSMethod(String param) {
-		return "";
-	}
-
-	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return ENTITY_MODEL;
-	}
 
 }

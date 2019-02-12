@@ -14,7 +14,12 @@
 
 package com.liferay.portal.vulcan.internal.jaxrs.context.provider;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.lang.reflect.Method;
 
@@ -31,6 +36,8 @@ import org.osgi.framework.ServiceReference;
 
 /**
  * @author Víctor Galán
+ * @author Cristina González
+ * @author Brian Wing Shun Chan
  */
 public class ContextProviderUtil {
 
@@ -50,25 +57,25 @@ public class ContextProviderUtil {
 			return null;
 		}
 
-		Method getEntityModelMethod = clazz.getDeclaredMethod(
-			"getEntityModel", MultivaluedMap.class);
+		if (!ClassUtil.isSubclass(clazz, EntityModelResource.class)) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					StringBundler.concat(
+						"Class ", clazz.getName(), " does not implement ",
+						EntityModelResource.class.getName()));
+			}
 
-		if (getEntityModelMethod == null) {
 			return null;
 		}
 
-		Object resourceService = _getResourceService(bundleContext, clazz);
-
-		if (resourceService == null) {
-			return null;
-		}
+		EntityModelResource entityModelResource =
+			(EntityModelResource)_getEntityModelResource(bundleContext, clazz);
 
 		MultivaluedMap multivaluedMap =
 			(MetadataMap)message.getContextualProperty(
 				"jaxrs.template.parameters");
 
-		return (EntityModel)getEntityModelMethod.invoke(
-			resourceService, multivaluedMap);
+		return entityModelResource.getEntityModel(multivaluedMap);
 	}
 
 	public static HttpServletRequest getHttpServletRequest(Message message) {
@@ -76,8 +83,8 @@ public class ContextProviderUtil {
 			"HTTP.REQUEST");
 	}
 
-	private static <T> T _getResourceService(
-			BundleContext bundleContext, Class<T> clazz)
+	private static EntityModelResource _getEntityModelResource(
+			BundleContext bundleContext, Class<?> clazz)
 		throws InvalidSyntaxException {
 
 		ServiceReference<?>[] serviceReferences =
@@ -89,7 +96,11 @@ public class ContextProviderUtil {
 			return null;
 		}
 
-		return (T)bundleContext.getService(serviceReferences[0]);
+		return (EntityModelResource)bundleContext.getService(
+			serviceReferences[0]);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ContextProviderUtil.class);
 
 }
