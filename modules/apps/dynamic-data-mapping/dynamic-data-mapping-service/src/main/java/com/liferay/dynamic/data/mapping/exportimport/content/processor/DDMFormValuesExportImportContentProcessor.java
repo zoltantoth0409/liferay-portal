@@ -135,24 +135,26 @@ public class DDMFormValuesExportImportContentProcessor
 		_layoutLocalService = layoutLocalService;
 	}
 
-	private boolean _hasExportableStatus(StagedModel stagedModel, int status) {
+	private boolean _hasNotExportableStatus(
+		StagedModel stagedModel, int status) {
+
 		StagedModelDataHandler<?> stagedModelDataHandler =
 			StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
 				stagedModel.getModelClassName());
 
-		return ArrayUtil.contains(
+		return !ArrayUtil.contains(
 			stagedModelDataHandler.getExportableStatuses(), status);
 	}
 
 	private boolean _isReferenceDisposable(
-		Class clazz, StagedModel parentStagedModel, long groupId, String uuid,
-		PortletDataContext portletDataContext) {
+		PortletDataContext portletDataContext, StagedModel parentStagedModel,
+		long groupId, String uuid) {
 
 		Element parentElement = portletDataContext.getImportDataElement(
 			parentStagedModel);
 
 		Element disposableElement = portletDataContext.getReferenceElement(
-			parentElement, clazz, groupId, uuid,
+			parentElement, DLFileEntry.class, groupId, uuid,
 			PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE);
 
 		if (disposableElement != null) {
@@ -214,7 +216,7 @@ public class DDMFormValuesExportImportContentProcessor
 
 				FileVersion fileVersion = fileEntry.getFileVersion();
 
-				boolean disposableDependency = !_hasExportableStatus(
+				boolean disposableDependency = _hasNotExportableStatus(
 					fileEntry, fileVersion.getStatus());
 
 				if (_exportReferencedContent && !disposableDependency) {
@@ -335,8 +337,7 @@ public class DDMFormValuesExportImportContentProcessor
 			String uuid = jsonObject.getString("uuid");
 
 			boolean disposable = _isReferenceDisposable(
-				DLFileEntry.class, _stagedModel, groupId, uuid,
-				portletDataContext);
+				portletDataContext, _stagedModel, groupId, uuid);
 
 			groupId = MapUtil.getLong(groupIds, groupId, groupId);
 
