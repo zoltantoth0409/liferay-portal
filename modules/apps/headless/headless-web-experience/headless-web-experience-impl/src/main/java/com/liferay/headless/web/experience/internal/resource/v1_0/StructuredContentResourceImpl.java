@@ -112,10 +112,8 @@ public class StructuredContentResourceImpl
 	public StructuredContent getStructuredContent(Long structuredContentId)
 		throws Exception {
 
-		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
-			structuredContentId);
-
-		return _toStructuredContent(journalArticle);
+		return _toStructuredContent(
+			_journalArticleService.getLatestArticle(structuredContentId));
 	}
 
 	@Override
@@ -126,14 +124,8 @@ public class StructuredContentResourceImpl
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
 			structuredContent.getContentStructureId());
 
-		String ddmStructureKey = ddmStructure.getStructureKey();
-		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
-
 		LocalDateTime localDateTime = _getLocalDateTime(
 			structuredContent.getDatePublished(), new Date());
-
-		ServiceContext serviceContext = _getServiceContext(
-			contentSpaceId, structuredContent);
 
 		return _toStructuredContent(
 			_journalArticleService.addArticle(
@@ -152,11 +144,14 @@ public class StructuredContentResourceImpl
 							structuredContent.getDescription());
 					}
 				},
-				_createJournalArticleContent(ddmStructure), ddmStructureKey,
-				ddmTemplateKey, null, localDateTime.getMonthValue() - 1,
+				_createJournalArticleContent(ddmStructure),
+				ddmStructure.getStructureKey(),
+				_getDDMTemplateKey(ddmStructure), null,
+				localDateTime.getMonthValue() - 1,
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
-				0, true, 0, 0, 0, 0, 0, true, true, null, serviceContext));
+				0, true, 0, 0, 0, 0, 0, true, true, null,
+				_getServiceContext(contentSpaceId, structuredContent)));
 	}
 
 	@Override
@@ -167,13 +162,7 @@ public class StructuredContentResourceImpl
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
-		ServiceContext serviceContext = _getServiceContext(
-			journalArticle.getGroupId(), structuredContent);
-
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
-
-		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
-
 		LocalDateTime localDateTime = _getLocalDateTime(
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
@@ -198,13 +187,16 @@ public class StructuredContentResourceImpl
 						acceptLanguage.getPreferredLocale(),
 						structuredContent.getTitle())),
 				_createJournalArticleContent(ddmStructure),
-				journalArticle.getDDMStructureKey(), ddmTemplateKey,
+				journalArticle.getDDMStructureKey(),
+				_getDDMTemplateKey(ddmStructure),
 				journalArticle.getLayoutUuid(),
 				localDateTime.getMonthValue() - 1,
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, false, null, null, null,
-				null, serviceContext));
+				null,
+				_getServiceContext(
+					journalArticle.getGroupId(), structuredContent)));
 	}
 
 	private SearchContext _createSearchContext(
