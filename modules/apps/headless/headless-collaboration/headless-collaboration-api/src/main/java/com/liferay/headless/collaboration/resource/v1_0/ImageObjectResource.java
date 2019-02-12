@@ -90,4 +90,5 @@ public interface ImageObjectResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception;
+
 }

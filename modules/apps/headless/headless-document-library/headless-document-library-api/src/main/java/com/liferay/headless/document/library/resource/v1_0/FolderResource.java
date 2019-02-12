@@ -121,4 +121,5 @@ public interface FolderResource {
 	@Produces("application/json")
 	@RequiresScope("everything.write")
 	public Folder postFolderFolderBatchCreate( @PathParam("folder-id") Long folderId , Folder folder ) throws Exception;
+
 }

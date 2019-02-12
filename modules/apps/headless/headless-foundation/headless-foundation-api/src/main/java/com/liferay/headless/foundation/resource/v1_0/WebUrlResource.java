@@ -74,4 +74,5 @@ public interface WebUrlResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public WebUrl getWebUrl( @PathParam("web-urls-id") Long webUrlsId ) throws Exception;
+
 }

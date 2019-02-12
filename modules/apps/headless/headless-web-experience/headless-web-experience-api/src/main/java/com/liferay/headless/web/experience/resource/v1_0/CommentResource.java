@@ -76,4 +76,5 @@ public interface CommentResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public Page<Comment> getStructuredContentCommentPage( @PathParam("structured-content-id") Long structuredContentId , @Context Pagination pagination ) throws Exception;
+
 }

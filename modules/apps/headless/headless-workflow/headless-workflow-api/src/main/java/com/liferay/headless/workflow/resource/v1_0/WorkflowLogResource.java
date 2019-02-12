@@ -66,4 +66,5 @@ public interface WorkflowLogResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public Page<WorkflowLog> getWorkflowTasksWorkflowLogsPage( @PathParam("workflow-tasks-id") Long workflowTasksId , @Context Pagination pagination ) throws Exception;
+
 }
