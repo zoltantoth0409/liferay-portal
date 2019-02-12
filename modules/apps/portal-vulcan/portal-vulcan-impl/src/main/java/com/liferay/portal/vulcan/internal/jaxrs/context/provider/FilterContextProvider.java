@@ -47,13 +47,13 @@ public class FilterContextProvider implements ContextProvider<Filter> {
 
 	public FilterContextProvider(
 		BundleContext bundleContext,
-		ExpressionConvert<Filter> expressionConvert, Portal portal,
-		FilterParserProvider filterParserProvider) {
+		ExpressionConvert<Filter> expressionConvert,
+		FilterParserProvider filterParserProvider,  Portal portal) {
 
 		_bundleContext = bundleContext;
 		_expressionConvert = expressionConvert;
-		_portal = portal;
 		_filterParserProvider = filterParserProvider;
+		_portal = portal;
 	}
 
 	@Override

@@ -72,8 +72,8 @@ public class VulcanFeature implements Feature {
 		featureContext.register(new CompanyContextProvider(_portal));
 		featureContext.register(
 			new FilterContextProvider(
-				_bundleContext, _expressionConvert, _portal,
-				_filterParserProvider));
+				_bundleContext, _expressionConvert, _filterParserProvider,
+				_portal));
 		featureContext.register(
 			new SortContextProvider(
 				_bundleContext, _portal, _sortParserProvider));
