@@ -386,15 +386,15 @@ public class StructuredContentResourceImpl
 
 			DDMForm ddmForm = ddmStructure.getDDMForm();
 
+			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm) {
+				{
+					setAvailableLocales(ddmForm.getAvailableLocales());
+					setDefaultLocale(ddmForm.getDefaultLocale());
+				}
+			};
+
 			serviceContext.setAttribute(
-				"ddmFormValues",
-				_toString(
-					new DDMFormValues(ddmForm) {
-						{
-							setAvailableLocales(ddmForm.getAvailableLocales());
-							setDefaultLocale(ddmForm.getDefaultLocale());
-						}
-					}));
+				"ddmFormValues", _toString(ddmFormValues));
 
 			return _journalConverter.getContent(
 				ddmStructure,
