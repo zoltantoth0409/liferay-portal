@@ -206,7 +206,7 @@ name = HtmlUtil.escapeJS(name);
 	};
 
 	var createInstance = function() {
-		var editorNode = A.one('#<%= name %>')
+		var editorNode = A.one('#<%= name %>');
 
 		if (!editorNode) {
 			var editorContainer = A.one('#<%= name %>Container');
