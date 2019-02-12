@@ -92,11 +92,11 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getStructuredContent(Long structuredContentsId)
+	public StructuredContent getStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
-			structuredContentsId);
+			structuredContentId);
 
 		return _toStructuredContent(journalArticle);
 	}
@@ -147,11 +147,11 @@ public class StructuredContentResourceImpl
 
 	@Override
 	public StructuredContent putStructuredContent(
-			Long structuredContentsId, StructuredContent structuredContent)
+			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
-			structuredContentsId);
+			structuredContentId);
 
 		ServiceContext serviceContext = _getServiceContext(
 			journalArticle.getGroupId(), structuredContent);
