@@ -57,7 +57,7 @@ public class ContextProviderUtil {
 			return null;
 		}
 
-		Object resourceService = getResourceService(bundleContext, clazz);
+		Object resourceService = _getResourceService(bundleContext, clazz);
 
 		if (resourceService == null) {
 			return null;
@@ -76,7 +76,7 @@ public class ContextProviderUtil {
 			"HTTP.REQUEST");
 	}
 
-	public static <T> T getResourceService(
+	private static <T> T _getResourceService(
 			BundleContext bundleContext, Class<T> clazz)
 		throws InvalidSyntaxException {
 
