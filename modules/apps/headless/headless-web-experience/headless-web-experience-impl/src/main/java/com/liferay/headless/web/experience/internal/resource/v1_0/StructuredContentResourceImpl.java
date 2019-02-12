@@ -18,7 +18,6 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.internal.util.JournalArticleContentHelper;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
@@ -47,6 +46,24 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerTracker;
+import com.liferay.dynamic.data.mapping.model.DDMForm;
+import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
+import com.liferay.dynamic.data.mapping.storage.Fields;
+import com.liferay.dynamic.data.mapping.util.DDM;
+import com.liferay.journal.util.JournalConverter;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.LocaleThreadLocal;
+import com.liferay.portal.kernel.util.LocaleUtil;
+
+import java.util.Locale;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -111,9 +128,7 @@ public class StructuredContentResourceImpl
 
 		Locale locale = acceptLanguage.getPreferredLocale();
 
-		String content =
-			_journalArticleContentHelper.createJournalArticleContent(
-				ddmStructure);
+		String content = _createJournalArticleContent(ddmStructure);
 
 		String ddmStructureKey = ddmStructure.getStructureKey();
 		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
@@ -160,9 +175,7 @@ public class StructuredContentResourceImpl
 
 		Locale locale = acceptLanguage.getPreferredLocale();
 
-		String content =
-			_journalArticleContentHelper.createJournalArticleContent(
-				ddmStructure);
+		String content = _createJournalArticleContent(ddmStructure);
 
 		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
 
@@ -365,6 +378,52 @@ public class StructuredContentResourceImpl
 		};
 	}
 
+	private String _createJournalArticleContent(DDMStructure ddmStructure)
+		throws Exception {
+
+		Locale originalSiteDefaultLocale =
+			LocaleThreadLocal.getSiteDefaultLocale();
+
+		try {
+			LocaleThreadLocal.setSiteDefaultLocale(
+				LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()));
+
+			DDMForm ddmForm = ddmStructure.getDDMForm();
+
+			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
+
+			ddmFormValues.setAvailableLocales(ddmForm.getAvailableLocales());
+			ddmFormValues.setDefaultLocale(ddmForm.getDefaultLocale());
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAttribute(
+				"ddmFormValues", _serializeDDMFormValues(ddmFormValues));
+
+			Fields fields = _ddm.getFields(
+				ddmStructure.getStructureId(), serviceContext);
+
+			return _journalConverter.getContent(ddmStructure, fields);
+		}
+		finally {
+			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
+		}
+	}
+
+	private String _serializeDDMFormValues(DDMFormValues ddmFormValues) {
+		DDMFormValuesSerializer ddmFormValuesSerializer =
+			_ddmFormValuesSerializerTracker.getDDMFormValuesSerializer("json");
+
+		DDMFormValuesSerializerSerializeResponse
+			ddmFormValuesSerializerSerializeResponse =
+				ddmFormValuesSerializer.serialize(
+					DDMFormValuesSerializerSerializeRequest.Builder.newBuilder(
+						ddmFormValues
+					).build());
+
+		return ddmFormValuesSerializerSerializeResponse.getContent();
+	}
+
 	@Reference
 	private DDMStructureService _ddmStructureService;
 
@@ -372,13 +431,19 @@ public class StructuredContentResourceImpl
 	private IndexerRegistry _indexerRegistry;
 
 	@Reference
-	private JournalArticleContentHelper _journalArticleContentHelper;
+	private JournalHelper _journalHelper;
 
 	@Reference
 	private JournalArticleService _journalArticleService;
 
 	@Reference
-	private JournalHelper _journalHelper;
+	private DDM _ddm;
+
+	@Reference
+	private DDMFormValuesSerializerTracker _ddmFormValuesSerializerTracker;
+
+	@Reference
+	private JournalConverter _journalConverter;
 
 	@Reference
 	private SearchResultPermissionFilterFactory
