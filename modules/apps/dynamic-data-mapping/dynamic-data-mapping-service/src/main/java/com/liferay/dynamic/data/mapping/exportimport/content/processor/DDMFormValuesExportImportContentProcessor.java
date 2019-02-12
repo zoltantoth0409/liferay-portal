@@ -327,7 +327,7 @@ public class DDMFormValuesExportImportContentProcessor
 				}
 			}
 
-			// Importing Legacy Data
+			// Importing legacy data
 
 			Map<Long, Long> groupIds =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
