@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.util;
+package com.liferay.headless.foundation.internal.dto.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.portal.kernel.exception.PortalException;
