@@ -23,7 +23,6 @@ import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -145,7 +144,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return serviceContext;
 	}
 
-	private ImageObject _getImageObject(long imageId) throws PortalException {
+	private ImageObject _getImageObject(long imageId) throws Exception {
 		FileEntry fileEntry = _dlAppService.getFileEntry(imageId);
 
 		FileVersion fileVersion = _dlAppService.getFileVersion(
@@ -188,9 +187,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		}
 	}
 
-	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry)
-		throws PortalException {
-
+	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
 		ImageObject imageObject = _getImageObject(
 			blogsEntry.getCoverImageFileEntryId());
 
