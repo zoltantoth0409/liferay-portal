@@ -126,10 +126,6 @@ public class StructuredContentResourceImpl
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
 			structuredContent.getContentStructureId());
 
-		Locale locale = acceptLanguage.getPreferredLocale();
-
-		String content = _createJournalArticleContent(ddmStructure);
-
 		String ddmStructureKey = ddmStructure.getStructureKey();
 		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
 
@@ -143,19 +139,23 @@ public class StructuredContentResourceImpl
 			contentSpaceId, 0, 0, 0, null, true,
 			new HashMap<Locale, String>() {
 				{
-					put(locale, structuredContent.getTitle());
+					put(
+						acceptLanguage.getPreferredLocale(),
+						structuredContent.getTitle());
 				}
 			},
 			new HashMap<Locale, String>() {
 				{
-					put(locale, structuredContent.getDescription());
+					put(
+						acceptLanguage.getPreferredLocale(),
+						structuredContent.getDescription());
 				}
 			},
-			content, ddmStructureKey, ddmTemplateKey, null,
-			localDateTime.getMonthValue() - 1, localDateTime.getDayOfMonth(),
-			localDateTime.getYear(), localDateTime.getHour(),
-			localDateTime.getMinute(), 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
-			true, null, serviceContext);
+			_createJournalArticleContent(ddmStructure), ddmStructureKey,
+			ddmTemplateKey, null, localDateTime.getMonthValue() - 1,
+			localDateTime.getDayOfMonth(), localDateTime.getYear(),
+			localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0, 0,
+			true, 0, 0, 0, 0, 0, true, true, null, serviceContext);
 
 		return _toStructuredContent(journalArticle);
 	}
@@ -173,10 +173,6 @@ public class StructuredContentResourceImpl
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
-		Locale locale = acceptLanguage.getPreferredLocale();
-
-		String content = _createJournalArticleContent(ddmStructure);
-
 		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
 
 		LocalDateTime localDateTime = _getLocalDateTime(
@@ -190,16 +186,20 @@ public class StructuredContentResourceImpl
 				_merge(
 					journalArticle.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
-						locale, structuredContent.getTitle())),
+						acceptLanguage.getPreferredLocale(),
+						structuredContent.getTitle())),
 				_merge(
 					journalArticle.getDescriptionMap(),
 					new AbstractMap.SimpleEntry<>(
-						locale, structuredContent.getDescription())),
+						acceptLanguage.getPreferredLocale(),
+						structuredContent.getDescription())),
 				_merge(
 					journalArticle.getFriendlyURLMap(),
 					new AbstractMap.SimpleEntry<>(
-						locale, structuredContent.getTitle())),
-				content, journalArticle.getDDMStructureKey(), ddmTemplateKey,
+						acceptLanguage.getPreferredLocale(),
+						structuredContent.getTitle())),
+				_createJournalArticleContent(ddmStructure),
+				journalArticle.getDDMStructureKey(), ddmTemplateKey,
 				journalArticle.getLayoutUuid(),
 				localDateTime.getMonthValue() - 1,
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
