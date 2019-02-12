@@ -415,12 +415,13 @@ public class StructuredContentResourceImpl
 		DDMFormValuesSerializer ddmFormValuesSerializer =
 			_ddmFormValuesSerializerTracker.getDDMFormValuesSerializer("json");
 
+		DDMFormValuesSerializerSerializeRequest.Builder builder =
+			DDMFormValuesSerializerSerializeRequest.Builder.newBuilder(
+				ddmFormValues);
+
 		DDMFormValuesSerializerSerializeResponse
 			ddmFormValuesSerializerSerializeResponse =
-				ddmFormValuesSerializer.serialize(
-					DDMFormValuesSerializerSerializeRequest.Builder.newBuilder(
-						ddmFormValues
-					).build());
+				ddmFormValuesSerializer.serialize(builder.build());
 
 		return ddmFormValuesSerializerSerializeResponse.getContent();
 	}
