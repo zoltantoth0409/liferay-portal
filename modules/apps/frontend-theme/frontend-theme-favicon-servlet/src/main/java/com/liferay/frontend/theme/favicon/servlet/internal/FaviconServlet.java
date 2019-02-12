@@ -50,7 +50,7 @@ public class FaviconServlet extends HttpServlet {
 		String currentURL = (String)request.getAttribute(WebKeys.CURRENT_URL);
 
 		if (!currentURL.equals("/o/favicon.ico")) {
-			currentURL = redirect.replace("/favicon", "");
+			currentURL = currentURL.replace("/favicon", "");
 
 			response.sendRedirect(currentURL + "/images/favicon.ico");
 
