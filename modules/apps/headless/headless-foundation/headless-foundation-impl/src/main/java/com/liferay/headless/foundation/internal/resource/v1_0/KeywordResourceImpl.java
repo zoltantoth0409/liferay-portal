@@ -47,9 +47,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 
 	@Override
 	public Keyword getKeyword(Long keywordId) throws Exception {
-		AssetTag assetTag = _assetTagService.getTag(keywordId);
-
-		return _toKeyword(assetTag);
+		return _toKeyword(_assetTagService.getTag(keywordId));
 	}
 
 	@Override
@@ -63,10 +61,9 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		serviceContext.setScopeGroupId(contentSpaceId);
 
 		try {
-			AssetTag assetTag = _assetTagService.addTag(
-				contentSpaceId, keyword.getName(), serviceContext);
-
-			return _toKeyword(assetTag);
+			return _toKeyword(
+				_assetTagService.addTag(
+					contentSpaceId, keyword.getName(), serviceContext));
 		}
 		catch (DuplicateTagException dte) {
 			throw new ClientErrorException(
@@ -84,10 +81,9 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		throws Exception {
 
 		try {
-			AssetTag assetTag = _assetTagService.updateTag(
-				keywordsId, keyword.getName(), null);
-
-			return _toKeyword(assetTag);
+			return _toKeyword(
+				_assetTagService.updateTag(
+					keywordsId, keyword.getName(), null));
 		}
 		catch (DuplicateTagException dte) {
 			throw new ClientErrorException(
