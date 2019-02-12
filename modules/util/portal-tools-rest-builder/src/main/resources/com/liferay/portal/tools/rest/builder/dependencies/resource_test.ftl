@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.test.${versionDirName};
+package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;

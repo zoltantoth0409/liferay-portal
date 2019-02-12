@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.test.${versionDirName};
+package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 
 import javax.annotation.Generated;
 

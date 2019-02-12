@@ -259,9 +259,9 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/test/");
+		sb.append("/resource/");
 		sb.append(versionDirName);
-		sb.append("/Base");
+		sb.append("/test/Base");
 		sb.append(schemaName);
 		sb.append("ResourceTestCase.java");
 
@@ -404,9 +404,9 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/test/");
+		sb.append("/resource/");
 		sb.append(versionDirName);
-		sb.append("/");
+		sb.append("/test/");
 		sb.append(schemaName);
 		sb.append("ResourceTest.java");
 
