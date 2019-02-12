@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.context;
+package com.liferay.portal.vulcan.pagination;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

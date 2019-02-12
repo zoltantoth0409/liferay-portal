@@ -12,13 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.dto;
+package com.liferay.portal.vulcan.pagination;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
-import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -12,13 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.context;
+package com.liferay.portal.vulcan.internal.accept.language;
 
 import com.liferay.portal.kernel.exception.NoSuchUserException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.vulcan.context.AcceptLanguage;
+import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 
 import java.util.Collections;
 import java.util.List;

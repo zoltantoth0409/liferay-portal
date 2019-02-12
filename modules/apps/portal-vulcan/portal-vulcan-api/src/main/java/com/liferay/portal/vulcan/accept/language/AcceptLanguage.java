@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.context;
+package com.liferay.portal.vulcan.accept.language;
 
 import java.util.List;
 import java.util.Locale;

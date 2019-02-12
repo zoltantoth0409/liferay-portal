@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.context;
+package com.liferay.portal.vulcan.pagination;
 
 /**
  * @author Alejandro Hernández

@@ -18,8 +18,6 @@ import com.liferay.petra.function.UnsafeFunction;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,10 +29,8 @@ public class TransformUtil {
 
 		List<R> newList = new ArrayList<>();
 
-		for (int i = 0 ; i < list.size(); i++) {
+		for (T item : list) {
 			try {
-				T item = list.get(i);
-
 				R newItem = unsafeFunction.apply(item);
 
 				newList.add(newItem);

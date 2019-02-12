@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.dto;
+package com.liferay.portal.vulcan.pagination;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
-
-import com.liferay.portal.vulcan.context.Pagination;
 
 import java.util.Arrays;
 import java.util.Collections;
