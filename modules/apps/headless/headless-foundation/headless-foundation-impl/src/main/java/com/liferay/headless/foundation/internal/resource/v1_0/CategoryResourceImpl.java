@@ -68,22 +68,22 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	}
 
 	public Page<Category> getVocabulariesCategoriesPage(
-			Long vocabulariesId, Pagination pagination)
+			Long vocabularyId, Pagination pagination)
 		throws Exception {
 
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
-			vocabulariesId);
+			vocabularyId);
 
 		return Page.of(
 			transform(
 				_assetCategoryService.getVocabularyRootCategories(
-					assetVocabulary.getGroupId(), vocabulariesId,
+					assetVocabulary.getGroupId(), vocabularyId,
 					pagination.getStartPosition(), pagination.getEndPosition(),
 					null),
 				this::_toCategory),
 			pagination,
 			_assetCategoryService.getVocabularyRootCategoriesCount(
-				assetVocabulary.getGroupId(), vocabulariesId));
+				assetVocabulary.getGroupId(), vocabularyId));
 	}
 
 	public Category postCategoriesCategories(
@@ -106,11 +106,11 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	}
 
 	public Category postVocabulariesCategories(
-			Long vocabulariesId, Category category)
+			Long vocabularyId, Category category)
 		throws Exception {
 
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
-			vocabulariesId);
+			vocabularyId);
 
 		Group group = _groupService.getGroup(assetVocabulary.getGroupId());
 
@@ -121,7 +121,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				assetVocabulary.getGroupId(), 0,
 				Collections.singletonMap(locale, category.getName()),
 				Collections.singletonMap(locale, category.getDescription()),
-				vocabulariesId, null, new ServiceContext()));
+				vocabularyId, null, new ServiceContext()));
 	}
 
 	private UserAccount _getCreator(long userId) throws PortalException {
