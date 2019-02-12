@@ -400,10 +400,9 @@ public class StructuredContentResourceImpl
 			serviceContext.setAttribute(
 				"ddmFormValues", _serializeDDMFormValues(ddmFormValues));
 
-			Fields fields = _ddm.getFields(
-				ddmStructure.getStructureId(), serviceContext);
-
-			return _journalConverter.getContent(ddmStructure, fields);
+			return _journalConverter.getContent(
+				ddmStructure,
+				_ddm.getFields(ddmStructure.getStructureId(), serviceContext));
 		}
 		finally {
 			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
