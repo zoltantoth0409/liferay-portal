@@ -48,23 +48,23 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 
 	@Override
-	public Category getCategories(Long categoriesId) throws Exception {
-		return _toCategory(_assetCategoryService.getCategory(categoriesId));
+	public Category getCategories(Long categoryId) throws Exception {
+		return _toCategory(_assetCategoryService.getCategory(categoryId));
 	}
 
 	@Override
 	public Page<Category> getCategoriesCategoriesPage(
-			Long categoriesId, Pagination pagination)
+			Long categoryId, Pagination pagination)
 		throws Exception {
 
 		return Page.of(
 			transform(
 				_assetCategoryService.getChildCategories(
-					categoriesId, pagination.getStartPosition(),
+					categoryId, pagination.getStartPosition(),
 					pagination.getEndPosition(), null),
 				this::_toCategory),
 			pagination,
-			_assetCategoryService.getChildCategoriesCount(categoriesId));
+			_assetCategoryService.getChildCategoriesCount(categoryId));
 	}
 
 	public Page<Category> getVocabulariesCategoriesPage(
@@ -87,11 +87,11 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	}
 
 	public Category postCategoriesCategories(
-			Long categoriesId, Category category)
+			Long categoryId, Category category)
 		throws Exception {
 
 		AssetCategory assetCategory = _assetCategoryService.getCategory(
-			categoriesId);
+			categoryId);
 
 		Group group = _groupService.getGroup(assetCategory.getGroupId());
 
@@ -99,7 +99,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 
 		return _toCategory(
 			_assetCategoryService.addCategory(
-				group.getGroupId(), categoriesId,
+				group.getGroupId(), categoryId,
 				Collections.singletonMap(locale, category.getName()),
 				Collections.singletonMap(locale, category.getDescription()),
 				assetCategory.getVocabularyId(), null, new ServiceContext()));
