@@ -59,6 +59,7 @@ import com.liferay.journal.util.JournalConverter;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.petra.string.StringPool;
 
 import java.util.Locale;
 
@@ -229,6 +230,10 @@ public class StructuredContentResourceImpl
 
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
 		List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
+
+		if (ddmTemplates.isEmpty()) {
+			return StringPool.BLANK;
+		}
 
 		DDMTemplate ddmTemplate = ddmTemplates.get(0);
 
