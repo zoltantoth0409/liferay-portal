@@ -36,9 +36,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseContentDocumentResourceImpl
 	implements ContentDocumentResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_web_experience_dto_v1_0_ContentDocumentEntityModel";
-
 	@Override
 	public Response deleteContentDocument(Long contentDocumentId)
 		throws Exception {

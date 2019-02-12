@@ -39,9 +39,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseImageObjectResourceImpl
 	implements ImageObjectResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_collaboration_dto_v1_0_ImageObjectEntityModel";
-
 	@Override
 	public Response deleteImageObject(Long imageObjectId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

@@ -39,9 +39,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseOrganizationResourceImpl
 	implements OrganizationResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_foundation_dto_v1_0_OrganizationEntityModel";
-
 	@Override
 	public Page<Organization> getMyUserAccountOrganizationPage(
 			Long myUserAccountId, Pagination pagination)

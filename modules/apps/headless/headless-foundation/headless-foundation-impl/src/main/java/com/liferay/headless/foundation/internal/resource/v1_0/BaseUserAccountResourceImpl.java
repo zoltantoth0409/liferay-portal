@@ -39,9 +39,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseUserAccountResourceImpl
 	implements UserAccountResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_foundation_dto_v1_0_UserAccountEntityModel";
-
 	@Override
 	public Response deleteUserAccount(Long userAccountId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

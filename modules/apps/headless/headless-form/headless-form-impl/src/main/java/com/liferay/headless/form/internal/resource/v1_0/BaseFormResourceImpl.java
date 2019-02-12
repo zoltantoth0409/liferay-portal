@@ -38,9 +38,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseFormResourceImpl implements FormResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_form_dto_v1_0_FormEntityModel";
-
 	@Override
 	public Page<Form> getContentSpaceFormPage(
 			Long contentSpaceId, Pagination pagination)

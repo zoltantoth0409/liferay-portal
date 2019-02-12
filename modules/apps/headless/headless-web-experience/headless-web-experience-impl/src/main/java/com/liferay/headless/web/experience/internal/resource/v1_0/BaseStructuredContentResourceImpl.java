@@ -41,9 +41,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseStructuredContentResourceImpl
 	implements StructuredContentResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_web_experience_dto_v1_0_StructuredContentEntityModel";
-
 	@Override
 	public Response deleteStructuredContent(Long structuredContentId)
 		throws Exception {

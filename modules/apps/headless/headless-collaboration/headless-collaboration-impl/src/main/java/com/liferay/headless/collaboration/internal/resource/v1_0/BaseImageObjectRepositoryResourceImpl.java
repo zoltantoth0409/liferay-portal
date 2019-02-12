@@ -36,9 +36,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseImageObjectRepositoryResourceImpl
 	implements ImageObjectRepositoryResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_collaboration_dto_v1_0_ImageObjectRepositoryEntityModel";
-
 	@Override
 	public ImageObjectRepository getImageObjectRepository(
 			Long imageObjectRepositoryId)

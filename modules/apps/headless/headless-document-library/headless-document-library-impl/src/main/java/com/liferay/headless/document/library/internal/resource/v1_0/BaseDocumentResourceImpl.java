@@ -39,9 +39,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_document_library_dto_v1_0_DocumentEntityModel";
-
 	@Override
 	public Response deleteDocument(Long documentId) throws Exception {
 		Response.ResponseBuilder responseBuilder = Response.ok();

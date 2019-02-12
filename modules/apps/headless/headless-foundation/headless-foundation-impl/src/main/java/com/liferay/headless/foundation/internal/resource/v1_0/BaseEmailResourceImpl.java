@@ -38,9 +38,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseEmailResourceImpl implements EmailResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_foundation_dto_v1_0_EmailEntityModel";
-
 	@Override
 	public Email getEmail(Long emailsId) throws Exception {
 		return new Email();

@@ -38,9 +38,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseRoleResourceImpl implements RoleResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_foundation_dto_v1_0_RoleEntityModel";
-
 	@Override
 	public Page<Role> getMyUserAccountRolesPage(
 			Long myUserAccountId, Pagination pagination)

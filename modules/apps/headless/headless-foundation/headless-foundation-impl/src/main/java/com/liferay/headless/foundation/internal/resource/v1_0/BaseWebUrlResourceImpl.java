@@ -38,9 +38,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_foundation_dto_v1_0_WebUrlEntityModel";
-
 	@Override
 	public WebUrl getWebUrl(Long webUrlsId) throws Exception {
 		return new WebUrl();

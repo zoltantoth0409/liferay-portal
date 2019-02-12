@@ -36,9 +36,6 @@ import javax.ws.rs.core.Response;
 public abstract class BaseAggregateRatingResourceImpl
 	implements AggregateRatingResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_web_experience_dto_v1_0_AggregateRatingEntityModel";
-
 	@Override
 	public AggregateRating getAggregateRating(Long aggregateRatingId)
 		throws Exception {

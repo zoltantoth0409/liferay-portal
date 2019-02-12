@@ -38,9 +38,6 @@ import javax.ws.rs.core.Response;
 @Generated("")
 public abstract class BaseCommentResourceImpl implements CommentResource {
 
-	public static final String ODATA_ENTITY_MODEL_NAME =
-		"com_liferay_headless_collaboration_dto_v1_0_CommentEntityModel";
-
 	@Override
 	public Page<Comment> getBlogPostingCommentPage(
 			Long blogPostingId, Pagination pagination)
