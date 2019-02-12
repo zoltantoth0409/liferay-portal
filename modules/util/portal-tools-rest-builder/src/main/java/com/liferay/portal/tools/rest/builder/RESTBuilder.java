@@ -107,7 +107,7 @@ public class RESTBuilder {
 				continue;
 			}
 
-			Matcher matcher = _nonDigitPattern.matcher(version);
+			Matcher matcher = _nondigitPattern.matcher(version);
 
 			String versionDirName = matcher.replaceAll("_");
 
@@ -444,7 +444,7 @@ public class RESTBuilder {
 
 	private static final Pattern _leadingUnderscorePattern = Pattern.compile(
 		"^_+");
-	private static final Pattern _nonDigitPattern = Pattern.compile("\\D");
+	private static final Pattern _nondigitPattern = Pattern.compile("\\D");
 
 	private final File _configDir;
 	private final ConfigYAML _configYAML;
