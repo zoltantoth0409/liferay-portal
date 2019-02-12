@@ -64,7 +64,7 @@ public class SortContextProviderTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		_mockResourceServiceRegistration =
+		_serviceRegistration =
 			registry.registerService(
 				MockResource.class, new MockResource(),
 				new HashMap<String, Object>() {
@@ -76,14 +76,14 @@ public class SortContextProviderTest {
 				});
 
 		ServiceReference<MockResource> serviceReference =
-			_mockResourceServiceRegistration.getServiceReference();
+			_serviceRegistration.getServiceReference();
 
 		_mockResource = registry.getService(serviceReference);
 	}
 
 	@After
 	public void tearDown() {
-		_mockResourceServiceRegistration.unregister();
+		_serviceRegistration.unregister();
 	}
 
 	@Test
@@ -118,6 +118,6 @@ public class SortContextProviderTest {
 	private Feature _feature;
 
 	private MockResource _mockResource;
-	private ServiceRegistration<MockResource> _mockResourceServiceRegistration;
+	private ServiceRegistration<MockResource> _serviceRegistration;
 
 }
