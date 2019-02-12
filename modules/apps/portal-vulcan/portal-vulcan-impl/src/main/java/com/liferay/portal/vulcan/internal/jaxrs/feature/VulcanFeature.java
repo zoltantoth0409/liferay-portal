@@ -25,9 +25,9 @@ import com.liferay.portal.vulcan.internal.jaxrs.context.provider.SortContextProv
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.NoSuchModelExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PortalExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PrincipalExceptionMapper;
-import com.liferay.portal.vulcan.internal.jaxrs.json.JSONMessageBodyReader;
-import com.liferay.portal.vulcan.internal.jaxrs.json.JSONMessageBodyWriter;
-import com.liferay.portal.vulcan.internal.jaxrs.json.MultipartBodyMessageBodyReader;
+import com.liferay.portal.vulcan.internal.jaxrs.message.body.JSONMessageBodyReader;
+import com.liferay.portal.vulcan.internal.jaxrs.message.body.JSONMessageBodyWriter;
+import com.liferay.portal.vulcan.internal.jaxrs.message.body.MultipartBodyMessageBodyReader;
 
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.jaxrs.json;
+package com.liferay.portal.vulcan.internal.jaxrs.message.body;
 
 import static org.apache.commons.fileupload.servlet.ServletFileUpload.isMultipartContent;
 

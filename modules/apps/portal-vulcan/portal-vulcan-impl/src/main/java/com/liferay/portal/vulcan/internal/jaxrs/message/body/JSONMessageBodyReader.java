@@ -12,67 +12,51 @@
  * details.
  */
 
-package com.liferay.portal.vulcan.internal.jaxrs.json;
+package com.liferay.portal.vulcan.internal.jaxrs.message.body;
 
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import java.io.IOException;
-import java.io.OutputStream;
+import java.io.InputStream;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
-import javax.ws.rs.Produces;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.ext.MessageBodyWriter;
+import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 
 /**
  * @author Ivica Cardic
  */
-@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Provider
-public class JSONMessageBodyWriter implements MessageBodyWriter<Object> {
+public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
-	public long getSize(
-		Object object, Class<?> clazz, Type genericType,
-		Annotation[] annotations, MediaType mediaType) {
-
-		return -1;
-	}
-
-	public boolean isWriteable(
+	@Override
+	public boolean isReadable(
 		Class<?> clazz, Type genericType, Annotation[] annotations,
 		MediaType mediaType) {
-
-		if (clazz == String.class) {
-			return false;
-		}
 
 		return _objectMapper.canSerialize(clazz);
 	}
 
-	public void writeTo(
-			Object object, Class<?> type, Type genericType,
-			Annotation[] annotations, MediaType mediaType,
-			MultivaluedMap<String, Object> multivaluedMap,
-			OutputStream outputStream)
+	@Override
+	public Object readFrom(
+			Class<Object> clazz, Type genericType, Annotation[] annotations,
+			MediaType mediaType, MultivaluedMap<String, String> multivaluedMap,
+			InputStream inputStream)
 		throws IOException, WebApplicationException {
 
-		_objectMapper.writeValue(outputStream, object);
-
-		outputStream.flush();
+		return _objectMapper.readValue(inputStream, clazz);
 	}
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
-			enable(SerializationFeature.INDENT_OUTPUT);
 			setDateFormat(new ISO8601DateFormat());
 		}
 	};
