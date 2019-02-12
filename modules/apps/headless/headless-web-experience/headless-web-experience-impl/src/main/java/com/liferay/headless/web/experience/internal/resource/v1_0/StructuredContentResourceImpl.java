@@ -135,29 +135,28 @@ public class StructuredContentResourceImpl
 		ServiceContext serviceContext = _getServiceContext(
 			contentSpaceId, structuredContent);
 
-		JournalArticle journalArticle = _journalArticleService.addArticle(
-			contentSpaceId, 0, 0, 0, null, true,
-			new HashMap<Locale, String>() {
-				{
-					put(
-						acceptLanguage.getPreferredLocale(),
-						structuredContent.getTitle());
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(
-						acceptLanguage.getPreferredLocale(),
-						structuredContent.getDescription());
-				}
-			},
-			_createJournalArticleContent(ddmStructure), ddmStructureKey,
-			ddmTemplateKey, null, localDateTime.getMonthValue() - 1,
-			localDateTime.getDayOfMonth(), localDateTime.getYear(),
-			localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0, 0,
-			true, 0, 0, 0, 0, 0, true, true, null, serviceContext);
-
-		return _toStructuredContent(journalArticle);
+		return _toStructuredContent(
+			_journalArticleService.addArticle(
+				contentSpaceId, 0, 0, 0, null, true,
+				new HashMap<Locale, String>() {
+					{
+						put(
+							acceptLanguage.getPreferredLocale(),
+							structuredContent.getTitle());
+					}
+				},
+				new HashMap<Locale, String>() {
+					{
+						put(
+							acceptLanguage.getPreferredLocale(),
+							structuredContent.getDescription());
+					}
+				},
+				_createJournalArticleContent(ddmStructure), ddmStructureKey,
+				ddmTemplateKey, null, localDateTime.getMonthValue() - 1,
+				localDateTime.getDayOfMonth(), localDateTime.getYear(),
+				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
+				0, true, 0, 0, 0, 0, 0, true, true, null, serviceContext));
 	}
 
 	@Override
@@ -179,7 +178,7 @@ public class StructuredContentResourceImpl
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
 
-		JournalArticle updatedJournalArticle =
+		return _toStructuredContent(
 			_journalArticleService.updateArticle(
 				journalArticle.getGroupId(), journalArticle.getFolderId(),
 				journalArticle.getArticleId(), journalArticle.getVersion(),
@@ -205,9 +204,7 @@ public class StructuredContentResourceImpl
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, false, null, null, null,
-				null, serviceContext);
-
-		return _toStructuredContent(updatedJournalArticle);
+				null, serviceContext));
 	}
 
 	private SearchContext _createSearchContext(

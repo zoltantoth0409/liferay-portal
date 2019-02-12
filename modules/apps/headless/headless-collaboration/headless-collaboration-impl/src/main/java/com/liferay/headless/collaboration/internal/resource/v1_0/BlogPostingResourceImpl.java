@@ -89,17 +89,16 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		LocalDateTime localDateTime = _getLocalDateTime(
 			blogPosting.getDatePublished());
 
-		BlogsEntry blogsEntry = _blogsEntryService.addEntry(
-			blogPosting.getHeadline(), blogPosting.getAlternativeHeadline(),
-			blogPosting.getFriendlyUrlPath(), blogPosting.getDescription(),
-			blogPosting.getArticleBody(), localDateTime.getMonthValue() - 1,
-			localDateTime.getDayOfMonth(), localDateTime.getYear(),
-			localDateTime.getHour(), localDateTime.getMinute(), true, true,
-			new String[0], blogPosting.getCaption(),
-			_getImageSelector(blogPosting), null,
-			_createServiceContext(contentSpaceId, blogPosting));
-
-		return _toBlogPosting(blogsEntry);
+		return _toBlogPosting(
+			_blogsEntryService.addEntry(
+				blogPosting.getHeadline(), blogPosting.getAlternativeHeadline(),
+				blogPosting.getFriendlyUrlPath(), blogPosting.getDescription(),
+				blogPosting.getArticleBody(), localDateTime.getMonthValue() - 1,
+				localDateTime.getDayOfMonth(), localDateTime.getYear(),
+				localDateTime.getHour(), localDateTime.getMinute(), true, true,
+				new String[0], blogPosting.getCaption(),
+				_getImageSelector(blogPosting), null,
+				_createServiceContext(contentSpaceId, blogPosting)));
 	}
 
 	@Override
@@ -112,18 +111,17 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogPostingId);
 
-		BlogsEntry updatedBlogsEntry = _blogsEntryService.updateEntry(
-			blogPostingId, blogPosting.getHeadline(),
-			blogPosting.getAlternativeHeadline(),
-			blogPosting.getFriendlyUrlPath(), blogPosting.getDescription(),
-			blogPosting.getArticleBody(), localDateTime.getMonthValue() - 1,
-			localDateTime.getDayOfMonth(), localDateTime.getYear(),
-			localDateTime.getHour(), localDateTime.getMinute(), true, true,
-			new String[0], blogPosting.getCaption(),
-			_getImageSelector(blogPosting), null,
-			_createServiceContext(blogsEntry.getGroupId(), blogPosting));
-
-		return _toBlogPosting(updatedBlogsEntry);
+		return _toBlogPosting(
+			_blogsEntryService.updateEntry(
+				blogPostingId, blogPosting.getHeadline(),
+				blogPosting.getAlternativeHeadline(),
+				blogPosting.getFriendlyUrlPath(), blogPosting.getDescription(),
+				blogPosting.getArticleBody(), localDateTime.getMonthValue() - 1,
+				localDateTime.getDayOfMonth(), localDateTime.getYear(),
+				localDateTime.getHour(), localDateTime.getMinute(), true, true,
+				new String[0], blogPosting.getCaption(),
+				_getImageSelector(blogPosting), null,
+				_createServiceContext(blogsEntry.getGroupId(), blogPosting)));
 	}
 
 	private ServiceContext _createServiceContext(
