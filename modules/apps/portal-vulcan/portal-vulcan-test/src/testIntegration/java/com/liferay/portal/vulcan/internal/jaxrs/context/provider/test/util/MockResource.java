@@ -29,9 +29,9 @@ import javax.ws.rs.core.MultivaluedMap;
  */
 public class MockResource implements EntityModelResource {
 
-	public static final String METHOD_NAME = "exampleJaxRSMethod";
+	public static final String METHOD_NAME = "mockJaxRSMethod";
 
-	public String exampleJaxRSMethod(String param) {
+	public String mockJaxRSMethod(String param) {
 		return "";
 	}
 
