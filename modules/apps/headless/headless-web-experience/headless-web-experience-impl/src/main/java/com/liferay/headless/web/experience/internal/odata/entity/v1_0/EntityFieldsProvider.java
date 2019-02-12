@@ -95,7 +95,7 @@ public class EntityFieldsProvider {
 			return new BooleanEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
 		}
@@ -105,10 +105,10 @@ public class EntityFieldsProvider {
 			return new DateEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"),
 				this::_getDDMDateFieldValue);
@@ -121,7 +121,7 @@ public class EntityFieldsProvider {
 			return new DoubleEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
 		}
@@ -133,7 +133,7 @@ public class EntityFieldsProvider {
 			return new IntegerEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
 		}
@@ -146,7 +146,7 @@ public class EntityFieldsProvider {
 			return new StringEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeName(
+				locale -> _encodeFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
 		}
@@ -154,7 +154,7 @@ public class EntityFieldsProvider {
 		return null;
 	}
 
-	private String _encodeName(
+	private String _encodeFieldName(
 		long ddmStructureId, String fieldName, Locale locale, String type) {
 
 		return Field.getSortableFieldName(
