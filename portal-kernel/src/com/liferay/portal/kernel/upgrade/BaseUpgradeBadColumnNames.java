@@ -136,8 +136,7 @@ public abstract class BaseUpgradeBadColumnNames extends UpgradeProcess {
 
 			if (index <= 0) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to get column name from " + columnSQL);
+					_log.warn("Unable to get column name from " + columnSQL);
 				}
 
 				continue;
