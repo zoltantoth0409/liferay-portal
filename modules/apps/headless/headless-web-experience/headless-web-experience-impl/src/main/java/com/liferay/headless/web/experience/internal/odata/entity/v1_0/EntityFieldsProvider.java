@@ -42,7 +42,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.Optional;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -72,9 +71,7 @@ public class EntityFieldsProvider {
 		return entityFields;
 	}
 
-	private static String _toFieldName(
-		DDMStructure ddmStructure, String name) {
-
+	private static String _toFieldName(DDMStructure ddmStructure, String name) {
 		return StringBundler.concat(
 			StringPool.UNDERLINE, ddmStructure.getStructureId(),
 			StringPool.UNDERLINE, name);
@@ -93,8 +90,7 @@ public class EntityFieldsProvider {
 
 		if (Objects.equals(ddmFormField.getType(), DDMFormFieldType.CHECKBOX)) {
 			return new BooleanEntityField(
-				_toFieldName(
-					ddmStructure, ddmFormField.getName()),
+				_toFieldName(ddmStructure, ddmFormField.getName()),
 				locale -> _toFilterableOrSortableFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
@@ -103,8 +99,7 @@ public class EntityFieldsProvider {
 					ddmFormField.getDataType(), FieldConstants.DATE)) {
 
 			return new DateEntityField(
-				_toFieldName(
-					ddmStructure, ddmFormField.getName()),
+				_toFieldName(ddmStructure, ddmFormField.getName()),
 				locale -> _toFilterableOrSortableFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"),
@@ -119,8 +114,7 @@ public class EntityFieldsProvider {
 					 ddmFormField.getDataType(), FieldConstants.NUMBER)) {
 
 			return new DoubleEntityField(
-				_toFieldName(
-					ddmStructure, ddmFormField.getName()),
+				_toFieldName(ddmStructure, ddmFormField.getName()),
 				locale -> _toFilterableOrSortableFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
@@ -131,8 +125,7 @@ public class EntityFieldsProvider {
 					 ddmFormField.getDataType(), FieldConstants.LONG)) {
 
 			return new IntegerEntityField(
-				_toFieldName(
-					ddmStructure, ddmFormField.getName()),
+				_toFieldName(ddmStructure, ddmFormField.getName()),
 				locale -> _toFilterableOrSortableFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
@@ -144,23 +137,13 @@ public class EntityFieldsProvider {
 				  Objects.equals(ddmFormField.getIndexType(), "keyword"))) {
 
 			return new StringEntityField(
-				_toFieldName(
-					ddmStructure, ddmFormField.getName()),
+				_toFieldName(ddmStructure, ddmFormField.getName()),
 				locale -> _toFilterableOrSortableFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
 		}
 
 		return null;
-	}
-
-	private String _toFilterableOrSortableFieldName(
-		long ddmStructureId, String fieldName, Locale locale, String type) {
-
-		return Field.getSortableFieldName(
-			com.liferay.portal.kernel.util.StringBundler.concat(
-				_ddmIndexer.encodeName(ddmStructureId, fieldName, locale),
-				StringPool.UNDERLINE, type));
 	}
 
 	private String _toFieldValue(Object fieldValue) {
@@ -178,6 +161,15 @@ public class EntityFieldsProvider {
 		catch (ParseException pe) {
 			throw new RuntimeException(pe);
 		}
+	}
+
+	private String _toFilterableOrSortableFieldName(
+		long ddmStructureId, String fieldName, Locale locale, String type) {
+
+		return Field.getSortableFieldName(
+			com.liferay.portal.kernel.util.StringBundler.concat(
+				_ddmIndexer.encodeName(ddmStructureId, fieldName, locale),
+				StringPool.UNDERLINE, type));
 	}
 
 	@Reference
