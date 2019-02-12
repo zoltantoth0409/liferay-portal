@@ -134,12 +134,13 @@ public class UpgradeDDMFormParagraphFields extends UpgradeProcess {
 		JSONObject ddmFormJSONObject = _jsonFactory.createJSONObject(
 			definition);
 
-		JSONArray availableLanguageIds = ddmFormJSONObject.getJSONArray(
-			"availableLanguageIds");
+		JSONArray availableLanguageIdsJSONArray =
+			ddmFormJSONObject.getJSONArray("availableLanguageIds");
 
 		JSONArray fieldsJSONArray = ddmFormJSONObject.getJSONArray("fields");
 
-		updateFieldsToLocalizable(fieldsJSONArray, availableLanguageIds);
+		updateFieldsToLocalizable(
+			fieldsJSONArray, availableLanguageIdsJSONArray);
 
 		return ddmFormJSONObject.toJSONString();
 	}
