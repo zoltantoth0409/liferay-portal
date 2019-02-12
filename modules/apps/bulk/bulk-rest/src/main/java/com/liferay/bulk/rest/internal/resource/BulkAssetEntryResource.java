@@ -175,9 +175,9 @@ public class BulkAssetEntryResource {
 			_portal.getCurrentAndAncestorSiteGroupIds(groupId),
 			"%" + name + "%", 0, 20);
 
-		Stream<AssetTag> assetTagStream = assetTags.stream();
+		Stream<AssetTag> stream = assetTags.stream();
 
-		return assetTagStream.map(
+		return stream.map(
 			AssetTag::getName
 		).collect(
 			Collectors.toList()
