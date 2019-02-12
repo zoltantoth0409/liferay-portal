@@ -394,7 +394,7 @@ public class StructuredContentResourceImpl
 
 			serviceContext.setAttribute(
 				"ddmFormValues",
-				_serializeDDMFormValues(
+				_toString(
 					new DDMFormValues(ddmForm) {
 						{
 							setAvailableLocales(ddmForm.getAvailableLocales());
@@ -411,7 +411,7 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	private String _serializeDDMFormValues(DDMFormValues ddmFormValues) {
+	private String _toString(DDMFormValues ddmFormValues) {
 		DDMFormValuesSerializer ddmFormValuesSerializer =
 			_ddmFormValuesSerializerTracker.getDDMFormValuesSerializer("json");
 
