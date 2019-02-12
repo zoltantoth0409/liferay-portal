@@ -45,7 +45,6 @@ public class SystemEventVerifyProcess extends VerifyProcess {
 			dynamicQuery -> {
 				Property liveGroupIdProperty = PropertyFactoryUtil.forName(
 					"liveGroupId");
-
 				Property remoteStagingGroupCountProperty =
 					PropertyFactoryUtil.forName("remoteStagingGroupCount");
 
@@ -54,7 +53,6 @@ public class SystemEventVerifyProcess extends VerifyProcess {
 						liveGroupIdProperty.ne(0L),
 						remoteStagingGroupCountProperty.gt(0)));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(Group group) -> {
 				long liveGroupId = group.getLiveGroupId();
