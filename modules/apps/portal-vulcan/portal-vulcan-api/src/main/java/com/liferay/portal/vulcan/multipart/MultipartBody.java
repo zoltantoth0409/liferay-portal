@@ -22,16 +22,16 @@ import java.util.Map;
 public class MultipartBody {
 
 	public static MultipartBody of(
-		Map<String, String> values, Map<String, BinaryFile> binaryFiles) {
+		Map<String, BinaryFile> binaryFiles, Map<String, String> values) {
 
-		return new MultipartBody(values, binaryFiles);
+		return new MultipartBody(binaryFiles, values);
 	}
 
 	public MultipartBody(
-		Map<String, String> values, Map<String, BinaryFile> binaryFiles) {
+		Map<String, BinaryFile> binaryFiles, Map<String, String> values) {
 
-		_values = values;
 		_binaryFiles = binaryFiles;
+		_values = values;
 	}
 
 	private final Map<String, BinaryFile> _binaryFiles;

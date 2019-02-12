@@ -83,13 +83,13 @@ public class MultipartBodyMessageBodyReader
 			fileItemFactory);
 
 		try {
+			Map<String, BinaryFile> binaryFiles = new HashMap<>();
+			Map<String, String> values = new HashMap<>();
+
 			List<FileItem> fileItems = servletFileUpload.parseRequest(
 				_httpServletRequest);
 
 			Iterator<FileItem> iterator = fileItems.iterator();
-
-			Map<String, String> values = new HashMap<>();
-			Map<String, BinaryFile> binaryFiles = new HashMap<>();
 
 			while (iterator.hasNext()) {
 				FileItem fileItem = iterator.next();
@@ -103,14 +103,14 @@ public class MultipartBodyMessageBodyReader
 				}
 				else {
 					BinaryFile binaryFile = new BinaryFile(
-						fileItem.getInputStream(), fileItem.getSize(),
-						fileItem.getContentType(), fileItem.getName());
+						fileItem.getContentType(), fileItem.getName(),
+						fileItem.getInputStream(), fileItem.getSize());
 
 					binaryFiles.put(name, binaryFile);
 				}
 			}
 
-			return MultipartBody.of(values, binaryFiles);
+			return MultipartBody.of(binaryFiles, values);
 		}
 		catch (FileUploadException fue) {
 			throw new BadRequestException(

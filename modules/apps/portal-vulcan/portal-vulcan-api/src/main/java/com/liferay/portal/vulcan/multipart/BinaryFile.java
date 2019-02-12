@@ -22,13 +22,13 @@ import java.io.InputStream;
 public class BinaryFile {
 
 	public BinaryFile(
-		InputStream inputStream, long size, String contentType,
-		String fileName) {
+		String contentType, String fileName, InputStream inputStream,
+		long size) {
 
-		_inputStream = inputStream;
-		_size = size;
 		_contentType = contentType;
 		_fileName = fileName;
+		_inputStream = inputStream;
+		_size = size;
 	}
 
 	public String getContentType() {
