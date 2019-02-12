@@ -70,10 +70,8 @@ public class ContentStructureResourceImpl
 	public ContentStructure getContentStructure(Long contentStructuresId)
 		throws Exception {
 
-		DDMStructure ddmStructure = _ddmStructureService.getStructure(
-			contentStructuresId);
-
-		return _toContentStructure(ddmStructure);
+		return _toContentStructure(
+			_ddmStructureService.getStructure(contentStructuresId));
 	}
 
 	private Creator _getCreator(long userId) throws Exception {
