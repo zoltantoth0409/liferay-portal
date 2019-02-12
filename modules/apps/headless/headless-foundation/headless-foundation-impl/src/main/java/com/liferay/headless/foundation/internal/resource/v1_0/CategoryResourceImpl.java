@@ -124,7 +124,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				vocabularyId, null, new ServiceContext()));
 	}
 
-	private UserAccount _getCreator(long userId) throws PortalException {
+	private UserAccount _getUserAccount(long userId) throws PortalException {
 		return UserAccountUtil.toUserAccount(_userService.getUserById(userId));
 	}
 
@@ -152,7 +152,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 					setCategoryId(assetCategory.getParentCategoryId());
 				}
 
-				setCreator(_getCreator(assetCategory.getUserId()));
+				setCreator(_getUserAccount(assetCategory.getUserId()));
 				setCreatorId(assetCategory.getUserId());
 				setDateCreated(assetCategory.getCreateDate());
 				setDateModified(assetCategory.getModifiedDate());
