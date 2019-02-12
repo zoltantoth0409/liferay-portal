@@ -68,8 +68,8 @@ public class MultipartBodyMessageBodyReader
 	public MultipartBody readFrom(
 			Class<MultipartBody> clazz, Type genericType,
 			Annotation[] annotations, MediaType mediaType,
-			MultivaluedMap<String, String> httpHeaders,
-			InputStream entityStream)
+			MultivaluedMap<String, String> multivaluedMap,
+			InputStream inputStream)
 		throws IOException {
 
 		if (!isMultipartContent(_httpServletRequest)) {
