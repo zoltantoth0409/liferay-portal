@@ -136,9 +136,10 @@ public class RESTBuilder {
 				_createResourceImplFile(context, schemaName, versionDirName);
 
 				if (Validator.isNotNull(_configYAML.getTestDir())) {
-					_createBaseTestCaseFile(
+					_createBaseResourceTestCaseFile(
 						context, schemaName, versionDirName);
-					_createTestFile(context, schemaName, versionDirName);
+					_createResourceTestFile(
+						context, schemaName, versionDirName);
 				}
 			}
 
@@ -244,7 +245,7 @@ public class RESTBuilder {
 				_copyrightFileName, "base_resource_impl", context));
 	}
 
-	private void _createBaseTestCaseFile(
+	private void _createBaseResourceTestCaseFile(
 			Map<String, Object> context, String schemaName,
 			String versionDirName)
 		throws Exception {
@@ -262,7 +263,7 @@ public class RESTBuilder {
 		sb.append(versionDirName);
 		sb.append("/Base");
 		sb.append(schemaName);
-		sb.append("TestCase.java");
+		sb.append("ResourceTestCase.java");
 
 		File file = new File(sb.toString());
 
@@ -271,7 +272,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "base_test_case", context));
+				_copyrightFileName, "base_resource_test_case", context));
 	}
 
 	private void _createDTOFile(
@@ -389,7 +390,7 @@ public class RESTBuilder {
 				_copyrightFileName, "resource_impl", context));
 	}
 
-	private void _createTestFile(
+	private void _createResourceTestFile(
 			Map<String, Object> context, String schemaName,
 			String versionDirName)
 		throws Exception {
@@ -407,7 +408,7 @@ public class RESTBuilder {
 		sb.append(versionDirName);
 		sb.append("/");
 		sb.append(schemaName);
-		sb.append("Test.java");
+		sb.append("ResourceTest.java");
 
 		File file = new File(sb.toString());
 
@@ -420,7 +421,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "test", context));
+				_copyrightFileName, "resource_test", context));
 	}
 
 	private final File _configDir;

@@ -7,5 +7,5 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public abstract class Base${schemaName}TestCase {
+public abstract class Base${schemaName}ResourceTestCase {
 }

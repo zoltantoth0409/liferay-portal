@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
  */
 @RunAsClient
 @RunWith(Arquillian.class)
-public class ${schemaName}Test extends Base${schemaName}TestCase {
+public class ${schemaName}ResourceTest extends Base${schemaName}ResourceTestCase {
 }
