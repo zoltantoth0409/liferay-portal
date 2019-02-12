@@ -136,8 +136,8 @@ public class GogoShellPortlet extends MVCPortlet {
 					commandSession.format(result, Converter.INSPECT));
 			}
 
-			outputPrintStream.flush();
 			errorPrintStream.flush();
+			outputPrintStream.flush();
 
 			SessionMessages.add(
 				actionRequest, "commandOutput",
