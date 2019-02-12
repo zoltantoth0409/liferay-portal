@@ -207,12 +207,6 @@ name = HtmlUtil.escapeJS(name);
 	window['<%= name %>'] = {
 		create: function() {
 			if (!window['<%= name %>'].instanceReady) {
-				var editorNode = A.Node.create('<%= HtmlUtil.escapeJS(editor) %>');
-
-				var editorContainer = A.one('#<%= name %>Container');
-
-				editorContainer.appendChild(editorNode);
-
 				createEditor();
 			}
 		},
@@ -440,14 +434,22 @@ name = HtmlUtil.escapeJS(name);
 	var createEditor = function() {
 		var editorNode = A.one('#<%= name %>');
 
-		if (editorNode) {
-			editorNode.attr('contenteditable', true);
-			editorNode.addClass('lfr-editable');
+		if (!editorNode) {
+			var editorContainer = A.one('#<%= name %>Container');
 
-			var eventHandles = [
-				A.Do.after(afterVal, editorNode, 'val', this)
-			];
+			editorContainer.setHTML('');
+
+			editorNode = A.Node.create('<%= HtmlUtil.escapeJS(editor) %>');
+
+			editorContainer.appendChild(editorNode);
 		}
+
+		editorNode.attr('contenteditable', true);
+		editorNode.addClass('lfr-editable');
+
+		var eventHandles = [
+			A.Do.after(afterVal, editorNode, 'val', this)
+		];
 
 		function initData() {
 			if (!ckEditorContent) {
