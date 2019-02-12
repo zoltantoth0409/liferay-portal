@@ -388,17 +388,19 @@ public class StructuredContentResourceImpl
 			LocaleThreadLocal.setSiteDefaultLocale(
 				LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()));
 
-			DDMForm ddmForm = ddmStructure.getDDMForm();
-
-			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
-
-			ddmFormValues.setAvailableLocales(ddmForm.getAvailableLocales());
-			ddmFormValues.setDefaultLocale(ddmForm.getDefaultLocale());
-
 			ServiceContext serviceContext = new ServiceContext();
 
+			DDMForm ddmForm = ddmStructure.getDDMForm();
+
 			serviceContext.setAttribute(
-				"ddmFormValues", _serializeDDMFormValues(ddmFormValues));
+				"ddmFormValues",
+				_serializeDDMFormValues(
+					new DDMFormValues(ddmForm) {
+						{
+							setAvailableLocales(ddmForm.getAvailableLocales());
+							setDefaultLocale(ddmForm.getDefaultLocale());
+						}
+					}));
 
 			return _journalConverter.getContent(
 				ddmStructure,
