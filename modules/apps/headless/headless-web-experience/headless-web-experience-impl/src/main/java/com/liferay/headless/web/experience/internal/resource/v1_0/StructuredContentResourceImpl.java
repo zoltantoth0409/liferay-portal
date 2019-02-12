@@ -14,15 +14,24 @@
 
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
+import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerTracker;
+import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureService;
+import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
+import com.liferay.dynamic.data.mapping.util.DDM;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.service.JournalArticleService;
+import com.liferay.journal.util.JournalConverter;
 import com.liferay.journal.util.JournalHelper;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Field;
@@ -43,28 +52,11 @@ import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.LocaleThreadLocal;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializer;
-import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeRequest;
-import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerSerializeResponse;
-import com.liferay.dynamic.data.mapping.io.DDMFormValuesSerializerTracker;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
-import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.dynamic.data.mapping.storage.Fields;
-import com.liferay.dynamic.data.mapping.util.DDM;
-import com.liferay.journal.util.JournalConverter;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.LocaleThreadLocal;
-import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.petra.string.StringPool;
-
-import java.util.Locale;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -198,6 +190,39 @@ public class StructuredContentResourceImpl
 				null,
 				_getServiceContext(
 					journalArticle.getGroupId(), structuredContent)));
+	}
+
+	private String _createJournalArticleContent(DDMStructure ddmStructure)
+		throws Exception {
+
+		Locale originalSiteDefaultLocale =
+			LocaleThreadLocal.getSiteDefaultLocale();
+
+		try {
+			LocaleThreadLocal.setSiteDefaultLocale(
+				LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()));
+
+			ServiceContext serviceContext = new ServiceContext();
+
+			DDMForm ddmForm = ddmStructure.getDDMForm();
+
+			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm) {
+				{
+					setAvailableLocales(ddmForm.getAvailableLocales());
+					setDefaultLocale(ddmForm.getDefaultLocale());
+				}
+			};
+
+			serviceContext.setAttribute(
+				"ddmFormValues", _toString(ddmFormValues));
+
+			return _journalConverter.getContent(
+				ddmStructure,
+				_ddm.getFields(ddmStructure.getStructureId(), serviceContext));
+		}
+		finally {
+			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
+		}
 	}
 
 	private SearchContext _createSearchContext(
@@ -350,6 +375,21 @@ public class StructuredContentResourceImpl
 		);
 	}
 
+	private String _toString(DDMFormValues ddmFormValues) {
+		DDMFormValuesSerializer ddmFormValuesSerializer =
+			_ddmFormValuesSerializerTracker.getDDMFormValuesSerializer("json");
+
+		DDMFormValuesSerializerSerializeRequest.Builder builder =
+			DDMFormValuesSerializerSerializeRequest.Builder.newBuilder(
+				ddmFormValues);
+
+		DDMFormValuesSerializerSerializeResponse
+			ddmFormValuesSerializerSerializeResponse =
+				ddmFormValuesSerializer.serialize(builder.build());
+
+		return ddmFormValuesSerializerSerializeResponse.getContent();
+	}
+
 	private StructuredContent _toStructuredContent(
 		JournalArticle journalArticle) {
 
@@ -372,53 +412,11 @@ public class StructuredContentResourceImpl
 		};
 	}
 
-	private String _createJournalArticleContent(DDMStructure ddmStructure)
-		throws Exception {
+	@Reference
+	private DDM _ddm;
 
-		Locale originalSiteDefaultLocale =
-			LocaleThreadLocal.getSiteDefaultLocale();
-
-		try {
-			LocaleThreadLocal.setSiteDefaultLocale(
-				LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()));
-
-			ServiceContext serviceContext = new ServiceContext();
-
-			DDMForm ddmForm = ddmStructure.getDDMForm();
-
-			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm) {
-				{
-					setAvailableLocales(ddmForm.getAvailableLocales());
-					setDefaultLocale(ddmForm.getDefaultLocale());
-				}
-			};
-
-			serviceContext.setAttribute(
-				"ddmFormValues", _toString(ddmFormValues));
-
-			return _journalConverter.getContent(
-				ddmStructure,
-				_ddm.getFields(ddmStructure.getStructureId(), serviceContext));
-		}
-		finally {
-			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
-		}
-	}
-
-	private String _toString(DDMFormValues ddmFormValues) {
-		DDMFormValuesSerializer ddmFormValuesSerializer =
-			_ddmFormValuesSerializerTracker.getDDMFormValuesSerializer("json");
-
-		DDMFormValuesSerializerSerializeRequest.Builder builder =
-			DDMFormValuesSerializerSerializeRequest.Builder.newBuilder(
-				ddmFormValues);
-
-		DDMFormValuesSerializerSerializeResponse
-			ddmFormValuesSerializerSerializeResponse =
-				ddmFormValuesSerializer.serialize(builder.build());
-
-		return ddmFormValuesSerializerSerializeResponse.getContent();
-	}
+	@Reference
+	private DDMFormValuesSerializerTracker _ddmFormValuesSerializerTracker;
 
 	@Reference
 	private DDMStructureService _ddmStructureService;
@@ -427,19 +425,13 @@ public class StructuredContentResourceImpl
 	private IndexerRegistry _indexerRegistry;
 
 	@Reference
-	private JournalHelper _journalHelper;
-
-	@Reference
 	private JournalArticleService _journalArticleService;
 
 	@Reference
-	private DDM _ddm;
-
-	@Reference
-	private DDMFormValuesSerializerTracker _ddmFormValuesSerializerTracker;
-
-	@Reference
 	private JournalConverter _journalConverter;
+
+	@Reference
+	private JournalHelper _journalHelper;
 
 	@Reference
 	private SearchResultPermissionFilterFactory
