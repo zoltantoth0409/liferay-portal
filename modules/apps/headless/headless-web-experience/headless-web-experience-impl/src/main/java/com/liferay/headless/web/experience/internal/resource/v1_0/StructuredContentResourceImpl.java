@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -138,10 +139,10 @@ public class StructuredContentResourceImpl
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap)
 		throws PortalException {
 
-		Long contentStructureId = Long.valueOf(
-			(String)multivaluedMap.getFirst("content-structure-id"));
+		List<EntityField> entityFields = null;
 
-		List<EntityField> entityFields;
+		Long contentStructureId = GetterUtil.getLong(
+			(String)multivaluedMap.getFirst("content-structure-id"));
 
 		if (contentStructureId > 0) {
 			DDMStructure ddmStructure = _ddmStructureService.getStructure(
