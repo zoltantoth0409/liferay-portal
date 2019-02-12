@@ -21,7 +21,6 @@ import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountUtil;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupService;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -126,7 +125,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	}
 
 	private Category[] _toCategories(AssetCategory assetCategory)
-		throws PortalException {
+		throws Exception {
 
 		return transform(
 			assetCategory.getAncestors(), this::_toCategory
