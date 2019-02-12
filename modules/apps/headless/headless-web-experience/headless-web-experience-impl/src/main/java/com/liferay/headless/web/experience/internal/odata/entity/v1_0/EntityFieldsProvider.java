@@ -95,7 +95,7 @@ public class EntityFieldsProvider {
 			return new BooleanEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
 		}
@@ -105,13 +105,13 @@ public class EntityFieldsProvider {
 			return new DateEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"),
-				this::_getDDMDateFieldValue);
+				this::_toFieldValue);
 		}
 		else if (Objects.equals(
 					ddmFormField.getDataType(), FieldConstants.DOUBLE) ||
@@ -121,7 +121,7 @@ public class EntityFieldsProvider {
 			return new DoubleEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
 		}
@@ -133,7 +133,7 @@ public class EntityFieldsProvider {
 			return new IntegerEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "Number"));
 		}
@@ -146,7 +146,7 @@ public class EntityFieldsProvider {
 			return new StringEntityField(
 				_encodeFilterAndSortIdentifier(
 					ddmStructure, ddmFormField.getName()),
-				locale -> _encodeFieldName(
+				locale -> _toFieldName(
 					ddmStructure.getStructureId(), ddmFormField.getName(),
 					locale, "String"));
 		}
@@ -154,7 +154,7 @@ public class EntityFieldsProvider {
 		return null;
 	}
 
-	private String _encodeFieldName(
+	private String _toFieldName(
 		long ddmStructureId, String fieldName, Locale locale, String type) {
 
 		return Field.getSortableFieldName(
@@ -163,7 +163,7 @@ public class EntityFieldsProvider {
 				StringPool.UNDERLINE, type));
 	}
 
-	private String _getDDMDateFieldValue(Object fieldValue) {
+	private String _toFieldValue(Object fieldValue) {
 		DateFormat indexDateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
 
