@@ -31,13 +31,13 @@ public class MockResource implements EntityModelResource {
 
 	public static final String METHOD_NAME = "mockJaxRSMethod";
 
-	public String mockJaxRSMethod(String param) {
-		return "";
-	}
-
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
 		return _ENTITY_MODEL;
+	}
+
+	public String mockJaxRSMethod(String param) {
+		return "";
 	}
 
 	private static final EntityModel _ENTITY_MODEL = new EntityModel() {
