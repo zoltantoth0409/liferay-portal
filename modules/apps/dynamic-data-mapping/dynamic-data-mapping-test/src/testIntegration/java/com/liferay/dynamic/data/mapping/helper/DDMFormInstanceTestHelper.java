@@ -166,7 +166,7 @@ public class DDMFormInstanceTestHelper {
 
 		fileEntryDDMForm.setDefaultLocale(LocaleUtil.US);
 
-		DDMFormTestUtil.addDocumentLibraryDDMFormFields(
+		DDMFormTestUtil.addDocumentLibraryDDMFormField(
 			fileEntryDDMForm, "DocumentsAndMedia9t17");
 
 		DDMFormValues ddmFormValues = new DDMFormValues(fileEntryDDMForm);

@@ -41,7 +41,7 @@ public class DDMFormTestUtil {
 		}
 	}
 
-	public static DDMFormField addDocumentLibraryDDMFormFields(
+	public static DDMFormField addDocumentLibraryDDMFormField(
 		DDMForm ddmForm, String fieldName) {
 
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
