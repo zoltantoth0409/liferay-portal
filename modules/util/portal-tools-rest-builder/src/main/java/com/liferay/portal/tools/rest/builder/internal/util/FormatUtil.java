@@ -95,7 +95,7 @@ public class FormatUtil {
 	private static final Pattern _methodClosingBracePattern = Pattern.compile(
 		"^\t*}$", Pattern.MULTILINE);
 	private static final Pattern _methodHeaderPattern = Pattern.compile(
-		"^\t*(@|public|protected|private)", Pattern.MULTILINE);
+		"^\t*(@|private|protected|public)", Pattern.MULTILINE);
 	private static final Pattern _multiNewLinePattern = Pattern.compile(
 		"^\n+", Pattern.MULTILINE);
 
