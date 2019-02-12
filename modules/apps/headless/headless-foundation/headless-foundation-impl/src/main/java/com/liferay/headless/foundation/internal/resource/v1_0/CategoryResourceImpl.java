@@ -67,6 +67,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 			_assetCategoryService.getChildCategoriesCount(categoryId));
 	}
 
+	@Override
 	public Page<Category> getVocabulariesCategoriesPage(
 			Long vocabularyId, Pagination pagination)
 		throws Exception {
@@ -86,6 +87,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				assetVocabulary.getGroupId(), vocabularyId));
 	}
 
+	@Override
 	public Category postCategoriesCategories(
 			Long categoryId, Category category)
 		throws Exception {
@@ -105,6 +107,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 				assetCategory.getVocabularyId(), null, new ServiceContext()));
 	}
 
+	@Override
 	public Category postVocabulariesCategories(
 			Long vocabularyId, Category category)
 		throws Exception {
