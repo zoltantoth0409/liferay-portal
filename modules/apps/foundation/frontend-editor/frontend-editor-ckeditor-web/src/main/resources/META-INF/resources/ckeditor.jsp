@@ -444,12 +444,14 @@ name = HtmlUtil.escapeJS(name);
 			editorContainer.appendChild(editorNode);
 		}
 
-		editorNode.attr('contenteditable', true);
-		editorNode.addClass('lfr-editable');
+		if (editorNode) {
+			editorNode.attr('contenteditable', true);
+			editorNode.addClass('lfr-editable');
 
-		var eventHandles = [
-			A.Do.after(afterVal, editorNode, 'val', this)
-		];
+			var eventHandles = [
+				A.Do.after(afterVal, editorNode, 'val', this)
+			];
+		}
 
 		function initData() {
 			if (!ckEditorContent) {
