@@ -53,10 +53,6 @@ public class ContextProviderUtil {
 
 		Class<?> clazz = method.getDeclaringClass();
 
-		if (clazz == null) {
-			return null;
-		}
-
 		if (!ClassUtil.isSubclass(clazz, EntityModelResource.class)) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
