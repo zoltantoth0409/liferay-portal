@@ -1,7 +1,11 @@
-<form class="form container container-no-gutters-sm-down container-view" method="post"
-	id="[$PORTLET_NAME$]fm" name="[$PORTLET_NAME$]" data-fm-namespace="[$PORTLET_NAME$]"
-	action="[$ACTION_URL$]">
-
+<form
+	action="[$ACTION_URL$]"
+	class="form container container-no-gutters-sm-down container-view"
+	data-fm-namespace="[$PORTLET_NAME$]"
+	id="[$PORTLET_NAME$]fm"
+	method="post"
+	name="[$PORTLET_NAME$]"
+>
 	<input class="field form-control" id="[$PORTLET_NAME$][$CONSTANTS_CMD$]" name="[$PORTLET_NAME$][$CONSTANTS_CMD$]" type="hidden" value="[$CONSTANTS_UPDATE$]" />
 	<input class="field form-control" id="[$PORTLET_NAME$]configurationObject" name="[$PORTLET_NAME$]configurationObject" type="hidden" value=""[$FIELDS_JSON_ARRAY$]"" />
 	<input class="field form-control" id="[$PORTLET_NAME$]formDate" name="[$PORTLET_NAME$]formDate" type="hidden" value="[$CURRENT_TIME_MILLIS$]" />
