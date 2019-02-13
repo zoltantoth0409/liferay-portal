@@ -62,7 +62,7 @@ public class CTEntryResource {
 
 		if (!ctCollectionOptional.isPresent()) {
 			throw new IllegalArgumentException(
-				"Unable to find change tacking collection with id " +
+				"Unable to get change tacking collection " +
 					ctCollectionId);
 		}
 
@@ -73,7 +73,7 @@ public class CTEntryResource {
 
 			if (!compareToCTCollectionOptional.isPresent()) {
 				throw new IllegalArgumentException(
-					"Unable to find change tacking collection with id " +
+					"Unable to get change tacking collection " +
 						compareToCTCollectionId);
 			}
 
