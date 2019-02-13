@@ -242,9 +242,9 @@ public class PortletExtenderConfigurationAction
 								themeDisplay.getLocale(), values[0]);
 						}
 
+						ddmFormField.setPredefinedValue(predefinedValue);
 						ddmFormField.setProperty(
 							"predefinedValue", predefinedValue);
-						ddmFormField.setPredefinedValue(predefinedValue);
 					}
 				}
 			});
