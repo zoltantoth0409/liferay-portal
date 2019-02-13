@@ -17,7 +17,7 @@
 	<div class="button-holder dialog-footer">
 		<button class="btn btn-default btn-primary" id="form-button-submit" type="submit">
 			<span class="lfr-btn-label">
-				[$SAVE$]
+				[$SAVE_LABEL$]
 			</span>
 		</button>
 	</div>
