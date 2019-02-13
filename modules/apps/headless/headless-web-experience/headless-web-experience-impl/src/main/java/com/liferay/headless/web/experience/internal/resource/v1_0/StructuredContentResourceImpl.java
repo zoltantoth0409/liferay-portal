@@ -99,7 +99,7 @@ public class StructuredContentResourceImpl
 	extends BaseStructuredContentResourceImpl implements EntityModelResource {
 
 	@Override
-	public Response deleteStructuredContents(Long structuredContentId)
+	public Response deleteStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
@@ -114,17 +114,17 @@ public class StructuredContentResourceImpl
 
 	@Override
 	public Page<StructuredContent>
-			getContentSpacesContentStructuresStructuredContentsPage(
+			getContentSpaceContentStructureStructuredContentPage(
 				Long contentSpaceId, Long contentStructureId, Filter filter,
 				Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		return getContentSpacesStructuredContentsPage(
+		return getContentSpaceStructuredContentPage(
 			contentSpaceId, filter, pagination, sorts);
 	}
 
 	@Override
-	public Page<StructuredContent> getContentSpacesStructuredContentsPage(
+	public Page<StructuredContent> getContentSpaceStructuredContentPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
 		throws Exception {
@@ -160,7 +160,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent getStructuredContents(Long structuredContentId)
+	public StructuredContent getStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		return _toStructuredContent(
@@ -168,7 +168,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent postContentSpacesStructuredContents(
+	public StructuredContent postContentSpaceStructuredContent(
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
@@ -205,7 +205,7 @@ public class StructuredContentResourceImpl
 	}
 
 	@Override
-	public StructuredContent putStructuredContents(
+	public StructuredContent putStructuredContent(
 			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
 
