@@ -160,9 +160,7 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 		return sb.toString();
 	}
 
-	private String _toJSON(
-		PortletPreferences portletPreferences) {
-
+	private String _toJSON(PortletPreferences portletPreferences) {
 		JSONObject portletPreferencesJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
