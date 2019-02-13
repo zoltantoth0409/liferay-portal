@@ -163,10 +163,11 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 	private String _getPortletPreferences(
 		PortletPreferences portletPreferences) {
 
-		Enumeration<String> portletPreferencesNames =
-			portletPreferences.getNames();
 		JSONObject portletPreferencesJSONObject =
 			JSONFactoryUtil.createJSONObject();
+
+		Enumeration<String> portletPreferencesNames =
+			portletPreferences.getNames();
 
 		while (portletPreferencesNames.hasMoreElements()) {
 			String key = portletPreferencesNames.nextElement();
