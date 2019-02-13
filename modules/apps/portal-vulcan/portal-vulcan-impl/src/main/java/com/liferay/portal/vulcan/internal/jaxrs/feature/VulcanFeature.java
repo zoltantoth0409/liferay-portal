@@ -21,7 +21,6 @@ import com.liferay.portal.odata.filter.FilterParserProvider;
 import com.liferay.portal.odata.sort.SortParserProvider;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.AcceptLanguageContextProvider;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.CompanyContextProvider;
-import com.liferay.portal.vulcan.internal.jaxrs.context.provider.EntityModelResourceRegistrar;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.FilterContextProvider;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.PaginationContextProvider;
 import com.liferay.portal.vulcan.internal.jaxrs.context.provider.SortContextProvider;
@@ -31,6 +30,7 @@ import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PrincipalExcept
 import com.liferay.portal.vulcan.internal.jaxrs.message.body.JSONMessageBodyReader;
 import com.liferay.portal.vulcan.internal.jaxrs.message.body.JSONMessageBodyWriter;
 import com.liferay.portal.vulcan.internal.jaxrs.message.body.MultipartBodyMessageBodyReader;
+import com.liferay.portal.vulcan.internal.resource.EntityModelResourceRegistrar;
 
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;
