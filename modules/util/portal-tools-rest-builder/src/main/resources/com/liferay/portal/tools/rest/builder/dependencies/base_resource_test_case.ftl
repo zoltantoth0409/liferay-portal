@@ -20,7 +20,7 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -78,9 +78,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 			) throws Exception {
 		</@compress>
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification = _createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"${javaSignature.path}"
 			);
 		}
@@ -94,7 +94,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	protected Group testGroup;
 
-	private RequestSender _createRequestSender() {
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -104,7 +104,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when(
 		);
 	}
 
