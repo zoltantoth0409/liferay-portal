@@ -570,11 +570,11 @@ public class JavaTool {
 
 		String lastSegment = PathUtil.getLastSegment(path, segmentNumber);
 
-		String schemaNameWithoutIrregularPlural = schemaName.substring(
+		String withoutIrregularPluralSchemaName = schemaName.substring(
 			0, schemaName.length() - 3);
 
 		if (httpMethod.equals("post") &&
-			lastSegment.startsWith(schemaNameWithoutIrregularPlural)) {
+			lastSegment.startsWith(withoutIrregularPluralSchemaName)) {
 
 			return true;
 		}
