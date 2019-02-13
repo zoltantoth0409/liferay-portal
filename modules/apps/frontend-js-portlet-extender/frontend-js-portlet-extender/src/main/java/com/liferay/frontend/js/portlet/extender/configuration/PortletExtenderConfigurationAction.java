@@ -95,20 +95,20 @@ public class PortletExtenderConfigurationAction
 			StringUtil.replace(
 				_CONFIGURATION_FORM_TPL,
 				new String[] {
-					"[$PORTLET_NAME$]", "[$ACTION_URL$]",
-					"[$CURRENT_TIME_MILLIS$]", "[$FIELDS_JSON_ARRAY$]",
-					"[$CONSTANTS_CMD$]", "[$CONSTANTS_UPDATE$]",
-					"[$DDM_FORM_HTML$]", "[$SAVE$]"
+					"[$ACTION_URL$]", "[$CONSTANTS_CMD$]",
+					"[$CONSTANTS_UPDATE$]", "[$CURRENT_TIME_MILLIS$]",
+					"[$DDM_FORM_HTML$]", "[$FIELDS_JSON_ARRAY$]",
+					"[$PORTLET_NAME$]", "[$SAVE$]"
 				},
 				new String[] {
-					portletDisplay.getNamespace(),
-					_getActionURL(request, portletDisplay),
+					_getActionURL(request, portletDisplay), Constants.CMD,
+					Constants.UPDATE,
 					String.valueOf(System.currentTimeMillis()),
-					fieldsJSONArray.toString(), Constants.CMD, Constants.UPDATE,
 					DDMFormRendererUtil.render(
 						_ddmForm,
 						_getDDMFormFieldRenderingContext(
 							request, response, themeDisplay, portletDisplay)),
+					fieldsJSONArray.toString(), portletDisplay.getNamespace(),
 					LanguageUtil.get(themeDisplay.getLocale(), "save")
 				}));
 	}
