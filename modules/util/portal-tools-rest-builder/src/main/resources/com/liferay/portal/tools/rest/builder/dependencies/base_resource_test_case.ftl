@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -74,6 +75,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 			);
 		}
 	</#list>
+
+	protected ${schemaName} random${schemaName}() {
+		${schemaName} ${schemaVarName} = new ${schemaName}();
+
+		return ${schemaVarName};
+	}
 
 	private RequestSender _createRequestSender() {
 		return RestAssured.given(
