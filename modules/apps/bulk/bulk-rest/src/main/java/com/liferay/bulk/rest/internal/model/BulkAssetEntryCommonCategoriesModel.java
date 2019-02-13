@@ -169,11 +169,11 @@ public class BulkAssetEntryCommonCategoriesModel {
 	private AssetVocabularyModel _toAssetVocabularyModel(
 		AssetVocabulary assetVocabulary, List<AssetCategory> assetCategories) {
 
-		Stream<AssetCategory> assetCategoryStream = assetCategories.stream();
+		Stream<AssetCategory> stream = assetCategories.stream();
 
 		return new AssetVocabularyModel(
 			assetVocabulary,
-			assetCategoryStream.map(
+			stream.map(
 				this::_toAssetCategoryModel
 			).collect(
 				Collectors.toList()
