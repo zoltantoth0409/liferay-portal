@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.Validator_IW;
 import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.JavaTool;
+import com.liferay.portal.tools.rest.builder.internal.freemarker.tool.java.JavaSignature;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.util.FreeMarkerUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.CamelCaseUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
@@ -84,7 +85,11 @@ public class RESTBuilder {
 		Map<String, Object> context = new HashMap<>();
 
 		context.put("configYAML", _configYAML);
-		context.put("javaTool", JavaTool.getInstance());
+
+		JavaTool javaTool = JavaTool.getInstance();
+
+		context.put("javaTool", javaTool);
+
 		context.put("stringUtil", StringUtil_IW.getInstance());
 		context.put("validator", Validator_IW.getInstance());
 
@@ -123,11 +128,18 @@ public class RESTBuilder {
 			Map<String, Schema> schemas = components.getSchemas();
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
+				String schemaName = entry.getKey();
+
+				List<JavaSignature> javaSignatures = javaTool.getJavaSignatures(
+					openAPIYAML, schemaName);
+
+				if (javaSignatures.isEmpty()) {
+					continue;
+				}
+
 				Schema schema = entry.getValue();
 
 				context.put("schema", schema);
-
-				String schemaName = entry.getKey();
 
 				context.put("schemaName", schemaName);
 				context.put(
@@ -395,25 +407,6 @@ public class RESTBuilder {
 		sb.append("ResourceImpl.java");
 
 		File file = new File(sb.toString());
-
-		sb.setLength(0);
-
-		sb.append(_configYAML.getApiDir());
-		sb.append("/");
-		sb.append(apiPackagePath.replace('.', '/'));
-		sb.append("/resource/");
-		sb.append(versionDirName);
-		sb.append("/");
-		sb.append(schemaName);
-		sb.append("Resource.java");
-
-		String resourceContent = FileUtil.read(new File(sb.toString()));
-
-		if (!resourceContent.contains("\tpublic")) {
-			FileUtil.delete(file);
-
-			return;
-		}
 
 		_files.add(file);
 
