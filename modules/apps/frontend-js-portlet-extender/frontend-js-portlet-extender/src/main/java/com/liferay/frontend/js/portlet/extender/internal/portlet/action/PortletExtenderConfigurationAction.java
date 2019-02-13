@@ -93,7 +93,7 @@ public class PortletExtenderConfigurationAction
 
 		printWriter.println(
 			StringUtil.replace(
-				_CONFIGURATION_FORM_TPL,
+				_TPL_CONFIGURATION_FORM,
 				new String[] {
 					"[$ACTION_URL$]", "[$CONSTANTS_CMD$]",
 					"[$CONSTANTS_UPDATE$]", "[$CURRENT_TIME_MILLIS$]",
@@ -250,13 +250,13 @@ public class PortletExtenderConfigurationAction
 			});
 	}
 
-	private static final String _CONFIGURATION_FORM_TPL;
+	private static final String _TPL_CONFIGURATION_FORM;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		PortletExtenderConfigurationAction.class);
 
 	static {
-		_CONFIGURATION_FORM_TPL = _loadTemplate("configuration_form.html.tpl");
+		_TPL_CONFIGURATION_FORM = _loadTemplate("configuration_form.html.tpl");
 	}
 
 	private final DDMForm _ddmForm;

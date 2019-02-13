@@ -65,12 +65,12 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 
 			printWriter.print(
 				StringUtil.replace(
-					_HTML_TPL, new String[] {"[$PORTLET_ELEMENT_ID$]"},
+					_TPL_HTML, new String[] {"[$PORTLET_ELEMENT_ID$]"},
 					new String[] {portletElementId}));
 
 			printWriter.print(
 				StringUtil.replace(
-					_JAVA_SCRIPT_TPL,
+					_TPL_JAVA_SCRIPT,
 					new String[] {
 						"[$CONFIGURATION]", "[$CONTEXT_PATH$]",
 						"[$PORTLET_ELEMENT_ID$]", "[$PORTLET_NAMESPACE$]",
@@ -184,15 +184,15 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 		return portletPreferencesJSONObject.toJSONString();
 	}
 
-	private static final String _HTML_TPL;
+	private static final String _TPL_HTML;
 
-	private static final String _JAVA_SCRIPT_TPL;
+	private static final String _TPL_JAVA_SCRIPT;
 
 	private static final Log _log = LogFactoryUtil.getLog(JSPortlet.class);
 
 	static {
-		_HTML_TPL = _loadTemplate("bootstrap.html.tpl");
-		_JAVA_SCRIPT_TPL = _loadTemplate("bootstrap.js.tpl");
+		_TPL_HTML = _loadTemplate("bootstrap.html.tpl");
+		_TPL_JAVA_SCRIPT = _loadTemplate("bootstrap.js.tpl");
 	}
 
 	private final AtomicReference<Map<String, String>> _configuration =
