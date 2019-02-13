@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.ratings.kernel.model.RatingsStats;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
@@ -197,15 +196,11 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return new BlogPosting() {
 			{
 				setAlternativeHeadline(blogsEntry.getSubtitle());
-				RatingsStats ratingsStats =
-					_ratingsStatsLocalService.fetchStats(
-						BlogsEntry.class.getName(), blogsEntry.getEntryId());
-
-				if (ratingsStats != null) {
-					setAggregateRating(
-						AggregateRatingUtil.toAggregateRating(ratingsStats));
-				}
-
+				setAggregateRating(
+					AggregateRatingUtil.toAggregateRating(
+						_ratingsStatsLocalService.fetchStats(
+							BlogsEntry.class.getName(),
+							blogsEntry.getEntryId())));
 				setArticleBody(blogsEntry.getContent());
 				setCaption(blogsEntry.getCoverImageCaption());
 				setContentSpace(blogsEntry.getGroupId());

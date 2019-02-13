@@ -23,6 +23,10 @@ import com.liferay.ratings.kernel.model.RatingsStats;
 public class AggregateRatingUtil {
 
 	public static AggregateRating toAggregateRating(RatingsStats ratingsStats) {
+		if (ratingsStats == null) {
+			return null;
+		}
+
 		return new AggregateRating() {
 			{
 				setBestRating(1);

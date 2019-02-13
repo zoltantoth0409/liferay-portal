@@ -23,6 +23,10 @@ import com.liferay.portal.kernel.model.User;
 public class CreatorUtil {
 
 	public static Creator toCreator(User user) {
+		if (user == null) {
+			return null;
+		}
+
 		return new Creator() {
 			{
 				setAdditionalName(user.getMiddleName());

@@ -24,6 +24,10 @@ import com.liferay.portal.kernel.model.User;
 public class UserAccountUtil {
 
 	public static UserAccount toUserAccount(User user) throws PortalException {
+		if (user == null) {
+			return null;
+		}
+
 		return new UserAccount() {
 			{
 				setAdditionalName(user.getMiddleName());

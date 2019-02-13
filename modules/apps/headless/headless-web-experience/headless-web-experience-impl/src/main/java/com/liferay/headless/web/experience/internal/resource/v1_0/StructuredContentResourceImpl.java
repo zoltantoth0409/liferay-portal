@@ -69,7 +69,6 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
-import com.liferay.ratings.kernel.model.RatingsStats;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
@@ -446,16 +445,11 @@ public class StructuredContentResourceImpl
 				setAvailableLanguages(
 					LocaleUtil.toW3cLanguageIds(
 						journalArticle.getAvailableLanguageIds()));
-				RatingsStats ratingsStats =
-					_ratingsStatsLocalService.fetchStats(
-						JournalArticle.class.getName(),
-						journalArticle.getResourcePrimKey());
-
-				if (ratingsStats != null) {
-					setAggregateRating(
-						AggregateRatingUtil.toAggregateRating(ratingsStats));
-				}
-
+				setAggregateRating(
+					AggregateRatingUtil.toAggregateRating(
+						_ratingsStatsLocalService.fetchStats(
+							JournalArticle.class.getName(),
+							journalArticle.getResourcePrimKey())));
 				setContentSpace(journalArticle.getGroupId());
 				setContentStructureId(ddmStructure.getStructureId());
 				setCreator(
