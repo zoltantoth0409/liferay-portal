@@ -9,8 +9,10 @@ package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -26,6 +28,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -45,7 +48,14 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(_url.toExternalForm() + "/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	<#list javaTool.getJavaSignatures(openAPIYAML, schemaName) as javaSignature>
@@ -81,6 +91,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		return ${schemaVarName};
 	}
+
+	protected Group testGroup;
 
 	private RequestSender _createRequestSender() {
 		return RestAssured.given(
