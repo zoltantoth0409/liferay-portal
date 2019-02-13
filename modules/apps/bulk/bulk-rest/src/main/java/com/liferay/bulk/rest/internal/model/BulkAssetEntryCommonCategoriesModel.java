@@ -43,10 +43,10 @@ public class BulkAssetEntryCommonCategoriesModel {
 		Set<Map.Entry<AssetVocabulary, List<AssetCategory>>> entries =
 			assetVocabularyMap.entrySet();
 
-		Stream<Map.Entry<AssetVocabulary, List<AssetCategory>>> entryStream =
+		Stream<Map.Entry<AssetVocabulary, List<AssetCategory>>> stream =
 			entries.stream();
 
-		_vocabularies = entryStream.map(
+		_vocabularies = stream.map(
 			entry -> _toAssetVocabularyModel(entry.getKey(), entry.getValue())
 		).collect(
 			Collectors.toList()
