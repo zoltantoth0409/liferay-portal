@@ -22,7 +22,7 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.headless.collaboration.internal.util.v1_0.AggregateRatingUtil;
+import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;

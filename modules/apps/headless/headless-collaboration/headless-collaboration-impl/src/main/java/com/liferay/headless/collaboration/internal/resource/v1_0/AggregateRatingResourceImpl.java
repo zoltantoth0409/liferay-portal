@@ -16,7 +16,7 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
-import com.liferay.headless.collaboration.internal.util.v1_0.AggregateRatingUtil;
+import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.AggregateRatingResource;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
