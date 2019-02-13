@@ -1081,7 +1081,7 @@ definition {
 		);
 
 		AppManager.viewAppCP(
-			appName = "Liferay Drools", 
+			appName = "Liferay Drools",
 			appStatus = "Active",
 			searchTerm = "Drools"
 		);
