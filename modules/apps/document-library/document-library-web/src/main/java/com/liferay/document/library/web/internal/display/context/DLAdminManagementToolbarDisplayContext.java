@@ -108,7 +108,8 @@ public class DLAdminManagementToolbarDisplayContext {
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		_hasValidAssetVocabularies = _hasValidAssetVocabularies();
+		_hasValidAssetVocabularies = _hasValidAssetVocabularies(
+			_themeDisplay.getScopeGroupId());
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
@@ -839,12 +840,11 @@ public class DLAdminManagementToolbarDisplayContext {
 		return _dlAdminDisplayContext.getRepositoryId();
 	}
 
-	private boolean _hasValidAssetVocabularies() {
+	private boolean _hasValidAssetVocabularies(long scopeGroupId) {
 		try {
 			List<AssetVocabulary> assetVocabularies =
 				AssetVocabularyServiceUtil.getGroupVocabularies(
-					PortalUtil.getCurrentAndAncestorSiteGroupIds(
-						_themeDisplay.getScopeGroupId()));
+					PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId));
 
 			Stream<AssetVocabulary> assetVocabularyStream =
 				assetVocabularies.stream();
