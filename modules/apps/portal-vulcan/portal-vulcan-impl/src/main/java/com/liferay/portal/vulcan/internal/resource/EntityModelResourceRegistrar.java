@@ -89,7 +89,7 @@ public class EntityModelResourceRegistrar {
 			_log.debug(
 				StringBundler.concat(
 					"Class ", clazz.getName(),
-					" not registered as OSGi component ",
+					" not registered as an OSGi component ",
 					EntityModelResource.class.getName()));
 		}
 
