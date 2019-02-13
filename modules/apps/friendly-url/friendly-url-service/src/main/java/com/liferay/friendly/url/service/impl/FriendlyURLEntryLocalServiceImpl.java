@@ -554,6 +554,8 @@ public class FriendlyURLEntryLocalServiceImpl
 
 				friendlyURLEntryLocalizationPersistence.update(
 					existingFriendlyURLEntryLocalization);
+
+				continue;
 			}
 
 			long friendlyURLEntryLocalizationId = counterLocalService.increment(
