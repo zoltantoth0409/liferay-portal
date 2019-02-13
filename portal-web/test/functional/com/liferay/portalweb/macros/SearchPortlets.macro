@@ -23,10 +23,7 @@ definition {
 		Panel.expandSidebarApplicationsPanel();
 
 		for (var portletName : list "${searchPortletList}") {
-			Type.sendKeysApplicationSearch(
-				locator1 = "NavBar#APPLICATION_SEARCH_FIELD",
-				value1 = "Search-${portletName}"
-			);
+			Type(locator1 = "NavBar#APPLICATION_SEARCH_FIELD", value1 = "Search-${portletName}");
 
 			Portlet._clickAddPortlet(portletName = "${portletName}");
 
