@@ -18,11 +18,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -30,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,8 +52,15 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-workflow/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -92,33 +102,37 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/workflow-tasks");
+			requestSpecification.post("/workflow-tasks");
 	}
 
 	protected void invokeGetRoleWorkflowTasksPage(
 			Long roleId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/roles/{role-id}/workflow-tasks");
+			requestSpecification.post("/roles/{role-id}/workflow-tasks");
 	}
 
 	protected void invokeGetWorkflowTask(Long workflowTaskId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/workflow-tasks/{workflow-task-id}");
+			requestSpecification.post("/workflow-tasks/{workflow-task-id}");
 	}
 
 	protected void invokePostWorkflowTaskAssignToMe(
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/workflow-tasks/{workflow-task-id}/assign-to-me");
 	}
 
@@ -126,9 +140,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/workflow-tasks/{workflow-task-id}/assign-to-user");
 	}
 
@@ -136,9 +151,10 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/workflow-tasks/{workflow-task-id}/change-transition");
 	}
 
@@ -146,13 +162,22 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/workflow-tasks/{workflow-task-id}/update-due-date");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected WorkflowTask randomWorkflowTask() {
+		WorkflowTask workflowTask = new WorkflowTask();
+
+		return workflowTask;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -162,7 +187,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

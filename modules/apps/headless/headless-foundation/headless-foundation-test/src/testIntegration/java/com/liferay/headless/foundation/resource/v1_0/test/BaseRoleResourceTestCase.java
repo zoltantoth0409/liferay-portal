@@ -17,11 +17,14 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -29,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -48,8 +52,15 @@ public abstract class BaseRoleResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -76,33 +87,46 @@ public abstract class BaseRoleResourceTestCase {
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/my-user-accounts/{my-user-account-id}/roles");
+			requestSpecification.post(
+				"/my-user-accounts/{my-user-account-id}/roles");
 	}
 
 	protected void invokeGetRole(Long roleId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/roles/{role-id}");
+			requestSpecification.post("/roles/{role-id}");
 	}
 
 	protected void invokeGetRolesPage(Pagination pagination) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/roles");
+			requestSpecification.post("/roles");
 	}
 
 	protected void invokeGetUserAccountRolesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts/{user-account-id}/roles");
+			requestSpecification.post("/user-accounts/{user-account-id}/roles");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected Role randomRole() {
+		Role role = new Role();
+
+		return role;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -112,7 +136,7 @@ public abstract class BaseRoleResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

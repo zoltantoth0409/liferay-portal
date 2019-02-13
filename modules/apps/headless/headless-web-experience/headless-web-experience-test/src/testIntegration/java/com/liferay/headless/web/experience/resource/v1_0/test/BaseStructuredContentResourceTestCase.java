@@ -18,13 +18,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -32,6 +34,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -51,8 +54,15 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-web-experience/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -124,9 +134,11 @@ public abstract class BaseStructuredContentResourceTestCase {
 	protected void invokeDeleteStructuredContent(Long structuredContentId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/structured-contents/{structured-content-id}");
+			requestSpecification.post(
+				"/structured-contents/{structured-content-id}");
 	}
 
 	protected void invokeGetContentSpaceContentStructureStructuredContentsPage(
@@ -134,9 +146,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/content-spaces/{content-space-id}/content-structures/{content-structure-id}/structured-contents");
 	}
 
@@ -145,35 +158,41 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Sort[] sorts)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/content-spaces/{content-space-id}/structured-contents");
 	}
 
 	protected void invokeGetContentStructure(Long contentStructureId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/content-structures/{content-structure-id}");
+			requestSpecification.post(
+				"/content-structures/{content-structure-id}");
 	}
 
 	protected void invokeGetStructuredContent(Long structuredContentId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/structured-contents/{structured-content-id}");
+			requestSpecification.post(
+				"/structured-contents/{structured-content-id}");
 	}
 
 	protected void invokeGetStructuredContentCategoriesPage(
 			Long structuredContentId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/structured-contents/{structured-content-id}/categories");
 	}
 
@@ -181,9 +200,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/content-spaces/{content-space-id}/structured-contents");
 	}
 
@@ -191,9 +211,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/content-spaces/{content-space-id}/structured-contents");
 	}
 
@@ -201,9 +222,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/content-spaces/{content-space-id}/structured-contents/batch-create");
 	}
 
@@ -211,9 +233,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long structuredContentId, Long referenceId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/structured-contents/{structured-content-id}/categories");
 	}
 
@@ -221,9 +244,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long structuredContentId, Long referenceId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/structured-contents/{structured-content-id}/categories/batch-create");
 	}
 
@@ -231,12 +255,22 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/structured-contents/{structured-content-id}");
+			requestSpecification.post(
+				"/structured-contents/{structured-content-id}");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected StructuredContent randomStructuredContent() {
+		StructuredContent structuredContent = new StructuredContent();
+
+		return structuredContent;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -246,7 +280,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

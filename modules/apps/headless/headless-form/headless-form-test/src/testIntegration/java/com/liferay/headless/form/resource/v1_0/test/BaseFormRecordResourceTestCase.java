@@ -18,11 +18,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -30,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,7 +52,14 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(_url.toExternalForm() + "/o/headless-form/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -81,43 +91,57 @@ public abstract class BaseFormRecordResourceTestCase {
 			Long formId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/forms/{form-id}/form-records");
+			requestSpecification.post("/forms/{form-id}/form-records");
 	}
 
 	protected void invokeGetFormRecord(Long formRecordId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/form-records/{form-record-id}");
+			requestSpecification.post("/form-records/{form-record-id}");
 	}
 
 	protected void invokePostFormFormRecord(Long formId, FormRecord formRecord)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/forms/{form-id}/form-records");
+			requestSpecification.post("/forms/{form-id}/form-records");
 	}
 
 	protected void invokePostFormFormRecordBatchCreate(
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/forms/{form-id}/form-records/batch-create");
+			requestSpecification.post(
+				"/forms/{form-id}/form-records/batch-create");
 	}
 
 	protected void invokePutFormRecord(Long formRecordId, FormRecord formRecord)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/form-records/{form-record-id}");
+			requestSpecification.post("/form-records/{form-record-id}");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected FormRecord randomFormRecord() {
+		FormRecord formRecord = new FormRecord();
+
+		return formRecord;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -127,7 +151,7 @@ public abstract class BaseFormRecordResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

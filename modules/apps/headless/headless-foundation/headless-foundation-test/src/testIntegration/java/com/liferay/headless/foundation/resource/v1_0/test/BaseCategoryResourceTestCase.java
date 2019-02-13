@@ -18,11 +18,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -30,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,8 +52,15 @@ public abstract class BaseCategoryResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -99,51 +109,58 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected void invokeDeleteCategory(Long categoryId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/categories/{category-id}");
+			requestSpecification.post("/categories/{category-id}");
 	}
 
 	protected void invokeGetCategory(Long categoryId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/categories/{category-id}");
+			requestSpecification.post("/categories/{category-id}");
 	}
 
 	protected void invokeGetCategoryCategoriesPage(
 			Long categoryId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/categories/{category-id}/categories");
+			requestSpecification.post("/categories/{category-id}/categories");
 	}
 
 	protected void invokeGetVocabularyCategoriesPage(
 			Long vocabularyId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/vocabularies/{vocabulary-id}/categories");
+			requestSpecification.post(
+				"/vocabularies/{vocabulary-id}/categories");
 	}
 
 	protected void invokePostCategoryCategory(
 			Long categoryId, Category category)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/categories/{category-id}/categories");
+			requestSpecification.post("/categories/{category-id}/categories");
 	}
 
 	protected void invokePostCategoryCategoryBatchCreate(
 			Long categoryId, Category category)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/categories/{category-id}/categories/batch-create");
 	}
 
@@ -151,30 +168,42 @@ public abstract class BaseCategoryResourceTestCase {
 			Long vocabularyId, Category category)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/vocabularies/{vocabulary-id}/categories");
+			requestSpecification.post(
+				"/vocabularies/{vocabulary-id}/categories");
 	}
 
 	protected void invokePostVocabularyCategoryBatchCreate(
 			Long vocabularyId, Category category)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/vocabularies/{vocabulary-id}/categories/batch-create");
 	}
 
 	protected void invokePutCategory(Long categoryId, Category category)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/categories/{category-id}");
+			requestSpecification.post("/categories/{category-id}");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected Category randomCategory() {
+		Category category = new Category();
+
+		return category;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -184,7 +213,7 @@ public abstract class BaseCategoryResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

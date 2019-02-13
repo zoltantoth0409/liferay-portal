@@ -17,11 +17,14 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -29,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -48,8 +52,15 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -81,47 +92,60 @@ public abstract class BaseOrganizationResourceTestCase {
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/my-user-accounts/{my-user-account-id}/organizations");
 	}
 
 	protected void invokeGetOrganization(Long organizationId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/organizations/{organization-id}");
+			requestSpecification.post("/organizations/{organization-id}");
 	}
 
 	protected void invokeGetOrganizationOrganizationsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/organizations/{organization-id}/organizations");
 	}
 
 	protected void invokeGetOrganizationsPage(Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/organizations");
+			requestSpecification.post("/organizations");
 	}
 
 	protected void invokeGetUserAccountOrganizationsPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/user-accounts/{user-account-id}/organizations");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected Organization randomOrganization() {
+		Organization organization = new Organization();
+
+		return organization;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -131,7 +155,7 @@ public abstract class BaseOrganizationResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

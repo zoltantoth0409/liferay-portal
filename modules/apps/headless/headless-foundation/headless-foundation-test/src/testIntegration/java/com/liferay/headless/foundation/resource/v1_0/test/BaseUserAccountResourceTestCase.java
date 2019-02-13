@@ -18,11 +18,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -30,6 +32,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,8 +52,15 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -101,79 +111,96 @@ public abstract class BaseUserAccountResourceTestCase {
 	protected void invokeDeleteUserAccount(Long userAccountId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts/{user-account-id}");
+			requestSpecification.post("/user-accounts/{user-account-id}");
 	}
 
 	protected void invokeGetMyUserAccount(Long myUserAccountId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/my-user-accounts/{my-user-account-id}");
+			requestSpecification.post("/my-user-accounts/{my-user-account-id}");
 	}
 
 	protected void invokeGetOrganizationUserAccountsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post(
+			requestSpecification.post(
 				"/organizations/{organization-id}/user-accounts");
 	}
 
 	protected void invokeGetUserAccount(Long userAccountId) throws Exception {
-		RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts/{user-account-id}");
+			requestSpecification.post("/user-accounts/{user-account-id}");
 	}
 
 	protected void invokeGetUserAccountsPage(
 			String fullnamequery, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts");
+			requestSpecification.post("/user-accounts");
 	}
 
 	protected void invokeGetWebSiteUserAccountsPage(
 			Long webSiteId, Pagination pagination)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/web-sites/{web-site-id}/user-accounts");
+			requestSpecification.post("/web-sites/{web-site-id}/user-accounts");
 	}
 
 	protected void invokePostUserAccount(UserAccount userAccount)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts");
+			requestSpecification.post("/user-accounts");
 	}
 
 	protected void invokePostUserAccountBatchCreate(UserAccount userAccount)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts/batch-create");
+			requestSpecification.post("/user-accounts/batch-create");
 	}
 
 	protected void invokePutUserAccount(
 			Long userAccountId, UserAccount userAccount)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/user-accounts/{user-account-id}");
+			requestSpecification.post("/user-accounts/{user-account-id}");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected UserAccount randomUserAccount() {
+		UserAccount userAccount = new UserAccount();
+
+		return userAccount;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -183,7 +210,7 @@ public abstract class BaseUserAccountResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {

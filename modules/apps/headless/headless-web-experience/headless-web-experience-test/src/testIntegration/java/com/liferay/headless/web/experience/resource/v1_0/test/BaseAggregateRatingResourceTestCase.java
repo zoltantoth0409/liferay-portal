@@ -17,9 +17,13 @@ package com.liferay.headless.web.experience.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
+
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
-import io.restassured.specification.RequestSender;
+import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -27,6 +31,7 @@ import javax.annotation.Generated;
 
 import org.jboss.arquillian.test.api.ArquillianResource;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -46,8 +51,15 @@ public abstract class BaseAggregateRatingResourceTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		testGroup = GroupTestUtil.addGroup();
+
 		_resourceURL = new URL(
 			_url.toExternalForm() + "/o/headless-web-experience/v1.0");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		GroupTestUtil.deleteGroup(testGroup);
 	}
 
 	@Test
@@ -58,12 +70,22 @@ public abstract class BaseAggregateRatingResourceTestCase {
 	protected void invokeGetAggregateRating(Long aggregateRatingId)
 		throws Exception {
 
-			RequestSender requestSender = _createRequestSender();
+			RequestSpecification requestSpecification =
+				_createRequestRequestSpecification();
 
-			requestSender.post("/aggregate-ratings/{aggregate-rating-id}");
+			requestSpecification.post(
+				"/aggregate-ratings/{aggregate-rating-id}");
 	}
 
-	private RequestSender _createRequestSender() {
+	protected AggregateRating randomAggregateRating() {
+		AggregateRating aggregateRating = new AggregateRating();
+
+		return aggregateRating;
+	}
+
+	protected Group testGroup;
+
+	private RequestSpecification _createRequestRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -73,7 +95,7 @@ public abstract class BaseAggregateRatingResourceTestCase {
 			"Accept", "application/json"
 		).header(
 			"Content-Type", "application/json"
-		).when();
+		);
 	}
 
 	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
