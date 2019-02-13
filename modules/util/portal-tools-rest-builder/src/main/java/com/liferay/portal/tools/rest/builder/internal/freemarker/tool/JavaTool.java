@@ -485,7 +485,7 @@ public class JavaTool {
 
 		urls.add(httpMethod);
 
-		List<Parameter> parameters = _getPathParameter(
+		List<Parameter> parameters = _getPathParameters(
 			operation.getParameters());
 
 		for (Parameter parameter : parameters) {
@@ -511,7 +511,7 @@ public class JavaTool {
 		return String.join("", urls);
 	}
 
-	private List<Parameter> _getPathParameter(List<Parameter> parameters) {
+	private List<Parameter> _getPathParameters(List<Parameter> parameters) {
 		Stream<Parameter> stream = parameters.stream();
 
 		return stream.filter(
