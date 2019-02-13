@@ -256,7 +256,7 @@ public class PortletExtenderConfigurationAction
 		PortletExtenderConfigurationAction.class);
 
 	static {
-		_CONFIGURATION_FORM_TPL = _loadTemplate("configuration.form.html.tpl");
+		_CONFIGURATION_FORM_TPL = _loadTemplate("configuration_form.html.tpl");
 	}
 
 	private final DDMForm _ddmForm;
