@@ -268,6 +268,7 @@ AUI.add(
 
 						if (!editCategories) {
 							var pathModule = instance.get('pathModule');
+
 							var urlCategories = pathModule + '/bulk/asset/categories/' + instance._config.scopeGroupId + '/' + instance.get('classNameId') + '/common';
 							var urlUpdateCategories = pathModule + '/bulk/asset/categories/' + instance.get('classNameId');
 
