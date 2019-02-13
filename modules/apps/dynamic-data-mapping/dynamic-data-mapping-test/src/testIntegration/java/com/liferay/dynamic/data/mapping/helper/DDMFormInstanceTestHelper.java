@@ -142,7 +142,7 @@ public class DDMFormInstanceTestHelper {
 			settingsDDMFormValues, serviceContext);
 	}
 
-	public DDMFormInstance addDDMFormInstanceWithDocLibField(
+	public DDMFormInstance addDDMFormInstance(
 			DDMStructure ddmStructure, FileEntry fileEntry)
 		throws Exception {
 

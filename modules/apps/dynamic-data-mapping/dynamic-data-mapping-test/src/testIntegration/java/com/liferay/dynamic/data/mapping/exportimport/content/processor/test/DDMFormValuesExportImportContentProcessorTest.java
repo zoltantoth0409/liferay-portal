@@ -314,7 +314,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			new DDMFormInstanceTestHelper(group);
 
 		DDMFormInstance ddmFormInstance =
-			ddmFormInstanceTestHelper.addDDMFormInstanceWithDocLibField(
+			ddmFormInstanceTestHelper.addDDMFormInstance(
 				_ddmStructure, fileEntry);
 
 		return ddmFormInstance;
