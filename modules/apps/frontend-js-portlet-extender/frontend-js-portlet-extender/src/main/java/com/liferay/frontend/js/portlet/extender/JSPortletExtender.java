@@ -156,11 +156,6 @@ public class JSPortletExtender {
 		return portletName;
 	}
 
-	/**
-	 * Parse the contents of a URL as a JSON object
-	 * @param url
-	 * @return the {@link JSONObject} or null if it cannot be parsed
-	 */
 	private JSONObject _parse(URL url) {
 		if (url == null) {
 			return null;
