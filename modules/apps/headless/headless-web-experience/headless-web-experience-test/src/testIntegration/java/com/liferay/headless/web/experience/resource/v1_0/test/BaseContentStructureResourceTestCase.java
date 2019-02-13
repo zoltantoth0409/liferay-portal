@@ -14,7 +14,25 @@
 
 package com.liferay.headless.web.experience.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.liferay.portal.vulcan.pagination.Pagination;
+
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
+import io.restassured.specification.RequestSender;
+
+import java.net.URL;
+
 import javax.annotation.Generated;
+
+import org.jboss.arquillian.test.api.ArquillianResource;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Javier Gamarra
@@ -22,4 +40,69 @@ import javax.annotation.Generated;
  */
 @Generated("")
 public abstract class BaseContentStructureResourceTestCase {
+
+	@BeforeClass
+	public static void setUpClass() {
+		RestAssured.defaultParser = Parser.JSON;
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		_resourceURL = new URL(
+			_url.toExternalForm() + "/o/headless-web-experience/v1.0");
+	}
+
+	@Test
+	public void testGetContentSpacesContentStructuresPage() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testGetContentStructures() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	protected void invokeGetContentSpacesContentStructuresPage(
+			Long contentSpaceId, Pagination pagination)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post(
+				"/content-spaces/{content-space-id}/content-structures");
+	}
+
+	protected void invokeGetContentStructures(Long contentStructureId)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post("/content-structures/{content-structure-id}");
+	}
+
+	private RequestSender _createRequestSender() {
+		return RestAssured.given(
+		).auth(
+		).preemptive(
+		).basic(
+			"test@liferay.com", "test"
+		).header(
+			"Accept", "application/json"
+		).header(
+			"Content-Type", "application/json"
+		).when();
+	}
+
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+		{
+			setSerializationInclusion(JsonInclude.Include.NON_NULL);
+	}
+	};
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private URL _resourceURL;
+
+	@ArquillianResource
+	private URL _url;
+
 }

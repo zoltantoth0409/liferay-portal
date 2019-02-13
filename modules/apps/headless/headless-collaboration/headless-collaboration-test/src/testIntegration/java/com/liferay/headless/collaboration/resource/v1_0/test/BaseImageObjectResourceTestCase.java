@@ -14,7 +14,26 @@
 
 package com.liferay.headless.collaboration.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.portal.vulcan.pagination.Pagination;
+
+import io.restassured.RestAssured;
+import io.restassured.parsing.Parser;
+import io.restassured.specification.RequestSender;
+
+import java.net.URL;
+
 import javax.annotation.Generated;
+
+import org.jboss.arquillian.test.api.ArquillianResource;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Javier Gamarra
@@ -22,4 +41,114 @@ import javax.annotation.Generated;
  */
 @Generated("")
 public abstract class BaseImageObjectResourceTestCase {
+
+	@BeforeClass
+	public static void setUpClass() {
+		RestAssured.defaultParser = Parser.JSON;
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		_resourceURL = new URL(
+			_url.toExternalForm() + "/o/headless-collaboration/v1.0");
+	}
+
+	@Test
+	public void testDeleteImageObjects() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testGetImageObjectRepositoriesImageObjectsPage()
+		throws Exception {
+
+			Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testGetImageObjects() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testPostImageObjectRepositoriesImageObjects() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testPostImageObjectRepositoriesImageObjectsBatchCreate()
+		throws Exception {
+
+			Assert.assertTrue(true);
+	}
+
+	protected void invokeDeleteImageObjects(Long imageObjectId)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post("/image-objects/{image-object-id}");
+	}
+
+	protected void invokeGetImageObjectRepositoriesImageObjectsPage(
+			Long imageObjectRepositoryId, Pagination pagination)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post(
+				"/image-object-repositories/{image-object-repository-id}/image-objects");
+	}
+
+	protected void invokeGetImageObjects(Long imageObjectId) throws Exception {
+		RequestSender requestSender = _createRequestSender();
+
+			requestSender.post("/image-objects/{image-object-id}");
+	}
+
+	protected void invokePostImageObjectRepositoriesImageObjects(
+			Long imageObjectRepositoryId, ImageObject imageObject)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post(
+				"/image-object-repositories/{image-object-repository-id}/image-objects");
+	}
+
+	protected void invokePostImageObjectRepositoriesImageObjectsBatchCreate(
+			Long imageObjectRepositoryId, ImageObject imageObject)
+		throws Exception {
+
+			RequestSender requestSender = _createRequestSender();
+
+			requestSender.post(
+				"/image-object-repositories/{image-object-repository-id}/image-objects/batch-create");
+	}
+
+	private RequestSender _createRequestSender() {
+		return RestAssured.given(
+		).auth(
+		).preemptive(
+		).basic(
+			"test@liferay.com", "test"
+		).header(
+			"Accept", "application/json"
+		).header(
+			"Content-Type", "application/json"
+		).when();
+	}
+
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+		{
+			setSerializationInclusion(JsonInclude.Include.NON_NULL);
+	}
+	};
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private URL _resourceURL;
+
+	@ArquillianResource
+	private URL _url;
+
 }
