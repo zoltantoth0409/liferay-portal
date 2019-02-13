@@ -81,7 +81,7 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 						_getConfiguration(), renderRequest.getContextPath(),
 						portletElementId, renderResponse.getNamespace(),
 						_packageName, _packageVersion,
-						_getPortletPreferences(renderRequest.getPreferences())
+						_toJSON(renderRequest.getPreferences())
 					}));
 
 			printWriter.flush();
@@ -160,7 +160,7 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 		return sb.toString();
 	}
 
-	private String _getPortletPreferences(
+	private String _toJSON(
 		PortletPreferences portletPreferences) {
 
 		JSONObject portletPreferencesJSONObject =
