@@ -99,8 +99,7 @@ public class ContentPageLayoutEditorDisplayContext
 			if (Objects.equals(
 					SegmentsConstants.KEY_DEFAULT, segmentsEntry.getKey())) {
 
-				return _EDITABLE_VALUES_SEGMENTS_PREFIX +
-					segmentsEntry.getSegmentsEntryId();
+				return "segment-id-" + segmentsEntry.getSegmentsEntryId();
 			}
 		}
 
@@ -124,8 +123,7 @@ public class ContentPageLayoutEditorDisplayContext
 
 			segmentsSoyContext.put(
 				"segmentId",
-				_EDITABLE_VALUES_SEGMENTS_PREFIX +
-					segmentsEntry.getSegmentsEntryId());
+				"segment-id-" + segmentsEntry.getSegmentsEntryId());
 			segmentsSoyContext.put("segmentKey", segmentsEntry.getKey());
 			segmentsSoyContext.put(
 				"segmentLabel",
@@ -137,9 +135,6 @@ public class ContentPageLayoutEditorDisplayContext
 
 		return availableSegmentsEntriesSoyContext;
 	}
-
-	private static final String _EDITABLE_VALUES_SEGMENTS_PREFIX =
-		"segment-id-";
 
 	private SoyContext _editorSoyContext;
 	private SoyContext _fragmentsEditorToolbarSoyContext;
