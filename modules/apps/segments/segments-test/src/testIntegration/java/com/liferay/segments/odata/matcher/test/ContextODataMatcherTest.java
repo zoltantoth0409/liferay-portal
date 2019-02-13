@@ -118,7 +118,7 @@ public class ContextODataMatcherTest {
 	}
 
 	@Test
-	public void testMatchesDateLower() throws Exception {
+	public void testMatchesDateLesser() throws Exception {
 		LocalDate localDate = LocalDate.of(2019, Month.JANUARY, 1);
 
 		Context context = new Context() {
@@ -136,7 +136,7 @@ public class ContextODataMatcherTest {
 	}
 
 	@Test
-	public void testMatchesDateLowerOrEquals() throws Exception {
+	public void testMatchesDateLesserOrEquals() throws Exception {
 		LocalDate localDate = LocalDate.of(2019, Month.JANUARY, 1);
 
 		Context context = new Context() {
@@ -219,7 +219,7 @@ public class ContextODataMatcherTest {
 	}
 
 	@Test
-	public void testMatchesIntegerLower() throws Exception {
+	public void testMatchesIntegerLesser() throws Exception {
 		Context context = new Context() {
 			{
 				put(Context.DEVICE_SCREEN_RESOLUTION_WIDTH, 1000);
@@ -234,7 +234,7 @@ public class ContextODataMatcherTest {
 	}
 
 	@Test
-	public void testMatchesIntegerLowerOrEquals() throws Exception {
+	public void testMatchesIntegerLesserOrEquals() throws Exception {
 		Context context = new Context() {
 			{
 				put(Context.DEVICE_SCREEN_RESOLUTION_WIDTH, 1000);
