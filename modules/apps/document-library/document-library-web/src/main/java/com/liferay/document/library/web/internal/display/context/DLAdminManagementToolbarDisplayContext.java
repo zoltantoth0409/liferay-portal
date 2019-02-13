@@ -84,10 +84,11 @@ import javax.servlet.http.HttpServletRequest;
 public class DLAdminManagementToolbarDisplayContext {
 
 	public DLAdminManagementToolbarDisplayContext(
-		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse,
-		HttpServletRequest request,
-		DLAdminDisplayContext dlAdminDisplayContext) {
+			LiferayPortletRequest liferayPortletRequest,
+			LiferayPortletResponse liferayPortletResponse,
+			HttpServletRequest request,
+			DLAdminDisplayContext dlAdminDisplayContext)
+		throws PortalException {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
@@ -840,39 +841,35 @@ public class DLAdminManagementToolbarDisplayContext {
 		return _dlAdminDisplayContext.getRepositoryId();
 	}
 
-	private boolean _hasValidAssetVocabularies(long scopeGroupId) {
-		try {
-			List<AssetVocabulary> assetVocabularies =
-				AssetVocabularyServiceUtil.getGroupVocabularies(
-					PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId));
+	private boolean _hasValidAssetVocabularies(long scopeGroupId)
+		throws PortalException {
 
-			Stream<AssetVocabulary> stream =
-				assetVocabularies.stream();
+		List<AssetVocabulary> assetVocabularies =
+			AssetVocabularyServiceUtil.getGroupVocabularies(
+				PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId));
 
-			return stream.anyMatch(
-				assetVocabulary -> {
-					if (!assetVocabulary.isAssociatedToClassNameId(
-							ClassNameLocalServiceUtil.getClassNameId(
-								DLFileEntry.class.getName()))) {
+		Stream<AssetVocabulary> stream = assetVocabularies.stream();
 
-						return false;
-					}
-
-					int count =
-						AssetCategoryServiceUtil.getVocabularyCategoriesCount(
-							assetVocabulary.getGroupId(),
-							assetVocabulary.getVocabularyId());
-
-					if (count > 0) {
-						return true;
-					}
+		return stream.anyMatch(
+			assetVocabulary -> {
+				if (!assetVocabulary.isAssociatedToClassNameId(
+						ClassNameLocalServiceUtil.getClassNameId(
+							DLFileEntry.class.getName()))) {
 
 					return false;
-				});
-		}
-		catch (PortalException pe) {
-			throw new SystemException(pe);
-		}
+				}
+
+				int count =
+					AssetCategoryServiceUtil.getVocabularyCategoriesCount(
+						assetVocabulary.getGroupId(),
+						assetVocabulary.getVocabularyId());
+
+				if (count > 0) {
+					return true;
+				}
+
+				return false;
+			});
 	}
 
 	private boolean _isNavigationRecent() {
