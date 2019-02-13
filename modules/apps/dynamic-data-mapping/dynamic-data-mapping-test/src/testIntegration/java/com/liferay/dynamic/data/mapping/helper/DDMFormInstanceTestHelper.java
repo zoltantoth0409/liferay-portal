@@ -128,13 +128,13 @@ public class DDMFormInstanceTestHelper {
 
 		descriptionMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		DDMForm settingsDDMForm = DDMFormTestUtil.createDDMForm();
 
 		DDMFormValues settingsDDMFormValues =
 			DDMFormValuesTestUtil.createDDMFormValues(settingsDDMForm);
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		return DDMFormInstanceLocalServiceUtil.addFormInstance(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -154,8 +154,6 @@ public class DDMFormInstanceTestHelper {
 
 		descriptionMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 		DDMForm fileEntryDDMForm = new DDMForm();
 
 		Set<Locale> availableLocales = new LinkedHashSet<>();
@@ -192,6 +190,9 @@ public class DDMFormInstanceTestHelper {
 
 		DDMFormLayout ddmFormLayout = DDMUtil.getDefaultDDMFormLayout(
 			fileEntryDDMForm);
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		return DDMFormInstanceLocalServiceUtil.addFormInstance(
 			TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
