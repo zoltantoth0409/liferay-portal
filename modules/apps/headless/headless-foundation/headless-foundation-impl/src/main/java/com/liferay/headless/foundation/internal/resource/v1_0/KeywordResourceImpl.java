@@ -83,8 +83,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 
 		try {
 			return _toKeyword(
-				_assetTagService.updateTag(
-					keywordId, keyword.getName(), null));
+				_assetTagService.updateTag(keywordId, keyword.getName(), null));
 		}
 		catch (AssetTagNameException atne) {
 			throw new ClientErrorException(
