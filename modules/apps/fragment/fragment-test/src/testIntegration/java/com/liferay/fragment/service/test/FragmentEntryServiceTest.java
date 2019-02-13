@@ -235,16 +235,16 @@ public class FragmentEntryServiceTest {
 			"alert(\"test\")", WorkflowConstants.STATUS_APPROVED,
 			serviceContext);
 
-		FragmentEntry fragmentEntryCopy =
+		FragmentEntry copyFragmentEntry =
 			FragmentEntryServiceUtil.copyFragmentEntry(
 				_group.getGroupId(), fragmentEntry.getFragmentEntryId(),
 				fragmentEntry.getFragmentCollectionId(), serviceContext);
 
-		_assertFragmentIsCopy(fragmentEntry, fragmentEntryCopy);
+		_assertFragmentIsCopy(fragmentEntry, copyFragmentEntry);
 
 		Assert.assertEquals(
 			fragmentEntry.getFragmentCollectionId(),
-			fragmentEntryCopy.getFragmentCollectionId());
+			copyFragmentEntry.getFragmentCollectionId());
 	}
 
 	@Test
@@ -269,17 +269,17 @@ public class FragmentEntryServiceTest {
 			"alert(\"test\")", WorkflowConstants.STATUS_APPROVED,
 			serviceContext);
 
-		FragmentEntry fragmentEntryCopy =
+		FragmentEntry copyFragmentEntry =
 			FragmentEntryServiceUtil.copyFragmentEntry(
 				_group.getGroupId(), fragmentEntry.getFragmentEntryId(),
 				targetFragmentCollection.getFragmentCollectionId(),
 				serviceContext);
 
-		_assertFragmentIsCopy(fragmentEntry, fragmentEntryCopy);
+		_assertFragmentIsCopy(fragmentEntry, copyFragmentEntry);
 
 		Assert.assertEquals(
 			targetFragmentCollection.getFragmentCollectionId(),
-			fragmentEntryCopy.getFragmentCollectionId());
+			copyFragmentEntry.getFragmentCollectionId());
 	}
 
 	@Test
@@ -568,26 +568,26 @@ public class FragmentEntryServiceTest {
 	}
 
 	private void _assertFragmentIsCopy(
-		FragmentEntry fragmentEntry, FragmentEntry fragmentEntryCopy) {
+		FragmentEntry fragmentEntry, FragmentEntry copyFragmentEntry) {
 
 		Assert.assertEquals(
-			fragmentEntry.getGroupId(), fragmentEntryCopy.getGroupId());
+			fragmentEntry.getGroupId(), copyFragmentEntry.getGroupId());
 
 		Assert.assertEquals(
-			fragmentEntry.getName() + " (Copy)", fragmentEntryCopy.getName());
+			fragmentEntry.getName() + " (Copy)", copyFragmentEntry.getName());
 
-		Assert.assertEquals(fragmentEntry.getCss(), fragmentEntryCopy.getCss());
-
-		Assert.assertEquals(
-			fragmentEntry.getHtml(), fragmentEntryCopy.getHtml());
-
-		Assert.assertEquals(fragmentEntry.getJs(), fragmentEntryCopy.getJs());
+		Assert.assertEquals(fragmentEntry.getCss(), copyFragmentEntry.getCss());
 
 		Assert.assertEquals(
-			fragmentEntry.getStatus(), fragmentEntryCopy.getStatus());
+			fragmentEntry.getHtml(), copyFragmentEntry.getHtml());
+
+		Assert.assertEquals(fragmentEntry.getJs(), copyFragmentEntry.getJs());
 
 		Assert.assertEquals(
-			fragmentEntry.getType(), fragmentEntryCopy.getType());
+			fragmentEntry.getStatus(), copyFragmentEntry.getStatus());
+
+		Assert.assertEquals(
+			fragmentEntry.getType(), copyFragmentEntry.getType());
 	}
 
 	@DeleteAfterTestRun
