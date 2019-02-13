@@ -15,8 +15,8 @@
 package com.liferay.frontend.js.portlet.extender;
 
 import com.liferay.dynamic.data.mapping.util.DDM;
-import com.liferay.frontend.js.portlet.extender.configuration.PortletExtenderConfigurationAction;
 import com.liferay.frontend.js.portlet.extender.internal.portlet.JSPortlet;
+import com.liferay.frontend.js.portlet.extender.internal.portlet.action.PortletExtenderConfigurationAction;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
