@@ -80,8 +80,8 @@ public class EntityModelResourceRegistrar {
 					serviceReference.getProperty("component.name"),
 					clazz.getCanonicalName())) {
 
-				return (EntityModelResource)
-					_bundleContext.getService(serviceReference);
+				return (EntityModelResource)_bundleContext.getService(
+					serviceReference);
 			}
 		}
 
