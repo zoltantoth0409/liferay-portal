@@ -502,7 +502,7 @@ public class JavaTool {
 			urls.add(schemaName);
 		}
 
-		urls.add(PathUtil.getLastSegmentFromPath(path, urls.size()));
+		urls.add(PathUtil.getLastSegment(path, urls.size()));
 
 		if (StringUtil.startsWith(returnType, "Page<")) {
 			urls.add("Page");
@@ -568,8 +568,7 @@ public class JavaTool {
 	private boolean _isPostToSameSchema(
 		String httpMethod, String path, String schemaName, int segmentNumber) {
 
-		String lastSegment = PathUtil.getLastSegmentFromPath(
-			path, segmentNumber);
+		String lastSegment = PathUtil.getLastSegment(path, segmentNumber);
 
 		String schemaNameWithoutIrregularPlural = schemaName.substring(
 			0, schemaName.length() - 3);

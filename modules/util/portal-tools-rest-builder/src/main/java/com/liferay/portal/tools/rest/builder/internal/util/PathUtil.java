@@ -19,27 +19,27 @@ package com.liferay.portal.tools.rest.builder.internal.util;
  */
 public class PathUtil {
 
-	public static String getLastSegmentFromPath(String path, int offset) {
-		int index = _indexOf(path, "/", offset);
+	public static String getLastSegment(String path, int offsetIndex) {
+		int index = _getLastIndexof(path, "/", offsetIndex);
 
 		if (index == -1) {
 			return "";
 		}
 
-		String pattern = path.substring(index);
-
-		return CamelCaseUtil.toCamelCase(pattern, true);
+		return CamelCaseUtil.toCamelCase(path.substring(index), true);
 	}
 
-	private static int _indexOf(String source, String search, int offset) {
-		int index = source.indexOf(search);
+	private static int _getLastIndexof(
+		String sourceString, String matchingString, int offsetIndex) {
+
+		int index = sourceString.indexOf(matchingString);
 
 		if (index == -1) {
 			return -1;
 		}
 
-		for (int i = 1; i < offset; i++) {
-			index = source.indexOf(search, index + 1);
+		for (int i = 1; i < offsetIndex; i++) {
+			index = sourceString.indexOf(matchingString, index + 1);
 
 			if (index == -1) {
 				return -1;
