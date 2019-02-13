@@ -50,7 +50,8 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		return buildNoContentResponse();
 	}
 
-	public Page<Keyword> getContentSpacesKeywordsPage(
+	@Override
+	public Page<Keyword> getContentSpaceKeywordPage(
 		Long contentSpaceId, Pagination pagination) {
 
 		return Page.of(
