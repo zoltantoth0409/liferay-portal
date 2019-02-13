@@ -851,19 +851,20 @@ public class DLAdminManagementToolbarDisplayContext {
 
 			return stream.anyMatch(
 				assetVocabulary -> {
-					if (assetVocabulary.isAssociatedToClassNameId(
+					if (!assetVocabulary.isAssociatedToClassNameId(
 							ClassNameLocalServiceUtil.getClassNameId(
 								DLFileEntry.class.getName()))) {
 
-						int vocabularyCategoriesCount =
-							AssetCategoryServiceUtil.
-								getVocabularyCategoriesCount(
-									assetVocabulary.getGroupId(),
-									assetVocabulary.getVocabularyId());
+						return false;
+					}
 
-						if (vocabularyCategoriesCount > 0) {
-							return true;
-						}
+					int count =
+						AssetCategoryServiceUtil.getVocabularyCategoriesCount(
+							assetVocabulary.getGroupId(),
+							assetVocabulary.getVocabularyId());
+
+					if (count > 0) {
+						return true;
 					}
 
 					return false;
