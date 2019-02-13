@@ -21,7 +21,6 @@ import com.liferay.asset.kernel.service.AssetTagService;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountUtil;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserService;
 
@@ -99,7 +98,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 		}
 	}
 
-	private Keyword _toKeyword(AssetTag assetTag) throws PortalException {
+	private Keyword _toKeyword(AssetTag assetTag) throws Exception {
 		return new Keyword() {
 			{
 				setContentSpace(assetTag.getGroupId());
