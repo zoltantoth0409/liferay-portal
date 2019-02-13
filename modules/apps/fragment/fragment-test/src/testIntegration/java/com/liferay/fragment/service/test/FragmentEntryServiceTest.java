@@ -240,7 +240,7 @@ public class FragmentEntryServiceTest {
 				_group.getGroupId(), fragmentEntry.getFragmentEntryId(),
 				fragmentEntry.getFragmentCollectionId(), serviceContext);
 
-		_assertFragmentIsCopy(fragmentEntry, copyFragmentEntry);
+		_assertCopiedFragment(fragmentEntry, copyFragmentEntry);
 
 		Assert.assertEquals(
 			fragmentEntry.getFragmentCollectionId(),
@@ -275,7 +275,7 @@ public class FragmentEntryServiceTest {
 				targetFragmentCollection.getFragmentCollectionId(),
 				serviceContext);
 
-		_assertFragmentIsCopy(fragmentEntry, copyFragmentEntry);
+		_assertCopiedFragment(fragmentEntry, copyFragmentEntry);
 
 		Assert.assertEquals(
 			targetFragmentCollection.getFragmentCollectionId(),
@@ -567,7 +567,7 @@ public class FragmentEntryServiceTest {
 			WorkflowConstants.STATUS_APPROVED, fragmentEntry.getStatus());
 	}
 
-	private void _assertFragmentIsCopy(
+	private void _assertCopiedFragment(
 		FragmentEntry fragmentEntry, FragmentEntry copyFragmentEntry) {
 
 		Assert.assertEquals(
