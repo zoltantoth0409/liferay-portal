@@ -846,10 +846,10 @@ public class DLAdminManagementToolbarDisplayContext {
 				AssetVocabularyServiceUtil.getGroupVocabularies(
 					PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId));
 
-			Stream<AssetVocabulary> assetVocabularyStream =
+			Stream<AssetVocabulary> stream =
 				assetVocabularies.stream();
 
-			return assetVocabularyStream.anyMatch(
+			return stream.anyMatch(
 				assetVocabulary -> {
 					if (assetVocabulary.isAssociatedToClassNameId(
 							ClassNameLocalServiceUtil.getClassNameId(
