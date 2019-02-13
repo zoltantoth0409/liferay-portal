@@ -1,14 +1,14 @@
 <form
 	action="[$ACTION_URL$]"
 	class="form container container-no-gutters-sm-down container-view"
-	data-fm-namespace="[$PORTLET_NAME$]"
-	id="[$PORTLET_NAME$]fm"
+	data-fm-namespace="[$PORTLET_NAMESPACE$]"
+	id="[$PORTLET_NAMESPACE$]fm"
 	method="post"
-	name="[$PORTLET_NAME$]"
+	name="[$PORTLET_NAMESPACE$]"
 >
-	<input class="field form-control" id="[$PORTLET_NAME$][$CONSTANTS_CMD$]" name="[$PORTLET_NAME$][$CONSTANTS_CMD$]" type="hidden" value="[$CONSTANTS_UPDATE$]" />
-	<input class="field form-control" id="[$PORTLET_NAME$]configurationObject" name="[$PORTLET_NAME$]configurationObject" type="hidden" value="[$FIELDS_JSON_ARRAY$]" />
-	<input class="field form-control" id="[$PORTLET_NAME$]formDate" name="[$PORTLET_NAME$]formDate" type="hidden" value="[$CURRENT_TIME_MILLIS$]" />
+	<input class="field form-control" id="[$PORTLET_NAMESPACE$][$CONSTANTS_CMD$]" name="[$PORTLET_NAMESPACE$][$CONSTANTS_CMD$]" type="hidden" value="[$CONSTANTS_UPDATE$]" />
+	<input class="field form-control" id="[$PORTLET_NAMESPACE$]configurationObject" name="[$PORTLET_NAMESPACE$]configurationObject" type="hidden" value="[$FIELDS_JSON_ARRAY$]" />
+	<input class="field form-control" id="[$PORTLET_NAMESPACE$]formDate" name="[$PORTLET_NAMESPACE$]formDate" type="hidden" value="[$CURRENT_TIME_MILLIS$]" />
 
 	<div class="lfr-form-content" id="portlet-configuration">
 		<div class="sheet sheet-lg" id="sheet-portlet">

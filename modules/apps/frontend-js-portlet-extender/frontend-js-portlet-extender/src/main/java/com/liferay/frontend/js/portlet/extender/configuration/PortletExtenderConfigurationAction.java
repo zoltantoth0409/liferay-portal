@@ -98,7 +98,7 @@ public class PortletExtenderConfigurationAction
 					"[$ACTION_URL$]", "[$CONSTANTS_CMD$]",
 					"[$CONSTANTS_UPDATE$]", "[$CURRENT_TIME_MILLIS$]",
 					"[$DDM_FORM_HTML$]", "[$FIELDS_JSON_ARRAY$]",
-					"[$PORTLET_NAME$]", "[$SAVE_LABEL$]"
+					"[$PORTLET_NAMESPACE$]", "[$SAVE_LABEL$]"
 				},
 				new String[] {
 					_getActionURL(request, portletDisplay), Constants.CMD,
