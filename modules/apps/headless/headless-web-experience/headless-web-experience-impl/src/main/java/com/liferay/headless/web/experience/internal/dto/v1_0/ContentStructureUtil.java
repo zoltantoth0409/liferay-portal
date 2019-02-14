@@ -60,7 +60,7 @@ public class ContentStructureUtil {
 				setDateCreated(ddmStructure.getCreateDate());
 				setDateModified(ddmStructure.getModifiedDate());
 				setDescription(ddmStructure.getDescription(locale));
-				setFields(_getFields(ddmStructure, locale));
+				setFields(_getFieldsArray(ddmStructure, locale));
 				setId(ddmStructure.getStructureId());
 				setName(ddmStructure.getName(locale));
 			}
@@ -101,7 +101,7 @@ public class ContentStructureUtil {
 		return null;
 	}
 
-	private static Fields[] _getFields(
+	private static Fields[] _getFieldsArray(
 		DDMStructure ddmStructure, Locale locale) {
 
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(true);
