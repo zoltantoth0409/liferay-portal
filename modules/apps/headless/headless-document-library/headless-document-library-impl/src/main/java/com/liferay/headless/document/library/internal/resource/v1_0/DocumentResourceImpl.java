@@ -65,9 +65,9 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	public Document getDocument(Long documentId) throws Exception {
 		FileEntry fileEntry = _dlAppService.getFileEntry(documentId);
 
-		User user = _userService.getUserById(fileEntry.getUserId());
-
-		return _toDocument(fileEntry, fileEntry.getFileVersion(), user);
+		return _toDocument(
+			fileEntry, fileEntry.getFileVersion(),
+			_userService.getUserById(fileEntry.getUserId()));
 	}
 
 	private AdaptedMedia[] _getAdaptiveMedias(FileEntry fileEntry) {
