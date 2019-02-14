@@ -118,13 +118,11 @@ public class ContentStructureUtil {
 	private static String _getLocalizedString(
 		LocalizedValue localizedValue, Locale locale) {
 
-		return Optional.ofNullable(
-			localizedValue
-		).map(
-			value -> value.getString(locale)
-		).orElse(
-			null
-		);
+		if (localizedValue == null) {
+			return null;
+		}
+
+		return localizedValue.getString(locale);
 	}
 
 	private static Fields _toFields(DDMFormField ddmFormField, Locale locale) {
