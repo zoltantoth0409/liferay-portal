@@ -36,25 +36,22 @@ public class CreatorUtil {
 				setGivenName(user.getFirstName());
 				setId(user.getUserId());
 				setName(user.getFullName());
-				setProfileURL(_getProfileURL(portal, user));
+				setProfileURL(
+					() -> {
+						if (user.getPortraitId() == 0) {
+							return null;
+						}
+
+						ThemeDisplay themeDisplay = new ThemeDisplay() {
+							{
+								setPathImage(portal.getPathImage());
+							}
+						};
+
+						return user.getPortraitURL(themeDisplay);
+					});
 			}
 		};
-	}
-
-	private static String _getProfileURL(Portal portal, User user)
-		throws Exception {
-
-		if (user.getPortraitId() == 0) {
-			return null;
-		}
-
-		ThemeDisplay themeDisplay = new ThemeDisplay() {
-			{
-				setPathImage(portal.getPathImage());
-			}
-		};
-
-		return user.getPortraitURL(themeDisplay);
 	}
 
 }
