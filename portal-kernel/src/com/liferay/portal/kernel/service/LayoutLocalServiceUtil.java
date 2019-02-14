@@ -964,10 +964,20 @@ public class LayoutLocalServiceUtil {
 				   .getLayoutByUuidAndGroupId(uuid, groupId, privateLayout);
 	}
 
+	/**
+	* @deprecated As of Judson (7.1.x), replaced by {@link
+	#getLayoutChildLayouts(List)}
+	*/
+	@Deprecated
 	public static java.util.Map<Long, java.util.List<com.liferay.portal.kernel.model.Layout>> getLayoutChildLayouts(
 		com.liferay.portal.kernel.model.LayoutSet layoutSet,
 		java.util.List<com.liferay.portal.kernel.model.Layout> parentLayouts) {
 		return getService().getLayoutChildLayouts(layoutSet, parentLayouts);
+	}
+
+	public static java.util.Map<Long, java.util.List<com.liferay.portal.kernel.model.Layout>> getLayoutChildLayouts(
+		java.util.List<com.liferay.portal.kernel.model.Layout> parentLayouts) {
+		return getService().getLayoutChildLayouts(parentLayouts);
 	}
 
 	/**
