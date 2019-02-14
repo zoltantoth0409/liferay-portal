@@ -124,7 +124,7 @@ public class StructuredContentResourceImpl
 		throws Exception {
 
 		Hits hits = _getHits(
-			contentSpaceId, filter, pagination, sorts, contentStructureId);
+			contentSpaceId, contentStructureId, filter, pagination, sorts);
 
 		return Page.of(
 			transform(
@@ -328,8 +328,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private Hits _getHits(
-			long groupId, Filter filter, Pagination pagination, Sort[] sorts,
-			Long structureId)
+			long groupId, Long structureId, Filter filter,
+			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
@@ -338,7 +338,7 @@ public class StructuredContentResourceImpl
 		SearchContext searchContext = _createSearchContext(
 			groupId, pagination, permissionChecker, sorts);
 
-		Query query = _getQuery(filter, searchContext, structureId);
+		Query query = _getQuery(structureId, filter, searchContext);
 
 		SearchResultPermissionFilter searchResultPermissionFilter =
 			_searchResultPermissionFilterFactory.create(
@@ -358,7 +358,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private Query _getQuery(
-			Filter filter, SearchContext searchContext, Long structureId)
+			Long structureId, Filter filter, SearchContext searchContext)
 		throws Exception {
 
 		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
