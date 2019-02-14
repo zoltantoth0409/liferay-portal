@@ -140,11 +140,11 @@ public class DDMRESTDataProviderTest {
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"inputParameterName", "Country Id"));
+				"inputParameterLabel", "Country Id"));
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"inputParameterPath", "countryId"));
+				"inputParameterName", "countryId"));
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
@@ -158,11 +158,11 @@ public class DDMRESTDataProviderTest {
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"inputParameterName", "Region Name"));
+				"inputParameterLabel", "Region Name"));
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
-				"inputParameterPath", "regionName"));
+				"inputParameterName", "regionName"));
 
 		inputParameters.addNestedDDMFormFieldValue(
 			DDMFormValuesTestUtil.createUnlocalizedDDMFormFieldValue(
