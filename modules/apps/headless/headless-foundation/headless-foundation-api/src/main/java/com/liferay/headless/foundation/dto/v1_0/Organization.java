@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -84,8 +84,15 @@ public class Organization {
 		_comment = comment;
 	}
 
-	public void setComment(Supplier<String> commentSupplier) {
-		_comment = commentSupplier.get();
+	public void setComment(
+		UnsafeSupplier<String, Throwable> commentUnsafeSupplier) {
+
+		try {
+			_comment = commentUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContactInformation(ContactInformation contactInformation) {
@@ -93,37 +100,67 @@ public class Organization {
 	}
 
 	public void setContactInformation(
-		Supplier<ContactInformation> contactInformationSupplier) {
+		UnsafeSupplier<ContactInformation, Throwable>
+			contactInformationUnsafeSupplier) {
 
-		_contactInformation = contactInformationSupplier.get();
+		try {
+			_contactInformation = contactInformationUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setLocation(Location location) {
 		_location = location;
 	}
 
-	public void setLocation(Supplier<Location> locationSupplier) {
-		_location = locationSupplier.get();
+	public void setLocation(
+		UnsafeSupplier<Location, Throwable> locationUnsafeSupplier) {
+
+		try {
+			_location = locationUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setLogo(String logo) {
 		_logo = logo;
 	}
 
-	public void setLogo(Supplier<String> logoSupplier) {
-		_logo = logoSupplier.get();
+	public void setLogo(UnsafeSupplier<String, Throwable> logoUnsafeSupplier) {
+		try {
+			_logo = logoUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setMembers(Supplier<UserAccount[]> membersSupplier) {
-		_members = membersSupplier.get();
+	public void setMembers(
+		UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier) {
+
+		try {
+			_members = membersUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setMembers(UserAccount[] members) {
@@ -134,16 +171,28 @@ public class Organization {
 		_membersIds = membersIds;
 	}
 
-	public void setMembersIds(Supplier<Long[]> membersIdsSupplier) {
-		_membersIds = membersIdsSupplier.get();
+	public void setMembersIds(
+		UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier) {
+
+		try {
+			_membersIds = membersIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setParentOrganization(Organization parentOrganization) {
@@ -151,9 +200,15 @@ public class Organization {
 	}
 
 	public void setParentOrganization(
-		Supplier<Organization> parentOrganizationSupplier) {
+		UnsafeSupplier<Organization, Throwable>
+			parentOrganizationUnsafeSupplier) {
 
-		_parentOrganization = parentOrganizationSupplier.get();
+		try {
+			_parentOrganization = parentOrganizationUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setParentOrganizationId(Long parentOrganizationId) {
@@ -161,17 +216,29 @@ public class Organization {
 	}
 
 	public void setParentOrganizationId(
-		Supplier<Long> parentOrganizationIdSupplier) {
+		UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier) {
 
-		_parentOrganizationId = parentOrganizationIdSupplier.get();
+		try {
+			_parentOrganizationId = parentOrganizationIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setServices(Services[] services) {
 		_services = services;
 	}
 
-	public void setServices(Supplier<Services[]> servicesSupplier) {
-		_services = servicesSupplier.get();
+	public void setServices(
+		UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier) {
+
+		try {
+			_services = servicesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setSubOrganization(Organization[] subOrganization) {
@@ -179,9 +246,15 @@ public class Organization {
 	}
 
 	public void setSubOrganization(
-		Supplier<Organization[]> subOrganizationSupplier) {
+		UnsafeSupplier<Organization[], Throwable>
+			subOrganizationUnsafeSupplier) {
 
-		_subOrganization = subOrganizationSupplier.get();
+		try {
+			_subOrganization = subOrganizationUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setSubOrganizationIds(Long[] subOrganizationIds) {
@@ -189,9 +262,14 @@ public class Organization {
 	}
 
 	public void setSubOrganizationIds(
-		Supplier<Long[]> subOrganizationIdsSupplier) {
+		UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier) {
 
-		_subOrganizationIds = subOrganizationIdsSupplier.get();
+		try {
+			_subOrganizationIds = subOrganizationIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _comment;

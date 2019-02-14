@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -68,48 +68,88 @@ public class PostalAddress {
 		_addressCountry = addressCountry;
 	}
 
-	public void setAddressCountry(Supplier<String> addressCountrySupplier) {
-		_addressCountry = addressCountrySupplier.get();
+	public void setAddressCountry(
+		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
+
+		try {
+			_addressCountry = addressCountryUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAddressLocality(String addressLocality) {
 		_addressLocality = addressLocality;
 	}
 
-	public void setAddressLocality(Supplier<String> addressLocalitySupplier) {
-		_addressLocality = addressLocalitySupplier.get();
+	public void setAddressLocality(
+		UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
+
+		try {
+			_addressLocality = addressLocalityUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAddressRegion(String addressRegion) {
 		_addressRegion = addressRegion;
 	}
 
-	public void setAddressRegion(Supplier<String> addressRegionSupplier) {
-		_addressRegion = addressRegionSupplier.get();
+	public void setAddressRegion(
+		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+
+		try {
+			_addressRegion = addressRegionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAddressType(String addressType) {
 		_addressType = addressType;
 	}
 
-	public void setAddressType(Supplier<String> addressTypeSupplier) {
-		_addressType = addressTypeSupplier.get();
+	public void setAddressType(
+		UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
+
+		try {
+			_addressType = addressTypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setPostalCode(String postalCode) {
 		_postalCode = postalCode;
 	}
 
-	public void setPostalCode(Supplier<String> postalCodeSupplier) {
-		_postalCode = postalCodeSupplier.get();
+	public void setPostalCode(
+		UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
+
+		try {
+			_postalCode = postalCodeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setStreetAddressLine1(String streetAddressLine1) {
@@ -117,9 +157,14 @@ public class PostalAddress {
 	}
 
 	public void setStreetAddressLine1(
-		Supplier<String> streetAddressLine1Supplier) {
+		UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
 
-		_streetAddressLine1 = streetAddressLine1Supplier.get();
+		try {
+			_streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setStreetAddressLine2(String streetAddressLine2) {
@@ -127,9 +172,14 @@ public class PostalAddress {
 	}
 
 	public void setStreetAddressLine2(
-		Supplier<String> streetAddressLine2Supplier) {
+		UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
 
-		_streetAddressLine2 = streetAddressLine2Supplier.get();
+		try {
+			_streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setStreetAddressLine3(String streetAddressLine3) {
@@ -137,9 +187,14 @@ public class PostalAddress {
 	}
 
 	public void setStreetAddressLine3(
-		Supplier<String> streetAddressLine3Supplier) {
+		UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
 
-		_streetAddressLine3 = streetAddressLine3Supplier.get();
+		try {
+			_streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _addressCountry;

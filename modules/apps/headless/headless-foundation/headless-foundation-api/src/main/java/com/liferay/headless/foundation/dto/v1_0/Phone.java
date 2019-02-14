@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -48,32 +48,58 @@ public class Phone {
 		_extension = extension;
 	}
 
-	public void setExtension(Supplier<String> extensionSupplier) {
-		_extension = extensionSupplier.get();
+	public void setExtension(
+		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
+
+		try {
+			_extension = extensionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
 		_phoneNumber = phoneNumber;
 	}
 
-	public void setPhoneNumber(Supplier<String> phoneNumberSupplier) {
-		_phoneNumber = phoneNumberSupplier.get();
+	public void setPhoneNumber(
+		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+
+		try {
+			_phoneNumber = phoneNumberUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setPhoneType(String phoneType) {
 		_phoneType = phoneType;
 	}
 
-	public void setPhoneType(Supplier<String> phoneTypeSupplier) {
-		_phoneType = phoneTypeSupplier.get();
+	public void setPhoneType(
+		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+
+		try {
+			_phoneType = phoneTypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _extension;

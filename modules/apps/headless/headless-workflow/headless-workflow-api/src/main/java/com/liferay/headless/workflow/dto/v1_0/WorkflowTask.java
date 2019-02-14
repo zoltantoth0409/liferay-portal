@@ -14,8 +14,9 @@
 
 package com.liferay.headless.workflow.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -81,60 +82,114 @@ public class WorkflowTask {
 		_completed = completed;
 	}
 
-	public void setCompleted(Supplier<Boolean> completedSupplier) {
-		_completed = completedSupplier.get();
+	public void setCompleted(
+		UnsafeSupplier<Boolean, Throwable> completedUnsafeSupplier) {
+
+		try {
+			_completed = completedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateCompleted(Date dateCompleted) {
 		_dateCompleted = dateCompleted;
 	}
 
-	public void setDateCompleted(Supplier<Date> dateCompletedSupplier) {
-		_dateCompleted = dateCompletedSupplier.get();
+	public void setDateCompleted(
+		UnsafeSupplier<Date, Throwable> dateCompletedUnsafeSupplier) {
+
+		try {
+			_dateCompleted = dateCompletedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDefinitionName(String definitionName) {
 		_definitionName = definitionName;
 	}
 
-	public void setDefinitionName(Supplier<String> definitionNameSupplier) {
-		_definitionName = definitionNameSupplier.get();
+	public void setDefinitionName(
+		UnsafeSupplier<String, Throwable> definitionNameUnsafeSupplier) {
+
+		try {
+			_definitionName = definitionNameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
-	public void setDescription(Supplier<String> descriptionSupplier) {
-		_description = descriptionSupplier.get();
+	public void setDescription(
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+
+		try {
+			_description = descriptionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDueDate(Date dueDate) {
 		_dueDate = dueDate;
 	}
 
-	public void setDueDate(Supplier<Date> dueDateSupplier) {
-		_dueDate = dueDateSupplier.get();
+	public void setDueDate(
+		UnsafeSupplier<Date, Throwable> dueDateUnsafeSupplier) {
+
+		try {
+			_dueDate = dueDateUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setLogs(Supplier<WorkflowLog[]> logsSupplier) {
-		_logs = logsSupplier.get();
+	public void setLogs(
+		UnsafeSupplier<WorkflowLog[], Throwable> logsUnsafeSupplier) {
+
+		try {
+			_logs = logsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setLogs(WorkflowLog[] logs) {
@@ -145,16 +200,28 @@ public class WorkflowTask {
 		_logsIds = logsIds;
 	}
 
-	public void setLogsIds(Supplier<Long[]> logsIdsSupplier) {
-		_logsIds = logsIdsSupplier.get();
+	public void setLogsIds(
+		UnsafeSupplier<Long[], Throwable> logsIdsUnsafeSupplier) {
+
+		try {
+			_logsIds = logsIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setObjectReviewed(ObjectReviewed objectReviewed) {
@@ -162,17 +229,30 @@ public class WorkflowTask {
 	}
 
 	public void setObjectReviewed(
-		Supplier<ObjectReviewed> objectReviewedSupplier) {
+		UnsafeSupplier<ObjectReviewed, Throwable>
+			objectReviewedUnsafeSupplier) {
 
-		_objectReviewed = objectReviewedSupplier.get();
+		try {
+			_objectReviewed = objectReviewedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTransitions(String[] transitions) {
 		_transitions = transitions;
 	}
 
-	public void setTransitions(Supplier<String[]> transitionsSupplier) {
-		_transitions = transitionsSupplier.get();
+	public void setTransitions(
+		UnsafeSupplier<String[], Throwable> transitionsUnsafeSupplier) {
+
+		try {
+			_transitions = transitionsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Boolean _completed;

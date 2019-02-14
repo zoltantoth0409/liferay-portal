@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -45,25 +45,43 @@ public class Services {
 	}
 
 	public void setHoursAvailable(
-		Supplier<HoursAvailable[]> hoursAvailableSupplier) {
+		UnsafeSupplier<HoursAvailable[], Throwable>
+			hoursAvailableUnsafeSupplier) {
 
-		_hoursAvailable = hoursAvailableSupplier.get();
+		try {
+			_hoursAvailable = hoursAvailableUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setServiceType(String serviceType) {
 		_serviceType = serviceType;
 	}
 
-	public void setServiceType(Supplier<String> serviceTypeSupplier) {
-		_serviceType = serviceTypeSupplier.get();
+	public void setServiceType(
+		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
+
+		try {
+			_serviceType = serviceTypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private HoursAvailable[] _hoursAvailable;

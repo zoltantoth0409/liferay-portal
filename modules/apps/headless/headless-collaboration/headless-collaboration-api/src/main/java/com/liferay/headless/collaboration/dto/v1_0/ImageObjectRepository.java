@@ -14,8 +14,9 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -57,48 +58,86 @@ public class ImageObjectRepository {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
-		_dateModified = dateModifiedSupplier.get();
+	public void setDateModified(
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+
+		try {
+			_dateModified = dateModifiedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setImages(ImageObject[] images) {
 		_images = images;
 	}
 
-	public void setImages(Supplier<ImageObject[]> imagesSupplier) {
-		_images = imagesSupplier.get();
+	public void setImages(
+		UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier) {
+
+		try {
+			_images = imagesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setImagesIds(Long[] imagesIds) {
 		_imagesIds = imagesIds;
 	}
 
-	public void setImagesIds(Supplier<Long[]> imagesIdsSupplier) {
-		_imagesIds = imagesIdsSupplier.get();
+	public void setImagesIds(
+		UnsafeSupplier<Long[], Throwable> imagesIdsUnsafeSupplier) {
+
+		try {
+			_imagesIds = imagesIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Date _dateCreated;

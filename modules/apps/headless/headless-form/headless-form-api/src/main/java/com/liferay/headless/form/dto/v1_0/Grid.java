@@ -14,7 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -44,24 +44,41 @@ public class Grid {
 		_columns = columns;
 	}
 
-	public void setColumns(Supplier<Columns[]> columnsSupplier) {
-		_columns = columnsSupplier.get();
+	public void setColumns(
+		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
+
+		try {
+			_columns = columnsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setRows(Rows[] rows) {
 		_rows = rows;
 	}
 
-	public void setRows(Supplier<Rows[]> rowsSupplier) {
-		_rows = rowsSupplier.get();
+	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier) {
+		try {
+			_rows = rowsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Columns[] _columns;

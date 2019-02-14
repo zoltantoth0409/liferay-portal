@@ -14,8 +14,9 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -86,29 +87,55 @@ public class Category {
 	}
 
 	public void setAvailableLanguages(
-		Supplier<String[]> availableLanguagesSupplier) {
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-		_availableLanguages = availableLanguagesSupplier.get();
+		try {
+			_availableLanguages = availableLanguagesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCategory(Category category) {
 		_category = category;
 	}
 
-	public void setCategory(Supplier<Category> categorySupplier) {
-		_category = categorySupplier.get();
+	public void setCategory(
+		UnsafeSupplier<Category, Throwable> categoryUnsafeSupplier) {
+
+		try {
+			_category = categoryUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCategoryId(Long categoryId) {
 		_categoryId = categoryId;
 	}
 
-	public void setCategoryId(Supplier<Long> categoryIdSupplier) {
-		_categoryId = categoryIdSupplier.get();
+	public void setCategoryId(
+		UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier) {
+
+		try {
+			_categoryId = categoryIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setCreator(Supplier<UserAccount> creatorSupplier) {
-		_creator = creatorSupplier.get();
+	public void setCreator(
+		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+
+		try {
+			_creator = creatorUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCreator(UserAccount creator) {
@@ -119,60 +146,112 @@ public class Category {
 		_creatorId = creatorId;
 	}
 
-	public void setCreatorId(Supplier<Long> creatorIdSupplier) {
-		_creatorId = creatorIdSupplier.get();
+	public void setCreatorId(
+		UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
+
+		try {
+			_creatorId = creatorIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
-		_dateModified = dateModifiedSupplier.get();
+	public void setDateModified(
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+
+		try {
+			_dateModified = dateModifiedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
-	public void setDescription(Supplier<String> descriptionSupplier) {
-		_description = descriptionSupplier.get();
+	public void setDescription(
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+
+		try {
+			_description = descriptionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setSubcategories(Category[] subcategories) {
 		_subcategories = subcategories;
 	}
 
-	public void setSubcategories(Supplier<Category[]> subcategoriesSupplier) {
-		_subcategories = subcategoriesSupplier.get();
+	public void setSubcategories(
+		UnsafeSupplier<Category[], Throwable> subcategoriesUnsafeSupplier) {
+
+		try {
+			_subcategories = subcategoriesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setVocabulary(Supplier<Vocabulary> vocabularySupplier) {
-		_vocabulary = vocabularySupplier.get();
+	public void setVocabulary(
+		UnsafeSupplier<Vocabulary, Throwable> vocabularyUnsafeSupplier) {
+
+		try {
+			_vocabulary = vocabularyUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setVocabulary(Vocabulary vocabulary) {
@@ -183,8 +262,15 @@ public class Category {
 		_vocabularyId = vocabularyId;
 	}
 
-	public void setVocabularyId(Supplier<Long> vocabularyIdSupplier) {
-		_vocabularyId = vocabularyIdSupplier.get();
+	public void setVocabularyId(
+		UnsafeSupplier<Long, Throwable> vocabularyIdUnsafeSupplier) {
+
+		try {
+			_vocabularyId = vocabularyIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String[] _availableLanguages;

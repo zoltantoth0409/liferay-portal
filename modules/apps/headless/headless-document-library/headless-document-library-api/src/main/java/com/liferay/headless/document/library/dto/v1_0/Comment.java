@@ -14,7 +14,7 @@
 
 package com.liferay.headless.document.library.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -48,32 +48,56 @@ public class Comment {
 		_comments = comments;
 	}
 
-	public void setComments(Supplier<Comment[]> commentsSupplier) {
-		_comments = commentsSupplier.get();
+	public void setComments(
+		UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier) {
+
+		try {
+			_comments = commentsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCreator(Creator creator) {
 		_creator = creator;
 	}
 
-	public void setCreator(Supplier<Creator> creatorSupplier) {
-		_creator = creatorSupplier.get();
+	public void setCreator(
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+
+		try {
+			_creator = creatorUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setText(String text) {
 		_text = text;
 	}
 
-	public void setText(Supplier<String> textSupplier) {
-		_text = textSupplier.get();
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+		try {
+			_text = textUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Comment[] _comments;

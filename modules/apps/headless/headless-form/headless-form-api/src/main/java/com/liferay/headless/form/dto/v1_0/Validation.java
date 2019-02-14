@@ -14,7 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -44,24 +44,43 @@ public class Validation {
 		_errorMessage = errorMessage;
 	}
 
-	public void setErrorMessage(Supplier<String> errorMessageSupplier) {
-		_errorMessage = errorMessageSupplier.get();
+	public void setErrorMessage(
+		UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier) {
+
+		try {
+			_errorMessage = errorMessageUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setExpression(String expression) {
 		_expression = expression;
 	}
 
-	public void setExpression(Supplier<String> expressionSupplier) {
-		_expression = expressionSupplier.get();
+	public void setExpression(
+		UnsafeSupplier<String, Throwable> expressionUnsafeSupplier) {
+
+		try {
+			_expression = expressionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _errorMessage;

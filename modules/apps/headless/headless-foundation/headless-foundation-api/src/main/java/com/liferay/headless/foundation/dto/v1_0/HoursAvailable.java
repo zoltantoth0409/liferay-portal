@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -48,32 +48,58 @@ public class HoursAvailable {
 		_closes = closes;
 	}
 
-	public void setCloses(Supplier<String> closesSupplier) {
-		_closes = closesSupplier.get();
+	public void setCloses(
+		UnsafeSupplier<String, Throwable> closesUnsafeSupplier) {
+
+		try {
+			_closes = closesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDayOfWeek(String dayOfWeek) {
 		_dayOfWeek = dayOfWeek;
 	}
 
-	public void setDayOfWeek(Supplier<String> dayOfWeekSupplier) {
-		_dayOfWeek = dayOfWeekSupplier.get();
+	public void setDayOfWeek(
+		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier) {
+
+		try {
+			_dayOfWeek = dayOfWeekUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setOpens(String opens) {
 		_opens = opens;
 	}
 
-	public void setOpens(Supplier<String> opensSupplier) {
-		_opens = opensSupplier.get();
+	public void setOpens(
+		UnsafeSupplier<String, Throwable> opensUnsafeSupplier) {
+
+		try {
+			_opens = opensUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _closes;

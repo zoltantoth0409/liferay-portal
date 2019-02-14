@@ -14,7 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -60,8 +60,15 @@ public class Values {
 		_dataType = dataType;
 	}
 
-	public void setDataType(Supplier<String> dataTypeSupplier) {
-		_dataType = dataTypeSupplier.get();
+	public void setDataType(
+		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+
+		try {
+			_dataType = dataTypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setFilterAndSortIdentifier(String filterAndSortIdentifier) {
@@ -69,49 +76,87 @@ public class Values {
 	}
 
 	public void setFilterAndSortIdentifier(
-		Supplier<String> filterAndSortIdentifierSupplier) {
+		UnsafeSupplier<String, Throwable>
+			filterAndSortIdentifierUnsafeSupplier) {
 
-		_filterAndSortIdentifier = filterAndSortIdentifierSupplier.get();
+		try {
+			_filterAndSortIdentifier =
+				filterAndSortIdentifierUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setInputControl(String inputControl) {
 		_inputControl = inputControl;
 	}
 
-	public void setInputControl(Supplier<String> inputControlSupplier) {
-		_inputControl = inputControlSupplier.get();
+	public void setInputControl(
+		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+
+		try {
+			_inputControl = inputControlUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setLabel(String label) {
 		_label = label;
 	}
 
-	public void setLabel(Supplier<String> labelSupplier) {
-		_label = labelSupplier.get();
+	public void setLabel(
+		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+
+		try {
+			_label = labelUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setValue(Object value) {
 		_value = value;
 	}
 
-	public void setValue(Supplier<Object> valueSupplier) {
-		_value = valueSupplier.get();
+	public void setValue(
+		UnsafeSupplier<Object, Throwable> valueUnsafeSupplier) {
+
+		try {
+			_value = valueUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _dataType;

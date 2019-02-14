@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -44,24 +44,41 @@ public class WebUrl {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setUrl(String url) {
 		_url = url;
 	}
 
-	public void setUrl(Supplier<String> urlSupplier) {
-		_url = urlSupplier.get();
+	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
+		try {
+			_url = urlUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setUrlType(String urlType) {
 		_urlType = urlType;
 	}
 
-	public void setUrlType(Supplier<String> urlTypeSupplier) {
-		_urlType = urlTypeSupplier.get();
+	public void setUrlType(
+		UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
+
+		try {
+			_urlType = urlTypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Long _id;

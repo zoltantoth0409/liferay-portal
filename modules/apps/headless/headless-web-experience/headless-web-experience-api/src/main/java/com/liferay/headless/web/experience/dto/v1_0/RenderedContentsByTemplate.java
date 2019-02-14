@@ -14,7 +14,7 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -44,24 +44,43 @@ public class RenderedContentsByTemplate {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setRenderedContent(String renderedContent) {
 		_renderedContent = renderedContent;
 	}
 
-	public void setRenderedContent(Supplier<String> renderedContentSupplier) {
-		_renderedContent = renderedContentSupplier.get();
+	public void setRenderedContent(
+		UnsafeSupplier<String, Throwable> renderedContentUnsafeSupplier) {
+
+		try {
+			_renderedContent = renderedContentUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTemplate(String template) {
 		_template = template;
 	}
 
-	public void setTemplate(Supplier<String> templateSupplier) {
-		_template = templateSupplier.get();
+	public void setTemplate(
+		UnsafeSupplier<String, Throwable> templateUnsafeSupplier) {
+
+		try {
+			_template = templateUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Long _id;

@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -88,100 +88,187 @@ public class ContactInformation {
 		_address = address;
 	}
 
-	public void setAddress(Supplier<PostalAddress[]> addressSupplier) {
-		_address = addressSupplier.get();
+	public void setAddress(
+		UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier) {
+
+		try {
+			_address = addressUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAddressIds(Long[] addressIds) {
 		_addressIds = addressIds;
 	}
 
-	public void setAddressIds(Supplier<Long[]> addressIdsSupplier) {
-		_addressIds = addressIdsSupplier.get();
+	public void setAddressIds(
+		UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier) {
+
+		try {
+			_addressIds = addressIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setEmail(Email[] email) {
 		_email = email;
 	}
 
-	public void setEmail(Supplier<Email[]> emailSupplier) {
-		_email = emailSupplier.get();
+	public void setEmail(
+		UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier) {
+
+		try {
+			_email = emailUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setEmailIds(Long[] emailIds) {
 		_emailIds = emailIds;
 	}
 
-	public void setEmailIds(Supplier<Long[]> emailIdsSupplier) {
-		_emailIds = emailIdsSupplier.get();
+	public void setEmailIds(
+		UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier) {
+
+		try {
+			_emailIds = emailIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setFacebook(String facebook) {
 		_facebook = facebook;
 	}
 
-	public void setFacebook(Supplier<String> facebookSupplier) {
-		_facebook = facebookSupplier.get();
+	public void setFacebook(
+		UnsafeSupplier<String, Throwable> facebookUnsafeSupplier) {
+
+		try {
+			_facebook = facebookUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setJabber(String jabber) {
 		_jabber = jabber;
 	}
 
-	public void setJabber(Supplier<String> jabberSupplier) {
-		_jabber = jabberSupplier.get();
+	public void setJabber(
+		UnsafeSupplier<String, Throwable> jabberUnsafeSupplier) {
+
+		try {
+			_jabber = jabberUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setSkype(String skype) {
 		_skype = skype;
 	}
 
-	public void setSkype(Supplier<String> skypeSupplier) {
-		_skype = skypeSupplier.get();
+	public void setSkype(
+		UnsafeSupplier<String, Throwable> skypeUnsafeSupplier) {
+
+		try {
+			_skype = skypeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setSms(String sms) {
 		_sms = sms;
 	}
 
-	public void setSms(Supplier<String> smsSupplier) {
-		_sms = smsSupplier.get();
+	public void setSms(UnsafeSupplier<String, Throwable> smsUnsafeSupplier) {
+		try {
+			_sms = smsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTelephone(Phone[] telephone) {
 		_telephone = telephone;
 	}
 
-	public void setTelephone(Supplier<Phone[]> telephoneSupplier) {
-		_telephone = telephoneSupplier.get();
+	public void setTelephone(
+		UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier) {
+
+		try {
+			_telephone = telephoneUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTelephoneIds(Long[] telephoneIds) {
 		_telephoneIds = telephoneIds;
 	}
 
-	public void setTelephoneIds(Supplier<Long[]> telephoneIdsSupplier) {
-		_telephoneIds = telephoneIdsSupplier.get();
+	public void setTelephoneIds(
+		UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier) {
+
+		try {
+			_telephoneIds = telephoneIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTwitter(String twitter) {
 		_twitter = twitter;
 	}
 
-	public void setTwitter(Supplier<String> twitterSupplier) {
-		_twitter = twitterSupplier.get();
+	public void setTwitter(
+		UnsafeSupplier<String, Throwable> twitterUnsafeSupplier) {
+
+		try {
+			_twitter = twitterUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setWebUrl(Supplier<WebUrl[]> webUrlSupplier) {
-		_webUrl = webUrlSupplier.get();
+	public void setWebUrl(
+		UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier) {
+
+		try {
+			_webUrl = webUrlUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setWebUrl(WebUrl[] webUrl) {
@@ -192,8 +279,15 @@ public class ContactInformation {
 		_webUrlIds = webUrlIds;
 	}
 
-	public void setWebUrlIds(Supplier<Long[]> webUrlIdsSupplier) {
-		_webUrlIds = webUrlIdsSupplier.get();
+	public void setWebUrlIds(
+		UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier) {
+
+		try {
+			_webUrlIds = webUrlIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private PostalAddress[] _address;

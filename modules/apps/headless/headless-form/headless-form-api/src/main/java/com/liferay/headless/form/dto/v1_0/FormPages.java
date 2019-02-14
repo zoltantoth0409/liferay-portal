@@ -14,7 +14,7 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -48,32 +48,56 @@ public class FormPages {
 		_fields = fields;
 	}
 
-	public void setFields(Supplier<Fields[]> fieldsSupplier) {
-		_fields = fieldsSupplier.get();
+	public void setFields(
+		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
+
+		try {
+			_fields = fieldsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setHeadline(String headline) {
 		_headline = headline;
 	}
 
-	public void setHeadline(Supplier<String> headlineSupplier) {
-		_headline = headlineSupplier.get();
+	public void setHeadline(
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+
+		try {
+			_headline = headlineUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setText(String text) {
 		_text = text;
 	}
 
-	public void setText(Supplier<String> textSupplier) {
-		_text = textSupplier.get();
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+		try {
+			_text = textUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private Fields[] _fields;

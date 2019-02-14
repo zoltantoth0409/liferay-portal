@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
-import java.util.function.Supplier;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
@@ -44,24 +44,41 @@ public class Email {
 		_email = email;
 	}
 
-	public void setEmail(Supplier<String> emailSupplier) {
-		_email = emailSupplier.get();
+	public void setEmail(
+		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+
+		try {
+			_email = emailUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setType(String type) {
 		_type = type;
 	}
 
-	public void setType(Supplier<String> typeSupplier) {
-		_type = typeSupplier.get();
+	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
+		try {
+			_type = typeUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String _email;

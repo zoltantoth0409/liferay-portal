@@ -14,8 +14,9 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -74,21 +75,40 @@ public class Vocabulary {
 	}
 
 	public void setAvailableLanguages(
-		Supplier<String[]> availableLanguagesSupplier) {
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-		_availableLanguages = availableLanguagesSupplier.get();
+		try {
+			_availableLanguages = availableLanguagesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContentSpace(Long contentSpace) {
 		_contentSpace = contentSpace;
 	}
 
-	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
-		_contentSpace = contentSpaceSupplier.get();
+	public void setContentSpace(
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+
+		try {
+			_contentSpace = contentSpaceUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setCreator(Supplier<UserAccount> creatorSupplier) {
-		_creator = creatorSupplier.get();
+	public void setCreator(
+		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+
+		try {
+			_creator = creatorUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCreator(UserAccount creator) {
@@ -99,40 +119,71 @@ public class Vocabulary {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
-		_dateModified = dateModifiedSupplier.get();
+	public void setDateModified(
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+
+		try {
+			_dateModified = dateModifiedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
-	public void setDescription(Supplier<String> descriptionSupplier) {
-		_description = descriptionSupplier.get();
+	public void setDescription(
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+
+		try {
+			_description = descriptionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
-	public void setName(Supplier<String> nameSupplier) {
-		_name = nameSupplier.get();
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			_name = nameUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setVocabularyCategories(Category[] vocabularyCategories) {
@@ -140,9 +191,15 @@ public class Vocabulary {
 	}
 
 	public void setVocabularyCategories(
-		Supplier<Category[]> vocabularyCategoriesSupplier) {
+		UnsafeSupplier<Category[], Throwable>
+			vocabularyCategoriesUnsafeSupplier) {
 
-		_vocabularyCategories = vocabularyCategoriesSupplier.get();
+		try {
+			_vocabularyCategories = vocabularyCategoriesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setVocabularyCategoriesIds(Long[] vocabularyCategoriesIds) {
@@ -150,9 +207,16 @@ public class Vocabulary {
 	}
 
 	public void setVocabularyCategoriesIds(
-		Supplier<Long[]> vocabularyCategoriesIdsSupplier) {
+		UnsafeSupplier<Long[], Throwable>
+			vocabularyCategoriesIdsUnsafeSupplier) {
 
-		_vocabularyCategoriesIds = vocabularyCategoriesIdsSupplier.get();
+		try {
+			_vocabularyCategoriesIds =
+				vocabularyCategoriesIdsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private String[] _availableLanguages;

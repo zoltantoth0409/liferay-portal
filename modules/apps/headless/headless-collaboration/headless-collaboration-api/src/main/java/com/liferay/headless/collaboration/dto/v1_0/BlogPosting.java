@@ -14,8 +14,9 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -118,9 +119,15 @@ public class BlogPosting {
 	}
 
 	public void setAggregateRating(
-		Supplier<AggregateRating> aggregateRatingSupplier) {
+		UnsafeSupplier<AggregateRating, Throwable>
+			aggregateRatingUnsafeSupplier) {
 
-		_aggregateRating = aggregateRatingSupplier.get();
+		try {
+			_aggregateRating = aggregateRatingUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAlternativeHeadline(String alternativeHeadline) {
@@ -128,145 +135,267 @@ public class BlogPosting {
 	}
 
 	public void setAlternativeHeadline(
-		Supplier<String> alternativeHeadlineSupplier) {
+		UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier) {
 
-		_alternativeHeadline = alternativeHeadlineSupplier.get();
+		try {
+			_alternativeHeadline = alternativeHeadlineUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setArticleBody(String articleBody) {
 		_articleBody = articleBody;
 	}
 
-	public void setArticleBody(Supplier<String> articleBodySupplier) {
-		_articleBody = articleBodySupplier.get();
+	public void setArticleBody(
+		UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier) {
+
+		try {
+			_articleBody = articleBodyUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCaption(String caption) {
 		_caption = caption;
 	}
 
-	public void setCaption(Supplier<String> captionSupplier) {
-		_caption = captionSupplier.get();
+	public void setCaption(
+		UnsafeSupplier<String, Throwable> captionUnsafeSupplier) {
+
+		try {
+			_caption = captionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCategory(Long[] category) {
 		_category = category;
 	}
 
-	public void setCategory(Supplier<Long[]> categorySupplier) {
-		_category = categorySupplier.get();
+	public void setCategory(
+		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+
+		try {
+			_category = categoryUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setComment(Comment[] comment) {
 		_comment = comment;
 	}
 
-	public void setComment(Supplier<Comment[]> commentSupplier) {
-		_comment = commentSupplier.get();
+	public void setComment(
+		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+
+		try {
+			_comment = commentUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContentSpace(Long contentSpace) {
 		_contentSpace = contentSpace;
 	}
 
-	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
-		_contentSpace = contentSpaceSupplier.get();
+	public void setContentSpace(
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+
+		try {
+			_contentSpace = contentSpaceUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCreator(Creator creator) {
 		_creator = creator;
 	}
 
-	public void setCreator(Supplier<Creator> creatorSupplier) {
-		_creator = creatorSupplier.get();
+	public void setCreator(
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+
+		try {
+			_creator = creatorUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
-		_dateModified = dateModifiedSupplier.get();
+	public void setDateModified(
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+
+		try {
+			_dateModified = dateModifiedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDatePublished(Date datePublished) {
 		_datePublished = datePublished;
 	}
 
-	public void setDatePublished(Supplier<Date> datePublishedSupplier) {
-		_datePublished = datePublishedSupplier.get();
+	public void setDatePublished(
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+
+		try {
+			_datePublished = datePublishedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
-	public void setDescription(Supplier<String> descriptionSupplier) {
-		_description = descriptionSupplier.get();
+	public void setDescription(
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+
+		try {
+			_description = descriptionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setEncodingFormat(String encodingFormat) {
 		_encodingFormat = encodingFormat;
 	}
 
-	public void setEncodingFormat(Supplier<String> encodingFormatSupplier) {
-		_encodingFormat = encodingFormatSupplier.get();
+	public void setEncodingFormat(
+		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+
+		try {
+			_encodingFormat = encodingFormatUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setFriendlyUrlPath(String friendlyUrlPath) {
 		_friendlyUrlPath = friendlyUrlPath;
 	}
 
-	public void setFriendlyUrlPath(Supplier<String> friendlyUrlPathSupplier) {
-		_friendlyUrlPath = friendlyUrlPathSupplier.get();
+	public void setFriendlyUrlPath(
+		UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier) {
+
+		try {
+			_friendlyUrlPath = friendlyUrlPathUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setHeadline(String headline) {
 		_headline = headline;
 	}
 
-	public void setHeadline(Supplier<String> headlineSupplier) {
-		_headline = headlineSupplier.get();
+	public void setHeadline(
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+
+		try {
+			_headline = headlineUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setImage(ImageObject image) {
 		_image = image;
 	}
 
-	public void setImage(Supplier<ImageObject> imageSupplier) {
-		_image = imageSupplier.get();
+	public void setImage(
+		UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier) {
+
+		try {
+			_image = imageUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setImageId(Long imageId) {
 		_imageId = imageId;
 	}
 
-	public void setImageId(Supplier<Long> imageIdSupplier) {
-		_imageId = imageIdSupplier.get();
+	public void setImageId(
+		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
+
+		try {
+			_imageId = imageIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setKeywords(String[] keywords) {
 		_keywords = keywords;
 	}
 
-	public void setKeywords(Supplier<String[]> keywordsSupplier) {
-		_keywords = keywordsSupplier.get();
+	public void setKeywords(
+		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+
+		try {
+			_keywords = keywordsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setRepository(ImageObjectRepository repository) {
@@ -274,17 +403,30 @@ public class BlogPosting {
 	}
 
 	public void setRepository(
-		Supplier<ImageObjectRepository> repositorySupplier) {
+		UnsafeSupplier<ImageObjectRepository, Throwable>
+			repositoryUnsafeSupplier) {
 
-		_repository = repositorySupplier.get();
+		try {
+			_repository = repositoryUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setRepositoryId(Long repositoryId) {
 		_repositoryId = repositoryId;
 	}
 
-	public void setRepositoryId(Supplier<Long> repositoryIdSupplier) {
-		_repositoryId = repositoryIdSupplier.get();
+	public void setRepositoryId(
+		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+
+		try {
+			_repositoryId = repositoryIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	private AggregateRating _aggregateRating;

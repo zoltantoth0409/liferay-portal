@@ -14,8 +14,9 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.liferay.petra.function.UnsafeSupplier;
+
 import java.util.Date;
-import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -106,9 +107,15 @@ public class StructuredContent {
 	}
 
 	public void setAggregateRating(
-		Supplier<AggregateRating> aggregateRatingSupplier) {
+		UnsafeSupplier<AggregateRating, Throwable>
+			aggregateRatingUnsafeSupplier) {
 
-		_aggregateRating = aggregateRatingSupplier.get();
+		try {
+			_aggregateRating = aggregateRatingUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
@@ -116,33 +123,59 @@ public class StructuredContent {
 	}
 
 	public void setAvailableLanguages(
-		Supplier<String[]> availableLanguagesSupplier) {
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-		_availableLanguages = availableLanguagesSupplier.get();
+		try {
+			_availableLanguages = availableLanguagesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCategory(Long[] category) {
 		_category = category;
 	}
 
-	public void setCategory(Supplier<Long[]> categorySupplier) {
-		_category = categorySupplier.get();
+	public void setCategory(
+		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+
+		try {
+			_category = categoryUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setComment(Comment[] comment) {
 		_comment = comment;
 	}
 
-	public void setComment(Supplier<Comment[]> commentSupplier) {
-		_comment = commentSupplier.get();
+	public void setComment(
+		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+
+		try {
+			_comment = commentUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContentSpace(Long contentSpace) {
 		_contentSpace = contentSpace;
 	}
 
-	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
-		_contentSpace = contentSpaceSupplier.get();
+	public void setContentSpace(
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+
+		try {
+			_contentSpace = contentSpaceUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContentStructure(ContentStructure contentStructure) {
@@ -150,9 +183,15 @@ public class StructuredContent {
 	}
 
 	public void setContentStructure(
-		Supplier<ContentStructure> contentStructureSupplier) {
+		UnsafeSupplier<ContentStructure, Throwable>
+			contentStructureUnsafeSupplier) {
 
-		_contentStructure = contentStructureSupplier.get();
+		try {
+			_contentStructure = contentStructureUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setContentStructureId(Long contentStructureId) {
@@ -160,73 +199,132 @@ public class StructuredContent {
 	}
 
 	public void setContentStructureId(
-		Supplier<Long> contentStructureIdSupplier) {
+		UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier) {
 
-		_contentStructureId = contentStructureIdSupplier.get();
+		try {
+			_contentStructureId = contentStructureIdUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setCreator(Creator creator) {
 		_creator = creator;
 	}
 
-	public void setCreator(Supplier<Creator> creatorSupplier) {
-		_creator = creatorSupplier.get();
+	public void setCreator(
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+
+		try {
+			_creator = creatorUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
-		_dateCreated = dateCreatedSupplier.get();
+	public void setDateCreated(
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+
+		try {
+			_dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
-	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
-		_dateModified = dateModifiedSupplier.get();
+	public void setDateModified(
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+
+		try {
+			_dateModified = dateModifiedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDatePublished(Date datePublished) {
 		_datePublished = datePublished;
 	}
 
-	public void setDatePublished(Supplier<Date> datePublishedSupplier) {
-		_datePublished = datePublishedSupplier.get();
+	public void setDatePublished(
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+
+		try {
+			_datePublished = datePublishedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
-	public void setDescription(Supplier<String> descriptionSupplier) {
-		_description = descriptionSupplier.get();
+	public void setDescription(
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+
+		try {
+			_description = descriptionUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
-	public void setId(Supplier<Long> idSupplier) {
-		_id = idSupplier.get();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			_id = idUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setKeywords(String[] keywords) {
 		_keywords = keywords;
 	}
 
-	public void setKeywords(Supplier<String[]> keywordsSupplier) {
-		_keywords = keywordsSupplier.get();
+	public void setKeywords(
+		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+
+		try {
+			_keywords = keywordsUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setLastReviewed(Date lastReviewed) {
 		_lastReviewed = lastReviewed;
 	}
 
-	public void setLastReviewed(Supplier<Date> lastReviewedSupplier) {
-		_lastReviewed = lastReviewedSupplier.get();
+	public void setLastReviewed(
+		UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier) {
+
+		try {
+			_lastReviewed = lastReviewedUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setRenderedContentsByTemplate(
@@ -236,22 +334,42 @@ public class StructuredContent {
 	}
 
 	public void setRenderedContentsByTemplate(
-		Supplier<RenderedContentsByTemplate[]>
-			renderedContentsByTemplateSupplier) {
+		UnsafeSupplier<RenderedContentsByTemplate[], Throwable>
+			renderedContentsByTemplateUnsafeSupplier) {
 
-		_renderedContentsByTemplate = renderedContentsByTemplateSupplier.get();
+		try {
+			_renderedContentsByTemplate =
+				renderedContentsByTemplateUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setTitle(String title) {
 		_title = title;
 	}
 
-	public void setTitle(Supplier<String> titleSupplier) {
-		_title = titleSupplier.get();
+	public void setTitle(
+		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+
+		try {
+			_title = titleUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
-	public void setValues(Supplier<Values[]> valuesSupplier) {
-		_values = valuesSupplier.get();
+	public void setValues(
+		UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier) {
+
+		try {
+			_values = valuesUnsafeSupplier.get();
+	}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+	}
 	}
 
 	public void setValues(Values[] values) {
