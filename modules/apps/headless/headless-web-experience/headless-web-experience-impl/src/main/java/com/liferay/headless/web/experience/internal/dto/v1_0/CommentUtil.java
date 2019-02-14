@@ -31,8 +31,8 @@ public class CommentUtil {
 
 		return new Comment() {
 			{
-				setId(comment.getCommentId());
 				setCreator(CreatorUtil.toCreator(comment.getUser()));
+				setId(comment.getCommentId());
 				setText(comment.getBody());
 			}
 		};
