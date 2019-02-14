@@ -97,7 +97,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		}
 	}
 
-	private <T, S> T _getAdaptiveMediaValue(
+	private <T, S> T _getValue(
 		AdaptiveMedia<S> adaptiveMedia, AMAttribute<S, T> amAttribute) {
 
 		Optional<T> optional = adaptiveMedia.getValueOptional(amAttribute);
@@ -128,19 +128,19 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 			{
 				setContentUrl(String.valueOf(adaptiveMedia.getURI()));
 				setHeight(
-					_getAdaptiveMediaValue(
+					_getValue(
 						adaptiveMedia,
 						AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT));
 				setResolutionName(
-					_getAdaptiveMediaValue(
+					_getValue(
 						adaptiveMedia,
 						AMAttribute.getConfigurationUuidAMAttribute()));
 				setSizeInBytes(
-					_getAdaptiveMediaValue(
+					_getValue(
 						adaptiveMedia,
 						AMAttribute.getContentLengthAMAttribute()));
 				setWidth(
-					_getAdaptiveMediaValue(
+					_getValue(
 						adaptiveMedia,
 						AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
 			}
