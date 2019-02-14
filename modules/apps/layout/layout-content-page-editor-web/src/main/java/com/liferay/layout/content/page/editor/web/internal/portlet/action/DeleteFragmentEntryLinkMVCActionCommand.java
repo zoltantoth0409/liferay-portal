@@ -64,6 +64,9 @@ public class DeleteFragmentEntryLinkMVCActionCommand
 			ActionRequest actionRequest)
 		throws PortalException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long fragmentEntryLinkId = ParamUtil.getLong(
 			actionRequest, "fragmentEntryLinkId");
 
@@ -74,9 +77,6 @@ public class DeleteFragmentEntryLinkMVCActionCommand
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String data = ParamUtil.getString(actionRequest, "data");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		_layoutPageTemplateStructureLocalService.
 			updateLayoutPageTemplateStructure(
