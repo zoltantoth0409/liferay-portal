@@ -21,7 +21,6 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleService;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -50,8 +49,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 		com.liferay.portal.kernel.comment.Comment comment =
 			_commentManager.fetchComment(commentId);
 
-		_checkViewPermission(
-			comment, PermissionThreadLocal.getPermissionChecker());
+		_checkViewPermission(comment);
 
 		return CommentUtil.toComment(comment);
 	}
@@ -61,9 +59,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 			Long commentId, Pagination pagination)
 		throws Exception {
 
-		_checkViewPermission(
-			_commentManager.fetchComment(commentId),
-			PermissionThreadLocal.getPermissionChecker());
+		_checkViewPermission(_commentManager.fetchComment(commentId));
 
 		return Page.of(
 			transform(
@@ -93,7 +89,6 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 		}
 
 		_checkViewPermission(
-			PermissionThreadLocal.getPermissionChecker(),
 			journalArticle.getGroupId(), journalArticle.getModelClassName(),
 			structuredContentId);
 
@@ -108,13 +103,15 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 	}
 
 	private void _checkViewPermission(
-			com.liferay.portal.kernel.comment.Comment comment,
-			PermissionChecker permissionChecker)
-		throws PortalException {
+			com.liferay.portal.kernel.comment.Comment comment)
+		throws Exception {
 
 		if (comment == null) {
 			throw new NotFoundException();
 		}
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		DiscussionPermission discussionPermission =
 			_commentManager.getDiscussionPermission(permissionChecker);
@@ -125,9 +122,11 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 	}
 
 	private void _checkViewPermission(
-			PermissionChecker permissionChecker, long groupId, String className,
-			long classPK)
-		throws PortalException {
+			long groupId, String className, long classPK)
+		throws Exception {
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		DiscussionPermission discussionPermission =
 			_commentManager.getDiscussionPermission(permissionChecker);
