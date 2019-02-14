@@ -44,7 +44,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.shopping.service.impl.ShoppingCategoryServiceImpl
- * @see com.liferay.shopping.service.ShoppingCategoryServiceUtil
  * @generated
  */
 public abstract class ShoppingCategoryServiceBaseImpl extends BaseServiceImpl
@@ -52,7 +51,7 @@ public abstract class ShoppingCategoryServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.shopping.service.ShoppingCategoryServiceUtil} to access the shopping category remote service.
+	 * Never modify or reference this class directly. Use <code>ShoppingCategoryService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.shopping.service.ShoppingCategoryServiceUtil</code>.
 	 */
 
 	/**

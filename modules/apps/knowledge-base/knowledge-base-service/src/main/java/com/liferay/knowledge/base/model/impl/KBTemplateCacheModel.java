@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing KBTemplate in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see KBTemplate
  * @generated
  */
 @ProviderType

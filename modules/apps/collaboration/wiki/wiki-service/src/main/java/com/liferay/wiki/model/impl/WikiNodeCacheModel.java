@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing WikiNode in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see WikiNode
  * @generated
  */
 @ProviderType

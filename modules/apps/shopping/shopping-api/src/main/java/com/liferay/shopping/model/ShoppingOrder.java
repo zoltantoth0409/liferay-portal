@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingOrderModel
- * @see com.liferay.shopping.model.impl.ShoppingOrderImpl
- * @see com.liferay.shopping.model.impl.ShoppingOrderModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingOrderImpl")
@@ -35,7 +33,7 @@ public interface ShoppingOrder extends ShoppingOrderModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.shopping.model.impl.ShoppingOrderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingOrderImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<ShoppingOrder, Long> ORDER_ID_ACCESSOR = new Accessor<ShoppingOrder, Long>() {
 			@Override

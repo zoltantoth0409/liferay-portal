@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing RepositoryEntry in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see RepositoryEntry
  * @generated
  */
 @ProviderType

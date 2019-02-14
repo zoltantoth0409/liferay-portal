@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see MeetupsEntryModel
- * @see com.liferay.social.networking.model.impl.MeetupsEntryImpl
- * @see com.liferay.social.networking.model.impl.MeetupsEntryModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.social.networking.model.impl.MeetupsEntryImpl")
@@ -35,7 +33,7 @@ public interface MeetupsEntry extends MeetupsEntryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.social.networking.model.impl.MeetupsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.social.networking.model.impl.MeetupsEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<MeetupsEntry, Long> MEETUPS_ENTRY_ID_ACCESSOR = new Accessor<MeetupsEntry, Long>() {
 			@Override

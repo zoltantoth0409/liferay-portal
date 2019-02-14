@@ -41,8 +41,6 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  * @see TrashEntryServiceUtil
- * @see com.liferay.portlet.trash.service.base.TrashEntryServiceBaseImpl
- * @see com.liferay.portlet.trash.service.impl.TrashEntryServiceImpl
  * @generated
  */
 @AccessControlled
@@ -54,7 +52,7 @@ public interface TrashEntryService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link TrashEntryServiceUtil} to access the trash entry remote service. Add custom service methods to {@link com.liferay.portlet.trash.service.impl.TrashEntryServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link TrashEntryServiceUtil} to access the trash entry remote service. Add custom service methods to <code>com.liferay.portlet.trash.service.impl.TrashEntryServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
 	/**

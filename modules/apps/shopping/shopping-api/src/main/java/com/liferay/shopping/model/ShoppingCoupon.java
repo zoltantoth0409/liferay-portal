@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingCouponModel
- * @see com.liferay.shopping.model.impl.ShoppingCouponImpl
- * @see com.liferay.shopping.model.impl.ShoppingCouponModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCouponImpl")
@@ -35,7 +33,7 @@ public interface ShoppingCoupon extends ShoppingCouponModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.shopping.model.impl.ShoppingCouponImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingCouponImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<ShoppingCoupon, Long> COUPON_ID_ACCESSOR = new Accessor<ShoppingCoupon, Long>() {
 			@Override

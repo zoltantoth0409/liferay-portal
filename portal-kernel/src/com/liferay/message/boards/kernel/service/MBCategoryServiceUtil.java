@@ -21,16 +21,14 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * Provides the remote service utility for MBCategory. This utility wraps
- * {@link com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl} and is the
- * primary access point for service operations in application layer code running
- * on a remote server. Methods of this service are expected to have security
- * checks based on the propagated JAAS credentials because this service can be
+ * <code>com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl</code> and is an
+ * access point for service operations in application layer code running on a
+ * remote server. Methods of this service are expected to have security checks
+ * based on the propagated JAAS credentials because this service can be
  * accessed remotely.
  *
  * @author Brian Wing Shun Chan
  * @see MBCategoryService
- * @see com.liferay.portlet.messageboards.service.base.MBCategoryServiceBaseImpl
- * @see com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl
  * @generated
  */
 @ProviderType
@@ -38,7 +36,7 @@ public class MBCategoryServiceUtil {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 * Never modify this class directly. Add custom service methods to <code>com.liferay.portlet.messageboards.service.impl.MBCategoryServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.message.boards.kernel.model.MBCategory addCategory(
 		long userId, long parentCategoryId, String name, String description,

@@ -63,7 +63,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.portlet.messageboards.service.impl.MBThreadServiceImpl
- * @see com.liferay.message.boards.kernel.service.MBThreadServiceUtil
  * @generated
  */
 public abstract class MBThreadServiceBaseImpl extends BaseServiceImpl
@@ -71,7 +70,7 @@ public abstract class MBThreadServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.message.boards.kernel.service.MBThreadServiceUtil} to access the message boards thread remote service.
+	 * Never modify or reference this class directly. Use <code>MBThreadService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.message.boards.kernel.service.MBThreadServiceUtil</code>.
 	 */
 
 	/**

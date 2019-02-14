@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see MeetupsRegistrationModel
- * @see com.liferay.social.networking.model.impl.MeetupsRegistrationImpl
- * @see com.liferay.social.networking.model.impl.MeetupsRegistrationModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.social.networking.model.impl.MeetupsRegistrationImpl")
@@ -36,7 +34,7 @@ public interface MeetupsRegistration extends MeetupsRegistrationModel,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.social.networking.model.impl.MeetupsRegistrationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.social.networking.model.impl.MeetupsRegistrationImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<MeetupsRegistration, Long> MEETUPS_REGISTRATION_ID_ACCESSOR =
 		new Accessor<MeetupsRegistration, Long>() {

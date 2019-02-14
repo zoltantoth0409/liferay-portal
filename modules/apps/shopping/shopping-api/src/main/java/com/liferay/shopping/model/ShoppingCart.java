@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingCartModel
- * @see com.liferay.shopping.model.impl.ShoppingCartImpl
- * @see com.liferay.shopping.model.impl.ShoppingCartModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCartImpl")
@@ -35,7 +33,7 @@ public interface ShoppingCart extends ShoppingCartModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.shopping.model.impl.ShoppingCartImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingCartImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<ShoppingCart, Long> CART_ID_ACCESSOR = new Accessor<ShoppingCart, Long>() {
 			@Override

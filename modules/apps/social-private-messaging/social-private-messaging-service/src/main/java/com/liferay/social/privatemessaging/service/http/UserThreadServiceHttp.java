@@ -27,10 +27,11 @@ import com.liferay.social.privatemessaging.service.UserThreadServiceUtil;
 
 /**
  * Provides the HTTP utility for the
- * {@link UserThreadServiceUtil} service utility. The
+ * <code>UserThreadServiceUtil</code> service
+ * utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it requires an additional
- * {@link HttpPrincipal} parameter.
+ * <code>HttpPrincipal</code> parameter.
  *
  * <p>
  * The benefits of using the HTTP utility is that it is fast and allows for
@@ -49,8 +50,6 @@ import com.liferay.social.privatemessaging.service.UserThreadServiceUtil;
  *
  * @author Brian Wing Shun Chan
  * @see UserThreadServiceSoap
- * @see HttpPrincipal
- * @see UserThreadServiceUtil
  * @generated
  */
 @ProviderType

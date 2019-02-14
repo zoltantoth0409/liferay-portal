@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see ResourceBlockPermissionModel
- * @see com.liferay.portal.model.impl.ResourceBlockPermissionImpl
- * @see com.liferay.portal.model.impl.ResourceBlockPermissionModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.portal.model.impl.ResourceBlockPermissionImpl")
@@ -35,7 +33,7 @@ public interface ResourceBlockPermission extends ResourceBlockPermissionModel,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.portal.model.impl.ResourceBlockPermissionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.portal.model.impl.ResourceBlockPermissionImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<ResourceBlockPermission, Long> RESOURCE_BLOCK_PERMISSION_ID_ACCESSOR =
 		new Accessor<ResourceBlockPermission, Long>() {

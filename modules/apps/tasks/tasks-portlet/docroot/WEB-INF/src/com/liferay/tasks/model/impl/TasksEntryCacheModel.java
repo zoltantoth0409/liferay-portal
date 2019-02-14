@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing TasksEntry in entity cache.
  *
  * @author Ryan Park
- * @see TasksEntry
  * @generated
  */
 @ProviderType

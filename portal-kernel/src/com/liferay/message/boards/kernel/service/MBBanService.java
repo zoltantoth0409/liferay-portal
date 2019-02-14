@@ -34,8 +34,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
  *
  * @author Brian Wing Shun Chan
  * @see MBBanServiceUtil
- * @see com.liferay.portlet.messageboards.service.base.MBBanServiceBaseImpl
- * @see com.liferay.portlet.messageboards.service.impl.MBBanServiceImpl
  * @generated
  */
 @AccessControlled
@@ -47,7 +45,7 @@ public interface MBBanService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link MBBanServiceUtil} to access the message boards ban remote service. Add custom service methods to {@link com.liferay.portlet.messageboards.service.impl.MBBanServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link MBBanServiceUtil} to access the message boards ban remote service. Add custom service methods to <code>com.liferay.portlet.messageboards.service.impl.MBBanServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public MBBan addBan(long banUserId, ServiceContext serviceContext)
 		throws PortalException;

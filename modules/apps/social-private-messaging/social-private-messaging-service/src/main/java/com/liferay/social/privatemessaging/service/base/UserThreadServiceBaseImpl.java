@@ -48,7 +48,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.social.privatemessaging.service.impl.UserThreadServiceImpl
- * @see com.liferay.social.privatemessaging.service.UserThreadServiceUtil
  * @generated
  */
 public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
@@ -56,7 +55,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.social.privatemessaging.service.UserThreadServiceUtil} to access the user thread remote service.
+	 * Never modify or reference this class directly. Use <code>UserThreadService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.social.privatemessaging.service.UserThreadServiceUtil</code>.
 	 */
 
 	/**

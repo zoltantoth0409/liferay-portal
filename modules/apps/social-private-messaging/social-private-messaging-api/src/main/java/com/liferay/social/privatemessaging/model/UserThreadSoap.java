@@ -26,7 +26,6 @@ import java.util.List;
  * This class is used by SOAP remote services, specifically {@link com.liferay.social.privatemessaging.service.http.UserThreadServiceSoap}.
  *
  * @author Brian Wing Shun Chan
- * @see com.liferay.social.privatemessaging.service.http.UserThreadServiceSoap
  * @generated
  */
 @ProviderType

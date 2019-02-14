@@ -36,8 +36,6 @@ import com.liferay.shopping.model.ShoppingOrder;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingOrderServiceUtil
- * @see com.liferay.shopping.service.base.ShoppingOrderServiceBaseImpl
- * @see com.liferay.shopping.service.impl.ShoppingOrderServiceImpl
  * @generated
  */
 @AccessControlled
@@ -51,7 +49,7 @@ public interface ShoppingOrderService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link ShoppingOrderServiceUtil} to access the shopping order remote service. Add custom service methods to {@link com.liferay.shopping.service.impl.ShoppingOrderServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link ShoppingOrderServiceUtil} to access the shopping order remote service. Add custom service methods to <code>com.liferay.shopping.service.impl.ShoppingOrderServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public void completeOrder(long groupId, String number, String ppTxnId,
 		String ppPaymentStatus, double ppPaymentGross, String ppReceiverEmail,

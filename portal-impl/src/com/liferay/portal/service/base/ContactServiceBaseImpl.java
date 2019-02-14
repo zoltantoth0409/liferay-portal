@@ -48,7 +48,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.portal.service.impl.ContactServiceImpl
- * @see com.liferay.portal.kernel.service.ContactServiceUtil
  * @generated
  */
 public abstract class ContactServiceBaseImpl extends BaseServiceImpl
@@ -56,7 +55,7 @@ public abstract class ContactServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.portal.kernel.service.ContactServiceUtil} to access the contact remote service.
+	 * Never modify or reference this class directly. Use <code>ContactService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.portal.kernel.service.ContactServiceUtil</code>.
 	 */
 
 	/**

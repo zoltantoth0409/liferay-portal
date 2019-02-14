@@ -31,7 +31,6 @@ import java.io.ObjectOutput;
  * The cache model class for representing UserIdMapper in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see UserIdMapper
  * @generated
  */
 @ProviderType

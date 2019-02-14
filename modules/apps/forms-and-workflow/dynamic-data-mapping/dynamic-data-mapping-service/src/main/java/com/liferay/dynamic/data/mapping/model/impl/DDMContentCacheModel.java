@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing DDMContent in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see DDMContent
  * @generated
  */
 @ProviderType

@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing ShoppingCart in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see ShoppingCart
  * @generated
  */
 @ProviderType

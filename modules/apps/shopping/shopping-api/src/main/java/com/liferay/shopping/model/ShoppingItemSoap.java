@@ -26,7 +26,6 @@ import java.util.List;
  * This class is used by SOAP remote services, specifically {@link com.liferay.shopping.service.http.ShoppingItemServiceSoap}.
  *
  * @author Brian Wing Shun Chan
- * @see com.liferay.shopping.service.http.ShoppingItemServiceSoap
  * @generated
  */
 @ProviderType

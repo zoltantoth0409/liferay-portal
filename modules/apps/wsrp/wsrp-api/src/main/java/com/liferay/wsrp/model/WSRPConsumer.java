@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerModel
- * @see com.liferay.wsrp.model.impl.WSRPConsumerImpl
- * @see com.liferay.wsrp.model.impl.WSRPConsumerModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.wsrp.model.impl.WSRPConsumerImpl")
@@ -35,7 +33,7 @@ public interface WSRPConsumer extends WSRPConsumerModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPConsumerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.wsrp.model.impl.WSRPConsumerImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<WSRPConsumer, Long> WSRP_CONSUMER_ID_ACCESSOR = new Accessor<WSRPConsumer, Long>() {
 			@Override

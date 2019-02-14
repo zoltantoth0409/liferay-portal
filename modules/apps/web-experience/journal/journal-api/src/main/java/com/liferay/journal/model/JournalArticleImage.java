@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see JournalArticleImageModel
- * @see com.liferay.journal.model.impl.JournalArticleImageImpl
- * @see com.liferay.journal.model.impl.JournalArticleImageModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.journal.model.impl.JournalArticleImageImpl")
@@ -36,7 +34,7 @@ public interface JournalArticleImage extends JournalArticleImageModel,
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.journal.model.impl.JournalArticleImageImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.journal.model.impl.JournalArticleImageImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<JournalArticleImage, Long> ARTICLE_IMAGE_ID_ACCESSOR =
 		new Accessor<JournalArticleImage, Long>() {

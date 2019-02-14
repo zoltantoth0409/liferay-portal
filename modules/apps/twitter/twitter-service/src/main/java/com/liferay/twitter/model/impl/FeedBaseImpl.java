@@ -36,7 +36,7 @@ public abstract class FeedBaseImpl extends FeedModelImpl implements Feed {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a feed model instance should use the {@link Feed} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a feed model instance should use the <code>Feed</code> interface instead.
 	 */
 	@Override
 	public void persist() {

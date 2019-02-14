@@ -47,7 +47,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.shopping.service.impl.ShoppingItemServiceImpl
- * @see com.liferay.shopping.service.ShoppingItemServiceUtil
  * @generated
  */
 public abstract class ShoppingItemServiceBaseImpl extends BaseServiceImpl
@@ -55,7 +54,7 @@ public abstract class ShoppingItemServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.shopping.service.ShoppingItemServiceUtil} to access the shopping item remote service.
+	 * Never modify or reference this class directly. Use <code>ShoppingItemService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.shopping.service.ShoppingItemServiceUtil</code>.
 	 */
 
 	/**

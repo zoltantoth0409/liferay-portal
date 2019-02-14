@@ -32,7 +32,6 @@ import java.util.Date;
  * The cache model class for representing KaleoNode in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see KaleoNode
  * @generated
  */
 @ProviderType

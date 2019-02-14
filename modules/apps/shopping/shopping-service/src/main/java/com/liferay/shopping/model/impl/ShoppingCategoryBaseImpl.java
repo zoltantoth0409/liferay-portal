@@ -37,7 +37,7 @@ public abstract class ShoppingCategoryBaseImpl extends ShoppingCategoryModelImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a shopping category model instance should use the {@link ShoppingCategory} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a shopping category model instance should use the <code>ShoppingCategory</code> interface instead.
 	 */
 	@Override
 	public void persist() {

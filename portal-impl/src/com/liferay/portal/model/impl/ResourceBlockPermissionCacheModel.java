@@ -31,7 +31,6 @@ import java.io.ObjectOutput;
  * The cache model class for representing ResourceBlockPermission in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see ResourceBlockPermission
  * @generated
  */
 @ProviderType

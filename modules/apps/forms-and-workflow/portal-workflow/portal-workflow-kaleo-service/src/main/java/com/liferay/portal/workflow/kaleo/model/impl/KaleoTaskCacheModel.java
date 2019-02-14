@@ -32,7 +32,6 @@ import java.util.Date;
  * The cache model class for representing KaleoTask in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see KaleoTask
  * @generated
  */
 @ProviderType

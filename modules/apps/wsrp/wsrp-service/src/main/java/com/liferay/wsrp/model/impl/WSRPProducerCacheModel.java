@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing WSRPProducer in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see WSRPProducer
  * @generated
  */
 @ProviderType

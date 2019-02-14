@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see MBMessageModel
- * @see com.liferay.portlet.messageboards.model.impl.MBMessageImpl
- * @see com.liferay.portlet.messageboards.model.impl.MBMessageModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.portlet.messageboards.model.impl.MBMessageImpl")
@@ -35,7 +33,7 @@ public interface MBMessage extends MBMessageModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.portlet.messageboards.model.impl.MBMessageImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.portlet.messageboards.model.impl.MBMessageImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<MBMessage, Long> MESSAGE_ID_ACCESSOR = new Accessor<MBMessage, Long>() {
 			@Override

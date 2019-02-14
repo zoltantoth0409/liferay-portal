@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing CalendarResource in entity cache.
  *
  * @author Eduardo Lundgren
- * @see CalendarResource
  * @generated
  */
 @ProviderType

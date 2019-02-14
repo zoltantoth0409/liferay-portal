@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see WallEntryModel
- * @see com.liferay.social.networking.model.impl.WallEntryImpl
- * @see com.liferay.social.networking.model.impl.WallEntryModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.social.networking.model.impl.WallEntryImpl")
@@ -35,7 +33,7 @@ public interface WallEntry extends WallEntryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.social.networking.model.impl.WallEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.social.networking.model.impl.WallEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<WallEntry, Long> WALL_ENTRY_ID_ACCESSOR = new Accessor<WallEntry, Long>() {
 			@Override

@@ -37,7 +37,7 @@ public abstract class WSRPConsumerBaseImpl extends WSRPConsumerModelImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a wsrp consumer model instance should use the {@link WSRPConsumer} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a wsrp consumer model instance should use the <code>WSRPConsumer</code> interface instead.
 	 */
 	@Override
 	public void persist() {

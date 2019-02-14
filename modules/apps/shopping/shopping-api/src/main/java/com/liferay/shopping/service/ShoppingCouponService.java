@@ -38,8 +38,6 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingCouponServiceUtil
- * @see com.liferay.shopping.service.base.ShoppingCouponServiceBaseImpl
- * @see com.liferay.shopping.service.impl.ShoppingCouponServiceImpl
  * @generated
  */
 @AccessControlled
@@ -53,7 +51,7 @@ public interface ShoppingCouponService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link ShoppingCouponServiceUtil} to access the shopping coupon remote service. Add custom service methods to {@link com.liferay.shopping.service.impl.ShoppingCouponServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link ShoppingCouponServiceUtil} to access the shopping coupon remote service. Add custom service methods to <code>com.liferay.shopping.service.impl.ShoppingCouponServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public ShoppingCoupon addCoupon(String code, boolean autoCode, String name,
 		String description, int startDateMonth, int startDateDay,

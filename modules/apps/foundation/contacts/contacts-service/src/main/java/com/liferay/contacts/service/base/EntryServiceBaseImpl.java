@@ -43,7 +43,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.contacts.service.impl.EntryServiceImpl
- * @see com.liferay.contacts.service.EntryServiceUtil
  * @generated
  */
 public abstract class EntryServiceBaseImpl extends BaseServiceImpl
@@ -51,7 +50,7 @@ public abstract class EntryServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.contacts.service.EntryServiceUtil} to access the entry remote service.
+	 * Never modify or reference this class directly. Use <code>EntryService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.contacts.service.EntryServiceUtil</code>.
 	 */
 
 	/**

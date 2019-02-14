@@ -37,7 +37,7 @@ public abstract class ShoppingOrderItemBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a shopping order item model instance should use the {@link ShoppingOrderItem} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a shopping order item model instance should use the <code>ShoppingOrderItem</code> interface instead.
 	 */
 	@Override
 	public void persist() {

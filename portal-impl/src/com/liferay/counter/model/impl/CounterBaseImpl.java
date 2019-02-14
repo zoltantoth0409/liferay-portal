@@ -37,7 +37,7 @@ public abstract class CounterBaseImpl extends CounterModelImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. All methods that expect a counter model instance should use the {@link Counter} interface instead.
+	 * Never modify or reference this class directly. All methods that expect a counter model instance should use the <code>Counter</code> interface instead.
 	 */
 	@Override
 	public void persist() {

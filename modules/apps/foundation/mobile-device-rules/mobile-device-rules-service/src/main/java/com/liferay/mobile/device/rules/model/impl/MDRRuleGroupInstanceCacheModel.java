@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing MDRRuleGroupInstance in entity cache.
  *
  * @author Edward C. Han
- * @see MDRRuleGroupInstance
  * @generated
  */
 @ProviderType

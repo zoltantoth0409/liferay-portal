@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing Ticket in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see Ticket
  * @generated
  */
 @ProviderType

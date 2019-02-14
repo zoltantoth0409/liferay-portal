@@ -72,7 +72,6 @@ import javax.sql.DataSource;
  *
  * @author Brian Wing Shun Chan
  * @see com.liferay.portlet.messageboards.service.impl.MBMessageServiceImpl
- * @see com.liferay.message.boards.kernel.service.MBMessageServiceUtil
  * @generated
  */
 public abstract class MBMessageServiceBaseImpl extends BaseServiceImpl
@@ -80,7 +79,7 @@ public abstract class MBMessageServiceBaseImpl extends BaseServiceImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Always use {@link com.liferay.message.boards.kernel.service.MBMessageServiceUtil} to access the message-boards message remote service.
+	 * Never modify or reference this class directly. Use <code>MBMessageService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.message.boards.kernel.service.MBMessageServiceUtil</code>.
 	 */
 
 	/**

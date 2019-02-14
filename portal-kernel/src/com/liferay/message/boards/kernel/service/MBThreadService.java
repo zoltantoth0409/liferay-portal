@@ -40,8 +40,6 @@ import java.util.List;
  *
  * @author Brian Wing Shun Chan
  * @see MBThreadServiceUtil
- * @see com.liferay.portlet.messageboards.service.base.MBThreadServiceBaseImpl
- * @see com.liferay.portlet.messageboards.service.impl.MBThreadServiceImpl
  * @generated
  */
 @AccessControlled
@@ -53,7 +51,7 @@ public interface MBThreadService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link MBThreadServiceUtil} to access the message boards thread remote service. Add custom service methods to {@link com.liferay.portlet.messageboards.service.impl.MBThreadServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify or reference this interface directly. Always use {@link MBThreadServiceUtil} to access the message boards thread remote service. Add custom service methods to <code>com.liferay.portlet.messageboards.service.impl.MBThreadServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public void deleteThread(long threadId) throws PortalException;
 

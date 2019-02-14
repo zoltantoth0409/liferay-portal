@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing DDMDataProviderInstance in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see DDMDataProviderInstance
  * @generated
  */
 @ProviderType

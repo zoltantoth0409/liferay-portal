@@ -31,7 +31,6 @@ import java.io.ObjectOutput;
  * The cache model class for representing VirtualHost in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see VirtualHost
  * @generated
  */
 @ProviderType

@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see ShoppingCategoryModel
- * @see com.liferay.shopping.model.impl.ShoppingCategoryImpl
- * @see com.liferay.shopping.model.impl.ShoppingCategoryModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCategoryImpl")
@@ -35,7 +33,7 @@ public interface ShoppingCategory extends ShoppingCategoryModel, PersistedModel 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.shopping.model.impl.ShoppingCategoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingCategoryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<ShoppingCategory, Long> CATEGORY_ID_ACCESSOR = new Accessor<ShoppingCategory, Long>() {
 			@Override

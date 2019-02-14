@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.Accessor;
  *
  * @author Brian Wing Shun Chan
  * @see DLContentModel
- * @see com.liferay.portlet.documentlibrary.model.impl.DLContentImpl
- * @see com.liferay.portlet.documentlibrary.model.impl.DLContentModelImpl
  * @generated
  */
 @ImplementationClassName("com.liferay.portlet.documentlibrary.model.impl.DLContentImpl")
@@ -35,7 +33,7 @@ public interface DLContent extends DLContentModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.portlet.documentlibrary.model.impl.DLContentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to <code>com.liferay.portlet.documentlibrary.model.impl.DLContentImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public static final Accessor<DLContent, Long> CONTENT_ID_ACCESSOR = new Accessor<DLContent, Long>() {
 			@Override

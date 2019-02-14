@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing JournalFeed in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see JournalFeed
  * @generated
  */
 @ProviderType
