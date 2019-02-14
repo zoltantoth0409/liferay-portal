@@ -78,7 +78,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		}
 
 		try {
-			Stream<AdaptiveMedia<AMImageProcessor>> adaptiveMediaStream =
+			Stream<AdaptiveMedia<AMImageProcessor>> stream =
 				_amImageFinder.getAdaptiveMediaStream(
 					builder -> builder.forFileEntry(
 						fileEntry
@@ -86,7 +86,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 						AMImageQueryBuilder.ConfigurationStatus.ANY
 					).done());
 
-			return adaptiveMediaStream.map(
+			return stream.map(
 				this::_toAdaptedMedia
 			).toArray(
 				AdaptedMedia[]::new
