@@ -43,7 +43,6 @@
 	<classpathentry kind="lib" path="lib/development/appium.jar"/>
 	<classpathentry kind="lib" path="lib/development/bsh.jar"/>
 	<classpathentry kind="lib" path="lib/development/catalina.jar"/>
-	<classpathentry kind="lib" path="lib/development/com.google.guava.jar" />
 	<classpathentry kind="lib" path="lib/development/com.liferay.ant.beanshell.jar"/>
 	<classpathentry kind="lib" path="lib/development/com.liferay.ant.bnd.jar"/>
 	<classpathentry kind="lib" path="lib/development/com.liferay.ant.build.logger.jar"/>
@@ -57,6 +56,7 @@
 	<classpathentry kind="lib" path="lib/development/dumbster.jar"/>
 	<classpathentry kind="lib" path="lib/development/error-prone-ant.jar"/>
 	<classpathentry kind="lib" path="lib/development/gson.jar"/>
+	<classpathentry kind="lib" path="lib/development/guava.jar" />
 	<classpathentry kind="lib" path="lib/development/hamcrest-core.jar"/>
 	<classpathentry kind="lib" path="lib/development/hamcrest-library.jar"/>
 	<classpathentry kind="lib" path="lib/development/hsql.jar"/>

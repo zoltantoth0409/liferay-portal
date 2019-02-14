@@ -5,7 +5,6 @@
 /development/appium.jar
 /development/biz.aQute.bnd.jar
 /development/catalina.jar
-/development/com.google.guava.jar
 /development/com.liferay.ant.bnd.jar
 /development/com.liferay.jenkins.results.parser.jar
 /development/com.liferay.util.taglib.compat.jar
@@ -18,6 +17,7 @@
 /development/error-prone-ant.jar
 /development/freemarker.jar
 /development/gson.jar
+/development/guava.jar
 /development/hamcrest-core.jar
 /development/hamcrest-library.jar
 /development/hsql.jar
