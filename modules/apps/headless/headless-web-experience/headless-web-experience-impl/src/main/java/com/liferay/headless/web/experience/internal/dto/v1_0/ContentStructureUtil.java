@@ -115,7 +115,7 @@ public class ContentStructureUtil {
 		);
 	}
 
-	private static String _getLocalizedString(
+	private static String _getLocalizedValueString(
 		LocalizedValue localizedValue, Locale locale) {
 
 		if (localizedValue == null) {
@@ -130,13 +130,13 @@ public class ContentStructureUtil {
 			{
 				setDataType(_getFieldDataType(ddmFormField));
 				setInputControl(_getFieldInputControl(ddmFormField));
-				setLabel(_getLocalizedString(ddmFormField.getLabel(), locale));
+				setLabel(_getLocalizedValueString(ddmFormField.getLabel(), locale));
 				setLocalizable(ddmFormField.isLocalizable());
 				setMultiple(ddmFormField.isMultiple());
 				setName(ddmFormField.getName());
 				setOptions(_toOptions(ddmFormField.getDDMFormFieldOptions(), locale));
 				setPredefinedValue(
-					_getLocalizedString(ddmFormField.getPredefinedValue(), locale));
+					_getLocalizedValueString(ddmFormField.getPredefinedValue(), locale));
 				setRepeatable(ddmFormField.isRepeatable());
 				setRequired(ddmFormField.isRequired());
 				setShowLabel(ddmFormField.isShowLabel());
@@ -160,7 +160,7 @@ public class ContentStructureUtil {
 		).map(
 			entry -> new Options() {
 				{
-					setLabel(_getLocalizedString(entry.getValue(), locale));
+					setLabel(_getLocalizedValueString(entry.getValue(), locale));
 					setValue(entry.getKey());
 				}
 			}
