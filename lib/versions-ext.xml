@@ -89,18 +89,6 @@
 				</licenses>
 			</library>
 			<library>
-				<file-name>lib/development/com.google.guava.jar</file-name>
-				<version>16.0.1</version>
-				<project-name>Com Google Guava</project-name>
-				<project-url>https://opensource.google.com/projects/guava</project-url>
-				<licenses>
-					<license>
-						<license-name>Apache License 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
 				<file-name>lib/development/com.liferay.ant.bnd.jar</file-name>
 				<version>2.0.52</version>
 				<project-name>Liferay Ant BND</project-name>
@@ -187,6 +175,18 @@
 				<version>2.2.4</version>
 				<project-name>Gson</project-name>
 				<project-url>http://code.google.com/p/google-gson</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>lib/development/guava.jar</file-name>
+				<version>16.0.1</version>
+				<project-name>Com Google Guava</project-name>
+				<project-url>https://opensource.google.com/projects/guava</project-url>
 				<licenses>
 					<license>
 						<license-name>Apache License 2.0</license-name>
