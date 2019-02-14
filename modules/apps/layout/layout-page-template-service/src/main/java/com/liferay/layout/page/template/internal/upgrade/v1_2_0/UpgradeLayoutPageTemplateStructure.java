@@ -137,11 +137,11 @@ public class UpgradeLayoutPageTemplateStructure extends UpgradeProcess {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		JSONArray structureJSONArray = JSONFactoryUtil.createJSONArray();
+
 		List<FragmentEntryLink> fragmentEntryLinks =
 			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
 				groupId, classNameId, classPK);
-
-		JSONArray structureJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (int i = 0; i < fragmentEntryLinks.size(); i++) {
 			FragmentEntryLink fragmentEntryLink = fragmentEntryLinks.get(i);
