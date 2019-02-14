@@ -482,7 +482,7 @@ paths:
                   $ref: "#/components/schemas/PostalAddress"
                 type: array
           description: ""
-      tags: ["PostalAddress"]
+      tags: ["Address"]
   "/addresses/{address-id}":
     get:
       parameters:
@@ -499,7 +499,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/PostalAddress"
           description: ""
-      tags: ["PostalAddress"]
+      tags: ["Address"]
   "/categories/{category-id}":
     delete:
       parameters:
