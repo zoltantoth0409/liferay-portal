@@ -41,25 +41,14 @@ import com.liferay.journal.util.JournalHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
-import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.IndexSearcherHelperUtil;
-import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.Query;
-import com.liferay.portal.kernel.search.QueryConfig;
-import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchException;
-import com.liferay.portal.kernel.search.SearchResultPermissionFilter;
 import com.liferay.portal.kernel.search.SearchResultPermissionFilterFactory;
-import com.liferay.portal.kernel.search.SearchResultPermissionFilterSearcher;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.TermFilter;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
-import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -71,6 +60,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
@@ -123,8 +113,35 @@ public class StructuredContentResourceImpl
 				Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		Hits hits = _getHits(
-			contentSpaceId, contentStructureId, filter, pagination, sorts);
+		Hits hits = SearchUtil.getHits(
+			filter, _indexerRegistry.nullSafeGetIndexer(DDMStructure.class),
+			pagination,
+			booleanQuery -> {
+				if (contentStructureId != null) {
+					BooleanFilter booleanFilter =
+						booleanQuery.getPreBooleanFilter();
+
+					booleanFilter.add(
+						new TermFilter(
+							Field.CLASS_TYPE_ID, contentStructureId.toString()),
+						BooleanClauseOccur.MUST);
+				}
+			},
+			queryConfig -> {
+				queryConfig.setSelectedFieldNames(
+					Field.ARTICLE_ID, Field.SCOPE_GROUP_ID);
+			},
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.CLASS_NAME_ID,
+					JournalArticleConstants.CLASSNAME_ID_DEFAULT);
+				searchContext.setAttribute(
+					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+				searchContext.setAttribute("head", Boolean.TRUE);
+				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
+			},
+			_searchResultPermissionFilterFactory, sorts);
 
 		return Page.of(
 			transform(
@@ -287,34 +304,6 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	private SearchContext _createSearchContext(
-		Long groupId, Pagination pagination,
-		PermissionChecker permissionChecker, Sort[] sorts) {
-
-		SearchContext searchContext = new SearchContext();
-
-		searchContext.setAttribute(
-			Field.CLASS_NAME_ID, JournalArticleConstants.CLASSNAME_ID_DEFAULT);
-		searchContext.setAttribute(
-			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
-		searchContext.setAttribute("head", Boolean.TRUE);
-		searchContext.setCompanyId(company.getCompanyId());
-		searchContext.setEnd(pagination.getEndPosition());
-		searchContext.setGroupIds(new long[] {groupId});
-		searchContext.setSorts(sorts);
-		searchContext.setStart(pagination.getStartPosition());
-		searchContext.setUserId(permissionChecker.getUserId());
-
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		queryConfig.setHighlightEnabled(false);
-		queryConfig.setScoreEnabled(false);
-		queryConfig.setSelectedFieldNames(
-			Field.ARTICLE_ID, Field.SCOPE_GROUP_ID);
-
-		return searchContext;
-	}
-
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
 		List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
 
@@ -325,62 +314,6 @@ public class StructuredContentResourceImpl
 		DDMTemplate ddmTemplate = ddmTemplates.get(0);
 
 		return ddmTemplate.getTemplateKey();
-	}
-
-	private Hits _getHits(
-			long groupId, Long ddmStructureId, Filter filter,
-			Pagination pagination, Sort[] sorts)
-		throws Exception {
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		SearchContext searchContext = _createSearchContext(
-			groupId, pagination, permissionChecker, sorts);
-
-		Query query = _getQuery(ddmStructureId, filter, searchContext);
-
-		SearchResultPermissionFilter searchResultPermissionFilter =
-			_searchResultPermissionFilterFactory.create(
-				new SearchResultPermissionFilterSearcher() {
-
-					public Hits search(SearchContext searchContext)
-						throws SearchException {
-
-						return IndexSearcherHelperUtil.search(
-							searchContext, query);
-					}
-
-				},
-				permissionChecker);
-
-		return searchResultPermissionFilter.search(searchContext);
-	}
-
-	private Query _getQuery(
-			Long ddmStructureId, Filter filter, SearchContext searchContext)
-		throws Exception {
-
-		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
-			JournalArticle.class);
-
-		BooleanQuery booleanQuery = indexer.getFullQuery(searchContext);
-
-		if (filter != null) {
-			BooleanFilter booleanFilter = booleanQuery.getPreBooleanFilter();
-
-			booleanFilter.add(filter, BooleanClauseOccur.MUST);
-		}
-
-		if (ddmStructureId != null) {
-			BooleanFilter booleanFilter = booleanQuery.getPreBooleanFilter();
-
-			booleanFilter.add(
-				new TermFilter(Field.CLASS_TYPE_ID, ddmStructureId.toString()),
-				BooleanClauseOccur.MUST);
-		}
-
-		return booleanQuery;
 	}
 
 	private ServiceContext _getServiceContext(
