@@ -570,7 +570,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ContentStructure"
           description: ""
-      tags: ["StructuredContent"]
+      tags: ["ContentStructure"]
   "/structured-contents/{structured-content-id}":
     delete:
       parameters:
