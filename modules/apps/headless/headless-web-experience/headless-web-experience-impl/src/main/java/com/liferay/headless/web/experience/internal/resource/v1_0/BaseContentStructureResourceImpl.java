@@ -50,6 +50,13 @@ public abstract class BaseContentStructureResourceImpl
 		return Page.of(Collections.emptyList());
 	}
 
+	@Override
+	public ContentStructure getContentStructure(Long contentStructureId)
+		throws Exception {
+
+		return new ContentStructure();
+	}
+
 	protected Response buildNoContentResponse() {
 		Response.ResponseBuilder responseBuilder = Response.noContent();
 
