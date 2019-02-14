@@ -59,7 +59,21 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 	</c:if>
 </liferay-ui:error>
 
-<liferay-ui:error exception="<%= NoSuchFileEntryException.class %>" message="the-content-references-a-missing-file-entry" />
+<liferay-ui:error exception="<%= NoSuchFileEntryException.class %>">
+
+	<%
+	NoSuchFileEntryException nsfee = (NoSuchFileEntryException)errorException;
+
+	String exceptionMessage = nsfee.getMessage();
+
+	String trimmedMessage = exceptionMessage.substring(exceptionMessage.indexOf("{"));
+
+	String[] args = {trimmedMessage};
+	%>
+
+	<liferay-ui:message arguments="<%= args %>" key="unable-to-validate-referenced-file-entry-because-it-cannot-be-found-with-the-following-parameters-x" />
+</liferay-ui:error>
+
 <liferay-ui:error exception="<%= NoSuchImageException.class %>" message="please-select-an-existing-small-image" />
 
 <liferay-ui:error exception="<%= NoSuchLayoutException.class %>">
@@ -75,7 +89,35 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 			<liferay-ui:message key="please-select-an-existing-display-page" />
 		</c:when>
 		<c:otherwise>
-			<liferay-ui:message key="the-content-references-a-missing-page" />
+
+			<%
+			String trimmedMessage;
+
+			String[] messageArgs;
+			String messageKey;
+
+			if (message.contains("with url: ")) {
+				trimmedMessage = message.substring(message.indexOf(": ") + 2);
+
+				messageArgs = new String[] {trimmedMessage};
+
+				messageKey = "unable-to-validate-referenced-page-because-it-cannot-be-found-with-url-x";
+			}
+			else if (message.contains("group cannot be found: ")) {
+				trimmedMessage = message.substring(message.indexOf(": ") + 2);
+
+				messageArgs = new String[] {trimmedMessage};
+
+				messageKey = "unable-to-validate-referenced-page-because-the-page-group-with-id-x-cannot-be-found";
+			}
+			else {
+				messageArgs = new String[0];
+
+				messageKey = "the-content-references-a-missing-page";
+			}
+			%>
+
+			<liferay-ui:message arguments="<%= messageArgs %>" key="<%= messageKey %>" />
 		</c:otherwise>
 	</c:choose>
 </liferay-ui:error>
