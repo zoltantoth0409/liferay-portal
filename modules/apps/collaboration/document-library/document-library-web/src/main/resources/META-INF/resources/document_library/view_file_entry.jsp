@@ -208,7 +208,7 @@ if (portletTitleBasedNavigation) {
 								<liferay-ui:message key="description" />
 							</dt>
 							<dd>
-								<%= HtmlUtil.escape(fileEntry.getDescription()) %>
+								<%= HtmlUtil.replaceNewLine(HtmlUtil.escape(fileEntry.getDescription())) %>
 							</dd>
 						</c:if>
 					</dl>
@@ -530,7 +530,7 @@ if (portletTitleBasedNavigation) {
 					</c:if>
 
 					<span class="document-description">
-						<%= HtmlUtil.escape(fileVersion.getDescription()) %>
+						<%= HtmlUtil.replaceNewLine(HtmlUtil.escape(fileVersion.getDescription())) %>
 					</span>
 
 					<c:if test="<%= fileEntry.isSupportsSocial() %>">
