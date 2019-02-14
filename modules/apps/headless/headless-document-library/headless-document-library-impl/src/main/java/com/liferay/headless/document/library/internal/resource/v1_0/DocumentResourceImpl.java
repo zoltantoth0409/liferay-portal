@@ -29,7 +29,6 @@ import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
-import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.internal.dto.v1_0.CreatorUtil;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
@@ -39,13 +38,9 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.util.ListUtil;
 
-import java.net.URI;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
-
-import javax.ws.rs.InternalServerErrorException;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -93,12 +88,13 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		);
 	}
 
-	private <T, S> T _getValue(
-		AdaptiveMedia<S> adaptiveMedia, AMAttribute<S, T> amAttribute) {
+	private Long[] _getAssetCategoryIds(FileEntry fileEntry) {
+		List<AssetCategory> assetCategories =
+			_assetCategoryLocalService.getCategories(
+				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
 
-		Optional<T> optional = adaptiveMedia.getValueOptional(amAttribute);
-
-		return optional.orElse(null);
+		return ListUtil.toArray(
+			assetCategories, AssetCategory.CATEGORY_ID_ACCESSOR);
 	}
 
 	private String[] _getAssetTagNames(FileEntry fileEntry) {
@@ -108,13 +104,12 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		return ListUtil.toArray(assetTags, AssetTag.NAME_ACCESSOR);
 	}
 
-	private Long[] _getAssetCategoryIds(FileEntry fileEntry) {
-		List<AssetCategory> assetCategories =
-			_assetCategoryLocalService.getCategories(
-				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
+	private <T, S> T _getValue(
+		AdaptiveMedia<S> adaptiveMedia, AMAttribute<S, T> amAttribute) {
 
-		return ListUtil.toArray(
-			assetCategories, AssetCategory.CATEGORY_ID_ACCESSOR);
+		Optional<T> optional = adaptiveMedia.getValueOptional(amAttribute);
+
+		return optional.orElse(null);
 	}
 
 	private AdaptedMedia _toAdaptedMedia(
