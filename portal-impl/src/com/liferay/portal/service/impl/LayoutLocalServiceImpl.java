@@ -1246,9 +1246,21 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		return layoutPersistence.findByIconImageId(iconImageId);
 	}
 
+	/**
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 * 			   #getLayoutChildLayouts(long)}
+	 */
+	@Deprecated
 	@Override
 	public Map<Long, List<Layout>> getLayoutChildLayouts(
 		LayoutSet layoutSet, List<Layout> parentLayouts) {
+
+		return getLayoutChildLayouts(parentLayouts);
+	}
+
+	@Override
+	public Map<Long, List<Layout>> getLayoutChildLayouts(
+		List<Layout> parentLayouts) {
 
 		Map<LayoutSet, List<Layout>> layoutsMap = new HashMap<>();
 
