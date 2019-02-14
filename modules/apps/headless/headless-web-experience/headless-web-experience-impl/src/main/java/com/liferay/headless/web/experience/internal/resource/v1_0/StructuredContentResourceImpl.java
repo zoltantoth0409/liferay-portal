@@ -328,7 +328,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private Hits _getHits(
-			long groupId, Long structureId, Filter filter,
+			long groupId, Long ddmStructureId, Filter filter,
 			Pagination pagination, Sort[] sorts)
 		throws Exception {
 
@@ -338,7 +338,7 @@ public class StructuredContentResourceImpl
 		SearchContext searchContext = _createSearchContext(
 			groupId, pagination, permissionChecker, sorts);
 
-		Query query = _getQuery(structureId, filter, searchContext);
+		Query query = _getQuery(ddmStructureId, filter, searchContext);
 
 		SearchResultPermissionFilter searchResultPermissionFilter =
 			_searchResultPermissionFilterFactory.create(
@@ -358,7 +358,7 @@ public class StructuredContentResourceImpl
 	}
 
 	private Query _getQuery(
-			Long structureId, Filter filter, SearchContext searchContext)
+			Long ddmStructureId, Filter filter, SearchContext searchContext)
 		throws Exception {
 
 		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
@@ -372,11 +372,11 @@ public class StructuredContentResourceImpl
 			booleanFilter.add(filter, BooleanClauseOccur.MUST);
 		}
 
-		if (structureId != null) {
+		if (ddmStructureId != null) {
 			BooleanFilter booleanFilter = booleanQuery.getPreBooleanFilter();
 
 			booleanFilter.add(
-				new TermFilter(Field.CLASS_TYPE_ID, structureId.toString()),
+				new TermFilter(Field.CLASS_TYPE_ID, ddmStructureId.toString()),
 				BooleanClauseOccur.MUST);
 		}
 
