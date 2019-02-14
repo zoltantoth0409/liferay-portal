@@ -71,9 +71,9 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	}
 
 	private AdaptedMedia[] _getAdaptiveMedias(FileEntry fileEntry) {
-		String mimeType = fileEntry.getMimeType();
+		if (!_amImageMimeTypeProvider.isMimeTypeSupported(
+				fileEntry.getMimeType())) {
 
-		if (!_amImageMimeTypeProvider.isMimeTypeSupported(mimeType)) {
 			return new AdaptedMedia[0];
 		}
 
