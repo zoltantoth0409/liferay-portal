@@ -112,7 +112,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		return ListUtil.toArray(assetTags, AssetTag.NAME_ACCESSOR);
 	}
 
-	private Long[] _getCategoryIds(FileEntry fileEntry) {
+	private Long[] _getAssetCategoryIds(FileEntry fileEntry) {
 		List<AssetCategory> assetCategories =
 			_assetCategoryLocalService.getCategories(
 				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
@@ -155,7 +155,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 		String previewURL = _dlURLHelper.getPreviewURL(
 			fileEntry, fileVersion, null, "");
 
-		Long[] categoryIds = _getCategoryIds(fileEntry);
+		Long[] categoryIds = _getAssetCategoryIds(fileEntry);
 
 		String[] keywords = _getAssetTagNames(fileEntry);
 
