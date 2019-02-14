@@ -1681,7 +1681,7 @@ public class BaseTextExportImportContentProcessor
 					sb.append("Validation failed for a referenced file entry ");
 					sb.append("because a file entry could not be found with ");
 					sb.append("the following parameters: ");
-					sb.append(dlReferenceParameters);
+					sb.append(MapUtil.toString(dlReferenceParameters));
 
 					throw new NoSuchFileEntryException(sb.toString());
 				}
