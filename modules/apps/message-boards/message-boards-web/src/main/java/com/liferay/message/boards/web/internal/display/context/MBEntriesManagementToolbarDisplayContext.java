@@ -122,6 +122,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 
 							dropdownItem.setQuickAction(true);
 						}));
+
 				add(
 					SafeConsumer.ignore(
 						dropdownItem -> {
@@ -272,7 +273,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 	public List<LabelItem> getFilterLabelItems() {
 		return new LabelItemList() {
 			{
-				final String entriesNavigation = _getEntriesNavigation();
+				String entriesNavigation = _getEntriesNavigation();
 
 				if (entriesNavigation.equals("threads") ||
 					entriesNavigation.equals("categories")) {
@@ -497,7 +498,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 	}
 
 	private List<DropdownItem> _getFilterNavigationDropdownItems() {
-		final String entriesNavigation = _getEntriesNavigation();
+		String entriesNavigation = _getEntriesNavigation();
 
 		return new DropdownItemList() {
 			{
