@@ -100,9 +100,9 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	private <T, S> T _getAdaptiveMediaValue(
 		AdaptiveMedia<S> adaptiveMedia, AMAttribute<S, T> amAttribute) {
 
-		Optional<T> valueOptional = adaptiveMedia.getValueOptional(amAttribute);
+		Optional<T> optional = adaptiveMedia.getValueOptional(amAttribute);
 
-		return valueOptional.orElse(null);
+		return optional.orElse(null);
 	}
 
 	private String[] _getAssetTagNames(FileEntry fileEntry) {
