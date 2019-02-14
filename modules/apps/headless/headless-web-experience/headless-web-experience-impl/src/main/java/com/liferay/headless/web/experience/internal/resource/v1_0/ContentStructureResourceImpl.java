@@ -78,9 +78,9 @@ public class ContentStructureResourceImpl
 		Hits hits = _getHits(contentSpaceId, filter, pagination, sorts);
 		List<DDMStructure> ddmStructures = new ArrayList<>();
 
-		for (Document doc : hits.getDocs()) {
+		for (Document document : hits.getDocs()) {
 			DDMStructure ddmStructure = _ddmStructureService.getStructure(
-				GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK)));
+				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
 
 			ddmStructures.add(ddmStructure);
 		}
