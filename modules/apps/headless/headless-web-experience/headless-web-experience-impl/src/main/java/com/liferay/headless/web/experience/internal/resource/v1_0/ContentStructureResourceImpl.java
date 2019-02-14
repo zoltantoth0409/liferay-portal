@@ -75,8 +75,9 @@ public class ContentStructureResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		Hits hits = _getHits(contentSpaceId, filter, pagination, sorts);
 		List<DDMStructure> ddmStructures = new ArrayList<>();
+
+		Hits hits = _getHits(contentSpaceId, filter, pagination, sorts);
 
 		for (Document document : hits.getDocs()) {
 			DDMStructure ddmStructure = _ddmStructureService.getStructure(
