@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -60,6 +61,14 @@ public class Keyword {
 		_contentSpace = contentSpace;
 	}
 
+	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
+		_contentSpace = contentSpaceSupplier.get();
+	}
+
+	public void setCreator(Supplier<UserAccount> creatorSupplier) {
+		_creator = creatorSupplier.get();
+	}
+
 	public void setCreator(UserAccount creator) {
 		_creator = creator;
 	}
@@ -68,20 +77,42 @@ public class Keyword {
 		_dateCreated = dateCreated;
 	}
 
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
+	}
+
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
+	}
+
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setKeywordUsageCount(Number keywordUsageCount) {
 		_keywordUsageCount = keywordUsageCount;
 	}
 
+	public void setKeywordUsageCount(
+		Supplier<Number> keywordUsageCountSupplier) {
+
+		_keywordUsageCount = keywordUsageCountSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
 	}
 
 	private Long _contentSpace;

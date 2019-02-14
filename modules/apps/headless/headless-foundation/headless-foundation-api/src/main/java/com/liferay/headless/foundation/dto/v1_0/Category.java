@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -84,12 +85,30 @@ public class Category {
 		_availableLanguages = availableLanguages;
 	}
 
+	public void setAvailableLanguages(
+		Supplier<String[]> availableLanguagesSupplier) {
+
+		_availableLanguages = availableLanguagesSupplier.get();
+	}
+
 	public void setCategory(Category category) {
 		_category = category;
 	}
 
+	public void setCategory(Supplier<Category> categorySupplier) {
+		_category = categorySupplier.get();
+	}
+
 	public void setCategoryId(Long categoryId) {
 		_categoryId = categoryId;
+	}
+
+	public void setCategoryId(Supplier<Long> categoryIdSupplier) {
+		_categoryId = categoryIdSupplier.get();
+	}
+
+	public void setCreator(Supplier<UserAccount> creatorSupplier) {
+		_creator = creatorSupplier.get();
 	}
 
 	public void setCreator(UserAccount creator) {
@@ -100,28 +119,60 @@ public class Category {
 		_creatorId = creatorId;
 	}
 
+	public void setCreatorId(Supplier<Long> creatorIdSupplier) {
+		_creatorId = creatorIdSupplier.get();
+	}
+
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
+	}
+
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
+	}
+
 	public void setDescription(String description) {
 		_description = description;
+	}
+
+	public void setDescription(Supplier<String> descriptionSupplier) {
+		_description = descriptionSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
 	}
 
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
+	}
+
 	public void setSubcategories(Category[] subcategories) {
 		_subcategories = subcategories;
+	}
+
+	public void setSubcategories(Supplier<Category[]> subcategoriesSupplier) {
+		_subcategories = subcategoriesSupplier.get();
+	}
+
+	public void setVocabulary(Supplier<Vocabulary> vocabularySupplier) {
+		_vocabulary = vocabularySupplier.get();
 	}
 
 	public void setVocabulary(Vocabulary vocabulary) {
@@ -130,6 +181,10 @@ public class Category {
 
 	public void setVocabularyId(Long vocabularyId) {
 		_vocabularyId = vocabularyId;
+	}
+
+	public void setVocabularyId(Supplier<Long> vocabularyIdSupplier) {
+		_vocabularyId = vocabularyIdSupplier.get();
 	}
 
 	private String[] _availableLanguages;

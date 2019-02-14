@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class Options {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setLabel(String label) {
 		_label = label;
 	}
 
+	public void setLabel(Supplier<String> labelSupplier) {
+		_label = labelSupplier.get();
+	}
+
 	public void setValue(String value) {
 		_value = value;
+	}
+
+	public void setValue(Supplier<String> valueSupplier) {
+		_value = valueSupplier.get();
 	}
 
 	private Long _id;

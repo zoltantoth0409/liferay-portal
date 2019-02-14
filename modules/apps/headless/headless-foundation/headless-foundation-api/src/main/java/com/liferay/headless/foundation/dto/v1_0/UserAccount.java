@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -116,84 +117,178 @@ public class UserAccount {
 		_additionalName = additionalName;
 	}
 
+	public void setAdditionalName(Supplier<String> additionalNameSupplier) {
+		_additionalName = additionalNameSupplier.get();
+	}
+
 	public void setAlternateName(String alternateName) {
 		_alternateName = alternateName;
+	}
+
+	public void setAlternateName(Supplier<String> alternateNameSupplier) {
+		_alternateName = alternateNameSupplier.get();
 	}
 
 	public void setBirthDate(Date birthDate) {
 		_birthDate = birthDate;
 	}
 
+	public void setBirthDate(Supplier<Date> birthDateSupplier) {
+		_birthDate = birthDateSupplier.get();
+	}
+
 	public void setContactInformation(ContactInformation contactInformation) {
 		_contactInformation = contactInformation;
+	}
+
+	public void setContactInformation(
+		Supplier<ContactInformation> contactInformationSupplier) {
+
+		_contactInformation = contactInformationSupplier.get();
 	}
 
 	public void setDashboardURL(String dashboardURL) {
 		_dashboardURL = dashboardURL;
 	}
 
+	public void setDashboardURL(Supplier<String> dashboardURLSupplier) {
+		_dashboardURL = dashboardURLSupplier.get();
+	}
+
 	public void setEmail(String email) {
 		_email = email;
+	}
+
+	public void setEmail(Supplier<String> emailSupplier) {
+		_email = emailSupplier.get();
 	}
 
 	public void setFamilyName(String familyName) {
 		_familyName = familyName;
 	}
 
+	public void setFamilyName(Supplier<String> familyNameSupplier) {
+		_familyName = familyNameSupplier.get();
+	}
+
 	public void setGivenName(String givenName) {
 		_givenName = givenName;
+	}
+
+	public void setGivenName(Supplier<String> givenNameSupplier) {
+		_givenName = givenNameSupplier.get();
 	}
 
 	public void setHonorificPrefix(String honorificPrefix) {
 		_honorificPrefix = honorificPrefix;
 	}
 
+	public void setHonorificPrefix(Supplier<String> honorificPrefixSupplier) {
+		_honorificPrefix = honorificPrefixSupplier.get();
+	}
+
 	public void setHonorificSuffix(String honorificSuffix) {
 		_honorificSuffix = honorificSuffix;
+	}
+
+	public void setHonorificSuffix(Supplier<String> honorificSuffixSupplier) {
+		_honorificSuffix = honorificSuffixSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setImage(String image) {
 		_image = image;
+	}
+
+	public void setImage(Supplier<String> imageSupplier) {
+		_image = imageSupplier.get();
 	}
 
 	public void setJobTitle(String jobTitle) {
 		_jobTitle = jobTitle;
 	}
 
+	public void setJobTitle(Supplier<String> jobTitleSupplier) {
+		_jobTitle = jobTitleSupplier.get();
+	}
+
 	public void setMyOrganizations(Organization[] myOrganizations) {
 		_myOrganizations = myOrganizations;
+	}
+
+	public void setMyOrganizations(
+		Supplier<Organization[]> myOrganizationsSupplier) {
+
+		_myOrganizations = myOrganizationsSupplier.get();
 	}
 
 	public void setMyOrganizationsIds(Long[] myOrganizationsIds) {
 		_myOrganizationsIds = myOrganizationsIds;
 	}
 
+	public void setMyOrganizationsIds(
+		Supplier<Long[]> myOrganizationsIdsSupplier) {
+
+		_myOrganizationsIds = myOrganizationsIdsSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
 	}
 
 	public void setProfileURL(String profileURL) {
 		_profileURL = profileURL;
 	}
 
+	public void setProfileURL(Supplier<String> profileURLSupplier) {
+		_profileURL = profileURLSupplier.get();
+	}
+
 	public void setRoles(Role[] roles) {
 		_roles = roles;
+	}
+
+	public void setRoles(Supplier<Role[]> rolesSupplier) {
+		_roles = rolesSupplier.get();
 	}
 
 	public void setRolesIds(Long[] rolesIds) {
 		_rolesIds = rolesIds;
 	}
 
+	public void setRolesIds(Supplier<Long[]> rolesIdsSupplier) {
+		_rolesIds = rolesIdsSupplier.get();
+	}
+
 	public void setTasksAssignedToMe(String[] tasksAssignedToMe) {
 		_tasksAssignedToMe = tasksAssignedToMe;
 	}
 
+	public void setTasksAssignedToMe(
+		Supplier<String[]> tasksAssignedToMeSupplier) {
+
+		_tasksAssignedToMe = tasksAssignedToMeSupplier.get();
+	}
+
 	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles) {
 		_tasksAssignedToMyRoles = tasksAssignedToMyRoles;
+	}
+
+	public void setTasksAssignedToMyRoles(
+		Supplier<String[]> tasksAssignedToMyRolesSupplier) {
+
+		_tasksAssignedToMyRoles = tasksAssignedToMyRolesSupplier.get();
 	}
 
 	private String _additionalName;

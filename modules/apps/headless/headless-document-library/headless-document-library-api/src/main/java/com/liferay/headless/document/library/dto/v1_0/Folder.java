@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -72,40 +73,84 @@ public class Folder {
 		_dateCreated = dateCreated;
 	}
 
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
+	}
+
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
+	}
+
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
 	}
 
 	public void setDescription(String description) {
 		_description = description;
 	}
 
+	public void setDescription(Supplier<String> descriptionSupplier) {
+		_description = descriptionSupplier.get();
+	}
+
 	public void setDocuments(Document[] documents) {
 		_documents = documents;
+	}
+
+	public void setDocuments(Supplier<Document[]> documentsSupplier) {
+		_documents = documentsSupplier.get();
 	}
 
 	public void setDocumentsIds(Long[] documentsIds) {
 		_documentsIds = documentsIds;
 	}
 
+	public void setDocumentsIds(Supplier<Long[]> documentsIdsSupplier) {
+		_documentsIds = documentsIdsSupplier.get();
+	}
+
 	public void setDocumentsRepository(Folder documentsRepository) {
 		_documentsRepository = documentsRepository;
+	}
+
+	public void setDocumentsRepository(
+		Supplier<Folder> documentsRepositorySupplier) {
+
+		_documentsRepository = documentsRepositorySupplier.get();
 	}
 
 	public void setDocumentsRepositoryId(Long documentsRepositoryId) {
 		_documentsRepositoryId = documentsRepositoryId;
 	}
 
+	public void setDocumentsRepositoryId(
+		Supplier<Long> documentsRepositoryIdSupplier) {
+
+		_documentsRepositoryId = documentsRepositoryIdSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
+	}
+
 	public void setSubFolders(Folder[] subFolders) {
 		_subFolders = subFolders;
+	}
+
+	public void setSubFolders(Supplier<Folder[]> subFoldersSupplier) {
+		_subFolders = subFoldersSupplier.get();
 	}
 
 	private Date _dateCreated;

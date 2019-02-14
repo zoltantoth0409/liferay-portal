@@ -14,6 +14,8 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -50,20 +52,40 @@ public class AggregateRating {
 		_bestRating = bestRating;
 	}
 
+	public void setBestRating(Supplier<Number> bestRatingSupplier) {
+		_bestRating = bestRatingSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setRatingCount(Number ratingCount) {
 		_ratingCount = ratingCount;
 	}
 
+	public void setRatingCount(Supplier<Number> ratingCountSupplier) {
+		_ratingCount = ratingCountSupplier.get();
+	}
+
 	public void setRatingValue(Number ratingValue) {
 		_ratingValue = ratingValue;
 	}
 
+	public void setRatingValue(Supplier<Number> ratingValueSupplier) {
+		_ratingValue = ratingValueSupplier.get();
+	}
+
 	public void setWorstRating(Number worstRating) {
 		_worstRating = worstRating;
+	}
+
+	public void setWorstRating(Supplier<Number> worstRatingSupplier) {
+		_worstRating = worstRatingSupplier.get();
 	}
 
 	private Number _bestRating;

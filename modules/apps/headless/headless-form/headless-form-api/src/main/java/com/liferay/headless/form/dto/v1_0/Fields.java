@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -134,100 +136,204 @@ public class Fields {
 		_autocomplete = autocomplete;
 	}
 
+	public void setAutocomplete(Supplier<Boolean> autocompleteSupplier) {
+		_autocomplete = autocompleteSupplier.get();
+	}
+
 	public void setDataSourceType(String dataSourceType) {
 		_dataSourceType = dataSourceType;
+	}
+
+	public void setDataSourceType(Supplier<String> dataSourceTypeSupplier) {
+		_dataSourceType = dataSourceTypeSupplier.get();
 	}
 
 	public void setDataType(String dataType) {
 		_dataType = dataType;
 	}
 
+	public void setDataType(Supplier<String> dataTypeSupplier) {
+		_dataType = dataTypeSupplier.get();
+	}
+
 	public void setDisplayStyle(String displayStyle) {
 		_displayStyle = displayStyle;
+	}
+
+	public void setDisplayStyle(Supplier<String> displayStyleSupplier) {
+		_displayStyle = displayStyleSupplier.get();
 	}
 
 	public void setGrid(Grid grid) {
 		_grid = grid;
 	}
 
+	public void setGrid(Supplier<Grid> gridSupplier) {
+		_grid = gridSupplier.get();
+	}
+
 	public void setHasFormRules(Boolean hasFormRules) {
 		_hasFormRules = hasFormRules;
+	}
+
+	public void setHasFormRules(Supplier<Boolean> hasFormRulesSupplier) {
+		_hasFormRules = hasFormRulesSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setImmutable(Boolean immutable) {
 		_immutable = immutable;
+	}
+
+	public void setImmutable(Supplier<Boolean> immutableSupplier) {
+		_immutable = immutableSupplier.get();
 	}
 
 	public void setInline(Boolean inline) {
 		_inline = inline;
 	}
 
+	public void setInline(Supplier<Boolean> inlineSupplier) {
+		_inline = inlineSupplier.get();
+	}
+
 	public void setInputControl(String inputControl) {
 		_inputControl = inputControl;
+	}
+
+	public void setInputControl(Supplier<String> inputControlSupplier) {
+		_inputControl = inputControlSupplier.get();
 	}
 
 	public void setLabel(String label) {
 		_label = label;
 	}
 
+	public void setLabel(Supplier<String> labelSupplier) {
+		_label = labelSupplier.get();
+	}
+
 	public void setLocalizable(Boolean localizable) {
 		_localizable = localizable;
+	}
+
+	public void setLocalizable(Supplier<Boolean> localizableSupplier) {
+		_localizable = localizableSupplier.get();
 	}
 
 	public void setMultiple(Boolean multiple) {
 		_multiple = multiple;
 	}
 
+	public void setMultiple(Supplier<Boolean> multipleSupplier) {
+		_multiple = multipleSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
 	}
 
 	public void setOptions(Options options) {
 		_options = options;
 	}
 
+	public void setOptions(Supplier<Options> optionsSupplier) {
+		_options = optionsSupplier.get();
+	}
+
 	public void setPlaceholder(String placeholder) {
 		_placeholder = placeholder;
+	}
+
+	public void setPlaceholder(Supplier<String> placeholderSupplier) {
+		_placeholder = placeholderSupplier.get();
 	}
 
 	public void setPredefinedValue(String predefinedValue) {
 		_predefinedValue = predefinedValue;
 	}
 
+	public void setPredefinedValue(Supplier<String> predefinedValueSupplier) {
+		_predefinedValue = predefinedValueSupplier.get();
+	}
+
 	public void setReadOnly(Boolean readOnly) {
 		_readOnly = readOnly;
+	}
+
+	public void setReadOnly(Supplier<Boolean> readOnlySupplier) {
+		_readOnly = readOnlySupplier.get();
 	}
 
 	public void setRepeatable(Boolean repeatable) {
 		_repeatable = repeatable;
 	}
 
+	public void setRepeatable(Supplier<Boolean> repeatableSupplier) {
+		_repeatable = repeatableSupplier.get();
+	}
+
 	public void setRequired(Boolean required) {
 		_required = required;
+	}
+
+	public void setRequired(Supplier<Boolean> requiredSupplier) {
+		_required = requiredSupplier.get();
 	}
 
 	public void setShowAsSwitcher(Boolean showAsSwitcher) {
 		_showAsSwitcher = showAsSwitcher;
 	}
 
+	public void setShowAsSwitcher(Supplier<Boolean> showAsSwitcherSupplier) {
+		_showAsSwitcher = showAsSwitcherSupplier.get();
+	}
+
 	public void setShowLabel(Boolean showLabel) {
 		_showLabel = showLabel;
+	}
+
+	public void setShowLabel(Supplier<Boolean> showLabelSupplier) {
+		_showLabel = showLabelSupplier.get();
 	}
 
 	public void setStyle(String style) {
 		_style = style;
 	}
 
+	public void setStyle(Supplier<String> styleSupplier) {
+		_style = styleSupplier.get();
+	}
+
 	public void setText(String text) {
 		_text = text;
 	}
 
+	public void setText(Supplier<String> textSupplier) {
+		_text = textSupplier.get();
+	}
+
 	public void setTooltip(String tooltip) {
 		_tooltip = tooltip;
+	}
+
+	public void setTooltip(Supplier<String> tooltipSupplier) {
+		_tooltip = tooltipSupplier.get();
+	}
+
+	public void setValidation(Supplier<Validation> validationSupplier) {
+		_validation = validationSupplier.get();
 	}
 
 	public void setValidation(Validation validation) {

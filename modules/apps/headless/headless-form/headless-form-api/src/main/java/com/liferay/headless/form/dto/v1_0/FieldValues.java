@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -50,20 +52,40 @@ public class FieldValues {
 		_document = document;
 	}
 
+	public void setDocument(Supplier<FormDocument> documentSupplier) {
+		_document = documentSupplier.get();
+	}
+
 	public void setDocumentId(Long documentId) {
 		_documentId = documentId;
+	}
+
+	public void setDocumentId(Supplier<Long> documentIdSupplier) {
+		_documentId = documentIdSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
 	}
 
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
+	}
+
 	public void setValue(String value) {
 		_value = value;
+	}
+
+	public void setValue(Supplier<String> valueSupplier) {
+		_value = valueSupplier.get();
 	}
 
 	private FormDocument _document;

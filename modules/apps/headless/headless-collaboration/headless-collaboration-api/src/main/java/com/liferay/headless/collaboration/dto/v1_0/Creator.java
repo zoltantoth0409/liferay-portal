@@ -14,6 +14,8 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -70,40 +72,80 @@ public class Creator {
 		_additionalName = additionalName;
 	}
 
+	public void setAdditionalName(Supplier<String> additionalNameSupplier) {
+		_additionalName = additionalNameSupplier.get();
+	}
+
 	public void setAlternateName(String alternateName) {
 		_alternateName = alternateName;
+	}
+
+	public void setAlternateName(Supplier<String> alternateNameSupplier) {
+		_alternateName = alternateNameSupplier.get();
 	}
 
 	public void setEmail(String email) {
 		_email = email;
 	}
 
+	public void setEmail(Supplier<String> emailSupplier) {
+		_email = emailSupplier.get();
+	}
+
 	public void setFamilyName(String familyName) {
 		_familyName = familyName;
+	}
+
+	public void setFamilyName(Supplier<String> familyNameSupplier) {
+		_familyName = familyNameSupplier.get();
 	}
 
 	public void setGivenName(String givenName) {
 		_givenName = givenName;
 	}
 
+	public void setGivenName(Supplier<String> givenNameSupplier) {
+		_givenName = givenNameSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setImage(String image) {
 		_image = image;
 	}
 
+	public void setImage(Supplier<String> imageSupplier) {
+		_image = imageSupplier.get();
+	}
+
 	public void setJobTitle(String jobTitle) {
 		_jobTitle = jobTitle;
+	}
+
+	public void setJobTitle(Supplier<String> jobTitleSupplier) {
+		_jobTitle = jobTitleSupplier.get();
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
+	}
+
 	public void setProfileURL(String profileURL) {
 		_profileURL = profileURL;
+	}
+
+	public void setProfileURL(Supplier<String> profileURLSupplier) {
+		_profileURL = profileURLSupplier.get();
 	}
 
 	private String _additionalName;

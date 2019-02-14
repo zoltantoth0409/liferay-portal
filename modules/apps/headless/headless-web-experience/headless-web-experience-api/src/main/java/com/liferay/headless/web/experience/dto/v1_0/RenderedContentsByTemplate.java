@@ -14,6 +14,8 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class RenderedContentsByTemplate {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setRenderedContent(String renderedContent) {
 		_renderedContent = renderedContent;
 	}
 
+	public void setRenderedContent(Supplier<String> renderedContentSupplier) {
+		_renderedContent = renderedContentSupplier.get();
+	}
+
 	public void setTemplate(String template) {
 		_template = template;
+	}
+
+	public void setTemplate(Supplier<String> templateSupplier) {
+		_template = templateSupplier.get();
 	}
 
 	private Long _id;

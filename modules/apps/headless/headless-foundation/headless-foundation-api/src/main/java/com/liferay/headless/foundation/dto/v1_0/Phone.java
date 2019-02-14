@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,16 +48,32 @@ public class Phone {
 		_extension = extension;
 	}
 
+	public void setExtension(Supplier<String> extensionSupplier) {
+		_extension = extensionSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
 		_phoneNumber = phoneNumber;
 	}
 
+	public void setPhoneNumber(Supplier<String> phoneNumberSupplier) {
+		_phoneNumber = phoneNumberSupplier.get();
+	}
+
 	public void setPhoneType(String phoneType) {
 		_phoneType = phoneType;
+	}
+
+	public void setPhoneType(Supplier<String> phoneTypeSupplier) {
+		_phoneType = phoneTypeSupplier.get();
 	}
 
 	private String _extension;

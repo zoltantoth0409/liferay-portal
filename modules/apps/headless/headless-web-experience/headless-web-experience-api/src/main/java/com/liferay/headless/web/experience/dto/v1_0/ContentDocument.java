@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -68,36 +69,72 @@ public class ContentDocument {
 		_contentUrl = contentUrl;
 	}
 
+	public void setContentUrl(Supplier<String> contentUrlSupplier) {
+		_contentUrl = contentUrlSupplier.get();
+	}
+
 	public void setCreator(Creator creator) {
 		_creator = creator;
+	}
+
+	public void setCreator(Supplier<Creator> creatorSupplier) {
+		_creator = creatorSupplier.get();
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
+	}
+
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
+	}
+
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
 	}
 
 	public void setEncodingFormat(String encodingFormat) {
 		_encodingFormat = encodingFormat;
 	}
 
+	public void setEncodingFormat(Supplier<String> encodingFormatSupplier) {
+		_encodingFormat = encodingFormatSupplier.get();
+	}
+
 	public void setFileExtension(String fileExtension) {
 		_fileExtension = fileExtension;
+	}
+
+	public void setFileExtension(Supplier<String> fileExtensionSupplier) {
+		_fileExtension = fileExtensionSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setSizeInBytes(Number sizeInBytes) {
 		_sizeInBytes = sizeInBytes;
 	}
 
+	public void setSizeInBytes(Supplier<Number> sizeInBytesSupplier) {
+		_sizeInBytes = sizeInBytesSupplier.get();
+	}
+
 	public void setTitle(String title) {
 		_title = title;
+	}
+
+	public void setTitle(Supplier<String> titleSupplier) {
+		_title = titleSupplier.get();
 	}
 
 	private String _contentUrl;

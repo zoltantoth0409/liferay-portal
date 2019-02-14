@@ -15,6 +15,7 @@
 package com.liferay.headless.workflow.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -76,32 +77,68 @@ public class WorkflowLog {
 		_auditPerson = auditPerson;
 	}
 
+	public void setAuditPerson(Supplier<String> auditPersonSupplier) {
+		_auditPerson = auditPersonSupplier.get();
+	}
+
 	public void setCommentLog(String commentLog) {
 		_commentLog = commentLog;
+	}
+
+	public void setCommentLog(Supplier<String> commentLogSupplier) {
+		_commentLog = commentLogSupplier.get();
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setPerson(String person) {
 		_person = person;
 	}
 
+	public void setPerson(Supplier<String> personSupplier) {
+		_person = personSupplier.get();
+	}
+
 	public void setPreviousPerson(String previousPerson) {
 		_previousPerson = previousPerson;
+	}
+
+	public void setPreviousPerson(Supplier<String> previousPersonSupplier) {
+		_previousPerson = previousPersonSupplier.get();
 	}
 
 	public void setPreviousState(String previousState) {
 		_previousState = previousState;
 	}
 
+	public void setPreviousState(Supplier<String> previousStateSupplier) {
+		_previousState = previousStateSupplier.get();
+	}
+
 	public void setState(String state) {
 		_state = state;
+	}
+
+	public void setState(Supplier<String> stateSupplier) {
+		_state = stateSupplier.get();
+	}
+
+	public void setTask(Supplier<WorkflowTask> taskSupplier) {
+		_task = taskSupplier.get();
 	}
 
 	public void setTask(WorkflowTask task) {
@@ -112,8 +149,16 @@ public class WorkflowLog {
 		_taskId = taskId;
 	}
 
+	public void setTaskId(Supplier<Long> taskIdSupplier) {
+		_taskId = taskIdSupplier.get();
+	}
+
 	public void setType(String type) {
 		_type = type;
+	}
+
+	public void setType(Supplier<String> typeSupplier) {
+		_type = typeSupplier.get();
 	}
 
 	private String _auditPerson;

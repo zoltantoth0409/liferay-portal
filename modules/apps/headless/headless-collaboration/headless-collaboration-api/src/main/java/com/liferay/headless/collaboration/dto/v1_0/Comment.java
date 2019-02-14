@@ -14,6 +14,8 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,16 +48,32 @@ public class Comment {
 		_comments = comments;
 	}
 
+	public void setComments(Supplier<Comment[]> commentsSupplier) {
+		_comments = commentsSupplier.get();
+	}
+
 	public void setCreator(Creator creator) {
 		_creator = creator;
+	}
+
+	public void setCreator(Supplier<Creator> creatorSupplier) {
+		_creator = creatorSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setText(String text) {
 		_text = text;
+	}
+
+	public void setText(Supplier<String> textSupplier) {
+		_text = textSupplier.get();
 	}
 
 	private Comment[] _comments;

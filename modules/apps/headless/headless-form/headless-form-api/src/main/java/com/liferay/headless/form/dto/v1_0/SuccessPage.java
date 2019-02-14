@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class SuccessPage {
 		_description = description;
 	}
 
+	public void setDescription(Supplier<String> descriptionSupplier) {
+		_description = descriptionSupplier.get();
+	}
+
 	public void setHeadline(String headline) {
 		_headline = headline;
 	}
 
+	public void setHeadline(Supplier<String> headlineSupplier) {
+		_headline = headlineSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	private String _description;

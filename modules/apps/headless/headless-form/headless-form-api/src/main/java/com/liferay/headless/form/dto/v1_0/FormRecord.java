@@ -15,6 +15,7 @@
 package com.liferay.headless.form.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -68,36 +69,72 @@ public class FormRecord {
 		_creator = creator;
 	}
 
+	public void setCreator(Supplier<Creator> creatorSupplier) {
+		_creator = creatorSupplier.get();
+	}
+
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
+	}
+
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
+	}
+
 	public void setDatePublished(Date datePublished) {
 		_datePublished = datePublished;
+	}
+
+	public void setDatePublished(Supplier<Date> datePublishedSupplier) {
+		_datePublished = datePublishedSupplier.get();
 	}
 
 	public void setDraft(Boolean draft) {
 		_draft = draft;
 	}
 
+	public void setDraft(Supplier<Boolean> draftSupplier) {
+		_draft = draftSupplier.get();
+	}
+
 	public void setFieldValues(FieldValues[] fieldValues) {
 		_fieldValues = fieldValues;
+	}
+
+	public void setFieldValues(Supplier<FieldValues[]> fieldValuesSupplier) {
+		_fieldValues = fieldValuesSupplier.get();
 	}
 
 	public void setForm(Form form) {
 		_form = form;
 	}
 
+	public void setForm(Supplier<Form> formSupplier) {
+		_form = formSupplier.get();
+	}
+
 	public void setFormId(Long formId) {
 		_formId = formId;
 	}
 
+	public void setFormId(Supplier<Long> formIdSupplier) {
+		_formId = formIdSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	private Creator _creator;

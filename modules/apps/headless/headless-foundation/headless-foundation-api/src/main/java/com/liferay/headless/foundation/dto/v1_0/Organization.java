@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -82,20 +84,46 @@ public class Organization {
 		_comment = comment;
 	}
 
+	public void setComment(Supplier<String> commentSupplier) {
+		_comment = commentSupplier.get();
+	}
+
 	public void setContactInformation(ContactInformation contactInformation) {
 		_contactInformation = contactInformation;
+	}
+
+	public void setContactInformation(
+		Supplier<ContactInformation> contactInformationSupplier) {
+
+		_contactInformation = contactInformationSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setLocation(Location location) {
 		_location = location;
 	}
 
+	public void setLocation(Supplier<Location> locationSupplier) {
+		_location = locationSupplier.get();
+	}
+
 	public void setLogo(String logo) {
 		_logo = logo;
+	}
+
+	public void setLogo(Supplier<String> logoSupplier) {
+		_logo = logoSupplier.get();
+	}
+
+	public void setMembers(Supplier<UserAccount[]> membersSupplier) {
+		_members = membersSupplier.get();
 	}
 
 	public void setMembers(UserAccount[] members) {
@@ -106,28 +134,64 @@ public class Organization {
 		_membersIds = membersIds;
 	}
 
+	public void setMembersIds(Supplier<Long[]> membersIdsSupplier) {
+		_membersIds = membersIdsSupplier.get();
+	}
+
 	public void setName(String name) {
 		_name = name;
+	}
+
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
 	}
 
 	public void setParentOrganization(Organization parentOrganization) {
 		_parentOrganization = parentOrganization;
 	}
 
+	public void setParentOrganization(
+		Supplier<Organization> parentOrganizationSupplier) {
+
+		_parentOrganization = parentOrganizationSupplier.get();
+	}
+
 	public void setParentOrganizationId(Long parentOrganizationId) {
 		_parentOrganizationId = parentOrganizationId;
+	}
+
+	public void setParentOrganizationId(
+		Supplier<Long> parentOrganizationIdSupplier) {
+
+		_parentOrganizationId = parentOrganizationIdSupplier.get();
 	}
 
 	public void setServices(Services[] services) {
 		_services = services;
 	}
 
+	public void setServices(Supplier<Services[]> servicesSupplier) {
+		_services = servicesSupplier.get();
+	}
+
 	public void setSubOrganization(Organization[] subOrganization) {
 		_subOrganization = subOrganization;
 	}
 
+	public void setSubOrganization(
+		Supplier<Organization[]> subOrganizationSupplier) {
+
+		_subOrganization = subOrganizationSupplier.get();
+	}
+
 	public void setSubOrganizationIds(Long[] subOrganizationIds) {
 		_subOrganizationIds = subOrganizationIds;
+	}
+
+	public void setSubOrganizationIds(
+		Supplier<Long[]> subOrganizationIdsSupplier) {
+
+		_subOrganizationIds = subOrganizationIdsSupplier.get();
 	}
 
 	private String _comment;

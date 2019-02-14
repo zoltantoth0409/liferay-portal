@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class Email {
 		_email = email;
 	}
 
+	public void setEmail(Supplier<String> emailSupplier) {
+		_email = emailSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setType(String type) {
 		_type = type;
+	}
+
+	public void setType(Supplier<String> typeSupplier) {
+		_type = typeSupplier.get();
 	}
 
 	private String _email;

@@ -14,6 +14,8 @@
 
 package com.liferay.headless.document.library.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -54,24 +56,48 @@ public class AdaptedMedia {
 		_contentUrl = contentUrl;
 	}
 
+	public void setContentUrl(Supplier<String> contentUrlSupplier) {
+		_contentUrl = contentUrlSupplier.get();
+	}
+
 	public void setHeight(Number height) {
 		_height = height;
+	}
+
+	public void setHeight(Supplier<Number> heightSupplier) {
+		_height = heightSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setResolutionName(String resolutionName) {
 		_resolutionName = resolutionName;
+	}
+
+	public void setResolutionName(Supplier<String> resolutionNameSupplier) {
+		_resolutionName = resolutionNameSupplier.get();
 	}
 
 	public void setSizeInBytes(Number sizeInBytes) {
 		_sizeInBytes = sizeInBytes;
 	}
 
+	public void setSizeInBytes(Supplier<Number> sizeInBytesSupplier) {
+		_sizeInBytes = sizeInBytesSupplier.get();
+	}
+
 	public void setWidth(Number width) {
 		_width = width;
+	}
+
+	public void setWidth(Supplier<Number> widthSupplier) {
+		_width = widthSupplier.get();
 	}
 
 	private String _contentUrl;

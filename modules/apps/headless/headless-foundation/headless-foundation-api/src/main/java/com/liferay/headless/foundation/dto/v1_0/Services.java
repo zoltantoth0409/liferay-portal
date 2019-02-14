@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,26 @@ public class Services {
 		_hoursAvailable = hoursAvailable;
 	}
 
+	public void setHoursAvailable(
+		Supplier<HoursAvailable[]> hoursAvailableSupplier) {
+
+		_hoursAvailable = hoursAvailableSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setServiceType(String serviceType) {
 		_serviceType = serviceType;
+	}
+
+	public void setServiceType(Supplier<String> serviceTypeSupplier) {
+		_serviceType = serviceTypeSupplier.get();
 	}
 
 	private HoursAvailable[] _hoursAvailable;

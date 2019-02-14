@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,16 +48,32 @@ public class FormPages {
 		_fields = fields;
 	}
 
+	public void setFields(Supplier<Fields[]> fieldsSupplier) {
+		_fields = fieldsSupplier.get();
+	}
+
 	public void setHeadline(String headline) {
 		_headline = headline;
+	}
+
+	public void setHeadline(Supplier<String> headlineSupplier) {
+		_headline = headlineSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setText(String text) {
 		_text = text;
+	}
+
+	public void setText(Supplier<String> textSupplier) {
+		_text = textSupplier.get();
 	}
 
 	private Fields[] _fields;

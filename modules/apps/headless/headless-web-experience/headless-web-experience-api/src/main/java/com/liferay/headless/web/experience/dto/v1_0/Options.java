@@ -14,6 +14,8 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,8 +40,16 @@ public class Options {
 		_label = label;
 	}
 
+	public void setLabel(Supplier<String> labelSupplier) {
+		_label = labelSupplier.get();
+	}
+
 	public void setValue(String value) {
 		_value = value;
+	}
+
+	public void setValue(Supplier<String> valueSupplier) {
+		_value = valueSupplier.get();
 	}
 
 	private String _label;

@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,16 +48,32 @@ public class HoursAvailable {
 		_closes = closes;
 	}
 
+	public void setCloses(Supplier<String> closesSupplier) {
+		_closes = closesSupplier.get();
+	}
+
 	public void setDayOfWeek(String dayOfWeek) {
 		_dayOfWeek = dayOfWeek;
+	}
+
+	public void setDayOfWeek(Supplier<String> dayOfWeekSupplier) {
+		_dayOfWeek = dayOfWeekSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setOpens(String opens) {
 		_opens = opens;
+	}
+
+	public void setOpens(Supplier<String> opensSupplier) {
+		_opens = opensSupplier.get();
 	}
 
 	private String _closes;

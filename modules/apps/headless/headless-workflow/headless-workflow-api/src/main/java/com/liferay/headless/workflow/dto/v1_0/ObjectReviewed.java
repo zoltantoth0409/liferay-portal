@@ -14,6 +14,8 @@
 
 package com.liferay.headless.workflow.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class ObjectReviewed {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setIdentifier(String identifier) {
 		_identifier = identifier;
 	}
 
+	public void setIdentifier(Supplier<String> identifierSupplier) {
+		_identifier = identifierSupplier.get();
+	}
+
 	public void setResourceType(String resourceType) {
 		_resourceType = resourceType;
+	}
+
+	public void setResourceType(Supplier<String> resourceTypeSupplier) {
+		_resourceType = resourceTypeSupplier.get();
 	}
 
 	private Long _id;

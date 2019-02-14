@@ -15,6 +15,7 @@
 package com.liferay.headless.form.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -72,40 +73,82 @@ public class FormStructure {
 		_availableLanguages = availableLanguages;
 	}
 
+	public void setAvailableLanguages(
+		Supplier<String[]> availableLanguagesSupplier) {
+
+		_availableLanguages = availableLanguagesSupplier.get();
+	}
+
 	public void setContentSpace(Long contentSpace) {
 		_contentSpace = contentSpace;
+	}
+
+	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
+		_contentSpace = contentSpaceSupplier.get();
 	}
 
 	public void setCreator(Creator creator) {
 		_creator = creator;
 	}
 
+	public void setCreator(Supplier<Creator> creatorSupplier) {
+		_creator = creatorSupplier.get();
+	}
+
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
+	}
+
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
 	}
 
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
 	}
 
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
+	}
+
 	public void setDescription(String description) {
 		_description = description;
+	}
+
+	public void setDescription(Supplier<String> descriptionSupplier) {
+		_description = descriptionSupplier.get();
 	}
 
 	public void setFormPages(FormPages[] formPages) {
 		_formPages = formPages;
 	}
 
+	public void setFormPages(Supplier<FormPages[]> formPagesSupplier) {
+		_formPages = formPagesSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	public void setName(String name) {
 		_name = name;
 	}
 
+	public void setName(Supplier<String> nameSupplier) {
+		_name = nameSupplier.get();
+	}
+
 	public void setSuccessPage(SuccessPage successPage) {
 		_successPage = successPage;
+	}
+
+	public void setSuccessPage(Supplier<SuccessPage> successPageSupplier) {
+		_successPage = successPageSupplier.get();
 	}
 
 	private String[] _availableLanguages;

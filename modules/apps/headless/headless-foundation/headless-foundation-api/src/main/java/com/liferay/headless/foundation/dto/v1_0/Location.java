@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class Location {
 		_addressCountry = addressCountry;
 	}
 
+	public void setAddressCountry(Supplier<String> addressCountrySupplier) {
+		_addressCountry = addressCountrySupplier.get();
+	}
+
 	public void setAddressRegion(String addressRegion) {
 		_addressRegion = addressRegion;
 	}
 
+	public void setAddressRegion(Supplier<String> addressRegionSupplier) {
+		_addressRegion = addressRegionSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
+	}
+
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
 	}
 
 	private String _addressCountry;

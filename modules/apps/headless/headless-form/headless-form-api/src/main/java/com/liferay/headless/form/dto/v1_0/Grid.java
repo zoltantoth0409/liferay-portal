@@ -14,6 +14,8 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class Grid {
 		_columns = columns;
 	}
 
+	public void setColumns(Supplier<Columns[]> columnsSupplier) {
+		_columns = columnsSupplier.get();
+	}
+
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setRows(Rows[] rows) {
 		_rows = rows;
+	}
+
+	public void setRows(Supplier<Rows[]> rowsSupplier) {
+		_rows = rowsSupplier.get();
 	}
 
 	private Columns[] _columns;

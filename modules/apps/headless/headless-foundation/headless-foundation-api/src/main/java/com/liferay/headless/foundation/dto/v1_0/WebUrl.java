@@ -14,6 +14,8 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import java.util.function.Supplier;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -42,12 +44,24 @@ public class WebUrl {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setUrl(String url) {
 		_url = url;
 	}
 
+	public void setUrl(Supplier<String> urlSupplier) {
+		_url = urlSupplier.get();
+	}
+
 	public void setUrlType(String urlType) {
 		_urlType = urlType;
+	}
+
+	public void setUrlType(Supplier<String> urlTypeSupplier) {
+		_urlType = urlTypeSupplier.get();
 	}
 
 	private Long _id;

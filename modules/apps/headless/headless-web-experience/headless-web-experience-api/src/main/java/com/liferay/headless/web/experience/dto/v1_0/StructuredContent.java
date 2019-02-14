@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.dto.v1_0;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -104,60 +105,128 @@ public class StructuredContent {
 		_aggregateRating = aggregateRating;
 	}
 
+	public void setAggregateRating(
+		Supplier<AggregateRating> aggregateRatingSupplier) {
+
+		_aggregateRating = aggregateRatingSupplier.get();
+	}
+
 	public void setAvailableLanguages(String[] availableLanguages) {
 		_availableLanguages = availableLanguages;
+	}
+
+	public void setAvailableLanguages(
+		Supplier<String[]> availableLanguagesSupplier) {
+
+		_availableLanguages = availableLanguagesSupplier.get();
 	}
 
 	public void setCategory(Long[] category) {
 		_category = category;
 	}
 
+	public void setCategory(Supplier<Long[]> categorySupplier) {
+		_category = categorySupplier.get();
+	}
+
 	public void setComment(Comment[] comment) {
 		_comment = comment;
+	}
+
+	public void setComment(Supplier<Comment[]> commentSupplier) {
+		_comment = commentSupplier.get();
 	}
 
 	public void setContentSpace(Long contentSpace) {
 		_contentSpace = contentSpace;
 	}
 
+	public void setContentSpace(Supplier<Long> contentSpaceSupplier) {
+		_contentSpace = contentSpaceSupplier.get();
+	}
+
 	public void setContentStructure(ContentStructure contentStructure) {
 		_contentStructure = contentStructure;
+	}
+
+	public void setContentStructure(
+		Supplier<ContentStructure> contentStructureSupplier) {
+
+		_contentStructure = contentStructureSupplier.get();
 	}
 
 	public void setContentStructureId(Long contentStructureId) {
 		_contentStructureId = contentStructureId;
 	}
 
+	public void setContentStructureId(
+		Supplier<Long> contentStructureIdSupplier) {
+
+		_contentStructureId = contentStructureIdSupplier.get();
+	}
+
 	public void setCreator(Creator creator) {
 		_creator = creator;
+	}
+
+	public void setCreator(Supplier<Creator> creatorSupplier) {
+		_creator = creatorSupplier.get();
 	}
 
 	public void setDateCreated(Date dateCreated) {
 		_dateCreated = dateCreated;
 	}
 
+	public void setDateCreated(Supplier<Date> dateCreatedSupplier) {
+		_dateCreated = dateCreatedSupplier.get();
+	}
+
 	public void setDateModified(Date dateModified) {
 		_dateModified = dateModified;
+	}
+
+	public void setDateModified(Supplier<Date> dateModifiedSupplier) {
+		_dateModified = dateModifiedSupplier.get();
 	}
 
 	public void setDatePublished(Date datePublished) {
 		_datePublished = datePublished;
 	}
 
+	public void setDatePublished(Supplier<Date> datePublishedSupplier) {
+		_datePublished = datePublishedSupplier.get();
+	}
+
 	public void setDescription(String description) {
 		_description = description;
+	}
+
+	public void setDescription(Supplier<String> descriptionSupplier) {
+		_description = descriptionSupplier.get();
 	}
 
 	public void setId(Long id) {
 		_id = id;
 	}
 
+	public void setId(Supplier<Long> idSupplier) {
+		_id = idSupplier.get();
+	}
+
 	public void setKeywords(String[] keywords) {
 		_keywords = keywords;
 	}
 
+	public void setKeywords(Supplier<String[]> keywordsSupplier) {
+		_keywords = keywordsSupplier.get();
+	}
+
 	public void setLastReviewed(Date lastReviewed) {
 		_lastReviewed = lastReviewed;
+	}
+
+	public void setLastReviewed(Supplier<Date> lastReviewedSupplier) {
+		_lastReviewed = lastReviewedSupplier.get();
 	}
 
 	public void setRenderedContentsByTemplate(
@@ -166,8 +235,23 @@ public class StructuredContent {
 		_renderedContentsByTemplate = renderedContentsByTemplate;
 	}
 
+	public void setRenderedContentsByTemplate(
+		Supplier<RenderedContentsByTemplate[]>
+			renderedContentsByTemplateSupplier) {
+
+		_renderedContentsByTemplate = renderedContentsByTemplateSupplier.get();
+	}
+
 	public void setTitle(String title) {
 		_title = title;
+	}
+
+	public void setTitle(Supplier<String> titleSupplier) {
+		_title = titleSupplier.get();
+	}
+
+	public void setValues(Supplier<Values[]> valuesSupplier) {
+		_values = valuesSupplier.get();
 	}
 
 	public void setValues(Values[] values) {
