@@ -33,7 +33,6 @@ import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.internal.dto.v1_0.CreatorUtil;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -70,31 +69,28 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 			_userService.getUserById(fileEntry.getUserId()));
 	}
 
-	private AdaptedMedia[] _getAdaptiveMedias(FileEntry fileEntry) {
+	private AdaptedMedia[] _getAdaptiveMedias(FileEntry fileEntry)
+		throws Exception {
+
 		if (!_amImageMimeTypeProvider.isMimeTypeSupported(
 				fileEntry.getMimeType())) {
 
 			return new AdaptedMedia[0];
 		}
 
-		try {
-			Stream<AdaptiveMedia<AMImageProcessor>> stream =
-				_amImageFinder.getAdaptiveMediaStream(
-					builder -> builder.forFileEntry(
-						fileEntry
-					).withConfigurationStatus(
-						AMImageQueryBuilder.ConfigurationStatus.ANY
-					).done());
+		Stream<AdaptiveMedia<AMImageProcessor>> stream =
+			_amImageFinder.getAdaptiveMediaStream(
+				builder -> builder.forFileEntry(
+					fileEntry
+				).withConfigurationStatus(
+					AMImageQueryBuilder.ConfigurationStatus.ANY
+				).done());
 
-			return stream.map(
-				this::_toAdaptedMedia
-			).toArray(
-				AdaptedMedia[]::new
-			);
-		}
-		catch (PortalException pe) {
-			throw new InternalServerErrorException(pe);
-		}
+		return stream.map(
+			this::_toAdaptedMedia
+		).toArray(
+			AdaptedMedia[]::new
+		);
 	}
 
 	private <T, S> T _getValue(
@@ -148,7 +144,8 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	}
 
 	private Document _toDocument(
-		FileEntry fileEntry, FileVersion fileVersion, User user) {
+			FileEntry fileEntry, FileVersion fileVersion, User user)
+		throws Exception {
 
 		return new Document() {
 			{
