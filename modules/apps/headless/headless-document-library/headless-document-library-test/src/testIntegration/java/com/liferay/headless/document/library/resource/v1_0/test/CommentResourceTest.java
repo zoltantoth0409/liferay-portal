@@ -14,7 +14,6 @@
 
 package com.liferay.headless.document.library.resource.v1_0.test;
 
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 
 import org.junit.Ignore;
@@ -24,7 +23,6 @@ import org.junit.runner.RunWith;
  * @author Javier Gamarra
  */
 @Ignore
-@RunAsClient
 @RunWith(Arquillian.class)
 public class CommentResourceTest extends BaseCommentResourceTestCase {
 }
