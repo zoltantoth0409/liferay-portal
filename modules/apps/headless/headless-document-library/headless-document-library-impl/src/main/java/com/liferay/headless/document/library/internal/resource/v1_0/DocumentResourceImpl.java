@@ -75,7 +75,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 
 		Stream<AdaptiveMedia<AMImageProcessor>> stream =
 			_amImageFinder.getAdaptiveMediaStream(
-				builder -> builder.forFileEntry(
+				amImageQueryBuilder -> amImageQueryBuilder.forFileEntry(
 					fileEntry
 				).withConfigurationStatus(
 					AMImageQueryBuilder.ConfigurationStatus.ANY
