@@ -124,27 +124,25 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	private AdaptedMedia _toAdaptedMedia(
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 
-		URI uri = adaptiveMedia.getURI();
-
-		Integer height = _getAdaptiveMediaValue(
-			adaptiveMedia, AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT);
-
-		String resolutionName = _getAdaptiveMediaValue(
-			adaptiveMedia, AMAttribute.getConfigurationUuidAMAttribute());
-
-		Long sizeInBytes = _getAdaptiveMediaValue(
-			adaptiveMedia, AMAttribute.getContentLengthAMAttribute());
-
-		Integer width = _getAdaptiveMediaValue(
-			adaptiveMedia, AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
-
 		return new AdaptedMedia() {
 			{
-				setContentUrl(uri.toString());
-				setHeight(height);
-				setResolutionName(resolutionName);
-				setSizeInBytes(sizeInBytes);
-				setWidth(width);
+				setContentUrl(String.valueOf(adaptiveMedia.getURI()));
+				setHeight(
+					_getAdaptiveMediaValue(
+						adaptiveMedia,
+						AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT));
+				setResolutionName(
+					_getAdaptiveMediaValue(
+						adaptiveMedia,
+						AMAttribute.getConfigurationUuidAMAttribute()));
+				setSizeInBytes(
+					_getAdaptiveMediaValue(
+						adaptiveMedia,
+						AMAttribute.getContentLengthAMAttribute()));
+				setWidth(
+					_getAdaptiveMediaValue(
+						adaptiveMedia,
+						AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
 			}
 		};
 	}
@@ -152,23 +150,14 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	private Document _toDocument(
 		FileEntry fileEntry, FileVersion fileVersion, User user) {
 
-		String previewURL = _dlURLHelper.getPreviewURL(
-			fileEntry, fileVersion, null, "");
-
-		Long[] categoryIds = _getAssetCategoryIds(fileEntry);
-
-		String[] keywords = _getAssetTagNames(fileEntry);
-
-		Creator creator = CreatorUtil.toCreator(user);
-
-		AdaptedMedia[] adaptiveMedias = _getAdaptiveMedias(fileEntry);
-
 		return new Document() {
 			{
-				setAdaptedMedia(adaptiveMedias);
-				setCategory(categoryIds);
-				setContentUrl(previewURL);
-				setCreator(creator);
+				setAdaptedMedia(_getAdaptiveMedias(fileEntry));
+				setCategory(_getAssetCategoryIds(fileEntry));
+				setContentUrl(
+					_dlURLHelper.getPreviewURL(
+						fileEntry, fileVersion, null, ""));
+				setCreator(CreatorUtil.toCreator(user));
 				setDateCreated(fileEntry.getCreateDate());
 				setDateModified(fileEntry.getModifiedDate());
 				setDescription(fileEntry.getDescription());
@@ -176,7 +165,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 				setFileExtension(fileEntry.getExtension());
 				setFolderId(fileEntry.getFolderId());
 				setId(fileEntry.getFileEntryId());
-				setKeywords(keywords);
+				setKeywords(_getAssetTagNames(fileEntry));
 				setSizeInBytes(fileEntry.getSize());
 				setTitle(fileEntry.getTitle());
 			}
