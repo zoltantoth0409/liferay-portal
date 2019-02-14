@@ -1267,7 +1267,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			}
 			else {
 				List<Layout> layouts = layoutsMap.computeIfAbsent(
-					layoutSet, key -> new ArrayList<>());
+					parentLayout.getLayoutSet(), key -> new ArrayList<>());
 
 				layouts.add(parentLayout);
 			}
