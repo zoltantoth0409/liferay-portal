@@ -124,7 +124,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	private AdaptedMedia _toAdaptedMedia(
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 
-		URI contentURI = adaptiveMedia.getURI();
+		URI uri = adaptiveMedia.getURI();
 
 		Integer height = _getAdaptiveMediaValue(
 			adaptiveMedia, AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT);
@@ -140,7 +140,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 
 		return new AdaptedMedia() {
 			{
-				setContentUrl(contentURI.toString());
+				setContentUrl(uri.toString());
 				setHeight(height);
 				setResolutionName(resolutionName);
 				setSizeInBytes(sizeInBytes);
