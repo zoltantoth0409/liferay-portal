@@ -7,6 +7,7 @@ package ${configYAML.apiPackagePath}.dto.${versionDirName};
 </#compress>
 
 import java.util.Date;
+import java.util.function.Supplier;
 
 import javax.annotation.Generated;
 
@@ -27,6 +28,10 @@ public class ${schemaName} {
 
 	public void set${javaParameter.parameterName?cap_first}(${javaParameter.parameterType} ${javaParameter.parameterName}) {
 		_${javaParameter.parameterName} = ${javaParameter.parameterName};
+	}
+
+	public void set${javaParameter.parameterName?cap_first}(Supplier<${javaParameter.parameterType}> ${javaParameter.parameterName}Supplier) {
+		_${javaParameter.parameterName} = ${javaParameter.parameterName}Supplier.get();
 	}
 
 	private ${javaParameter.parameterType} _${javaParameter.parameterName};
