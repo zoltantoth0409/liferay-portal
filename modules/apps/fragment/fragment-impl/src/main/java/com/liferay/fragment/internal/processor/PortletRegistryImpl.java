@@ -17,8 +17,19 @@ package com.liferay.fragment.internal.processor;
 import com.liferay.fragment.model.FragmentEntryLink;
 import com.liferay.fragment.processor.PortletRegistry;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.PortletPreferences;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
+import com.liferay.portal.kernel.portlet.PortletJSONUtil;
+import com.liferay.portal.kernel.service.PortletLocalService;
+import com.liferay.portal.kernel.service.PortletPreferencesLocalService;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -26,8 +37,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Stream;
 
 import javax.portlet.Portlet;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -96,6 +111,51 @@ public class PortletRegistryImpl implements PortletRegistry {
 		return _portletNames.get(alias);
 	}
 
+	@Override
+	public void writePortletPaths(
+			FragmentEntryLink fragmentEntryLink,
+			HttpServletRequest httpServletRequest,
+			HttpServletResponse httpServletResponse)
+		throws PortalException {
+
+		long plid = fragmentEntryLink.getClassPK();
+
+		List<PortletPreferences> portletPreferencesList =
+			_portletPreferencesLocalService.getPortletPreferences(
+				PortletKeys.PREFS_OWNER_ID_DEFAULT,
+				PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid);
+
+		Stream<PortletPreferences> stream = portletPreferencesList.stream();
+
+		stream.map(
+			portletPreferences -> _portletLocalService.getPortletById(
+				fragmentEntryLink.getCompanyId(),
+				portletPreferences.getPortletId())
+		).forEach(
+			portlet -> {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				try {
+					PortletJSONUtil.populatePortletJSONObject(
+						httpServletRequest, StringPool.BLANK, portlet,
+						jsonObject);
+
+					PortletJSONUtil.writeHeaderPaths(
+						httpServletResponse, jsonObject);
+
+					PortletJSONUtil.writeFooterPaths(
+						httpServletResponse, jsonObject);
+				}
+				catch (Exception e) {
+					_log.error(
+						"Unable to write portlet paths " +
+							portlet.getPortletId(),
+						e);
+				}
+			}
+		);
+	}
+
 	@Reference(
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC,
@@ -121,6 +181,18 @@ public class PortletRegistryImpl implements PortletRegistry {
 		_portletNames.remove(alias, portletName);
 	}
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletRegistryImpl.class);
+
+	@Reference
+	private Portal _portal;
+
+	@Reference
+	private PortletLocalService _portletLocalService;
+
 	private final Map<String, String> _portletNames = new ConcurrentHashMap<>();
+
+	@Reference
+	private PortletPreferencesLocalService _portletPreferencesLocalService;
 
 }
