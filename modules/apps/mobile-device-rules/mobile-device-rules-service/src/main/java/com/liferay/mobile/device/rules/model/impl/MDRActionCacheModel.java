@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing MDRAction in entity cache.
  *
  * @author Edward C. Han
- * @see MDRAction
  * @generated
  */
 @ProviderType

@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing FragmentEntryLink in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see FragmentEntryLink
  * @generated
  */
 @ProviderType

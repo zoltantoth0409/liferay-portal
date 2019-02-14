@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing ReadingTimeEntry in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see ReadingTimeEntry
  * @generated
  */
 @ProviderType

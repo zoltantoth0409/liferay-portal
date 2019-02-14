@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing AssetDisplayPageEntry in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see AssetDisplayPageEntry
  * @generated
  */
 @ProviderType

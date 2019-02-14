@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing Account in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see Account
  * @generated
  */
 @ProviderType

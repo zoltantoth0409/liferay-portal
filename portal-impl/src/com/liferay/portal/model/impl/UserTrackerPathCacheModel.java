@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing UserTrackerPath in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see UserTrackerPath
  * @generated
  */
 @ProviderType

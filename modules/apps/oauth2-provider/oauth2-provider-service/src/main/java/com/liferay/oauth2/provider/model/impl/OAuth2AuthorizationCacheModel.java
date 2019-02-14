@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing OAuth2Authorization in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see OAuth2Authorization
  * @generated
  */
 @ProviderType

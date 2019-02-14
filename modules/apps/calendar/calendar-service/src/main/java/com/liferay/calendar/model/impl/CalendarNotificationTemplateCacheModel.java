@@ -33,7 +33,6 @@ import java.util.Date;
  * The cache model class for representing CalendarNotificationTemplate in entity cache.
  *
  * @author Eduardo Lundgren
- * @see CalendarNotificationTemplate
  * @generated
  */
 @ProviderType

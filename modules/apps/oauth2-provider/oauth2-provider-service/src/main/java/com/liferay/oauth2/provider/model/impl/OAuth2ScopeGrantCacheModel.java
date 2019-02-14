@@ -31,7 +31,6 @@ import java.io.ObjectOutput;
  * The cache model class for representing OAuth2ScopeGrant in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see OAuth2ScopeGrant
  * @generated
  */
 @ProviderType
