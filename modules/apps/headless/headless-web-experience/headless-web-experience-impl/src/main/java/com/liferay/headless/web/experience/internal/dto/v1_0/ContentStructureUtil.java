@@ -127,21 +127,21 @@ public class ContentStructureUtil {
 		);
 	}
 
-	private static Fields _toFields(DDMFormField field, Locale locale) {
+	private static Fields _toFields(DDMFormField ddmFormField, Locale locale) {
 		return new Fields() {
 			{
-				setDataType(_getFieldDataType(field));
-				setInputControl(_getFieldInputControl(field));
-				setLabel(_getLocalizedString(field.getLabel(), locale));
-				setLocalizable(field.isLocalizable());
-				setMultiple(field.isMultiple());
-				setName(field.getName());
-				setOptions(_toOptions(field.getDDMFormFieldOptions(), locale));
+				setDataType(_getFieldDataType(ddmFormField));
+				setInputControl(_getFieldInputControl(ddmFormField));
+				setLabel(_getLocalizedString(ddmFormField.getLabel(), locale));
+				setLocalizable(ddmFormField.isLocalizable());
+				setMultiple(ddmFormField.isMultiple());
+				setName(ddmFormField.getName());
+				setOptions(_toOptions(ddmFormField.getDDMFormFieldOptions(), locale));
 				setPredefinedValue(
-					_getLocalizedString(field.getPredefinedValue(), locale));
-				setRepeatable(field.isRepeatable());
-				setRequired(field.isRequired());
-				setShowLabel(field.isShowLabel());
+					_getLocalizedString(ddmFormField.getPredefinedValue(), locale));
+				setRepeatable(ddmFormField.isRepeatable());
+				setRequired(ddmFormField.isRequired());
+				setShowLabel(ddmFormField.isShowLabel());
 			}
 		};
 	}
