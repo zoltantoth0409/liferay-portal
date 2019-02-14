@@ -30,7 +30,7 @@ import javax.ws.rs.core.MultivaluedMap;
  */
 public class MockResource implements EntityModelResource {
 
-	public static final String METHOD_NAME = "mockJaxRSMethod";
+	public static final String METHOD_NAME = "mockGet";
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
@@ -38,7 +38,7 @@ public class MockResource implements EntityModelResource {
 	}
 
 	@GET
-	public String mockJaxRSMethod(String param) {
+	public String mockGet(String string) {
 		return "";
 	}
 
