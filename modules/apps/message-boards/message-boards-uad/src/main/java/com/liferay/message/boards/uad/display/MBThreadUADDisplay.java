@@ -51,7 +51,7 @@ public class MBThreadUADDisplay extends BaseMBThreadUADDisplay {
 		}
 
 		try {
-			MBThread childThread;
+			MBThread childThread = null;
 
 			if (childObject instanceof MBMessage) {
 				MBMessage mbMessage = (MBMessage)childObject;

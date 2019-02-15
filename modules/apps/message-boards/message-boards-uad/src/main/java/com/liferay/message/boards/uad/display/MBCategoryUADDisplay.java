@@ -80,7 +80,7 @@ public class MBCategoryUADDisplay extends BaseMBCategoryUADDisplay {
 		}
 
 		try {
-			MBCategory childCategory;
+			MBCategory childCategory = null;
 
 			if (childObject instanceof MBMessage) {
 				MBMessage mbMessage = (MBMessage)childObject;

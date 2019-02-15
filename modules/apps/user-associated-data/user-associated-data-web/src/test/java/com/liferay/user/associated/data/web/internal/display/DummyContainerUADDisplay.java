@@ -37,7 +37,7 @@ public class DummyContainerUADDisplay extends DummyUADDisplay<DummyContainer> {
 
 		long parentDummyContainerId = (long)parentContainerId;
 
-		long objectParentContainerId;
+		long objectParentContainerId = 0;
 
 		if (childObject instanceof DummyContainer) {
 			DummyContainer childDummyContainer = (DummyContainer)childObject;
