@@ -37,7 +37,7 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-
+import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -149,49 +149,17 @@ public class VocabularyResourceImpl
 		return _toVocabulary(
 			_assetVocabularyService.updateVocabulary(
 				assetVocabulary.getVocabularyId(), null,
-				_merge(
+				LocalizedMapUtil.merge(
 					assetVocabulary.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
 						vocabulary.getName())),
-				_merge(
+				LocalizedMapUtil.merge(
 					assetVocabulary.getDescriptionMap(),
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
 						vocabulary.getDescription())),
 				null, new ServiceContext()));
-	}
-
-	private Map<Locale, String> _merge(
-		Map<Locale, String> map, Map.Entry<Locale, String> mapEntry) {
-
-		if (map == null) {
-			return Stream.of(
-				mapEntry
-			).collect(
-				Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)
-			);
-		}
-
-		if (mapEntry == null) {
-			return map;
-		}
-
-		if (mapEntry.getValue() == null) {
-			map.remove(mapEntry.getValue());
-
-			return map;
-		}
-
-		Set<Map.Entry<Locale, String>> mapEntries = map.entrySet();
-
-		return Stream.concat(
-			mapEntries.stream(), Stream.of(mapEntry)
-		).collect(
-			Collectors.toMap(
-				Map.Entry::getKey, Map.Entry::getValue,
-				(value1, value2) -> value2)
-		);
 	}
 
 	private Vocabulary _toVocabulary(AssetVocabulary assetVocabulary) {

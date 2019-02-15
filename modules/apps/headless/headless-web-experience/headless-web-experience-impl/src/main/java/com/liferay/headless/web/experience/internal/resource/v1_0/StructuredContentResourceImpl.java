@@ -61,6 +61,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
@@ -244,17 +245,17 @@ public class StructuredContentResourceImpl
 			_journalArticleService.updateArticle(
 				journalArticle.getGroupId(), journalArticle.getFolderId(),
 				journalArticle.getArticleId(), journalArticle.getVersion(),
-				_merge(
+				LocalizedMapUtil.merge(
 					journalArticle.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
 						structuredContent.getTitle())),
-				_merge(
+				LocalizedMapUtil.merge(
 					journalArticle.getDescriptionMap(),
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
 						structuredContent.getDescription())),
-				_merge(
+				LocalizedMapUtil.merge(
 					journalArticle.getFriendlyURLMap(),
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
@@ -332,38 +333,6 @@ public class StructuredContentResourceImpl
 		serviceContext.setScopeGroupId(contentSpaceId);
 
 		return serviceContext;
-	}
-
-	private Map<Locale, String> _merge(
-		Map<Locale, String> map, Map.Entry<Locale, String> mapEntry) {
-
-		if (map == null) {
-			return Stream.of(
-				mapEntry
-			).collect(
-				Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)
-			);
-		}
-
-		if (mapEntry == null) {
-			return map;
-		}
-
-		if (mapEntry.getValue() == null) {
-			map.remove(mapEntry.getValue());
-
-			return map;
-		}
-
-		Set<Map.Entry<Locale, String>> mapEntries = map.entrySet();
-
-		return Stream.concat(
-			mapEntries.stream(), Stream.of(mapEntry)
-		).collect(
-			Collectors.toMap(
-				Map.Entry::getKey, Map.Entry::getValue,
-				(value1, value2) -> value2)
-		);
 	}
 
 	private String _toString(DDMFormValues ddmFormValues) {
