@@ -73,10 +73,10 @@ public class GraphQLServletExtender {
 				setExtensionsHandler(
 					new GraphQLExtensionsHandler() {
 						{
-							setGraphQLObjectInfoRetriever(
-								graphQLObjectInfoRetriever);
 							setFieldRetriever(graphQLFieldRetriever);
 							setFieldSearchAlgorithm(parentalSearch);
+							setGraphQLObjectInfoRetriever(
+								graphQLObjectInfoRetriever);
 							setMethodSearchAlgorithm(breadthFirstSearch);
 						}
 					});
