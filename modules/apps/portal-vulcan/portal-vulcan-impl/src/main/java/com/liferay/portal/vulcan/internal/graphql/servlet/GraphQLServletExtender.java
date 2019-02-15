@@ -135,18 +135,18 @@ public class GraphQLServletExtender {
 			ServletData servletData = _bundleContext.getService(
 				serviceReference);
 
-			Object mutation = servletData.getMutation();
-			String path = servletData.getPath();
-			Object query = servletData.getQuery();
-
 			ProcessingElementsContainer processingElementsContainer =
 				new ProcessingElementsContainer(_defaultTypeFunction);
 
 			GraphQLSchema.Builder schemaBuilder = GraphQLSchema.newSchema();
 
+			Object mutation = servletData.getMutation();
+
 			schemaBuilder.mutation(
 				_graphQLObjectHandler.getObject(
 					mutation.getClass(), processingElementsContainer));
+
+			Object query = servletData.getQuery();
 
 			schemaBuilder.query(
 				_graphQLObjectHandler.getObject(
@@ -158,6 +158,8 @@ public class GraphQLServletExtender {
 			Servlet servlet = servletBuilder.build();
 
 			Dictionary<String, Object> properties = new HashMapDictionary<>();
+
+			String path = servletData.getPath();
 
 			properties.put("osgi.http.whiteboard.context.path", path);
 			properties.put(
