@@ -158,14 +158,14 @@ public class VocabularyResourceImpl
 			long groupId, Vocabulary vocabulary)
 		throws PortalException {
 
-		Map<Locale, String> descriptionMap = Collections.singletonMap(
-			acceptLanguage.getPreferredLocale(), vocabulary.getDescription());
-
-		Map<Locale, String> nameMap = Collections.singletonMap(
-			acceptLanguage.getPreferredLocale(), vocabulary.getName());
-
 		return _assetVocabularyService.addVocabulary(
-			groupId, null, nameMap, descriptionMap, null, new ServiceContext());
+			groupId, null,
+			Collections.singletonMap(
+				acceptLanguage.getPreferredLocale(), vocabulary.getName()),
+			Collections.singletonMap(
+				acceptLanguage.getPreferredLocale(),
+				vocabulary.getDescription()),
+			null, new ServiceContext());
 	}
 
 	private AssetVocabulary _getAssetVocabulary(long vocabularyId)
