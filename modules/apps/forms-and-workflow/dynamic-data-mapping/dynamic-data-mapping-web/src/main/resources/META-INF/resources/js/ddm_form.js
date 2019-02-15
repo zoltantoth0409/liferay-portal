@@ -2771,10 +2771,8 @@ AUI.add(
 							Liferay.after(
 								editorComponentName + ':registered',
 								function() {
-									if (!editor.instanceReady) {
-										if (value === localizationMap[instance.get('displayLocale')]) {
-											editor.setHTML(value);
-										}
+									if (value === localizationMap[instance.get('displayLocale')]) {
+										editor.setHTML(value);
 									}
 								}
 							);
