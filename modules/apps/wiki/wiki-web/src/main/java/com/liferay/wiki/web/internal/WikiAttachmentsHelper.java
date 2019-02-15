@@ -61,7 +61,6 @@ public class WikiAttachmentsHelper {
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<>();
-
 		List<FileEntry> tempFileEntries = new ArrayList<>();
 
 		try {
