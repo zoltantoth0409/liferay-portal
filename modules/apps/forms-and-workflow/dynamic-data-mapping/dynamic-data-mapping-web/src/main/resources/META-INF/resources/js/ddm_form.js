@@ -361,7 +361,6 @@ AUI.add(
 							instance.syncRepeatablelUI();
 						}
 
-						instance.syncLabelUI();
 						instance.syncValueUI();
 
 						AArray.invoke(instance.get('fields'), 'renderUI');
@@ -670,20 +669,6 @@ AUI.add(
 						}
 					},
 
-					syncLabelUI: function() {
-						var instance = this;
-
-						var defaultLocale = instance.getDefaultLocale();
-
-						var fieldDefinition = instance.getFieldDefinition();
-
-						var labelsMap = fieldDefinition.label;
-
-						var label = labelsMap[instance.get('displayLocale')] || labelsMap[defaultLocale];
-
-						instance.setLabel(label);
-					},
-
 					syncReadOnlyUI: function() {
 						var instance = this;
 
@@ -915,7 +900,6 @@ AUI.add(
 						instance.set('displayLocale', event.newVal);
 						instance.set('readOnly', defaultLocale !== event.newVal && !localizable);
 
-						instance.syncLabelUI();
 						instance.syncValueUI();
 						instance.syncReadOnlyUI();
 					},
