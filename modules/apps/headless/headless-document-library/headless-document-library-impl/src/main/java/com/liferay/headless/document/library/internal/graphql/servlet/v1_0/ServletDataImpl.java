@@ -14,8 +14,8 @@
 
 package com.liferay.headless.document.library.internal.graphql.servlet.v1_0;
 
-import com.liferay.headless.document.library.internal.mutation.v1_0.Mutation;
-import com.liferay.headless.document.library.internal.query.v1_0.Query;
+import com.liferay.headless.document.library.internal.graphql.mutation.v1_0.Mutation;
+import com.liferay.headless.document.library.internal.graphql.query.v1_0.Query;
 import com.liferay.portal.vulcan.graphql.servlet.ServletData;
 
 import javax.annotation.Generated;
