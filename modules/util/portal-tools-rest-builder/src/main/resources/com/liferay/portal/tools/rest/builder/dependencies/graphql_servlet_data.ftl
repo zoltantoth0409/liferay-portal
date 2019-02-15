@@ -1,7 +1,7 @@
 package ${configYAML.apiPackagePath}.internal.graphql.servlet.${versionDirName};
 
-import ${configYAML.apiPackagePath}.internal.mutation.${versionDirName}.Mutation;
-import ${configYAML.apiPackagePath}.internal.query.${versionDirName}.Query;
+import ${configYAML.apiPackagePath}.internal.graphql.mutation.${versionDirName}.Mutation;
+import ${configYAML.apiPackagePath}.internal.graphql.query.${versionDirName}.Query;
 
 import com.liferay.portal.vulcan.graphql.servlet.ServletData;
 

@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.internal.mutation.${versionDirName};
+package ${configYAML.apiPackagePath}.internal.graphql.mutation.${versionDirName};
 
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>

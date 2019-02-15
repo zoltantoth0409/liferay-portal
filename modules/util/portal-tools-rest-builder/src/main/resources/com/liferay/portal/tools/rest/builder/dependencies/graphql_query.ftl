@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.internal.query.${versionDirName};
+package ${configYAML.apiPackagePath}.internal.graphql.query.${versionDirName};
 
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>

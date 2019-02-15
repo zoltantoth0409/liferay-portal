@@ -351,7 +351,7 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/internal/mutation/");
+		sb.append("/internal/graphql/mutation/");
 		sb.append(versionDirName);
 		sb.append("/Mutation.java");
 
@@ -378,7 +378,7 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/internal/query/");
+		sb.append("/internal/graphql/query/");
 		sb.append(versionDirName);
 		sb.append("/Query.java");
 
