@@ -120,7 +120,8 @@ public class VocabularyResourceImpl
 
 	@Override
 	public Vocabulary getVocabulary(Long vocabularyId) throws Exception {
-		return _toVocabulary(_getAssetVocabulary(vocabularyId));
+		return _toVocabulary(
+			_assetVocabularyService.getVocabulary(vocabularyId));
 	}
 
 	@Override
@@ -166,12 +167,6 @@ public class VocabularyResourceImpl
 				acceptLanguage.getPreferredLocale(),
 				vocabulary.getDescription()),
 			null, new ServiceContext());
-	}
-
-	private AssetVocabulary _getAssetVocabulary(long vocabularyId)
-		throws PortalException {
-
-		return _assetVocabularyService.getVocabulary(vocabularyId);
 	}
 
 	private Map<Locale, String> _merge(
