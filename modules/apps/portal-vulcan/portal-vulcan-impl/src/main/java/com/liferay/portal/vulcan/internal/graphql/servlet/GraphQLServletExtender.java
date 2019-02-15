@@ -132,15 +132,17 @@ public class GraphQLServletExtender {
 		public ServiceRegistration<Servlet> addingService(
 			ServiceReference<ServletData> serviceReference) {
 
-			ServletData servletData = _bundleContext.getService(
-				serviceReference);
-
-			ProcessingElementsContainer processingElementsContainer =
-				new ProcessingElementsContainer(_defaultTypeFunction);
+			// Schema
 
 			GraphQLSchema.Builder schemaBuilder = GraphQLSchema.newSchema();
 
+			ServletData servletData = _bundleContext.getService(
+				serviceReference);
+
 			Object mutation = servletData.getMutation();
+
+			ProcessingElementsContainer processingElementsContainer =
+				new ProcessingElementsContainer(_defaultTypeFunction);
 
 			schemaBuilder.mutation(
 				_graphQLObjectHandler.getObject(
@@ -151,6 +153,8 @@ public class GraphQLServletExtender {
 			schemaBuilder.query(
 				_graphQLObjectHandler.getObject(
 					query.getClass(), processingElementsContainer));
+
+			// Servlet
 
 			SimpleGraphQLHttpServlet.Builder servletBuilder =
 				SimpleGraphQLHttpServlet.newBuilder(schemaBuilder.build());
