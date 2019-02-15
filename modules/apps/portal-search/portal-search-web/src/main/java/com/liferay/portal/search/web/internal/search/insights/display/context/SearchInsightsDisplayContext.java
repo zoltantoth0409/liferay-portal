@@ -21,8 +21,8 @@ import java.io.Serializable;
  */
 public class SearchInsightsDisplayContext implements Serializable {
 
-	public String getHelpString() {
-		return _helpString;
+	public String getHelpMessage() {
+		return _helpMessage;
 	}
 
 	public String getRequestString() {
@@ -33,8 +33,8 @@ public class SearchInsightsDisplayContext implements Serializable {
 		return _responseString;
 	}
 
-	public void setHelpString(String helpString) {
-		_helpString = helpString;
+	public void setHelpMessage(String helpMessage) {
+		_helpMessage = helpMessage;
 	}
 
 	public void setRequestString(String queryString) {
@@ -45,7 +45,7 @@ public class SearchInsightsDisplayContext implements Serializable {
 		_responseString = responseString;
 	}
 
-	private String _helpString;
+	private String _helpMessage;
 	private String _requestString;
 	private String _responseString;
 

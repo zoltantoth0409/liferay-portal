@@ -40,9 +40,9 @@ SearchInsightsDisplayContext searchInsightsDisplayContext = (SearchInsightsDispl
 </style>
 
 <c:choose>
-	<c:when test="<%= !Validator.isBlank(searchInsightsDisplayContext.getHelpString()) %>">
+	<c:when test="<%= !Validator.isBlank(searchInsightsDisplayContext.getHelpMessage()) %>">
 		<div class="alert alert-info">
-			<%= HtmlUtil.escape(searchInsightsDisplayContext.getHelpString()) %>
+			<%= HtmlUtil.escape(searchInsightsDisplayContext.getHelpMessage()) %>
 		</div>
 	</c:when>
 	<c:otherwise>

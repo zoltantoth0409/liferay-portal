@@ -112,8 +112,8 @@ public class SearchInsightsPortlet extends MVCPortlet {
 				buildResponseString(searchResponse, renderRequest));
 		}
 		else {
-			searchInsightsDisplayContext.setHelpString(
-				getHelpString(renderRequest));
+			searchInsightsDisplayContext.setHelpMessage(
+				getHelpMessage(renderRequest));
 		}
 
 		return searchInsightsDisplayContext;
@@ -137,7 +137,7 @@ public class SearchInsightsPortlet extends MVCPortlet {
 		return responseString.orElse(StringPool.BLANK);
 	}
 
-	protected String getHelpString(RenderRequest renderRequest) {
+	protected String getHelpMessage(RenderRequest renderRequest) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", renderRequest.getLocale(), getClass());
 
