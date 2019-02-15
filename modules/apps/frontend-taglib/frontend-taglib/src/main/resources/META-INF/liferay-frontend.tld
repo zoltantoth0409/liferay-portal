@@ -1332,6 +1332,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>containerWrapperCssClass</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>context</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -1368,11 +1373,6 @@
 		</attribute>
 		<attribute>
 			<name>navCssClass</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<name>containerWrapperCssClass</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
