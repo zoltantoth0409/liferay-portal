@@ -672,8 +672,6 @@ mariadb.executable=${mariadb.executable}]]></echo>
 							setup.proxy="@{setup.proxy}"
 							test.portal.bundle.version="${test.portal.bundle.version}"
 						/>
-
-						<setup-testable-tomcat />
 					</then>
 				</elseif>
 			</if>
@@ -819,8 +817,6 @@ app.server.type=@{app.server.type}]]></echo>
 				<equals arg1="@{app.server.type}" arg2="tomcat" />
 				<then>
 					<setup-test-batch-testable-tomcat />
-
-					<setup-testable-tomcat />
 				</then>
 			</if>
 
@@ -1268,8 +1264,6 @@ app.server.type=@{app.server.type}]]></echo>
 									</and>
 									<then>
 										<setup-test-batch-testable-tomcat setup.proxy="@{setup.proxy}" />
-
-										<setup-testable-tomcat />
 									</then>
 								</elseif>
 							</if>
@@ -2381,6 +2375,8 @@ app.server.type=@{app.server.type}]]></echo>
 			<setup-testable-tomcat-heap-dump-on-oom />
 
 			<setup-testable-tomcat-print-final-flags />
+
+			<setup-testable-tomcat />
 		</sequential>
 	</macrodef>
 
@@ -3798,8 +3794,6 @@ app.server.type=@{app.server.type}]]></echo>
 						<antcall inheritAll="false" target="setup-sdk" />
 
 						<setup-test-batch-testable-tomcat test.portal.bundle.version="${test.portal.bundle.version}" />
-
-						<setup-testable-tomcat />
 					</then>
 					<elseif>
 						<and>
