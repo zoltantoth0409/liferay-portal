@@ -13,7 +13,6 @@ Import-Package:\
 	com.liferay.portal.kernel.portlet;version="[7.3.0,8)",\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Asset
 Web-ContextPath: /asset-publisher-web
 -dsannotations-options: inherit

@@ -15,7 +15,6 @@ Import-Package:\
 	!org.joda.*,\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Calendar
 -exportcontents:\
 	com.google.ical.iter,\

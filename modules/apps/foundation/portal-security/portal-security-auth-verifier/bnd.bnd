@@ -7,6 +7,5 @@ Export-Package:\
 	com.liferay.portal.security.auth.verifier.portal.session,\
 	com.liferay.portal.security.auth.verifier.request.parameter,\
 	com.liferay.portal.security.auth.verifier.tunnel
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Security Frameworks
 -metatype-inherit: True

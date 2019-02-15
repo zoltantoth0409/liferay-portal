@@ -7,5 +7,4 @@ Import-Package:\
 	!junit.*,\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Security Frameworks

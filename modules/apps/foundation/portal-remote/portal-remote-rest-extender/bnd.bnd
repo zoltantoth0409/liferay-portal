@@ -2,5 +2,4 @@ Bundle-Activator: com.liferay.portal.remote.rest.extender.internal.activator.CXF
 Bundle-Name: Liferay Portal Remote REST Extender
 Bundle-SymbolicName: com.liferay.portal.remote.rest.extender
 Bundle-Version: 2.0.21
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Remote Service Engines

@@ -7,5 +7,4 @@ Export-Package:\
 	com.liferay.microblogs.model,\
 	com.liferay.microblogs.service,\
 	com.liferay.microblogs.service.persistence
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Microblogs

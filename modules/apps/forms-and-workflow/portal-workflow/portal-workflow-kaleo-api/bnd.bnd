@@ -7,5 +7,4 @@ Export-Package:\
 	com.liferay.portal.workflow.kaleo.model,\
 	com.liferay.portal.workflow.kaleo.service,\
 	com.liferay.portal.workflow.kaleo.service.persistence
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Kaleo Workflow Engine

@@ -6,5 +6,4 @@ Import-Package:\
 	com.liferay.portal.kernel.search.*,\
 	\
 	org.junit
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Search

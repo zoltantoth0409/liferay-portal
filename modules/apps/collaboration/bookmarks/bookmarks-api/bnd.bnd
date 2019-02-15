@@ -10,5 +10,4 @@ Export-Package:\
 	com.liferay.bookmarks.service,\
 	com.liferay.bookmarks.service.persistence,\
 	com.liferay.bookmarks.util.comparator
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Bookmarks

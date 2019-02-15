@@ -5,5 +5,4 @@ Export-Package:\
 	com.liferay.blogs.configuration,\
 	com.liferay.blogs.configuration.definition,\
 	com.liferay.blogs.constants
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Blogs

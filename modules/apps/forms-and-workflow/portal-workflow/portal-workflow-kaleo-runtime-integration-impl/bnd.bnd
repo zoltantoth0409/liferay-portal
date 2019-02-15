@@ -5,5 +5,4 @@ Import-Package:\
 	com.liferay.portal.kernel.workflow;version="[7.1.0,8.0.0)",\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Kaleo Workflow Engine

@@ -5,8 +5,6 @@ Export-Package:\
 	com.liferay.layout.taglib.servlet,\
 	com.liferay.layout.taglib.servlet.taglib
 Liferay-JS-Config: /META-INF/resources/config.js
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title:
 Provide-Capability:\
 	osgi.extender;\
 		osgi.extender="jsp.taglib";\

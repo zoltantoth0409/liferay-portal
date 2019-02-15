@@ -9,5 +9,4 @@ Export-Package:\
 	com.liferay.polls.service.permission,\
 	com.liferay.polls.service.persistence,\
 	com.liferay.polls.util.comparator
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Polls

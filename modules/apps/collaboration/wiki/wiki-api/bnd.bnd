@@ -16,5 +16,4 @@ Export-Package:\
 	com.liferay.wiki.service,\
 	com.liferay.wiki.service.persistence,\
 	com.liferay.wiki.validator
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Wiki

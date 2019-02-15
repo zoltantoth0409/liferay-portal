@@ -3,7 +3,6 @@ Bundle-SymbolicName: com.liferay.frontend.js.metal.web
 Bundle-Version: 1.0.25
 Liferay-JS-Config: /META-INF/resources/config.js
 Liferay-JS-Submodules-Export: *
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Frontend Infrastructure
 Provide-Capability:\
 	soy;\

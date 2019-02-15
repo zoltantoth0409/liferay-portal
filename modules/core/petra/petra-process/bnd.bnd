@@ -4,5 +4,3 @@ Bundle-Version: 1.0.9
 Export-Package:\
 	com.liferay.petra.process,\
 	com.liferay.petra.process.local
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title:

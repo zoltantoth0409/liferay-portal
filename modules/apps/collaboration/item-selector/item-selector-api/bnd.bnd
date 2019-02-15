@@ -4,5 +4,4 @@ Bundle-Version: 2.4.6
 Export-Package:\
 	com.liferay.item.selector,\
 	com.liferay.item.selector.constants
-Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Item Selector

@@ -5,8 +5,6 @@ Import-Package:\
 	javax.net.ssl,\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title:
 -dsannotations-options: inherit
 -includeresource:\
 	content=../../users-admin/users-admin-web/src/main/resources/content,\
