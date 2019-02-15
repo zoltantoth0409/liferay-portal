@@ -80,13 +80,11 @@ public class UpgradeMySQL extends UpgradeProcess {
 
 		DBInspector dbInspector = new DBInspector(connection);
 
-		String catalog = dbInspector.getCatalog();
-		String schema = dbInspector.getSchema();
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			Statement statement = connection.createStatement();
 			ResultSet rs = databaseMetaData.getTables(
-				catalog, schema, null, new String[] {"TABLE"})) {
+				dbInspector.getCatalog(), dbInspector.getSchema(), null,
+				new String[] {"TABLE"})) {
 
 			while (rs.next()) {
 				String tableName = rs.getString("TABLE_NAME");
