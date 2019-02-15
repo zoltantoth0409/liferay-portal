@@ -123,9 +123,9 @@ public class RESTBuilder {
 			context.put("openAPIYAML", openAPIYAML);
 			context.put("versionDirName", versionDirName);
 
-			_createMutationFile(context, versionDirName);
-			_createQueryFile(context, versionDirName);
-			_createServletDataFile(context, versionDirName);
+			_createGraphQLMutationFile(context, versionDirName);
+			_createGraphQLQueryFile(context, versionDirName);
+			_createGraphQLServletDataFile(context, versionDirName);
 
 			Components components = openAPIYAML.getComponents();
 
@@ -338,7 +338,7 @@ public class RESTBuilder {
 			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
 	}
 
-	private void _createMutationFile(
+	private void _createGraphQLMutationFile(
 			Map<String, Object> context, String versionDirName)
 		throws Exception {
 
@@ -362,7 +362,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "mutation", context));
+				_copyrightFileName, "graphql_mutation", context));
 	}
 
 	private void _createPropertiesFile(
@@ -387,7 +387,7 @@ public class RESTBuilder {
 			file, FreeMarkerUtil.processTemplate(null, "properties", context));
 	}
 
-	private void _createQueryFile(
+	private void _createGraphQLQueryFile(
 			Map<String, Object> context, String versionDirName)
 		throws Exception {
 
@@ -411,7 +411,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "query", context));
+				_copyrightFileName, "graphql_query", context));
 	}
 
 	private void _createResourceFile(
@@ -512,7 +512,7 @@ public class RESTBuilder {
 				_copyrightFileName, "resource_test", context));
 	}
 
-	private void _createServletDataFile(
+	private void _createGraphQLServletDataFile(
 			Map<String, Object> context, String versionDirName)
 		throws Exception {
 
@@ -536,7 +536,7 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "servlet_data", context));
+				_copyrightFileName, "graphql_servlet_data", context));
 	}
 
 	private static final Pattern _leadingUnderscorePattern = Pattern.compile(
