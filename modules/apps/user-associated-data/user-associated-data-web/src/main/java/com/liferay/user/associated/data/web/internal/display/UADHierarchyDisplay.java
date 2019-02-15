@@ -125,8 +125,8 @@ public class UADHierarchyDisplay {
 
 			searchResults.addAll(
 				getContainerDisplays(
-					containerUADDisplay, parentContainerClass, parentContainerId,
-					allUserItems));
+					containerUADDisplay, parentContainerClass,
+					parentContainerId, allUserItems));
 		}
 
 		for (UADDisplay nonContainerUADDisplay :
