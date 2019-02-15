@@ -91,12 +91,6 @@ public class GraphQLServletExtender {
 
 		graphQLInterfaceRetriever.setGraphQLTypeRetriever(graphQLTypeRetriever);
 
-		_graphQLObjectHandler = new GraphQLObjectHandler() {
-			{
-				setTypeRetriever(graphQLTypeRetriever);
-			}
-		};
-
 		_defaultTypeFunction = new DefaultTypeFunction(
 			new GraphQLInputProcessor() {
 				{
@@ -108,6 +102,11 @@ public class GraphQLServletExtender {
 					setGraphQLTypeRetriever(graphQLTypeRetriever);
 				}
 			});
+		_graphQLObjectHandler = new GraphQLObjectHandler() {
+			{
+				setTypeRetriever(graphQLTypeRetriever);
+			}
+		};
 
 		_serviceTracker = new ServiceTracker<>(
 			bundleContext, ServletData.class,
