@@ -57,7 +57,8 @@ public class GraphQLServletExtender {
 	protected void activate(BundleContext bundleContext) {
 		GraphQLFieldRetriever graphQLFieldRetriever =
 			new GraphQLFieldRetriever();
-
+		GraphQLInterfaceRetriever graphQLInterfaceRetriever =
+			new GraphQLInterfaceRetriever();
 		GraphQLObjectInfoRetriever graphQLObjectInfoRetriever =
 			new GraphQLObjectInfoRetriever();
 
@@ -65,9 +66,6 @@ public class GraphQLServletExtender {
 			graphQLObjectInfoRetriever);
 		ParentalSearch parentalSearch = new ParentalSearch(
 			graphQLObjectInfoRetriever);
-
-		GraphQLInterfaceRetriever graphQLInterfaceRetriever =
-			new GraphQLInterfaceRetriever();
 
 		GraphQLTypeRetriever graphQLTypeRetriever = new GraphQLTypeRetriever() {
 			{
