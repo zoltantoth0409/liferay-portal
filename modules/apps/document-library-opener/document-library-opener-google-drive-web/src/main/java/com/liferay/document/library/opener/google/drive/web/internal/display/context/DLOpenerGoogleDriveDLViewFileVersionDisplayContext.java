@@ -116,7 +116,7 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 			return menu;
 		}
 
-		if (!_isCheckedOutByOther()) {
+		if (!_isCheckedOut()) {
 			List<MenuItem> menuItems = menu.getMenuItems();
 
 			menuItems.add(
@@ -189,7 +189,7 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 		return liferayPortletResponse.getNamespace();
 	}
 
-	private boolean _isCheckedOutByOther() throws PortalException {
+	private boolean _isCheckedOut() throws PortalException {
 		FileEntry fileEntry = fileVersion.getFileEntry();
 
 		if (fileEntry.isCheckedOut() && !fileEntry.hasLock()) {
