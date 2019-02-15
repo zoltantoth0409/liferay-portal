@@ -6732,7 +6732,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			validGroupIds = ArrayUtil.clone(groupIds);
 		}
 		else {
-			validGroupIds = user.getGroupIds();
+			List<Group> userGroups = groupLocalService.getUserGroups(
+				user.getUserId(), true);
+
+			List<Long> userGroupIds = new ArrayList<>(userGroups.size());
+
+			userGroups.forEach(
+				userSiteGroup -> userGroupIds.add(userSiteGroup.getGroupId()));
+
+			validGroupIds = ArrayUtil.toLongArray(userGroupIds);
 		}
 
 		if (organizationIds == null) {
