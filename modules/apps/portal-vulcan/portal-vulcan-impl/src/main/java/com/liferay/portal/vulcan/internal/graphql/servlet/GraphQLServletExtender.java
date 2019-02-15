@@ -66,51 +66,50 @@ public class GraphQLServletExtender {
 		ParentalSearch parentalSearch = new ParentalSearch(
 			graphQLObjectInfoRetriever);
 
-		GraphQLExtensionsHandler graphQLExtensionsHandler =
-			new GraphQLExtensionsHandler();
-
-		graphQLExtensionsHandler.setGraphQLObjectInfoRetriever(
-			graphQLObjectInfoRetriever);
-		graphQLExtensionsHandler.setFieldRetriever(graphQLFieldRetriever);
-		graphQLExtensionsHandler.setFieldSearchAlgorithm(parentalSearch);
-		graphQLExtensionsHandler.setMethodSearchAlgorithm(breadthFirstSearch);
-
 		GraphQLInterfaceRetriever graphQLInterfaceRetriever =
 			new GraphQLInterfaceRetriever();
 
-		GraphQLTypeRetriever graphQLTypeRetriever = new GraphQLTypeRetriever();
+		GraphQLTypeRetriever graphQLTypeRetriever = new GraphQLTypeRetriever() {
+			{
+				setExtensionsHandler(
+					new GraphQLExtensionsHandler() {
+						{
+							setGraphQLObjectInfoRetriever(graphQLObjectInfoRetriever);
+							setFieldRetriever(graphQLFieldRetriever);
+							setFieldSearchAlgorithm(parentalSearch);
+							setMethodSearchAlgorithm(breadthFirstSearch);
+						}
+					});
+				setFieldSearchAlgorithm(parentalSearch);
+				setGraphQLFieldRetriever(graphQLFieldRetriever);
+				setGraphQLInterfaceRetriever(graphQLInterfaceRetriever);
+				setGraphQLObjectInfoRetriever(graphQLObjectInfoRetriever);
+				setMethodSearchAlgorithm(breadthFirstSearch);
+			}
+		};
 
 		// Handle Circular reference between GraphQLInterfaceRetriever and
 		// GraphQLTypeRetriever
 
 		graphQLInterfaceRetriever.setGraphQLTypeRetriever(graphQLTypeRetriever);
 
-		graphQLTypeRetriever.setGraphQLInterfaceRetriever(
-			graphQLInterfaceRetriever);
-
-		graphQLTypeRetriever.setExtensionsHandler(graphQLExtensionsHandler);
-		graphQLTypeRetriever.setFieldSearchAlgorithm(parentalSearch);
-		graphQLTypeRetriever.setGraphQLFieldRetriever(graphQLFieldRetriever);
-		graphQLTypeRetriever.setGraphQLObjectInfoRetriever(
-			graphQLObjectInfoRetriever);
-		graphQLTypeRetriever.setMethodSearchAlgorithm(breadthFirstSearch);
-
-		_graphQLObjectHandler = new GraphQLObjectHandler();
-
-		_graphQLObjectHandler.setTypeRetriever(graphQLTypeRetriever);
-
-		GraphQLInputProcessor graphQLInputProcessor =
-			new GraphQLInputProcessor();
-
-		graphQLInputProcessor.setGraphQLTypeRetriever(graphQLTypeRetriever);
-
-		GraphQLOutputProcessor graphQLOutputProcessor =
-			new GraphQLOutputProcessor();
-
-		graphQLOutputProcessor.setGraphQLTypeRetriever(graphQLTypeRetriever);
+		_graphQLObjectHandler = new GraphQLObjectHandler() {
+			{
+				setTypeRetriever(graphQLTypeRetriever);
+			}
+		};
 
 		_defaultTypeFunction = new DefaultTypeFunction(
-			graphQLInputProcessor, graphQLOutputProcessor);
+			new GraphQLInputProcessor() {
+				{
+					setGraphQLTypeRetriever(graphQLTypeRetriever);
+				}
+			},
+			new GraphQLOutputProcessor() {
+				{
+					setGraphQLTypeRetriever(graphQLTypeRetriever);
+				}
+			});
 
 		_serviceTracker = new ServiceTracker<>(
 			bundleContext, ServletData.class,
