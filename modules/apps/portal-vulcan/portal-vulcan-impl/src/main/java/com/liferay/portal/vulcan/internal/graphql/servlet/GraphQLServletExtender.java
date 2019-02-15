@@ -59,6 +59,7 @@ public class GraphQLServletExtender {
 			new GraphQLFieldRetriever();
 		GraphQLInterfaceRetriever graphQLInterfaceRetriever =
 			new GraphQLInterfaceRetriever();
+
 		GraphQLObjectInfoRetriever graphQLObjectInfoRetriever =
 			new GraphQLObjectInfoRetriever();
 
@@ -72,7 +73,8 @@ public class GraphQLServletExtender {
 				setExtensionsHandler(
 					new GraphQLExtensionsHandler() {
 						{
-							setGraphQLObjectInfoRetriever(graphQLObjectInfoRetriever);
+							setGraphQLObjectInfoRetriever(
+								graphQLObjectInfoRetriever);
 							setFieldRetriever(graphQLFieldRetriever);
 							setFieldSearchAlgorithm(parentalSearch);
 							setMethodSearchAlgorithm(breadthFirstSearch);
