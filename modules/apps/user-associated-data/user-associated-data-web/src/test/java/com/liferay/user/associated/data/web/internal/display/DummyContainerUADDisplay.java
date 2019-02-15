@@ -32,7 +32,7 @@ public class DummyContainerUADDisplay extends DummyUADDisplay<DummyContainer> {
 
 	@Override
 	public DummyContainer getTopLevelContainer(
-		Class parentContainerType, Serializable parentContainerId,
+		Class<?> parentContainerClass, Serializable parentContainerId,
 		Object childObject) {
 
 		long parentDummyContainerId = (long)parentContainerId;

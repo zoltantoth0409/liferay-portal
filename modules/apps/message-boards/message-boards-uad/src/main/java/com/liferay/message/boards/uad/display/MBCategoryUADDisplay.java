@@ -72,10 +72,10 @@ public class MBCategoryUADDisplay extends BaseMBCategoryUADDisplay {
 
 	@Override
 	public MBCategory getTopLevelContainer(
-		Class parentContainerType, Serializable parentContainerId,
+		Class<?> parentContainerClass, Serializable parentContainerId,
 		Object childObject) {
 
-		if (!parentContainerType.equals(MBCategory.class)) {
+		if (!parentContainerClass.equals(MBCategory.class)) {
 			return null;
 		}
 

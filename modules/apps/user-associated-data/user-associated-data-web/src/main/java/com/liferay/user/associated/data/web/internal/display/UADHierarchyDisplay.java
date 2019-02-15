@@ -101,12 +101,12 @@ public class UADHierarchyDisplay {
 	}
 
 	public List<Object> search(
-			Class<?> parentContainerType, Serializable parentContainerId,
+			Class<?> parentContainerClass, Serializable parentContainerId,
 			long userId, long[] groupIds, String keywords, String orderByField,
 			String orderByType, int start, int end)
 		throws Exception {
 
-		Objects.requireNonNull(parentContainerType);
+		Objects.requireNonNull(parentContainerClass);
 		Objects.requireNonNull(parentContainerId);
 
 		List<Object> searchResults = new ArrayList<>();
@@ -125,7 +125,7 @@ public class UADHierarchyDisplay {
 
 			searchResults.addAll(
 				getContainerDisplays(
-					containerUADDisplay, parentContainerType, parentContainerId,
+					containerUADDisplay, parentContainerClass, parentContainerId,
 					allUserItems));
 		}
 
@@ -150,7 +150,7 @@ public class UADHierarchyDisplay {
 	}
 
 	protected <T> Collection<ContainerDisplay<T>> getContainerDisplays(
-		UADDisplay<T> containerUADDisplay, Class<?> parentContainerType,
+		UADDisplay<T> containerUADDisplay, Class<?> parentContainerClass,
 		Serializable parentContainerId, List<Object> allUserItems) {
 
 		Map<Serializable, ContainerDisplay<T>> topLevelCategories =
@@ -164,7 +164,7 @@ public class UADHierarchyDisplay {
 			}
 
 			T topLevelContainer = containerUADDisplay.getTopLevelContainer(
-				parentContainerType, parentContainerId, userItem);
+				parentContainerClass, parentContainerId, userItem);
 
 			if (topLevelContainer == null) {
 				continue;

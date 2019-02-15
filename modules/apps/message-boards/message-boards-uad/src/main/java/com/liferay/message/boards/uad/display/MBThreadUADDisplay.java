@@ -41,10 +41,10 @@ public class MBThreadUADDisplay extends BaseMBThreadUADDisplay {
 
 	@Override
 	public MBThread getTopLevelContainer(
-		Class parentContainerType, Serializable parentContainerId,
+		Class<?> parentContainerClass, Serializable parentContainerId,
 		Object childObject) {
 
-		if (!parentContainerType.equals(MBCategory.class) ||
+		if (!parentContainerClass.equals(MBCategory.class) ||
 			(childObject instanceof MBCategory)) {
 
 			return null;

@@ -92,7 +92,7 @@ public class DLFolderUADDisplay extends BaseDLFolderUADDisplay {
 
 	@Override
 	public DLFolder getTopLevelContainer(
-		Class parentContainerType, Serializable parentContainerId,
+		Class<?> parentContainerClass, Serializable parentContainerId,
 		Object childObject) {
 
 		try {

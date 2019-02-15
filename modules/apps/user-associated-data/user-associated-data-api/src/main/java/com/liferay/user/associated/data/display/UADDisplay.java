@@ -157,7 +157,7 @@ public interface UADDisplay<T> extends UADComponent<T> {
 	 * Returns the entity of type {@code T} that satisfies two conditions:
 	 *
 	 * 1. It is an immediate child of the container identified by
-	 * {@code parentContainerType} and {@code parentContainerId}.
+	 * {@code parentContainerClass} and {@code parentContainerId}.
 	 * 2. It is an ancestor of the childObject. It does not have to be an
 	 * immediate ancestor.
 	 *
@@ -169,7 +169,7 @@ public interface UADDisplay<T> extends UADComponent<T> {
 	 * required for hierarchy display to function correctly, but not for
 	 * normal usage.
 	 *
-	 * @param parentContainerType
+	 * @param parentContainerClass
 	 * @param parentContainerId
 	 * @param childObject
 	 * @return the highest level parent of childObject that is also a child of
@@ -178,7 +178,7 @@ public interface UADDisplay<T> extends UADComponent<T> {
 	 * @see UADHierarchyDeclaration
 	 */
 	public default T getTopLevelContainer(
-		Class<?> parentContainerType, Serializable parentContainerId,
+		Class<?> parentContainerClass, Serializable parentContainerId,
 		Object childObject) {
 
 		throw new UnsupportedOperationException();
