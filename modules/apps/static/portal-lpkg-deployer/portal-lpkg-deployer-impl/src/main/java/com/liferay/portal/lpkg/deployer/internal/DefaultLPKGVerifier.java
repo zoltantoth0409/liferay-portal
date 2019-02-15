@@ -105,8 +105,8 @@ public class DefaultLPKGVerifier implements LPKGVerifier {
 					oldBundles.add(bundle);
 				}
 				else {
-					String location =
-						LPKGInnerBundleLocationUtil.getLPKGLocation(lpkgFile);
+					String location = LPKGLocationUtil.getLPKGLocation(
+						lpkgFile);
 
 					if (location.equals(bundle.getLocation())) {
 						continue;
