@@ -414,10 +414,14 @@ public class CTEngineManagerImpl implements CTEngineManager {
 	public List<CTCollection> searchByKeywords(
 		long companyId, QueryDefinition<CTCollection> queryDefinition) {
 
-		String keywords = GetterUtil.getString(
-			queryDefinition.getAttribute("keywords"));
+		DynamicQuery dynamicQuery = _ctCollectionLocalService.dynamicQuery();
+
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("companyId", companyId));
 
 		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+		String keywords = GetterUtil.getString(
+			queryDefinition.getAttribute("keywords"));
 
 		for (String keyword : StringUtil.split(keywords, CharPool.SPACE)) {
 			disjunction.add(
@@ -427,10 +431,6 @@ public class CTEngineManagerImpl implements CTEngineManager {
 				RestrictionsFactoryUtil.ilike(
 					"description", _wildcard(keyword)));
 		}
-
-		DynamicQuery dynamicQuery = _ctCollectionLocalService.dynamicQuery();
-
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("companyId", companyId));
 
 		dynamicQuery.add(disjunction);
 
