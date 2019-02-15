@@ -6751,8 +6751,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			Organization organization =
 				organizationPersistence.findByPrimaryKey(organizationId);
 
-			validGroupIds = ArrayUtil.append(
-				validGroupIds, organization.getGroupId());
+			if (!ArrayUtil.contains(validGroupIds, organization.getGroupId())) {
+				validGroupIds = ArrayUtil.append(
+					validGroupIds, organization.getGroupId());
+			}
 		}
 
 		Arrays.sort(validGroupIds);
