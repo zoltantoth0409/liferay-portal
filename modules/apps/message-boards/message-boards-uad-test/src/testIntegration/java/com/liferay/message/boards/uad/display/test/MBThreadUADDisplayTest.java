@@ -133,7 +133,7 @@ public class MBThreadUADDisplayTest extends BaseUADDisplayTestCase<MBThread> {
 		Assert.assertNull(
 			_getTopLevelContainer(mbCategoryA.getCategoryId(), mbMessageB));
 
-		// A thread that is a non-immediate descendant of the given parent
+		// A thread that is a nonimmediate descendant of the given parent
 		// should return null
 
 		MBCategory mbCategoryBA = _addCategory(mbCategoryB.getCategoryId());
@@ -143,7 +143,7 @@ public class MBThreadUADDisplayTest extends BaseUADDisplayTestCase<MBThread> {
 		Assert.assertNull(
 			_getTopLevelContainer(mbCategoryB.getCategoryId(), mbThreadBA));
 
-		// A message whose thread is a non-immediate descendant of the given
+		// A message whose thread is a nonimmediate descendant of the given
 		// parent should return null
 
 		MBMessage mbMessageBA = _addMessage(

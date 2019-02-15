@@ -126,7 +126,7 @@ public class DLFolderUADDisplayTest extends BaseUADDisplayTestCase<DLFolder> {
 		Assert.assertNull(
 			_getTopLevelContainer(dlFolderA.getFolderId(), dlFileEntryBA));
 
-		// A folder that is a non-immediate descendant of the given parent
+		// A folder that is a nonimmediate descendant of the given parent
 		// should return its highest ancestor below the given parent
 
 		DLFolder dlFolderBAA = _addFolder(dlFolderBA.getFolderId());
@@ -137,7 +137,7 @@ public class DLFolderUADDisplayTest extends BaseUADDisplayTestCase<DLFolder> {
 			dlFolderBA,
 			_getTopLevelContainer(dlFolderB.getFolderId(), dlFolderBAAA));
 
-		// A file entry that is a non-immediate descendant of the given parent
+		// A file entry that is a nonimmediate descendant of the given parent
 		// should return its highest ancestor below the given parent
 
 		DLFileEntry dlFileEntryBAAA = _addFileEntry(dlFolderBAAA.getFolderId());

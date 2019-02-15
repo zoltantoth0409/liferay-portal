@@ -139,7 +139,7 @@ public class MBCategoryUADDisplayTest
 		Assert.assertNull(
 			_getTopLevelContainer(mbCategoryA.getCategoryId(), mbMessageBA));
 
-		// A category that is a non-immediate descendant of the given parent
+		// A category that is a nonimmediate descendant of the given parent
 		// should return its highest ancestor below the given parent
 
 		MBCategory mbCategoryBAA = _addCategory(mbCategoryBA.getCategoryId());
@@ -150,7 +150,7 @@ public class MBCategoryUADDisplayTest
 			mbCategoryBA,
 			_getTopLevelContainer(mbCategoryB.getCategoryId(), mbCategoryBAAA));
 
-		// A message that is a non-immediate descendant of the given parent
+		// A message that is a nonimmediate descendant of the given parent
 		// should return its highest ancestor below the given parent
 
 		MBMessage mbMessageBAAA = _addMessage(mbCategoryBAAA.getCategoryId());
