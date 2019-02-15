@@ -175,16 +175,16 @@ public class ChangeListsDisplayContext {
 
 		QueryDefinition<CTCollection> queryDefinition = new QueryDefinition<>();
 
+		DisplayTerms displayTerms = searchContainer.getDisplayTerms();
+
+		queryDefinition.setAttribute("keywords", displayTerms.getKeywords());
+
 		OrderByComparator<CTCollection> orderByComparator =
 			OrderByComparatorFactoryUtil.create(
 				"CTCollection", _getOrderByCol(),
 				getOrderByType().equals("asc"));
 
 		queryDefinition.setOrderByComparator(orderByComparator);
-
-		DisplayTerms displayTerms = searchContainer.getDisplayTerms();
-
-		queryDefinition.setAttribute("keywords", displayTerms.getKeywords());
 
 		CTEngineManager ctEngineManager = _serviceTracker.getService();
 
