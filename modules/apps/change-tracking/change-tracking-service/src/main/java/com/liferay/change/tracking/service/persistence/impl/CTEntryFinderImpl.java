@@ -107,7 +107,6 @@ public class CTEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(ctCollectionId);
-
 			qPos.add(status);
 
 			return (List<CTEntry>)QueryUtil.list(
