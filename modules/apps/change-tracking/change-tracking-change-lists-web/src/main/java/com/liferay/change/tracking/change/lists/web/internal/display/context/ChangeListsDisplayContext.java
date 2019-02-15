@@ -173,6 +173,8 @@ public class ChangeListsDisplayContext {
 			SearchContainer.DEFAULT_CUR_PARAM, 0, SearchContainer.DEFAULT_DELTA,
 			_getIteratorURL(), null, "there-are-no-change-lists");
 
+		CTEngineManager ctEngineManager = _serviceTracker.getService();
+
 		QueryDefinition<CTCollection> queryDefinition = new QueryDefinition<>();
 
 		DisplayTerms displayTerms = searchContainer.getDisplayTerms();
@@ -185,8 +187,6 @@ public class ChangeListsDisplayContext {
 				getOrderByType().equals("asc"));
 
 		queryDefinition.setOrderByComparator(orderByComparator);
-
-		CTEngineManager ctEngineManager = _serviceTracker.getService();
 
 		List<CTCollection> ctCollections = ctEngineManager.searchByKeywords(
 			_themeDisplay.getCompanyId(), queryDefinition);
