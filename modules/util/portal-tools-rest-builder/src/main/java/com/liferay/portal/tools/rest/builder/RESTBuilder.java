@@ -365,28 +365,6 @@ public class RESTBuilder {
 				_copyrightFileName, "graphql_mutation", context));
 	}
 
-	private void _createPropertiesFile(
-			Map<String, Object> context, String schemaName,
-			String versionDirName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/../resources/OSGI-INF/liferay/rest/");
-		sb.append(versionDirName);
-		sb.append("/");
-		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
-		sb.append(".properties");
-
-		File file = new File(sb.toString());
-
-		_files.add(file);
-
-		FileUtil.write(
-			file, FreeMarkerUtil.processTemplate(null, "properties", context));
-	}
-
 	private void _createGraphQLQueryFile(
 			Map<String, Object> context, String versionDirName)
 		throws Exception {
@@ -412,6 +390,55 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "graphql_query", context));
+	}
+
+	private void _createGraphQLServletDataFile(
+			Map<String, Object> context, String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/internal/graphql/servlet/");
+		sb.append(versionDirName);
+		sb.append("/ServletDataImpl.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "graphql_servlet_data", context));
+	}
+
+	private void _createPropertiesFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/../resources/OSGI-INF/liferay/rest/");
+		sb.append(versionDirName);
+		sb.append("/");
+		sb.append(CamelCaseUtil.fromCamelCase(schemaName));
+		sb.append(".properties");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file, FreeMarkerUtil.processTemplate(null, "properties", context));
 	}
 
 	private void _createResourceFile(
@@ -510,33 +537,6 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_test", context));
-	}
-
-	private void _createGraphQLServletDataFile(
-			Map<String, Object> context, String versionDirName)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(_configYAML.getImplDir());
-		sb.append("/");
-
-		String apiPackagePath = _configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/internal/graphql/servlet/");
-		sb.append(versionDirName);
-		sb.append("/ServletDataImpl.java");
-
-		File file = new File(sb.toString());
-
-		_files.add(file);
-
-		FileUtil.write(
-			file,
-			FreeMarkerUtil.processTemplate(
-				_copyrightFileName, "graphql_servlet_data", context));
 	}
 
 	private static final Pattern _leadingUnderscorePattern = Pattern.compile(
