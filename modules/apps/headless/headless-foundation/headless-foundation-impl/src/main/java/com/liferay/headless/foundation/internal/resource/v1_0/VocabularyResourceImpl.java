@@ -20,7 +20,6 @@ import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
@@ -129,7 +128,15 @@ public class VocabularyResourceImpl
 			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
-		return _toVocabulary(_addAssetVocabulary(contentSpaceId, vocabulary));
+		return _toVocabulary(
+			_assetVocabularyService.addVocabulary(
+				contentSpaceId, null,
+				Collections.singletonMap(
+					acceptLanguage.getPreferredLocale(), vocabulary.getName()),
+				Collections.singletonMap(
+					acceptLanguage.getPreferredLocale(),
+					vocabulary.getDescription()),
+				null, new ServiceContext()));
 	}
 
 	@Override
@@ -153,20 +160,6 @@ public class VocabularyResourceImpl
 						acceptLanguage.getPreferredLocale(),
 						vocabulary.getDescription())),
 				null, new ServiceContext()));
-	}
-
-	private AssetVocabulary _addAssetVocabulary(
-			long groupId, Vocabulary vocabulary)
-		throws PortalException {
-
-		return _assetVocabularyService.addVocabulary(
-			groupId, null,
-			Collections.singletonMap(
-				acceptLanguage.getPreferredLocale(), vocabulary.getName()),
-			Collections.singletonMap(
-				acceptLanguage.getPreferredLocale(),
-				vocabulary.getDescription()),
-			null, new ServiceContext());
 	}
 
 	private Map<Locale, String> _merge(
