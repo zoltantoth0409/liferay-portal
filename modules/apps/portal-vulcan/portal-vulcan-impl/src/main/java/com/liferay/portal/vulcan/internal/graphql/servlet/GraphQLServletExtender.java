@@ -166,13 +166,14 @@ public class GraphQLServletExtender {
 			String path = servletData.getPath();
 
 			properties.put("osgi.http.whiteboard.context.path", path);
-			properties.put(
-				"osgi.http.whiteboard.servlet.pattern", path.concat("/*"));
 
 			Class<? extends ServletData> clazz = servletData.getClass();
 
 			properties.put(
 				"osgi.http.whiteboard.servlet.name", clazz.getName());
+
+			properties.put(
+				"osgi.http.whiteboard.servlet.pattern", path.concat("/*"));
 
 			return _bundleContext.registerService(
 				Servlet.class, servlet, properties);
