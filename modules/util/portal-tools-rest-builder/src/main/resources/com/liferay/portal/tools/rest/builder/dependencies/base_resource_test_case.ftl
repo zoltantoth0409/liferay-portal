@@ -41,16 +41,16 @@ import org.junit.Test;
 @Generated("")
 public abstract class Base${schemaName}ResourceTestCase {
 
+	@BeforeClass
+	public static void setUpClass() {
+		RestAssured.defaultParser = Parser.JSON;
+	}
+
 	@Before
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL("http://localhost:8080/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
-	}
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
 	}
 
 	@After
