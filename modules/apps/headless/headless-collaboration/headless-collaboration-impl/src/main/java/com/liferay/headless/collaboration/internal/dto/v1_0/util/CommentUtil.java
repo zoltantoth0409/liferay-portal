@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.dto.v1_0;
+package com.liferay.headless.collaboration.internal.dto.v1_0.util;
 
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 
 /**
  * @author Javier Gamarra
@@ -29,7 +30,7 @@ public class CommentUtil {
 			return null;
 		}
 
-		return new Comment() {
+		return new CommentImpl() {
 			{
 				setCreator(CreatorUtil.toCreator(comment.getUser()));
 				setId(comment.getCommentId());

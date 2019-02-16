@@ -17,7 +17,7 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
-import com.liferay.headless.collaboration.internal.dto.v1_0.CommentUtil;
+import com.liferay.headless.collaboration.internal.dto.v1_0.util.CommentUtil;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.comment.DiscussionPermission;

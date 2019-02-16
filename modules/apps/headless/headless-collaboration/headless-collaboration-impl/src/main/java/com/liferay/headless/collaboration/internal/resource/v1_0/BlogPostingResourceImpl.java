@@ -22,7 +22,9 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingUtil;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -156,7 +158,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		FileVersion fileVersion = _dlAppService.getFileVersion(
 			fileEntry.getFileEntryId());
 
-		return new ImageObject() {
+		return new ImageObjectImpl() {
 			{
 				setContentUrl(
 					_dlurlHelper.getPreviewURL(
@@ -197,7 +199,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		ImageObject imageObject = _getImageObject(
 			blogsEntry.getCoverImageFileEntryId());
 
-		return new BlogPosting() {
+		return new BlogPostingImpl() {
 			{
 				setAlternativeHeadline(blogsEntry.getSubtitle());
 				setAggregateRating(

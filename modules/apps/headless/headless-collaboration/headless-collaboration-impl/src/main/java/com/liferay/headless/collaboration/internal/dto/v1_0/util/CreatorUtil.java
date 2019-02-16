@@ -12,28 +12,29 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.dto.v1_0;
+package com.liferay.headless.collaboration.internal.dto.v1_0.util;
 
-import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
-import com.liferay.ratings.kernel.model.RatingsStats;
+import com.liferay.headless.collaboration.dto.v1_0.Creator;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
+import com.liferay.portal.kernel.model.User;
 
 /**
- * @author Javier Gamarra
+ * @author Cristina González
  */
-public class AggregateRatingUtil {
+public class CreatorUtil {
 
-	public static AggregateRating toAggregateRating(RatingsStats ratingsStats) {
-		if (ratingsStats == null) {
+	public static Creator toCreator(User user) {
+		if (user == null) {
 			return null;
 		}
 
-		return new AggregateRating() {
+		return new CreatorImpl() {
 			{
-				setBestRating(1);
-				setId(ratingsStats.getStatsId());
-				setRatingCount(ratingsStats.getTotalEntries());
-				setRatingValue(ratingsStats.getAverageScore());
-				setWorstRating(0);
+				setAdditionalName(user.getMiddleName());
+				setFamilyName(user.getLastName());
+				setGivenName(user.getFirstName());
+				setId(user.getUserId());
+				setName(user.getFullName());
 			}
 		};
 	}
