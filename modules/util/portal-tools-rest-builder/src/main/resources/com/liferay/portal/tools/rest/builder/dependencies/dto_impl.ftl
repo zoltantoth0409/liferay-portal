@@ -1,12 +1,6 @@
 package ${configYAML.apiPackagePath}.internal.dto.${versionDirName};
 
-<#compress>
-	<#list openAPIYAML.components.schemas?keys as schemaName>
-		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
-	</#list>
-</#compress>
-
-import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+import ${configYAML.apiPackagePath}.dto.${versionDirName}.*;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
