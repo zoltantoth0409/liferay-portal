@@ -3,6 +3,7 @@ package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+		import ${configYAML.apiPackagePath}.internal.dto.${versionDirName}.${schemaName}Impl;
 	</#list>
 </#compress>
 
@@ -111,7 +112,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	</#list>
 
 	protected ${schemaName} random${schemaName}() {
-		${schemaName} ${schemaVarName} = new ${schemaName}();
+		${schemaName} ${schemaVarName} = new ${schemaName}Impl();
 
 		<#compress>
 			<#list javaTool.getJavaParameters(schema) as javaParameter>
