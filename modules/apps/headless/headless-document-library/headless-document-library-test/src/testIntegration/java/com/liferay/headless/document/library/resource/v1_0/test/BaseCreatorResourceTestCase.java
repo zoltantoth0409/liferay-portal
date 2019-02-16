@@ -20,16 +20,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -54,7 +54,7 @@ public abstract class BaseCreatorResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-document-library/v1.0");
+			"http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -67,22 +67,36 @@ public abstract class BaseCreatorResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetCreator(Long creatorId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetCreator(Long creatorId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/creators/{creator-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/creators/{creator-id}", creatorId
+			);
 	}
 
 	protected Creator randomCreator() {
 		Creator creator = new Creator();
+
+creator.setAdditionalName(RandomTestUtil.randomString());
+creator.setAlternateName(RandomTestUtil.randomString());
+creator.setEmail(RandomTestUtil.randomString());
+creator.setFamilyName(RandomTestUtil.randomString());
+creator.setGivenName(RandomTestUtil.randomString());
+creator.setId(RandomTestUtil.randomLong());
+creator.setImage(RandomTestUtil.randomString());
+creator.setJobTitle(RandomTestUtil.randomString());
+creator.setName(RandomTestUtil.randomString());
+creator.setProfileURL(RandomTestUtil.randomString());
 
 		return creator;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -103,8 +117,5 @@ public abstract class BaseCreatorResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

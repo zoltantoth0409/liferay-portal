@@ -22,17 +22,17 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -57,7 +57,7 @@ public abstract class BaseContentStructureResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-web-experience/v1.0");
+			"http://localhost:8080/o/headless-web-experience/v1.0");
 	}
 
 	@After
@@ -75,37 +75,49 @@ public abstract class BaseContentStructureResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetContentSpaceContentStructuresPage(
+	protected Response invokeGetContentSpaceContentStructuresPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/content-structures");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/content-structures",
+				contentSpaceId, filter, sorts
+			);
 	}
 
-	protected void invokeGetContentStructure(Long contentStructureId)
+	protected Response invokeGetContentStructure(Long contentStructureId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-structures/{content-structure-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-structures/{content-structure-id}",
+				contentStructureId
+			);
 	}
 
 	protected ContentStructure randomContentStructure() {
 		ContentStructure contentStructure = new ContentStructure();
 
+contentStructure.setContentSpace(RandomTestUtil.randomLong());
+contentStructure.setDateCreated(RandomTestUtil.nextDate());
+contentStructure.setDateModified(RandomTestUtil.nextDate());
+contentStructure.setDescription(RandomTestUtil.randomString());
+contentStructure.setId(RandomTestUtil.randomLong());
+contentStructure.setName(RandomTestUtil.randomString());
 		return contentStructure;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -126,8 +138,5 @@ public abstract class BaseContentStructureResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

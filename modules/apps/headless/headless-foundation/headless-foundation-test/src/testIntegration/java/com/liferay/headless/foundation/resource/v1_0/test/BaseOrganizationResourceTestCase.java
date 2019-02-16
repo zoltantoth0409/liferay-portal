@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Organization;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseOrganizationResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -88,64 +88,87 @@ public abstract class BaseOrganizationResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetMyUserAccountOrganizationsPage(
+	protected Response invokeGetMyUserAccountOrganizationsPage(
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/my-user-accounts/{my-user-account-id}/organizations");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/my-user-accounts/{my-user-account-id}/organizations",
+				myUserAccountId
+			);
 	}
 
-	protected void invokeGetOrganization(Long organizationId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetOrganization(Long organizationId)
+		throws Exception {
 
-			requestSpecification.post("/organizations/{organization-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/organizations/{organization-id}",
+				organizationId
+			);
 	}
 
-	protected void invokeGetOrganizationOrganizationsPage(
+	protected Response invokeGetOrganizationOrganizationsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/organizations/{organization-id}/organizations");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/organizations/{organization-id}/organizations",
+				organizationId
+			);
 	}
 
-	protected void invokeGetOrganizationsPage(Pagination pagination)
+	protected Response invokeGetOrganizationsPage(Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/organizations");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/organizations", pagination
+			);
 	}
 
-	protected void invokeGetUserAccountOrganizationsPage(
+	protected Response invokeGetUserAccountOrganizationsPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/user-accounts/{user-account-id}/organizations");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/user-accounts/{user-account-id}/organizations",
+				userAccountId
+			);
 	}
 
 	protected Organization randomOrganization() {
 		Organization organization = new Organization();
 
+organization.setComment(RandomTestUtil.randomString());
+organization.setId(RandomTestUtil.randomLong());
+organization.setLogo(RandomTestUtil.randomString());
+organization.setName(RandomTestUtil.randomString());
+organization.setParentOrganizationId(RandomTestUtil.randomLong());
 		return organization;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -166,8 +189,5 @@ public abstract class BaseOrganizationResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

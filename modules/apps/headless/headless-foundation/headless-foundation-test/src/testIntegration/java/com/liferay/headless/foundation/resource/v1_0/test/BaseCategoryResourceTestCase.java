@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseCategoryResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -108,102 +108,149 @@ public abstract class BaseCategoryResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteCategory(Long categoryId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeDeleteCategory(Long categoryId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/categories/{category-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/categories/{category-id}", categoryId
+			);
 	}
 
-	protected void invokeGetCategory(Long categoryId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetCategory(Long categoryId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/categories/{category-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/categories/{category-id}", categoryId
+			);
 	}
 
-	protected void invokeGetCategoryCategoriesPage(
+	protected Response invokeGetCategoryCategoriesPage(
 			Long categoryId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/categories/{category-id}/categories");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/categories/{category-id}/categories",
+				categoryId
+			);
 	}
 
-	protected void invokeGetVocabularyCategoriesPage(
+	protected Response invokeGetVocabularyCategoriesPage(
 			Long vocabularyId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/vocabularies/{vocabulary-id}/categories");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/vocabularies/{vocabulary-id}/categories",
+				vocabularyId
+			);
 	}
 
-	protected void invokePostCategoryCategory(
+	protected Response invokePostCategoryCategory(
 			Long categoryId, Category category)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/categories/{category-id}/categories");
+			return requestSpecification.body(
+				category
+			).when(
+			).post(
+				_resourceURL + "/categories/{category-id}/categories",
+				categoryId
+			);
 	}
 
-	protected void invokePostCategoryCategoryBatchCreate(
+	protected Response invokePostCategoryCategoryBatchCreate(
 			Long categoryId, Category category)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/categories/{category-id}/categories/batch-create");
+			return requestSpecification.body(
+				category
+			).when(
+			).post(
+				_resourceURL + "/categories/{category-id}/categories/batch-create",
+				categoryId
+			);
 	}
 
-	protected void invokePostVocabularyCategory(
+	protected Response invokePostVocabularyCategory(
 			Long vocabularyId, Category category)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/vocabularies/{vocabulary-id}/categories");
+			return requestSpecification.body(
+				category
+			).when(
+			).post(
+				_resourceURL + "/vocabularies/{vocabulary-id}/categories",
+				vocabularyId
+			);
 	}
 
-	protected void invokePostVocabularyCategoryBatchCreate(
+	protected Response invokePostVocabularyCategoryBatchCreate(
 			Long vocabularyId, Category category)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/vocabularies/{vocabulary-id}/categories/batch-create");
+			return requestSpecification.body(
+				category
+			).when(
+			).post(
+				_resourceURL + "/vocabularies/{vocabulary-id}/categories/batch-create",
+				vocabularyId
+			);
 	}
 
-	protected void invokePutCategory(Long categoryId, Category category)
+	protected Response invokePutCategory(Long categoryId, Category category)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/categories/{category-id}");
+			return requestSpecification.body(
+				category
+			).when(
+			).put(
+				_resourceURL + "/categories/{category-id}", categoryId
+			);
 	}
 
 	protected Category randomCategory() {
 		Category category = new Category();
 
+category.setCategoryId(RandomTestUtil.randomLong());
+category.setCreatorId(RandomTestUtil.randomLong());
+category.setDateCreated(RandomTestUtil.nextDate());
+category.setDateModified(RandomTestUtil.nextDate());
+category.setDescription(RandomTestUtil.randomString());
+category.setId(RandomTestUtil.randomLong());
+category.setName(RandomTestUtil.randomString());
+category.setVocabularyId(RandomTestUtil.randomLong());
 		return category;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -224,8 +271,5 @@ public abstract class BaseCategoryResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

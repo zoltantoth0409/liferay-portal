@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -54,7 +54,7 @@ public abstract class BaseFormStructureResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(_url.toExternalForm() + "/o/headless-form/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
 	}
 
 	@After
@@ -72,35 +72,48 @@ public abstract class BaseFormStructureResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetContentSpaceFormStructuresPage(
+	protected Response invokeGetContentSpaceFormStructuresPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/form-structures");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/form-structures",
+				contentSpaceId
+			);
 	}
 
-	protected void invokeGetFormStructure(Long formStructureId)
+	protected Response invokeGetFormStructure(Long formStructureId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/form-structures/{form-structure-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/form-structures/{form-structure-id}",
+				formStructureId
+			);
 	}
 
 	protected FormStructure randomFormStructure() {
 		FormStructure formStructure = new FormStructure();
 
+formStructure.setContentSpace(RandomTestUtil.randomLong());
+formStructure.setDateCreated(RandomTestUtil.nextDate());
+formStructure.setDateModified(RandomTestUtil.nextDate());
+formStructure.setDescription(RandomTestUtil.randomString());
+formStructure.setId(RandomTestUtil.randomLong());
+formStructure.setName(RandomTestUtil.randomString());
 		return formStructure;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -121,8 +134,5 @@ public abstract class BaseFormStructureResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

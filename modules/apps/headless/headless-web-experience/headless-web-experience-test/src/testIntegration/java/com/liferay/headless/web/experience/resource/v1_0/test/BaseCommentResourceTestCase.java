@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseCommentResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-web-experience/v1.0");
+			"http://localhost:8080/o/headless-web-experience/v1.0");
 	}
 
 	@After
@@ -78,43 +78,54 @@ public abstract class BaseCommentResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetComment(Long commentId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetComment(Long commentId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/comments/{comment-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/comments/{comment-id}", commentId
+			);
 	}
 
-	protected void invokeGetCommentCommentsPage(
+	protected Response invokeGetCommentCommentsPage(
 			Long commentId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/comments/{comment-id}/comments");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/comments/{comment-id}/comments", commentId
+			);
 	}
 
-	protected void invokeGetStructuredContentCommentsPage(
+	protected Response invokeGetStructuredContentCommentsPage(
 			Long structuredContentId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/structured-contents/{structured-content-id}/comments");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/structured-contents/{structured-content-id}/comments",
+				structuredContentId
+			);
 	}
 
 	protected Comment randomComment() {
 		Comment comment = new Comment();
 
+comment.setId(RandomTestUtil.randomLong());
+comment.setText(RandomTestUtil.randomString());
 		return comment;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -135,8 +146,5 @@ public abstract class BaseCommentResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

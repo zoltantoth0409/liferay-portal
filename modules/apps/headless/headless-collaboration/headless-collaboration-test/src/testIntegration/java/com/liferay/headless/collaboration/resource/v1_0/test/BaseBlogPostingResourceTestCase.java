@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-collaboration/v1.0");
+			"http://localhost:8080/o/headless-collaboration/v1.0");
 	}
 
 	@After
@@ -108,107 +108,156 @@ public abstract class BaseBlogPostingResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteBlogPosting(Long blogPostingId)
+	protected Response invokeDeleteBlogPosting(Long blogPostingId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/blog-postings/{blog-posting-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
+			);
 	}
 
-	protected void invokeGetBlogPosting(Long blogPostingId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetBlogPosting(Long blogPostingId)
+		throws Exception {
 
-			requestSpecification.post("/blog-postings/{blog-posting-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
+			);
 	}
 
-	protected void invokeGetBlogPostingCategoriesPage(
+	protected Response invokeGetBlogPostingCategoriesPage(
 			Long blogPostingId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/blog-postings/{blog-posting-id}/categories");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
+				blogPostingId
+			);
 	}
 
-	protected void invokeGetContentSpaceBlogPostingsPage(
+	protected Response invokeGetContentSpaceBlogPostingsPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/blog-postings");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
+				contentSpaceId
+			);
 	}
 
-	protected void invokePostBlogPostingCategories(
+	protected Response invokePostBlogPostingCategories(
 			Long blogPostingId, Long referenceId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/blog-postings/{blog-posting-id}/categories");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
+				blogPostingId, referenceId
+			);
 	}
 
-	protected void invokePostBlogPostingCategoriesBatchCreate(
+	protected Response invokePostBlogPostingCategoriesBatchCreate(
 			Long blogPostingId, Long referenceId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/blog-postings/{blog-posting-id}/categories/batch-create");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/blog-postings/{blog-posting-id}/categories/batch-create",
+				blogPostingId, referenceId
+			);
 	}
 
-	protected void invokePostContentSpaceBlogPosting(
+	protected Response invokePostContentSpaceBlogPosting(
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/blog-postings");
+			return requestSpecification.body(
+				blogPosting
+			).when(
+			).post(
+				_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
+				contentSpaceId
+			);
 	}
 
-	protected void invokePostContentSpaceBlogPostingBatchCreate(
+	protected Response invokePostContentSpaceBlogPostingBatchCreate(
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/blog-postings/batch-create");
+			return requestSpecification.body(
+				blogPosting
+			).when(
+			).post(
+				_resourceURL + "/content-spaces/{content-space-id}/blog-postings/batch-create",
+				contentSpaceId
+			);
 	}
 
-	protected void invokePutBlogPosting(
+	protected Response invokePutBlogPosting(
 			Long blogPostingId, BlogPosting blogPosting)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/blog-postings/{blog-posting-id}");
+			return requestSpecification.body(
+				blogPosting
+			).when(
+			).put(
+				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
+			);
 	}
 
 	protected BlogPosting randomBlogPosting() {
 		BlogPosting blogPosting = new BlogPosting();
 
+blogPosting.setAlternativeHeadline(RandomTestUtil.randomString());
+blogPosting.setArticleBody(RandomTestUtil.randomString());
+blogPosting.setCaption(RandomTestUtil.randomString());
+blogPosting.setContentSpace(RandomTestUtil.randomLong());
+blogPosting.setDateCreated(RandomTestUtil.nextDate());
+blogPosting.setDateModified(RandomTestUtil.nextDate());
+blogPosting.setDatePublished(RandomTestUtil.nextDate());
+blogPosting.setDescription(RandomTestUtil.randomString());
+blogPosting.setEncodingFormat(RandomTestUtil.randomString());
+blogPosting.setFriendlyUrlPath(RandomTestUtil.randomString());
+blogPosting.setHeadline(RandomTestUtil.randomString());
+blogPosting.setId(RandomTestUtil.randomLong());
+blogPosting.setImageId(RandomTestUtil.randomLong());
+blogPosting.setRepositoryId(RandomTestUtil.randomLong());
 		return blogPosting;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -229,8 +278,5 @@ public abstract class BaseBlogPostingResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

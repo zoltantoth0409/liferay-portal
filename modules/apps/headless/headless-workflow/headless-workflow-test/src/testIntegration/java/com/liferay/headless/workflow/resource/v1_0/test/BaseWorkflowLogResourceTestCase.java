@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-workflow/v1.0");
+			"http://localhost:8080/o/headless-workflow/v1.0");
 	}
 
 	@After
@@ -73,33 +73,51 @@ public abstract class BaseWorkflowLogResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetWorkflowLog(Long workflowLogId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetWorkflowLog(Long workflowLogId)
+		throws Exception {
 
-			requestSpecification.post("/workflow-logs/{workflow-log-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/workflow-logs/{workflow-log-id}", workflowLogId
+			);
 	}
 
-	protected void invokeGetWorkflowTaskWorkflowLogsPage(
+	protected Response invokeGetWorkflowTaskWorkflowLogsPage(
 			Long workflowTaskId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/workflow-tasks/{workflow-task-id}/workflow-logs");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/workflow-tasks/{workflow-task-id}/workflow-logs",
+				workflowTaskId
+			);
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
 		WorkflowLog workflowLog = new WorkflowLog();
 
+workflowLog.setAuditPerson(RandomTestUtil.randomString());
+workflowLog.setCommentLog(RandomTestUtil.randomString());
+workflowLog.setDateCreated(RandomTestUtil.nextDate());
+workflowLog.setId(RandomTestUtil.randomLong());
+workflowLog.setPerson(RandomTestUtil.randomString());
+workflowLog.setPreviousPerson(RandomTestUtil.randomString());
+workflowLog.setPreviousState(RandomTestUtil.randomString());
+workflowLog.setState(RandomTestUtil.randomString());
+workflowLog.setTaskId(RandomTestUtil.randomLong());
+workflowLog.setType(RandomTestUtil.randomString());
 		return workflowLog;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -120,8 +138,5 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

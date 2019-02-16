@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -54,7 +54,7 @@ public abstract class BaseFormResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(_url.toExternalForm() + "/o/headless-form/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
 	}
 
 	@After
@@ -87,58 +87,88 @@ public abstract class BaseFormResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetContentSpaceFormsPage(
+	protected Response invokeGetContentSpaceFormsPage(
 			Long contentSpaceId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/form");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/form",
+				contentSpaceId
+			);
 	}
 
-	protected void invokeGetForm(Long formId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetForm(Long formId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/forms/{form-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/forms/{form-id}", formId
+			);
 	}
 
-	protected void invokeGetFormFetchLatestDraft(Long formId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
-
-			requestSpecification.post("/forms/{form-id}/fetch-latest-draft");
-	}
-
-	protected void invokePostFormEvaluateContext(Long formId, Form form)
+	protected Response invokeGetFormFetchLatestDraft(Long formId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/forms/{form-id}/evaluate-context");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/forms/{form-id}/fetch-latest-draft", formId
+			);
 	}
 
-	protected void invokePostFormUploadFile(Long formId, Form form)
+	protected Response invokePostFormEvaluateContext(Long formId, Form form)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/forms/{form-id}/upload-file");
+			return requestSpecification.body(
+				form
+			).when(
+			).post(
+				_resourceURL + "/forms/{form-id}/evaluate-context", formId
+			);
+	}
+
+	protected Response invokePostFormUploadFile(Long formId, Form form)
+		throws Exception {
+
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.body(
+				form
+			).when(
+			).post(
+				_resourceURL + "/forms/{form-id}/upload-file", formId
+			);
 	}
 
 	protected Form randomForm() {
 		Form form = new Form();
 
+form.setContentSpace(RandomTestUtil.randomLong());
+form.setDateCreated(RandomTestUtil.nextDate());
+form.setDateModified(RandomTestUtil.nextDate());
+form.setDatePublished(RandomTestUtil.nextDate());
+form.setDefaultLanguage(RandomTestUtil.randomString());
+form.setDescription(RandomTestUtil.randomString());
+form.setId(RandomTestUtil.randomLong());
+form.setName(RandomTestUtil.randomString());
+form.setStructureId(RandomTestUtil.randomLong());
 		return form;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -159,8 +189,5 @@ public abstract class BaseFormResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

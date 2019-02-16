@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -54,7 +54,7 @@ public abstract class BaseFormRecordResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(_url.toExternalForm() + "/o/headless-form/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-form/v1.0");
 	}
 
 	@After
@@ -87,61 +87,90 @@ public abstract class BaseFormRecordResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetFormFormRecordsPage(
+	protected Response invokeGetFormFormRecordsPage(
 			Long formId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/forms/{form-id}/form-records");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/forms/{form-id}/form-records", formId
+			);
 	}
 
-	protected void invokeGetFormRecord(Long formRecordId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetFormRecord(Long formRecordId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/form-records/{form-record-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/form-records/{form-record-id}", formRecordId
+			);
 	}
 
-	protected void invokePostFormFormRecord(Long formId, FormRecord formRecord)
-		throws Exception {
-
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
-
-			requestSpecification.post("/forms/{form-id}/form-records");
-	}
-
-	protected void invokePostFormFormRecordBatchCreate(
+	protected Response invokePostFormFormRecord(
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/forms/{form-id}/form-records/batch-create");
+			return requestSpecification.body(
+				formRecord
+			).when(
+			).post(
+				_resourceURL + "/forms/{form-id}/form-records", formId
+			);
 	}
 
-	protected void invokePutFormRecord(Long formRecordId, FormRecord formRecord)
+	protected Response invokePostFormFormRecordBatchCreate(
+			Long formId, FormRecord formRecord)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/form-records/{form-record-id}");
+			return requestSpecification.body(
+				formRecord
+			).when(
+			).post(
+				_resourceURL + "/forms/{form-id}/form-records/batch-create",
+				formId
+			);
+	}
+
+	protected Response invokePutFormRecord(
+			Long formRecordId, FormRecord formRecord)
+		throws Exception {
+
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.body(
+				formRecord
+			).when(
+			).put(
+				_resourceURL + "/form-records/{form-record-id}", formRecordId
+			);
 	}
 
 	protected FormRecord randomFormRecord() {
 		FormRecord formRecord = new FormRecord();
 
+formRecord.setDateCreated(RandomTestUtil.nextDate());
+formRecord.setDateModified(RandomTestUtil.nextDate());
+formRecord.setDatePublished(RandomTestUtil.nextDate());
+formRecord.setDraft(RandomTestUtil.randomBoolean());
+formRecord.setFormId(RandomTestUtil.randomLong());
+formRecord.setId(RandomTestUtil.randomLong());
 		return formRecord;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -162,8 +191,5 @@ public abstract class BaseFormRecordResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

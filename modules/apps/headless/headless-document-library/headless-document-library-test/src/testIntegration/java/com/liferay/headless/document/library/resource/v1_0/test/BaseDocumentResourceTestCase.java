@@ -20,18 +20,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -56,7 +56,7 @@ public abstract class BaseDocumentResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-document-library/v1.0");
+			"http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -121,124 +121,172 @@ public abstract class BaseDocumentResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteDocument(Long documentId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeDeleteDocument(Long documentId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/documents/{document-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/documents/{document-id}", documentId
+			);
 	}
 
-	protected void invokeGetDocument(Long documentId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetDocument(Long documentId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/documents/{document-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents/{document-id}", documentId
+			);
 	}
 
-	protected void invokeGetDocumentCategoriesPage(
+	protected Response invokeGetDocumentCategoriesPage(
 			Long documentId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/documents/{document-id}/categories");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents/{document-id}/categories", documentId
+			);
 	}
 
-	protected void invokeGetDocumentsRepositoryDocumentsPage(
+	protected Response invokeGetDocumentsRepositoryDocumentsPage(
 			Long documentsRepositoryId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/documents");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/documents",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokeGetFolderDocumentsPage(
+	protected Response invokeGetFolderDocumentsPage(
 			Long folderId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}/documents");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}/documents", folderId
+			);
 	}
 
-	protected void invokePostDocumentCategories(
+	protected Response invokePostDocumentCategories(
 			Long documentId, Long referenceId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/documents/{document-id}/categories");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/documents/{document-id}/categories",
+				documentId, referenceId
+			);
 	}
 
-	protected void invokePostDocumentCategoriesBatchCreate(
+	protected Response invokePostDocumentCategoriesBatchCreate(
 			Long documentId, Long referenceId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents/{document-id}/categories/batch-create");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/documents/{document-id}/categories/batch-create",
+				documentId, referenceId
+			);
 	}
 
-	protected void invokePostDocumentsRepositoryDocument(
+	protected Response invokePostDocumentsRepositoryDocument(
 			Long documentsRepositoryId, Document document)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/documents");
+			return requestSpecification.body(
+				document
+			).when(
+			).post(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/documents",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokePostDocumentsRepositoryDocumentBatchCreate(
+	protected Response invokePostDocumentsRepositoryDocumentBatchCreate(
 			Long documentsRepositoryId, Document document)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/documents/batch-create");
+			return requestSpecification.body(
+				document
+			).when(
+			).post(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/documents/batch-create",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokePostFolderDocument(
+	protected Response invokePostFolderDocument(
 			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}/documents");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/folders/{folder-id}/documents", folderId,
+				multipartBody
+			);
 	}
 
-	protected void invokePostFolderDocumentBatchCreate(
+	protected Response invokePostFolderDocumentBatchCreate(
 			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/folders/{folder-id}/documents/batch-create");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/folders/{folder-id}/documents/batch-create",
+				folderId, multipartBody
+			);
 	}
 
 	protected Document randomDocument() {
 		Document document = new Document();
 
+document.setContentUrl(RandomTestUtil.randomString());
+document.setDateCreated(RandomTestUtil.nextDate());
+document.setDateModified(RandomTestUtil.nextDate());
+document.setDescription(RandomTestUtil.randomString());
+document.setEncodingFormat(RandomTestUtil.randomString());
+document.setFileExtension(RandomTestUtil.randomString());
+document.setFolderId(RandomTestUtil.randomLong());
+document.setId(RandomTestUtil.randomLong());
+document.setTitle(RandomTestUtil.randomString());
 		return document;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -259,8 +307,5 @@ public abstract class BaseDocumentResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

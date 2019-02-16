@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseRoleResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -83,50 +83,71 @@ public abstract class BaseRoleResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetMyUserAccountRolesPage(
+	protected Response invokeGetMyUserAccountRolesPage(
 			Long myUserAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/my-user-accounts/{my-user-account-id}/roles");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/my-user-accounts/{my-user-account-id}/roles",
+				myUserAccountId
+			);
 	}
 
-	protected void invokeGetRole(Long roleId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetRole(Long roleId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/roles/{role-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/roles/{role-id}", roleId
+			);
 	}
 
-	protected void invokeGetRolesPage(Pagination pagination) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetRolesPage(Pagination pagination)
+		throws Exception {
 
-			requestSpecification.post("/roles");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/roles", pagination
+			);
 	}
 
-	protected void invokeGetUserAccountRolesPage(
+	protected Response invokeGetUserAccountRolesPage(
 			Long userAccountId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts/{user-account-id}/roles");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/user-accounts/{user-account-id}/roles",
+				userAccountId
+			);
 	}
 
 	protected Role randomRole() {
 		Role role = new Role();
 
+role.setDateCreated(RandomTestUtil.nextDate());
+role.setDateModified(RandomTestUtil.nextDate());
+role.setDescription(RandomTestUtil.randomString());
+role.setId(RandomTestUtil.randomLong());
+role.setName(RandomTestUtil.randomString());
+role.setRoleType(RandomTestUtil.randomString());
 		return role;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -147,8 +168,5 @@ public abstract class BaseRoleResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

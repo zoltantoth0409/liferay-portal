@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseImageObjectResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-collaboration/v1.0");
+			"http://localhost:8080/o/headless-collaboration/v1.0");
 	}
 
 	@After
@@ -92,64 +92,90 @@ public abstract class BaseImageObjectResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteImageObject(Long imageObjectId)
+	protected Response invokeDeleteImageObject(Long imageObjectId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/image-objects/{image-object-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/image-objects/{image-object-id}", imageObjectId
+			);
 	}
 
-	protected void invokeGetImageObject(Long imageObjectId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetImageObject(Long imageObjectId)
+		throws Exception {
 
-			requestSpecification.post("/image-objects/{image-object-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/image-objects/{image-object-id}", imageObjectId
+			);
 	}
 
-	protected void invokeGetImageObjectRepositoryImageObjectsPage(
+	protected Response invokeGetImageObjectRepositoryImageObjectsPage(
 			Long imageObjectRepositoryId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/image-object-repositories/{image-object-repository-id}/image-objects");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
+				imageObjectRepositoryId
+			);
 	}
 
-	protected void invokePostImageObjectRepositoryImageObject(
+	protected Response invokePostImageObjectRepositoryImageObject(
 			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/image-object-repositories/{image-object-repository-id}/image-objects");
+			return requestSpecification.body(
+				imageObject
+			).when(
+			).post(
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
+				imageObjectRepositoryId
+			);
 	}
 
-	protected void invokePostImageObjectRepositoryImageObjectBatchCreate(
+	protected Response invokePostImageObjectRepositoryImageObjectBatchCreate(
 			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/image-object-repositories/{image-object-repository-id}/image-objects/batch-create");
+			return requestSpecification.body(
+				imageObject
+			).when(
+			).post(
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects/batch-create",
+				imageObjectRepositoryId
+			);
 	}
 
 	protected ImageObject randomImageObject() {
 		ImageObject imageObject = new ImageObject();
 
+imageObject.setContentUrl(RandomTestUtil.randomString());
+imageObject.setEncodingFormat(RandomTestUtil.randomString());
+imageObject.setFileExtension(RandomTestUtil.randomString());
+imageObject.setId(RandomTestUtil.randomLong());
+imageObject.setTitle(RandomTestUtil.randomString());
 		return imageObject;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -170,8 +196,5 @@ public abstract class BaseImageObjectResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Email;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseEmailResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -73,32 +73,41 @@ public abstract class BaseEmailResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeGetEmail(Long emailId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetEmail(Long emailId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/emails/{email-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/emails/{email-id}", emailId
+			);
 	}
 
-	protected void invokeGetGenericParentEmailsPage(
+	protected Response invokeGetGenericParentEmailsPage(
 			Object genericParentId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/emails");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/emails", genericParentId
+			);
 	}
 
 	protected Email randomEmail() {
 		Email email = new Email();
 
+email.setEmail(RandomTestUtil.randomString());
+email.setId(RandomTestUtil.randomLong());
+email.setType(RandomTestUtil.randomString());
 		return email;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -119,8 +128,5 @@ public abstract class BaseEmailResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

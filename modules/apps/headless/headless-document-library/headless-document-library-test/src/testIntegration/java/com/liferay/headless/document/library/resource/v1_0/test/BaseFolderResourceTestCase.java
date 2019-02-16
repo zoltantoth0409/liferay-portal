@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseFolderResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-document-library/v1.0");
+			"http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -115,111 +115,157 @@ public abstract class BaseFolderResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteFolder(Long folderId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeDeleteFolder(Long folderId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/folders/{folder-id}", folderId
+			);
 	}
 
-	protected void invokeGetDocumentsRepository(Long documentsRepositoryId)
+	protected Response invokeGetDocumentsRepository(Long documentsRepositoryId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents-repositories/{documents-repository-id}",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokeGetDocumentsRepositoryFoldersPage(
+	protected Response invokeGetDocumentsRepositoryFoldersPage(
 			Long documentsRepositoryId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/folders");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/folders",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokeGetFolder(Long folderId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetFolder(Long folderId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}", folderId
+			);
 	}
 
-	protected void invokeGetFolderFoldersPage(
+	protected Response invokeGetFolderFoldersPage(
 			Long folderId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}/folders");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}/folders", folderId
+			);
 	}
 
-	protected void invokePostDocumentsRepositoryFolder(
+	protected Response invokePostDocumentsRepositoryFolder(
 			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/folders");
+			return requestSpecification.body(
+				folder
+			).when(
+			).post(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/folders",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokePostDocumentsRepositoryFolderBatchCreate(
+	protected Response invokePostDocumentsRepositoryFolderBatchCreate(
 			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/documents-repositories/{documents-repository-id}/folders/batch-create");
+			return requestSpecification.body(
+				folder
+			).when(
+			).post(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/folders/batch-create",
+				documentsRepositoryId
+			);
 	}
 
-	protected void invokePostFolderFolder(Long folderId, Folder folder)
+	protected Response invokePostFolderFolder(Long folderId, Folder folder)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}/folders");
+			return requestSpecification.body(
+				folder
+			).when(
+			).post(
+				_resourceURL + "/folders/{folder-id}/folders", folderId
+			);
 	}
 
-	protected void invokePostFolderFolderBatchCreate(
+	protected Response invokePostFolderFolderBatchCreate(
 			Long folderId, Folder folder)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/folders/{folder-id}/folders/batch-create");
+			return requestSpecification.body(
+				folder
+			).when(
+			).post(
+				_resourceURL + "/folders/{folder-id}/folders/batch-create",
+				folderId
+			);
 	}
 
-	protected void invokePutFolder(Long folderId, Folder folder)
+	protected Response invokePutFolder(Long folderId, Folder folder)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/folders/{folder-id}");
+			return requestSpecification.body(
+				folder
+			).when(
+			).put(
+				_resourceURL + "/folders/{folder-id}", folderId
+			);
 	}
 
 	protected Folder randomFolder() {
 		Folder folder = new Folder();
 
+folder.setDateCreated(RandomTestUtil.nextDate());
+folder.setDateModified(RandomTestUtil.nextDate());
+folder.setDescription(RandomTestUtil.randomString());
+folder.setDocumentsRepositoryId(RandomTestUtil.randomLong());
+folder.setId(RandomTestUtil.randomLong());
+folder.setName(RandomTestUtil.randomString());
 		return folder;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -240,8 +286,5 @@ public abstract class BaseFolderResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

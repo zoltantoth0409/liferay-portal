@@ -22,17 +22,17 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -57,7 +57,7 @@ public abstract class BaseVocabularyResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -95,72 +95,105 @@ public abstract class BaseVocabularyResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteVocabulary(Long vocabularyId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeDeleteVocabulary(Long vocabularyId)
+		throws Exception {
 
-			requestSpecification.post("/vocabularies/{vocabulary-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/vocabularies/{vocabulary-id}", vocabularyId
+			);
 	}
 
-	protected void invokeGetContentSpaceVocabulariesPage(
+	protected Response invokeGetContentSpaceVocabulariesPage(
 			Long contentSpaceId, Filter filter, Pagination pagination,
 			Sort[] sorts)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/vocabularies");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/vocabularies",
+				contentSpaceId, filter, sorts
+			);
 	}
 
-	protected void invokeGetVocabulary(Long vocabularyId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetVocabulary(Long vocabularyId) throws Exception {
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/vocabularies/{vocabulary-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/vocabularies/{vocabulary-id}", vocabularyId
+			);
 	}
 
-	protected void invokePostContentSpaceVocabulary(
+	protected Response invokePostContentSpaceVocabulary(
 			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/vocabularies");
+			return requestSpecification.body(
+				vocabulary
+			).when(
+			).post(
+				_resourceURL + "/content-spaces/{content-space-id}/vocabularies",
+				contentSpaceId
+			);
 	}
 
-	protected void invokePostContentSpaceVocabularyBatchCreate(
+	protected Response invokePostContentSpaceVocabularyBatchCreate(
 			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/content-spaces/{content-space-id}/vocabularies/batch-create");
+			return requestSpecification.body(
+				vocabulary
+			).when(
+			).post(
+				_resourceURL + "/content-spaces/{content-space-id}/vocabularies/batch-create",
+				contentSpaceId
+			);
 	}
 
-	protected void invokePutVocabulary(Long vocabularyId, Vocabulary vocabulary)
+	protected Response invokePutVocabulary(
+			Long vocabularyId, Vocabulary vocabulary)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/vocabularies/{vocabulary-id}");
+			return requestSpecification.body(
+				vocabulary
+			).when(
+			).put(
+				_resourceURL + "/vocabularies/{vocabulary-id}", vocabularyId
+			);
 	}
 
 	protected Vocabulary randomVocabulary() {
 		Vocabulary vocabulary = new Vocabulary();
 
+vocabulary.setContentSpace(RandomTestUtil.randomLong());
+vocabulary.setDateCreated(RandomTestUtil.nextDate());
+vocabulary.setDateModified(RandomTestUtil.nextDate());
+vocabulary.setDescription(RandomTestUtil.randomString());
+vocabulary.setId(RandomTestUtil.randomLong());
+vocabulary.setName(RandomTestUtil.randomString());
 		return vocabulary;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -181,8 +214,5 @@ public abstract class BaseVocabularyResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }

@@ -20,17 +20,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
 import javax.annotation.Generated;
-
-import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public abstract class BaseUserAccountResourceTestCase {
 		testGroup = GroupTestUtil.addGroup();
 
 		_resourceURL = new URL(
-			_url.toExternalForm() + "/o/headless-foundation/v1.0");
+			"http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -108,99 +108,146 @@ public abstract class BaseUserAccountResourceTestCase {
 		Assert.assertTrue(true);
 	}
 
-	protected void invokeDeleteUserAccount(Long userAccountId)
+	protected Response invokeDeleteUserAccount(Long userAccountId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts/{user-account-id}");
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
+			);
 	}
 
-	protected void invokeGetMyUserAccount(Long myUserAccountId)
+	protected Response invokeGetMyUserAccount(Long myUserAccountId)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/my-user-accounts/{my-user-account-id}");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/my-user-accounts/{my-user-account-id}",
+				myUserAccountId
+			);
 	}
 
-	protected void invokeGetOrganizationUserAccountsPage(
+	protected Response invokeGetOrganizationUserAccountsPage(
 			Long organizationId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post(
-				"/organizations/{organization-id}/user-accounts");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/organizations/{organization-id}/user-accounts",
+				organizationId
+			);
 	}
 
-	protected void invokeGetUserAccount(Long userAccountId) throws Exception {
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+	protected Response invokeGetUserAccount(Long userAccountId)
+		throws Exception {
 
-			requestSpecification.post("/user-accounts/{user-account-id}");
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
+			);
 	}
 
-	protected void invokeGetUserAccountsPage(
+	protected Response invokeGetUserAccountsPage(
 			String fullnamequery, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/user-accounts", fullnamequery
+			);
 	}
 
-	protected void invokeGetWebSiteUserAccountsPage(
+	protected Response invokeGetWebSiteUserAccountsPage(
 			Long webSiteId, Pagination pagination)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/web-sites/{web-site-id}/user-accounts");
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/web-sites/{web-site-id}/user-accounts",
+				webSiteId
+			);
 	}
 
-	protected void invokePostUserAccount(UserAccount userAccount)
+	protected Response invokePostUserAccount(UserAccount userAccount)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/user-accounts", userAccount
+			);
 	}
 
-	protected void invokePostUserAccountBatchCreate(UserAccount userAccount)
+	protected Response invokePostUserAccountBatchCreate(UserAccount userAccount)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts/batch-create");
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/user-accounts/batch-create", userAccount
+			);
 	}
 
-	protected void invokePutUserAccount(
+	protected Response invokePutUserAccount(
 			Long userAccountId, UserAccount userAccount)
 		throws Exception {
 
-			RequestSpecification requestSpecification =
-				_createRequestRequestSpecification();
+		RequestSpecification requestSpecification =
+			_createRequestSpecification();
 
-			requestSpecification.post("/user-accounts/{user-account-id}");
+			return requestSpecification.body(
+				userAccount
+			).when(
+			).put(
+				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
+			);
 	}
 
 	protected UserAccount randomUserAccount() {
 		UserAccount userAccount = new UserAccount();
 
+userAccount.setAdditionalName(RandomTestUtil.randomString());
+userAccount.setAlternateName(RandomTestUtil.randomString());
+userAccount.setBirthDate(RandomTestUtil.nextDate());
+userAccount.setDashboardURL(RandomTestUtil.randomString());
+userAccount.setEmail(RandomTestUtil.randomString());
+userAccount.setFamilyName(RandomTestUtil.randomString());
+userAccount.setGivenName(RandomTestUtil.randomString());
+userAccount.setHonorificPrefix(RandomTestUtil.randomString());
+userAccount.setHonorificSuffix(RandomTestUtil.randomString());
+userAccount.setId(RandomTestUtil.randomLong());
+userAccount.setImage(RandomTestUtil.randomString());
+userAccount.setJobTitle(RandomTestUtil.randomString());
+userAccount.setName(RandomTestUtil.randomString());
+userAccount.setProfileURL(RandomTestUtil.randomString());
 		return userAccount;
 	}
 
 	protected Group testGroup;
 
-	private RequestSpecification _createRequestRequestSpecification() {
+	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
 		).auth(
 		).preemptive(
@@ -221,8 +268,5 @@ public abstract class BaseUserAccountResourceTestCase {
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }
