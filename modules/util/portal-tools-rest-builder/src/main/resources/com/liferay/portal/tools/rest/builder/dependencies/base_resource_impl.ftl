@@ -3,6 +3,7 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+		import ${configYAML.apiPackagePath}.internal.dto.${versionDirName}.${schemaName}Impl;
 	</#list>
 </#compress>
 
@@ -55,7 +56,7 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		<#elseif javaSignature.returnType?contains("Page<")>
 			return Page.of(Collections.emptyList());
 		<#else>
-			return new ${javaSignature.returnType}();
+			return new ${javaSignature.returnType}Impl();
 		</#if>
 
 		}

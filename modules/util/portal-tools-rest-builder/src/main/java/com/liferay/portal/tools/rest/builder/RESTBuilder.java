@@ -203,6 +203,7 @@ public class RESTBuilder {
 						StringUtil.lowerCaseFirstLetter(schemaName));
 
 					_createDTOFile(context, schemaName, versionDirName);
+					_createDTOImplFile(context, schemaName, versionDirName);
 
 					schemasMapsQueue.add(propertySchemas);
 				}
@@ -336,6 +337,36 @@ public class RESTBuilder {
 		FileUtil.write(
 			file,
 			FreeMarkerUtil.processTemplate(_copyrightFileName, "dto", context));
+	}
+
+	private void _createDTOImplFile(
+			Map<String, Object> context, String schemaName,
+			String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/internal/dto/");
+		sb.append(versionDirName);
+		sb.append("/");
+		sb.append(schemaName);
+		sb.append("Impl.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "dto_impl", context));
 	}
 
 	private void _createGraphQLMutationFile(
