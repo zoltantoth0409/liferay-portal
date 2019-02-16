@@ -19,12 +19,11 @@
 <%
 BlogEntriesDisplayContext blogEntriesDisplayContext = new BlogEntriesDisplayContext(liferayPortletRequest, liferayPortletResponse, trashHelper);
 
-String displayStyle = blogEntriesDisplayContext.getDisplayStyle();
 SearchContainer entriesSearchContainer = blogEntriesDisplayContext.getSearchContainer();
 
 PortletURL portletURL = entriesSearchContainer.getIteratorURL();
 
-BlogEntriesManagementToolbarDisplayContext blogEntriesManagementToolbarDisplayContext = new BlogEntriesManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, entriesSearchContainer, trashHelper, displayStyle);
+BlogEntriesManagementToolbarDisplayContext blogEntriesManagementToolbarDisplayContext = new BlogEntriesManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, entriesSearchContainer, trashHelper, blogEntriesDisplayContext.getDisplayStyle());
 %>
 
 <clay:management-toolbar
@@ -79,7 +78,7 @@ BlogEntriesManagementToolbarDisplayContext blogEntriesManagementToolbarDisplayCo
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator
-				displayStyle="<%= displayStyle %>"
+				displayStyle="<%= blogEntriesDisplayContext.getDisplayStyle() %>"
 				markupView="lexicon"
 			/>
 		</liferay-ui:search-container>
