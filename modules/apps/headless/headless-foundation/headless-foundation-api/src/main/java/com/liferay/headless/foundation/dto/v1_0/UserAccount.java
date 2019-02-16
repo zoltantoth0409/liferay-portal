@@ -16,484 +16,160 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("UserAccount")
-@XmlRootElement(name = "UserAccount")
-public class UserAccount {
+public interface UserAccount {
 
-	public String getAdditionalName() {
-		return additionalName;
-	}
+	public String getAdditionalName();
 
-	public String getAlternateName() {
-		return alternateName;
-	}
+	public String getAlternateName();
 
-	public Date getBirthDate() {
-		return birthDate;
-	}
+	public Date getBirthDate();
 
-	public ContactInformation getContactInformation() {
-		return contactInformation;
-	}
+	public ContactInformation getContactInformation();
 
-	public String getDashboardURL() {
-		return dashboardURL;
-	}
+	public String getDashboardURL();
 
-	public String getEmail() {
-		return email;
-	}
+	public String getEmail();
 
-	public String getFamilyName() {
-		return familyName;
-	}
+	public String getFamilyName();
 
-	public String getGivenName() {
-		return givenName;
-	}
+	public String getGivenName();
 
-	public String getHonorificPrefix() {
-		return honorificPrefix;
-	}
+	public String getHonorificPrefix();
 
-	public String getHonorificSuffix() {
-		return honorificSuffix;
-	}
+	public String getHonorificSuffix();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getImage() {
-		return image;
-	}
+	public String getImage();
 
-	public String getJobTitle() {
-		return jobTitle;
-	}
+	public String getJobTitle();
 
-	public Organization[] getMyOrganizations() {
-		return myOrganizations;
-	}
+	public Organization[] getMyOrganizations();
 
-	public Long[] getMyOrganizationsIds() {
-		return myOrganizationsIds;
-	}
+	public Long[] getMyOrganizationsIds();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public String getProfileURL() {
-		return profileURL;
-	}
+	public String getProfileURL();
 
-	public Role[] getRoles() {
-		return roles;
-	}
+	public Role[] getRoles();
 
-	public Long[] getRolesIds() {
-		return rolesIds;
-	}
+	public Long[] getRolesIds();
 
-	public String[] getTasksAssignedToMe() {
-		return tasksAssignedToMe;
-	}
+	public String[] getTasksAssignedToMe();
 
-	public String[] getTasksAssignedToMyRoles() {
-		return tasksAssignedToMyRoles;
-	}
+	public String[] getTasksAssignedToMyRoles();
 
-	public void setAdditionalName(String additionalName) {
-		this.additionalName = additionalName;
-	}
+	public void setAdditionalName(String additionalName);
 
 	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier);
 
-			try {
-				additionalName = additionalNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setAlternateName(String alternateName) {
-		this.alternateName = alternateName;
-	}
+	public void setAlternateName(String alternateName);
 
 	public void setAlternateName(
-		UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier);
 
-			try {
-				alternateName = alternateNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
+	public void setBirthDate(Date birthDate);
 
 	public void setBirthDate(
-		UnsafeSupplier<Date, Throwable> birthDateUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> birthDateUnsafeSupplier);
 
-			try {
-				birthDate = birthDateUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setContactInformation(ContactInformation contactInformation) {
-		this.contactInformation = contactInformation;
-	}
+	public void setContactInformation(ContactInformation contactInformation);
 
 	public void setContactInformation(
 		UnsafeSupplier<ContactInformation, Throwable>
-			contactInformationUnsafeSupplier) {
+			contactInformationUnsafeSupplier);
 
-			try {
-				contactInformation = contactInformationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDashboardURL(String dashboardURL) {
-		this.dashboardURL = dashboardURL;
-	}
+	public void setDashboardURL(String dashboardURL);
 
 	public void setDashboardURL(
-		UnsafeSupplier<String, Throwable> dashboardURLUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> dashboardURLUnsafeSupplier);
 
-			try {
-				dashboardURL = dashboardURLUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setEmail(String email);
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier);
 
-	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
-
-			try {
-				email = emailUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
-	}
+	public void setFamilyName(String familyName);
 
 	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier);
 
-			try {
-				familyName = familyNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
+	public void setGivenName(String givenName);
 
 	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier);
 
-			try {
-				givenName = givenNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHonorificPrefix(String honorificPrefix) {
-		this.honorificPrefix = honorificPrefix;
-	}
+	public void setHonorificPrefix(String honorificPrefix);
 
 	public void setHonorificPrefix(
-		UnsafeSupplier<String, Throwable> honorificPrefixUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> honorificPrefixUnsafeSupplier);
 
-			try {
-				honorificPrefix = honorificPrefixUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHonorificSuffix(String honorificSuffix) {
-		this.honorificSuffix = honorificSuffix;
-	}
+	public void setHonorificSuffix(String honorificSuffix);
 
 	public void setHonorificSuffix(
-		UnsafeSupplier<String, Throwable> honorificSuffixUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> honorificSuffixUnsafeSupplier);
 
-			try {
-				honorificSuffix = honorificSuffixUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setImage(String image);
 
-	public void setImage(String image) {
-		this.image = image;
-	}
+	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier);
 
-	public void setImage(
-		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
-
-			try {
-				image = imageUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
-	}
+	public void setJobTitle(String jobTitle);
 
 	public void setJobTitle(
-		UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier);
 
-			try {
-				jobTitle = jobTitleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setMyOrganizations(Organization[] myOrganizations) {
-		this.myOrganizations = myOrganizations;
-	}
+	public void setMyOrganizations(Organization[] myOrganizations);
 
 	public void setMyOrganizations(
 		UnsafeSupplier<Organization[], Throwable>
-			myOrganizationsUnsafeSupplier) {
+			myOrganizationsUnsafeSupplier);
 
-			try {
-				myOrganizations = myOrganizationsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setMyOrganizationsIds(Long[] myOrganizationsIds) {
-		this.myOrganizationsIds = myOrganizationsIds;
-	}
+	public void setMyOrganizationsIds(Long[] myOrganizationsIds);
 
 	public void setMyOrganizationsIds(
-		UnsafeSupplier<Long[], Throwable> myOrganizationsIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Throwable> myOrganizationsIdsUnsafeSupplier);
 
-			try {
-				myOrganizationsIds = myOrganizationsIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setProfileURL(String profileURL) {
-		this.profileURL = profileURL;
-	}
+	public void setProfileURL(String profileURL);
 
 	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier);
 
-			try {
-				profileURL = profileURLUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setRoles(Role[] roles);
 
-	public void setRoles(Role[] roles) {
-		this.roles = roles;
-	}
+	public void setRoles(UnsafeSupplier<Role[], Throwable> rolesUnsafeSupplier);
 
-	public void setRoles(
-		UnsafeSupplier<Role[], Throwable> rolesUnsafeSupplier) {
-
-			try {
-				roles = rolesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRolesIds(Long[] rolesIds) {
-		this.rolesIds = rolesIds;
-	}
+	public void setRolesIds(Long[] rolesIds);
 
 	public void setRolesIds(
-		UnsafeSupplier<Long[], Throwable> rolesIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Throwable> rolesIdsUnsafeSupplier);
 
-			try {
-				rolesIds = rolesIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setTasksAssignedToMe(String[] tasksAssignedToMe) {
-		this.tasksAssignedToMe = tasksAssignedToMe;
-	}
+	public void setTasksAssignedToMe(String[] tasksAssignedToMe);
 
 	public void setTasksAssignedToMe(
-		UnsafeSupplier<String[], Throwable> tasksAssignedToMeUnsafeSupplier) {
+		UnsafeSupplier<String[], Throwable> tasksAssignedToMeUnsafeSupplier);
 
-			try {
-				tasksAssignedToMe = tasksAssignedToMeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles) {
-		this.tasksAssignedToMyRoles = tasksAssignedToMyRoles;
-	}
+	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles);
 
 	public void setTasksAssignedToMyRoles(
 		UnsafeSupplier<String[], Throwable>
-			tasksAssignedToMyRolesUnsafeSupplier) {
-
-			try {
-				tasksAssignedToMyRoles =
-					tasksAssignedToMyRolesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String additionalName;
-
-	@GraphQLField
-	protected String alternateName;
-
-	@GraphQLField
-	protected Date birthDate;
-
-	@GraphQLField
-	protected ContactInformation contactInformation;
-
-	@GraphQLField
-	protected String dashboardURL;
-
-	@GraphQLField
-	protected String email;
-
-	@GraphQLField
-	protected String familyName;
-
-	@GraphQLField
-	protected String givenName;
-
-	@GraphQLField
-	protected String honorificPrefix;
-
-	@GraphQLField
-	protected String honorificSuffix;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String image;
-
-	@GraphQLField
-	protected String jobTitle;
-
-	@GraphQLField
-	protected Organization[] myOrganizations;
-
-	@GraphQLField
-	protected Long[] myOrganizationsIds;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected String profileURL;
-
-	@GraphQLField
-	protected Role[] roles;
-
-	@GraphQLField
-	protected Long[] rolesIds;
-
-	@GraphQLField
-	protected String[] tasksAssignedToMe;
-
-	@GraphQLField
-	protected String[] tasksAssignedToMyRoles;
+			tasksAssignedToMyRolesUnsafeSupplier);
 
 }

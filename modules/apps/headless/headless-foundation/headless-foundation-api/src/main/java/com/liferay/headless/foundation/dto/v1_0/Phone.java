@@ -16,106 +16,40 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Phone")
-@XmlRootElement(name = "Phone")
-public class Phone {
+public interface Phone {
 
-	public String getExtension() {
-		return extension;
-	}
+	public String getExtension();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+	public String getPhoneNumber();
 
-	public String getPhoneType() {
-		return phoneType;
-	}
+	public String getPhoneType();
 
-	public void setExtension(String extension) {
-		this.extension = extension;
-	}
+	public void setExtension(String extension);
 
 	public void setExtension(
-		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier);
 
-			try {
-				extension = extensionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+	public void setPhoneNumber(String phoneNumber);
 
 	public void setPhoneNumber(
-		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier);
 
-			try {
-				phoneNumber = phoneNumberUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setPhoneType(String phoneType) {
-		this.phoneType = phoneType;
-	}
+	public void setPhoneType(String phoneType);
 
 	public void setPhoneType(
-		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
-
-			try {
-				phoneType = phoneTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String extension;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String phoneNumber;
-
-	@GraphQLField
-	protected String phoneType;
+		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier);
 
 }

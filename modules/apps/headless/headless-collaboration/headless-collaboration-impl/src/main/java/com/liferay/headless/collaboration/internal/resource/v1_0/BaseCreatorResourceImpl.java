@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
 import com.liferay.headless.collaboration.resource.v1_0.CreatorResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -37,7 +38,7 @@ public abstract class BaseCreatorResourceImpl implements CreatorResource {
 
 	@Override
 	public Creator getCreator(Long creatorId) throws Exception {
-		return new Creator();
+		return new CreatorImpl();
 	}
 
 	protected Response buildNoContentResponse() {

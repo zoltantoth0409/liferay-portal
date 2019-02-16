@@ -16,82 +16,32 @@ package com.liferay.headless.form.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Grid")
-@XmlRootElement(name = "Grid")
-public class Grid {
+public interface Grid {
 
-	public Columns[] getColumns() {
-		return columns;
-	}
+	public Columns[] getColumns();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public Rows[] getRows() {
-		return rows;
-	}
+	public Rows[] getRows();
 
-	public void setColumns(Columns[] columns) {
-		this.columns = columns;
-	}
+	public void setColumns(Columns[] columns);
 
 	public void setColumns(
-		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
+		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier);
 
-			try {
-				columns = columnsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setRows(Rows[] rows);
 
-	public void setRows(Rows[] rows) {
-		this.rows = rows;
-	}
-
-	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier) {
-			try {
-				rows = rowsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Columns[] columns;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Rows[] rows;
+	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier);
 
 }

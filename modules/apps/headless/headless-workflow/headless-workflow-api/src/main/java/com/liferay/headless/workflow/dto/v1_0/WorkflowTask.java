@@ -16,283 +16,97 @@ package com.liferay.headless.workflow.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("WorkflowTask")
-@XmlRootElement(name = "WorkflowTask")
-public class WorkflowTask {
+public interface WorkflowTask {
 
-	public Boolean getCompleted() {
-		return completed;
-	}
+	public Boolean getCompleted();
 
-	public Date getDateCompleted() {
-		return dateCompleted;
-	}
+	public Date getDateCompleted();
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
+	public Date getDateCreated();
 
-	public String getDefinitionName() {
-		return definitionName;
-	}
+	public String getDefinitionName();
 
-	public String getDescription() {
-		return description;
-	}
+	public String getDescription();
 
-	public Date getDueDate() {
-		return dueDate;
-	}
+	public Date getDueDate();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public WorkflowLog[] getLogs() {
-		return logs;
-	}
+	public WorkflowLog[] getLogs();
 
-	public Long[] getLogsIds() {
-		return logsIds;
-	}
+	public Long[] getLogsIds();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public ObjectReviewed getObjectReviewed() {
-		return objectReviewed;
-	}
+	public ObjectReviewed getObjectReviewed();
 
-	public String[] getTransitions() {
-		return transitions;
-	}
+	public String[] getTransitions();
 
-	public void setCompleted(Boolean completed) {
-		this.completed = completed;
-	}
+	public void setCompleted(Boolean completed);
 
 	public void setCompleted(
-		UnsafeSupplier<Boolean, Throwable> completedUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> completedUnsafeSupplier);
 
-			try {
-				completed = completedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateCompleted(Date dateCompleted) {
-		this.dateCompleted = dateCompleted;
-	}
+	public void setDateCompleted(Date dateCompleted);
 
 	public void setDateCompleted(
-		UnsafeSupplier<Date, Throwable> dateCompletedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateCompletedUnsafeSupplier);
 
-			try {
-				dateCompleted = dateCompletedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+	public void setDateCreated(Date dateCreated);
 
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
 
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDefinitionName(String definitionName) {
-		this.definitionName = definitionName;
-	}
+	public void setDefinitionName(String definitionName);
 
 	public void setDefinitionName(
-		UnsafeSupplier<String, Throwable> definitionNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> definitionNameUnsafeSupplier);
 
-			try {
-				definitionName = definitionNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description);
 
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
 
-			try {
-				description = descriptionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
+	public void setDueDate(Date dueDate);
 
 	public void setDueDate(
-		UnsafeSupplier<Date, Throwable> dueDateUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dueDateUnsafeSupplier);
 
-			try {
-				dueDate = dueDateUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
 	public void setLogs(
-		UnsafeSupplier<WorkflowLog[], Throwable> logsUnsafeSupplier) {
+		UnsafeSupplier<WorkflowLog[], Throwable> logsUnsafeSupplier);
 
-			try {
-				logs = logsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setLogs(WorkflowLog[] logs);
 
-	public void setLogs(WorkflowLog[] logs) {
-		this.logs = logs;
-	}
-
-	public void setLogsIds(Long[] logsIds) {
-		this.logsIds = logsIds;
-	}
+	public void setLogsIds(Long[] logsIds);
 
 	public void setLogsIds(
-		UnsafeSupplier<Long[], Throwable> logsIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Throwable> logsIdsUnsafeSupplier);
 
-			try {
-				logsIds = logsIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setObjectReviewed(ObjectReviewed objectReviewed) {
-		this.objectReviewed = objectReviewed;
-	}
+	public void setObjectReviewed(ObjectReviewed objectReviewed);
 
 	public void setObjectReviewed(
-		UnsafeSupplier<ObjectReviewed, Throwable>
-			objectReviewedUnsafeSupplier) {
+		UnsafeSupplier<ObjectReviewed, Throwable> objectReviewedUnsafeSupplier);
 
-			try {
-				objectReviewed = objectReviewedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setTransitions(String[] transitions) {
-		this.transitions = transitions;
-	}
+	public void setTransitions(String[] transitions);
 
 	public void setTransitions(
-		UnsafeSupplier<String[], Throwable> transitionsUnsafeSupplier) {
-
-			try {
-				transitions = transitionsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Boolean completed;
-
-	@GraphQLField
-	protected Date dateCompleted;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected String definitionName;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Date dueDate;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected WorkflowLog[] logs;
-
-	@GraphQLField
-	protected Long[] logsIds;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected ObjectReviewed objectReviewed;
-
-	@GraphQLField
-	protected String[] transitions;
+		UnsafeSupplier<String[], Throwable> transitionsUnsafeSupplier);
 
 }

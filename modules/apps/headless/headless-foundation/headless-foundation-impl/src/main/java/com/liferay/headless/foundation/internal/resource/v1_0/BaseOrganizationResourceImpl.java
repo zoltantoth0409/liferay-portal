@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.headless.foundation.internal.dto.v1_0.OrganizationImpl;
 import com.liferay.headless.foundation.resource.v1_0.OrganizationResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -49,7 +50,7 @@ public abstract class BaseOrganizationResourceImpl
 
 	@Override
 	public Organization getOrganization(Long organizationId) throws Exception {
-		return new Organization();
+		return new OrganizationImpl();
 	}
 
 	@Override

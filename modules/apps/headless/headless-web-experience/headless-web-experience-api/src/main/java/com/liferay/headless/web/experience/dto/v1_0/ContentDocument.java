@@ -16,218 +16,76 @@ package com.liferay.headless.web.experience.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("ContentDocument")
-@XmlRootElement(name = "ContentDocument")
-public class ContentDocument {
+public interface ContentDocument {
 
-	public String getContentUrl() {
-		return contentUrl;
-	}
+	public String getContentUrl();
 
-	public Creator getCreator() {
-		return creator;
-	}
+	public Creator getCreator();
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
+	public Date getDateCreated();
 
-	public Date getDateModified() {
-		return dateModified;
-	}
+	public Date getDateModified();
 
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
+	public String getEncodingFormat();
 
-	public String getFileExtension() {
-		return fileExtension;
-	}
+	public String getFileExtension();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
+	public Number getSizeInBytes();
 
-	public String getTitle() {
-		return title;
-	}
+	public String getTitle();
 
-	public void setContentUrl(String contentUrl) {
-		this.contentUrl = contentUrl;
-	}
+	public void setContentUrl(String contentUrl);
 
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier);
 
-			try {
-				contentUrl = contentUrlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setCreator(Creator creator) {
-		this.creator = creator;
-	}
+	public void setCreator(Creator creator);
 
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
 
-			try {
-				creator = creatorUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+	public void setDateCreated(Date dateCreated);
 
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
 
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
-	}
+	public void setDateModified(Date dateModified);
 
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
 
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setEncodingFormat(String encodingFormat) {
-		this.encodingFormat = encodingFormat;
-	}
+	public void setEncodingFormat(String encodingFormat);
 
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier);
 
-			try {
-				encodingFormat = encodingFormatUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setFileExtension(String fileExtension) {
-		this.fileExtension = fileExtension;
-	}
+	public void setFileExtension(String fileExtension);
 
 	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier);
 
-			try {
-				fileExtension = fileExtensionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setSizeInBytes(Number sizeInBytes) {
-		this.sizeInBytes = sizeInBytes;
-	}
+	public void setSizeInBytes(Number sizeInBytes);
 
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier);
 
-			try {
-				sizeInBytes = sizeInBytesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setTitle(String title);
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
-
-			try {
-				title = titleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String contentUrl;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String encodingFormat;
-
-	@GraphQLField
-	protected String fileExtension;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Number sizeInBytes;
-
-	@GraphQLField
-	protected String title;
+	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier);
 
 }

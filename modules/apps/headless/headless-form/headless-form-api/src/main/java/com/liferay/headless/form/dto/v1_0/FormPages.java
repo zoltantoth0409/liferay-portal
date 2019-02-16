@@ -16,104 +16,39 @@ package com.liferay.headless.form.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("FormPages")
-@XmlRootElement(name = "FormPages")
-public class FormPages {
+public interface FormPages {
 
-	public Fields[] getFields() {
-		return fields;
-	}
+	public Fields[] getFields();
 
-	public String getHeadline() {
-		return headline;
-	}
+	public String getHeadline();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getText() {
-		return text;
-	}
+	public String getText();
 
-	public void setFields(Fields[] fields) {
-		this.fields = fields;
-	}
+	public void setFields(Fields[] fields);
 
 	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
+		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier);
 
-			try {
-				fields = fieldsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHeadline(String headline) {
-		this.headline = headline;
-	}
+	public void setHeadline(String headline);
 
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
 
-			try {
-				headline = headlineUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setText(String text);
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
-			try {
-				text = textUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Fields[] fields;
-
-	@GraphQLField
-	protected String headline;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String text;
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier);
 
 }

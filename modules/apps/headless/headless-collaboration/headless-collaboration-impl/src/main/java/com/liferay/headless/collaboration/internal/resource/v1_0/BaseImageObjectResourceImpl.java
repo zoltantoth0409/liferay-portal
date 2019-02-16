@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
 import com.liferay.headless.collaboration.resource.v1_0.ImageObjectResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseImageObjectResourceImpl
 
 	@Override
 	public ImageObject getImageObject(Long imageObjectId) throws Exception {
-		return new ImageObject();
+		return new ImageObjectImpl();
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public abstract class BaseImageObjectResourceImpl
 			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
-			return new ImageObject();
+			return new ImageObjectImpl();
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public abstract class BaseImageObjectResourceImpl
 			Long imageObjectRepositoryId, ImageObject imageObject)
 		throws Exception {
 
-			return new ImageObject();
+			return new ImageObjectImpl();
 	}
 
 	protected Response buildNoContentResponse() {

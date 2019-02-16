@@ -16,303 +16,104 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Organization")
-@XmlRootElement(name = "Organization")
-public class Organization {
+public interface Organization {
 
-	public String getComment() {
-		return comment;
-	}
+	public String getComment();
 
-	public ContactInformation getContactInformation() {
-		return contactInformation;
-	}
+	public ContactInformation getContactInformation();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public Location getLocation() {
-		return location;
-	}
+	public Location getLocation();
 
-	public String getLogo() {
-		return logo;
-	}
+	public String getLogo();
 
-	public UserAccount[] getMembers() {
-		return members;
-	}
+	public UserAccount[] getMembers();
 
-	public Long[] getMembersIds() {
-		return membersIds;
-	}
+	public Long[] getMembersIds();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public Organization getParentOrganization() {
-		return parentOrganization;
-	}
+	public Organization getParentOrganization();
 
-	public Long getParentOrganizationId() {
-		return parentOrganizationId;
-	}
+	public Long getParentOrganizationId();
 
-	public Services[] getServices() {
-		return services;
-	}
+	public Services[] getServices();
 
-	public Organization[] getSubOrganization() {
-		return subOrganization;
-	}
+	public Organization[] getSubOrganization();
 
-	public Long[] getSubOrganizationIds() {
-		return subOrganizationIds;
-	}
+	public Long[] getSubOrganizationIds();
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+	public void setComment(String comment);
 
 	public void setComment(
-		UnsafeSupplier<String, Throwable> commentUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> commentUnsafeSupplier);
 
-			try {
-				comment = commentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setContactInformation(ContactInformation contactInformation) {
-		this.contactInformation = contactInformation;
-	}
+	public void setContactInformation(ContactInformation contactInformation);
 
 	public void setContactInformation(
 		UnsafeSupplier<ContactInformation, Throwable>
-			contactInformationUnsafeSupplier) {
+			contactInformationUnsafeSupplier);
 
-			try {
-				contactInformation = contactInformationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
-	}
+	public void setLocation(Location location);
 
 	public void setLocation(
-		UnsafeSupplier<Location, Throwable> locationUnsafeSupplier) {
+		UnsafeSupplier<Location, Throwable> locationUnsafeSupplier);
 
-			try {
-				location = locationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setLogo(String logo);
 
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	public void setLogo(UnsafeSupplier<String, Throwable> logoUnsafeSupplier) {
-			try {
-				logo = logoUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setLogo(UnsafeSupplier<String, Throwable> logoUnsafeSupplier);
 
 	public void setMembers(
-		UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier) {
+		UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier);
 
-			try {
-				members = membersUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setMembers(UserAccount[] members);
 
-	public void setMembers(UserAccount[] members) {
-		this.members = members;
-	}
-
-	public void setMembersIds(Long[] membersIds) {
-		this.membersIds = membersIds;
-	}
+	public void setMembersIds(Long[] membersIds);
 
 	public void setMembersIds(
-		UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier);
 
-			try {
-				membersIds = membersIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setParentOrganization(Organization parentOrganization) {
-		this.parentOrganization = parentOrganization;
-	}
+	public void setParentOrganization(Organization parentOrganization);
 
 	public void setParentOrganization(
 		UnsafeSupplier<Organization, Throwable>
-			parentOrganizationUnsafeSupplier) {
+			parentOrganizationUnsafeSupplier);
 
-			try {
-				parentOrganization = parentOrganizationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setParentOrganizationId(Long parentOrganizationId) {
-		this.parentOrganizationId = parentOrganizationId;
-	}
+	public void setParentOrganizationId(Long parentOrganizationId);
 
 	public void setParentOrganizationId(
-		UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier);
 
-			try {
-				parentOrganizationId = parentOrganizationIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setServices(Services[] services) {
-		this.services = services;
-	}
+	public void setServices(Services[] services);
 
 	public void setServices(
-		UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier) {
+		UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier);
 
-			try {
-				services = servicesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setSubOrganization(Organization[] subOrganization) {
-		this.subOrganization = subOrganization;
-	}
+	public void setSubOrganization(Organization[] subOrganization);
 
 	public void setSubOrganization(
 		UnsafeSupplier<Organization[], Throwable>
-			subOrganizationUnsafeSupplier) {
+			subOrganizationUnsafeSupplier);
 
-			try {
-				subOrganization = subOrganizationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setSubOrganizationIds(Long[] subOrganizationIds) {
-		this.subOrganizationIds = subOrganizationIds;
-	}
+	public void setSubOrganizationIds(Long[] subOrganizationIds);
 
 	public void setSubOrganizationIds(
-		UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier) {
-
-			try {
-				subOrganizationIds = subOrganizationIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String comment;
-
-	@GraphQLField
-	protected ContactInformation contactInformation;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Location location;
-
-	@GraphQLField
-	protected String logo;
-
-	@GraphQLField
-	protected UserAccount[] members;
-
-	@GraphQLField
-	protected Long[] membersIds;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Organization parentOrganization;
-
-	@GraphQLField
-	protected Long parentOrganizationId;
-
-	@GraphQLField
-	protected Services[] services;
-
-	@GraphQLField
-	protected Organization[] subOrganization;
-
-	@GraphQLField
-	protected Long[] subOrganizationIds;
+		UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier);
 
 }

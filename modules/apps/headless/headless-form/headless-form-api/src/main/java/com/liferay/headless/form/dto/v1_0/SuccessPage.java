@@ -16,84 +16,33 @@ package com.liferay.headless.form.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("SuccessPage")
-@XmlRootElement(name = "SuccessPage")
-public class SuccessPage {
+public interface SuccessPage {
 
-	public String getDescription() {
-		return description;
-	}
+	public String getDescription();
 
-	public String getHeadline() {
-		return headline;
-	}
+	public String getHeadline();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description);
 
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
 
-			try {
-				description = descriptionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHeadline(String headline) {
-		this.headline = headline;
-	}
+	public void setHeadline(String headline);
 
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
 
-			try {
-				headline = headlineUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected String headline;
-
-	@GraphQLField
-	protected Long id;
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
 }

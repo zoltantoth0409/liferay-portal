@@ -15,6 +15,7 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.internal.dto.v1_0.FormRecordImpl;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,14 +49,14 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
 	@Override
 	public FormRecord getFormRecord(Long formRecordId) throws Exception {
-		return new FormRecord();
+		return new FormRecordImpl();
 	}
 
 	@Override
 	public FormRecord postFormFormRecord(Long formId, FormRecord formRecord)
 		throws Exception {
 
-			return new FormRecord();
+			return new FormRecordImpl();
 	}
 
 	@Override
@@ -63,14 +64,14 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 			Long formId, FormRecord formRecord)
 		throws Exception {
 
-			return new FormRecord();
+			return new FormRecordImpl();
 	}
 
 	@Override
 	public FormRecord putFormRecord(Long formRecordId, FormRecord formRecord)
 		throws Exception {
 
-			return new FormRecord();
+			return new FormRecordImpl();
 	}
 
 	protected Response buildNoContentResponse() {

@@ -16,82 +16,32 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("WebUrl")
-@XmlRootElement(name = "WebUrl")
-public class WebUrl {
+public interface WebUrl {
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getUrl() {
-		return url;
-	}
+	public String getUrl();
 
-	public String getUrlType() {
-		return urlType;
-	}
+	public String getUrlType();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(Long id);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+	public void setUrl(String url);
 
-	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
-			try {
-				url = urlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier);
 
-	public void setUrlType(String urlType) {
-		this.urlType = urlType;
-	}
+	public void setUrlType(String urlType);
 
 	public void setUrlType(
-		UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
-
-			try {
-				urlType = urlTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String url;
-
-	@GraphQLField
-	protected String urlType;
+		UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier);
 
 }

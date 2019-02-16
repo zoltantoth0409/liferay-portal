@@ -16,84 +16,33 @@ package com.liferay.headless.web.experience.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("RenderedContentsByTemplate")
-@XmlRootElement(name = "RenderedContentsByTemplate")
-public class RenderedContentsByTemplate {
+public interface RenderedContentsByTemplate {
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getRenderedContent() {
-		return renderedContent;
-	}
+	public String getRenderedContent();
 
-	public String getTemplate() {
-		return template;
-	}
+	public String getTemplate();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(Long id);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setRenderedContent(String renderedContent) {
-		this.renderedContent = renderedContent;
-	}
+	public void setRenderedContent(String renderedContent);
 
 	public void setRenderedContent(
-		UnsafeSupplier<String, Throwable> renderedContentUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> renderedContentUnsafeSupplier);
 
-			try {
-				renderedContent = renderedContentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setTemplate(String template) {
-		this.template = template;
-	}
+	public void setTemplate(String template);
 
 	public void setTemplate(
-		UnsafeSupplier<String, Throwable> templateUnsafeSupplier) {
-
-			try {
-				template = templateUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String renderedContent;
-
-	@GraphQLField
-	protected String template;
+		UnsafeSupplier<String, Throwable> templateUnsafeSupplier);
 
 }

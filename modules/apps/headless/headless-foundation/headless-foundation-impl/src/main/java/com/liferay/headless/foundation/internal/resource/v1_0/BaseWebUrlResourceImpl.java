@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
+import com.liferay.headless.foundation.internal.dto.v1_0.WebUrlImpl;
 import com.liferay.headless.foundation.resource.v1_0.WebUrlResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 
 	@Override
 	public WebUrl getWebUrl(Long webUrlId) throws Exception {
-		return new WebUrl();
+		return new WebUrlImpl();
 	}
 
 	protected Response buildNoContentResponse() {

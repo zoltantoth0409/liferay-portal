@@ -16,484 +16,163 @@ package com.liferay.headless.collaboration.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("BlogPosting")
-@XmlRootElement(name = "BlogPosting")
-public class BlogPosting {
+public interface BlogPosting {
 
-	public AggregateRating getAggregateRating() {
-		return aggregateRating;
-	}
+	public AggregateRating getAggregateRating();
 
-	public String getAlternativeHeadline() {
-		return alternativeHeadline;
-	}
+	public String getAlternativeHeadline();
 
-	public String getArticleBody() {
-		return articleBody;
-	}
+	public String getArticleBody();
 
-	public String getCaption() {
-		return caption;
-	}
+	public String getCaption();
 
-	public Long[] getCategory() {
-		return category;
-	}
+	public Long[] getCategory();
 
-	public Comment[] getComment() {
-		return comment;
-	}
+	public Comment[] getComment();
 
-	public Long getContentSpace() {
-		return contentSpace;
-	}
+	public Long getContentSpace();
 
-	public Creator getCreator() {
-		return creator;
-	}
+	public Creator getCreator();
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
+	public Date getDateCreated();
 
-	public Date getDateModified() {
-		return dateModified;
-	}
+	public Date getDateModified();
 
-	public Date getDatePublished() {
-		return datePublished;
-	}
+	public Date getDatePublished();
 
-	public String getDescription() {
-		return description;
-	}
+	public String getDescription();
 
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
+	public String getEncodingFormat();
 
-	public String getFriendlyUrlPath() {
-		return friendlyUrlPath;
-	}
+	public String getFriendlyUrlPath();
 
-	public String getHeadline() {
-		return headline;
-	}
+	public String getHeadline();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public ImageObject getImage() {
-		return image;
-	}
+	public ImageObject getImage();
 
-	public Long getImageId() {
-		return imageId;
-	}
+	public Long getImageId();
 
-	public String[] getKeywords() {
-		return keywords;
-	}
+	public String[] getKeywords();
 
-	public ImageObjectRepository getRepository() {
-		return repository;
-	}
+	public ImageObjectRepository getRepository();
 
-	public Long getRepositoryId() {
-		return repositoryId;
-	}
+	public Long getRepositoryId();
 
-	public void setAggregateRating(AggregateRating aggregateRating) {
-		this.aggregateRating = aggregateRating;
-	}
+	public void setAggregateRating(AggregateRating aggregateRating);
 
 	public void setAggregateRating(
 		UnsafeSupplier<AggregateRating, Throwable>
-			aggregateRatingUnsafeSupplier) {
+			aggregateRatingUnsafeSupplier);
 
-			try {
-				aggregateRating = aggregateRatingUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setAlternativeHeadline(String alternativeHeadline) {
-		this.alternativeHeadline = alternativeHeadline;
-	}
+	public void setAlternativeHeadline(String alternativeHeadline);
 
 	public void setAlternativeHeadline(
-		UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier);
 
-			try {
-				alternativeHeadline = alternativeHeadlineUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setArticleBody(String articleBody) {
-		this.articleBody = articleBody;
-	}
+	public void setArticleBody(String articleBody);
 
 	public void setArticleBody(
-		UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier);
 
-			try {
-				articleBody = articleBodyUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setCaption(String caption) {
-		this.caption = caption;
-	}
+	public void setCaption(String caption);
 
 	public void setCaption(
-		UnsafeSupplier<String, Throwable> captionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> captionUnsafeSupplier);
 
-			try {
-				caption = captionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setCategory(Long[] category) {
-		this.category = category;
-	}
+	public void setCategory(Long[] category);
 
 	public void setCategory(
-		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier);
 
-			try {
-				category = categoryUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setComment(Comment[] comment) {
-		this.comment = comment;
-	}
+	public void setComment(Comment[] comment);
 
 	public void setComment(
-		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier);
 
-			try {
-				comment = commentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
-	}
+	public void setContentSpace(Long contentSpace);
 
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
 
-			try {
-				contentSpace = contentSpaceUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setCreator(Creator creator) {
-		this.creator = creator;
-	}
+	public void setCreator(Creator creator);
 
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
 
-			try {
-				creator = creatorUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+	public void setDateCreated(Date dateCreated);
 
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
 
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
-	}
+	public void setDateModified(Date dateModified);
 
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
 
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
-	}
+	public void setDatePublished(Date datePublished);
 
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
 
-			try {
-				datePublished = datePublishedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description);
 
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
 
-			try {
-				description = descriptionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setEncodingFormat(String encodingFormat) {
-		this.encodingFormat = encodingFormat;
-	}
+	public void setEncodingFormat(String encodingFormat);
 
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier);
 
-			try {
-				encodingFormat = encodingFormatUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setFriendlyUrlPath(String friendlyUrlPath) {
-		this.friendlyUrlPath = friendlyUrlPath;
-	}
+	public void setFriendlyUrlPath(String friendlyUrlPath);
 
 	public void setFriendlyUrlPath(
-		UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier);
 
-			try {
-				friendlyUrlPath = friendlyUrlPathUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHeadline(String headline) {
-		this.headline = headline;
-	}
+	public void setHeadline(String headline);
 
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
 
-			try {
-				headline = headlineUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setImage(ImageObject image) {
-		this.image = image;
-	}
+	public void setImage(ImageObject image);
 
 	public void setImage(
-		UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier) {
+		UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier);
 
-			try {
-				image = imageUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setImageId(Long imageId) {
-		this.imageId = imageId;
-	}
+	public void setImageId(Long imageId);
 
 	public void setImageId(
-		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier);
 
-			try {
-				imageId = imageIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setKeywords(String[] keywords) {
-		this.keywords = keywords;
-	}
+	public void setKeywords(String[] keywords);
 
 	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier);
 
-			try {
-				keywords = keywordsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRepository(ImageObjectRepository repository) {
-		this.repository = repository;
-	}
+	public void setRepository(ImageObjectRepository repository);
 
 	public void setRepository(
 		UnsafeSupplier<ImageObjectRepository, Throwable>
-			repositoryUnsafeSupplier) {
+			repositoryUnsafeSupplier);
 
-			try {
-				repository = repositoryUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRepositoryId(Long repositoryId) {
-		this.repositoryId = repositoryId;
-	}
+	public void setRepositoryId(Long repositoryId);
 
 	public void setRepositoryId(
-		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
-
-			try {
-				repositoryId = repositoryIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected AggregateRating aggregateRating;
-
-	@GraphQLField
-	protected String alternativeHeadline;
-
-	@GraphQLField
-	protected String articleBody;
-
-	@GraphQLField
-	protected String caption;
-
-	@GraphQLField
-	protected Long[] category;
-
-	@GraphQLField
-	protected Comment[] comment;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Date datePublished;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected String encodingFormat;
-
-	@GraphQLField
-	protected String friendlyUrlPath;
-
-	@GraphQLField
-	protected String headline;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected ImageObject image;
-
-	@GraphQLField
-	protected Long imageId;
-
-	@GraphQLField
-	protected String[] keywords;
-
-	@GraphQLField
-	protected ImageObjectRepository repository;
-
-	@GraphQLField
-	protected Long repositoryId;
+		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier);
 
 }

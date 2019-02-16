@@ -16,84 +16,33 @@ package com.liferay.headless.workflow.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("ObjectReviewed")
-@XmlRootElement(name = "ObjectReviewed")
-public class ObjectReviewed {
+public interface ObjectReviewed {
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getIdentifier() {
-		return identifier;
-	}
+	public String getIdentifier();
 
-	public String getResourceType() {
-		return resourceType;
-	}
+	public String getResourceType();
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(Long id);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
+	public void setIdentifier(String identifier);
 
 	public void setIdentifier(
-		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier);
 
-			try {
-				identifier = identifierUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setResourceType(String resourceType) {
-		this.resourceType = resourceType;
-	}
+	public void setResourceType(String resourceType);
 
 	public void setResourceType(
-		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier) {
-
-			try {
-				resourceType = resourceTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String identifier;
-
-	@GraphQLField
-	protected String resourceType;
+		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier);
 
 }

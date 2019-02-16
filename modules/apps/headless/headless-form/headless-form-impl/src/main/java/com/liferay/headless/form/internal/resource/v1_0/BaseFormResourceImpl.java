@@ -15,6 +15,7 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Form;
+import com.liferay.headless.form.internal.dto.v1_0.FormImpl;
 import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,24 +49,24 @@ public abstract class BaseFormResourceImpl implements FormResource {
 
 	@Override
 	public Form getForm(Long formId) throws Exception {
-		return new Form();
+		return new FormImpl();
 	}
 
 	@Override
 	public Form getFormFetchLatestDraft(Long formId) throws Exception {
-		return new Form();
+		return new FormImpl();
 	}
 
 	@Override
 	public Form postFormEvaluateContext(Long formId, Form form)
 		throws Exception {
 
-			return new Form();
+			return new FormImpl();
 	}
 
 	@Override
 	public Form postFormUploadFile(Long formId, Form form) throws Exception {
-		return new Form();
+		return new FormImpl();
 	}
 
 	protected Response buildNoContentResponse() {

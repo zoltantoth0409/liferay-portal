@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectRepositoryImpl;
 import com.liferay.headless.collaboration.resource.v1_0.ImageObjectRepositoryResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -41,7 +42,7 @@ public abstract class BaseImageObjectRepositoryResourceImpl
 			Long imageObjectRepositoryId)
 		throws Exception {
 
-			return new ImageObjectRepository();
+			return new ImageObjectRepositoryImpl();
 	}
 
 	protected Response buildNoContentResponse() {

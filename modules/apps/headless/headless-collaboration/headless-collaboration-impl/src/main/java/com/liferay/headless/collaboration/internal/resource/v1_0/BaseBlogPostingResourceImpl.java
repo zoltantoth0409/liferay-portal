@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseBlogPostingResourceImpl
 
 	@Override
 	public BlogPosting getBlogPosting(Long blogPostingId) throws Exception {
-		return new BlogPosting();
+		return new BlogPostingImpl();
 	}
 
 	@Override
@@ -92,7 +93,7 @@ public abstract class BaseBlogPostingResourceImpl
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-			return new BlogPosting();
+			return new BlogPostingImpl();
 	}
 
 	@Override
@@ -100,7 +101,7 @@ public abstract class BaseBlogPostingResourceImpl
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
 
-			return new BlogPosting();
+			return new BlogPostingImpl();
 	}
 
 	@Override
@@ -108,7 +109,7 @@ public abstract class BaseBlogPostingResourceImpl
 			Long blogPostingId, BlogPosting blogPosting)
 		throws Exception {
 
-			return new BlogPosting();
+			return new BlogPostingImpl();
 	}
 
 	protected Response buildNoContentResponse() {

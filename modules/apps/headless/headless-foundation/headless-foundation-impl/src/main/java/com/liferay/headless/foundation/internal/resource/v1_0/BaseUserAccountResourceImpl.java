@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public UserAccount getMyUserAccount(Long myUserAccountId) throws Exception {
-		return new UserAccount();
+		return new UserAccountImpl();
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public abstract class BaseUserAccountResourceImpl
 
 	@Override
 	public UserAccount getUserAccount(Long userAccountId) throws Exception {
-		return new UserAccount();
+		return new UserAccountImpl();
 	}
 
 	@Override
@@ -84,14 +85,14 @@ public abstract class BaseUserAccountResourceImpl
 	public UserAccount postUserAccount(UserAccount userAccount)
 		throws Exception {
 
-			return new UserAccount();
+			return new UserAccountImpl();
 	}
 
 	@Override
 	public UserAccount postUserAccountBatchCreate(UserAccount userAccount)
 		throws Exception {
 
-			return new UserAccount();
+			return new UserAccountImpl();
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public abstract class BaseUserAccountResourceImpl
 			Long userAccountId, UserAccount userAccount)
 		throws Exception {
 
-			return new UserAccount();
+			return new UserAccountImpl();
 	}
 
 	protected Response buildNoContentResponse() {

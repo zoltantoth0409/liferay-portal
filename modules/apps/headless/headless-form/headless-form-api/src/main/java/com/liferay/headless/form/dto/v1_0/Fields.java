@@ -16,584 +16,189 @@ package com.liferay.headless.form.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Fields")
-@XmlRootElement(name = "Fields")
-public class Fields {
+public interface Fields {
 
-	public Boolean getAutocomplete() {
-		return autocomplete;
-	}
+	public Boolean getAutocomplete();
 
-	public String getDataSourceType() {
-		return dataSourceType;
-	}
+	public String getDataSourceType();
 
-	public String getDataType() {
-		return dataType;
-	}
+	public String getDataType();
 
-	public String getDisplayStyle() {
-		return displayStyle;
-	}
+	public String getDisplayStyle();
 
-	public Grid getGrid() {
-		return grid;
-	}
+	public Grid getGrid();
 
-	public Boolean getHasFormRules() {
-		return hasFormRules;
-	}
+	public Boolean getHasFormRules();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public Boolean getImmutable() {
-		return immutable;
-	}
+	public Boolean getImmutable();
 
-	public Boolean getInline() {
-		return inline;
-	}
+	public Boolean getInline();
 
-	public String getInputControl() {
-		return inputControl;
-	}
+	public String getInputControl();
 
-	public String getLabel() {
-		return label;
-	}
+	public String getLabel();
 
-	public Boolean getLocalizable() {
-		return localizable;
-	}
+	public Boolean getLocalizable();
 
-	public Boolean getMultiple() {
-		return multiple;
-	}
+	public Boolean getMultiple();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public Options getOptions() {
-		return options;
-	}
+	public Options getOptions();
 
-	public String getPlaceholder() {
-		return placeholder;
-	}
+	public String getPlaceholder();
 
-	public String getPredefinedValue() {
-		return predefinedValue;
-	}
+	public String getPredefinedValue();
 
-	public Boolean getReadOnly() {
-		return readOnly;
-	}
+	public Boolean getReadOnly();
 
-	public Boolean getRepeatable() {
-		return repeatable;
-	}
+	public Boolean getRepeatable();
 
-	public Boolean getRequired() {
-		return required;
-	}
+	public Boolean getRequired();
 
-	public Boolean getShowAsSwitcher() {
-		return showAsSwitcher;
-	}
+	public Boolean getShowAsSwitcher();
 
-	public Boolean getShowLabel() {
-		return showLabel;
-	}
+	public Boolean getShowLabel();
 
-	public String getStyle() {
-		return style;
-	}
+	public String getStyle();
 
-	public String getText() {
-		return text;
-	}
+	public String getText();
 
-	public String getTooltip() {
-		return tooltip;
-	}
+	public String getTooltip();
 
-	public Validation getValidation() {
-		return validation;
-	}
+	public Validation getValidation();
 
-	public void setAutocomplete(Boolean autocomplete) {
-		this.autocomplete = autocomplete;
-	}
+	public void setAutocomplete(Boolean autocomplete);
 
 	public void setAutocomplete(
-		UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier);
 
-			try {
-				autocomplete = autocompleteUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDataSourceType(String dataSourceType) {
-		this.dataSourceType = dataSourceType;
-	}
+	public void setDataSourceType(String dataSourceType);
 
 	public void setDataSourceType(
-		UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier);
 
-			try {
-				dataSourceType = dataSourceTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
-	}
+	public void setDataType(String dataType);
 
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier);
 
-			try {
-				dataType = dataTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDisplayStyle(String displayStyle) {
-		this.displayStyle = displayStyle;
-	}
+	public void setDisplayStyle(String displayStyle);
 
 	public void setDisplayStyle(
-		UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier);
 
-			try {
-				displayStyle = displayStyleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setGrid(Grid grid);
 
-	public void setGrid(Grid grid) {
-		this.grid = grid;
-	}
+	public void setGrid(UnsafeSupplier<Grid, Throwable> gridUnsafeSupplier);
 
-	public void setGrid(UnsafeSupplier<Grid, Throwable> gridUnsafeSupplier) {
-			try {
-				grid = gridUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHasFormRules(Boolean hasFormRules) {
-		this.hasFormRules = hasFormRules;
-	}
+	public void setHasFormRules(Boolean hasFormRules);
 
 	public void setHasFormRules(
-		UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier);
 
-			try {
-				hasFormRules = hasFormRulesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setImmutable(Boolean immutable) {
-		this.immutable = immutable;
-	}
+	public void setImmutable(Boolean immutable);
 
 	public void setImmutable(
-		UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier);
 
-			try {
-				immutable = immutableUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setInline(Boolean inline) {
-		this.inline = inline;
-	}
+	public void setInline(Boolean inline);
 
 	public void setInline(
-		UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier);
 
-			try {
-				inline = inlineUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setInputControl(String inputControl) {
-		this.inputControl = inputControl;
-	}
+	public void setInputControl(String inputControl);
 
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier);
 
-			try {
-				inputControl = inputControlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setLabel(String label);
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier);
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
-
-			try {
-				label = labelUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setLocalizable(Boolean localizable) {
-		this.localizable = localizable;
-	}
+	public void setLocalizable(Boolean localizable);
 
 	public void setLocalizable(
-		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier);
 
-			try {
-				localizable = localizableUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setMultiple(Boolean multiple) {
-		this.multiple = multiple;
-	}
+	public void setMultiple(Boolean multiple);
 
 	public void setMultiple(
-		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier);
 
-			try {
-				multiple = multipleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setOptions(Options options) {
-		this.options = options;
-	}
+	public void setOptions(Options options);
 
 	public void setOptions(
-		UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier) {
+		UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier);
 
-			try {
-				options = optionsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setPlaceholder(String placeholder) {
-		this.placeholder = placeholder;
-	}
+	public void setPlaceholder(String placeholder);
 
 	public void setPlaceholder(
-		UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier);
 
-			try {
-				placeholder = placeholderUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setPredefinedValue(String predefinedValue) {
-		this.predefinedValue = predefinedValue;
-	}
+	public void setPredefinedValue(String predefinedValue);
 
 	public void setPredefinedValue(
-		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier);
 
-			try {
-				predefinedValue = predefinedValueUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setReadOnly(Boolean readOnly) {
-		this.readOnly = readOnly;
-	}
+	public void setReadOnly(Boolean readOnly);
 
 	public void setReadOnly(
-		UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier);
 
-			try {
-				readOnly = readOnlyUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRepeatable(Boolean repeatable) {
-		this.repeatable = repeatable;
-	}
+	public void setRepeatable(Boolean repeatable);
 
 	public void setRepeatable(
-		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier);
 
-			try {
-				repeatable = repeatableUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRequired(Boolean required) {
-		this.required = required;
-	}
+	public void setRequired(Boolean required);
 
 	public void setRequired(
-		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier);
 
-			try {
-				required = requiredUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setShowAsSwitcher(Boolean showAsSwitcher) {
-		this.showAsSwitcher = showAsSwitcher;
-	}
+	public void setShowAsSwitcher(Boolean showAsSwitcher);
 
 	public void setShowAsSwitcher(
-		UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier);
 
-			try {
-				showAsSwitcher = showAsSwitcherUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setShowLabel(Boolean showLabel) {
-		this.showLabel = showLabel;
-	}
+	public void setShowLabel(Boolean showLabel);
 
 	public void setShowLabel(
-		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier);
 
-			try {
-				showLabel = showLabelUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setStyle(String style);
 
-	public void setStyle(String style) {
-		this.style = style;
-	}
+	public void setStyle(UnsafeSupplier<String, Throwable> styleUnsafeSupplier);
 
-	public void setStyle(
-		UnsafeSupplier<String, Throwable> styleUnsafeSupplier) {
+	public void setText(String text);
 
-			try {
-				style = styleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier);
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
-			try {
-				text = textUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setTooltip(String tooltip) {
-		this.tooltip = tooltip;
-	}
+	public void setTooltip(String tooltip);
 
 	public void setTooltip(
-		UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier) {
-
-			try {
-				tooltip = tooltipUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+		UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier);
 
 	public void setValidation(
-		UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier) {
+		UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier);
 
-			try {
-				validation = validationUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setValidation(Validation validation) {
-		this.validation = validation;
-	}
-
-	@GraphQLField
-	protected Boolean autocomplete;
-
-	@GraphQLField
-	protected String dataSourceType;
-
-	@GraphQLField
-	protected String dataType;
-
-	@GraphQLField
-	protected String displayStyle;
-
-	@GraphQLField
-	protected Grid grid;
-
-	@GraphQLField
-	protected Boolean hasFormRules;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Boolean immutable;
-
-	@GraphQLField
-	protected Boolean inline;
-
-	@GraphQLField
-	protected String inputControl;
-
-	@GraphQLField
-	protected String label;
-
-	@GraphQLField
-	protected Boolean localizable;
-
-	@GraphQLField
-	protected Boolean multiple;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Options options;
-
-	@GraphQLField
-	protected String placeholder;
-
-	@GraphQLField
-	protected String predefinedValue;
-
-	@GraphQLField
-	protected Boolean readOnly;
-
-	@GraphQLField
-	protected Boolean repeatable;
-
-	@GraphQLField
-	protected Boolean required;
-
-	@GraphQLField
-	protected Boolean showAsSwitcher;
-
-	@GraphQLField
-	protected Boolean showLabel;
-
-	@GraphQLField
-	protected String style;
-
-	@GraphQLField
-	protected String text;
-
-	@GraphQLField
-	protected String tooltip;
-
-	@GraphQLField
-	protected Validation validation;
+	public void setValidation(Validation validation);
 
 }

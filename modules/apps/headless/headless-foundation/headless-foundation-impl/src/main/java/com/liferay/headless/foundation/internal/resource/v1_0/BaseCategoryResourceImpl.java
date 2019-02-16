@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -47,7 +48,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
 	@Override
 	public Category getCategory(Long categoryId) throws Exception {
-		return new Category();
+		return new CategoryImpl();
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	public Category postCategoryCategory(Long categoryId, Category category)
 		throws Exception {
 
-			return new Category();
+			return new CategoryImpl();
 	}
 
 	@Override
@@ -78,14 +79,14 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 			Long categoryId, Category category)
 		throws Exception {
 
-			return new Category();
+			return new CategoryImpl();
 	}
 
 	@Override
 	public Category postVocabularyCategory(Long vocabularyId, Category category)
 		throws Exception {
 
-			return new Category();
+			return new CategoryImpl();
 	}
 
 	@Override
@@ -93,14 +94,14 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 			Long vocabularyId, Category category)
 		throws Exception {
 
-			return new Category();
+			return new CategoryImpl();
 	}
 
 	@Override
 	public Category putCategory(Long categoryId, Category category)
 		throws Exception {
 
-			return new Category();
+			return new CategoryImpl();
 	}
 
 	protected Response buildNoContentResponse() {

@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
+import com.liferay.headless.web.experience.internal.dto.v1_0.ContentDocumentImpl;
 import com.liferay.headless.web.experience.resource.v1_0.ContentDocumentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -49,7 +50,7 @@ public abstract class BaseContentDocumentResourceImpl
 	public ContentDocument getContentDocument(Long contentDocumentId)
 		throws Exception {
 
-			return new ContentDocument();
+			return new ContentDocumentImpl();
 	}
 
 	protected Response buildNoContentResponse() {

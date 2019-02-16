@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
+import com.liferay.headless.foundation.internal.dto.v1_0.PhoneImpl;
 import com.liferay.headless.foundation.resource.v1_0.PhoneResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 
 	@Override
 	public Phone getPhone(Long phoneId) throws Exception {
-		return new Phone();
+		return new PhoneImpl();
 	}
 
 	protected Response buildNoContentResponse() {

@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 
 	@Override
 	public Comment getComment(Long commentId) throws Exception {
-		return new Comment();
+		return new CommentImpl();
 	}
 
 	@Override

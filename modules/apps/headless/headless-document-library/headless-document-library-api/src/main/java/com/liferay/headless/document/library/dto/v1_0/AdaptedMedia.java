@@ -16,150 +16,53 @@ package com.liferay.headless.document.library.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("AdaptedMedia")
-@XmlRootElement(name = "AdaptedMedia")
-public class AdaptedMedia {
+public interface AdaptedMedia {
 
-	public String getContentUrl() {
-		return contentUrl;
-	}
+	public String getContentUrl();
 
-	public Number getHeight() {
-		return height;
-	}
+	public Number getHeight();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getResolutionName() {
-		return resolutionName;
-	}
+	public String getResolutionName();
 
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
+	public Number getSizeInBytes();
 
-	public Number getWidth() {
-		return width;
-	}
+	public Number getWidth();
 
-	public void setContentUrl(String contentUrl) {
-		this.contentUrl = contentUrl;
-	}
+	public void setContentUrl(String contentUrl);
 
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier);
 
-			try {
-				contentUrl = contentUrlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setHeight(Number height) {
-		this.height = height;
-	}
+	public void setHeight(Number height);
 
 	public void setHeight(
-		UnsafeSupplier<Number, Throwable> heightUnsafeSupplier) {
+		UnsafeSupplier<Number, Throwable> heightUnsafeSupplier);
 
-			try {
-				height = heightUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setResolutionName(String resolutionName) {
-		this.resolutionName = resolutionName;
-	}
+	public void setResolutionName(String resolutionName);
 
 	public void setResolutionName(
-		UnsafeSupplier<String, Throwable> resolutionNameUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> resolutionNameUnsafeSupplier);
 
-			try {
-				resolutionName = resolutionNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setSizeInBytes(Number sizeInBytes) {
-		this.sizeInBytes = sizeInBytes;
-	}
+	public void setSizeInBytes(Number sizeInBytes);
 
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier);
 
-			try {
-				sizeInBytes = sizeInBytesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setWidth(Number width);
 
-	public void setWidth(Number width) {
-		this.width = width;
-	}
-
-	public void setWidth(
-		UnsafeSupplier<Number, Throwable> widthUnsafeSupplier) {
-
-			try {
-				width = widthUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String contentUrl;
-
-	@GraphQLField
-	protected Number height;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String resolutionName;
-
-	@GraphQLField
-	protected Number sizeInBytes;
-
-	@GraphQLField
-	protected Number width;
+	public void setWidth(UnsafeSupplier<Number, Throwable> widthUnsafeSupplier);
 
 }

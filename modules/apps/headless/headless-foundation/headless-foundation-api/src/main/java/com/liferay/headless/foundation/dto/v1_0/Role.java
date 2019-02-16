@@ -16,194 +16,69 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import java.util.Date;
 
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Role")
-@XmlRootElement(name = "Role")
-public class Role {
+public interface Role {
 
-	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
+	public String[] getAvailableLanguages();
 
-	public UserAccount getCreator() {
-		return creator;
-	}
+	public UserAccount getCreator();
 
-	public Date getDateCreated() {
-		return dateCreated;
-	}
+	public Date getDateCreated();
 
-	public Date getDateModified() {
-		return dateModified;
-	}
+	public Date getDateModified();
 
-	public String getDescription() {
-		return description;
-	}
+	public String getDescription();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public String getRoleType() {
-		return roleType;
-	}
+	public String getRoleType();
 
-	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
-	}
+	public void setAvailableLanguages(String[] availableLanguages);
 
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
-			try {
-				availableLanguages = availableLanguagesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
 
 	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
 
-			try {
-				creator = creatorUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setCreator(UserAccount creator);
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
-	}
+	public void setDateCreated(Date dateCreated);
 
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
 
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
-	}
+	public void setDateModified(Date dateModified);
 
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
 
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description);
 
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
 
-			try {
-				description = descriptionUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setRoleType(String roleType) {
-		this.roleType = roleType;
-	}
+	public void setRoleType(String roleType);
 
 	public void setRoleType(
-		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier) {
-
-			try {
-				roleType = roleTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected UserAccount creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected String roleType;
+		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier);
 
 }

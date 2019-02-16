@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
+import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 
 	@Override
 	public Document getDocument(Long documentId) throws Exception {
-		return new Document();
+		return new DocumentImpl();
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long documentsRepositoryId, Document document)
 		throws Exception {
 
-			return new Document();
+			return new DocumentImpl();
 	}
 
 	@Override
@@ -107,7 +108,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long documentsRepositoryId, Document document)
 		throws Exception {
 
-			return new Document();
+			return new DocumentImpl();
 	}
 
 	@Override
@@ -115,7 +116,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
-			return new Document();
+			return new DocumentImpl();
 	}
 
 	@Override
@@ -123,7 +124,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
-			return new Document();
+			return new DocumentImpl();
 	}
 
 	protected Response buildNoContentResponse() {

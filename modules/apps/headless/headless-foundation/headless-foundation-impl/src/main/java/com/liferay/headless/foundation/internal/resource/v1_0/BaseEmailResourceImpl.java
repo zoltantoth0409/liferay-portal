@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.headless.foundation.internal.dto.v1_0.EmailImpl;
 import com.liferay.headless.foundation.resource.v1_0.EmailResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -40,7 +41,7 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 
 	@Override
 	public Email getEmail(Long emailId) throws Exception {
-		return new Email();
+		return new EmailImpl();
 	}
 
 	@Override

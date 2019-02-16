@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
+import com.liferay.headless.foundation.internal.dto.v1_0.KeywordImpl;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -55,14 +56,14 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 
 	@Override
 	public Keyword getKeyword(Long keywordId) throws Exception {
-		return new Keyword();
+		return new KeywordImpl();
 	}
 
 	@Override
 	public Keyword postContentSpaceKeyword(Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
-			return new Keyword();
+			return new KeywordImpl();
 	}
 
 	@Override
@@ -70,14 +71,14 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 			Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
-			return new Keyword();
+			return new KeywordImpl();
 	}
 
 	@Override
 	public Keyword putKeyword(Long keywordId, Keyword keyword)
 		throws Exception {
 
-			return new Keyword();
+			return new KeywordImpl();
 	}
 
 	protected Response buildNoContentResponse() {

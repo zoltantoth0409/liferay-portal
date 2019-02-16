@@ -16,126 +16,45 @@ package com.liferay.headless.form.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("FieldValues")
-@XmlRootElement(name = "FieldValues")
-public class FieldValues {
+public interface FieldValues {
 
-	public FormDocument getDocument() {
-		return document;
-	}
+	public FormDocument getDocument();
 
-	public Long getDocumentId() {
-		return documentId;
-	}
+	public Long getDocumentId();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public String getValue() {
-		return value;
-	}
+	public String getValue();
 
-	public void setDocument(FormDocument document) {
-		this.document = document;
-	}
+	public void setDocument(FormDocument document);
 
 	public void setDocument(
-		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier) {
+		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier);
 
-			try {
-				document = documentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setDocumentId(Long documentId) {
-		this.documentId = documentId;
-	}
+	public void setDocumentId(Long documentId);
 
 	public void setDocumentId(
-		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier);
 
-			try {
-				documentId = documentIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(String name);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setValue(String value);
 
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	public void setValue(
-		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
-
-			try {
-				value = valueUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected FormDocument document;
-
-	@GraphQLField
-	protected Long documentId;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected String value;
+	public void setValue(UnsafeSupplier<String, Throwable> valueUnsafeSupplier);
 
 }

@@ -16,85 +16,34 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Services")
-@XmlRootElement(name = "Services")
-public class Services {
+public interface Services {
 
-	public HoursAvailable[] getHoursAvailable() {
-		return hoursAvailable;
-	}
+	public HoursAvailable[] getHoursAvailable();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getServiceType() {
-		return serviceType;
-	}
+	public String getServiceType();
 
-	public void setHoursAvailable(HoursAvailable[] hoursAvailable) {
-		this.hoursAvailable = hoursAvailable;
-	}
+	public void setHoursAvailable(HoursAvailable[] hoursAvailable);
 
 	public void setHoursAvailable(
 		UnsafeSupplier<HoursAvailable[], Throwable>
-			hoursAvailableUnsafeSupplier) {
+			hoursAvailableUnsafeSupplier);
 
-			try {
-				hoursAvailable = hoursAvailableUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setServiceType(String serviceType) {
-		this.serviceType = serviceType;
-	}
+	public void setServiceType(String serviceType);
 
 	public void setServiceType(
-		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
-
-			try {
-				serviceType = serviceTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected HoursAvailable[] hoursAvailable;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String serviceType;
+		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier);
 
 }

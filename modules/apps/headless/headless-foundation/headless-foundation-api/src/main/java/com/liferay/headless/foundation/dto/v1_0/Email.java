@@ -16,82 +16,31 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Email")
-@XmlRootElement(name = "Email")
-public class Email {
+public interface Email {
 
-	public String getEmail() {
-		return email;
-	}
+	public String getEmail();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getType() {
-		return type;
-	}
+	public String getType();
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	public void setEmail(String email);
 
-	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier);
 
-			try {
-				email = emailUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setType(String type);
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
-			try {
-				type = typeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String email;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String type;
+	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier);
 
 }

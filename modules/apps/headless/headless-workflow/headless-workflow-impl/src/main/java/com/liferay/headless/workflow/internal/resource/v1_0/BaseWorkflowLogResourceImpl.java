@@ -15,6 +15,7 @@
 package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowLogImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -41,7 +42,7 @@ public abstract class BaseWorkflowLogResourceImpl
 
 	@Override
 	public WorkflowLog getWorkflowLog(Long workflowLogId) throws Exception {
-		return new WorkflowLog();
+		return new WorkflowLogImpl();
 	}
 
 	@Override

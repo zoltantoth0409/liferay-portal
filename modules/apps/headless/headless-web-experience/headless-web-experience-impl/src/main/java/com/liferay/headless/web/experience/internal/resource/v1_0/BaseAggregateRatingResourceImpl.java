@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.headless.web.experience.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.headless.web.experience.resource.v1_0.AggregateRatingResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -40,7 +41,7 @@ public abstract class BaseAggregateRatingResourceImpl
 	public AggregateRating getAggregateRating(Long aggregateRatingId)
 		throws Exception {
 
-			return new AggregateRating();
+			return new AggregateRatingImpl();
 	}
 
 	protected Response buildNoContentResponse() {

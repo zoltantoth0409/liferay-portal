@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.headless.foundation.internal.dto.v1_0.RoleImpl;
 import com.liferay.headless.foundation.resource.v1_0.RoleResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -48,7 +49,7 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 
 	@Override
 	public Role getRole(Long roleId) throws Exception {
-		return new Role();
+		return new RoleImpl();
 	}
 
 	@Override

@@ -16,172 +16,59 @@ package com.liferay.headless.web.experience.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import graphql.annotations.annotationTypes.GraphQLField;
-import graphql.annotations.annotationTypes.GraphQLName;
-
 import javax.annotation.Generated;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@GraphQLName("Values")
-@XmlRootElement(name = "Values")
-public class Values {
+public interface Values {
 
-	public String getDataType() {
-		return dataType;
-	}
+	public String getDataType();
 
-	public String getFilterAndSortIdentifier() {
-		return filterAndSortIdentifier;
-	}
+	public String getFilterAndSortIdentifier();
 
-	public Long getId() {
-		return id;
-	}
+	public Long getId();
 
-	public String getInputControl() {
-		return inputControl;
-	}
+	public String getInputControl();
 
-	public String getLabel() {
-		return label;
-	}
+	public String getLabel();
 
-	public String getName() {
-		return name;
-	}
+	public String getName();
 
-	public Object getValue() {
-		return value;
-	}
+	public Object getValue();
 
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
-	}
+	public void setDataType(String dataType);
 
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier);
 
-			try {
-				dataType = dataTypeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setFilterAndSortIdentifier(String filterAndSortIdentifier) {
-		this.filterAndSortIdentifier = filterAndSortIdentifier;
-	}
+	public void setFilterAndSortIdentifier(String filterAndSortIdentifier);
 
 	public void setFilterAndSortIdentifier(
 		UnsafeSupplier<String, Throwable>
-			filterAndSortIdentifierUnsafeSupplier) {
+			filterAndSortIdentifierUnsafeSupplier);
 
-			try {
-				filterAndSortIdentifier =
-					filterAndSortIdentifierUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setId(Long id);
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setInputControl(String inputControl) {
-		this.inputControl = inputControl;
-	}
+	public void setInputControl(String inputControl);
 
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier);
 
-			try {
-				inputControl = inputControlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setLabel(String label);
 
-	public void setLabel(String label) {
-		this.label = label;
-	}
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier);
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+	public void setName(String name);
 
-			try {
-				label = labelUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
-	public void setName(String name) {
-		this.name = name;
-	}
+	public void setValue(Object value);
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-			try {
-				name = nameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setValue(Object value) {
-		this.value = value;
-	}
-
-	public void setValue(
-		UnsafeSupplier<Object, Throwable> valueUnsafeSupplier) {
-
-			try {
-				value = valueUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	protected String dataType;
-
-	@GraphQLField
-	protected String filterAndSortIdentifier;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String inputControl;
-
-	@GraphQLField
-	protected String label;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Object value;
+	public void setValue(UnsafeSupplier<Object, Throwable> valueUnsafeSupplier);
 
 }

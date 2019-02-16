@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.internal.dto.v1_0.FolderImpl;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -49,7 +50,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	public Folder getDocumentsRepository(Long documentsRepositoryId)
 		throws Exception {
 
-			return new Folder();
+			return new FolderImpl();
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 	@Override
 	public Folder getFolder(Long folderId) throws Exception {
-		return new Folder();
+		return new FolderImpl();
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
-			return new Folder();
+			return new FolderImpl();
 	}
 
 	@Override
@@ -86,26 +87,26 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			Long documentsRepositoryId, Folder folder)
 		throws Exception {
 
-			return new Folder();
+			return new FolderImpl();
 	}
 
 	@Override
 	public Folder postFolderFolder(Long folderId, Folder folder)
 		throws Exception {
 
-			return new Folder();
+			return new FolderImpl();
 	}
 
 	@Override
 	public Folder postFolderFolderBatchCreate(Long folderId, Folder folder)
 		throws Exception {
 
-			return new Folder();
+			return new FolderImpl();
 	}
 
 	@Override
 	public Folder putFolder(Long folderId, Folder folder) throws Exception {
-		return new Folder();
+		return new FolderImpl();
 	}
 
 	protected Response buildNoContentResponse() {

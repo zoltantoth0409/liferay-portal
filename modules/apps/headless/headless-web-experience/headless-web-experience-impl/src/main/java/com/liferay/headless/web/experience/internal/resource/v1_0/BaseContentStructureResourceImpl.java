@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
+import com.liferay.headless.web.experience.internal.dto.v1_0.ContentStructureImpl;
 import com.liferay.headless.web.experience.resource.v1_0.ContentStructureResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -54,7 +55,7 @@ public abstract class BaseContentStructureResourceImpl
 	public ContentStructure getContentStructure(Long contentStructureId)
 		throws Exception {
 
-			return new ContentStructure();
+			return new ContentStructureImpl();
 	}
 
 	protected Response buildNoContentResponse() {

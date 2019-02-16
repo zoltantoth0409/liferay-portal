@@ -15,6 +15,7 @@
 package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowTaskImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -49,7 +50,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 
 	@Override
 	public WorkflowTask getWorkflowTask(Long workflowTaskId) throws Exception {
-		return new WorkflowTask();
+		return new WorkflowTaskImpl();
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			return new WorkflowTask();
+			return new WorkflowTaskImpl();
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			return new WorkflowTask();
+			return new WorkflowTaskImpl();
 	}
 
 	@Override
@@ -80,7 +81,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			return new WorkflowTask();
+			return new WorkflowTaskImpl();
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			Long workflowTaskId, WorkflowTask workflowTask)
 		throws Exception {
 
-			return new WorkflowTask();
+			return new WorkflowTaskImpl();
 	}
 
 	protected Response buildNoContentResponse() {

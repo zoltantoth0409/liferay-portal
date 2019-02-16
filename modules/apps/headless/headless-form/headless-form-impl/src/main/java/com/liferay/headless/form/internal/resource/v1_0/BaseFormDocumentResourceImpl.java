@@ -15,6 +15,7 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.headless.form.internal.dto.v1_0.FormDocumentImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -45,7 +46,7 @@ public abstract class BaseFormDocumentResourceImpl
 
 	@Override
 	public FormDocument getFormDocument(Long formDocumentId) throws Exception {
-		return new FormDocument();
+		return new FormDocumentImpl();
 	}
 
 	protected Response buildNoContentResponse() {

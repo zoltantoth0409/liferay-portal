@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
+import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -58,7 +59,7 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
 	@Override
 	public Vocabulary getVocabulary(Long vocabularyId) throws Exception {
-		return new Vocabulary();
+		return new VocabularyImpl();
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
-			return new Vocabulary();
+			return new VocabularyImpl();
 	}
 
 	@Override
@@ -74,14 +75,14 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 			Long contentSpaceId, Vocabulary vocabulary)
 		throws Exception {
 
-			return new Vocabulary();
+			return new VocabularyImpl();
 	}
 
 	@Override
 	public Vocabulary putVocabulary(Long vocabularyId, Vocabulary vocabulary)
 		throws Exception {
 
-			return new Vocabulary();
+			return new VocabularyImpl();
 	}
 
 	protected Response buildNoContentResponse() {

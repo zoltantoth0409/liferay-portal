@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -72,7 +73,7 @@ public abstract class BaseStructuredContentResourceImpl
 	public StructuredContent getStructuredContent(Long structuredContentId)
 		throws Exception {
 
-			return new StructuredContent();
+			return new StructuredContentImpl();
 	}
 
 	@Override
@@ -88,7 +89,7 @@ public abstract class BaseStructuredContentResourceImpl
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			return new StructuredContent();
+			return new StructuredContentImpl();
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public abstract class BaseStructuredContentResourceImpl
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			return new StructuredContent();
+			return new StructuredContentImpl();
 	}
 
 	@Override
@@ -104,7 +105,7 @@ public abstract class BaseStructuredContentResourceImpl
 			Long contentSpaceId, StructuredContent structuredContent)
 		throws Exception {
 
-			return new StructuredContent();
+			return new StructuredContentImpl();
 	}
 
 	@Override
@@ -132,7 +133,7 @@ public abstract class BaseStructuredContentResourceImpl
 			Long structuredContentId, StructuredContent structuredContent)
 		throws Exception {
 
-			return new StructuredContent();
+			return new StructuredContentImpl();
 	}
 
 	protected Response buildNoContentResponse() {
