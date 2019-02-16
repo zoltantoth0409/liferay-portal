@@ -14,12 +14,7 @@
 
 package com.liferay.headless.collaboration.internal.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
-import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0.Comment;
-import com.liferay.headless.collaboration.dto.v1_0.Creator;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
+import com.liferay.headless.collaboration.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

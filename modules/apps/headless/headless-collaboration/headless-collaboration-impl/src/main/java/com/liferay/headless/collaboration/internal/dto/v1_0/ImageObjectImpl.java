@@ -14,7 +14,7 @@
 
 package com.liferay.headless.collaboration.internal.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

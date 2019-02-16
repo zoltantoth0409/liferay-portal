@@ -14,9 +14,7 @@
 
 package com.liferay.headless.workflow.internal.dto.v1_0;
 
-import com.liferay.headless.workflow.dto.v1_0.ObjectReviewed;
-import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
-import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

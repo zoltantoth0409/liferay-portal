@@ -14,10 +14,7 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
-import com.liferay.headless.foundation.dto.v1_0.WebUrl;
+import com.liferay.headless.foundation.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

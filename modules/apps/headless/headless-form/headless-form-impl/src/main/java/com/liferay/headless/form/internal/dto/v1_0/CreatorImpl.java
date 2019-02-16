@@ -14,7 +14,7 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.form.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

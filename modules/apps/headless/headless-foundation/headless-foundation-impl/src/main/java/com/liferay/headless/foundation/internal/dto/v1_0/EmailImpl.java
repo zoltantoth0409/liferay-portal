@@ -14,7 +14,7 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.headless.foundation.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

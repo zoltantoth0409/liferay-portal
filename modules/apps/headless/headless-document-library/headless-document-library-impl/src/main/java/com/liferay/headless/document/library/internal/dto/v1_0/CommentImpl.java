@@ -14,8 +14,7 @@
 
 package com.liferay.headless.document.library.internal.dto.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0.Comment;
-import com.liferay.headless.document.library.dto.v1_0.Creator;
+import com.liferay.headless.document.library.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

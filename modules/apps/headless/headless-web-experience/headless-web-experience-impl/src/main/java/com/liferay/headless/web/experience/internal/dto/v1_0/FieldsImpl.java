@@ -14,6 +14,7 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
+import com.liferay.headless.web.experience.dto.v1_0.*;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
