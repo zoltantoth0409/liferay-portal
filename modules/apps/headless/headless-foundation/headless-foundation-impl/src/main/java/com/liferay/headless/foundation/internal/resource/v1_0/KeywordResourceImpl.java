@@ -29,7 +29,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portlet.asset.util.comparator.AssetTagNameComparator;
 
 import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,10 +44,10 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 
 	@Override
-	public Response deleteKeyword(Long keywordId) throws Exception {
+	public boolean deleteKeyword(Long keywordId) throws Exception {
 		_assetTagService.deleteTag(keywordId);
 
-		return buildNoContentResponse();
+		return true;
 	}
 
 	@Override

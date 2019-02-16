@@ -46,7 +46,6 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -63,10 +62,10 @@ public class VocabularyResourceImpl
 	extends BaseVocabularyResourceImpl implements EntityModelResource {
 
 	@Override
-	public Response deleteVocabulary(Long vocabularyId) throws Exception {
+	public boolean deleteVocabulary(Long vocabularyId) throws Exception {
 		_assetVocabularyService.deleteVocabulary(vocabularyId);
 
-		return buildNoContentResponse();
+		return true;
 	}
 
 	@Override

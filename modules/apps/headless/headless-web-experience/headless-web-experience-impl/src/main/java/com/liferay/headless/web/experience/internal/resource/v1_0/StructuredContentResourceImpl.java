@@ -75,7 +75,6 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -92,7 +91,7 @@ public class StructuredContentResourceImpl
 	extends BaseStructuredContentResourceImpl implements EntityModelResource {
 
 	@Override
-	public Response deleteStructuredContent(Long structuredContentId)
+	public boolean deleteStructuredContent(Long structuredContentId)
 		throws Exception {
 
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
@@ -102,7 +101,7 @@ public class StructuredContentResourceImpl
 			journalArticle.getGroupId(), journalArticle.getArticleId(),
 			journalArticle.getArticleResourceUuid(), new ServiceContext());
 
-		return buildNoContentResponse();
+		return true;
 	}
 
 	@Override

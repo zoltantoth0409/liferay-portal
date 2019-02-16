@@ -42,7 +42,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.ws.rs.BadRequestException;
-import javax.ws.rs.core.Response;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -58,10 +57,10 @@ import org.osgi.service.component.annotations.ServiceScope;
 public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 	@Override
-	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
+	public boolean deleteBlogPosting(Long blogPostingId) throws Exception {
 		_blogsEntryService.deleteEntry(blogPostingId);
 
-		return buildNoContentResponse();
+		return true;
 	}
 
 	@Override
