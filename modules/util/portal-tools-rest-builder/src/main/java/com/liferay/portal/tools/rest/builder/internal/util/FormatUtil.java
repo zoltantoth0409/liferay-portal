@@ -89,6 +89,9 @@ public class FormatUtil {
 
 			sourceFormatterArgs.setCheckName("JavaImportsCheck");
 		}
+		else {
+			sourceFormatterArgs.setCheckName("JavaImportsCheck");
+		}
 
 		sourceFormatter.format();
 
