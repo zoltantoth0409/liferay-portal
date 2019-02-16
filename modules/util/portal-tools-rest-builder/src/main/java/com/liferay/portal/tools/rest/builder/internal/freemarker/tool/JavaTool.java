@@ -713,7 +713,7 @@ public class JavaTool {
 		Map<String, Response> responses = operation.getResponses();
 
 		if (responses.isEmpty()) {
-			return "Response";
+			return "boolean";
 		}
 
 		for (Response response : responses.values()) {
@@ -748,7 +748,7 @@ public class JavaTool {
 			}
 		}
 
-		return "Response";
+		return "boolean";
 	}
 
 	private boolean _isPostToSameSchema(
