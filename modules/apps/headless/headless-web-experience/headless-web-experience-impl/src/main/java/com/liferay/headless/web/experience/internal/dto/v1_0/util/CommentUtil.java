@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.dto.v1_0;
+package com.liferay.headless.web.experience.internal.dto.v1_0.util;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
+import com.liferay.headless.web.experience.internal.dto.v1_0.CommentImpl;
 import com.liferay.portal.kernel.util.Portal;
 
 /**
@@ -30,7 +31,7 @@ public class CommentUtil {
 			return null;
 		}
 
-		return new Comment() {
+		return new CommentImpl() {
 			{
 				setCreator(CreatorUtil.toCreator(portal, comment.getUser()));
 				setId(comment.getCommentId());

@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.dto.v1_0;
+package com.liferay.headless.web.experience.internal.dto.v1_0.util;
 
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.internal.dto.v1_0.CreatorImpl;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -29,7 +30,7 @@ public class CreatorUtil {
 			return null;
 		}
 
-		return new Creator() {
+		return new CreatorImpl() {
 			{
 				setAdditionalName(user.getMiddleName());
 				setFamilyName(user.getLastName());

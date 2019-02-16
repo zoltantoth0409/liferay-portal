@@ -15,7 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
-import com.liferay.headless.web.experience.internal.dto.v1_0.CommentUtil;
+import com.liferay.headless.web.experience.internal.dto.v1_0.util.CommentUtil;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleService;

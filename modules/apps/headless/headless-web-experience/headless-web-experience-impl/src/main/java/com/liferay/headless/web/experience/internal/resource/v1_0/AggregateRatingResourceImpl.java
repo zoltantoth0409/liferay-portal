@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.headless.web.experience.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.headless.web.experience.resource.v1_0.AggregateRatingResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.ratings.kernel.model.RatingsStats;
@@ -44,7 +45,7 @@ public class AggregateRatingResourceImpl
 	}
 
 	private AggregateRating _toAggregateRating(RatingsStats ratingsStats) {
-		return new AggregateRating() {
+		return new AggregateRatingImpl() {
 			{
 				setBestRating(1);
 				setId(ratingsStats.getStatsId());

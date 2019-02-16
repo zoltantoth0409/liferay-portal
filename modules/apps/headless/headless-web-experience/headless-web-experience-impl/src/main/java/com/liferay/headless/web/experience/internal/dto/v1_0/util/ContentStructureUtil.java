@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.dto.v1_0;
+package com.liferay.headless.web.experience.internal.dto.v1_0.util;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
@@ -22,6 +22,9 @@ import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
 import com.liferay.headless.web.experience.dto.v1_0.Fields;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
+import com.liferay.headless.web.experience.internal.dto.v1_0.ContentStructureImpl;
+import com.liferay.headless.web.experience.internal.dto.v1_0.FieldsImpl;
+import com.liferay.headless.web.experience.internal.dto.v1_0.OptionsImpl;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -47,7 +50,7 @@ public class ContentStructureUtil {
 			return null;
 		}
 
-		return new ContentStructure() {
+		return new ContentStructureImpl() {
 			{
 				setAvailableLanguages(
 					LocaleUtil.toW3cLanguageIds(
@@ -81,7 +84,7 @@ public class ContentStructureUtil {
 	}
 
 	private static Fields _toFields(DDMFormField ddmFormField, Locale locale) {
-		return new Fields() {
+		return new FieldsImpl() {
 			{
 				setDataType(
 					() -> {
@@ -136,7 +139,7 @@ public class ContentStructureUtil {
 						).orElseGet(
 							Stream::empty
 						).map(
-							entry -> new Options() {
+							entry -> new OptionsImpl() {
 								{
 									setLabel(
 										_toString(entry.getValue(), locale));
