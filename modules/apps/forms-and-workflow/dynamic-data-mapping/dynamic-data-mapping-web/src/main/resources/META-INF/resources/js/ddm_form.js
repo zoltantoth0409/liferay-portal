@@ -385,7 +385,7 @@ AUI.add(
 
 						var localizationMap = instance.get('localizationMap');
 
-						if (!localizationMap[locale]) {
+						if (Lang.isUndefined(localizationMap[locale])) {
 							var predefinedValue = instance.getPredefinedValueByLocale(locale);
 
 							if (predefinedValue) {
