@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.headless.form.internal.dto.v1_0.FormDocumentImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -98,7 +99,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 	}
 
 	protected FormDocument randomFormDocument() {
-		FormDocument formDocument = new FormDocument();
+		FormDocument formDocument = new FormDocumentImpl();
 
 formDocument.setContentUrl(RandomTestUtil.randomString());
 formDocument.setEncodingFormat(RandomTestUtil.randomString());

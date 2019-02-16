@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.headless.web.experience.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -81,7 +82,7 @@ public abstract class BaseAggregateRatingResourceTestCase {
 	}
 
 	protected AggregateRating randomAggregateRating() {
-		AggregateRating aggregateRating = new AggregateRating();
+		AggregateRating aggregateRating = new AggregateRatingImpl();
 
 aggregateRating.setId(RandomTestUtil.randomLong());
 

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
+import com.liferay.headless.foundation.internal.dto.v1_0.WebUrlImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -97,7 +98,7 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 
 	protected WebUrl randomWebUrl() {
-		WebUrl webUrl = new WebUrl();
+		WebUrl webUrl = new WebUrlImpl();
 
 webUrl.setId(RandomTestUtil.randomLong());
 webUrl.setUrl(RandomTestUtil.randomString());

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Creator;
+import com.liferay.headless.document.library.internal.dto.v1_0.CreatorImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -78,7 +79,7 @@ public abstract class BaseCreatorResourceTestCase {
 	}
 
 	protected Creator randomCreator() {
-		Creator creator = new Creator();
+		Creator creator = new CreatorImpl();
 
 creator.setAdditionalName(RandomTestUtil.randomString());
 creator.setAlternateName(RandomTestUtil.randomString());

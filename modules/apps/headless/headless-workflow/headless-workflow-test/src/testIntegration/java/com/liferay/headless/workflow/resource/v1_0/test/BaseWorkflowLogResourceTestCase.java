@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowLogImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -100,7 +101,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
-		WorkflowLog workflowLog = new WorkflowLog();
+		WorkflowLog workflowLog = new WorkflowLogImpl();
 
 workflowLog.setAuditPerson(RandomTestUtil.randomString());
 workflowLog.setCommentLog(RandomTestUtil.randomString());

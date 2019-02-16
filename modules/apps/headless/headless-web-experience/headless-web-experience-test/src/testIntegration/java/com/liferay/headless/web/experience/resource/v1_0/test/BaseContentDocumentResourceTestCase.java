@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
+import com.liferay.headless.web.experience.internal.dto.v1_0.ContentDocumentImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -99,7 +100,7 @@ public abstract class BaseContentDocumentResourceTestCase {
 	}
 
 	protected ContentDocument randomContentDocument() {
-		ContentDocument contentDocument = new ContentDocument();
+		ContentDocument contentDocument = new ContentDocumentImpl();
 
 contentDocument.setContentUrl(RandomTestUtil.randomString());
 contentDocument.setDateCreated(RandomTestUtil.nextDate());

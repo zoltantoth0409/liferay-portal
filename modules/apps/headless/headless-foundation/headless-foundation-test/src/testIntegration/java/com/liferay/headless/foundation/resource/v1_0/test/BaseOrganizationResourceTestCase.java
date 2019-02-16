@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.headless.foundation.internal.dto.v1_0.OrganizationImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -156,7 +157,7 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Organization randomOrganization() {
-		Organization organization = new Organization();
+		Organization organization = new OrganizationImpl();
 
 organization.setComment(RandomTestUtil.randomString());
 organization.setId(RandomTestUtil.randomLong());

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.internal.dto.v1_0.FolderImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -252,7 +253,7 @@ public abstract class BaseFolderResourceTestCase {
 	}
 
 	protected Folder randomFolder() {
-		Folder folder = new Folder();
+		Folder folder = new FolderImpl();
 
 folder.setDateCreated(RandomTestUtil.nextDate());
 folder.setDateModified(RandomTestUtil.nextDate());

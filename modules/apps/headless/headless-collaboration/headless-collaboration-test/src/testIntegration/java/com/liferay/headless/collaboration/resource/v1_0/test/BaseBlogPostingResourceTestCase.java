@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -236,7 +237,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting randomBlogPosting() {
-		BlogPosting blogPosting = new BlogPosting();
+		BlogPosting blogPosting = new BlogPostingImpl();
 
 blogPosting.setAlternativeHeadline(RandomTestUtil.randomString());
 blogPosting.setArticleBody(RandomTestUtil.randomString());

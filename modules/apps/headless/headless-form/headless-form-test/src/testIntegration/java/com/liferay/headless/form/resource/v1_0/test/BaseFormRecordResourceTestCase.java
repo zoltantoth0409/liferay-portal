@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.internal.dto.v1_0.FormRecordImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -157,7 +158,7 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected FormRecord randomFormRecord() {
-		FormRecord formRecord = new FormRecord();
+		FormRecord formRecord = new FormRecordImpl();
 
 formRecord.setDateCreated(RandomTestUtil.nextDate());
 formRecord.setDateModified(RandomTestUtil.nextDate());

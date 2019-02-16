@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -287,7 +288,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	protected StructuredContent randomStructuredContent() {
-		StructuredContent structuredContent = new StructuredContent();
+		StructuredContent structuredContent = new StructuredContentImpl();
 
 structuredContent.setContentSpace(RandomTestUtil.randomLong());
 structuredContent.setContentStructureId(RandomTestUtil.randomLong());

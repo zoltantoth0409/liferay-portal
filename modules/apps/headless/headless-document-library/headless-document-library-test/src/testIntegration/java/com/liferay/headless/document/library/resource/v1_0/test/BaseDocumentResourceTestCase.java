@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
+import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -270,7 +271,7 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document randomDocument() {
-		Document document = new Document();
+		Document document = new DocumentImpl();
 
 document.setContentUrl(RandomTestUtil.randomString());
 document.setDateCreated(RandomTestUtil.nextDate());

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
+import com.liferay.headless.web.experience.internal.dto.v1_0.ContentStructureImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -104,7 +105,7 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 
 	protected ContentStructure randomContentStructure() {
-		ContentStructure contentStructure = new ContentStructure();
+		ContentStructure contentStructure = new ContentStructureImpl();
 
 contentStructure.setContentSpace(RandomTestUtil.randomLong());
 contentStructure.setDateCreated(RandomTestUtil.nextDate());

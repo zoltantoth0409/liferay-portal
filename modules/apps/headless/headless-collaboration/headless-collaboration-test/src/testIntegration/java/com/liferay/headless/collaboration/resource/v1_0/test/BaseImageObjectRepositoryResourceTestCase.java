@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectRepositoryImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -83,7 +84,7 @@ public abstract class BaseImageObjectRepositoryResourceTestCase {
 
 	protected ImageObjectRepository randomImageObjectRepository() {
 		ImageObjectRepository imageObjectRepository =
-			new ImageObjectRepository();
+			new ImageObjectRepositoryImpl();
 
 imageObjectRepository.setDateCreated(RandomTestUtil.nextDate());
 imageObjectRepository.setDateModified(RandomTestUtil.nextDate());

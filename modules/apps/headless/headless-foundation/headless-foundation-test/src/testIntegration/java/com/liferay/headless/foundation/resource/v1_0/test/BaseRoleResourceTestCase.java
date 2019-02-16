@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.headless.foundation.internal.dto.v1_0.RoleImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -134,7 +135,7 @@ public abstract class BaseRoleResourceTestCase {
 	}
 
 	protected Role randomRole() {
-		Role role = new Role();
+		Role role = new RoleImpl();
 
 role.setDateCreated(RandomTestUtil.nextDate());
 role.setDateModified(RandomTestUtil.nextDate());

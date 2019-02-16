@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
+import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -180,7 +181,7 @@ public abstract class BaseVocabularyResourceTestCase {
 	}
 
 	protected Vocabulary randomVocabulary() {
-		Vocabulary vocabulary = new Vocabulary();
+		Vocabulary vocabulary = new VocabularyImpl();
 
 vocabulary.setContentSpace(RandomTestUtil.randomLong());
 vocabulary.setDateCreated(RandomTestUtil.nextDate());

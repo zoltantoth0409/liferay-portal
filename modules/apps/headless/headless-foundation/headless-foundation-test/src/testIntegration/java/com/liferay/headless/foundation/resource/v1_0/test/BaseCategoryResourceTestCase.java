@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -235,7 +236,7 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Category randomCategory() {
-		Category category = new Category();
+		Category category = new CategoryImpl();
 
 category.setCategoryId(RandomTestUtil.randomLong());
 category.setCreatorId(RandomTestUtil.randomLong());

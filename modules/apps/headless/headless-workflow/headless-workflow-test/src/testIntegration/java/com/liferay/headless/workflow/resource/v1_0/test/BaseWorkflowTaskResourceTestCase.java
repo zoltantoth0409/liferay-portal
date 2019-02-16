@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowTaskImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -201,7 +202,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected WorkflowTask randomWorkflowTask() {
-		WorkflowTask workflowTask = new WorkflowTask();
+		WorkflowTask workflowTask = new WorkflowTaskImpl();
 
 workflowTask.setCompleted(RandomTestUtil.randomBoolean());
 workflowTask.setDateCompleted(RandomTestUtil.nextDate());

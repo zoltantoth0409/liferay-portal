@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -226,7 +227,7 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	protected UserAccount randomUserAccount() {
-		UserAccount userAccount = new UserAccount();
+		UserAccount userAccount = new UserAccountImpl();
 
 userAccount.setAdditionalName(RandomTestUtil.randomString());
 userAccount.setAlternateName(RandomTestUtil.randomString());

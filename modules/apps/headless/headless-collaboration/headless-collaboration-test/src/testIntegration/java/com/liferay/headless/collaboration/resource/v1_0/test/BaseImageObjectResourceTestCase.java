@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -163,7 +164,7 @@ public abstract class BaseImageObjectResourceTestCase {
 	}
 
 	protected ImageObject randomImageObject() {
-		ImageObject imageObject = new ImageObject();
+		ImageObject imageObject = new ImageObjectImpl();
 
 imageObject.setContentUrl(RandomTestUtil.randomString());
 imageObject.setEncodingFormat(RandomTestUtil.randomString());

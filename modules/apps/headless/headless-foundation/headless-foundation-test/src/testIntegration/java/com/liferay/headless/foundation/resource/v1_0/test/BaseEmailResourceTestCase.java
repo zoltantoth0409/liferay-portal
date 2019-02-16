@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.headless.foundation.internal.dto.v1_0.EmailImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -97,7 +98,7 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	protected Email randomEmail() {
-		Email email = new Email();
+		Email email = new EmailImpl();
 
 email.setEmail(RandomTestUtil.randomString());
 email.setId(RandomTestUtil.randomLong());

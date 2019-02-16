@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
+import com.liferay.headless.foundation.internal.dto.v1_0.PostalAddressImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -97,7 +98,7 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	protected PostalAddress randomPostalAddress() {
-		PostalAddress postalAddress = new PostalAddress();
+		PostalAddress postalAddress = new PostalAddressImpl();
 
 postalAddress.setAddressCountry(RandomTestUtil.randomString());
 postalAddress.setAddressLocality(RandomTestUtil.randomString());

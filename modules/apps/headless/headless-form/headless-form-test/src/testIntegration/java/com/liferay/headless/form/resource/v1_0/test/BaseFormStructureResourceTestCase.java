@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormStructure;
+import com.liferay.headless.form.internal.dto.v1_0.FormStructureImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -100,7 +101,7 @@ public abstract class BaseFormStructureResourceTestCase {
 	}
 
 	protected FormStructure randomFormStructure() {
-		FormStructure formStructure = new FormStructure();
+		FormStructure formStructure = new FormStructureImpl();
 
 formStructure.setContentSpace(RandomTestUtil.randomLong());
 formStructure.setDateCreated(RandomTestUtil.nextDate());
