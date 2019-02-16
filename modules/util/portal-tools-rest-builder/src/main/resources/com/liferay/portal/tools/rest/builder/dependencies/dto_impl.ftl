@@ -6,6 +6,8 @@ package ${configYAML.apiPackagePath}.internal.dto.${versionDirName};
 	</#list>
 </#compress>
 
+import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
