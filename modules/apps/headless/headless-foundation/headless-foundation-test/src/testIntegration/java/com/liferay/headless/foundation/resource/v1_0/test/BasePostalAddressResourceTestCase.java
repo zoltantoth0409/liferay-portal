@@ -55,8 +55,7 @@ public abstract class BasePostalAddressResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-foundation/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -65,36 +64,33 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	@Test
-	public void testGetAddress() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
 	public void testGetGenericParentPostalAddressesPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetAddress() throws Exception {
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetAddress(Long addressId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetGenericParentPostalAddressesPage( Object genericParentId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/addresses/{address-id}", addressId
+				_resourceURL + "/addresses",
+				genericParentId 
 			);
+
 	}
-
-	protected Response invokeGetGenericParentPostalAddressesPage(
-			Object genericParentId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetAddress( Long addressId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/addresses", genericParentId
+				_resourceURL + "/addresses/{address-id}",
+				addressId
 			);
+
 	}
 
 	protected PostalAddress randomPostalAddress() {
@@ -127,12 +123,12 @@ postalAddress.setStreetAddressLine3(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

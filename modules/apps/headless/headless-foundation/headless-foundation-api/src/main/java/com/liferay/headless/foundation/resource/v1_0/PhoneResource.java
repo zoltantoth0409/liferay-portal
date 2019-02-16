@@ -15,17 +15,10 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,19 +29,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface PhoneResource {
 
-	@GET
-	@Path("/phones")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Phone> getGenericParentPhonesPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
+	public Page<Phone> getGenericParentPhonesPage( Object genericParentId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/phones/{phone-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Phone getPhone( @PathParam("phone-id") Long phoneId ) throws Exception;
+	public Phone getPhone( Long phoneId ) throws Exception;
 
 }

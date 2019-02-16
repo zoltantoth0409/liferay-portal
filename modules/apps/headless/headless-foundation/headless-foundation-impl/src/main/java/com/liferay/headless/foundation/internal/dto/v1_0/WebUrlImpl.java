@@ -34,19 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class WebUrlImpl implements WebUrl {
 
 	public Long getId() {
-		return id;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public String getUrlType() {
-		return urlType;
+			return id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -58,8 +50,14 @@ public class WebUrlImpl implements WebUrl {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getUrl() {
+			return url;
+	}
+
 	public void setUrl(String url) {
-		this.url = url;
+			this.url = url;
 	}
 
 	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
@@ -71,13 +69,17 @@ public class WebUrlImpl implements WebUrl {
 	}
 	}
 
-	public void setUrlType(String urlType) {
-		this.urlType = urlType;
+	@GraphQLField
+	protected String url;
+	public String getUrlType() {
+			return urlType;
 	}
 
-	public void setUrlType(
-		UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
+	public void setUrlType(String urlType) {
+			this.urlType = urlType;
+	}
 
+	public void setUrlType(UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
 			try {
 				urlType = urlTypeUnsafeSupplier.get();
 	}
@@ -85,12 +87,6 @@ public class WebUrlImpl implements WebUrl {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String url;
 
 	@GraphQLField
 	protected String urlType;

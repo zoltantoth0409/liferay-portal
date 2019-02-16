@@ -26,8 +26,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import javax.ws.rs.core.Response;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -40,29 +38,20 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Mutation {
 
 	@GraphQLInvokeDetached
-	public Response deleteDocument( @GraphQLName("document-id") Long documentId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteDocument( @GraphQLName("document-id") Long documentId ) throws Exception {
+return _getDocumentResource().deleteDocument( documentId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postDocumentCategories( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postDocumentCategories( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getDocumentResource().postDocumentCategories( documentId , referenceId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postDocumentCategoriesBatchCreate( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postDocumentCategoriesBatchCreate( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getDocumentResource().postDocumentCategoriesBatchCreate( documentId , referenceId );
 	}
 
 	@GraphQLField
@@ -102,11 +91,8 @@ return _getFolderResource().postDocumentsRepositoryFolderBatchCreate( documentsR
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteFolder( @GraphQLName("folder-id") Long folderId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteFolder( @GraphQLName("folder-id") Long folderId ) throws Exception {
+return _getFolderResource().deleteFolder( folderId );
 	}
 
 	@GraphQLInvokeDetached

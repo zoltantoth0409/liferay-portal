@@ -64,97 +64,81 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	@Test
-	public void testGetFormFormRecordsPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
 	public void testGetFormRecord() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testPostFormFormRecord() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostFormFormRecordBatchCreate() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPutFormRecord() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetFormFormRecordsPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFormFormRecord() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFormFormRecordBatchCreate() throws Exception {
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetFormFormRecordsPage(
-			Long formId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetFormRecord( Long formRecordId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/forms/{form-id}/form-records", formId
+				_resourceURL + "/form-records/{form-record-id}",
+				formRecordId
 			);
-	}
 
-	protected Response invokeGetFormRecord(Long formRecordId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokePutFormRecord( Long formRecordId , FormRecord formRecord ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.body(
+				formRecord
+			).when(
+			).put(
+				_resourceURL + "/form-records/{form-record-id}",
+				formRecordId 
+			);
+
+	}
+	protected Response invokeGetFormFormRecordsPage( Long formId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/form-records/{form-record-id}", formRecordId
+				_resourceURL + "/forms/{form-id}/form-records",
+				formId 
 			);
+
 	}
-
-	protected Response invokePostFormFormRecord(
-			Long formId, FormRecord formRecord)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostFormFormRecord( Long formId , FormRecord formRecord ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				formRecord
 			).when(
 			).post(
-				_resourceURL + "/forms/{form-id}/form-records", formId
+				_resourceURL + "/forms/{form-id}/form-records",
+				formId 
 			);
+
 	}
-
-	protected Response invokePostFormFormRecordBatchCreate(
-			Long formId, FormRecord formRecord)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostFormFormRecordBatchCreate( Long formId , FormRecord formRecord ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				formRecord
 			).when(
 			).post(
 				_resourceURL + "/forms/{form-id}/form-records/batch-create",
-				formId
+				formId 
 			);
-	}
 
-	protected Response invokePutFormRecord(
-			Long formRecordId, FormRecord formRecord)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.body(
-				formRecord
-			).when(
-			).put(
-				_resourceURL + "/form-records/{form-record-id}", formRecordId
-			);
 	}
 
 	protected FormRecord randomFormRecord() {
@@ -184,12 +168,12 @@ formRecord.setId(RandomTestUtil.randomLong());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

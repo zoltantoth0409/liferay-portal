@@ -55,8 +55,7 @@ public abstract class BaseImageObjectResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-collaboration/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-collaboration/v1.0");
 	}
 
 	@After
@@ -65,102 +64,79 @@ public abstract class BaseImageObjectResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteImageObject() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetImageObject() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetImageObjectRepositoryImageObjectsPage()
-		throws Exception {
-
+	public void testGetImageObjectRepositoryImageObjectsPage() throws Exception {
 			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testPostImageObjectRepositoryImageObject() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
-	public void testPostImageObjectRepositoryImageObjectBatchCreate()
-		throws Exception {
-
+	public void testPostImageObjectRepositoryImageObjectBatchCreate() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testDeleteImageObject() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetImageObject() throws Exception {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteImageObject(Long imageObjectId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).delete(
-				_resourceURL + "/image-objects/{image-object-id}", imageObjectId
-			);
-	}
-
-	protected Response invokeGetImageObject(Long imageObjectId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/image-objects/{image-object-id}", imageObjectId
-			);
-	}
-
-	protected Response invokeGetImageObjectRepositoryImageObjectsPage(
-			Long imageObjectRepositoryId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetImageObjectRepositoryImageObjectsPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
-				imageObjectRepositoryId
+				imageObjectRepositoryId 
 			);
+
 	}
-
-	protected Response invokePostImageObjectRepositoryImageObject(
-			Long imageObjectRepositoryId, ImageObject imageObject)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostImageObjectRepositoryImageObject( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				imageObject
 			).when(
 			).post(
 				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
-				imageObjectRepositoryId
+				imageObjectRepositoryId 
 			);
+
 	}
-
-	protected Response invokePostImageObjectRepositoryImageObjectBatchCreate(
-			Long imageObjectRepositoryId, ImageObject imageObject)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostImageObjectRepositoryImageObjectBatchCreate( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				imageObject
 			).when(
 			).post(
 				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects/batch-create",
-				imageObjectRepositoryId
+				imageObjectRepositoryId 
 			);
+
+	}
+	protected Response invokeDeleteImageObject( Long imageObjectId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/image-objects/{image-object-id}",
+				imageObjectId
+			);
+
+	}
+	protected Response invokeGetImageObject( Long imageObjectId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/image-objects/{image-object-id}",
+				imageObjectId
+			);
+
 	}
 
 	protected ImageObject randomImageObject() {
@@ -189,12 +165,12 @@ imageObject.setTitle(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

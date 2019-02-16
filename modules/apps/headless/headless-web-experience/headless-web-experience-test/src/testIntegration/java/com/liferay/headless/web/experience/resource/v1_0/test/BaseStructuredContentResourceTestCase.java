@@ -57,8 +57,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-web-experience/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-web-experience/v1.0");
 	}
 
 	@After
@@ -67,224 +66,165 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteStructuredContent() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetContentSpaceContentStructureStructuredContentsPage()
-		throws Exception {
-
+	public void testGetContentSpaceContentStructureStructuredContentsPage() throws Exception {
 			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetContentSpaceStructuredContentsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetStructuredContent() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetStructuredContentCategoriesPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPatchContentSpaceStructuredContents() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testPostContentSpaceStructuredContent() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostContentSpaceStructuredContentBatchCreate()
-		throws Exception {
-
 			Assert.assertTrue(true);
 	}
-
 	@Test
-	public void testPostStructuredContentCategories() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostStructuredContentCategoriesBatchCreate()
-		throws Exception {
-
+	public void testPostContentSpaceStructuredContentBatchCreate() throws Exception {
 			Assert.assertTrue(true);
 	}
-
+	@Test
+	public void testDeleteStructuredContent() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetStructuredContent() throws Exception {
+			Assert.assertTrue(true);
+	}
 	@Test
 	public void testPutStructuredContent() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetStructuredContentCategoriesPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostStructuredContentCategories() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostStructuredContentCategoriesBatchCreate() throws Exception {
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteStructuredContent(Long structuredContentId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).delete(
-				_resourceURL + "/structured-contents/{structured-content-id}",
-				structuredContentId
-			);
-	}
-
-	protected Response invokeGetContentSpaceContentStructureStructuredContentsPage(
-			Long contentSpaceId, Long contentStructureId, Filter filter,
-			Pagination pagination, Sort[] sorts)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetContentSpaceContentStructureStructuredContentsPage( Long contentSpaceId , Long contentStructureId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/content-spaces/{content-space-id}/content-structures/{content-structure-id}/structured-contents",
-				contentSpaceId, contentStructureId, filter, sorts
+				contentSpaceId , contentStructureId , filter  , sorts
 			);
+
 	}
-
-	protected Response invokeGetContentSpaceStructuredContentsPage(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetContentSpaceStructuredContentsPage( Long contentSpaceId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/content-spaces/{content-space-id}/structured-contents",
-				contentSpaceId, filter, sorts
+				contentSpaceId , filter  , sorts
 			);
+
 	}
-
-	protected Response invokeGetStructuredContent(Long structuredContentId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/structured-contents/{structured-content-id}",
-				structuredContentId
-			);
-	}
-
-	protected Response invokeGetStructuredContentCategoriesPage(
-			Long structuredContentId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/structured-contents/{structured-content-id}/categories",
-				structuredContentId
-			);
-	}
-
-	protected Response invokePatchContentSpaceStructuredContents(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePatchContentSpaceStructuredContents( Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).patch(
 				_resourceURL + "/content-spaces/{content-space-id}/structured-contents",
-				contentSpaceId, structuredContent
+				contentSpaceId , structuredContent
 			);
+
 	}
-
-	protected Response invokePostContentSpaceStructuredContent(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostContentSpaceStructuredContent( Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				structuredContent
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/structured-contents",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
-
-	protected Response invokePostContentSpaceStructuredContentBatchCreate(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostContentSpaceStructuredContentBatchCreate( Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				structuredContent
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/structured-contents/batch-create",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
-
-	protected Response invokePostStructuredContentCategories(
-			Long structuredContentId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeDeleteStructuredContent( Long structuredContentId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
-			).post(
-				_resourceURL + "/structured-contents/{structured-content-id}/categories",
-				structuredContentId, referenceId
+			).delete(
+				_resourceURL + "/structured-contents/{structured-content-id}",
+				structuredContentId
 			);
+
 	}
-
-	protected Response invokePostStructuredContentCategoriesBatchCreate(
-			Long structuredContentId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetStructuredContent( Long structuredContentId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
-			).post(
-				_resourceURL + "/structured-contents/{structured-content-id}/categories/batch-create",
-				structuredContentId, referenceId
+			).get(
+				_resourceURL + "/structured-contents/{structured-content-id}",
+				structuredContentId
 			);
+
 	}
-
-	protected Response invokePutStructuredContent(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePutStructuredContent( Long structuredContentId , StructuredContent structuredContent ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				structuredContent
 			).when(
 			).put(
 				_resourceURL + "/structured-contents/{structured-content-id}",
-				structuredContentId
+				structuredContentId 
 			);
+
+	}
+	protected Response invokeGetStructuredContentCategoriesPage( Long structuredContentId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/structured-contents/{structured-content-id}/categories",
+				structuredContentId 
+			);
+
+	}
+	protected Response invokePostStructuredContentCategories( Long structuredContentId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/structured-contents/{structured-content-id}/categories",
+				structuredContentId , referenceId
+			);
+
+	}
+	protected Response invokePostStructuredContentCategoriesBatchCreate( Long structuredContentId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).post(
+				_resourceURL + "/structured-contents/{structured-content-id}/categories/batch-create",
+				structuredContentId , referenceId
+			);
+
 	}
 
 	protected StructuredContent randomStructuredContent() {
@@ -317,12 +257,12 @@ structuredContent.setTitle(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

@@ -36,48 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ContentStructureImpl implements ContentStructure {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Fields[] getFields() {
-		return fields;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -86,13 +52,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -101,13 +71,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Long contentSpace;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -116,13 +90,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -131,13 +109,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -146,13 +128,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -161,13 +147,17 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
-	public void setFields(Fields[] fields) {
-		this.fields = fields;
+	@GraphQLField
+	protected String description;
+	public Fields[] getFields() {
+			return fields;
 	}
 
-	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
+	public void setFields(Fields[] fields) {
+			this.fields = fields;
+	}
 
+	public void setFields(UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
 			try {
 				fields = fieldsUnsafeSupplier.get();
 	}
@@ -176,8 +166,14 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
+	@GraphQLField
+	protected Fields[] fields;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -189,8 +185,14 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -201,30 +203,6 @@ public class ContentStructureImpl implements ContentStructure {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Fields[] fields;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String name;

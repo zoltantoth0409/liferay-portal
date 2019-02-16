@@ -36,97 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class BlogPostingImpl implements BlogPosting {
 
 	public AggregateRating getAggregateRating() {
-		return aggregateRating;
-	}
-
-	public String getAlternativeHeadline() {
-		return alternativeHeadline;
-	}
-
-	public String getArticleBody() {
-		return articleBody;
-	}
-
-	public String getCaption() {
-		return caption;
-	}
-
-	public Long[] getCategory() {
-		return category;
-	}
-
-	public Comment[] getComment() {
-		return comment;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
-
-	public String getFriendlyUrlPath() {
-		return friendlyUrlPath;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public ImageObject getImage() {
-		return image;
-	}
-
-	public Long getImageId() {
-		return imageId;
-	}
-
-	public String[] getKeywords() {
-		return keywords;
-	}
-
-	public ImageObjectRepository getRepository() {
-		return repository;
-	}
-
-	public Long getRepositoryId() {
-		return repositoryId;
+			return aggregateRating;
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
-		this.aggregateRating = aggregateRating;
+			this.aggregateRating = aggregateRating;
 	}
 
-	public void setAggregateRating(
-		UnsafeSupplier<AggregateRating, Throwable>
-			aggregateRatingUnsafeSupplier) {
-
+	public void setAggregateRating(UnsafeSupplier<AggregateRating, Throwable> aggregateRatingUnsafeSupplier) {
 			try {
 				aggregateRating = aggregateRatingUnsafeSupplier.get();
 	}
@@ -135,13 +52,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setAlternativeHeadline(String alternativeHeadline) {
-		this.alternativeHeadline = alternativeHeadline;
+	@GraphQLField
+	protected AggregateRating aggregateRating;
+	public String getAlternativeHeadline() {
+			return alternativeHeadline;
 	}
 
-	public void setAlternativeHeadline(
-		UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier) {
+	public void setAlternativeHeadline(String alternativeHeadline) {
+			this.alternativeHeadline = alternativeHeadline;
+	}
 
+	public void setAlternativeHeadline(UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier) {
 			try {
 				alternativeHeadline = alternativeHeadlineUnsafeSupplier.get();
 	}
@@ -150,13 +71,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setArticleBody(String articleBody) {
-		this.articleBody = articleBody;
+	@GraphQLField
+	protected String alternativeHeadline;
+	public String getArticleBody() {
+			return articleBody;
 	}
 
-	public void setArticleBody(
-		UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier) {
+	public void setArticleBody(String articleBody) {
+			this.articleBody = articleBody;
+	}
 
+	public void setArticleBody(UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier) {
 			try {
 				articleBody = articleBodyUnsafeSupplier.get();
 	}
@@ -165,13 +90,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setCaption(String caption) {
-		this.caption = caption;
+	@GraphQLField
+	protected String articleBody;
+	public String getCaption() {
+			return caption;
 	}
 
-	public void setCaption(
-		UnsafeSupplier<String, Throwable> captionUnsafeSupplier) {
+	public void setCaption(String caption) {
+			this.caption = caption;
+	}
 
+	public void setCaption(UnsafeSupplier<String, Throwable> captionUnsafeSupplier) {
 			try {
 				caption = captionUnsafeSupplier.get();
 	}
@@ -180,13 +109,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setCategory(Long[] category) {
-		this.category = category;
+	@GraphQLField
+	protected String caption;
+	public Long[] getCategory() {
+			return category;
 	}
 
-	public void setCategory(
-		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+	public void setCategory(Long[] category) {
+			this.category = category;
+	}
 
+	public void setCategory(UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
 			try {
 				category = categoryUnsafeSupplier.get();
 	}
@@ -195,13 +128,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setComment(Comment[] comment) {
-		this.comment = comment;
+	@GraphQLField
+	protected Long[] category;
+	public Comment[] getComment() {
+			return comment;
 	}
 
-	public void setComment(
-		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+	public void setComment(Comment[] comment) {
+			this.comment = comment;
+	}
 
+	public void setComment(UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
 			try {
 				comment = commentUnsafeSupplier.get();
 	}
@@ -210,13 +147,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected Comment[] comment;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -225,13 +166,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Long contentSpace;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -240,13 +185,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -255,13 +204,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -270,13 +223,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
+	@GraphQLField
+	protected Date dateModified;
+	public Date getDatePublished() {
+			return datePublished;
 	}
 
-	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+	public void setDatePublished(Date datePublished) {
+			this.datePublished = datePublished;
+	}
 
+	public void setDatePublished(UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 			try {
 				datePublished = datePublishedUnsafeSupplier.get();
 	}
@@ -285,13 +242,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date datePublished;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -300,13 +261,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setEncodingFormat(String encodingFormat) {
-		this.encodingFormat = encodingFormat;
+	@GraphQLField
+	protected String description;
+	public String getEncodingFormat() {
+			return encodingFormat;
 	}
 
-	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+	public void setEncodingFormat(String encodingFormat) {
+			this.encodingFormat = encodingFormat;
+	}
 
+	public void setEncodingFormat(UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
 			try {
 				encodingFormat = encodingFormatUnsafeSupplier.get();
 	}
@@ -315,13 +280,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setFriendlyUrlPath(String friendlyUrlPath) {
-		this.friendlyUrlPath = friendlyUrlPath;
+	@GraphQLField
+	protected String encodingFormat;
+	public String getFriendlyUrlPath() {
+			return friendlyUrlPath;
 	}
 
-	public void setFriendlyUrlPath(
-		UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier) {
+	public void setFriendlyUrlPath(String friendlyUrlPath) {
+			this.friendlyUrlPath = friendlyUrlPath;
+	}
 
+	public void setFriendlyUrlPath(UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier) {
 			try {
 				friendlyUrlPath = friendlyUrlPathUnsafeSupplier.get();
 	}
@@ -330,13 +299,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setHeadline(String headline) {
-		this.headline = headline;
+	@GraphQLField
+	protected String friendlyUrlPath;
+	public String getHeadline() {
+			return headline;
 	}
 
-	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+	public void setHeadline(String headline) {
+			this.headline = headline;
+	}
 
+	public void setHeadline(UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
 			try {
 				headline = headlineUnsafeSupplier.get();
 	}
@@ -345,8 +318,14 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
+	@GraphQLField
+	protected String headline;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -358,13 +337,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setImage(ImageObject image) {
-		this.image = image;
+	@GraphQLField
+	protected Long id;
+	public ImageObject getImage() {
+			return image;
 	}
 
-	public void setImage(
-		UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier) {
+	public void setImage(ImageObject image) {
+			this.image = image;
+	}
 
+	public void setImage(UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier) {
 			try {
 				image = imageUnsafeSupplier.get();
 	}
@@ -373,13 +356,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setImageId(Long imageId) {
-		this.imageId = imageId;
+	@GraphQLField
+	protected ImageObject image;
+	public Long getImageId() {
+			return imageId;
 	}
 
-	public void setImageId(
-		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
+	public void setImageId(Long imageId) {
+			this.imageId = imageId;
+	}
 
+	public void setImageId(UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
 			try {
 				imageId = imageIdUnsafeSupplier.get();
 	}
@@ -388,13 +375,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setKeywords(String[] keywords) {
-		this.keywords = keywords;
+	@GraphQLField
+	protected Long imageId;
+	public String[] getKeywords() {
+			return keywords;
 	}
 
-	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+	public void setKeywords(String[] keywords) {
+			this.keywords = keywords;
+	}
 
+	public void setKeywords(UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
 			try {
 				keywords = keywordsUnsafeSupplier.get();
 	}
@@ -403,14 +394,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setRepository(ImageObjectRepository repository) {
-		this.repository = repository;
+	@GraphQLField
+	protected String[] keywords;
+	public ImageObjectRepository getRepository() {
+			return repository;
 	}
 
-	public void setRepository(
-		UnsafeSupplier<ImageObjectRepository, Throwable>
-			repositoryUnsafeSupplier) {
+	public void setRepository(ImageObjectRepository repository) {
+			this.repository = repository;
+	}
 
+	public void setRepository(UnsafeSupplier<ImageObjectRepository, Throwable> repositoryUnsafeSupplier) {
 			try {
 				repository = repositoryUnsafeSupplier.get();
 	}
@@ -419,13 +413,17 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 	}
 
-	public void setRepositoryId(Long repositoryId) {
-		this.repositoryId = repositoryId;
+	@GraphQLField
+	protected ImageObjectRepository repository;
+	public Long getRepositoryId() {
+			return repositoryId;
 	}
 
-	public void setRepositoryId(
-		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+	public void setRepositoryId(Long repositoryId) {
+			this.repositoryId = repositoryId;
+	}
 
+	public void setRepositoryId(UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
 			try {
 				repositoryId = repositoryIdUnsafeSupplier.get();
 	}
@@ -433,66 +431,6 @@ public class BlogPostingImpl implements BlogPosting {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected AggregateRating aggregateRating;
-
-	@GraphQLField
-	protected String alternativeHeadline;
-
-	@GraphQLField
-	protected String articleBody;
-
-	@GraphQLField
-	protected String caption;
-
-	@GraphQLField
-	protected Long[] category;
-
-	@GraphQLField
-	protected Comment[] comment;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Date datePublished;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected String encodingFormat;
-
-	@GraphQLField
-	protected String friendlyUrlPath;
-
-	@GraphQLField
-	protected String headline;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected ImageObject image;
-
-	@GraphQLField
-	protected Long imageId;
-
-	@GraphQLField
-	protected String[] keywords;
-
-	@GraphQLField
-	protected ImageObjectRepository repository;
 
 	@GraphQLField
 	protected Long repositoryId;

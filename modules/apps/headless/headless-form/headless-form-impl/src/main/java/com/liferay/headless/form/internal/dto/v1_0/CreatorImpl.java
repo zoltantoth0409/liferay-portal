@@ -34,52 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CreatorImpl implements Creator {
 
 	public String getAdditionalName() {
-		return additionalName;
-	}
-
-	public String getAlternateName() {
-		return alternateName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFamilyName() {
-		return familyName;
-	}
-
-	public String getGivenName() {
-		return givenName;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public String getJobTitle() {
-		return jobTitle;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getProfileURL() {
-		return profileURL;
+			return additionalName;
 	}
 
 	public void setAdditionalName(String additionalName) {
-		this.additionalName = additionalName;
+			this.additionalName = additionalName;
 	}
 
-	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
-
+	public void setAdditionalName(UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
 			try {
 				additionalName = additionalNameUnsafeSupplier.get();
 	}
@@ -88,13 +50,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setAlternateName(String alternateName) {
-		this.alternateName = alternateName;
+	@GraphQLField
+	protected String additionalName;
+	public String getAlternateName() {
+			return alternateName;
 	}
 
-	public void setAlternateName(
-		UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
+	public void setAlternateName(String alternateName) {
+			this.alternateName = alternateName;
+	}
 
+	public void setAlternateName(UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
 			try {
 				alternateName = alternateNameUnsafeSupplier.get();
 	}
@@ -103,13 +69,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	@GraphQLField
+	protected String alternateName;
+	public String getEmail() {
+			return email;
 	}
 
-	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+	public void setEmail(String email) {
+			this.email = email;
+	}
 
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
 			try {
 				email = emailUnsafeSupplier.get();
 	}
@@ -118,13 +88,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
+	@GraphQLField
+	protected String email;
+	public String getFamilyName() {
+			return familyName;
 	}
 
-	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
+	public void setFamilyName(String familyName) {
+			this.familyName = familyName;
+	}
 
+	public void setFamilyName(UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
 			try {
 				familyName = familyNameUnsafeSupplier.get();
 	}
@@ -133,13 +107,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
+	@GraphQLField
+	protected String familyName;
+	public String getGivenName() {
+			return givenName;
 	}
 
-	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
+	public void setGivenName(String givenName) {
+			this.givenName = givenName;
+	}
 
+	public void setGivenName(UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
 			try {
 				givenName = givenNameUnsafeSupplier.get();
 	}
@@ -148,8 +126,14 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
+	@GraphQLField
+	protected String givenName;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -161,13 +145,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	@GraphQLField
+	protected Long id;
+	public String getImage() {
+			return image;
 	}
 
-	public void setImage(
-		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
+	public void setImage(String image) {
+			this.image = image;
+	}
 
+	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
 			try {
 				image = imageUnsafeSupplier.get();
 	}
@@ -176,13 +164,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
+	@GraphQLField
+	protected String image;
+	public String getJobTitle() {
+			return jobTitle;
 	}
 
-	public void setJobTitle(
-		UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
+	public void setJobTitle(String jobTitle) {
+			this.jobTitle = jobTitle;
+	}
 
+	public void setJobTitle(UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
 			try {
 				jobTitle = jobTitleUnsafeSupplier.get();
 	}
@@ -191,8 +183,14 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
+	@GraphQLField
+	protected String jobTitle;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -204,13 +202,17 @@ public class CreatorImpl implements Creator {
 	}
 	}
 
-	public void setProfileURL(String profileURL) {
-		this.profileURL = profileURL;
+	@GraphQLField
+	protected String name;
+	public String getProfileURL() {
+			return profileURL;
 	}
 
-	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+	public void setProfileURL(String profileURL) {
+			this.profileURL = profileURL;
+	}
 
+	public void setProfileURL(UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
 			try {
 				profileURL = profileURLUnsafeSupplier.get();
 	}
@@ -218,33 +220,6 @@ public class CreatorImpl implements Creator {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String additionalName;
-
-	@GraphQLField
-	protected String alternateName;
-
-	@GraphQLField
-	protected String email;
-
-	@GraphQLField
-	protected String familyName;
-
-	@GraphQLField
-	protected String givenName;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String image;
-
-	@GraphQLField
-	protected String jobTitle;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected String profileURL;

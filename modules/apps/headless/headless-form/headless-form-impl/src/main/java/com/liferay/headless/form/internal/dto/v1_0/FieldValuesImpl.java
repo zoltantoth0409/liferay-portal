@@ -34,32 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FieldValuesImpl implements FieldValues {
 
 	public FormDocument getDocument() {
-		return document;
-	}
-
-	public Long getDocumentId() {
-		return documentId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getValue() {
-		return value;
+			return document;
 	}
 
 	public void setDocument(FormDocument document) {
-		this.document = document;
+			this.document = document;
 	}
 
-	public void setDocument(
-		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier) {
-
+	public void setDocument(UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier) {
 			try {
 				document = documentUnsafeSupplier.get();
 	}
@@ -68,13 +50,17 @@ public class FieldValuesImpl implements FieldValues {
 	}
 	}
 
-	public void setDocumentId(Long documentId) {
-		this.documentId = documentId;
+	@GraphQLField
+	protected FormDocument document;
+	public Long getDocumentId() {
+			return documentId;
 	}
 
-	public void setDocumentId(
-		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
+	public void setDocumentId(Long documentId) {
+			this.documentId = documentId;
+	}
 
+	public void setDocumentId(UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
 			try {
 				documentId = documentIdUnsafeSupplier.get();
 	}
@@ -83,8 +69,14 @@ public class FieldValuesImpl implements FieldValues {
 	}
 	}
 
+	@GraphQLField
+	protected Long documentId;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -96,8 +88,14 @@ public class FieldValuesImpl implements FieldValues {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -109,13 +107,17 @@ public class FieldValuesImpl implements FieldValues {
 	}
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	@GraphQLField
+	protected String name;
+	public String getValue() {
+			return value;
 	}
 
-	public void setValue(
-		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+	public void setValue(String value) {
+			this.value = value;
+	}
 
+	public void setValue(UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
 			try {
 				value = valueUnsafeSupplier.get();
 	}
@@ -123,18 +125,6 @@ public class FieldValuesImpl implements FieldValues {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected FormDocument document;
-
-	@GraphQLField
-	protected Long documentId;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected String value;

@@ -34,64 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class OrganizationImpl implements Organization {
 
 	public String getComment() {
-		return comment;
-	}
-
-	public ContactInformation getContactInformation() {
-		return contactInformation;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public UserAccount[] getMembers() {
-		return members;
-	}
-
-	public Long[] getMembersIds() {
-		return membersIds;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Organization getParentOrganization() {
-		return parentOrganization;
-	}
-
-	public Long getParentOrganizationId() {
-		return parentOrganizationId;
-	}
-
-	public Services[] getServices() {
-		return services;
-	}
-
-	public Organization[] getSubOrganization() {
-		return subOrganization;
-	}
-
-	public Long[] getSubOrganizationIds() {
-		return subOrganizationIds;
+			return comment;
 	}
 
 	public void setComment(String comment) {
-		this.comment = comment;
+			this.comment = comment;
 	}
 
-	public void setComment(
-		UnsafeSupplier<String, Throwable> commentUnsafeSupplier) {
-
+	public void setComment(UnsafeSupplier<String, Throwable> commentUnsafeSupplier) {
 			try {
 				comment = commentUnsafeSupplier.get();
 	}
@@ -100,14 +50,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setContactInformation(ContactInformation contactInformation) {
-		this.contactInformation = contactInformation;
+	@GraphQLField
+	protected String comment;
+	public ContactInformation getContactInformation() {
+			return contactInformation;
 	}
 
-	public void setContactInformation(
-		UnsafeSupplier<ContactInformation, Throwable>
-			contactInformationUnsafeSupplier) {
+	public void setContactInformation(ContactInformation contactInformation) {
+			this.contactInformation = contactInformation;
+	}
 
+	public void setContactInformation(UnsafeSupplier<ContactInformation, Throwable> contactInformationUnsafeSupplier) {
 			try {
 				contactInformation = contactInformationUnsafeSupplier.get();
 	}
@@ -116,8 +69,14 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
+	@GraphQLField
+	protected ContactInformation contactInformation;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -129,13 +88,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	@GraphQLField
+	protected Long id;
+	public Location getLocation() {
+			return location;
 	}
 
-	public void setLocation(
-		UnsafeSupplier<Location, Throwable> locationUnsafeSupplier) {
+	public void setLocation(Location location) {
+			this.location = location;
+	}
 
+	public void setLocation(UnsafeSupplier<Location, Throwable> locationUnsafeSupplier) {
 			try {
 				location = locationUnsafeSupplier.get();
 	}
@@ -144,8 +107,14 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
+	@GraphQLField
+	protected Location location;
+	public String getLogo() {
+			return logo;
+	}
+
 	public void setLogo(String logo) {
-		this.logo = logo;
+			this.logo = logo;
 	}
 
 	public void setLogo(UnsafeSupplier<String, Throwable> logoUnsafeSupplier) {
@@ -157,9 +126,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setMembers(
-		UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier) {
+	@GraphQLField
+	protected String logo;
+	public UserAccount[] getMembers() {
+			return members;
+	}
 
+	public void setMembers(UserAccount[] members) {
+			this.members = members;
+	}
+
+	public void setMembers(UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier) {
 			try {
 				members = membersUnsafeSupplier.get();
 	}
@@ -168,17 +145,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setMembers(UserAccount[] members) {
-		this.members = members;
+	@GraphQLField
+	protected UserAccount[] members;
+	public Long[] getMembersIds() {
+			return membersIds;
 	}
 
 	public void setMembersIds(Long[] membersIds) {
-		this.membersIds = membersIds;
+			this.membersIds = membersIds;
 	}
 
-	public void setMembersIds(
-		UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier) {
-
+	public void setMembersIds(UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier) {
 			try {
 				membersIds = membersIdsUnsafeSupplier.get();
 	}
@@ -187,8 +164,14 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
+	@GraphQLField
+	protected Long[] membersIds;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -200,14 +183,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setParentOrganization(Organization parentOrganization) {
-		this.parentOrganization = parentOrganization;
+	@GraphQLField
+	protected String name;
+	public Organization getParentOrganization() {
+			return parentOrganization;
 	}
 
-	public void setParentOrganization(
-		UnsafeSupplier<Organization, Throwable>
-			parentOrganizationUnsafeSupplier) {
+	public void setParentOrganization(Organization parentOrganization) {
+			this.parentOrganization = parentOrganization;
+	}
 
+	public void setParentOrganization(UnsafeSupplier<Organization, Throwable> parentOrganizationUnsafeSupplier) {
 			try {
 				parentOrganization = parentOrganizationUnsafeSupplier.get();
 	}
@@ -216,13 +202,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setParentOrganizationId(Long parentOrganizationId) {
-		this.parentOrganizationId = parentOrganizationId;
+	@GraphQLField
+	protected Organization parentOrganization;
+	public Long getParentOrganizationId() {
+			return parentOrganizationId;
 	}
 
-	public void setParentOrganizationId(
-		UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier) {
+	public void setParentOrganizationId(Long parentOrganizationId) {
+			this.parentOrganizationId = parentOrganizationId;
+	}
 
+	public void setParentOrganizationId(UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier) {
 			try {
 				parentOrganizationId = parentOrganizationIdUnsafeSupplier.get();
 	}
@@ -231,13 +221,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setServices(Services[] services) {
-		this.services = services;
+	@GraphQLField
+	protected Long parentOrganizationId;
+	public Services[] getServices() {
+			return services;
 	}
 
-	public void setServices(
-		UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier) {
+	public void setServices(Services[] services) {
+			this.services = services;
+	}
 
+	public void setServices(UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier) {
 			try {
 				services = servicesUnsafeSupplier.get();
 	}
@@ -246,14 +240,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setSubOrganization(Organization[] subOrganization) {
-		this.subOrganization = subOrganization;
+	@GraphQLField
+	protected Services[] services;
+	public Organization[] getSubOrganization() {
+			return subOrganization;
 	}
 
-	public void setSubOrganization(
-		UnsafeSupplier<Organization[], Throwable>
-			subOrganizationUnsafeSupplier) {
+	public void setSubOrganization(Organization[] subOrganization) {
+			this.subOrganization = subOrganization;
+	}
 
+	public void setSubOrganization(UnsafeSupplier<Organization[], Throwable> subOrganizationUnsafeSupplier) {
 			try {
 				subOrganization = subOrganizationUnsafeSupplier.get();
 	}
@@ -262,13 +259,17 @@ public class OrganizationImpl implements Organization {
 	}
 	}
 
-	public void setSubOrganizationIds(Long[] subOrganizationIds) {
-		this.subOrganizationIds = subOrganizationIds;
+	@GraphQLField
+	protected Organization[] subOrganization;
+	public Long[] getSubOrganizationIds() {
+			return subOrganizationIds;
 	}
 
-	public void setSubOrganizationIds(
-		UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier) {
+	public void setSubOrganizationIds(Long[] subOrganizationIds) {
+			this.subOrganizationIds = subOrganizationIds;
+	}
 
+	public void setSubOrganizationIds(UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier) {
 			try {
 				subOrganizationIds = subOrganizationIdsUnsafeSupplier.get();
 	}
@@ -276,42 +277,6 @@ public class OrganizationImpl implements Organization {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String comment;
-
-	@GraphQLField
-	protected ContactInformation contactInformation;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Location location;
-
-	@GraphQLField
-	protected String logo;
-
-	@GraphQLField
-	protected UserAccount[] members;
-
-	@GraphQLField
-	protected Long[] membersIds;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Organization parentOrganization;
-
-	@GraphQLField
-	protected Long parentOrganizationId;
-
-	@GraphQLField
-	protected Services[] services;
-
-	@GraphQLField
-	protected Organization[] subOrganization;
 
 	@GraphQLField
 	protected Long[] subOrganizationIds;

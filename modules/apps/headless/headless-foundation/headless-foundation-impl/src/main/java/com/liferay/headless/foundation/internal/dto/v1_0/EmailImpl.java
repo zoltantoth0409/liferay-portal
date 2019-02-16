@@ -34,24 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EmailImpl implements Email {
 
 	public String getEmail() {
-		return email;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getType() {
-		return type;
+			return email;
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+			this.email = email;
 	}
 
-	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
-
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
 			try {
 				email = emailUnsafeSupplier.get();
 	}
@@ -60,8 +50,14 @@ public class EmailImpl implements Email {
 	}
 	}
 
+	@GraphQLField
+	protected String email;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -73,8 +69,14 @@ public class EmailImpl implements Email {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getType() {
+			return type;
+	}
+
 	public void setType(String type) {
-		this.type = type;
+			this.type = type;
 	}
 
 	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
@@ -85,12 +87,6 @@ public class EmailImpl implements Email {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String email;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String type;

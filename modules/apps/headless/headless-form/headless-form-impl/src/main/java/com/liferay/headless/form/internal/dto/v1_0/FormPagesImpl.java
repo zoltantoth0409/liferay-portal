@@ -34,28 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FormPagesImpl implements FormPages {
 
 	public Fields[] getFields() {
-		return fields;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getText() {
-		return text;
+			return fields;
 	}
 
 	public void setFields(Fields[] fields) {
-		this.fields = fields;
+			this.fields = fields;
 	}
 
-	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
-
+	public void setFields(UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
 			try {
 				fields = fieldsUnsafeSupplier.get();
 	}
@@ -64,13 +50,17 @@ public class FormPagesImpl implements FormPages {
 	}
 	}
 
-	public void setHeadline(String headline) {
-		this.headline = headline;
+	@GraphQLField
+	protected Fields[] fields;
+	public String getHeadline() {
+			return headline;
 	}
 
-	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+	public void setHeadline(String headline) {
+			this.headline = headline;
+	}
 
+	public void setHeadline(UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
 			try {
 				headline = headlineUnsafeSupplier.get();
 	}
@@ -79,8 +69,14 @@ public class FormPagesImpl implements FormPages {
 	}
 	}
 
+	@GraphQLField
+	protected String headline;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -92,8 +88,14 @@ public class FormPagesImpl implements FormPages {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getText() {
+			return text;
+	}
+
 	public void setText(String text) {
-		this.text = text;
+			this.text = text;
 	}
 
 	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
@@ -104,15 +106,6 @@ public class FormPagesImpl implements FormPages {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Fields[] fields;
-
-	@GraphQLField
-	protected String headline;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String text;

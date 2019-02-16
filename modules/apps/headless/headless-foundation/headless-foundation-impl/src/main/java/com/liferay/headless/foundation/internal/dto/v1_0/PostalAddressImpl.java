@@ -34,48 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PostalAddressImpl implements PostalAddress {
 
 	public String getAddressCountry() {
-		return addressCountry;
-	}
-
-	public String getAddressLocality() {
-		return addressLocality;
-	}
-
-	public String getAddressRegion() {
-		return addressRegion;
-	}
-
-	public String getAddressType() {
-		return addressType;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getPostalCode() {
-		return postalCode;
-	}
-
-	public String getStreetAddressLine1() {
-		return streetAddressLine1;
-	}
-
-	public String getStreetAddressLine2() {
-		return streetAddressLine2;
-	}
-
-	public String getStreetAddressLine3() {
-		return streetAddressLine3;
+			return addressCountry;
 	}
 
 	public void setAddressCountry(String addressCountry) {
-		this.addressCountry = addressCountry;
+			this.addressCountry = addressCountry;
 	}
 
-	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
-
+	public void setAddressCountry(UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
 			try {
 				addressCountry = addressCountryUnsafeSupplier.get();
 	}
@@ -84,13 +50,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setAddressLocality(String addressLocality) {
-		this.addressLocality = addressLocality;
+	@GraphQLField
+	protected String addressCountry;
+	public String getAddressLocality() {
+			return addressLocality;
 	}
 
-	public void setAddressLocality(
-		UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
+	public void setAddressLocality(String addressLocality) {
+			this.addressLocality = addressLocality;
+	}
 
+	public void setAddressLocality(UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
 			try {
 				addressLocality = addressLocalityUnsafeSupplier.get();
 	}
@@ -99,13 +69,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setAddressRegion(String addressRegion) {
-		this.addressRegion = addressRegion;
+	@GraphQLField
+	protected String addressLocality;
+	public String getAddressRegion() {
+			return addressRegion;
 	}
 
-	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+	public void setAddressRegion(String addressRegion) {
+			this.addressRegion = addressRegion;
+	}
 
+	public void setAddressRegion(UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
 			try {
 				addressRegion = addressRegionUnsafeSupplier.get();
 	}
@@ -114,13 +88,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setAddressType(String addressType) {
-		this.addressType = addressType;
+	@GraphQLField
+	protected String addressRegion;
+	public String getAddressType() {
+			return addressType;
 	}
 
-	public void setAddressType(
-		UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
+	public void setAddressType(String addressType) {
+			this.addressType = addressType;
+	}
 
+	public void setAddressType(UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
 			try {
 				addressType = addressTypeUnsafeSupplier.get();
 	}
@@ -129,8 +107,14 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
+	@GraphQLField
+	protected String addressType;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -142,13 +126,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
+	@GraphQLField
+	protected Long id;
+	public String getPostalCode() {
+			return postalCode;
 	}
 
-	public void setPostalCode(
-		UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
+	public void setPostalCode(String postalCode) {
+			this.postalCode = postalCode;
+	}
 
+	public void setPostalCode(UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
 			try {
 				postalCode = postalCodeUnsafeSupplier.get();
 	}
@@ -157,13 +145,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setStreetAddressLine1(String streetAddressLine1) {
-		this.streetAddressLine1 = streetAddressLine1;
+	@GraphQLField
+	protected String postalCode;
+	public String getStreetAddressLine1() {
+			return streetAddressLine1;
 	}
 
-	public void setStreetAddressLine1(
-		UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
+	public void setStreetAddressLine1(String streetAddressLine1) {
+			this.streetAddressLine1 = streetAddressLine1;
+	}
 
+	public void setStreetAddressLine1(UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
 			try {
 				streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
 	}
@@ -172,13 +164,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setStreetAddressLine2(String streetAddressLine2) {
-		this.streetAddressLine2 = streetAddressLine2;
+	@GraphQLField
+	protected String streetAddressLine1;
+	public String getStreetAddressLine2() {
+			return streetAddressLine2;
 	}
 
-	public void setStreetAddressLine2(
-		UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
+	public void setStreetAddressLine2(String streetAddressLine2) {
+			this.streetAddressLine2 = streetAddressLine2;
+	}
 
+	public void setStreetAddressLine2(UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
 			try {
 				streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
 	}
@@ -187,13 +183,17 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 	}
 
-	public void setStreetAddressLine3(String streetAddressLine3) {
-		this.streetAddressLine3 = streetAddressLine3;
+	@GraphQLField
+	protected String streetAddressLine2;
+	public String getStreetAddressLine3() {
+			return streetAddressLine3;
 	}
 
-	public void setStreetAddressLine3(
-		UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
+	public void setStreetAddressLine3(String streetAddressLine3) {
+			this.streetAddressLine3 = streetAddressLine3;
+	}
 
+	public void setStreetAddressLine3(UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
 			try {
 				streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
 	}
@@ -201,30 +201,6 @@ public class PostalAddressImpl implements PostalAddress {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String addressCountry;
-
-	@GraphQLField
-	protected String addressLocality;
-
-	@GraphQLField
-	protected String addressRegion;
-
-	@GraphQLField
-	protected String addressType;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String postalCode;
-
-	@GraphQLField
-	protected String streetAddressLine1;
-
-	@GraphQLField
-	protected String streetAddressLine2;
 
 	@GraphQLField
 	protected String streetAddressLine3;

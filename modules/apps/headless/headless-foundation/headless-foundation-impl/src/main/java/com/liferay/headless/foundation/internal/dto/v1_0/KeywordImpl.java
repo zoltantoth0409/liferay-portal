@@ -36,40 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class KeywordImpl implements Keyword {
 
 	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public UserAccount getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Number getKeywordUsageCount() {
-		return keywordUsageCount;
-	}
-
-	public String getName() {
-		return name;
+			return contentSpace;
 	}
 
 	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+			this.contentSpace = contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
-
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -78,9 +52,17 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	@GraphQLField
+	protected Long contentSpace;
+	public UserAccount getCreator() {
+			return creator;
+	}
 
+	public void setCreator(UserAccount creator) {
+			this.creator = creator;
+	}
+
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -89,17 +71,17 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected UserAccount creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+			this.dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -108,13 +90,17 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -123,8 +109,14 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
+	@GraphQLField
+	protected Date dateModified;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -136,13 +128,17 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
-	public void setKeywordUsageCount(Number keywordUsageCount) {
-		this.keywordUsageCount = keywordUsageCount;
+	@GraphQLField
+	protected Long id;
+	public Number getKeywordUsageCount() {
+			return keywordUsageCount;
 	}
 
-	public void setKeywordUsageCount(
-		UnsafeSupplier<Number, Throwable> keywordUsageCountUnsafeSupplier) {
+	public void setKeywordUsageCount(Number keywordUsageCount) {
+			this.keywordUsageCount = keywordUsageCount;
+	}
 
+	public void setKeywordUsageCount(UnsafeSupplier<Number, Throwable> keywordUsageCountUnsafeSupplier) {
 			try {
 				keywordUsageCount = keywordUsageCountUnsafeSupplier.get();
 	}
@@ -151,8 +147,14 @@ public class KeywordImpl implements Keyword {
 	}
 	}
 
+	@GraphQLField
+	protected Number keywordUsageCount;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -163,24 +165,6 @@ public class KeywordImpl implements Keyword {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected UserAccount creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Number keywordUsageCount;
 
 	@GraphQLField
 	protected String name;

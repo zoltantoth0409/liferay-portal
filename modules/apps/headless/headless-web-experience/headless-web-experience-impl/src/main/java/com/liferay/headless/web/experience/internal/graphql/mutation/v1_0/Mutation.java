@@ -24,8 +24,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import javax.ws.rs.core.Response;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -38,11 +36,8 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Mutation {
 
 	@GraphQLInvokeDetached
-	public Response deleteContentDocument( @GraphQLName("content-document-id") Long contentDocumentId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteContentDocument( @GraphQLName("content-document-id") Long contentDocumentId ) throws Exception {
+return _getContentDocumentResource().deleteContentDocument( contentDocumentId );
 	}
 
 	@GraphQLInvokeDetached
@@ -63,11 +58,8 @@ return _getStructuredContentResource().postContentSpaceStructuredContentBatchCre
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteStructuredContent( @GraphQLName("structured-content-id") Long structuredContentId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteStructuredContent( @GraphQLName("structured-content-id") Long structuredContentId ) throws Exception {
+return _getStructuredContentResource().deleteStructuredContent( structuredContentId );
 	}
 
 	@GraphQLInvokeDetached
@@ -77,20 +69,14 @@ return _getStructuredContentResource().putStructuredContent( structuredContentId
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postStructuredContentCategories( @GraphQLName("structured-content-id") Long structuredContentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postStructuredContentCategories( @GraphQLName("structured-content-id") Long structuredContentId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getStructuredContentResource().postStructuredContentCategories( structuredContentId , referenceId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postStructuredContentCategoriesBatchCreate( @GraphQLName("structured-content-id") Long structuredContentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postStructuredContentCategoriesBatchCreate( @GraphQLName("structured-content-id") Long structuredContentId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getStructuredContentResource().postStructuredContentCategoriesBatchCreate( structuredContentId , referenceId );
 	}
 
 	private static ContentDocumentResource _getContentDocumentResource() {

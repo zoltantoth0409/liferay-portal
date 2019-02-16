@@ -15,24 +15,12 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -43,46 +31,18 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface VocabularyResource {
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/vocabularies")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Vocabulary> getContentSpaceVocabulariesPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
+	public Page<Vocabulary> getContentSpaceVocabulariesPage( Long contentSpaceId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/vocabularies")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Vocabulary postContentSpaceVocabulary( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
+	public Vocabulary postContentSpaceVocabulary( Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/vocabularies/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public Vocabulary postContentSpaceVocabularyBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
+	public Vocabulary postContentSpaceVocabularyBatchCreate( Long contentSpaceId , Vocabulary vocabulary ) throws Exception;
 
-	@DELETE
-	@Path("/vocabularies/{vocabulary-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteVocabulary( @PathParam("vocabulary-id") Long vocabularyId ) throws Exception;
+	public boolean deleteVocabulary( Long vocabularyId ) throws Exception;
 
-	@GET
-	@Path("/vocabularies/{vocabulary-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Vocabulary getVocabulary( @PathParam("vocabulary-id") Long vocabularyId ) throws Exception;
+	public Vocabulary getVocabulary( Long vocabularyId ) throws Exception;
 
-	@Consumes("application/json")
-	@PUT
-	@Path("/vocabularies/{vocabulary-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Vocabulary putVocabulary( @PathParam("vocabulary-id") Long vocabularyId , Vocabulary vocabulary ) throws Exception;
+	public Vocabulary putVocabulary( Long vocabularyId , Vocabulary vocabulary ) throws Exception;
 
 }

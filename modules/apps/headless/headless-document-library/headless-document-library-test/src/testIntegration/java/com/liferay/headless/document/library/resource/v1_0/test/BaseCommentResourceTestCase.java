@@ -55,8 +55,7 @@ public abstract class BaseCommentResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-document-library/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -66,20 +65,18 @@ public abstract class BaseCommentResourceTestCase {
 
 	@Test
 	public void testGetDocumentCommentsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetDocumentCommentsPage(
-			Long documentId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetDocumentCommentsPage( Long documentId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/documents/{document-id}/comments", documentId
+				_resourceURL + "/documents/{document-id}/comments",
+				documentId 
 			);
+
 	}
 
 	protected Comment randomComment() {
@@ -87,7 +84,6 @@ public abstract class BaseCommentResourceTestCase {
 
 comment.setId(RandomTestUtil.randomLong());
 comment.setText(RandomTestUtil.randomString());
-
 		return comment;
 	}
 
@@ -106,12 +102,12 @@ comment.setText(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

@@ -36,56 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class WorkflowLogImpl implements WorkflowLog {
 
 	public String getAuditPerson() {
-		return auditPerson;
-	}
-
-	public String getCommentLog() {
-		return commentLog;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getPerson() {
-		return person;
-	}
-
-	public String getPreviousPerson() {
-		return previousPerson;
-	}
-
-	public String getPreviousState() {
-		return previousState;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public WorkflowTask getTask() {
-		return task;
-	}
-
-	public Long getTaskId() {
-		return taskId;
-	}
-
-	public String getType() {
-		return type;
+			return auditPerson;
 	}
 
 	public void setAuditPerson(String auditPerson) {
-		this.auditPerson = auditPerson;
+			this.auditPerson = auditPerson;
 	}
 
-	public void setAuditPerson(
-		UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier) {
-
+	public void setAuditPerson(UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier) {
 			try {
 				auditPerson = auditPersonUnsafeSupplier.get();
 	}
@@ -94,13 +52,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setCommentLog(String commentLog) {
-		this.commentLog = commentLog;
+	@GraphQLField
+	protected String auditPerson;
+	public String getCommentLog() {
+			return commentLog;
 	}
 
-	public void setCommentLog(
-		UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier) {
+	public void setCommentLog(String commentLog) {
+			this.commentLog = commentLog;
+	}
 
+	public void setCommentLog(UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier) {
 			try {
 				commentLog = commentLogUnsafeSupplier.get();
 	}
@@ -109,13 +71,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected String commentLog;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -124,8 +90,14 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
+	@GraphQLField
+	protected Date dateCreated;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -137,13 +109,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setPerson(String person) {
-		this.person = person;
+	@GraphQLField
+	protected Long id;
+	public String getPerson() {
+			return person;
 	}
 
-	public void setPerson(
-		UnsafeSupplier<String, Throwable> personUnsafeSupplier) {
+	public void setPerson(String person) {
+			this.person = person;
+	}
 
+	public void setPerson(UnsafeSupplier<String, Throwable> personUnsafeSupplier) {
 			try {
 				person = personUnsafeSupplier.get();
 	}
@@ -152,13 +128,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setPreviousPerson(String previousPerson) {
-		this.previousPerson = previousPerson;
+	@GraphQLField
+	protected String person;
+	public String getPreviousPerson() {
+			return previousPerson;
 	}
 
-	public void setPreviousPerson(
-		UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier) {
+	public void setPreviousPerson(String previousPerson) {
+			this.previousPerson = previousPerson;
+	}
 
+	public void setPreviousPerson(UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier) {
 			try {
 				previousPerson = previousPersonUnsafeSupplier.get();
 	}
@@ -167,13 +147,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setPreviousState(String previousState) {
-		this.previousState = previousState;
+	@GraphQLField
+	protected String previousPerson;
+	public String getPreviousState() {
+			return previousState;
 	}
 
-	public void setPreviousState(
-		UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier) {
+	public void setPreviousState(String previousState) {
+			this.previousState = previousState;
+	}
 
+	public void setPreviousState(UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier) {
 			try {
 				previousState = previousStateUnsafeSupplier.get();
 	}
@@ -182,13 +166,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	@GraphQLField
+	protected String previousState;
+	public String getState() {
+			return state;
 	}
 
-	public void setState(
-		UnsafeSupplier<String, Throwable> stateUnsafeSupplier) {
+	public void setState(String state) {
+			this.state = state;
+	}
 
+	public void setState(UnsafeSupplier<String, Throwable> stateUnsafeSupplier) {
 			try {
 				state = stateUnsafeSupplier.get();
 	}
@@ -197,9 +185,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setTask(
-		UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier) {
+	@GraphQLField
+	protected String state;
+	public WorkflowTask getTask() {
+			return task;
+	}
 
+	public void setTask(WorkflowTask task) {
+			this.task = task;
+	}
+
+	public void setTask(UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier) {
 			try {
 				task = taskUnsafeSupplier.get();
 	}
@@ -208,17 +204,17 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
-	public void setTask(WorkflowTask task) {
-		this.task = task;
+	@GraphQLField
+	protected WorkflowTask task;
+	public Long getTaskId() {
+			return taskId;
 	}
 
 	public void setTaskId(Long taskId) {
-		this.taskId = taskId;
+			this.taskId = taskId;
 	}
 
-	public void setTaskId(
-		UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier) {
-
+	public void setTaskId(UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier) {
 			try {
 				taskId = taskIdUnsafeSupplier.get();
 	}
@@ -227,8 +223,14 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 	}
 
+	@GraphQLField
+	protected Long taskId;
+	public String getType() {
+			return type;
+	}
+
 	public void setType(String type) {
-		this.type = type;
+			this.type = type;
 	}
 
 	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
@@ -239,36 +241,6 @@ public class WorkflowLogImpl implements WorkflowLog {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String auditPerson;
-
-	@GraphQLField
-	protected String commentLog;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String person;
-
-	@GraphQLField
-	protected String previousPerson;
-
-	@GraphQLField
-	protected String previousState;
-
-	@GraphQLField
-	protected String state;
-
-	@GraphQLField
-	protected WorkflowTask task;
-
-	@GraphQLField
-	protected Long taskId;
 
 	@GraphQLField
 	protected String type;

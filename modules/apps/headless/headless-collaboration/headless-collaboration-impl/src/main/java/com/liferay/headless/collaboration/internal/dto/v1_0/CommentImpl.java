@@ -34,28 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CommentImpl implements Comment {
 
 	public Comment[] getComments() {
-		return comments;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getText() {
-		return text;
+			return comments;
 	}
 
 	public void setComments(Comment[] comments) {
-		this.comments = comments;
+			this.comments = comments;
 	}
 
-	public void setComments(
-		UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier) {
-
+	public void setComments(UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier) {
 			try {
 				comments = commentsUnsafeSupplier.get();
 	}
@@ -64,13 +50,17 @@ public class CommentImpl implements Comment {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Comment[] comments;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -79,8 +69,14 @@ public class CommentImpl implements Comment {
 	}
 	}
 
+	@GraphQLField
+	protected Creator creator;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -92,8 +88,14 @@ public class CommentImpl implements Comment {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getText() {
+			return text;
+	}
+
 	public void setText(String text) {
-		this.text = text;
+			this.text = text;
 	}
 
 	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
@@ -104,15 +106,6 @@ public class CommentImpl implements Comment {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Comment[] comments;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String text;

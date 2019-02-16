@@ -34,24 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GridImpl implements Grid {
 
 	public Columns[] getColumns() {
-		return columns;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Rows[] getRows() {
-		return rows;
+			return columns;
 	}
 
 	public void setColumns(Columns[] columns) {
-		this.columns = columns;
+			this.columns = columns;
 	}
 
-	public void setColumns(
-		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
-
+	public void setColumns(UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
 			try {
 				columns = columnsUnsafeSupplier.get();
 	}
@@ -60,8 +50,14 @@ public class GridImpl implements Grid {
 	}
 	}
 
+	@GraphQLField
+	protected Columns[] columns;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -73,8 +69,14 @@ public class GridImpl implements Grid {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public Rows[] getRows() {
+			return rows;
+	}
+
 	public void setRows(Rows[] rows) {
-		this.rows = rows;
+			this.rows = rows;
 	}
 
 	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier) {
@@ -85,12 +87,6 @@ public class GridImpl implements Grid {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Columns[] columns;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected Rows[] rows;

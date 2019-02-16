@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,46 +30,49 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseCommentResourceImpl implements CommentResource {
 
+	@GET
+	@Path("/blog-postings/{blog-posting-id}/comments")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Comment> getBlogPostingCommentsPage(
-			Long blogPostingId, Pagination pagination)
-		throws Exception {
-
+	public Page<Comment> getBlogPostingCommentsPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@GET
+	@Path("/comments/{comment-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Comment getComment(Long commentId) throws Exception {
-		return new CommentImpl();
+	public Comment getComment( @PathParam("comment-id") Long commentId ) throws Exception {
+			return new CommentImpl();
+
 	}
-
+	@GET
+	@Path("/comments/{comment-id}/comments")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Comment> getCommentCommentsPage(
-			Long commentId, Pagination pagination)
-		throws Exception {
-
+	public Page<Comment> getCommentCommentsPage( @PathParam("comment-id") Long commentId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

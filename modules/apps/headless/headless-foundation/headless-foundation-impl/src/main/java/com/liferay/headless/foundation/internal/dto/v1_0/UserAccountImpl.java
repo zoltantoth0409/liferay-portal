@@ -36,96 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class UserAccountImpl implements UserAccount {
 
 	public String getAdditionalName() {
-		return additionalName;
-	}
-
-	public String getAlternateName() {
-		return alternateName;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public ContactInformation getContactInformation() {
-		return contactInformation;
-	}
-
-	public String getDashboardURL() {
-		return dashboardURL;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getFamilyName() {
-		return familyName;
-	}
-
-	public String getGivenName() {
-		return givenName;
-	}
-
-	public String getHonorificPrefix() {
-		return honorificPrefix;
-	}
-
-	public String getHonorificSuffix() {
-		return honorificSuffix;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public String getJobTitle() {
-		return jobTitle;
-	}
-
-	public Organization[] getMyOrganizations() {
-		return myOrganizations;
-	}
-
-	public Long[] getMyOrganizationsIds() {
-		return myOrganizationsIds;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getProfileURL() {
-		return profileURL;
-	}
-
-	public Role[] getRoles() {
-		return roles;
-	}
-
-	public Long[] getRolesIds() {
-		return rolesIds;
-	}
-
-	public String[] getTasksAssignedToMe() {
-		return tasksAssignedToMe;
-	}
-
-	public String[] getTasksAssignedToMyRoles() {
-		return tasksAssignedToMyRoles;
+			return additionalName;
 	}
 
 	public void setAdditionalName(String additionalName) {
-		this.additionalName = additionalName;
+			this.additionalName = additionalName;
 	}
 
-	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
-
+	public void setAdditionalName(UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
 			try {
 				additionalName = additionalNameUnsafeSupplier.get();
 	}
@@ -134,13 +52,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setAlternateName(String alternateName) {
-		this.alternateName = alternateName;
+	@GraphQLField
+	protected String additionalName;
+	public String getAlternateName() {
+			return alternateName;
 	}
 
-	public void setAlternateName(
-		UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
+	public void setAlternateName(String alternateName) {
+			this.alternateName = alternateName;
+	}
 
+	public void setAlternateName(UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
 			try {
 				alternateName = alternateNameUnsafeSupplier.get();
 	}
@@ -149,13 +71,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	@GraphQLField
+	protected String alternateName;
+	public Date getBirthDate() {
+			return birthDate;
 	}
 
-	public void setBirthDate(
-		UnsafeSupplier<Date, Throwable> birthDateUnsafeSupplier) {
+	public void setBirthDate(Date birthDate) {
+			this.birthDate = birthDate;
+	}
 
+	public void setBirthDate(UnsafeSupplier<Date, Throwable> birthDateUnsafeSupplier) {
 			try {
 				birthDate = birthDateUnsafeSupplier.get();
 	}
@@ -164,14 +90,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setContactInformation(ContactInformation contactInformation) {
-		this.contactInformation = contactInformation;
+	@GraphQLField
+	protected Date birthDate;
+	public ContactInformation getContactInformation() {
+			return contactInformation;
 	}
 
-	public void setContactInformation(
-		UnsafeSupplier<ContactInformation, Throwable>
-			contactInformationUnsafeSupplier) {
+	public void setContactInformation(ContactInformation contactInformation) {
+			this.contactInformation = contactInformation;
+	}
 
+	public void setContactInformation(UnsafeSupplier<ContactInformation, Throwable> contactInformationUnsafeSupplier) {
 			try {
 				contactInformation = contactInformationUnsafeSupplier.get();
 	}
@@ -180,13 +109,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setDashboardURL(String dashboardURL) {
-		this.dashboardURL = dashboardURL;
+	@GraphQLField
+	protected ContactInformation contactInformation;
+	public String getDashboardURL() {
+			return dashboardURL;
 	}
 
-	public void setDashboardURL(
-		UnsafeSupplier<String, Throwable> dashboardURLUnsafeSupplier) {
+	public void setDashboardURL(String dashboardURL) {
+			this.dashboardURL = dashboardURL;
+	}
 
+	public void setDashboardURL(UnsafeSupplier<String, Throwable> dashboardURLUnsafeSupplier) {
 			try {
 				dashboardURL = dashboardURLUnsafeSupplier.get();
 	}
@@ -195,13 +128,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	@GraphQLField
+	protected String dashboardURL;
+	public String getEmail() {
+			return email;
 	}
 
-	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+	public void setEmail(String email) {
+			this.email = email;
+	}
 
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
 			try {
 				email = emailUnsafeSupplier.get();
 	}
@@ -210,13 +147,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
+	@GraphQLField
+	protected String email;
+	public String getFamilyName() {
+			return familyName;
 	}
 
-	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
+	public void setFamilyName(String familyName) {
+			this.familyName = familyName;
+	}
 
+	public void setFamilyName(UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
 			try {
 				familyName = familyNameUnsafeSupplier.get();
 	}
@@ -225,13 +166,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
+	@GraphQLField
+	protected String familyName;
+	public String getGivenName() {
+			return givenName;
 	}
 
-	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
+	public void setGivenName(String givenName) {
+			this.givenName = givenName;
+	}
 
+	public void setGivenName(UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
 			try {
 				givenName = givenNameUnsafeSupplier.get();
 	}
@@ -240,13 +185,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setHonorificPrefix(String honorificPrefix) {
-		this.honorificPrefix = honorificPrefix;
+	@GraphQLField
+	protected String givenName;
+	public String getHonorificPrefix() {
+			return honorificPrefix;
 	}
 
-	public void setHonorificPrefix(
-		UnsafeSupplier<String, Throwable> honorificPrefixUnsafeSupplier) {
+	public void setHonorificPrefix(String honorificPrefix) {
+			this.honorificPrefix = honorificPrefix;
+	}
 
+	public void setHonorificPrefix(UnsafeSupplier<String, Throwable> honorificPrefixUnsafeSupplier) {
 			try {
 				honorificPrefix = honorificPrefixUnsafeSupplier.get();
 	}
@@ -255,13 +204,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setHonorificSuffix(String honorificSuffix) {
-		this.honorificSuffix = honorificSuffix;
+	@GraphQLField
+	protected String honorificPrefix;
+	public String getHonorificSuffix() {
+			return honorificSuffix;
 	}
 
-	public void setHonorificSuffix(
-		UnsafeSupplier<String, Throwable> honorificSuffixUnsafeSupplier) {
+	public void setHonorificSuffix(String honorificSuffix) {
+			this.honorificSuffix = honorificSuffix;
+	}
 
+	public void setHonorificSuffix(UnsafeSupplier<String, Throwable> honorificSuffixUnsafeSupplier) {
 			try {
 				honorificSuffix = honorificSuffixUnsafeSupplier.get();
 	}
@@ -270,8 +223,14 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
+	@GraphQLField
+	protected String honorificSuffix;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -283,13 +242,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	@GraphQLField
+	protected Long id;
+	public String getImage() {
+			return image;
 	}
 
-	public void setImage(
-		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
+	public void setImage(String image) {
+			this.image = image;
+	}
 
+	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
 			try {
 				image = imageUnsafeSupplier.get();
 	}
@@ -298,13 +261,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
+	@GraphQLField
+	protected String image;
+	public String getJobTitle() {
+			return jobTitle;
 	}
 
-	public void setJobTitle(
-		UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
+	public void setJobTitle(String jobTitle) {
+			this.jobTitle = jobTitle;
+	}
 
+	public void setJobTitle(UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
 			try {
 				jobTitle = jobTitleUnsafeSupplier.get();
 	}
@@ -313,14 +280,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setMyOrganizations(Organization[] myOrganizations) {
-		this.myOrganizations = myOrganizations;
+	@GraphQLField
+	protected String jobTitle;
+	public Organization[] getMyOrganizations() {
+			return myOrganizations;
 	}
 
-	public void setMyOrganizations(
-		UnsafeSupplier<Organization[], Throwable>
-			myOrganizationsUnsafeSupplier) {
+	public void setMyOrganizations(Organization[] myOrganizations) {
+			this.myOrganizations = myOrganizations;
+	}
 
+	public void setMyOrganizations(UnsafeSupplier<Organization[], Throwable> myOrganizationsUnsafeSupplier) {
 			try {
 				myOrganizations = myOrganizationsUnsafeSupplier.get();
 	}
@@ -329,13 +299,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setMyOrganizationsIds(Long[] myOrganizationsIds) {
-		this.myOrganizationsIds = myOrganizationsIds;
+	@GraphQLField
+	protected Organization[] myOrganizations;
+	public Long[] getMyOrganizationsIds() {
+			return myOrganizationsIds;
 	}
 
-	public void setMyOrganizationsIds(
-		UnsafeSupplier<Long[], Throwable> myOrganizationsIdsUnsafeSupplier) {
+	public void setMyOrganizationsIds(Long[] myOrganizationsIds) {
+			this.myOrganizationsIds = myOrganizationsIds;
+	}
 
+	public void setMyOrganizationsIds(UnsafeSupplier<Long[], Throwable> myOrganizationsIdsUnsafeSupplier) {
 			try {
 				myOrganizationsIds = myOrganizationsIdsUnsafeSupplier.get();
 	}
@@ -344,8 +318,14 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
+	@GraphQLField
+	protected Long[] myOrganizationsIds;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -357,13 +337,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setProfileURL(String profileURL) {
-		this.profileURL = profileURL;
+	@GraphQLField
+	protected String name;
+	public String getProfileURL() {
+			return profileURL;
 	}
 
-	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+	public void setProfileURL(String profileURL) {
+			this.profileURL = profileURL;
+	}
 
+	public void setProfileURL(UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
 			try {
 				profileURL = profileURLUnsafeSupplier.get();
 	}
@@ -372,13 +356,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setRoles(Role[] roles) {
-		this.roles = roles;
+	@GraphQLField
+	protected String profileURL;
+	public Role[] getRoles() {
+			return roles;
 	}
 
-	public void setRoles(
-		UnsafeSupplier<Role[], Throwable> rolesUnsafeSupplier) {
+	public void setRoles(Role[] roles) {
+			this.roles = roles;
+	}
 
+	public void setRoles(UnsafeSupplier<Role[], Throwable> rolesUnsafeSupplier) {
 			try {
 				roles = rolesUnsafeSupplier.get();
 	}
@@ -387,13 +375,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setRolesIds(Long[] rolesIds) {
-		this.rolesIds = rolesIds;
+	@GraphQLField
+	protected Role[] roles;
+	public Long[] getRolesIds() {
+			return rolesIds;
 	}
 
-	public void setRolesIds(
-		UnsafeSupplier<Long[], Throwable> rolesIdsUnsafeSupplier) {
+	public void setRolesIds(Long[] rolesIds) {
+			this.rolesIds = rolesIds;
+	}
 
+	public void setRolesIds(UnsafeSupplier<Long[], Throwable> rolesIdsUnsafeSupplier) {
 			try {
 				rolesIds = rolesIdsUnsafeSupplier.get();
 	}
@@ -402,13 +394,17 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setTasksAssignedToMe(String[] tasksAssignedToMe) {
-		this.tasksAssignedToMe = tasksAssignedToMe;
+	@GraphQLField
+	protected Long[] rolesIds;
+	public String[] getTasksAssignedToMe() {
+			return tasksAssignedToMe;
 	}
 
-	public void setTasksAssignedToMe(
-		UnsafeSupplier<String[], Throwable> tasksAssignedToMeUnsafeSupplier) {
+	public void setTasksAssignedToMe(String[] tasksAssignedToMe) {
+			this.tasksAssignedToMe = tasksAssignedToMe;
+	}
 
+	public void setTasksAssignedToMe(UnsafeSupplier<String[], Throwable> tasksAssignedToMeUnsafeSupplier) {
 			try {
 				tasksAssignedToMe = tasksAssignedToMeUnsafeSupplier.get();
 	}
@@ -417,82 +413,24 @@ public class UserAccountImpl implements UserAccount {
 	}
 	}
 
-	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles) {
-		this.tasksAssignedToMyRoles = tasksAssignedToMyRoles;
+	@GraphQLField
+	protected String[] tasksAssignedToMe;
+	public String[] getTasksAssignedToMyRoles() {
+			return tasksAssignedToMyRoles;
 	}
 
-	public void setTasksAssignedToMyRoles(
-		UnsafeSupplier<String[], Throwable>
-			tasksAssignedToMyRolesUnsafeSupplier) {
+	public void setTasksAssignedToMyRoles(String[] tasksAssignedToMyRoles) {
+			this.tasksAssignedToMyRoles = tasksAssignedToMyRoles;
+	}
 
+	public void setTasksAssignedToMyRoles(UnsafeSupplier<String[], Throwable> tasksAssignedToMyRolesUnsafeSupplier) {
 			try {
-				tasksAssignedToMyRoles =
-					tasksAssignedToMyRolesUnsafeSupplier.get();
+				tasksAssignedToMyRoles = tasksAssignedToMyRolesUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String additionalName;
-
-	@GraphQLField
-	protected String alternateName;
-
-	@GraphQLField
-	protected Date birthDate;
-
-	@GraphQLField
-	protected ContactInformation contactInformation;
-
-	@GraphQLField
-	protected String dashboardURL;
-
-	@GraphQLField
-	protected String email;
-
-	@GraphQLField
-	protected String familyName;
-
-	@GraphQLField
-	protected String givenName;
-
-	@GraphQLField
-	protected String honorificPrefix;
-
-	@GraphQLField
-	protected String honorificSuffix;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String image;
-
-	@GraphQLField
-	protected String jobTitle;
-
-	@GraphQLField
-	protected Organization[] myOrganizations;
-
-	@GraphQLField
-	protected Long[] myOrganizationsIds;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected String profileURL;
-
-	@GraphQLField
-	protected Role[] roles;
-
-	@GraphQLField
-	protected Long[] rolesIds;
-
-	@GraphQLField
-	protected String[] tasksAssignedToMe;
 
 	@GraphQLField
 	protected String[] tasksAssignedToMyRoles;

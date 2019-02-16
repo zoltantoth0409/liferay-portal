@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
@@ -31,69 +32,83 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 
+	@GET
+	@Path("/content-spaces/{content-space-id}/vocabularies")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteVocabulary(Long vocabularyId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public Page<Vocabulary> getContentSpaceVocabulariesPage(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
-		throws Exception {
-
+	public Page<Vocabulary> getContentSpaceVocabulariesPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/vocabularies")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Vocabulary getVocabulary(Long vocabularyId) throws Exception {
-		return new VocabularyImpl();
-	}
-
-	@Override
-	public Vocabulary postContentSpaceVocabulary(
-			Long contentSpaceId, Vocabulary vocabulary)
-		throws Exception {
-
+	public Vocabulary postContentSpaceVocabulary( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception {
 			return new VocabularyImpl();
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/vocabularies/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public Vocabulary postContentSpaceVocabularyBatchCreate(
-			Long contentSpaceId, Vocabulary vocabulary)
-		throws Exception {
-
+	public Vocabulary postContentSpaceVocabularyBatchCreate( @PathParam("content-space-id") Long contentSpaceId , Vocabulary vocabulary ) throws Exception {
 			return new VocabularyImpl();
-	}
 
+	}
+	@DELETE
+	@Path("/vocabularies/{vocabulary-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Vocabulary putVocabulary(Long vocabularyId, Vocabulary vocabulary)
-		throws Exception {
+	public boolean deleteVocabulary( @PathParam("vocabulary-id") Long vocabularyId ) throws Exception {
+			return false;
 
+	}
+	@GET
+	@Path("/vocabularies/{vocabulary-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Vocabulary getVocabulary( @PathParam("vocabulary-id") Long vocabularyId ) throws Exception {
 			return new VocabularyImpl();
+
+	}
+	@Consumes("application/json")
+	@PUT
+	@Path("/vocabularies/{vocabulary-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Vocabulary putVocabulary( @PathParam("vocabulary-id") Long vocabularyId , Vocabulary vocabulary ) throws Exception {
+			return new VocabularyImpl();
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

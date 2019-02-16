@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.headless.foundation.internal.dto.v1_0.RoleImpl;
 import com.liferay.headless.foundation.resource.v1_0.RoleResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,51 +30,58 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseRoleResourceImpl implements RoleResource {
 
+	@GET
+	@Path("/my-user-accounts/{my-user-account-id}/roles")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Role> getMyUserAccountRolesPage(
-			Long myUserAccountId, Pagination pagination)
-		throws Exception {
-
+	public Page<Role> getMyUserAccountRolesPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@GET
+	@Path("/roles")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Role getRole(Long roleId) throws Exception {
-		return new RoleImpl();
-	}
-
-	@Override
-	public Page<Role> getRolesPage(Pagination pagination) throws Exception {
-		return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	public Page<Role> getUserAccountRolesPage(
-			Long userAccountId, Pagination pagination)
-		throws Exception {
-
+	public Page<Role> getRolesPage( @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
+	}
+	@GET
+	@Path("/roles/{role-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Role getRole( @PathParam("role-id") Long roleId ) throws Exception {
+			return new RoleImpl();
+
+	}
+	@GET
+	@Path("/user-accounts/{user-account-id}/roles")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<Role> getUserAccountRolesPage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception {
+			return Page.of(Collections.emptyList());
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

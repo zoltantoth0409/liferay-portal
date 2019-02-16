@@ -55,8 +55,7 @@ public abstract class BasePhoneResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-foundation/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -66,35 +65,32 @@ public abstract class BasePhoneResourceTestCase {
 
 	@Test
 	public void testGetGenericParentPhonesPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetPhone() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetGenericParentPhonesPage(
-			Object genericParentId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetGenericParentPhonesPage( Object genericParentId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/phones", genericParentId
+				_resourceURL + "/phones",
+				genericParentId 
 			);
-	}
 
-	protected Response invokeGetPhone(Long phoneId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetPhone( Long phoneId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/phones/{phone-id}", phoneId
+				_resourceURL + "/phones/{phone-id}",
+				phoneId
 			);
+
 	}
 
 	protected Phone randomPhone() {
@@ -122,12 +118,12 @@ phone.setPhoneType(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

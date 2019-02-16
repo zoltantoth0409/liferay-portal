@@ -65,91 +65,78 @@ public abstract class BaseFormResourceTestCase {
 
 	@Test
 	public void testGetContentSpaceFormsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetForm() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetFormFetchLatestDraft() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPostFormEvaluateContext() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
+	@Test
+	public void testGetFormFetchLatestDraft() throws Exception {
+			Assert.assertTrue(true);
+	}
 	@Test
 	public void testPostFormUploadFile() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceFormsPage(
-			Long contentSpaceId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetContentSpaceFormsPage( Long contentSpaceId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/content-spaces/{content-space-id}/form",
-				contentSpaceId
+				contentSpaceId 
 			);
-	}
 
-	protected Response invokeGetForm(Long formId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetForm( Long formId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/forms/{form-id}", formId
+				_resourceURL + "/forms/{form-id}",
+				formId
 			);
+
 	}
-
-	protected Response invokeGetFormFetchLatestDraft(Long formId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/forms/{form-id}/fetch-latest-draft", formId
-			);
-	}
-
-	protected Response invokePostFormEvaluateContext(Long formId, Form form)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostFormEvaluateContext( Long formId , Form form ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				form
 			).when(
 			).post(
-				_resourceURL + "/forms/{form-id}/evaluate-context", formId
+				_resourceURL + "/forms/{form-id}/evaluate-context",
+				formId 
 			);
+
 	}
+	protected Response invokeGetFormFetchLatestDraft( Long formId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePostFormUploadFile(Long formId, Form form)
-		throws Exception {
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/forms/{form-id}/fetch-latest-draft",
+				formId
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokePostFormUploadFile( Long formId , Form form ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				form
 			).when(
 			).post(
-				_resourceURL + "/forms/{form-id}/upload-file", formId
+				_resourceURL + "/forms/{form-id}/upload-file",
+				formId 
 			);
+
 	}
 
 	protected Form randomForm() {
@@ -182,12 +169,12 @@ form.setStructureId(RandomTestUtil.randomLong());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

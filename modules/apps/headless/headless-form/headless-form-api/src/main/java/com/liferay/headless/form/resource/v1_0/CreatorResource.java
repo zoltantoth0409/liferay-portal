@@ -15,14 +15,8 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Creator;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 
 /**
  * To access this resource, run:
@@ -33,13 +27,8 @@ import javax.ws.rs.Produces;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface CreatorResource {
 
-	@GET
-	@Path("/creators/{creator-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Creator getCreator( @PathParam("creator-id") Long creatorId ) throws Exception;
+	public Creator getCreator( Long creatorId ) throws Exception;
 
 }

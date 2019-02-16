@@ -15,25 +15,12 @@
 package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.PATCH;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -44,79 +31,28 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface StructuredContentResource {
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/content-structures/{content-structure-id}/structured-contents")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @PathParam("content-structure-id") Long contentStructureId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
+	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage( Long contentSpaceId , Long contentStructureId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception;
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/structured-contents")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<StructuredContent> getContentSpaceStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
+	public Page<StructuredContent> getContentSpaceStructuredContentsPage( Long contentSpaceId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception;
 
-	@Consumes("application/json")
-	@PATCH
-	@Path("/content-spaces/{content-space-id}/structured-contents")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public StructuredContent patchContentSpaceStructuredContents( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
+	public StructuredContent patchContentSpaceStructuredContents( Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/structured-contents")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public StructuredContent postContentSpaceStructuredContent( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
+	public StructuredContent postContentSpaceStructuredContent( Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/structured-contents/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public StructuredContent postContentSpaceStructuredContentBatchCreate( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
+	public StructuredContent postContentSpaceStructuredContentBatchCreate( Long contentSpaceId , StructuredContent structuredContent ) throws Exception;
 
-	@DELETE
-	@Path("/structured-contents/{structured-content-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteStructuredContent( @PathParam("structured-content-id") Long structuredContentId ) throws Exception;
+	public boolean deleteStructuredContent( Long structuredContentId ) throws Exception;
 
-	@GET
-	@Path("/structured-contents/{structured-content-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public StructuredContent getStructuredContent( @PathParam("structured-content-id") Long structuredContentId ) throws Exception;
+	public StructuredContent getStructuredContent( Long structuredContentId ) throws Exception;
 
-	@Consumes("application/json")
-	@PUT
-	@Path("/structured-contents/{structured-content-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public StructuredContent putStructuredContent( @PathParam("structured-content-id") Long structuredContentId , StructuredContent structuredContent ) throws Exception;
+	public StructuredContent putStructuredContent( Long structuredContentId , StructuredContent structuredContent ) throws Exception;
 
-	@GET
-	@Path("/structured-contents/{structured-content-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Long> getStructuredContentCategoriesPage( @PathParam("structured-content-id") Long structuredContentId , @Context Pagination pagination ) throws Exception;
+	public Page<Long> getStructuredContentCategoriesPage( Long structuredContentId , Pagination pagination ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/structured-contents/{structured-content-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response postStructuredContentCategories( @PathParam("structured-content-id") Long structuredContentId , Long referenceId ) throws Exception;
+	public boolean postStructuredContentCategories( Long structuredContentId , Long referenceId ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/structured-contents/{structured-content-id}/categories/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public Response postStructuredContentCategoriesBatchCreate( @PathParam("structured-content-id") Long structuredContentId , Long referenceId ) throws Exception;
+	public boolean postStructuredContentCategoriesBatchCreate( Long structuredContentId , Long referenceId ) throws Exception;
 
 }

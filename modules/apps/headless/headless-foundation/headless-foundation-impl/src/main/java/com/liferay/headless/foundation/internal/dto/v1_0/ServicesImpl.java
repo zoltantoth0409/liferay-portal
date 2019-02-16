@@ -34,25 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ServicesImpl implements Services {
 
 	public HoursAvailable[] getHoursAvailable() {
-		return hoursAvailable;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getServiceType() {
-		return serviceType;
+			return hoursAvailable;
 	}
 
 	public void setHoursAvailable(HoursAvailable[] hoursAvailable) {
-		this.hoursAvailable = hoursAvailable;
+			this.hoursAvailable = hoursAvailable;
 	}
 
-	public void setHoursAvailable(
-		UnsafeSupplier<HoursAvailable[], Throwable>
-			hoursAvailableUnsafeSupplier) {
-
+	public void setHoursAvailable(UnsafeSupplier<HoursAvailable[], Throwable> hoursAvailableUnsafeSupplier) {
 			try {
 				hoursAvailable = hoursAvailableUnsafeSupplier.get();
 	}
@@ -61,8 +50,14 @@ public class ServicesImpl implements Services {
 	}
 	}
 
+	@GraphQLField
+	protected HoursAvailable[] hoursAvailable;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -74,13 +69,17 @@ public class ServicesImpl implements Services {
 	}
 	}
 
-	public void setServiceType(String serviceType) {
-		this.serviceType = serviceType;
+	@GraphQLField
+	protected Long id;
+	public String getServiceType() {
+			return serviceType;
 	}
 
-	public void setServiceType(
-		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
+	public void setServiceType(String serviceType) {
+			this.serviceType = serviceType;
+	}
 
+	public void setServiceType(UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
 			try {
 				serviceType = serviceTypeUnsafeSupplier.get();
 	}
@@ -88,12 +87,6 @@ public class ServicesImpl implements Services {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected HoursAvailable[] hoursAvailable;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String serviceType;

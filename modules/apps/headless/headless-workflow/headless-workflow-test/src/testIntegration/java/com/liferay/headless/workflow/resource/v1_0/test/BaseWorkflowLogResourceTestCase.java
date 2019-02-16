@@ -55,8 +55,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-workflow/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-workflow/v1.0");
 	}
 
 	@After
@@ -66,38 +65,32 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 	@Test
 	public void testGetWorkflowLog() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetWorkflowTaskWorkflowLogsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetWorkflowLog(Long workflowLogId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetWorkflowLog( Long workflowLogId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/workflow-logs/{workflow-log-id}", workflowLogId
+				_resourceURL + "/workflow-logs/{workflow-log-id}",
+				workflowLogId
 			);
+
 	}
-
-	protected Response invokeGetWorkflowTaskWorkflowLogsPage(
-			Long workflowTaskId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetWorkflowTaskWorkflowLogsPage( Long workflowTaskId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/workflow-tasks/{workflow-task-id}/workflow-logs",
-				workflowTaskId
+				workflowTaskId 
 			);
+
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
@@ -131,12 +124,12 @@ workflowLog.setType(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

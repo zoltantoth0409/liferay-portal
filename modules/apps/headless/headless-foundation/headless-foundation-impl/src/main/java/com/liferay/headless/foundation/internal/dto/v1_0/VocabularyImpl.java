@@ -36,52 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class VocabularyImpl implements Vocabulary {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public UserAccount getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Category[] getVocabularyCategories() {
-		return vocabularyCategories;
-	}
-
-	public Long[] getVocabularyCategoriesIds() {
-		return vocabularyCategoriesIds;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -90,13 +52,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -105,9 +71,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	@GraphQLField
+	protected Long contentSpace;
+	public UserAccount getCreator() {
+			return creator;
+	}
 
+	public void setCreator(UserAccount creator) {
+			this.creator = creator;
+	}
+
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -116,17 +90,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected UserAccount creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+			this.dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -135,13 +109,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -150,13 +128,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -165,8 +147,14 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
+	@GraphQLField
+	protected String description;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -178,8 +166,14 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -191,14 +185,17 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setVocabularyCategories(Category[] vocabularyCategories) {
-		this.vocabularyCategories = vocabularyCategories;
+	@GraphQLField
+	protected String name;
+	public Category[] getVocabularyCategories() {
+			return vocabularyCategories;
 	}
 
-	public void setVocabularyCategories(
-		UnsafeSupplier<Category[], Throwable>
-			vocabularyCategoriesUnsafeSupplier) {
+	public void setVocabularyCategories(Category[] vocabularyCategories) {
+			this.vocabularyCategories = vocabularyCategories;
+	}
 
+	public void setVocabularyCategories(UnsafeSupplier<Category[], Throwable> vocabularyCategoriesUnsafeSupplier) {
 			try {
 				vocabularyCategories = vocabularyCategoriesUnsafeSupplier.get();
 	}
@@ -207,49 +204,24 @@ public class VocabularyImpl implements Vocabulary {
 	}
 	}
 
-	public void setVocabularyCategoriesIds(Long[] vocabularyCategoriesIds) {
-		this.vocabularyCategoriesIds = vocabularyCategoriesIds;
+	@GraphQLField
+	protected Category[] vocabularyCategories;
+	public Long[] getVocabularyCategoriesIds() {
+			return vocabularyCategoriesIds;
 	}
 
-	public void setVocabularyCategoriesIds(
-		UnsafeSupplier<Long[], Throwable>
-			vocabularyCategoriesIdsUnsafeSupplier) {
+	public void setVocabularyCategoriesIds(Long[] vocabularyCategoriesIds) {
+			this.vocabularyCategoriesIds = vocabularyCategoriesIds;
+	}
 
+	public void setVocabularyCategoriesIds(UnsafeSupplier<Long[], Throwable> vocabularyCategoriesIdsUnsafeSupplier) {
 			try {
-				vocabularyCategoriesIds =
-					vocabularyCategoriesIdsUnsafeSupplier.get();
+				vocabularyCategoriesIds = vocabularyCategoriesIdsUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected UserAccount creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Category[] vocabularyCategories;
 
 	@GraphQLField
 	protected Long[] vocabularyCategoriesIds;

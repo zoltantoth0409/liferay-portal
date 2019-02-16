@@ -17,6 +17,7 @@ package com.liferay.headless.form.internal.resource.v1_0;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.internal.dto.v1_0.FormRecordImpl;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,60 +30,73 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 
+	@GET
+	@Path("/form-records/{form-record-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<FormRecord> getFormFormRecordsPage(
-			Long formId, Pagination pagination)
-		throws Exception {
+	public FormRecord getFormRecord( @PathParam("form-record-id") Long formRecordId ) throws Exception {
+			return new FormRecordImpl();
 
+	}
+	@Consumes("application/json")
+	@PUT
+	@Path("/form-records/{form-record-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public FormRecord putFormRecord( @PathParam("form-record-id") Long formRecordId , FormRecord formRecord ) throws Exception {
+			return new FormRecordImpl();
+
+	}
+	@GET
+	@Path("/forms/{form-id}/form-records")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<FormRecord> getFormFormRecordsPage( @PathParam("form-id") Long formId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/forms/{form-id}/form-records")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public FormRecord getFormRecord(Long formRecordId) throws Exception {
-		return new FormRecordImpl();
-	}
-
-	@Override
-	public FormRecord postFormFormRecord(Long formId, FormRecord formRecord)
-		throws Exception {
-
+	public FormRecord postFormFormRecord( @PathParam("form-id") Long formId , FormRecord formRecord ) throws Exception {
 			return new FormRecordImpl();
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/forms/{form-id}/form-records/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public FormRecord postFormFormRecordBatchCreate(
-			Long formId, FormRecord formRecord)
-		throws Exception {
-
+	public FormRecord postFormFormRecordBatchCreate( @PathParam("form-id") Long formId , FormRecord formRecord ) throws Exception {
 			return new FormRecordImpl();
+
 	}
 
-	@Override
-	public FormRecord putFormRecord(Long formRecordId, FormRecord formRecord)
-		throws Exception {
-
-			return new FormRecordImpl();
-	}
-
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

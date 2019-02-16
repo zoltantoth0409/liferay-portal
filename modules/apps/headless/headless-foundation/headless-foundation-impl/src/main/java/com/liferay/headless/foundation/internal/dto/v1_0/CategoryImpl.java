@@ -36,64 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class CategoryImpl implements Category {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public Long getCategoryId() {
-		return categoryId;
-	}
-
-	public UserAccount getCreator() {
-		return creator;
-	}
-
-	public Long getCreatorId() {
-		return creatorId;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Category[] getSubcategories() {
-		return subcategories;
-	}
-
-	public Vocabulary getVocabulary() {
-		return vocabulary;
-	}
-
-	public Long getVocabularyId() {
-		return vocabularyId;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -102,13 +52,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Category getCategory() {
+			return category;
 	}
 
-	public void setCategory(
-		UnsafeSupplier<Category, Throwable> categoryUnsafeSupplier) {
+	public void setCategory(Category category) {
+			this.category = category;
+	}
 
+	public void setCategory(UnsafeSupplier<Category, Throwable> categoryUnsafeSupplier) {
 			try {
 				category = categoryUnsafeSupplier.get();
 	}
@@ -117,13 +71,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	@GraphQLField
+	protected Category category;
+	public Long getCategoryId() {
+			return categoryId;
 	}
 
-	public void setCategoryId(
-		UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier) {
+	public void setCategoryId(Long categoryId) {
+			this.categoryId = categoryId;
+	}
 
+	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier) {
 			try {
 				categoryId = categoryIdUnsafeSupplier.get();
 	}
@@ -132,9 +90,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	@GraphQLField
+	protected Long categoryId;
+	public UserAccount getCreator() {
+			return creator;
+	}
 
+	public void setCreator(UserAccount creator) {
+			this.creator = creator;
+	}
+
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -143,17 +109,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected UserAccount creator;
+	public Long getCreatorId() {
+			return creatorId;
 	}
 
 	public void setCreatorId(Long creatorId) {
-		this.creatorId = creatorId;
+			this.creatorId = creatorId;
 	}
 
-	public void setCreatorId(
-		UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
-
+	public void setCreatorId(UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
 			try {
 				creatorId = creatorIdUnsafeSupplier.get();
 	}
@@ -162,13 +128,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Long creatorId;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -177,13 +147,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -192,13 +166,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -207,8 +185,14 @@ public class CategoryImpl implements Category {
 	}
 	}
 
+	@GraphQLField
+	protected String description;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -220,8 +204,14 @@ public class CategoryImpl implements Category {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -233,13 +223,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setSubcategories(Category[] subcategories) {
-		this.subcategories = subcategories;
+	@GraphQLField
+	protected String name;
+	public Category[] getSubcategories() {
+			return subcategories;
 	}
 
-	public void setSubcategories(
-		UnsafeSupplier<Category[], Throwable> subcategoriesUnsafeSupplier) {
+	public void setSubcategories(Category[] subcategories) {
+			this.subcategories = subcategories;
+	}
 
+	public void setSubcategories(UnsafeSupplier<Category[], Throwable> subcategoriesUnsafeSupplier) {
 			try {
 				subcategories = subcategoriesUnsafeSupplier.get();
 	}
@@ -248,9 +242,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setVocabulary(
-		UnsafeSupplier<Vocabulary, Throwable> vocabularyUnsafeSupplier) {
+	@GraphQLField
+	protected Category[] subcategories;
+	public Vocabulary getVocabulary() {
+			return vocabulary;
+	}
 
+	public void setVocabulary(Vocabulary vocabulary) {
+			this.vocabulary = vocabulary;
+	}
+
+	public void setVocabulary(UnsafeSupplier<Vocabulary, Throwable> vocabularyUnsafeSupplier) {
 			try {
 				vocabulary = vocabularyUnsafeSupplier.get();
 	}
@@ -259,17 +261,17 @@ public class CategoryImpl implements Category {
 	}
 	}
 
-	public void setVocabulary(Vocabulary vocabulary) {
-		this.vocabulary = vocabulary;
+	@GraphQLField
+	protected Vocabulary vocabulary;
+	public Long getVocabularyId() {
+			return vocabularyId;
 	}
 
 	public void setVocabularyId(Long vocabularyId) {
-		this.vocabularyId = vocabularyId;
+			this.vocabularyId = vocabularyId;
 	}
 
-	public void setVocabularyId(
-		UnsafeSupplier<Long, Throwable> vocabularyIdUnsafeSupplier) {
-
+	public void setVocabularyId(UnsafeSupplier<Long, Throwable> vocabularyIdUnsafeSupplier) {
 			try {
 				vocabularyId = vocabularyIdUnsafeSupplier.get();
 	}
@@ -277,42 +279,6 @@ public class CategoryImpl implements Category {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Category category;
-
-	@GraphQLField
-	protected Long categoryId;
-
-	@GraphQLField
-	protected UserAccount creator;
-
-	@GraphQLField
-	protected Long creatorId;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Category[] subcategories;
-
-	@GraphQLField
-	protected Vocabulary vocabulary;
 
 	@GraphQLField
 	protected Long vocabularyId;

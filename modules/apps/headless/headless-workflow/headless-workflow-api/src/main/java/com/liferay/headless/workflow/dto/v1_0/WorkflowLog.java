@@ -29,72 +29,55 @@ public interface WorkflowLog {
 
 	public String getAuditPerson();
 
-	public String getCommentLog();
-
-	public Date getDateCreated();
-
-	public Long getId();
-
-	public String getPerson();
-
-	public String getPreviousPerson();
-
-	public String getPreviousState();
-
-	public String getState();
-
-	public WorkflowTask getTask();
-
-	public Long getTaskId();
-
-	public String getType();
-
 	public void setAuditPerson(String auditPerson);
 
-	public void setAuditPerson(
-		UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier);
+	public void setAuditPerson(UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier);
+	public String getCommentLog();
 
 	public void setCommentLog(String commentLog);
 
-	public void setCommentLog(
-		UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier);
+	public void setCommentLog(UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier);
+	public Date getDateCreated();
 
 	public void setDateCreated(Date dateCreated);
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getPerson();
 
 	public void setPerson(String person);
 
-	public void setPerson(
-		UnsafeSupplier<String, Throwable> personUnsafeSupplier);
+	public void setPerson(UnsafeSupplier<String, Throwable> personUnsafeSupplier);
+	public String getPreviousPerson();
 
 	public void setPreviousPerson(String previousPerson);
 
-	public void setPreviousPerson(
-		UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier);
+	public void setPreviousPerson(UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier);
+	public String getPreviousState();
 
 	public void setPreviousState(String previousState);
 
-	public void setPreviousState(
-		UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier);
+	public void setPreviousState(UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier);
+	public String getState();
 
 	public void setState(String state);
 
 	public void setState(UnsafeSupplier<String, Throwable> stateUnsafeSupplier);
-
-	public void setTask(
-		UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier);
+	public WorkflowTask getTask();
 
 	public void setTask(WorkflowTask task);
+
+	public void setTask(UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier);
+	public Long getTaskId();
 
 	public void setTaskId(Long taskId);
 
 	public void setTaskId(UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier);
+	public String getType();
 
 	public void setType(String type);
 

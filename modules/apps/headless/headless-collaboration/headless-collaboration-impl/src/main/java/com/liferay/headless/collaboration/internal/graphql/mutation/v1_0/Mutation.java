@@ -25,8 +25,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import javax.ws.rs.core.Response;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -39,11 +37,8 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Mutation {
 
 	@GraphQLInvokeDetached
-	public Response deleteBlogPosting( @GraphQLName("blog-posting-id") Long blogPostingId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteBlogPosting( @GraphQLName("blog-posting-id") Long blogPostingId ) throws Exception {
+return _getBlogPostingResource().deleteBlogPosting( blogPostingId );
 	}
 
 	@GraphQLInvokeDetached
@@ -53,20 +48,14 @@ return _getBlogPostingResource().putBlogPosting( blogPostingId , blogPosting );
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postBlogPostingCategories( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postBlogPostingCategories( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getBlogPostingResource().postBlogPostingCategories( blogPostingId , referenceId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Response postBlogPostingCategoriesBatchCreate( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("Long") Long referenceId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean postBlogPostingCategoriesBatchCreate( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("Long") Long referenceId ) throws Exception {
+return _getBlogPostingResource().postBlogPostingCategoriesBatchCreate( blogPostingId , referenceId );
 	}
 
 	@GraphQLField
@@ -94,11 +83,8 @@ return _getImageObjectResource().postImageObjectRepositoryImageObjectBatchCreate
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteImageObject( @GraphQLName("image-object-id") Long imageObjectId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteImageObject( @GraphQLName("image-object-id") Long imageObjectId ) throws Exception {
+return _getImageObjectResource().deleteImageObject( imageObjectId );
 	}
 
 	private static BlogPostingResource _getBlogPostingResource() {

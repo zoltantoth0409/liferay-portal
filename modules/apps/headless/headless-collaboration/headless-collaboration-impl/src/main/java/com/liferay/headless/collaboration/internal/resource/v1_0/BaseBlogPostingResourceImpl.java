@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,98 +30,112 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseBlogPostingResourceImpl
-	implements BlogPostingResource {
+@Path("/v1.0")
+public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource {
 
+	@DELETE
+	@Path("/blog-postings/{blog-posting-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteBlogPosting(Long blogPostingId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
+	public boolean deleteBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception {
+			return false;
 
-			return responseBuilder.build();
 	}
-
+	@GET
+	@Path("/blog-postings/{blog-posting-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public BlogPosting getBlogPosting(Long blogPostingId) throws Exception {
-		return new BlogPostingImpl();
+	public BlogPosting getBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception {
+			return new BlogPostingImpl();
+
 	}
-
+	@Consumes("application/json")
+	@PUT
+	@Path("/blog-postings/{blog-posting-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Long> getBlogPostingCategoriesPage(
-			Long blogPostingId, Pagination pagination)
-		throws Exception {
+	public BlogPosting putBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , BlogPosting blogPosting ) throws Exception {
+			return new BlogPostingImpl();
 
+	}
+	@GET
+	@Path("/blog-postings/{blog-posting-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<Long> getBlogPostingCategoriesPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/blog-postings/{blog-posting-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<BlogPosting> getContentSpaceBlogPostingsPage(
-			Long contentSpaceId, Pagination pagination)
-		throws Exception {
+	public boolean postBlogPostingCategories( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception {
+			return false;
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/blog-postings/{blog-posting-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
+	@Override
+	public boolean postBlogPostingCategoriesBatchCreate( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception {
+			return false;
+
+	}
+	@GET
+	@Path("/content-spaces/{content-space-id}/blog-postings")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<BlogPosting> getContentSpaceBlogPostingsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/blog-postings")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response postBlogPostingCategories(
-			Long blogPostingId, Long referenceId)
-		throws Exception {
-
-			Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public Response postBlogPostingCategoriesBatchCreate(
-			Long blogPostingId, Long referenceId)
-		throws Exception {
-
-			Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public BlogPosting postContentSpaceBlogPosting(
-			Long contentSpaceId, BlogPosting blogPosting)
-		throws Exception {
-
+	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
 			return new BlogPostingImpl();
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/blog-postings/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public BlogPosting postContentSpaceBlogPostingBatchCreate(
-			Long contentSpaceId, BlogPosting blogPosting)
-		throws Exception {
-
+	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
 			return new BlogPostingImpl();
+
 	}
 
-	@Override
-	public BlogPosting putBlogPosting(
-			Long blogPostingId, BlogPosting blogPosting)
-		throws Exception {
-
-			return new BlogPostingImpl();
-	}
-
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

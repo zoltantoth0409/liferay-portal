@@ -34,36 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AdaptedMediaImpl implements AdaptedMedia {
 
 	public String getContentUrl() {
-		return contentUrl;
-	}
-
-	public Number getHeight() {
-		return height;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getResolutionName() {
-		return resolutionName;
-	}
-
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
-
-	public Number getWidth() {
-		return width;
+			return contentUrl;
 	}
 
 	public void setContentUrl(String contentUrl) {
-		this.contentUrl = contentUrl;
+			this.contentUrl = contentUrl;
 	}
 
-	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
-
+	public void setContentUrl(UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 			try {
 				contentUrl = contentUrlUnsafeSupplier.get();
 	}
@@ -72,13 +50,17 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 	}
 
-	public void setHeight(Number height) {
-		this.height = height;
+	@GraphQLField
+	protected String contentUrl;
+	public Number getHeight() {
+			return height;
 	}
 
-	public void setHeight(
-		UnsafeSupplier<Number, Throwable> heightUnsafeSupplier) {
+	public void setHeight(Number height) {
+			this.height = height;
+	}
 
+	public void setHeight(UnsafeSupplier<Number, Throwable> heightUnsafeSupplier) {
 			try {
 				height = heightUnsafeSupplier.get();
 	}
@@ -87,8 +69,14 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 	}
 
+	@GraphQLField
+	protected Number height;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -100,13 +88,17 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 	}
 
-	public void setResolutionName(String resolutionName) {
-		this.resolutionName = resolutionName;
+	@GraphQLField
+	protected Long id;
+	public String getResolutionName() {
+			return resolutionName;
 	}
 
-	public void setResolutionName(
-		UnsafeSupplier<String, Throwable> resolutionNameUnsafeSupplier) {
+	public void setResolutionName(String resolutionName) {
+			this.resolutionName = resolutionName;
+	}
 
+	public void setResolutionName(UnsafeSupplier<String, Throwable> resolutionNameUnsafeSupplier) {
 			try {
 				resolutionName = resolutionNameUnsafeSupplier.get();
 	}
@@ -115,13 +107,17 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 	}
 
-	public void setSizeInBytes(Number sizeInBytes) {
-		this.sizeInBytes = sizeInBytes;
+	@GraphQLField
+	protected String resolutionName;
+	public Number getSizeInBytes() {
+			return sizeInBytes;
 	}
 
-	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+	public void setSizeInBytes(Number sizeInBytes) {
+			this.sizeInBytes = sizeInBytes;
+	}
 
+	public void setSizeInBytes(UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
 			try {
 				sizeInBytes = sizeInBytesUnsafeSupplier.get();
 	}
@@ -130,13 +126,17 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 	}
 
-	public void setWidth(Number width) {
-		this.width = width;
+	@GraphQLField
+	protected Number sizeInBytes;
+	public Number getWidth() {
+			return width;
 	}
 
-	public void setWidth(
-		UnsafeSupplier<Number, Throwable> widthUnsafeSupplier) {
+	public void setWidth(Number width) {
+			this.width = width;
+	}
 
+	public void setWidth(UnsafeSupplier<Number, Throwable> widthUnsafeSupplier) {
 			try {
 				width = widthUnsafeSupplier.get();
 	}
@@ -144,21 +144,6 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String contentUrl;
-
-	@GraphQLField
-	protected Number height;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String resolutionName;
-
-	@GraphQLField
-	protected Number sizeInBytes;
 
 	@GraphQLField
 	protected Number width;

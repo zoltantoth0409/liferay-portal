@@ -55,8 +55,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-collaboration/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-collaboration/v1.0");
 	}
 
 	@After
@@ -66,174 +65,136 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@Test
 	public void testDeleteBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetBlogPostingCategoriesPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetContentSpaceBlogPostingsPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostBlogPostingCategories() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostBlogPostingCategoriesBatchCreate() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostContentSpaceBlogPosting() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostContentSpaceBlogPostingBatchCreate() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPutBlogPosting() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetBlogPostingCategoriesPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostBlogPostingCategories() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostBlogPostingCategoriesBatchCreate() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetContentSpaceBlogPostingsPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostContentSpaceBlogPosting() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostContentSpaceBlogPostingBatchCreate() throws Exception {
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteBlogPosting(Long blogPostingId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeDeleteBlogPosting( Long blogPostingId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).delete(
-				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
+				_resourceURL + "/blog-postings/{blog-posting-id}",
+				blogPostingId
 			);
+
 	}
-
-	protected Response invokeGetBlogPosting(Long blogPostingId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetBlogPosting( Long blogPostingId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
+				_resourceURL + "/blog-postings/{blog-posting-id}",
+				blogPostingId
 			);
+
 	}
+	protected Response invokePutBlogPosting( Long blogPostingId , BlogPosting blogPosting ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokeGetBlogPostingCategoriesPage(
-			Long blogPostingId, Pagination pagination)
-		throws Exception {
+			return requestSpecification.body(
+				blogPosting
+			).when(
+			).put(
+				_resourceURL + "/blog-postings/{blog-posting-id}",
+				blogPostingId 
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetBlogPostingCategoriesPage( Long blogPostingId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
-				blogPostingId
+				blogPostingId 
 			);
+
 	}
-
-	protected Response invokeGetContentSpaceBlogPostingsPage(
-			Long contentSpaceId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
-				contentSpaceId
-			);
-	}
-
-	protected Response invokePostBlogPostingCategories(
-			Long blogPostingId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostBlogPostingCategories( Long blogPostingId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
 				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
-				blogPostingId, referenceId
+				blogPostingId , referenceId
 			);
+
 	}
-
-	protected Response invokePostBlogPostingCategoriesBatchCreate(
-			Long blogPostingId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostBlogPostingCategoriesBatchCreate( Long blogPostingId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
 				_resourceURL + "/blog-postings/{blog-posting-id}/categories/batch-create",
-				blogPostingId, referenceId
+				blogPostingId , referenceId
 			);
+
 	}
+	protected Response invokeGetContentSpaceBlogPostingsPage( Long contentSpaceId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePostContentSpaceBlogPosting(
-			Long contentSpaceId, BlogPosting blogPosting)
-		throws Exception {
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
+				contentSpaceId 
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokePostContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				blogPosting
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
-
-	protected Response invokePostContentSpaceBlogPostingBatchCreate(
-			Long contentSpaceId, BlogPosting blogPosting)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostContentSpaceBlogPostingBatchCreate( Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				blogPosting
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/blog-postings/batch-create",
-				contentSpaceId
+				contentSpaceId 
 			);
-	}
 
-	protected Response invokePutBlogPosting(
-			Long blogPostingId, BlogPosting blogPosting)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.body(
-				blogPosting
-			).when(
-			).put(
-				_resourceURL + "/blog-postings/{blog-posting-id}", blogPostingId
-			);
 	}
 
 	protected BlogPosting randomBlogPosting() {
@@ -271,12 +232,12 @@ blogPosting.setRepositoryId(RandomTestUtil.randomLong());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

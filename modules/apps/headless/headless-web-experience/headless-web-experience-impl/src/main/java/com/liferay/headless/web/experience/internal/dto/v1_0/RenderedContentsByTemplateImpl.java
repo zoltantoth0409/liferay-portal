@@ -31,23 +31,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Generated("")
 @GraphQLName("RenderedContentsByTemplate")
 @XmlRootElement(name = "RenderedContentsByTemplate")
-public class RenderedContentsByTemplateImpl
-	implements RenderedContentsByTemplate {
+public class RenderedContentsByTemplateImpl implements RenderedContentsByTemplate {
 
 	public Long getId() {
-		return id;
-	}
-
-	public String getRenderedContent() {
-		return renderedContent;
-	}
-
-	public String getTemplate() {
-		return template;
+			return id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -59,13 +50,17 @@ public class RenderedContentsByTemplateImpl
 	}
 	}
 
-	public void setRenderedContent(String renderedContent) {
-		this.renderedContent = renderedContent;
+	@GraphQLField
+	protected Long id;
+	public String getRenderedContent() {
+			return renderedContent;
 	}
 
-	public void setRenderedContent(
-		UnsafeSupplier<String, Throwable> renderedContentUnsafeSupplier) {
+	public void setRenderedContent(String renderedContent) {
+			this.renderedContent = renderedContent;
+	}
 
+	public void setRenderedContent(UnsafeSupplier<String, Throwable> renderedContentUnsafeSupplier) {
 			try {
 				renderedContent = renderedContentUnsafeSupplier.get();
 	}
@@ -74,13 +69,17 @@ public class RenderedContentsByTemplateImpl
 	}
 	}
 
-	public void setTemplate(String template) {
-		this.template = template;
+	@GraphQLField
+	protected String renderedContent;
+	public String getTemplate() {
+			return template;
 	}
 
-	public void setTemplate(
-		UnsafeSupplier<String, Throwable> templateUnsafeSupplier) {
+	public void setTemplate(String template) {
+			this.template = template;
+	}
 
+	public void setTemplate(UnsafeSupplier<String, Throwable> templateUnsafeSupplier) {
 			try {
 				template = templateUnsafeSupplier.get();
 	}
@@ -88,12 +87,6 @@ public class RenderedContentsByTemplateImpl
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String renderedContent;
 
 	@GraphQLField
 	protected String template;

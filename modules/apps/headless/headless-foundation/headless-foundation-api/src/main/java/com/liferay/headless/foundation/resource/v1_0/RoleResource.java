@@ -15,17 +15,10 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,31 +29,14 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface RoleResource {
 
-	@GET
-	@Path("/my-user-accounts/{my-user-account-id}/roles")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Role> getMyUserAccountRolesPage( @PathParam("my-user-account-id") Long myUserAccountId , @Context Pagination pagination ) throws Exception;
+	public Page<Role> getMyUserAccountRolesPage( Long myUserAccountId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/roles")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Role> getRolesPage( @Context Pagination pagination ) throws Exception;
+	public Page<Role> getRolesPage( Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/roles/{role-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Role getRole( @PathParam("role-id") Long roleId ) throws Exception;
+	public Role getRole( Long roleId ) throws Exception;
 
-	@GET
-	@Path("/user-accounts/{user-account-id}/roles")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Role> getUserAccountRolesPage( @PathParam("user-account-id") Long userAccountId , @Context Pagination pagination ) throws Exception;
+	public Page<Role> getUserAccountRolesPage( Long userAccountId , Pagination pagination ) throws Exception;
 
 }

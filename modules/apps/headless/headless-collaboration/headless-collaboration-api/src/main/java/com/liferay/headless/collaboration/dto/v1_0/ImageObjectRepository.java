@@ -29,39 +29,30 @@ public interface ImageObjectRepository {
 
 	public Date getDateCreated();
 
-	public Date getDateModified();
-
-	public Long getId();
-
-	public ImageObject[] getImages();
-
-	public Long[] getImagesIds();
-
-	public String getName();
-
 	public void setDateCreated(Date dateCreated);
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public Date getDateModified();
 
 	public void setDateModified(Date dateModified);
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public ImageObject[] getImages();
 
 	public void setImages(ImageObject[] images);
 
-	public void setImages(
-		UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier);
+	public void setImages(UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier);
+	public Long[] getImagesIds();
 
 	public void setImagesIds(Long[] imagesIds);
 
-	public void setImagesIds(
-		UnsafeSupplier<Long[], Throwable> imagesIdsUnsafeSupplier);
+	public void setImagesIds(UnsafeSupplier<Long[], Throwable> imagesIdsUnsafeSupplier);
+	public String getName();
 
 	public void setName(String name);
 

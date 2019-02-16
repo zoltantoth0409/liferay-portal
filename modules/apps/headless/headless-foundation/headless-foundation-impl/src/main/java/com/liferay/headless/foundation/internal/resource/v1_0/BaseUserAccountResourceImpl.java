@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,89 +30,111 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseUserAccountResourceImpl
-	implements UserAccountResource {
+@Path("/v1.0")
+public abstract class BaseUserAccountResourceImpl implements UserAccountResource {
 
+	@GET
+	@Path("/my-user-accounts/{my-user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteUserAccount(Long userAccountId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public UserAccount getMyUserAccount(Long myUserAccountId) throws Exception {
-		return new UserAccountImpl();
-	}
-
-	@Override
-	public Page<UserAccount> getOrganizationUserAccountsPage(
-			Long organizationId, Pagination pagination)
-		throws Exception {
-
-			return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	public UserAccount getUserAccount(Long userAccountId) throws Exception {
-		return new UserAccountImpl();
-	}
-
-	@Override
-	public Page<UserAccount> getUserAccountsPage(
-			String fullnamequery, Pagination pagination)
-		throws Exception {
-
-			return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	public Page<UserAccount> getWebSiteUserAccountsPage(
-			Long webSiteId, Pagination pagination)
-		throws Exception {
-
-			return Page.of(Collections.emptyList());
-	}
-
-	@Override
-	public UserAccount postUserAccount(UserAccount userAccount)
-		throws Exception {
-
+	public UserAccount getMyUserAccount( @PathParam("my-user-account-id") Long myUserAccountId ) throws Exception {
 			return new UserAccountImpl();
-	}
 
+	}
+	@GET
+	@Path("/organizations/{organization-id}/user-accounts")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public UserAccount postUserAccountBatchCreate(UserAccount userAccount)
-		throws Exception {
+	public Page<UserAccount> getOrganizationUserAccountsPage( @PathParam("organization-id") Long organizationId , @Context Pagination pagination ) throws Exception {
+			return Page.of(Collections.emptyList());
 
-			return new UserAccountImpl();
 	}
-
+	@GET
+	@Path("/user-accounts")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public UserAccount putUserAccount(
-			Long userAccountId, UserAccount userAccount)
-		throws Exception {
+	public Page<UserAccount> getUserAccountsPage( @QueryParam("fullnamequery") String fullnamequery , @Context Pagination pagination ) throws Exception {
+			return Page.of(Collections.emptyList());
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/user-accounts")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public UserAccount postUserAccount( UserAccount userAccount ) throws Exception {
 			return new UserAccountImpl();
+
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/user-accounts/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
+	@Override
+	public UserAccount postUserAccountBatchCreate( UserAccount userAccount ) throws Exception {
+			return new UserAccountImpl();
+
+	}
+	@DELETE
+	@Path("/user-accounts/{user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public boolean deleteUserAccount( @PathParam("user-account-id") Long userAccountId ) throws Exception {
+			return false;
+
+	}
+	@GET
+	@Path("/user-accounts/{user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public UserAccount getUserAccount( @PathParam("user-account-id") Long userAccountId ) throws Exception {
+			return new UserAccountImpl();
+
+	}
+	@Consumes("application/json")
+	@PUT
+	@Path("/user-accounts/{user-account-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public UserAccount putUserAccount( @PathParam("user-account-id") Long userAccountId , UserAccount userAccount ) throws Exception {
+			return new UserAccountImpl();
+
+	}
+	@GET
+	@Path("/web-sites/{web-site-id}/user-accounts")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<UserAccount> getWebSiteUserAccountsPage( @PathParam("web-site-id") Long webSiteId , @Context Pagination pagination ) throws Exception {
+			return Page.of(Collections.emptyList());
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

@@ -36,44 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class RoleImpl implements Role {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public UserAccount getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public String getRoleType() {
-		return roleType;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -82,9 +52,17 @@ public class RoleImpl implements Role {
 	}
 	}
 
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	@GraphQLField
+	protected String[] availableLanguages;
+	public UserAccount getCreator() {
+			return creator;
+	}
 
+	public void setCreator(UserAccount creator) {
+			this.creator = creator;
+	}
+
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -93,17 +71,17 @@ public class RoleImpl implements Role {
 	}
 	}
 
-	public void setCreator(UserAccount creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected UserAccount creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+			this.dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -112,13 +90,17 @@ public class RoleImpl implements Role {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -127,13 +109,17 @@ public class RoleImpl implements Role {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -142,8 +128,14 @@ public class RoleImpl implements Role {
 	}
 	}
 
+	@GraphQLField
+	protected String description;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -155,8 +147,14 @@ public class RoleImpl implements Role {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -168,13 +166,17 @@ public class RoleImpl implements Role {
 	}
 	}
 
-	public void setRoleType(String roleType) {
-		this.roleType = roleType;
+	@GraphQLField
+	protected String name;
+	public String getRoleType() {
+			return roleType;
 	}
 
-	public void setRoleType(
-		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier) {
+	public void setRoleType(String roleType) {
+			this.roleType = roleType;
+	}
 
+	public void setRoleType(UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier) {
 			try {
 				roleType = roleTypeUnsafeSupplier.get();
 	}
@@ -182,27 +184,6 @@ public class RoleImpl implements Role {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected UserAccount creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected String roleType;

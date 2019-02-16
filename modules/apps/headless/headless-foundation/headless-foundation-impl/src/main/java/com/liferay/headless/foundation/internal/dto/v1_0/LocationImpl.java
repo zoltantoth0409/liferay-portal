@@ -34,24 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class LocationImpl implements Location {
 
 	public String getAddressCountry() {
-		return addressCountry;
-	}
-
-	public String getAddressRegion() {
-		return addressRegion;
-	}
-
-	public Long getId() {
-		return id;
+			return addressCountry;
 	}
 
 	public void setAddressCountry(String addressCountry) {
-		this.addressCountry = addressCountry;
+			this.addressCountry = addressCountry;
 	}
 
-	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
-
+	public void setAddressCountry(UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
 			try {
 				addressCountry = addressCountryUnsafeSupplier.get();
 	}
@@ -60,13 +50,17 @@ public class LocationImpl implements Location {
 	}
 	}
 
-	public void setAddressRegion(String addressRegion) {
-		this.addressRegion = addressRegion;
+	@GraphQLField
+	protected String addressCountry;
+	public String getAddressRegion() {
+			return addressRegion;
 	}
 
-	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+	public void setAddressRegion(String addressRegion) {
+			this.addressRegion = addressRegion;
+	}
 
+	public void setAddressRegion(UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
 			try {
 				addressRegion = addressRegionUnsafeSupplier.get();
 	}
@@ -75,8 +69,14 @@ public class LocationImpl implements Location {
 	}
 	}
 
+	@GraphQLField
+	protected String addressRegion;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -87,12 +87,6 @@ public class LocationImpl implements Location {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String addressCountry;
-
-	@GraphQLField
-	protected String addressRegion;
 
 	@GraphQLField
 	protected Long id;

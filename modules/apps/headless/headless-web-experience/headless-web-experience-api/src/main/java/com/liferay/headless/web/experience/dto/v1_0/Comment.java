@@ -27,25 +27,20 @@ public interface Comment {
 
 	public Comment[] getComments();
 
-	public Creator getCreator();
-
-	public Long getId();
-
-	public String getText();
-
 	public void setComments(Comment[] comments);
 
-	public void setComments(
-		UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier);
+	public void setComments(UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier);
+	public Creator getCreator();
 
 	public void setCreator(Creator creator);
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getText();
 
 	public void setText(String text);
 

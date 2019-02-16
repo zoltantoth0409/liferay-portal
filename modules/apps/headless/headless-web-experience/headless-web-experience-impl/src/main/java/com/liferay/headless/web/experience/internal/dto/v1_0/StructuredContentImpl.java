@@ -36,85 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class StructuredContentImpl implements StructuredContent {
 
 	public AggregateRating getAggregateRating() {
-		return aggregateRating;
-	}
-
-	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Long[] getCategory() {
-		return category;
-	}
-
-	public Comment[] getComment() {
-		return comment;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public ContentStructure getContentStructure() {
-		return contentStructure;
-	}
-
-	public Long getContentStructureId() {
-		return contentStructureId;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String[] getKeywords() {
-		return keywords;
-	}
-
-	public Date getLastReviewed() {
-		return lastReviewed;
-	}
-
-	public RenderedContentsByTemplate[] getRenderedContentsByTemplate() {
-		return renderedContentsByTemplate;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public Values[] getValues() {
-		return values;
+			return aggregateRating;
 	}
 
 	public void setAggregateRating(AggregateRating aggregateRating) {
-		this.aggregateRating = aggregateRating;
+			this.aggregateRating = aggregateRating;
 	}
 
-	public void setAggregateRating(
-		UnsafeSupplier<AggregateRating, Throwable>
-			aggregateRatingUnsafeSupplier) {
-
+	public void setAggregateRating(UnsafeSupplier<AggregateRating, Throwable> aggregateRatingUnsafeSupplier) {
 			try {
 				aggregateRating = aggregateRatingUnsafeSupplier.get();
 	}
@@ -123,13 +52,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+	@GraphQLField
+	protected AggregateRating aggregateRating;
+	public String[] getAvailableLanguages() {
+			return availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
+	public void setAvailableLanguages(String[] availableLanguages) {
+			this.availableLanguages = availableLanguages;
+	}
 
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -138,13 +71,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setCategory(Long[] category) {
-		this.category = category;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Long[] getCategory() {
+			return category;
 	}
 
-	public void setCategory(
-		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+	public void setCategory(Long[] category) {
+			this.category = category;
+	}
 
+	public void setCategory(UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
 			try {
 				category = categoryUnsafeSupplier.get();
 	}
@@ -153,13 +90,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setComment(Comment[] comment) {
-		this.comment = comment;
+	@GraphQLField
+	protected Long[] category;
+	public Comment[] getComment() {
+			return comment;
 	}
 
-	public void setComment(
-		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+	public void setComment(Comment[] comment) {
+			this.comment = comment;
+	}
 
+	public void setComment(UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
 			try {
 				comment = commentUnsafeSupplier.get();
 	}
@@ -168,13 +109,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected Comment[] comment;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -183,14 +128,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setContentStructure(ContentStructure contentStructure) {
-		this.contentStructure = contentStructure;
+	@GraphQLField
+	protected Long contentSpace;
+	public ContentStructure getContentStructure() {
+			return contentStructure;
 	}
 
-	public void setContentStructure(
-		UnsafeSupplier<ContentStructure, Throwable>
-			contentStructureUnsafeSupplier) {
+	public void setContentStructure(ContentStructure contentStructure) {
+			this.contentStructure = contentStructure;
+	}
 
+	public void setContentStructure(UnsafeSupplier<ContentStructure, Throwable> contentStructureUnsafeSupplier) {
 			try {
 				contentStructure = contentStructureUnsafeSupplier.get();
 	}
@@ -199,13 +147,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setContentStructureId(Long contentStructureId) {
-		this.contentStructureId = contentStructureId;
+	@GraphQLField
+	protected ContentStructure contentStructure;
+	public Long getContentStructureId() {
+			return contentStructureId;
 	}
 
-	public void setContentStructureId(
-		UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier) {
+	public void setContentStructureId(Long contentStructureId) {
+			this.contentStructureId = contentStructureId;
+	}
 
+	public void setContentStructureId(UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier) {
 			try {
 				contentStructureId = contentStructureIdUnsafeSupplier.get();
 	}
@@ -214,13 +166,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Long contentStructureId;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -229,13 +185,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -244,13 +204,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -259,13 +223,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
+	@GraphQLField
+	protected Date dateModified;
+	public Date getDatePublished() {
+			return datePublished;
 	}
 
-	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+	public void setDatePublished(Date datePublished) {
+			this.datePublished = datePublished;
+	}
 
+	public void setDatePublished(UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 			try {
 				datePublished = datePublishedUnsafeSupplier.get();
 	}
@@ -274,13 +242,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date datePublished;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -289,8 +261,14 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
+	@GraphQLField
+	protected String description;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -302,13 +280,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setKeywords(String[] keywords) {
-		this.keywords = keywords;
+	@GraphQLField
+	protected Long id;
+	public String[] getKeywords() {
+			return keywords;
 	}
 
-	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+	public void setKeywords(String[] keywords) {
+			this.keywords = keywords;
+	}
 
+	public void setKeywords(UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
 			try {
 				keywords = keywordsUnsafeSupplier.get();
 	}
@@ -317,13 +299,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setLastReviewed(Date lastReviewed) {
-		this.lastReviewed = lastReviewed;
+	@GraphQLField
+	protected String[] keywords;
+	public Date getLastReviewed() {
+			return lastReviewed;
 	}
 
-	public void setLastReviewed(
-		UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier) {
+	public void setLastReviewed(Date lastReviewed) {
+			this.lastReviewed = lastReviewed;
+	}
 
+	public void setLastReviewed(UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier) {
 			try {
 				lastReviewed = lastReviewedUnsafeSupplier.get();
 	}
@@ -332,32 +318,36 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setRenderedContentsByTemplate(
-		RenderedContentsByTemplate[] renderedContentsByTemplate) {
+	@GraphQLField
+	protected Date lastReviewed;
+	public RenderedContentsByTemplate[] getRenderedContentsByTemplate() {
+			return renderedContentsByTemplate;
+	}
 
+	public void setRenderedContentsByTemplate(RenderedContentsByTemplate[] renderedContentsByTemplate) {
 			this.renderedContentsByTemplate = renderedContentsByTemplate;
 	}
 
-	public void setRenderedContentsByTemplate(
-		UnsafeSupplier<RenderedContentsByTemplate[], Throwable>
-			renderedContentsByTemplateUnsafeSupplier) {
-
+	public void setRenderedContentsByTemplate(UnsafeSupplier<RenderedContentsByTemplate[], Throwable> renderedContentsByTemplateUnsafeSupplier) {
 			try {
-				renderedContentsByTemplate =
-					renderedContentsByTemplateUnsafeSupplier.get();
+				renderedContentsByTemplate = renderedContentsByTemplateUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
 	}
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	@GraphQLField
+	protected RenderedContentsByTemplate[] renderedContentsByTemplate;
+	public String getTitle() {
+			return title;
 	}
 
-	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+	public void setTitle(String title) {
+			this.title = title;
+	}
 
+	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
 			try {
 				title = titleUnsafeSupplier.get();
 	}
@@ -366,9 +356,17 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 	}
 
-	public void setValues(
-		UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier) {
+	@GraphQLField
+	protected String title;
+	public Values[] getValues() {
+			return values;
+	}
 
+	public void setValues(Values[] values) {
+			this.values = values;
+	}
+
+	public void setValues(UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier) {
 			try {
 				values = valuesUnsafeSupplier.get();
 	}
@@ -376,61 +374,6 @@ public class StructuredContentImpl implements StructuredContent {
 				throw new RuntimeException(t);
 	}
 	}
-
-	public void setValues(Values[] values) {
-		this.values = values;
-	}
-
-	@GraphQLField
-	protected AggregateRating aggregateRating;
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Long[] category;
-
-	@GraphQLField
-	protected Comment[] comment;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected ContentStructure contentStructure;
-
-	@GraphQLField
-	protected Long contentStructureId;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Date datePublished;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String[] keywords;
-
-	@GraphQLField
-	protected Date lastReviewed;
-
-	@GraphQLField
-	protected RenderedContentsByTemplate[] renderedContentsByTemplate;
-
-	@GraphQLField
-	protected String title;
 
 	@GraphQLField
 	protected Values[] values;

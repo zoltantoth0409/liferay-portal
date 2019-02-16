@@ -34,24 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ValidationImpl implements Validation {
 
 	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public String getExpression() {
-		return expression;
-	}
-
-	public Long getId() {
-		return id;
+			return errorMessage;
 	}
 
 	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+			this.errorMessage = errorMessage;
 	}
 
-	public void setErrorMessage(
-		UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier) {
-
+	public void setErrorMessage(UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier) {
 			try {
 				errorMessage = errorMessageUnsafeSupplier.get();
 	}
@@ -60,13 +50,17 @@ public class ValidationImpl implements Validation {
 	}
 	}
 
-	public void setExpression(String expression) {
-		this.expression = expression;
+	@GraphQLField
+	protected String errorMessage;
+	public String getExpression() {
+			return expression;
 	}
 
-	public void setExpression(
-		UnsafeSupplier<String, Throwable> expressionUnsafeSupplier) {
+	public void setExpression(String expression) {
+			this.expression = expression;
+	}
 
+	public void setExpression(UnsafeSupplier<String, Throwable> expressionUnsafeSupplier) {
 			try {
 				expression = expressionUnsafeSupplier.get();
 	}
@@ -75,8 +69,14 @@ public class ValidationImpl implements Validation {
 	}
 	}
 
+	@GraphQLField
+	protected String expression;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -87,12 +87,6 @@ public class ValidationImpl implements Validation {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String errorMessage;
-
-	@GraphQLField
-	protected String expression;
 
 	@GraphQLField
 	protected Long id;

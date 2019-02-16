@@ -34,116 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FieldsImpl implements Fields {
 
 	public Boolean getAutocomplete() {
-		return autocomplete;
-	}
-
-	public String getDataSourceType() {
-		return dataSourceType;
-	}
-
-	public String getDataType() {
-		return dataType;
-	}
-
-	public String getDisplayStyle() {
-		return displayStyle;
-	}
-
-	public Grid getGrid() {
-		return grid;
-	}
-
-	public Boolean getHasFormRules() {
-		return hasFormRules;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Boolean getImmutable() {
-		return immutable;
-	}
-
-	public Boolean getInline() {
-		return inline;
-	}
-
-	public String getInputControl() {
-		return inputControl;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public Boolean getLocalizable() {
-		return localizable;
-	}
-
-	public Boolean getMultiple() {
-		return multiple;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Options getOptions() {
-		return options;
-	}
-
-	public String getPlaceholder() {
-		return placeholder;
-	}
-
-	public String getPredefinedValue() {
-		return predefinedValue;
-	}
-
-	public Boolean getReadOnly() {
-		return readOnly;
-	}
-
-	public Boolean getRepeatable() {
-		return repeatable;
-	}
-
-	public Boolean getRequired() {
-		return required;
-	}
-
-	public Boolean getShowAsSwitcher() {
-		return showAsSwitcher;
-	}
-
-	public Boolean getShowLabel() {
-		return showLabel;
-	}
-
-	public String getStyle() {
-		return style;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public String getTooltip() {
-		return tooltip;
-	}
-
-	public Validation getValidation() {
-		return validation;
+			return autocomplete;
 	}
 
 	public void setAutocomplete(Boolean autocomplete) {
-		this.autocomplete = autocomplete;
+			this.autocomplete = autocomplete;
 	}
 
-	public void setAutocomplete(
-		UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier) {
-
+	public void setAutocomplete(UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier) {
 			try {
 				autocomplete = autocompleteUnsafeSupplier.get();
 	}
@@ -152,13 +50,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setDataSourceType(String dataSourceType) {
-		this.dataSourceType = dataSourceType;
+	@GraphQLField
+	protected Boolean autocomplete;
+	public String getDataSourceType() {
+			return dataSourceType;
 	}
 
-	public void setDataSourceType(
-		UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier) {
+	public void setDataSourceType(String dataSourceType) {
+			this.dataSourceType = dataSourceType;
+	}
 
+	public void setDataSourceType(UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier) {
 			try {
 				dataSourceType = dataSourceTypeUnsafeSupplier.get();
 	}
@@ -167,13 +69,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setDataType(String dataType) {
-		this.dataType = dataType;
+	@GraphQLField
+	protected String dataSourceType;
+	public String getDataType() {
+			return dataType;
 	}
 
-	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+	public void setDataType(String dataType) {
+			this.dataType = dataType;
+	}
 
+	public void setDataType(UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
 			try {
 				dataType = dataTypeUnsafeSupplier.get();
 	}
@@ -182,13 +88,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setDisplayStyle(String displayStyle) {
-		this.displayStyle = displayStyle;
+	@GraphQLField
+	protected String dataType;
+	public String getDisplayStyle() {
+			return displayStyle;
 	}
 
-	public void setDisplayStyle(
-		UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier) {
+	public void setDisplayStyle(String displayStyle) {
+			this.displayStyle = displayStyle;
+	}
 
+	public void setDisplayStyle(UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier) {
 			try {
 				displayStyle = displayStyleUnsafeSupplier.get();
 	}
@@ -197,8 +107,14 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
+	@GraphQLField
+	protected String displayStyle;
+	public Grid getGrid() {
+			return grid;
+	}
+
 	public void setGrid(Grid grid) {
-		this.grid = grid;
+			this.grid = grid;
 	}
 
 	public void setGrid(UnsafeSupplier<Grid, Throwable> gridUnsafeSupplier) {
@@ -210,13 +126,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setHasFormRules(Boolean hasFormRules) {
-		this.hasFormRules = hasFormRules;
+	@GraphQLField
+	protected Grid grid;
+	public Boolean getHasFormRules() {
+			return hasFormRules;
 	}
 
-	public void setHasFormRules(
-		UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier) {
+	public void setHasFormRules(Boolean hasFormRules) {
+			this.hasFormRules = hasFormRules;
+	}
 
+	public void setHasFormRules(UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier) {
 			try {
 				hasFormRules = hasFormRulesUnsafeSupplier.get();
 	}
@@ -225,8 +145,14 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
+	@GraphQLField
+	protected Boolean hasFormRules;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -238,13 +164,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setImmutable(Boolean immutable) {
-		this.immutable = immutable;
+	@GraphQLField
+	protected Long id;
+	public Boolean getImmutable() {
+			return immutable;
 	}
 
-	public void setImmutable(
-		UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier) {
+	public void setImmutable(Boolean immutable) {
+			this.immutable = immutable;
+	}
 
+	public void setImmutable(UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier) {
 			try {
 				immutable = immutableUnsafeSupplier.get();
 	}
@@ -253,13 +183,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setInline(Boolean inline) {
-		this.inline = inline;
+	@GraphQLField
+	protected Boolean immutable;
+	public Boolean getInline() {
+			return inline;
 	}
 
-	public void setInline(
-		UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier) {
+	public void setInline(Boolean inline) {
+			this.inline = inline;
+	}
 
+	public void setInline(UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier) {
 			try {
 				inline = inlineUnsafeSupplier.get();
 	}
@@ -268,13 +202,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setInputControl(String inputControl) {
-		this.inputControl = inputControl;
+	@GraphQLField
+	protected Boolean inline;
+	public String getInputControl() {
+			return inputControl;
 	}
 
-	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+	public void setInputControl(String inputControl) {
+			this.inputControl = inputControl;
+	}
 
+	public void setInputControl(UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
 			try {
 				inputControl = inputControlUnsafeSupplier.get();
 	}
@@ -283,13 +221,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	@GraphQLField
+	protected String inputControl;
+	public String getLabel() {
+			return label;
 	}
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+	public void setLabel(String label) {
+			this.label = label;
+	}
 
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 			try {
 				label = labelUnsafeSupplier.get();
 	}
@@ -298,13 +240,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setLocalizable(Boolean localizable) {
-		this.localizable = localizable;
+	@GraphQLField
+	protected String label;
+	public Boolean getLocalizable() {
+			return localizable;
 	}
 
-	public void setLocalizable(
-		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
+	public void setLocalizable(Boolean localizable) {
+			this.localizable = localizable;
+	}
 
+	public void setLocalizable(UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
 			try {
 				localizable = localizableUnsafeSupplier.get();
 	}
@@ -313,13 +259,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setMultiple(Boolean multiple) {
-		this.multiple = multiple;
+	@GraphQLField
+	protected Boolean localizable;
+	public Boolean getMultiple() {
+			return multiple;
 	}
 
-	public void setMultiple(
-		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
+	public void setMultiple(Boolean multiple) {
+			this.multiple = multiple;
+	}
 
+	public void setMultiple(UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
 			try {
 				multiple = multipleUnsafeSupplier.get();
 	}
@@ -328,8 +278,14 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
+	@GraphQLField
+	protected Boolean multiple;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -341,13 +297,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setOptions(Options options) {
-		this.options = options;
+	@GraphQLField
+	protected String name;
+	public Options getOptions() {
+			return options;
 	}
 
-	public void setOptions(
-		UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier) {
+	public void setOptions(Options options) {
+			this.options = options;
+	}
 
+	public void setOptions(UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier) {
 			try {
 				options = optionsUnsafeSupplier.get();
 	}
@@ -356,13 +316,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setPlaceholder(String placeholder) {
-		this.placeholder = placeholder;
+	@GraphQLField
+	protected Options options;
+	public String getPlaceholder() {
+			return placeholder;
 	}
 
-	public void setPlaceholder(
-		UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier) {
+	public void setPlaceholder(String placeholder) {
+			this.placeholder = placeholder;
+	}
 
+	public void setPlaceholder(UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier) {
 			try {
 				placeholder = placeholderUnsafeSupplier.get();
 	}
@@ -371,13 +335,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setPredefinedValue(String predefinedValue) {
-		this.predefinedValue = predefinedValue;
+	@GraphQLField
+	protected String placeholder;
+	public String getPredefinedValue() {
+			return predefinedValue;
 	}
 
-	public void setPredefinedValue(
-		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
+	public void setPredefinedValue(String predefinedValue) {
+			this.predefinedValue = predefinedValue;
+	}
 
+	public void setPredefinedValue(UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
 			try {
 				predefinedValue = predefinedValueUnsafeSupplier.get();
 	}
@@ -386,13 +354,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setReadOnly(Boolean readOnly) {
-		this.readOnly = readOnly;
+	@GraphQLField
+	protected String predefinedValue;
+	public Boolean getReadOnly() {
+			return readOnly;
 	}
 
-	public void setReadOnly(
-		UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier) {
+	public void setReadOnly(Boolean readOnly) {
+			this.readOnly = readOnly;
+	}
 
+	public void setReadOnly(UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier) {
 			try {
 				readOnly = readOnlyUnsafeSupplier.get();
 	}
@@ -401,13 +373,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setRepeatable(Boolean repeatable) {
-		this.repeatable = repeatable;
+	@GraphQLField
+	protected Boolean readOnly;
+	public Boolean getRepeatable() {
+			return repeatable;
 	}
 
-	public void setRepeatable(
-		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
+	public void setRepeatable(Boolean repeatable) {
+			this.repeatable = repeatable;
+	}
 
+	public void setRepeatable(UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
 			try {
 				repeatable = repeatableUnsafeSupplier.get();
 	}
@@ -416,13 +392,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setRequired(Boolean required) {
-		this.required = required;
+	@GraphQLField
+	protected Boolean repeatable;
+	public Boolean getRequired() {
+			return required;
 	}
 
-	public void setRequired(
-		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
+	public void setRequired(Boolean required) {
+			this.required = required;
+	}
 
+	public void setRequired(UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
 			try {
 				required = requiredUnsafeSupplier.get();
 	}
@@ -431,13 +411,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setShowAsSwitcher(Boolean showAsSwitcher) {
-		this.showAsSwitcher = showAsSwitcher;
+	@GraphQLField
+	protected Boolean required;
+	public Boolean getShowAsSwitcher() {
+			return showAsSwitcher;
 	}
 
-	public void setShowAsSwitcher(
-		UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier) {
+	public void setShowAsSwitcher(Boolean showAsSwitcher) {
+			this.showAsSwitcher = showAsSwitcher;
+	}
 
+	public void setShowAsSwitcher(UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier) {
 			try {
 				showAsSwitcher = showAsSwitcherUnsafeSupplier.get();
 	}
@@ -446,13 +430,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setShowLabel(Boolean showLabel) {
-		this.showLabel = showLabel;
+	@GraphQLField
+	protected Boolean showAsSwitcher;
+	public Boolean getShowLabel() {
+			return showLabel;
 	}
 
-	public void setShowLabel(
-		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
+	public void setShowLabel(Boolean showLabel) {
+			this.showLabel = showLabel;
+	}
 
+	public void setShowLabel(UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
 			try {
 				showLabel = showLabelUnsafeSupplier.get();
 	}
@@ -461,13 +449,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setStyle(String style) {
-		this.style = style;
+	@GraphQLField
+	protected Boolean showLabel;
+	public String getStyle() {
+			return style;
 	}
 
-	public void setStyle(
-		UnsafeSupplier<String, Throwable> styleUnsafeSupplier) {
+	public void setStyle(String style) {
+			this.style = style;
+	}
 
+	public void setStyle(UnsafeSupplier<String, Throwable> styleUnsafeSupplier) {
 			try {
 				style = styleUnsafeSupplier.get();
 	}
@@ -476,8 +468,14 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
+	@GraphQLField
+	protected String style;
+	public String getText() {
+			return text;
+	}
+
 	public void setText(String text) {
-		this.text = text;
+			this.text = text;
 	}
 
 	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
@@ -489,13 +487,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setTooltip(String tooltip) {
-		this.tooltip = tooltip;
+	@GraphQLField
+	protected String text;
+	public String getTooltip() {
+			return tooltip;
 	}
 
-	public void setTooltip(
-		UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier) {
+	public void setTooltip(String tooltip) {
+			this.tooltip = tooltip;
+	}
 
+	public void setTooltip(UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier) {
 			try {
 				tooltip = tooltipUnsafeSupplier.get();
 	}
@@ -504,9 +506,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setValidation(
-		UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier) {
+	@GraphQLField
+	protected String tooltip;
+	public Validation getValidation() {
+			return validation;
+	}
 
+	public void setValidation(Validation validation) {
+			this.validation = validation;
+	}
+
+	public void setValidation(UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier) {
 			try {
 				validation = validationUnsafeSupplier.get();
 	}
@@ -514,85 +524,6 @@ public class FieldsImpl implements Fields {
 				throw new RuntimeException(t);
 	}
 	}
-
-	public void setValidation(Validation validation) {
-		this.validation = validation;
-	}
-
-	@GraphQLField
-	protected Boolean autocomplete;
-
-	@GraphQLField
-	protected String dataSourceType;
-
-	@GraphQLField
-	protected String dataType;
-
-	@GraphQLField
-	protected String displayStyle;
-
-	@GraphQLField
-	protected Grid grid;
-
-	@GraphQLField
-	protected Boolean hasFormRules;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Boolean immutable;
-
-	@GraphQLField
-	protected Boolean inline;
-
-	@GraphQLField
-	protected String inputControl;
-
-	@GraphQLField
-	protected String label;
-
-	@GraphQLField
-	protected Boolean localizable;
-
-	@GraphQLField
-	protected Boolean multiple;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected Options options;
-
-	@GraphQLField
-	protected String placeholder;
-
-	@GraphQLField
-	protected String predefinedValue;
-
-	@GraphQLField
-	protected Boolean readOnly;
-
-	@GraphQLField
-	protected Boolean repeatable;
-
-	@GraphQLField
-	protected Boolean required;
-
-	@GraphQLField
-	protected Boolean showAsSwitcher;
-
-	@GraphQLField
-	protected Boolean showLabel;
-
-	@GraphQLField
-	protected String style;
-
-	@GraphQLField
-	protected String text;
-
-	@GraphQLField
-	protected String tooltip;
 
 	@GraphQLField
 	protected Validation validation;

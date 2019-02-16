@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,90 +30,112 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseCategoryResourceImpl implements CategoryResource {
 
+	@DELETE
+	@Path("/categories/{category-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteCategory(Long categoryId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
+	public boolean deleteCategory( @PathParam("category-id") Long categoryId ) throws Exception {
+			return false;
 
-			return responseBuilder.build();
 	}
-
+	@GET
+	@Path("/categories/{category-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Category getCategory(Long categoryId) throws Exception {
-		return new CategoryImpl();
+	public Category getCategory( @PathParam("category-id") Long categoryId ) throws Exception {
+			return new CategoryImpl();
+
 	}
-
+	@Consumes("application/json")
+	@PUT
+	@Path("/categories/{category-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Category> getCategoryCategoriesPage(
-			Long categoryId, Pagination pagination)
-		throws Exception {
+	public Category putCategory( @PathParam("category-id") Long categoryId , Category category ) throws Exception {
+			return new CategoryImpl();
 
+	}
+	@GET
+	@Path("/categories/{category-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<Category> getCategoryCategoriesPage( @PathParam("category-id") Long categoryId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/categories/{category-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Category> getVocabularyCategoriesPage(
-			Long vocabularyId, Pagination pagination)
-		throws Exception {
+	public Category postCategoryCategory( @PathParam("category-id") Long categoryId , Category category ) throws Exception {
+			return new CategoryImpl();
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/categories/{category-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
+	@Override
+	public Category postCategoryCategoryBatchCreate( @PathParam("category-id") Long categoryId , Category category ) throws Exception {
+			return new CategoryImpl();
+
+	}
+	@GET
+	@Path("/vocabularies/{vocabulary-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<Category> getVocabularyCategoriesPage( @PathParam("vocabulary-id") Long vocabularyId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/vocabularies/{vocabulary-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Category postCategoryCategory(Long categoryId, Category category)
-		throws Exception {
-
+	public Category postVocabularyCategory( @PathParam("vocabulary-id") Long vocabularyId , Category category ) throws Exception {
 			return new CategoryImpl();
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/vocabularies/{vocabulary-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public Category postCategoryCategoryBatchCreate(
-			Long categoryId, Category category)
-		throws Exception {
-
+	public Category postVocabularyCategoryBatchCreate( @PathParam("vocabulary-id") Long vocabularyId , Category category ) throws Exception {
 			return new CategoryImpl();
+
 	}
 
-	@Override
-	public Category postVocabularyCategory(Long vocabularyId, Category category)
-		throws Exception {
-
-			return new CategoryImpl();
-	}
-
-	@Override
-	public Category postVocabularyCategoryBatchCreate(
-			Long vocabularyId, Category category)
-		throws Exception {
-
-			return new CategoryImpl();
-	}
-
-	@Override
-	public Category putCategory(Long categoryId, Category category)
-		throws Exception {
-
-			return new CategoryImpl();
-	}
-
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

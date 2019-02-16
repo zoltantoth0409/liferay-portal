@@ -15,17 +15,10 @@
 package com.liferay.headless.document.library.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Comment;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,13 +29,8 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface CommentResource {
 
-	@GET
-	@Path("/documents/{document-id}/comments")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Comment> getDocumentCommentsPage( @PathParam("document-id") Long documentId , @Context Pagination pagination ) throws Exception;
+	public Page<Comment> getDocumentCommentsPage( Long documentId , Pagination pagination ) throws Exception;
 
 }

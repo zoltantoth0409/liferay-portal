@@ -15,16 +15,8 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -35,19 +27,10 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface FormDocumentResource {
 
-	@DELETE
-	@Path("/form-documents/{form-document-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception;
+	public boolean deleteFormDocument( Long formDocumentId ) throws Exception;
 
-	@GET
-	@Path("/form-documents/{form-document-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public FormDocument getFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception;
+	public FormDocument getFormDocument( Long formDocumentId ) throws Exception;
 
 }

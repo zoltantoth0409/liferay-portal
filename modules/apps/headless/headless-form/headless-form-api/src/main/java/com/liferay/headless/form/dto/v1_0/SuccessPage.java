@@ -27,19 +27,15 @@ public interface SuccessPage {
 
 	public String getDescription();
 
-	public String getHeadline();
-
-	public Long getId();
-
 	public void setDescription(String description);
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public String getHeadline();
 
 	public void setHeadline(String headline);
 
-	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
+	public void setHeadline(UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 

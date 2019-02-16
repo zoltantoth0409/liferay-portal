@@ -29,56 +29,43 @@ public interface Role {
 
 	public String[] getAvailableLanguages();
 
-	public UserAccount getCreator();
-
-	public Date getDateCreated();
-
-	public Date getDateModified();
-
-	public String getDescription();
-
-	public Long getId();
-
-	public String getName();
-
-	public String getRoleType();
-
 	public void setAvailableLanguages(String[] availableLanguages);
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
-
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+	public UserAccount getCreator();
 
 	public void setCreator(UserAccount creator);
 
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public Date getDateCreated();
+
 	public void setDateCreated(Date dateCreated);
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public Date getDateModified();
 
 	public void setDateModified(Date dateModified);
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public String getDescription();
 
 	public void setDescription(String description);
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getName();
 
 	public void setName(String name);
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public String getRoleType();
 
 	public void setRoleType(String roleType);
 
-	public void setRoleType(
-		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier);
+	public void setRoleType(UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier);
 
 }

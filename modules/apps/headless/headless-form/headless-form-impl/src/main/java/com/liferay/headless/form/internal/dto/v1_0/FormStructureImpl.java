@@ -36,52 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FormStructureImpl implements FormStructure {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public FormPages[] getFormPages() {
-		return formPages;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public SuccessPage getSuccessPage() {
-		return successPage;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -90,13 +52,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -105,13 +71,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Long contentSpace;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -120,13 +90,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -135,13 +109,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -150,13 +128,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -165,13 +147,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setFormPages(FormPages[] formPages) {
-		this.formPages = formPages;
+	@GraphQLField
+	protected String description;
+	public FormPages[] getFormPages() {
+			return formPages;
 	}
 
-	public void setFormPages(
-		UnsafeSupplier<FormPages[], Throwable> formPagesUnsafeSupplier) {
+	public void setFormPages(FormPages[] formPages) {
+			this.formPages = formPages;
+	}
 
+	public void setFormPages(UnsafeSupplier<FormPages[], Throwable> formPagesUnsafeSupplier) {
 			try {
 				formPages = formPagesUnsafeSupplier.get();
 	}
@@ -180,8 +166,14 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
+	@GraphQLField
+	protected FormPages[] formPages;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -193,8 +185,14 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -206,13 +204,17 @@ public class FormStructureImpl implements FormStructure {
 	}
 	}
 
-	public void setSuccessPage(SuccessPage successPage) {
-		this.successPage = successPage;
+	@GraphQLField
+	protected String name;
+	public SuccessPage getSuccessPage() {
+			return successPage;
 	}
 
-	public void setSuccessPage(
-		UnsafeSupplier<SuccessPage, Throwable> successPageUnsafeSupplier) {
+	public void setSuccessPage(SuccessPage successPage) {
+			this.successPage = successPage;
+	}
 
+	public void setSuccessPage(UnsafeSupplier<SuccessPage, Throwable> successPageUnsafeSupplier) {
 			try {
 				successPage = successPageUnsafeSupplier.get();
 	}
@@ -220,33 +222,6 @@ public class FormStructureImpl implements FormStructure {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected FormPages[] formPages;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected SuccessPage successPage;

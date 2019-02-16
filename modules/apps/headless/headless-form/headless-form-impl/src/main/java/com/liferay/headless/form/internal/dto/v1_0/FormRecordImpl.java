@@ -36,48 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FormRecordImpl implements FormRecord {
 
 	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public Boolean getDraft() {
-		return draft;
-	}
-
-	public FieldValues[] getFieldValues() {
-		return fieldValues;
-	}
-
-	public Form getForm() {
-		return form;
-	}
-
-	public Long getFormId() {
-		return formId;
-	}
-
-	public Long getId() {
-		return id;
+			return creator;
 	}
 
 	public void setCreator(Creator creator) {
-		this.creator = creator;
+			this.creator = creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -86,13 +52,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -101,13 +71,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -116,13 +90,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
+	@GraphQLField
+	protected Date dateModified;
+	public Date getDatePublished() {
+			return datePublished;
 	}
 
-	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+	public void setDatePublished(Date datePublished) {
+			this.datePublished = datePublished;
+	}
 
+	public void setDatePublished(UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 			try {
 				datePublished = datePublishedUnsafeSupplier.get();
 	}
@@ -131,13 +109,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setDraft(Boolean draft) {
-		this.draft = draft;
+	@GraphQLField
+	protected Date datePublished;
+	public Boolean getDraft() {
+			return draft;
 	}
 
-	public void setDraft(
-		UnsafeSupplier<Boolean, Throwable> draftUnsafeSupplier) {
+	public void setDraft(Boolean draft) {
+			this.draft = draft;
+	}
 
+	public void setDraft(UnsafeSupplier<Boolean, Throwable> draftUnsafeSupplier) {
 			try {
 				draft = draftUnsafeSupplier.get();
 	}
@@ -146,13 +128,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setFieldValues(FieldValues[] fieldValues) {
-		this.fieldValues = fieldValues;
+	@GraphQLField
+	protected Boolean draft;
+	public FieldValues[] getFieldValues() {
+			return fieldValues;
 	}
 
-	public void setFieldValues(
-		UnsafeSupplier<FieldValues[], Throwable> fieldValuesUnsafeSupplier) {
+	public void setFieldValues(FieldValues[] fieldValues) {
+			this.fieldValues = fieldValues;
+	}
 
+	public void setFieldValues(UnsafeSupplier<FieldValues[], Throwable> fieldValuesUnsafeSupplier) {
 			try {
 				fieldValues = fieldValuesUnsafeSupplier.get();
 	}
@@ -161,8 +147,14 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
+	@GraphQLField
+	protected FieldValues[] fieldValues;
+	public Form getForm() {
+			return form;
+	}
+
 	public void setForm(Form form) {
-		this.form = form;
+			this.form = form;
 	}
 
 	public void setForm(UnsafeSupplier<Form, Throwable> formUnsafeSupplier) {
@@ -174,13 +166,17 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
-	public void setFormId(Long formId) {
-		this.formId = formId;
+	@GraphQLField
+	protected Form form;
+	public Long getFormId() {
+			return formId;
 	}
 
-	public void setFormId(
-		UnsafeSupplier<Long, Throwable> formIdUnsafeSupplier) {
+	public void setFormId(Long formId) {
+			this.formId = formId;
+	}
 
+	public void setFormId(UnsafeSupplier<Long, Throwable> formIdUnsafeSupplier) {
 			try {
 				formId = formIdUnsafeSupplier.get();
 	}
@@ -189,8 +185,14 @@ public class FormRecordImpl implements FormRecord {
 	}
 	}
 
+	@GraphQLField
+	protected Long formId;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -201,30 +203,6 @@ public class FormRecordImpl implements FormRecord {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Date datePublished;
-
-	@GraphQLField
-	protected Boolean draft;
-
-	@GraphQLField
-	protected FieldValues[] fieldValues;
-
-	@GraphQLField
-	protected Form form;
-
-	@GraphQLField
-	protected Long formId;
 
 	@GraphQLField
 	protected Long id;

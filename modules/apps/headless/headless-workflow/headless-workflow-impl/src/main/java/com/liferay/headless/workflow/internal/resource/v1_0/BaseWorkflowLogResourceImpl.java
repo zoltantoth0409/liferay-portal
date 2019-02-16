@@ -17,6 +17,7 @@ package com.liferay.headless.workflow.internal.resource.v1_0;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowLogImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,39 +30,40 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseWorkflowLogResourceImpl
-	implements WorkflowLogResource {
+@Path("/v1.0")
+public abstract class BaseWorkflowLogResourceImpl implements WorkflowLogResource {
 
+	@GET
+	@Path("/workflow-logs/{workflow-log-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public WorkflowLog getWorkflowLog(Long workflowLogId) throws Exception {
-		return new WorkflowLogImpl();
+	public WorkflowLog getWorkflowLog( @PathParam("workflow-log-id") Long workflowLogId ) throws Exception {
+			return new WorkflowLogImpl();
+
 	}
-
+	@GET
+	@Path("/workflow-tasks/{workflow-task-id}/workflow-logs")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
-			Long workflowTaskId, Pagination pagination)
-		throws Exception {
-
+	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage( @PathParam("workflow-task-id") Long workflowTaskId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

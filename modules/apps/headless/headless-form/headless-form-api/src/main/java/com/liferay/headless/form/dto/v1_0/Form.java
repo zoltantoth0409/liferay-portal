@@ -29,98 +29,73 @@ public interface Form {
 
 	public String[] getAvailableLanguages();
 
-	public Long getContentSpace();
-
-	public Creator getCreator();
-
-	public Date getDateCreated();
-
-	public Date getDateModified();
-
-	public Date getDatePublished();
-
-	public String getDefaultLanguage();
-
-	public String getDescription();
-
-	public FormRecord[] getFormRecords();
-
-	public Long[] getFormRecordsIds();
-
-	public Long getId();
-
-	public String getName();
-
-	public FormStructure getStructure();
-
-	public Long getStructureId();
-
 	public void setAvailableLanguages(String[] availableLanguages);
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+	public Long getContentSpace();
 
 	public void setContentSpace(Long contentSpace);
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+	public Creator getCreator();
 
 	public void setCreator(Creator creator);
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+	public Date getDateCreated();
 
 	public void setDateCreated(Date dateCreated);
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public Date getDateModified();
 
 	public void setDateModified(Date dateModified);
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public Date getDatePublished();
 
 	public void setDatePublished(Date datePublished);
 
-	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
+	public void setDatePublished(UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
+	public String getDefaultLanguage();
 
 	public void setDefaultLanguage(String defaultLanguage);
 
-	public void setDefaultLanguage(
-		UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier);
+	public void setDefaultLanguage(UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier);
+	public String getDescription();
 
 	public void setDescription(String description);
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public FormRecord[] getFormRecords();
 
 	public void setFormRecords(FormRecord[] formRecords);
 
-	public void setFormRecords(
-		UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier);
+	public void setFormRecords(UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier);
+	public Long[] getFormRecordsIds();
 
 	public void setFormRecordsIds(Long[] formRecordsIds);
 
-	public void setFormRecordsIds(
-		UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier);
+	public void setFormRecordsIds(UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getName();
 
 	public void setName(String name);
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public FormStructure getStructure();
 
 	public void setStructure(FormStructure structure);
 
-	public void setStructure(
-		UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier);
+	public void setStructure(UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier);
+	public Long getStructureId();
 
 	public void setStructureId(Long structureId);
 
-	public void setStructureId(
-		UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier);
+	public void setStructureId(UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier);
 
 }

@@ -26,8 +26,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import javax.ws.rs.core.Response;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -52,11 +50,8 @@ return _getFormResource().postFormUploadFile( formId , form );
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteFormDocument( @GraphQLName("form-document-id") Long formDocumentId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteFormDocument( @GraphQLName("form-document-id") Long formDocumentId ) throws Exception {
+return _getFormDocumentResource().deleteFormDocument( formDocumentId );
 	}
 
 	@GraphQLInvokeDetached

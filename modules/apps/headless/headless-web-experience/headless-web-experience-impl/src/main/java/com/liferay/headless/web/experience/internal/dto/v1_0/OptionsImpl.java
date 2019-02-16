@@ -34,20 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class OptionsImpl implements Options {
 
 	public String getLabel() {
-		return label;
-	}
-
-	public String getValue() {
-		return value;
+			return label;
 	}
 
 	public void setLabel(String label) {
-		this.label = label;
+			this.label = label;
 	}
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
-
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 			try {
 				label = labelUnsafeSupplier.get();
 	}
@@ -56,13 +50,17 @@ public class OptionsImpl implements Options {
 	}
 	}
 
-	public void setValue(String value) {
-		this.value = value;
+	@GraphQLField
+	protected String label;
+	public String getValue() {
+			return value;
 	}
 
-	public void setValue(
-		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+	public void setValue(String value) {
+			this.value = value;
+	}
 
+	public void setValue(UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
 			try {
 				value = valueUnsafeSupplier.get();
 	}
@@ -70,9 +68,6 @@ public class OptionsImpl implements Options {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String label;
 
 	@GraphQLField
 	protected String value;

@@ -15,14 +15,8 @@
 package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 
 /**
  * To access this resource, run:
@@ -33,13 +27,8 @@ import javax.ws.rs.Produces;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface ImageObjectRepositoryResource {
 
-	@GET
-	@Path("/image-object-repositories/{image-object-repository-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public ImageObjectRepository getImageObjectRepository( @PathParam("image-object-repository-id") Long imageObjectRepositoryId ) throws Exception;
+	public ImageObjectRepository getImageObjectRepository( Long imageObjectRepositoryId ) throws Exception;
 
 }

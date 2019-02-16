@@ -34,28 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class HoursAvailableImpl implements HoursAvailable {
 
 	public String getCloses() {
-		return closes;
-	}
-
-	public String getDayOfWeek() {
-		return dayOfWeek;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getOpens() {
-		return opens;
+			return closes;
 	}
 
 	public void setCloses(String closes) {
-		this.closes = closes;
+			this.closes = closes;
 	}
 
-	public void setCloses(
-		UnsafeSupplier<String, Throwable> closesUnsafeSupplier) {
-
+	public void setCloses(UnsafeSupplier<String, Throwable> closesUnsafeSupplier) {
 			try {
 				closes = closesUnsafeSupplier.get();
 	}
@@ -64,13 +50,17 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 	}
 
-	public void setDayOfWeek(String dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
+	@GraphQLField
+	protected String closes;
+	public String getDayOfWeek() {
+			return dayOfWeek;
 	}
 
-	public void setDayOfWeek(
-		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier) {
+	public void setDayOfWeek(String dayOfWeek) {
+			this.dayOfWeek = dayOfWeek;
+	}
 
+	public void setDayOfWeek(UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier) {
 			try {
 				dayOfWeek = dayOfWeekUnsafeSupplier.get();
 	}
@@ -79,8 +69,14 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 	}
 
+	@GraphQLField
+	protected String dayOfWeek;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -92,13 +88,17 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 	}
 
-	public void setOpens(String opens) {
-		this.opens = opens;
+	@GraphQLField
+	protected Long id;
+	public String getOpens() {
+			return opens;
 	}
 
-	public void setOpens(
-		UnsafeSupplier<String, Throwable> opensUnsafeSupplier) {
+	public void setOpens(String opens) {
+			this.opens = opens;
+	}
 
+	public void setOpens(UnsafeSupplier<String, Throwable> opensUnsafeSupplier) {
 			try {
 				opens = opensUnsafeSupplier.get();
 	}
@@ -106,15 +106,6 @@ public class HoursAvailableImpl implements HoursAvailable {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String closes;
-
-	@GraphQLField
-	protected String dayOfWeek;
-
-	@GraphQLField
-	protected Long id;
 
 	@GraphQLField
 	protected String opens;

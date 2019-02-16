@@ -15,19 +15,12 @@
 package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -38,19 +31,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface ContentStructureResource {
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/content-structures")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<ContentStructure> getContentSpaceContentStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception;
+	public Page<ContentStructure> getContentSpaceContentStructuresPage( Long contentSpaceId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception;
 
-	@GET
-	@Path("/content-structures/{content-structure-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public ContentStructure getContentStructure( @PathParam("content-structure-id") Long contentStructureId ) throws Exception;
+	public ContentStructure getContentStructure( Long contentStructureId ) throws Exception;
 
 }

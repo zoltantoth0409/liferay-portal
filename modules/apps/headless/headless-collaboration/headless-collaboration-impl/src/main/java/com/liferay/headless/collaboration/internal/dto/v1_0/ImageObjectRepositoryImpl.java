@@ -36,36 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 
 	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public ImageObject[] getImages() {
-		return images;
-	}
-
-	public Long[] getImagesIds() {
-		return imagesIds;
-	}
-
-	public String getName() {
-		return name;
+			return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+			this.dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -74,13 +52,17 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -89,8 +71,14 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 	}
 
+	@GraphQLField
+	protected Date dateModified;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -102,13 +90,17 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 	}
 
-	public void setImages(ImageObject[] images) {
-		this.images = images;
+	@GraphQLField
+	protected Long id;
+	public ImageObject[] getImages() {
+			return images;
 	}
 
-	public void setImages(
-		UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier) {
+	public void setImages(ImageObject[] images) {
+			this.images = images;
+	}
 
+	public void setImages(UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier) {
 			try {
 				images = imagesUnsafeSupplier.get();
 	}
@@ -117,13 +109,17 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 	}
 
-	public void setImagesIds(Long[] imagesIds) {
-		this.imagesIds = imagesIds;
+	@GraphQLField
+	protected ImageObject[] images;
+	public Long[] getImagesIds() {
+			return imagesIds;
 	}
 
-	public void setImagesIds(
-		UnsafeSupplier<Long[], Throwable> imagesIdsUnsafeSupplier) {
+	public void setImagesIds(Long[] imagesIds) {
+			this.imagesIds = imagesIds;
+	}
 
+	public void setImagesIds(UnsafeSupplier<Long[], Throwable> imagesIdsUnsafeSupplier) {
 			try {
 				imagesIds = imagesIdsUnsafeSupplier.get();
 	}
@@ -132,8 +128,14 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 	}
 
+	@GraphQLField
+	protected Long[] imagesIds;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -144,21 +146,6 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected ImageObject[] images;
-
-	@GraphQLField
-	protected Long[] imagesIds;
 
 	@GraphQLField
 	protected String name;

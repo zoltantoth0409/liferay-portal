@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.Phone;
 import com.liferay.headless.foundation.internal.dto.v1_0.PhoneImpl;
 import com.liferay.headless.foundation.resource.v1_0.PhoneResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,38 +30,40 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BasePhoneResourceImpl implements PhoneResource {
 
+	@GET
+	@Path("/phones")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Phone> getGenericParentPhonesPage(
-			Object genericParentId, Pagination pagination)
-		throws Exception {
-
+	public Page<Phone> getGenericParentPhonesPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
-	}
 
+	}
+	@GET
+	@Path("/phones/{phone-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Phone getPhone(Long phoneId) throws Exception {
-		return new PhoneImpl();
+	public Phone getPhone( @PathParam("phone-id") Long phoneId ) throws Exception {
+			return new PhoneImpl();
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

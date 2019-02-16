@@ -36,68 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class DocumentImpl implements Document {
 
 	public AdaptedMedia[] getAdaptedMedia() {
-		return adaptedMedia;
-	}
-
-	public Long[] getCategory() {
-		return category;
-	}
-
-	public String getContentUrl() {
-		return contentUrl;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
-
-	public String getFileExtension() {
-		return fileExtension;
-	}
-
-	public Long getFolderId() {
-		return folderId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String[] getKeywords() {
-		return keywords;
-	}
-
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
-
-	public String getTitle() {
-		return title;
+			return adaptedMedia;
 	}
 
 	public void setAdaptedMedia(AdaptedMedia[] adaptedMedia) {
-		this.adaptedMedia = adaptedMedia;
+			this.adaptedMedia = adaptedMedia;
 	}
 
-	public void setAdaptedMedia(
-		UnsafeSupplier<AdaptedMedia[], Throwable> adaptedMediaUnsafeSupplier) {
-
+	public void setAdaptedMedia(UnsafeSupplier<AdaptedMedia[], Throwable> adaptedMediaUnsafeSupplier) {
 			try {
 				adaptedMedia = adaptedMediaUnsafeSupplier.get();
 	}
@@ -106,13 +52,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setCategory(Long[] category) {
-		this.category = category;
+	@GraphQLField
+	protected AdaptedMedia[] adaptedMedia;
+	public Long[] getCategory() {
+			return category;
 	}
 
-	public void setCategory(
-		UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+	public void setCategory(Long[] category) {
+			this.category = category;
+	}
 
+	public void setCategory(UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
 			try {
 				category = categoryUnsafeSupplier.get();
 	}
@@ -121,13 +71,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setContentUrl(String contentUrl) {
-		this.contentUrl = contentUrl;
+	@GraphQLField
+	protected Long[] category;
+	public String getContentUrl() {
+			return contentUrl;
 	}
 
-	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+	public void setContentUrl(String contentUrl) {
+			this.contentUrl = contentUrl;
+	}
 
+	public void setContentUrl(UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 			try {
 				contentUrl = contentUrlUnsafeSupplier.get();
 	}
@@ -136,13 +90,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected String contentUrl;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -151,13 +109,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -166,13 +128,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -181,13 +147,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -196,13 +166,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setEncodingFormat(String encodingFormat) {
-		this.encodingFormat = encodingFormat;
+	@GraphQLField
+	protected String description;
+	public String getEncodingFormat() {
+			return encodingFormat;
 	}
 
-	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+	public void setEncodingFormat(String encodingFormat) {
+			this.encodingFormat = encodingFormat;
+	}
 
+	public void setEncodingFormat(UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
 			try {
 				encodingFormat = encodingFormatUnsafeSupplier.get();
 	}
@@ -211,13 +185,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setFileExtension(String fileExtension) {
-		this.fileExtension = fileExtension;
+	@GraphQLField
+	protected String encodingFormat;
+	public String getFileExtension() {
+			return fileExtension;
 	}
 
-	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+	public void setFileExtension(String fileExtension) {
+			this.fileExtension = fileExtension;
+	}
 
+	public void setFileExtension(UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
 			try {
 				fileExtension = fileExtensionUnsafeSupplier.get();
 	}
@@ -226,13 +204,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setFolderId(Long folderId) {
-		this.folderId = folderId;
+	@GraphQLField
+	protected String fileExtension;
+	public Long getFolderId() {
+			return folderId;
 	}
 
-	public void setFolderId(
-		UnsafeSupplier<Long, Throwable> folderIdUnsafeSupplier) {
+	public void setFolderId(Long folderId) {
+			this.folderId = folderId;
+	}
 
+	public void setFolderId(UnsafeSupplier<Long, Throwable> folderIdUnsafeSupplier) {
 			try {
 				folderId = folderIdUnsafeSupplier.get();
 	}
@@ -241,8 +223,14 @@ public class DocumentImpl implements Document {
 	}
 	}
 
+	@GraphQLField
+	protected Long folderId;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -254,13 +242,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setKeywords(String[] keywords) {
-		this.keywords = keywords;
+	@GraphQLField
+	protected Long id;
+	public String[] getKeywords() {
+			return keywords;
 	}
 
-	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+	public void setKeywords(String[] keywords) {
+			this.keywords = keywords;
+	}
 
+	public void setKeywords(UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
 			try {
 				keywords = keywordsUnsafeSupplier.get();
 	}
@@ -269,13 +261,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setSizeInBytes(Number sizeInBytes) {
-		this.sizeInBytes = sizeInBytes;
+	@GraphQLField
+	protected String[] keywords;
+	public Number getSizeInBytes() {
+			return sizeInBytes;
 	}
 
-	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+	public void setSizeInBytes(Number sizeInBytes) {
+			this.sizeInBytes = sizeInBytes;
+	}
 
+	public void setSizeInBytes(UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
 			try {
 				sizeInBytes = sizeInBytesUnsafeSupplier.get();
 	}
@@ -284,13 +280,17 @@ public class DocumentImpl implements Document {
 	}
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	@GraphQLField
+	protected Number sizeInBytes;
+	public String getTitle() {
+			return title;
 	}
 
-	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+	public void setTitle(String title) {
+			this.title = title;
+	}
 
+	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
 			try {
 				title = titleUnsafeSupplier.get();
 	}
@@ -298,45 +298,6 @@ public class DocumentImpl implements Document {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected AdaptedMedia[] adaptedMedia;
-
-	@GraphQLField
-	protected Long[] category;
-
-	@GraphQLField
-	protected String contentUrl;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected String encodingFormat;
-
-	@GraphQLField
-	protected String fileExtension;
-
-	@GraphQLField
-	protected Long folderId;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String[] keywords;
-
-	@GraphQLField
-	protected Number sizeInBytes;
 
 	@GraphQLField
 	protected String title;

@@ -54,8 +54,7 @@ public abstract class BaseAggregateRatingResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-web-experience/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-web-experience/v1.0");
 	}
 
 	@After
@@ -65,27 +64,24 @@ public abstract class BaseAggregateRatingResourceTestCase {
 
 	@Test
 	public void testGetAggregateRating() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetAggregateRating(Long aggregateRatingId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetAggregateRating( Long aggregateRatingId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/aggregate-ratings/{aggregate-rating-id}",
 				aggregateRatingId
 			);
+
 	}
 
 	protected AggregateRating randomAggregateRating() {
 		AggregateRating aggregateRating = new AggregateRatingImpl();
 
 aggregateRating.setId(RandomTestUtil.randomLong());
-
 		return aggregateRating;
 	}
 
@@ -104,12 +100,12 @@ aggregateRating.setId(RandomTestUtil.randomLong());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

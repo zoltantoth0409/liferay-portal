@@ -29,8 +29,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
 
-import javax.ws.rs.core.Response;
-
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
@@ -43,11 +41,8 @@ import org.osgi.util.tracker.ServiceTracker;
 public class Mutation {
 
 	@GraphQLInvokeDetached
-	public Response deleteCategory( @GraphQLName("category-id") Long categoryId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteCategory( @GraphQLName("category-id") Long categoryId ) throws Exception {
+return _getCategoryResource().deleteCategory( categoryId );
 	}
 
 	@GraphQLInvokeDetached
@@ -92,11 +87,8 @@ return _getKeywordResource().postContentSpaceKeywordBatchCreate( contentSpaceId 
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteKeyword( @GraphQLName("keyword-id") Long keywordId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteKeyword( @GraphQLName("keyword-id") Long keywordId ) throws Exception {
+return _getKeywordResource().deleteKeyword( keywordId );
 	}
 
 	@GraphQLInvokeDetached
@@ -117,11 +109,8 @@ return _getUserAccountResource().postUserAccountBatchCreate( userAccount );
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteUserAccount( @GraphQLName("user-account-id") Long userAccountId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteUserAccount( @GraphQLName("user-account-id") Long userAccountId ) throws Exception {
+return _getUserAccountResource().deleteUserAccount( userAccountId );
 	}
 
 	@GraphQLInvokeDetached
@@ -142,11 +131,8 @@ return _getVocabularyResource().postContentSpaceVocabularyBatchCreate( contentSp
 	}
 
 	@GraphQLInvokeDetached
-	public Response deleteVocabulary( @GraphQLName("vocabulary-id") Long vocabularyId ) throws Exception {
-				Response.ResponseBuilder responseBuilder = Response.ok();
-
-				return responseBuilder.build();
-
+	public boolean deleteVocabulary( @GraphQLName("vocabulary-id") Long vocabularyId ) throws Exception {
+return _getVocabularyResource().deleteVocabulary( vocabularyId );
 	}
 
 	@GraphQLInvokeDetached

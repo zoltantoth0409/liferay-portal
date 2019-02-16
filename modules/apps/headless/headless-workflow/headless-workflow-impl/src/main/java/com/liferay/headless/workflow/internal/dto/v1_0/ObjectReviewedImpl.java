@@ -34,19 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ObjectReviewedImpl implements ObjectReviewed {
 
 	public Long getId() {
-		return id;
-	}
-
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	public String getResourceType() {
-		return resourceType;
+			return id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -58,13 +50,17 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 	}
 	}
 
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
+	@GraphQLField
+	protected Long id;
+	public String getIdentifier() {
+			return identifier;
 	}
 
-	public void setIdentifier(
-		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier) {
+	public void setIdentifier(String identifier) {
+			this.identifier = identifier;
+	}
 
+	public void setIdentifier(UnsafeSupplier<String, Throwable> identifierUnsafeSupplier) {
 			try {
 				identifier = identifierUnsafeSupplier.get();
 	}
@@ -73,13 +69,17 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 	}
 	}
 
-	public void setResourceType(String resourceType) {
-		this.resourceType = resourceType;
+	@GraphQLField
+	protected String identifier;
+	public String getResourceType() {
+			return resourceType;
 	}
 
-	public void setResourceType(
-		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier) {
+	public void setResourceType(String resourceType) {
+			this.resourceType = resourceType;
+	}
 
+	public void setResourceType(UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier) {
 			try {
 				resourceType = resourceTypeUnsafeSupplier.get();
 	}
@@ -87,12 +87,6 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String identifier;
 
 	@GraphQLField
 	protected String resourceType;

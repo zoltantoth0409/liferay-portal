@@ -34,28 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PhoneImpl implements Phone {
 
 	public String getExtension() {
-		return extension;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public String getPhoneType() {
-		return phoneType;
+			return extension;
 	}
 
 	public void setExtension(String extension) {
-		this.extension = extension;
+			this.extension = extension;
 	}
 
-	public void setExtension(
-		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
-
+	public void setExtension(UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
 			try {
 				extension = extensionUnsafeSupplier.get();
 	}
@@ -64,8 +50,14 @@ public class PhoneImpl implements Phone {
 	}
 	}
 
+	@GraphQLField
+	protected String extension;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -77,13 +69,17 @@ public class PhoneImpl implements Phone {
 	}
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	@GraphQLField
+	protected Long id;
+	public String getPhoneNumber() {
+			return phoneNumber;
 	}
 
-	public void setPhoneNumber(
-		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+	public void setPhoneNumber(String phoneNumber) {
+			this.phoneNumber = phoneNumber;
+	}
 
+	public void setPhoneNumber(UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
 			try {
 				phoneNumber = phoneNumberUnsafeSupplier.get();
 	}
@@ -92,13 +88,17 @@ public class PhoneImpl implements Phone {
 	}
 	}
 
-	public void setPhoneType(String phoneType) {
-		this.phoneType = phoneType;
+	@GraphQLField
+	protected String phoneNumber;
+	public String getPhoneType() {
+			return phoneType;
 	}
 
-	public void setPhoneType(
-		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+	public void setPhoneType(String phoneType) {
+			this.phoneType = phoneType;
+	}
 
+	public void setPhoneType(UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
 			try {
 				phoneType = phoneTypeUnsafeSupplier.get();
 	}
@@ -106,15 +106,6 @@ public class PhoneImpl implements Phone {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String extension;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String phoneNumber;
 
 	@GraphQLField
 	protected String phoneType;

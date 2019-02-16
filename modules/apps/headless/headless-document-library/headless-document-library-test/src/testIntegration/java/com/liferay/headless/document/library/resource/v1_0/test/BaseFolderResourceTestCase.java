@@ -55,8 +55,7 @@ public abstract class BaseFolderResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-document-library/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -65,191 +64,155 @@ public abstract class BaseFolderResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteFolder() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
 	public void testGetDocumentsRepository() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetDocumentsRepositoryFoldersPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetFolder() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetFolderFoldersPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPostDocumentsRepositoryFolder() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
-	public void testPostDocumentsRepositoryFolderBatchCreate()
-		throws Exception {
-
+	public void testPostDocumentsRepositoryFolderBatchCreate() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testDeleteFolder() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetFolder() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPutFolder() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetFolderFoldersPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFolderFolder() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFolderFolderBatchCreate() throws Exception {
 			Assert.assertTrue(true);
 	}
 
-	@Test
-	public void testPostFolderFolder() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostFolderFolderBatchCreate() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPutFolder() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	protected Response invokeDeleteFolder(Long folderId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).delete(
-				_resourceURL + "/folders/{folder-id}", folderId
-			);
-	}
-
-	protected Response invokeGetDocumentsRepository(Long documentsRepositoryId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetDocumentsRepository( Long documentsRepositoryId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/documents-repositories/{documents-repository-id}",
 				documentsRepositoryId
 			);
+
 	}
-
-	protected Response invokeGetDocumentsRepositoryFoldersPage(
-			Long documentsRepositoryId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetDocumentsRepositoryFoldersPage( Long documentsRepositoryId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/documents-repositories/{documents-repository-id}/folders",
-				documentsRepositoryId
+				documentsRepositoryId 
 			);
+
 	}
-
-	protected Response invokeGetFolder(Long folderId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/folders/{folder-id}", folderId
-			);
-	}
-
-	protected Response invokeGetFolderFoldersPage(
-			Long folderId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/folders/{folder-id}/folders", folderId
-			);
-	}
-
-	protected Response invokePostDocumentsRepositoryFolder(
-			Long documentsRepositoryId, Folder folder)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostDocumentsRepositoryFolder( Long documentsRepositoryId , Folder folder ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				folder
 			).when(
 			).post(
 				_resourceURL + "/documents-repositories/{documents-repository-id}/folders",
-				documentsRepositoryId
+				documentsRepositoryId 
 			);
+
 	}
-
-	protected Response invokePostDocumentsRepositoryFolderBatchCreate(
-			Long documentsRepositoryId, Folder folder)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostDocumentsRepositoryFolderBatchCreate( Long documentsRepositoryId , Folder folder ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				folder
 			).when(
 			).post(
 				_resourceURL + "/documents-repositories/{documents-repository-id}/folders/batch-create",
-				documentsRepositoryId
+				documentsRepositoryId 
 			);
+
 	}
+	protected Response invokeDeleteFolder( Long folderId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePostFolderFolder(Long folderId, Folder folder)
-		throws Exception {
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/folders/{folder-id}",
+				folderId
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetFolder( Long folderId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}",
+				folderId
+			);
+
+	}
+	protected Response invokePutFolder( Long folderId , Folder folder ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.body(
+				folder
+			).when(
+			).put(
+				_resourceURL + "/folders/{folder-id}",
+				folderId 
+			);
+
+	}
+	protected Response invokeGetFolderFoldersPage( Long folderId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}/folders",
+				folderId 
+			);
+
+	}
+	protected Response invokePostFolderFolder( Long folderId , Folder folder ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				folder
 			).when(
 			).post(
-				_resourceURL + "/folders/{folder-id}/folders", folderId
+				_resourceURL + "/folders/{folder-id}/folders",
+				folderId 
 			);
+
 	}
-
-	protected Response invokePostFolderFolderBatchCreate(
-			Long folderId, Folder folder)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostFolderFolderBatchCreate( Long folderId , Folder folder ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				folder
 			).when(
 			).post(
 				_resourceURL + "/folders/{folder-id}/folders/batch-create",
-				folderId
+				folderId 
 			);
-	}
 
-	protected Response invokePutFolder(Long folderId, Folder folder)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.body(
-				folder
-			).when(
-			).put(
-				_resourceURL + "/folders/{folder-id}", folderId
-			);
 	}
 
 	protected Folder randomFolder() {
@@ -279,12 +242,12 @@ folder.setName(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

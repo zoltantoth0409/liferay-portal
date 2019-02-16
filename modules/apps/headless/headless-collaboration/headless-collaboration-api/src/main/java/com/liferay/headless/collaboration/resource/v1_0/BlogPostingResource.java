@@ -15,22 +15,10 @@
 package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -41,66 +29,24 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface BlogPostingResource {
 
-	@DELETE
-	@Path("/blog-postings/{blog-posting-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception;
+	public boolean deleteBlogPosting( Long blogPostingId ) throws Exception;
 
-	@GET
-	@Path("/blog-postings/{blog-posting-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public BlogPosting getBlogPosting( @PathParam("blog-posting-id") Long blogPostingId ) throws Exception;
+	public BlogPosting getBlogPosting( Long blogPostingId ) throws Exception;
 
-	@Consumes("application/json")
-	@PUT
-	@Path("/blog-postings/{blog-posting-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public BlogPosting putBlogPosting( @PathParam("blog-posting-id") Long blogPostingId , BlogPosting blogPosting ) throws Exception;
+	public BlogPosting putBlogPosting( Long blogPostingId , BlogPosting blogPosting ) throws Exception;
 
-	@GET
-	@Path("/blog-postings/{blog-posting-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Long> getBlogPostingCategoriesPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Pagination pagination ) throws Exception;
+	public Page<Long> getBlogPostingCategoriesPage( Long blogPostingId , Pagination pagination ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/blog-postings/{blog-posting-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response postBlogPostingCategories( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception;
+	public boolean postBlogPostingCategories( Long blogPostingId , Long referenceId ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/blog-postings/{blog-posting-id}/categories/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public Response postBlogPostingCategoriesBatchCreate( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception;
+	public boolean postBlogPostingCategoriesBatchCreate( Long blogPostingId , Long referenceId ) throws Exception;
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/blog-postings")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<BlogPosting> getContentSpaceBlogPostingsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
+	public Page<BlogPosting> getContentSpaceBlogPostingsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/blog-postings")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
+	public BlogPosting postContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/blog-postings/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
+	public BlogPosting postContentSpaceBlogPostingBatchCreate( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
 
 }

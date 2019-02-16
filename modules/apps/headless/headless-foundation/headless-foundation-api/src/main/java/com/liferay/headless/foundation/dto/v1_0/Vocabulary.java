@@ -29,72 +29,53 @@ public interface Vocabulary {
 
 	public String[] getAvailableLanguages();
 
-	public Long getContentSpace();
-
-	public UserAccount getCreator();
-
-	public Date getDateCreated();
-
-	public Date getDateModified();
-
-	public String getDescription();
-
-	public Long getId();
-
-	public String getName();
-
-	public Category[] getVocabularyCategories();
-
-	public Long[] getVocabularyCategoriesIds();
-
 	public void setAvailableLanguages(String[] availableLanguages);
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+	public Long getContentSpace();
 
 	public void setContentSpace(Long contentSpace);
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
-
-	public void setCreator(
-		UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+	public UserAccount getCreator();
 
 	public void setCreator(UserAccount creator);
 
+	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public Date getDateCreated();
+
 	public void setDateCreated(Date dateCreated);
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+	public Date getDateModified();
 
 	public void setDateModified(Date dateModified);
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public String getDescription();
 
 	public void setDescription(String description);
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getName();
 
 	public void setName(String name);
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public Category[] getVocabularyCategories();
 
 	public void setVocabularyCategories(Category[] vocabularyCategories);
 
-	public void setVocabularyCategories(
-		UnsafeSupplier<Category[], Throwable>
-			vocabularyCategoriesUnsafeSupplier);
+	public void setVocabularyCategories(UnsafeSupplier<Category[], Throwable> vocabularyCategoriesUnsafeSupplier);
+	public Long[] getVocabularyCategoriesIds();
 
 	public void setVocabularyCategoriesIds(Long[] vocabularyCategoriesIds);
 
-	public void setVocabularyCategoriesIds(
-		UnsafeSupplier<Long[], Throwable>
-			vocabularyCategoriesIdsUnsafeSupplier);
+	public void setVocabularyCategoriesIds(UnsafeSupplier<Long[], Throwable> vocabularyCategoriesIdsUnsafeSupplier);
 
 }

@@ -34,68 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ContactInformationImpl implements ContactInformation {
 
 	public PostalAddress[] getAddress() {
-		return address;
-	}
-
-	public Long[] getAddressIds() {
-		return addressIds;
-	}
-
-	public Email[] getEmail() {
-		return email;
-	}
-
-	public Long[] getEmailIds() {
-		return emailIds;
-	}
-
-	public String getFacebook() {
-		return facebook;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getJabber() {
-		return jabber;
-	}
-
-	public String getSkype() {
-		return skype;
-	}
-
-	public String getSms() {
-		return sms;
-	}
-
-	public Phone[] getTelephone() {
-		return telephone;
-	}
-
-	public Long[] getTelephoneIds() {
-		return telephoneIds;
-	}
-
-	public String getTwitter() {
-		return twitter;
-	}
-
-	public WebUrl[] getWebUrl() {
-		return webUrl;
-	}
-
-	public Long[] getWebUrlIds() {
-		return webUrlIds;
+			return address;
 	}
 
 	public void setAddress(PostalAddress[] address) {
-		this.address = address;
+			this.address = address;
 	}
 
-	public void setAddress(
-		UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier) {
-
+	public void setAddress(UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier) {
 			try {
 				address = addressUnsafeSupplier.get();
 	}
@@ -104,13 +50,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setAddressIds(Long[] addressIds) {
-		this.addressIds = addressIds;
+	@GraphQLField
+	protected PostalAddress[] address;
+	public Long[] getAddressIds() {
+			return addressIds;
 	}
 
-	public void setAddressIds(
-		UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier) {
+	public void setAddressIds(Long[] addressIds) {
+			this.addressIds = addressIds;
+	}
 
+	public void setAddressIds(UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier) {
 			try {
 				addressIds = addressIdsUnsafeSupplier.get();
 	}
@@ -119,13 +69,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setEmail(Email[] email) {
-		this.email = email;
+	@GraphQLField
+	protected Long[] addressIds;
+	public Email[] getEmail() {
+			return email;
 	}
 
-	public void setEmail(
-		UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier) {
+	public void setEmail(Email[] email) {
+			this.email = email;
+	}
 
+	public void setEmail(UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier) {
 			try {
 				email = emailUnsafeSupplier.get();
 	}
@@ -134,13 +88,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setEmailIds(Long[] emailIds) {
-		this.emailIds = emailIds;
+	@GraphQLField
+	protected Email[] email;
+	public Long[] getEmailIds() {
+			return emailIds;
 	}
 
-	public void setEmailIds(
-		UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier) {
+	public void setEmailIds(Long[] emailIds) {
+			this.emailIds = emailIds;
+	}
 
+	public void setEmailIds(UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier) {
 			try {
 				emailIds = emailIdsUnsafeSupplier.get();
 	}
@@ -149,13 +107,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setFacebook(String facebook) {
-		this.facebook = facebook;
+	@GraphQLField
+	protected Long[] emailIds;
+	public String getFacebook() {
+			return facebook;
 	}
 
-	public void setFacebook(
-		UnsafeSupplier<String, Throwable> facebookUnsafeSupplier) {
+	public void setFacebook(String facebook) {
+			this.facebook = facebook;
+	}
 
+	public void setFacebook(UnsafeSupplier<String, Throwable> facebookUnsafeSupplier) {
 			try {
 				facebook = facebookUnsafeSupplier.get();
 	}
@@ -164,8 +126,14 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
+	@GraphQLField
+	protected String facebook;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -177,13 +145,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setJabber(String jabber) {
-		this.jabber = jabber;
+	@GraphQLField
+	protected Long id;
+	public String getJabber() {
+			return jabber;
 	}
 
-	public void setJabber(
-		UnsafeSupplier<String, Throwable> jabberUnsafeSupplier) {
+	public void setJabber(String jabber) {
+			this.jabber = jabber;
+	}
 
+	public void setJabber(UnsafeSupplier<String, Throwable> jabberUnsafeSupplier) {
 			try {
 				jabber = jabberUnsafeSupplier.get();
 	}
@@ -192,13 +164,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setSkype(String skype) {
-		this.skype = skype;
+	@GraphQLField
+	protected String jabber;
+	public String getSkype() {
+			return skype;
 	}
 
-	public void setSkype(
-		UnsafeSupplier<String, Throwable> skypeUnsafeSupplier) {
+	public void setSkype(String skype) {
+			this.skype = skype;
+	}
 
+	public void setSkype(UnsafeSupplier<String, Throwable> skypeUnsafeSupplier) {
 			try {
 				skype = skypeUnsafeSupplier.get();
 	}
@@ -207,8 +183,14 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
+	@GraphQLField
+	protected String skype;
+	public String getSms() {
+			return sms;
+	}
+
 	public void setSms(String sms) {
-		this.sms = sms;
+			this.sms = sms;
 	}
 
 	public void setSms(UnsafeSupplier<String, Throwable> smsUnsafeSupplier) {
@@ -220,13 +202,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setTelephone(Phone[] telephone) {
-		this.telephone = telephone;
+	@GraphQLField
+	protected String sms;
+	public Phone[] getTelephone() {
+			return telephone;
 	}
 
-	public void setTelephone(
-		UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier) {
+	public void setTelephone(Phone[] telephone) {
+			this.telephone = telephone;
+	}
 
+	public void setTelephone(UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier) {
 			try {
 				telephone = telephoneUnsafeSupplier.get();
 	}
@@ -235,13 +221,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setTelephoneIds(Long[] telephoneIds) {
-		this.telephoneIds = telephoneIds;
+	@GraphQLField
+	protected Phone[] telephone;
+	public Long[] getTelephoneIds() {
+			return telephoneIds;
 	}
 
-	public void setTelephoneIds(
-		UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier) {
+	public void setTelephoneIds(Long[] telephoneIds) {
+			this.telephoneIds = telephoneIds;
+	}
 
+	public void setTelephoneIds(UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier) {
 			try {
 				telephoneIds = telephoneIdsUnsafeSupplier.get();
 	}
@@ -250,13 +240,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setTwitter(String twitter) {
-		this.twitter = twitter;
+	@GraphQLField
+	protected Long[] telephoneIds;
+	public String getTwitter() {
+			return twitter;
 	}
 
-	public void setTwitter(
-		UnsafeSupplier<String, Throwable> twitterUnsafeSupplier) {
+	public void setTwitter(String twitter) {
+			this.twitter = twitter;
+	}
 
+	public void setTwitter(UnsafeSupplier<String, Throwable> twitterUnsafeSupplier) {
 			try {
 				twitter = twitterUnsafeSupplier.get();
 	}
@@ -265,9 +259,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setWebUrl(
-		UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier) {
+	@GraphQLField
+	protected String twitter;
+	public WebUrl[] getWebUrl() {
+			return webUrl;
+	}
 
+	public void setWebUrl(WebUrl[] webUrl) {
+			this.webUrl = webUrl;
+	}
+
+	public void setWebUrl(UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier) {
 			try {
 				webUrl = webUrlUnsafeSupplier.get();
 	}
@@ -276,17 +278,17 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 	}
 
-	public void setWebUrl(WebUrl[] webUrl) {
-		this.webUrl = webUrl;
+	@GraphQLField
+	protected WebUrl[] webUrl;
+	public Long[] getWebUrlIds() {
+			return webUrlIds;
 	}
 
 	public void setWebUrlIds(Long[] webUrlIds) {
-		this.webUrlIds = webUrlIds;
+			this.webUrlIds = webUrlIds;
 	}
 
-	public void setWebUrlIds(
-		UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier) {
-
+	public void setWebUrlIds(UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier) {
 			try {
 				webUrlIds = webUrlIdsUnsafeSupplier.get();
 	}
@@ -294,45 +296,6 @@ public class ContactInformationImpl implements ContactInformation {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected PostalAddress[] address;
-
-	@GraphQLField
-	protected Long[] addressIds;
-
-	@GraphQLField
-	protected Email[] email;
-
-	@GraphQLField
-	protected Long[] emailIds;
-
-	@GraphQLField
-	protected String facebook;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String jabber;
-
-	@GraphQLField
-	protected String skype;
-
-	@GraphQLField
-	protected String sms;
-
-	@GraphQLField
-	protected Phone[] telephone;
-
-	@GraphQLField
-	protected Long[] telephoneIds;
-
-	@GraphQLField
-	protected String twitter;
-
-	@GraphQLField
-	protected WebUrl[] webUrl;
 
 	@GraphQLField
 	protected Long[] webUrlIds;

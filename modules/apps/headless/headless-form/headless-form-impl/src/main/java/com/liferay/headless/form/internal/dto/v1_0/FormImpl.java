@@ -36,68 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FormImpl implements Form {
 
 	public String[] getAvailableLanguages() {
-		return availableLanguages;
-	}
-
-	public Long getContentSpace() {
-		return contentSpace;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public Date getDatePublished() {
-		return datePublished;
-	}
-
-	public String getDefaultLanguage() {
-		return defaultLanguage;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public FormRecord[] getFormRecords() {
-		return formRecords;
-	}
-
-	public Long[] getFormRecordsIds() {
-		return formRecordsIds;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public FormStructure getStructure() {
-		return structure;
-	}
-
-	public Long getStructureId() {
-		return structureId;
+			return availableLanguages;
 	}
 
 	public void setAvailableLanguages(String[] availableLanguages) {
-		this.availableLanguages = availableLanguages;
+			this.availableLanguages = availableLanguages;
 	}
 
-	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
-
+	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 			try {
 				availableLanguages = availableLanguagesUnsafeSupplier.get();
 	}
@@ -106,13 +52,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setContentSpace(Long contentSpace) {
-		this.contentSpace = contentSpace;
+	@GraphQLField
+	protected String[] availableLanguages;
+	public Long getContentSpace() {
+			return contentSpace;
 	}
 
-	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+	public void setContentSpace(Long contentSpace) {
+			this.contentSpace = contentSpace;
+	}
 
+	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 			try {
 				contentSpace = contentSpaceUnsafeSupplier.get();
 	}
@@ -121,13 +71,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected Long contentSpace;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -136,13 +90,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -151,13 +109,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -166,13 +128,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
+	@GraphQLField
+	protected Date dateModified;
+	public Date getDatePublished() {
+			return datePublished;
 	}
 
-	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+	public void setDatePublished(Date datePublished) {
+			this.datePublished = datePublished;
+	}
 
+	public void setDatePublished(UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 			try {
 				datePublished = datePublishedUnsafeSupplier.get();
 	}
@@ -181,13 +147,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setDefaultLanguage(String defaultLanguage) {
-		this.defaultLanguage = defaultLanguage;
+	@GraphQLField
+	protected Date datePublished;
+	public String getDefaultLanguage() {
+			return defaultLanguage;
 	}
 
-	public void setDefaultLanguage(
-		UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier) {
+	public void setDefaultLanguage(String defaultLanguage) {
+			this.defaultLanguage = defaultLanguage;
+	}
 
+	public void setDefaultLanguage(UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier) {
 			try {
 				defaultLanguage = defaultLanguageUnsafeSupplier.get();
 	}
@@ -196,13 +166,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected String defaultLanguage;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -211,13 +185,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setFormRecords(FormRecord[] formRecords) {
-		this.formRecords = formRecords;
+	@GraphQLField
+	protected String description;
+	public FormRecord[] getFormRecords() {
+			return formRecords;
 	}
 
-	public void setFormRecords(
-		UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier) {
+	public void setFormRecords(FormRecord[] formRecords) {
+			this.formRecords = formRecords;
+	}
 
+	public void setFormRecords(UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier) {
 			try {
 				formRecords = formRecordsUnsafeSupplier.get();
 	}
@@ -226,13 +204,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setFormRecordsIds(Long[] formRecordsIds) {
-		this.formRecordsIds = formRecordsIds;
+	@GraphQLField
+	protected FormRecord[] formRecords;
+	public Long[] getFormRecordsIds() {
+			return formRecordsIds;
 	}
 
-	public void setFormRecordsIds(
-		UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier) {
+	public void setFormRecordsIds(Long[] formRecordsIds) {
+			this.formRecordsIds = formRecordsIds;
+	}
 
+	public void setFormRecordsIds(UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier) {
 			try {
 				formRecordsIds = formRecordsIdsUnsafeSupplier.get();
 	}
@@ -241,8 +223,14 @@ public class FormImpl implements Form {
 	}
 	}
 
+	@GraphQLField
+	protected Long[] formRecordsIds;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -254,8 +242,14 @@ public class FormImpl implements Form {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -267,13 +261,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setStructure(FormStructure structure) {
-		this.structure = structure;
+	@GraphQLField
+	protected String name;
+	public FormStructure getStructure() {
+			return structure;
 	}
 
-	public void setStructure(
-		UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier) {
+	public void setStructure(FormStructure structure) {
+			this.structure = structure;
+	}
 
+	public void setStructure(UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier) {
 			try {
 				structure = structureUnsafeSupplier.get();
 	}
@@ -282,13 +280,17 @@ public class FormImpl implements Form {
 	}
 	}
 
-	public void setStructureId(Long structureId) {
-		this.structureId = structureId;
+	@GraphQLField
+	protected FormStructure structure;
+	public Long getStructureId() {
+			return structureId;
 	}
 
-	public void setStructureId(
-		UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier) {
+	public void setStructureId(Long structureId) {
+			this.structureId = structureId;
+	}
 
+	public void setStructureId(UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier) {
 			try {
 				structureId = structureIdUnsafeSupplier.get();
 	}
@@ -296,45 +298,6 @@ public class FormImpl implements Form {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String[] availableLanguages;
-
-	@GraphQLField
-	protected Long contentSpace;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected Date datePublished;
-
-	@GraphQLField
-	protected String defaultLanguage;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected FormRecord[] formRecords;
-
-	@GraphQLField
-	protected Long[] formRecordsIds;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
-
-	@GraphQLField
-	protected FormStructure structure;
 
 	@GraphQLField
 	protected Long structureId;

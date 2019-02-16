@@ -34,56 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FieldsImpl implements Fields {
 
 	public String getDataType() {
-		return dataType;
-	}
-
-	public String getInputControl() {
-		return inputControl;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public Boolean getLocalizable() {
-		return localizable;
-	}
-
-	public Boolean getMultiple() {
-		return multiple;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Options[] getOptions() {
-		return options;
-	}
-
-	public String getPredefinedValue() {
-		return predefinedValue;
-	}
-
-	public Boolean getRepeatable() {
-		return repeatable;
-	}
-
-	public Boolean getRequired() {
-		return required;
-	}
-
-	public Boolean getShowLabel() {
-		return showLabel;
+			return dataType;
 	}
 
 	public void setDataType(String dataType) {
-		this.dataType = dataType;
+			this.dataType = dataType;
 	}
 
-	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
-
+	public void setDataType(UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
 			try {
 				dataType = dataTypeUnsafeSupplier.get();
 	}
@@ -92,28 +50,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setInputControl(String inputControl) {
-		this.inputControl = inputControl;
-	}
-
-	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
-
-			try {
-				inputControl = inputControlUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
+	@GraphQLField
+	protected String dataType;
+	public String getLabel() {
+			return label;
 	}
 
 	public void setLabel(String label) {
-		this.label = label;
+			this.label = label;
 	}
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
-
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 			try {
 				label = labelUnsafeSupplier.get();
 	}
@@ -122,13 +69,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setLocalizable(Boolean localizable) {
-		this.localizable = localizable;
+	@GraphQLField
+	protected String label;
+	public Boolean getLocalizable() {
+			return localizable;
 	}
 
-	public void setLocalizable(
-		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
+	public void setLocalizable(Boolean localizable) {
+			this.localizable = localizable;
+	}
 
+	public void setLocalizable(UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
 			try {
 				localizable = localizableUnsafeSupplier.get();
 	}
@@ -137,13 +88,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setMultiple(Boolean multiple) {
-		this.multiple = multiple;
+	@GraphQLField
+	protected Boolean localizable;
+	public Boolean getMultiple() {
+			return multiple;
 	}
 
-	public void setMultiple(
-		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
+	public void setMultiple(Boolean multiple) {
+			this.multiple = multiple;
+	}
 
+	public void setMultiple(UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
 			try {
 				multiple = multipleUnsafeSupplier.get();
 	}
@@ -152,8 +107,52 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
+	@GraphQLField
+	protected Boolean multiple;
+	public String getInputControl() {
+			return inputControl;
+	}
+
+	public void setInputControl(String inputControl) {
+			this.inputControl = inputControl;
+	}
+
+	public void setInputControl(UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+			try {
+				inputControl = inputControlUnsafeSupplier.get();
+	}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+	}
+	}
+
+	@GraphQLField
+	protected String inputControl;
+	public String getPredefinedValue() {
+			return predefinedValue;
+	}
+
+	public void setPredefinedValue(String predefinedValue) {
+			this.predefinedValue = predefinedValue;
+	}
+
+	public void setPredefinedValue(UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
+			try {
+				predefinedValue = predefinedValueUnsafeSupplier.get();
+	}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+	}
+	}
+
+	@GraphQLField
+	protected String predefinedValue;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -165,43 +164,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setOptions(Options[] options) {
-		this.options = options;
-	}
-
-	public void setOptions(
-		UnsafeSupplier<Options[], Throwable> optionsUnsafeSupplier) {
-
-			try {
-				options = optionsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	public void setPredefinedValue(String predefinedValue) {
-		this.predefinedValue = predefinedValue;
-	}
-
-	public void setPredefinedValue(
-		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
-
-			try {
-				predefinedValue = predefinedValueUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
+	@GraphQLField
+	protected String name;
+	public Boolean getRepeatable() {
+			return repeatable;
 	}
 
 	public void setRepeatable(Boolean repeatable) {
-		this.repeatable = repeatable;
+			this.repeatable = repeatable;
 	}
 
-	public void setRepeatable(
-		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
-
+	public void setRepeatable(UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
 			try {
 				repeatable = repeatableUnsafeSupplier.get();
 	}
@@ -210,13 +183,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setRequired(Boolean required) {
-		this.required = required;
+	@GraphQLField
+	protected Boolean repeatable;
+	public Boolean getRequired() {
+			return required;
 	}
 
-	public void setRequired(
-		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
+	public void setRequired(Boolean required) {
+			this.required = required;
+	}
 
+	public void setRequired(UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
 			try {
 				required = requiredUnsafeSupplier.get();
 	}
@@ -225,13 +202,17 @@ public class FieldsImpl implements Fields {
 	}
 	}
 
-	public void setShowLabel(Boolean showLabel) {
-		this.showLabel = showLabel;
+	@GraphQLField
+	protected Boolean required;
+	public Boolean getShowLabel() {
+			return showLabel;
 	}
 
-	public void setShowLabel(
-		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
+	public void setShowLabel(Boolean showLabel) {
+			this.showLabel = showLabel;
+	}
 
+	public void setShowLabel(UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
 			try {
 				showLabel = showLabelUnsafeSupplier.get();
 	}
@@ -241,36 +222,25 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
-	protected String dataType;
+	protected Boolean showLabel;
+	public Options[] getOptions() {
+			return options;
+	}
 
-	@GraphQLField
-	protected String inputControl;
+	public void setOptions(Options[] options) {
+			this.options = options;
+	}
 
-	@GraphQLField
-	protected String label;
-
-	@GraphQLField
-	protected Boolean localizable;
-
-	@GraphQLField
-	protected Boolean multiple;
-
-	@GraphQLField
-	protected String name;
+	public void setOptions(UnsafeSupplier<Options[], Throwable> optionsUnsafeSupplier) {
+			try {
+				options = optionsUnsafeSupplier.get();
+	}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+	}
+	}
 
 	@GraphQLField
 	protected Options[] options;
-
-	@GraphQLField
-	protected String predefinedValue;
-
-	@GraphQLField
-	protected Boolean repeatable;
-
-	@GraphQLField
-	protected Boolean required;
-
-	@GraphQLField
-	protected Boolean showLabel;
 
 }

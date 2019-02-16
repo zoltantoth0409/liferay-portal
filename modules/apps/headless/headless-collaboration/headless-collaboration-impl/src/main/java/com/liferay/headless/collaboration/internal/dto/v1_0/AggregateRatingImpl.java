@@ -34,32 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AggregateRatingImpl implements AggregateRating {
 
 	public Number getBestRating() {
-		return bestRating;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Number getRatingCount() {
-		return ratingCount;
-	}
-
-	public Number getRatingValue() {
-		return ratingValue;
-	}
-
-	public Number getWorstRating() {
-		return worstRating;
+			return bestRating;
 	}
 
 	public void setBestRating(Number bestRating) {
-		this.bestRating = bestRating;
+			this.bestRating = bestRating;
 	}
 
-	public void setBestRating(
-		UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier) {
-
+	public void setBestRating(UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier) {
 			try {
 				bestRating = bestRatingUnsafeSupplier.get();
 	}
@@ -68,8 +50,14 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 	}
 
+	@GraphQLField
+	protected Number bestRating;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -81,13 +69,17 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 	}
 
-	public void setRatingCount(Number ratingCount) {
-		this.ratingCount = ratingCount;
+	@GraphQLField
+	protected Long id;
+	public Number getRatingCount() {
+			return ratingCount;
 	}
 
-	public void setRatingCount(
-		UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier) {
+	public void setRatingCount(Number ratingCount) {
+			this.ratingCount = ratingCount;
+	}
 
+	public void setRatingCount(UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier) {
 			try {
 				ratingCount = ratingCountUnsafeSupplier.get();
 	}
@@ -96,13 +88,17 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 	}
 
-	public void setRatingValue(Number ratingValue) {
-		this.ratingValue = ratingValue;
+	@GraphQLField
+	protected Number ratingCount;
+	public Number getRatingValue() {
+			return ratingValue;
 	}
 
-	public void setRatingValue(
-		UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier) {
+	public void setRatingValue(Number ratingValue) {
+			this.ratingValue = ratingValue;
+	}
 
+	public void setRatingValue(UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier) {
 			try {
 				ratingValue = ratingValueUnsafeSupplier.get();
 	}
@@ -111,13 +107,17 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 	}
 
-	public void setWorstRating(Number worstRating) {
-		this.worstRating = worstRating;
+	@GraphQLField
+	protected Number ratingValue;
+	public Number getWorstRating() {
+			return worstRating;
 	}
 
-	public void setWorstRating(
-		UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier) {
+	public void setWorstRating(Number worstRating) {
+			this.worstRating = worstRating;
+	}
 
+	public void setWorstRating(UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier) {
 			try {
 				worstRating = worstRatingUnsafeSupplier.get();
 	}
@@ -125,18 +125,6 @@ public class AggregateRatingImpl implements AggregateRating {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Number bestRating;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Number ratingCount;
-
-	@GraphQLField
-	protected Number ratingValue;
 
 	@GraphQLField
 	protected Number worstRating;

@@ -15,19 +15,10 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Form;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -38,39 +29,16 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface FormResource {
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/form")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Form> getContentSpaceFormsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
+	public Page<Form> getContentSpaceFormsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/forms/{form-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Form getForm( @PathParam("form-id") Long formId ) throws Exception;
+	public Form getForm( Long formId ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/forms/{form-id}/evaluate-context")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public Form postFormEvaluateContext( @PathParam("form-id") Long formId , Form form ) throws Exception;
+	public Form postFormEvaluateContext( Long formId , Form form ) throws Exception;
 
-	@GET
-	@Path("/forms/{form-id}/fetch-latest-draft")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Form getFormFetchLatestDraft( @PathParam("form-id") Long formId ) throws Exception;
+	public Form getFormFetchLatestDraft( Long formId ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/forms/{form-id}/upload-file")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public Form postFormUploadFile( @PathParam("form-id") Long formId , Form form ) throws Exception;
+	public Form postFormUploadFile( Long formId , Form form ) throws Exception;
 
 }

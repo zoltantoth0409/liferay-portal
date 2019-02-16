@@ -56,8 +56,7 @@ public abstract class BaseDocumentResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-document-library/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-document-library/v1.0");
 	}
 
 	@After
@@ -67,207 +66,162 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@Test
 	public void testDeleteDocument() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetDocument() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetDocumentCategoriesPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetDocumentsRepositoryDocumentsPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testGetFolderDocumentsPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPostDocumentCategories() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testPostDocumentCategoriesBatchCreate() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
+	@Test
+	public void testGetDocumentsRepositoryDocumentsPage() throws Exception {
+			Assert.assertTrue(true);
+	}
 	@Test
 	public void testPostDocumentsRepositoryDocument() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
-	public void testPostDocumentsRepositoryDocumentBatchCreate()
-		throws Exception {
-
+	public void testPostDocumentsRepositoryDocumentBatchCreate() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetFolderDocumentsPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFolderDocument() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostFolderDocumentBatchCreate() throws Exception {
 			Assert.assertTrue(true);
 	}
 
-	@Test
-	public void testPostFolderDocument() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
-	public void testPostFolderDocumentBatchCreate() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	protected Response invokeDeleteDocument(Long documentId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeDeleteDocument( Long documentId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).delete(
-				_resourceURL + "/documents/{document-id}", documentId
+				_resourceURL + "/documents/{document-id}",
+				documentId
 			);
-	}
 
-	protected Response invokeGetDocument(Long documentId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetDocument( Long documentId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/documents/{document-id}", documentId
+				_resourceURL + "/documents/{document-id}",
+				documentId
 			);
+
 	}
-
-	protected Response invokeGetDocumentCategoriesPage(
-			Long documentId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetDocumentCategoriesPage( Long documentId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/documents/{document-id}/categories", documentId
+				_resourceURL + "/documents/{document-id}/categories",
+				documentId 
 			);
+
 	}
-
-	protected Response invokeGetDocumentsRepositoryDocumentsPage(
-			Long documentsRepositoryId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/documents-repositories/{documents-repository-id}/documents",
-				documentsRepositoryId
-			);
-	}
-
-	protected Response invokeGetFolderDocumentsPage(
-			Long folderId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/folders/{folder-id}/documents", folderId
-			);
-	}
-
-	protected Response invokePostDocumentCategories(
-			Long documentId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostDocumentCategories( Long documentId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
 				_resourceURL + "/documents/{document-id}/categories",
-				documentId, referenceId
+				documentId , referenceId
 			);
+
 	}
-
-	protected Response invokePostDocumentCategoriesBatchCreate(
-			Long documentId, Long referenceId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostDocumentCategoriesBatchCreate( Long documentId , Long referenceId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
 				_resourceURL + "/documents/{document-id}/categories/batch-create",
-				documentId, referenceId
+				documentId , referenceId
 			);
+
 	}
+	protected Response invokeGetDocumentsRepositoryDocumentsPage( Long documentsRepositoryId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePostDocumentsRepositoryDocument(
-			Long documentsRepositoryId, Document document)
-		throws Exception {
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/documents-repositories/{documents-repository-id}/documents",
+				documentsRepositoryId 
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokePostDocumentsRepositoryDocument( Long documentsRepositoryId , Document document ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				document
 			).when(
 			).post(
 				_resourceURL + "/documents-repositories/{documents-repository-id}/documents",
-				documentsRepositoryId
+				documentsRepositoryId 
 			);
+
 	}
-
-	protected Response invokePostDocumentsRepositoryDocumentBatchCreate(
-			Long documentsRepositoryId, Document document)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostDocumentsRepositoryDocumentBatchCreate( Long documentsRepositoryId , Document document ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				document
 			).when(
 			).post(
 				_resourceURL + "/documents-repositories/{documents-repository-id}/documents/batch-create",
-				documentsRepositoryId
+				documentsRepositoryId 
 			);
+
 	}
+	protected Response invokeGetFolderDocumentsPage( Long folderId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePostFolderDocument(
-			Long folderId, MultipartBody multipartBody)
-		throws Exception {
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/folders/{folder-id}/documents",
+				folderId 
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokePostFolderDocument( Long folderId , MultipartBody multipartBody ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
-				_resourceURL + "/folders/{folder-id}/documents", folderId,
-				multipartBody
+				_resourceURL + "/folders/{folder-id}/documents",
+				folderId , multipartBody
 			);
+
 	}
-
-	protected Response invokePostFolderDocumentBatchCreate(
-			Long folderId, MultipartBody multipartBody)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostFolderDocumentBatchCreate( Long folderId , MultipartBody multipartBody ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
 				_resourceURL + "/folders/{folder-id}/documents/batch-create",
-				folderId, multipartBody
+				folderId , multipartBody
 			);
+
 	}
 
 	protected Document randomDocument() {
@@ -300,12 +254,12 @@ document.setTitle(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

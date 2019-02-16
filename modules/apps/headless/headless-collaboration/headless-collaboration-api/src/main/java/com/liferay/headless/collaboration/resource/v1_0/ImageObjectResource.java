@@ -15,21 +15,10 @@
 package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -40,39 +29,16 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface ImageObjectResource {
 
-	@GET
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Pagination pagination ) throws Exception;
+	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObject( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
 
-	@DELETE
-	@Path("/image-objects/{image-object-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception;
+	public boolean deleteImageObject( Long imageObjectId ) throws Exception;
 
-	@GET
-	@Path("/image-objects/{image-object-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception;
+	public ImageObject getImageObject( Long imageObjectId ) throws Exception;
 
 }

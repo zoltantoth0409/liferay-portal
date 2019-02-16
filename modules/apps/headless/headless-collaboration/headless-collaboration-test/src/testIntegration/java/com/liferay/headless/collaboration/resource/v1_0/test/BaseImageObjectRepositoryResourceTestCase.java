@@ -54,8 +54,7 @@ public abstract class BaseImageObjectRepositoryResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-collaboration/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-collaboration/v1.0");
 	}
 
 	@After
@@ -65,32 +64,27 @@ public abstract class BaseImageObjectRepositoryResourceTestCase {
 
 	@Test
 	public void testGetImageObjectRepository() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetImageObjectRepository(
-			Long imageObjectRepositoryId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetImageObjectRepository( Long imageObjectRepositoryId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/image-object-repositories/{image-object-repository-id}",
 				imageObjectRepositoryId
 			);
+
 	}
 
 	protected ImageObjectRepository randomImageObjectRepository() {
-		ImageObjectRepository imageObjectRepository =
-			new ImageObjectRepositoryImpl();
+		ImageObjectRepository imageObjectRepository = new ImageObjectRepositoryImpl();
 
 imageObjectRepository.setDateCreated(RandomTestUtil.nextDate());
 imageObjectRepository.setDateModified(RandomTestUtil.nextDate());
 imageObjectRepository.setId(RandomTestUtil.randomLong());
 imageObjectRepository.setName(RandomTestUtil.randomString());
-
 		return imageObjectRepository;
 	}
 
@@ -109,12 +103,12 @@ imageObjectRepository.setName(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

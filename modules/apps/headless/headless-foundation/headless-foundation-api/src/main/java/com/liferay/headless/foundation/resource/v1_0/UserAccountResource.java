@@ -15,23 +15,10 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * To access this resource, run:
@@ -42,64 +29,24 @@ import javax.ws.rs.core.Response;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface UserAccountResource {
 
-	@GET
-	@Path("/my-user-accounts/{my-user-account-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public UserAccount getMyUserAccount( @PathParam("my-user-account-id") Long myUserAccountId ) throws Exception;
+	public UserAccount getMyUserAccount( Long myUserAccountId ) throws Exception;
 
-	@GET
-	@Path("/organizations/{organization-id}/user-accounts")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<UserAccount> getOrganizationUserAccountsPage( @PathParam("organization-id") Long organizationId , @Context Pagination pagination ) throws Exception;
+	public Page<UserAccount> getOrganizationUserAccountsPage( Long organizationId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/user-accounts")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<UserAccount> getUserAccountsPage( @QueryParam("fullnamequery") String fullnamequery , @Context Pagination pagination ) throws Exception;
+	public Page<UserAccount> getUserAccountsPage( String fullnamequery , Pagination pagination ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/user-accounts")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
 	public UserAccount postUserAccount( UserAccount userAccount ) throws Exception;
 
-	@Consumes("application/json")
-	@POST
-	@Path("/user-accounts/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
 	public UserAccount postUserAccountBatchCreate( UserAccount userAccount ) throws Exception;
 
-	@DELETE
-	@Path("/user-accounts/{user-account-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Response deleteUserAccount( @PathParam("user-account-id") Long userAccountId ) throws Exception;
+	public boolean deleteUserAccount( Long userAccountId ) throws Exception;
 
-	@GET
-	@Path("/user-accounts/{user-account-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public UserAccount getUserAccount( @PathParam("user-account-id") Long userAccountId ) throws Exception;
+	public UserAccount getUserAccount( Long userAccountId ) throws Exception;
 
-	@Consumes("application/json")
-	@PUT
-	@Path("/user-accounts/{user-account-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public UserAccount putUserAccount( @PathParam("user-account-id") Long userAccountId , UserAccount userAccount ) throws Exception;
+	public UserAccount putUserAccount( Long userAccountId , UserAccount userAccount ) throws Exception;
 
-	@GET
-	@Path("/web-sites/{web-site-id}/user-accounts")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<UserAccount> getWebSiteUserAccountsPage( @PathParam("web-site-id") Long webSiteId , @Context Pagination pagination ) throws Exception;
+	public Page<UserAccount> getWebSiteUserAccountsPage( Long webSiteId , Pagination pagination ) throws Exception;
 
 }

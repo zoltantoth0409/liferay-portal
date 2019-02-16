@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.headless.foundation.internal.dto.v1_0.WebUrlImpl;
 import com.liferay.headless.foundation.resource.v1_0.WebUrlResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,38 +30,40 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
+@Path("/v1.0")
 public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 
+	@GET
+	@Path("/web-urls")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<WebUrl> getGenericParentWebUrlsPage(
-			Object genericParentId, Pagination pagination)
-		throws Exception {
-
+	public Page<WebUrl> getGenericParentWebUrlsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
-	}
 
+	}
+	@GET
+	@Path("/web-urls/{web-url-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public WebUrl getWebUrl(Long webUrlId) throws Exception {
-		return new WebUrlImpl();
+	public WebUrl getWebUrl( @PathParam("web-url-id") Long webUrlId ) throws Exception {
+			return new WebUrlImpl();
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

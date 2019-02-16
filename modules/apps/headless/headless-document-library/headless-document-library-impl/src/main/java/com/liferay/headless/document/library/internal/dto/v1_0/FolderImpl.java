@@ -36,52 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class FolderImpl implements Folder {
 
 	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Document[] getDocuments() {
-		return documents;
-	}
-
-	public Long[] getDocumentsIds() {
-		return documentsIds;
-	}
-
-	public Folder getDocumentsRepository() {
-		return documentsRepository;
-	}
-
-	public Long getDocumentsRepositoryId() {
-		return documentsRepositoryId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Folder[] getSubFolders() {
-		return subFolders;
+			return dateCreated;
 	}
 
 	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+			this.dateCreated = dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -90,13 +52,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -105,13 +71,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	@GraphQLField
+	protected Date dateModified;
+	public String getDescription() {
+			return description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+	public void setDescription(String description) {
+			this.description = description;
+	}
 
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -120,13 +90,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDocuments(Document[] documents) {
-		this.documents = documents;
+	@GraphQLField
+	protected String description;
+	public Document[] getDocuments() {
+			return documents;
 	}
 
-	public void setDocuments(
-		UnsafeSupplier<Document[], Throwable> documentsUnsafeSupplier) {
+	public void setDocuments(Document[] documents) {
+			this.documents = documents;
+	}
 
+	public void setDocuments(UnsafeSupplier<Document[], Throwable> documentsUnsafeSupplier) {
 			try {
 				documents = documentsUnsafeSupplier.get();
 	}
@@ -135,13 +109,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDocumentsIds(Long[] documentsIds) {
-		this.documentsIds = documentsIds;
+	@GraphQLField
+	protected Document[] documents;
+	public Long[] getDocumentsIds() {
+			return documentsIds;
 	}
 
-	public void setDocumentsIds(
-		UnsafeSupplier<Long[], Throwable> documentsIdsUnsafeSupplier) {
+	public void setDocumentsIds(Long[] documentsIds) {
+			this.documentsIds = documentsIds;
+	}
 
+	public void setDocumentsIds(UnsafeSupplier<Long[], Throwable> documentsIdsUnsafeSupplier) {
 			try {
 				documentsIds = documentsIdsUnsafeSupplier.get();
 	}
@@ -150,13 +128,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDocumentsRepository(Folder documentsRepository) {
-		this.documentsRepository = documentsRepository;
+	@GraphQLField
+	protected Long[] documentsIds;
+	public Folder getDocumentsRepository() {
+			return documentsRepository;
 	}
 
-	public void setDocumentsRepository(
-		UnsafeSupplier<Folder, Throwable> documentsRepositoryUnsafeSupplier) {
+	public void setDocumentsRepository(Folder documentsRepository) {
+			this.documentsRepository = documentsRepository;
+	}
 
+	public void setDocumentsRepository(UnsafeSupplier<Folder, Throwable> documentsRepositoryUnsafeSupplier) {
 			try {
 				documentsRepository = documentsRepositoryUnsafeSupplier.get();
 	}
@@ -165,24 +147,33 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setDocumentsRepositoryId(Long documentsRepositoryId) {
-		this.documentsRepositoryId = documentsRepositoryId;
+	@GraphQLField
+	protected Folder documentsRepository;
+	public Long getDocumentsRepositoryId() {
+			return documentsRepositoryId;
 	}
 
-	public void setDocumentsRepositoryId(
-		UnsafeSupplier<Long, Throwable> documentsRepositoryIdUnsafeSupplier) {
+	public void setDocumentsRepositoryId(Long documentsRepositoryId) {
+			this.documentsRepositoryId = documentsRepositoryId;
+	}
 
+	public void setDocumentsRepositoryId(UnsafeSupplier<Long, Throwable> documentsRepositoryIdUnsafeSupplier) {
 			try {
-				documentsRepositoryId =
-					documentsRepositoryIdUnsafeSupplier.get();
+				documentsRepositoryId = documentsRepositoryIdUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
 	}
 	}
 
+	@GraphQLField
+	protected Long documentsRepositoryId;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -194,8 +185,14 @@ public class FolderImpl implements Folder {
 	}
 	}
 
+	@GraphQLField
+	protected Long id;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -207,13 +204,17 @@ public class FolderImpl implements Folder {
 	}
 	}
 
-	public void setSubFolders(Folder[] subFolders) {
-		this.subFolders = subFolders;
+	@GraphQLField
+	protected String name;
+	public Folder[] getSubFolders() {
+			return subFolders;
 	}
 
-	public void setSubFolders(
-		UnsafeSupplier<Folder[], Throwable> subFoldersUnsafeSupplier) {
+	public void setSubFolders(Folder[] subFolders) {
+			this.subFolders = subFolders;
+	}
 
+	public void setSubFolders(UnsafeSupplier<Folder[], Throwable> subFoldersUnsafeSupplier) {
 			try {
 				subFolders = subFoldersUnsafeSupplier.get();
 	}
@@ -221,33 +222,6 @@ public class FolderImpl implements Folder {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected Document[] documents;
-
-	@GraphQLField
-	protected Long[] documentsIds;
-
-	@GraphQLField
-	protected Folder documentsRepository;
-
-	@GraphQLField
-	protected Long documentsRepositoryId;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected Folder[] subFolders;

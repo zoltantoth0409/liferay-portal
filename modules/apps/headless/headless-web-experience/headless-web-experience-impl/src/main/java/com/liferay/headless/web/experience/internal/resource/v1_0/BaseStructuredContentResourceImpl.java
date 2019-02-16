@@ -17,6 +17,7 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
@@ -31,120 +32,132 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseStructuredContentResourceImpl
-	implements StructuredContentResource {
+@Path("/v1.0")
+public abstract class BaseStructuredContentResourceImpl implements StructuredContentResource {
 
+	@GET
+	@Path("/content-spaces/{content-space-id}/content-structures/{content-structure-id}/structured-contents")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteStructuredContent(Long structuredContentId)
-		throws Exception {
-
-			Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage(
-			Long contentSpaceId, Long contentStructureId, Filter filter,
-			Pagination pagination, Sort[] sorts)
-		throws Exception {
-
+	public Page<StructuredContent> getContentSpaceContentStructureStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @PathParam("content-structure-id") Long contentStructureId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@GET
+	@Path("/content-spaces/{content-space-id}/structured-contents")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<StructuredContent> getContentSpaceStructuredContentsPage(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
-		throws Exception {
-
+	public Page<StructuredContent> getContentSpaceStructuredContentsPage( @PathParam("content-space-id") Long contentSpaceId , @Context Filter filter , @Context Pagination pagination , @Context Sort[] sorts ) throws Exception {
 			return Page.of(Collections.emptyList());
+
 	}
-
+	@Consumes("application/json")
+	@PATCH
+	@Path("/content-spaces/{content-space-id}/structured-contents")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public StructuredContent getStructuredContent(Long structuredContentId)
-		throws Exception {
-
+	public StructuredContent patchContentSpaceStructuredContents( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
 			return new StructuredContentImpl();
+
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/structured-contents")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Page<Long> getStructuredContentCategoriesPage(
-			Long structuredContentId, Pagination pagination)
-		throws Exception {
+	public StructuredContent postContentSpaceStructuredContent( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
+			return new StructuredContentImpl();
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/content-spaces/{content-space-id}/structured-contents/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
+	@Override
+	public StructuredContent postContentSpaceStructuredContentBatchCreate( @PathParam("content-space-id") Long contentSpaceId , StructuredContent structuredContent ) throws Exception {
+			return new StructuredContentImpl();
+
+	}
+	@DELETE
+	@Path("/structured-contents/{structured-content-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public boolean deleteStructuredContent( @PathParam("structured-content-id") Long structuredContentId ) throws Exception {
+			return false;
+
+	}
+	@GET
+	@Path("/structured-contents/{structured-content-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public StructuredContent getStructuredContent( @PathParam("structured-content-id") Long structuredContentId ) throws Exception {
+			return new StructuredContentImpl();
+
+	}
+	@Consumes("application/json")
+	@PUT
+	@Path("/structured-contents/{structured-content-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public StructuredContent putStructuredContent( @PathParam("structured-content-id") Long structuredContentId , StructuredContent structuredContent ) throws Exception {
+			return new StructuredContentImpl();
+
+	}
+	@GET
+	@Path("/structured-contents/{structured-content-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public Page<Long> getStructuredContentCategoriesPage( @PathParam("structured-content-id") Long structuredContentId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/structured-contents/{structured-content-id}/categories")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public StructuredContent patchContentSpaceStructuredContents(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
+	public boolean postStructuredContentCategories( @PathParam("structured-content-id") Long structuredContentId , Long referenceId ) throws Exception {
+			return false;
 
-			return new StructuredContentImpl();
 	}
-
+	@Consumes("application/json")
+	@POST
+	@Path("/structured-contents/{structured-content-id}/categories/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public StructuredContent postContentSpaceStructuredContent(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
+	public boolean postStructuredContentCategoriesBatchCreate( @PathParam("structured-content-id") Long structuredContentId , Long referenceId ) throws Exception {
+			return false;
 
-			return new StructuredContentImpl();
 	}
 
-	@Override
-	public StructuredContent postContentSpaceStructuredContentBatchCreate(
-			Long contentSpaceId, StructuredContent structuredContent)
-		throws Exception {
-
-			return new StructuredContentImpl();
-	}
-
-	@Override
-	public Response postStructuredContentCategories(
-			Long structuredContentId, Long referenceId)
-		throws Exception {
-
-			Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public Response postStructuredContentCategoriesBatchCreate(
-			Long structuredContentId, Long referenceId)
-		throws Exception {
-
-			Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public StructuredContent putStructuredContent(
-			Long structuredContentId, StructuredContent structuredContent)
-		throws Exception {
-
-			return new StructuredContentImpl();
-	}
-
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

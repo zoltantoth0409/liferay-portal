@@ -55,8 +55,7 @@ public abstract class BaseUserAccountResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-foundation/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -65,165 +64,133 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteUserAccount() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
 	public void testGetMyUserAccount() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testGetOrganizationUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetUserAccount() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testGetUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetWebSiteUserAccountsPage() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPostUserAccount() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testPostUserAccountBatchCreate() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
+	@Test
+	public void testDeleteUserAccount() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetUserAccount() throws Exception {
+			Assert.assertTrue(true);
+	}
 	@Test
 	public void testPutUserAccount() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetWebSiteUserAccountsPage() throws Exception {
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteUserAccount(Long userAccountId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).delete(
-				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
-			);
-	}
-
-	protected Response invokeGetMyUserAccount(Long myUserAccountId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetMyUserAccount( Long myUserAccountId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/my-user-accounts/{my-user-account-id}",
 				myUserAccountId
 			);
+
 	}
-
-	protected Response invokeGetOrganizationUserAccountsPage(
-			Long organizationId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetOrganizationUserAccountsPage( Long organizationId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/organizations/{organization-id}/user-accounts",
-				organizationId
+				organizationId 
 			);
+
 	}
-
-	protected Response invokeGetUserAccount(Long userAccountId)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetUserAccountsPage( String fullnamequery , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
+				_resourceURL + "/user-accounts",
+				fullnamequery 
 			);
+
 	}
-
-	protected Response invokeGetUserAccountsPage(
-			String fullnamequery, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/user-accounts", fullnamequery
-			);
-	}
-
-	protected Response invokeGetWebSiteUserAccountsPage(
-			Long webSiteId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/web-sites/{web-site-id}/user-accounts",
-				webSiteId
-			);
-	}
-
-	protected Response invokePostUserAccount(UserAccount userAccount)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostUserAccount( UserAccount userAccount ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
-				_resourceURL + "/user-accounts", userAccount
+				_resourceURL + "/user-accounts",
+				userAccount
 			);
+
 	}
-
-	protected Response invokePostUserAccountBatchCreate(UserAccount userAccount)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostUserAccountBatchCreate( UserAccount userAccount ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
-				_resourceURL + "/user-accounts/batch-create", userAccount
+				_resourceURL + "/user-accounts/batch-create",
+				userAccount
 			);
+
 	}
+	protected Response invokeDeleteUserAccount( Long userAccountId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePutUserAccount(
-			Long userAccountId, UserAccount userAccount)
-		throws Exception {
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/user-accounts/{user-account-id}",
+				userAccountId
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetUserAccount( Long userAccountId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/user-accounts/{user-account-id}",
+				userAccountId
+			);
+
+	}
+	protected Response invokePutUserAccount( Long userAccountId , UserAccount userAccount ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				userAccount
 			).when(
 			).put(
-				_resourceURL + "/user-accounts/{user-account-id}", userAccountId
+				_resourceURL + "/user-accounts/{user-account-id}",
+				userAccountId 
 			);
+
+	}
+	protected Response invokeGetWebSiteUserAccountsPage( Long webSiteId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/web-sites/{web-site-id}/user-accounts",
+				webSiteId 
+			);
+
 	}
 
 	protected UserAccount randomUserAccount() {
@@ -261,12 +228,12 @@ userAccount.setProfileURL(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

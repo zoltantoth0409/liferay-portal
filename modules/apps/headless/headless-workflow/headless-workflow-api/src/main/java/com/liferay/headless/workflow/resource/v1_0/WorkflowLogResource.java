@@ -15,17 +15,10 @@
 package com.liferay.headless.workflow.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,19 +29,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface WorkflowLogResource {
 
-	@GET
-	@Path("/workflow-logs/{workflow-log-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public WorkflowLog getWorkflowLog( @PathParam("workflow-log-id") Long workflowLogId ) throws Exception;
+	public WorkflowLog getWorkflowLog( Long workflowLogId ) throws Exception;
 
-	@GET
-	@Path("/workflow-tasks/{workflow-task-id}/workflow-logs")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage( @PathParam("workflow-task-id") Long workflowTaskId , @Context Pagination pagination ) throws Exception;
+	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage( Long workflowTaskId , Pagination pagination ) throws Exception;
 
 }

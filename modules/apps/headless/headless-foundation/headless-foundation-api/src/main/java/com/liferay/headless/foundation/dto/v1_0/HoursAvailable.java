@@ -27,25 +27,20 @@ public interface HoursAvailable {
 
 	public String getCloses();
 
-	public String getDayOfWeek();
-
-	public Long getId();
-
-	public String getOpens();
-
 	public void setCloses(String closes);
 
-	public void setCloses(
-		UnsafeSupplier<String, Throwable> closesUnsafeSupplier);
+	public void setCloses(UnsafeSupplier<String, Throwable> closesUnsafeSupplier);
+	public String getDayOfWeek();
 
 	public void setDayOfWeek(String dayOfWeek);
 
-	public void setDayOfWeek(
-		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier);
+	public void setDayOfWeek(UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier);
+	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getOpens();
 
 	public void setOpens(String opens);
 

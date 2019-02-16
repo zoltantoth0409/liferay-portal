@@ -17,6 +17,7 @@ package com.liferay.headless.form.internal.resource.v1_0;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.internal.dto.v1_0.FormDocumentImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -26,38 +27,41 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseFormDocumentResourceImpl
-	implements FormDocumentResource {
+@Path("/v1.0")
+public abstract class BaseFormDocumentResourceImpl implements FormDocumentResource {
 
+	@DELETE
+	@Path("/form-documents/{form-document-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteFormDocument(Long formDocumentId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
+	public boolean deleteFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception {
+			return false;
 
-			return responseBuilder.build();
 	}
-
+	@GET
+	@Path("/form-documents/{form-document-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public FormDocument getFormDocument(Long formDocumentId) throws Exception {
-		return new FormDocumentImpl();
+	public FormDocument getFormDocument( @PathParam("form-document-id") Long formDocumentId ) throws Exception {
+			return new FormDocumentImpl();
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

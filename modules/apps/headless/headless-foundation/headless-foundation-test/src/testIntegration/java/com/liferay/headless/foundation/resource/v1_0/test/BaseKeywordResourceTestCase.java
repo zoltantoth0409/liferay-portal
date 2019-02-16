@@ -55,8 +55,7 @@ public abstract class BaseKeywordResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o/headless-foundation/v1.0");
+		_resourceURL = new URL("http://localhost:8080/o/headless-foundation/v1.0");
 	}
 
 	@After
@@ -65,113 +64,95 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	@Test
-	public void testDeleteKeyword() throws Exception {
-		Assert.assertTrue(true);
-	}
-
-	@Test
 	public void testGetContentSpaceKeywordsPage() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
-	@Test
-	public void testGetKeyword() throws Exception {
-		Assert.assertTrue(true);
-	}
-
 	@Test
 	public void testPostContentSpaceKeyword() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
 	@Test
 	public void testPostContentSpaceKeywordBatchCreate() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
-
+	@Test
+	public void testDeleteKeyword() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetKeyword() throws Exception {
+			Assert.assertTrue(true);
+	}
 	@Test
 	public void testPutKeyword() throws Exception {
-		Assert.assertTrue(true);
+			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteKeyword(Long keywordId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).delete(
-				_resourceURL + "/keywords/{keyword-id}", keywordId
-			);
-	}
-
-	protected Response invokeGetContentSpaceKeywordsPage(
-			Long contentSpaceId, Pagination pagination)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokeGetContentSpaceKeywordsPage( Long contentSpaceId , Pagination pagination ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/content-spaces/{content-space-id}/keywords",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
-
-	protected Response invokeGetKeyword(Long keywordId) throws Exception {
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/keywords/{keyword-id}", keywordId
-			);
-	}
-
-	protected Response invokePostContentSpaceKeyword(
-			Long contentSpaceId, Keyword keyword)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostContentSpaceKeyword( Long contentSpaceId , Keyword keyword ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				keyword
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/keywords",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
-
-	protected Response invokePostContentSpaceKeywordBatchCreate(
-			Long contentSpaceId, Keyword keyword)
-		throws Exception {
-
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	protected Response invokePostContentSpaceKeywordBatchCreate( Long contentSpaceId , Keyword keyword ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				keyword
 			).when(
 			).post(
 				_resourceURL + "/content-spaces/{content-space-id}/keywords/batch-create",
-				contentSpaceId
+				contentSpaceId 
 			);
+
 	}
+	protected Response invokeDeleteKeyword( Long keywordId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
-	protected Response invokePutKeyword(Long keywordId, Keyword keyword)
-		throws Exception {
+			return requestSpecification.when(
+			).delete(
+				_resourceURL + "/keywords/{keyword-id}",
+				keywordId
+			);
 
-		RequestSpecification requestSpecification =
-			_createRequestSpecification();
+	}
+	protected Response invokeGetKeyword( Long keywordId ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
+
+			return requestSpecification.when(
+			).get(
+				_resourceURL + "/keywords/{keyword-id}",
+				keywordId
+			);
+
+	}
+	protected Response invokePutKeyword( Long keywordId , Keyword keyword ) throws Exception {
+		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
 				keyword
 			).when(
 			).put(
-				_resourceURL + "/keywords/{keyword-id}", keywordId
+				_resourceURL + "/keywords/{keyword-id}",
+				keywordId 
 			);
+
 	}
 
 	protected Keyword randomKeyword() {
@@ -200,12 +181,12 @@ keyword.setName(RandomTestUtil.randomString());
 		);
 	}
 
-	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
 	}
 	};
-	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

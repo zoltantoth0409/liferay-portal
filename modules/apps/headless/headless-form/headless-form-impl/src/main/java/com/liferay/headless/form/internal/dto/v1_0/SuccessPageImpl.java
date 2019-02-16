@@ -34,24 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class SuccessPageImpl implements SuccessPage {
 
 	public String getDescription() {
-		return description;
-	}
-
-	public String getHeadline() {
-		return headline;
-	}
-
-	public Long getId() {
-		return id;
+			return description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+			this.description = description;
 	}
 
-	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
-
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 			try {
 				description = descriptionUnsafeSupplier.get();
 	}
@@ -60,13 +50,17 @@ public class SuccessPageImpl implements SuccessPage {
 	}
 	}
 
-	public void setHeadline(String headline) {
-		this.headline = headline;
+	@GraphQLField
+	protected String description;
+	public String getHeadline() {
+			return headline;
 	}
 
-	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+	public void setHeadline(String headline) {
+			this.headline = headline;
+	}
 
+	public void setHeadline(UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
 			try {
 				headline = headlineUnsafeSupplier.get();
 	}
@@ -75,8 +69,14 @@ public class SuccessPageImpl implements SuccessPage {
 	}
 	}
 
+	@GraphQLField
+	protected String headline;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -87,12 +87,6 @@ public class SuccessPageImpl implements SuccessPage {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String description;
-
-	@GraphQLField
-	protected String headline;
 
 	@GraphQLField
 	protected Long id;

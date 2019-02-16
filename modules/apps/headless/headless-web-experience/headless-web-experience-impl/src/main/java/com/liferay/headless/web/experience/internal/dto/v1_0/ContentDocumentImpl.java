@@ -36,48 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ContentDocumentImpl implements ContentDocument {
 
 	public String getContentUrl() {
-		return contentUrl;
-	}
-
-	public Creator getCreator() {
-		return creator;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public Date getDateModified() {
-		return dateModified;
-	}
-
-	public String getEncodingFormat() {
-		return encodingFormat;
-	}
-
-	public String getFileExtension() {
-		return fileExtension;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public Number getSizeInBytes() {
-		return sizeInBytes;
-	}
-
-	public String getTitle() {
-		return title;
+			return contentUrl;
 	}
 
 	public void setContentUrl(String contentUrl) {
-		this.contentUrl = contentUrl;
+			this.contentUrl = contentUrl;
 	}
 
-	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
-
+	public void setContentUrl(UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 			try {
 				contentUrl = contentUrlUnsafeSupplier.get();
 	}
@@ -86,13 +52,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setCreator(Creator creator) {
-		this.creator = creator;
+	@GraphQLField
+	protected String contentUrl;
+	public Creator getCreator() {
+			return creator;
 	}
 
-	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(Creator creator) {
+			this.creator = creator;
+	}
 
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -101,13 +71,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
+	@GraphQLField
+	protected Creator creator;
+	public Date getDateCreated() {
+			return dateCreated;
 	}
 
-	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+	public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+	}
 
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 			try {
 				dateCreated = dateCreatedUnsafeSupplier.get();
 	}
@@ -116,13 +90,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setDateModified(Date dateModified) {
-		this.dateModified = dateModified;
+	@GraphQLField
+	protected Date dateCreated;
+	public Date getDateModified() {
+			return dateModified;
 	}
 
-	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+	public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+	}
 
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 			try {
 				dateModified = dateModifiedUnsafeSupplier.get();
 	}
@@ -131,13 +109,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setEncodingFormat(String encodingFormat) {
-		this.encodingFormat = encodingFormat;
+	@GraphQLField
+	protected Date dateModified;
+	public String getEncodingFormat() {
+			return encodingFormat;
 	}
 
-	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+	public void setEncodingFormat(String encodingFormat) {
+			this.encodingFormat = encodingFormat;
+	}
 
+	public void setEncodingFormat(UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
 			try {
 				encodingFormat = encodingFormatUnsafeSupplier.get();
 	}
@@ -146,13 +128,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setFileExtension(String fileExtension) {
-		this.fileExtension = fileExtension;
+	@GraphQLField
+	protected String encodingFormat;
+	public String getFileExtension() {
+			return fileExtension;
 	}
 
-	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+	public void setFileExtension(String fileExtension) {
+			this.fileExtension = fileExtension;
+	}
 
+	public void setFileExtension(UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
 			try {
 				fileExtension = fileExtensionUnsafeSupplier.get();
 	}
@@ -161,8 +147,14 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
+	@GraphQLField
+	protected String fileExtension;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -174,13 +166,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setSizeInBytes(Number sizeInBytes) {
-		this.sizeInBytes = sizeInBytes;
+	@GraphQLField
+	protected Long id;
+	public Number getSizeInBytes() {
+			return sizeInBytes;
 	}
 
-	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+	public void setSizeInBytes(Number sizeInBytes) {
+			this.sizeInBytes = sizeInBytes;
+	}
 
+	public void setSizeInBytes(UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
 			try {
 				sizeInBytes = sizeInBytesUnsafeSupplier.get();
 	}
@@ -189,13 +185,17 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	@GraphQLField
+	protected Number sizeInBytes;
+	public String getTitle() {
+			return title;
 	}
 
-	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+	public void setTitle(String title) {
+			this.title = title;
+	}
 
+	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
 			try {
 				title = titleUnsafeSupplier.get();
 	}
@@ -203,30 +203,6 @@ public class ContentDocumentImpl implements ContentDocument {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String contentUrl;
-
-	@GraphQLField
-	protected Creator creator;
-
-	@GraphQLField
-	protected Date dateCreated;
-
-	@GraphQLField
-	protected Date dateModified;
-
-	@GraphQLField
-	protected String encodingFormat;
-
-	@GraphQLField
-	protected String fileExtension;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected Number sizeInBytes;
 
 	@GraphQLField
 	protected String title;

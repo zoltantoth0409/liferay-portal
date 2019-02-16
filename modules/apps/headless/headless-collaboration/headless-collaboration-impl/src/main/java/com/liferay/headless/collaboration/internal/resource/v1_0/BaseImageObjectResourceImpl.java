@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
 import com.liferay.headless.collaboration.resource.v1_0.ImageObjectResource;
+import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
@@ -29,62 +30,72 @@ import java.util.List;
 
 import javax.annotation.Generated;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public abstract class BaseImageObjectResourceImpl
-	implements ImageObjectResource {
+@Path("/v1.0")
+public abstract class BaseImageObjectResourceImpl implements ImageObjectResource {
 
+	@GET
+	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public Response deleteImageObject(Long imageObjectId) throws Exception {
-		Response.ResponseBuilder responseBuilder = Response.ok();
-
-			return responseBuilder.build();
-	}
-
-	@Override
-	public ImageObject getImageObject(Long imageObjectId) throws Exception {
-		return new ImageObjectImpl();
-	}
-
-	@Override
-	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage(
-			Long imageObjectRepositoryId, Pagination pagination)
-		throws Exception {
-
+	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
 	@Override
-	public ImageObject postImageObjectRepositoryImageObject(
-			Long imageObjectRepositoryId, ImageObject imageObject)
-		throws Exception {
-
+	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
 			return new ImageObjectImpl();
-	}
 
+	}
+	@Consumes("application/json")
+	@POST
+	@Path("/image-object-repositories/{image-object-repository-id}/image-objects/batch-create")
+	@Produces("application/json")
+	@RequiresScope("everything.write")
 	@Override
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate(
-			Long imageObjectRepositoryId, ImageObject imageObject)
-		throws Exception {
-
+	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
 			return new ImageObjectImpl();
+
+	}
+	@DELETE
+	@Path("/image-objects/{image-object-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public boolean deleteImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception {
+			return false;
+
+	}
+	@GET
+	@Path("/image-objects/{image-object-id}")
+	@Produces("application/json")
+	@RequiresScope("everything.read")
+	@Override
+	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception {
+			return new ImageObjectImpl();
+
 	}
 
-	protected Response buildNoContentResponse() {
-		Response.ResponseBuilder responseBuilder = Response.noContent();
-
-		return responseBuilder.build();
-	}
-
-	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
-
+	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 

@@ -15,17 +15,10 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,19 +29,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface PostalAddressResource {
 
-	@GET
-	@Path("/addresses")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<PostalAddress> getGenericParentPostalAddressesPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
+	public Page<PostalAddress> getGenericParentPostalAddressesPage( Object genericParentId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/addresses/{address-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public PostalAddress getAddress( @PathParam("address-id") Long addressId ) throws Exception;
+	public PostalAddress getAddress( Long addressId ) throws Exception;
 
 }

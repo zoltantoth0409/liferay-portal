@@ -15,17 +15,10 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormStructure;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,19 +29,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface FormStructureResource {
 
-	@GET
-	@Path("/content-spaces/{content-space-id}/form-structures")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<FormStructure> getContentSpaceFormStructuresPage( @PathParam("content-space-id") Long contentSpaceId , @Context Pagination pagination ) throws Exception;
+	public Page<FormStructure> getContentSpaceFormStructuresPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/form-structures/{form-structure-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public FormStructure getFormStructure( @PathParam("form-structure-id") Long formStructureId ) throws Exception;
+	public FormStructure getFormStructure( Long formStructureId ) throws Exception;
 
 }

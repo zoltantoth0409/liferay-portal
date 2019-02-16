@@ -34,40 +34,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ValuesImpl implements Values {
 
 	public String getDataType() {
-		return dataType;
-	}
-
-	public String getFilterAndSortIdentifier() {
-		return filterAndSortIdentifier;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getInputControl() {
-		return inputControl;
-	}
-
-	public String getLabel() {
-		return label;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Object getValue() {
-		return value;
+			return dataType;
 	}
 
 	public void setDataType(String dataType) {
-		this.dataType = dataType;
+			this.dataType = dataType;
 	}
 
-	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
-
+	public void setDataType(UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
 			try {
 				dataType = dataTypeUnsafeSupplier.get();
 	}
@@ -76,25 +50,33 @@ public class ValuesImpl implements Values {
 	}
 	}
 
-	public void setFilterAndSortIdentifier(String filterAndSortIdentifier) {
-		this.filterAndSortIdentifier = filterAndSortIdentifier;
+	@GraphQLField
+	protected String dataType;
+	public String getFilterAndSortIdentifier() {
+			return filterAndSortIdentifier;
 	}
 
-	public void setFilterAndSortIdentifier(
-		UnsafeSupplier<String, Throwable>
-			filterAndSortIdentifierUnsafeSupplier) {
+	public void setFilterAndSortIdentifier(String filterAndSortIdentifier) {
+			this.filterAndSortIdentifier = filterAndSortIdentifier;
+	}
 
+	public void setFilterAndSortIdentifier(UnsafeSupplier<String, Throwable> filterAndSortIdentifierUnsafeSupplier) {
 			try {
-				filterAndSortIdentifier =
-					filterAndSortIdentifierUnsafeSupplier.get();
+				filterAndSortIdentifier = filterAndSortIdentifierUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
 	}
 	}
 
+	@GraphQLField
+	protected String filterAndSortIdentifier;
+	public Long getId() {
+			return id;
+	}
+
 	public void setId(Long id) {
-		this.id = id;
+			this.id = id;
 	}
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
@@ -106,13 +88,17 @@ public class ValuesImpl implements Values {
 	}
 	}
 
-	public void setInputControl(String inputControl) {
-		this.inputControl = inputControl;
+	@GraphQLField
+	protected Long id;
+	public String getInputControl() {
+			return inputControl;
 	}
 
-	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+	public void setInputControl(String inputControl) {
+			this.inputControl = inputControl;
+	}
 
+	public void setInputControl(UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
 			try {
 				inputControl = inputControlUnsafeSupplier.get();
 	}
@@ -121,13 +107,17 @@ public class ValuesImpl implements Values {
 	}
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	@GraphQLField
+	protected String inputControl;
+	public String getLabel() {
+			return label;
 	}
 
-	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+	public void setLabel(String label) {
+			this.label = label;
+	}
 
+	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 			try {
 				label = labelUnsafeSupplier.get();
 	}
@@ -136,8 +126,14 @@ public class ValuesImpl implements Values {
 	}
 	}
 
+	@GraphQLField
+	protected String label;
+	public String getName() {
+			return name;
+	}
+
 	public void setName(String name) {
-		this.name = name;
+			this.name = name;
 	}
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
@@ -149,13 +145,17 @@ public class ValuesImpl implements Values {
 	}
 	}
 
-	public void setValue(Object value) {
-		this.value = value;
+	@GraphQLField
+	protected String name;
+	public Object getValue() {
+			return value;
 	}
 
-	public void setValue(
-		UnsafeSupplier<Object, Throwable> valueUnsafeSupplier) {
+	public void setValue(Object value) {
+			this.value = value;
+	}
 
+	public void setValue(UnsafeSupplier<Object, Throwable> valueUnsafeSupplier) {
 			try {
 				value = valueUnsafeSupplier.get();
 	}
@@ -163,24 +163,6 @@ public class ValuesImpl implements Values {
 				throw new RuntimeException(t);
 	}
 	}
-
-	@GraphQLField
-	protected String dataType;
-
-	@GraphQLField
-	protected String filterAndSortIdentifier;
-
-	@GraphQLField
-	protected Long id;
-
-	@GraphQLField
-	protected String inputControl;
-
-	@GraphQLField
-	protected String label;
-
-	@GraphQLField
-	protected String name;
 
 	@GraphQLField
 	protected Object value;

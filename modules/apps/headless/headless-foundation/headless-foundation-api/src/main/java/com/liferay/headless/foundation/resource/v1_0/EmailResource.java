@@ -15,17 +15,10 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 
 /**
  * To access this resource, run:
@@ -36,19 +29,10 @@ import javax.ws.rs.core.Context;
  * @generated
  */
 @Generated("")
-@Path("/v1.0")
 public interface EmailResource {
 
-	@GET
-	@Path("/emails")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Page<Email> getGenericParentEmailsPage( @PathParam("generic-parent-id") Object genericParentId , @Context Pagination pagination ) throws Exception;
+	public Page<Email> getGenericParentEmailsPage( Object genericParentId , Pagination pagination ) throws Exception;
 
-	@GET
-	@Path("/emails/{email-id}")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	public Email getEmail( @PathParam("email-id") Long emailId ) throws Exception;
+	public Email getEmail( Long emailId ) throws Exception;
 
 }
