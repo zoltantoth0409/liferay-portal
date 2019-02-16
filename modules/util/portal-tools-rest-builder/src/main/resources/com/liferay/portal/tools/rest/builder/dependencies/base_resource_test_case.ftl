@@ -27,8 +27,6 @@ import java.net.URL;
 
 import javax.annotation.Generated;
 
-import org.jboss.arquillian.test.api.ArquillianResource;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -46,7 +44,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(_url.toExternalForm() + "/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
+		_resourceURL = new URL("http://localhost:8080/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
 	}
 
 	@BeforeClass
@@ -153,8 +151,5 @@ public abstract class Base${schemaName}ResourceTestCase {
 	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	@ArquillianResource
-	private URL _url;
 
 }
