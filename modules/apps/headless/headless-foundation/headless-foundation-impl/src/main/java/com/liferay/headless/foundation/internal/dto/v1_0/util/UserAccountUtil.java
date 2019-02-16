@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.dto.v1_0;
+package com.liferay.headless.foundation.internal.dto.v1_0.util;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 
@@ -28,7 +29,7 @@ public class UserAccountUtil {
 			return null;
 		}
 
-		return new UserAccount() {
+		return new UserAccountImpl() {
 			{
 				setAdditionalName(user.getMiddleName());
 				setAlternateName(user.getScreenName());

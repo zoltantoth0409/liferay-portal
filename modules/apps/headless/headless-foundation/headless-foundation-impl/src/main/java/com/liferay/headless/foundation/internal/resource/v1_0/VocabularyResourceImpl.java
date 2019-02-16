@@ -18,6 +18,7 @@ import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
+import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
 import com.liferay.portal.kernel.model.ClassName;
@@ -159,7 +160,7 @@ public class VocabularyResourceImpl
 	}
 
 	private Vocabulary _toVocabulary(AssetVocabulary assetVocabulary) {
-		return new Vocabulary() {
+		return new VocabularyImpl() {
 			{
 				setAvailableLanguages(
 					assetVocabulary.getAvailableLanguageIds());

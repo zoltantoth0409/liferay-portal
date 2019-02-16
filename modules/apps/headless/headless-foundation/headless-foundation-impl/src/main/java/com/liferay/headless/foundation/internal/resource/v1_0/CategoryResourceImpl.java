@@ -19,7 +19,8 @@ import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetCategoryService;
 import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Category;
-import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountUtil;
+import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
+import com.liferay.headless.foundation.internal.dto.v1_0.util.UserAccountUtil;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupService;
@@ -134,7 +135,7 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	}
 
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
-		return new Category() {
+		return new CategoryImpl() {
 			{
 				setAvailableLanguages(assetCategory.getAvailableLanguageIds());
 
