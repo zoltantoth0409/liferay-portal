@@ -30,7 +30,9 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.headless.document.library.internal.dto.v1_0.CreatorUtil;
+import com.liferay.headless.document.library.internal.dto.v1_0.AdaptedMediaImpl;
+import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
+import com.liferay.headless.document.library.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -115,7 +117,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 	private AdaptedMedia _toAdaptedMedia(
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 
-		return new AdaptedMedia() {
+		return new AdaptedMediaImpl() {
 			{
 				setContentUrl(String.valueOf(adaptiveMedia.getURI()));
 				setHeight(
@@ -142,7 +144,7 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 			FileEntry fileEntry, FileVersion fileVersion, User user)
 		throws Exception {
 
-		return new Document() {
+		return new DocumentImpl() {
 			{
 				setAdaptedMedia(_getAdaptiveMedias(fileEntry));
 				setCategory(_getAssetCategoryIds(fileEntry));

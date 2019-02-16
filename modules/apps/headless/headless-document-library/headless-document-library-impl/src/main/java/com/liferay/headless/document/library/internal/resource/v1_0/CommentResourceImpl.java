@@ -17,7 +17,7 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLFileEntryService;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
-import com.liferay.headless.document.library.internal.dto.v1_0.CommentUtil;
+import com.liferay.headless.document.library.internal.dto.v1_0.util.CommentUtil;
 import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.comment.DiscussionPermission;

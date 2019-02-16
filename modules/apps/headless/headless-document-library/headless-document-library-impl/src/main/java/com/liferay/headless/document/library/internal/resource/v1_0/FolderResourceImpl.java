@@ -17,6 +17,7 @@ package com.liferay.headless.document.library.internal.resource.v1_0;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.internal.dto.v1_0.FolderImpl;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -128,7 +129,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	private Folder _toFolder(
 		com.liferay.portal.kernel.repository.model.Folder folder) {
 
-		return new Folder() {
+		return new FolderImpl() {
 			{
 				setDateCreated(folder.getCreateDate());
 				setDateModified(folder.getModifiedDate());
