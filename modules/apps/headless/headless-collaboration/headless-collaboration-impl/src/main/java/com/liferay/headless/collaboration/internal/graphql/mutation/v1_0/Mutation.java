@@ -48,12 +48,6 @@ return _getBlogPostingResource().putBlogPosting( blogPostingId , blogPosting );
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public boolean postBlogPostingCategories( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("Long") Long referenceId ) throws Exception {
-return _getBlogPostingResource().postBlogPostingCategories( blogPostingId , referenceId );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public BlogPosting postContentSpaceBlogPosting( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("BlogPosting") BlogPosting blogPosting ) throws Exception {
 return _getBlogPostingResource().postContentSpaceBlogPosting( contentSpaceId , blogPosting );
 	}

@@ -37,10 +37,6 @@ public interface BlogPostingResource {
 
 	public BlogPosting putBlogPosting( Long blogPostingId , BlogPosting blogPosting ) throws Exception;
 
-	public Page<Long> getBlogPostingCategoriesPage( Long blogPostingId , Pagination pagination ) throws Exception;
-
-	public boolean postBlogPostingCategories( Long blogPostingId , Long referenceId ) throws Exception;
-
 	public Page<BlogPosting> getContentSpaceBlogPostingsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
 	public BlogPosting postContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;

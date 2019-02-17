@@ -76,14 +76,6 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Assert.assertTrue(true);
 	}
 	@Test
-	public void testGetBlogPostingCategoriesPage() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
-	public void testPostBlogPostingCategories() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
 	public void testGetContentSpaceBlogPostingsPage() throws Exception {
 			Assert.assertTrue(true);
 	}
@@ -121,26 +113,6 @@ public abstract class BaseBlogPostingResourceTestCase {
 			).put(
 				_resourceURL + "/blog-postings/{blog-posting-id}",
 				blogPostingId 
-			);
-
-	}
-	protected Response invokeGetBlogPostingCategoriesPage( Long blogPostingId , Pagination pagination ) throws Exception {
-		RequestSpecification requestSpecification = _createRequestSpecification();
-
-			return requestSpecification.when(
-			).get(
-				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
-				blogPostingId 
-			);
-
-	}
-	protected Response invokePostBlogPostingCategories( Long blogPostingId , Long referenceId ) throws Exception {
-		RequestSpecification requestSpecification = _createRequestSpecification();
-
-			return requestSpecification.when(
-			).post(
-				_resourceURL + "/blog-postings/{blog-posting-id}/categories",
-				blogPostingId , referenceId
 			);
 
 	}

@@ -77,25 +77,6 @@ public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource
 
 	}
 	@GET
-	@Path("/blog-postings/{blog-posting-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	@Override
-	public Page<Long> getBlogPostingCategoriesPage( @PathParam("blog-posting-id") Long blogPostingId , @Context Pagination pagination ) throws Exception {
-			return Page.of(Collections.emptyList());
-
-	}
-	@Consumes("application/json")
-	@POST
-	@Path("/blog-postings/{blog-posting-id}/categories")
-	@Produces("application/json")
-	@RequiresScope("everything.read")
-	@Override
-	public boolean postBlogPostingCategories( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception {
-			return false;
-
-	}
-	@GET
 	@Path("/content-spaces/{content-space-id}/blog-postings")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
