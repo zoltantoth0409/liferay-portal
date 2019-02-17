@@ -166,7 +166,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return serviceContext;
 	}
 
-	private Category[] _getBlogPostingCategories(BlogsEntry blogsEntry) {
+	private Category[] _getCategories(BlogsEntry blogsEntry) {
 		List<AssetCategory> assetCategories =
 			_assetCategoryLocalService.getCategories(
 				BlogsEntry.class.getName(), blogsEntry.getEntryId());
@@ -185,7 +185,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		);
 	}
 
-	private Image _getBlogPostingImage(BlogsEntry blogsEntry) throws Exception {
+	private Image _getImage(BlogsEntry blogsEntry) throws Exception {
 		long coverImageFileEntryId = blogsEntry.getCoverImageFileEntryId();
 
 		if (coverImageFileEntryId == 0) {
@@ -230,9 +230,9 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
-		Image image = _getBlogPostingImage(blogsEntry);
+		Image image = _getImage(blogsEntry);
 
-		Category[] categories = _getBlogPostingCategories(blogsEntry);
+		Category[] categories = _getCategories(blogsEntry);
 
 		return new BlogPostingImpl() {
 			{
