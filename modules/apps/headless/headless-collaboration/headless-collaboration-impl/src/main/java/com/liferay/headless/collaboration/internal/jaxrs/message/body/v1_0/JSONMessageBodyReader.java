@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
+import com.liferay.headless.collaboration.dto.v1_0.Category;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
 import com.liferay.headless.collaboration.dto.v1_0.Image;
@@ -27,6 +28,7 @@ import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
@@ -80,6 +82,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(BlogPostingImage.class)) {
 				return true;
 	}
+			if (clazz.equals(Category.class)) {
+				return true;
+	}
 			if (clazz.equals(Comment.class)) {
 				return true;
 	}
@@ -111,6 +116,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 	}
 			if (clazz.equals(BlogPostingImage.class)) {
 				return _objectMapper.readValue(inputStream, BlogPostingImageImpl.class);
+	}
+			if (clazz.equals(Category.class)) {
+				return _objectMapper.readValue(inputStream, CategoryImpl.class);
 	}
 			if (clazz.equals(Comment.class)) {
 				return _objectMapper.readValue(inputStream, CommentImpl.class);

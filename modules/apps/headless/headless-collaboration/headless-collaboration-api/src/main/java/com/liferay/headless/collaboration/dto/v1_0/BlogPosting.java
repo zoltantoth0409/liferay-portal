@@ -47,11 +47,11 @@ public interface BlogPosting {
 	public void setCaption(String caption);
 
 	public void setCaption(UnsafeSupplier<String, Throwable> captionUnsafeSupplier);
-	public Long[] getCategory();
+	public Category[] getCategory();
 
-	public void setCategory(Long[] category);
+	public void setCategory(Category[] category);
 
-	public void setCategory(UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier);
+	public void setCategory(UnsafeSupplier<Category[], Throwable> categoryUnsafeSupplier);
 	public Comment[] getComment();
 
 	public void setComment(Comment[] comment);
