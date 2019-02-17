@@ -299,30 +299,6 @@ paths:
                 type: integer
           description: ""
       tags: ["BlogPosting"]
-  "/blog-postings/{blog-posting-id}/categories/batch-create":
-    post:
-      parameters:
-        - in: path
-          name: blog-posting-id
-          required: true
-          schema:
-            format: int64
-            type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              format: int64
-              type: integer
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                format: int64
-                type: integer
-          description: ""
-      tags: ["BlogPosting"]
   "/blog-postings/{blog-posting-id}/comments":
     get:
       parameters:
@@ -442,28 +418,6 @@ paths:
                 $ref: "#/components/schemas/BlogPosting"
           description: ""
       tags: ["BlogPosting"]
-  "/content-spaces/{content-space-id}/blog-postings/batch-create":
-    post:
-      parameters:
-        - in: path
-          name: content-space-id
-          required: true
-          schema:
-            format: int64
-            type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BlogPosting"
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/BlogPosting"
-          description: ""
-      tags: ["BlogPosting"]
   "/image-object-repositories/{image-object-repository-id}":
     get:
       parameters:
@@ -508,28 +462,6 @@ paths:
                 type: array
           description: ""
       tags: ["BlogPostingImage"]
-    post:
-      parameters:
-        - in: path
-          name: image-object-repository-id
-          required: true
-          schema:
-            format: int64
-            type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/BlogPostingImage"
-      responses:
-        200:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/BlogPostingImage"
-          description: ""
-      tags: ["BlogPostingImage"]
-  "/image-object-repositories/{image-object-repository-id}/blog-posting-images/batch-create":
     post:
       parameters:
         - in: path
