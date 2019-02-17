@@ -21,9 +21,9 @@ import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
+import com.liferay.headless.collaboration.dto.v1_0.Image;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -147,34 +147,33 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return serviceContext;
 	}
 
-	private BlogPostingImage _getBlogPostingImage(long imageId) throws Exception {
-		if (imageId == 0) {
+	private Image _getBlogPostingImage(BlogsEntry blogsEntry)
+		throws Exception {
+
+		long coverImageFileEntryId = blogsEntry.getCoverImageFileEntryId();
+
+		if (coverImageFileEntryId == 0) {
 			return null;
 		}
 
-		FileEntry fileEntry = _dlAppService.getFileEntry(imageId);
+		FileEntry fileEntry = _dlAppService.getFileEntry(coverImageFileEntryId);
 
 		FileVersion fileVersion = _dlAppService.getFileVersion(
 			fileEntry.getFileEntryId());
 
-		return new BlogPostingImageImpl() {
+		return new ImageImpl() {
 			{
 				setContentUrl(
 					_dlurlHelper.getPreviewURL(
 						fileEntry, fileVersion, null, "", false, false));
-				setEncodingFormat(fileEntry.getMimeType());
-				setFileExtension(fileEntry.getExtension());
-				setId(fileEntry.getFileEntryId());
-				setSizeInBytes(fileEntry.getSize());
-				setTitle(fileEntry.getTitle());
+				setName(blogsEntry.getCoverImageCaption());
+				setImageId(coverImageFileEntryId);
 			}
 		};
 	}
 
 	private ImageSelector _getImageSelector(BlogPosting blogPosting) {
-		BlogPostingImage blogPostingImage = blogPosting.getImage();
-
-		Long imageId = blogPostingImage.getId();
+		Long imageId = blogPosting.getImageId();
 
 		if (Objects.equals(imageId, 0L)) {
 			return null;
@@ -195,8 +194,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
-		BlogPostingImage blogPostingImage = _getBlogPostingImage(
-			blogsEntry.getCoverImageFileEntryId());
+		Image image = _getBlogPostingImage(blogsEntry);
 
 		return new BlogPostingImpl() {
 			{
@@ -217,7 +215,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				setFriendlyUrlPath(blogsEntry.getUrlTitle());
 				setHeadline(blogsEntry.getTitle());
 				setId(blogsEntry.getEntryId());
-				setImage(blogPostingImage);
+				setImage(image);
 			}
 		};
 	}
