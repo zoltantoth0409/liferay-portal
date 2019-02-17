@@ -230,10 +230,6 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
-		Image image = _getImage(blogsEntry);
-
-		Category[] categories = _getCategories(blogsEntry);
-
 		return new BlogPostingImpl() {
 			{
 				setAlternativeHeadline(blogsEntry.getSubtitle());
@@ -244,7 +240,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 							blogsEntry.getEntryId())));
 				setArticleBody(blogsEntry.getContent());
 				setCaption(blogsEntry.getCoverImageCaption());
-				setCategory(categories);
+				setCategory(_getCategories(blogsEntry));
 				setContentSpace(blogsEntry.getGroupId());
 				setDateCreated(blogsEntry.getCreateDate());
 				setDateModified(blogsEntry.getModifiedDate());
@@ -254,7 +250,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				setFriendlyUrlPath(blogsEntry.getUrlTitle());
 				setHeadline(blogsEntry.getTitle());
 				setId(blogsEntry.getEntryId());
-				setImage(image);
+				setImage(_getImage(blogsEntry));
 			}
 		};
 	}
