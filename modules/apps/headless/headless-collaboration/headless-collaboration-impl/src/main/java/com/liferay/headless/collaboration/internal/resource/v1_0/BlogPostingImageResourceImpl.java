@@ -26,5 +26,6 @@ import org.osgi.service.component.annotations.ServiceScope;
 	properties = "OSGI-INF/liferay/rest/v1_0/blog-posting-image.properties",
 	scope = ServiceScope.PROTOTYPE, service = BlogPostingImageResource.class
 )
-public class BlogPostingImageResourceImpl extends BaseBlogPostingImageResourceImpl {
+public class BlogPostingImageResourceImpl
+	extends BaseBlogPostingImageResourceImpl {
 }

@@ -24,5 +24,6 @@ import org.junit.runner.RunWith;
  */
 @Ignore
 @RunWith(Arquillian.class)
-public class BlogPostingImageResourceTest extends BaseBlogPostingImageResourceTestCase {
+public class BlogPostingImageResourceTest
+	extends BaseBlogPostingImageResourceTestCase {
 }

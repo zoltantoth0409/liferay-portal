@@ -147,9 +147,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return serviceContext;
 	}
 
-	private Image _getBlogPostingImage(BlogsEntry blogsEntry)
-		throws Exception {
-
+	private Image _getBlogPostingImage(BlogsEntry blogsEntry) throws Exception {
 		long coverImageFileEntryId = blogsEntry.getCoverImageFileEntryId();
 
 		if (coverImageFileEntryId == 0) {
