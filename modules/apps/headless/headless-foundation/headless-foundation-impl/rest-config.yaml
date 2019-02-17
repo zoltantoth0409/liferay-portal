@@ -3,6 +3,6 @@ apiPackagePath: "com.liferay.headless.foundation"
 application:
     baseURI: "/headless-foundation"
     className: "HeadlessFoundationApplication"
-    name: "headless-foundation-application"
+    name: "Liferay.Headless.Foundation"
 author: "Javier Gamarra"
 testDir: "../headless-foundation-test/src/testIntegration/java"

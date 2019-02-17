@@ -3,6 +3,6 @@ apiPackagePath: "com.liferay.headless.form"
 application:
     baseURI: "/headless-form"
     className: "HeadlessFormApplication"
-    name: "headless-form-application"
+    name: "Liferay.Headless.Form"
 author: "Javier Gamarra"
 testDir: "../headless-form-test/src/testIntegration/java"

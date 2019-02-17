@@ -3,6 +3,6 @@ apiPackagePath: "com.liferay.headless.document.library"
 application:
     baseURI: "/headless-document-library"
     className: "HeadlessDocumentLibraryApplication"
-    name: "headless-document-library-application"
+    name: "Liferay.Headless.Document.Library"
 author: "Javier Gamarra"
 testDir: "../headless-document-library-test/src/testIntegration/java"
