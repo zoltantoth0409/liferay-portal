@@ -1,6 +1,12 @@
 package ${configYAML.apiPackagePath}.internal.dto.${versionDirName};
 
-import ${configYAML.apiPackagePath}.dto.${versionDirName}.*;
+<#compress>
+	<#list allSchemas?keys as schemaName>
+		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+	</#list>
+</#compress>
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
@@ -41,6 +47,7 @@ public class ${schemaName}Impl implements ${schemaName} {
 		}
 
 		@GraphQLField
+		@JsonProperty
 		protected ${javaParameter.parameterType} ${javaParameter.parameterName};
 	</#list>
 

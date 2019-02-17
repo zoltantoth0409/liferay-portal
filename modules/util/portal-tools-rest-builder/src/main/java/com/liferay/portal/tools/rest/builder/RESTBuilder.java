@@ -44,6 +44,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,24 +113,24 @@ public class RESTBuilder {
 				continue;
 			}
 
-			Matcher matcher = _nondigitPattern.matcher(version);
-
-			String versionDirName = matcher.replaceAll("_");
-
-			matcher = _leadingUnderscorePattern.matcher(versionDirName);
-
-			versionDirName = "v" + matcher.replaceFirst("");
-
-			context.put("openAPIYAML", openAPIYAML);
-			context.put("versionDirName", versionDirName);
-
-			_createGraphQLMutationFile(context, versionDirName);
-			_createGraphQLQueryFile(context, versionDirName);
-			_createGraphQLServletDataFile(context, versionDirName);
-
 			Components components = openAPIYAML.getComponents();
 
 			Map<String, Schema> schemas = components.getSchemas();
+
+			Map<String, Schema> allSchemas = _getAllSchemas(schemas);
+
+			context.put("allSchemas", allSchemas);
+
+			context.put("openAPIYAML", openAPIYAML);
+
+			String versionDirName = _getVersionDirName(version);
+
+			context.put("versionDirName", versionDirName);
+
+			_createJSONMessageBodyReaderFile(context, versionDirName);
+			_createGraphQLMutationFile(context, versionDirName);
+			_createGraphQLQueryFile(context, versionDirName);
+			_createGraphQLServletDataFile(context, versionDirName);
 
 			for (Map.Entry<String, Schema> entry : schemas.entrySet()) {
 				String schemaName = entry.getKey();
@@ -166,47 +167,22 @@ public class RESTBuilder {
 				}
 			}
 
-			Queue<Map<String, Schema>> schemasMapsQueue = new LinkedList<>();
+			for (Map.Entry<String, Schema> entry : allSchemas.entrySet()) {
+				Schema schema = entry.getValue();
 
-			schemasMapsQueue.add(schemas);
+				context.put("schema", schema);
 
-			Map<String, Schema> schemasMap = null;
+				String schemaName = entry.getKey();
 
-			while ((schemasMap = schemasMapsQueue.poll()) != null) {
-				for (Map.Entry<String, Schema> entry : schemasMap.entrySet()) {
-					Schema schema = entry.getValue();
+				context.put("schemaName", schemaName);
+				context.put(
+					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
+				context.put(
+					"schemaVarName",
+					StringUtil.lowerCaseFirstLetter(schemaName));
 
-					Map<String, Schema> propertySchemas = null;
-
-					Items items = schema.getItems();
-
-					if (items != null) {
-						propertySchemas = items.getPropertySchemas();
-					}
-					else {
-						propertySchemas = schema.getPropertySchemas();
-					}
-
-					if (propertySchemas == null) {
-						continue;
-					}
-
-					String schemaName = StringUtil.upperCaseFirstLetter(
-						entry.getKey());
-
-					context.put("schema", schema);
-					context.put("schemaName", schemaName);
-					context.put(
-						"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
-					context.put(
-						"schemaVarName",
-						StringUtil.lowerCaseFirstLetter(schemaName));
-
-					_createDTOFile(context, schemaName, versionDirName);
-					_createDTOImplFile(context, schemaName, versionDirName);
-
-					schemasMapsQueue.add(propertySchemas);
-				}
+				_createDTOFile(context, schemaName, versionDirName);
+				_createDTOImplFile(context, schemaName, versionDirName);
 			}
 		}
 
@@ -450,6 +426,33 @@ public class RESTBuilder {
 				_copyrightFileName, "graphql_servlet_data", context));
 	}
 
+	private void _createJSONMessageBodyReaderFile(
+			Map<String, Object> context, String versionDirName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(_configYAML.getImplDir());
+		sb.append("/");
+
+		String apiPackagePath = _configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/internal/jaxrs/message/body/");
+		sb.append(versionDirName);
+		sb.append("/JSONMessageBodyReader.java");
+
+		File file = new File(sb.toString());
+
+		_files.add(file);
+
+		FileUtil.write(
+			file,
+			FreeMarkerUtil.processTemplate(
+				_copyrightFileName, "json_message_body_reader", context));
+	}
+
 	private void _createPropertiesFile(
 			Map<String, Object> context, String schemaName,
 			String versionDirName)
@@ -568,6 +571,56 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_test", context));
+	}
+
+	private Map<String, Schema> _getAllSchemas(Map<String, Schema> schemas) {
+		Map<String, Schema> allSchemas = new TreeMap<>();
+
+		Queue<Map<String, Schema>> queue = new LinkedList<>();
+
+		queue.add(schemas);
+
+		Map<String, Schema> map = null;
+
+		while ((map = queue.poll()) != null) {
+			for (Map.Entry<String, Schema> entry : map.entrySet()) {
+				Schema schema = entry.getValue();
+
+				Map<String, Schema> propertySchemas = null;
+
+				Items items = schema.getItems();
+
+				if (items != null) {
+					propertySchemas = items.getPropertySchemas();
+				}
+				else {
+					propertySchemas = schema.getPropertySchemas();
+				}
+
+				if (propertySchemas == null) {
+					continue;
+				}
+
+				String schemaName = StringUtil.upperCaseFirstLetter(
+					entry.getKey());
+
+				allSchemas.put(schemaName, schema);
+
+				queue.add(propertySchemas);
+			}
+		}
+
+		return allSchemas;
+	}
+
+	private String _getVersionDirName(String version) {
+		Matcher matcher = _nondigitPattern.matcher(version);
+
+		String versionDirName = matcher.replaceAll("_");
+
+		matcher = _leadingUnderscorePattern.matcher(versionDirName);
+
+		return "v" + matcher.replaceFirst("");
 	}
 
 	private static final Pattern _leadingUnderscorePattern = Pattern.compile(

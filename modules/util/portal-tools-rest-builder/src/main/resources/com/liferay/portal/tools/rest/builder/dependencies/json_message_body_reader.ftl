@@ -1,18 +1,11 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
+package ${configYAML.apiPackagePath}.internal.jaxrs.message.body.${versionDirName};
 
-package com.liferay.portal.vulcan.internal.jaxrs.message.body;
+<#compress>
+	<#list allSchemas?keys as schemaName>
+		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
+		import ${configYAML.apiPackagePath}.internal.dto.${versionDirName}.${schemaName}Impl;
+	</#list>
+</#compress>
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
@@ -23,6 +16,8 @@ import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
+import javax.annotation.Generated;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
@@ -30,10 +25,22 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
- * @author Ivica Cardic
+ * @author ${configYAML.author}
+ * @generated
  */
+@Component(
+	property = {
+		"osgi.jaxrs.extension=true",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=${configYAML.application.name})",
+		"osgi.jaxrs.name=${configYAML.application.name}.${versionDirName}.JSONMessageBodyReader"
+	},
+	service = MessageBodyReader.class
+)
 @Consumes(MediaType.APPLICATION_JSON)
+@Generated("")
 @Provider
 public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
@@ -42,7 +49,13 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 		Class<?> clazz, Type genericType, Annotation[] annotations,
 		MediaType mediaType) {
 
-		return _objectMapper.canSerialize(clazz);
+		<#list allSchemas?keys as schemaName>
+			if (clazz.equals(${schemaName}.class)) {
+				return true;
+			}
+		</#list>
+
+		return false;
 	}
 
 	@Override
@@ -52,7 +65,13 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			InputStream inputStream)
 		throws IOException, WebApplicationException {
 
-		return _objectMapper.readValue(inputStream, clazz);
+		<#list allSchemas?keys as schemaName>
+			if (clazz.equals(${schemaName}.class)) {
+				return _objectMapper.readValue(inputStream, ${schemaName}Impl.class);
+			}
+		</#list>
+
+		return null;
 	}
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
