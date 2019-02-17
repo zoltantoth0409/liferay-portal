@@ -14,32 +14,43 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0.util;
 
-import com.liferay.headless.foundation.dto.v1_0.UserAccount;
-import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
-import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.headless.foundation.dto.v1_0.Creator;
+import com.liferay.headless.foundation.internal.dto.v1_0.CreatorImpl;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Portal;
 
 /**
  * @author Javier Gamarra
  */
-public class UserAccountUtil {
+public class CreatorUtil {
 
-	public static UserAccount toUserAccount(User user) throws PortalException {
+	public static Creator toCreator(Portal portal, User user) throws Exception {
 		if (user == null) {
 			return null;
 		}
 
-		return new UserAccountImpl() {
+		return new CreatorImpl() {
 			{
 				setAdditionalName(user.getMiddleName());
-				setAlternateName(user.getScreenName());
-				setBirthDate(user.getBirthday());
-				setEmail(user.getEmailAddress());
 				setFamilyName(user.getLastName());
 				setGivenName(user.getFirstName());
 				setId(user.getUserId());
-				setJobTitle(user.getJobTitle());
 				setName(user.getFullName());
+				setProfileURL(
+					() -> {
+						if (user.getPortraitId() == 0) {
+							return null;
+						}
+
+						ThemeDisplay themeDisplay = new ThemeDisplay() {
+							{
+								setPathImage(portal.getPathImage());
+							}
+						};
+
+						return user.getPortraitURL(themeDisplay);
+					});
 			}
 		};
 	}

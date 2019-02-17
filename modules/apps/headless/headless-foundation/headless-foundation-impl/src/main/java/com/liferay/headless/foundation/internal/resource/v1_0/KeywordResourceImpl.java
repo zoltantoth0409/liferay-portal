@@ -20,10 +20,11 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetTagService;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.headless.foundation.internal.dto.v1_0.KeywordImpl;
-import com.liferay.headless.foundation.internal.dto.v1_0.util.UserAccountUtil;
+import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserService;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portlet.asset.util.comparator.AssetTagNameComparator;
@@ -118,7 +119,8 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 			{
 				setContentSpace(assetTag.getGroupId());
 				setCreator(
-					UserAccountUtil.toUserAccount(
+					CreatorUtil.toCreator(
+						_portal,
 						_userService.getUserById(assetTag.getUserId())));
 				setDateCreated(assetTag.getCreateDate());
 				setDateModified(assetTag.getModifiedDate());
@@ -131,6 +133,9 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 
 	@Reference
 	private AssetTagService _assetTagService;
+
+	@Reference
+	private Portal _portal;
 
 	@Reference
 	private UserService _userService;
