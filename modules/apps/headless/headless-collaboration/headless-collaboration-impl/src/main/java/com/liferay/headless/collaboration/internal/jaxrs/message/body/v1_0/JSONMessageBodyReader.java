@@ -22,12 +22,14 @@ import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
+import com.liferay.headless.collaboration.dto.v1_0.Image;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectRepositoryImpl;
 
 import java.io.IOException;
@@ -84,6 +86,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(Creator.class)) {
 				return true;
 	}
+			if (clazz.equals(Image.class)) {
+				return true;
+	}
 			if (clazz.equals(ImageObjectRepository.class)) {
 				return true;
 	}
@@ -112,6 +117,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 	}
 			if (clazz.equals(Creator.class)) {
 				return _objectMapper.readValue(inputStream, CreatorImpl.class);
+	}
+			if (clazz.equals(Image.class)) {
+				return _objectMapper.readValue(inputStream, ImageImpl.class);
 	}
 			if (clazz.equals(ImageObjectRepository.class)) {
 				return _objectMapper.readValue(inputStream, ImageObjectRepositoryImpl.class);
