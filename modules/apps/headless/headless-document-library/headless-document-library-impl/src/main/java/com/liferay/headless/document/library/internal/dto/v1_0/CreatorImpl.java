@@ -55,46 +55,6 @@ public class CreatorImpl implements Creator {
 	@GraphQLField
 	@JsonProperty
 	protected String additionalName;
-	public String getAlternateName() {
-			return alternateName;
-	}
-
-	public void setAlternateName(String alternateName) {
-			this.alternateName = alternateName;
-	}
-
-	public void setAlternateName(UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
-			try {
-				alternateName = alternateNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String alternateName;
-	public String getEmail() {
-			return email;
-	}
-
-	public void setEmail(String email) {
-			this.email = email;
-	}
-
-	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
-			try {
-				email = emailUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String email;
 	public String getFamilyName() {
 			return familyName;
 	}
@@ -175,26 +135,6 @@ public class CreatorImpl implements Creator {
 	@GraphQLField
 	@JsonProperty
 	protected String image;
-	public String getJobTitle() {
-			return jobTitle;
-	}
-
-	public void setJobTitle(String jobTitle) {
-			this.jobTitle = jobTitle;
-	}
-
-	public void setJobTitle(UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
-			try {
-				jobTitle = jobTitleUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected String jobTitle;
 	public String getName() {
 			return name;
 	}

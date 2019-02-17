@@ -37,11 +37,11 @@ public interface Vocabulary {
 	public void setContentSpace(Long contentSpace);
 
 	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
-	public UserAccount getCreator();
+	public Creator getCreator();
 
-	public void setCreator(UserAccount creator);
+	public void setCreator(Creator creator);
 
-	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
 	public Date getDateCreated();
 
 	public void setDateCreated(Date dateCreated);

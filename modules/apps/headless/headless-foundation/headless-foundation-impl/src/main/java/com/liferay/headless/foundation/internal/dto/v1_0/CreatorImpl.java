@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.headless.form.internal.dto.v1_0;
+package com.liferay.headless.foundation.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

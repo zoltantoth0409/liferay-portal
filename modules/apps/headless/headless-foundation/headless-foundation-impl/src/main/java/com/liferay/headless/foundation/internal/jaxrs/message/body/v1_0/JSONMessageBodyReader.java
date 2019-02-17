@@ -19,6 +19,7 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
+import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Email;
 import com.liferay.headless.foundation.dto.v1_0.HoursAvailable;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
@@ -33,6 +34,7 @@ import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.ContactInformationImpl;
+import com.liferay.headless.foundation.internal.dto.v1_0.CreatorImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.EmailImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.HoursAvailableImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.KeywordImpl;
@@ -91,6 +93,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(ContactInformation.class)) {
 				return true;
 	}
+			if (clazz.equals(Creator.class)) {
+				return true;
+	}
 			if (clazz.equals(Email.class)) {
 				return true;
 	}
@@ -143,6 +148,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 	}
 			if (clazz.equals(ContactInformation.class)) {
 				return _objectMapper.readValue(inputStream, ContactInformationImpl.class);
+	}
+			if (clazz.equals(Creator.class)) {
+				return _objectMapper.readValue(inputStream, CreatorImpl.class);
 	}
 			if (clazz.equals(Email.class)) {
 				return _objectMapper.readValue(inputStream, EmailImpl.class);

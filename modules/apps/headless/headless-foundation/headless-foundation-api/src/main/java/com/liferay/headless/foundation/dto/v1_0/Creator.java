@@ -16,8 +16,6 @@ package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
-import java.util.Date;
-
 import javax.annotation.Generated;
 
 /**
@@ -25,42 +23,42 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface Keyword {
+public interface Creator {
 
-	public Long getContentSpace();
+	public String getAdditionalName();
 
-	public void setContentSpace(Long contentSpace);
+	public void setAdditionalName(String additionalName);
 
-	public void setContentSpace(UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
-	public Creator getCreator();
+	public void setAdditionalName(UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier);
+	public String getFamilyName();
 
-	public void setCreator(Creator creator);
+	public void setFamilyName(String familyName);
 
-	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
-	public Date getDateCreated();
+	public void setFamilyName(UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier);
+	public String getGivenName();
 
-	public void setDateCreated(Date dateCreated);
+	public void setGivenName(String givenName);
 
-	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
-	public Date getDateModified();
-
-	public void setDateModified(Date dateModified);
-
-	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+	public void setGivenName(UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier);
 	public Long getId();
 
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
-	public Number getKeywordUsageCount();
+	public String getImage();
 
-	public void setKeywordUsageCount(Number keywordUsageCount);
+	public void setImage(String image);
 
-	public void setKeywordUsageCount(UnsafeSupplier<Number, Throwable> keywordUsageCountUnsafeSupplier);
+	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier);
 	public String getName();
 
 	public void setName(String name);
 
 	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public String getProfileURL();
+
+	public void setProfileURL(String profileURL);
+
+	public void setProfileURL(UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier);
 
 }

@@ -32,11 +32,11 @@ public interface Role {
 	public void setAvailableLanguages(String[] availableLanguages);
 
 	public void setAvailableLanguages(UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
-	public UserAccount getCreator();
+	public Creator getCreator();
 
-	public void setCreator(UserAccount creator);
+	public void setCreator(Creator creator);
 
-	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
 	public Date getDateCreated();
 
 	public void setDateCreated(Date dateCreated);

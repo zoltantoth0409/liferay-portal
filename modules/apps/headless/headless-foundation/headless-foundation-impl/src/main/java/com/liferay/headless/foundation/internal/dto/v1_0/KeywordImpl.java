@@ -16,8 +16,8 @@ package com.liferay.headless.foundation.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
-import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -58,15 +58,15 @@ public class KeywordImpl implements Keyword {
 	@GraphQLField
 	@JsonProperty
 	protected Long contentSpace;
-	public UserAccount getCreator() {
+	public Creator getCreator() {
 			return creator;
 	}
 
-	public void setCreator(UserAccount creator) {
+	public void setCreator(Creator creator) {
 			this.creator = creator;
 	}
 
-	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -77,7 +77,7 @@ public class KeywordImpl implements Keyword {
 
 	@GraphQLField
 	@JsonProperty
-	protected UserAccount creator;
+	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
 	}

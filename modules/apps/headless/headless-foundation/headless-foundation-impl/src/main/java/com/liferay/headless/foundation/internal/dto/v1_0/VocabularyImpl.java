@@ -17,7 +17,7 @@ package com.liferay.headless.foundation.internal.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
-import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
 
@@ -79,15 +79,15 @@ public class VocabularyImpl implements Vocabulary {
 	@GraphQLField
 	@JsonProperty
 	protected Long contentSpace;
-	public UserAccount getCreator() {
+	public Creator getCreator() {
 			return creator;
 	}
 
-	public void setCreator(UserAccount creator) {
+	public void setCreator(Creator creator) {
 			this.creator = creator;
 	}
 
-	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier) {
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 			try {
 				creator = creatorUnsafeSupplier.get();
 	}
@@ -98,7 +98,7 @@ public class VocabularyImpl implements Vocabulary {
 
 	@GraphQLField
 	@JsonProperty
-	protected UserAccount creator;
+	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
 	}

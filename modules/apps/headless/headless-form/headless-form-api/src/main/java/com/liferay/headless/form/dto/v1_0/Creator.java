@@ -30,16 +30,6 @@ public interface Creator {
 	public void setAdditionalName(String additionalName);
 
 	public void setAdditionalName(UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier);
-	public String getAlternateName();
-
-	public void setAlternateName(String alternateName);
-
-	public void setAlternateName(UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier);
-	public String getEmail();
-
-	public void setEmail(String email);
-
-	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier);
 	public String getFamilyName();
 
 	public void setFamilyName(String familyName);
@@ -60,11 +50,6 @@ public interface Creator {
 	public void setImage(String image);
 
 	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier);
-	public String getJobTitle();
-
-	public void setJobTitle(String jobTitle);
-
-	public void setJobTitle(UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier);
 	public String getName();
 
 	public void setName(String name);

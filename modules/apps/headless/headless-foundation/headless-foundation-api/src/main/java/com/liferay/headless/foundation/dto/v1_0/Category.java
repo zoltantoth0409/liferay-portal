@@ -42,11 +42,11 @@ public interface Category {
 	public void setCategoryId(Long categoryId);
 
 	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
-	public UserAccount getCreator();
+	public Creator getCreator();
 
-	public void setCreator(UserAccount creator);
+	public void setCreator(Creator creator);
 
-	public void setCreator(UnsafeSupplier<UserAccount, Throwable> creatorUnsafeSupplier);
+	public void setCreator(UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
 	public Long getCreatorId();
 
 	public void setCreatorId(Long creatorId);
