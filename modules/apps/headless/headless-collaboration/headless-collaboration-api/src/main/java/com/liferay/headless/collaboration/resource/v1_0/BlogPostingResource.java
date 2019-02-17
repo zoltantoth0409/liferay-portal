@@ -41,12 +41,8 @@ public interface BlogPostingResource {
 
 	public boolean postBlogPostingCategories( Long blogPostingId , Long referenceId ) throws Exception;
 
-	public boolean postBlogPostingCategoriesBatchCreate( Long blogPostingId , Long referenceId ) throws Exception;
-
 	public Page<BlogPosting> getContentSpaceBlogPostingsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
 	public BlogPosting postContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
-
-	public BlogPosting postContentSpaceBlogPostingBatchCreate( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
 
 }

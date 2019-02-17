@@ -66,16 +66,6 @@ public abstract class BaseBlogPostingImageResourceImpl implements BlogPostingIma
 			return new BlogPostingImageImpl();
 
 	}
-	@Consumes("application/json")
-	@POST
-	@Path("/image-object-repositories/{image-object-repository-id}/blog-posting-images/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	@Override
-	public BlogPostingImage postImageObjectRepositoryBlogPostingImageBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
-			return new BlogPostingImageImpl();
-
-	}
 	@DELETE
 	@Path("/blog-posting-images/{image-object-id}")
 	@Produces("application/json")

@@ -35,8 +35,6 @@ public interface BlogPostingImageResource {
 
 	public BlogPostingImage postImageObjectRepositoryBlogPostingImage( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception;
 
-	public BlogPostingImage postImageObjectRepositoryBlogPostingImageBatchCreate( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception;
-
 	public boolean deleteImageObject( Long imageObjectId ) throws Exception;
 
 	public BlogPostingImage getImageObject( Long imageObjectId ) throws Exception;

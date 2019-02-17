@@ -72,10 +72,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			Assert.assertTrue(true);
 	}
 	@Test
-	public void testPostImageObjectRepositoryBlogPostingImageBatchCreate() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
 	public void testDeleteImageObject() throws Exception {
 			Assert.assertTrue(true);
 	}
@@ -102,18 +98,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			).when(
 			).post(
 				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images",
-				imageObjectRepositoryId 
-			);
-
-	}
-	protected Response invokePostImageObjectRepositoryBlogPostingImageBatchCreate( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
-		RequestSpecification requestSpecification = _createRequestSpecification();
-
-			return requestSpecification.body(
-				blogPostingImage
-			).when(
-			).post(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images/batch-create",
 				imageObjectRepositoryId 
 			);
 

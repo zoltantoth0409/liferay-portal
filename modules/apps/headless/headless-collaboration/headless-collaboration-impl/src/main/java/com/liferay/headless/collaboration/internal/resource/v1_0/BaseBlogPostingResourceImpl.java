@@ -95,16 +95,6 @@ public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource
 			return false;
 
 	}
-	@Consumes("application/json")
-	@POST
-	@Path("/blog-postings/{blog-posting-id}/categories/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	@Override
-	public boolean postBlogPostingCategoriesBatchCreate( @PathParam("blog-posting-id") Long blogPostingId , Long referenceId ) throws Exception {
-			return false;
-
-	}
 	@GET
 	@Path("/content-spaces/{content-space-id}/blog-postings")
 	@Produces("application/json")
@@ -121,16 +111,6 @@ public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource
 	@RequiresScope("everything.read")
 	@Override
 	public BlogPosting postContentSpaceBlogPosting( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
-			return new BlogPostingImpl();
-
-	}
-	@Consumes("application/json")
-	@POST
-	@Path("/content-spaces/{content-space-id}/blog-postings/batch-create")
-	@Produces("application/json")
-	@RequiresScope("everything.write")
-	@Override
-	public BlogPosting postContentSpaceBlogPostingBatchCreate( @PathParam("content-space-id") Long contentSpaceId , BlogPosting blogPosting ) throws Exception {
 			return new BlogPostingImpl();
 
 	}
