@@ -26,6 +26,7 @@ import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.Category;
 import com.liferay.headless.collaboration.dto.v1_0.Image;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
@@ -173,7 +174,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		Stream<AssetCategory> stream = assetCategories.stream();
 
 		return stream.map(
-			assetCategory -> new Category() {
+			assetCategory -> new CategoryImpl() {
 				{
 					setCategoryId(assetCategory.getCategoryId());
 					setCategoryName(assetCategory.getName());
