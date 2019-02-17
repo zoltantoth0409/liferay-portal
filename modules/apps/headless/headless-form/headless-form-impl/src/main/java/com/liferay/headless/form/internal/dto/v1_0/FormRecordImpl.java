@@ -14,7 +14,12 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.form.dto.v1_0.FieldValues;
+import com.liferay.headless.form.dto.v1_0.Form;
+import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +58,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -72,6 +78,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -91,6 +98,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public Date getDatePublished() {
 			return datePublished;
@@ -110,6 +118,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date datePublished;
 	public Boolean getDraft() {
 			return draft;
@@ -129,6 +138,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean draft;
 	public FieldValues[] getFieldValues() {
 			return fieldValues;
@@ -148,6 +158,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected FieldValues[] fieldValues;
 	public Form getForm() {
 			return form;
@@ -167,6 +178,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Form form;
 	public Long getFormId() {
 			return formId;
@@ -186,6 +198,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long formId;
 	public Long getId() {
 			return id;
@@ -205,6 +218,7 @@ public class FormRecordImpl implements FormRecord {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 
 }

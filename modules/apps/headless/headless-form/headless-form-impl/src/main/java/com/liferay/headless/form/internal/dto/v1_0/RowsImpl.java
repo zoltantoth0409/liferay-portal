@@ -14,7 +14,9 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Rows;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class RowsImpl implements Rows {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getLabel() {
 			return label;
@@ -70,6 +73,7 @@ public class RowsImpl implements Rows {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String label;
 	public String getValue() {
 			return value;
@@ -89,6 +93,7 @@ public class RowsImpl implements Rows {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String value;
 
 }

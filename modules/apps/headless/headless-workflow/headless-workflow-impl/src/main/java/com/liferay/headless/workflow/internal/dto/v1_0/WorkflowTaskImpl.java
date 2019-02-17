@@ -14,7 +14,11 @@
 
 package com.liferay.headless.workflow.internal.dto.v1_0;
 
-import com.liferay.headless.workflow.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.workflow.dto.v1_0.ObjectReviewed;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +57,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean completed;
 	public Date getDateCompleted() {
 			return dateCompleted;
@@ -72,6 +77,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCompleted;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -91,6 +97,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public String getDefinitionName() {
 			return definitionName;
@@ -110,6 +117,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String definitionName;
 	public String getDescription() {
 			return description;
@@ -129,6 +137,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Date getDueDate() {
 			return dueDate;
@@ -148,6 +157,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dueDate;
 	public Long getId() {
 			return id;
@@ -167,6 +177,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public WorkflowLog[] getLogs() {
 			return logs;
@@ -186,6 +197,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected WorkflowLog[] logs;
 	public Long[] getLogsIds() {
 			return logsIds;
@@ -205,6 +217,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] logsIds;
 	public String getName() {
 			return name;
@@ -224,6 +237,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public ObjectReviewed getObjectReviewed() {
 			return objectReviewed;
@@ -243,6 +257,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ObjectReviewed objectReviewed;
 	public String[] getTransitions() {
 			return transitions;
@@ -262,6 +277,7 @@ public class WorkflowTaskImpl implements WorkflowTask {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] transitions;
 
 }

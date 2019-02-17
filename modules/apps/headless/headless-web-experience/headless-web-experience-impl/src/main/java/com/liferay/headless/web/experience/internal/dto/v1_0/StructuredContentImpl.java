@@ -14,7 +14,15 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.headless.web.experience.dto.v1_0.Comment;
+import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
+import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsByTemplate;
+import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.dto.v1_0.Values;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +61,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected AggregateRating aggregateRating;
 	public String[] getAvailableLanguages() {
 			return availableLanguages;
@@ -72,6 +81,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Long[] getCategory() {
 			return category;
@@ -91,6 +101,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] category;
 	public Comment[] getComment() {
 			return comment;
@@ -110,6 +121,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Comment[] comment;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -129,6 +141,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public ContentStructure getContentStructure() {
 			return contentStructure;
@@ -148,6 +161,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ContentStructure contentStructure;
 	public Long getContentStructureId() {
 			return contentStructureId;
@@ -167,6 +181,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentStructureId;
 	public Creator getCreator() {
 			return creator;
@@ -186,6 +201,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -205,6 +221,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -224,6 +241,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public Date getDatePublished() {
 			return datePublished;
@@ -243,6 +261,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date datePublished;
 	public String getDescription() {
 			return description;
@@ -262,6 +281,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Long getId() {
 			return id;
@@ -281,6 +301,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String[] getKeywords() {
 			return keywords;
@@ -300,6 +321,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] keywords;
 	public Date getLastReviewed() {
 			return lastReviewed;
@@ -319,6 +341,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date lastReviewed;
 	public RenderedContentsByTemplate[] getRenderedContentsByTemplate() {
 			return renderedContentsByTemplate;
@@ -338,6 +361,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected RenderedContentsByTemplate[] renderedContentsByTemplate;
 	public String getTitle() {
 			return title;
@@ -357,6 +381,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String title;
 	public Values[] getValues() {
 			return values;
@@ -376,6 +401,7 @@ public class StructuredContentImpl implements StructuredContent {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Values[] values;
 
 }

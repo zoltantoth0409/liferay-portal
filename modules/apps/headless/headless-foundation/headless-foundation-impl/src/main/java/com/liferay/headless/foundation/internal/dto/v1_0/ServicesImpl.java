@@ -14,7 +14,10 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.HoursAvailable;
+import com.liferay.headless.foundation.dto.v1_0.Services;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +54,7 @@ public class ServicesImpl implements Services {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected HoursAvailable[] hoursAvailable;
 	public Long getId() {
 			return id;
@@ -70,6 +74,7 @@ public class ServicesImpl implements Services {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getServiceType() {
 			return serviceType;
@@ -89,6 +94,7 @@ public class ServicesImpl implements Services {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String serviceType;
 
 }

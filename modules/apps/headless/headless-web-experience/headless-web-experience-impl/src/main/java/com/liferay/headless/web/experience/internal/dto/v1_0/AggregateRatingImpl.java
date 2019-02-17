@@ -14,7 +14,9 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number bestRating;
 	public Long getId() {
 			return id;
@@ -70,6 +73,7 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Number getRatingCount() {
 			return ratingCount;
@@ -89,6 +93,7 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number ratingCount;
 	public Number getRatingValue() {
 			return ratingValue;
@@ -108,6 +113,7 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number ratingValue;
 	public Number getWorstRating() {
 			return worstRating;
@@ -127,6 +133,7 @@ public class AggregateRatingImpl implements AggregateRating {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number worstRating;
 
 }

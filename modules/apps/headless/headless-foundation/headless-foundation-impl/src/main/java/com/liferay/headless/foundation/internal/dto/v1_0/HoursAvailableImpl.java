@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.HoursAvailable;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String closes;
 	public String getDayOfWeek() {
 			return dayOfWeek;
@@ -70,6 +73,7 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String dayOfWeek;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getOpens() {
 			return opens;
@@ -108,6 +113,7 @@ public class HoursAvailableImpl implements HoursAvailable {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String opens;
 
 }

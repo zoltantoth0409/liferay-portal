@@ -14,7 +14,9 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class OptionsImpl implements Options {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String label;
 	public String getValue() {
 			return value;
@@ -70,6 +73,7 @@ public class OptionsImpl implements Options {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String value;
 
 }

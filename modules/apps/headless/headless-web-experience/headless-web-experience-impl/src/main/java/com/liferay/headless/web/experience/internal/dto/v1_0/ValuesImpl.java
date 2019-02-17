@@ -14,7 +14,9 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.Values;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String dataType;
 	public String getFilterAndSortIdentifier() {
 			return filterAndSortIdentifier;
@@ -70,6 +73,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String filterAndSortIdentifier;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getInputControl() {
 			return inputControl;
@@ -108,6 +113,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String inputControl;
 	public String getLabel() {
 			return label;
@@ -127,6 +133,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String label;
 	public String getName() {
 			return name;
@@ -146,6 +153,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Object getValue() {
 			return value;
@@ -165,6 +173,7 @@ public class ValuesImpl implements Values {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Object value;
 
 }

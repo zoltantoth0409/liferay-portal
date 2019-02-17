@@ -14,7 +14,14 @@
 
 package com.liferay.headless.collaboration.internal.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.dto.v1_0.Creator;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +60,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected AggregateRating aggregateRating;
 	public String getAlternativeHeadline() {
 			return alternativeHeadline;
@@ -72,6 +80,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String alternativeHeadline;
 	public String getArticleBody() {
 			return articleBody;
@@ -91,6 +100,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String articleBody;
 	public String getCaption() {
 			return caption;
@@ -110,6 +120,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String caption;
 	public Long[] getCategory() {
 			return category;
@@ -129,6 +140,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] category;
 	public Comment[] getComment() {
 			return comment;
@@ -148,6 +160,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Comment[] comment;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -167,6 +180,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public Creator getCreator() {
 			return creator;
@@ -186,6 +200,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -205,6 +220,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -224,6 +240,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public Date getDatePublished() {
 			return datePublished;
@@ -243,6 +260,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date datePublished;
 	public String getDescription() {
 			return description;
@@ -262,6 +280,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public String getEncodingFormat() {
 			return encodingFormat;
@@ -281,6 +300,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String encodingFormat;
 	public String getFriendlyUrlPath() {
 			return friendlyUrlPath;
@@ -300,6 +320,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String friendlyUrlPath;
 	public String getHeadline() {
 			return headline;
@@ -319,6 +340,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String headline;
 	public Long getId() {
 			return id;
@@ -338,6 +360,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public ImageObject getImage() {
 			return image;
@@ -357,6 +380,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ImageObject image;
 	public Long getImageId() {
 			return imageId;
@@ -376,6 +400,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long imageId;
 	public String[] getKeywords() {
 			return keywords;
@@ -395,6 +420,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] keywords;
 	public ImageObjectRepository getRepository() {
 			return repository;
@@ -414,6 +440,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ImageObjectRepository repository;
 	public Long getRepositoryId() {
 			return repositoryId;
@@ -433,6 +460,7 @@ public class BlogPostingImpl implements BlogPosting {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long repositoryId;
 
 }

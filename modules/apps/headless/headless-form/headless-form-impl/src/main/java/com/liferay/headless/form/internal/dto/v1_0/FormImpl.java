@@ -14,7 +14,12 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.form.dto.v1_0.Form;
+import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +58,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -72,6 +78,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public Creator getCreator() {
 			return creator;
@@ -91,6 +98,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -110,6 +118,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -129,6 +138,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public Date getDatePublished() {
 			return datePublished;
@@ -148,6 +158,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date datePublished;
 	public String getDefaultLanguage() {
 			return defaultLanguage;
@@ -167,6 +178,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String defaultLanguage;
 	public String getDescription() {
 			return description;
@@ -186,6 +198,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public FormRecord[] getFormRecords() {
 			return formRecords;
@@ -205,6 +218,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected FormRecord[] formRecords;
 	public Long[] getFormRecordsIds() {
 			return formRecordsIds;
@@ -224,6 +238,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] formRecordsIds;
 	public Long getId() {
 			return id;
@@ -243,6 +258,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -262,6 +278,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public FormStructure getStructure() {
 			return structure;
@@ -281,6 +298,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected FormStructure structure;
 	public Long getStructureId() {
 			return structureId;
@@ -300,6 +318,7 @@ public class FormImpl implements Form {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long structureId;
 
 }

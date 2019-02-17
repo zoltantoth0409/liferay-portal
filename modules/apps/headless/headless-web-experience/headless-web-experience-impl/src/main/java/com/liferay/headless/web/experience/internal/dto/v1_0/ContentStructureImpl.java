@@ -14,7 +14,11 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
+import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.dto.v1_0.Fields;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +57,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -72,6 +77,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public Creator getCreator() {
 			return creator;
@@ -91,6 +97,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -110,6 +117,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -129,6 +137,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -148,6 +157,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Fields[] getFields() {
 			return fields;
@@ -167,6 +177,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Fields[] fields;
 	public Long getId() {
 			return id;
@@ -186,6 +197,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -205,6 +217,7 @@ public class ContentStructureImpl implements ContentStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 
 }

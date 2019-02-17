@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 		"oauth2.scope.checker.type=annotations",
 		"osgi.jaxrs.application.base=/headless-workflow",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Vulcan)",
-		"osgi.jaxrs.name=headless-workflow-application"
+		"osgi.jaxrs.name=Liferay.Headless.Workflow"
 	},
 	service = Application.class
 )

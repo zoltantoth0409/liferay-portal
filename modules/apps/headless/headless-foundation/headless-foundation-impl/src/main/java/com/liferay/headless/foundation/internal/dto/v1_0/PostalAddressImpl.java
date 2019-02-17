@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressCountry;
 	public String getAddressLocality() {
 			return addressLocality;
@@ -70,6 +73,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressLocality;
 	public String getAddressRegion() {
 			return addressRegion;
@@ -89,6 +93,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressRegion;
 	public String getAddressType() {
 			return addressType;
@@ -108,6 +113,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressType;
 	public Long getId() {
 			return id;
@@ -127,6 +133,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getPostalCode() {
 			return postalCode;
@@ -146,6 +153,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String postalCode;
 	public String getStreetAddressLine1() {
 			return streetAddressLine1;
@@ -165,6 +173,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String streetAddressLine1;
 	public String getStreetAddressLine2() {
 			return streetAddressLine2;
@@ -184,6 +193,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String streetAddressLine2;
 	public String getStreetAddressLine3() {
 			return streetAddressLine3;
@@ -203,6 +213,7 @@ public class PostalAddressImpl implements PostalAddress {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String streetAddressLine3;
 
 }

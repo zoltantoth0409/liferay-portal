@@ -14,7 +14,10 @@
 
 package com.liferay.headless.collaboration.internal.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +56,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -72,6 +76,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public Long getId() {
 			return id;
@@ -91,6 +96,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public ImageObject[] getImages() {
 			return images;
@@ -110,6 +116,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ImageObject[] images;
 	public Long[] getImagesIds() {
 			return imagesIds;
@@ -129,6 +136,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] imagesIds;
 	public String getName() {
 			return name;
@@ -148,6 +156,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 
 }

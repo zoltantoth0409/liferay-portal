@@ -14,7 +14,9 @@
 
 package com.liferay.headless.document.library.internal.dto.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String additionalName;
 	public String getAlternateName() {
 			return alternateName;
@@ -70,6 +73,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String alternateName;
 	public String getEmail() {
 			return email;
@@ -89,6 +93,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String email;
 	public String getFamilyName() {
 			return familyName;
@@ -108,6 +113,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String familyName;
 	public String getGivenName() {
 			return givenName;
@@ -127,6 +133,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String givenName;
 	public Long getId() {
 			return id;
@@ -146,6 +153,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getImage() {
 			return image;
@@ -165,6 +173,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String image;
 	public String getJobTitle() {
 			return jobTitle;
@@ -184,6 +193,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String jobTitle;
 	public String getName() {
 			return name;
@@ -203,6 +213,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public String getProfileURL() {
 			return profileURL;
@@ -222,6 +233,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String profileURL;
 
 }

@@ -14,7 +14,12 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Creator;
+import com.liferay.headless.form.dto.v1_0.FormPages;
+import com.liferay.headless.form.dto.v1_0.FormStructure;
+import com.liferay.headless.form.dto.v1_0.SuccessPage;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +58,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -72,6 +78,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public Creator getCreator() {
 			return creator;
@@ -91,6 +98,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -110,6 +118,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -129,6 +138,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -148,6 +158,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public FormPages[] getFormPages() {
 			return formPages;
@@ -167,6 +178,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected FormPages[] formPages;
 	public Long getId() {
 			return id;
@@ -186,6 +198,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -205,6 +218,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public SuccessPage getSuccessPage() {
 			return successPage;
@@ -224,6 +238,7 @@ public class FormStructureImpl implements FormStructure {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected SuccessPage successPage;
 
 }

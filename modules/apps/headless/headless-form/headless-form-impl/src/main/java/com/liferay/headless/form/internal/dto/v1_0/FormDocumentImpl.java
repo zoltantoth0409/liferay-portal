@@ -14,7 +14,9 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String contentUrl;
 	public String getEncodingFormat() {
 			return encodingFormat;
@@ -70,6 +73,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String encodingFormat;
 	public String getFileExtension() {
 			return fileExtension;
@@ -89,6 +93,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String fileExtension;
 	public Long getId() {
 			return id;
@@ -108,6 +113,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Number getSizeInBytes() {
 			return sizeInBytes;
@@ -127,6 +133,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number sizeInBytes;
 	public String getTitle() {
 			return title;
@@ -146,6 +153,7 @@ public class FormDocumentImpl implements FormDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String title;
 
 }

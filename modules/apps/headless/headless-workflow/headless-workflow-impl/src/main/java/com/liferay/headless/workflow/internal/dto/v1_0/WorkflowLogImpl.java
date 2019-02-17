@@ -14,7 +14,10 @@
 
 package com.liferay.headless.workflow.internal.dto.v1_0;
 
-import com.liferay.headless.workflow.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +56,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String auditPerson;
 	public String getCommentLog() {
 			return commentLog;
@@ -72,6 +76,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String commentLog;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -91,6 +96,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Long getId() {
 			return id;
@@ -110,6 +116,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getPerson() {
 			return person;
@@ -129,6 +136,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String person;
 	public String getPreviousPerson() {
 			return previousPerson;
@@ -148,6 +156,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String previousPerson;
 	public String getPreviousState() {
 			return previousState;
@@ -167,6 +176,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String previousState;
 	public String getState() {
 			return state;
@@ -186,6 +196,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String state;
 	public WorkflowTask getTask() {
 			return task;
@@ -205,6 +216,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected WorkflowTask task;
 	public Long getTaskId() {
 			return taskId;
@@ -224,6 +236,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long taskId;
 	public String getType() {
 			return type;
@@ -243,6 +256,7 @@ public class WorkflowLogImpl implements WorkflowLog {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String type;
 
 }

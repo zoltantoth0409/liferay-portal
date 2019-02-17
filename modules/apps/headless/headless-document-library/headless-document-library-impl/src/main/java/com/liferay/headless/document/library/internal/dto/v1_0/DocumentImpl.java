@@ -14,7 +14,11 @@
 
 package com.liferay.headless.document.library.internal.dto.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
+import com.liferay.headless.document.library.dto.v1_0.Creator;
+import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +57,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected AdaptedMedia[] adaptedMedia;
 	public Long[] getCategory() {
 			return category;
@@ -72,6 +77,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] category;
 	public String getContentUrl() {
 			return contentUrl;
@@ -91,6 +97,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String contentUrl;
 	public Creator getCreator() {
 			return creator;
@@ -110,6 +117,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -129,6 +137,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -148,6 +157,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -167,6 +177,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public String getEncodingFormat() {
 			return encodingFormat;
@@ -186,6 +197,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String encodingFormat;
 	public String getFileExtension() {
 			return fileExtension;
@@ -205,6 +217,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String fileExtension;
 	public Long getFolderId() {
 			return folderId;
@@ -224,6 +237,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long folderId;
 	public Long getId() {
 			return id;
@@ -243,6 +257,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String[] getKeywords() {
 			return keywords;
@@ -262,6 +277,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] keywords;
 	public Number getSizeInBytes() {
 			return sizeInBytes;
@@ -281,6 +297,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number sizeInBytes;
 	public String getTitle() {
 			return title;
@@ -300,6 +317,7 @@ public class DocumentImpl implements Document {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String title;
 
 }

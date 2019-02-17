@@ -14,7 +14,9 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsByTemplate;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class RenderedContentsByTemplateImpl implements RenderedContentsByTemplat
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getRenderedContent() {
 			return renderedContent;
@@ -70,6 +73,7 @@ public class RenderedContentsByTemplateImpl implements RenderedContentsByTemplat
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String renderedContent;
 	public String getTemplate() {
 			return template;
@@ -89,6 +93,7 @@ public class RenderedContentsByTemplateImpl implements RenderedContentsByTemplat
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String template;
 
 }

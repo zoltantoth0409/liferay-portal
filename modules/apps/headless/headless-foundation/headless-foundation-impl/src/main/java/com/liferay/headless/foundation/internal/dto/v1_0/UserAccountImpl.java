@@ -14,7 +14,12 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
+import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +58,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String additionalName;
 	public String getAlternateName() {
 			return alternateName;
@@ -72,6 +78,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String alternateName;
 	public Date getBirthDate() {
 			return birthDate;
@@ -91,6 +98,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date birthDate;
 	public ContactInformation getContactInformation() {
 			return contactInformation;
@@ -110,6 +118,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ContactInformation contactInformation;
 	public String getDashboardURL() {
 			return dashboardURL;
@@ -129,6 +138,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String dashboardURL;
 	public String getEmail() {
 			return email;
@@ -148,6 +158,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String email;
 	public String getFamilyName() {
 			return familyName;
@@ -167,6 +178,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String familyName;
 	public String getGivenName() {
 			return givenName;
@@ -186,6 +198,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String givenName;
 	public String getHonorificPrefix() {
 			return honorificPrefix;
@@ -205,6 +218,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String honorificPrefix;
 	public String getHonorificSuffix() {
 			return honorificSuffix;
@@ -224,6 +238,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String honorificSuffix;
 	public Long getId() {
 			return id;
@@ -243,6 +258,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getImage() {
 			return image;
@@ -262,6 +278,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String image;
 	public String getJobTitle() {
 			return jobTitle;
@@ -281,6 +298,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String jobTitle;
 	public Organization[] getMyOrganizations() {
 			return myOrganizations;
@@ -300,6 +318,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Organization[] myOrganizations;
 	public Long[] getMyOrganizationsIds() {
 			return myOrganizationsIds;
@@ -319,6 +338,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] myOrganizationsIds;
 	public String getName() {
 			return name;
@@ -338,6 +358,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public String getProfileURL() {
 			return profileURL;
@@ -357,6 +378,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String profileURL;
 	public Role[] getRoles() {
 			return roles;
@@ -376,6 +398,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Role[] roles;
 	public Long[] getRolesIds() {
 			return rolesIds;
@@ -395,6 +418,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] rolesIds;
 	public String[] getTasksAssignedToMe() {
 			return tasksAssignedToMe;
@@ -414,6 +438,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] tasksAssignedToMe;
 	public String[] getTasksAssignedToMyRoles() {
 			return tasksAssignedToMyRoles;
@@ -433,6 +458,7 @@ public class UserAccountImpl implements UserAccount {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] tasksAssignedToMyRoles;
 
 }

@@ -21,7 +21,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 
 /**
  * Converts any {@code DuplicateFriendlyURLEntryException} to a {@code 422}
@@ -32,9 +31,9 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
  */
 @Component(
 	property = {
-		JaxrsWhiteboardConstants.JAX_RS_APPLICATION_SELECT + "=(osgi.jaxrs.name=headless-collaboration-application)",
-		JaxrsWhiteboardConstants.JAX_RS_EXTENSION + "=true",
-		JaxrsWhiteboardConstants.JAX_RS_NAME + "=Liferay.Vulcan.DuplicateFriendlyURLEntryExceptionMapper"
+		"osgi.jaxrs.extension=true",
+		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=headless-collaboration-application)",
+		"osgi.jaxrs.name=Liferay.Vulcan.DuplicateFriendlyURLEntryExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )

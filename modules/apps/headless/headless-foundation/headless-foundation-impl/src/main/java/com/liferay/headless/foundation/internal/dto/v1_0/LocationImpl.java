@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Location;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class LocationImpl implements Location {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressCountry;
 	public String getAddressRegion() {
 			return addressRegion;
@@ -70,6 +73,7 @@ public class LocationImpl implements Location {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String addressRegion;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class LocationImpl implements Location {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 
 }

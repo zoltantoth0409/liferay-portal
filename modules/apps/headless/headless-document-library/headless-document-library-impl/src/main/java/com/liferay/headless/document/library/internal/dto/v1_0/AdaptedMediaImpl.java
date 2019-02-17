@@ -14,7 +14,9 @@
 
 package com.liferay.headless.document.library.internal.dto.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String contentUrl;
 	public Number getHeight() {
 			return height;
@@ -70,6 +73,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number height;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getResolutionName() {
 			return resolutionName;
@@ -108,6 +113,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String resolutionName;
 	public Number getSizeInBytes() {
 			return sizeInBytes;
@@ -127,6 +133,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number sizeInBytes;
 	public Number getWidth() {
 			return width;
@@ -146,6 +153,7 @@ public class AdaptedMediaImpl implements AdaptedMedia {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number width;
 
 }

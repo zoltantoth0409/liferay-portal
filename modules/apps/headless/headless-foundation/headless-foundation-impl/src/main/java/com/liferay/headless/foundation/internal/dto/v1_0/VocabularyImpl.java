@@ -14,7 +14,11 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +57,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Long getContentSpace() {
 			return contentSpace;
@@ -72,6 +77,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long contentSpace;
 	public UserAccount getCreator() {
 			return creator;
@@ -91,6 +97,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected UserAccount creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -110,6 +117,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -129,6 +137,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -148,6 +157,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Long getId() {
 			return id;
@@ -167,6 +177,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -186,6 +197,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Category[] getVocabularyCategories() {
 			return vocabularyCategories;
@@ -205,6 +217,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Category[] vocabularyCategories;
 	public Long[] getVocabularyCategoriesIds() {
 			return vocabularyCategoriesIds;
@@ -224,6 +237,7 @@ public class VocabularyImpl implements Vocabulary {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] vocabularyCategoriesIds;
 
 }

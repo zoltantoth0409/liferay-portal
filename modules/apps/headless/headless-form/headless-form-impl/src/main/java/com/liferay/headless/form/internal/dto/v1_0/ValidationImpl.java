@@ -14,7 +14,9 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Validation;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class ValidationImpl implements Validation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String errorMessage;
 	public String getExpression() {
 			return expression;
@@ -70,6 +73,7 @@ public class ValidationImpl implements Validation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String expression;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class ValidationImpl implements Validation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 
 }

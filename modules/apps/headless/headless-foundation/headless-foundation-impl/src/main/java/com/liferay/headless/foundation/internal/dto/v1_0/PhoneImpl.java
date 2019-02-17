@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Phone;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class PhoneImpl implements Phone {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String extension;
 	public Long getId() {
 			return id;
@@ -70,6 +73,7 @@ public class PhoneImpl implements Phone {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getPhoneNumber() {
 			return phoneNumber;
@@ -89,6 +93,7 @@ public class PhoneImpl implements Phone {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String phoneNumber;
 	public String getPhoneType() {
 			return phoneType;
@@ -108,6 +113,7 @@ public class PhoneImpl implements Phone {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String phoneType;
 
 }

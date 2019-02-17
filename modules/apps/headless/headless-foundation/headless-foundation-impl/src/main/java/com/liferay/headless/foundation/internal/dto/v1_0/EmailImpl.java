@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Email;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class EmailImpl implements Email {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String email;
 	public Long getId() {
 			return id;
@@ -70,6 +73,7 @@ public class EmailImpl implements Email {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getType() {
 			return type;
@@ -89,6 +93,7 @@ public class EmailImpl implements Email {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String type;
 
 }

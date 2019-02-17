@@ -14,7 +14,9 @@
 
 package com.liferay.headless.workflow.internal.dto.v1_0;
 
-import com.liferay.headless.workflow.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.workflow.dto.v1_0.ObjectReviewed;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getIdentifier() {
 			return identifier;
@@ -70,6 +73,7 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String identifier;
 	public String getResourceType() {
 			return resourceType;
@@ -89,6 +93,7 @@ public class ObjectReviewedImpl implements ObjectReviewed {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String resourceType;
 
 }

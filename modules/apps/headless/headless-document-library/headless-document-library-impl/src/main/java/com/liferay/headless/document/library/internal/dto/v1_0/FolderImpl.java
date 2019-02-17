@@ -14,7 +14,10 @@
 
 package com.liferay.headless.document.library.internal.dto.v1_0;
 
-import com.liferay.headless.document.library.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.document.library.dto.v1_0.Document;
+import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +56,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -72,6 +76,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -91,6 +96,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Document[] getDocuments() {
 			return documents;
@@ -110,6 +116,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Document[] documents;
 	public Long[] getDocumentsIds() {
 			return documentsIds;
@@ -129,6 +136,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] documentsIds;
 	public Folder getDocumentsRepository() {
 			return documentsRepository;
@@ -148,6 +156,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Folder documentsRepository;
 	public Long getDocumentsRepositoryId() {
 			return documentsRepositoryId;
@@ -167,6 +176,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long documentsRepositoryId;
 	public Long getId() {
 			return id;
@@ -186,6 +196,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -205,6 +216,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Folder[] getSubFolders() {
 			return subFolders;
@@ -224,6 +236,7 @@ public class FolderImpl implements Folder {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Folder[] subFolders;
 
 }

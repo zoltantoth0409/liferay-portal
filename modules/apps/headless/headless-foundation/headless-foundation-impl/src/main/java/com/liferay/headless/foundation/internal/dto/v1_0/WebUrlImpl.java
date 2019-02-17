@@ -14,7 +14,9 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class WebUrlImpl implements WebUrl {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getUrl() {
 			return url;
@@ -70,6 +73,7 @@ public class WebUrlImpl implements WebUrl {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String url;
 	public String getUrlType() {
 			return urlType;
@@ -89,6 +93,7 @@ public class WebUrlImpl implements WebUrl {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String urlType;
 
 }

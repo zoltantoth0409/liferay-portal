@@ -14,7 +14,12 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Fields;
+import com.liferay.headless.form.dto.v1_0.Grid;
+import com.liferay.headless.form.dto.v1_0.Options;
+import com.liferay.headless.form.dto.v1_0.Validation;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +56,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean autocomplete;
 	public String getDataSourceType() {
 			return dataSourceType;
@@ -70,6 +76,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String dataSourceType;
 	public String getDataType() {
 			return dataType;
@@ -89,6 +96,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String dataType;
 	public String getDisplayStyle() {
 			return displayStyle;
@@ -108,6 +116,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String displayStyle;
 	public Grid getGrid() {
 			return grid;
@@ -127,6 +136,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Grid grid;
 	public Boolean getHasFormRules() {
 			return hasFormRules;
@@ -146,6 +156,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean hasFormRules;
 	public Long getId() {
 			return id;
@@ -165,6 +176,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Boolean getImmutable() {
 			return immutable;
@@ -184,6 +196,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean immutable;
 	public Boolean getInline() {
 			return inline;
@@ -203,6 +216,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean inline;
 	public String getInputControl() {
 			return inputControl;
@@ -222,6 +236,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String inputControl;
 	public String getLabel() {
 			return label;
@@ -241,6 +256,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String label;
 	public Boolean getLocalizable() {
 			return localizable;
@@ -260,6 +276,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean localizable;
 	public Boolean getMultiple() {
 			return multiple;
@@ -279,6 +296,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean multiple;
 	public String getName() {
 			return name;
@@ -298,6 +316,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Options getOptions() {
 			return options;
@@ -317,6 +336,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Options options;
 	public String getPlaceholder() {
 			return placeholder;
@@ -336,6 +356,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String placeholder;
 	public String getPredefinedValue() {
 			return predefinedValue;
@@ -355,6 +376,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String predefinedValue;
 	public Boolean getReadOnly() {
 			return readOnly;
@@ -374,6 +396,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean readOnly;
 	public Boolean getRepeatable() {
 			return repeatable;
@@ -393,6 +416,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean repeatable;
 	public Boolean getRequired() {
 			return required;
@@ -412,6 +436,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean required;
 	public Boolean getShowAsSwitcher() {
 			return showAsSwitcher;
@@ -431,6 +456,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean showAsSwitcher;
 	public Boolean getShowLabel() {
 			return showLabel;
@@ -450,6 +476,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Boolean showLabel;
 	public String getStyle() {
 			return style;
@@ -469,6 +496,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String style;
 	public String getText() {
 			return text;
@@ -488,6 +516,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String text;
 	public String getTooltip() {
 			return tooltip;
@@ -507,6 +536,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String tooltip;
 	public Validation getValidation() {
 			return validation;
@@ -526,6 +556,7 @@ public class FieldsImpl implements Fields {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Validation validation;
 
 }

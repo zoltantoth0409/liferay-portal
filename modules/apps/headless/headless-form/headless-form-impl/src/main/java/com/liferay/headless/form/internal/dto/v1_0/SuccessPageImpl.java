@@ -14,7 +14,9 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.SuccessPage;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class SuccessPageImpl implements SuccessPage {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public String getHeadline() {
 			return headline;
@@ -70,6 +73,7 @@ public class SuccessPageImpl implements SuccessPage {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String headline;
 	public Long getId() {
 			return id;
@@ -89,6 +93,7 @@ public class SuccessPageImpl implements SuccessPage {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 
 }

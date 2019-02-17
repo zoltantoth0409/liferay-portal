@@ -14,7 +14,10 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.FieldValues;
+import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +54,7 @@ public class FieldValuesImpl implements FieldValues {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected FormDocument document;
 	public Long getDocumentId() {
 			return documentId;
@@ -70,6 +74,7 @@ public class FieldValuesImpl implements FieldValues {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long documentId;
 	public Long getId() {
 			return id;
@@ -89,6 +94,7 @@ public class FieldValuesImpl implements FieldValues {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -108,6 +114,7 @@ public class FieldValuesImpl implements FieldValues {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public String getValue() {
 			return value;
@@ -127,6 +134,7 @@ public class FieldValuesImpl implements FieldValues {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String value;
 
 }

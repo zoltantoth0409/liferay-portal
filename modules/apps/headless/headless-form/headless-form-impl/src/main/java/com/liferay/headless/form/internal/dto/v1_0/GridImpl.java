@@ -14,7 +14,11 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Columns;
+import com.liferay.headless.form.dto.v1_0.Grid;
+import com.liferay.headless.form.dto.v1_0.Rows;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +55,7 @@ public class GridImpl implements Grid {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Columns[] columns;
 	public Long getId() {
 			return id;
@@ -70,6 +75,7 @@ public class GridImpl implements Grid {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Rows[] getRows() {
 			return rows;
@@ -89,6 +95,7 @@ public class GridImpl implements Grid {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Rows[] rows;
 
 }

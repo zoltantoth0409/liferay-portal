@@ -14,7 +14,10 @@
 
 package com.liferay.headless.collaboration.internal.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +54,7 @@ public class CommentImpl implements Comment {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Comment[] comments;
 	public Creator getCreator() {
 			return creator;
@@ -70,6 +74,7 @@ public class CommentImpl implements Comment {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Long getId() {
 			return id;
@@ -89,6 +94,7 @@ public class CommentImpl implements Comment {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getText() {
 			return text;
@@ -108,6 +114,7 @@ public class CommentImpl implements Comment {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String text;
 
 }

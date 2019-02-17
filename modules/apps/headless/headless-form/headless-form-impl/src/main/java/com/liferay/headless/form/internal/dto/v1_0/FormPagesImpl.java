@@ -14,7 +14,10 @@
 
 package com.liferay.headless.form.internal.dto.v1_0;
 
-import com.liferay.headless.form.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.form.dto.v1_0.Fields;
+import com.liferay.headless.form.dto.v1_0.FormPages;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +54,7 @@ public class FormPagesImpl implements FormPages {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Fields[] fields;
 	public String getHeadline() {
 			return headline;
@@ -70,6 +74,7 @@ public class FormPagesImpl implements FormPages {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String headline;
 	public Long getId() {
 			return id;
@@ -89,6 +94,7 @@ public class FormPagesImpl implements FormPages {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getText() {
 			return text;
@@ -108,6 +114,7 @@ public class FormPagesImpl implements FormPages {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String text;
 
 }

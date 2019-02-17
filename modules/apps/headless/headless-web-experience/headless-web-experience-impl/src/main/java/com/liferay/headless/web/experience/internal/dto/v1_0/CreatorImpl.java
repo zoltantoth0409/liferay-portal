@@ -14,7 +14,9 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +53,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String additionalName;
 	public String getFamilyName() {
 			return familyName;
@@ -70,6 +73,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String familyName;
 	public String getGivenName() {
 			return givenName;
@@ -89,6 +93,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String givenName;
 	public Long getId() {
 			return id;
@@ -108,6 +113,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getImage() {
 			return image;
@@ -127,6 +133,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String image;
 	public String getName() {
 			return name;
@@ -146,6 +153,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public String getProfileURL() {
 			return profileURL;
@@ -165,6 +173,7 @@ public class CreatorImpl implements Creator {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String profileURL;
 
 }

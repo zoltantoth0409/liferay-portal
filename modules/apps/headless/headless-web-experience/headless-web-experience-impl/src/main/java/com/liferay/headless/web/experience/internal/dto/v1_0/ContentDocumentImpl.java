@@ -14,7 +14,10 @@
 
 package com.liferay.headless.web.experience.internal.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
+import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +56,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String contentUrl;
 	public Creator getCreator() {
 			return creator;
@@ -72,6 +76,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Creator creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -91,6 +96,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -110,6 +116,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getEncodingFormat() {
 			return encodingFormat;
@@ -129,6 +136,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String encodingFormat;
 	public String getFileExtension() {
 			return fileExtension;
@@ -148,6 +156,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String fileExtension;
 	public Long getId() {
 			return id;
@@ -167,6 +176,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Number getSizeInBytes() {
 			return sizeInBytes;
@@ -186,6 +196,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Number sizeInBytes;
 	public String getTitle() {
 			return title;
@@ -205,6 +216,7 @@ public class ContentDocumentImpl implements ContentDocument {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String title;
 
 }

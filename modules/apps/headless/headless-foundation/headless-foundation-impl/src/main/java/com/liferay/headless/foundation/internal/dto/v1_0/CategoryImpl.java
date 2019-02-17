@@ -14,7 +14,11 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +57,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public Category getCategory() {
 			return category;
@@ -72,6 +77,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Category category;
 	public Long getCategoryId() {
 			return categoryId;
@@ -91,6 +97,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long categoryId;
 	public UserAccount getCreator() {
 			return creator;
@@ -110,6 +117,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected UserAccount creator;
 	public Long getCreatorId() {
 			return creatorId;
@@ -129,6 +137,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long creatorId;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -148,6 +157,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -167,6 +177,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -186,6 +197,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Long getId() {
 			return id;
@@ -205,6 +217,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -224,6 +237,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Category[] getSubcategories() {
 			return subcategories;
@@ -243,6 +257,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Category[] subcategories;
 	public Vocabulary getVocabulary() {
 			return vocabulary;
@@ -262,6 +277,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Vocabulary vocabulary;
 	public Long getVocabularyId() {
 			return vocabularyId;
@@ -281,6 +297,7 @@ public class CategoryImpl implements Category {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long vocabularyId;
 
 }

@@ -14,7 +14,13 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
+import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.headless.foundation.dto.v1_0.Phone;
+import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
+import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +57,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected PostalAddress[] address;
 	public Long[] getAddressIds() {
 			return addressIds;
@@ -70,6 +77,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] addressIds;
 	public Email[] getEmail() {
 			return email;
@@ -89,6 +97,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Email[] email;
 	public Long[] getEmailIds() {
 			return emailIds;
@@ -108,6 +117,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] emailIds;
 	public String getFacebook() {
 			return facebook;
@@ -127,6 +137,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String facebook;
 	public Long getId() {
 			return id;
@@ -146,6 +157,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getJabber() {
 			return jabber;
@@ -165,6 +177,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String jabber;
 	public String getSkype() {
 			return skype;
@@ -184,6 +197,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String skype;
 	public String getSms() {
 			return sms;
@@ -203,6 +217,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String sms;
 	public Phone[] getTelephone() {
 			return telephone;
@@ -222,6 +237,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Phone[] telephone;
 	public Long[] getTelephoneIds() {
 			return telephoneIds;
@@ -241,6 +257,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] telephoneIds;
 	public String getTwitter() {
 			return twitter;
@@ -260,6 +277,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String twitter;
 	public WebUrl[] getWebUrl() {
 			return webUrl;
@@ -279,6 +297,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected WebUrl[] webUrl;
 	public Long[] getWebUrlIds() {
 			return webUrlIds;
@@ -298,6 +317,7 @@ public class ContactInformationImpl implements ContactInformation {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] webUrlIds;
 
 }

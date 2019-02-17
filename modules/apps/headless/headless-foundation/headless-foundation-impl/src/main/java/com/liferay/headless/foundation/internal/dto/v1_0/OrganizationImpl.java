@@ -14,7 +14,13 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
+import com.liferay.headless.foundation.dto.v1_0.Location;
+import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.headless.foundation.dto.v1_0.Services;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -51,6 +57,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String comment;
 	public ContactInformation getContactInformation() {
 			return contactInformation;
@@ -70,6 +77,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected ContactInformation contactInformation;
 	public Long getId() {
 			return id;
@@ -89,6 +97,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public Location getLocation() {
 			return location;
@@ -108,6 +117,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Location location;
 	public String getLogo() {
 			return logo;
@@ -127,6 +137,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String logo;
 	public UserAccount[] getMembers() {
 			return members;
@@ -146,6 +157,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected UserAccount[] members;
 	public Long[] getMembersIds() {
 			return membersIds;
@@ -165,6 +177,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] membersIds;
 	public String getName() {
 			return name;
@@ -184,6 +197,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public Organization getParentOrganization() {
 			return parentOrganization;
@@ -203,6 +217,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Organization parentOrganization;
 	public Long getParentOrganizationId() {
 			return parentOrganizationId;
@@ -222,6 +237,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long parentOrganizationId;
 	public Services[] getServices() {
 			return services;
@@ -241,6 +257,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Services[] services;
 	public Organization[] getSubOrganization() {
 			return subOrganization;
@@ -260,6 +277,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Organization[] subOrganization;
 	public Long[] getSubOrganizationIds() {
 			return subOrganizationIds;
@@ -279,6 +297,7 @@ public class OrganizationImpl implements Organization {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long[] subOrganizationIds;
 
 }

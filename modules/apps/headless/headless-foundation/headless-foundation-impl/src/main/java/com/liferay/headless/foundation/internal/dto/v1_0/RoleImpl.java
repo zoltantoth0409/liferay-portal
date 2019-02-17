@@ -14,7 +14,10 @@
 
 package com.liferay.headless.foundation.internal.dto.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -53,6 +56,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String[] availableLanguages;
 	public UserAccount getCreator() {
 			return creator;
@@ -72,6 +76,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected UserAccount creator;
 	public Date getDateCreated() {
 			return dateCreated;
@@ -91,6 +96,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateCreated;
 	public Date getDateModified() {
 			return dateModified;
@@ -110,6 +116,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Date dateModified;
 	public String getDescription() {
 			return description;
@@ -129,6 +136,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String description;
 	public Long getId() {
 			return id;
@@ -148,6 +156,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected Long id;
 	public String getName() {
 			return name;
@@ -167,6 +176,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String name;
 	public String getRoleType() {
 			return roleType;
@@ -186,6 +196,7 @@ public class RoleImpl implements Role {
 	}
 
 	@GraphQLField
+	@JsonProperty
 	protected String roleType;
 
 }
