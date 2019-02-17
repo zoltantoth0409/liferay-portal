@@ -42,11 +42,11 @@ public interface ImageObjectRepository {
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
-	public ImageObject[] getImages();
+	public BlogPostingImage[] getImages();
 
-	public void setImages(ImageObject[] images);
+	public void setImages(BlogPostingImage[] images);
 
-	public void setImages(UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier);
+	public void setImages(UnsafeSupplier<BlogPostingImage[], Throwable> imagesUnsafeSupplier);
 	public Long[] getImagesIds();
 
 	public void setImagesIds(Long[] imagesIds);

@@ -14,7 +14,7 @@
 
 package com.liferay.headless.collaboration.resource.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -29,16 +29,16 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface ImageObjectResource {
+public interface BlogPostingImageResource {
 
-	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception;
+	public Page<BlogPostingImage> getImageObjectRepositoryBlogPostingImagesPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception;
 
-	public ImageObject postImageObjectRepositoryImageObject( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
+	public BlogPostingImage postImageObjectRepositoryBlogPostingImage( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception;
 
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception;
+	public BlogPostingImage postImageObjectRepositoryBlogPostingImageBatchCreate( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception;
 
 	public boolean deleteImageObject( Long imageObjectId ) throws Exception;
 
-	public ImageObject getImageObject( Long imageObjectId ) throws Exception;
+	public BlogPostingImage getImageObject( Long imageObjectId ) throws Exception;
 
 }

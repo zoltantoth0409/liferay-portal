@@ -17,8 +17,8 @@ package com.liferay.headless.collaboration.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -44,7 +44,7 @@ import org.junit.Test;
  * @generated
  */
 @Generated("")
-public abstract class BaseImageObjectResourceTestCase {
+public abstract class BaseBlogPostingImageResourceTestCase {
 
 	@BeforeClass
 	public static void setUpClass() {
@@ -64,15 +64,15 @@ public abstract class BaseImageObjectResourceTestCase {
 	}
 
 	@Test
-	public void testGetImageObjectRepositoryImageObjectsPage() throws Exception {
+	public void testGetImageObjectRepositoryBlogPostingImagesPage() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
-	public void testPostImageObjectRepositoryImageObject() throws Exception {
+	public void testPostImageObjectRepositoryBlogPostingImage() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
-	public void testPostImageObjectRepositoryImageObjectBatchCreate() throws Exception {
+	public void testPostImageObjectRepositoryBlogPostingImageBatchCreate() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
@@ -84,36 +84,36 @@ public abstract class BaseImageObjectResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetImageObjectRepositoryImageObjectsPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception {
+	protected Response invokeGetImageObjectRepositoryBlogPostingImagesPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images",
 				imageObjectRepositoryId 
 			);
 
 	}
-	protected Response invokePostImageObjectRepositoryImageObject( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
+	protected Response invokePostImageObjectRepositoryBlogPostingImage( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
-				imageObject
+				blogPostingImage
 			).when(
 			).post(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects",
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images",
 				imageObjectRepositoryId 
 			);
 
 	}
-	protected Response invokePostImageObjectRepositoryImageObjectBatchCreate( Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
+	protected Response invokePostImageObjectRepositoryBlogPostingImageBatchCreate( Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.body(
-				imageObject
+				blogPostingImage
 			).when(
 			).post(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/image-objects/batch-create",
+				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images/batch-create",
 				imageObjectRepositoryId 
 			);
 
@@ -123,7 +123,7 @@ public abstract class BaseImageObjectResourceTestCase {
 
 			return requestSpecification.when(
 			).delete(
-				_resourceURL + "/image-objects/{image-object-id}",
+				_resourceURL + "/blog-posting-images/{image-object-id}",
 				imageObjectId
 			);
 
@@ -133,21 +133,21 @@ public abstract class BaseImageObjectResourceTestCase {
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/image-objects/{image-object-id}",
+				_resourceURL + "/blog-posting-images/{image-object-id}",
 				imageObjectId
 			);
 
 	}
 
-	protected ImageObject randomImageObject() {
-		ImageObject imageObject = new ImageObjectImpl();
+	protected BlogPostingImage randomBlogPostingImage() {
+		BlogPostingImage blogPostingImage = new BlogPostingImageImpl();
 
-imageObject.setContentUrl(RandomTestUtil.randomString());
-imageObject.setEncodingFormat(RandomTestUtil.randomString());
-imageObject.setFileExtension(RandomTestUtil.randomString());
-imageObject.setId(RandomTestUtil.randomLong());
-imageObject.setTitle(RandomTestUtil.randomString());
-		return imageObject;
+blogPostingImage.setContentUrl(RandomTestUtil.randomString());
+blogPostingImage.setEncodingFormat(RandomTestUtil.randomString());
+blogPostingImage.setFileExtension(RandomTestUtil.randomString());
+blogPostingImage.setId(RandomTestUtil.randomLong());
+blogPostingImage.setTitle(RandomTestUtil.randomString());
+		return blogPostingImage;
 	}
 
 	protected Group testGroup;

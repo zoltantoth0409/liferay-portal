@@ -107,11 +107,11 @@ public interface BlogPosting {
 	public void setId(Long id);
 
 	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
-	public ImageObject getImage();
+	public BlogPostingImage getImage();
 
-	public void setImage(ImageObject image);
+	public void setImage(BlogPostingImage image);
 
-	public void setImage(UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier);
+	public void setImage(UnsafeSupplier<BlogPostingImage, Throwable> imageUnsafeSupplier);
 	public Long getImageId();
 
 	public void setImageId(Long imageId);

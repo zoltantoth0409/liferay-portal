@@ -23,7 +23,7 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface ImageObject {
+public interface BlogPostingImage {
 
 	public String getContentUrl();
 

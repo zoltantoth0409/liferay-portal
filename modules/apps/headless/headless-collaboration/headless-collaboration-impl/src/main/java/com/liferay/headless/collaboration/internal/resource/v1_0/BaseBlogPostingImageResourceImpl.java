@@ -14,9 +14,9 @@
 
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
-import com.liferay.headless.collaboration.resource.v1_0.ImageObjectResource;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
+import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.model.Company;
@@ -45,39 +45,39 @@ import javax.ws.rs.core.Context;
  */
 @Generated("")
 @Path("/v1.0")
-public abstract class BaseImageObjectResourceImpl implements ImageObjectResource {
+public abstract class BaseBlogPostingImageResourceImpl implements BlogPostingImageResource {
 
 	@GET
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
+	@Path("/image-object-repositories/{image-object-repository-id}/blog-posting-images")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	@Override
-	public Page<ImageObject> getImageObjectRepositoryImageObjectsPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Pagination pagination ) throws Exception {
+	public Page<BlogPostingImage> getImageObjectRepositoryBlogPostingImagesPage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , @Context Pagination pagination ) throws Exception {
 			return Page.of(Collections.emptyList());
 
 	}
 	@Consumes("application/json")
 	@POST
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects")
+	@Path("/image-object-repositories/{image-object-repository-id}/blog-posting-images")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	@Override
-	public ImageObject postImageObjectRepositoryImageObject( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
-			return new ImageObjectImpl();
+	public BlogPostingImage postImageObjectRepositoryBlogPostingImage( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
+			return new BlogPostingImageImpl();
 
 	}
 	@Consumes("application/json")
 	@POST
-	@Path("/image-object-repositories/{image-object-repository-id}/image-objects/batch-create")
+	@Path("/image-object-repositories/{image-object-repository-id}/blog-posting-images/batch-create")
 	@Produces("application/json")
 	@RequiresScope("everything.write")
 	@Override
-	public ImageObject postImageObjectRepositoryImageObjectBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , ImageObject imageObject ) throws Exception {
-			return new ImageObjectImpl();
+	public BlogPostingImage postImageObjectRepositoryBlogPostingImageBatchCreate( @PathParam("image-object-repository-id") Long imageObjectRepositoryId , BlogPostingImage blogPostingImage ) throws Exception {
+			return new BlogPostingImageImpl();
 
 	}
 	@DELETE
-	@Path("/image-objects/{image-object-id}")
+	@Path("/blog-posting-images/{image-object-id}")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	@Override
@@ -86,12 +86,12 @@ public abstract class BaseImageObjectResourceImpl implements ImageObjectResource
 
 	}
 	@GET
-	@Path("/image-objects/{image-object-id}")
+	@Path("/blog-posting-images/{image-object-id}")
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	@Override
-	public ImageObject getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception {
-			return new ImageObjectImpl();
+	public BlogPostingImage getImageObject( @PathParam("image-object-id") Long imageObjectId ) throws Exception {
+			return new BlogPostingImageImpl();
 
 	}
 

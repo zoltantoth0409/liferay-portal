@@ -16,7 +16,7 @@ package com.liferay.headless.collaboration.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -31,9 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@GraphQLName("ImageObject")
-@XmlRootElement(name = "ImageObject")
-public class ImageObjectImpl implements ImageObject {
+@GraphQLName("BlogPostingImage")
+@XmlRootElement(name = "BlogPostingImage")
+public class BlogPostingImageImpl implements BlogPostingImage {
 
 	public String getContentUrl() {
 			return contentUrl;

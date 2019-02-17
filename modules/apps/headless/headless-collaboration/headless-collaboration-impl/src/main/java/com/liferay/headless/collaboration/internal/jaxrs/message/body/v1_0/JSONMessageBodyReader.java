@@ -19,15 +19,15 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectRepositoryImpl;
 
 import java.io.IOException;
@@ -75,13 +75,13 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(BlogPosting.class)) {
 				return true;
 	}
+			if (clazz.equals(BlogPostingImage.class)) {
+				return true;
+	}
 			if (clazz.equals(Comment.class)) {
 				return true;
 	}
 			if (clazz.equals(Creator.class)) {
-				return true;
-	}
-			if (clazz.equals(ImageObject.class)) {
 				return true;
 	}
 			if (clazz.equals(ImageObjectRepository.class)) {
@@ -104,14 +104,14 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(BlogPosting.class)) {
 				return _objectMapper.readValue(inputStream, BlogPostingImpl.class);
 	}
+			if (clazz.equals(BlogPostingImage.class)) {
+				return _objectMapper.readValue(inputStream, BlogPostingImageImpl.class);
+	}
 			if (clazz.equals(Comment.class)) {
 				return _objectMapper.readValue(inputStream, CommentImpl.class);
 	}
 			if (clazz.equals(Creator.class)) {
 				return _objectMapper.readValue(inputStream, CreatorImpl.class);
-	}
-			if (clazz.equals(ImageObject.class)) {
-				return _objectMapper.readValue(inputStream, ImageObjectImpl.class);
 	}
 			if (clazz.equals(ImageObjectRepository.class)) {
 				return _objectMapper.readValue(inputStream, ImageObjectRepositoryImpl.class);

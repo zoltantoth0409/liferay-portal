@@ -14,7 +14,7 @@
 
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
-import com.liferay.headless.collaboration.resource.v1_0.ImageObjectResource;
+import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
@@ -23,8 +23,8 @@ import org.osgi.service.component.annotations.ServiceScope;
  * @author Javier Gamarra
  */
 @Component(
-	properties = "OSGI-INF/liferay/rest/v1_0/image-object.properties",
-	scope = ServiceScope.PROTOTYPE, service = ImageObjectResource.class
+	properties = "OSGI-INF/liferay/rest/v1_0/blog-posting-image.properties",
+	scope = ServiceScope.PROTOTYPE, service = BlogPostingImageResource.class
 )
-public class ImageObjectResourceImpl extends BaseImageObjectResourceImpl {
+public class BlogPostingImageResourceImpl extends BaseBlogPostingImageResourceImpl {
 }

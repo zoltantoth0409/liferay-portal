@@ -18,9 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.petra.function.UnsafeSupplier;
 
@@ -362,15 +362,15 @@ public class BlogPostingImpl implements BlogPosting {
 	@GraphQLField
 	@JsonProperty
 	protected Long id;
-	public ImageObject getImage() {
+	public BlogPostingImage getImage() {
 			return image;
 	}
 
-	public void setImage(ImageObject image) {
+	public void setImage(BlogPostingImage image) {
 			this.image = image;
 	}
 
-	public void setImage(UnsafeSupplier<ImageObject, Throwable> imageUnsafeSupplier) {
+	public void setImage(UnsafeSupplier<BlogPostingImage, Throwable> imageUnsafeSupplier) {
 			try {
 				image = imageUnsafeSupplier.get();
 	}
@@ -381,7 +381,7 @@ public class BlogPostingImpl implements BlogPosting {
 
 	@GraphQLField
 	@JsonProperty
-	protected ImageObject image;
+	protected BlogPostingImage image;
 	public Long getImageId() {
 			return imageId;
 	}

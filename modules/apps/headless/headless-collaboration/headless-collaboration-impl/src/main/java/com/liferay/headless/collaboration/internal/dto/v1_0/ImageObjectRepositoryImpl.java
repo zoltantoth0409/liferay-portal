@@ -16,7 +16,7 @@ package com.liferay.headless.collaboration.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.petra.function.UnsafeSupplier;
 
@@ -98,15 +98,15 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 	@GraphQLField
 	@JsonProperty
 	protected Long id;
-	public ImageObject[] getImages() {
+	public BlogPostingImage[] getImages() {
 			return images;
 	}
 
-	public void setImages(ImageObject[] images) {
+	public void setImages(BlogPostingImage[] images) {
 			this.images = images;
 	}
 
-	public void setImages(UnsafeSupplier<ImageObject[], Throwable> imagesUnsafeSupplier) {
+	public void setImages(UnsafeSupplier<BlogPostingImage[], Throwable> imagesUnsafeSupplier) {
 			try {
 				images = imagesUnsafeSupplier.get();
 	}
@@ -117,7 +117,7 @@ public class ImageObjectRepositoryImpl implements ImageObjectRepository {
 
 	@GraphQLField
 	@JsonProperty
-	protected ImageObject[] images;
+	protected BlogPostingImage[] images;
 	public Long[] getImagesIds() {
 			return imagesIds;
 	}
