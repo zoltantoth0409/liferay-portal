@@ -21,9 +21,9 @@ import com.liferay.blogs.service.BlogsEntryService;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObject;
+import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -147,7 +147,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		return serviceContext;
 	}
 
-	private ImageObject _getImageObject(long imageId) throws Exception {
+	private BlogPostingImage _getBlogPostingImage(long imageId) throws Exception {
 		if (imageId == 0) {
 			return null;
 		}
@@ -157,7 +157,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 		FileVersion fileVersion = _dlAppService.getFileVersion(
 			fileEntry.getFileEntryId());
 
-		return new ImageObjectImpl() {
+		return new BlogPostingImageImpl() {
 			{
 				setContentUrl(
 					_dlurlHelper.getPreviewURL(
@@ -172,9 +172,9 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private ImageSelector _getImageSelector(BlogPosting blogPosting) {
-		ImageObject imageObject = blogPosting.getImage();
+		BlogPostingImage blogPostingImage = blogPosting.getImage();
 
-		Long imageId = imageObject.getId();
+		Long imageId = blogPostingImage.getId();
 
 		if (Objects.equals(imageId, 0L)) {
 			return null;
@@ -195,7 +195,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
-		ImageObject imageObject = _getImageObject(
+		BlogPostingImage blogPostingImage = _getBlogPostingImage(
 			blogsEntry.getCoverImageFileEntryId());
 
 		return new BlogPostingImpl() {
@@ -217,7 +217,7 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				setFriendlyUrlPath(blogsEntry.getUrlTitle());
 				setHeadline(blogsEntry.getTitle());
 				setId(blogsEntry.getEntryId());
-				setImage(imageObject);
+				setImage(blogPostingImage);
 			}
 		};
 	}
