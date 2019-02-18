@@ -1298,12 +1298,22 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		Map<Long, List<Layout>> layoutChildLayoutsMap = new HashMap<>();
 
 		for (Layout childLayout : childLayouts) {
-			List<Layout> layoutChildLayouts =
-				layoutChildLayoutsMap.computeIfAbsent(
-					childLayout.getParentPlid(),
-					parentPlid -> new ArrayList<>());
+			try {
+				List<Layout> layoutChildLayouts =
+					layoutChildLayoutsMap.computeIfAbsent(
+						childLayout.getParentPlid(),
+						parentPlid -> new ArrayList<>());
 
-			layoutChildLayouts.add(childLayout);
+				layoutChildLayouts.add(childLayout);
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to get parent plid for Layout with plid=" +
+							childLayout.getPlid(),
+						pe);
+				}
+			}
 		}
 
 		for (List<Layout> layoutChildLayouts : layoutChildLayoutsMap.values()) {
