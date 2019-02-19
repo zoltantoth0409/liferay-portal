@@ -60,8 +60,8 @@ public class CreatorUtil {
 
 						ThemeDisplay themeDisplay = new ThemeDisplay() {
 							{
-								setSiteGroupId(group.getGroupId());
 								setPortalURL(StringPool.BLANK);
+								setSiteGroupId(group.getGroupId());
 							}
 						};
 
