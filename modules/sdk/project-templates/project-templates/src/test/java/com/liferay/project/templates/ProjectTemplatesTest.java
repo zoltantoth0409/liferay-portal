@@ -4128,14 +4128,8 @@ public class ProjectTemplatesTest {
 			String content = FileUtil.read(buildFilePath);
 
 			if (!content.contains("allprojects")) {
-				StringBuilder sb = new StringBuilder();
-
-				sb.append(content);
-				sb.append("allprojects {\n");
-				sb.append("\trepositories {\n");
-				sb.append("\t\tmavenLocal()\n\t}\n}");
-
-				content = sb.toString();
+				content +=
+					"allprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n}";
 
 				Files.write(
 					buildFilePath, content.getBytes(StandardCharsets.UTF_8));
