@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String scope = ParamUtil.getString(request, "scope", UADConstants.SCOPE_PERSONAL_SITE);
-
 long[] groupIds = (long[])request.getAttribute(UADWebKeys.GROUP_IDS);
 int totalReviewableUADEntitiesCount = (int)request.getAttribute(UADWebKeys.TOTAL_UAD_ENTITIES_COUNT);
 List<UADApplicationSummaryDisplay> uadApplicationSummaryDisplays = (List<UADApplicationSummaryDisplay>)request.getAttribute(UADWebKeys.UAD_APPLICATION_SUMMARY_DISPLAY_LIST);
 List<UADDisplay> uadDisplays = (List<UADDisplay>)request.getAttribute(UADWebKeys.APPLICATION_UAD_DISPLAYS);
 ViewUADEntitiesDisplay viewUADEntitiesDisplay = (ViewUADEntitiesDisplay)request.getAttribute(UADWebKeys.VIEW_UAD_ENTITIES_DISPLAY);
+
+String scope = ParamUtil.getString(request, "scope", UADConstants.SCOPE_PERSONAL_SITE);
 
 portletDisplay.setShowBackIcon(true);
 
