@@ -8,6 +8,7 @@ configurations {
 	objectAssign
 	objectEntries
 	objectValues
+	stringEndsWith
 	urlSearchParams
 }
 
@@ -18,6 +19,7 @@ task buildFetch(type: Copy)
 task buildObjectAssign(type: Copy)
 task buildObjectEntries(type: Copy)
 task buildObjectValues(type: Copy)
+task buildStringEndsWith(type: Copy)
 task buildUrlSearchParams(type: Copy)
 
 buildArrayFill {
@@ -128,6 +130,22 @@ buildObjectValues {
 	}
 }
 
+buildStringEndsWith{
+	eachFile new StripPathSegmentsAction(7)
+
+	from {
+		zipTree(configurations.stringEndsWith.singleFile)
+	}
+
+	include "META-INF/resources/webjars/mdn-polyfills/5.8.0/src/String.prototype.endsWith/index.js"
+	includeEmptyDirs = false
+	into "classes/META-INF/resources"
+
+	rename {
+		it.replace "index", "string.endsWith"
+	}
+}
+
 buildUrlSearchParams {
 	eachFile new StripPathSegmentsAction(6)
 
@@ -152,6 +170,7 @@ classes {
 	dependsOn buildObjectAssign
 	dependsOn buildObjectEntries
 	dependsOn buildObjectValues
+	dependsOn buildStringEndsWith
 	dependsOn buildUrlSearchParams
 }
 
@@ -176,6 +195,8 @@ dependencies {
 	objectEntries group: "org.webjars.npm", name: "object_entries", transitive: false, version: "0.1.2"
 
 	objectValues group: "org.webjars.npm", name: "object_values", transitive: false, version: "0.1.2"
+
+	stringEndsWith group: "org.webjars.npm", name: "mdn-polyfills", transitive: false, version: "5.8.0"
 
 	urlSearchParams group: "org.webjars.npm", name: "url-search-params", transitive: false, version: "0.10.0"
 }
