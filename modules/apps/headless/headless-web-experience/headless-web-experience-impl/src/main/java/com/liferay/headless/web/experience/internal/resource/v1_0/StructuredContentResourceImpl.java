@@ -574,8 +574,8 @@ public class StructuredContentResourceImpl
 								_userLocalService.getUser(
 									fileEntry.getUserId()));
 							contentUrl = _dlurlHelper.getPreviewURL(
-								fileEntry, fileEntry.getFileVersion(),
-								null, "", false, false);
+								fileEntry, fileEntry.getFileVersion(), null, "",
+								false, false);
 							dateCreated = fileEntry.getCreateDate();
 							dateModified = fileEntry.getModifiedDate();
 							encodingFormat = fileEntry.getMimeType();
