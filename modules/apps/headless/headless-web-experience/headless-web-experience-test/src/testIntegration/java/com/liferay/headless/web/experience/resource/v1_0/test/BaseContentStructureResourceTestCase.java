@@ -96,15 +96,15 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 
 	protected ContentStructure randomContentStructure() {
-		ContentStructure contentStructure = new ContentStructureImpl();
-
+		return new ContentStructureImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-name = RandomTestUtil.randomString();
-		return contentStructure;
+name = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

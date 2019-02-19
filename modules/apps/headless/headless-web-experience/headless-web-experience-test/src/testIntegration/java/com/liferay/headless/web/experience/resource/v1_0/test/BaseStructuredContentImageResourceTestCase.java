@@ -107,16 +107,16 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {
-		StructuredContentImage structuredContentImage = new StructuredContentImageImpl();
-
+		return new StructuredContentImageImpl() {
+			{
 contentUrl = RandomTestUtil.randomString();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 encodingFormat = RandomTestUtil.randomString();
 fileExtension = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-title = RandomTestUtil.randomString();
-		return structuredContentImage;
+title = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

@@ -140,8 +140,8 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Form randomForm() {
-		Form form = new FormImpl();
-
+		return new FormImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
@@ -150,8 +150,8 @@ defaultLanguage = RandomTestUtil.randomString();
 description = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
 name = RandomTestUtil.randomString();
-structureId = RandomTestUtil.randomLong();
-		return form;
+structureId = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;

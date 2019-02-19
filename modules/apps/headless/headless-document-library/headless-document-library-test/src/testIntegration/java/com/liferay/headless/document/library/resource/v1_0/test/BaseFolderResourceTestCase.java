@@ -170,8 +170,8 @@ public abstract class BaseFolderResourceTestCase {
 	}
 
 	protected Folder randomFolder() {
-		Folder folder = new FolderImpl();
-
+		return new FolderImpl() {
+			{
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
@@ -179,8 +179,8 @@ hasDocuments = RandomTestUtil.randomBoolean();
 hasFolders = RandomTestUtil.randomBoolean();
 id = RandomTestUtil.randomLong();
 name = RandomTestUtil.randomString();
-repositoryId = RandomTestUtil.randomLong();
-		return folder;
+repositoryId = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;

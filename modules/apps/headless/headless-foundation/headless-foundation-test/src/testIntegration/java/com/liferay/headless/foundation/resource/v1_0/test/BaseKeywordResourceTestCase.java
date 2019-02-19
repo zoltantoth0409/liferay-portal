@@ -142,14 +142,14 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	protected Keyword randomKeyword() {
-		Keyword keyword = new KeywordImpl();
-
+		return new KeywordImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 id = RandomTestUtil.randomLong();
-name = RandomTestUtil.randomString();
-		return keyword;
+name = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

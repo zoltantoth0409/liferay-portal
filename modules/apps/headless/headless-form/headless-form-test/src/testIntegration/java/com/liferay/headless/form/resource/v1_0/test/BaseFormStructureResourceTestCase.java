@@ -94,15 +94,15 @@ public abstract class BaseFormStructureResourceTestCase {
 	}
 
 	protected FormStructure randomFormStructure() {
-		FormStructure formStructure = new FormStructureImpl();
-
+		return new FormStructureImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-name = RandomTestUtil.randomString();
-		return formStructure;
+name = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

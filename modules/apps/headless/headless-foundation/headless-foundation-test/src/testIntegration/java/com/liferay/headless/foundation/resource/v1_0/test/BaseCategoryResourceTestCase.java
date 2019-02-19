@@ -170,8 +170,8 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Category randomCategory() {
-		Category category = new CategoryImpl();
-
+		return new CategoryImpl() {
+			{
 creatorId = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
@@ -179,8 +179,8 @@ description = RandomTestUtil.randomString();
 hasCategories = RandomTestUtil.randomBoolean();
 id = RandomTestUtil.randomLong();
 name = RandomTestUtil.randomString();
-parentVocabularyId = RandomTestUtil.randomLong();
-		return category;
+parentVocabularyId = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;

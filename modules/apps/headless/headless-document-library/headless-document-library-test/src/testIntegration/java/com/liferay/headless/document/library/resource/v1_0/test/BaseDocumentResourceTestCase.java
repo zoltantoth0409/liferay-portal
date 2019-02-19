@@ -151,8 +151,8 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document randomDocument() {
-		Document document = new DocumentImpl();
-
+		return new DocumentImpl() {
+			{
 contentUrl = RandomTestUtil.randomString();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
@@ -161,8 +161,8 @@ encodingFormat = RandomTestUtil.randomString();
 fileExtension = RandomTestUtil.randomString();
 folderId = RandomTestUtil.randomLong();
 id = RandomTestUtil.randomLong();
-title = RandomTestUtil.randomString();
-		return document;
+title = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

@@ -142,16 +142,16 @@ public abstract class BaseVocabularyResourceTestCase {
 	}
 
 	protected Vocabulary randomVocabulary() {
-		Vocabulary vocabulary = new VocabularyImpl();
-
+		return new VocabularyImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
 hasCategories = RandomTestUtil.randomBoolean();
 id = RandomTestUtil.randomLong();
-name = RandomTestUtil.randomString();
-		return vocabulary;
+name = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

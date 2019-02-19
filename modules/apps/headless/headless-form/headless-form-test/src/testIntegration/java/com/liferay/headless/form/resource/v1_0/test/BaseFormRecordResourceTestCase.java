@@ -126,15 +126,15 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 
 	protected FormRecord randomFormRecord() {
-		FormRecord formRecord = new FormRecordImpl();
-
+		return new FormRecordImpl() {
+			{
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 datePublished = RandomTestUtil.nextDate();
 draft = RandomTestUtil.randomBoolean();
 formId = RandomTestUtil.randomLong();
-id = RandomTestUtil.randomLong();
-		return formRecord;
+id = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;

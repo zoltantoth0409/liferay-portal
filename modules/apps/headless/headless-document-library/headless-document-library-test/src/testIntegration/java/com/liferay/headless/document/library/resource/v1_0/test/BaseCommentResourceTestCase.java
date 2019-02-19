@@ -108,14 +108,14 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Comment randomComment() {
-		Comment comment = new CommentImpl();
-
+		return new CommentImpl() {
+			{
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 hasComments = RandomTestUtil.randomBoolean();
 id = RandomTestUtil.randomLong();
-text = RandomTestUtil.randomString();
-		return comment;
+text = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

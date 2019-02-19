@@ -170,8 +170,8 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	protected StructuredContent randomStructuredContent() {
-		StructuredContent structuredContent = new StructuredContentImpl();
-
+		return new StructuredContentImpl() {
+			{
 contentSpace = RandomTestUtil.randomLong();
 contentStructureId = RandomTestUtil.randomLong();
 dateCreated = RandomTestUtil.nextDate();
@@ -180,8 +180,8 @@ datePublished = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
 lastReviewed = RandomTestUtil.nextDate();
-title = RandomTestUtil.randomString();
-		return structuredContent;
+title = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

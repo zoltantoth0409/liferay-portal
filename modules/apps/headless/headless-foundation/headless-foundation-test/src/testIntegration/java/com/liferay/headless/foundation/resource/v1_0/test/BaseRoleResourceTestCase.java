@@ -122,15 +122,15 @@ public abstract class BaseRoleResourceTestCase {
 	}
 
 	protected Role randomRole() {
-		Role role = new RoleImpl();
-
+		return new RoleImpl() {
+			{
 dateCreated = RandomTestUtil.nextDate();
 dateModified = RandomTestUtil.nextDate();
 description = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
 name = RandomTestUtil.randomString();
-roleType = RandomTestUtil.randomString();
-		return role;
+roleType = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

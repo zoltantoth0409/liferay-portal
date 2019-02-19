@@ -94,12 +94,12 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	protected Email randomEmail() {
-		Email email = new EmailImpl();
-
+		return new EmailImpl() {
+			{
 email = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-type = RandomTestUtil.randomString();
-		return email;
+type = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

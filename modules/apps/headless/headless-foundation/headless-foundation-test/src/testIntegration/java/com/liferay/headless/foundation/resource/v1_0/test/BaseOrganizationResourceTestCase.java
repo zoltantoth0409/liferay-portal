@@ -136,14 +136,14 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 
 	protected Organization randomOrganization() {
-		Organization organization = new OrganizationImpl();
-
+		return new OrganizationImpl() {
+			{
 comment = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
 logo = RandomTestUtil.randomString();
 name = RandomTestUtil.randomString();
-parentOrganizationId = RandomTestUtil.randomLong();
-		return organization;
+parentOrganizationId = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;

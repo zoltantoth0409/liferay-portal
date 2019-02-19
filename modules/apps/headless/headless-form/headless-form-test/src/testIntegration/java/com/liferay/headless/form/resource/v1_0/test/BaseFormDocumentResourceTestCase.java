@@ -93,14 +93,14 @@ public abstract class BaseFormDocumentResourceTestCase {
 	}
 
 	protected FormDocument randomFormDocument() {
-		FormDocument formDocument = new FormDocumentImpl();
-
+		return new FormDocumentImpl() {
+			{
 contentUrl = RandomTestUtil.randomString();
 encodingFormat = RandomTestUtil.randomString();
 fileExtension = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-title = RandomTestUtil.randomString();
-		return formDocument;
+title = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

@@ -172,8 +172,8 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 
 	protected WorkflowTask randomWorkflowTask() {
-		WorkflowTask workflowTask = new WorkflowTaskImpl();
-
+		return new WorkflowTaskImpl() {
+			{
 completed = RandomTestUtil.randomBoolean();
 dateCompleted = RandomTestUtil.nextDate();
 dateCreated = RandomTestUtil.nextDate();
@@ -181,8 +181,8 @@ definitionName = RandomTestUtil.randomString();
 description = RandomTestUtil.randomString();
 dueDate = RandomTestUtil.nextDate();
 id = RandomTestUtil.randomLong();
-name = RandomTestUtil.randomString();
-		return workflowTask;
+name = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

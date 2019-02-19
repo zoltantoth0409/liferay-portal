@@ -123,14 +123,14 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 
 	protected BlogPostingImage randomBlogPostingImage() {
-		BlogPostingImage blogPostingImage = new BlogPostingImageImpl();
-
+		return new BlogPostingImageImpl() {
+			{
 contentUrl = RandomTestUtil.randomString();
 encodingFormat = RandomTestUtil.randomString();
 fileExtension = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-title = RandomTestUtil.randomString();
-		return blogPostingImage;
+title = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

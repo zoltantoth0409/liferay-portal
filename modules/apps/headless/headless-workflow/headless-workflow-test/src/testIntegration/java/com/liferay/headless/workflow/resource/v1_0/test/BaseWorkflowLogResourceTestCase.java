@@ -94,8 +94,8 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
-		WorkflowLog workflowLog = new WorkflowLogImpl();
-
+		return new WorkflowLogImpl() {
+			{
 auditPerson = RandomTestUtil.randomString();
 commentLog = RandomTestUtil.randomString();
 dateCreated = RandomTestUtil.nextDate();
@@ -105,8 +105,8 @@ previousPerson = RandomTestUtil.randomString();
 previousState = RandomTestUtil.randomString();
 state = RandomTestUtil.randomString();
 taskId = RandomTestUtil.randomLong();
-type = RandomTestUtil.randomString();
-		return workflowLog;
+type = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

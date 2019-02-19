@@ -180,8 +180,8 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 
 	protected UserAccount randomUserAccount() {
-		UserAccount userAccount = new UserAccountImpl();
-
+		return new UserAccountImpl() {
+			{
 additionalName = RandomTestUtil.randomString();
 alternateName = RandomTestUtil.randomString();
 birthDate = RandomTestUtil.nextDate();
@@ -195,8 +195,8 @@ id = RandomTestUtil.randomLong();
 image = RandomTestUtil.randomString();
 jobTitle = RandomTestUtil.randomString();
 name = RandomTestUtil.randomString();
-profileURL = RandomTestUtil.randomString();
-		return userAccount;
+profileURL = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

@@ -94,8 +94,8 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	protected PostalAddress randomPostalAddress() {
-		PostalAddress postalAddress = new PostalAddressImpl();
-
+		return new PostalAddressImpl() {
+			{
 addressCountry = RandomTestUtil.randomString();
 addressLocality = RandomTestUtil.randomString();
 addressRegion = RandomTestUtil.randomString();
@@ -104,8 +104,8 @@ id = RandomTestUtil.randomLong();
 postalCode = RandomTestUtil.randomString();
 streetAddressLine1 = RandomTestUtil.randomString();
 streetAddressLine2 = RandomTestUtil.randomString();
-streetAddressLine3 = RandomTestUtil.randomString();
-		return postalAddress;
+streetAddressLine3 = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

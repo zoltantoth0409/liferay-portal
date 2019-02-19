@@ -94,12 +94,12 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 
 	protected WebUrl randomWebUrl() {
-		WebUrl webUrl = new WebUrlImpl();
-
+		return new WebUrlImpl() {
+			{
 id = RandomTestUtil.randomLong();
 url = RandomTestUtil.randomString();
-urlType = RandomTestUtil.randomString();
-		return webUrl;
+urlType = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

@@ -94,13 +94,13 @@ public abstract class BasePhoneResourceTestCase {
 	}
 
 	protected Phone randomPhone() {
-		Phone phone = new PhoneImpl();
-
+		return new PhoneImpl() {
+			{
 extension = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
 phoneNumber = RandomTestUtil.randomString();
-phoneType = RandomTestUtil.randomString();
-		return phone;
+phoneType = RandomTestUtil.randomString();			}
+		};
 	}
 
 	protected Group testGroup;

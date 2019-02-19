@@ -140,8 +140,8 @@ public abstract class BaseBlogPostingResourceTestCase {
 	}
 
 	protected BlogPosting randomBlogPosting() {
-		BlogPosting blogPosting = new BlogPostingImpl();
-
+		return new BlogPostingImpl() {
+			{
 alternativeHeadline = RandomTestUtil.randomString();
 articleBody = RandomTestUtil.randomString();
 caption = RandomTestUtil.randomString();
@@ -154,8 +154,8 @@ encodingFormat = RandomTestUtil.randomString();
 friendlyUrlPath = RandomTestUtil.randomString();
 headline = RandomTestUtil.randomString();
 id = RandomTestUtil.randomLong();
-imageId = RandomTestUtil.randomLong();
-		return blogPosting;
+imageId = RandomTestUtil.randomLong();			}
+		};
 	}
 
 	protected Group testGroup;
