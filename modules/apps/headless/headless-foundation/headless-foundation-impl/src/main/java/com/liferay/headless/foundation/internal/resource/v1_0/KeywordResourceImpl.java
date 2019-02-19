@@ -90,9 +90,10 @@ public class KeywordResourceImpl
 			_searchResultPermissionFilterFactory, sorts);
 
 		for (Document document : hits.getDocs()) {
-			assetTags.add(
-				_assetTagService.getTag(
-					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK))));
+			AssetTag assetTag = _assetTagService.getTag(
+				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
+
+			assetTags.add(assetTag);
 		}
 
 		return Page.of(

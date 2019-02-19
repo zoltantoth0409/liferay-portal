@@ -92,10 +92,12 @@ public class VocabularyResourceImpl
 			_searchResultPermissionFilterFactory, sorts);
 
 		for (Document document : hits.getDocs()) {
-			AssetVocabulary vocabulary = _assetVocabularyService.getVocabulary(
-				GetterUtil.getLong(document.get(Field.ASSET_VOCABULARY_ID)));
+			AssetVocabulary assetVocabulary =
+				_assetVocabularyService.getVocabulary(
+					GetterUtil.getLong(
+						document.get(Field.ASSET_VOCABULARY_ID)));
 
-			assetVocabularies.add(vocabulary);
+			assetVocabularies.add(assetVocabulary);
 		}
 
 		return Page.of(
