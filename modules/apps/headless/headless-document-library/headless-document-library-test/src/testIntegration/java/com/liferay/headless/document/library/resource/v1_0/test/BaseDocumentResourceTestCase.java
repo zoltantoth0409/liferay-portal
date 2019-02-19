@@ -153,15 +153,15 @@ public abstract class BaseDocumentResourceTestCase {
 	protected Document randomDocument() {
 		Document document = new DocumentImpl();
 
-document.setContentUrl(RandomTestUtil.randomString());
-document.setDateCreated(RandomTestUtil.nextDate());
-document.setDateModified(RandomTestUtil.nextDate());
-document.setDescription(RandomTestUtil.randomString());
-document.setEncodingFormat(RandomTestUtil.randomString());
-document.setFileExtension(RandomTestUtil.randomString());
-document.setFolderId(RandomTestUtil.randomLong());
-document.setId(RandomTestUtil.randomLong());
-document.setTitle(RandomTestUtil.randomString());
+contentUrl = RandomTestUtil.randomString();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+encodingFormat = RandomTestUtil.randomString();
+fileExtension = RandomTestUtil.randomString();
+folderId = RandomTestUtil.randomLong();
+id = RandomTestUtil.randomLong();
+title = RandomTestUtil.randomString();
 		return document;
 	}
 

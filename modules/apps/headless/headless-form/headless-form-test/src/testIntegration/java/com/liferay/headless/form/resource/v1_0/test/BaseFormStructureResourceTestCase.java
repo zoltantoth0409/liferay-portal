@@ -96,12 +96,12 @@ public abstract class BaseFormStructureResourceTestCase {
 	protected FormStructure randomFormStructure() {
 		FormStructure formStructure = new FormStructureImpl();
 
-formStructure.setContentSpace(RandomTestUtil.randomLong());
-formStructure.setDateCreated(RandomTestUtil.nextDate());
-formStructure.setDateModified(RandomTestUtil.nextDate());
-formStructure.setDescription(RandomTestUtil.randomString());
-formStructure.setId(RandomTestUtil.randomLong());
-formStructure.setName(RandomTestUtil.randomString());
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
 		return formStructure;
 	}
 

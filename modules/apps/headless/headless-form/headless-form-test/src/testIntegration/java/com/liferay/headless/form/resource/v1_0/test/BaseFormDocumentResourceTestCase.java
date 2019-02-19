@@ -95,11 +95,11 @@ public abstract class BaseFormDocumentResourceTestCase {
 	protected FormDocument randomFormDocument() {
 		FormDocument formDocument = new FormDocumentImpl();
 
-formDocument.setContentUrl(RandomTestUtil.randomString());
-formDocument.setEncodingFormat(RandomTestUtil.randomString());
-formDocument.setFileExtension(RandomTestUtil.randomString());
-formDocument.setId(RandomTestUtil.randomLong());
-formDocument.setTitle(RandomTestUtil.randomString());
+contentUrl = RandomTestUtil.randomString();
+encodingFormat = RandomTestUtil.randomString();
+fileExtension = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+title = RandomTestUtil.randomString();
 		return formDocument;
 	}
 

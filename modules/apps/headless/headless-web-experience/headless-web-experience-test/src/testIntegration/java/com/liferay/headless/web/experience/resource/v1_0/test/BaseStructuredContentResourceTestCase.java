@@ -172,15 +172,15 @@ public abstract class BaseStructuredContentResourceTestCase {
 	protected StructuredContent randomStructuredContent() {
 		StructuredContent structuredContent = new StructuredContentImpl();
 
-structuredContent.setContentSpace(RandomTestUtil.randomLong());
-structuredContent.setContentStructureId(RandomTestUtil.randomLong());
-structuredContent.setDateCreated(RandomTestUtil.nextDate());
-structuredContent.setDateModified(RandomTestUtil.nextDate());
-structuredContent.setDatePublished(RandomTestUtil.nextDate());
-structuredContent.setDescription(RandomTestUtil.randomString());
-structuredContent.setId(RandomTestUtil.randomLong());
-structuredContent.setLastReviewed(RandomTestUtil.nextDate());
-structuredContent.setTitle(RandomTestUtil.randomString());
+contentSpace = RandomTestUtil.randomLong();
+contentStructureId = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+datePublished = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+lastReviewed = RandomTestUtil.nextDate();
+title = RandomTestUtil.randomString();
 		return structuredContent;
 	}
 

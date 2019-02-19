@@ -124,12 +124,12 @@ public abstract class BaseRoleResourceTestCase {
 	protected Role randomRole() {
 		Role role = new RoleImpl();
 
-role.setDateCreated(RandomTestUtil.nextDate());
-role.setDateModified(RandomTestUtil.nextDate());
-role.setDescription(RandomTestUtil.randomString());
-role.setId(RandomTestUtil.randomLong());
-role.setName(RandomTestUtil.randomString());
-role.setRoleType(RandomTestUtil.randomString());
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
+roleType = RandomTestUtil.randomString();
 		return role;
 	}
 

@@ -96,16 +96,16 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	protected WorkflowLog randomWorkflowLog() {
 		WorkflowLog workflowLog = new WorkflowLogImpl();
 
-workflowLog.setAuditPerson(RandomTestUtil.randomString());
-workflowLog.setCommentLog(RandomTestUtil.randomString());
-workflowLog.setDateCreated(RandomTestUtil.nextDate());
-workflowLog.setId(RandomTestUtil.randomLong());
-workflowLog.setPerson(RandomTestUtil.randomString());
-workflowLog.setPreviousPerson(RandomTestUtil.randomString());
-workflowLog.setPreviousState(RandomTestUtil.randomString());
-workflowLog.setState(RandomTestUtil.randomString());
-workflowLog.setTaskId(RandomTestUtil.randomLong());
-workflowLog.setType(RandomTestUtil.randomString());
+auditPerson = RandomTestUtil.randomString();
+commentLog = RandomTestUtil.randomString();
+dateCreated = RandomTestUtil.nextDate();
+id = RandomTestUtil.randomLong();
+person = RandomTestUtil.randomString();
+previousPerson = RandomTestUtil.randomString();
+previousState = RandomTestUtil.randomString();
+state = RandomTestUtil.randomString();
+taskId = RandomTestUtil.randomLong();
+type = RandomTestUtil.randomString();
 		return workflowLog;
 	}
 

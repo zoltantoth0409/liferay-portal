@@ -142,19 +142,19 @@ public abstract class BaseBlogPostingResourceTestCase {
 	protected BlogPosting randomBlogPosting() {
 		BlogPosting blogPosting = new BlogPostingImpl();
 
-blogPosting.setAlternativeHeadline(RandomTestUtil.randomString());
-blogPosting.setArticleBody(RandomTestUtil.randomString());
-blogPosting.setCaption(RandomTestUtil.randomString());
-blogPosting.setContentSpace(RandomTestUtil.randomLong());
-blogPosting.setDateCreated(RandomTestUtil.nextDate());
-blogPosting.setDateModified(RandomTestUtil.nextDate());
-blogPosting.setDatePublished(RandomTestUtil.nextDate());
-blogPosting.setDescription(RandomTestUtil.randomString());
-blogPosting.setEncodingFormat(RandomTestUtil.randomString());
-blogPosting.setFriendlyUrlPath(RandomTestUtil.randomString());
-blogPosting.setHeadline(RandomTestUtil.randomString());
-blogPosting.setId(RandomTestUtil.randomLong());
-blogPosting.setImageId(RandomTestUtil.randomLong());
+alternativeHeadline = RandomTestUtil.randomString();
+articleBody = RandomTestUtil.randomString();
+caption = RandomTestUtil.randomString();
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+datePublished = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+encodingFormat = RandomTestUtil.randomString();
+friendlyUrlPath = RandomTestUtil.randomString();
+headline = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+imageId = RandomTestUtil.randomLong();
 		return blogPosting;
 	}
 

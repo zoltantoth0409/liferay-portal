@@ -96,9 +96,9 @@ public abstract class BaseEmailResourceTestCase {
 	protected Email randomEmail() {
 		Email email = new EmailImpl();
 
-email.setEmail(RandomTestUtil.randomString());
-email.setId(RandomTestUtil.randomLong());
-email.setType(RandomTestUtil.randomString());
+email = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+type = RandomTestUtil.randomString();
 		return email;
 	}
 

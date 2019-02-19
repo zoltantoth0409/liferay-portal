@@ -144,13 +144,13 @@ public abstract class BaseVocabularyResourceTestCase {
 	protected Vocabulary randomVocabulary() {
 		Vocabulary vocabulary = new VocabularyImpl();
 
-vocabulary.setContentSpace(RandomTestUtil.randomLong());
-vocabulary.setDateCreated(RandomTestUtil.nextDate());
-vocabulary.setDateModified(RandomTestUtil.nextDate());
-vocabulary.setDescription(RandomTestUtil.randomString());
-vocabulary.setHasCategories(RandomTestUtil.randomBoolean());
-vocabulary.setId(RandomTestUtil.randomLong());
-vocabulary.setName(RandomTestUtil.randomString());
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+hasCategories = RandomTestUtil.randomBoolean();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
 		return vocabulary;
 	}
 

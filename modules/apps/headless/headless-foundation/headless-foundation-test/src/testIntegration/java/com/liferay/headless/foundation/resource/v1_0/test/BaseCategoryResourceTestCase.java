@@ -172,14 +172,14 @@ public abstract class BaseCategoryResourceTestCase {
 	protected Category randomCategory() {
 		Category category = new CategoryImpl();
 
-category.setCreatorId(RandomTestUtil.randomLong());
-category.setDateCreated(RandomTestUtil.nextDate());
-category.setDateModified(RandomTestUtil.nextDate());
-category.setDescription(RandomTestUtil.randomString());
-category.setHasCategories(RandomTestUtil.randomBoolean());
-category.setId(RandomTestUtil.randomLong());
-category.setName(RandomTestUtil.randomString());
-category.setParentVocabularyId(RandomTestUtil.randomLong());
+creatorId = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+hasCategories = RandomTestUtil.randomBoolean();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
+parentVocabularyId = RandomTestUtil.randomLong();
 		return category;
 	}
 

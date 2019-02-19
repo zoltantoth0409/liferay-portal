@@ -109,13 +109,13 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	protected StructuredContentImage randomStructuredContentImage() {
 		StructuredContentImage structuredContentImage = new StructuredContentImageImpl();
 
-structuredContentImage.setContentUrl(RandomTestUtil.randomString());
-structuredContentImage.setDateCreated(RandomTestUtil.nextDate());
-structuredContentImage.setDateModified(RandomTestUtil.nextDate());
-structuredContentImage.setEncodingFormat(RandomTestUtil.randomString());
-structuredContentImage.setFileExtension(RandomTestUtil.randomString());
-structuredContentImage.setId(RandomTestUtil.randomLong());
-structuredContentImage.setTitle(RandomTestUtil.randomString());
+contentUrl = RandomTestUtil.randomString();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+encodingFormat = RandomTestUtil.randomString();
+fileExtension = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+title = RandomTestUtil.randomString();
 		return structuredContentImage;
 	}
 

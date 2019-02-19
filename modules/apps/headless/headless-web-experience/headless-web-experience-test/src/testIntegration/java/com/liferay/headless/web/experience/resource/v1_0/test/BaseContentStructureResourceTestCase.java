@@ -98,12 +98,12 @@ public abstract class BaseContentStructureResourceTestCase {
 	protected ContentStructure randomContentStructure() {
 		ContentStructure contentStructure = new ContentStructureImpl();
 
-contentStructure.setContentSpace(RandomTestUtil.randomLong());
-contentStructure.setDateCreated(RandomTestUtil.nextDate());
-contentStructure.setDateModified(RandomTestUtil.nextDate());
-contentStructure.setDescription(RandomTestUtil.randomString());
-contentStructure.setId(RandomTestUtil.randomLong());
-contentStructure.setName(RandomTestUtil.randomString());
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
 		return contentStructure;
 	}
 

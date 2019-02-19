@@ -142,15 +142,15 @@ public abstract class BaseFormResourceTestCase {
 	protected Form randomForm() {
 		Form form = new FormImpl();
 
-form.setContentSpace(RandomTestUtil.randomLong());
-form.setDateCreated(RandomTestUtil.nextDate());
-form.setDateModified(RandomTestUtil.nextDate());
-form.setDatePublished(RandomTestUtil.nextDate());
-form.setDefaultLanguage(RandomTestUtil.randomString());
-form.setDescription(RandomTestUtil.randomString());
-form.setId(RandomTestUtil.randomLong());
-form.setName(RandomTestUtil.randomString());
-form.setStructureId(RandomTestUtil.randomLong());
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+datePublished = RandomTestUtil.nextDate();
+defaultLanguage = RandomTestUtil.randomString();
+description = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
+structureId = RandomTestUtil.randomLong();
 		return form;
 	}
 

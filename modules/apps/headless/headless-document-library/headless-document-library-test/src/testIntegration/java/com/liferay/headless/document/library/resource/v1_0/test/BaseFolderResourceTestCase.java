@@ -172,14 +172,14 @@ public abstract class BaseFolderResourceTestCase {
 	protected Folder randomFolder() {
 		Folder folder = new FolderImpl();
 
-folder.setDateCreated(RandomTestUtil.nextDate());
-folder.setDateModified(RandomTestUtil.nextDate());
-folder.setDescription(RandomTestUtil.randomString());
-folder.setHasDocuments(RandomTestUtil.randomBoolean());
-folder.setHasFolders(RandomTestUtil.randomBoolean());
-folder.setId(RandomTestUtil.randomLong());
-folder.setName(RandomTestUtil.randomString());
-folder.setRepositoryId(RandomTestUtil.randomLong());
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+description = RandomTestUtil.randomString();
+hasDocuments = RandomTestUtil.randomBoolean();
+hasFolders = RandomTestUtil.randomBoolean();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
+repositoryId = RandomTestUtil.randomLong();
 		return folder;
 	}
 

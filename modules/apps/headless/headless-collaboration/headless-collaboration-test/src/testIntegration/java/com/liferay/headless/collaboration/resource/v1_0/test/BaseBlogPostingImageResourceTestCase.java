@@ -125,11 +125,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	protected BlogPostingImage randomBlogPostingImage() {
 		BlogPostingImage blogPostingImage = new BlogPostingImageImpl();
 
-blogPostingImage.setContentUrl(RandomTestUtil.randomString());
-blogPostingImage.setEncodingFormat(RandomTestUtil.randomString());
-blogPostingImage.setFileExtension(RandomTestUtil.randomString());
-blogPostingImage.setId(RandomTestUtil.randomLong());
-blogPostingImage.setTitle(RandomTestUtil.randomString());
+contentUrl = RandomTestUtil.randomString();
+encodingFormat = RandomTestUtil.randomString();
+fileExtension = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+title = RandomTestUtil.randomString();
 		return blogPostingImage;
 	}
 

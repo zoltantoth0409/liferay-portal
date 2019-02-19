@@ -142,11 +142,11 @@ public abstract class BaseKeywordResourceTestCase {
 	protected Keyword randomKeyword() {
 		Keyword keyword = new KeywordImpl();
 
-keyword.setContentSpace(RandomTestUtil.randomLong());
-keyword.setDateCreated(RandomTestUtil.nextDate());
-keyword.setDateModified(RandomTestUtil.nextDate());
-keyword.setId(RandomTestUtil.randomLong());
-keyword.setName(RandomTestUtil.randomString());
+contentSpace = RandomTestUtil.randomLong();
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
 		return keyword;
 	}
 

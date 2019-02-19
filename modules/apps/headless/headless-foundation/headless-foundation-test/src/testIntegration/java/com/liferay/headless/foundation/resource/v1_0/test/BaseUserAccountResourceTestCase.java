@@ -182,20 +182,20 @@ public abstract class BaseUserAccountResourceTestCase {
 	protected UserAccount randomUserAccount() {
 		UserAccount userAccount = new UserAccountImpl();
 
-userAccount.setAdditionalName(RandomTestUtil.randomString());
-userAccount.setAlternateName(RandomTestUtil.randomString());
-userAccount.setBirthDate(RandomTestUtil.nextDate());
-userAccount.setDashboardURL(RandomTestUtil.randomString());
-userAccount.setEmail(RandomTestUtil.randomString());
-userAccount.setFamilyName(RandomTestUtil.randomString());
-userAccount.setGivenName(RandomTestUtil.randomString());
-userAccount.setHonorificPrefix(RandomTestUtil.randomString());
-userAccount.setHonorificSuffix(RandomTestUtil.randomString());
-userAccount.setId(RandomTestUtil.randomLong());
-userAccount.setImage(RandomTestUtil.randomString());
-userAccount.setJobTitle(RandomTestUtil.randomString());
-userAccount.setName(RandomTestUtil.randomString());
-userAccount.setProfileURL(RandomTestUtil.randomString());
+additionalName = RandomTestUtil.randomString();
+alternateName = RandomTestUtil.randomString();
+birthDate = RandomTestUtil.nextDate();
+dashboardURL = RandomTestUtil.randomString();
+email = RandomTestUtil.randomString();
+familyName = RandomTestUtil.randomString();
+givenName = RandomTestUtil.randomString();
+honorificPrefix = RandomTestUtil.randomString();
+honorificSuffix = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+image = RandomTestUtil.randomString();
+jobTitle = RandomTestUtil.randomString();
+name = RandomTestUtil.randomString();
+profileURL = RandomTestUtil.randomString();
 		return userAccount;
 	}
 

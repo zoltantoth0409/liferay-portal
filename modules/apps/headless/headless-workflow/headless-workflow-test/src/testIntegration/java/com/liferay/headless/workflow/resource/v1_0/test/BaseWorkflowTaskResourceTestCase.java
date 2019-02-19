@@ -174,14 +174,14 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	protected WorkflowTask randomWorkflowTask() {
 		WorkflowTask workflowTask = new WorkflowTaskImpl();
 
-workflowTask.setCompleted(RandomTestUtil.randomBoolean());
-workflowTask.setDateCompleted(RandomTestUtil.nextDate());
-workflowTask.setDateCreated(RandomTestUtil.nextDate());
-workflowTask.setDefinitionName(RandomTestUtil.randomString());
-workflowTask.setDescription(RandomTestUtil.randomString());
-workflowTask.setDueDate(RandomTestUtil.nextDate());
-workflowTask.setId(RandomTestUtil.randomLong());
-workflowTask.setName(RandomTestUtil.randomString());
+completed = RandomTestUtil.randomBoolean();
+dateCompleted = RandomTestUtil.nextDate();
+dateCreated = RandomTestUtil.nextDate();
+definitionName = RandomTestUtil.randomString();
+description = RandomTestUtil.randomString();
+dueDate = RandomTestUtil.nextDate();
+id = RandomTestUtil.randomLong();
+name = RandomTestUtil.randomString();
 		return workflowTask;
 	}
 

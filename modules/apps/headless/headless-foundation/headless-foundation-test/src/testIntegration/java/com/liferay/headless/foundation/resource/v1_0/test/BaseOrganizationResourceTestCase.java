@@ -138,11 +138,11 @@ public abstract class BaseOrganizationResourceTestCase {
 	protected Organization randomOrganization() {
 		Organization organization = new OrganizationImpl();
 
-organization.setComment(RandomTestUtil.randomString());
-organization.setId(RandomTestUtil.randomLong());
-organization.setLogo(RandomTestUtil.randomString());
-organization.setName(RandomTestUtil.randomString());
-organization.setParentOrganizationId(RandomTestUtil.randomLong());
+comment = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+logo = RandomTestUtil.randomString();
+name = RandomTestUtil.randomString();
+parentOrganizationId = RandomTestUtil.randomLong();
 		return organization;
 	}
 

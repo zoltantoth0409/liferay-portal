@@ -96,9 +96,9 @@ public abstract class BaseWebUrlResourceTestCase {
 	protected WebUrl randomWebUrl() {
 		WebUrl webUrl = new WebUrlImpl();
 
-webUrl.setId(RandomTestUtil.randomLong());
-webUrl.setUrl(RandomTestUtil.randomString());
-webUrl.setUrlType(RandomTestUtil.randomString());
+id = RandomTestUtil.randomLong();
+url = RandomTestUtil.randomString();
+urlType = RandomTestUtil.randomString();
 		return webUrl;
 	}
 

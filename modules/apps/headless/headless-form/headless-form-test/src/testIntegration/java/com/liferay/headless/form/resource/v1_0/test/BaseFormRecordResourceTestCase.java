@@ -128,12 +128,12 @@ public abstract class BaseFormRecordResourceTestCase {
 	protected FormRecord randomFormRecord() {
 		FormRecord formRecord = new FormRecordImpl();
 
-formRecord.setDateCreated(RandomTestUtil.nextDate());
-formRecord.setDateModified(RandomTestUtil.nextDate());
-formRecord.setDatePublished(RandomTestUtil.nextDate());
-formRecord.setDraft(RandomTestUtil.randomBoolean());
-formRecord.setFormId(RandomTestUtil.randomLong());
-formRecord.setId(RandomTestUtil.randomLong());
+dateCreated = RandomTestUtil.nextDate();
+dateModified = RandomTestUtil.nextDate();
+datePublished = RandomTestUtil.nextDate();
+draft = RandomTestUtil.randomBoolean();
+formId = RandomTestUtil.randomLong();
+id = RandomTestUtil.randomLong();
 		return formRecord;
 	}
 

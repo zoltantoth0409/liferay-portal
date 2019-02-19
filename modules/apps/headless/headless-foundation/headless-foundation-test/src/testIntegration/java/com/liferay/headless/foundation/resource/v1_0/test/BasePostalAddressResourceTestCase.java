@@ -96,15 +96,15 @@ public abstract class BasePostalAddressResourceTestCase {
 	protected PostalAddress randomPostalAddress() {
 		PostalAddress postalAddress = new PostalAddressImpl();
 
-postalAddress.setAddressCountry(RandomTestUtil.randomString());
-postalAddress.setAddressLocality(RandomTestUtil.randomString());
-postalAddress.setAddressRegion(RandomTestUtil.randomString());
-postalAddress.setAddressType(RandomTestUtil.randomString());
-postalAddress.setId(RandomTestUtil.randomLong());
-postalAddress.setPostalCode(RandomTestUtil.randomString());
-postalAddress.setStreetAddressLine1(RandomTestUtil.randomString());
-postalAddress.setStreetAddressLine2(RandomTestUtil.randomString());
-postalAddress.setStreetAddressLine3(RandomTestUtil.randomString());
+addressCountry = RandomTestUtil.randomString();
+addressLocality = RandomTestUtil.randomString();
+addressRegion = RandomTestUtil.randomString();
+addressType = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+postalCode = RandomTestUtil.randomString();
+streetAddressLine1 = RandomTestUtil.randomString();
+streetAddressLine2 = RandomTestUtil.randomString();
+streetAddressLine3 = RandomTestUtil.randomString();
 		return postalAddress;
 	}
 

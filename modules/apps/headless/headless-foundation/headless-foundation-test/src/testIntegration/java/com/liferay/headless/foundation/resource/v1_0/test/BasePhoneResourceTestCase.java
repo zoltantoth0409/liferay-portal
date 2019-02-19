@@ -96,10 +96,10 @@ public abstract class BasePhoneResourceTestCase {
 	protected Phone randomPhone() {
 		Phone phone = new PhoneImpl();
 
-phone.setExtension(RandomTestUtil.randomString());
-phone.setId(RandomTestUtil.randomLong());
-phone.setPhoneNumber(RandomTestUtil.randomString());
-phone.setPhoneType(RandomTestUtil.randomString());
+extension = RandomTestUtil.randomString();
+id = RandomTestUtil.randomLong();
+phoneNumber = RandomTestUtil.randomString();
+phoneType = RandomTestUtil.randomString();
 		return phone;
 	}
 
