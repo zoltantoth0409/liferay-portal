@@ -75,8 +75,6 @@ public class RequestContextMapper {
 			Context.DEVICE_SCREEN_RESOLUTION_WIDTH,
 			screenResolution.getWidth());
 
-		ZonedDateTime now = ZonedDateTime.now();
-
 		context.put(Context.LANGUAGE_ID, themeDisplay.getLanguageId());
 
 		User user = themeDisplay.getUser();
@@ -95,7 +93,7 @@ public class RequestContextMapper {
 				ZonedDateTime.of(LocalDateTime.MIN, ZoneOffset.UTC));
 		}
 
-		context.put(Context.LOCAL_DATE, LocalDate.from(now));
+		context.put(Context.LOCAL_DATE, LocalDate.from(ZonedDateTime.now()));
 		context.put(Context.SIGNED_IN, themeDisplay.isSignedIn());
 		context.put(Context.URL, GetterUtil.getString(request.getRequestURL()));
 
