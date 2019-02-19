@@ -59,7 +59,8 @@ public class FolderFileShortcutBulkSelection
 
 	@Override
 	public BulkSelection<AssetEntry> toAssetEntryBulkSelection() {
-		throw new UnsupportedOperationException("FileShortcut is not an asset");
+		throw new UnsupportedOperationException(
+			"File shortcut is not an asset");
 	}
 
 	@Override
