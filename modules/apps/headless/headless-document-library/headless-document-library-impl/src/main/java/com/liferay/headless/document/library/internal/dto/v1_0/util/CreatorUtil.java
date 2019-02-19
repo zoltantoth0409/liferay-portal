@@ -54,7 +54,6 @@ public class CreatorUtil {
 
 						return user.getPortraitURL(themeDisplay);
 					});
-
 				setProfileURL(
 					() -> {
 						Group group = user.getGroup();
