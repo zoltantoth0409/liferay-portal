@@ -71,7 +71,7 @@ public class Query {
 			<#elseif javaSignature.returnType?contains("Collection<")>
 				${schemaName}Resource ${schemaName?uncap_first}Resource = _get${schemaName}Resource();
 
-				${schemaName?uncap_first}Resource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				${schemaName?uncap_first}Resource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = ${schemaName?uncap_first}Resource.${javaSignature.methodName}(
 					<#assign parametersContent>
@@ -94,7 +94,7 @@ public class Query {
 				<@compress single_line=true>
 					${schemaName}Resource ${schemaName?uncap_first}Resource = _get${schemaName}Resource();
 
-					${schemaName?uncap_first}Resource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+					${schemaName?uncap_first}Resource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 					return ${schemaName?uncap_first}Resource.${javaSignature.methodName}(
 						<#list javaSignature.javaParameters as javaParameter>

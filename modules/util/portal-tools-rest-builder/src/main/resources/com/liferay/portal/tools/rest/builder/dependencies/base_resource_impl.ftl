@@ -80,8 +80,8 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		}
 	</#list>
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setContextCompany(Company contextCompany) {
+		this.contextCompany = contextCompany;
 	}
 
 	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
@@ -89,9 +89,9 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 	}
 
 	@Context
-	protected AcceptLanguage acceptLanguage;
+	protected AcceptLanguage contextAcceptLanguage;
 
 	@Context
-	protected Company company;
+	protected Company contextCompany;
 
 }

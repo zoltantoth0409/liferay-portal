@@ -44,6 +44,6 @@ public interface ${schemaName}Resource {
 		${"\n"}<#lt>
 	</#list>
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }
