@@ -113,10 +113,10 @@ public class CategoryResourceImpl
 			_searchResultPermissionFilterFactory, sorts);
 
 		for (Document document : hits.getDocs()) {
-			AssetCategory category = _assetCategoryService.getCategory(
+			AssetCategory assetCategory = _assetCategoryService.getCategory(
 				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
 
-			assetCategories.add(category);
+			assetCategories.add(assetCategory);
 		}
 
 		return Page.of(
@@ -167,10 +167,10 @@ public class CategoryResourceImpl
 			_searchResultPermissionFilterFactory, sorts);
 
 		for (Document document : hits.getDocs()) {
-			AssetCategory category = _assetCategoryService.getCategory(
+			AssetCategory assetCategory = _assetCategoryService.getCategory(
 				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
 
-			assetCategories.add(category);
+			assetCategories.add(assetCategory);
 		}
 
 		return Page.of(
