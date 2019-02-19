@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Organization;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -40,5 +41,7 @@ public interface OrganizationResource {
 	public Page<Organization> getOrganizationOrganizationsPage( Long organizationId , Pagination pagination ) throws Exception;
 
 	public Page<Organization> getUserAccountOrganizationsPage( Long userAccountId , Pagination pagination ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

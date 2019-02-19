@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -42,5 +43,7 @@ public interface VocabularyResource {
 	public Vocabulary getVocabulary( Long vocabularyId ) throws Exception;
 
 	public Vocabulary putVocabulary( Long vocabularyId , Vocabulary vocabulary ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

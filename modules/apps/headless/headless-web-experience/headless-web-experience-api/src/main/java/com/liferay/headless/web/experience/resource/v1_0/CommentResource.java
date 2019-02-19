@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -36,5 +37,7 @@ public interface CommentResource {
 	public Page<Comment> getCommentCommentsPage( Long commentId , Pagination pagination ) throws Exception;
 
 	public Page<Comment> getStructuredContentCommentsPage( Long structuredContentId , Pagination pagination ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

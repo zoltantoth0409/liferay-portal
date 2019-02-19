@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -46,5 +47,7 @@ public interface UserAccountResource {
 	public UserAccount putUserAccount( Long userAccountId , UserAccount userAccount ) throws Exception;
 
 	public Page<UserAccount> getWebSiteUserAccountsPage( Long webSiteId , Pagination pagination ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

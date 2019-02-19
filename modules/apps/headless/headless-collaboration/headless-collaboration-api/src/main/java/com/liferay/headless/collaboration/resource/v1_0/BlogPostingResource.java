@@ -15,6 +15,7 @@
 package com.liferay.headless.collaboration.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -40,5 +41,7 @@ public interface BlogPostingResource {
 	public Page<BlogPosting> getContentSpaceBlogPostingsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
 	public BlogPosting postContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

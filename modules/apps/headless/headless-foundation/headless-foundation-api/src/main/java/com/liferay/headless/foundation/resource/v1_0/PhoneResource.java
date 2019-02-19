@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -34,5 +35,7 @@ public interface PhoneResource {
 	public Page<Phone> getGenericParentPhonesPage( Object genericParentId , Pagination pagination ) throws Exception;
 
 	public Phone getPhone( Long phoneId ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

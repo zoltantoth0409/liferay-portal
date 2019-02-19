@@ -15,6 +15,7 @@
 package com.liferay.headless.form.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.portal.kernel.model.Company;
 
 import javax.annotation.Generated;
 
@@ -32,5 +33,7 @@ public interface FormDocumentResource {
 	public boolean deleteFormDocument( Long formDocumentId ) throws Exception;
 
 	public FormDocument getFormDocument( Long formDocumentId ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

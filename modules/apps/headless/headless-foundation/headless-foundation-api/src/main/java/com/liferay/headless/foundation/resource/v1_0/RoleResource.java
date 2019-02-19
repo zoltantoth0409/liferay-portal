@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -38,5 +39,7 @@ public interface RoleResource {
 	public Role getRole( Long roleId ) throws Exception;
 
 	public Page<Role> getUserAccountRolesPage( Long userAccountId , Pagination pagination ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

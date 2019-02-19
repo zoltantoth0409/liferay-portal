@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -42,5 +43,7 @@ public interface KeywordResource {
 	public Keyword getKeyword( Long keywordId ) throws Exception;
 
 	public Keyword putKeyword( Long keywordId , Keyword keyword ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

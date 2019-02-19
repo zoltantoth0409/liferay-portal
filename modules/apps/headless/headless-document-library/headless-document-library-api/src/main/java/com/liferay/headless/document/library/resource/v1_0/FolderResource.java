@@ -15,6 +15,7 @@
 package com.liferay.headless.document.library.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -44,5 +45,7 @@ public interface FolderResource {
 	public Page<Folder> getFolderFoldersPage( Long folderId , Pagination pagination ) throws Exception;
 
 	public Folder postFolderFolder( Long folderId , Folder folder ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -34,5 +35,7 @@ public interface EmailResource {
 	public Page<Email> getGenericParentEmailsPage( Object genericParentId , Pagination pagination ) throws Exception;
 
 	public Email getEmail( Long emailId ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

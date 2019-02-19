@@ -15,6 +15,7 @@
 package com.liferay.headless.workflow.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -34,5 +35,7 @@ public interface WorkflowLogResource {
 	public WorkflowLog getWorkflowLog( Long workflowLogId ) throws Exception;
 
 	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage( Long workflowTaskId , Pagination pagination ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

@@ -15,6 +15,7 @@
 package com.liferay.headless.foundation.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -46,5 +47,7 @@ public interface CategoryResource {
 	public Page<Category> getVocabularyCategoriesPage( Long vocabularyId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception;
 
 	public Category postVocabularyCategory( Long vocabularyId , Category category ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

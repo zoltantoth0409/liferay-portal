@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -46,5 +47,7 @@ public interface StructuredContentResource {
 	public StructuredContent patchStructuredContent( Long structuredContentId , StructuredContent structuredContent ) throws Exception;
 
 	public StructuredContent putStructuredContent( Long structuredContentId , StructuredContent structuredContent ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

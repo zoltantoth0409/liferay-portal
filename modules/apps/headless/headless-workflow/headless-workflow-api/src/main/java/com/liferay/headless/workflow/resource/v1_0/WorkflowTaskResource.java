@@ -15,6 +15,7 @@
 package com.liferay.headless.workflow.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -44,5 +45,7 @@ public interface WorkflowTaskResource {
 	public WorkflowTask postWorkflowTaskChangeTransition( Long workflowTaskId , WorkflowTask workflowTask ) throws Exception;
 
 	public WorkflowTask postWorkflowTaskUpdateDueDate( Long workflowTaskId , WorkflowTask workflowTask ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

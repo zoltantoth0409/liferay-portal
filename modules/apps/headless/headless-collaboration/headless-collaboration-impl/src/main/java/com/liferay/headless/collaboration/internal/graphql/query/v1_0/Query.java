@@ -20,6 +20,8 @@ import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -45,13 +47,17 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public BlogPosting getBlogPosting( @GraphQLName("blog-posting-id") Long blogPostingId ) throws Exception {
-return _getBlogPostingResource().getBlogPosting( blogPostingId );
+BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPostingResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingResource.getBlogPosting( blogPostingId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<BlogPosting> getContentSpaceBlogPostingsPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getBlogPostingResource().getContentSpaceBlogPostingsPage(
+				BlogPostingResource blogPostingResource = _getBlogPostingResource();
+
+				blogPostingResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = blogPostingResource.getContentSpaceBlogPostingsPage(
 
 					contentSpaceId , Pagination.of(pageSize, page)
 				);
@@ -63,7 +69,11 @@ return _getBlogPostingResource().getBlogPosting( blogPostingId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<BlogPostingImage> getContentSpaceBlogPostingImagesPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getBlogPostingImageResource().getContentSpaceBlogPostingImagesPage(
+				BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource();
+
+				blogPostingImageResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = blogPostingImageResource.getContentSpaceBlogPostingImagesPage(
 
 					contentSpaceId , Pagination.of(pageSize, page)
 				);
@@ -75,13 +85,17 @@ return _getBlogPostingResource().getBlogPosting( blogPostingId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public BlogPostingImage getImageObject( @GraphQLName("image-object-id") Long imageObjectId ) throws Exception {
-return _getBlogPostingImageResource().getImageObject( imageObjectId );
+BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource(); blogPostingImageResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingImageResource.getImageObject( imageObjectId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Comment> getBlogPostingCommentsPage( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getCommentResource().getBlogPostingCommentsPage(
+				CommentResource commentResource = _getCommentResource();
+
+				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = commentResource.getBlogPostingCommentsPage(
 
 					blogPostingId , Pagination.of(pageSize, page)
 				);
@@ -93,13 +107,17 @@ return _getBlogPostingImageResource().getImageObject( imageObjectId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Comment getComment( @GraphQLName("comment-id") Long commentId ) throws Exception {
-return _getCommentResource().getComment( commentId );
+CommentResource commentResource = _getCommentResource(); commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return commentResource.getComment( commentId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Comment> getCommentCommentsPage( @GraphQLName("comment-id") Long commentId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getCommentResource().getCommentCommentsPage(
+				CommentResource commentResource = _getCommentResource();
+
+				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = commentResource.getCommentCommentsPage(
 
 					commentId , Pagination.of(pageSize, page)
 				);

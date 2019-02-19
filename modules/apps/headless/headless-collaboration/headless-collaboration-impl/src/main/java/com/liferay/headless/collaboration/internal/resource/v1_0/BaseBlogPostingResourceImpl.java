@@ -96,6 +96,10 @@ public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource
 
 	}
 
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}

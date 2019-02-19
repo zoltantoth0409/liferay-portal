@@ -15,6 +15,7 @@
 package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.pagination.Page;
 
 import javax.annotation.Generated;
@@ -35,5 +36,7 @@ public interface StructuredContentImageResource {
 	public boolean deleteStructuredContentContentDocument( Long structuredContentId , Long contentDocumentId ) throws Exception;
 
 	public StructuredContentImage getStructuredContentContentDocument( Long structuredContentId , Long contentDocumentId ) throws Exception;
+
+	public void setCompany(Company company);
 
 }

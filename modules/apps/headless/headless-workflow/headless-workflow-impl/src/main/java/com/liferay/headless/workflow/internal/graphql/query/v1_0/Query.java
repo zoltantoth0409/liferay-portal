@@ -18,6 +18,8 @@ import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -43,13 +45,17 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowLog getWorkflowLog( @GraphQLName("workflow-log-id") Long workflowLogId ) throws Exception {
-return _getWorkflowLogResource().getWorkflowLog( workflowLogId );
+WorkflowLogResource workflowLogResource = _getWorkflowLogResource(); workflowLogResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return workflowLogResource.getWorkflowLog( workflowLogId );
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<WorkflowLog> getWorkflowTaskWorkflowLogsPage( @GraphQLName("workflow-task-id") Long workflowTaskId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getWorkflowLogResource().getWorkflowTaskWorkflowLogsPage(
+				WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
+
+				workflowLogResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = workflowLogResource.getWorkflowTaskWorkflowLogsPage(
 
 					workflowTaskId , Pagination.of(pageSize, page)
 				);
@@ -61,7 +67,11 @@ return _getWorkflowLogResource().getWorkflowLog( workflowLogId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<WorkflowTask> getRoleWorkflowTasksPage( @GraphQLName("role-id") Long roleId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getWorkflowTaskResource().getRoleWorkflowTasksPage(
+				WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+
+				workflowTaskResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = workflowTaskResource.getRoleWorkflowTasksPage(
 
 					roleId , Pagination.of(pageSize, page)
 				);
@@ -73,7 +83,11 @@ return _getWorkflowLogResource().getWorkflowLog( workflowLogId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<WorkflowTask> getWorkflowTasksPage( @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
-				Page paginationPage = _getWorkflowTaskResource().getWorkflowTasksPage(
+				WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+
+				workflowTaskResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = workflowTaskResource.getWorkflowTasksPage(
 
 					Pagination.of(pageSize, page)
 				);
@@ -85,7 +99,7 @@ return _getWorkflowLogResource().getWorkflowLog( workflowLogId );
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask getWorkflowTask( @GraphQLName("workflow-task-id") Long workflowTaskId ) throws Exception {
-return _getWorkflowTaskResource().getWorkflowTask( workflowTaskId );
+WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource(); workflowTaskResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return workflowTaskResource.getWorkflowTask( workflowTaskId );
 	}
 
 	private static WorkflowLogResource _getWorkflowLogResource() {
