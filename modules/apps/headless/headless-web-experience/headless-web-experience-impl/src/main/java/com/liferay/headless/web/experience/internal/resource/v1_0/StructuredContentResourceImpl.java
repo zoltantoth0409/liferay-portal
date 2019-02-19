@@ -72,6 +72,7 @@ import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -396,7 +397,7 @@ public class StructuredContentResourceImpl
 			DDMStructure ddmStructure, Locale locale, Values[] valuesArray)
 		throws PortalException {
 
-		if ((valuesArray == null) || (valuesArray.length == 0)) {
+		if (ArrayUtil.isEmpty(valuesArray)) {
 			return Collections.emptyList();
 		}
 
