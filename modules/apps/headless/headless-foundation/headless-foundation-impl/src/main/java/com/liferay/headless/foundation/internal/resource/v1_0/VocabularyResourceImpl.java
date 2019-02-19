@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.ClassNameService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -172,11 +173,8 @@ public class VocabularyResourceImpl
 				setName(
 					assetVocabulary.getTitle(
 						acceptLanguage.getPreferredLocale()));
-
-				List<AssetCategory> categories =
-					assetVocabulary.getCategories();
-
-				setHasCategories(categories.isEmpty());
+				setHasCategories(
+					ListUtil.isEmpty(assetVocabulary.getCategories()));
 			}
 		};
 	}
