@@ -26,6 +26,8 @@ import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
@@ -97,13 +99,13 @@ public abstract class BaseDocumentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceDocumentsPage( Long contentSpaceId , Pagination pagination ) throws Exception {
+	protected Response invokeGetContentSpaceDocumentsPage( Long contentSpaceId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/content-spaces/{content-space-id}/documents",
-				contentSpaceId 
+				contentSpaceId , filter  , sorts
 			);
 
 	}
@@ -137,13 +139,13 @@ public abstract class BaseDocumentResourceTestCase {
 			);
 
 	}
-	protected Response invokeGetFolderDocumentsPage( Long folderId , Pagination pagination ) throws Exception {
+	protected Response invokeGetFolderDocumentsPage( Long folderId , Filter filter , Pagination pagination , Sort[] sorts ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
 				_resourceURL + "/folders/{folder-id}/documents",
-				folderId 
+				folderId , filter  , sorts
 			);
 
 	}
