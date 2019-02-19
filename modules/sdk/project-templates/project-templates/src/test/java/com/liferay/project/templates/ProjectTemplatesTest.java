@@ -3150,17 +3150,19 @@ public class ProjectTemplatesTest {
 		_testNotContains(
 			workspaceProjectDir, "build.gradle", true, "^repositories \\{.*");
 
-		_executeGradle(gradleProjectDir, _GRADLE_TASK_PATH_BUILD);
+		if (_isBuildProjects()) {
+			_executeGradle(gradleProjectDir, _GRADLE_TASK_PATH_BUILD);
 
-		File gradleWarFile = _testExists(
-			gradleProjectDir, "build/libs/theme-test.war");
+			File gradleWarFile = _testExists(
+				gradleProjectDir, "build/libs/theme-test.war");
 
-		_executeGradle(workspaceDir, ":wars:theme-test:build");
+			_executeGradle(workspaceDir, ":wars:theme-test:build");
 
-		File workspaceWarFile = _testExists(
-			workspaceProjectDir, "build/libs/theme-test.war");
+			File workspaceWarFile = _testExists(
+				workspaceProjectDir, "build/libs/theme-test.war");
 
-		_testWarsDiff(gradleWarFile, workspaceWarFile);
+			_testWarsDiff(gradleWarFile, workspaceWarFile);
+		}
 	}
 
 	@Test
