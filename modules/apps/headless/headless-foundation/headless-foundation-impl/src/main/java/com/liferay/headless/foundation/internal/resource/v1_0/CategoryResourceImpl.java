@@ -28,6 +28,7 @@ import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.portal.kernel.model.ClassName;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
+import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
@@ -54,6 +55,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Consumer;
 
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -81,14 +83,7 @@ public class CategoryResourceImpl
 			Long categoryId, Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		List<AssetCategory> assetCategories = new ArrayList<>();
-
-		ClassName className = _classNameService.fetchClassName(
-			AssetCategory.class.getName());
-
-		Hits hits = SearchUtil.getHits(
-			filter, _indexerRegistry.nullSafeGetIndexer(AssetCategory.class),
-			pagination,
+		return _getCategoriesPage(
 			booleanQuery -> {
 				if (categoryId != null) {
 					BooleanFilter booleanFilter =
@@ -101,27 +96,7 @@ public class CategoryResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
-			},
-			searchContext -> {
-				searchContext.setAttribute(
-					Field.CLASS_NAME_ID, className.getClassNameId());
-				searchContext.setAttribute("head", Boolean.TRUE);
-				searchContext.setCompanyId(company.getCompanyId());
-			},
-			_searchResultPermissionFilterFactory, sorts);
-
-		for (Document document : hits.getDocs()) {
-			AssetCategory assetCategory = _assetCategoryService.getCategory(
-				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
-
-			assetCategories.add(assetCategory);
-		}
-
-		return Page.of(
-			transform(assetCategories, this::_toCategory), pagination,
-			assetCategories.size());
+			filter, pagination, sorts);
 	}
 
 	@Override
@@ -135,14 +110,7 @@ public class CategoryResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<AssetCategory> assetCategories = new ArrayList<>();
-
-		ClassName className = _classNameService.fetchClassName(
-			AssetCategory.class.getName());
-
-		Hits hits = SearchUtil.getHits(
-			filter, _indexerRegistry.nullSafeGetIndexer(AssetCategory.class),
-			pagination,
+		return _getCategoriesPage(
 			booleanQuery -> {
 				if (vocabularyId != null) {
 					BooleanFilter booleanFilter =
@@ -155,27 +123,7 @@ public class CategoryResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
-			},
-			searchContext -> {
-				searchContext.setAttribute(
-					Field.CLASS_NAME_ID, className.getClassNameId());
-				searchContext.setAttribute("head", Boolean.TRUE);
-				searchContext.setCompanyId(company.getCompanyId());
-			},
-			_searchResultPermissionFilterFactory, sorts);
-
-		for (Document document : hits.getDocs()) {
-			AssetCategory assetCategory = _assetCategoryService.getCategory(
-				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
-
-			assetCategories.add(assetCategory);
-		}
-
-		return Page.of(
-			transform(assetCategories, this::_toCategory), pagination,
-			assetCategories.size());
+			filter, pagination, sorts);
 	}
 
 	@Override
@@ -214,6 +162,42 @@ public class CategoryResourceImpl
 				Collections.singletonMap(locale, category.getName()),
 				Collections.singletonMap(locale, category.getDescription()),
 				vocabularyId, null, new ServiceContext()));
+	}
+
+	private Page<Category> _getCategoriesPage(
+			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
+			Pagination pagination, Sort[] sorts)
+		throws Exception {
+
+		List<AssetCategory> assetCategories = new ArrayList<>();
+
+		ClassName className = _classNameService.fetchClassName(
+			AssetCategory.class.getName());
+
+		Hits hits = SearchUtil.getHits(
+			filter, _indexerRegistry.nullSafeGetIndexer(AssetCategory.class),
+			pagination, booleanQueryConsumer,
+			queryConfig -> {
+				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
+			},
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.CLASS_NAME_ID, className.getClassNameId());
+				searchContext.setAttribute("head", Boolean.TRUE);
+				searchContext.setCompanyId(company.getCompanyId());
+			},
+			_searchResultPermissionFilterFactory, sorts);
+
+		for (Document document : hits.getDocs()) {
+			AssetCategory assetCategory = _assetCategoryService.getCategory(
+				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
+
+			assetCategories.add(assetCategory);
+		}
+
+		return Page.of(
+			transform(assetCategories, this::_toCategory), pagination,
+			assetCategories.size());
 	}
 
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
