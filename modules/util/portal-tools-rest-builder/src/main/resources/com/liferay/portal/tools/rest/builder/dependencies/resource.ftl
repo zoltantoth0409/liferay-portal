@@ -6,6 +6,7 @@ package ${configYAML.apiPackagePath}.resource.${versionDirName};
 	</#list>
 </#compress>
 
+import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
@@ -42,5 +43,7 @@ public interface ${schemaName}Resource {
 
 		${"\n"}<#lt>
 	</#list>
+
+	public void setCompany(Company company);
 
 }

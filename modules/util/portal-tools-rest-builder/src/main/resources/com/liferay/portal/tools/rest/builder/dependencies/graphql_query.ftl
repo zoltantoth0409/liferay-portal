@@ -10,6 +10,8 @@ package ${configYAML.apiPackagePath}.internal.graphql.query.${versionDirName};
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
+import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
+import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
@@ -67,7 +69,11 @@ public class Query {
 
 				return responseBuilder.build();
 			<#elseif javaSignature.returnType?contains("Collection<")>
-				Page paginationPage = _get${schemaName}Resource().${javaSignature.methodName}(
+				${schemaName}Resource ${schemaName?uncap_first}Resource = _get${schemaName}Resource();
+
+				${schemaName?uncap_first}Resource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+				Page paginationPage = ${schemaName?uncap_first}Resource.${javaSignature.methodName}(
 					<#assign parametersContent>
 						<@compress single_line=true>
 							<#list javaSignature.javaParameters as javaParameter>
@@ -86,7 +92,11 @@ public class Query {
 				return paginationPage.getItems();
 			<#else>
 				<@compress single_line=true>
-					return _get${schemaName}Resource().${javaSignature.methodName}(
+					${schemaName}Resource ${schemaName?uncap_first}Resource = _get${schemaName}Resource();
+
+					${schemaName?uncap_first}Resource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+
+					return ${schemaName?uncap_first}Resource.${javaSignature.methodName}(
 						<#list javaSignature.javaParameters as javaParameter>
 							${javaParameter.parameterName}
 
