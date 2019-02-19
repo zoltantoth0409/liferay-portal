@@ -581,8 +581,8 @@ public class StructuredContentResourceImpl
 							encodingFormat = fileEntry.getMimeType();
 							fileExtension = fileEntry.getExtension();
 							id = fileEntry.getFileEntryId();
-							title = fileEntry.getTitle();
 							sizeInBytes = fileEntry.getSize();
+							title = fileEntry.getTitle();
 						}
 					};
 				}
