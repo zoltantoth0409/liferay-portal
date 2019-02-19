@@ -375,14 +375,14 @@ public class StructuredContentResourceImpl
 			ddmFields.iterator();
 
 		while (iterator.hasNext()) {
-			com.liferay.dynamic.data.mapping.storage.Field field =
+			com.liferay.dynamic.data.mapping.storage.Field ddmField =
 				iterator.next();
 
 			for (DDMFormFieldValue ddmFormFieldValue : ddmFormFieldValues) {
 				if (Objects.equals(
-						ddmFormFieldValue.getName(), field.getName())) {
+						ddmFormFieldValue.getName(), ddmField.getName())) {
 
-					field.addValue(
+					ddmField.addValue(
 						acceptLanguage.getPreferredLocale(),
 						ddmFormFieldValue.getValue());
 				}
