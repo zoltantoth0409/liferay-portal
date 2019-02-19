@@ -599,13 +599,12 @@ public class StructuredContentResourceImpl
 
 			return new ValueImpl() {
 				{
-					setGeo(
-						new GeoImpl() {
-							{
-								setLatitude(jsonObject.getDouble("latitude"));
-								setLongitude(jsonObject.getDouble("longitude"));
-							}
-						});
+					geo = new GeoImpl() {
+						{
+							latitude = jsonObject.getDouble("latitude");
+							longitude = jsonObject.getDouble("longitude");
+						}
+					};
 				}
 			};
 		}
@@ -627,7 +626,7 @@ public class StructuredContentResourceImpl
 
 			return new ValueImpl() {
 				{
-					setStructuredContent(_toStructuredContent(journalArticle));
+					structuredContent = _toStructuredContent(journalArticle);
 				}
 			};
 		}
@@ -653,14 +652,14 @@ public class StructuredContentResourceImpl
 
 			return new ValueImpl() {
 				{
-					setLink(layoutByUuidAndGroupId.getFriendlyURL());
+					link = layoutByUuidAndGroupId.getFriendlyURL();
 				}
 			};
 		}
 
 		return new ValueImpl() {
 			{
-				setData(String.valueOf(ddmField.getValue(locale)));
+				data = String.valueOf(ddmField.getValue(locale));
 			}
 		};
 	}
@@ -686,14 +685,13 @@ public class StructuredContentResourceImpl
 			values.add(
 				new ValuesImpl() {
 					{
-						setDataType(
-							ContentStructureUtil.toDataType(ddmFormField));
-						setInputControl(
-							ContentStructureUtil.toInputControl(ddmFormField));
-						setName(ddmField.getName());
-						setValue(
-							_toValue(
-								acceptLanguage.getPreferredLocale(), ddmField));
+						dataType = ContentStructureUtil.toDataType(
+							ddmFormField);
+						inputControl = ContentStructureUtil.toInputControl(
+							ddmFormField);
+						name = ddmField.getName();
+						value = _toValue(
+							acceptLanguage.getPreferredLocale(), ddmField);
 					}
 				});
 		}
