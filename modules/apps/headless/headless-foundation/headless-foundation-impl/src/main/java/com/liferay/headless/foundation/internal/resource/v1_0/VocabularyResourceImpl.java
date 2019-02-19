@@ -86,7 +86,7 @@ public class VocabularyResourceImpl
 				queryConfig.setSelectedFieldNames(Field.ASSET_VOCABULARY_ID);
 			},
 			searchContext -> {
-				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
 			_searchResultPermissionFilterFactory, sorts);
@@ -125,9 +125,10 @@ public class VocabularyResourceImpl
 			_assetVocabularyService.addVocabulary(
 				contentSpaceId, null,
 				Collections.singletonMap(
-					acceptLanguage.getPreferredLocale(), vocabulary.getName()),
+					contextAcceptLanguage.getPreferredLocale(),
+					vocabulary.getName()),
 				Collections.singletonMap(
-					acceptLanguage.getPreferredLocale(),
+					contextAcceptLanguage.getPreferredLocale(),
 					vocabulary.getDescription()),
 				null, new ServiceContext()));
 	}
@@ -145,12 +146,12 @@ public class VocabularyResourceImpl
 				LocalizedMapUtil.merge(
 					assetVocabulary.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						vocabulary.getName())),
 				LocalizedMapUtil.merge(
 					assetVocabulary.getDescriptionMap(),
 					new AbstractMap.SimpleEntry<>(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						vocabulary.getDescription())),
 				null, new ServiceContext()));
 	}
@@ -169,12 +170,12 @@ public class VocabularyResourceImpl
 				dateCreated = assetVocabulary.getCreateDate();
 				dateModified = assetVocabulary.getModifiedDate();
 				description = assetVocabulary.getDescription(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 				hasCategories = ListUtil.isEmpty(
 					assetVocabulary.getCategories());
 				id = assetVocabulary.getVocabularyId();
 				name = assetVocabulary.getTitle(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
 	}

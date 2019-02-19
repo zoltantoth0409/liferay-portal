@@ -84,7 +84,7 @@ public class KeywordResourceImpl
 			queryConfig ->
 				queryConfig.setSelectedFieldNames(Field.ASSET_TAG_IDS),
 			searchContext -> {
-				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
 			_searchResultPermissionFilterFactory, sorts);

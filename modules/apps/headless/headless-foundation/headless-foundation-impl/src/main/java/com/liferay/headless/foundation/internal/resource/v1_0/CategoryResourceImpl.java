@@ -184,7 +184,7 @@ public class CategoryResourceImpl
 				searchContext.setAttribute(
 					Field.CLASS_NAME_ID, className.getClassNameId());
 				searchContext.setAttribute("head", Boolean.TRUE);
-				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},
 			_searchResultPermissionFilterFactory, sorts);
 
@@ -212,10 +212,10 @@ public class CategoryResourceImpl
 				dateCreated = assetCategory.getCreateDate();
 				dateModified = assetCategory.getModifiedDate();
 				description = assetCategory.getDescription(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 				id = assetCategory.getCategoryId();
 				name = assetCategory.getTitle(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 
 				if (assetCategory.getParentCategory() != null) {
 					parentCategory = _toParentCategory(
@@ -232,7 +232,7 @@ public class CategoryResourceImpl
 			{
 				id = parentCategory.getCategoryId();
 				name = parentCategory.getTitle(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
 	}

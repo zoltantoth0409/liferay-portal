@@ -158,7 +158,7 @@ public class StructuredContentResourceImpl
 				searchContext.setAttribute(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
 				searchContext.setAttribute("head", Boolean.TRUE);
-				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
 			_searchResultPermissionFilterFactory, sorts);
@@ -225,20 +225,21 @@ public class StructuredContentResourceImpl
 				new HashMap<Locale, String>() {
 					{
 						put(
-							acceptLanguage.getPreferredLocale(),
+							contextAcceptLanguage.getPreferredLocale(),
 							structuredContent.getTitle());
 					}
 				},
 				new HashMap<Locale, String>() {
 					{
 						put(
-							acceptLanguage.getPreferredLocale(),
+							contextAcceptLanguage.getPreferredLocale(),
 							structuredContent.getDescription());
 					}
 				},
 				_createJournalArticleContent(
 					_toDDMFormFieldValues(
-						ddmStructure, acceptLanguage.getPreferredLocale(),
+						ddmStructure,
+						contextAcceptLanguage.getPreferredLocale(),
 						structuredContent.getValues()),
 					ddmStructure),
 				ddmStructure.getStructureKey(),
@@ -270,17 +271,17 @@ public class StructuredContentResourceImpl
 				LocalizedMapUtil.merge(
 					journalArticle.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						structuredContent.getTitle())),
 				LocalizedMapUtil.merge(
 					journalArticle.getDescriptionMap(),
 					new AbstractMap.SimpleEntry<>(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						structuredContent.getDescription())),
 				LocalizedMapUtil.merge(
 					journalArticle.getFriendlyURLMap(),
 					new AbstractMap.SimpleEntry<>(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						structuredContent.getTitle())),
 				_journalConverter.getContent(
 					ddmStructure,
@@ -371,7 +372,7 @@ public class StructuredContentResourceImpl
 
 		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
 			journalArticle.getDDMStructure(),
-			acceptLanguage.getPreferredLocale(), values);
+			contextAcceptLanguage.getPreferredLocale(), values);
 
 		Iterator<com.liferay.dynamic.data.mapping.storage.Field> iterator =
 			ddmFields.iterator();
@@ -385,7 +386,7 @@ public class StructuredContentResourceImpl
 						ddmFormFieldValue.getName(), ddmField.getName())) {
 
 					ddmField.addValue(
-						acceptLanguage.getPreferredLocale(),
+						contextAcceptLanguage.getPreferredLocale(),
 						ddmFormFieldValue.getValue());
 				}
 			}
@@ -530,11 +531,11 @@ public class StructuredContentResourceImpl
 				dateModified = journalArticle.getModifiedDate();
 				datePublished = journalArticle.getDisplayDate();
 				description = journalArticle.getDescription(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 				id = journalArticle.getResourcePrimKey();
 				lastReviewed = journalArticle.getReviewDate();
 				title = journalArticle.getTitle(
-					acceptLanguage.getPreferredLocale());
+					contextAcceptLanguage.getPreferredLocale());
 				values = _toValues(journalArticle);
 			}
 		};
@@ -689,7 +690,8 @@ public class StructuredContentResourceImpl
 							ddmFormField);
 						name = ddmField.getName();
 						value = _toValue(
-							acceptLanguage.getPreferredLocale(), ddmField);
+							contextAcceptLanguage.getPreferredLocale(),
+							ddmField);
 					}
 				});
 		}

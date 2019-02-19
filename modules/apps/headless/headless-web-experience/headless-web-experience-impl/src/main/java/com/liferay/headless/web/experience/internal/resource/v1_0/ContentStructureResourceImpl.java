@@ -75,7 +75,7 @@ public class ContentStructureResourceImpl
 			searchContext -> {
 				searchContext.setAttribute(
 					"searchPermissionContext", StringPool.BLANK);
-				searchContext.setCompanyId(company.getCompanyId());
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
 			_searchResultPermissionFilterFactory, sorts);
@@ -109,7 +109,7 @@ public class ContentStructureResourceImpl
 		throws Exception {
 
 		return ContentStructureUtil.toContentStructure(
-			ddmStructure, acceptLanguage.getPreferredLocale(), _portal,
+			ddmStructure, contextAcceptLanguage.getPreferredLocale(), _portal,
 			_userLocalService);
 	}
 
