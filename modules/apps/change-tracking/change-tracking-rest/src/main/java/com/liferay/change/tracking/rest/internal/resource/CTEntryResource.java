@@ -67,8 +67,8 @@ public class CTEntryResource {
 				"Unable to get change tacking collection " + ctCollectionId);
 		}
 
-		List<CTEntry> ctEntries;
-		int totalCount;
+		List<CTEntry> ctEntries = null;
+		int totalCount = 0;
 
 		if (GetterUtil.getBoolean(collisionFilter)) {
 			ctEntries = _ctEngineManager.getCollidingCTEntries(ctCollectionId);
@@ -79,13 +79,12 @@ public class CTEntryResource {
 			QueryDefinition<CTEntry> queryDefinition = new QueryDefinition<>();
 
 			if (pagination != null) {
-				queryDefinition.setStart(pagination.getStartPosition());
 				queryDefinition.setEnd(pagination.getEndPosition());
+				queryDefinition.setStart(pagination.getStartPosition());
 			}
 
 			ctEntries = _ctEngineManager.getCTEntries(
 				ctCollectionId, queryDefinition);
-
 			totalCount = _ctEngineManager.getCTEntriesCount(ctCollectionId);
 		}
 
