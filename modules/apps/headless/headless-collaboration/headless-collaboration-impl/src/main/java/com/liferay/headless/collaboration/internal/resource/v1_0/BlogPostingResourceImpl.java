@@ -244,11 +244,11 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 				setArticleBody(blogsEntry.getContent());
 				setCaption(blogsEntry.getCoverImageCaption());
 				setCategories(_getCategories(blogsEntry));
+				setContentSpace(blogsEntry.getGroupId());
 				setCreator(
 					CreatorUtil.toCreator(
 						_portal,
 						_userLocalService.getUser(blogsEntry.getUserId())));
-				setContentSpace(blogsEntry.getGroupId());
 				setDateCreated(blogsEntry.getCreateDate());
 				setDateModified(blogsEntry.getModifiedDate());
 				setDatePublished(blogsEntry.getDisplayDate());
