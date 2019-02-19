@@ -294,8 +294,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private String _createJournalArticleContent(
-			DDMStructure ddmStructure,
-			List<DDMFormFieldValue> ddmFormFieldValues)
+			List<DDMFormFieldValue> ddmFormFieldValues,
+			DDMStructure ddmStructure)
 		throws Exception {
 
 		Locale originalSiteDefaultLocale =
@@ -315,8 +315,8 @@ public class StructuredContentResourceImpl
 					new DDMFormValues(ddmForm) {
 						{
 							setAvailableLocales(ddmForm.getAvailableLocales());
-							setDefaultLocale(ddmForm.getDefaultLocale());
 							setDDMFormFieldValues(ddmFormFieldValues);
+							setDefaultLocale(ddmForm.getDefaultLocale());
 						}
 					}));
 
@@ -336,7 +336,7 @@ public class StructuredContentResourceImpl
 		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
 			ddmStructure, acceptLanguage.getPreferredLocale(), values);
 
-		return _createJournalArticleContent(ddmStructure, ddmFormFieldValues);
+		return _createJournalArticleContent(ddmFormFieldValues, ddmStructure);
 	}
 
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
