@@ -169,12 +169,12 @@ public class VocabularyResourceImpl
 				setDescription(
 					assetVocabulary.getDescription(
 						acceptLanguage.getPreferredLocale()));
+				setHasCategories(
+					ListUtil.isEmpty(assetVocabulary.getCategories()));
 				setId(assetVocabulary.getVocabularyId());
 				setName(
 					assetVocabulary.getTitle(
 						acceptLanguage.getPreferredLocale()));
-				setHasCategories(
-					ListUtil.isEmpty(assetVocabulary.getCategories()));
 			}
 		};
 	}
