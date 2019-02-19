@@ -62,9 +62,9 @@ public class AssetTagsSelectorTag extends ComponentRendererTag {
 			putValue("inputName", _getInputName());
 			putValue("portletURL", _getPortletURL());
 
-			List<String> tagNames = StringUtil.split(_getTagNames());
-
 			List<Map<String, String>> selectedItems = new ArrayList<>();
+
+			List<String> tagNames = StringUtil.split(_getTagNames());
 
 			for (String tagName : tagNames) {
 				Map<String, String> item = new HashMap<>();
@@ -76,6 +76,7 @@ public class AssetTagsSelectorTag extends ComponentRendererTag {
 			}
 
 			putValue("selectedItems", selectedItems);
+
 			putValue(
 				"spritemap",
 				themeDisplay.getPathThemeImages().concat("/clay/icons.svg"));

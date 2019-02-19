@@ -56,12 +56,12 @@ public class NPMResolverUtil {
 	}
 
 	public static void set(Bundle bundle, NPMResolver npmResolver) {
-		synchronized (_npmResolverMap) {
+		synchronized (_npmResolvers) {
 			if (npmResolver == null) {
-				_npmResolverMap.remove(bundle);
+				_npmResolvers.remove(bundle);
 			}
 			else {
-				_npmResolverMap.put(bundle, npmResolver);
+				_npmResolvers.put(bundle, npmResolver);
 			}
 		}
 	}
@@ -79,8 +79,8 @@ public class NPMResolverUtil {
 	private static NPMResolver _getNPMResolver(Bundle bundle) {
 		NPMResolver npmResolver;
 
-		synchronized (_npmResolverMap) {
-			npmResolver = _npmResolverMap.get(bundle);
+		synchronized (_npmResolvers) {
+			npmResolver = _npmResolvers.get(bundle);
 		}
 
 		if (npmResolver == null) {
@@ -92,7 +92,7 @@ public class NPMResolverUtil {
 		return npmResolver;
 	}
 
-	private static final Map<Bundle, NPMResolver> _npmResolverMap =
+	private static final Map<Bundle, NPMResolver> _npmResolvers =
 		new ConcurrentHashMap<>();
 
 }
