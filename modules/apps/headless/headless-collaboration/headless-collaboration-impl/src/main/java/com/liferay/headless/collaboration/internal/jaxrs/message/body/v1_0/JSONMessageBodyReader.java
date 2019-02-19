@@ -116,33 +116,24 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("Liferay.Headless.Collaboration",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			simpleAbstractTypeResolver.addMapping(
-				AggregateRating.class, AggregateRatingImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				BlogPosting.class, BlogPostingImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				BlogPostingImage.class, BlogPostingImageImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Category.class, CategoryImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Comment.class, CommentImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Creator.class, CreatorImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Image.class, ImageImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				ImageObjectRepository.class, ImageObjectRepositoryImpl.class);
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("Liferay.Headless.Collaboration", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+										addMapping(AggregateRating.class, AggregateRatingImpl.class);
+										addMapping(BlogPosting.class, BlogPostingImpl.class);
+										addMapping(BlogPostingImage.class, BlogPostingImageImpl.class);
+										addMapping(Category.class, CategoryImpl.class);
+										addMapping(Comment.class, CommentImpl.class);
+										addMapping(Creator.class, CreatorImpl.class);
+										addMapping(Image.class, ImageImpl.class);
+										addMapping(ImageObjectRepository.class, ImageObjectRepositoryImpl.class);
+	}
+							});
+	}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 	}

@@ -146,45 +146,30 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("Liferay.Headless.Form",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			simpleAbstractTypeResolver.addMapping(
-				Columns.class, ColumnsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Creator.class, CreatorImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				FieldValues.class, FieldValuesImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Fields.class, FieldsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Form.class, FormImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				FormDocument.class, FormDocumentImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				FormPages.class, FormPagesImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				FormRecord.class, FormRecordImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				FormStructure.class, FormStructureImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Grid.class, GridImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Options.class, OptionsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Rows.class, RowsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				SuccessPage.class, SuccessPageImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Validation.class, ValidationImpl.class);
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("Liferay.Headless.Form", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+										addMapping(Columns.class, ColumnsImpl.class);
+										addMapping(Creator.class, CreatorImpl.class);
+										addMapping(FieldValues.class, FieldValuesImpl.class);
+										addMapping(Fields.class, FieldsImpl.class);
+										addMapping(Form.class, FormImpl.class);
+										addMapping(FormDocument.class, FormDocumentImpl.class);
+										addMapping(FormPages.class, FormPagesImpl.class);
+										addMapping(FormRecord.class, FormRecordImpl.class);
+										addMapping(FormStructure.class, FormStructureImpl.class);
+										addMapping(Grid.class, GridImpl.class);
+										addMapping(Options.class, OptionsImpl.class);
+										addMapping(Rows.class, RowsImpl.class);
+										addMapping(SuccessPage.class, SuccessPageImpl.class);
+										addMapping(Validation.class, ValidationImpl.class);
+	}
+							});
+	}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 	}

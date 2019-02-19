@@ -91,23 +91,19 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("Liferay.Headless.Workflow",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			simpleAbstractTypeResolver.addMapping(
-				ObjectReviewed.class, ObjectReviewedImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				WorkflowLog.class, WorkflowLogImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				WorkflowTask.class, WorkflowTaskImpl.class);
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("Liferay.Headless.Workflow", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+										addMapping(ObjectReviewed.class, ObjectReviewedImpl.class);
+										addMapping(WorkflowLog.class, WorkflowLogImpl.class);
+										addMapping(WorkflowTask.class, WorkflowTaskImpl.class);
+	}
+							});
+	}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 	}

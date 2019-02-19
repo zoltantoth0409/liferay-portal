@@ -126,37 +126,26 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("Liferay.Headless.Web.Experience",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			simpleAbstractTypeResolver.addMapping(
-				AggregateRating.class, AggregateRatingImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Comment.class, CommentImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				ContentDocument.class, ContentDocumentImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				ContentStructure.class, ContentStructureImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Creator.class, CreatorImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Fields.class, FieldsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Options.class, OptionsImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				RenderedContentsByTemplate.class, RenderedContentsByTemplateImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				StructuredContent.class, StructuredContentImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Values.class, ValuesImpl.class);
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("Liferay.Headless.Web.Experience", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+										addMapping(AggregateRating.class, AggregateRatingImpl.class);
+										addMapping(Comment.class, CommentImpl.class);
+										addMapping(ContentDocument.class, ContentDocumentImpl.class);
+										addMapping(ContentStructure.class, ContentStructureImpl.class);
+										addMapping(Creator.class, CreatorImpl.class);
+										addMapping(Fields.class, FieldsImpl.class);
+										addMapping(Options.class, OptionsImpl.class);
+										addMapping(RenderedContentsByTemplate.class, RenderedContentsByTemplateImpl.class);
+										addMapping(StructuredContent.class, StructuredContentImpl.class);
+										addMapping(Values.class, ValuesImpl.class);
+	}
+							});
+	}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 	}

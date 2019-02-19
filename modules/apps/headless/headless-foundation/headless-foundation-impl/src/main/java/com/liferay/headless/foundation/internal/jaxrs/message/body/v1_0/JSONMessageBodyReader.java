@@ -151,47 +151,31 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("Liferay.Headless.Foundation",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			simpleAbstractTypeResolver.addMapping(
-				Category.class, CategoryImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				ContactInformation.class, ContactInformationImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Creator.class, CreatorImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Email.class, EmailImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				HoursAvailable.class, HoursAvailableImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Keyword.class, KeywordImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Location.class, LocationImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Organization.class, OrganizationImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Phone.class, PhoneImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				PostalAddress.class, PostalAddressImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Role.class, RoleImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Services.class, ServicesImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				UserAccount.class, UserAccountImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				Vocabulary.class, VocabularyImpl.class);
-			simpleAbstractTypeResolver.addMapping(
-				WebUrl.class, WebUrlImpl.class);
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("Liferay.Headless.Foundation", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+										addMapping(Category.class, CategoryImpl.class);
+										addMapping(ContactInformation.class, ContactInformationImpl.class);
+										addMapping(Creator.class, CreatorImpl.class);
+										addMapping(Email.class, EmailImpl.class);
+										addMapping(HoursAvailable.class, HoursAvailableImpl.class);
+										addMapping(Keyword.class, KeywordImpl.class);
+										addMapping(Location.class, LocationImpl.class);
+										addMapping(Organization.class, OrganizationImpl.class);
+										addMapping(Phone.class, PhoneImpl.class);
+										addMapping(PostalAddress.class, PostalAddressImpl.class);
+										addMapping(Role.class, RoleImpl.class);
+										addMapping(Services.class, ServicesImpl.class);
+										addMapping(UserAccount.class, UserAccountImpl.class);
+										addMapping(Vocabulary.class, VocabularyImpl.class);
+										addMapping(WebUrl.class, WebUrlImpl.class);
+	}
+							});
+	}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 	}
