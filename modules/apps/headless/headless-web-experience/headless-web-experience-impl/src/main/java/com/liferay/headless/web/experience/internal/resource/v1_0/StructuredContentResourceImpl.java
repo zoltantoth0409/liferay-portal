@@ -235,7 +235,10 @@ public class StructuredContentResourceImpl
 					}
 				},
 				_createJournalArticleContent(
-					ddmStructure, structuredContent.getValues()),
+					_toDDMFormFieldValues(
+						ddmStructure, acceptLanguage.getPreferredLocale(),
+						structuredContent.getValues()),
+					ddmStructure),
 				ddmStructure.getStructureKey(),
 				_getDDMTemplateKey(ddmStructure), null,
 				localDateTime.getMonthValue() - 1,
@@ -327,16 +330,6 @@ public class StructuredContentResourceImpl
 		finally {
 			LocaleThreadLocal.setSiteDefaultLocale(originalSiteDefaultLocale);
 		}
-	}
-
-	private String _createJournalArticleContent(
-			DDMStructure ddmStructure, Values[] values)
-		throws Exception {
-
-		List<DDMFormFieldValue> ddmFormFieldValues = _toDDMFormFieldValues(
-			ddmStructure, acceptLanguage.getPreferredLocale(), values);
-
-		return _createJournalArticleContent(ddmFormFieldValues, ddmStructure);
 	}
 
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
