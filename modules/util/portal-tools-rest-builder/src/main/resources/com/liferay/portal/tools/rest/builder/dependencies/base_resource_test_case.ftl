@@ -112,21 +112,21 @@ public abstract class Base${schemaName}ResourceTestCase {
 	</#list>
 
 	protected ${schemaName} random${schemaName}() {
-		${schemaName} ${schemaVarName} = new ${schemaName}Impl();
+		return new ${schemaName}Impl() {
+			{
+				<#compress>
+					<#list javaTool.getJavaParameters(schema) as javaParameter>
+						<#assign randomDataTypes = ["Boolean", "Double", "Long", "String"] />
 
-		<#compress>
-			<#list javaTool.getJavaParameters(schema) as javaParameter>
-				<#assign randomDataTypes = ["Boolean", "Double", "Long", "String"] />
-
-				<#if randomDataTypes?seq_contains(javaParameter.parameterType)>
-					${javaParameter.parameterName} = RandomTestUtil.random${javaParameter.parameterType}();
-				<#elseif stringUtil.equals(javaParameter.parameterType, "Date")>
-					${javaParameter.parameterName} = RandomTestUtil.nextDate();
-				</#if>
-			</#list>
-		</#compress>
-
-		return ${schemaVarName};
+						<#if randomDataTypes?seq_contains(javaParameter.parameterType)>
+							${javaParameter.parameterName} = RandomTestUtil.random${javaParameter.parameterType}();
+						<#elseif stringUtil.equals(javaParameter.parameterType, "Date")>
+							${javaParameter.parameterName} = RandomTestUtil.nextDate();
+						</#if>
+					</#list>
+				</#compress>
+			}
+		};
 	}
 
 	protected Group testGroup;
