@@ -644,7 +644,6 @@ public class StructuredContentResourceImpl
 			}
 
 			long groupId = jsonObject.getLong("groupId");
-
 			boolean privateLayout = jsonObject.getBoolean("privateLayout");
 
 			Layout layoutByUuidAndGroupId = _layoutLocalService.getLayout(
