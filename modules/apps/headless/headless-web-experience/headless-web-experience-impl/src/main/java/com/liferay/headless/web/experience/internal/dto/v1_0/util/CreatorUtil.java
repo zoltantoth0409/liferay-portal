@@ -32,11 +32,12 @@ public class CreatorUtil {
 
 		return new CreatorImpl() {
 			{
-				setAdditionalName(user.getMiddleName());
-				setFamilyName(user.getLastName());
-				setGivenName(user.getFirstName());
-				setId(user.getUserId());
-				setName(user.getFullName());
+				additionalName = user.getMiddleName();
+				familyName = user.getLastName();
+				givenName = user.getFirstName();
+				id = user.getUserId();
+				name = user.getFullName();
+
 				setProfileURL(
 					() -> {
 						if (user.getPortraitId() == 0) {

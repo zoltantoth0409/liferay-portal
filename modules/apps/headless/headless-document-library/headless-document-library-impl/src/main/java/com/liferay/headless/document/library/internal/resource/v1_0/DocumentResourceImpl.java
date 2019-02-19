@@ -132,23 +132,16 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 
 		return new AdaptedImagesImpl() {
 			{
-				setContentUrl(String.valueOf(adaptiveMedia.getURI()));
-				setHeight(
-					_getValue(
-						adaptiveMedia,
-						AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT));
-				setResolutionName(
-					_getValue(
-						adaptiveMedia,
-						AMAttribute.getConfigurationUuidAMAttribute()));
-				setSizeInBytes(
-					_getValue(
-						adaptiveMedia,
-						AMAttribute.getContentLengthAMAttribute()));
-				setWidth(
-					_getValue(
-						adaptiveMedia,
-						AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
+				contentUrl = String.valueOf(adaptiveMedia.getURI());
+				height = _getValue(
+					adaptiveMedia, AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT);
+				resolutionName = _getValue(
+					adaptiveMedia,
+					AMAttribute.getConfigurationUuidAMAttribute());
+				sizeInBytes = _getValue(
+					adaptiveMedia, AMAttribute.getContentLengthAMAttribute());
+				width = _getValue(
+					adaptiveMedia, AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
 			}
 		};
 	}
@@ -159,22 +152,21 @@ public class DocumentResourceImpl extends BaseDocumentResourceImpl {
 
 		return new DocumentImpl() {
 			{
-				setAdaptedImages(_getAdaptiveMedias(fileEntry));
-				setCategories(_getCategories(fileEntry));
-				setContentUrl(
-					_dlURLHelper.getPreviewURL(
-						fileEntry, fileVersion, null, ""));
-				setCreator(CreatorUtil.toCreator(_portal, user));
-				setDateCreated(fileEntry.getCreateDate());
-				setDateModified(fileEntry.getModifiedDate());
-				setDescription(fileEntry.getDescription());
-				setEncodingFormat(fileEntry.getMimeType());
-				setFileExtension(fileEntry.getExtension());
-				setFolderId(fileEntry.getFolderId());
-				setId(fileEntry.getFileEntryId());
-				setKeywords(_getAssetTagNames(fileEntry));
-				setSizeInBytes(fileEntry.getSize());
-				setTitle(fileEntry.getTitle());
+				adaptedImages = _getAdaptiveMedias(fileEntry);
+				categories = _getCategories(fileEntry);
+				contentUrl = _dlURLHelper.getPreviewURL(
+					fileEntry, fileVersion, null, "");
+				creator = CreatorUtil.toCreator(_portal, user);
+				dateCreated = fileEntry.getCreateDate();
+				dateModified = fileEntry.getModifiedDate();
+				description = fileEntry.getDescription();
+				encodingFormat = fileEntry.getMimeType();
+				fileExtension = fileEntry.getExtension();
+				folderId = fileEntry.getFolderId();
+				id = fileEntry.getFileEntryId();
+				keywords = _getAssetTagNames(fileEntry);
+				sizeInBytes = fileEntry.getSize();
+				title = fileEntry.getTitle();
 			}
 		};
 	}

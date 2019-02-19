@@ -30,10 +30,10 @@ public class AggregateRatingUtil {
 
 		return new AggregateRatingImpl() {
 			{
-				setBestRating(1);
-				setRatingCount(ratingsStats.getTotalEntries());
-				setRatingValue(ratingsStats.getAverageScore());
-				setWorstRating(0);
+				bestRating = 1;
+				ratingCount = ratingsStats.getTotalEntries();
+				ratingValue = ratingsStats.getAverageScore();
+				worstRating = 0;
 			}
 		};
 	}

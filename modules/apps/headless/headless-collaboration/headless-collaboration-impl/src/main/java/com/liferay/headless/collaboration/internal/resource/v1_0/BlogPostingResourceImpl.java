@@ -202,11 +202,10 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 
 		return new ImageImpl() {
 			{
-				setContentUrl(
-					_dlurlHelper.getPreviewURL(
-						fileEntry, fileVersion, null, "", false, false));
-				setName(blogsEntry.getCoverImageCaption());
-				setImageId(coverImageFileEntryId);
+				contentUrl = _dlurlHelper.getPreviewURL(
+					fileEntry, fileVersion, null, "", false, false);
+				imageId = coverImageFileEntryId;
+				name = blogsEntry.getCoverImageCaption();
 			}
 		};
 	}
@@ -235,29 +234,25 @@ public class BlogPostingResourceImpl extends BaseBlogPostingResourceImpl {
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
 		return new BlogPostingImpl() {
 			{
-				setAlternativeHeadline(blogsEntry.getSubtitle());
-				setAggregateRating(
-					AggregateRatingUtil.toAggregateRating(
-						_ratingsStatsLocalService.fetchStats(
-							BlogsEntry.class.getName(),
-							blogsEntry.getEntryId())));
-				setArticleBody(blogsEntry.getContent());
-				setCaption(blogsEntry.getCoverImageCaption());
-				setCategories(_getCategories(blogsEntry));
-				setContentSpace(blogsEntry.getGroupId());
-				setCreator(
-					CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.getUser(blogsEntry.getUserId())));
-				setDateCreated(blogsEntry.getCreateDate());
-				setDateModified(blogsEntry.getModifiedDate());
-				setDatePublished(blogsEntry.getDisplayDate());
-				setDescription(blogsEntry.getDescription());
-				setEncodingFormat("text/html");
-				setFriendlyUrlPath(blogsEntry.getUrlTitle());
-				setHeadline(blogsEntry.getTitle());
-				setId(blogsEntry.getEntryId());
-				setImage(_getImage(blogsEntry));
+				alternativeHeadline = blogsEntry.getSubtitle();
+				aggregateRating = AggregateRatingUtil.toAggregateRating(
+					_ratingsStatsLocalService.fetchStats(
+						BlogsEntry.class.getName(), blogsEntry.getEntryId()));
+				articleBody = blogsEntry.getContent();
+				caption = blogsEntry.getCoverImageCaption();
+				categories = _getCategories(blogsEntry);
+				contentSpace = blogsEntry.getGroupId();
+				creator = CreatorUtil.toCreator(
+					_portal, _userLocalService.getUser(blogsEntry.getUserId()));
+				dateCreated = blogsEntry.getCreateDate();
+				dateModified = blogsEntry.getModifiedDate();
+				datePublished = blogsEntry.getDisplayDate();
+				description = blogsEntry.getDescription();
+				encodingFormat = "text/html";
+				friendlyUrlPath = blogsEntry.getUrlTitle();
+				headline = blogsEntry.getTitle();
+				id = blogsEntry.getEntryId();
+				image = _getImage(blogsEntry);
 			}
 		};
 	}

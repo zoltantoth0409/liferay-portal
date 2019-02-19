@@ -117,16 +117,15 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 	private Keyword _toKeyword(AssetTag assetTag) throws Exception {
 		return new KeywordImpl() {
 			{
-				setContentSpace(assetTag.getGroupId());
-				setCreator(
-					CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.getUserById(assetTag.getUserId())));
-				setDateCreated(assetTag.getCreateDate());
-				setDateModified(assetTag.getModifiedDate());
-				setId(assetTag.getTagId());
-				setKeywordUsageCount(assetTag.getAssetCount());
-				setName(assetTag.getName());
+				contentSpace = assetTag.getGroupId();
+				creator = CreatorUtil.toCreator(
+					_portal,
+					_userLocalService.getUserById(assetTag.getUserId()));
+				dateCreated = assetTag.getCreateDate();
+				dateModified = assetTag.getModifiedDate();
+				id = assetTag.getTagId();
+				keywordUsageCount = assetTag.getAssetCount();
+				name = assetTag.getName();
 			}
 		};
 	}

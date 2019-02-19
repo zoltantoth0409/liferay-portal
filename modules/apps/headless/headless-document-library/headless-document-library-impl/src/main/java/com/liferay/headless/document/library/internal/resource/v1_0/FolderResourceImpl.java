@@ -126,12 +126,12 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 		return new FolderImpl() {
 			{
-				setDateCreated(folder.getCreateDate());
-				setDateModified(folder.getModifiedDate());
-				setDescription(folder.getDescription());
-				setRepositoryId(folder.getGroupId());
-				setId(folder.getFolderId());
-				setName(folder.getName());
+				dateCreated = folder.getCreateDate();
+				dateModified = folder.getModifiedDate();
+				description = folder.getDescription();
+				repositoryId = folder.getGroupId();
+				id = folder.getFolderId();
+				name = folder.getName();
 			}
 		};
 	}

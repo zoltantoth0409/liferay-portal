@@ -352,32 +352,26 @@ public class StructuredContentResourceImpl
 
 		return new StructuredContentImpl() {
 			{
-				setAvailableLanguages(
-					LocaleUtil.toW3cLanguageIds(
-						journalArticle.getAvailableLanguageIds()));
-				setAggregateRating(
-					AggregateRatingUtil.toAggregateRating(
-						_ratingsStatsLocalService.fetchStats(
-							JournalArticle.class.getName(),
-							journalArticle.getResourcePrimKey())));
-				setContentSpace(journalArticle.getGroupId());
-				setContentStructureId(ddmStructure.getStructureId());
-				setCreator(
-					CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.getUserById(
-							journalArticle.getUserId())));
-				setDateCreated(journalArticle.getCreateDate());
-				setDateModified(journalArticle.getModifiedDate());
-				setDatePublished(journalArticle.getDisplayDate());
-				setDescription(
-					journalArticle.getDescription(
-						acceptLanguage.getPreferredLocale()));
-				setId(journalArticle.getResourcePrimKey());
-				setLastReviewed(journalArticle.getReviewDate());
-				setTitle(
-					journalArticle.getTitle(
-						acceptLanguage.getPreferredLocale()));
+				availableLanguages = LocaleUtil.toW3cLanguageIds(
+					journalArticle.getAvailableLanguageIds());
+				aggregateRating = AggregateRatingUtil.toAggregateRating(
+					_ratingsStatsLocalService.fetchStats(
+						JournalArticle.class.getName(),
+						journalArticle.getResourcePrimKey()));
+				contentSpace = journalArticle.getGroupId();
+				contentStructureId = ddmStructure.getStructureId();
+				creator = CreatorUtil.toCreator(
+					_portal,
+					_userLocalService.getUserById(journalArticle.getUserId()));
+				dateCreated = journalArticle.getCreateDate();
+				dateModified = journalArticle.getModifiedDate();
+				datePublished = journalArticle.getDisplayDate();
+				description = journalArticle.getDescription(
+					acceptLanguage.getPreferredLocale());
+				id = journalArticle.getResourcePrimKey();
+				lastReviewed = journalArticle.getReviewDate();
+				title = journalArticle.getTitle(
+					acceptLanguage.getPreferredLocale());
 			}
 		};
 	}

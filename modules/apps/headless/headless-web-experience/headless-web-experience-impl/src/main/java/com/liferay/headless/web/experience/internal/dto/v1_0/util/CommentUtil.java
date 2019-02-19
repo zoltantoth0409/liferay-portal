@@ -33,11 +33,11 @@ public class CommentUtil {
 
 		return new CommentImpl() {
 			{
-				setCreator(CreatorUtil.toCreator(portal, comment.getUser()));
-				setDateCreated(comment.getCreateDate());
-				setDateModified(comment.getModifiedDate());
-				setId(comment.getCommentId());
-				setText(comment.getBody());
+				creator = CreatorUtil.toCreator(portal, comment.getUser());
+				dateCreated = comment.getCreateDate();
+				dateModified = comment.getModifiedDate();
+				id = comment.getCommentId();
+				text = comment.getBody();
 			}
 		};
 	}

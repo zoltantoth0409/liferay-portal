@@ -130,29 +130,25 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
 		return new CategoryImpl() {
 			{
-				setAvailableLanguages(assetCategory.getAvailableLanguageIds());
+				availableLanguages = assetCategory.getAvailableLanguageIds();
+				creator = CreatorUtil.toCreator(
+					_portal,
+					_userLocalService.getUserById(assetCategory.getUserId()));
+				creatorId = assetCategory.getUserId();
+				dateCreated = assetCategory.getCreateDate();
+				dateModified = assetCategory.getModifiedDate();
+				description = assetCategory.getDescription(
+					acceptLanguage.getPreferredLocale());
+				id = assetCategory.getCategoryId();
+				name = assetCategory.getTitle(
+					acceptLanguage.getPreferredLocale());
 
 				if (assetCategory.getParentCategory() != null) {
-					setParentCategory(
-						_toParentCategory(assetCategory.getParentCategory()));
+					parentCategory = _toParentCategory(
+						assetCategory.getParentCategory());
 				}
 
-				setCreator(
-					CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.getUserById(
-							assetCategory.getUserId())));
-				setCreatorId(assetCategory.getUserId());
-				setDateCreated(assetCategory.getCreateDate());
-				setDateModified(assetCategory.getModifiedDate());
-				setDescription(
-					assetCategory.getDescription(
-						acceptLanguage.getPreferredLocale()));
-				setId(assetCategory.getCategoryId());
-				setName(
-					assetCategory.getTitle(
-						acceptLanguage.getPreferredLocale()));
-				setParentVocabularyId(assetCategory.getVocabularyId());
+				parentVocabularyId = assetCategory.getVocabularyId();
 			}
 		};
 	}
@@ -160,10 +156,9 @@ public class CategoryResourceImpl extends BaseCategoryResourceImpl {
 	private ParentCategory _toParentCategory(AssetCategory parentCategory) {
 		return new ParentCategoryImpl() {
 			{
-				setId(parentCategory.getCategoryId());
-				setName(
-					parentCategory.getTitle(
-						acceptLanguage.getPreferredLocale()));
+				id = parentCategory.getCategoryId();
+				name = parentCategory.getTitle(
+					acceptLanguage.getPreferredLocale());
 			}
 		};
 	}

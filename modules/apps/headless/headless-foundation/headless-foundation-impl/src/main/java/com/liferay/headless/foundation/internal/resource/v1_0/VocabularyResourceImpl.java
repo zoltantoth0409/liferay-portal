@@ -165,25 +165,20 @@ public class VocabularyResourceImpl
 
 		return new VocabularyImpl() {
 			{
-				setAvailableLanguages(
-					assetVocabulary.getAvailableLanguageIds());
-				setContentSpace(assetVocabulary.getGroupId());
-				setCreator(
-					CreatorUtil.toCreator(
-						_portal,
-						_userLocalService.getUser(
-							assetVocabulary.getUserId())));
-				setDateCreated(assetVocabulary.getCreateDate());
-				setDateModified(assetVocabulary.getModifiedDate());
-				setDescription(
-					assetVocabulary.getDescription(
-						acceptLanguage.getPreferredLocale()));
-				setHasCategories(
-					ListUtil.isEmpty(assetVocabulary.getCategories()));
-				setId(assetVocabulary.getVocabularyId());
-				setName(
-					assetVocabulary.getTitle(
-						acceptLanguage.getPreferredLocale()));
+				availableLanguages = assetVocabulary.getAvailableLanguageIds();
+				contentSpace = assetVocabulary.getGroupId();
+				creator = CreatorUtil.toCreator(
+					_portal,
+					_userLocalService.getUser(assetVocabulary.getUserId()));
+				dateCreated = assetVocabulary.getCreateDate();
+				dateModified = assetVocabulary.getModifiedDate();
+				description = assetVocabulary.getDescription(
+					acceptLanguage.getPreferredLocale());
+				hasCategories = ListUtil.isEmpty(
+					assetVocabulary.getCategories());
+				id = assetVocabulary.getVocabularyId();
+				name = assetVocabulary.getTitle(
+					acceptLanguage.getPreferredLocale());
 			}
 		};
 	}

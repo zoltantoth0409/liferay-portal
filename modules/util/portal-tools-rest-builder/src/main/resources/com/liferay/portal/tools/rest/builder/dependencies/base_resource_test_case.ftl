@@ -119,9 +119,9 @@ public abstract class Base${schemaName}ResourceTestCase {
 				<#assign randomDataTypes = ["Boolean", "Double", "Long", "String"] />
 
 				<#if randomDataTypes?seq_contains(javaParameter.parameterType)>
-					${schemaVarName}.set${javaParameter.parameterName?cap_first}(RandomTestUtil.random${javaParameter.parameterType}());
+					${javaParameter.parameterName} = RandomTestUtil.random${javaParameter.parameterType}();
 				<#elseif stringUtil.equals(javaParameter.parameterType, "Date")>
-					${schemaVarName}.set${javaParameter.parameterName?cap_first}(RandomTestUtil.nextDate());
+					${javaParameter.parameterName} = RandomTestUtil.nextDate();
 				</#if>
 			</#list>
 		</#compress>
