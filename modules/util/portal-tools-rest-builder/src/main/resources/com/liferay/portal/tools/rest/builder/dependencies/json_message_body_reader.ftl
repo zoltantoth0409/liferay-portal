@@ -73,21 +73,19 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
-			SimpleModule simpleModule =
-				new SimpleModule("${configYAML.application.name}",
-					Version.unknownVersion());
-
-			SimpleAbstractTypeResolver simpleAbstractTypeResolver =
-				new SimpleAbstractTypeResolver();
-
-			<#list allSchemas?keys as schemaName>
-			simpleAbstractTypeResolver.addMapping(
-				${schemaName}.class, ${schemaName}Impl.class);
-			</#list>
-
-			simpleModule.setAbstractTypes(simpleAbstractTypeResolver);
-
-			registerModule(simpleModule);
+			registerModule(
+				new SimpleModule("${configYAML.application.name}", Version.unknownVersion()) {
+					{
+						setAbstractTypes(
+							new SimpleAbstractTypeResolver() {
+								{
+									<#list allSchemas?keys as schemaName>
+										addMapping(${schemaName}.class, ${schemaName}Impl.class);
+									</#list>
+								}
+							});
+					}
+				});
 
 			setDateFormat(new ISO8601DateFormat());
 		}
