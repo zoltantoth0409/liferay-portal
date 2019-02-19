@@ -72,7 +72,6 @@ import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -91,6 +90,7 @@ import java.time.LocalDateTime;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -397,23 +397,16 @@ public class StructuredContentResourceImpl
 			DDMStructure ddmStructure, Locale locale, Values[] valuesArray)
 		throws PortalException {
 
-		if (ArrayUtil.isEmpty(valuesArray)) {
-			return Collections.emptyList();
-		}
-
-		List<DDMFormFieldValue> ddmFormFieldValues = new ArrayList<>();
-
-		for (Values values : valuesArray) {
-			ddmFormFieldValues.add(
-				new DDMFormFieldValue() {
+		return transform(
+			Arrays.asList(valuesArray),
+			values -> {
+				return new DDMFormFieldValue() {
 					{
 						setName(values.getName());
 						setValue(_toDDMValue(ddmStructure, locale, values));
 					}
-				});
-		}
-
-		return ddmFormFieldValues;
+				};
+			});
 	}
 
 	private com.liferay.dynamic.data.mapping.model.Value _toDDMValue(
