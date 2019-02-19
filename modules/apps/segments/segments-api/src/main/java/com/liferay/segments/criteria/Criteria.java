@@ -209,18 +209,18 @@ public final class Criteria implements Serializable {
 	}
 
 	private String _combineFilters(
-		String filter1, String filter2, Conjunction conjunction) {
+		String filterString1, String filterString2, Conjunction conjunction) {
 
 		StringBundler sb = new StringBundler(9);
 
 		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(filter1);
+		sb.append(filterString1);
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 		sb.append(StringPool.SPACE);
 		sb.append(conjunction.getValue());
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.OPEN_PARENTHESIS);
-		sb.append(filter2);
+		sb.append(filterString2);
 		sb.append(StringPool.CLOSE_PARENTHESIS);
 
 		return sb.toString();
