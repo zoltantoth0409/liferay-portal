@@ -36,6 +36,6 @@ public interface EmailResource {
 
 	public Email getEmail( Long emailId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

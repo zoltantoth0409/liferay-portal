@@ -48,6 +48,6 @@ public interface StructuredContentResource {
 
 	public StructuredContent putStructuredContent( Long structuredContentId , StructuredContent structuredContent ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

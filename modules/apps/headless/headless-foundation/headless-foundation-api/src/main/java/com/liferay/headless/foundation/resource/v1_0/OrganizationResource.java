@@ -42,6 +42,6 @@ public interface OrganizationResource {
 
 	public Page<Organization> getUserAccountOrganizationsPage( Long userAccountId , Pagination pagination ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

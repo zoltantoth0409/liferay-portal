@@ -44,6 +44,6 @@ public interface VocabularyResource {
 
 	public Vocabulary putVocabulary( Long vocabularyId , Vocabulary vocabulary ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

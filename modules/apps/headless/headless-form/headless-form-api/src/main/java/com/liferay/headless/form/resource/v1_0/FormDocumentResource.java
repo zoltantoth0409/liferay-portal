@@ -34,6 +34,6 @@ public interface FormDocumentResource {
 
 	public FormDocument getFormDocument( Long formDocumentId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

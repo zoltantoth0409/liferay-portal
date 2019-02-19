@@ -124,8 +124,8 @@ public abstract class BaseUserAccountResourceImpl implements UserAccountResource
 
 	}
 
-	public void setCompany(Company company) {
-		this.company = company;
+	public void setContextCompany(Company contextCompany) {
+		this.contextCompany = contextCompany;
 	}
 
 	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
@@ -133,9 +133,9 @@ public abstract class BaseUserAccountResourceImpl implements UserAccountResource
 	}
 
 	@Context
-	protected AcceptLanguage acceptLanguage;
+	protected AcceptLanguage contextAcceptLanguage;
 
 	@Context
-	protected Company company;
+	protected Company contextCompany;
 
 }

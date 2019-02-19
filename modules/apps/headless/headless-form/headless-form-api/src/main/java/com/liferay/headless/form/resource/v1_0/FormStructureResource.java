@@ -36,6 +36,6 @@ public interface FormStructureResource {
 
 	public FormStructure getFormStructure( Long formStructureId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

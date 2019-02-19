@@ -45,6 +45,6 @@ public interface DocumentResource {
 
 	public Document postFolderDocument( Long folderId , MultipartBody multipartBody ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

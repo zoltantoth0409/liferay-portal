@@ -38,6 +38,6 @@ public interface ContentStructureResource {
 
 	public ContentStructure getContentStructure( Long contentStructureId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

@@ -37,6 +37,6 @@ public interface StructuredContentImageResource {
 
 	public StructuredContentImage getStructuredContentContentDocument( Long structuredContentId , Long contentDocumentId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

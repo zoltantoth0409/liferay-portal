@@ -46,6 +46,6 @@ public interface WorkflowTaskResource {
 
 	public WorkflowTask postWorkflowTaskUpdateDueDate( Long workflowTaskId , WorkflowTask workflowTask ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

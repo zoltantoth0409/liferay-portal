@@ -47,7 +47,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public BlogPosting getBlogPosting( @GraphQLName("blog-posting-id") Long blogPostingId ) throws Exception {
-BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPostingResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingResource.getBlogPosting( blogPostingId );
+BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPostingResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingResource.getBlogPosting( blogPostingId );
 	}
 
 	@GraphQLField
@@ -55,7 +55,7 @@ BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPosting
 	public Collection<BlogPosting> getContentSpaceBlogPostingsPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				BlogPostingResource blogPostingResource = _getBlogPostingResource();
 
-				blogPostingResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				blogPostingResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = blogPostingResource.getContentSpaceBlogPostingsPage(
 
@@ -71,7 +71,7 @@ BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPosting
 	public Collection<BlogPostingImage> getContentSpaceBlogPostingImagesPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource();
 
-				blogPostingImageResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				blogPostingImageResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = blogPostingImageResource.getContentSpaceBlogPostingImagesPage(
 
@@ -85,7 +85,7 @@ BlogPostingResource blogPostingResource = _getBlogPostingResource(); blogPosting
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public BlogPostingImage getImageObject( @GraphQLName("image-object-id") Long imageObjectId ) throws Exception {
-BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource(); blogPostingImageResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingImageResource.getImageObject( imageObjectId );
+BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource(); blogPostingImageResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return blogPostingImageResource.getImageObject( imageObjectId );
 	}
 
 	@GraphQLField
@@ -93,7 +93,7 @@ BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource
 	public Collection<Comment> getBlogPostingCommentsPage( @GraphQLName("blog-posting-id") Long blogPostingId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				CommentResource commentResource = _getCommentResource();
 
-				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getBlogPostingCommentsPage(
 
@@ -107,7 +107,7 @@ BlogPostingImageResource blogPostingImageResource = _getBlogPostingImageResource
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Comment getComment( @GraphQLName("comment-id") Long commentId ) throws Exception {
-CommentResource commentResource = _getCommentResource(); commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return commentResource.getComment( commentId );
+CommentResource commentResource = _getCommentResource(); commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return commentResource.getComment( commentId );
 	}
 
 	@GraphQLField
@@ -115,7 +115,7 @@ CommentResource commentResource = _getCommentResource(); commentResource.setComp
 	public Collection<Comment> getCommentCommentsPage( @GraphQLName("comment-id") Long commentId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				CommentResource commentResource = _getCommentResource();
 
-				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getCommentCommentsPage(
 

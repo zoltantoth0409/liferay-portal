@@ -42,6 +42,6 @@ public interface FormResource {
 
 	public Form postFormUploadFile( Long formId , Form form ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

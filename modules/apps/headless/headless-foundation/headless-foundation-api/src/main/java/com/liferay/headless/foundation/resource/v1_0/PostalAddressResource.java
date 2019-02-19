@@ -36,6 +36,6 @@ public interface PostalAddressResource {
 
 	public PostalAddress getAddress( Long addressId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

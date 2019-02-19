@@ -38,6 +38,6 @@ public interface CommentResource {
 
 	public Page<Comment> getCommentCommentsPage( Long commentId , Pagination pagination ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

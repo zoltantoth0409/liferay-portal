@@ -44,6 +44,6 @@ public interface KeywordResource {
 
 	public Keyword putKeyword( Long keywordId , Keyword keyword ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

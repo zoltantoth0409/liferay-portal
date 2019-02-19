@@ -40,6 +40,6 @@ public interface RoleResource {
 
 	public Page<Role> getUserAccountRolesPage( Long userAccountId , Pagination pagination ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

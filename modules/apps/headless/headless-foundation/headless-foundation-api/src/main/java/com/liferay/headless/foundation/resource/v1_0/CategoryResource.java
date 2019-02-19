@@ -48,6 +48,6 @@ public interface CategoryResource {
 
 	public Category postVocabularyCategory( Long vocabularyId , Category category ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

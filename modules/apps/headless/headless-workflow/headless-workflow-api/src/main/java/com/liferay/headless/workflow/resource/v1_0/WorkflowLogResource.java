@@ -36,6 +36,6 @@ public interface WorkflowLogResource {
 
 	public Page<WorkflowLog> getWorkflowTaskWorkflowLogsPage( Long workflowTaskId , Pagination pagination ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

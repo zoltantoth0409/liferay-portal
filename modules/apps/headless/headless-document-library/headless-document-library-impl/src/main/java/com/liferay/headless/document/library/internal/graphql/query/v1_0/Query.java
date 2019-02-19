@@ -47,7 +47,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Comment getComment( @GraphQLName("comment-id") Long commentId ) throws Exception {
-CommentResource commentResource = _getCommentResource(); commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return commentResource.getComment( commentId );
+CommentResource commentResource = _getCommentResource(); commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return commentResource.getComment( commentId );
 	}
 
 	@GraphQLField
@@ -55,7 +55,7 @@ CommentResource commentResource = _getCommentResource(); commentResource.setComp
 	public Collection<Comment> getCommentCommentsPage( @GraphQLName("comment-id") Long commentId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				CommentResource commentResource = _getCommentResource();
 
-				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getCommentCommentsPage(
 
@@ -71,7 +71,7 @@ CommentResource commentResource = _getCommentResource(); commentResource.setComp
 	public Collection<Comment> getDocumentCommentsPage( @GraphQLName("document-id") Long documentId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				CommentResource commentResource = _getCommentResource();
 
-				commentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				commentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getDocumentCommentsPage(
 
@@ -87,7 +87,7 @@ CommentResource commentResource = _getCommentResource(); commentResource.setComp
 	public Collection<Document> getContentSpaceDocumentsPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				DocumentResource documentResource = _getDocumentResource();
 
-				documentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				documentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = documentResource.getContentSpaceDocumentsPage(
 
@@ -101,7 +101,7 @@ CommentResource commentResource = _getCommentResource(); commentResource.setComp
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Document getDocument( @GraphQLName("document-id") Long documentId ) throws Exception {
-DocumentResource documentResource = _getDocumentResource(); documentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return documentResource.getDocument( documentId );
+DocumentResource documentResource = _getDocumentResource(); documentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return documentResource.getDocument( documentId );
 	}
 
 	@GraphQLField
@@ -109,7 +109,7 @@ DocumentResource documentResource = _getDocumentResource(); documentResource.set
 	public Collection<Document> getFolderDocumentsPage( @GraphQLName("folder-id") Long folderId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				DocumentResource documentResource = _getDocumentResource();
 
-				documentResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				documentResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = documentResource.getFolderDocumentsPage(
 
@@ -125,7 +125,7 @@ DocumentResource documentResource = _getDocumentResource(); documentResource.set
 	public Collection<Folder> getContentSpaceFoldersPage( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				FolderResource folderResource = _getFolderResource();
 
-				folderResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				folderResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = folderResource.getContentSpaceFoldersPage(
 
@@ -139,7 +139,7 @@ DocumentResource documentResource = _getDocumentResource(); documentResource.set
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Folder getFolder( @GraphQLName("folder-id") Long folderId ) throws Exception {
-FolderResource folderResource = _getFolderResource(); folderResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return folderResource.getFolder( folderId );
+FolderResource folderResource = _getFolderResource(); folderResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId())); return folderResource.getFolder( folderId );
 	}
 
 	@GraphQLField
@@ -147,7 +147,7 @@ FolderResource folderResource = _getFolderResource(); folderResource.setCompany(
 	public Collection<Folder> getFolderFoldersPage( @GraphQLName("folder-id") Long folderId , @GraphQLName("pageSize") int pageSize , @GraphQLName("page") int page ) throws Exception {
 				FolderResource folderResource = _getFolderResource();
 
-				folderResource.setCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+				folderResource.setContextCompany(CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = folderResource.getFolderFoldersPage(
 

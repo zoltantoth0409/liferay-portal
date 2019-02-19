@@ -48,6 +48,6 @@ public interface UserAccountResource {
 
 	public Page<UserAccount> getWebSiteUserAccountsPage( Long webSiteId , Pagination pagination ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

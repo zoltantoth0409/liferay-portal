@@ -42,6 +42,6 @@ public interface BlogPostingResource {
 
 	public BlogPosting postContentSpaceBlogPosting( Long contentSpaceId , BlogPosting blogPosting ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

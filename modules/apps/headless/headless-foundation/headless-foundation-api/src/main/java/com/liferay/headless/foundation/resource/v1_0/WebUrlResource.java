@@ -36,6 +36,6 @@ public interface WebUrlResource {
 
 	public WebUrl getWebUrl( Long webUrlId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

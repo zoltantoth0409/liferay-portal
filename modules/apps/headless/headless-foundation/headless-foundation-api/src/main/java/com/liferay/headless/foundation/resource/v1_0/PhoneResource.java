@@ -36,6 +36,6 @@ public interface PhoneResource {
 
 	public Phone getPhone( Long phoneId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

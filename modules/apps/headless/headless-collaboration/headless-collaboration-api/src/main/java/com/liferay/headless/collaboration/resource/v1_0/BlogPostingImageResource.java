@@ -41,6 +41,6 @@ public interface BlogPostingImageResource {
 
 	public BlogPostingImage getImageObject( Long imageObjectId ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }

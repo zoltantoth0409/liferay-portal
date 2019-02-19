@@ -46,6 +46,6 @@ public interface FolderResource {
 
 	public Folder postFolderFolder( Long folderId , Folder folder ) throws Exception;
 
-	public void setCompany(Company company);
+	public void setContextCompany(Company contextCompany);
 
 }
