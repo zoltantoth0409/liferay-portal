@@ -567,27 +567,24 @@ public class StructuredContentResourceImpl
 
 			return new ValueImpl() {
 				{
-					setDocument(
-						new ContentDocumentImpl() {
-							{
-								setCreator(
-									CreatorUtil.toCreator(
-										_portal,
-										_userLocalService.getUser(
-											fileEntry.getUserId())));
-								setContentUrl(
-									_dlurlHelper.getPreviewURL(
-										fileEntry, fileEntry.getFileVersion(),
-										null, "", false, false));
-								setDateCreated(fileEntry.getCreateDate());
-								setDateModified(fileEntry.getModifiedDate());
-								setEncodingFormat(fileEntry.getMimeType());
-								setFileExtension(fileEntry.getExtension());
-								setId(fileEntry.getFileEntryId());
-								setTitle(fileEntry.getTitle());
-								setSizeInBytes(fileEntry.getSize());
-							}
-						});
+					document = new ContentDocumentImpl() {
+						{
+							creator = CreatorUtil.toCreator(
+								_portal,
+								_userLocalService.getUser(
+									fileEntry.getUserId()));
+							contentUrl = _dlurlHelper.getPreviewURL(
+								fileEntry, fileEntry.getFileVersion(),
+								null, "", false, false);
+							dateCreated = fileEntry.getCreateDate();
+							dateModified = fileEntry.getModifiedDate();
+							encodingFormat = fileEntry.getMimeType();
+							fileExtension = fileEntry.getExtension();
+							id = fileEntry.getFileEntryId();
+							title = fileEntry.getTitle();
+							sizeInBytes = fileEntry.getSize();
+						}
+					};
 				}
 			};
 		}
