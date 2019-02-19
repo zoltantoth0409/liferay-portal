@@ -58,6 +58,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -428,22 +429,27 @@ public class StructuredContentResourceImpl
 						FileEntry fileEntry = _dlAppService.getFileEntry(
 							value.getDocumentId());
 
-						JSONObject jsonObject =
-							JSONFactoryUtil.createJSONObject();
-
-						jsonObject.put("alt", value.getData());
-						jsonObject.put("classPK", fileEntry.getFileEntryId());
-						jsonObject.put(
-							"fileEntryId", fileEntry.getFileEntryId());
-						jsonObject.put("groupId", fileEntry.getGroupId());
-						jsonObject.put("name", fileEntry.getFileName());
-						jsonObject.put(
-							"resourcePrimKey", fileEntry.getPrimaryKey());
-						jsonObject.put("title", fileEntry.getFileName());
-						jsonObject.put("type", "document");
-						jsonObject.put("uuid", fileEntry.getUuid());
-
-						addString(locale, jsonObject.toString());
+						addString(
+							locale,
+							JSONUtil.put(
+								"alt", value.getData()
+							).put(
+								"classPK", fileEntry.getFileEntryId()
+							).put(
+								"fileEntryId", fileEntry.getFileEntryId()
+							).put(
+								"groupId", fileEntry.getGroupId()
+							).put(
+								"name", fileEntry.getFileName()
+							).put(
+								"resourcePrimKey", fileEntry.getPrimaryKey()
+							).put(
+								"title", fileEntry.getFileName()
+							).put(
+								"type", "document"
+							).put(
+								"uuid", fileEntry.getUuid()
+							).toString());
 					}
 					else if (Objects.equals(
 								DDMFormFieldType.JOURNAL_ARTICLE,
@@ -453,16 +459,15 @@ public class StructuredContentResourceImpl
 							_journalArticleService.getLatestArticle(
 								value.getStructuredContentId());
 
-						JSONObject jsonObject =
-							JSONFactoryUtil.createJSONObject();
-
-						jsonObject.put(
-							"className", JournalArticle.class.getName());
-						jsonObject.put(
-							"classPK", journalArticle.getResourcePrimKey());
-						jsonObject.put("title", journalArticle.getTitle());
-
-						addString(locale, jsonObject.toString());
+						addString(
+							locale,
+							JSONUtil.put(
+								"className", JournalArticle.class.getName()
+							).put(
+								"classPK", journalArticle.getResourcePrimKey()
+							).put(
+								"title", journalArticle.getTitle()
+							).toString());
 					}
 					else {
 						addString(locale, value.getData());
@@ -474,14 +479,14 @@ public class StructuredContentResourceImpl
 		if (Objects.equals(
 				DDMFormFieldType.GEOLOCATION, ddmFormField.getType())) {
 
-			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
 			Geo geo = value.getGeo();
 
-			jsonObject.put("latitude", geo.getLatitude());
-			jsonObject.put("longitude", geo.getLongitude());
-
-			return new UnlocalizedValue(jsonObject.toString());
+			return new UnlocalizedValue(
+				JSONUtil.put(
+					"latitude", geo.getLatitude()
+				).put(
+					"longitude", geo.getLongitude()
+				).toString());
 		}
 
 		return new UnlocalizedValue(value.getData());
