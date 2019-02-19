@@ -142,7 +142,7 @@ buildStringEndsWith{
 	into "classes/META-INF/resources"
 
 	rename {
-		it.replace "index", "string.endsWith"
+		it.replace "index", "string.endswith"
 	}
 }
 
