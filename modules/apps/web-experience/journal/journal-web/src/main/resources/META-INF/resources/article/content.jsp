@@ -64,11 +64,11 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 	<%
 	NoSuchFileEntryException nsfee = (NoSuchFileEntryException)errorException;
 
-	String exceptionMessage = nsfee.getMessage();
+	String message = nsfee.getMessage();
 
-	String trimmedMessage = exceptionMessage.substring(exceptionMessage.indexOf("{"));
+	int index = message.indexOf("{");
 
-	String[] args = {trimmedMessage};
+	String[] args = {message.substring(index)};
 	%>
 
 	<liferay-ui:message arguments="<%= args %>" key="unable-to-validate-referenced-file-entry-because-it-cannot-be-found-with-the-following-parameters-x" />
@@ -91,22 +91,19 @@ boolean changeStructure = GetterUtil.getBoolean(request.getAttribute("edit_artic
 		<c:otherwise>
 
 			<%
-			String trimmedMessage;
+			int index = message.indexOf(": ");
 
 			String[] messageArgs;
+
 			String messageKey;
 
 			if (message.contains("with url: ")) {
-				trimmedMessage = message.substring(message.indexOf(": ") + 2);
-
-				messageArgs = new String[] {trimmedMessage};
+				messageArgs = new String[] {message.substring(index + 2)};
 
 				messageKey = "unable-to-validate-referenced-page-because-it-cannot-be-found-with-url-x";
 			}
 			else if (message.contains("group cannot be found: ")) {
-				trimmedMessage = message.substring(message.indexOf(": ") + 2);
-
-				messageArgs = new String[] {trimmedMessage};
+				messageArgs = new String[] {message.substring(index + 2)};
 
 				messageKey = "unable-to-validate-referenced-page-because-the-page-group-with-id-x-cannot-be-found";
 			}
