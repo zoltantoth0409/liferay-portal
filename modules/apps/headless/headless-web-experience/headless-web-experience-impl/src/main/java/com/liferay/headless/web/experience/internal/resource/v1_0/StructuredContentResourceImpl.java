@@ -258,9 +258,6 @@ public class StructuredContentResourceImpl
 			structuredContent.getDatePublished(),
 			journalArticle.getDisplayDate());
 
-		Fields ddmFields = _toDDMFields(
-			journalArticle, structuredContent.getValues());
-
 		return _toStructuredContent(
 			_journalArticleService.updateArticle(
 				journalArticle.getGroupId(), journalArticle.getFolderId(),
@@ -280,7 +277,10 @@ public class StructuredContentResourceImpl
 					new AbstractMap.SimpleEntry<>(
 						acceptLanguage.getPreferredLocale(),
 						structuredContent.getTitle())),
-				_journalConverter.getContent(ddmStructure, ddmFields),
+				_journalConverter.getContent(
+					ddmStructure,
+					_toDDMFields(
+						journalArticle, structuredContent.getValues())),
 				journalArticle.getDDMStructureKey(),
 				_getDDMTemplateKey(ddmStructure),
 				journalArticle.getLayoutUuid(),
