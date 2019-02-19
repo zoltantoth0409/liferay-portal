@@ -23,19 +23,17 @@ import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
-import com.liferay.headless.collaboration.dto.v1_0.Category;
+import com.liferay.headless.collaboration.dto.v1_0.Categories;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
 import com.liferay.headless.collaboration.dto.v1_0.Image;
-import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
 import com.liferay.headless.collaboration.internal.dto.v1_0.AggregateRatingImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.CategoryImpl;
+import com.liferay.headless.collaboration.internal.dto.v1_0.CategoriesImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.CreatorImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageObjectRepositoryImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -85,7 +83,7 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 			if (clazz.equals(BlogPostingImage.class)) {
 				return true;
 	}
-			if (clazz.equals(Category.class)) {
+			if (clazz.equals(Categories.class)) {
 				return true;
 	}
 			if (clazz.equals(Comment.class)) {
@@ -95,9 +93,6 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 				return true;
 	}
 			if (clazz.equals(Image.class)) {
-				return true;
-	}
-			if (clazz.equals(ImageObjectRepository.class)) {
 				return true;
 	}
 
@@ -125,11 +120,10 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 										addMapping(AggregateRating.class, AggregateRatingImpl.class);
 										addMapping(BlogPosting.class, BlogPostingImpl.class);
 										addMapping(BlogPostingImage.class, BlogPostingImageImpl.class);
-										addMapping(Category.class, CategoryImpl.class);
+										addMapping(Categories.class, CategoriesImpl.class);
 										addMapping(Comment.class, CommentImpl.class);
 										addMapping(Creator.class, CreatorImpl.class);
 										addMapping(Image.class, ImageImpl.class);
-										addMapping(ImageObjectRepository.class, ImageObjectRepositoryImpl.class);
 	}
 							});
 	}

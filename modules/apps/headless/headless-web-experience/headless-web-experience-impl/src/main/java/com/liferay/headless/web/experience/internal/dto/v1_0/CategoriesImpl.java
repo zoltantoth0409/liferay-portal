@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.internal.dto.v1_0;
+package com.liferay.headless.web.experience.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.collaboration.dto.v1_0.Category;
+import com.liferay.headless.web.experience.dto.v1_0.Categories;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@GraphQLName("Category")
-@XmlRootElement(name = "Category")
-public class CategoryImpl implements Category {
+@GraphQLName("Categories")
+@XmlRootElement(name = "Categories")
+public class CategoriesImpl implements Categories {
 
 	public Long getCategoryId() {
 			return categoryId;

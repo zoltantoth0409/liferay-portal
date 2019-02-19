@@ -65,11 +65,11 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 
 	@Test
-	public void testGetImageObjectRepositoryBlogPostingImagesPage() throws Exception {
+	public void testGetContentSpaceBlogPostingImagesPage() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
-	public void testPostImageObjectRepositoryBlogPostingImage() throws Exception {
+	public void testPostContentSpaceBlogPostingImage() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
@@ -81,23 +81,23 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetImageObjectRepositoryBlogPostingImagesPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception {
+	protected Response invokeGetContentSpaceBlogPostingImagesPage( Long contentSpaceId , Pagination pagination ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).get(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images",
-				imageObjectRepositoryId 
+				_resourceURL + "/content-spaces/{content-space-id}/blog-posting-images",
+				contentSpaceId 
 			);
 
 	}
-	protected Response invokePostImageObjectRepositoryBlogPostingImage( Long imageObjectRepositoryId , MultipartBody multipartBody ) throws Exception {
+	protected Response invokePostContentSpaceBlogPostingImage( Long contentSpaceId , MultipartBody multipartBody ) throws Exception {
 		RequestSpecification requestSpecification = _createRequestSpecification();
 
 			return requestSpecification.when(
 			).post(
-				_resourceURL + "/image-object-repositories/{image-object-repository-id}/blog-posting-images",
-				imageObjectRepositoryId , multipartBody
+				_resourceURL + "/content-spaces/{content-space-id}/blog-posting-images",
+				contentSpaceId , multipartBody
 			);
 
 	}

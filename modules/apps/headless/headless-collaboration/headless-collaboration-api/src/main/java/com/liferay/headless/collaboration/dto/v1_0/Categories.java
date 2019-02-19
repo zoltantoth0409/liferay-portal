@@ -12,25 +12,28 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.resource.v1_0;
+package com.liferay.headless.collaboration.dto.v1_0;
 
-import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
 /**
- * To access this resource, run:
- *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-web-experience/v1.0
- *
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface ContentDocumentResource {
+public interface Categories {
 
-	public boolean deleteContentDocument( Long contentDocumentId ) throws Exception;
+	public Long getCategoryId();
 
-	public ContentDocument getContentDocument( Long contentDocumentId ) throws Exception;
+	public void setCategoryId(Long categoryId);
+
+	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
+	public String getCategoryName();
+
+	public void setCategoryName(String categoryName);
+
+	public void setCategoryName(UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier);
 
 }

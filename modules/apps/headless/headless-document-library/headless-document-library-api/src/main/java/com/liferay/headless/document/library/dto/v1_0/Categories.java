@@ -12,23 +12,28 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.resource.v1_0;
+package com.liferay.headless.document.library.dto.v1_0;
 
-import com.liferay.headless.collaboration.dto.v1_0.ImageObjectRepository;
+import com.liferay.petra.function.UnsafeSupplier;
 
 import javax.annotation.Generated;
 
 /**
- * To access this resource, run:
- *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-collaboration/v1.0
- *
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface ImageObjectRepositoryResource {
+public interface Categories {
 
-	public ImageObjectRepository getImageObjectRepository( Long imageObjectRepositoryId ) throws Exception;
+	public Long getCategoryId();
+
+	public void setCategoryId(Long categoryId);
+
+	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
+	public String getCategoryName();
+
+	public void setCategoryName(String categoryName);
+
+	public void setCategoryName(UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier);
 
 }

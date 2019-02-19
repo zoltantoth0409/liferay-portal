@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.dto.v1_0;
+package com.liferay.headless.document.library.internal.dto.v1_0;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
+import com.liferay.headless.document.library.dto.v1_0.AggregateRating;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;

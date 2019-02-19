@@ -17,7 +17,9 @@ package com.liferay.headless.document.library.internal.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
+import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
+import com.liferay.headless.document.library.dto.v1_0.AggregateRating;
+import com.liferay.headless.document.library.dto.v1_0.Categories;
 import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.petra.function.UnsafeSupplier;
@@ -40,18 +42,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "Document")
 public class DocumentImpl implements Document {
 
-	public AdaptedMedia[] getAdaptedMedia() {
-			return adaptedMedia;
+	public AdaptedImages[] getAdaptedImages() {
+			return adaptedImages;
 	}
 
-	public void setAdaptedMedia(AdaptedMedia[] adaptedMedia) {
-			this.adaptedMedia = adaptedMedia;
+	public void setAdaptedImages(AdaptedImages[] adaptedImages) {
+			this.adaptedImages = adaptedImages;
 	}
 
 	@JsonIgnore
-	public void setAdaptedMedia(UnsafeSupplier<AdaptedMedia[], Throwable> adaptedMediaUnsafeSupplier) {
+	public void setAdaptedImages(UnsafeSupplier<AdaptedImages[], Throwable> adaptedImagesUnsafeSupplier) {
 			try {
-				adaptedMedia = adaptedMediaUnsafeSupplier.get();
+				adaptedImages = adaptedImagesUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
@@ -60,19 +62,19 @@ public class DocumentImpl implements Document {
 
 	@GraphQLField
 	@JsonProperty
-	protected AdaptedMedia[] adaptedMedia;
-	public Long[] getCategory() {
-			return category;
+	protected AdaptedImages[] adaptedImages;
+	public AggregateRating getAggregateRating() {
+			return aggregateRating;
 	}
 
-	public void setCategory(Long[] category) {
-			this.category = category;
+	public void setAggregateRating(AggregateRating aggregateRating) {
+			this.aggregateRating = aggregateRating;
 	}
 
 	@JsonIgnore
-	public void setCategory(UnsafeSupplier<Long[], Throwable> categoryUnsafeSupplier) {
+	public void setAggregateRating(UnsafeSupplier<AggregateRating, Throwable> aggregateRatingUnsafeSupplier) {
 			try {
-				category = categoryUnsafeSupplier.get();
+				aggregateRating = aggregateRatingUnsafeSupplier.get();
 	}
 			catch (Throwable t) {
 				throw new RuntimeException(t);
@@ -81,7 +83,28 @@ public class DocumentImpl implements Document {
 
 	@GraphQLField
 	@JsonProperty
-	protected Long[] category;
+	protected AggregateRating aggregateRating;
+	public Categories[] getCategories() {
+			return categories;
+	}
+
+	public void setCategories(Categories[] categories) {
+			this.categories = categories;
+	}
+
+	@JsonIgnore
+	public void setCategories(UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
+			try {
+				categories = categoriesUnsafeSupplier.get();
+	}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+	}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Categories[] categories;
 	public String getContentUrl() {
 			return contentUrl;
 	}

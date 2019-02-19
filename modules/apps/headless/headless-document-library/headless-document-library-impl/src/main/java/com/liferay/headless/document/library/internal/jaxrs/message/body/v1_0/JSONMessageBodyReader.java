@@ -20,12 +20,16 @@ import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 
-import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
+import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
+import com.liferay.headless.document.library.dto.v1_0.AggregateRating;
+import com.liferay.headless.document.library.dto.v1_0.Categories;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
-import com.liferay.headless.document.library.internal.dto.v1_0.AdaptedMediaImpl;
+import com.liferay.headless.document.library.internal.dto.v1_0.AdaptedImagesImpl;
+import com.liferay.headless.document.library.internal.dto.v1_0.AggregateRatingImpl;
+import com.liferay.headless.document.library.internal.dto.v1_0.CategoriesImpl;
 import com.liferay.headless.document.library.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.document.library.internal.dto.v1_0.CreatorImpl;
 import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
@@ -70,7 +74,13 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 		Class<?> clazz, Type genericType, Annotation[] annotations,
 		MediaType mediaType) {
 
-			if (clazz.equals(AdaptedMedia.class)) {
+			if (clazz.equals(AdaptedImages.class)) {
+				return true;
+	}
+			if (clazz.equals(AggregateRating.class)) {
+				return true;
+	}
+			if (clazz.equals(Categories.class)) {
 				return true;
 	}
 			if (clazz.equals(Comment.class)) {
@@ -107,7 +117,9 @@ public class JSONMessageBodyReader implements MessageBodyReader<Object> {
 						setAbstractTypes(
 							new SimpleAbstractTypeResolver() {
 								{
-										addMapping(AdaptedMedia.class, AdaptedMediaImpl.class);
+										addMapping(AdaptedImages.class, AdaptedImagesImpl.class);
+										addMapping(AggregateRating.class, AggregateRatingImpl.class);
+										addMapping(Categories.class, CategoriesImpl.class);
 										addMapping(Comment.class, CommentImpl.class);
 										addMapping(Creator.class, CreatorImpl.class);
 										addMapping(Document.class, DocumentImpl.class);

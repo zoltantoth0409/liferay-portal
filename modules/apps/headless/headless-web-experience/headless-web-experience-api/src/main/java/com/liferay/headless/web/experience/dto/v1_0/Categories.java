@@ -23,27 +23,17 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface AggregateRating {
+public interface Categories {
 
-	public Number getBestRating();
+	public Long getCategoryId();
 
-	public void setBestRating(Number bestRating);
+	public void setCategoryId(Long categoryId);
 
-	public void setBestRating(UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier);
-	public Number getRatingCount();
+	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
+	public String getCategoryName();
 
-	public void setRatingCount(Number ratingCount);
+	public void setCategoryName(String categoryName);
 
-	public void setRatingCount(UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier);
-	public Number getRatingValue();
-
-	public void setRatingValue(Number ratingValue);
-
-	public void setRatingValue(UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier);
-	public Number getWorstRating();
-
-	public void setWorstRating(Number worstRating);
-
-	public void setWorstRating(UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier);
+	public void setCategoryName(UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier);
 
 }

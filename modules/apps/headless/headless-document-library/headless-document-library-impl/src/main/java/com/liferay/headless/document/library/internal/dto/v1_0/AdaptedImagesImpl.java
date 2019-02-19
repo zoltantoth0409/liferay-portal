@@ -17,7 +17,7 @@ package com.liferay.headless.document.library.internal.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.document.library.dto.v1_0.AdaptedMedia;
+import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
 import com.liferay.petra.function.UnsafeSupplier;
 
 import graphql.annotations.annotationTypes.GraphQLField;
@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@GraphQLName("AdaptedMedia")
-@XmlRootElement(name = "AdaptedMedia")
-public class AdaptedMediaImpl implements AdaptedMedia {
+@GraphQLName("AdaptedImages")
+@XmlRootElement(name = "AdaptedImages")
+public class AdaptedImagesImpl implements AdaptedImages {
 
 	public String getContentUrl() {
 			return contentUrl;

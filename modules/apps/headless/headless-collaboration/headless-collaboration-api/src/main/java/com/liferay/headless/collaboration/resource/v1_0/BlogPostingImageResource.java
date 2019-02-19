@@ -32,9 +32,9 @@ import javax.annotation.Generated;
 @Generated("")
 public interface BlogPostingImageResource {
 
-	public Page<BlogPostingImage> getImageObjectRepositoryBlogPostingImagesPage( Long imageObjectRepositoryId , Pagination pagination ) throws Exception;
+	public Page<BlogPostingImage> getContentSpaceBlogPostingImagesPage( Long contentSpaceId , Pagination pagination ) throws Exception;
 
-	public BlogPostingImage postImageObjectRepositoryBlogPostingImage( Long imageObjectRepositoryId , MultipartBody multipartBody ) throws Exception;
+	public BlogPostingImage postContentSpaceBlogPostingImage( Long contentSpaceId , MultipartBody multipartBody ) throws Exception;
 
 	public boolean deleteImageObject( Long imageObjectId ) throws Exception;
 

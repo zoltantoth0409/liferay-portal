@@ -17,7 +17,6 @@ package com.liferay.headless.foundation.internal.dto.v1_0;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
@@ -166,6 +165,27 @@ public class VocabularyImpl implements Vocabulary {
 	@GraphQLField
 	@JsonProperty
 	protected String description;
+	public Boolean getHasCategories() {
+			return hasCategories;
+	}
+
+	public void setHasCategories(Boolean hasCategories) {
+			this.hasCategories = hasCategories;
+	}
+
+	@JsonIgnore
+	public void setHasCategories(UnsafeSupplier<Boolean, Throwable> hasCategoriesUnsafeSupplier) {
+			try {
+				hasCategories = hasCategoriesUnsafeSupplier.get();
+	}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+	}
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasCategories;
 	public Long getId() {
 			return id;
 	}
@@ -208,47 +228,5 @@ public class VocabularyImpl implements Vocabulary {
 	@GraphQLField
 	@JsonProperty
 	protected String name;
-	public Category[] getVocabularyCategories() {
-			return vocabularyCategories;
-	}
-
-	public void setVocabularyCategories(Category[] vocabularyCategories) {
-			this.vocabularyCategories = vocabularyCategories;
-	}
-
-	@JsonIgnore
-	public void setVocabularyCategories(UnsafeSupplier<Category[], Throwable> vocabularyCategoriesUnsafeSupplier) {
-			try {
-				vocabularyCategories = vocabularyCategoriesUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Category[] vocabularyCategories;
-	public Long[] getVocabularyCategoriesIds() {
-			return vocabularyCategoriesIds;
-	}
-
-	public void setVocabularyCategoriesIds(Long[] vocabularyCategoriesIds) {
-			this.vocabularyCategoriesIds = vocabularyCategoriesIds;
-	}
-
-	@JsonIgnore
-	public void setVocabularyCategoriesIds(UnsafeSupplier<Long[], Throwable> vocabularyCategoriesIdsUnsafeSupplier) {
-			try {
-				vocabularyCategoriesIds = vocabularyCategoriesIdsUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
-
-	@GraphQLField
-	@JsonProperty
-	protected Long[] vocabularyCategoriesIds;
 
 }

@@ -37,33 +37,15 @@ import org.osgi.util.tracker.ServiceTracker;
 @Generated("")
 public class Mutation {
 
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Document postContentSpaceDocument( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("MultipartBody") MultipartBody multipartBody ) throws Exception {
+return _getDocumentResource().postContentSpaceDocument( contentSpaceId , multipartBody );
+	}
+
 	@GraphQLInvokeDetached
 	public boolean deleteDocument( @GraphQLName("document-id") Long documentId ) throws Exception {
 return _getDocumentResource().deleteDocument( documentId );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public boolean postDocumentCategories( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-return _getDocumentResource().postDocumentCategories( documentId , referenceId );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public boolean postDocumentCategoriesBatchCreate( @GraphQLName("document-id") Long documentId , @GraphQLName("Long") Long referenceId ) throws Exception {
-return _getDocumentResource().postDocumentCategoriesBatchCreate( documentId , referenceId );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Document postDocumentsRepositoryDocument( @GraphQLName("documents-repository-id") Long documentsRepositoryId , @GraphQLName("Document") Document document ) throws Exception {
-return _getDocumentResource().postDocumentsRepositoryDocument( documentsRepositoryId , document );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Document postDocumentsRepositoryDocumentBatchCreate( @GraphQLName("documents-repository-id") Long documentsRepositoryId , @GraphQLName("Document") Document document ) throws Exception {
-return _getDocumentResource().postDocumentsRepositoryDocumentBatchCreate( documentsRepositoryId , document );
 	}
 
 	@GraphQLField
@@ -74,20 +56,8 @@ return _getDocumentResource().postFolderDocument( folderId , multipartBody );
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Document postFolderDocumentBatchCreate( @GraphQLName("folder-id") Long folderId , @GraphQLName("MultipartBody") MultipartBody multipartBody ) throws Exception {
-return _getDocumentResource().postFolderDocumentBatchCreate( folderId , multipartBody );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Folder postDocumentsRepositoryFolder( @GraphQLName("documents-repository-id") Long documentsRepositoryId , @GraphQLName("Folder") Folder folder ) throws Exception {
-return _getFolderResource().postDocumentsRepositoryFolder( documentsRepositoryId , folder );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Folder postDocumentsRepositoryFolderBatchCreate( @GraphQLName("documents-repository-id") Long documentsRepositoryId , @GraphQLName("Folder") Folder folder ) throws Exception {
-return _getFolderResource().postDocumentsRepositoryFolderBatchCreate( documentsRepositoryId , folder );
+	public Folder postContentSpaceFolder( @GraphQLName("content-space-id") Long contentSpaceId , @GraphQLName("Folder") Folder folder ) throws Exception {
+return _getFolderResource().postContentSpaceFolder( contentSpaceId , folder );
 	}
 
 	@GraphQLInvokeDetached
@@ -104,12 +74,6 @@ return _getFolderResource().putFolder( folderId , folder );
 	@GraphQLInvokeDetached
 	public Folder postFolderFolder( @GraphQLName("folder-id") Long folderId , @GraphQLName("Folder") Folder folder ) throws Exception {
 return _getFolderResource().postFolderFolder( folderId , folder );
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Folder postFolderFolderBatchCreate( @GraphQLName("folder-id") Long folderId , @GraphQLName("Folder") Folder folder ) throws Exception {
-return _getFolderResource().postFolderFolderBatchCreate( folderId , folder );
 	}
 
 	private static DocumentResource _getDocumentResource() {

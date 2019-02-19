@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.collaboration.dto.v1_0;
+package com.liferay.headless.foundation.dto.v1_0;
 
 import com.liferay.petra.function.UnsafeSupplier;
 
@@ -23,17 +23,17 @@ import javax.annotation.Generated;
  * @generated
  */
 @Generated("")
-public interface Category {
+public interface ParentCategory {
 
-	public Long getCategoryId();
+	public Long getId();
 
-	public void setCategoryId(Long categoryId);
+	public void setId(Long id);
 
-	public void setCategoryId(UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
-	public String getCategoryName();
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public String getName();
 
-	public void setCategoryName(String categoryName);
+	public void setName(String name);
 
-	public void setCategoryName(UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier);
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
 
 }

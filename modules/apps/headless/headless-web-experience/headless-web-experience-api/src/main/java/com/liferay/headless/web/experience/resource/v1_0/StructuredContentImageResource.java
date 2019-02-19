@@ -12,33 +12,28 @@
  * details.
  */
 
-package com.liferay.headless.foundation.resource.v1_0;
+package com.liferay.headless.web.experience.resource.v1_0;
 
-import com.liferay.headless.foundation.dto.v1_0.Keyword;
+import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
 import com.liferay.portal.vulcan.pagination.Page;
-import com.liferay.portal.vulcan.pagination.Pagination;
 
 import javax.annotation.Generated;
 
 /**
  * To access this resource, run:
  *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-foundation/v1.0
+ *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/headless-web-experience/v1.0
  *
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface KeywordResource {
+public interface StructuredContentImageResource {
 
-	public Page<Keyword> getContentSpaceKeywordsPage( Long contentSpaceId , Pagination pagination ) throws Exception;
+	public Page<StructuredContentImage> getStructuredContentStructuredContentImagesPage( Long structuredContentId ) throws Exception;
 
-	public Keyword postContentSpaceKeyword( Long contentSpaceId , Keyword keyword ) throws Exception;
+	public boolean deleteStructuredContentContentDocument( Long structuredContentId , Long contentDocumentId ) throws Exception;
 
-	public boolean deleteKeyword( Long keywordId ) throws Exception;
-
-	public Keyword getKeyword( Long keywordId ) throws Exception;
-
-	public Keyword putKeyword( Long keywordId , Keyword keyword ) throws Exception;
+	public StructuredContentImage getStructuredContentContentDocument( Long structuredContentId , Long contentDocumentId ) throws Exception;
 
 }
