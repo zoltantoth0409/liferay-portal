@@ -666,39 +666,39 @@ public class UpgradeContentTargetingTest {
 	private String _getCustomFieldRuleTypeSettings(
 		ExpandoColumn expandoColumn, String expandoValue) {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObj.put("attributeName", expandoColumn.getName());
-		jsonObj.put("value", expandoValue);
+		jsonObject.put("attributeName", expandoColumn.getName());
+		jsonObject.put("value", expandoValue);
 
-		return jsonObj.toString();
+		return jsonObject.toString();
 	}
 
 	private String _getDateRangeTypeSettings(
 		ZonedDateTime startZonedDateTime, ZonedDateTime endZonedDateTime,
 		String timeZoneId, String type) {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd HH:mm", Locale.ENGLISH);
 
-		jsonObj.put(
+		jsonObject.put(
 			"startDate",
 			dateFormat.format(Date.from(startZonedDateTime.toInstant())));
 
-		jsonObj.put("startDateTimeZoneId", timeZoneId);
-		jsonObj.put("type", type);
+		jsonObject.put("startDateTimeZoneId", timeZoneId);
+		jsonObject.put("type", type);
 
 		if (type.equals("between")) {
-			jsonObj.put(
+			jsonObject.put(
 				"endDate",
 				dateFormat.format(Date.from(endZonedDateTime.toInstant())));
 
-			jsonObj.put("endDateTimeZoneId", timeZoneId);
+			jsonObject.put("endDateTimeZoneId", timeZoneId);
 		}
 
-		return jsonObj.toString();
+		return jsonObject.toString();
 	}
 
 	private static final String _CLASS_NAME =
