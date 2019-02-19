@@ -4132,8 +4132,8 @@ public class ProjectTemplatesTest {
 
 				sb.append(content);
 				sb.append("allprojects {\n");
-				sb.append("repositories {");
-				sb.append("mavenLocal()}}");
+				sb.append("\trepositories {\n");
+				sb.append("\t\tmavenLocal()\n\t}\n}");
 
 				content = sb.toString();
 
