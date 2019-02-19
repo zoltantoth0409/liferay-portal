@@ -49,7 +49,7 @@ public class AssetVocabularyModelDocumentContributor
 		document.addKeyword(
 			Field.ASSET_VOCABULARY_ID, assetVocabulary.getVocabularyId());
 
-		Locale siteDefaultLocale = getSiteDefaultLocale(
+		Locale siteDefaultLocale = _getSiteDefaultLocale(
 			assetVocabulary.getGroupId());
 
 		_searchLocalizationHelper.addLocalizedField(
@@ -60,11 +60,11 @@ public class AssetVocabularyModelDocumentContributor
 		document.addText(Field.TITLE, assetVocabulary.getTitle());
 		document.addLocalizedKeyword(
 			Field.TITLE,
-			populateMap(assetVocabulary, assetVocabulary.getTitleMap()), true,
+			_populateMap(assetVocabulary, assetVocabulary.getTitleMap()), true,
 			true);
 	}
 
-	protected Locale getSiteDefaultLocale(long groupId) {
+	private Locale _getSiteDefaultLocale(long groupId) {
 		try {
 			return _portal.getSiteDefaultLocale(groupId);
 		}
@@ -73,7 +73,7 @@ public class AssetVocabularyModelDocumentContributor
 		}
 	}
 
-	protected Map<Locale, String> populateMap(
+	private Map<Locale, String> _populateMap(
 		AssetVocabulary assetVocabulary, Map<Locale, String> map) {
 
 		String defaultValue = map.get(
