@@ -41,8 +41,8 @@ public abstract class BaseSumBucketPipelineAggregationTestCase
 		HistogramAggregation histogramAggregation = aggregations.histogram(
 			"histogram", Field.PRIORITY);
 
-		histogramAggregation.setMinDocCount(1L);
 		histogramAggregation.setInterval(5.0);
+		histogramAggregation.setMinDocCount(1L);
 
 		SumAggregation sumAggregation = aggregations.sum("sum", Field.PRIORITY);
 

@@ -43,8 +43,8 @@ public abstract class BaseHistogramAggregationTestCase
 		HistogramAggregation histogramAggregation = aggregations.histogram(
 			"histogram", Field.PRIORITY);
 
-		histogramAggregation.setMinDocCount(1L);
 		histogramAggregation.setInterval(5.0);
+		histogramAggregation.setMinDocCount(1L);
 
 		assertSearch(
 			indexingTestHelper -> {
