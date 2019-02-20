@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"osgi.jaxrs.extension=true",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.Headless.Document.Library)",
-		"osgi.jaxrs.name=Liferay.Vulcan.FileNameExceptionMapper"
+		"osgi.jaxrs.name=Liferay.Headless.Document.Library.FileNameExceptionMapper"
 	},
 	service = ExceptionMapper.class
 )
