@@ -120,7 +120,7 @@ public class DocumentResourceImpl
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _vocabularyEntityModel;
+		return _entityModel;
 	}
 
 	@Override
@@ -285,8 +285,7 @@ public class DocumentResourceImpl
 		};
 	}
 
-	private static final DocumentEntityModel _vocabularyEntityModel =
-		new DocumentEntityModel();
+	private static final EntityModel _entityModel = new DocumentEntityModel();
 
 	@Reference
 	private AMImageFinder _amImageFinder;
