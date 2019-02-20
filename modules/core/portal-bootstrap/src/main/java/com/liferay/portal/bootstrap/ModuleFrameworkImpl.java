@@ -616,8 +616,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		return urls;
 	}
 
-	private static String _getLPKGLocation(File lpkgfile) {
-		URI uri = lpkgfile.toURI();
+	private static String _getLPKGLocation(File lpkgFile) {
+		URI uri = lpkgFile.toURI();
 
 		String uriString = uri.toString();
 
