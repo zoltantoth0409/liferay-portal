@@ -162,7 +162,9 @@ public class SharingJavaScriptFactoryImpl implements SharingJavaScriptFactory {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot find asset renderer for classPK: " + classPK, pe);
+					"Unable to get asset renderer with class primary key " +
+						classPK,
+					pe);
 			}
 
 			return null;
