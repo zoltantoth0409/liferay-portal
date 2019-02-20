@@ -14,11 +14,13 @@
 
 package com.liferay.headless.document.library.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
-import com.liferay.headless.document.library.internal.dto.v1_0.FolderImpl;
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -30,6 +32,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
+
+import java.util.Date;
 
 import javax.annotation.Generated;
 
@@ -184,6 +188,171 @@ repositoryId = RandomTestUtil.randomLong();			}
 	}
 
 	protected Group testGroup;
+
+	protected class FolderImpl implements Folder {
+
+	public Date getDateCreated() {
+				return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+				this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
+	public void setDateCreated(UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+				try {
+					dateCreated = dateCreatedUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Date dateCreated;
+	public Date getDateModified() {
+				return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+				this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
+	public void setDateModified(UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+				try {
+					dateModified = dateModifiedUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Date dateModified;
+	public String getDescription() {
+				return description;
+	}
+
+	public void setDescription(String description) {
+				this.description = description;
+	}
+
+	@JsonIgnore
+	public void setDescription(UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+				try {
+					description = descriptionUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String description;
+	public Boolean getHasDocuments() {
+				return hasDocuments;
+	}
+
+	public void setHasDocuments(Boolean hasDocuments) {
+				this.hasDocuments = hasDocuments;
+	}
+
+	@JsonIgnore
+	public void setHasDocuments(UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier) {
+				try {
+					hasDocuments = hasDocumentsUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Boolean hasDocuments;
+	public Boolean getHasFolders() {
+				return hasFolders;
+	}
+
+	public void setHasFolders(Boolean hasFolders) {
+				this.hasFolders = hasFolders;
+	}
+
+	@JsonIgnore
+	public void setHasFolders(UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier) {
+				try {
+					hasFolders = hasFoldersUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Boolean hasFolders;
+	public Long getId() {
+				return id;
+	}
+
+	public void setId(Long id) {
+				this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+				try {
+					id = idUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Long id;
+	public String getName() {
+				return name;
+	}
+
+	public void setName(String name) {
+				this.name = name;
+	}
+
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+				try {
+					name = nameUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String name;
+	public Long getRepositoryId() {
+				return repositoryId;
+	}
+
+	public void setRepositoryId(Long repositoryId) {
+				this.repositoryId = repositoryId;
+	}
+
+	@JsonIgnore
+	public void setRepositoryId(UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+				try {
+					repositoryId = repositoryIdUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Long repositoryId;
+
+	}
 
 	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(

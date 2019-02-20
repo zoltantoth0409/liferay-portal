@@ -14,11 +14,13 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.headless.foundation.internal.dto.v1_0.EmailImpl;
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -103,6 +105,71 @@ type = RandomTestUtil.randomString();			}
 	}
 
 	protected Group testGroup;
+
+	protected class EmailImpl implements Email {
+
+	public String getEmail() {
+				return email;
+	}
+
+	public void setEmail(String email) {
+				this.email = email;
+	}
+
+	@JsonIgnore
+	public void setEmail(UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+				try {
+					email = emailUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String email;
+	public Long getId() {
+				return id;
+	}
+
+	public void setId(Long id) {
+				this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+				try {
+					id = idUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Long id;
+	public String getType() {
+				return type;
+	}
+
+	public void setType(String type) {
+				this.type = type;
+	}
+
+	@JsonIgnore
+	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
+				try {
+					type = typeUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String type;
+
+	}
 
 	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(

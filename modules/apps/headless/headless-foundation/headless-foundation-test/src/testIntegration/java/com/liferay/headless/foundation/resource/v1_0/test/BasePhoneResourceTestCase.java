@@ -14,11 +14,13 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.headless.foundation.internal.dto.v1_0.PhoneImpl;
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -104,6 +106,91 @@ phoneType = RandomTestUtil.randomString();			}
 	}
 
 	protected Group testGroup;
+
+	protected class PhoneImpl implements Phone {
+
+	public String getExtension() {
+				return extension;
+	}
+
+	public void setExtension(String extension) {
+				this.extension = extension;
+	}
+
+	@JsonIgnore
+	public void setExtension(UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
+				try {
+					extension = extensionUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String extension;
+	public Long getId() {
+				return id;
+	}
+
+	public void setId(Long id) {
+				this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+				try {
+					id = idUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Long id;
+	public String getPhoneNumber() {
+				return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+				this.phoneNumber = phoneNumber;
+	}
+
+	@JsonIgnore
+	public void setPhoneNumber(UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+				try {
+					phoneNumber = phoneNumberUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String phoneNumber;
+	public String getPhoneType() {
+				return phoneType;
+	}
+
+	public void setPhoneType(String phoneType) {
+				this.phoneType = phoneType;
+	}
+
+	@JsonIgnore
+	public void setPhoneType(UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+				try {
+					phoneType = phoneTypeUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String phoneType;
+
+	}
 
 	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(

@@ -14,11 +14,13 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
-import com.liferay.headless.foundation.internal.dto.v1_0.WebUrlImpl;
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -103,6 +105,71 @@ urlType = RandomTestUtil.randomString();			}
 	}
 
 	protected Group testGroup;
+
+	protected class WebUrlImpl implements WebUrl {
+
+	public Long getId() {
+				return id;
+	}
+
+	public void setId(Long id) {
+				this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+				try {
+					id = idUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected Long id;
+	public String getUrl() {
+				return url;
+	}
+
+	public void setUrl(String url) {
+				this.url = url;
+	}
+
+	@JsonIgnore
+	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
+				try {
+					url = urlUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String url;
+	public String getUrlType() {
+				return urlType;
+	}
+
+	public void setUrlType(String urlType) {
+				this.urlType = urlType;
+	}
+
+	@JsonIgnore
+	public void setUrlType(UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
+				try {
+					urlType = urlTypeUnsafeSupplier.get();
+	}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+	}
+	}
+
+	@JsonProperty
+	protected String urlType;
+
+	}
 
 	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
