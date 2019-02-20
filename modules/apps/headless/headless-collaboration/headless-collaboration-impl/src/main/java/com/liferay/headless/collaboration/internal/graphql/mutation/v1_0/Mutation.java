@@ -76,7 +76,7 @@ return _getBlogPostingImageResource().deleteImageObject( imageObjectId );
 	private static final ServiceTracker<BlogPostingImageResource, BlogPostingImageResource> _blogPostingImageResourceServiceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+			Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
 
 			ServiceTracker<BlogPostingResource, BlogPostingResource> blogPostingResourceServiceTracker =
 				new ServiceTracker<>(bundle.getBundleContext(), BlogPostingResource.class, null);

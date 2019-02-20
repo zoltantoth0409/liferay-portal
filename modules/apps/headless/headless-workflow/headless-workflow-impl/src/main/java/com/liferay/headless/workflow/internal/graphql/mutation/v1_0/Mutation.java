@@ -65,7 +65,7 @@ return _getWorkflowTaskResource().postWorkflowTaskUpdateDueDate( workflowTaskId 
 	private static final ServiceTracker<WorkflowTaskResource, WorkflowTaskResource> _workflowTaskResourceServiceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+			Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
 
 			ServiceTracker<WorkflowTaskResource, WorkflowTaskResource> workflowTaskResourceServiceTracker =
 				new ServiceTracker<>(bundle.getBundleContext(), WorkflowTaskResource.class, null);

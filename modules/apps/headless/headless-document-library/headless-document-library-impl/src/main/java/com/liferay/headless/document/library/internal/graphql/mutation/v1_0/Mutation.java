@@ -88,7 +88,7 @@ return _getFolderResource().postFolderFolder( folderId , folder );
 	private static final ServiceTracker<FolderResource, FolderResource> _folderResourceServiceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+			Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
 
 			ServiceTracker<DocumentResource, DocumentResource> documentResourceServiceTracker =
 				new ServiceTracker<>(bundle.getBundleContext(), DocumentResource.class, null);

@@ -132,7 +132,7 @@ return _getVocabularyResource().putVocabulary( vocabularyId , vocabulary );
 	private static final ServiceTracker<VocabularyResource, VocabularyResource> _vocabularyResourceServiceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+			Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
 
 			ServiceTracker<CategoryResource, CategoryResource> categoryResourceServiceTracker =
 				new ServiceTracker<>(bundle.getBundleContext(), CategoryResource.class, null);

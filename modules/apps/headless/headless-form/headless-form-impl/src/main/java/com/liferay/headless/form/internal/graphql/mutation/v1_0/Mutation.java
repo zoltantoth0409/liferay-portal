@@ -82,7 +82,7 @@ return _getFormRecordResource().postFormFormRecord( formId , formRecord );
 	private static final ServiceTracker<FormRecordResource, FormRecordResource> _formRecordResourceServiceTracker;
 
 	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
+			Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
 
 			ServiceTracker<FormResource, FormResource> formResourceServiceTracker =
 				new ServiceTracker<>(bundle.getBundleContext(), FormResource.class, null);
