@@ -3140,12 +3140,12 @@ public class JournalArticleLocalServiceImpl
 			return getStructureArticles(ddmStructureKeys);
 		}
 
+		List<JournalArticle> articles = new ArrayList<>();
+
 		QueryDefinition<JournalArticle> approvedQueryDefinition =
 			new QueryDefinition<>(
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, new ArticleVersionComparator());
-
-		List<JournalArticle> articles = new ArrayList<>();
 
 		articles.addAll(
 			journalArticleFinder.findByG_C_S_L(
