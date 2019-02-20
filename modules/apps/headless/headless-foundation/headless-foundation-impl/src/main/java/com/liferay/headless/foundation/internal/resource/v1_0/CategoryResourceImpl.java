@@ -108,7 +108,7 @@ public class CategoryResourceImpl
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _categoryEntityModel;
+		return _entityModel;
 	}
 
 	@Override
@@ -280,8 +280,7 @@ public class CategoryResourceImpl
 		};
 	}
 
-	private static final CategoryEntityModel _categoryEntityModel =
-		new CategoryEntityModel();
+	private static final EntityModel _entityModel = new CategoryEntityModel();
 
 	@Reference
 	private AssetCategoryService _assetCategoryService;
