@@ -377,7 +377,6 @@ public class StagingImpl implements Staging {
 			settingsMap, "remotePathContext");
 		boolean secureConnection = MapUtil.getBoolean(
 			settingsMap, "secureConnection");
-
 		boolean remotePrivateLayout = MapUtil.getBoolean(
 			settingsMap, "remotePrivateLayout");
 
@@ -907,8 +906,9 @@ public class StagingImpl implements Staging {
 		else if (e.getCause() instanceof ConnectException) {
 			Map settingsMap = exportImportConfiguration.getSettingsMap();
 
-			String remoteAddress = (String)settingsMap.get("remoteAddress");
-			String remotePort = String.valueOf(settingsMap.get("remotePort"));
+			String remoteAddress = MapUtil.getString(
+				settingsMap, "remoteAddress");
+			String remotePort = MapUtil.getString(settingsMap, "remotePort");
 
 			String argument = remoteAddress + ":" + remotePort;
 
