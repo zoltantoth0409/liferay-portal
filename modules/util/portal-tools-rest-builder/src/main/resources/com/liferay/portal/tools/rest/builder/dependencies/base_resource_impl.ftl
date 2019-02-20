@@ -67,18 +67,17 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch")>
 				<#assign firstJavaParameter = javaMethodSignature.javaParameters[0] />
 
-				${schemaName} old${schemaName} = get${schemaName}(${firstJavaParameter.parameterName});
+				${schemaName} existing${schemaName} = get${schemaName}(${firstJavaParameter.parameterName});
 
 				<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schemaName, false) as javaParameter>
 					<#if !freeMarkerTool.isSchemaParameter(javaParameter, openAPIYAML)>
 						if (Validator.isNotNull(${schemaName?uncap_first}.get${javaParameter.parameterName?cap_first}())) {
-							old${schemaName}.set${javaParameter.parameterName?cap_first}(
-								${schemaName?uncap_first}.get${javaParameter.parameterName?cap_first}());
+							existing${schemaName}.set${javaParameter.parameterName?cap_first}(${schemaName?uncap_first}.get${javaParameter.parameterName?cap_first}());
 						}
 					</#if>
 				</#list>
 
-				return put${schemaName}(${firstJavaParameter.parameterName}, old${schemaName});
+				return put${schemaName}(${firstJavaParameter.parameterName}, existing${schemaName});
 			<#else>
 				return new ${javaMethodSignature.returnType}Impl();
 			</#if>
