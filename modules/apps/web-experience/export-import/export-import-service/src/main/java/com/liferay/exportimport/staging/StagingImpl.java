@@ -665,7 +665,25 @@ public class StagingImpl implements Staging {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		if (e instanceof DuplicateFileEntryException) {
+		if (e.getCause() instanceof ConnectException) {
+			Map settingsMap = exportImportConfiguration.getSettingsMap();
+
+			String remoteAddress = MapUtil.getString(
+				settingsMap, "remoteAddress");
+			String remotePort = MapUtil.getString(settingsMap, "remotePort");
+
+			String argument = remoteAddress + ":" + remotePort;
+
+			errorMessage = LanguageUtil.format(
+				resourceBundle,
+				"could-not-connect-to-address-x.-please-verify-that-the-" +
+					"specified-port-is-correct-and-that-the-remote-server-is-" +
+						"configured-to-accept-requests-from-this-server",
+				argument);
+
+			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
+		}
+		else if (e instanceof DuplicateFileEntryException) {
 			errorMessage = LanguageUtil.get(
 				locale, "please-enter-a-unique-document-name");
 			errorType = ServletResponseConstants.SC_DUPLICATE_FILE_EXCEPTION;
@@ -901,24 +919,6 @@ public class StagingImpl implements Staging {
 		else if (e instanceof PortletIdException) {
 			errorMessage = LanguageUtil.get(
 				locale, "please-import-a-lar-file-for-the-current-portlet");
-			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
-		}
-		else if (e.getCause() instanceof ConnectException) {
-			Map settingsMap = exportImportConfiguration.getSettingsMap();
-
-			String remoteAddress = MapUtil.getString(
-				settingsMap, "remoteAddress");
-			String remotePort = MapUtil.getString(settingsMap, "remotePort");
-
-			String argument = remoteAddress + ":" + remotePort;
-
-			errorMessage = LanguageUtil.format(
-				resourceBundle,
-				"could-not-connect-to-address-x.-please-verify-that-the-" +
-					"specified-port-is-correct-and-that-the-remote-server-is-" +
-						"configured-to-accept-requests-from-this-server",
-				argument);
-
 			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
 		}
 		else {
