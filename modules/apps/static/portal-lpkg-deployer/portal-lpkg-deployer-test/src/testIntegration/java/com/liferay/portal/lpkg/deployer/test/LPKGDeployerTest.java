@@ -130,7 +130,7 @@ public class LPKGDeployerTest {
 		Method method = clazz.getDeclaredMethod(
 			"generateInnerBundleLocation", Bundle.class, String.class);
 
-		Method lpkgLocationmethod = clazz.getDeclaredMethod(
+		Method lpkgLocationMethod = clazz.getDeclaredMethod(
 			"getLPKGLocation", File.class);
 
 		serviceTracker.close();
@@ -139,7 +139,7 @@ public class LPKGDeployerTest {
 			lpkgDeployer.getDeployedLPKGBundles();
 
 		for (File lpkgFile : lpkgFiles) {
-			String lpkgLocation = (String)lpkgLocationmethod.invoke(
+			String lpkgLocation = (String)lpkgLocationMethod.invoke(
 				null, lpkgFile);
 
 			Bundle lpkgBundle = bundleContext.getBundle(lpkgLocation);
@@ -178,7 +178,7 @@ public class LPKGDeployerTest {
 
 						String location =
 							name + "?lpkgPath=" +
-								lpkgLocationmethod.invoke(null, file) +
+								lpkgLocationMethod.invoke(null, file) +
 									"&protocol=lpkg&static=true";
 
 						Bundle bundle = bundleContext.getBundle(location);

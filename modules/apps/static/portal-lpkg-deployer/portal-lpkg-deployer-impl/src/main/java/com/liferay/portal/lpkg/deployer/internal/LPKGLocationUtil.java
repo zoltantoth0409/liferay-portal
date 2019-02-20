@@ -36,8 +36,8 @@ public class LPKGLocationUtil {
 		return location.concat(lpkgBundle.getLocation());
 	}
 
-	public static String getLPKGLocation(File lpkgfile) {
-		URI uri = lpkgfile.toURI();
+	public static String getLPKGLocation(File lpkgFile) {
+		URI uri = lpkgFile.toURI();
 
 		String uriString = uri.toString();
 
