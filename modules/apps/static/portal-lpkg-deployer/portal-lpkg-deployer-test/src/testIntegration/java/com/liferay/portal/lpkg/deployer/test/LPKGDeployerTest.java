@@ -127,7 +127,7 @@ public class LPKGDeployerTest {
 		Class<?> clazz = lpkgDeployerBundle.loadClass(
 			"com.liferay.portal.lpkg.deployer.internal.LPKGLocationUtil");
 
-		Method method = clazz.getDeclaredMethod(
+		Method generateInnerBundleLocationMethod = clazz.getDeclaredMethod(
 			"generateInnerBundleLocation", Bundle.class, String.class);
 
 		Method lpkgLocationMethod = clazz.getDeclaredMethod(
@@ -188,8 +188,9 @@ public class LPKGDeployerTest {
 							bundle);
 					}
 					else {
-						String location = (String)method.invoke(
-							null, lpkgBundle, name);
+						String location =
+							(String)generateInnerBundleLocationMethod.invoke(
+								null, lpkgBundle, name);
 
 						Bundle bundle = bundleContext.getBundle(location);
 
@@ -201,8 +202,9 @@ public class LPKGDeployerTest {
 				}
 
 				if (name.endsWith(".war")) {
-					String location = (String)method.invoke(
-						null, lpkgBundle, name);
+					String location =
+						(String)generateInnerBundleLocationMethod.invoke(
+							null, lpkgBundle, name);
 
 					Bundle bundle = bundleContext.getBundle(location);
 
