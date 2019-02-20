@@ -1,15 +1,17 @@
 package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 
 <#compress>
-	<#list openAPIYAML.components.schemas?keys as schemaName>
+	<#list allSchemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
-		import ${configYAML.apiPackagePath}.internal.dto.${versionDirName}.${schemaName}Impl;
 	</#list>
 </#compress>
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -25,6 +27,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
+
+import java.util.Date;
 
 import javax.annotation.Generated;
 
@@ -130,6 +134,33 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	protected Group testGroup;
+
+	protected class ${schemaName}Impl implements ${schemaName} {
+
+		<#list javaTool.getJavaParameters(schema) as javaParameter>
+			public ${javaParameter.parameterType} get${javaParameter.parameterName?cap_first}() {
+				return ${javaParameter.parameterName};
+			}
+
+			public void set${javaParameter.parameterName?cap_first}(${javaParameter.parameterType} ${javaParameter.parameterName}) {
+				this.${javaParameter.parameterName} = ${javaParameter.parameterName};
+			}
+
+			@JsonIgnore
+			public void set${javaParameter.parameterName?cap_first}(UnsafeSupplier<${javaParameter.parameterType}, Throwable> ${javaParameter.parameterName}UnsafeSupplier) {
+				try {
+					${javaParameter.parameterName} = ${javaParameter.parameterName}UnsafeSupplier.get();
+				}
+				catch (Throwable t) {
+					throw new RuntimeException(t);
+				}
+			}
+
+			@JsonProperty
+			protected ${javaParameter.parameterType} ${javaParameter.parameterName};
+		</#list>
+
+	}
 
 	private RequestSpecification _createRequestSpecification() {
 		return RestAssured.given(
