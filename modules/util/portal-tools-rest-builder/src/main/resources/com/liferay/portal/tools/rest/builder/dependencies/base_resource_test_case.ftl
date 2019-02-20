@@ -64,6 +64,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	</#list>
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
 		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(
 				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
@@ -96,6 +100,35 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#else>
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ${javaMethodSignature.returnType}Impl.class);
 			</#if>
+		}
+
+		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(
+				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
+
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaName?uncap_first}")>
+				options.setBody(_inputObjectMapper.writeValueAsString(${schemaName?uncap_first}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			</#if>
+
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
+				options.setDelete(true);
+			</#if>
+
+			options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${stringUtil.replaceLast(arguments, ",pagination", "")}));
+
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
+				options.setPost(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put")>
+				options.setPut(true);
+			</#if>
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 		}
 	</#list>
 
