@@ -129,7 +129,6 @@ public class LPKGDeployerTest {
 
 		Method generateInnerBundleLocationMethod = clazz.getDeclaredMethod(
 			"generateInnerBundleLocation", Bundle.class, String.class);
-
 		Method lpkgLocationMethod = clazz.getDeclaredMethod(
 			"getLPKGLocation", File.class);
 
