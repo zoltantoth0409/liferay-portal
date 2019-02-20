@@ -17,14 +17,14 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -35,7 +35,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -44,11 +43,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class Base${schemaName}ResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -71,28 +65,36 @@ public abstract class Base${schemaName}ResourceTestCase {
 	</#list>
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
-		protected Response invoke${javaMethodSignature.methodName?cap_first}(
+		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(
 				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
 			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaName?uncap_first}")>
-				return requestSpecification.body(
-					${schemaName?uncap_first}
-				).when(
-				).${freeMarkerTool.getHTTPMethod(javaMethodSignature.operation)}(
-					_resourceURL + "${javaMethodSignature.path}",
-					${stringUtil.replaceLast(arguments, ",${schemaName?uncap_first}", "")}
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(${schemaName?uncap_first}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			</#if>
+
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
+				options.setDelete(true);
+			</#if>
+
+			options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${stringUtil.replaceLast(arguments, ",pagination", "")}));
+
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post")>
+				options.setPost(true);
+			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "put")>
+				options.setPut(true);
+			</#if>
+
+			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
+			<#elseif javaMethodSignature.returnType?contains("Page<")>
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 			<#else>
-				return requestSpecification.when(
-				).${freeMarkerTool.getHTTPMethod(javaMethodSignature.operation)}(
-					_resourceURL + "${javaMethodSignature.path}",
-					${stringUtil.replaceLast(arguments, ",pagination", "")}
-				);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ${javaMethodSignature.returnType}Impl.class);
 			</#if>
 		}
 	</#list>
@@ -115,7 +117,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class ${schemaName}Impl implements ${schemaName} {
+	protected static class ${schemaName}Impl implements ${schemaName} {
 
 		<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schema, false) as javaParameter>
 			public ${javaParameter.parameterType} get${javaParameter.parameterName?cap_first}() {
@@ -144,17 +146,24 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
