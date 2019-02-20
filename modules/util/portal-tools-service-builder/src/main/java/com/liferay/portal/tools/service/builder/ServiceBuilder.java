@@ -586,9 +586,9 @@ public class ServiceBuilder {
 			_uadDirName = _normalize(uadDirName);
 			_build = build;
 
-			_badTableNames = _readLines(_tplBadTableNames);
 			_badAliasNames = _readLines(_tplBadAliasNames);
 			_badColumnNames = _readLines(_tplBadColumnNames);
+			_badTableNames = _readLines(_tplBadTableNames);
 
 			_commercialPlugin = _isCommercialPlugin(Paths.get("."));
 
@@ -618,12 +618,10 @@ public class ServiceBuilder {
 				_badAliasNames,
 				StringUtil.split(
 					_compatProperties.getProperty("bad.alias.names.extra")));
-
 			Collections.addAll(
 				_badColumnNames,
 				StringUtil.split(
 					_compatProperties.getProperty("bad.column.names.extra")));
-
 			Collections.addAll(
 				_badTableNames,
 				StringUtil.split(
