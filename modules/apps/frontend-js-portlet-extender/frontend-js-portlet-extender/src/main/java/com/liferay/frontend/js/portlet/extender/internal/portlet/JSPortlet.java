@@ -64,28 +64,26 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 			String portletElementId =
 				"js-portlet-" + renderResponse.getNamespace();
 
-			String html = StringUtil.replace(
-				_TPL_HTML, new String[] {"[$PORTLET_ELEMENT_ID$]"},
-				new String[] {portletElementId});
+			printWriter.print(
+				StringUtil.replace(
+					_TPL_HTML, new String[] {"[$PORTLET_ELEMENT_ID$]"},
+					new String[] {portletElementId}));
 
-			printWriter.print(html);
-
-			String javascript = StringUtil.replace(
-				_TPL_JAVA_SCRIPT,
-				new String[] {
-					"[$CONTEXT_PATH$]", "[$PACKAGE_NAME$]",
-					"[$PACKAGE_VERSION$]", "[$PORTLET_ELEMENT_ID$]",
-					"[$PORTLET_NAMESPACE$]", "[$PORTLET_PREFERENCES$]",
-					"[$SETTINGS$]"
-				},
-				new String[] {
-					renderRequest.getContextPath(), _packageName,
-					_packageVersion, portletElementId,
-					renderResponse.getNamespace(),
-					_getPortletPreferences(renderRequest), _getSettings()
-				});
-
-			printWriter.print(javascript);
+			printWriter.print(
+				StringUtil.replace(
+					_TPL_JAVA_SCRIPT,
+					new String[] {
+						"[$CONTEXT_PATH$]", "[$PACKAGE_NAME$]",
+						"[$PACKAGE_VERSION$]", "[$PORTLET_ELEMENT_ID$]",
+						"[$PORTLET_NAMESPACE$]", "[$PORTLET_PREFERENCES$]",
+						"[$SETTINGS$]"
+					},
+					new String[] {
+						renderRequest.getContextPath(), _packageName,
+						_packageVersion, portletElementId,
+						renderResponse.getNamespace(),
+						_getPortletPreferences(renderRequest), _getSettings()
+					}));
 
 			printWriter.flush();
 		}
