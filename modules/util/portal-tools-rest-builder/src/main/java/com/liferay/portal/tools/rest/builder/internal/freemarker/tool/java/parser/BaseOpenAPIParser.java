@@ -615,18 +615,22 @@ public class BaseOpenAPIParser {
 			return className + "[]";
 		}
 		else if (type.endsWith(">")) {
+			StringBuilder sb = new StringBuilder();
+
 			String dataClassName = _toFullyQualifiedClassName(
 				configYAML, openAPIYAML, schemaNames,
 				type.substring(0, type.indexOf("<")));
+
+			sb.append(dataClassName);
+
+			sb.append("<");
+
 			String genericClassName = _toFullyQualifiedClassName(
 				configYAML, openAPIYAML, schemaNames,
 				type.substring(type.indexOf("<") + 1, type.indexOf(">")));
 
-			StringBuilder sb = new StringBuilder();
-
-			sb.append(dataClassName);
-			sb.append("<");
 			sb.append(genericClassName);
+
 			sb.append(">");
 
 			return sb.toString();
