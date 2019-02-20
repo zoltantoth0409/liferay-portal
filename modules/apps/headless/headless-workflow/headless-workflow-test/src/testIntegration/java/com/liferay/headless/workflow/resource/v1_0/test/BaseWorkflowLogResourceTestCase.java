@@ -71,6 +71,10 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected WorkflowLog invokeGetWorkflowLog(
 				Long workflowLogId)
 			throws Exception {
@@ -81,6 +85,19 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowLogImpl.class);
 	}
+
+	protected Http.Response invokeGetWorkflowLogResponse(
+				Long workflowLogId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<WorkflowLog> invokeGetWorkflowTaskWorkflowLogsPage(
 				Long workflowTaskId,Pagination pagination)
 			throws Exception {
@@ -90,6 +107,19 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/workflow-logs", workflowTaskId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetWorkflowTaskWorkflowLogsPageResponse(
+				Long workflowTaskId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/workflow-logs", workflowTaskId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected WorkflowLog randomWorkflowLog() {

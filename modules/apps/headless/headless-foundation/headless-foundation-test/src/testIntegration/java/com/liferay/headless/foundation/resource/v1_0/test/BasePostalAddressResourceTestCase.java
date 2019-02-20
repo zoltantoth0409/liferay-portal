@@ -68,6 +68,10 @@ public abstract class BasePostalAddressResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<PostalAddress> invokeGetGenericParentPostalAddressesPage(
 				Object genericParentId,Pagination pagination)
 			throws Exception {
@@ -78,6 +82,19 @@ public abstract class BasePostalAddressResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetGenericParentPostalAddressesPageResponse(
+				Object genericParentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/addresses", genericParentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected PostalAddress invokeGetAddress(
 				Long addressId)
 			throws Exception {
@@ -87,6 +104,19 @@ public abstract class BasePostalAddressResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/addresses/{address-id}", addressId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), PostalAddressImpl.class);
+	}
+
+	protected Http.Response invokeGetAddressResponse(
+				Long addressId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/addresses/{address-id}", addressId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected PostalAddress randomPostalAddress() {

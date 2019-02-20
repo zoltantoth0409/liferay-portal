@@ -68,6 +68,10 @@ public abstract class BasePhoneResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Phone> invokeGetGenericParentPhonesPage(
 				Object genericParentId,Pagination pagination)
 			throws Exception {
@@ -78,6 +82,19 @@ public abstract class BasePhoneResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetGenericParentPhonesPageResponse(
+				Object genericParentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Phone invokeGetPhone(
 				Long phoneId)
 			throws Exception {
@@ -87,6 +104,19 @@ public abstract class BasePhoneResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/phones/{phone-id}", phoneId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), PhoneImpl.class);
+	}
+
+	protected Http.Response invokeGetPhoneResponse(
+				Long phoneId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/phones/{phone-id}", phoneId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Phone randomPhone() {

@@ -76,6 +76,10 @@ public abstract class BaseCommentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Comment invokeGetComment(
 				Long commentId)
 			throws Exception {
@@ -85,6 +89,19 @@ public abstract class BaseCommentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), CommentImpl.class);
+	}
+
+	protected Http.Response invokeGetCommentResponse(
+				Long commentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Page<Comment> invokeGetCommentCommentsPage(
 				Long commentId,Pagination pagination)
@@ -96,6 +113,19 @@ public abstract class BaseCommentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetCommentCommentsPageResponse(
+				Long commentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}/comments", commentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Comment> invokeGetStructuredContentCommentsPage(
 				Long structuredContentId,Pagination pagination)
 			throws Exception {
@@ -105,6 +135,19 @@ public abstract class BaseCommentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/comments", structuredContentId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentCommentsPageResponse(
+				Long structuredContentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/comments", structuredContentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Comment randomComment() {

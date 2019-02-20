@@ -75,6 +75,10 @@ public abstract class BaseContentStructureResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<ContentStructure> invokeGetContentSpaceContentStructuresPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -85,6 +89,19 @@ public abstract class BaseContentStructureResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetContentSpaceContentStructuresPageResponse(
+				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/content-structures", contentSpaceId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected ContentStructure invokeGetContentStructure(
 				Long contentStructureId)
 			throws Exception {
@@ -94,6 +111,19 @@ public abstract class BaseContentStructureResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-structures/{content-structure-id}", contentStructureId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ContentStructureImpl.class);
+	}
+
+	protected Http.Response invokeGetContentStructureResponse(
+				Long contentStructureId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-structures/{content-structure-id}", contentStructureId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected ContentStructure randomContentStructure() {

@@ -74,6 +74,10 @@ public abstract class BaseFormStructureResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<FormStructure> invokeGetContentSpaceFormStructuresPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
@@ -84,6 +88,19 @@ public abstract class BaseFormStructureResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetContentSpaceFormStructuresPageResponse(
+				Long contentSpaceId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/form-structures", contentSpaceId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected FormStructure invokeGetFormStructure(
 				Long formStructureId)
 			throws Exception {
@@ -93,6 +110,19 @@ public abstract class BaseFormStructureResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/form-structures/{form-structure-id}", formStructureId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormStructureImpl.class);
+	}
+
+	protected Http.Response invokeGetFormStructureResponse(
+				Long formStructureId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/form-structures/{form-structure-id}", formStructureId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected FormStructure randomFormStructure() {

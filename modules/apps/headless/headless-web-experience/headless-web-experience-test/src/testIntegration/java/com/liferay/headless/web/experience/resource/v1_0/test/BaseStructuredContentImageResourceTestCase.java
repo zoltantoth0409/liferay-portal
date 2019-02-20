@@ -75,6 +75,10 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<StructuredContentImage> invokeGetStructuredContentStructuredContentImagesPage(
 				Long structuredContentId)
 			throws Exception {
@@ -84,6 +88,19 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentStructuredContentImagesPageResponse(
+				Long structuredContentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected boolean invokeDeleteStructuredContentContentDocument(
 				Long structuredContentId,Long contentDocumentId)
@@ -97,6 +114,21 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteStructuredContentContentDocumentResponse(
+				Long structuredContentId,Long contentDocumentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId,contentDocumentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected StructuredContentImage invokeGetStructuredContentContentDocument(
 				Long structuredContentId,Long contentDocumentId)
 			throws Exception {
@@ -106,6 +138,19 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId,contentDocumentId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImageImpl.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentContentDocumentResponse(
+				Long structuredContentId,Long contentDocumentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId,contentDocumentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {

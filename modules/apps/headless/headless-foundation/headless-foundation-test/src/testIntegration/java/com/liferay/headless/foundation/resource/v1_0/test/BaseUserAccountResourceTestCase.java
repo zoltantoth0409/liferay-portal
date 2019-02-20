@@ -99,6 +99,10 @@ public abstract class BaseUserAccountResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected UserAccount invokeGetMyUserAccount(
 				Long myUserAccountId)
 			throws Exception {
@@ -108,6 +112,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}", myUserAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
+	}
+
+	protected Http.Response invokeGetMyUserAccountResponse(
+				Long myUserAccountId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}", myUserAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Page<UserAccount> invokeGetOrganizationUserAccountsPage(
 				Long organizationId,Pagination pagination)
@@ -119,6 +136,19 @@ public abstract class BaseUserAccountResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetOrganizationUserAccountsPageResponse(
+				Long organizationId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/user-accounts", organizationId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<UserAccount> invokeGetUserAccountsPage(
 				String fullnamequery,Pagination pagination)
 			throws Exception {
@@ -128,6 +158,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/user-accounts", fullnamequery));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetUserAccountsPageResponse(
+				String fullnamequery,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts", fullnamequery));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected UserAccount invokePostUserAccount(
 				UserAccount userAccount)
@@ -141,6 +184,21 @@ public abstract class BaseUserAccountResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
+
+	protected Http.Response invokePostUserAccountResponse(
+				UserAccount userAccount)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts", userAccount));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteUserAccount(
 				Long userAccountId)
 			throws Exception {
@@ -153,6 +211,21 @@ public abstract class BaseUserAccountResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteUserAccountResponse(
+				Long userAccountId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected UserAccount invokeGetUserAccount(
 				Long userAccountId)
 			throws Exception {
@@ -162,6 +235,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
+	}
+
+	protected Http.Response invokeGetUserAccountResponse(
+				Long userAccountId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected UserAccount invokePutUserAccount(
 				Long userAccountId,UserAccount userAccount)
@@ -177,6 +263,23 @@ public abstract class BaseUserAccountResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
+
+	protected Http.Response invokePutUserAccountResponse(
+				Long userAccountId,UserAccount userAccount)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(userAccount), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId,userAccount));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<UserAccount> invokeGetWebSiteUserAccountsPage(
 				Long webSiteId,Pagination pagination)
 			throws Exception {
@@ -186,6 +289,19 @@ public abstract class BaseUserAccountResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetWebSiteUserAccountsPageResponse(
+				Long webSiteId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected UserAccount randomUserAccount() {

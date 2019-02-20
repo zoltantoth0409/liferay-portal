@@ -67,6 +67,10 @@ public abstract class BaseFormDocumentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected boolean invokeDeleteFormDocument(
 				Long formDocumentId)
 			throws Exception {
@@ -79,6 +83,21 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteFormDocumentResponse(
+				Long formDocumentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/form-documents/{form-document-id}", formDocumentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected FormDocument invokeGetFormDocument(
 				Long formDocumentId)
 			throws Exception {
@@ -88,6 +107,19 @@ public abstract class BaseFormDocumentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/form-documents/{form-document-id}", formDocumentId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormDocumentImpl.class);
+	}
+
+	protected Http.Response invokeGetFormDocumentResponse(
+				Long formDocumentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/form-documents/{form-document-id}", formDocumentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected FormDocument randomFormDocument() {

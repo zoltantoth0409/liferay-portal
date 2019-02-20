@@ -79,6 +79,10 @@ public abstract class BaseRoleResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Role> invokeGetMyUserAccountRolesPage(
 				Long myUserAccountId,Pagination pagination)
 			throws Exception {
@@ -88,6 +92,19 @@ public abstract class BaseRoleResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/roles", myUserAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetMyUserAccountRolesPageResponse(
+				Long myUserAccountId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/roles", myUserAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Page<Role> invokeGetRolesPage(
 				Pagination pagination)
@@ -99,6 +116,19 @@ public abstract class BaseRoleResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetRolesPageResponse(
+				Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/roles", pagination));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Role invokeGetRole(
 				Long roleId)
 			throws Exception {
@@ -109,6 +139,19 @@ public abstract class BaseRoleResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), RoleImpl.class);
 	}
+
+	protected Http.Response invokeGetRoleResponse(
+				Long roleId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/roles/{role-id}", roleId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Role> invokeGetUserAccountRolesPage(
 				Long userAccountId,Pagination pagination)
 			throws Exception {
@@ -118,6 +161,19 @@ public abstract class BaseRoleResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/roles", userAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetUserAccountRolesPageResponse(
+				Long userAccountId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/roles", userAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Role randomRole() {

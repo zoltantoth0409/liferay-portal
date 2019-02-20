@@ -68,6 +68,10 @@ public abstract class BaseWebUrlResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<WebUrl> invokeGetGenericParentWebUrlsPage(
 				Object genericParentId,Pagination pagination)
 			throws Exception {
@@ -78,6 +82,19 @@ public abstract class BaseWebUrlResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetGenericParentWebUrlsPageResponse(
+				Object genericParentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/web-urls", genericParentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected WebUrl invokeGetWebUrl(
 				Long webUrlId)
 			throws Exception {
@@ -87,6 +104,19 @@ public abstract class BaseWebUrlResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WebUrlImpl.class);
+	}
+
+	protected Http.Response invokeGetWebUrlResponse(
+				Long webUrlId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected WebUrl randomWebUrl() {

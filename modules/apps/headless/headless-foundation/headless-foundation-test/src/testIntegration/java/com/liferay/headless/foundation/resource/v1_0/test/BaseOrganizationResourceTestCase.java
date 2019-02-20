@@ -84,6 +84,10 @@ public abstract class BaseOrganizationResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Organization> invokeGetMyUserAccountOrganizationsPage(
 				Long myUserAccountId,Pagination pagination)
 			throws Exception {
@@ -93,6 +97,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/organizations", myUserAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetMyUserAccountOrganizationsPageResponse(
+				Long myUserAccountId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/organizations", myUserAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Page<Organization> invokeGetOrganizationsPage(
 				Pagination pagination)
@@ -104,6 +121,19 @@ public abstract class BaseOrganizationResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetOrganizationsPageResponse(
+				Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/organizations", pagination));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Organization invokeGetOrganization(
 				Long organizationId)
 			throws Exception {
@@ -113,6 +143,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}", organizationId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), OrganizationImpl.class);
+	}
+
+	protected Http.Response invokeGetOrganizationResponse(
+				Long organizationId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}", organizationId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Page<Organization> invokeGetOrganizationOrganizationsPage(
 				Long organizationId,Pagination pagination)
@@ -124,6 +167,19 @@ public abstract class BaseOrganizationResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetOrganizationOrganizationsPageResponse(
+				Long organizationId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/organizations", organizationId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Organization> invokeGetUserAccountOrganizationsPage(
 				Long userAccountId,Pagination pagination)
 			throws Exception {
@@ -133,6 +189,19 @@ public abstract class BaseOrganizationResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/organizations", userAccountId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetUserAccountOrganizationsPageResponse(
+				Long userAccountId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/organizations", userAccountId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Organization randomOrganization() {

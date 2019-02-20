@@ -84,6 +84,10 @@ public abstract class BaseFormRecordResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected FormRecord invokeGetFormRecord(
 				Long formRecordId)
 			throws Exception {
@@ -93,6 +97,19 @@ public abstract class BaseFormRecordResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/form-records/{form-record-id}", formRecordId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
+	}
+
+	protected Http.Response invokeGetFormRecordResponse(
+				Long formRecordId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/form-records/{form-record-id}", formRecordId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected FormRecord invokePutFormRecord(
 				Long formRecordId,FormRecord formRecord)
@@ -108,6 +125,23 @@ public abstract class BaseFormRecordResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
 	}
+
+	protected Http.Response invokePutFormRecordResponse(
+				Long formRecordId,FormRecord formRecord)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(formRecord), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/form-records/{form-record-id}", formRecordId,formRecord));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<FormRecord> invokeGetFormFormRecordsPage(
 				Long formId,Pagination pagination)
 			throws Exception {
@@ -117,6 +151,19 @@ public abstract class BaseFormRecordResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetFormFormRecordsPageResponse(
+				Long formId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected FormRecord invokePostFormFormRecord(
 				Long formId,FormRecord formRecord)
@@ -131,6 +178,23 @@ public abstract class BaseFormRecordResourceTestCase {
 				options.setPost(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
+	}
+
+	protected Http.Response invokePostFormFormRecordResponse(
+				Long formId,FormRecord formRecord)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(formRecord), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId,formRecord));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected FormRecord randomFormRecord() {

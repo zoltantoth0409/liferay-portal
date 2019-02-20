@@ -87,6 +87,10 @@ public abstract class BaseVocabularyResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Vocabulary> invokeGetContentSpaceVocabulariesPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -96,6 +100,19 @@ public abstract class BaseVocabularyResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId,filter,sorts));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetContentSpaceVocabulariesPageResponse(
+				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Vocabulary invokePostContentSpaceVocabulary(
 				Long contentSpaceId,Vocabulary vocabulary)
@@ -111,6 +128,23 @@ public abstract class BaseVocabularyResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
 	}
+
+	protected Http.Response invokePostContentSpaceVocabularyResponse(
+				Long contentSpaceId,Vocabulary vocabulary)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(vocabulary), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId,vocabulary));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteVocabulary(
 				Long vocabularyId)
 			throws Exception {
@@ -123,6 +157,21 @@ public abstract class BaseVocabularyResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteVocabularyResponse(
+				Long vocabularyId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Vocabulary invokeGetVocabulary(
 				Long vocabularyId)
 			throws Exception {
@@ -132,6 +181,19 @@ public abstract class BaseVocabularyResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
+	}
+
+	protected Http.Response invokeGetVocabularyResponse(
+				Long vocabularyId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Vocabulary invokePutVocabulary(
 				Long vocabularyId,Vocabulary vocabulary)
@@ -146,6 +208,23 @@ public abstract class BaseVocabularyResourceTestCase {
 				options.setPut(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
+	}
+
+	protected Http.Response invokePutVocabularyResponse(
+				Long vocabularyId,Vocabulary vocabulary)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(vocabulary), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId,vocabulary));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Vocabulary randomVocabulary() {

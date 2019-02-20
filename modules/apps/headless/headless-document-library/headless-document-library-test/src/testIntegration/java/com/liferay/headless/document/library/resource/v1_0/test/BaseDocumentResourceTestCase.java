@@ -93,6 +93,10 @@ public abstract class BaseDocumentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Document> invokeGetContentSpaceDocumentsPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -102,6 +106,19 @@ public abstract class BaseDocumentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId,filter,sorts));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetContentSpaceDocumentsPageResponse(
+				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Document invokePostContentSpaceDocument(
 				Long contentSpaceId,MultipartBody multipartBody)
@@ -115,6 +132,21 @@ public abstract class BaseDocumentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
 	}
+
+	protected Http.Response invokePostContentSpaceDocumentResponse(
+				Long contentSpaceId,MultipartBody multipartBody)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId,multipartBody));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteDocument(
 				Long documentId)
 			throws Exception {
@@ -127,6 +159,21 @@ public abstract class BaseDocumentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteDocumentResponse(
+				Long documentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}", documentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Document invokeGetDocument(
 				Long documentId)
 			throws Exception {
@@ -137,6 +184,19 @@ public abstract class BaseDocumentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
 	}
+
+	protected Http.Response invokeGetDocumentResponse(
+				Long documentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}", documentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Document> invokeGetFolderDocumentsPage(
 				Long folderId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -146,6 +206,19 @@ public abstract class BaseDocumentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId,filter,sorts));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetFolderDocumentsPageResponse(
+				Long folderId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Document invokePostFolderDocument(
 				Long folderId,MultipartBody multipartBody)
@@ -158,6 +231,21 @@ public abstract class BaseDocumentResourceTestCase {
 				options.setPost(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
+	}
+
+	protected Http.Response invokePostFolderDocumentResponse(
+				Long folderId,MultipartBody multipartBody)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId,multipartBody));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Document randomDocument() {

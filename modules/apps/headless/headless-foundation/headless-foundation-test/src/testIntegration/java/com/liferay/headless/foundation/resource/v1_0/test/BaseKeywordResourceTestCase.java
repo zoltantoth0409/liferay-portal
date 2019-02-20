@@ -87,6 +87,10 @@ public abstract class BaseKeywordResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Keyword> invokeGetContentSpaceKeywordsPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -96,6 +100,19 @@ public abstract class BaseKeywordResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId,filter,sorts));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetContentSpaceKeywordsPageResponse(
+				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Keyword invokePostContentSpaceKeyword(
 				Long contentSpaceId,Keyword keyword)
@@ -111,6 +128,23 @@ public abstract class BaseKeywordResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
 	}
+
+	protected Http.Response invokePostContentSpaceKeywordResponse(
+				Long contentSpaceId,Keyword keyword)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(keyword), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId,keyword));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteKeyword(
 				Long keywordId)
 			throws Exception {
@@ -123,6 +157,21 @@ public abstract class BaseKeywordResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteKeywordResponse(
+				Long keywordId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Keyword invokeGetKeyword(
 				Long keywordId)
 			throws Exception {
@@ -132,6 +181,19 @@ public abstract class BaseKeywordResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
+	}
+
+	protected Http.Response invokeGetKeywordResponse(
+				Long keywordId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Keyword invokePutKeyword(
 				Long keywordId,Keyword keyword)
@@ -146,6 +208,23 @@ public abstract class BaseKeywordResourceTestCase {
 				options.setPut(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
+	}
+
+	protected Http.Response invokePutKeywordResponse(
+				Long keywordId,Keyword keyword)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(keyword), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId,keyword));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Keyword randomKeyword() {

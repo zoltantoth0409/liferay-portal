@@ -92,6 +92,10 @@ public abstract class BaseFolderResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Folder> invokeGetContentSpaceFoldersPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
@@ -101,6 +105,19 @@ public abstract class BaseFolderResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetContentSpaceFoldersPageResponse(
+				Long contentSpaceId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Folder invokePostContentSpaceFolder(
 				Long contentSpaceId,Folder folder)
@@ -116,6 +133,23 @@ public abstract class BaseFolderResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
+
+	protected Http.Response invokePostContentSpaceFolderResponse(
+				Long contentSpaceId,Folder folder)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId,folder));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteFolder(
 				Long folderId)
 			throws Exception {
@@ -128,6 +162,21 @@ public abstract class BaseFolderResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteFolderResponse(
+				Long folderId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Folder invokeGetFolder(
 				Long folderId)
 			throws Exception {
@@ -137,6 +186,19 @@ public abstract class BaseFolderResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokeGetFolderResponse(
+				Long folderId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Folder invokePutFolder(
 				Long folderId,Folder folder)
@@ -152,6 +214,23 @@ public abstract class BaseFolderResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
+
+	protected Http.Response invokePutFolderResponse(
+				Long folderId,Folder folder)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId,folder));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Folder> invokeGetFolderFoldersPage(
 				Long folderId,Pagination pagination)
 			throws Exception {
@@ -161,6 +240,19 @@ public abstract class BaseFolderResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetFolderFoldersPageResponse(
+				Long folderId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Folder invokePostFolderFolder(
 				Long folderId,Folder folder)
@@ -175,6 +267,23 @@ public abstract class BaseFolderResourceTestCase {
 				options.setPost(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokePostFolderFolderResponse(
+				Long folderId,Folder folder)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId,folder));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Folder randomFolder() {

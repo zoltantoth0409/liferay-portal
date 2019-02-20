@@ -88,6 +88,10 @@ public abstract class BaseFormResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Form> invokeGetContentSpaceFormsPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
@@ -98,6 +102,19 @@ public abstract class BaseFormResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetContentSpaceFormsPageResponse(
+				Long contentSpaceId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/form", contentSpaceId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Form invokeGetForm(
 				Long formId)
 			throws Exception {
@@ -107,6 +124,19 @@ public abstract class BaseFormResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
+	}
+
+	protected Http.Response invokeGetFormResponse(
+				Long formId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Form invokePostFormEvaluateContext(
 				Long formId,Form form)
@@ -122,6 +152,23 @@ public abstract class BaseFormResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
 	}
+
+	protected Http.Response invokePostFormEvaluateContextResponse(
+				Long formId,Form form)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(form), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/evaluate-context", formId,form));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Form invokeGetFormFetchLatestDraft(
 				Long formId)
 			throws Exception {
@@ -131,6 +178,19 @@ public abstract class BaseFormResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/fetch-latest-draft", formId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
+	}
+
+	protected Http.Response invokeGetFormFetchLatestDraftResponse(
+				Long formId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/fetch-latest-draft", formId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected Form invokePostFormUploadFile(
 				Long formId,Form form)
@@ -145,6 +205,23 @@ public abstract class BaseFormResourceTestCase {
 				options.setPost(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
+	}
+
+	protected Http.Response invokePostFormUploadFileResponse(
+				Long formId,Form form)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(form), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/upload-file", formId,form));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Form randomForm() {

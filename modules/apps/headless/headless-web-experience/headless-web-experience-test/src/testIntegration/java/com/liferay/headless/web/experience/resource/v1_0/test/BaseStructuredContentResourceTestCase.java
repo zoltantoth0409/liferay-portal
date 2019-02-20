@@ -101,6 +101,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<StructuredContent> invokeGetContentSpaceContentStructureStructuredContentsPage(
 				Long contentSpaceId,Long contentStructureId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -111,6 +115,19 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetContentSpaceContentStructureStructuredContentsPageResponse(
+				Long contentSpaceId,Long contentStructureId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-structures/{content-structure-id}/structured-contents", contentSpaceId,contentStructureId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<StructuredContent> invokeGetContentSpaceStructuredContentsPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
@@ -120,6 +137,19 @@ public abstract class BaseStructuredContentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/structured-contents", contentSpaceId,filter,sorts));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+	}
+
+	protected Http.Response invokeGetContentSpaceStructuredContentsPageResponse(
+				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/structured-contents", contentSpaceId,filter,sorts));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected StructuredContent invokePostContentSpaceStructuredContent(
 				Long contentSpaceId,StructuredContent structuredContent)
@@ -135,6 +165,23 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImpl.class);
 	}
+
+	protected Http.Response invokePostContentSpaceStructuredContentResponse(
+				Long contentSpaceId,StructuredContent structuredContent)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(structuredContent), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/structured-contents", contentSpaceId,structuredContent));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected boolean invokeDeleteStructuredContent(
 				Long structuredContentId)
 			throws Exception {
@@ -147,6 +194,21 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
+
+	protected Http.Response invokeDeleteStructuredContentResponse(
+				Long structuredContentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected StructuredContent invokeGetStructuredContent(
 				Long structuredContentId)
 			throws Exception {
@@ -157,6 +219,19 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImpl.class);
 	}
+
+	protected Http.Response invokeGetStructuredContentResponse(
+				Long structuredContentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected StructuredContent invokePatchStructuredContent(
 				Long structuredContentId,StructuredContent structuredContent)
 			throws Exception {
@@ -166,6 +241,19 @@ public abstract class BaseStructuredContentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId,structuredContent));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImpl.class);
+	}
+
+	protected Http.Response invokePatchStructuredContentResponse(
+				Long structuredContentId,StructuredContent structuredContent)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId,structuredContent));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 	protected StructuredContent invokePutStructuredContent(
 				Long structuredContentId,StructuredContent structuredContent)
@@ -180,6 +268,23 @@ public abstract class BaseStructuredContentResourceTestCase {
 				options.setPut(true);
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImpl.class);
+	}
+
+	protected Http.Response invokePutStructuredContentResponse(
+				Long structuredContentId,StructuredContent structuredContent)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(structuredContent), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId,structuredContent));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected StructuredContent randomStructuredContent() {

@@ -68,6 +68,10 @@ public abstract class BaseEmailResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
+
 	protected Page<Email> invokeGetGenericParentEmailsPage(
 				Object genericParentId,Pagination pagination)
 			throws Exception {
@@ -78,6 +82,19 @@ public abstract class BaseEmailResourceTestCase {
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
+
+	protected Http.Response invokeGetGenericParentEmailsPageResponse(
+				Object genericParentId,Pagination pagination)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/emails", genericParentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Email invokeGetEmail(
 				Long emailId)
 			throws Exception {
@@ -87,6 +104,19 @@ public abstract class BaseEmailResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/emails/{email-id}", emailId));
 
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), EmailImpl.class);
+	}
+
+	protected Http.Response invokeGetEmailResponse(
+				Long emailId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/emails/{email-id}", emailId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
 	}
 
 	protected Email randomEmail() {
