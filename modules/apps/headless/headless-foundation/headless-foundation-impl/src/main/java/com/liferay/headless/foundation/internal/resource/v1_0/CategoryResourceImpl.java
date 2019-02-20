@@ -55,7 +55,6 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.Consumer;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -141,13 +140,15 @@ public class CategoryResourceImpl
 		AssetCategory assetCategory = _assetCategoryService.getCategory(
 			categoryId);
 
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
 		return _toCategory(
 			_assetCategoryService.addCategory(
 				assetCategory.getGroupId(), categoryId,
-				Collections.singletonMap(locale, category.getName()),
-				Collections.singletonMap(locale, category.getDescription()),
+				Collections.singletonMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					category.getName()),
+				Collections.singletonMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					category.getDescription()),
 				assetCategory.getVocabularyId(), null, new ServiceContext()));
 	}
 
@@ -158,13 +159,15 @@ public class CategoryResourceImpl
 		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
 			vocabularyId);
 
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
 		return _toCategory(
 			_assetCategoryService.addCategory(
 				assetVocabulary.getGroupId(), 0,
-				Collections.singletonMap(locale, category.getName()),
-				Collections.singletonMap(locale, category.getDescription()),
+				Collections.singletonMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					category.getName()),
+				Collections.singletonMap(
+					contextAcceptLanguage.getPreferredLocale(),
+					category.getDescription()),
 				vocabularyId, null, new ServiceContext()));
 	}
 
@@ -175,18 +178,19 @@ public class CategoryResourceImpl
 		AssetCategory assetCategory = _assetCategoryService.getCategory(
 			categoryId);
 
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
 		return _toCategory(
 			_assetCategoryService.updateCategory(
 				categoryId, assetCategory.getParentCategoryId(),
 				LocalizedMapUtil.merge(
 					assetCategory.getTitleMap(),
-					new AbstractMap.SimpleEntry<>(locale, category.getName())),
+					new AbstractMap.SimpleEntry<>(
+						contextAcceptLanguage.getPreferredLocale(),
+						category.getName())),
 				LocalizedMapUtil.merge(
 					assetCategory.getTitleMap(),
 					new AbstractMap.SimpleEntry<>(
-						locale, category.getDescription())),
+						contextAcceptLanguage.getPreferredLocale(),
+						category.getDescription())),
 				assetCategory.getVocabularyId(), null, new ServiceContext()));
 	}
 
