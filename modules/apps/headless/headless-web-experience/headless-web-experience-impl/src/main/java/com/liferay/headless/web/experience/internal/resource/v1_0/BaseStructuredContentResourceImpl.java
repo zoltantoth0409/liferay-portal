@@ -118,54 +118,43 @@ public abstract class BaseStructuredContentResourceImpl implements StructuredCon
 	@PathParam("structured-content-id") Long structuredContentId,StructuredContent structuredContent)
 			throws Exception {
 
-				StructuredContent oldStructuredContent = getStructuredContent(structuredContentId);
+				StructuredContent existingStructuredContent = getStructuredContent(structuredContentId);
 
 						if (Validator.isNotNull(structuredContent.getAvailableLanguages())) {
-							oldStructuredContent.setAvailableLanguages(
-								structuredContent.getAvailableLanguages());
+							existingStructuredContent.setAvailableLanguages(structuredContent.getAvailableLanguages());
 	}
 						if (Validator.isNotNull(structuredContent.getContentSpace())) {
-							oldStructuredContent.setContentSpace(
-								structuredContent.getContentSpace());
+							existingStructuredContent.setContentSpace(structuredContent.getContentSpace());
 	}
 						if (Validator.isNotNull(structuredContent.getContentStructureId())) {
-							oldStructuredContent.setContentStructureId(
-								structuredContent.getContentStructureId());
+							existingStructuredContent.setContentStructureId(structuredContent.getContentStructureId());
 	}
 						if (Validator.isNotNull(structuredContent.getDateCreated())) {
-							oldStructuredContent.setDateCreated(
-								structuredContent.getDateCreated());
+							existingStructuredContent.setDateCreated(structuredContent.getDateCreated());
 	}
 						if (Validator.isNotNull(structuredContent.getDateModified())) {
-							oldStructuredContent.setDateModified(
-								structuredContent.getDateModified());
+							existingStructuredContent.setDateModified(structuredContent.getDateModified());
 	}
 						if (Validator.isNotNull(structuredContent.getDatePublished())) {
-							oldStructuredContent.setDatePublished(
-								structuredContent.getDatePublished());
+							existingStructuredContent.setDatePublished(structuredContent.getDatePublished());
 	}
 						if (Validator.isNotNull(structuredContent.getDescription())) {
-							oldStructuredContent.setDescription(
-								structuredContent.getDescription());
+							existingStructuredContent.setDescription(structuredContent.getDescription());
 	}
 						if (Validator.isNotNull(structuredContent.getId())) {
-							oldStructuredContent.setId(
-								structuredContent.getId());
+							existingStructuredContent.setId(structuredContent.getId());
 	}
 						if (Validator.isNotNull(structuredContent.getKeywords())) {
-							oldStructuredContent.setKeywords(
-								structuredContent.getKeywords());
+							existingStructuredContent.setKeywords(structuredContent.getKeywords());
 	}
 						if (Validator.isNotNull(structuredContent.getLastReviewed())) {
-							oldStructuredContent.setLastReviewed(
-								structuredContent.getLastReviewed());
+							existingStructuredContent.setLastReviewed(structuredContent.getLastReviewed());
 	}
 						if (Validator.isNotNull(structuredContent.getTitle())) {
-							oldStructuredContent.setTitle(
-								structuredContent.getTitle());
+							existingStructuredContent.setTitle(structuredContent.getTitle());
 	}
 
-				return putStructuredContent(structuredContentId, oldStructuredContent);
+				return putStructuredContent(structuredContentId, existingStructuredContent);
 	}
 	@Override
 	@Consumes("application/json")

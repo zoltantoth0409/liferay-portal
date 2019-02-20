@@ -82,74 +82,58 @@ public abstract class BaseBlogPostingResourceImpl implements BlogPostingResource
 	@PathParam("blog-posting-id") Long blogPostingId,BlogPosting blogPosting)
 			throws Exception {
 
-				BlogPosting oldBlogPosting = getBlogPosting(blogPostingId);
+				BlogPosting existingBlogPosting = getBlogPosting(blogPostingId);
 
 						if (Validator.isNotNull(blogPosting.getAlternativeHeadline())) {
-							oldBlogPosting.setAlternativeHeadline(
-								blogPosting.getAlternativeHeadline());
+							existingBlogPosting.setAlternativeHeadline(blogPosting.getAlternativeHeadline());
 	}
 						if (Validator.isNotNull(blogPosting.getArticleBody())) {
-							oldBlogPosting.setArticleBody(
-								blogPosting.getArticleBody());
+							existingBlogPosting.setArticleBody(blogPosting.getArticleBody());
 	}
 						if (Validator.isNotNull(blogPosting.getCaption())) {
-							oldBlogPosting.setCaption(
-								blogPosting.getCaption());
+							existingBlogPosting.setCaption(blogPosting.getCaption());
 	}
 						if (Validator.isNotNull(blogPosting.getCategoryIds())) {
-							oldBlogPosting.setCategoryIds(
-								blogPosting.getCategoryIds());
+							existingBlogPosting.setCategoryIds(blogPosting.getCategoryIds());
 	}
 						if (Validator.isNotNull(blogPosting.getContentSpace())) {
-							oldBlogPosting.setContentSpace(
-								blogPosting.getContentSpace());
+							existingBlogPosting.setContentSpace(blogPosting.getContentSpace());
 	}
 						if (Validator.isNotNull(blogPosting.getDateCreated())) {
-							oldBlogPosting.setDateCreated(
-								blogPosting.getDateCreated());
+							existingBlogPosting.setDateCreated(blogPosting.getDateCreated());
 	}
 						if (Validator.isNotNull(blogPosting.getDateModified())) {
-							oldBlogPosting.setDateModified(
-								blogPosting.getDateModified());
+							existingBlogPosting.setDateModified(blogPosting.getDateModified());
 	}
 						if (Validator.isNotNull(blogPosting.getDatePublished())) {
-							oldBlogPosting.setDatePublished(
-								blogPosting.getDatePublished());
+							existingBlogPosting.setDatePublished(blogPosting.getDatePublished());
 	}
 						if (Validator.isNotNull(blogPosting.getDescription())) {
-							oldBlogPosting.setDescription(
-								blogPosting.getDescription());
+							existingBlogPosting.setDescription(blogPosting.getDescription());
 	}
 						if (Validator.isNotNull(blogPosting.getEncodingFormat())) {
-							oldBlogPosting.setEncodingFormat(
-								blogPosting.getEncodingFormat());
+							existingBlogPosting.setEncodingFormat(blogPosting.getEncodingFormat());
 	}
 						if (Validator.isNotNull(blogPosting.getFriendlyUrlPath())) {
-							oldBlogPosting.setFriendlyUrlPath(
-								blogPosting.getFriendlyUrlPath());
+							existingBlogPosting.setFriendlyUrlPath(blogPosting.getFriendlyUrlPath());
 	}
 						if (Validator.isNotNull(blogPosting.getHasComments())) {
-							oldBlogPosting.setHasComments(
-								blogPosting.getHasComments());
+							existingBlogPosting.setHasComments(blogPosting.getHasComments());
 	}
 						if (Validator.isNotNull(blogPosting.getHeadline())) {
-							oldBlogPosting.setHeadline(
-								blogPosting.getHeadline());
+							existingBlogPosting.setHeadline(blogPosting.getHeadline());
 	}
 						if (Validator.isNotNull(blogPosting.getId())) {
-							oldBlogPosting.setId(
-								blogPosting.getId());
+							existingBlogPosting.setId(blogPosting.getId());
 	}
 						if (Validator.isNotNull(blogPosting.getImageId())) {
-							oldBlogPosting.setImageId(
-								blogPosting.getImageId());
+							existingBlogPosting.setImageId(blogPosting.getImageId());
 	}
 						if (Validator.isNotNull(blogPosting.getKeywords())) {
-							oldBlogPosting.setKeywords(
-								blogPosting.getKeywords());
+							existingBlogPosting.setKeywords(blogPosting.getKeywords());
 	}
 
-				return putBlogPosting(blogPostingId, oldBlogPosting);
+				return putBlogPosting(blogPostingId, existingBlogPosting);
 	}
 	@Override
 	@Consumes("application/json")
