@@ -92,6 +92,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.liveusers.LiveUsers;
 import com.liferay.site.admin.web.internal.constants.SiteAdminPortletKeys;
@@ -833,6 +834,15 @@ public class SiteAdminPortlet extends MVCPortlet {
 				StringUtil.merge(
 					LocaleUtil.toLanguageIds(
 						LanguageUtil.getAvailableLocales())));
+		}
+
+		if (formTypeSettingsProperties.containsKey(PropsKeys.LOCALES) &&
+			Validator.isNull(
+				formTypeSettingsProperties.getProperty(PropsKeys.LOCALES))) {
+
+			throw new LocaleException(
+				LocaleException.TYPE_DEFAULT,
+				"Must have at least one valid locale for site " + liveGroupId);
 		}
 
 		typeSettingsProperties.putAll(formTypeSettingsProperties);
