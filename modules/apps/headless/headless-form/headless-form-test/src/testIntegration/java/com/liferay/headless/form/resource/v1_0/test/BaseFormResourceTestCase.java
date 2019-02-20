@@ -23,16 +23,18 @@ import com.liferay.headless.form.dto.v1_0.Creator;
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.dto.v1_0.FormStructure;
+import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +45,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +53,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseFormResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -92,69 +88,63 @@ public abstract class BaseFormResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceFormsPage(
+	protected Page<Form> invokeGetContentSpaceFormsPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/form",
-					contentSpaceId
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/form", contentSpaceId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetForm(
+	protected Form invokeGetForm(
 				Long formId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/forms/{form-id}",
-					formId
-				);
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
 	}
-	protected Response invokePostFormEvaluateContext(
+	protected Form invokePostFormEvaluateContext(
 				Long formId,Form form)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					form
-				).when(
-				).post(
-					_resourceURL + "/forms/{form-id}/evaluate-context",
-					formId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(form), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/evaluate-context", formId,form));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
 	}
-	protected Response invokeGetFormFetchLatestDraft(
+	protected Form invokeGetFormFetchLatestDraft(
 				Long formId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/forms/{form-id}/fetch-latest-draft",
-					formId
-				);
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/fetch-latest-draft", formId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
 	}
-	protected Response invokePostFormUploadFile(
+	protected Form invokePostFormUploadFile(
 				Long formId,Form form)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					form
-				).when(
-				).post(
-					_resourceURL + "/forms/{form-id}/upload-file",
-					formId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(form), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/upload-file", formId,form));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormImpl.class);
 	}
 
 	protected Form randomForm() {
@@ -176,7 +166,7 @@ public abstract class BaseFormResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class FormImpl implements Form {
+	protected static class FormImpl implements Form {
 
 	public String[] getAvailableLanguages() {
 				return availableLanguages;
@@ -489,17 +479,24 @@ public abstract class BaseFormResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

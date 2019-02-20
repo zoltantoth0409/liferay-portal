@@ -24,12 +24,11 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -38,7 +37,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -47,11 +45,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseWebUrlResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -75,29 +68,25 @@ public abstract class BaseWebUrlResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetGenericParentWebUrlsPage(
+	protected Page<WebUrl> invokeGetGenericParentWebUrlsPage(
 				Object genericParentId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/web-urls",
-					genericParentId
-				);
+			options.setLocation(_resourceURL + _toPath("/web-urls", genericParentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetWebUrl(
+	protected WebUrl invokeGetWebUrl(
 				Long webUrlId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/web-urls/{web-url-id}",
-					webUrlId
-				);
+			options.setLocation(_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WebUrlImpl.class);
 	}
 
 	protected WebUrl randomWebUrl() {
@@ -113,7 +102,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class WebUrlImpl implements WebUrl {
+	protected static class WebUrlImpl implements WebUrl {
 
 	public Long getId() {
 				return id;
@@ -184,17 +173,24 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

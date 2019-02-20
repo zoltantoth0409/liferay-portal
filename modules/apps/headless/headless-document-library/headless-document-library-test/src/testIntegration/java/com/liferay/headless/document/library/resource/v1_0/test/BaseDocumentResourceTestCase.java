@@ -30,13 +30,12 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -47,7 +46,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -56,11 +54,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseDocumentResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -100,77 +93,71 @@ public abstract class BaseDocumentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceDocumentsPage(
+	protected Page<Document> invokeGetContentSpaceDocumentsPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/documents",
-					contentSpaceId,filter,sorts
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId,filter,sorts));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostContentSpaceDocument(
+	protected Document invokePostContentSpaceDocument(
 				Long contentSpaceId,MultipartBody multipartBody)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).post(
-					_resourceURL + "/content-spaces/{content-space-id}/documents",
-					contentSpaceId,multipartBody
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId,multipartBody));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
 	}
-	protected Response invokeDeleteDocument(
+	protected boolean invokeDeleteDocument(
 				Long documentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/documents/{document-id}",
-					documentId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}", documentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetDocument(
+	protected Document invokeGetDocument(
 				Long documentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/documents/{document-id}",
-					documentId
-				);
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}", documentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
 	}
-	protected Response invokeGetFolderDocumentsPage(
+	protected Page<Document> invokeGetFolderDocumentsPage(
 				Long folderId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/folders/{folder-id}/documents",
-					folderId,filter,sorts
-				);
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId,filter,sorts));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostFolderDocument(
+	protected Document invokePostFolderDocument(
 				Long folderId,MultipartBody multipartBody)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).post(
-					_resourceURL + "/folders/{folder-id}/documents",
-					folderId,multipartBody
-				);
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId,multipartBody));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), DocumentImpl.class);
 	}
 
 	protected Document randomDocument() {
@@ -192,7 +179,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class DocumentImpl implements Document {
+	protected static class DocumentImpl implements Document {
 
 	public AdaptedImages[] getAdaptedImages() {
 				return adaptedImages;
@@ -549,17 +536,24 @@ public abstract class BaseDocumentResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

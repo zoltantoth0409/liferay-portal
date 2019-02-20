@@ -27,12 +27,13 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +44,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +52,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseVocabularyResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -92,69 +87,65 @@ public abstract class BaseVocabularyResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceVocabulariesPage(
+	protected Page<Vocabulary> invokeGetContentSpaceVocabulariesPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/vocabularies",
-					contentSpaceId,filter,sorts
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId,filter,sorts));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostContentSpaceVocabulary(
+	protected Vocabulary invokePostContentSpaceVocabulary(
 				Long contentSpaceId,Vocabulary vocabulary)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					vocabulary
-				).when(
-				).post(
-					_resourceURL + "/content-spaces/{content-space-id}/vocabularies",
-					contentSpaceId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(vocabulary), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId,vocabulary));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
 	}
-	protected Response invokeDeleteVocabulary(
+	protected boolean invokeDeleteVocabulary(
 				Long vocabularyId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/vocabularies/{vocabulary-id}",
-					vocabularyId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetVocabulary(
+	protected Vocabulary invokeGetVocabulary(
 				Long vocabularyId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/vocabularies/{vocabulary-id}",
-					vocabularyId
-				);
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
 	}
-	protected Response invokePutVocabulary(
+	protected Vocabulary invokePutVocabulary(
 				Long vocabularyId,Vocabulary vocabulary)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					vocabulary
-				).when(
-				).put(
-					_resourceURL + "/vocabularies/{vocabulary-id}",
-					vocabularyId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(vocabulary), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}", vocabularyId,vocabulary));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), VocabularyImpl.class);
 	}
 
 	protected Vocabulary randomVocabulary() {
@@ -174,7 +165,7 @@ public abstract class BaseVocabularyResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class VocabularyImpl implements Vocabulary {
+	protected static class VocabularyImpl implements Vocabulary {
 
 	public String[] getAvailableLanguages() {
 				return availableLanguages;
@@ -377,17 +368,24 @@ public abstract class BaseVocabularyResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

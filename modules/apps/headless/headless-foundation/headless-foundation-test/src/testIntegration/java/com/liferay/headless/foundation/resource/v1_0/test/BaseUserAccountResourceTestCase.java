@@ -27,12 +27,13 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +44,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +52,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseUserAccountResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -104,103 +99,93 @@ public abstract class BaseUserAccountResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetMyUserAccount(
+	protected UserAccount invokeGetMyUserAccount(
 				Long myUserAccountId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/my-user-accounts/{my-user-account-id}",
-					myUserAccountId
-				);
+			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}", myUserAccountId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
-	protected Response invokeGetOrganizationUserAccountsPage(
+	protected Page<UserAccount> invokeGetOrganizationUserAccountsPage(
 				Long organizationId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/organizations/{organization-id}/user-accounts",
-					organizationId
-				);
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/user-accounts", organizationId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetUserAccountsPage(
+	protected Page<UserAccount> invokeGetUserAccountsPage(
 				String fullnamequery,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/user-accounts",
-					fullnamequery
-				);
+			options.setLocation(_resourceURL + _toPath("/user-accounts", fullnamequery));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostUserAccount(
+	protected UserAccount invokePostUserAccount(
 				UserAccount userAccount)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).post(
-					_resourceURL + "/user-accounts",
-					userAccount
-				);
+			options.setLocation(_resourceURL + _toPath("/user-accounts", userAccount));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
-	protected Response invokeDeleteUserAccount(
+	protected boolean invokeDeleteUserAccount(
 				Long userAccountId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/user-accounts/{user-account-id}",
-					userAccountId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetUserAccount(
+	protected UserAccount invokeGetUserAccount(
 				Long userAccountId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/user-accounts/{user-account-id}",
-					userAccountId
-				);
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
-	protected Response invokePutUserAccount(
+	protected UserAccount invokePutUserAccount(
 				Long userAccountId,UserAccount userAccount)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					userAccount
-				).when(
-				).put(
-					_resourceURL + "/user-accounts/{user-account-id}",
-					userAccountId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(userAccount), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}", userAccountId,userAccount));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), UserAccountImpl.class);
 	}
-	protected Response invokeGetWebSiteUserAccountsPage(
+	protected Page<UserAccount> invokeGetWebSiteUserAccountsPage(
 				Long webSiteId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/web-sites/{web-site-id}/user-accounts",
-					webSiteId
-				);
+			options.setLocation(_resourceURL + _toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
 
 	protected UserAccount randomUserAccount() {
@@ -227,7 +212,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class UserAccountImpl implements UserAccount {
+	protected static class UserAccountImpl implements UserAccount {
 
 	public String getAdditionalName() {
 				return additionalName;
@@ -694,17 +679,24 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

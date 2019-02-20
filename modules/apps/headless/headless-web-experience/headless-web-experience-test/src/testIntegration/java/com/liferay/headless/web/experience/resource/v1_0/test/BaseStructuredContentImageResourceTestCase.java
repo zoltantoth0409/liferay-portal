@@ -20,16 +20,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.vulcan.pagination.Page;
 
 import java.net.URL;
 
@@ -40,7 +40,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -49,11 +48,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseStructuredContentImageResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -81,41 +75,37 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetStructuredContentStructuredContentImagesPage(
+	protected Page<StructuredContentImage> invokeGetStructuredContentStructuredContentImagesPage(
 				Long structuredContentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/structured-contents/{structured-content-id}/structured-content-images",
-					structuredContentId
-				);
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeDeleteStructuredContentContentDocument(
+	protected boolean invokeDeleteStructuredContentContentDocument(
 				Long structuredContentId,Long contentDocumentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId,contentDocumentId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId,contentDocumentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetStructuredContentContentDocument(
+	protected StructuredContentImage invokeGetStructuredContentContentDocument(
 				Long structuredContentId,Long contentDocumentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
-					structuredContentId,contentDocumentId
-				);
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId,contentDocumentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImageImpl.class);
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {
@@ -135,7 +125,7 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class StructuredContentImageImpl implements StructuredContentImage {
+	protected static class StructuredContentImageImpl implements StructuredContentImage {
 
 	public String getContentUrl() {
 				return contentUrl;
@@ -338,17 +328,24 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

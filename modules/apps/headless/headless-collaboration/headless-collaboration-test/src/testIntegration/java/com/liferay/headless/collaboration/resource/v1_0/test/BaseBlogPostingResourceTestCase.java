@@ -28,12 +28,13 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -44,7 +45,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -53,11 +53,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseBlogPostingResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -97,81 +92,75 @@ public abstract class BaseBlogPostingResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteBlogPosting(
+	protected boolean invokeDeleteBlogPosting(
 				Long blogPostingId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/blog-postings/{blog-posting-id}",
-					blogPostingId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/blog-postings/{blog-posting-id}", blogPostingId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetBlogPosting(
+	protected BlogPosting invokeGetBlogPosting(
 				Long blogPostingId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/blog-postings/{blog-posting-id}",
-					blogPostingId
-				);
+			options.setLocation(_resourceURL + _toPath("/blog-postings/{blog-posting-id}", blogPostingId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), BlogPostingImpl.class);
 	}
-	protected Response invokePatchBlogPosting(
+	protected BlogPosting invokePatchBlogPosting(
 				Long blogPostingId,BlogPosting blogPosting)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).patch(
-					_resourceURL + "/blog-postings/{blog-posting-id}",
-					blogPostingId,blogPosting
-				);
+			options.setLocation(_resourceURL + _toPath("/blog-postings/{blog-posting-id}", blogPostingId,blogPosting));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), BlogPostingImpl.class);
 	}
-	protected Response invokePutBlogPosting(
+	protected BlogPosting invokePutBlogPosting(
 				Long blogPostingId,BlogPosting blogPosting)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					blogPosting
-				).when(
-				).put(
-					_resourceURL + "/blog-postings/{blog-posting-id}",
-					blogPostingId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(blogPosting), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/blog-postings/{blog-posting-id}", blogPostingId,blogPosting));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), BlogPostingImpl.class);
 	}
-	protected Response invokeGetContentSpaceBlogPostingsPage(
+	protected Page<BlogPosting> invokeGetContentSpaceBlogPostingsPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
-					contentSpaceId
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/blog-postings", contentSpaceId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostContentSpaceBlogPosting(
+	protected BlogPosting invokePostContentSpaceBlogPosting(
 				Long contentSpaceId,BlogPosting blogPosting)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					blogPosting
-				).when(
-				).post(
-					_resourceURL + "/content-spaces/{content-space-id}/blog-postings",
-					contentSpaceId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(blogPosting), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/blog-postings", contentSpaceId,blogPosting));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), BlogPostingImpl.class);
 	}
 
 	protected BlogPosting randomBlogPosting() {
@@ -198,7 +187,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class BlogPostingImpl implements BlogPosting {
+	protected static class BlogPostingImpl implements BlogPosting {
 
 	public AggregateRating getAggregateRating() {
 				return aggregateRating;
@@ -643,17 +632,24 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

@@ -21,16 +21,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
+import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -41,7 +41,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -50,11 +49,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseCommentResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -82,41 +76,35 @@ public abstract class BaseCommentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetComment(
+	protected Comment invokeGetComment(
 				Long commentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/comments/{comment-id}",
-					commentId
-				);
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), CommentImpl.class);
 	}
-	protected Response invokeGetCommentCommentsPage(
+	protected Page<Comment> invokeGetCommentCommentsPage(
 				Long commentId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/comments/{comment-id}/comments",
-					commentId
-				);
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}/comments", commentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetStructuredContentCommentsPage(
+	protected Page<Comment> invokeGetStructuredContentCommentsPage(
 				Long structuredContentId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/structured-contents/{structured-content-id}/comments",
-					structuredContentId
-				);
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/comments", structuredContentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
 
 	protected Comment randomComment() {
@@ -134,7 +122,7 @@ public abstract class BaseCommentResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class CommentImpl implements Comment {
+	protected static class CommentImpl implements Comment {
 
 	public Comment[] getComments() {
 				return comments;
@@ -293,17 +281,24 @@ public abstract class BaseCommentResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

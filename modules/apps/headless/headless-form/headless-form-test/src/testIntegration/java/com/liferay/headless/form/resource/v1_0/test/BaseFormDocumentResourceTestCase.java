@@ -20,15 +20,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
+import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
 
 import java.net.URL;
 
@@ -37,7 +36,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -46,11 +44,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseFormDocumentResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -74,29 +67,27 @@ public abstract class BaseFormDocumentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeDeleteFormDocument(
+	protected boolean invokeDeleteFormDocument(
 				Long formDocumentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/form-documents/{form-document-id}",
-					formDocumentId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/form-documents/{form-document-id}", formDocumentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetFormDocument(
+	protected FormDocument invokeGetFormDocument(
 				Long formDocumentId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/form-documents/{form-document-id}",
-					formDocumentId
-				);
+			options.setLocation(_resourceURL + _toPath("/form-documents/{form-document-id}", formDocumentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormDocumentImpl.class);
 	}
 
 	protected FormDocument randomFormDocument() {
@@ -114,7 +105,7 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class FormDocumentImpl implements FormDocument {
+	protected static class FormDocumentImpl implements FormDocument {
 
 	public String getContentUrl() {
 				return contentUrl;
@@ -251,17 +242,24 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

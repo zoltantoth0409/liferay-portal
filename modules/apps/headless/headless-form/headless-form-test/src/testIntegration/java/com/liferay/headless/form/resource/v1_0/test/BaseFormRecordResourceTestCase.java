@@ -23,16 +23,18 @@ import com.liferay.headless.form.dto.v1_0.Creator;
 import com.liferay.headless.form.dto.v1_0.FieldValues;
 import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
+import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +45,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +53,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseFormRecordResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -88,57 +84,53 @@ public abstract class BaseFormRecordResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetFormRecord(
+	protected FormRecord invokeGetFormRecord(
 				Long formRecordId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/form-records/{form-record-id}",
-					formRecordId
-				);
+			options.setLocation(_resourceURL + _toPath("/form-records/{form-record-id}", formRecordId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
 	}
-	protected Response invokePutFormRecord(
+	protected FormRecord invokePutFormRecord(
 				Long formRecordId,FormRecord formRecord)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					formRecord
-				).when(
-				).put(
-					_resourceURL + "/form-records/{form-record-id}",
-					formRecordId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(formRecord), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/form-records/{form-record-id}", formRecordId,formRecord));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
 	}
-	protected Response invokeGetFormFormRecordsPage(
+	protected Page<FormRecord> invokeGetFormFormRecordsPage(
 				Long formId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/forms/{form-id}/form-records",
-					formId
-				);
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostFormFormRecord(
+	protected FormRecord invokePostFormFormRecord(
 				Long formId,FormRecord formRecord)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					formRecord
-				).when(
-				).post(
-					_resourceURL + "/forms/{form-id}/form-records",
-					formId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(formRecord), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId,formRecord));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormRecordImpl.class);
 	}
 
 	protected FormRecord randomFormRecord() {
@@ -157,7 +149,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class FormRecordImpl implements FormRecord {
+	protected static class FormRecordImpl implements FormRecord {
 
 	public Creator getCreator() {
 				return creator;
@@ -360,17 +352,24 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

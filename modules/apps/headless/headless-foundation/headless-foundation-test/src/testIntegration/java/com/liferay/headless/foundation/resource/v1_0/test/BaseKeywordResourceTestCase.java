@@ -27,12 +27,13 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +44,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +52,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseKeywordResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -92,69 +87,65 @@ public abstract class BaseKeywordResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceKeywordsPage(
+	protected Page<Keyword> invokeGetContentSpaceKeywordsPage(
 				Long contentSpaceId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/keywords",
-					contentSpaceId,filter,sorts
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId,filter,sorts));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostContentSpaceKeyword(
+	protected Keyword invokePostContentSpaceKeyword(
 				Long contentSpaceId,Keyword keyword)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					keyword
-				).when(
-				).post(
-					_resourceURL + "/content-spaces/{content-space-id}/keywords",
-					contentSpaceId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(keyword), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId,keyword));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
 	}
-	protected Response invokeDeleteKeyword(
+	protected boolean invokeDeleteKeyword(
 				Long keywordId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/keywords/{keyword-id}",
-					keywordId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetKeyword(
+	protected Keyword invokeGetKeyword(
 				Long keywordId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/keywords/{keyword-id}",
-					keywordId
-				);
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
 	}
-	protected Response invokePutKeyword(
+	protected Keyword invokePutKeyword(
 				Long keywordId,Keyword keyword)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					keyword
-				).when(
-				).put(
-					_resourceURL + "/keywords/{keyword-id}",
-					keywordId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(keyword), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/keywords/{keyword-id}", keywordId,keyword));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), KeywordImpl.class);
 	}
 
 	protected Keyword randomKeyword() {
@@ -172,7 +163,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class KeywordImpl implements Keyword {
+	protected static class KeywordImpl implements Keyword {
 
 	public Long getContentSpace() {
 				return contentSpace;
@@ -331,17 +322,24 @@ public abstract class BaseKeywordResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

@@ -22,17 +22,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.form.dto.v1_0.Creator;
 import com.liferay.headless.form.dto.v1_0.FormPages;
 import com.liferay.headless.form.dto.v1_0.FormStructure;
+import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.headless.form.dto.v1_0.SuccessPage;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -43,7 +43,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -52,11 +51,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseFormStructureResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -80,29 +74,25 @@ public abstract class BaseFormStructureResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceFormStructuresPage(
+	protected Page<FormStructure> invokeGetContentSpaceFormStructuresPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/form-structures",
-					contentSpaceId
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/form-structures", contentSpaceId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetFormStructure(
+	protected FormStructure invokeGetFormStructure(
 				Long formStructureId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/form-structures/{form-structure-id}",
-					formStructureId
-				);
+			options.setLocation(_resourceURL + _toPath("/form-structures/{form-structure-id}", formStructureId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FormStructureImpl.class);
 	}
 
 	protected FormStructure randomFormStructure() {
@@ -121,7 +111,7 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class FormStructureImpl implements FormStructure {
+	protected static class FormStructureImpl implements FormStructure {
 
 	public String[] getAvailableLanguages() {
 				return availableLanguages;
@@ -346,17 +336,24 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

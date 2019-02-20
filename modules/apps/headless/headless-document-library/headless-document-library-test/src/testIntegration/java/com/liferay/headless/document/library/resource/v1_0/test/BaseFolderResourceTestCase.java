@@ -24,12 +24,13 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -40,7 +41,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -49,11 +49,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseFolderResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -97,95 +92,89 @@ public abstract class BaseFolderResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetContentSpaceFoldersPage(
+	protected Page<Folder> invokeGetContentSpaceFoldersPage(
 				Long contentSpaceId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/content-spaces/{content-space-id}/folders",
-					contentSpaceId
-				);
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostContentSpaceFolder(
+	protected Folder invokePostContentSpaceFolder(
 				Long contentSpaceId,Folder folder)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					folder
-				).when(
-				).post(
-					_resourceURL + "/content-spaces/{content-space-id}/folders",
-					contentSpaceId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId,folder));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
-	protected Response invokeDeleteFolder(
+	protected boolean invokeDeleteFolder(
 				Long folderId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).delete(
-					_resourceURL + "/folders/{folder-id}",
-					folderId
-				);
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 	}
-	protected Response invokeGetFolder(
+	protected Folder invokeGetFolder(
 				Long folderId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/folders/{folder-id}",
-					folderId
-				);
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
-	protected Response invokePutFolder(
+	protected Folder invokePutFolder(
 				Long folderId,Folder folder)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					folder
-				).when(
-				).put(
-					_resourceURL + "/folders/{folder-id}",
-					folderId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId,folder));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
-	protected Response invokeGetFolderFoldersPage(
+	protected Page<Folder> invokeGetFolderFoldersPage(
 				Long folderId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/folders/{folder-id}/folders",
-					folderId
-				);
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokePostFolderFolder(
+	protected Folder invokePostFolderFolder(
 				Long folderId,Folder folder)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					folder
-				).when(
-				).post(
-					_resourceURL + "/folders/{folder-id}/folders",
-					folderId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId,folder));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
 	}
 
 	protected Folder randomFolder() {
@@ -206,7 +195,7 @@ public abstract class BaseFolderResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class FolderImpl implements Folder {
+	protected static class FolderImpl implements Folder {
 
 	public Date getDateCreated() {
 				return dateCreated;
@@ -387,17 +376,24 @@ public abstract class BaseFolderResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

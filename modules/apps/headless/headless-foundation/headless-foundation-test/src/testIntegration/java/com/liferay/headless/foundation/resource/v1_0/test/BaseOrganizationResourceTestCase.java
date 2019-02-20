@@ -28,12 +28,11 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -42,7 +41,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -51,11 +49,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseOrganizationResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -91,65 +84,55 @@ public abstract class BaseOrganizationResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetMyUserAccountOrganizationsPage(
+	protected Page<Organization> invokeGetMyUserAccountOrganizationsPage(
 				Long myUserAccountId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/my-user-accounts/{my-user-account-id}/organizations",
-					myUserAccountId
-				);
+			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/organizations", myUserAccountId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetOrganizationsPage(
+	protected Page<Organization> invokeGetOrganizationsPage(
 				Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/organizations",
-					pagination
-				);
+			options.setLocation(_resourceURL + _toPath("/organizations", pagination));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetOrganization(
+	protected Organization invokeGetOrganization(
 				Long organizationId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/organizations/{organization-id}",
-					organizationId
-				);
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}", organizationId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), OrganizationImpl.class);
 	}
-	protected Response invokeGetOrganizationOrganizationsPage(
+	protected Page<Organization> invokeGetOrganizationOrganizationsPage(
 				Long organizationId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/organizations/{organization-id}/organizations",
-					organizationId
-				);
+			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/organizations", organizationId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetUserAccountOrganizationsPage(
+	protected Page<Organization> invokeGetUserAccountOrganizationsPage(
 				Long userAccountId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/user-accounts/{user-account-id}/organizations",
-					userAccountId
-				);
+			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/organizations", userAccountId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
 
 	protected Organization randomOrganization() {
@@ -167,7 +150,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class OrganizationImpl implements Organization {
+	protected static class OrganizationImpl implements Organization {
 
 	public String getComment() {
 				return comment;
@@ -458,17 +441,24 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {

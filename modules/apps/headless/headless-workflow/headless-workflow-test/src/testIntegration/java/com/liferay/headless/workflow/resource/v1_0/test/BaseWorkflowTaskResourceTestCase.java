@@ -26,12 +26,13 @@ import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
-
-import io.restassured.RestAssured;
-import io.restassured.parsing.Parser;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 import java.net.URL;
 
@@ -42,7 +43,6 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -51,11 +51,6 @@ import org.junit.Test;
  */
 @Generated("")
 public abstract class BaseWorkflowTaskResourceTestCase {
-
-	@BeforeClass
-	public static void setUpClass() {
-		RestAssured.defaultParser = Parser.JSON;
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -99,97 +94,91 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			Assert.assertTrue(true);
 	}
 
-	protected Response invokeGetRoleWorkflowTasksPage(
+	protected Page<WorkflowTask> invokeGetRoleWorkflowTasksPage(
 				Long roleId,Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/roles/{role-id}/workflow-tasks",
-					roleId
-				);
+			options.setLocation(_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetWorkflowTasksPage(
+	protected Page<WorkflowTask> invokeGetWorkflowTasksPage(
 				Pagination pagination)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/workflow-tasks",
-					pagination
-				);
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks", pagination));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
 	}
-	protected Response invokeGetWorkflowTask(
+	protected WorkflowTask invokeGetWorkflowTask(
 				Long workflowTaskId)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.when(
-				).get(
-					_resourceURL + "/workflow-tasks/{workflow-task-id}",
-					workflowTaskId
-				);
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
 	}
-	protected Response invokePostWorkflowTaskAssignToMe(
+	protected WorkflowTask invokePostWorkflowTaskAssignToMe(
 				Long workflowTaskId,WorkflowTask workflowTask)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					workflowTask
-				).when(
-				).post(
-					_resourceURL + "/workflow-tasks/{workflow-task-id}/assign-to-me",
-					workflowTaskId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-me", workflowTaskId,workflowTask));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
 	}
-	protected Response invokePostWorkflowTaskAssignToUser(
+	protected WorkflowTask invokePostWorkflowTaskAssignToUser(
 				Long workflowTaskId,WorkflowTask workflowTask)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					workflowTask
-				).when(
-				).post(
-					_resourceURL + "/workflow-tasks/{workflow-task-id}/assign-to-user",
-					workflowTaskId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-user", workflowTaskId,workflowTask));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
 	}
-	protected Response invokePostWorkflowTaskChangeTransition(
+	protected WorkflowTask invokePostWorkflowTaskChangeTransition(
 				Long workflowTaskId,WorkflowTask workflowTask)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					workflowTask
-				).when(
-				).post(
-					_resourceURL + "/workflow-tasks/{workflow-task-id}/change-transition",
-					workflowTaskId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/change-transition", workflowTaskId,workflowTask));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
 	}
-	protected Response invokePostWorkflowTaskUpdateDueDate(
+	protected WorkflowTask invokePostWorkflowTaskUpdateDueDate(
 				Long workflowTaskId,WorkflowTask workflowTask)
 			throws Exception {
 
-			RequestSpecification requestSpecification = _createRequestSpecification();
+			Http.Options options = _createHttpOptions();
 
-				return requestSpecification.body(
-					workflowTask
-				).when(
-				).post(
-					_resourceURL + "/workflow-tasks/{workflow-task-id}/update-due-date",
-					workflowTaskId
-				);
+				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/update-due-date", workflowTaskId,workflowTask));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
 	}
 
 	protected WorkflowTask randomWorkflowTask() {
@@ -210,7 +199,7 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	protected Group testGroup;
 
-	protected class WorkflowTaskImpl implements WorkflowTask {
+	protected static class WorkflowTaskImpl implements WorkflowTask {
 
 	public Boolean getCompleted() {
 				return completed;
@@ -479,17 +468,24 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	}
 
-	private RequestSpecification _createRequestSpecification() {
-		return RestAssured.given(
-		).auth(
-		).preemptive(
-		).basic(
-			"test@liferay.com", "test"
-		).header(
-			"Accept", "application/json"
-		).header(
-			"Content-Type", "application/json"
-		);
+	private Http.Options _createHttpOptions() {
+		Http.Options options = new Http.Options();
+
+		options.addHeader("Accept", "application/json");
+
+		String userNameAndPassword = "test@liferay.com:test";
+
+		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+
+		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+
+		options.addHeader("Content-Type", "application/json");
+
+		return options;
+	}
+
+	private String _toPath(String template, Object... values) {
+		return template.replaceAll("\\{.*\\}", String.valueOf(values[0]));
 	}
 
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
