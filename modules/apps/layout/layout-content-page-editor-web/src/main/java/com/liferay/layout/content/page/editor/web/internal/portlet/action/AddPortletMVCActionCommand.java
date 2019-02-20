@@ -141,8 +141,6 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 		Element runtimeTagElement = new Element(
 			"@liferay_portlet.runtime", true);
 
-		Portlet portlet = _portletLocalService.getPortletById(portletId);
-
 		PortletPreferences portletPreferences =
 			PortletPreferencesFactoryUtil.getPortletPreferences(
 				request, portletId);
@@ -150,6 +148,8 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 		runtimeTagElement.attr(
 			"defaultPreferences",
 			PortletPreferencesFactoryUtil.toXML(portletPreferences));
+
+		Portlet portlet = _portletLocalService.getPortletById(portletId);
 
 		if (portlet.isInstanceable()) {
 			runtimeTagElement.attr(
