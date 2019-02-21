@@ -217,10 +217,8 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 	}
 
 	private DiscussionPermission _getDiscussionPermission() {
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		return _commentManager.getDiscussionPermission(permissionChecker);
+		return _commentManager.getDiscussionPermission(
+			PermissionThreadLocal.getPermissionChecker());
 	}
 
 	private long _getUserId() {
