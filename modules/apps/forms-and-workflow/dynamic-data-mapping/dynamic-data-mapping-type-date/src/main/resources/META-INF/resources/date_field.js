@@ -3,32 +3,6 @@ AUI.add(
 	function(A) {
 		var isArray = Array.isArray;
 
-		var languageId = Liferay.ThemeDisplay.getLanguageId().replace('_', '-');
-		var dateFormat;
-		var customDateFormat = A.Intl.get('datatype-date-format', 'x', languageId);
-
-		if (customDateFormat) {
-			dateFormat = customDateFormat;
-		}
-		else {
-			dateFormat = Liferay.AUI.getDateFormat();
-		}
-
-		var dateDelimiter = '/';
-		var endDelimiter = false;
-
-		if (dateFormat.indexOf('.') != -1) {
-			dateDelimiter = '.';
-
-			if (dateFormat.lastIndexOf('.') == dateFormat.length - 1) {
-				endDelimiter = true;
-			}
-		}
-
-		if (dateFormat.indexOf('-') != -1) {
-			dateDelimiter = '-';
-		}
-
 		var datePicker = new A.DatePicker(
 			{
 				popover: {
@@ -46,7 +20,35 @@ AUI.add(
 					},
 
 					mask: {
-						value: dateFormat
+						valueFn: function(val) {
+							var instance = this;
+
+							var dateFormat = Liferay.AUI.getDateFormat();
+							var languageId = Liferay.ThemeDisplay.getLanguageId().replace('_', '-');
+
+							var customDateFormat = A.Intl.get('datatype-date-format', 'x', languageId);
+
+							if (customDateFormat) {
+								dateFormat = customDateFormat;
+							}
+
+							instance._dateDelimiter = '/';
+							instance._endDelimiter = false;
+
+							if (dateFormat.indexOf('.') != -1) {
+								instance._dateDelimiter = '.';
+
+								if (dateFormat.lastIndexOf('.') == dateFormat.length - 1) {
+									instance._endDelimiter = true;
+								}
+							}
+
+							if (dateFormat.indexOf('-') != -1) {
+								instance._dateDelimiter = '-';
+							}
+
+							return dateFormat;
+						}
 					},
 
 					type: {
