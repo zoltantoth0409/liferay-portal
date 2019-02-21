@@ -230,7 +230,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 	private Comment _postComment(
 			long groupId, long classPK,
-			UnsafeSupplier<Long, ? extends Exception> addCommentSupplier)
+			UnsafeSupplier<Long, ? extends Exception> addCommentUnsafeSupplier)
 		throws Exception {
 
 		DiscussionPermission discussionPermission = _getDiscussionPermission();
@@ -240,7 +240,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 			classPK);
 
 		try {
-			long commentId = addCommentSupplier.get();
+			long commentId = addCommentUnsafeSupplier.get();
 
 			return CommentUtil.toComment(
 				_commentManager.fetchComment(commentId), _portal);
