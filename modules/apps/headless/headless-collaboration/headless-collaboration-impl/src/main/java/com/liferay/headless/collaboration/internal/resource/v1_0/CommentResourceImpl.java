@@ -132,8 +132,8 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 			() -> _commentManager.addComment(
 				_getUserId(), blogsEntry.getGroupId(),
 				blogsEntry.getModelClassName(), blogsEntry.getEntryId(),
-				StringPool.BLANK, StringPool.BLANK,
-				comment.getText(), _createServiceContextFunction()));
+				StringPool.BLANK, StringPool.BLANK, comment.getText(),
+				_createServiceContextFunction()));
 	}
 
 	@Override
