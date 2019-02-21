@@ -232,12 +232,10 @@ public class StructuredContentResourceImpl
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
-		HttpServletResponse response = new EmptyHttpServletResponse();
-
 		EventsProcessorUtil.process(
 			PropsKeys.SERVLET_SERVICE_EVENTS_PRE,
 			PropsValues.SERVLET_SERVICE_EVENTS_PRE, _contextHttpServletRequest,
-			response);
+			new EmptyHttpServletResponse());
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_contextHttpServletRequest.getAttribute(
