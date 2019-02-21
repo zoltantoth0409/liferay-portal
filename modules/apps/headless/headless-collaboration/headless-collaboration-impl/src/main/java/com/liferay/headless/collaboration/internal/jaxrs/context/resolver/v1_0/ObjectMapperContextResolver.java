@@ -58,15 +58,16 @@ import org.osgi.service.component.annotations.Component;
 )
 @Generated("")
 @Provider
-public class ObjectMapperContextResolver
-	implements ContextResolver<ObjectMapper> {
+public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 
-	public ObjectMapper getContext(Class<?> aClass) {
+	public ObjectMapper getContext(Class<?> clazz) {
 		return _objectMapper;
 	}
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
+			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+			enable(SerializationFeature.INDENT_OUTPUT);
 			registerModule(
 				new SimpleModule("Liferay.Headless.Collaboration", Version.unknownVersion()) {
 					{
@@ -84,9 +85,6 @@ public class ObjectMapperContextResolver
 							});
 	}
 				});
-
-			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
-			enable(SerializationFeature.INDENT_OUTPUT);
 			setDateFormat(new ISO8601DateFormat());
 	}
 	};
