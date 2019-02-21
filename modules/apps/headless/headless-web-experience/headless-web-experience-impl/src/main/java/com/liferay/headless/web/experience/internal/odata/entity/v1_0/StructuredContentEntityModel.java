@@ -41,11 +41,11 @@ public class StructuredContentEntityModel implements EntityModel {
 	public StructuredContentEntityModel(List<EntityField> entityFields) {
 		_entityFieldsMap = Stream.of(
 			new CollectionEntityField(
-				new StringEntityField(
-					"keywords", locale -> "assetTagNames.raw")),
-			new CollectionEntityField(
 				new IntegerEntityField(
 					"categoryIds", locale -> "assetCategoryIds")),
+			new CollectionEntityField(
+				new StringEntityField(
+					"keywords", locale -> "assetTagNames.raw")),
 			new ComplexEntityField("values", entityFields),
 			new DateTimeEntityField(
 				"dateCreated",
