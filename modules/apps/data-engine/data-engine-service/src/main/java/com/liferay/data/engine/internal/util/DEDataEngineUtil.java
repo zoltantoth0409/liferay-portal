@@ -34,9 +34,8 @@ public final class DEDataEngineUtil {
 		else if (deDataDefinitionField.isRepeatable()) {
 			return (Object[])values.get(deDataDefinitionField.getName());
 		}
-		else {
-			return values.get(deDataDefinitionField.getName());
-		}
+
+		return values.get(deDataDefinitionField.getName());
 	}
 
 }
