@@ -46,7 +46,7 @@ public class EntityModelResourceRegistry {
 	public void activate(BundleContext bundleContext) {
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
 			bundleContext, EntityModelResource.class,
-			"(&(osgi.jaxrs.resource=true)(component.name=*))",
+			"(&(component.name=*)(osgi.jaxrs.resource=true))",
 			(serviceReference, emitter) -> emitter.emit(
 				(String)serviceReference.getProperty("component.name")));
 	}
