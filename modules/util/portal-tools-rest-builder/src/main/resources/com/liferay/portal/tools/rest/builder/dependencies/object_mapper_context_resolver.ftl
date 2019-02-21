@@ -36,8 +36,7 @@ import org.osgi.service.component.annotations.Component;
 )
 @Generated("")
 @Provider
-public class ObjectMapperContextResolver
-	implements ContextResolver<ObjectMapper> {
+public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper> {
 
 	public ObjectMapper getContext(Class<?> aClass) {
 		return _objectMapper;
