@@ -242,8 +242,8 @@ public class StructuredContentResourceImpl
 				WebKeys.THEME_DISPLAY);
 
 		themeDisplay.setLocale(_contextHttpServletRequest.getLocale());
-		themeDisplay.setSiteGroupId(journalArticle.getGroupId());
 		themeDisplay.setScopeGroupId(journalArticle.getGroupId());
+		themeDisplay.setSiteGroupId(journalArticle.getGroupId());
 
 		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(templateId);
 
