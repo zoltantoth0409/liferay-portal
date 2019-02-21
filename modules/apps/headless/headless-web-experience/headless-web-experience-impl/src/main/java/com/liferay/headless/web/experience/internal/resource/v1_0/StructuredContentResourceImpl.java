@@ -60,7 +60,6 @@ import com.liferay.journal.service.JournalArticleService;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
 import com.liferay.journal.util.JournalHelper;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -99,8 +98,6 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
-import java.net.URI;
-
 import java.time.LocalDateTime;
 
 import java.util.AbstractMap;
@@ -118,8 +115,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriBuilder;
-import javax.ws.rs.core.UriInfo;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -405,14 +400,6 @@ public class StructuredContentResourceImpl
 		return ddmTemplate.getTemplateKey();
 	}
 
-	private URI _getMethodURI(String methodName, Object... values) {
-		return UriBuilder.fromMethod(
-			BaseStructuredContentResourceImpl.class, methodName
-		).build(
-			values
-		);
-	}
-
 	private RenderedContentsURL[] _getRenderedContentsURLs(
 		DDMStructure ddmStructure, JournalArticle journalArticle) {
 
@@ -420,35 +407,17 @@ public class StructuredContentResourceImpl
 			ddmStructure.getTemplates(),
 			ddmTemplate -> new RenderedContentsURLImpl() {
 				{
+					renderedContentURL = getJAXRSLink(
+						"getStructuredContentTemplate",
+						journalArticle.getResourcePrimKey(),
+						ddmTemplate.getTemplateId());
 					templateName = ddmTemplate.getName(
 						contextAcceptLanguage.getPreferredLocale());
-
-					setRenderedContentURL(
-						() -> {
-							URI baseURI = _uriInfo.getBaseUri();
-							URI resourceURI = _getResourceURI();
-							URI methodURI = _getMethodURI(
-								"getStructuredContentTemplate",
-								new Object[] {
-									journalArticle.getResourcePrimKey(),
-									ddmTemplate.getTemplateId()
-								});
-
-							return StringBundler.concat(
-								baseURI.toString(), resourceURI.toString(),
-								methodURI.toString());
-						});
 				}
 			}
 		).toArray(
 			new RenderedContentsURL[0]
 		);
-	}
-
-	private URI _getResourceURI() {
-		return UriBuilder.fromResource(
-			BaseStructuredContentResourceImpl.class
-		).build();
 	}
 
 	private ServiceContext _getServiceContext(
@@ -859,9 +828,6 @@ public class StructuredContentResourceImpl
 	@Reference
 	private SearchResultPermissionFilterFactory
 		_searchResultPermissionFilterFactory;
-
-	@Context
-	private UriInfo _uriInfo;
 
 	@Reference
 	private UserLocalService _userLocalService;
