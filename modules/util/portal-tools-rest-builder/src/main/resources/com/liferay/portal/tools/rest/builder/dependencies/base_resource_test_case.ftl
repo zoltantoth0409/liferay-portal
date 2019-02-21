@@ -97,6 +97,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 			<#elseif javaMethodSignature.returnType?contains("Page<")>
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+			<#elseif stringUtil.equals(javaMethodSignature.returnType, "String")>
+				return HttpUtil.URLtoString(options);
 			<#else>
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ${javaMethodSignature.returnType}Impl.class);
 			</#if>
