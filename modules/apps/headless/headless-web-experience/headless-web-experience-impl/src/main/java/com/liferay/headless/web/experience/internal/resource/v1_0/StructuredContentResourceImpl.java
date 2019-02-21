@@ -413,7 +413,39 @@ public class StructuredContentResourceImpl
 		);
 	}
 
-	private URI _getResourceUri() {
+	private RenderedContentsURL[] _getRenderedContentsURLs(
+		DDMStructure ddmStructure, JournalArticle journalArticle) {
+
+		return transform(
+			ddmStructure.getTemplates(),
+			ddmTemplate -> new RenderedContentsURLImpl() {
+				{
+					templateName = ddmTemplate.getName(
+						contextAcceptLanguage.getPreferredLocale());
+
+					setRenderedContentURL(
+						() -> {
+							URI baseURI = _uriInfo.getBaseUri();
+							URI resourceURI = _getResourceURI();
+							URI methodURI = _getMethodURI(
+								"getStructuredContentTemplate",
+								new Object[] {
+									journalArticle.getResourcePrimKey(),
+									ddmTemplate.getTemplateId()
+								});
+
+							return StringBundler.concat(
+								baseURI.toString(), resourceURI.toString(),
+								methodURI.toString());
+						});
+				}
+			}
+		).toArray(
+			new RenderedContentsURL[0]
+		);
+	}
+
+	private URI _getResourceURI() {
 		return UriBuilder.fromResource(
 			BaseStructuredContentResourceImpl.class
 		).build();
@@ -606,43 +638,11 @@ public class StructuredContentResourceImpl
 					contextAcceptLanguage.getPreferredLocale());
 				id = journalArticle.getResourcePrimKey();
 				lastReviewed = journalArticle.getReviewDate();
+				renderedContentsURL = _getRenderedContentsURLs(
+					ddmStructure, journalArticle);
 				title = journalArticle.getTitle(
 					contextAcceptLanguage.getPreferredLocale());
 				values = _toValues(journalArticle);
-
-				renderedContentsURL =
-					transform(
-						ddmStructure.getTemplates(),
-						ddmTemplate -> new RenderedContentsURLImpl() {
-							{
-								setRenderedContentURL(
-									() -> {
-										URI baseURI = _uriInfo.getBaseUri();
-
-										URI resourceURI = _getResourceUri();
-
-										URI methodURI = _getMethodURI(
-											"getStructuredContentTemplate",
-											new Object[] {
-												journalArticle.
-													getResourcePrimKey(),
-												ddmTemplate.getTemplateId()
-											});
-
-										return StringBundler.concat(
-											baseURI.toString(),
-											resourceURI.toString(),
-											methodURI.toString());
-
-									});
-
-								templateName = ddmTemplate.getName(
-									contextAcceptLanguage.getPreferredLocale());
-							}
-						}
-					).toArray(
-						new RenderedContentsURL[0]
-					);
 			}
 		};
 	}
