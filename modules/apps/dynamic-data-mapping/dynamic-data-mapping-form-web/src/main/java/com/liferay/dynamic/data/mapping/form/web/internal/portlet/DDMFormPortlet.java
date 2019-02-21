@@ -143,6 +143,11 @@ public class DDMFormPortlet extends MVCPortlet {
 
 			checkFormIsNotRestricted(
 				renderRequest, renderResponse, ddmFormPortletDisplayContext);
+
+			if (ddmFormPortletDisplayContext.isFormShared()) {
+				saveRefererGroupIdInRequest(
+					renderRequest, ddmFormPortletDisplayContext);
+			}
 		}
 		catch (Exception e) {
 			if (isSessionErrorException(e)) {
@@ -211,6 +216,19 @@ public class DDMFormPortlet extends MVCPortlet {
 
 			portletSession.setAttribute("formInstanceId", formInstanceId);
 			portletSession.setAttribute("shared", Boolean.TRUE);
+		}
+	}
+
+	protected void saveRefererGroupIdInRequest(
+		RenderRequest renderRequest,
+		DDMFormDisplayContext ddmFormPortletDisplayContext) {
+
+		if (ddmFormPortletDisplayContext.getFormInstanceId() > 0) {
+			DDMFormInstance ddmFormInstance =
+				ddmFormPortletDisplayContext.getFormInstance();
+
+			renderRequest.setAttribute(
+				"refererGroupId", ddmFormInstance.getGroupId());
 		}
 	}
 
