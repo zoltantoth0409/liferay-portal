@@ -129,9 +129,10 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 		return _postComment(
 			blogsEntry.getGroupId(), blogsEntry.getEntryId(),
-			() -> _commentManager.addComment(_getUserId(),
-				blogsEntry.getGroupId(), blogsEntry.getModelClassName(),
-				blogsEntry.getEntryId(), StringPool.BLANK, StringPool.BLANK,
+			() -> _commentManager.addComment(
+				_getUserId(), blogsEntry.getGroupId(),
+				blogsEntry.getModelClassName(), blogsEntry.getEntryId(),
+				StringPool.BLANK, StringPool.BLANK,
 				comment.getText(), _createServiceContextFunction()));
 	}
 
@@ -148,10 +149,11 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 		return _postComment(
 			parentComment.getGroupId(), parentComment.getGroupId(),
-			() -> _commentManager.addComment(_getUserId(),
-				BlogsEntry.class.getName(), parentComment.getClassPK(),
-				StringPool.BLANK, parentCommentId, StringPool.BLANK,
-				comment.getText(), _createServiceContextFunction()));
+			() -> _commentManager.addComment(
+				_getUserId(), BlogsEntry.class.getName(),
+				parentComment.getClassPK(), StringPool.BLANK, parentCommentId,
+				StringPool.BLANK, comment.getText(),
+				_createServiceContextFunction()));
 	}
 
 	@Override
@@ -162,13 +164,13 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 		discussionPermission.checkUpdatePermission(commentId);
 
-		com.liferay.portal.kernel.comment.Comment currentComment =
+		com.liferay.portal.kernel.comment.Comment existingComment =
 			_commentManager.fetchComment(commentId);
 
 		try {
 			_commentManager.updateComment(
-				currentComment.getUserId(), currentComment.getClassName(),
-				currentComment.getClassPK(), commentId, "", comment.getText(),
+				existingComment.getUserId(), existingComment.getClassName(),
+				existingComment.getClassPK(), commentId, "", comment.getText(),
 				_createServiceContextFunction());
 
 			return CommentUtil.toComment(
