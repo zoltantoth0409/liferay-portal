@@ -257,8 +257,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 				"A comment with the same text already exists", 409, dce);
 		}
 		catch (MessageSubjectException mse) {
-			throw new ClientErrorException(
-				"Comment text cannot be null", 422, mse);
+			throw new ClientErrorException("Comment text is null", 422, mse);
 		}
 	}
 
