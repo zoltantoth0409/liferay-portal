@@ -16,8 +16,8 @@ package com.liferay.headless.document.library.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
-import java.util.Date;
 import java.util.Objects;
 
 import org.junit.Assert;
@@ -123,16 +123,12 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 
 	@Override
 	protected Folder randomFolder() {
-		Folder folder = super.randomFolder();
-
-		folder.setDateCreated((Date)null);
-		folder.setDateModified((Date)null);
-		folder.setHasDocuments((Boolean)null);
-		folder.setHasFolders((Boolean)null);
-		folder.setId((Long)null);
-		folder.setRepositoryId((Long)null);
-
-		return folder;
+		return new FolderImpl() {
+			{
+				description = RandomTestUtil.randomString();
+				name = RandomTestUtil.randomString();
+			}
+		};
 	}
 
 }
