@@ -3,6 +3,14 @@ AUI.add(
 	function(A) {
 		var isArray = Array.isArray;
 
+		var langId = Liferay.ThemeDisplay.getLanguageId().replace('_', '-');
+		var customDateFormat = A.Intl.get('datatype-date-format', 'x', langId);
+		var dateFormat = Liferay.AUI.getDateFormat();
+
+		if (customDateFormat) {
+			dateFormat = customDateFormat;
+		}
+
 		var datePicker = new A.DatePicker(
 			{
 				popover: {
@@ -20,7 +28,7 @@ AUI.add(
 					},
 
 					mask: {
-						value: Liferay.AUI.getDateFormat()
+						value: dateFormat
 					},
 
 					type: {
