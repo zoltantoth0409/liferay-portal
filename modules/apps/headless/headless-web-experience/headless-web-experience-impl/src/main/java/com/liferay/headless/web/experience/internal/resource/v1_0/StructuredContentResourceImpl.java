@@ -247,12 +247,11 @@ public class StructuredContentResourceImpl
 
 		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(templateId);
 
-		Locale locale = contextAcceptLanguage.getPreferredLocale();
-
 		JournalArticleDisplay journalArticleDisplay =
 			_journalContent.getDisplay(
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
-				ddmTemplate.getTemplateKey(), null, locale.toString(),
+				ddmTemplate.getTemplateKey(), null,
+				String.valueOf(contextAcceptLanguage.getPreferredLocale()),
 				themeDisplay);
 
 		String content = journalArticleDisplay.getContent();
