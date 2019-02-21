@@ -35,6 +35,7 @@ import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.NoSuchModelExce
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PortalExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.PrincipalExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.UnrecognizedPropertyExceptionMapper;
+import com.liferay.portal.vulcan.internal.jaxrs.exception.mapper.WebApplicationExceptionMapper;
 import com.liferay.portal.vulcan.internal.jaxrs.message.body.MultipartBodyMessageBodyReader;
 import com.liferay.portal.vulcan.internal.resource.EntityModelResourceRegistry;
 
@@ -78,6 +79,7 @@ public class VulcanFeature implements Feature {
 		featureContext.register(PortalExceptionMapper.class);
 		featureContext.register(PrincipalExceptionMapper.class);
 		featureContext.register(UnrecognizedPropertyExceptionMapper.class);
+		featureContext.register(WebApplicationExceptionMapper.class);
 
 		featureContext.register(
 			new AcceptLanguageContextProvider(_language, _portal));
