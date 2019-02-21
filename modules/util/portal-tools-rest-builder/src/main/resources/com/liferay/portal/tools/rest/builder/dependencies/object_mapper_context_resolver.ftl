@@ -45,6 +45,8 @@ public class ObjectMapperContextResolver
 
 	private static final ObjectMapper _objectMapper = new ObjectMapper() {
 		{
+			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
+			enable(SerializationFeature.INDENT_OUTPUT);
 			registerModule(
 				new SimpleModule("${configYAML.application.name}", Version.unknownVersion()) {
 					{
@@ -58,9 +60,6 @@ public class ObjectMapperContextResolver
 							});
 						}
 				});
-
-			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
-			enable(SerializationFeature.INDENT_OUTPUT);
 			setDateFormat(new ISO8601DateFormat());
 		}
 	};
