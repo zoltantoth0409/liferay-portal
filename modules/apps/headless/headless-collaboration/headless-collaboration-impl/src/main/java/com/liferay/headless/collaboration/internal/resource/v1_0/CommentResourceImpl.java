@@ -177,8 +177,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 				_commentManager.fetchComment(commentId), _portal);
 		}
 		catch (MessageSubjectException mse) {
-			throw new ClientErrorException(
-				"Comment text cannot be null", 422, mse);
+			throw new ClientErrorException("Comment text is null", 422, mse);
 		}
 	}
 
