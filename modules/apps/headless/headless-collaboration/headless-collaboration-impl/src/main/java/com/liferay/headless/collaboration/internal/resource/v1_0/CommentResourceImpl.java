@@ -193,8 +193,8 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 		DiscussionPermission discussionPermission = _getDiscussionPermission();
 
 		discussionPermission.checkViewPermission(
-			_getCompanyId(), comment.getGroupId(), BlogsEntry.class.getName(),
-			comment.getClassPK());
+			contextCompany.getCompanyId(), comment.getGroupId(),
+			BlogsEntry.class.getName(), comment.getClassPK());
 	}
 
 	private void _checkViewPermission(
@@ -204,7 +204,7 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 		DiscussionPermission discussionPermission = _getDiscussionPermission();
 
 		discussionPermission.checkViewPermission(
-			_getCompanyId(), groupId, className, classPK);
+			contextCompany.getCompanyId(), groupId, className, classPK);
 	}
 
 	private Function<String, ServiceContext> _createServiceContextFunction() {
@@ -215,13 +215,6 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 			return serviceContext;
 		};
-	}
-
-	private long _getCompanyId() {
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		return permissionChecker.getCompanyId();
 	}
 
 	private DiscussionPermission _getDiscussionPermission() {
@@ -246,7 +239,8 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 		DiscussionPermission discussionPermission = _getDiscussionPermission();
 
 		discussionPermission.checkAddPermission(
-			_getCompanyId(), groupId, BlogsEntry.class.getName(), classPK);
+			contextCompany.getCompanyId(), groupId, BlogsEntry.class.getName(),
+			classPK);
 
 		try {
 			long commentId = addCommentSupplier.get();
