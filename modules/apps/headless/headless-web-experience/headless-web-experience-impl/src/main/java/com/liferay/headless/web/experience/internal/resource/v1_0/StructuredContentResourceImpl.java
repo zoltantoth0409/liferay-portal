@@ -405,11 +405,11 @@ public class StructuredContentResourceImpl
 		return ddmTemplate.getTemplateKey();
 	}
 
-	private URI _getMethodURI(String methodName, Object[] objects) {
+	private URI _getMethodURI(String methodName, Object... values) {
 		return UriBuilder.fromMethod(
 			BaseStructuredContentResourceImpl.class, methodName
 		).build(
-			objects
+			values
 		);
 	}
 
