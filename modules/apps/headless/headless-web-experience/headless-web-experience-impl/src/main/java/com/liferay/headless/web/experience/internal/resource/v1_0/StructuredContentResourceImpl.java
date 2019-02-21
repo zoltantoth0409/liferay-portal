@@ -403,7 +403,7 @@ public class StructuredContentResourceImpl
 	private RenderedContentsURL[] _getRenderedContentsURLs(
 		DDMStructure ddmStructure, JournalArticle journalArticle) {
 
-		return transform(
+		List<RenderedContentsURL> renderedContentsURLs = transform(
 			ddmStructure.getTemplates(),
 			ddmTemplate -> new RenderedContentsURLImpl() {
 				{
@@ -414,10 +414,10 @@ public class StructuredContentResourceImpl
 					templateName = ddmTemplate.getName(
 						contextAcceptLanguage.getPreferredLocale());
 				}
-			}
-		).toArray(
-			new RenderedContentsURL[0]
-		);
+			});
+
+		return renderedContentsURLs.toArray(
+			new RenderedContentsURL[renderedContentsURLs.size()]);
 	}
 
 	private ServiceContext _getServiceContext(
