@@ -688,7 +688,7 @@ public class ServiceBuilder {
 				if (isVersionLTE_7_1_0()) {
 					throw new IllegalArgumentException(
 						"Cannot use dependency-injector=\"ds\" without using " +
-							"at least DTD version 7.2");
+							"at least DTD version 7.2.0");
 				}
 
 				if (!_osgiModule) {
