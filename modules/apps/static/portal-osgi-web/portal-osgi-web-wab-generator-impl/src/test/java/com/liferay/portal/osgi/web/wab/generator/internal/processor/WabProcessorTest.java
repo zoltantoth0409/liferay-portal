@@ -261,8 +261,8 @@ public class WabProcessorTest {
 
 			// Now that we've established CDI discovery would kick
 			// in, check to see if the WAB opted-out of integration by
-			// having the `-cdiannotations` instruction set to the empty
-			// value in `liferay-plugin-package.properties`
+			// having the "-cdiannotations" instruction set to the empty
+			// value in liferay-plugin-package.properties.
 
 			Resource packageProperties = jar.getResource(
 				"WEB-INF/liferay-plugin-package.properties");
@@ -278,8 +278,8 @@ public class WabProcessorTest {
 			Assert.assertEquals(
 				"", properties.getProperty(Constants.CDIANNOTATIONS));
 
-			// Finally, make sure no requirement on the OSGI CDI
-			// Integration extender were added to the manifest.
+			// Finally, make sure no requirement on the OSGi CDI
+			// Integration extender was added to the manifest
 
 			Domain domain = Domain.domain(jar.getManifest());
 
@@ -347,8 +347,8 @@ public class WabProcessorTest {
 
 			// Now that we've established CDI discovery would kick
 			// in, check to see if the WAB opted-out of integration by
-			// having the `-cdiannotations` instruction set to the empty
-			// value in `liferay-plugin-package.properties`
+			// having the "-cdiannotations" instruction set to the empty
+			// value in liferay-plugin-package.properties.
 
 			Resource packageProperties = jar.getResource(
 				"WEB-INF/liferay-plugin-package.properties");
@@ -364,8 +364,8 @@ public class WabProcessorTest {
 			Assert.assertFalse(
 				properties.containsKey(Constants.CDIANNOTATIONS));
 
-			// Finally, make sure the requirement on the OSGI CDI
-			// Integration extender was added to the manifest.
+			// Finally, make sure the requirement on the OSGi CDI
+			// Integration extender was added to the manifest
 
 			Domain domain = Domain.domain(jar.getManifest());
 
@@ -381,7 +381,7 @@ public class WabProcessorTest {
 
 			Assert.assertNotNull(entry);
 
-			// Assert the expected number of beans were discovered.
+			// Assert the expected number of beans were discovered
 
 			Attrs attrs = entry.getValue();
 
@@ -389,7 +389,7 @@ public class WabProcessorTest {
 
 			Assert.assertEquals(beans.toString(), 23, beans.size());
 
-			// Make sure other CDI requirements were added.
+			// Make sure other CDI requirements were added
 
 			// The bean portlet extension
 
@@ -459,8 +459,8 @@ public class WabProcessorTest {
 				Assert.assertNotEquals("none", value);
 			}
 
-			// Finally, make sure the requirement on the OSGI CDI
-			// Integration extender was added to the manifest.
+			// Finally, make sure the requirement on the OSGi CDI
+			// Integration extender was added to the manifest
 
 			Domain domain = Domain.domain(jar.getManifest());
 
@@ -476,7 +476,7 @@ public class WabProcessorTest {
 
 			Assert.assertNotNull(entry);
 
-			// Assert the expected number of beans were discovered.
+			// Assert the expected number of beans were discovered
 
 			Attrs attrs = entry.getValue();
 
@@ -493,7 +493,7 @@ public class WabProcessorTest {
 
 			Assert.assertEquals(expectedList.toString(), expectedList, beans);
 
-			// Make sure other CDI requirements were added.
+			// Make sure other CDI requirements were added
 
 			// The bean portlet extension
 
