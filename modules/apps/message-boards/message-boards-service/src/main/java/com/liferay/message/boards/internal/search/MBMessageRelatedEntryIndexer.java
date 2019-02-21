@@ -46,17 +46,17 @@ public class MBMessageRelatedEntryIndexer extends BaseRelatedEntryIndexer {
 
 		FileEntry fileEntry = (FileEntry)obj;
 
-		MBMessage message = mbMessageLocalService.fetchFileEntryMessage(
+		MBMessage mbMessage = mbMessageLocalService.fetchFileEntryMessage(
 			fileEntry.getFileEntryId());
 
-		if (message == null) {
+		if (mbMessage == null) {
 			return;
 		}
 
-		document.addKeyword(Field.CATEGORY_ID, message.getCategoryId());
+		document.addKeyword(Field.CATEGORY_ID, mbMessage.getCategoryId());
 
 		document.addKeyword("discussion", false);
-		document.addKeyword("threadId", message.getThreadId());
+		document.addKeyword("threadId", mbMessage.getThreadId());
 	}
 
 	@Override
@@ -64,13 +64,13 @@ public class MBMessageRelatedEntryIndexer extends BaseRelatedEntryIndexer {
 		throws Exception {
 
 		try {
-			MBMessage message = mbMessageLocalService.getMessage(classPK);
+			MBMessage mbMessage = mbMessageLocalService.getMessage(classPK);
 
-			if (message.isDiscussion()) {
+			if (mbMessage.isDiscussion()) {
 				Indexer<?> indexer = IndexerRegistryUtil.getIndexer(
-					message.getClassName());
+					mbMessage.getClassName());
 
-				return indexer.isVisible(message.getClassPK(), status);
+				return indexer.isVisible(mbMessage.getClassPK(), status);
 			}
 		}
 		catch (Exception e) {
