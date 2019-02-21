@@ -32,10 +32,8 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 
 	@Test
 	public void testDeleteFolder() throws Exception {
-		Folder randomFolder = randomFolder();
-
 		Folder postFolder = invokePostContentSpaceFolder(
-			testGroup.getGroupId(), randomFolder);
+			testGroup.getGroupId(), randomFolder());
 
 		assertResponseCode(200, invokeDeleteFolderResponse(postFolder.getId()));
 
