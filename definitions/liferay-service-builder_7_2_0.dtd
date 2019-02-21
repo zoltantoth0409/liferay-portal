@@ -39,20 +39,20 @@ plugin services.
 >
 
 <!--
-The mvcc-enabled value specifies whether or not to enable MVCC by default for
-entities to prevent lost updates. The default value is false.
--->
-<!ATTLIST service-builder
-	mvcc-enabled CDATA #IMPLIED
->
-
-<!--
 The dependency-injector value specifies which dependency injector to use. Valid
 values are "spring" and "ds". For new osgi modules the default value is ds, for
 existing modules or wars default value is spring.
 -->
 <!ATTLIST service-builder
 	dependency-injector CDATA #IMPLIED
+>
+
+<!--
+The mvcc-enabled value specifies whether or not to enable MVCC by default for
+entities to prevent lost updates. The default value is false.
+-->
+<!ATTLIST service-builder
+	mvcc-enabled CDATA #IMPLIED
 >
 
 <!--
