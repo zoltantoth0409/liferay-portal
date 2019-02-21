@@ -122,3 +122,8 @@ c281f08264e7db34b4258cacf3e8f5a506e6fce6^..7df99e6159d1c91753aa28aecd8dc8ac68487
 # Bundle Version 7.1.0.26
 #
 fed4addce5cfc34eaf77946390c4d18841e3beae^..119dd962c21064eccb7ed8398df0dbebcbf4ad20=LRDOCS-6300
+
+#
+# Bundle Version 7.1.0.27
+#
+119dd962c21064eccb7ed8398df0dbebcbf4ad20^..3b76bab264c201866c6c95bfbd06181a80de2f3a=LPS-89456
