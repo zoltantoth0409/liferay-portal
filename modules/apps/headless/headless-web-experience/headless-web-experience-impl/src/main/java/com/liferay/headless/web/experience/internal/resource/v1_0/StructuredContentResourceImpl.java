@@ -52,7 +52,6 @@ import com.liferay.headless.web.experience.internal.dto.v1_0.util.ContentStructu
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.EntityFieldsProvider;
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.StructuredContentEntityModel;
-import com.liferay.headless.web.experience.internal.resource.v1_0.util.EmptyHttpServletResponse;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleDisplay;
@@ -80,6 +79,7 @@ import com.liferay.portal.kernel.search.filter.TermFilter;
 import com.liferay.portal.kernel.service.LayoutLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.servlet.DummyHttpServletResponse;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
@@ -111,7 +111,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
@@ -235,7 +234,7 @@ public class StructuredContentResourceImpl
 		EventsProcessorUtil.process(
 			PropsKeys.SERVLET_SERVICE_EVENTS_PRE,
 			PropsValues.SERVLET_SERVICE_EVENTS_PRE, _contextHttpServletRequest,
-			new EmptyHttpServletResponse());
+			new DummyHttpServletResponse());
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_contextHttpServletRequest.getAttribute(

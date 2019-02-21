@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.web.experience.internal.resource.v1_0.util;
+package com.liferay.portal.kernel.servlet;
 
 import java.io.PrintWriter;
 
@@ -27,14 +27,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author Cristina González Castellano
  * @author Eduardo Pérez
  */
-public class EmptyHttpServletResponse implements HttpServletResponse {
+public class DummyHttpServletResponse implements HttpServletResponse {
 
 	@Override
 	public void addCookie(Cookie cookie) {
 	}
 
 	@Override
-	public void addDateHeader(String name, long date) {
+	public void addDateHeader(String name, long value) {
 	}
 
 	@Override
@@ -150,23 +150,27 @@ public class EmptyHttpServletResponse implements HttpServletResponse {
 	}
 
 	@Override
-	public void setBufferSize(int size) {
+	public void setBufferSize(int bufferSize) {
 	}
 
 	@Override
-	public void setCharacterEncoding(String charset) {
+	public void setCharacterEncoding(String characterEncoding) {
 	}
 
 	@Override
-	public void setContentLength(int len) {
+	public void setContentLength(int contentLength) {
+	}
+
+	public void setContentLengthLong(long contentLengthLong) {
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void setContentType(String contentLength) {
+	public void setContentType(String contentType) {
 	}
 
 	@Override
-	public void setDateHeader(String name, long date) {
+	public void setDateHeader(String name, long value) {
 	}
 
 	@Override
