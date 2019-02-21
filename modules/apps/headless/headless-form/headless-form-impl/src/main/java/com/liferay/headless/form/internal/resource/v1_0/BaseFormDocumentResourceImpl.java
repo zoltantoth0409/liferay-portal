@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
+import java.net.URI;
+
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -33,6 +35,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.UriInfo;
 
 /**
  * @author Javier Gamarra
@@ -69,6 +73,22 @@ public abstract class BaseFormDocumentResourceImpl implements FormDocumentResour
 		this.contextCompany = contextCompany;
 	}
 
+	protected String getJAXRSLink(String methodName, Object... values) {
+		URI baseURI = contextUriInfo.getBaseUri();
+
+		URI resourceURI = UriBuilder.fromResource(
+			BaseFormDocumentResourceImpl.class
+		).build();
+
+		URI methodURI = UriBuilder.fromMethod(
+			BaseFormDocumentResourceImpl.class, methodName
+		).build(
+			values
+		);
+
+		return baseURI.toString() + resourceURI.toString() + methodURI.toString();
+	}
+
 	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
@@ -78,5 +98,8 @@ public abstract class BaseFormDocumentResourceImpl implements FormDocumentResour
 
 	@Context
 	protected Company contextCompany;
+
+	@Context
+	protected UriInfo contextUriInfo;
 
 }
