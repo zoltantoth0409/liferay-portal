@@ -94,7 +94,7 @@ public class AudioDLPreviewRendererProvider
 
 		if (_dlFileVersionPreviewLocalService.hasDLFileVersionPreview(
 				fileVersion.getFileEntryId(), fileVersion.getFileVersionId(),
-				DLFileVersionPreviewConstants.FAILURE)) {
+				DLFileVersionPreviewConstants.STATUS_FAILURE)) {
 
 			throw new DLFileEntryPreviewGenerationException();
 		}

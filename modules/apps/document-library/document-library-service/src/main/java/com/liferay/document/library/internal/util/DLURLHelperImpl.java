@@ -134,7 +134,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 
 		if (_dlFileVersionPreviewLocalService.hasDLFileVersionPreview(
 				fileEntry.getFileEntryId(), fileVersion.getFileVersionId(),
-				DLFileVersionPreviewConstants.FAILURE)) {
+				DLFileVersionPreviewConstants.STATUS_FAILURE)) {
 
 			return StringPool.BLANK;
 		}
@@ -243,7 +243,7 @@ public class DLURLHelperImpl implements DLURLHelper {
 
 		if (_dlFileVersionPreviewLocalService.hasDLFileVersionPreview(
 				fileEntry.getFileEntryId(), fileVersion.getFileVersionId(),
-				DLFileVersionPreviewConstants.FAILURE)) {
+				DLFileVersionPreviewConstants.STATUS_FAILURE)) {
 
 			return StringPool.BLANK;
 		}
