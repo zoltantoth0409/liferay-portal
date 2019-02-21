@@ -11,6 +11,18 @@ AUI.add(
 			dateFormat = customDateFormat;
 		}
 
+		var dateDelimiter = '/';
+		var endDelimiter = false;
+		if (dateFormat.indexOf('.') != -1) {
+			dateDelimiter = '.';
+			if (dateFormat.lastIndexOf('.') == dateFormat.length - 1) {
+				endDelimiter = true;
+			}
+		}
+		if (dateFormat.indexOf('-') != -1) {
+			dateDelimiter = '-';
+		}
+
 		var datePicker = new A.DatePicker(
 			{
 				popover: {
