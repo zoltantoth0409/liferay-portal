@@ -251,7 +251,8 @@ public class StructuredContentResourceImpl
 			_journalContent.getDisplay(
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
 				ddmTemplate.getTemplateKey(), null,
-				String.valueOf(contextAcceptLanguage.getPreferredLocale()),
+				LocaleUtil.toLanguageId(
+					contextAcceptLanguage.getPreferredLocale()),
 				themeDisplay);
 
 		String content = journalArticleDisplay.getContent();
