@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.web.internal.model.adapter.builder;
+package com.liferay.portal.workflow.definition.link.web.internal.model.adapter.builder;
 
 import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.model.adapter.StagedGroupedWorkflowDefinitionLink;
