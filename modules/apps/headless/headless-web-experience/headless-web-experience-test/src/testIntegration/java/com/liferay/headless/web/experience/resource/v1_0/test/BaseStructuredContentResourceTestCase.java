@@ -24,7 +24,7 @@ import com.liferay.headless.web.experience.dto.v1_0.Categories;
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
-import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsByTemplate;
+import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsURL;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.dto.v1_0.Values;
 import com.liferay.petra.function.UnsafeSupplier;
@@ -98,6 +98,10 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 	@Test
 	public void testPutStructuredContent() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testGetStructuredContentTemplate() throws Exception {
 			Assert.assertTrue(true);
 	}
 
@@ -281,6 +285,29 @@ public abstract class BaseStructuredContentResourceTestCase {
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}", structuredContentId,structuredContent));
 
 				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
+	protected String invokeGetStructuredContentTemplate(
+				Long structuredContentId,Long templateId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/rendered-content/{template-id}", structuredContentId,templateId));
+
+				return HttpUtil.URLtoString(options);
+	}
+
+	protected Http.Response invokeGetStructuredContentTemplateResponse(
+				Long structuredContentId,Long templateId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/rendered-content/{template-id}", structuredContentId,templateId));
 
 			HttpUtil.URLtoString(options);
 
@@ -616,20 +643,20 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@JsonProperty
 	protected Date lastReviewed;
-	public RenderedContentsByTemplate[] getRenderedContentsByTemplate() {
-				return renderedContentsByTemplate;
+	public RenderedContentsURL[] getRenderedContentsURL() {
+				return renderedContentsURL;
 	}
 
-	public void setRenderedContentsByTemplate(RenderedContentsByTemplate[] renderedContentsByTemplate) {
-				this.renderedContentsByTemplate = renderedContentsByTemplate;
+	public void setRenderedContentsURL(RenderedContentsURL[] renderedContentsURL) {
+				this.renderedContentsURL = renderedContentsURL;
 	}
 
 	@JsonIgnore
-	public void setRenderedContentsByTemplate(
-				UnsafeSupplier<RenderedContentsByTemplate[], Throwable> renderedContentsByTemplateUnsafeSupplier) {
+	public void setRenderedContentsURL(
+				UnsafeSupplier<RenderedContentsURL[], Throwable> renderedContentsURLUnsafeSupplier) {
 
 				try {
-					renderedContentsByTemplate = renderedContentsByTemplateUnsafeSupplier.get();
+					renderedContentsURL = renderedContentsURLUnsafeSupplier.get();
 	}
 				catch (Throwable t) {
 					throw new RuntimeException(t);
@@ -637,7 +664,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	@JsonProperty
-	protected RenderedContentsByTemplate[] renderedContentsByTemplate;
+	protected RenderedContentsURL[] renderedContentsURL;
 	public String getTitle() {
 				return title;
 	}
