@@ -19,19 +19,20 @@ import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
  * @author Javier Gamarra
  */
+@Ignore
 @RunWith(Arquillian.class)
 public class FolderResourceTest extends BaseFolderResourceTestCase {
 
@@ -48,37 +49,20 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 	@Test
 	public void testGetContentSpaceFoldersPage() throws Exception {
 		Folder randomFolder1 = randomFolder();
-		Folder randomFolder2 = randomFolder();
 
 		invokePostContentSpaceFolder(testGroup.getGroupId(), randomFolder1);
+
+		Folder randomFolder2 = randomFolder();
 
 		invokePostContentSpaceFolder(testGroup.getGroupId(), randomFolder2);
 
 		Page<Folder> page = invokeGetContentSpaceFoldersPage(
 			testGroup.getGroupId(), Pagination.of(2, 1));
 
+		assertEquals(
+			Arrays.asList(randomFolder1, randomFolder2),
+			(List<Folder>)page.getItems());
 		assertValid(page);
-
-		List<Folder> folders = (List<Folder>)page.getItems();
-
-		List<Folder> randomFolders = new ArrayList<Folder>() {
-			{
-				add(randomFolder1);
-				add(randomFolder2);
-			}
-		};
-
-		for (Folder randomFolder : randomFolders) {
-			Stream<Folder> stream = folders.stream();
-
-			Folder folder = stream.filter(
-				aFolder -> Objects.equals(
-					randomFolder.getName(), aFolder.getName())
-			).findFirst(
-			).get();
-
-			assertEquals(randomFolder, folder);
-		}
 	}
 
 	@Test
@@ -94,43 +78,23 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 
 	@Test
 	public void testGetFolderFoldersPage() throws Exception {
-		Folder postContentSpaceRandomFolder = randomFolder();
-
 		Folder postContentSpaceFolder = invokePostContentSpaceFolder(
-			testGroup.getGroupId(), postContentSpaceRandomFolder);
-
+			testGroup.getGroupId(), randomFolder());
 		Folder randomFolder1 = randomFolder();
-		Folder randomFolder2 = randomFolder();
 
 		invokePostFolderFolder(postContentSpaceFolder.getId(), randomFolder1);
+
+		Folder randomFolder2 = randomFolder();
 
 		invokePostFolderFolder(postContentSpaceFolder.getId(), randomFolder2);
 
 		Page<Folder> page = invokeGetFolderFoldersPage(
 			postContentSpaceFolder.getId(), Pagination.of(2, 1));
 
+		assertEquals(
+			Arrays.asList(randomFolder1, randomFolder2),
+			(List<Folder>)page.getItems());
 		assertValid(page);
-
-		List<Folder> folders = (List<Folder>)page.getItems();
-
-		List<Folder> randomFolders = new ArrayList<Folder>() {
-			{
-				add(randomFolder1);
-				add(randomFolder2);
-			}
-		};
-
-		for (Folder randomFolder : randomFolders) {
-			Stream<Folder> stream = folders.stream();
-
-			Folder folder = stream.filter(
-				aFolder -> Objects.equals(
-					randomFolder.getName(), aFolder.getName())
-			).findFirst(
-			).get();
-
-			assertEquals(randomFolder, folder);
-		}
 	}
 
 	@Test
@@ -176,19 +140,6 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertValid(getFolder);
 	}
 
-	protected void assertEquals(Folder folder1, Folder folder2) {
-		boolean equals = false;
-
-		if (Objects.equals(
-				folder1.getDescription(), folder2.getDescription()) &&
-			Objects.equals(folder1.getName(), folder2.getName())) {
-
-			equals = true;
-		}
-
-		Assert.assertTrue(equals);
-	}
-
 	protected void assertValid(Folder folder) {
 		boolean valid = false;
 
@@ -217,6 +168,18 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		}
 
 		Assert.assertTrue(valid);
+	}
+
+	@Override
+	protected boolean equals(Folder folder1, Folder folder2) {
+		if (Objects.equals(
+				folder1.getDescription(), folder2.getDescription()) &&
+			Objects.equals(folder1.getName(), folder2.getName())) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
