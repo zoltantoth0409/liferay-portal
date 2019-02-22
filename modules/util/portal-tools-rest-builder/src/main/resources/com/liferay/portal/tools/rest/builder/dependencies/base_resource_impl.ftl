@@ -75,8 +75,8 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 
 				<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schemaName, false) as javaParameter>
 					<#if !freeMarkerTool.isSchemaParameter(javaParameter, openAPIYAML)>
-						if (Validator.isNotNull(${schemaName?uncap_first}.get${javaParameter.parameterName?cap_first}())) {
-							existing${schemaName}.set${javaParameter.parameterName?cap_first}(${schemaName?uncap_first}.get${javaParameter.parameterName?cap_first}());
+						if (Validator.isNotNull(${schemaVarName}.get${javaParameter.parameterName?cap_first}())) {
+							existing${schemaName}.set${javaParameter.parameterName?cap_first}(${schemaVarName}.get${javaParameter.parameterName?cap_first}());
 						}
 					</#if>
 				</#list>

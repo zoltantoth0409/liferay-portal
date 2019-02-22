@@ -9,9 +9,11 @@ package ${configYAML.apiPackagePath}.resource.${versionDirName}.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -23,12 +25,14 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -77,8 +81,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaName?uncap_first}")>
-				options.setBody(_inputObjectMapper.writeValueAsString(${schemaName?uncap_first}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
+				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
@@ -96,7 +100,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 			<#elseif javaMethodSignature.returnType?contains("Page<")>
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<${schemaName}Impl>>() {});
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "String")>
 				return HttpUtil.URLtoString(options);
 			<#else>
@@ -112,8 +116,8 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
 
-			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaName?uncap_first}")>
-				options.setBody(_inputObjectMapper.writeValueAsString(${schemaName?uncap_first}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
+				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "delete")>
@@ -133,6 +137,29 @@ public abstract class Base${schemaName}ResourceTestCase {
 			return options.getResponse();
 		}
 	</#list>
+
+	protected void assertEquals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
+		Assert.assertTrue(${schemaVarName}1 + " does not equal " + ${schemaVarName}2, equals(${schemaVarName}1, ${schemaVarName}2));
+	}
+
+	protected void assertEquals(List<${schemaName}> ${schemaVarNames}1, List<${schemaName}> ${schemaVarNames}2) {
+		Assert.assertEquals(${schemaVarNames}1.size(), ${schemaVarNames}2.size());
+
+		for (int i = 0; i < ${schemaVarNames}1.size(); i++) {
+			${schemaName} ${schemaVarName}1 = ${schemaVarNames}1.get(i);
+			${schemaName} ${schemaVarName}2 = ${schemaVarNames}2.get(i);
+
+			assertEquals(${schemaVarName}1, ${schemaVarName}2);
+		}
+	}
+
+	protected boolean equals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
+		if (${schemaVarName}1 == ${schemaVarName}2) {
+			return true;
+		}
+
+		return false;
+	}
 
 	protected ${schemaName} random${schemaName}() {
 		return new ${schemaName}Impl() {
@@ -178,6 +205,65 @@ public abstract class Base${schemaName}ResourceTestCase {
 			@JsonProperty
 			protected ${javaParameter.parameterType} ${javaParameter.parameterName};
 		</#list>
+
+		public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+			<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schema, false) as javaParameter>
+				<#if javaParameter?is_first>
+					sb.append("${javaParameter.parameterName}=");
+				<#else>
+					sb.append(", ${javaParameter.parameterName}=");
+				</#if>
+
+				sb.append(${javaParameter.parameterName});
+			</#list>
+
+			sb.append("}");
+
+			return sb.toString();
+		}
+
+	}
+
+	protected static class Page<T> {
+
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
+
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
+
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
+
+		public int getPageNumber() {
+			return pageNumber;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
+		}
+
+		@JsonProperty
+		protected Collection<T> items;
+
+		@JsonProperty
+		protected int itemsPerPage;
+
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
 
 	}
 

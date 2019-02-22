@@ -17,6 +17,7 @@ package com.liferay.portal.tools.rest.builder;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.StringUtil_IW;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.Validator_IW;
 import com.liferay.portal.tools.ArgumentsUtil;
@@ -139,14 +140,7 @@ public class RESTBuilder {
 
 				Schema schema = entry.getValue();
 
-				context.put("schema", schema);
-
-				context.put("schemaName", schemaName);
-				context.put(
-					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
-				context.put(
-					"schemaVarName",
-					StringUtil.lowerCaseFirstLetter(schemaName));
+				_putSchema(context, schema, schemaName);
 
 				_createBaseResourceImplFile(
 					context, schemaName, versionDirName);
@@ -164,17 +158,9 @@ public class RESTBuilder {
 
 			for (Map.Entry<String, Schema> entry : allSchemas.entrySet()) {
 				Schema schema = entry.getValue();
-
-				context.put("schema", schema);
-
 				String schemaName = entry.getKey();
 
-				context.put("schemaName", schemaName);
-				context.put(
-					"schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
-				context.put(
-					"schemaVarName",
-					StringUtil.lowerCaseFirstLetter(schemaName));
+				_putSchema(context, schema, schemaName);
 
 				_createDTOFile(context, schemaName, versionDirName);
 				_createDTOImplFile(context, schemaName, versionDirName);
@@ -566,6 +552,20 @@ public class RESTBuilder {
 			file,
 			FreeMarkerUtil.processTemplate(
 				_copyrightFileName, "resource_test", context));
+	}
+
+	private void _putSchema(
+		Map<String, Object> context, Schema schema, String schemaName) {
+
+		context.put("schema", schema);
+		context.put("schemaName", schemaName);
+		context.put("schemaPath", CamelCaseUtil.fromCamelCase(schemaName));
+
+		String schemaVarName = StringUtil.lowerCaseFirstLetter(schemaName);
+
+		context.put("schemaVarName", schemaVarName);
+		context.put(
+			"schemaVarNames", TextFormatter.formatPlural(schemaVarName));
 	}
 
 	private final File _configDir;
