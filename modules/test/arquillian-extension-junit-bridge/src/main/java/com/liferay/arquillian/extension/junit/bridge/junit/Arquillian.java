@@ -96,16 +96,9 @@ public class Arquillian extends Runner implements Filterable {
 		Registry registry = _registryThreadLocal.get();
 
 		if (registry == null) {
-			try {
-				registry = new Registry();
+			registry = new Registry();
 
-				_registryThreadLocal.set(registry);
-			}
-			catch (Exception e) {
-				runNotifier.fireTestFailure(new Failure(getDescription(), e));
-
-				return;
-			}
+			_registryThreadLocal.set(registry);
 		}
 
 		runNotifier.addListener(
