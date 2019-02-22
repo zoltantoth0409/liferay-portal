@@ -22,12 +22,15 @@ definition {
 
 		Panel.expandSidebarApplicationsPanel();
 
-		for (var portletName : list "${searchPortletList}") {
-			Type(locator1 = "NavBar#APPLICATION_SEARCH_FIELD", value1 = "Search-${portletName}");
+		for (var searchPortlet : list "${searchPortletList}") {
+			Type(locator1 = "NavBar#APPLICATION_SEARCH_FIELD", value1 = "Search-${searchPortlet}");
 
-			Portlet._clickAddPortlet(portletName = "${portletName}");
+			var portletName = "Search-${searchPortlet}";
 
-			var key_portletName = "${portletName}";
+			MouseOver(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK_1");
+			Click(locator1 = "ControlMenuAddPanel#ADD_PORTLET_LINK_1", value1 = "Add");
+
+			var key_portletName = "${searchPortlet}";
 
 			AssertElementPresent(locator1 = "Portlet#LOADED");
 			AssertElementPresent(locator1 = "Home#PORTLET");
