@@ -107,8 +107,8 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
-				"select id_, companyId, defaultLanguageId, title, " +
-					"description from JournalArticle");
+				"select id_, companyId, title, description, " +
+					"defaultLanguageId from JournalArticle");
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb.toString());
@@ -118,20 +118,19 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 				long articleId = rs.getLong(1);
 				long companyId = rs.getLong(2);
 
-				String defaultLanguageId = rs.getString(3);
+				String defaultLanguageId = rs.getString(5);
 
 				Map<Locale, String> titleMap = _getLocalizationMap(
+					rs.getString(3), defaultLanguageId);
+				Map<Locale, String> descriptionMap = _getLocalizationMap(
 					rs.getString(4), defaultLanguageId);
 
-				Map<Locale, String> descriptionMap = _getLocalizationMap(
-					rs.getString(5), defaultLanguageId);
+				Set<Locale> locales = new HashSet<>();
 
-				Set<Locale> localeSet = new HashSet<>();
+				locales.addAll(titleMap.keySet());
+				locales.addAll(descriptionMap.keySet());
 
-				localeSet.addAll(titleMap.keySet());
-				localeSet.addAll(descriptionMap.keySet());
-
-				for (Locale locale : localeSet) {
+				for (Locale locale : locales) {
 					String localizedTitle = titleMap.get(locale);
 					String localizedDescription = descriptionMap.get(locale);
 
