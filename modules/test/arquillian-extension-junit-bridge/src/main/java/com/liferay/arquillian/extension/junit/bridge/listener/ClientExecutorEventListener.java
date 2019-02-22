@@ -66,9 +66,7 @@ public class ClientExecutorEventListener implements EventListener {
 			try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
 				ObjectInputStream oos = new ObjectInputStream(inputStream)) {
 
-				TestResult testResult = (TestResult)oos.readObject();
-
-				_registry.set(TestResult.class, testResult);
+				_registry.set(TestResult.class, (TestResult)oos.readObject());
 			}
 		}
 		catch (Throwable t) {

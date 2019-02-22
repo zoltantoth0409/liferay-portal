@@ -186,7 +186,7 @@ public class ServerExecutorEventListener implements EventListener {
 
 			@Override
 			public void evaluate() {
-				TestResult testResult = new TestResult(null);
+				TestResult testResult = TestResult.PASSED;
 
 				Thread currentThread = Thread.currentThread();
 
@@ -281,7 +281,7 @@ public class ServerExecutorEventListener implements EventListener {
 			return new TestResult(new Exception(message));
 		}
 
-		return new TestResult(null);
+		return TestResult.PASSED;
 	}
 
 	private final Registry _registry;

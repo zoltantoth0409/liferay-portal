@@ -41,7 +41,7 @@ public class JMXTestRunner
 
 	@Override
 	public byte[] runTestMethod(String className, String methodName) {
-		TestResult testResult = null;
+		TestResult testResult = TestResult.PASSED;
 
 		ExceptionRunListener exceptionRunListener = new ExceptionRunListener();
 
@@ -56,9 +56,6 @@ public class JMXTestRunner
 			if (result.getFailureCount() > 0) {
 				testResult = new TestResult(
 					exceptionRunListener.getException());
-			}
-			else {
-				testResult = new TestResult(null);
 			}
 		}
 		catch (Throwable t) {

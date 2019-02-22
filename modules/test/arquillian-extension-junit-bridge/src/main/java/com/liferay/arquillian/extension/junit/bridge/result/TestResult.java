@@ -21,6 +21,8 @@ import java.io.Serializable;
  */
 public class TestResult implements Serializable {
 
+	public static final TestResult PASSED = new TestResult(null);
+
 	public TestResult(Throwable throwable) {
 		_throwable = throwable;
 	}
