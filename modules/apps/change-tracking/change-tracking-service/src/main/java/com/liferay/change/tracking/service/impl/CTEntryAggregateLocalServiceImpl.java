@@ -46,8 +46,8 @@ public class CTEntryAggregateLocalServiceImpl
 	}
 
 	@Override
-	public CTEntryAggregate createCTEntryAggregate(
-			long userId, long ownerCTEntryId, long ctCollectionId,
+	public CTEntryAggregate addCTEntryAggregate(
+			long userId, long ctCollectionId, long ownerCTEntryId,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -67,8 +67,8 @@ public class CTEntryAggregateLocalServiceImpl
 		ctEntryAggregate.setCreateDate(serviceContext.getCreateDate(now));
 		ctEntryAggregate.setModifiedDate(serviceContext.getModifiedDate(now));
 
-		ctEntryAggregate.setOwnerCTEntryId(ownerCTEntryId);
 		ctEntryAggregate.setCtCollectionId(ctCollectionId);
+		ctEntryAggregate.setOwnerCTEntryId(ownerCTEntryId);
 
 		ctEntryAggregatePersistence.update(ctEntryAggregate);
 
