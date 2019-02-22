@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.arquillian.extension.junit.bridge.deployment;
+package com.liferay.arquillian.extension.junit.bridge.statement;
 
 import aQute.bnd.build.Project;
 import aQute.bnd.build.ProjectBuilder;
@@ -251,12 +251,9 @@ public class DeploymentStatement extends Statement {
 
 			javaArchive.add(EmptyAsset.INSTANCE, "/arquillian.remote.marker");
 			javaArchive.addPackages(
-				true,
-				"com.liferay.arquillian.extension.junit.bridge.deployment",
-				"com.liferay.arquillian.extension.junit.bridge.event",
-				"com.liferay.arquillian.extension.junit.bridge.listener",
-				"com.liferay.arquillian.extension.junit.bridge.remote",
-				"com.liferay.arquillian.extension.junit.bridge.result");
+				true, "com.liferay.arquillian.extension.junit.bridge.remote",
+				"com.liferay.arquillian.extension.junit.bridge.result",
+				"com.liferay.arquillian.extension.junit.bridge.statement");
 
 			Package pkg = Arquillian.class.getPackage();
 

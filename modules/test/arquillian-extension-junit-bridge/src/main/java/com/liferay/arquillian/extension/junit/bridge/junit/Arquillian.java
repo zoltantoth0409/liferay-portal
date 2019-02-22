@@ -14,12 +14,12 @@
 
 package com.liferay.arquillian.extension.junit.bridge.junit;
 
-import com.liferay.arquillian.extension.junit.bridge.deployment.DeploymentStatement;
-import com.liferay.arquillian.extension.junit.bridge.listener.ClientExecutorStatement;
-import com.liferay.arquillian.extension.junit.bridge.listener.ServerExecutorStatement;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Manager;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
+import com.liferay.arquillian.extension.junit.bridge.statement.ClientExecutorStatement;
+import com.liferay.arquillian.extension.junit.bridge.statement.DeploymentStatement;
+import com.liferay.arquillian.extension.junit.bridge.statement.ServerExecutorStatement;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.arquillian.extension.junit.bridge.listener;
+package com.liferay.arquillian.extension.junit.bridge.statement;
 
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
