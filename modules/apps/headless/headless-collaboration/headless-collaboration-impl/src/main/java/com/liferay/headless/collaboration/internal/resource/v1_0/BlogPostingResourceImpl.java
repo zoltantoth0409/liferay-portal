@@ -135,7 +135,7 @@ public class BlogPostingResourceImpl
 
 	@Override
 	public EntityModel getEntityModel(MultivaluedMap multivaluedMap) {
-		return _blogPostingEntityModel;
+		return _entityModel;
 	}
 
 	@Override
@@ -320,7 +320,7 @@ public class BlogPostingResourceImpl
 		};
 	}
 
-	private static final BlogPostingEntityModel _blogPostingEntityModel =
+	private static final EntityModel _entityModel =
 		new BlogPostingEntityModel();
 
 	@Reference
