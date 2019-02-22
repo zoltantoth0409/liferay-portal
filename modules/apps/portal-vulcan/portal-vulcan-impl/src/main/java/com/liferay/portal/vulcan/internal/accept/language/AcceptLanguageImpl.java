@@ -63,9 +63,9 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 
 	@Override
 	public Locale getPreferredLocale() {
-		List<Locale> locales = getLocales();
+		Locale locale = null;
 
-		final Locale locale;
+		List<Locale> locales = getLocales();
 
 		if (ListUtil.isNotEmpty(locales)) {
 			locale = locales.get(0);
@@ -89,7 +89,7 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 
 		if (!_isAvailableLocale(locale)) {
 			throw new ClientErrorException(
-				"The  preferred locale: " + _language.getLanguageId(locale) +
+				"The preferred locale: " + _language.getLanguageId(locale) +
 					" is not available",
 				422);
 		}
@@ -98,7 +98,7 @@ public class AcceptLanguageImpl implements AcceptLanguage {
 	}
 
 	private boolean _isAvailableLocale(Locale locale) {
-		final Company company;
+		Company company = null;
 
 		try {
 			company = _portal.getCompany(_httpServletRequest);

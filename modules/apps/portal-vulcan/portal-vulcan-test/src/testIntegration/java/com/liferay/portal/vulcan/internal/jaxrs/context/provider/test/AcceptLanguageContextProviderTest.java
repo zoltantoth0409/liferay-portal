@@ -153,7 +153,7 @@ public class AcceptLanguageContextProviderTest {
 		Assert.assertEquals(
 			user.getLocale(), acceptLanguage.getPreferredLocale());
 
-		//No available locale
+		// Unavailable locale
 
 		acceptLanguage = _contextProvider.createContext(
 			new MockMessage(
@@ -168,7 +168,7 @@ public class AcceptLanguageContextProviderTest {
 		catch (Exception e) {
 			Assert.assertEquals(ClientErrorException.class, e.getClass());
 			Assert.assertEquals(
-				"The  preferred locale: es_ES is not available",
+				"The preferred locale: es_ES is not available",
 				e.getMessage());
 		}
 	}
