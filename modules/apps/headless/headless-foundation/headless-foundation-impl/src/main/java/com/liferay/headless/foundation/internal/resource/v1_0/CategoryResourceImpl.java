@@ -236,8 +236,13 @@ public class CategoryResourceImpl
 				dateModified = assetCategory.getModifiedDate();
 				description = assetCategory.getDescription(
 					contextAcceptLanguage.getPreferredLocale());
-				hasCategories = _assetCategoryService.getChildCategoriesCount(
-					assetCategory.getCategoryId()) > 0;
+
+				int childAssetCategoriesCount =
+					_assetCategoryService.getChildCategoriesCount(
+						assetCategory.getCategoryId());
+
+				hasCategories = (childAssetCategoriesCount > 0);
+
 				id = assetCategory.getCategoryId();
 				name = assetCategory.getTitle(
 					contextAcceptLanguage.getPreferredLocale());
