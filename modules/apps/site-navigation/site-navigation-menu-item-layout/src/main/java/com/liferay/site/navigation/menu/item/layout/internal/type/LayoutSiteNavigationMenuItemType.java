@@ -188,9 +188,9 @@ public class LayoutSiteNavigationMenuItemType
 
 		String label = getName(siteNavigationMenuItem.getTypeSettings());
 
-		boolean useLayoutName = _isUseLayoutName(siteNavigationMenuItem);
+		if (Validator.isNotNull(label) &&
+			!_isUseLayoutName(siteNavigationMenuItem)) {
 
-		if (Validator.isNotNull(label) && !useLayoutName) {
 			return label;
 		}
 
