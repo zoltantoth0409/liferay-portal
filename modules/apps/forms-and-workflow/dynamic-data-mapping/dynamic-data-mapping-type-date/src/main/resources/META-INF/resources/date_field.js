@@ -143,8 +143,6 @@ AUI.add(
 					},
 
 					_maskValueFn: function() {
-						var instance = this;
-
 						var dateFormat = Liferay.AUI.getDateFormat();
 						var languageId = Liferay.ThemeDisplay.getLanguageId().replace('_', '-');
 
@@ -152,21 +150,6 @@ AUI.add(
 
 						if (customDateFormat) {
 							dateFormat = customDateFormat;
-						}
-
-						instance._dateDelimiter = '/';
-						instance._endDelimiter = false;
-
-						if (dateFormat.indexOf('.') != -1) {
-							instance._dateDelimiter = '.';
-
-							if (dateFormat.lastIndexOf('.') == dateFormat.length - 1) {
-								instance._endDelimiter = true;
-							}
-						}
-
-						if (dateFormat.indexOf('-') != -1) {
-							instance._dateDelimiter = '-';
 						}
 
 						return dateFormat;
