@@ -76,9 +76,9 @@ public class CTManagerImpl implements CTManager {
 			CTEntryAggregate ctEntryctEntryAggregate =
 				TransactionInvokerUtil.invoke(
 					_transactionConfig,
-					() -> _createCTEntryAggregate(
-						userId, ownerCTEntry, relatedCTEntry,
-						activeCTCollectionId));
+					() -> _addCTEntryAggregate(
+						userId, activeCTCollectionId, ownerCTEntry,
+						relatedCTEntry));
 
 			return Optional.of(ctEntryctEntryAggregate);
 		}
@@ -212,6 +212,15 @@ public class CTManagerImpl implements CTManager {
 	public Optional<CTEntryAggregate> getModelChangeCTEntryAggregateOptional(
 		long userId, long classNameId, long classPK) {
 
+		Optional<CTCollection> ctCollectionOptional =
+			_ctEngineManager.getActiveCTCollectionOptional(userId);
+
+		long ctCollectionId = ctCollectionOptional.map(
+			CTCollection::getCtCollectionId
+		).orElse(
+			0L
+		);
+
 		Optional<CTEntry> ctEntryOptional = getModelChangeCTEntryOptional(
 			userId, classNameId, classPK);
 
@@ -223,18 +232,9 @@ public class CTManagerImpl implements CTManager {
 			CTEntry::getCtEntryId
 		).get();
 
-		Optional<CTCollection> ctCollectionOptional =
-			_ctEngineManager.getActiveCTCollectionOptional(userId);
-
-		long ctCollectionId = ctCollectionOptional.map(
-			CTCollection::getCtCollectionId
-		).orElse(
-			0L
-		);
-
 		CTEntryAggregate ctEntryAggregate =
 			_ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(
-				ctEntryId, ctCollectionId);
+				ctCollectionId, ctEntryId);
 
 		if (ctEntryAggregate != null) {
 			return Optional.of(ctEntryAggregate);
@@ -251,7 +251,7 @@ public class CTManagerImpl implements CTManager {
 
 		ctEntryAggregate =
 			_ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(
-				ctEntryId, ctCollectionId);
+				ctCollectionId, ctEntryId);
 
 		return Optional.ofNullable(ctEntryAggregate);
 	}
@@ -405,6 +405,38 @@ public class CTManagerImpl implements CTManager {
 			ctEntry -> _ctEntryLocalService.deleteCTEntry(ctEntry));
 	}
 
+	private CTEntryAggregate _addCTEntryAggregate(
+			long userId, long activeCTCollectionId, CTEntry ownerCTEntry,
+			CTEntry relatedCTEntry)
+		throws PortalException {
+
+		CTEntryAggregate ctEntryAggregate =
+			_ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(
+				activeCTCollectionId, ownerCTEntry.getCtEntryId());
+
+		if (ctEntryAggregate == null) {
+			ctEntryAggregate =
+				_ctEntryAggregateLocalService.addCTEntryAggregate(
+					userId, activeCTCollectionId, ownerCTEntry.getCtEntryId(),
+					new ServiceContext());
+
+			_ctEntryAggregateLocalService.addCTEntry(
+				ctEntryAggregate, relatedCTEntry);
+		}
+		else if (!_containsResource(
+					ctEntryAggregate, relatedCTEntry.getResourcePrimKey())) {
+
+			_ctEntryAggregateLocalService.addCTEntry(
+				ctEntryAggregate, relatedCTEntry);
+		}
+		else {
+			_updateCTEntryInCTEntryAggregate(
+				_copyCTEntryAggregate(ctEntryAggregate), relatedCTEntry);
+		}
+
+		return ctEntryAggregate;
+	}
+
 	private boolean _containsResource(
 		CTEntryAggregate ctEntryAggregate, long resourcePrimKey) {
 
@@ -427,10 +459,10 @@ public class CTManagerImpl implements CTManager {
 		throws PortalException {
 
 		CTEntryAggregate ctEntryAggregateCopy =
-			_ctEntryAggregateLocalService.createCTEntryAggregate(
+			_ctEntryAggregateLocalService.addCTEntryAggregate(
 				PrincipalThreadLocal.getUserId(),
-				ctEntryAggregate.getOwnerCTEntryId(),
-				ctEntryAggregate.getCtCollectionId(), new ServiceContext());
+				ctEntryAggregate.getCtCollectionId(),
+				ctEntryAggregate.getOwnerCTEntryId(), new ServiceContext());
 
 		_ctEntryLocalService.addCTEntryAggregateCTEntries(
 			ctEntryAggregateCopy.getCtEntryAggregateId(),
@@ -438,38 +470,6 @@ public class CTManagerImpl implements CTManager {
 				ctEntryAggregate.getCtEntryAggregateId()));
 
 		return ctEntryAggregateCopy;
-	}
-
-	private CTEntryAggregate _createCTEntryAggregate(
-			long userId, CTEntry ownerCTEntry, CTEntry relatedCTEntry,
-			long activeCTCollectionId)
-		throws PortalException {
-
-		CTEntryAggregate ctEntryAggregate =
-			_ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(
-				ownerCTEntry.getCtEntryId(), activeCTCollectionId);
-
-		if (ctEntryAggregate == null) {
-			ctEntryAggregate =
-				_ctEntryAggregateLocalService.createCTEntryAggregate(
-					userId, ownerCTEntry.getCtEntryId(), activeCTCollectionId,
-					new ServiceContext());
-
-			_ctEntryAggregateLocalService.addCTEntry(
-				ctEntryAggregate, relatedCTEntry);
-		}
-		else if (!_containsResource(
-					ctEntryAggregate, relatedCTEntry.getResourcePrimKey())) {
-
-			_ctEntryAggregateLocalService.addCTEntry(
-				ctEntryAggregate, relatedCTEntry);
-		}
-		else {
-			_updateCTEntryInCTEntryAggregate(
-				_copyCTEntryAggregate(ctEntryAggregate), relatedCTEntry);
-		}
-
-		return ctEntryAggregate;
 	}
 
 	private long _getCompanyId(long userId) {

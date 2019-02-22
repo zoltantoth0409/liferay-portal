@@ -79,18 +79,18 @@ public class CTEntryAggregateLocalServiceImpl
 	}
 
 	@Override
-	public List<CTEntryAggregate> fetchCTEntryBags(
-		long ownerCTEntryId, long ctCollectionId) {
+	public List<CTEntryAggregate> fetchCTEntryAggregates(
+		long ctCollectionId, long ownerCTEntryId) {
 
-		return ctEntryAggregatePersistence.findByO_C(
-			ownerCTEntryId, ctCollectionId);
+		return ctEntryAggregatePersistence.findByC_O(
+			ctCollectionId, ownerCTEntryId);
 	}
 
 	@Override
 	public CTEntryAggregate fetchLatestCTEntryAggregate(
-		long ownerCTEntryId, long ctCollectionId) {
+		long ctCollectionId, long ownerCTEntryId) {
 
-		return ctEntryAggregatePersistence.fetchByO_C_Last(
+		return ctEntryAggregatePersistence.fetchByC_O_Last(
 			ownerCTEntryId, ctCollectionId,
 			OrderByComparatorFactoryUtil.create(
 				"CTEntryAggregate", "createDate", false));
