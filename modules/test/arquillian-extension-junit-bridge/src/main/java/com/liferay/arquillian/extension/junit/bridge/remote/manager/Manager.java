@@ -16,43 +16,51 @@ package com.liferay.arquillian.extension.junit.bridge.remote.manager;
 
 import com.liferay.arquillian.extension.junit.bridge.event.Event;
 import com.liferay.arquillian.extension.junit.bridge.listener.ClientExecutorEventListener;
-import com.liferay.arquillian.extension.junit.bridge.listener.DeploymentEventListener;
 import com.liferay.arquillian.extension.junit.bridge.listener.EventListener;
 import com.liferay.arquillian.extension.junit.bridge.listener.ServerExecutorEventListener;
 
 import java.net.URL;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Matthew Tambara
  */
 public class Manager {
 
-	public Manager() {
-		URL url = Manager.class.getResource("/arquillian.remote.marker");
+	public static boolean isRemote() {
+		return _remote;
+	}
 
-		if (url == null) {
-			_eventListeners.add(new DeploymentEventListener(_registry));
-			_eventListeners.add(new ClientExecutorEventListener(_registry));
+	public Manager() {
+		if (_remote) {
+			_eventListener = new ServerExecutorEventListener(_registry);
 		}
 		else {
-			_eventListeners.add(new ServerExecutorEventListener(_registry));
+			_eventListener = new ClientExecutorEventListener(_registry);
 		}
 	}
 
 	public void fire(Event event) throws Throwable {
-		for (EventListener eventListener : _eventListeners) {
-			eventListener.handleEvent(event);
-		}
+		_eventListener.handleEvent(event);
 	}
 
 	public Registry getRegistry() {
 		return _registry;
 	}
 
-	private final List<EventListener> _eventListeners = new ArrayList<>();
+	private static final boolean _remote;
+
+	static {
+		URL url = Manager.class.getResource("/arquillian.remote.marker");
+
+		if (url == null) {
+			_remote = false;
+		}
+		else {
+			_remote = true;
+		}
+	}
+
+	private final EventListener _eventListener;
 	private final Registry _registry = new Registry();
 
 }

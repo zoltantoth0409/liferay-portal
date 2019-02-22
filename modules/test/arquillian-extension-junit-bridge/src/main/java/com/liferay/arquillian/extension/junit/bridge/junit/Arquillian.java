@@ -14,8 +14,7 @@
 
 package com.liferay.arquillian.extension.junit.bridge.junit;
 
-import com.liferay.arquillian.extension.junit.bridge.event.AfterClassEvent;
-import com.liferay.arquillian.extension.junit.bridge.event.BeforeClassEvent;
+import com.liferay.arquillian.extension.junit.bridge.deployment.DeploymentStatement;
 import com.liferay.arquillian.extension.junit.bridge.event.TestEvent;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Manager;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
@@ -158,39 +157,9 @@ public class Arquillian extends Runner implements Filterable {
 			}
 		}
 
-		if (hasTestMethod) {
-			return new Statement() {
-
-				@Override
-				public void evaluate() throws Throwable {
-					Throwable throwable = null;
-
-					try {
-						manager.fire(new BeforeClassEvent(_clazz));
-
-						statement.evaluate();
-					}
-					catch (Throwable t) {
-						throwable = t;
-					}
-
-					try {
-						manager.fire(new AfterClassEvent());
-					}
-					catch (Throwable t) {
-						if (throwable != null) {
-							t.addSuppressed(throwable);
-						}
-
-						throwable = t;
-					}
-
-					if (throwable != null) {
-						throw throwable;
-					}
-				}
-
-			};
+		if (hasTestMethod && !Manager.isRemote()) {
+			return new DeploymentStatement(
+				statement, _clazz, manager.getRegistry());
 		}
 
 		return statement;

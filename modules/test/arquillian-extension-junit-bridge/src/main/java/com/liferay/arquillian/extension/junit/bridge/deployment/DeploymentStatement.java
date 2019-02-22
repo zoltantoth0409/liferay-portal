@@ -23,6 +23,7 @@ import aQute.bnd.osgi.Jar;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunner;
 import com.liferay.arquillian.extension.junit.bridge.remote.activator.ArquillianBundleActivator;
+import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -34,15 +35,31 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.net.URI;
+import java.net.URL;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+
+import javax.management.MBeanServerConnection;
+import javax.management.MBeanServerInvocationHandler;
+import javax.management.ObjectName;
+import javax.management.remote.JMXConnector;
+import javax.management.remote.JMXConnectorFactory;
+import javax.management.remote.JMXServiceURL;
 
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Node;
@@ -50,15 +67,77 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.importer.ZipImporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
-/**
- * @author Preston Crary
- */
-public class BndDeploymentDescriptionUtil {
+import org.junit.runners.model.Statement;
 
-	public static Archive<?> create(Class<?> testClass) {
+import org.osgi.jmx.framework.FrameworkMBean;
+
+/**
+ * @author Shuyang Zhou
+ */
+public class DeploymentStatement extends Statement {
+
+	public DeploymentStatement(
+		Statement statement, Class<?> testClass, Registry registry) {
+
+		_statement = statement;
+		_testClass = testClass;
+		_registry = registry;
+	}
+
+	@Override
+	public void evaluate() throws Throwable {
+		JMXConnector jmxConnector = JMXConnectorFactory.connect(
+			_liferayJMXServiceURL, _liferayEnv);
+
+		MBeanServerConnection mBeanServerConnection =
+			jmxConnector.getMBeanServerConnection();
+
+		_registry.set(MBeanServerConnection.class, mBeanServerConnection);
+
+		Set<ObjectName> names = mBeanServerConnection.queryNames(
+			_frameworkObjectName, null);
+
+		Iterator<ObjectName> iterator = names.iterator();
+
+		FrameworkMBean frameworkMBean =
+			MBeanServerInvocationHandler.newProxyInstance(
+				mBeanServerConnection, iterator.next(), FrameworkMBean.class,
+				false);
+
+		long bundleId = _installBundle(frameworkMBean, _create(_testClass));
+
+		frameworkMBean.startBundle(bundleId);
+
+		try {
+			_statement.evaluate();
+		}
+		finally {
+			frameworkMBean.uninstallBundle(bundleId);
+		}
+	}
+
+	private static void _addArquillianDependencies(JavaArchive javaArchive) {
+		javaArchive.addPackage(JMXTestRunner.class.getPackage());
+		javaArchive.addPackages(
+			true, "org.jboss.shrinkwrap.api",
+			"org.jboss.shrinkwrap.descriptor.api");
+	}
+
+	private static void _addTestClass(
+		JavaArchive javaArchive, Class<?> testClass) {
+
+		while (testClass != Object.class) {
+			javaArchive.addClass(testClass);
+
+			testClass = testClass.getSuperclass();
+		}
+	}
+
+	private static Archive<?> _create(Class<?> testClass) {
 		try (Workspace workspace = new Workspace(_buildDir);
 			Project project = new Project(workspace, _buildDir);
 
@@ -86,23 +165,6 @@ public class BndDeploymentDescriptionUtil {
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
-		}
-	}
-
-	private static void _addArquillianDependencies(JavaArchive javaArchive) {
-		javaArchive.addPackage(JMXTestRunner.class.getPackage());
-		javaArchive.addPackages(
-			true, "org.jboss.shrinkwrap.api",
-			"org.jboss.shrinkwrap.descriptor.api");
-	}
-
-	private static void _addTestClass(
-		JavaArchive javaArchive, Class<?> testClass) {
-
-		while (testClass != Object.class) {
-			javaArchive.addClass(testClass);
-
-			testClass = testClass.getSuperclass();
 		}
 	}
 
@@ -189,9 +251,11 @@ public class BndDeploymentDescriptionUtil {
 
 			javaArchive.add(EmptyAsset.INSTANCE, "/arquillian.remote.marker");
 			javaArchive.addPackages(
-				true, "com.liferay.arquillian.extension.junit.bridge.remote",
+				true,
+				"com.liferay.arquillian.extension.junit.bridge.deployment",
 				"com.liferay.arquillian.extension.junit.bridge.event",
 				"com.liferay.arquillian.extension.junit.bridge.listener",
+				"com.liferay.arquillian.extension.junit.bridge.remote",
 				"com.liferay.arquillian.extension.junit.bridge.result");
 
 			Package pkg = Arquillian.class.getPackage();
@@ -253,6 +317,32 @@ public class BndDeploymentDescriptionUtil {
 		mainAttributes.put(attributeName, sb.toString());
 	}
 
+	private long _installBundle(
+			FrameworkMBean frameworkMBean, Archive<?> archive)
+		throws Exception {
+
+		Path tempFilePath = Files.createTempFile(null, ".jar");
+
+		ZipExporter zipExporter = archive.as(ZipExporter.class);
+
+		try (InputStream inputStream = zipExporter.exportAsInputStream()) {
+			Files.copy(
+				inputStream, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
+		}
+
+		URI uri = tempFilePath.toUri();
+
+		URL url = uri.toURL();
+
+		try {
+			return frameworkMBean.installBundleFromURL(
+				archive.getName(), url.toExternalForm());
+		}
+		finally {
+			Files.delete(tempFilePath);
+		}
+	}
+
 	private static final String[] _IMPORTS_PACKAGES = {
 		"javax.management", "javax.management.*", "javax.naming",
 		"javax.naming.*", "org.junit.internal", "org.junit.internal.runners",
@@ -268,7 +358,28 @@ public class BndDeploymentDescriptionUtil {
 		System.getProperty("user.dir"));
 	private static final Attributes.Name _bundleActivatorName =
 		new Attributes.Name("Bundle-Activator");
+	private static final ObjectName _frameworkObjectName;
 	private static final Attributes.Name _importPackageName =
 		new Attributes.Name("Import-Package");
+	private static final Map<String, String[]> _liferayEnv =
+		Collections.singletonMap(
+			JMXConnector.CREDENTIALS, new String[] {"", ""});
+	private static final JMXServiceURL _liferayJMXServiceURL;
+
+	static {
+		try {
+			_frameworkObjectName = new ObjectName("osgi.core:type=framework,*");
+
+			_liferayJMXServiceURL = new JMXServiceURL(
+				"service:jmx:rmi:///jndi/rmi://localhost:8099/jmxrmi");
+		}
+		catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
+	}
+
+	private final Registry _registry;
+	private final Statement _statement;
+	private final Class<?> _testClass;
 
 }
