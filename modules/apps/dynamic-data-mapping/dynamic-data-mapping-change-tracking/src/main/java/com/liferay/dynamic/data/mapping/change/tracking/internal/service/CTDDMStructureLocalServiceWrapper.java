@@ -74,9 +74,10 @@ public class CTDDMStructureLocalServiceWrapper
 		throws PortalException {
 
 		DDMStructure ddmStructure = _ctManager.executeModelUpdate(
-			() -> super.addStructure(userId, groupId, parentStructureId,
-				classNameId, structureKey, nameMap, descriptionMap, ddmForm,
-				ddmFormLayout, storageType, type, serviceContext));
+			() -> super.addStructure(
+				userId, groupId, parentStructureId, classNameId, structureKey,
+				nameMap, descriptionMap, ddmForm, ddmFormLayout, storageType,
+				type, serviceContext));
 
 		DDMStructureVersion ddmStructureVersion =
 			ddmStructure.getStructureVersion();
