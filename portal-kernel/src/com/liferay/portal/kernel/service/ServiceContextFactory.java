@@ -326,7 +326,7 @@ public class ServiceContextFactory {
 		String[] assetTagNames = ParamUtil.getStringValues(
 			request, "assetTagNames");
 
-		if (!ArrayUtil.isEmpty(assetTagNames)) {
+		if (ArrayUtil.isNotEmpty(assetTagNames)) {
 			serviceContext.setAssetTagNames(assetTagNames);
 		}
 
@@ -486,7 +486,7 @@ public class ServiceContextFactory {
 		String[] assetTagNames = ParamUtil.getStringValues(
 			request, "assetTagNames");
 
-		if (!ArrayUtil.isEmpty(assetTagNames)) {
+		if (ArrayUtil.isNotEmpty(assetTagNames)) {
 			serviceContext.setAssetTagNames(assetTagNames);
 		}
 
