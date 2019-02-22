@@ -86,7 +86,7 @@ public class DDMStructureCTConfigurationRegistrar {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"An error occured when getting structure version id", pe);
+					"An error occured when getting structure version ID", pe);
 			}
 
 			return 0;
