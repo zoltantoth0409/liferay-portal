@@ -19,49 +19,18 @@ import java.io.Serializable;
 /**
  * @author Matthew Tambara
  */
-public final class TestResult implements Serializable {
+public class TestResult implements Serializable {
 
-	public static TestResult failed(Throwable cause) {
-		return new TestResult(Status.FAILED, cause);
-	}
-
-	public static TestResult passed() {
-		return new TestResult(Status.PASSED, null);
-	}
-
-	public static TestResult skipped(Throwable cause) {
-		return new TestResult(Status.SKIPPED, cause);
-	}
-
-	public TestResult(Status status, Throwable throwable) {
-		_status = status;
-
-		setThrowable(throwable);
-	}
-
-	public Status getStatus() {
-		return _status;
+	public TestResult(Throwable throwable) {
+		_throwable = throwable;
 	}
 
 	public Throwable getThrowable() {
 		return _throwable;
 	}
 
-	public TestResult setThrowable(Throwable throwable) {
-		_throwable = throwable;
-
-		return this;
-	}
-
-	public enum Status {
-
-		FAILED, PASSED, SKIPPED
-
-	}
-
 	private static final long serialVersionUID = 1L;
 
-	private final Status _status;
-	private Throwable _throwable;
+	private final Throwable _throwable;
 
 }

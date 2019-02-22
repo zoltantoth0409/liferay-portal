@@ -72,9 +72,7 @@ public class ClientExecutorEventListener implements EventListener {
 			}
 		}
 		catch (Throwable t) {
-			TestResult testResult = TestResult.failed(t);
-
-			_registry.set(TestResult.class, testResult);
+			_registry.set(TestResult.class, new TestResult(t));
 		}
 	}
 

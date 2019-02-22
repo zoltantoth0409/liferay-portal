@@ -54,24 +54,24 @@ public class JMXTestRunner
 				Request.method(_classLoader.loadClass(className), methodName));
 
 			if (result.getFailureCount() > 0) {
-				testResult = TestResult.failed(
+				testResult = new TestResult(
 					exceptionRunListener.getException());
 			}
 			else if (result.getIgnoreCount() > 0) {
-				testResult = TestResult.skipped(null);
+				testResult = new TestResult(null);
 			}
 			else {
-				testResult = TestResult.passed();
+				testResult = new TestResult(null);
 			}
 		}
 		catch (Throwable t) {
-			testResult = TestResult.failed(t);
+			testResult = new TestResult(t);
 		}
 
 		Throwable throwable = testResult.getThrowable();
 
 		if (throwable instanceof AssumptionViolatedException) {
-			testResult = TestResult.skipped(throwable);
+			testResult = new TestResult(throwable);
 		}
 
 		return _toByteArray(testResult);

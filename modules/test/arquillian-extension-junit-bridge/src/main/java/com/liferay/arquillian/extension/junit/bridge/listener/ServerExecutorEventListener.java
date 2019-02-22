@@ -186,7 +186,7 @@ public class ServerExecutorEventListener implements EventListener {
 
 			@Override
 			public void evaluate() {
-				TestResult testResult = TestResult.passed();
+				TestResult testResult = new TestResult(null);
 
 				Thread currentThread = Thread.currentThread();
 
@@ -198,7 +198,7 @@ public class ServerExecutorEventListener implements EventListener {
 					testEvent.invoke();
 				}
 				catch (AssumptionViolatedException ave) {
-					testResult = TestResult.failed(ave);
+					testResult = new TestResult(ave);
 				}
 				catch (Throwable t) {
 					testResult = _processThrowable(t, method);
@@ -262,13 +262,13 @@ public class ServerExecutorEventListener implements EventListener {
 		Test test = method.getAnnotation(Test.class);
 
 		if (test == null) {
-			return TestResult.failed(throwable);
+			return new TestResult(throwable);
 		}
 
 		Class<?> expected = test.expected();
 
 		if (test.expected() == Test.None.class) {
-			return TestResult.failed(throwable);
+			return new TestResult(throwable);
 		}
 
 		Class<?> clazz = throwable.getClass();
@@ -278,10 +278,10 @@ public class ServerExecutorEventListener implements EventListener {
 				"Unexpected exception, expected<" + expected.getName() +
 					"> but was<" + clazz.getName() + ">";
 
-			return TestResult.failed(new Exception(message));
+			return new TestResult(new Exception(message));
 		}
 
-		return TestResult.passed();
+		return new TestResult(null);
 	}
 
 	private final Registry _registry;
