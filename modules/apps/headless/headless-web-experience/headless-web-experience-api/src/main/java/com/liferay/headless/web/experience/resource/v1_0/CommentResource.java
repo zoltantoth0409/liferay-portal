@@ -16,6 +16,8 @@ package com.liferay.headless.web.experience.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -32,14 +34,26 @@ import javax.annotation.Generated;
 @Generated("")
 public interface CommentResource {
 
+	public boolean deleteComment(
+				Long commentId)
+			throws Exception;
 	public Comment getComment(
 				Long commentId)
 			throws Exception;
+	public Comment putComment(
+				Long commentId,Comment comment)
+			throws Exception;
 	public Page<Comment> getCommentCommentsPage(
-				Long commentId,Pagination pagination)
+				Long commentId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception;
+	public Comment postCommentComment(
+				Long commentId,Comment comment)
 			throws Exception;
 	public Page<Comment> getStructuredContentCommentsPage(
-				Long structuredContentId,Pagination pagination)
+				Long structuredContentId,Filter filter,Pagination pagination,Sort[] sorts)
+			throws Exception;
+	public Comment postStructuredContentComment(
+				Long structuredContentId,Comment comment)
 			throws Exception;
 
 	public void setContextCompany(Company contextCompany);

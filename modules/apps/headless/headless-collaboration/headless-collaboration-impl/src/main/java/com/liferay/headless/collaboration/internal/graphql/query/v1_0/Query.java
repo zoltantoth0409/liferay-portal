@@ -81,7 +81,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Comment> getBlogPostingCommentsPage(
-	@GraphQLName("blog-posting-id") Long blogPostingId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
+	@GraphQLName("blog-posting-id") Long blogPostingId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
 			throws Exception {
 
 				CommentResource commentResource = _getCommentResource();
@@ -90,7 +90,7 @@ public class Query {
 					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getBlogPostingCommentsPage(
-					blogPostingId,Pagination.of(pageSize, page));
+					blogPostingId,filter,Pagination.of(pageSize, page),sorts);
 
 				return paginationPage.getItems();
 	}
@@ -113,7 +113,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Comment> getCommentCommentsPage(
-	@GraphQLName("comment-id") Long commentId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
+	@GraphQLName("comment-id") Long commentId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
 			throws Exception {
 
 				CommentResource commentResource = _getCommentResource();
@@ -122,7 +122,7 @@ public class Query {
 					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
 
 				Page paginationPage = commentResource.getCommentCommentsPage(
-					commentId,Pagination.of(pageSize, page));
+					commentId,filter,Pagination.of(pageSize, page),sorts);
 
 				return paginationPage.getItems();
 	}

@@ -25,11 +25,15 @@ import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -67,7 +71,15 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	@Test
+	public void testDeleteComment() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
 	public void testGetComment() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPutComment() throws Exception {
 			Assert.assertTrue(true);
 	}
 	@Test
@@ -75,7 +87,15 @@ public abstract class BaseCommentResourceTestCase {
 			Assert.assertTrue(true);
 	}
 	@Test
+	public void testPostCommentComment() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
 	public void testGetDocumentCommentsPage() throws Exception {
+			Assert.assertTrue(true);
+	}
+	@Test
+	public void testPostDocumentComment() throws Exception {
 			Assert.assertTrue(true);
 	}
 
@@ -83,6 +103,33 @@ public abstract class BaseCommentResourceTestCase {
 		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected boolean invokeDeleteComment(
+				Long commentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteCommentResponse(
+				Long commentId)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setDelete(true);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Comment invokeGetComment(
 				Long commentId)
 			throws Exception {
@@ -106,8 +153,39 @@ public abstract class BaseCommentResourceTestCase {
 
 			return options.getResponse();
 	}
+	protected Comment invokePutComment(
+				Long commentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+				options.setPut(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), CommentImpl.class);
+	}
+
+	protected Http.Response invokePutCommentResponse(
+				Long commentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}", commentId));
+
+				options.setPut(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Comment> invokeGetCommentCommentsPage(
-				Long commentId,Pagination pagination)
+				Long commentId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
 			Http.Options options = _createHttpOptions();
@@ -118,7 +196,7 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetCommentCommentsPageResponse(
-				Long commentId,Pagination pagination)
+				Long commentId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
 			Http.Options options = _createHttpOptions();
@@ -129,8 +207,39 @@ public abstract class BaseCommentResourceTestCase {
 
 			return options.getResponse();
 	}
+	protected Comment invokePostCommentComment(
+				Long commentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}/comments", commentId));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), CommentImpl.class);
+	}
+
+	protected Http.Response invokePostCommentCommentResponse(
+				Long commentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}/comments", commentId));
+
+				options.setPost(true);
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
 	protected Page<Comment> invokeGetDocumentCommentsPage(
-				Long documentId,Pagination pagination)
+				Long documentId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
 			Http.Options options = _createHttpOptions();
@@ -141,12 +250,43 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDocumentCommentsPageResponse(
-				Long documentId,Pagination pagination)
+				Long documentId,Filter filter,Pagination pagination,Sort[] sorts)
 			throws Exception {
 
 			Http.Options options = _createHttpOptions();
 
 			options.setLocation(_resourceURL + _toPath("/documents/{document-id}/comments", documentId));
+
+			HttpUtil.URLtoString(options);
+
+			return options.getResponse();
+	}
+	protected Comment invokePostDocumentComment(
+				Long documentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}/comments", documentId));
+
+				options.setPost(true);
+
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), CommentImpl.class);
+	}
+
+	protected Http.Response invokePostDocumentCommentResponse(
+				Long documentId,Comment comment)
+			throws Exception {
+
+			Http.Options options = _createHttpOptions();
+
+				options.setBody(_inputObjectMapper.writeValueAsString(comment), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+			options.setLocation(_resourceURL + _toPath("/documents/{document-id}/comments", documentId));
+
+				options.setPost(true);
 
 			HttpUtil.URLtoString(options);
 
