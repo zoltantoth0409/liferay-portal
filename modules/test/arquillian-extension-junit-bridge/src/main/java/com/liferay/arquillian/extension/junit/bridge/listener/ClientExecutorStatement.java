@@ -14,8 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.listener;
 
-import com.liferay.arquillian.extension.junit.bridge.event.Event;
-import com.liferay.arquillian.extension.junit.bridge.event.TestEvent;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
@@ -31,28 +29,24 @@ import javax.management.MBeanServerInvocationHandler;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
-/**
- * @author Matthew Tambara
- */
-public class ClientExecutorEventListener implements EventListener {
+import org.junit.runners.model.Statement;
 
-	public ClientExecutorEventListener(Registry registry) {
+/**
+ * @author Shuyang Zhou
+ */
+public class ClientExecutorStatement extends Statement {
+
+	public ClientExecutorStatement(
+		Object target, Method method, Registry registry) {
+
+		_target = target;
+		_method = method;
 		_registry = registry;
 	}
 
 	@Override
-	public void handleEvent(Event event) {
-		if (event instanceof TestEvent) {
-			_handleTestEvent((TestEvent)event);
-		}
-	}
-
-	private void _handleTestEvent(TestEvent testEvent) {
-		Object target = testEvent.getTarget();
-
-		Class<?> testClass = target.getClass();
-
-		Method method = testEvent.getMethod();
+	public void evaluate() throws Throwable {
+		Class<?> testClass = _target.getClass();
 
 		JMXTestRunnerMBean jmxTestRunnerMBean =
 			MBeanServerInvocationHandler.newProxyInstance(
@@ -61,7 +55,7 @@ public class ClientExecutorEventListener implements EventListener {
 
 		try {
 			byte[] data = jmxTestRunnerMBean.runTestMethod(
-				testClass.getName(), method.getName());
+				testClass.getName(), _method.getName());
 
 			try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
 				ObjectInputStream oos = new ObjectInputStream(inputStream)) {
@@ -85,6 +79,8 @@ public class ClientExecutorEventListener implements EventListener {
 		}
 	}
 
+	private final Method _method;
 	private final Registry _registry;
+	private final Object _target;
 
 }

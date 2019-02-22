@@ -14,12 +14,11 @@
 
 package com.liferay.arquillian.extension.junit.bridge.listener;
 
-import com.liferay.arquillian.extension.junit.bridge.event.Event;
-import com.liferay.arquillian.extension.junit.bridge.event.TestEvent;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
@@ -48,17 +47,99 @@ import org.junit.runners.model.TestClass;
 /**
  * @author Shuyang Zhou
  */
-public class ServerExecutorEventListener implements EventListener {
+public class ServerExecutorStatement extends Statement {
 
-	public ServerExecutorEventListener(Registry registry) {
+	public ServerExecutorStatement(
+		Object target, Method method, Registry registry) {
+
+		_target = target;
+		_method = method;
 		_registry = registry;
 	}
 
 	@Override
-	public void handleEvent(Event event) throws Throwable {
-		if (event instanceof TestEvent) {
-			_handleTestEvent((TestEvent)event);
+	public void evaluate() throws Throwable {
+		Class<?> clazz = _target.getClass();
+
+		Statement statement = new InvokeMethod(null, _target) {
+
+			@Override
+			public void evaluate() {
+				TestResult testResult = TestResult.PASSED;
+
+				Thread currentThread = Thread.currentThread();
+
+				ClassLoader classLoader = currentThread.getContextClassLoader();
+
+				currentThread.setContextClassLoader(clazz.getClassLoader());
+
+				try {
+					try {
+						_method.invoke(_target);
+					}
+					catch (InvocationTargetException ite) {
+						throw ite.getCause();
+					}
+				}
+				catch (AssumptionViolatedException ave) {
+					testResult = new TestResult(ave);
+				}
+				catch (Throwable t) {
+					testResult = _processThrowable(t, _method);
+				}
+				finally {
+					currentThread.setContextClassLoader(classLoader);
+				}
+
+				_registry.set(TestResult.class, testResult);
+			}
+
+		};
+
+		TestClass testClass = new TestClass(clazz);
+
+		statement = withBefores(statement, Before.class, testClass, _target);
+
+		statement = withAfters(statement, After.class, testClass, _target);
+
+		statement = withRules(
+			statement, Rule.class, testClass, _target,
+			Description.createTestDescription(
+				clazz, _method.getName(), _method.getAnnotations()));
+
+		List<FrameworkMethod> frameworkMethods = new ArrayList<>(
+			testClass.getAnnotatedMethods(Test.class));
+
+		frameworkMethods.removeAll(testClass.getAnnotatedMethods(Ignore.class));
+
+		frameworkMethods.sort(Comparator.comparing(FrameworkMethod::getName));
+
+		FrameworkMethod firstFrameworkMethod = frameworkMethods.get(0);
+
+		boolean firstMethod = false;
+
+		if (_method.equals(firstFrameworkMethod.getMethod())) {
+			firstMethod = true;
+
+			statement = withBefores(
+				statement, BeforeClass.class, testClass, null);
 		}
+
+		FrameworkMethod lastFrameworkMethod = frameworkMethods.get(
+			frameworkMethods.size() - 1);
+
+		boolean lastMethod = false;
+
+		if (_method.equals(lastFrameworkMethod.getMethod())) {
+			lastMethod = true;
+
+			statement = withAfters(
+				statement, AfterClass.class, testClass, null);
+		}
+
+		evaluateWithClassRule(
+			statement, testClass, _target,
+			Description.createSuiteDescription(clazz), firstMethod, lastMethod);
 	}
 
 	protected void evaluateWithClassRule(
@@ -176,88 +257,6 @@ public class ServerExecutorEventListener implements EventListener {
 		return statement;
 	}
 
-	private void _handleTestEvent(TestEvent testEvent) throws Throwable {
-		Object target = testEvent.getTarget();
-		final Method method = testEvent.getMethod();
-
-		Class<?> clazz = target.getClass();
-
-		Statement statement = new InvokeMethod(null, target) {
-
-			@Override
-			public void evaluate() {
-				TestResult testResult = TestResult.PASSED;
-
-				Thread currentThread = Thread.currentThread();
-
-				ClassLoader classLoader = currentThread.getContextClassLoader();
-
-				currentThread.setContextClassLoader(clazz.getClassLoader());
-
-				try {
-					testEvent.invoke();
-				}
-				catch (AssumptionViolatedException ave) {
-					testResult = new TestResult(ave);
-				}
-				catch (Throwable t) {
-					testResult = _processThrowable(t, method);
-				}
-				finally {
-					currentThread.setContextClassLoader(classLoader);
-				}
-
-				_registry.set(TestResult.class, testResult);
-			}
-
-		};
-
-		TestClass testClass = new TestClass(clazz);
-
-		statement = withBefores(statement, Before.class, testClass, target);
-
-		statement = withAfters(statement, After.class, testClass, target);
-
-		statement = withRules(
-			statement, Rule.class, testClass, target,
-			Description.createTestDescription(
-				clazz, method.getName(), method.getAnnotations()));
-
-		List<FrameworkMethod> frameworkMethods = new ArrayList<>(
-			testClass.getAnnotatedMethods(Test.class));
-
-		frameworkMethods.removeAll(testClass.getAnnotatedMethods(Ignore.class));
-
-		frameworkMethods.sort(Comparator.comparing(FrameworkMethod::getName));
-
-		FrameworkMethod firstFrameworkMethod = frameworkMethods.get(0);
-
-		boolean firstMethod = false;
-
-		if (method.equals(firstFrameworkMethod.getMethod())) {
-			firstMethod = true;
-
-			statement = withBefores(
-				statement, BeforeClass.class, testClass, null);
-		}
-
-		FrameworkMethod lastFrameworkMethod = frameworkMethods.get(
-			frameworkMethods.size() - 1);
-
-		boolean lastMethod = false;
-
-		if (method.equals(lastFrameworkMethod.getMethod())) {
-			lastMethod = true;
-
-			statement = withAfters(
-				statement, AfterClass.class, testClass, null);
-		}
-
-		evaluateWithClassRule(
-			statement, testClass, target,
-			Description.createSuiteDescription(clazz), firstMethod, lastMethod);
-	}
-
 	private TestResult _processThrowable(Throwable throwable, Method method) {
 		Test test = method.getAnnotation(Test.class);
 
@@ -284,6 +283,8 @@ public class ServerExecutorEventListener implements EventListener {
 		return TestResult.PASSED;
 	}
 
+	private final Method _method;
 	private final Registry _registry;
+	private final Object _target;
 
 }

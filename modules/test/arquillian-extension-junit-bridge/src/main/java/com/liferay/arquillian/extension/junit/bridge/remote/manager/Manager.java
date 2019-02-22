@@ -14,11 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.remote.manager;
 
-import com.liferay.arquillian.extension.junit.bridge.event.Event;
-import com.liferay.arquillian.extension.junit.bridge.listener.ClientExecutorEventListener;
-import com.liferay.arquillian.extension.junit.bridge.listener.EventListener;
-import com.liferay.arquillian.extension.junit.bridge.listener.ServerExecutorEventListener;
-
 import java.net.URL;
 
 /**
@@ -27,40 +22,26 @@ import java.net.URL;
 public class Manager {
 
 	public static boolean isRemote() {
-		return _remote;
-	}
-
-	public Manager() {
-		if (_remote) {
-			_eventListener = new ServerExecutorEventListener(_registry);
-		}
-		else {
-			_eventListener = new ClientExecutorEventListener(_registry);
-		}
-	}
-
-	public void fire(Event event) throws Throwable {
-		_eventListener.handleEvent(event);
+		return _REMOTE;
 	}
 
 	public Registry getRegistry() {
 		return _registry;
 	}
 
-	private static final boolean _remote;
+	private static final boolean _REMOTE;
 
 	static {
 		URL url = Manager.class.getResource("/arquillian.remote.marker");
 
 		if (url == null) {
-			_remote = false;
+			_REMOTE = false;
 		}
 		else {
-			_remote = true;
+			_REMOTE = true;
 		}
 	}
 
-	private final EventListener _eventListener;
 	private final Registry _registry = new Registry();
 
 }

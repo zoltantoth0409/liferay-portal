@@ -15,7 +15,8 @@
 package com.liferay.arquillian.extension.junit.bridge.junit;
 
 import com.liferay.arquillian.extension.junit.bridge.deployment.DeploymentStatement;
-import com.liferay.arquillian.extension.junit.bridge.event.TestEvent;
+import com.liferay.arquillian.extension.junit.bridge.listener.ClientExecutorStatement;
+import com.liferay.arquillian.extension.junit.bridge.listener.ServerExecutorStatement;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Manager;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
@@ -23,6 +24,7 @@ import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -250,10 +252,22 @@ public class Arquillian extends Runner implements Filterable {
 
 			@Override
 			public void evaluate() throws Throwable {
-				manager.fire(
-					new TestEvent(testObject, frameworkMethod.getMethod()));
+				Method method = frameworkMethod.getMethod();
 
 				Registry registry = manager.getRegistry();
+
+				Statement statement = null;
+
+				if (Manager.isRemote()) {
+					statement = new ServerExecutorStatement(
+						testObject, method, registry);
+				}
+				else {
+					statement = new ClientExecutorStatement(
+						testObject, method, registry);
+				}
+
+				statement.evaluate();
 
 				TestResult testResult = registry.get(TestResult.class);
 
