@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
@@ -24,6 +25,7 @@ import com.liferay.headless.foundation.dto.v1_0.Organization;
 import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -32,12 +34,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -134,7 +138,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/user-accounts", organizationId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<UserAccountImpl>>() {});
 	}
 
 	protected Http.Response invokeGetOrganizationUserAccountsPageResponse(
@@ -157,7 +161,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/user-accounts", fullnamequery));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<UserAccountImpl>>() {});
 	}
 
 	protected Http.Response invokeGetUserAccountsPageResponse(
@@ -288,7 +292,7 @@ public abstract class BaseUserAccountResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/web-sites/{web-site-id}/user-accounts", webSiteId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<UserAccountImpl>>() {});
 	}
 
 	protected Http.Response invokeGetWebSiteUserAccountsPageResponse(
@@ -302,6 +306,29 @@ public abstract class BaseUserAccountResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(UserAccount userAccount1, UserAccount userAccount2) {
+		Assert.assertTrue(userAccount1 + " does not equal " + userAccount2, equals(userAccount1, userAccount2));
+	}
+
+	protected void assertEquals(List<UserAccount> userAccounts1, List<UserAccount> userAccounts2) {
+		Assert.assertEquals(userAccounts1.size(), userAccounts2.size());
+
+		for (int i = 0; i < userAccounts1.size(); i++) {
+			UserAccount userAccount1 = userAccounts1.get(i);
+			UserAccount userAccount2 = userAccounts2.get(i);
+
+			assertEquals(userAccount1, userAccount2);
+	}
+	}
+
+	protected boolean equals(UserAccount userAccount1, UserAccount userAccount2) {
+		if (userAccount1 == userAccount2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected UserAccount randomUserAccount() {
@@ -792,6 +819,119 @@ public abstract class BaseUserAccountResourceTestCase {
 
 	@JsonProperty
 	protected String[] tasksAssignedToMyRoles;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("additionalName=");
+
+				sb.append(additionalName);
+					sb.append(", alternateName=");
+
+				sb.append(alternateName);
+					sb.append(", birthDate=");
+
+				sb.append(birthDate);
+					sb.append(", contactInformation=");
+
+				sb.append(contactInformation);
+					sb.append(", dashboardURL=");
+
+				sb.append(dashboardURL);
+					sb.append(", email=");
+
+				sb.append(email);
+					sb.append(", familyName=");
+
+				sb.append(familyName);
+					sb.append(", givenName=");
+
+				sb.append(givenName);
+					sb.append(", honorificPrefix=");
+
+				sb.append(honorificPrefix);
+					sb.append(", honorificSuffix=");
+
+				sb.append(honorificSuffix);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", image=");
+
+				sb.append(image);
+					sb.append(", jobTitle=");
+
+				sb.append(jobTitle);
+					sb.append(", myOrganizations=");
+
+				sb.append(myOrganizations);
+					sb.append(", myOrganizationsIds=");
+
+				sb.append(myOrganizationsIds);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", profileURL=");
+
+				sb.append(profileURL);
+					sb.append(", roles=");
+
+				sb.append(roles);
+					sb.append(", rolesIds=");
+
+				sb.append(rolesIds);
+					sb.append(", tasksAssignedToMe=");
+
+				sb.append(tasksAssignedToMe);
+					sb.append(", tasksAssignedToMyRoles=");
+
+				sb.append(tasksAssignedToMyRoles);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

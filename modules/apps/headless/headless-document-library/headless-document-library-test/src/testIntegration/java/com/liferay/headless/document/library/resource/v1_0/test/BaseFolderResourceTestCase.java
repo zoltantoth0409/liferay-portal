@@ -14,7 +14,6 @@
 
 package com.liferay.headless.document.library.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -38,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -107,9 +108,7 @@ public abstract class BaseFolderResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
 
-		return 	_outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options),
-			new TypeReference<Page<FolderImpl>>() {});
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FolderImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceFoldersPageResponse(
@@ -244,9 +243,7 @@ public abstract class BaseFolderResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
 
-			return _outputObjectMapper.readValue(
-				HttpUtil.URLtoString(options),
-				new TypeReference<Page<FolderImpl>>() {});
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FolderImpl>>() {});
 	}
 
 	protected Http.Response invokeGetFolderFoldersPageResponse(
@@ -291,6 +288,29 @@ public abstract class BaseFolderResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Folder folder1, Folder folder2) {
+		Assert.assertTrue(folder1 + " does not equal " + folder2, equals(folder1, folder2));
+	}
+
+	protected void assertEquals(List<Folder> folders1, List<Folder> folders2) {
+		Assert.assertEquals(folders1.size(), folders2.size());
+
+		for (int i = 0; i < folders1.size(); i++) {
+			Folder folder1 = folders1.get(i);
+			Folder folder2 = folders2.get(i);
+
+			assertEquals(folder1, folder2);
+	}
+	}
+
+	protected boolean equals(Folder folder1, Folder folder2) {
+		if (folder1 == folder2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Folder randomFolder() {
@@ -490,6 +510,80 @@ public abstract class BaseFolderResourceTestCase {
 	@JsonProperty
 	protected Long repositoryId;
 
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", hasDocuments=");
+
+				sb.append(hasDocuments);
+					sb.append(", hasFolders=");
+
+				sb.append(hasFolders);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", repositoryId=");
+
+				sb.append(repositoryId);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
+
 	}
 
 	private Http.Options _createHttpOptions() {
@@ -520,56 +614,5 @@ public abstract class BaseFolderResourceTestCase {
 	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
-
-	protected static class Page<T> {
-
-		public Collection<T> getItems() {
-			return new ArrayList<>(_items);
-		}
-
-		public int getItemsPerPage() {
-			return _itemsPerPage;
-		}
-
-		public int getLastPageNumber() {
-			return _lastPageNumber;
-		}
-
-		public int getPageNumber() {
-			return _pageNumber;
-		}
-
-		public int getTotalCount() {
-			return _totalCount;
-		}
-
-		@JsonCreator
-		private static <T> Page<T> _of(
-			@JsonProperty("items") Collection<T> items,
-			@JsonProperty("itemsPerPage") int itemsPerPage,
-			@JsonProperty("lastPageNumber") int lastPageNumber,
-			@JsonProperty("pageNumber") int pageNumber,
-			@JsonProperty("totalCount") int totalCount) {
-
-			return new Page<>(
-				items, itemsPerPage, lastPageNumber, pageNumber, totalCount);
-		}
-
-		private Page(
-			Collection<T> items, int itemsPerPage, int lastPageNumber,
-			int pageNumber, int totalCount) {
-			_items = items;
-			_itemsPerPage = itemsPerPage;
-			_lastPageNumber = lastPageNumber;
-			_pageNumber = pageNumber;
-			_totalCount = totalCount;
-		}
-
-		private final Collection<T> _items;
-		private final int _itemsPerPage;
-		private final int _lastPageNumber;
-		private final int _pageNumber;
-		private final int _totalCount;
-	}
 
 }

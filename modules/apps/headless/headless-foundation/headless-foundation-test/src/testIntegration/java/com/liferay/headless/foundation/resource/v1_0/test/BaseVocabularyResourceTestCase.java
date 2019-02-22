@@ -17,11 +17,13 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -32,12 +34,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -99,7 +103,7 @@ public abstract class BaseVocabularyResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/vocabularies", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<VocabularyImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceVocabulariesPageResponse(
@@ -225,6 +229,29 @@ public abstract class BaseVocabularyResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Vocabulary vocabulary1, Vocabulary vocabulary2) {
+		Assert.assertTrue(vocabulary1 + " does not equal " + vocabulary2, equals(vocabulary1, vocabulary2));
+	}
+
+	protected void assertEquals(List<Vocabulary> vocabularies1, List<Vocabulary> vocabularies2) {
+		Assert.assertEquals(vocabularies1.size(), vocabularies2.size());
+
+		for (int i = 0; i < vocabularies1.size(); i++) {
+			Vocabulary vocabulary1 = vocabularies1.get(i);
+			Vocabulary vocabulary2 = vocabularies2.get(i);
+
+			assertEquals(vocabulary1, vocabulary2);
+	}
+	}
+
+	protected boolean equals(Vocabulary vocabulary1, Vocabulary vocabulary2) {
+		if (vocabulary1 == vocabulary2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Vocabulary randomVocabulary() {
@@ -444,6 +471,83 @@ public abstract class BaseVocabularyResourceTestCase {
 
 	@JsonProperty
 	protected String name;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("availableLanguages=");
+
+				sb.append(availableLanguages);
+					sb.append(", contentSpace=");
+
+				sb.append(contentSpace);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", hasCategories=");
+
+				sb.append(hasCategories);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", name=");
+
+				sb.append(name);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

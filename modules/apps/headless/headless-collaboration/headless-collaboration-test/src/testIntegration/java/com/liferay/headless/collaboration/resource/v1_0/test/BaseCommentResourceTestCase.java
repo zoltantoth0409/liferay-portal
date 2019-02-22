@@ -17,11 +17,13 @@ package com.liferay.headless.collaboration.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -30,12 +32,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -105,7 +109,7 @@ public abstract class BaseCommentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/blog-postings/{blog-posting-id}/comments", blogPostingId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<CommentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetBlogPostingCommentsPageResponse(
@@ -240,7 +244,7 @@ public abstract class BaseCommentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/comments/{comment-id}/comments", commentId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<CommentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetCommentCommentsPageResponse(
@@ -285,6 +289,29 @@ public abstract class BaseCommentResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Comment comment1, Comment comment2) {
+		Assert.assertTrue(comment1 + " does not equal " + comment2, equals(comment1, comment2));
+	}
+
+	protected void assertEquals(List<Comment> comments1, List<Comment> comments2) {
+		Assert.assertEquals(comments1.size(), comments2.size());
+
+		for (int i = 0; i < comments1.size(); i++) {
+			Comment comment1 = comments1.get(i);
+			Comment comment2 = comments2.get(i);
+
+			assertEquals(comment1, comment2);
+	}
+	}
+
+	protected boolean equals(Comment comment1, Comment comment2) {
+		if (comment1 == comment2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Comment randomComment() {
@@ -458,6 +485,77 @@ public abstract class BaseCommentResourceTestCase {
 
 	@JsonProperty
 	protected String text;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("comments=");
+
+				sb.append(comments);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", hasComments=");
+
+				sb.append(hasComments);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", text=");
+
+				sb.append(text);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

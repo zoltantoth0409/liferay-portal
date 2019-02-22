@@ -17,6 +17,7 @@ package com.liferay.headless.collaboration.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.AggregateRating;
@@ -25,6 +26,7 @@ import com.liferay.headless.collaboration.dto.v1_0.Categories;
 import com.liferay.headless.collaboration.dto.v1_0.Creator;
 import com.liferay.headless.collaboration.dto.v1_0.Image;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -35,12 +37,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -210,7 +214,7 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/blog-postings", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<BlogPostingImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceBlogPostingsPageResponse(
@@ -255,6 +259,29 @@ public abstract class BaseBlogPostingResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(BlogPosting blogPosting1, BlogPosting blogPosting2) {
+		Assert.assertTrue(blogPosting1 + " does not equal " + blogPosting2, equals(blogPosting1, blogPosting2));
+	}
+
+	protected void assertEquals(List<BlogPosting> blogPostings1, List<BlogPosting> blogPostings2) {
+		Assert.assertEquals(blogPostings1.size(), blogPostings2.size());
+
+		for (int i = 0; i < blogPostings1.size(); i++) {
+			BlogPosting blogPosting1 = blogPostings1.get(i);
+			BlogPosting blogPosting2 = blogPostings2.get(i);
+
+			assertEquals(blogPosting1, blogPosting2);
+	}
+	}
+
+	protected boolean equals(BlogPosting blogPosting1, BlogPosting blogPosting2) {
+		if (blogPosting1 == blogPosting2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected BlogPosting randomBlogPosting() {
@@ -723,6 +750,116 @@ public abstract class BaseBlogPostingResourceTestCase {
 
 	@JsonProperty
 	protected String[] keywords;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("aggregateRating=");
+
+				sb.append(aggregateRating);
+					sb.append(", alternativeHeadline=");
+
+				sb.append(alternativeHeadline);
+					sb.append(", articleBody=");
+
+				sb.append(articleBody);
+					sb.append(", caption=");
+
+				sb.append(caption);
+					sb.append(", categories=");
+
+				sb.append(categories);
+					sb.append(", categoryIds=");
+
+				sb.append(categoryIds);
+					sb.append(", contentSpace=");
+
+				sb.append(contentSpace);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", datePublished=");
+
+				sb.append(datePublished);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", encodingFormat=");
+
+				sb.append(encodingFormat);
+					sb.append(", friendlyUrlPath=");
+
+				sb.append(friendlyUrlPath);
+					sb.append(", hasComments=");
+
+				sb.append(hasComments);
+					sb.append(", headline=");
+
+				sb.append(headline);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", image=");
+
+				sb.append(image);
+					sb.append(", imageId=");
+
+				sb.append(imageId);
+					sb.append(", keywords=");
+
+				sb.append(keywords);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

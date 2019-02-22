@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -30,6 +31,10 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -120,6 +125,29 @@ public abstract class BaseFormDocumentResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(FormDocument formDocument1, FormDocument formDocument2) {
+		Assert.assertTrue(formDocument1 + " does not equal " + formDocument2, equals(formDocument1, formDocument2));
+	}
+
+	protected void assertEquals(List<FormDocument> formDocuments1, List<FormDocument> formDocuments2) {
+		Assert.assertEquals(formDocuments1.size(), formDocuments2.size());
+
+		for (int i = 0; i < formDocuments1.size(); i++) {
+			FormDocument formDocument1 = formDocuments1.get(i);
+			FormDocument formDocument2 = formDocuments2.get(i);
+
+			assertEquals(formDocument1, formDocument2);
+	}
+	}
+
+	protected boolean equals(FormDocument formDocument1, FormDocument formDocument2) {
+		if (formDocument1 == formDocument2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected FormDocument randomFormDocument() {
@@ -271,6 +299,74 @@ public abstract class BaseFormDocumentResourceTestCase {
 
 	@JsonProperty
 	protected String title;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("contentUrl=");
+
+				sb.append(contentUrl);
+					sb.append(", encodingFormat=");
+
+				sb.append(encodingFormat);
+					sb.append(", fileExtension=");
+
+				sb.append(fileExtension);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", sizeInBytes=");
+
+				sb.append(sizeInBytes);
+					sb.append(", title=");
+
+				sb.append(title);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

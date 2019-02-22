@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.ContactInformation;
@@ -25,16 +26,20 @@ import com.liferay.headless.foundation.dto.v1_0.Organization;
 import com.liferay.headless.foundation.dto.v1_0.Services;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -96,7 +101,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/organizations", myUserAccountId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<OrganizationImpl>>() {});
 	}
 
 	protected Http.Response invokeGetMyUserAccountOrganizationsPageResponse(
@@ -119,7 +124,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/organizations", pagination));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<OrganizationImpl>>() {});
 	}
 
 	protected Http.Response invokeGetOrganizationsPageResponse(
@@ -165,7 +170,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/organizations/{organization-id}/organizations", organizationId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<OrganizationImpl>>() {});
 	}
 
 	protected Http.Response invokeGetOrganizationOrganizationsPageResponse(
@@ -188,7 +193,7 @@ public abstract class BaseOrganizationResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/organizations", userAccountId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<OrganizationImpl>>() {});
 	}
 
 	protected Http.Response invokeGetUserAccountOrganizationsPageResponse(
@@ -202,6 +207,29 @@ public abstract class BaseOrganizationResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Organization organization1, Organization organization2) {
+		Assert.assertTrue(organization1 + " does not equal " + organization2, equals(organization1, organization2));
+	}
+
+	protected void assertEquals(List<Organization> organizations1, List<Organization> organizations2) {
+		Assert.assertEquals(organizations1.size(), organizations2.size());
+
+		for (int i = 0; i < organizations1.size(); i++) {
+			Organization organization1 = organizations1.get(i);
+			Organization organization2 = organizations2.get(i);
+
+			assertEquals(organization1, organization2);
+	}
+	}
+
+	protected boolean equals(Organization organization1, Organization organization2) {
+		if (organization1 == organization2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Organization randomOrganization() {
@@ -507,6 +535,95 @@ public abstract class BaseOrganizationResourceTestCase {
 
 	@JsonProperty
 	protected Long[] subOrganizationIds;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("comment=");
+
+				sb.append(comment);
+					sb.append(", contactInformation=");
+
+				sb.append(contactInformation);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", location=");
+
+				sb.append(location);
+					sb.append(", logo=");
+
+				sb.append(logo);
+					sb.append(", members=");
+
+				sb.append(members);
+					sb.append(", membersIds=");
+
+				sb.append(membersIds);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", parentOrganization=");
+
+				sb.append(parentOrganization);
+					sb.append(", parentOrganizationId=");
+
+				sb.append(parentOrganizationId);
+					sb.append(", services=");
+
+				sb.append(services);
+					sb.append(", subOrganization=");
+
+				sb.append(subOrganization);
+					sb.append(", subOrganizationIds=");
+
+				sb.append(subOrganizationIds);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

@@ -17,20 +17,25 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -80,7 +85,7 @@ public abstract class BasePostalAddressResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/addresses", genericParentId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<PostalAddressImpl>>() {});
 	}
 
 	protected Http.Response invokeGetGenericParentPostalAddressesPageResponse(
@@ -117,6 +122,29 @@ public abstract class BasePostalAddressResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(PostalAddress postalAddress1, PostalAddress postalAddress2) {
+		Assert.assertTrue(postalAddress1 + " does not equal " + postalAddress2, equals(postalAddress1, postalAddress2));
+	}
+
+	protected void assertEquals(List<PostalAddress> postalAddresses1, List<PostalAddress> postalAddresses2) {
+		Assert.assertEquals(postalAddresses1.size(), postalAddresses2.size());
+
+		for (int i = 0; i < postalAddresses1.size(); i++) {
+			PostalAddress postalAddress1 = postalAddresses1.get(i);
+			PostalAddress postalAddress2 = postalAddresses2.get(i);
+
+			assertEquals(postalAddress1, postalAddress2);
+	}
+	}
+
+	protected boolean equals(PostalAddress postalAddress1, PostalAddress postalAddress2) {
+		if (postalAddress1 == postalAddress2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected PostalAddress randomPostalAddress() {
@@ -338,6 +366,83 @@ public abstract class BasePostalAddressResourceTestCase {
 
 	@JsonProperty
 	protected String streetAddressLine3;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("addressCountry=");
+
+				sb.append(addressCountry);
+					sb.append(", addressLocality=");
+
+				sb.append(addressLocality);
+					sb.append(", addressRegion=");
+
+				sb.append(addressRegion);
+					sb.append(", addressType=");
+
+				sb.append(addressType);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", postalCode=");
+
+				sb.append(postalCode);
+					sb.append(", streetAddressLine1=");
+
+				sb.append(streetAddressLine1);
+					sb.append(", streetAddressLine2=");
+
+				sb.append(streetAddressLine2);
+					sb.append(", streetAddressLine3=");
+
+				sb.append(streetAddressLine3);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

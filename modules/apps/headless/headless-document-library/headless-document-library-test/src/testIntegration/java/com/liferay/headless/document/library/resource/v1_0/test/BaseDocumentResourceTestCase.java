@@ -17,6 +17,7 @@ package com.liferay.headless.document.library.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
@@ -25,6 +26,7 @@ import com.liferay.headless.document.library.dto.v1_0.Categories;
 import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -34,12 +36,14 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -105,7 +109,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/documents", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<DocumentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceDocumentsPageResponse(
@@ -205,7 +209,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/documents", folderId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<DocumentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetFolderDocumentsPageResponse(
@@ -246,6 +250,29 @@ public abstract class BaseDocumentResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Document document1, Document document2) {
+		Assert.assertTrue(document1 + " does not equal " + document2, equals(document1, document2));
+	}
+
+	protected void assertEquals(List<Document> documents1, List<Document> documents2) {
+		Assert.assertEquals(documents1.size(), documents2.size());
+
+		for (int i = 0; i < documents1.size(); i++) {
+			Document document1 = documents1.get(i);
+			Document document2 = documents2.get(i);
+
+			assertEquals(document1, document2);
+	}
+	}
+
+	protected boolean equals(Document document1, Document document2) {
+		if (document1 == document2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Document randomDocument() {
@@ -621,6 +648,104 @@ public abstract class BaseDocumentResourceTestCase {
 
 	@JsonProperty
 	protected String title;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("adaptedImages=");
+
+				sb.append(adaptedImages);
+					sb.append(", aggregateRating=");
+
+				sb.append(aggregateRating);
+					sb.append(", categories=");
+
+				sb.append(categories);
+					sb.append(", categoryIds=");
+
+				sb.append(categoryIds);
+					sb.append(", contentUrl=");
+
+				sb.append(contentUrl);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", encodingFormat=");
+
+				sb.append(encodingFormat);
+					sb.append(", fileExtension=");
+
+				sb.append(fileExtension);
+					sb.append(", folderId=");
+
+				sb.append(folderId);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", keywords=");
+
+				sb.append(keywords);
+					sb.append(", sizeInBytes=");
+
+				sb.append(sizeInBytes);
+					sb.append(", title=");
+
+				sb.append(title);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

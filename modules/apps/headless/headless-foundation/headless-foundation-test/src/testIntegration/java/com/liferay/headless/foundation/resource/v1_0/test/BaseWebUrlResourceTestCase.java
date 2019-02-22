@@ -17,20 +17,25 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -80,7 +85,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/web-urls", genericParentId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<WebUrlImpl>>() {});
 	}
 
 	protected Http.Response invokeGetGenericParentWebUrlsPageResponse(
@@ -117,6 +122,29 @@ public abstract class BaseWebUrlResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(WebUrl webUrl1, WebUrl webUrl2) {
+		Assert.assertTrue(webUrl1 + " does not equal " + webUrl2, equals(webUrl1, webUrl2));
+	}
+
+	protected void assertEquals(List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
+		Assert.assertEquals(webUrls1.size(), webUrls2.size());
+
+		for (int i = 0; i < webUrls1.size(); i++) {
+			WebUrl webUrl1 = webUrls1.get(i);
+			WebUrl webUrl2 = webUrls2.get(i);
+
+			assertEquals(webUrl1, webUrl2);
+	}
+	}
+
+	protected boolean equals(WebUrl webUrl1, WebUrl webUrl2) {
+		if (webUrl1 == webUrl2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected WebUrl randomWebUrl() {
@@ -200,6 +228,65 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	@JsonProperty
 	protected String urlType;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("id=");
+
+				sb.append(id);
+					sb.append(", url=");
+
+				sb.append(url);
+					sb.append(", urlType=");
+
+				sb.append(urlType);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

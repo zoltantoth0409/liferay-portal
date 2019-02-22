@@ -17,23 +17,27 @@ package com.liferay.headless.workflow.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -106,7 +110,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/workflow-logs", workflowTaskId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<WorkflowLogImpl>>() {});
 	}
 
 	protected Http.Response invokeGetWorkflowTaskWorkflowLogsPageResponse(
@@ -120,6 +124,29 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
+		Assert.assertTrue(workflowLog1 + " does not equal " + workflowLog2, equals(workflowLog1, workflowLog2));
+	}
+
+	protected void assertEquals(List<WorkflowLog> workflowLogs1, List<WorkflowLog> workflowLogs2) {
+		Assert.assertEquals(workflowLogs1.size(), workflowLogs2.size());
+
+		for (int i = 0; i < workflowLogs1.size(); i++) {
+			WorkflowLog workflowLog1 = workflowLogs1.get(i);
+			WorkflowLog workflowLog2 = workflowLogs2.get(i);
+
+			assertEquals(workflowLog1, workflowLog2);
+	}
+	}
+
+	protected boolean equals(WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
+		if (workflowLog1 == workflowLog2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
@@ -386,6 +413,89 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 	@JsonProperty
 	protected String type;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("auditPerson=");
+
+				sb.append(auditPerson);
+					sb.append(", commentLog=");
+
+				sb.append(commentLog);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", person=");
+
+				sb.append(person);
+					sb.append(", previousPerson=");
+
+				sb.append(previousPerson);
+					sb.append(", previousState=");
+
+				sb.append(previousState);
+					sb.append(", state=");
+
+				sb.append(state);
+					sb.append(", task=");
+
+				sb.append(task);
+					sb.append(", taskId=");
+
+				sb.append(taskId);
+					sb.append(", type=");
+
+				sb.append(type);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

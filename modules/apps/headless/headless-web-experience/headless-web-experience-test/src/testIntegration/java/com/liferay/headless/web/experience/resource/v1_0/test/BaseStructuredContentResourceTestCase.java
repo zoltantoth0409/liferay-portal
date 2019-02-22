@@ -17,6 +17,7 @@ package com.liferay.headless.web.experience.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
@@ -28,6 +29,7 @@ import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsURL;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.dto.v1_0.Values;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -38,12 +40,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -117,7 +121,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-structures/{content-structure-id}/structured-contents", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<StructuredContentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceContentStructureStructuredContentsPageResponse(
@@ -140,7 +144,7 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/structured-contents", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<StructuredContentImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceStructuredContentsPageResponse(
@@ -312,6 +316,29 @@ public abstract class BaseStructuredContentResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(StructuredContent structuredContent1, StructuredContent structuredContent2) {
+		Assert.assertTrue(structuredContent1 + " does not equal " + structuredContent2, equals(structuredContent1, structuredContent2));
+	}
+
+	protected void assertEquals(List<StructuredContent> structuredContents1, List<StructuredContent> structuredContents2) {
+		Assert.assertEquals(structuredContents1.size(), structuredContents2.size());
+
+		for (int i = 0; i < structuredContents1.size(); i++) {
+			StructuredContent structuredContent1 = structuredContents1.get(i);
+			StructuredContent structuredContent2 = structuredContents2.get(i);
+
+			assertEquals(structuredContent1, structuredContent2);
+	}
+	}
+
+	protected boolean equals(StructuredContent structuredContent1, StructuredContent structuredContent2) {
+		if (structuredContent1 == structuredContent2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected StructuredContent randomStructuredContent() {
@@ -709,6 +736,107 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	@JsonProperty
 	protected Values[] values;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("aggregateRating=");
+
+				sb.append(aggregateRating);
+					sb.append(", availableLanguages=");
+
+				sb.append(availableLanguages);
+					sb.append(", categories=");
+
+				sb.append(categories);
+					sb.append(", comment=");
+
+				sb.append(comment);
+					sb.append(", contentSpace=");
+
+				sb.append(contentSpace);
+					sb.append(", contentStructureId=");
+
+				sb.append(contentStructureId);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", datePublished=");
+
+				sb.append(datePublished);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", keywords=");
+
+				sb.append(keywords);
+					sb.append(", lastReviewed=");
+
+				sb.append(lastReviewed);
+					sb.append(", renderedContentsURL=");
+
+				sb.append(renderedContentsURL);
+					sb.append(", title=");
+
+				sb.append(title);
+					sb.append(", values=");
+
+				sb.append(values);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

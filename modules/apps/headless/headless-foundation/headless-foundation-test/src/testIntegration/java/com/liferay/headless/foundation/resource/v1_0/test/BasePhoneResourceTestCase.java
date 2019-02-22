@@ -17,20 +17,25 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -80,7 +85,7 @@ public abstract class BasePhoneResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<PhoneImpl>>() {});
 	}
 
 	protected Http.Response invokeGetGenericParentPhonesPageResponse(
@@ -117,6 +122,29 @@ public abstract class BasePhoneResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Phone phone1, Phone phone2) {
+		Assert.assertTrue(phone1 + " does not equal " + phone2, equals(phone1, phone2));
+	}
+
+	protected void assertEquals(List<Phone> phones1, List<Phone> phones2) {
+		Assert.assertEquals(phones1.size(), phones2.size());
+
+		for (int i = 0; i < phones1.size(); i++) {
+			Phone phone1 = phones1.get(i);
+			Phone phone2 = phones2.get(i);
+
+			assertEquals(phone1, phone2);
+	}
+	}
+
+	protected boolean equals(Phone phone1, Phone phone2) {
+		if (phone1 == phone2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Phone randomPhone() {
@@ -223,6 +251,68 @@ public abstract class BasePhoneResourceTestCase {
 
 	@JsonProperty
 	protected String phoneType;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("extension=");
+
+				sb.append(extension);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", phoneNumber=");
+
+				sb.append(phoneNumber);
+					sb.append(", phoneType=");
+
+				sb.append(phoneType);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

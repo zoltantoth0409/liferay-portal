@@ -17,6 +17,7 @@ package com.liferay.headless.form.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.Creator;
@@ -25,18 +26,21 @@ import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.headless.form.dto.v1_0.SuccessPage;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -86,7 +90,7 @@ public abstract class BaseFormStructureResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/form-structures", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FormStructureImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceFormStructuresPageResponse(
@@ -123,6 +127,29 @@ public abstract class BaseFormStructureResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(FormStructure formStructure1, FormStructure formStructure2) {
+		Assert.assertTrue(formStructure1 + " does not equal " + formStructure2, equals(formStructure1, formStructure2));
+	}
+
+	protected void assertEquals(List<FormStructure> formStructures1, List<FormStructure> formStructures2) {
+		Assert.assertEquals(formStructures1.size(), formStructures2.size());
+
+		for (int i = 0; i < formStructures1.size(); i++) {
+			FormStructure formStructure1 = formStructures1.get(i);
+			FormStructure formStructure2 = formStructures2.get(i);
+
+			assertEquals(formStructure1, formStructure2);
+	}
+	}
+
+	protected boolean equals(FormStructure formStructure1, FormStructure formStructure2) {
+		if (formStructure1 == formStructure2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected FormStructure randomFormStructure() {
@@ -363,6 +390,86 @@ public abstract class BaseFormStructureResourceTestCase {
 
 	@JsonProperty
 	protected SuccessPage successPage;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("availableLanguages=");
+
+				sb.append(availableLanguages);
+					sb.append(", contentSpace=");
+
+				sb.append(contentSpace);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", formPages=");
+
+				sb.append(formPages);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", successPage=");
+
+				sb.append(successPage);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

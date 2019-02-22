@@ -17,6 +17,7 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
@@ -24,6 +25,7 @@ import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.ParentCategory;
 import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -34,12 +36,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -190,7 +194,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/categories/{category-id}/categories", categoryId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<CategoryImpl>>() {});
 	}
 
 	protected Http.Response invokeGetCategoryCategoriesPageResponse(
@@ -244,7 +248,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/vocabularies/{vocabulary-id}/categories", vocabularyId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<CategoryImpl>>() {});
 	}
 
 	protected Http.Response invokeGetVocabularyCategoriesPageResponse(
@@ -289,6 +293,29 @@ public abstract class BaseCategoryResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Category category1, Category category2) {
+		Assert.assertTrue(category1 + " does not equal " + category2, equals(category1, category2));
+	}
+
+	protected void assertEquals(List<Category> categories1, List<Category> categories2) {
+		Assert.assertEquals(categories1.size(), categories2.size());
+
+		for (int i = 0; i < categories1.size(); i++) {
+			Category category1 = categories1.get(i);
+			Category category2 = categories2.get(i);
+
+			assertEquals(category1, category2);
+	}
+	}
+
+	protected boolean equals(Category category1, Category category2) {
+		if (category1 == category2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Category randomCategory() {
@@ -575,6 +602,92 @@ public abstract class BaseCategoryResourceTestCase {
 
 	@JsonProperty
 	protected Long parentVocabularyId;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("availableLanguages=");
+
+				sb.append(availableLanguages);
+					sb.append(", parentCategory=");
+
+				sb.append(parentCategory);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", creatorId=");
+
+				sb.append(creatorId);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", hasCategories=");
+
+				sb.append(hasCategories);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", parentVocabulary=");
+
+				sb.append(parentVocabulary);
+					sb.append(", parentVocabularyId=");
+
+				sb.append(parentVocabularyId);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

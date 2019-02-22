@@ -17,11 +17,13 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -32,12 +34,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -99,7 +103,7 @@ public abstract class BaseKeywordResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/keywords", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<KeywordImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceKeywordsPageResponse(
@@ -225,6 +229,29 @@ public abstract class BaseKeywordResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Keyword keyword1, Keyword keyword2) {
+		Assert.assertTrue(keyword1 + " does not equal " + keyword2, equals(keyword1, keyword2));
+	}
+
+	protected void assertEquals(List<Keyword> keywords1, List<Keyword> keywords2) {
+		Assert.assertEquals(keywords1.size(), keywords2.size());
+
+		for (int i = 0; i < keywords1.size(); i++) {
+			Keyword keyword1 = keywords1.get(i);
+			Keyword keyword2 = keywords2.get(i);
+
+			assertEquals(keyword1, keyword2);
+	}
+	}
+
+	protected boolean equals(Keyword keyword1, Keyword keyword2) {
+		if (keyword1 == keyword2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Keyword randomKeyword() {
@@ -398,6 +425,77 @@ public abstract class BaseKeywordResourceTestCase {
 
 	@JsonProperty
 	protected String name;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("contentSpace=");
+
+				sb.append(contentSpace);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", keywordUsageCount=");
+
+				sb.append(keywordUsageCount);
+					sb.append(", name=");
+
+				sb.append(name);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

@@ -17,23 +17,27 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Creator;
 import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -91,7 +95,7 @@ public abstract class BaseRoleResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/my-user-accounts/{my-user-account-id}/roles", myUserAccountId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<RoleImpl>>() {});
 	}
 
 	protected Http.Response invokeGetMyUserAccountRolesPageResponse(
@@ -114,7 +118,7 @@ public abstract class BaseRoleResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/roles", pagination));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<RoleImpl>>() {});
 	}
 
 	protected Http.Response invokeGetRolesPageResponse(
@@ -160,7 +164,7 @@ public abstract class BaseRoleResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/user-accounts/{user-account-id}/roles", userAccountId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<RoleImpl>>() {});
 	}
 
 	protected Http.Response invokeGetUserAccountRolesPageResponse(
@@ -174,6 +178,29 @@ public abstract class BaseRoleResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(Role role1, Role role2) {
+		Assert.assertTrue(role1 + " does not equal " + role2, equals(role1, role2));
+	}
+
+	protected void assertEquals(List<Role> roles1, List<Role> roles2) {
+		Assert.assertEquals(roles1.size(), roles2.size());
+
+		for (int i = 0; i < roles1.size(); i++) {
+			Role role1 = roles1.get(i);
+			Role role2 = roles2.get(i);
+
+			assertEquals(role1, role2);
+	}
+	}
+
+	protected boolean equals(Role role1, Role role2) {
+		if (role1 == role2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected Role randomRole() {
@@ -370,6 +397,80 @@ public abstract class BaseRoleResourceTestCase {
 
 	@JsonProperty
 	protected String roleType;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("availableLanguages=");
+
+				sb.append(availableLanguages);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", description=");
+
+				sb.append(description);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", name=");
+
+				sb.append(name);
+					sb.append(", roleType=");
+
+				sb.append(roleType);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

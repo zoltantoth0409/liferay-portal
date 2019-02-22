@@ -17,10 +17,12 @@ package com.liferay.headless.collaboration.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -28,10 +30,13 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -89,7 +94,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/blog-posting-images", contentSpaceId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<BlogPostingImageImpl>>() {});
 	}
 
 	protected Http.Response invokeGetContentSpaceBlogPostingImagesPageResponse(
@@ -180,6 +185,29 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(BlogPostingImage blogPostingImage1, BlogPostingImage blogPostingImage2) {
+		Assert.assertTrue(blogPostingImage1 + " does not equal " + blogPostingImage2, equals(blogPostingImage1, blogPostingImage2));
+	}
+
+	protected void assertEquals(List<BlogPostingImage> blogPostingImages1, List<BlogPostingImage> blogPostingImages2) {
+		Assert.assertEquals(blogPostingImages1.size(), blogPostingImages2.size());
+
+		for (int i = 0; i < blogPostingImages1.size(); i++) {
+			BlogPostingImage blogPostingImage1 = blogPostingImages1.get(i);
+			BlogPostingImage blogPostingImage2 = blogPostingImages2.get(i);
+
+			assertEquals(blogPostingImage1, blogPostingImage2);
+	}
+	}
+
+	protected boolean equals(BlogPostingImage blogPostingImage1, BlogPostingImage blogPostingImage2) {
+		if (blogPostingImage1 == blogPostingImage2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected BlogPostingImage randomBlogPostingImage() {
@@ -331,6 +359,74 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 	@JsonProperty
 	protected String title;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("contentUrl=");
+
+				sb.append(contentUrl);
+					sb.append(", encodingFormat=");
+
+				sb.append(encodingFormat);
+					sb.append(", fileExtension=");
+
+				sb.append(fileExtension);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", sizeInBytes=");
+
+				sb.append(sizeInBytes);
+					sb.append(", title=");
+
+				sb.append(title);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

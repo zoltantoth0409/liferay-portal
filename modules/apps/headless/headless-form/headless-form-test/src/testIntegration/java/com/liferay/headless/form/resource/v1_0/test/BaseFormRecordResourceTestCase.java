@@ -17,6 +17,7 @@ package com.liferay.headless.form.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.form.dto.v1_0.Creator;
@@ -25,6 +26,7 @@ import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.dto.v1_0.Options;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -33,12 +35,14 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -150,7 +154,7 @@ public abstract class BaseFormRecordResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/forms/{form-id}/form-records", formId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FormRecordImpl>>() {});
 	}
 
 	protected Http.Response invokeGetFormFormRecordsPageResponse(
@@ -195,6 +199,29 @@ public abstract class BaseFormRecordResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(FormRecord formRecord1, FormRecord formRecord2) {
+		Assert.assertTrue(formRecord1 + " does not equal " + formRecord2, equals(formRecord1, formRecord2));
+	}
+
+	protected void assertEquals(List<FormRecord> formRecords1, List<FormRecord> formRecords2) {
+		Assert.assertEquals(formRecords1.size(), formRecords2.size());
+
+		for (int i = 0; i < formRecords1.size(); i++) {
+			FormRecord formRecord1 = formRecords1.get(i);
+			FormRecord formRecord2 = formRecords2.get(i);
+
+			assertEquals(formRecord1, formRecord2);
+	}
+	}
+
+	protected boolean equals(FormRecord formRecord1, FormRecord formRecord2) {
+		if (formRecord1 == formRecord2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected FormRecord randomFormRecord() {
@@ -413,6 +440,83 @@ public abstract class BaseFormRecordResourceTestCase {
 
 	@JsonProperty
 	protected Long id;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", datePublished=");
+
+				sb.append(datePublished);
+					sb.append(", draft=");
+
+				sb.append(draft);
+					sb.append(", fieldValues=");
+
+				sb.append(fieldValues);
+					sb.append(", form=");
+
+				sb.append(form);
+					sb.append(", formId=");
+
+				sb.append(formId);
+					sb.append(", id=");
+
+				sb.append(id);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 

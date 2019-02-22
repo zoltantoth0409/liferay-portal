@@ -17,23 +17,27 @@ package com.liferay.headless.web.experience.resource.v1_0.test;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.vulcan.pagination.Page;
 
 import java.net.URL;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Generated;
 
@@ -87,7 +91,7 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
 
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Page.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<StructuredContentImageImpl>>() {});
 	}
 
 	protected Http.Response invokeGetStructuredContentStructuredContentImagesPageResponse(
@@ -151,6 +155,29 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			HttpUtil.URLtoString(options);
 
 			return options.getResponse();
+	}
+
+	protected void assertEquals(StructuredContentImage structuredContentImage1, StructuredContentImage structuredContentImage2) {
+		Assert.assertTrue(structuredContentImage1 + " does not equal " + structuredContentImage2, equals(structuredContentImage1, structuredContentImage2));
+	}
+
+	protected void assertEquals(List<StructuredContentImage> structuredContentImages1, List<StructuredContentImage> structuredContentImages2) {
+		Assert.assertEquals(structuredContentImages1.size(), structuredContentImages2.size());
+
+		for (int i = 0; i < structuredContentImages1.size(); i++) {
+			StructuredContentImage structuredContentImage1 = structuredContentImages1.get(i);
+			StructuredContentImage structuredContentImage2 = structuredContentImages2.get(i);
+
+			assertEquals(structuredContentImage1, structuredContentImage2);
+	}
+	}
+
+	protected boolean equals(StructuredContentImage structuredContentImage1, StructuredContentImage structuredContentImage2) {
+		if (structuredContentImage1 == structuredContentImage2) {
+			return true;
+	}
+
+		return false;
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {
@@ -370,6 +397,83 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 	@JsonProperty
 	protected String title;
+
+	public String toString() {
+			StringBundler sb = new StringBundler();
+
+			sb.append("{");
+
+					sb.append("contentUrl=");
+
+				sb.append(contentUrl);
+					sb.append(", creator=");
+
+				sb.append(creator);
+					sb.append(", dateCreated=");
+
+				sb.append(dateCreated);
+					sb.append(", dateModified=");
+
+				sb.append(dateModified);
+					sb.append(", encodingFormat=");
+
+				sb.append(encodingFormat);
+					sb.append(", fileExtension=");
+
+				sb.append(fileExtension);
+					sb.append(", id=");
+
+				sb.append(id);
+					sb.append(", sizeInBytes=");
+
+				sb.append(sizeInBytes);
+					sb.append(", title=");
+
+				sb.append(title);
+
+			sb.append("}");
+
+			return sb.toString();
+	}
+
+	}
+
+	protected static class Page<T> {
+
+	public Collection<T> getItems() {
+			return new ArrayList<>(items);
+	}
+
+	public int getItemsPerPage() {
+			return itemsPerPage;
+	}
+
+	public int getLastPageNumber() {
+			return lastPageNumber;
+	}
+
+	public int getPageNumber() {
+			return pageNumber;
+	}
+
+	public int getTotalCount() {
+			return totalCount;
+	}
+
+	@JsonProperty
+	protected Collection<T> items;
+
+	@JsonProperty
+	protected int itemsPerPage;
+
+	@JsonProperty
+	protected int lastPageNumber;
+
+	@JsonProperty
+	protected int pageNumber;
+
+	@JsonProperty
+	protected int totalCount;
 
 	}
 
