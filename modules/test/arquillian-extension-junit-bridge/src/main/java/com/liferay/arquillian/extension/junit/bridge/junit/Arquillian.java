@@ -14,7 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.junit;
 
-import com.liferay.arquillian.extension.junit.bridge.remote.manager.Manager;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 import com.liferay.arquillian.extension.junit.bridge.statement.ClientExecutorStatement;
@@ -25,6 +24,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import java.net.URL;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -92,13 +93,13 @@ public class Arquillian extends Runner implements Filterable {
 
 	@Override
 	public void run(RunNotifier runNotifier) {
-		Manager manager = _managerThreadLocal.get();
+		Registry registry = _registryThreadLocal.get();
 
-		if (manager == null) {
+		if (registry == null) {
 			try {
-				manager = new Manager();
+				registry = new Registry();
 
-				_managerThreadLocal.set(manager);
+				_registryThreadLocal.set(registry);
 			}
 			catch (Exception e) {
 				runNotifier.fireTestFailure(new Failure(getDescription(), e));
@@ -112,7 +113,7 @@ public class Arquillian extends Runner implements Filterable {
 
 				@Override
 				public void testRunFinished(Result result) throws Exception {
-					_managerThreadLocal.remove();
+					_registryThreadLocal.remove();
 				}
 
 			});
@@ -120,7 +121,7 @@ public class Arquillian extends Runner implements Filterable {
 		Description description = getDescription();
 
 		try {
-			Statement statement = _classBlock(runNotifier, manager);
+			Statement statement = _classBlock(runNotifier, registry);
 
 			statement.evaluate();
 		}
@@ -137,13 +138,13 @@ public class Arquillian extends Runner implements Filterable {
 		}
 	}
 
-	private Statement _classBlock(RunNotifier runNotifier, Manager manager) {
+	private Statement _classBlock(RunNotifier runNotifier, Registry registry) {
 		Statement statement = new Statement() {
 
 			@Override
 			public void evaluate() {
 				for (FrameworkMethod frameworkMethod : _getChildren()) {
-					_runChild(frameworkMethod, runNotifier, manager);
+					_runChild(frameworkMethod, runNotifier, registry);
 				}
 			}
 
@@ -159,9 +160,8 @@ public class Arquillian extends Runner implements Filterable {
 			}
 		}
 
-		if (hasTestMethod && !Manager.isRemote()) {
-			return new DeploymentStatement(
-				statement, _clazz, manager.getRegistry());
+		if (hasTestMethod && !_REMOTE) {
+			return new DeploymentStatement(statement, _clazz, registry);
 		}
 
 		return statement;
@@ -213,7 +213,7 @@ public class Arquillian extends Runner implements Filterable {
 	}
 
 	private Statement _methodBlock(
-		FrameworkMethod frameworkMethod, Manager manager) {
+		FrameworkMethod frameworkMethod, Registry registry) {
 
 		Object testObject = null;
 
@@ -234,7 +234,7 @@ public class Arquillian extends Runner implements Filterable {
 
 		final Object test = testObject;
 
-		Statement statement = _methodInvoker(frameworkMethod, test, manager);
+		Statement statement = _methodInvoker(frameworkMethod, test, registry);
 
 		statement = _withPotentialTimeout(frameworkMethod, statement);
 
@@ -246,7 +246,7 @@ public class Arquillian extends Runner implements Filterable {
 	}
 
 	private Statement _methodInvoker(
-		FrameworkMethod frameworkMethod, Object testObject, Manager manager) {
+		FrameworkMethod frameworkMethod, Object testObject, Registry registry) {
 
 		return new Statement() {
 
@@ -254,11 +254,9 @@ public class Arquillian extends Runner implements Filterable {
 			public void evaluate() throws Throwable {
 				Method method = frameworkMethod.getMethod();
 
-				Registry registry = manager.getRegistry();
-
 				Statement statement = null;
 
-				if (Manager.isRemote()) {
+				if (_REMOTE) {
 					statement = new ServerExecutorStatement(
 						testObject, method, registry);
 				}
@@ -285,7 +283,7 @@ public class Arquillian extends Runner implements Filterable {
 
 	private void _runChild(
 		FrameworkMethod frameworkMethod, RunNotifier runNotifier,
-		Manager manager) {
+		Registry registry) {
 
 		Description description = _describeChild(frameworkMethod);
 
@@ -293,7 +291,7 @@ public class Arquillian extends Runner implements Filterable {
 			runNotifier.fireTestIgnored(description);
 		}
 		else {
-			Statement statement = _methodBlock(frameworkMethod, manager);
+			Statement statement = _methodBlock(frameworkMethod, registry);
 
 			runNotifier.fireTestStarted(description);
 
@@ -334,8 +332,21 @@ public class Arquillian extends Runner implements Filterable {
 		return builder.build(statement);
 	}
 
-	private static final ThreadLocal<Manager> _managerThreadLocal =
+	private static final boolean _REMOTE;
+
+	private static final ThreadLocal<Registry> _registryThreadLocal =
 		new ThreadLocal<>();
+
+	static {
+		URL url = Arquillian.class.getResource("/arquillian.remote.marker");
+
+		if (url == null) {
+			_REMOTE = false;
+		}
+		else {
+			_REMOTE = true;
+		}
+	}
 
 	private final Class<?> _clazz;
 	private Filter _filter;
