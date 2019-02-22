@@ -57,21 +57,12 @@ public class JMXTestRunner
 				testResult = new TestResult(
 					exceptionRunListener.getException());
 			}
-			else if (result.getIgnoreCount() > 0) {
-				testResult = new TestResult(null);
-			}
 			else {
 				testResult = new TestResult(null);
 			}
 		}
 		catch (Throwable t) {
 			testResult = new TestResult(t);
-		}
-
-		Throwable throwable = testResult.getThrowable();
-
-		if (throwable instanceof AssumptionViolatedException) {
-			testResult = new TestResult(throwable);
 		}
 
 		return _toByteArray(testResult);
