@@ -57,6 +57,15 @@ public class CTEntryAggregateLocalServiceUtil {
 		return getService().addCTEntryAggregate(ctEntryAggregate);
 	}
 
+	public static com.liferay.change.tracking.model.CTEntryAggregate addCTEntryAggregate(
+		long userId, long ctCollectionId, long ownerCTEntryId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addCTEntryAggregate(userId, ctCollectionId, ownerCTEntryId,
+			serviceContext);
+	}
+
 	public static void addCTEntryCTEntryAggregate(long ctEntryId,
 		com.liferay.change.tracking.model.CTEntryAggregate ctEntryAggregate) {
 		getService().addCTEntryCTEntryAggregate(ctEntryId, ctEntryAggregate);
@@ -90,15 +99,6 @@ public class CTEntryAggregateLocalServiceUtil {
 	public static com.liferay.change.tracking.model.CTEntryAggregate createCTEntryAggregate(
 		long ctEntryAggregateId) {
 		return getService().createCTEntryAggregate(ctEntryAggregateId);
-	}
-
-	public static com.liferay.change.tracking.model.CTEntryAggregate createCTEntryAggregate(
-		long userId, long ownerCTEntryId, long ctCollectionId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .createCTEntryAggregate(userId, ownerCTEntryId,
-			ctCollectionId, serviceContext);
 	}
 
 	/**
@@ -238,15 +238,16 @@ public class CTEntryAggregateLocalServiceUtil {
 		return getService().fetchCTEntryAggregate(ctEntryAggregateId);
 	}
 
-	public static java.util.List<com.liferay.change.tracking.model.CTEntryAggregate> fetchCTEntryBags(
-		long ownerCTEntryId, long ctCollectionId) {
-		return getService().fetchCTEntryBags(ownerCTEntryId, ctCollectionId);
+	public static java.util.List<com.liferay.change.tracking.model.CTEntryAggregate> fetchCTEntryAggregates(
+		long ctCollectionId, long ownerCTEntryId) {
+		return getService()
+				   .fetchCTEntryAggregates(ctCollectionId, ownerCTEntryId);
 	}
 
 	public static com.liferay.change.tracking.model.CTEntryAggregate fetchLatestCTEntryAggregate(
-		long ownerCTEntryId, long ctCollectionId) {
+		long ctCollectionId, long ownerCTEntryId) {
 		return getService()
-				   .fetchLatestCTEntryAggregate(ownerCTEntryId, ctCollectionId);
+				   .fetchLatestCTEntryAggregate(ctCollectionId, ownerCTEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {

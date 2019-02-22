@@ -169,20 +169,6 @@ public interface CTEntryAggregateModel extends AuditedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Returns the owner ct entry ID of this ct entry aggregate.
-	 *
-	 * @return the owner ct entry ID of this ct entry aggregate
-	 */
-	public long getOwnerCTEntryId();
-
-	/**
-	 * Sets the owner ct entry ID of this ct entry aggregate.
-	 *
-	 * @param ownerCTEntryId the owner ct entry ID of this ct entry aggregate
-	 */
-	public void setOwnerCTEntryId(long ownerCTEntryId);
-
-	/**
 	 * Returns the ct collection ID of this ct entry aggregate.
 	 *
 	 * @return the ct collection ID of this ct entry aggregate
@@ -195,4 +181,18 @@ public interface CTEntryAggregateModel extends AuditedModel,
 	 * @param ctCollectionId the ct collection ID of this ct entry aggregate
 	 */
 	public void setCtCollectionId(long ctCollectionId);
+
+	/**
+	 * Returns the owner ct entry ID of this ct entry aggregate.
+	 *
+	 * @return the owner ct entry ID of this ct entry aggregate
+	 */
+	public long getOwnerCTEntryId();
+
+	/**
+	 * Sets the owner ct entry ID of this ct entry aggregate.
+	 *
+	 * @param ownerCTEntryId the owner ct entry ID of this ct entry aggregate
+	 */
+	public void setOwnerCTEntryId(long ownerCTEntryId);
 }

@@ -74,8 +74,8 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
-			{ "ownerCTEntryId", Types.BIGINT },
-			{ "ctCollectionId", Types.BIGINT }
+			{ "ctCollectionId", Types.BIGINT },
+			{ "ownerCTEntryId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -86,11 +86,11 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("ownerCTEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("ctCollectionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("ownerCTEntryId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CTEntryAggregate (ctEntryAggregateId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,ownerCTEntryId LONG,ctCollectionId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table CTEntryAggregate (ctEntryAggregateId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,ctCollectionId LONG,ownerCTEntryId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table CTEntryAggregate";
 	public static final String ORDER_BY_JPQL = " ORDER BY ctEntryAggregate.ctEntryAggregateId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CTEntryAggregate.ctEntryAggregateId ASC";
@@ -225,10 +225,10 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 		attributeSetterBiConsumers.put("createDate", (BiConsumer<CTEntryAggregate, Date>)CTEntryAggregate::setCreateDate);
 		attributeGetterFunctions.put("modifiedDate", CTEntryAggregate::getModifiedDate);
 		attributeSetterBiConsumers.put("modifiedDate", (BiConsumer<CTEntryAggregate, Date>)CTEntryAggregate::setModifiedDate);
-		attributeGetterFunctions.put("ownerCTEntryId", CTEntryAggregate::getOwnerCTEntryId);
-		attributeSetterBiConsumers.put("ownerCTEntryId", (BiConsumer<CTEntryAggregate, Long>)CTEntryAggregate::setOwnerCTEntryId);
 		attributeGetterFunctions.put("ctCollectionId", CTEntryAggregate::getCtCollectionId);
 		attributeSetterBiConsumers.put("ctCollectionId", (BiConsumer<CTEntryAggregate, Long>)CTEntryAggregate::setCtCollectionId);
+		attributeGetterFunctions.put("ownerCTEntryId", CTEntryAggregate::getOwnerCTEntryId);
+		attributeSetterBiConsumers.put("ownerCTEntryId", (BiConsumer<CTEntryAggregate, Long>)CTEntryAggregate::setOwnerCTEntryId);
 
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
@@ -323,28 +323,6 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 	}
 
 	@Override
-	public long getOwnerCTEntryId() {
-		return _ownerCTEntryId;
-	}
-
-	@Override
-	public void setOwnerCTEntryId(long ownerCTEntryId) {
-		_columnBitmask |= OWNERCTENTRYID_COLUMN_BITMASK;
-
-		if (!_setOriginalOwnerCTEntryId) {
-			_setOriginalOwnerCTEntryId = true;
-
-			_originalOwnerCTEntryId = _ownerCTEntryId;
-		}
-
-		_ownerCTEntryId = ownerCTEntryId;
-	}
-
-	public long getOriginalOwnerCTEntryId() {
-		return _originalOwnerCTEntryId;
-	}
-
-	@Override
 	public long getCtCollectionId() {
 		return _ctCollectionId;
 	}
@@ -364,6 +342,28 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 
 	public long getOriginalCtCollectionId() {
 		return _originalCtCollectionId;
+	}
+
+	@Override
+	public long getOwnerCTEntryId() {
+		return _ownerCTEntryId;
+	}
+
+	@Override
+	public void setOwnerCTEntryId(long ownerCTEntryId) {
+		_columnBitmask |= OWNERCTENTRYID_COLUMN_BITMASK;
+
+		if (!_setOriginalOwnerCTEntryId) {
+			_setOriginalOwnerCTEntryId = true;
+
+			_originalOwnerCTEntryId = _ownerCTEntryId;
+		}
+
+		_ownerCTEntryId = ownerCTEntryId;
+	}
+
+	public long getOriginalOwnerCTEntryId() {
+		return _originalOwnerCTEntryId;
 	}
 
 	public long getColumnBitmask() {
@@ -403,8 +403,8 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 		ctEntryAggregateImpl.setUserName(getUserName());
 		ctEntryAggregateImpl.setCreateDate(getCreateDate());
 		ctEntryAggregateImpl.setModifiedDate(getModifiedDate());
-		ctEntryAggregateImpl.setOwnerCTEntryId(getOwnerCTEntryId());
 		ctEntryAggregateImpl.setCtCollectionId(getCtCollectionId());
+		ctEntryAggregateImpl.setOwnerCTEntryId(getOwnerCTEntryId());
 
 		ctEntryAggregateImpl.resetOriginalValues();
 
@@ -469,13 +469,13 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 
 		ctEntryAggregateModelImpl._setModifiedDate = false;
 
-		ctEntryAggregateModelImpl._originalOwnerCTEntryId = ctEntryAggregateModelImpl._ownerCTEntryId;
-
-		ctEntryAggregateModelImpl._setOriginalOwnerCTEntryId = false;
-
 		ctEntryAggregateModelImpl._originalCtCollectionId = ctEntryAggregateModelImpl._ctCollectionId;
 
 		ctEntryAggregateModelImpl._setOriginalCtCollectionId = false;
+
+		ctEntryAggregateModelImpl._originalOwnerCTEntryId = ctEntryAggregateModelImpl._ownerCTEntryId;
+
+		ctEntryAggregateModelImpl._setOriginalOwnerCTEntryId = false;
 
 		ctEntryAggregateModelImpl._columnBitmask = 0;
 	}
@@ -516,9 +516,9 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 			ctEntryAggregateCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		ctEntryAggregateCacheModel.ownerCTEntryId = getOwnerCTEntryId();
-
 		ctEntryAggregateCacheModel.ctCollectionId = getCtCollectionId();
+
+		ctEntryAggregateCacheModel.ownerCTEntryId = getOwnerCTEntryId();
 
 		return ctEntryAggregateCacheModel;
 	}
@@ -591,12 +591,12 @@ public class CTEntryAggregateModelImpl extends BaseModelImpl<CTEntryAggregate>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private boolean _setModifiedDate;
-	private long _ownerCTEntryId;
-	private long _originalOwnerCTEntryId;
-	private boolean _setOriginalOwnerCTEntryId;
 	private long _ctCollectionId;
 	private long _originalCtCollectionId;
 	private boolean _setOriginalCtCollectionId;
+	private long _ownerCTEntryId;
+	private long _originalOwnerCTEntryId;
+	private boolean _setOriginalOwnerCTEntryId;
 	private long _columnBitmask;
 	private CTEntryAggregate _escapedModel;
 }

@@ -39,8 +39,8 @@ public class CTEntryAggregateSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setOwnerCTEntryId(model.getOwnerCTEntryId());
 		soapModel.setCtCollectionId(model.getCtCollectionId());
+		soapModel.setOwnerCTEntryId(model.getOwnerCTEntryId());
 
 		return soapModel;
 	}
@@ -143,14 +143,6 @@ public class CTEntryAggregateSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public long getOwnerCTEntryId() {
-		return _ownerCTEntryId;
-	}
-
-	public void setOwnerCTEntryId(long ownerCTEntryId) {
-		_ownerCTEntryId = ownerCTEntryId;
-	}
-
 	public long getCtCollectionId() {
 		return _ctCollectionId;
 	}
@@ -159,12 +151,20 @@ public class CTEntryAggregateSoap implements Serializable {
 		_ctCollectionId = ctCollectionId;
 	}
 
+	public long getOwnerCTEntryId() {
+		return _ownerCTEntryId;
+	}
+
+	public void setOwnerCTEntryId(long ownerCTEntryId) {
+		_ownerCTEntryId = ownerCTEntryId;
+	}
+
 	private long _ctEntryAggregateId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private long _ownerCTEntryId;
 	private long _ctCollectionId;
+	private long _ownerCTEntryId;
 }

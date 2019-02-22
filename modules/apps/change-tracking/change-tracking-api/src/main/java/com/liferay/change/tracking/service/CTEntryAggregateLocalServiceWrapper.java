@@ -54,6 +54,15 @@ public class CTEntryAggregateLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.change.tracking.model.CTEntryAggregate addCTEntryAggregate(
+		long userId, long ctCollectionId, long ownerCTEntryId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _ctEntryAggregateLocalService.addCTEntryAggregate(userId,
+			ctCollectionId, ownerCTEntryId, serviceContext);
+	}
+
+	@Override
 	public void addCTEntryCTEntryAggregate(long ctEntryId,
 		com.liferay.change.tracking.model.CTEntryAggregate ctEntryAggregate) {
 		_ctEntryAggregateLocalService.addCTEntryCTEntryAggregate(ctEntryId,
@@ -96,15 +105,6 @@ public class CTEntryAggregateLocalServiceWrapper
 	public com.liferay.change.tracking.model.CTEntryAggregate createCTEntryAggregate(
 		long ctEntryAggregateId) {
 		return _ctEntryAggregateLocalService.createCTEntryAggregate(ctEntryAggregateId);
-	}
-
-	@Override
-	public com.liferay.change.tracking.model.CTEntryAggregate createCTEntryAggregate(
-		long userId, long ownerCTEntryId, long ctCollectionId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _ctEntryAggregateLocalService.createCTEntryAggregate(userId,
-			ownerCTEntryId, ctCollectionId, serviceContext);
 	}
 
 	/**
@@ -264,17 +264,17 @@ public class CTEntryAggregateLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.liferay.change.tracking.model.CTEntryAggregate> fetchCTEntryBags(
-		long ownerCTEntryId, long ctCollectionId) {
-		return _ctEntryAggregateLocalService.fetchCTEntryBags(ownerCTEntryId,
-			ctCollectionId);
+	public java.util.List<com.liferay.change.tracking.model.CTEntryAggregate> fetchCTEntryAggregates(
+		long ctCollectionId, long ownerCTEntryId) {
+		return _ctEntryAggregateLocalService.fetchCTEntryAggregates(ctCollectionId,
+			ownerCTEntryId);
 	}
 
 	@Override
 	public com.liferay.change.tracking.model.CTEntryAggregate fetchLatestCTEntryAggregate(
-		long ownerCTEntryId, long ctCollectionId) {
-		return _ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(ownerCTEntryId,
-			ctCollectionId);
+		long ctCollectionId, long ownerCTEntryId) {
+		return _ctEntryAggregateLocalService.fetchLatestCTEntryAggregate(ctCollectionId,
+			ownerCTEntryId);
 	}
 
 	@Override

@@ -41,8 +41,8 @@ create table CTEntryAggregate (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	ownerCTEntryId LONG,
-	ctCollectionId LONG
+	ctCollectionId LONG,
+	ownerCTEntryId LONG
 );
 
 create table CTEntryAggregates_CTEntries (

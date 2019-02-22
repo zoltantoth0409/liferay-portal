@@ -72,6 +72,10 @@ public interface CTEntryAggregateLocalService extends BaseLocalService,
 	public CTEntryAggregate addCTEntryAggregate(
 		CTEntryAggregate ctEntryAggregate);
 
+	public CTEntryAggregate addCTEntryAggregate(long userId,
+		long ctCollectionId, long ownerCTEntryId, ServiceContext serviceContext)
+		throws PortalException;
+
 	public void addCTEntryCTEntryAggregate(long ctEntryId,
 		CTEntryAggregate ctEntryAggregate);
 
@@ -94,10 +98,6 @@ public interface CTEntryAggregateLocalService extends BaseLocalService,
 	*/
 	@Transactional(enabled = false)
 	public CTEntryAggregate createCTEntryAggregate(long ctEntryAggregateId);
-
-	public CTEntryAggregate createCTEntryAggregate(long userId,
-		long ownerCTEntryId, long ctCollectionId, ServiceContext serviceContext)
-		throws PortalException;
 
 	/**
 	* Deletes the ct entry aggregate from the database. Also notifies the appropriate model listeners.
@@ -208,12 +208,12 @@ public interface CTEntryAggregateLocalService extends BaseLocalService,
 	public CTEntryAggregate fetchCTEntryAggregate(long ctEntryAggregateId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTEntryAggregate> fetchCTEntryBags(long ownerCTEntryId,
-		long ctCollectionId);
+	public List<CTEntryAggregate> fetchCTEntryAggregates(long ctCollectionId,
+		long ownerCTEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CTEntryAggregate fetchLatestCTEntryAggregate(long ownerCTEntryId,
-		long ctCollectionId);
+	public CTEntryAggregate fetchLatestCTEntryAggregate(long ctCollectionId,
+		long ownerCTEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();

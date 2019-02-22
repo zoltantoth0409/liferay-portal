@@ -49,8 +49,8 @@ public class CTEntryAggregateWrapper extends BaseModelWrapper<CTEntryAggregate>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
-		attributes.put("ownerCTEntryId", getOwnerCTEntryId());
 		attributes.put("ctCollectionId", getCtCollectionId());
+		attributes.put("ownerCTEntryId", getOwnerCTEntryId());
 
 		return attributes;
 	}
@@ -93,16 +93,16 @@ public class CTEntryAggregateWrapper extends BaseModelWrapper<CTEntryAggregate>
 			setModifiedDate(modifiedDate);
 		}
 
-		Long ownerCTEntryId = (Long)attributes.get("ownerCTEntryId");
-
-		if (ownerCTEntryId != null) {
-			setOwnerCTEntryId(ownerCTEntryId);
-		}
-
 		Long ctCollectionId = (Long)attributes.get("ctCollectionId");
 
 		if (ctCollectionId != null) {
 			setCtCollectionId(ctCollectionId);
+		}
+
+		Long ownerCTEntryId = (Long)attributes.get("ownerCTEntryId");
+
+		if (ownerCTEntryId != null) {
+			setOwnerCTEntryId(ownerCTEntryId);
 		}
 	}
 
