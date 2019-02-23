@@ -122,7 +122,7 @@ public class SegmentsExperienceLocalServiceImpl
 	}
 
 	@Override
-	public void deleteSegmentsExperiencesBySegmentsEntryId(long segmentsEntryId)
+	public void deleteSegmentsEntrySegmentsExperiences(long segmentsEntryId)
 		throws PortalException {
 
 		List<SegmentsExperience> segmentsExperiences =
