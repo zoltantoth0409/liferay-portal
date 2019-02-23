@@ -14,12 +14,10 @@
 
 package com.liferay.arquillian.extension.junit.bridge.protocol.jmx;
 
-import javax.management.NotificationBroadcaster;
-
 /**
  * @author Matthew Tambara
  */
-public interface JMXTestRunnerMBean extends NotificationBroadcaster {
+public interface JMXTestRunnerMBean {
 
 	public static final String OBJECT_NAME =
 		"com.liferay:service=jmx-test-runner";

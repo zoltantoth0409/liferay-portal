@@ -18,8 +18,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import javax.management.NotificationBroadcasterSupport;
-
 import org.junit.AssumptionViolatedException;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Request;
@@ -30,8 +28,7 @@ import org.junit.runner.notification.RunListener;
 /**
  * @author Matthew Tambara
  */
-public class JMXTestRunner
-	extends NotificationBroadcasterSupport implements JMXTestRunnerMBean {
+public class JMXTestRunner implements JMXTestRunnerMBean {
 
 	public JMXTestRunner(ClassLoader classLoader) {
 		_classLoader = classLoader;
