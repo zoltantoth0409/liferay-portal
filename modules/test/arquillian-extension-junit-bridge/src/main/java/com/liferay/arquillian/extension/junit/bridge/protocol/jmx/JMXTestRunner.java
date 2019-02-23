@@ -14,8 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.protocol.jmx;
 
-import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -41,7 +39,7 @@ public class JMXTestRunner
 
 	@Override
 	public byte[] runTestMethod(String className, String methodName) {
-		TestResult testResult = TestResult.PASSED;
+		Throwable throwable = null;
 
 		ExceptionRunListener exceptionRunListener = new ExceptionRunListener();
 
@@ -54,24 +52,23 @@ public class JMXTestRunner
 				Request.method(_classLoader.loadClass(className), methodName));
 
 			if (result.getFailureCount() > 0) {
-				testResult = new TestResult(
-					exceptionRunListener.getException());
+				throwable = exceptionRunListener.getException();
 			}
 		}
 		catch (Throwable t) {
-			testResult = new TestResult(t);
+			throwable = t;
 		}
 
-		return _toByteArray(testResult);
+		return _toByteArray(throwable);
 	}
 
-	private static byte[] _toByteArray(TestResult testResult) {
+	private static byte[] _toByteArray(Throwable throwable) {
 		try (ByteArrayOutputStream byteArrayOutputStream =
 				new ByteArrayOutputStream();
 			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
 				byteArrayOutputStream)) {
 
-			objectOutputStream.writeObject(testResult);
+			objectOutputStream.writeObject(throwable);
 
 			objectOutputStream.flush();
 
@@ -79,7 +76,7 @@ public class JMXTestRunner
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Unable to serialize object: " + testResult, ioe);
+				"Unable to serialize object: " + throwable, ioe);
 		}
 	}
 

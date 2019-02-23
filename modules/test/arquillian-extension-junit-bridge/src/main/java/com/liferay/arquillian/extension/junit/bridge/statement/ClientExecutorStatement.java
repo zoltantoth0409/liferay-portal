@@ -16,7 +16,6 @@ package com.liferay.arquillian.extension.junit.bridge.statement;
 
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
-import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 
 import java.io.InputStream;
@@ -52,9 +51,7 @@ public class ClientExecutorStatement extends Statement {
 		try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
 			ObjectInputStream oos = new ObjectInputStream(inputStream)) {
 
-			TestResult testResult = (TestResult)oos.readObject();
-
-			Throwable throwable = testResult.getThrowable();
+			Throwable throwable = (Throwable)oos.readObject();
 
 			if (throwable != null) {
 				throw throwable;

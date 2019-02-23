@@ -227,7 +227,6 @@ public class DeploymentStatement extends Statement {
 			javaArchive.add(EmptyAsset.INSTANCE, "/arquillian.remote.marker");
 			javaArchive.addPackages(
 				true, "com.liferay.arquillian.extension.junit.bridge.remote",
-				"com.liferay.arquillian.extension.junit.bridge.result",
 				"com.liferay.arquillian.extension.junit.bridge.statement");
 
 			Package pkg = Arquillian.class.getPackage();
