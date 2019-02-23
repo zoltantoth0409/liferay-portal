@@ -21,8 +21,9 @@ import javax.management.NotificationBroadcaster;
  */
 public interface JMXTestRunnerMBean extends NotificationBroadcaster {
 
-	public byte[] runTestMethod(String className, String methodName);
+	public static final String OBJECT_NAME =
+		"com.liferay:service=jmx-test-runner";
 
-	public String OBJECT_NAME = "jboss.arquillian:service=jmx-test-runner";
+	public byte[] runTestMethod(String className, String methodName);
 
 }
