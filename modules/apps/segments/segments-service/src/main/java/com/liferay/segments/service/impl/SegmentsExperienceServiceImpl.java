@@ -42,7 +42,6 @@ public class SegmentsExperienceServiceImpl
 			long segmentsEntryId, long classNameId, long classPK,
 			Map<Locale, String> nameMap, int priority, boolean active,
 			ServiceContext serviceContext)
-
 		throws PortalException {
 
 		_portletResourcePermission.check(
