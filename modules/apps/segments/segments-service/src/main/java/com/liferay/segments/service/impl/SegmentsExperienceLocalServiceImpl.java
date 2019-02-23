@@ -80,6 +80,20 @@ public class SegmentsExperienceLocalServiceImpl
 	}
 
 	@Override
+	public void deleteSegmentsEntrySegmentsExperiences(long segmentsEntryId)
+		throws PortalException {
+
+		List<SegmentsExperience> segmentsExperiences =
+			segmentsExperiencePersistence.findBySegmentsEntryId(
+				segmentsEntryId);
+
+		for (SegmentsExperience segmentsExperience : segmentsExperiences) {
+			segmentsExperienceLocalService.deleteSegmentsExperience(
+				segmentsExperience.getSegmentsExperienceId());
+		}
+	}
+
+	@Override
 	public SegmentsExperience deleteSegmentsExperience(
 			long segmentsExperienceId)
 		throws PortalException {
@@ -114,20 +128,6 @@ public class SegmentsExperienceLocalServiceImpl
 	public void deleteSegmentsExperiences(long groupId) throws PortalException {
 		List<SegmentsExperience> segmentsExperiences =
 			segmentsExperiencePersistence.findByGroupId(groupId);
-
-		for (SegmentsExperience segmentsExperience : segmentsExperiences) {
-			segmentsExperienceLocalService.deleteSegmentsExperience(
-				segmentsExperience.getSegmentsExperienceId());
-		}
-	}
-
-	@Override
-	public void deleteSegmentsEntrySegmentsExperiences(long segmentsEntryId)
-		throws PortalException {
-
-		List<SegmentsExperience> segmentsExperiences =
-			segmentsExperiencePersistence.findBySegmentsEntryId(
-				segmentsEntryId);
 
 		for (SegmentsExperience segmentsExperience : segmentsExperiences) {
 			segmentsExperienceLocalService.deleteSegmentsExperience(
