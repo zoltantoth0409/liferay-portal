@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.arquillian.extension.junit.bridge.protocol.jmx;
+package com.liferay.arquillian.extension.junit.bridge.jmx;
 
 import java.io.IOException;
 

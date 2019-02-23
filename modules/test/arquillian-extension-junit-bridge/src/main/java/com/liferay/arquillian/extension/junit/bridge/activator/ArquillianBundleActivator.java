@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.arquillian.extension.junit.bridge.remote.activator;
+package com.liferay.arquillian.extension.junit.bridge.activator;
 
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunner;
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
+import com.liferay.arquillian.extension.junit.bridge.jmx.JMXTestRunner;
+import com.liferay.arquillian.extension.junit.bridge.jmx.JMXTestRunnerMBean;
 
 import java.lang.management.ManagementFactory;
 

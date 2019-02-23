@@ -20,10 +20,8 @@ import aQute.bnd.build.Workspace;
 import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Jar;
 
-import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunner;
-import com.liferay.arquillian.extension.junit.bridge.remote.activator.ArquillianBundleActivator;
+import com.liferay.arquillian.extension.junit.bridge.activator.ArquillianBundleActivator;
+import com.liferay.arquillian.extension.junit.bridge.jmx.JMXProxyUtil;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -93,13 +91,6 @@ public class DeploymentStatement extends Statement {
 		finally {
 			frameworkMBean.uninstallBundle(bundleId);
 		}
-	}
-
-	private static void _addArquillianDependencies(JavaArchive javaArchive) {
-		javaArchive.addPackage(JMXTestRunner.class.getPackage());
-		javaArchive.addPackages(
-			true, "org.jboss.shrinkwrap.api",
-			"org.jboss.shrinkwrap.descriptor.api");
 	}
 
 	private static void _addTestClass(
@@ -222,22 +213,21 @@ public class DeploymentStatement extends Statement {
 		try {
 			_addTestClass(javaArchive, testClass);
 
-			_addArquillianDependencies(javaArchive);
-
 			javaArchive.add(EmptyAsset.INSTANCE, "/arquillian.remote.marker");
+
 			javaArchive.addPackages(
-				true, "com.liferay.arquillian.extension.junit.bridge.remote",
-				"com.liferay.arquillian.extension.junit.bridge.statement");
+				true, "org.jboss.shrinkwrap.api",
+				"org.jboss.shrinkwrap.descriptor.api");
 
-			Package pkg = Arquillian.class.getPackage();
-
-			javaArchive.addPackages(false, pkg);
+			javaArchive.addPackages(
+				true, "com.liferay.arquillian.extension.junit.bridge");
 
 			Manifest manifest = _getManifest(javaArchive);
 
 			Set<String> importPackages = _createImportPackages(manifest);
 
-			importPackages.remove(pkg.getName());
+			importPackages.remove(
+				"com.liferay.arquillian.extension.junit.bridge.junit");
 
 			_setManifestValues(manifest, _importPackageName, importPackages);
 

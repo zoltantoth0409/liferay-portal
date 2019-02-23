@@ -14,8 +14,8 @@
 
 package com.liferay.arquillian.extension.junit.bridge.statement;
 
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
-import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
+import com.liferay.arquillian.extension.junit.bridge.jmx.JMXProxyUtil;
+import com.liferay.arquillian.extension.junit.bridge.jmx.JMXTestRunnerMBean;
 import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 
 import java.io.InputStream;
