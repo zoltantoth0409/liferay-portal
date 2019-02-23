@@ -90,7 +90,7 @@ public class Arquillian extends Runner implements Filterable {
 		Description description = getDescription();
 
 		try {
-			Statement statement = _classBlock(runNotifier);
+			Statement statement = _createClassStatement(runNotifier);
 
 			statement.evaluate();
 		}
@@ -107,13 +107,13 @@ public class Arquillian extends Runner implements Filterable {
 		}
 	}
 
-	private Statement _classBlock(RunNotifier runNotifier) {
+	private Statement _createClassStatement(RunNotifier runNotifier) {
 		Statement statement = new Statement() {
 
 			@Override
 			public void evaluate() {
 				for (FrameworkMethod frameworkMethod : _getChildren()) {
-					_runChild(frameworkMethod, runNotifier);
+					_runMethod(frameworkMethod, runNotifier);
 				}
 			}
 
@@ -136,6 +136,35 @@ public class Arquillian extends Runner implements Filterable {
 		return statement;
 	}
 
+	private Statement _createExecutorStatement(
+		FrameworkMethod frameworkMethod, Object target) {
+
+		Method method = frameworkMethod.getMethod();
+
+		if (_REMOTE) {
+			return new ServerExecutorStatement(target, method);
+		}
+
+		return new ClientExecutorStatement(target, method);
+	}
+
+	private Statement _createMethodStatement(FrameworkMethod frameworkMethod) {
+		Object target = null;
+
+		try {
+			target = _clazz.newInstance();
+		}
+		catch (ReflectiveOperationException roe) {
+			return new Fail(roe);
+		}
+
+		Statement statement = _createExecutorStatement(frameworkMethod, target);
+
+		statement = _withTimeout(frameworkMethod, statement);
+
+		return _withMethodRules(statement, frameworkMethod, target);
+	}
+
 	private Description _describeChild(FrameworkMethod frameworkMethod) {
 		return _methodDescriptions.computeIfAbsent(
 			frameworkMethod,
@@ -150,19 +179,6 @@ public class Arquillian extends Runner implements Filterable {
 		TestClass testClass = _getTestClass();
 
 		return testClass.getAnnotatedMethods(Test.class);
-	}
-
-	private List<MethodRule> _getMethodRules(Object target) {
-		TestClass testClass = _getTestClass();
-
-		List<MethodRule> methodRules = testClass.getAnnotatedMethodValues(
-			target, Rule.class, MethodRule.class);
-
-		methodRules.addAll(
-			testClass.getAnnotatedFieldValues(
-				target, Rule.class, MethodRule.class));
-
-		return methodRules;
 	}
 
 	private TestClass _getTestClass() {
@@ -181,40 +197,7 @@ public class Arquillian extends Runner implements Filterable {
 		return false;
 	}
 
-	private Statement _methodBlock(FrameworkMethod frameworkMethod) {
-		Object target = null;
-
-		try {
-			target = _clazz.newInstance();
-		}
-		catch (ReflectiveOperationException roe) {
-			return new Fail(roe);
-		}
-
-		Statement statement = _methodInvoker(frameworkMethod, target);
-
-		statement = _withPotentialTimeout(frameworkMethod, statement);
-
-		for (MethodRule methodRule : _getMethodRules(target)) {
-			statement = methodRule.apply(statement, frameworkMethod, target);
-		}
-
-		return statement;
-	}
-
-	private Statement _methodInvoker(
-		FrameworkMethod frameworkMethod, Object target) {
-
-		Method method = frameworkMethod.getMethod();
-
-		if (_REMOTE) {
-			return new ServerExecutorStatement(target, method);
-		}
-
-		return new ClientExecutorStatement(target, method);
-	}
-
-	private void _runChild(
+	private void _runMethod(
 		FrameworkMethod frameworkMethod, RunNotifier runNotifier) {
 
 		Description description = _describeChild(frameworkMethod);
@@ -223,7 +206,7 @@ public class Arquillian extends Runner implements Filterable {
 			runNotifier.fireTestIgnored(description);
 		}
 		else {
-			Statement statement = _methodBlock(frameworkMethod);
+			Statement statement = _createMethodStatement(frameworkMethod);
 
 			runNotifier.fireTestStarted(description);
 
@@ -248,7 +231,29 @@ public class Arquillian extends Runner implements Filterable {
 		}
 	}
 
-	private Statement _withPotentialTimeout(
+	private Statement _withMethodRules(
+		Statement statement, FrameworkMethod frameworkMethod, Object target) {
+
+		TestClass testClass = _getTestClass();
+
+		for (MethodRule methodRule :
+				testClass.getAnnotatedMethodValues(
+					target, Rule.class, MethodRule.class)) {
+
+			statement = methodRule.apply(statement, frameworkMethod, target);
+		}
+
+		for (MethodRule methodRule :
+				testClass.getAnnotatedFieldValues(
+					target, Rule.class, MethodRule.class)) {
+
+			statement = methodRule.apply(statement, frameworkMethod, target);
+		}
+
+		return statement;
+	}
+
+	private Statement _withTimeout(
 		FrameworkMethod frameworkMethod, Statement statement) {
 
 		Test test = frameworkMethod.getAnnotation(Test.class);
