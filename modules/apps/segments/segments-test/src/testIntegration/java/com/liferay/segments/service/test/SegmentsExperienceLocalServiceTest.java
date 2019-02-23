@@ -84,7 +84,6 @@ public class SegmentsExperienceLocalServiceTest {
 			1,
 			_segmentsExperienceLocalService.getSegmentsExperiencesCount(
 				_group.getGroupId()));
-
 		Assert.assertEquals(
 			segmentsEntry.getSegmentsEntryId(),
 			segmentsExperience.getSegmentsEntryId());
