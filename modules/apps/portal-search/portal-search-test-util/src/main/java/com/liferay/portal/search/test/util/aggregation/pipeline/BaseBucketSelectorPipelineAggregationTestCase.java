@@ -49,8 +49,8 @@ public abstract class BaseBucketSelectorPipelineAggregationTestCase
 		HistogramAggregation histogramAggregation =
 			new HistogramAggregationImpl("histogram", Field.PRIORITY);
 
-		histogramAggregation.setMinDocCount(1L);
 		histogramAggregation.setInterval(5.0);
+		histogramAggregation.setMinDocCount(1L);
 
 		SumAggregation sumAggregation = new SumAggregationImpl(
 			"sum", Field.PRIORITY);
