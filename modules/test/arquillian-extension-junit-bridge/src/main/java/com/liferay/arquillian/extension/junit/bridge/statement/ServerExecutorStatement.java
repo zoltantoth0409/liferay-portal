@@ -14,9 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.statement;
 
-import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
-import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,13 +24,13 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.AssumptionViolatedException;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.internal.AssumptionViolatedException;
 import org.junit.internal.runners.statements.InvokeMethod;
 import org.junit.internal.runners.statements.RunAfters;
 import org.junit.internal.runners.statements.RunBefores;
@@ -49,12 +46,9 @@ import org.junit.runners.model.TestClass;
  */
 public class ServerExecutorStatement extends Statement {
 
-	public ServerExecutorStatement(
-		Object target, Method method, Registry registry) {
-
+	public ServerExecutorStatement(Object target, Method method) {
 		_target = target;
 		_method = method;
-		_registry = registry;
 	}
 
 	@Override
@@ -64,9 +58,7 @@ public class ServerExecutorStatement extends Statement {
 		Statement statement = new InvokeMethod(null, _target) {
 
 			@Override
-			public void evaluate() {
-				TestResult testResult = TestResult.PASSED;
-
+			public void evaluate() throws Throwable {
 				Thread currentThread = Thread.currentThread();
 
 				ClassLoader classLoader = currentThread.getContextClassLoader();
@@ -74,24 +66,22 @@ public class ServerExecutorStatement extends Statement {
 				currentThread.setContextClassLoader(clazz.getClassLoader());
 
 				try {
-					try {
-						_method.invoke(_target);
-					}
-					catch (InvocationTargetException ite) {
-						throw ite.getCause();
-					}
-				}
-				catch (AssumptionViolatedException ave) {
-					testResult = new TestResult(ave);
+					_method.invoke(_target);
 				}
 				catch (Throwable t) {
-					testResult = _processThrowable(t, _method);
+					if (t instanceof InvocationTargetException) {
+						t = t.getCause();
+					}
+
+					if (t instanceof AssumptionViolatedException) {
+						throw t;
+					}
+
+					_processThrowable(t, _method);
 				}
 				finally {
 					currentThread.setContextClassLoader(classLoader);
 				}
-
-				_registry.set(TestResult.class, testResult);
 			}
 
 		};
@@ -257,17 +247,19 @@ public class ServerExecutorStatement extends Statement {
 		return statement;
 	}
 
-	private TestResult _processThrowable(Throwable throwable, Method method) {
+	private void _processThrowable(Throwable throwable, Method method)
+		throws Throwable {
+
 		Test test = method.getAnnotation(Test.class);
 
 		if (test == null) {
-			return new TestResult(throwable);
+			throw throwable;
 		}
 
 		Class<?> expected = test.expected();
 
 		if (test.expected() == Test.None.class) {
-			return new TestResult(throwable);
+			throw throwable;
 		}
 
 		Class<?> clazz = throwable.getClass();
@@ -277,14 +269,11 @@ public class ServerExecutorStatement extends Statement {
 				"Unexpected exception, expected<" + expected.getName() +
 					"> but was<" + clazz.getName() + ">";
 
-			return new TestResult(new Exception(message));
+			throw new Exception(message);
 		}
-
-		return TestResult.PASSED;
 	}
 
 	private final Method _method;
-	private final Registry _registry;
 	private final Object _target;
 
 }

@@ -16,7 +16,6 @@ package com.liferay.arquillian.extension.junit.bridge.statement;
 
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
-import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 
@@ -35,16 +34,12 @@ import org.junit.runners.model.Statement;
  */
 public class ClientExecutorStatement extends Statement {
 
-	public ClientExecutorStatement(
-		Object target, Method method, Registry registry) {
-
+	public ClientExecutorStatement(Object target, Method method) {
 		Class<?> clazz = target.getClass();
 
 		_className = clazz.getName();
 
 		_methodName = method.getName();
-
-		_registry = registry;
 	}
 
 	@Override
@@ -52,18 +47,18 @@ public class ClientExecutorStatement extends Statement {
 		JMXTestRunnerMBean jmxTestRunnerMBean = JMXProxyUtil.newProxy(
 			_objectName, JMXTestRunnerMBean.class);
 
-		try {
-			byte[] data = jmxTestRunnerMBean.runTestMethod(
-				_className, _methodName);
+		byte[] data = jmxTestRunnerMBean.runTestMethod(_className, _methodName);
 
-			try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
-				ObjectInputStream oos = new ObjectInputStream(inputStream)) {
+		try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
+			ObjectInputStream oos = new ObjectInputStream(inputStream)) {
 
-				_registry.set(TestResult.class, (TestResult)oos.readObject());
+			TestResult testResult = (TestResult)oos.readObject();
+
+			Throwable throwable = testResult.getThrowable();
+
+			if (throwable != null) {
+				throw throwable;
 			}
-		}
-		catch (Throwable t) {
-			_registry.set(TestResult.class, new TestResult(t));
 		}
 	}
 
@@ -80,6 +75,5 @@ public class ClientExecutorStatement extends Statement {
 
 	private final String _className;
 	private final String _methodName;
-	private final Registry _registry;
 
 }

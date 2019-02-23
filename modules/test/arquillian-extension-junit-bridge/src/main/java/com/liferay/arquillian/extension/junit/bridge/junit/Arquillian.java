@@ -14,8 +14,6 @@
 
 package com.liferay.arquillian.extension.junit.bridge.junit;
 
-import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
-import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
 import com.liferay.arquillian.extension.junit.bridge.statement.ClientExecutorStatement;
 import com.liferay.arquillian.extension.junit.bridge.statement.DeploymentStatement;
 import com.liferay.arquillian.extension.junit.bridge.statement.ServerExecutorStatement;
@@ -34,21 +32,19 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.AssumptionViolatedException;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.internal.AssumptionViolatedException;
 import org.junit.internal.runners.statements.Fail;
 import org.junit.internal.runners.statements.FailOnTimeout;
 import org.junit.rules.MethodRule;
 import org.junit.runner.Description;
-import org.junit.runner.Result;
 import org.junit.runner.Runner;
 import org.junit.runner.manipulation.Filter;
 import org.junit.runner.manipulation.Filterable;
 import org.junit.runner.manipulation.NoTestsRemainException;
 import org.junit.runner.notification.Failure;
-import org.junit.runner.notification.RunListener;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.model.FrameworkField;
 import org.junit.runners.model.FrameworkMethod;
@@ -93,28 +89,10 @@ public class Arquillian extends Runner implements Filterable {
 
 	@Override
 	public void run(RunNotifier runNotifier) {
-		Registry registry = _registryThreadLocal.get();
-
-		if (registry == null) {
-			registry = new Registry();
-
-			_registryThreadLocal.set(registry);
-		}
-
-		runNotifier.addListener(
-			new RunListener() {
-
-				@Override
-				public void testRunFinished(Result result) throws Exception {
-					_registryThreadLocal.remove();
-				}
-
-			});
-
 		Description description = getDescription();
 
 		try {
-			Statement statement = _classBlock(runNotifier, registry);
+			Statement statement = _classBlock(runNotifier);
 
 			statement.evaluate();
 		}
@@ -131,13 +109,13 @@ public class Arquillian extends Runner implements Filterable {
 		}
 	}
 
-	private Statement _classBlock(RunNotifier runNotifier, Registry registry) {
+	private Statement _classBlock(RunNotifier runNotifier) {
 		Statement statement = new Statement() {
 
 			@Override
 			public void evaluate() {
 				for (FrameworkMethod frameworkMethod : _getChildren()) {
-					_runChild(frameworkMethod, runNotifier, registry);
+					_runChild(frameworkMethod, runNotifier);
 				}
 			}
 
@@ -205,9 +183,7 @@ public class Arquillian extends Runner implements Filterable {
 		return false;
 	}
 
-	private Statement _methodBlock(
-		FrameworkMethod frameworkMethod, Registry registry) {
-
+	private Statement _methodBlock(FrameworkMethod frameworkMethod) {
 		Object testObject = null;
 
 		try {
@@ -227,7 +203,7 @@ public class Arquillian extends Runner implements Filterable {
 
 		final Object test = testObject;
 
-		Statement statement = _methodInvoker(frameworkMethod, test, registry);
+		Statement statement = _methodInvoker(frameworkMethod, test);
 
 		statement = _withPotentialTimeout(frameworkMethod, statement);
 
@@ -239,44 +215,19 @@ public class Arquillian extends Runner implements Filterable {
 	}
 
 	private Statement _methodInvoker(
-		FrameworkMethod frameworkMethod, Object testObject, Registry registry) {
+		FrameworkMethod frameworkMethod, Object testObject) {
 
-		return new Statement() {
+		Method method = frameworkMethod.getMethod();
 
-			@Override
-			public void evaluate() throws Throwable {
-				Method method = frameworkMethod.getMethod();
+		if (_REMOTE) {
+			return new ServerExecutorStatement(testObject, method);
+		}
 
-				Statement statement = null;
-
-				if (_REMOTE) {
-					statement = new ServerExecutorStatement(
-						testObject, method, registry);
-				}
-				else {
-					statement = new ClientExecutorStatement(
-						testObject, method, registry);
-				}
-
-				statement.evaluate();
-
-				TestResult testResult = registry.get(TestResult.class);
-
-				Throwable throwable = testResult.getThrowable();
-
-				if (throwable == null) {
-					return;
-				}
-
-				throw throwable;
-			}
-
-		};
+		return new ClientExecutorStatement(testObject, method);
 	}
 
 	private void _runChild(
-		FrameworkMethod frameworkMethod, RunNotifier runNotifier,
-		Registry registry) {
+		FrameworkMethod frameworkMethod, RunNotifier runNotifier) {
 
 		Description description = _describeChild(frameworkMethod);
 
@@ -284,7 +235,7 @@ public class Arquillian extends Runner implements Filterable {
 			runNotifier.fireTestIgnored(description);
 		}
 		else {
-			Statement statement = _methodBlock(frameworkMethod, registry);
+			Statement statement = _methodBlock(frameworkMethod);
 
 			runNotifier.fireTestStarted(description);
 
@@ -326,9 +277,6 @@ public class Arquillian extends Runner implements Filterable {
 	}
 
 	private static final boolean _REMOTE;
-
-	private static final ThreadLocal<Registry> _registryThreadLocal =
-		new ThreadLocal<>();
 
 	static {
 		URL url = Arquillian.class.getResource("/arquillian.remote.marker");
