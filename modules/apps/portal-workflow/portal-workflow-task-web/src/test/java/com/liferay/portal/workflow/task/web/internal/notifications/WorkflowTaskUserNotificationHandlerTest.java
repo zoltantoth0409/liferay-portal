@@ -134,22 +134,19 @@ public class WorkflowTaskUserNotificationHandlerTest {
 		jsonObject.put("notificationMessage", _NOTIFICATION_MESSAGE);
 		jsonObject.put("workflowTaskId", workflowTaskId);
 
-		UserNotificationEvent userNotificationEvent =
-			new UserNotificationEventWrapper(null) {
+		return new UserNotificationEventWrapper(null) {
 
-				@Override
-				public String getPayload() {
-					return jsonObject.toJSONString();
-				}
+			@Override
+			public String getPayload() {
+				return jsonObject.toJSONString();
+			}
 
-				@Override
-				public long getUserNotificationEventId() {
-					return 0;
-				}
+			@Override
+			public long getUserNotificationEventId() {
+				return 0;
+			}
 
-			};
-
-		return userNotificationEvent;
+		};
 	}
 
 	private static void _setUpHtmlUtil() {
@@ -284,11 +281,11 @@ public class WorkflowTaskUserNotificationHandlerTest {
 
 		@Override
 		public ThemeDisplay getThemeDisplay() {
-			ThemeDisplay themeDisplay = new ThemeDisplay();
-
-			themeDisplay.setSiteGroupId(RandomTestUtil.randomLong());
-
-			return themeDisplay;
+			return new ThemeDisplay() {
+				{
+					setSiteGroupId(RandomTestUtil.randomLong());
+				}
+			};
 		}
 
 	};
