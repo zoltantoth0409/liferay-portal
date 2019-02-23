@@ -158,16 +158,16 @@ public class SegmentsEntryLocalServiceImpl
 		resourceLocalService.deleteResource(
 			segmentsEntry, ResourceConstants.SCOPE_INDIVIDUAL);
 
-		// Segments rels
-
-		segmentsEntryRelLocalService.deleteSegmentsEntryRels(
-			segmentsEntry.getSegmentsEntryId());
-
 		// Segments experiences
 
 		segmentsExperienceLocalService.
 			deleteSegmentsExperiencesBySegmentsEntryId(
 				segmentsEntry.getSegmentsEntryId());
+
+		// Segments rels
+
+		segmentsEntryRelLocalService.deleteSegmentsEntryRels(
+			segmentsEntry.getSegmentsEntryId());
 
 		return segmentsEntry;
 	}
