@@ -79,6 +79,12 @@ public class SegmentsExperienceLocalServiceWrapper
 		return _segmentsExperienceLocalService.deletePersistedModel(persistedModel);
 	}
 
+	@Override
+	public void deleteSegmentsEntrySegmentsExperiences(long segmentsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_segmentsExperienceLocalService.deleteSegmentsEntrySegmentsExperiences(segmentsEntryId);
+	}
+
 	/**
 	* Deletes the segments experience with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -111,12 +117,6 @@ public class SegmentsExperienceLocalServiceWrapper
 	public void deleteSegmentsExperiences(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_segmentsExperienceLocalService.deleteSegmentsExperiences(groupId);
-	}
-
-	@Override
-	public void deleteSegmentsExperiencesBySegmentsEntryId(long segmentsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_segmentsExperienceLocalService.deleteSegmentsExperiencesBySegmentsEntryId(segmentsEntryId);
 	}
 
 	@Override

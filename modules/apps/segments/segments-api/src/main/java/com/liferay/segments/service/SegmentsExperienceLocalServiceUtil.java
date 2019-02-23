@@ -82,6 +82,12 @@ public class SegmentsExperienceLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
+	public static void deleteSegmentsEntrySegmentsExperiences(
+		long segmentsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteSegmentsEntrySegmentsExperiences(segmentsEntryId);
+	}
+
 	/**
 	* Deletes the segments experience with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -111,12 +117,6 @@ public class SegmentsExperienceLocalServiceUtil {
 	public static void deleteSegmentsExperiences(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteSegmentsExperiences(groupId);
-	}
-
-	public static void deleteSegmentsExperiencesBySegmentsEntryId(
-		long segmentsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteSegmentsExperiencesBySegmentsEntryId(segmentsEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {

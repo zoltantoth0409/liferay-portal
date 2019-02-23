@@ -95,6 +95,9 @@ public interface SegmentsExperienceLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
+	public void deleteSegmentsEntrySegmentsExperiences(long segmentsEntryId)
+		throws PortalException;
+
 	/**
 	* Deletes the segments experience with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -119,9 +122,6 @@ public interface SegmentsExperienceLocalService extends BaseLocalService,
 		SegmentsExperience segmentsExperience) throws PortalException;
 
 	public void deleteSegmentsExperiences(long groupId)
-		throws PortalException;
-
-	public void deleteSegmentsExperiencesBySegmentsEntryId(long segmentsEntryId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
