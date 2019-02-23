@@ -14,6 +14,7 @@
 
 package com.liferay.arquillian.extension.junit.bridge.statement;
 
+import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunnerMBean;
 import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.arquillian.extension.junit.bridge.result.TestResult;
@@ -24,8 +25,6 @@ import java.io.ObjectInputStream;
 
 import java.lang.reflect.Method;
 
-import javax.management.MBeanServerConnection;
-import javax.management.MBeanServerInvocationHandler;
 import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 
@@ -39,23 +38,23 @@ public class ClientExecutorStatement extends Statement {
 	public ClientExecutorStatement(
 		Object target, Method method, Registry registry) {
 
-		_target = target;
-		_method = method;
+		Class<?> clazz = target.getClass();
+
+		_className = clazz.getName();
+
+		_methodName = method.getName();
+
 		_registry = registry;
 	}
 
 	@Override
 	public void evaluate() throws Throwable {
-		Class<?> testClass = _target.getClass();
-
-		JMXTestRunnerMBean jmxTestRunnerMBean =
-			MBeanServerInvocationHandler.newProxyInstance(
-				_registry.get(MBeanServerConnection.class), _objectName,
-				JMXTestRunnerMBean.class, false);
+		JMXTestRunnerMBean jmxTestRunnerMBean = JMXProxyUtil.newProxy(
+			_objectName, JMXTestRunnerMBean.class);
 
 		try {
 			byte[] data = jmxTestRunnerMBean.runTestMethod(
-				testClass.getName(), _method.getName());
+				_className, _methodName);
 
 			try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
 				ObjectInputStream oos = new ObjectInputStream(inputStream)) {
@@ -79,8 +78,8 @@ public class ClientExecutorStatement extends Statement {
 		}
 	}
 
-	private final Method _method;
+	private final String _className;
+	private final String _methodName;
 	private final Registry _registry;
-	private final Object _target;
 
 }

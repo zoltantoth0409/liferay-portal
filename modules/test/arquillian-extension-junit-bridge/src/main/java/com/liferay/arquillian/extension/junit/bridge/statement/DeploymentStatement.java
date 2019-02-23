@@ -21,9 +21,9 @@ import aQute.bnd.osgi.Analyzer;
 import aQute.bnd.osgi.Jar;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXProxyUtil;
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunner;
 import com.liferay.arquillian.extension.junit.bridge.remote.activator.ArquillianBundleActivator;
-import com.liferay.arquillian.extension.junit.bridge.remote.manager.Registry;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -46,20 +46,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
-import javax.management.MBeanServerConnection;
-import javax.management.MBeanServerInvocationHandler;
 import javax.management.ObjectName;
-import javax.management.remote.JMXConnector;
-import javax.management.remote.JMXConnectorFactory;
-import javax.management.remote.JMXServiceURL;
 
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Node;
@@ -80,33 +73,15 @@ import org.osgi.jmx.framework.FrameworkMBean;
  */
 public class DeploymentStatement extends Statement {
 
-	public DeploymentStatement(
-		Statement statement, Class<?> testClass, Registry registry) {
-
+	public DeploymentStatement(Statement statement, Class<?> testClass) {
 		_statement = statement;
 		_testClass = testClass;
-		_registry = registry;
 	}
 
 	@Override
 	public void evaluate() throws Throwable {
-		JMXConnector jmxConnector = JMXConnectorFactory.connect(
-			_liferayJMXServiceURL, _liferayEnv);
-
-		MBeanServerConnection mBeanServerConnection =
-			jmxConnector.getMBeanServerConnection();
-
-		_registry.set(MBeanServerConnection.class, mBeanServerConnection);
-
-		Set<ObjectName> names = mBeanServerConnection.queryNames(
-			_frameworkObjectName, null);
-
-		Iterator<ObjectName> iterator = names.iterator();
-
-		FrameworkMBean frameworkMBean =
-			MBeanServerInvocationHandler.newProxyInstance(
-				mBeanServerConnection, iterator.next(), FrameworkMBean.class,
-				false);
+		FrameworkMBean frameworkMBean = JMXProxyUtil.newProxy(
+			_frameworkObjectName, FrameworkMBean.class);
 
 		long bundleId = _installBundle(frameworkMBean, _create(_testClass));
 
@@ -358,24 +333,16 @@ public class DeploymentStatement extends Statement {
 	private static final ObjectName _frameworkObjectName;
 	private static final Attributes.Name _importPackageName =
 		new Attributes.Name("Import-Package");
-	private static final Map<String, String[]> _liferayEnv =
-		Collections.singletonMap(
-			JMXConnector.CREDENTIALS, new String[] {"", ""});
-	private static final JMXServiceURL _liferayJMXServiceURL;
 
 	static {
 		try {
 			_frameworkObjectName = new ObjectName("osgi.core:type=framework,*");
-
-			_liferayJMXServiceURL = new JMXServiceURL(
-				"service:jmx:rmi:///jndi/rmi://localhost:8099/jmxrmi");
 		}
 		catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
 		}
 	}
 
-	private final Registry _registry;
 	private final Statement _statement;
 	private final Class<?> _testClass;
 
