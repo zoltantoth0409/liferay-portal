@@ -19,8 +19,6 @@ import com.liferay.arquillian.extension.junit.bridge.statement.DeploymentStateme
 import com.liferay.arquillian.extension.junit.bridge.statement.ServerExecutorStatement;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import java.net.URL;
@@ -154,15 +152,15 @@ public class Arquillian extends Runner implements Filterable {
 		return testClass.getAnnotatedMethods(Test.class);
 	}
 
-	private List<MethodRule> _getMethodRules(Object testObject) {
+	private List<MethodRule> _getMethodRules(Object target) {
 		TestClass testClass = _getTestClass();
 
 		List<MethodRule> methodRules = testClass.getAnnotatedMethodValues(
-			testObject, Rule.class, MethodRule.class);
+			target, Rule.class, MethodRule.class);
 
 		methodRules.addAll(
 			testClass.getAnnotatedFieldValues(
-				testObject, Rule.class, MethodRule.class));
+				target, Rule.class, MethodRule.class));
 
 		return methodRules;
 	}
@@ -184,46 +182,36 @@ public class Arquillian extends Runner implements Filterable {
 	}
 
 	private Statement _methodBlock(FrameworkMethod frameworkMethod) {
-		Object testObject = null;
+		Object target = null;
 
 		try {
-			TestClass testClass = _getTestClass();
-
-			Constructor<?> constructor = testClass.getOnlyConstructor();
-
-			testObject = constructor.newInstance();
+			target = _clazz.newInstance();
 		}
 		catch (ReflectiveOperationException roe) {
-			if (roe instanceof InvocationTargetException) {
-				return new Fail(roe.getCause());
-			}
-
 			return new Fail(roe);
 		}
 
-		final Object test = testObject;
-
-		Statement statement = _methodInvoker(frameworkMethod, test);
+		Statement statement = _methodInvoker(frameworkMethod, target);
 
 		statement = _withPotentialTimeout(frameworkMethod, statement);
 
-		for (MethodRule methodRule : _getMethodRules(test)) {
-			statement = methodRule.apply(statement, frameworkMethod, test);
+		for (MethodRule methodRule : _getMethodRules(target)) {
+			statement = methodRule.apply(statement, frameworkMethod, target);
 		}
 
 		return statement;
 	}
 
 	private Statement _methodInvoker(
-		FrameworkMethod frameworkMethod, Object testObject) {
+		FrameworkMethod frameworkMethod, Object target) {
 
 		Method method = frameworkMethod.getMethod();
 
 		if (_REMOTE) {
-			return new ServerExecutorStatement(testObject, method);
+			return new ServerExecutorStatement(target, method);
 		}
 
-		return new ClientExecutorStatement(testObject, method);
+		return new ClientExecutorStatement(target, method);
 	}
 
 	private void _runChild(
