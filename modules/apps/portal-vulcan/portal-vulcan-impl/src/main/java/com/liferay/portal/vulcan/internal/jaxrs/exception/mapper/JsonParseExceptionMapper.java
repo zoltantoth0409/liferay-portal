@@ -34,7 +34,7 @@ public class JsonParseExceptionMapper
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).entity(
-			"Input is not a valid JSON"
+			"Input is invalid JSON"
 		).type(
 			MediaType.TEXT_PLAIN
 		).build();
