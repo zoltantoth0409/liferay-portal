@@ -84,23 +84,16 @@ public class MultipartBodyTest {
 		assertThat(testClass.number, is(42L));
 		assertThat(testClass.string, is("Hello"));
 		assertThat(testClass.testClass, is(nullValue()));
-	}
-
-	@Test
-	public void testGetJSONObjectValueThrowsBadRequestIfNullValue() {
-		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), __ -> _objectMapper,
-			Collections.emptyMap());
 
 		try {
-			multipartBody.getJSONObjectValue("key", TestClass.class);
+			multipartBody.getJSONObjectValue("null", TestClass.class);
 
 			throw new AssertionError("Should thrown exception");
 		}
 		catch (Exception e) {
 			assertThat(e, is(instanceOf(BadRequestException.class)));
 			assertThat(
-				e.getMessage(), is("Missing JSON property with the key: key"));
+				e.getMessage(), is("Missing JSON property with the key: null"));
 		}
 	}
 
