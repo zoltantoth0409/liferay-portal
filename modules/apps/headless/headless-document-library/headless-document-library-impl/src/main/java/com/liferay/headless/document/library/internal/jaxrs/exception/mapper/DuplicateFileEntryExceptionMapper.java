@@ -46,12 +46,13 @@ public class DuplicateFileEntryExceptionMapper
 
 		if (message.startsWith(_TITLE_MESSAGE)) {
 			message =
-				"A Document already exists with title" + message.substring(38);
+				"A Document already exists with title" +
+					message.substring(_TITLE_MESSAGE.length());
 		}
 		else if (message.startsWith(_FILE_NAME_MESSAGE)) {
 			message =
 				"A Document already exists with file name" +
-					message.substring(42);
+					message.substring(_TITLE_MESSAGE.length());
 		}
 
 		return Response.status(
