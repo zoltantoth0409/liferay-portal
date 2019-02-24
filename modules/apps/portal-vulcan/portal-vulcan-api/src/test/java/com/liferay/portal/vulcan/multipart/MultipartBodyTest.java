@@ -64,7 +64,10 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetJSONObjectValueWithObjectMapper() throws IOException {
+	public void testGetJSONObjectValue() throws IOException {
+
+		// With object mapper
+
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap(
@@ -95,18 +98,17 @@ public class MultipartBodyTest {
 			assertThat(
 				e.getMessage(), is("Missing JSON property with the key: null"));
 		}
-	}
 
-	@Test
-	public void testGetJSONObjectValueWithoutObjectMapper() {
-		MultipartBody multipartBody = MultipartBody.of(
+		// Without object mapper
+
+		multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> null,
 			Collections.singletonMap("key", "value"));
 
 		try {
 			multipartBody.getJSONObjectValue("key", TestClass.class);
 
-			throw new AssertionError("Should thrown exception");
+			throw new AssertionError();
 		}
 		catch (Exception e) {
 			assertThat(e, is(instanceOf(InternalServerErrorException.class)));
