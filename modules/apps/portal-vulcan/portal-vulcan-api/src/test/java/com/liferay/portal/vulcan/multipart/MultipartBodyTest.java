@@ -59,7 +59,7 @@ public class MultipartBodyTest {
 
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.singletonMap("file", binaryFile),
-			Collections.emptyMap(), __ -> _objectMapper);
+			__ -> _objectMapper, Collections.emptyMap());
 
 		assertThat(multipartBody.getBinaryFile("file"), is(binaryFile));
 		assertThat(multipartBody.getBinaryFile("null"), is(nullValue()));
@@ -76,8 +76,8 @@ public class MultipartBodyTest {
 		).toString();
 
 		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), Collections.singletonMap("key", json),
-			__ -> _objectMapper);
+			Collections.emptyMap(), __ -> _objectMapper,
+			Collections.singletonMap("key", json));
 
 		JSONTestClass jsonTestClass = multipartBody.getJSONObjectValue(
 			"key", JSONTestClass.class);
@@ -91,8 +91,8 @@ public class MultipartBodyTest {
 	@Test
 	public void testGetJSONObjectValueThrowsBadRequestIfNullValue() {
 		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), Collections.emptyMap(),
-			__ -> _objectMapper);
+			Collections.emptyMap(), __ -> _objectMapper,
+			Collections.emptyMap());
 
 		try {
 			multipartBody.getJSONObjectValue("key", JSONTestClass.class);
@@ -108,8 +108,8 @@ public class MultipartBodyTest {
 	@Test
 	public void testGetJSONObjectValueThrowsInternalServerErrorIfNullMapper() {
 		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), Collections.singletonMap("key", "value"),
-			__ -> null);
+			Collections.emptyMap(), __ -> null,
+			Collections.singletonMap("key", "value"));
 
 		try {
 			multipartBody.getJSONObjectValue("key", JSONTestClass.class);
@@ -130,8 +130,8 @@ public class MultipartBodyTest {
 	@Test
 	public void testGetStringValueReturnsStringIfPresent() {
 		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), Collections.singletonMap("key", "value"),
-			__ -> _objectMapper);
+			Collections.emptyMap(), __ -> _objectMapper,
+			Collections.singletonMap("key", "value"));
 
 		assertThat(multipartBody.getStringValue("key"), is("value"));
 		assertThat(multipartBody.getStringValue("null"), is(nullValue()));

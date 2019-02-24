@@ -99,7 +99,7 @@ public class MultipartBodyMessageBodyReader
 			}
 
 			return MultipartBody.of(
-				binaryFiles, values, contextResolver::getContext);
+				binaryFiles, contextResolver::getContext, values);
 		}
 		catch (Exception e) {
 			throw new BadRequestException(

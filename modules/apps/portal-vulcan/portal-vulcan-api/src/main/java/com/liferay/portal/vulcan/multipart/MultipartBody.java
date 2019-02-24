@@ -29,10 +29,10 @@ import javax.ws.rs.InternalServerErrorException;
 public class MultipartBody {
 
 	public static MultipartBody of(
-		Map<String, BinaryFile> binaryFiles, Map<String, String> values,
-		ObjectMapperProvider objectMapperProvider) {
+		Map<String, BinaryFile> binaryFiles,
+		ObjectMapperProvider objectMapperProvider, Map<String, String> values) {
 
-		return new MultipartBody(binaryFiles, values, objectMapperProvider);
+		return new MultipartBody(binaryFiles, objectMapperProvider, values);
 	}
 
 	public BinaryFile getBinaryFile(String key) {
@@ -70,12 +70,12 @@ public class MultipartBody {
 	}
 
 	private MultipartBody(
-		Map<String, BinaryFile> binaryFiles, Map<String, String> values,
-		ObjectMapperProvider objectMapperProvider) {
+		Map<String, BinaryFile> binaryFiles,
+		ObjectMapperProvider objectMapperProvider, Map<String, String> values) {
 
 		_binaryFiles = binaryFiles;
-		_values = values;
 		_objectMapperProvider = objectMapperProvider;
+		_values = values;
 	}
 
 	private final Map<String, BinaryFile> _binaryFiles;
