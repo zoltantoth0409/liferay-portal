@@ -77,8 +77,8 @@ public class MultipartBodyTest {
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap("key", json));
 
-		JSONTestClass jsonTestClass = multipartBody.getJSONObjectValue(
-			"key", JSONTestClass.class);
+		TestClass jsonTestClass = multipartBody.getJSONObjectValue(
+			"key", TestClass.class);
 
 		assertThat(jsonTestClass.string, is("Hello"));
 		assertThat(jsonTestClass.number, is(42L));
@@ -93,7 +93,7 @@ public class MultipartBodyTest {
 			Collections.emptyMap());
 
 		try {
-			multipartBody.getJSONObjectValue("key", JSONTestClass.class);
+			multipartBody.getJSONObjectValue("key", TestClass.class);
 
 			throw new AssertionError("Should thrown exception");
 		}
@@ -111,7 +111,7 @@ public class MultipartBodyTest {
 			Collections.singletonMap("key", "value"));
 
 		try {
-			multipartBody.getJSONObjectValue("key", JSONTestClass.class);
+			multipartBody.getJSONObjectValue("key", TestClass.class);
 
 			throw new AssertionError("Should thrown exception");
 		}
@@ -120,7 +120,7 @@ public class MultipartBodyTest {
 
 			String expectedMessage =
 				"Unable to get object mapper for class " +
-					JSONTestClass.class.getName();
+					TestClass.class.getName();
 
 			assertThat(e.getMessage(), is(expectedMessage));
 		}
@@ -136,12 +136,12 @@ public class MultipartBodyTest {
 		assertThat(multipartBody.getStringValue("null"), is(nullValue()));
 	}
 
-	public static class JSONTestClass {
+	public static class TestClass {
 
 		public List<Integer> list;
 		public Long number;
 		public String string;
-		public JSONTestClass testClass;
+		public TestClass testClass;
 
 	}
 
