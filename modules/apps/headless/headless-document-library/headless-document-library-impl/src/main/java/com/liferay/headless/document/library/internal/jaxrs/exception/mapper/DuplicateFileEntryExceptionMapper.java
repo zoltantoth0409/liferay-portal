@@ -44,16 +44,7 @@ public class DuplicateFileEntryExceptionMapper
 	public Response toResponse(DuplicateFileEntryException dfee) {
 		String message = dfee.getMessage();
 
-		if (message.startsWith(_TITLE_MESSAGE)) {
-			message =
-				"A document already exists with title" +
-					message.substring(_TITLE_MESSAGE.length());
-		}
-		else if (message.startsWith(_FILE_NAME_MESSAGE)) {
-			message =
-				"A document already exists with file name" +
-					message.substring(_TITLE_MESSAGE.length());
-		}
+		message = message.replace("file entry", "document");
 
 		return Response.status(
 			422
@@ -63,11 +54,5 @@ public class DuplicateFileEntryExceptionMapper
 			message
 		).build();
 	}
-
-	private static final String _FILE_NAME_MESSAGE =
-		"A file entry already exists with file name";
-
-	private static final String _TITLE_MESSAGE =
-		"A file entry already exists with title";
 
 }
