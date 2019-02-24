@@ -101,7 +101,8 @@ public class MultipartBodyTest {
 		}
 		catch (Exception e) {
 			assertThat(e, is(instanceOf(BadRequestException.class)));
-			assertThat(e.getMessage(), is("Missing JSON field with key {key}"));
+			assertThat(
+				e.getMessage(), is("Missing JSON property with the key: key"));
 		}
 	}
 
@@ -120,7 +121,7 @@ public class MultipartBodyTest {
 			assertThat(e, is(instanceOf(InternalServerErrorException.class)));
 
 			String expectedMessage =
-				"Unable to find ObjectMapper for class class " +
+				"Unable to get object mapper for class " +
 					JSONTestClass.class.getName();
 
 			assertThat(e.getMessage(), is(expectedMessage));

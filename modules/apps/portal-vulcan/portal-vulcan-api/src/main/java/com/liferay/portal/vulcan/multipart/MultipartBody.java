@@ -39,24 +39,24 @@ public class MultipartBody {
 		return _binaryFiles.get(key);
 	}
 
-	public <T> T getJSONObjectValue(String key, Class<T> tClass)
+	public <T> T getJSONObjectValue(String key, Class<T> clazz)
 		throws IOException {
 
 		String stringValue = getStringValue(key);
 
 		if (stringValue == null) {
 			throw new BadRequestException(
-				"Missing JSON field with key {" + key + "}");
+				"Missing JSON property with the key: " + key);
 		}
 
-		ObjectMapper objectMapper = _objectMapperProvider.provide(tClass);
+		ObjectMapper objectMapper = _objectMapperProvider.provide(clazz);
 
 		if (objectMapper == null) {
 			throw new InternalServerErrorException(
-				"Unable to find ObjectMapper for class " + tClass);
+				"Unable to get object mapper for class " + clazz.getName());
 		}
 
-		return objectMapper.readValue(stringValue, tClass);
+		return objectMapper.readValue(stringValue, clazz);
 	}
 
 	public String getStringValue(String key) {
