@@ -156,7 +156,7 @@ public class DocumentResourceImpl
 			Long contentSpaceId, MultipartBody multipartBody)
 		throws Exception {
 
-		return _addDocument(multipartBody, contentSpaceId, 0L, contentSpaceId);
+		return _addDocument(contentSpaceId, 0L, contentSpaceId, multipartBody);
 	}
 
 	@Override
@@ -167,8 +167,8 @@ public class DocumentResourceImpl
 		Folder folder = _dlAppService.getFolder(folderId);
 
 		return _addDocument(
-			multipartBody, folder.getRepositoryId(), folderId,
-			folder.getGroupId());
+			folder.getRepositoryId(), folderId, folder.getGroupId(),
+			multipartBody);
 	}
 
 	@Override
@@ -202,8 +202,8 @@ public class DocumentResourceImpl
 	}
 
 	private Document _addDocument(
-			MultipartBody multipartBody, Long repositoryId, long folderId,
-			Long groupId)
+			Long repositoryId, long folderId, Long groupId,
+			MultipartBody multipartBody)
 		throws Exception {
 
 		Document document = multipartBody.getJSONObjectValue(
