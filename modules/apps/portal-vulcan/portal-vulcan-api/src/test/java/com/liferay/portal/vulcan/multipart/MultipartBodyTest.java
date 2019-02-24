@@ -64,7 +64,7 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetJSONObjectValue() throws IOException {
+	public void testGgetValueAsInstance() throws IOException {
 
 		// With object mapper
 
@@ -80,7 +80,7 @@ public class MultipartBodyTest {
 					"list", Arrays.asList(1, 2, 3)
 				).toString()));
 
-		TestClass testClass = multipartBody.getJSONObjectValue(
+		TestClass testClass = multipartBody.getValueAsInstance(
 			"key", TestClass.class);
 
 		assertThat(testClass.list, contains(1, 2, 3));
@@ -89,7 +89,7 @@ public class MultipartBodyTest {
 		assertThat(testClass.testClass, is(nullValue()));
 
 		try {
-			multipartBody.getJSONObjectValue("null", TestClass.class);
+			multipartBody.getValueAsInstance("null", TestClass.class);
 
 			throw new AssertionError("Should thrown exception");
 		}
@@ -106,7 +106,7 @@ public class MultipartBodyTest {
 			Collections.singletonMap("key", "value"));
 
 		try {
-			multipartBody.getJSONObjectValue("key", TestClass.class);
+			multipartBody.getValueAsInstance("key", TestClass.class);
 
 			throw new AssertionError();
 		}
@@ -122,13 +122,13 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetStringValue() {
+	public void testGetValueAsString() {
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap("key", "value"));
 
-		assertThat(multipartBody.getStringValue("key"), is("value"));
-		assertThat(multipartBody.getStringValue("null"), is(nullValue()));
+		assertThat(multipartBody.getValueAsString("key"), is("value"));
+		assertThat(multipartBody.getValueAsString("null"), is(nullValue()));
 	}
 
 	public static class TestClass {

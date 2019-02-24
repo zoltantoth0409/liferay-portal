@@ -175,7 +175,7 @@ public class DocumentResourceImpl
 	public Document putDocument(Long documentId, MultipartBody multipartBody)
 		throws Exception {
 
-		Document document = multipartBody.getJSONObjectValue(
+		Document document = multipartBody.getValueAsInstance(
 			"Document", DocumentImpl.class);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
@@ -206,7 +206,7 @@ public class DocumentResourceImpl
 			MultipartBody multipartBody)
 		throws Exception {
 
-		Document document = multipartBody.getJSONObjectValue(
+		Document document = multipartBody.getValueAsInstance(
 			"Document", DocumentImpl.class);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");

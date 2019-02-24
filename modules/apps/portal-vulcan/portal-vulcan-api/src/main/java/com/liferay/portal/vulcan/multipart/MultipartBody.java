@@ -39,12 +39,12 @@ public class MultipartBody {
 		return _binaryFiles.get(key);
 	}
 
-	public <T> T getJSONObjectValue(String key, Class<T> clazz)
+	public <T> T getValueAsInstance(String key, Class<T> clazz)
 		throws IOException {
 
-		String stringValue = getStringValue(key);
+		String valueAsString = getValueAsString(key);
 
-		if (stringValue == null) {
+		if (valueAsString == null) {
 			throw new BadRequestException(
 				"Missing JSON property with the key: " + key);
 		}
@@ -56,10 +56,10 @@ public class MultipartBody {
 				"Unable to get object mapper for class " + clazz.getName());
 		}
 
-		return objectMapper.readValue(stringValue, clazz);
+		return objectMapper.readValue(valueAsString, clazz);
 	}
 
-	public String getStringValue(String key) {
+	public String getValueAsString(String key) {
 		return _values.get(key);
 	}
 
