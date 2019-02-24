@@ -51,7 +51,7 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetBinaryFileReturnsBinaryFileIfPresent() {
+	public void testGetBinaryFile() {
 		BinaryFile binaryFile = new BinaryFile(
 			"contentType", "fileName", null, 0);
 
