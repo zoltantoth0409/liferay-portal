@@ -138,6 +138,9 @@ public class JournalArticleExportImportContentProcessor
 		DDMStructure ddmStructure = _fetchDDMStructure(
 			portletDataContext, article);
 
+		content = replaceImportJournalArticleReferences(
+			portletDataContext, stagedModel, content);
+
 		Fields fields = _getDDMStructureFields(ddmStructure, content);
 
 		if (fields != null) {
@@ -176,9 +179,6 @@ public class JournalArticleExportImportContentProcessor
 
 			content = imageImportDDMFormFieldValueTransformer.getContent();
 		}
-
-		content = replaceImportJournalArticleReferences(
-			portletDataContext, stagedModel, content);
 
 		content =
 			_defaultTextExportImportContentProcessor.
