@@ -289,7 +289,6 @@ public class MBMessageIndexer
 				mbMessage.getSubject());
 		}
 
-		document.addKeyword("parentMessageId", mbMessage.getParentMessageId());
 		document.addKeyword(
 			Field.ROOT_ENTRY_CLASS_PK, mbMessage.getRootMessageId());
 
@@ -308,6 +307,7 @@ public class MBMessageIndexer
 			document.addKeyword("discussion", true);
 		}
 
+		document.addKeyword("parentMessageId", mbMessage.getParentMessageId());
 		document.addKeyword("threadId", mbMessage.getThreadId());
 
 		if (mbMessage.isDiscussion()) {
