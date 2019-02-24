@@ -45,11 +45,9 @@ public class MultipartBodyTest {
 
 	@Before
 	public void setUp() {
-		JSONFactoryImpl jsonFactoryImpl = new JSONFactoryImpl();
-
 		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
 
-		jsonFactoryUtil.setJSONFactory(jsonFactoryImpl);
+		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
 	}
 
 	@Test
