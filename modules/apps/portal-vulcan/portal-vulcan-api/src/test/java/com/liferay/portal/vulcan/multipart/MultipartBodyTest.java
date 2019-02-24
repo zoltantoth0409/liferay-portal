@@ -80,9 +80,9 @@ public class MultipartBodyTest {
 		TestClass jsonTestClass = multipartBody.getJSONObjectValue(
 			"key", TestClass.class);
 
-		assertThat(jsonTestClass.string, is("Hello"));
-		assertThat(jsonTestClass.number, is(42L));
 		assertThat(jsonTestClass.list, contains(1, 2, 3));
+		assertThat(jsonTestClass.number, is(42L));
+		assertThat(jsonTestClass.string, is("Hello"));
 		assertThat(jsonTestClass.testClass, is(nullValue()));
 	}
 
