@@ -65,17 +65,17 @@ public class MultipartBodyTest {
 
 	@Test
 	public void testGetJSONObjectValueReturnsCorrectValue() throws IOException {
-		String json = JSONUtil.put(
-			"string", "Hello"
-		).put(
-			"number", 42
-		).put(
-			"list", Arrays.asList(1, 2, 3)
-		).toString();
-
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
-			Collections.singletonMap("key", json));
+			Collections.singletonMap(
+				"key",
+				JSONUtil.put(
+					"string", "Hello"
+				).put(
+					"number", 42
+				).put(
+					"list", Arrays.asList(1, 2, 3)
+				).toString()));
 
 		TestClass testClass = multipartBody.getJSONObjectValue(
 			"key", TestClass.class);
