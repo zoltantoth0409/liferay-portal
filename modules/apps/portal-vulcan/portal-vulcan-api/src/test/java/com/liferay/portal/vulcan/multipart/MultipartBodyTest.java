@@ -127,7 +127,7 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetStringValueReturnsStringIfPresent() {
+	public void testGetStringValue() {
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap("key", "value"));
