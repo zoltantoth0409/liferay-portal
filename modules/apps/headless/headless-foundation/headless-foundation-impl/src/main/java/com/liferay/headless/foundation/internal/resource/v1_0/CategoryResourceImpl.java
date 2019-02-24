@@ -241,7 +241,7 @@ public class CategoryResourceImpl
 					_assetCategoryService.getChildCategoriesCount(
 						assetCategory.getCategoryId());
 
-				hasCategories = (childAssetCategoriesCount > 0);
+				hasCategories = childAssetCategoriesCount > 0;
 
 				id = assetCategory.getCategoryId();
 				name = assetCategory.getTitle(
