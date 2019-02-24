@@ -64,6 +64,16 @@ public class MultipartBodyTest {
 	}
 
 	@Test
+	public void testGetValueAsString() {
+		MultipartBody multipartBody = MultipartBody.of(
+			Collections.emptyMap(), __ -> _objectMapper,
+			Collections.singletonMap("key", "value"));
+
+		assertThat(multipartBody.getValueAsString("key"), is("value"));
+		assertThat(multipartBody.getValueAsString("null"), is(nullValue()));
+	}
+
+	@Test
 	public void testGgetValueAsInstance() throws IOException {
 
 		// With object mapper
@@ -119,16 +129,6 @@ public class MultipartBodyTest {
 
 			assertThat(e.getMessage(), is(expectedMessage));
 		}
-	}
-
-	@Test
-	public void testGetValueAsString() {
-		MultipartBody multipartBody = MultipartBody.of(
-			Collections.emptyMap(), __ -> _objectMapper,
-			Collections.singletonMap("key", "value"));
-
-		assertThat(multipartBody.getValueAsString("key"), is("value"));
-		assertThat(multipartBody.getValueAsString("null"), is(nullValue()));
 	}
 
 	public static class TestClass {
