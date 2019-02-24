@@ -312,26 +312,26 @@ public class DocumentResourceImpl
 	}
 
 	private ServiceContext _getServiceContext(long groupId, Document document) {
-		ServiceContext serviceContext = new ServiceContext();
+		return new ServiceContext() {
+			{
+				setAddGroupPermissions(true);
+				setAddGuestPermissions(true);
 
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
+				Long[] categoryIds = document.getCategoryIds();
 
-		Long[] categoryIds = document.getCategoryIds();
+				if (ArrayUtil.isNotEmpty(categoryIds)) {
+					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
+				}
 
-		if (ArrayUtil.isNotEmpty(categoryIds)) {
-			serviceContext.setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
-		}
+				String[] keywords = document.getKeywords();
 
-		String[] keywords = document.getKeywords();
+				if (ArrayUtil.isNotEmpty(keywords)) {
+					setAssetTagNames(keywords);
+				}
 
-		if (ArrayUtil.isNotEmpty(keywords)) {
-			serviceContext.setAssetTagNames(keywords);
-		}
-
-		serviceContext.setScopeGroupId(groupId);
-
-		return serviceContext;
+				setScopeGroupId(groupId);
+			}
+		};
 	}
 
 	private <T, S> T _getValue(

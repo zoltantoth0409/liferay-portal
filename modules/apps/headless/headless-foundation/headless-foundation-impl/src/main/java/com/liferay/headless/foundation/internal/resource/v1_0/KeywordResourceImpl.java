@@ -115,16 +115,17 @@ public class KeywordResourceImpl
 	public Keyword postContentSpaceKeyword(Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(contentSpaceId);
-
 		try {
 			return _toKeyword(
 				_assetTagService.addTag(
-					contentSpaceId, keyword.getName(), serviceContext));
+					contentSpaceId, keyword.getName(),
+					new ServiceContext() {
+						{
+							setAddGroupPermissions(true);
+							setAddGuestPermissions(true);
+							setScopeGroupId(contentSpaceId);
+						}
+					}));
 		}
 		catch (AssetTagNameException atne) {
 			throw new ClientErrorException(

@@ -419,18 +419,18 @@ public class StructuredContentResourceImpl
 	private ServiceContext _getServiceContext(
 		long contentSpaceId, StructuredContent structuredContent) {
 
-		ServiceContext serviceContext = new ServiceContext();
+		return new ServiceContext() {
+			{
+				setAddGroupPermissions(true);
+				setAddGuestPermissions(true);
 
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
+				if (structuredContent.getKeywords() != null) {
+					setAssetTagNames(structuredContent.getKeywords());
+				}
 
-		if (structuredContent.getKeywords() != null) {
-			serviceContext.setAssetTagNames(structuredContent.getKeywords());
-		}
-
-		serviceContext.setScopeGroupId(contentSpaceId);
-
-		return serviceContext;
+				setScopeGroupId(contentSpaceId);
+			}
+		};
 	}
 
 	private Fields _toDDMFields(JournalArticle journalArticle, Values[] values)

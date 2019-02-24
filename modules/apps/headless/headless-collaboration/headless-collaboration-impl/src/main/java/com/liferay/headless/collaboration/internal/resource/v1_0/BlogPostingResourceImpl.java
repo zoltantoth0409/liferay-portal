@@ -183,26 +183,26 @@ public class BlogPostingResourceImpl
 	private ServiceContext _createServiceContext(
 		long groupId, BlogPosting blogPosting) {
 
-		ServiceContext serviceContext = new ServiceContext();
+		return new ServiceContext() {
+			{
+				setAddGroupPermissions(true);
+				setAddGuestPermissions(true);
 
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
+				Long[] categoryIds = blogPosting.getCategoryIds();
 
-		Long[] categoryIds = blogPosting.getCategoryIds();
+				if (ArrayUtil.isNotEmpty(categoryIds)) {
+					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
+				}
 
-		if (ArrayUtil.isNotEmpty(categoryIds)) {
-			serviceContext.setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
-		}
+				String[] keywords = blogPosting.getKeywords();
 
-		String[] keywords = blogPosting.getKeywords();
+				if (ArrayUtil.isNotEmpty(keywords)) {
+					setAssetTagNames(keywords);
+				}
 
-		if (ArrayUtil.isNotEmpty(keywords)) {
-			serviceContext.setAssetTagNames(keywords);
-		}
-
-		serviceContext.setScopeGroupId(groupId);
-
-		return serviceContext;
+				setScopeGroupId(groupId);
+			}
+		};
 	}
 
 	private String[] _getAssetTagNames(BlogsEntry blogsEntry) {

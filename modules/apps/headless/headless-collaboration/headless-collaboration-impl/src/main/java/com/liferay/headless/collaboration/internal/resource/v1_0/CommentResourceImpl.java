@@ -208,11 +208,11 @@ public class CommentResourceImpl extends BaseCommentResourceImpl {
 
 	private Function<String, ServiceContext> _createServiceContextFunction() {
 		return className -> {
-			ServiceContext serviceContext = new ServiceContext();
-
-			serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
-
-			return serviceContext;
+			return new ServiceContext() {
+				{
+					setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
+				}
+			};
 		};
 	}
 
