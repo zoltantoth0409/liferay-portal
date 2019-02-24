@@ -279,12 +279,6 @@ public class DocumentResourceImpl
 		);
 	}
 
-	private Long[] _getCategoryIds(FileEntry fileEntry) {
-		return ArrayUtil.toArray(
-			_assetCategoryLocalService.getCategoryIds(
-				FileEntry.class.getName(), fileEntry.getFileEntryId()));
-	}
-
 	private Page<Document> _getDocumentsPage(
 			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
 			Pagination pagination, Sort[] sorts)
@@ -384,7 +378,9 @@ public class DocumentResourceImpl
 					_ratingsStatsLocalService.fetchStats(
 						FileEntry.class.getName(), fileEntry.getFileEntryId()));
 				categories = _getCategories(fileEntry);
-				categoryIds = _getCategoryIds(fileEntry);
+				categoryIds = ArrayUtil.toArray(
+					_assetCategoryLocalService.getCategoryIds(
+						FileEntry.class.getName(), fileEntry.getFileEntryId()));
 				contentUrl = _dlURLHelper.getPreviewURL(
 					fileEntry, fileVersion, null, "");
 				creator = CreatorUtil.toCreator(_portal, user);

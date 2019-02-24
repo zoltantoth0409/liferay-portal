@@ -232,12 +232,6 @@ public class BlogPostingResourceImpl
 		);
 	}
 
-	private Long[] _getCategoryIds(BlogsEntry blogsEntry) {
-		return ArrayUtil.toArray(
-			_assetCategoryLocalService.getCategoryIds(
-				BlogsEntry.class.getName(), blogsEntry.getEntryId()));
-	}
-
 	private Image _getImage(BlogsEntry blogsEntry) throws Exception {
 		long coverImageFileEntryId = blogsEntry.getCoverImageFileEntryId();
 
@@ -300,7 +294,9 @@ public class BlogPostingResourceImpl
 				articleBody = blogsEntry.getContent();
 				caption = blogsEntry.getCoverImageCaption();
 				categories = _getCategories(blogsEntry);
-				categoryIds = _getCategoryIds(blogsEntry);
+				categoryIds = ArrayUtil.toArray(
+					_assetCategoryLocalService.getCategoryIds(
+						BlogsEntry.class.getName(), blogsEntry.getEntryId()));
 				contentSpace = blogsEntry.getGroupId();
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(blogsEntry.getUserId()));
