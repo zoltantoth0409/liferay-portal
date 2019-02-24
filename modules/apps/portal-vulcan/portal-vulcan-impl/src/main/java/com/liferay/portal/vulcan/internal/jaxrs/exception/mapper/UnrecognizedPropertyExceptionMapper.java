@@ -49,7 +49,7 @@ public class UnrecognizedPropertyExceptionMapper
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).entity(
-			"Unrecognized field {" + path + "}"
+			"Unrecognized JSON path: " + path
 		).type(
 			MediaType.TEXT_PLAIN
 		).build();

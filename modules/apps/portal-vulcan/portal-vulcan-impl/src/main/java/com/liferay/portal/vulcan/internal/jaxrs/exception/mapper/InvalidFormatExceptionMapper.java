@@ -48,11 +48,11 @@ public class InvalidFormatExceptionMapper
 			Collectors.joining(".")
 		);
 
-		Class<?> targetType = ife.getTargetType();
+		Class<?> clazz = ife.getTargetType();
 
 		String message = StringBundler.concat(
-			"Unable to match field {", path, "} with value {", ife.getValue(),
-			"} to " + targetType.getSimpleName());
+			"Unable to map JSON path \"", path, "\" with value \"",
+			ife.getValue(), "\" to class \"" + clazz.getSimpleName(), "\"");
 
 		return Response.status(
 			Response.Status.BAD_REQUEST

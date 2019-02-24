@@ -48,7 +48,7 @@ public class JsonMappingExceptionMapper
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).entity(
-			"An error occurred mapping {" + path + "} field"
+			"Unable to map JSON path: " + path
 		).type(
 			MediaType.TEXT_PLAIN
 		).build();
