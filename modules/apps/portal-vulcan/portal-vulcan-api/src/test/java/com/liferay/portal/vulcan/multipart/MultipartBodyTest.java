@@ -64,7 +64,7 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetJSONObjectValueReturnsCorrectValue() throws IOException {
+	public void testGetJSONObjectValueWithObjectMapper() throws IOException {
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap(
@@ -98,7 +98,7 @@ public class MultipartBodyTest {
 	}
 
 	@Test
-	public void testGetJSONObjectValueThrowsInternalServerErrorIfNullMapper() {
+	public void testGetJSONObjectValueWithoutObjectMapper() {
 		MultipartBody multipartBody = MultipartBody.of(
 			Collections.emptyMap(), __ -> null,
 			Collections.singletonMap("key", "value"));
