@@ -253,13 +253,6 @@ public class DocumentResourceImpl
 		);
 	}
 
-	private String[] _getAssetTagNames(FileEntry fileEntry) {
-		List<AssetTag> assetTags = _assetTagLocalService.getTags(
-			DLFileEntry.class.getName(), fileEntry.getFileEntryId());
-
-		return ListUtil.toArray(assetTags, AssetTag.NAME_ACCESSOR);
-	}
-
 	private Categories[] _getCategories(FileEntry fileEntry) {
 		List<AssetCategory> assetCategories =
 			_assetCategoryLocalService.getCategories(
@@ -391,7 +384,11 @@ public class DocumentResourceImpl
 				fileExtension = fileEntry.getExtension();
 				folderId = fileEntry.getFolderId();
 				id = fileEntry.getFileEntryId();
-				keywords = _getAssetTagNames(fileEntry);
+				keywords = ListUtil.toArray(
+					_assetTagLocalService.getTags(
+						DLFileEntry.class.getName(),
+						fileEntry.getFileEntryId()),
+					AssetTag.NAME_ACCESSOR);
 				sizeInBytes = fileEntry.getSize();
 				title = fileEntry.getTitle();
 			}

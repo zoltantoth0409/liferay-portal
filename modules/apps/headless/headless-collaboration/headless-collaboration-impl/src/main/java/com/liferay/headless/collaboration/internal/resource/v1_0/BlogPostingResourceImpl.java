@@ -205,13 +205,6 @@ public class BlogPostingResourceImpl
 		};
 	}
 
-	private String[] _getAssetTagNames(BlogsEntry blogsEntry) {
-		List<AssetTag> assetTags = _assetTagLocalService.getTags(
-			BlogsEntry.class.getName(), blogsEntry.getEntryId());
-
-		return ListUtil.toArray(assetTags, AssetTag.NAME_ACCESSOR);
-	}
-
 	private Categories[] _getCategories(BlogsEntry blogsEntry) {
 		List<AssetCategory> assetCategories =
 			_assetCategoryLocalService.getCategories(
@@ -310,7 +303,10 @@ public class BlogPostingResourceImpl
 				id = blogsEntry.getEntryId();
 				image = _getImage(blogsEntry);
 				imageId = blogsEntry.getCoverImageFileEntryId();
-				keywords = _getAssetTagNames(blogsEntry);
+				keywords = ListUtil.toArray(
+					_assetTagLocalService.getTags(
+						BlogsEntry.class.getName(), blogsEntry.getEntryId()),
+					AssetTag.NAME_ACCESSOR);
 			}
 		};
 	}
