@@ -77,13 +77,13 @@ public class MultipartBodyTest {
 			Collections.emptyMap(), __ -> _objectMapper,
 			Collections.singletonMap("key", json));
 
-		TestClass jsonTestClass = multipartBody.getJSONObjectValue(
+		TestClass testClass = multipartBody.getJSONObjectValue(
 			"key", TestClass.class);
 
-		assertThat(jsonTestClass.list, contains(1, 2, 3));
-		assertThat(jsonTestClass.number, is(42L));
-		assertThat(jsonTestClass.string, is("Hello"));
-		assertThat(jsonTestClass.testClass, is(nullValue()));
+		assertThat(testClass.list, contains(1, 2, 3));
+		assertThat(testClass.number, is(42L));
+		assertThat(testClass.string, is("Hello"));
+		assertThat(testClass.testClass, is(nullValue()));
 	}
 
 	@Test
