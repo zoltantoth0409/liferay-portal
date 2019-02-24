@@ -70,9 +70,8 @@ public class ContentStructureResourceImpl
 			pagination,
 			booleanQuery -> {
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
-			},
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
 			searchContext -> {
 				searchContext.setAttribute(
 					"searchPermissionContext", StringPool.BLANK);

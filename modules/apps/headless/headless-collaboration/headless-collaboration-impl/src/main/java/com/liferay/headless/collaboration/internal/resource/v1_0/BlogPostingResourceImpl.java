@@ -111,9 +111,8 @@ public class BlogPostingResourceImpl
 			pagination,
 			booleanQuery -> {
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
-			},
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
 			searchContext -> {
 				searchContext.setAttribute(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED);

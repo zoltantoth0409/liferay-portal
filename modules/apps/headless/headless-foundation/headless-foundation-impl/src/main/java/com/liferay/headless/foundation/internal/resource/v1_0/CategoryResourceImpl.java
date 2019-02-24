@@ -203,9 +203,8 @@ public class CategoryResourceImpl
 		Hits hits = SearchUtil.getHits(
 			filter, _indexerRegistry.nullSafeGetIndexer(AssetCategory.class),
 			pagination, booleanQueryConsumer,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
-			},
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ASSET_CATEGORY_ID),
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},

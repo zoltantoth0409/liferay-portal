@@ -165,10 +165,8 @@ public class StructuredContentResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(
-					Field.ARTICLE_ID, Field.SCOPE_GROUP_ID);
-			},
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ARTICLE_ID, Field.SCOPE_GROUP_ID),
 			searchContext -> {
 				searchContext.setAttribute(
 					Field.STATUS, WorkflowConstants.STATUS_APPROVED);

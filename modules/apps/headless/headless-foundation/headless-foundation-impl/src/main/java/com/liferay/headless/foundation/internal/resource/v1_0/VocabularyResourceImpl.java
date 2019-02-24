@@ -83,9 +83,8 @@ public class VocabularyResourceImpl
 			pagination,
 			booleanQuery -> {
 			},
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_VOCABULARY_ID);
-			},
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ASSET_VOCABULARY_ID),
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
