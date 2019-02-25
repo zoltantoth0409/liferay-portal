@@ -61,19 +61,21 @@ public class SelectLayoutPageTemplateEntryVerticalCard implements VerticalCard {
 
 			addLayoutURL.setParameter(
 				"mvcRenderCommandName", "/layout/add_layout");
+
+			long selPlid = ParamUtil.getLong(_request, "selPlid");
+
+			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
+
+			boolean privateLayout = ParamUtil.getBoolean(
+				_request, "privateLayout");
+
+			addLayoutURL.setParameter(
+				"privateLayout", String.valueOf(privateLayout));
+
 			addLayoutURL.setParameter(
 				"layoutPageTemplateEntryId",
 				String.valueOf(
 					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
-
-			long selPlid = ParamUtil.getLong(_request, "selPlid");
-			boolean privateLayout = ParamUtil.getBoolean(
-				_request, "privateLayout");
-
-			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
-			addLayoutURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
-
 			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
 
 			data.put("add-layout-url", addLayoutURL.toString());

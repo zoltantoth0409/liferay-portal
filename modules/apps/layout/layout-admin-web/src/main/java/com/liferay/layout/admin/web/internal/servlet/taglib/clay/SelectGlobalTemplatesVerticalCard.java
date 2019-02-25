@@ -50,6 +50,17 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 
 			addLayoutURL.setParameter(
 				"mvcRenderCommandName", "/layout/add_layout");
+
+			long selPlid = ParamUtil.getLong(_renderRequest, "selPlid");
+
+			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
+
+			boolean privateLayout = ParamUtil.getBoolean(
+				_renderRequest, "privateLayout");
+
+			addLayoutURL.setParameter(
+				"privateLayout", String.valueOf(privateLayout));
+
 			addLayoutURL.setParameter(
 				"layoutPageTemplateEntryId",
 				String.valueOf(
@@ -58,15 +69,6 @@ public class SelectGlobalTemplatesVerticalCard implements VerticalCard {
 				"layoutPrototypeId",
 				String.valueOf(
 					_layoutPageTemplateEntry.getLayoutPrototypeId()));
-
-			long selPlid = ParamUtil.getLong(_renderRequest, "selPlid");
-			boolean privateLayout = ParamUtil.getBoolean(
-				_renderRequest, "privateLayout");
-
-			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
-			addLayoutURL.setParameter(
-				"privateLayout", String.valueOf(privateLayout));
-
 			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
 
 			data.put("add-layout-url", addLayoutURL.toString());

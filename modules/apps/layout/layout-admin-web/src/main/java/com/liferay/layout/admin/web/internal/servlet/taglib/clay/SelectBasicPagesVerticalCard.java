@@ -66,16 +66,18 @@ public class SelectBasicPagesVerticalCard implements VerticalCard {
 			addLayoutURL.setParameter(
 				"mvcRenderCommandName", "/layout/add_layout");
 			addLayoutURL.setParameter("backURL", redirect);
-			addLayoutURL.setParameter("type", _type);
 
 			long selPlid = ParamUtil.getLong(_request, "selPlid");
+
+			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
+
 			boolean privateLayout = ParamUtil.getBoolean(
 				_request, "privateLayout");
 
-			addLayoutURL.setParameter("selPlid", String.valueOf(selPlid));
 			addLayoutURL.setParameter(
 				"privateLayout", String.valueOf(privateLayout));
 
+			addLayoutURL.setParameter("type", _type);
 			addLayoutURL.setWindowState(LiferayWindowState.POP_UP);
 
 			data.put("add-layout-url", addLayoutURL.toString());

@@ -3,13 +3,13 @@ import DefaultEventHandler from 'frontend-js-web/liferay/DefaultEventHandler.es'
 import {Config} from 'metal-state';
 
 class LayoutPageTemplateEntryDropdownDefaultEventHandler extends DefaultEventHandler {
-	deleteLayoutPageTemplateEntry(itemData) {
+	deleteLayoutPageTemplateEn tryitemData) {
 		if (confirm(Liferay.Language.get('are-you-sure-you-want-to-delete-this'))) {
 			this._send(itemData.deleteLayoutPageTemplateEntryURL);
 		}
 	}
 
-	permissionsLayoutPageTemplateEntry(itemData) {
+	permissionsLayoutPageTemplateEn tryitemData) {
 		Liferay.Util.openWindow(
 			{
 				dialog: {
@@ -25,7 +25,7 @@ class LayoutPageTemplateEntryDropdownDefaultEventHandler extends DefaultEventHan
 		);
 	}
 
-	renameLayoutPageTemplateEntry(itemData) {
+	renameLayoutPageTemplateEn tryitemData) {
 		OpenSimpleInputModal(
 			{
 				dialogTitle: Liferay.Language.get('rename-display-page'),

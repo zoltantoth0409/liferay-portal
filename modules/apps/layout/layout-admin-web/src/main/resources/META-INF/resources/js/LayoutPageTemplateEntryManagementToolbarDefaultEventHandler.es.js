@@ -3,7 +3,7 @@ import DefaultEventHandler from 'frontend-js-web/liferay/DefaultEventHandler.es'
 import {Config} from 'metal-state';
 
 class LayoutPageTemplateEntryManagementToolbarDefaultEventHandler extends DefaultEventHandler {
-	addLayoutPageTemplateEntry(itemData) {
+	addLayoutPageTemplateEn tryitemData) {
 		OpenSimpleInputModal(
 			{
 				dialogTitle: Liferay.Language.get('add-page-template'),
