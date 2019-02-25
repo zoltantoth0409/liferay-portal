@@ -74,22 +74,21 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 
 	@Override
 	public Folder patchFolder(Long folderId, Folder folder) throws Exception {
-		com.liferay.portal.kernel.repository.model.Folder existing =
+		com.liferay.portal.kernel.repository.model.Folder existingFolder =
 			_dlAppService.getFolder(folderId);
 
-		String name = Optional.ofNullable(
-			folder.getName()
-		).orElse(
-			existing.getName()
-		);
-
-		String description = Optional.ofNullable(
-			folder.getDescription()
-		).orElse(
-			existing.getDescription()
-		);
-
-		return _updateFolder(folderId, name, description);
+		return _updateFolder(
+			folderId,
+			Optional.ofNullable(
+				folder.getName()
+			).orElse(
+				existingFolder.getName()
+			),
+			Optional.ofNullable(
+				folder.getDescription()
+			).orElse(
+				existingFolder.getDescription()
+			));
 	}
 
 	@Override
