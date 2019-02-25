@@ -5337,7 +5337,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/jempbox.jar</file-name>
-				<version>1.8.12</version>
+				<version>1.8.16</version>
 				<project-name>PDFBox</project-name>
 				<project-url>http://pdfbox.apache.org</project-url>
 				<licenses>
@@ -6429,7 +6429,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/tika-core.jar</file-name>
-				<version>1.18</version>
+				<version>1.20</version>
 				<project-name>Tika</project-name>
 				<project-url>http://tika.apache.org</project-url>
 				<licenses>
@@ -6441,7 +6441,7 @@
 			</library>
 			<library>
 				<file-name>lib/portal/tika-parsers.jar</file-name>
-				<version>1.18</version>
+				<version>1.20</version>
 				<project-name>Tika</project-name>
 				<project-url>http://tika.apache.org</project-url>
 				<licenses>
