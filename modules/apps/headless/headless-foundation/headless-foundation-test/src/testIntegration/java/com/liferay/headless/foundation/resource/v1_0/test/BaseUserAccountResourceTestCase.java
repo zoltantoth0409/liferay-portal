@@ -323,6 +323,24 @@ public abstract class BaseUserAccountResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<UserAccount> userAccounts1, List<UserAccount> userAccounts2) {
+		Assert.assertEquals(userAccounts1.size(), userAccounts2.size());
+
+		for (UserAccount userAccount1 : userAccounts1) {
+			boolean contains = false;
+
+			for (UserAccount userAccount2 : userAccounts2) {
+				if (equals(userAccount1, userAccount2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(userAccounts2 + " does not contain " + userAccount1, contains);
+	}
+	}
+
 	protected boolean equals(UserAccount userAccount1, UserAccount userAccount2) {
 		if (userAccount1 == userAccount2) {
 			return true;

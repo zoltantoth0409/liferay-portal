@@ -139,6 +139,24 @@ public abstract class BasePhoneResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Phone> phones1, List<Phone> phones2) {
+		Assert.assertEquals(phones1.size(), phones2.size());
+
+		for (Phone phone1 : phones1) {
+			boolean contains = false;
+
+			for (Phone phone2 : phones2) {
+				if (equals(phone1, phone2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(phones2 + " does not contain " + phone1, contains);
+	}
+	}
+
 	protected boolean equals(Phone phone1, Phone phone2) {
 		if (phone1 == phone2) {
 			return true;

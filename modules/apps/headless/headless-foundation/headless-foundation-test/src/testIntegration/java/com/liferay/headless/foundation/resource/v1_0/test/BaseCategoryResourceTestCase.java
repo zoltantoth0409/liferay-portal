@@ -310,6 +310,24 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Category> categories1, List<Category> categories2) {
+		Assert.assertEquals(categories1.size(), categories2.size());
+
+		for (Category category1 : categories1) {
+			boolean contains = false;
+
+			for (Category category2 : categories2) {
+				if (equals(category1, category2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(categories2 + " does not contain " + category1, contains);
+	}
+	}
+
 	protected boolean equals(Category category1, Category category2) {
 		if (category1 == category2) {
 			return true;

@@ -224,6 +224,24 @@ public abstract class BaseOrganizationResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Organization> organizations1, List<Organization> organizations2) {
+		Assert.assertEquals(organizations1.size(), organizations2.size());
+
+		for (Organization organization1 : organizations1) {
+			boolean contains = false;
+
+			for (Organization organization2 : organizations2) {
+				if (equals(organization1, organization2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(organizations2 + " does not contain " + organization1, contains);
+	}
+	}
+
 	protected boolean equals(Organization organization1, Organization organization2) {
 		if (organization1 == organization2) {
 			return true;

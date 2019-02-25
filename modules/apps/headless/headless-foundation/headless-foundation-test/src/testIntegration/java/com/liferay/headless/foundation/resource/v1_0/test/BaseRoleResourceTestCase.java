@@ -195,6 +195,24 @@ public abstract class BaseRoleResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Role> roles1, List<Role> roles2) {
+		Assert.assertEquals(roles1.size(), roles2.size());
+
+		for (Role role1 : roles1) {
+			boolean contains = false;
+
+			for (Role role2 : roles2) {
+				if (equals(role1, role2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(roles2 + " does not contain " + role1, contains);
+	}
+	}
+
 	protected boolean equals(Role role1, Role role2) {
 		if (role1 == role2) {
 			return true;

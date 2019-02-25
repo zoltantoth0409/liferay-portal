@@ -172,6 +172,24 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<StructuredContentImage> structuredContentImages1, List<StructuredContentImage> structuredContentImages2) {
+		Assert.assertEquals(structuredContentImages1.size(), structuredContentImages2.size());
+
+		for (StructuredContentImage structuredContentImage1 : structuredContentImages1) {
+			boolean contains = false;
+
+			for (StructuredContentImage structuredContentImage2 : structuredContentImages2) {
+				if (equals(structuredContentImage1, structuredContentImage2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(structuredContentImages2 + " does not contain " + structuredContentImage1, contains);
+	}
+	}
+
 	protected boolean equals(StructuredContentImage structuredContentImage1, StructuredContentImage structuredContentImage2) {
 		if (structuredContentImage1 == structuredContentImage2) {
 			return true;

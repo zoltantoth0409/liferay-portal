@@ -246,6 +246,24 @@ public abstract class BaseVocabularyResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Vocabulary> vocabularies1, List<Vocabulary> vocabularies2) {
+		Assert.assertEquals(vocabularies1.size(), vocabularies2.size());
+
+		for (Vocabulary vocabulary1 : vocabularies1) {
+			boolean contains = false;
+
+			for (Vocabulary vocabulary2 : vocabularies2) {
+				if (equals(vocabulary1, vocabulary2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(vocabularies2 + " does not contain " + vocabulary1, contains);
+	}
+	}
+
 	protected boolean equals(Vocabulary vocabulary1, Vocabulary vocabulary2) {
 		if (vocabulary1 == vocabulary2) {
 			return true;

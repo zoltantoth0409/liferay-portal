@@ -139,6 +139,24 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
+		Assert.assertEquals(webUrls1.size(), webUrls2.size());
+
+		for (WebUrl webUrl1 : webUrls1) {
+			boolean contains = false;
+
+			for (WebUrl webUrl2 : webUrls2) {
+				if (equals(webUrl1, webUrl2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(webUrls2 + " does not contain " + webUrl1, contains);
+	}
+	}
+
 	protected boolean equals(WebUrl webUrl1, WebUrl webUrl2) {
 		if (webUrl1 == webUrl2) {
 			return true;

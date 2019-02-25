@@ -311,6 +311,24 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
+		Assert.assertEquals(workflowTasks1.size(), workflowTasks2.size());
+
+		for (WorkflowTask workflowTask1 : workflowTasks1) {
+			boolean contains = false;
+
+			for (WorkflowTask workflowTask2 : workflowTasks2) {
+				if (equals(workflowTask1, workflowTask2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(workflowTasks2 + " does not contain " + workflowTask1, contains);
+	}
+	}
+
 	protected boolean equals(WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
 		if (workflowTask1 == workflowTask2) {
 			return true;

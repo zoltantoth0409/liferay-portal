@@ -139,6 +139,24 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<PostalAddress> postalAddresses1, List<PostalAddress> postalAddresses2) {
+		Assert.assertEquals(postalAddresses1.size(), postalAddresses2.size());
+
+		for (PostalAddress postalAddress1 : postalAddresses1) {
+			boolean contains = false;
+
+			for (PostalAddress postalAddress2 : postalAddresses2) {
+				if (equals(postalAddress1, postalAddress2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(postalAddresses2 + " does not contain " + postalAddress1, contains);
+	}
+	}
+
 	protected boolean equals(PostalAddress postalAddress1, PostalAddress postalAddress2) {
 		if (postalAddress1 == postalAddress2) {
 			return true;

@@ -309,6 +309,24 @@ public abstract class BaseCommentResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Comment> comments1, List<Comment> comments2) {
+		Assert.assertEquals(comments1.size(), comments2.size());
+
+		for (Comment comment1 : comments1) {
+			boolean contains = false;
+
+			for (Comment comment2 : comments2) {
+				if (equals(comment1, comment2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(comments2 + " does not contain " + comment1, contains);
+	}
+	}
+
 	protected boolean equals(Comment comment1, Comment comment2) {
 		if (comment1 == comment2) {
 			return true;

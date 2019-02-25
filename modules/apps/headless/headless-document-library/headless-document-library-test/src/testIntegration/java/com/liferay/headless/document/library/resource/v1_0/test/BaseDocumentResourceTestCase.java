@@ -298,6 +298,24 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Document> documents1, List<Document> documents2) {
+		Assert.assertEquals(documents1.size(), documents2.size());
+
+		for (Document document1 : documents1) {
+			boolean contains = false;
+
+			for (Document document2 : documents2) {
+				if (equals(document1, document2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(documents2 + " does not contain " + document1, contains);
+	}
+	}
+
 	protected boolean equals(Document document1, Document document2) {
 		if (document1 == document2) {
 			return true;

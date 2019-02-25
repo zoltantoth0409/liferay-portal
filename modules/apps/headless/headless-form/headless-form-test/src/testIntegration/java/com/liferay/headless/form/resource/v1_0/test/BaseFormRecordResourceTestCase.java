@@ -216,6 +216,24 @@ public abstract class BaseFormRecordResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<FormRecord> formRecords1, List<FormRecord> formRecords2) {
+		Assert.assertEquals(formRecords1.size(), formRecords2.size());
+
+		for (FormRecord formRecord1 : formRecords1) {
+			boolean contains = false;
+
+			for (FormRecord formRecord2 : formRecords2) {
+				if (equals(formRecord1, formRecord2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(formRecords2 + " does not contain " + formRecord1, contains);
+	}
+	}
+
 	protected boolean equals(FormRecord formRecord1, FormRecord formRecord2) {
 		if (formRecord1 == formRecord2) {
 			return true;

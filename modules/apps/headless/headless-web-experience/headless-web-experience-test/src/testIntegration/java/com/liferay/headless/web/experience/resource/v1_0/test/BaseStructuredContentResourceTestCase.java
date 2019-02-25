@@ -333,6 +333,24 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<StructuredContent> structuredContents1, List<StructuredContent> structuredContents2) {
+		Assert.assertEquals(structuredContents1.size(), structuredContents2.size());
+
+		for (StructuredContent structuredContent1 : structuredContents1) {
+			boolean contains = false;
+
+			for (StructuredContent structuredContent2 : structuredContents2) {
+				if (equals(structuredContent1, structuredContent2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(structuredContents2 + " does not contain " + structuredContent1, contains);
+	}
+	}
+
 	protected boolean equals(StructuredContent structuredContent1, StructuredContent structuredContent2) {
 		if (structuredContent1 == structuredContent2) {
 			return true;

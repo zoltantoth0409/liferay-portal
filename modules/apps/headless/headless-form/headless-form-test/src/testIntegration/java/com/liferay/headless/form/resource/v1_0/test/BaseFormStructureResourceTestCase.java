@@ -144,6 +144,24 @@ public abstract class BaseFormStructureResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<FormStructure> formStructures1, List<FormStructure> formStructures2) {
+		Assert.assertEquals(formStructures1.size(), formStructures2.size());
+
+		for (FormStructure formStructure1 : formStructures1) {
+			boolean contains = false;
+
+			for (FormStructure formStructure2 : formStructures2) {
+				if (equals(formStructure1, formStructure2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(formStructures2 + " does not contain " + formStructure1, contains);
+	}
+	}
+
 	protected boolean equals(FormStructure formStructure1, FormStructure formStructure2) {
 		if (formStructure1 == formStructure2) {
 			return true;

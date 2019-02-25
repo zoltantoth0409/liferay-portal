@@ -39,8 +39,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -323,24 +321,6 @@ public abstract class BaseFolderResourceTestCase {
 		Assert.assertTrue(folder1 + " does not equal " + folder2, equals(folder1, folder2));
 	}
 
-	protected void assertEqualsIgnoringOrder(
-		List<Folder> folders1, List<Folder> folders2) {
-
-		Assert.assertEquals(folders1.size(), folders2.size());
-
-		for (Folder randomFolder : folders1) {
-			Stream<Folder> stream = folders2.stream();
-
-			Folder folder = stream.filter(
-				aFolder -> Objects.equals(
-					randomFolder.getName(), aFolder.getName())
-			).findFirst(
-			).get();
-
-			assertEquals(randomFolder, folder);
-		}
-	}
-
 	protected void assertEquals(List<Folder> folders1, List<Folder> folders2) {
 		Assert.assertEquals(folders1.size(), folders2.size());
 
@@ -349,6 +329,24 @@ public abstract class BaseFolderResourceTestCase {
 			Folder folder2 = folders2.get(i);
 
 			assertEquals(folder1, folder2);
+	}
+	}
+
+	protected void assertEqualsIgnoringOrder(List<Folder> folders1, List<Folder> folders2) {
+		Assert.assertEquals(folders1.size(), folders2.size());
+
+		for (Folder folder1 : folders1) {
+			boolean contains = false;
+
+			for (Folder folder2 : folders2) {
+				if (equals(folder1, folder2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(folders2 + " does not contain " + folder1, contains);
 	}
 	}
 

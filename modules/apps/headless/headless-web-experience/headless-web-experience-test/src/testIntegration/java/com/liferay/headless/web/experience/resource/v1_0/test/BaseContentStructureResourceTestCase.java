@@ -145,6 +145,24 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<ContentStructure> contentStructures1, List<ContentStructure> contentStructures2) {
+		Assert.assertEquals(contentStructures1.size(), contentStructures2.size());
+
+		for (ContentStructure contentStructure1 : contentStructures1) {
+			boolean contains = false;
+
+			for (ContentStructure contentStructure2 : contentStructures2) {
+				if (equals(contentStructure1, contentStructure2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(contentStructures2 + " does not contain " + contentStructure1, contains);
+	}
+	}
+
 	protected boolean equals(ContentStructure contentStructure1, ContentStructure contentStructure2) {
 		if (contentStructure1 == contentStructure2) {
 			return true;

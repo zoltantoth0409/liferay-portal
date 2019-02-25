@@ -246,6 +246,24 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Keyword> keywords1, List<Keyword> keywords2) {
+		Assert.assertEquals(keywords1.size(), keywords2.size());
+
+		for (Keyword keyword1 : keywords1) {
+			boolean contains = false;
+
+			for (Keyword keyword2 : keywords2) {
+				if (equals(keyword1, keyword2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(keywords2 + " does not contain " + keyword1, contains);
+	}
+	}
+
 	protected boolean equals(Keyword keyword1, Keyword keyword2) {
 		if (keyword1 == keyword2) {
 			return true;

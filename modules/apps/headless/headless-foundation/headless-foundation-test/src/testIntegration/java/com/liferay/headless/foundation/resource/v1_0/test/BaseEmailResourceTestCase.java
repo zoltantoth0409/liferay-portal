@@ -139,6 +139,24 @@ public abstract class BaseEmailResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<Email> emails1, List<Email> emails2) {
+		Assert.assertEquals(emails1.size(), emails2.size());
+
+		for (Email email1 : emails1) {
+			boolean contains = false;
+
+			for (Email email2 : emails2) {
+				if (equals(email1, email2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(emails2 + " does not contain " + email1, contains);
+	}
+	}
+
 	protected boolean equals(Email email1, Email email2) {
 		if (email1 == email2) {
 			return true;

@@ -202,6 +202,24 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<BlogPostingImage> blogPostingImages1, List<BlogPostingImage> blogPostingImages2) {
+		Assert.assertEquals(blogPostingImages1.size(), blogPostingImages2.size());
+
+		for (BlogPostingImage blogPostingImage1 : blogPostingImages1) {
+			boolean contains = false;
+
+			for (BlogPostingImage blogPostingImage2 : blogPostingImages2) {
+				if (equals(blogPostingImage1, blogPostingImage2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(blogPostingImages2 + " does not contain " + blogPostingImage1, contains);
+	}
+	}
+
 	protected boolean equals(BlogPostingImage blogPostingImage1, BlogPostingImage blogPostingImage2) {
 		if (blogPostingImage1 == blogPostingImage2) {
 			return true;

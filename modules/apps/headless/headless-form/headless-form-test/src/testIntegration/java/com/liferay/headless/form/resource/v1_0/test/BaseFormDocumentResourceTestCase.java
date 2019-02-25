@@ -142,6 +142,24 @@ public abstract class BaseFormDocumentResourceTestCase {
 	}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<FormDocument> formDocuments1, List<FormDocument> formDocuments2) {
+		Assert.assertEquals(formDocuments1.size(), formDocuments2.size());
+
+		for (FormDocument formDocument1 : formDocuments1) {
+			boolean contains = false;
+
+			for (FormDocument formDocument2 : formDocuments2) {
+				if (equals(formDocument1, formDocument2)) {
+					contains = true;
+
+					break;
+	}
+	}
+
+			Assert.assertTrue(formDocuments2 + " does not contain " + formDocument1, contains);
+	}
+	}
+
 	protected boolean equals(FormDocument formDocument1, FormDocument formDocument2) {
 		if (formDocument1 == formDocument2) {
 			return true;
