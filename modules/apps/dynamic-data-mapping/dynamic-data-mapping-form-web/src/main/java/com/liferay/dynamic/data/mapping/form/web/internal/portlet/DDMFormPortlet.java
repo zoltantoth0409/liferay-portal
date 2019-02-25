@@ -17,6 +17,7 @@ package com.liferay.dynamic.data.mapping.form.web.internal.portlet;
 import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderer;
 import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory;
+import com.liferay.dynamic.data.mapping.form.web.internal.constants.DDMFormWebKeys;
 import com.liferay.dynamic.data.mapping.form.web.internal.display.context.DDMFormDisplayContext;
 import com.liferay.dynamic.data.mapping.form.web.internal.instance.lifecycle.AddDefaultSharedFormLayoutPortalInstanceLifecycleListener;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
@@ -224,11 +225,11 @@ public class DDMFormPortlet extends MVCPortlet {
 		DDMFormDisplayContext ddmFormPortletDisplayContext) {
 
 		if (ddmFormPortletDisplayContext.getFormInstanceId() > 0) {
-			DDMFormInstance ddmFormInstance =
+			DDMFormInstance formInstance =
 				ddmFormPortletDisplayContext.getFormInstance();
 
 			renderRequest.setAttribute(
-				"refererGroupId", ddmFormInstance.getGroupId());
+				DDMFormWebKeys.REFERER_GROUP_ID, formInstance.getGroupId());
 		}
 	}
 
