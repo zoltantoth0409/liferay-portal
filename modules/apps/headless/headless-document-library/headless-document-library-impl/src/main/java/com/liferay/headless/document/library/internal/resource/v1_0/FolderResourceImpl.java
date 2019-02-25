@@ -158,14 +158,14 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 						int count = _dlAppService.getFileEntriesCount(
 							folder.getRepositoryId(), folder.getFolderId());
 
-						return (count > 0);
+						return count > 0;
 					});
 				setHasFolders(
 					() -> {
 						int count = _dlAppService.getFoldersCount(
 							folder.getRepositoryId(), folder.getFolderId());
 
-						return (count > 0);
+						return count > 0;
 					});
 			}
 		};
