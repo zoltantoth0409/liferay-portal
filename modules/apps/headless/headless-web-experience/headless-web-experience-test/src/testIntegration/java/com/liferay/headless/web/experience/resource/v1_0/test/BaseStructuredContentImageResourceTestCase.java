@@ -67,431 +67,504 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 
 	@Test
-	public void testGetStructuredContentStructuredContentImagesPage() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
 	public void testDeleteStructuredContentContentDocument() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testGetStructuredContentContentDocument() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	@Test
+	public void testGetStructuredContentStructuredContentImagesPage()
+		throws Exception {
+
+		Assert.assertTrue(true);
 	}
 
-	protected Page<StructuredContentImage> invokeGetStructuredContentStructuredContentImagesPage(
-				Long structuredContentId)
-			throws Exception {
+	protected void assertEquals(
+		List<StructuredContentImage> structuredContentImages1,
+		List<StructuredContentImage> structuredContentImages2) {
 
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<StructuredContentImageImpl>>() {});
-	}
-
-	protected Http.Response invokeGetStructuredContentStructuredContentImagesPageResponse(
-				Long structuredContentId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images", structuredContentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected boolean invokeDeleteStructuredContentContentDocument(
-				Long structuredContentId,Long contentDocumentId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setDelete(true);
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
-	}
-
-	protected Http.Response invokeDeleteStructuredContentContentDocumentResponse(
-				Long structuredContentId,Long contentDocumentId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setDelete(true);
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected StructuredContentImage invokeGetStructuredContentContentDocument(
-				Long structuredContentId,Long contentDocumentId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), StructuredContentImageImpl.class);
-	}
-
-	protected Http.Response invokeGetStructuredContentContentDocumentResponse(
-				Long structuredContentId,Long contentDocumentId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}", structuredContentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-
-	protected void assertEquals(StructuredContentImage structuredContentImage1, StructuredContentImage structuredContentImage2) {
-		Assert.assertTrue(structuredContentImage1 + " does not equal " + structuredContentImage2, equals(structuredContentImage1, structuredContentImage2));
-	}
-
-	protected void assertEquals(List<StructuredContentImage> structuredContentImages1, List<StructuredContentImage> structuredContentImages2) {
-		Assert.assertEquals(structuredContentImages1.size(), structuredContentImages2.size());
+		Assert.assertEquals(
+			structuredContentImages1.size(), structuredContentImages2.size());
 
 		for (int i = 0; i < structuredContentImages1.size(); i++) {
-			StructuredContentImage structuredContentImage1 = structuredContentImages1.get(i);
-			StructuredContentImage structuredContentImage2 = structuredContentImages2.get(i);
+			StructuredContentImage structuredContentImage1 =
+				structuredContentImages1.get(i);
+			StructuredContentImage structuredContentImage2 =
+				structuredContentImages2.get(i);
 
 			assertEquals(structuredContentImage1, structuredContentImage2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<StructuredContentImage> structuredContentImages1, List<StructuredContentImage> structuredContentImages2) {
-		Assert.assertEquals(structuredContentImages1.size(), structuredContentImages2.size());
+	protected void assertEquals(
+		StructuredContentImage structuredContentImage1,
+		StructuredContentImage structuredContentImage2) {
 
-		for (StructuredContentImage structuredContentImage1 : structuredContentImages1) {
+		Assert.assertTrue(
+			structuredContentImage1 + " does not equal " +
+				structuredContentImage2,
+			equals(structuredContentImage1, structuredContentImage2));
+	}
+
+	protected void assertEqualsIgnoringOrder(
+		List<StructuredContentImage> structuredContentImages1,
+		List<StructuredContentImage> structuredContentImages2) {
+
+		Assert.assertEquals(
+			structuredContentImages1.size(), structuredContentImages2.size());
+
+		for (StructuredContentImage structuredContentImage1 :
+				structuredContentImages1) {
+
 			boolean contains = false;
 
-			for (StructuredContentImage structuredContentImage2 : structuredContentImages2) {
+			for (StructuredContentImage structuredContentImage2 :
+					structuredContentImages2) {
+
 				if (equals(structuredContentImage1, structuredContentImage2)) {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				structuredContentImages2 + " does not contain " +
+					structuredContentImage1,
+				contains);
+		}
 	}
 
-			Assert.assertTrue(structuredContentImages2 + " does not contain " + structuredContentImage1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
-	protected boolean equals(StructuredContentImage structuredContentImage1, StructuredContentImage structuredContentImage2) {
+	protected boolean equals(
+		StructuredContentImage structuredContentImage1,
+		StructuredContentImage structuredContentImage2) {
+
 		if (structuredContentImage1 == structuredContentImage2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected boolean invokeDeleteStructuredContentContentDocument(
+			Long structuredContentId, Long contentDocumentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
+					structuredContentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response
+			invokeDeleteStructuredContentContentDocumentResponse(
+				Long structuredContentId, Long contentDocumentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
+					structuredContentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected StructuredContentImage invokeGetStructuredContentContentDocument(
+			Long structuredContentId, Long contentDocumentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
+					structuredContentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), StructuredContentImageImpl.class);
+	}
+
+	protected Http.Response invokeGetStructuredContentContentDocumentResponse(
+			Long structuredContentId, Long contentDocumentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images/{content-document-id}",
+					structuredContentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Page<StructuredContentImage>
+			invokeGetStructuredContentStructuredContentImagesPage(
+				Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images",
+					structuredContentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<StructuredContentImageImpl>>() {
+			});
+	}
+
+	protected Http.Response
+			invokeGetStructuredContentStructuredContentImagesPageResponse(
+				Long structuredContentId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/structured-contents/{structured-content-id}/structured-content-images",
+					structuredContentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {
 		return new StructuredContentImageImpl() {
 			{
-
-						contentUrl = RandomTestUtil.randomString();
-						dateCreated = RandomTestUtil.nextDate();
-						dateModified = RandomTestUtil.nextDate();
-						encodingFormat = RandomTestUtil.randomString();
-						fileExtension = RandomTestUtil.randomString();
-						id = RandomTestUtil.randomLong();
-						title = RandomTestUtil.randomString();
-	}
+				contentUrl = RandomTestUtil.randomString();
+				dateCreated = RandomTestUtil.nextDate();
+				dateModified = RandomTestUtil.nextDate();
+				encodingFormat = RandomTestUtil.randomString();
+				fileExtension = RandomTestUtil.randomString();
+				id = RandomTestUtil.randomLong();
+				title = RandomTestUtil.randomString();
+			}
 		};
 	}
 
 	protected Group testGroup;
 
-	protected static class StructuredContentImageImpl implements StructuredContentImage {
+	protected static class Page<T> {
 
-	public String getContentUrl() {
-				return contentUrl;
-	}
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
 
-	public void setContentUrl(String contentUrl) {
-				this.contentUrl = contentUrl;
-	}
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
 
-	@JsonIgnore
-	public void setContentUrl(
-				UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
 
-				try {
-					contentUrl = contentUrlUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public int getPageNumber() {
+			return pageNumber;
+		}
 
-	@JsonProperty
-	protected String contentUrl;
-	public Creator getCreator() {
-				return creator;
-	}
+		public int getTotalCount() {
+			return totalCount;
+		}
 
-	public void setCreator(Creator creator) {
-				this.creator = creator;
-	}
+		@JsonProperty
+		protected Collection<T> items;
 
-	@JsonIgnore
-	public void setCreator(
-				UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
 
-				try {
-					creator = creatorUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty("page")
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
+
 	}
 
-	@JsonProperty
-	protected Creator creator;
-	public Date getDateCreated() {
-				return dateCreated;
-	}
+	protected static class StructuredContentImageImpl
+		implements StructuredContentImage {
 
-	public void setDateCreated(Date dateCreated) {
-				this.dateCreated = dateCreated;
-	}
+		public String getContentUrl() {
+			return contentUrl;
+		}
 
-	@JsonIgnore
-	public void setDateCreated(
-				UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		public Creator getCreator() {
+			return creator;
+		}
 
-				try {
-					dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public Date getDateCreated() {
+			return dateCreated;
+		}
 
-	@JsonProperty
-	protected Date dateCreated;
-	public Date getDateModified() {
-				return dateModified;
-	}
+		public Date getDateModified() {
+			return dateModified;
+		}
 
-	public void setDateModified(Date dateModified) {
-				this.dateModified = dateModified;
-	}
+		public String getEncodingFormat() {
+			return encodingFormat;
+		}
 
-	@JsonIgnore
-	public void setDateModified(
-				UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		public String getFileExtension() {
+			return fileExtension;
+		}
 
-				try {
-					dateModified = dateModifiedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public Long getId() {
+			return id;
+		}
 
-	@JsonProperty
-	protected Date dateModified;
-	public String getEncodingFormat() {
-				return encodingFormat;
-	}
+		public Number getSizeInBytes() {
+			return sizeInBytes;
+		}
 
-	public void setEncodingFormat(String encodingFormat) {
-				this.encodingFormat = encodingFormat;
-	}
+		public String getTitle() {
+			return title;
+		}
 
-	@JsonIgnore
-	public void setEncodingFormat(
-				UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		public void setContentUrl(String contentUrl) {
+			this.contentUrl = contentUrl;
+		}
 
-				try {
-					encodingFormat = encodingFormatUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setContentUrl(
+			UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 
-	@JsonProperty
-	protected String encodingFormat;
-	public String getFileExtension() {
-				return fileExtension;
-	}
+			try {
+				contentUrl = contentUrlUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setFileExtension(String fileExtension) {
-				this.fileExtension = fileExtension;
-	}
+		public void setCreator(Creator creator) {
+			this.creator = creator;
+		}
 
-	@JsonIgnore
-	public void setFileExtension(
-				UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+		@JsonIgnore
+		public void setCreator(
+			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-				try {
-					fileExtension = fileExtensionUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				creator = creatorUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String fileExtension;
-	public Long getId() {
-				return id;
-	}
+		public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+		}
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+		@JsonIgnore
+		public void setDateCreated(
+			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				dateCreated = dateCreatedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+		}
 
-	@JsonProperty
-	protected Long id;
-	public Number getSizeInBytes() {
-				return sizeInBytes;
-	}
+		@JsonIgnore
+		public void setDateModified(
+			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setSizeInBytes(Number sizeInBytes) {
-				this.sizeInBytes = sizeInBytes;
-	}
+			try {
+				dateModified = dateModifiedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setSizeInBytes(
-				UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		public void setEncodingFormat(String encodingFormat) {
+			this.encodingFormat = encodingFormat;
+		}
 
-				try {
-					sizeInBytes = sizeInBytesUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setEncodingFormat(
+			UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
 
-	@JsonProperty
-	protected Number sizeInBytes;
-	public String getTitle() {
-				return title;
-	}
+			try {
+				encodingFormat = encodingFormatUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setTitle(String title) {
-				this.title = title;
-	}
+		public void setFileExtension(String fileExtension) {
+			this.fileExtension = fileExtension;
+		}
 
-	@JsonIgnore
-	public void setTitle(
-				UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+		@JsonIgnore
+		public void setFileExtension(
+			UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
 
-				try {
-					title = titleUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				fileExtension = fileExtensionUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String title;
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
+
+		public void setSizeInBytes(Number sizeInBytes) {
+			this.sizeInBytes = sizeInBytes;
+		}
+
+		@JsonIgnore
+		public void setSizeInBytes(
+			UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+
+			try {
+				sizeInBytes = sizeInBytesUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
+
+		public void setTitle(String title) {
+			this.title = title;
+		}
+
+		@JsonIgnore
+		public void setTitle(
+			UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+
+			try {
+				title = titleUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
+
+		public String toString() {
+			StringBundler sb = new StringBundler(20);
 
 			sb.append("{");
 
-					sb.append("contentUrl=");
+			sb.append("contentUrl=");
 
-				sb.append(contentUrl);
-					sb.append(", creator=");
+			sb.append(contentUrl);
+			sb.append(", creator=");
 
-				sb.append(creator);
-					sb.append(", dateCreated=");
+			sb.append(creator);
+			sb.append(", dateCreated=");
 
-				sb.append(dateCreated);
-					sb.append(", dateModified=");
+			sb.append(dateCreated);
+			sb.append(", dateModified=");
 
-				sb.append(dateModified);
-					sb.append(", encodingFormat=");
+			sb.append(dateModified);
+			sb.append(", encodingFormat=");
 
-				sb.append(encodingFormat);
-					sb.append(", fileExtension=");
+			sb.append(encodingFormat);
+			sb.append(", fileExtension=");
 
-				sb.append(fileExtension);
-					sb.append(", id=");
+			sb.append(fileExtension);
+			sb.append(", id=");
 
-				sb.append(id);
-					sb.append(", sizeInBytes=");
+			sb.append(id);
+			sb.append(", sizeInBytes=");
 
-				sb.append(sizeInBytes);
-					sb.append(", title=");
+			sb.append(sizeInBytes);
+			sb.append(", title=");
 
-				sb.append(title);
+			sb.append(title);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
 
-	}
+		@JsonProperty
+		protected String contentUrl;
 
-	protected static class Page<T> {
+		@JsonProperty
+		protected Creator creator;
 
-	public Collection<T> getItems() {
-			return new ArrayList<>(items);
-	}
+		@JsonProperty
+		protected Date dateCreated;
 
-	public int getItemsPerPage() {
-			return itemsPerPage;
-	}
+		@JsonProperty
+		protected Date dateModified;
 
-	public int getLastPageNumber() {
-			return lastPageNumber;
-	}
+		@JsonProperty
+		protected String encodingFormat;
 
-	public int getPageNumber() {
-			return pageNumber;
-	}
+		@JsonProperty
+		protected String fileExtension;
 
-	public int getTotalCount() {
-			return totalCount;
-	}
+		@JsonProperty
+		protected Long id;
 
-	@JsonProperty
-	protected Collection<T> items;
+		@JsonProperty
+		protected Number sizeInBytes;
 
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
-
-	@JsonProperty
-	protected int lastPageNumber;
-
-	@JsonProperty("page")
-	protected int pageNumber;
-
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected String title;
 
 	}
 
@@ -502,9 +575,11 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -515,12 +590,12 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

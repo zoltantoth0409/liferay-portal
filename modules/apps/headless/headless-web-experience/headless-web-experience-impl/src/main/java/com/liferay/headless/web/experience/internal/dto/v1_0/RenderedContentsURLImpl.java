@@ -37,55 +37,48 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class RenderedContentsURLImpl implements RenderedContentsURL {
 
 	public String getRenderedContentURL() {
-			return renderedContentURL;
+		return renderedContentURL;
 	}
 
-	public void setRenderedContentURL(
-			String renderedContentURL) {
+	public String getTemplateName() {
+		return templateName;
+	}
 
-			this.renderedContentURL = renderedContentURL;
+	public void setRenderedContentURL(String renderedContentURL) {
+		this.renderedContentURL = renderedContentURL;
 	}
 
 	@JsonIgnore
 	public void setRenderedContentURL(
-			UnsafeSupplier<String, Throwable>
-				renderedContentURLUnsafeSupplier) {
+		UnsafeSupplier<String, Throwable> renderedContentURLUnsafeSupplier) {
 
-			try {
-				renderedContentURL =
-					renderedContentURLUnsafeSupplier.get();
+		try {
+			renderedContentURL = renderedContentURLUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName;
 	}
+
+	@JsonIgnore
+	public void setTemplateName(
+		UnsafeSupplier<String, Throwable> templateNameUnsafeSupplier) {
+
+		try {
+			templateName = templateNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
 
 	@GraphQLField
 	@JsonProperty
 	protected String renderedContentURL;
-	public String getTemplateName() {
-			return templateName;
-	}
-
-	public void setTemplateName(
-			String templateName) {
-
-			this.templateName = templateName;
-	}
-
-	@JsonIgnore
-	public void setTemplateName(
-			UnsafeSupplier<String, Throwable>
-				templateNameUnsafeSupplier) {
-
-			try {
-				templateName =
-					templateNameUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty

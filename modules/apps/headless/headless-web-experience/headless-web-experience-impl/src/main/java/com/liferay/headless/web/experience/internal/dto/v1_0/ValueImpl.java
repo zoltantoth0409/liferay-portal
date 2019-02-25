@@ -40,190 +40,163 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ValueImpl implements Value {
 
 	public String getData() {
-			return data;
+		return data;
 	}
 
-	public void setData(
-			String data) {
+	public ContentDocument getDocument() {
+		return document;
+	}
 
-			this.data = data;
+	public Long getDocumentId() {
+		return documentId;
+	}
+
+	public Geo getGeo() {
+		return geo;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public StructuredContent getStructuredContent() {
+		return structuredContent;
+	}
+
+	public Long getStructuredContentId() {
+		return structuredContentId;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 
 	@JsonIgnore
-	public void setData(
-			UnsafeSupplier<String, Throwable>
-				dataUnsafeSupplier) {
+	public void setData(UnsafeSupplier<String, Throwable> dataUnsafeSupplier) {
+		try {
+			data = dataUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-			try {
-				data =
-					dataUnsafeSupplier.get();
+	public void setDocument(ContentDocument document) {
+		this.document = document;
 	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+
+	@JsonIgnore
+	public void setDocument(
+		UnsafeSupplier<ContentDocument, Throwable> documentUnsafeSupplier) {
+
+		try {
+			document = documentUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
+
+	public void setDocumentId(Long documentId) {
+		this.documentId = documentId;
+	}
+
+	@JsonIgnore
+	public void setDocumentId(
+		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
+
+		try {
+			documentId = documentIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setGeo(Geo geo) {
+		this.geo = geo;
+	}
+
+	@JsonIgnore
+	public void setGeo(UnsafeSupplier<Geo, Throwable> geoUnsafeSupplier) {
+		try {
+			geo = geoUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	@JsonIgnore
+	public void setLink(UnsafeSupplier<String, Throwable> linkUnsafeSupplier) {
+		try {
+			link = linkUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setStructuredContent(StructuredContent structuredContent) {
+		this.structuredContent = structuredContent;
+	}
+
+	@JsonIgnore
+	public void setStructuredContent(
+		UnsafeSupplier<StructuredContent, Throwable>
+			structuredContentUnsafeSupplier) {
+
+		try {
+			structuredContent = structuredContentUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setStructuredContentId(Long structuredContentId) {
+		this.structuredContentId = structuredContentId;
+	}
+
+	@JsonIgnore
+	public void setStructuredContentId(
+		UnsafeSupplier<Long, Throwable> structuredContentIdUnsafeSupplier) {
+
+		try {
+			structuredContentId = structuredContentIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
 
 	@GraphQLField
 	@JsonProperty
 	protected String data;
-	public ContentDocument getDocument() {
-			return document;
-	}
-
-	public void setDocument(
-			ContentDocument document) {
-
-			this.document = document;
-	}
-
-	@JsonIgnore
-	public void setDocument(
-			UnsafeSupplier<ContentDocument, Throwable>
-				documentUnsafeSupplier) {
-
-			try {
-				document =
-					documentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected ContentDocument document;
-	public Long getDocumentId() {
-			return documentId;
-	}
-
-	public void setDocumentId(
-			Long documentId) {
-
-			this.documentId = documentId;
-	}
-
-	@JsonIgnore
-	public void setDocumentId(
-			UnsafeSupplier<Long, Throwable>
-				documentIdUnsafeSupplier) {
-
-			try {
-				documentId =
-					documentIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected Long documentId;
-	public Geo getGeo() {
-			return geo;
-	}
-
-	public void setGeo(
-			Geo geo) {
-
-			this.geo = geo;
-	}
-
-	@JsonIgnore
-	public void setGeo(
-			UnsafeSupplier<Geo, Throwable>
-				geoUnsafeSupplier) {
-
-			try {
-				geo =
-					geoUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected Geo geo;
-	public String getLink() {
-			return link;
-	}
-
-	public void setLink(
-			String link) {
-
-			this.link = link;
-	}
-
-	@JsonIgnore
-	public void setLink(
-			UnsafeSupplier<String, Throwable>
-				linkUnsafeSupplier) {
-
-			try {
-				link =
-					linkUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected String link;
-	public StructuredContent getStructuredContent() {
-			return structuredContent;
-	}
-
-	public void setStructuredContent(
-			StructuredContent structuredContent) {
-
-			this.structuredContent = structuredContent;
-	}
-
-	@JsonIgnore
-	public void setStructuredContent(
-			UnsafeSupplier<StructuredContent, Throwable>
-				structuredContentUnsafeSupplier) {
-
-			try {
-				structuredContent =
-					structuredContentUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected StructuredContent structuredContent;
-	public Long getStructuredContentId() {
-			return structuredContentId;
-	}
-
-	public void setStructuredContentId(
-			Long structuredContentId) {
-
-			this.structuredContentId = structuredContentId;
-	}
-
-	@JsonIgnore
-	public void setStructuredContentId(
-			UnsafeSupplier<Long, Throwable>
-				structuredContentIdUnsafeSupplier) {
-
-			try {
-				structuredContentId =
-					structuredContentIdUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty

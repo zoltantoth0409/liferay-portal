@@ -65,70 +65,19 @@ public abstract class BasePostalAddressResourceTestCase {
 	}
 
 	@Test
-	public void testGetGenericParentPostalAddressesPage() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
 	public void testGetAddress() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	@Test
+	public void testGetGenericParentPostalAddressesPage() throws Exception {
+		Assert.assertTrue(true);
 	}
 
-	protected Page<PostalAddress> invokeGetGenericParentPostalAddressesPage(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
+	protected void assertEquals(
+		List<PostalAddress> postalAddresses1,
+		List<PostalAddress> postalAddresses2) {
 
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/addresses", genericParentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<PostalAddressImpl>>() {});
-	}
-
-	protected Http.Response invokeGetGenericParentPostalAddressesPageResponse(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/addresses", genericParentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected PostalAddress invokeGetAddress(
-				Long addressId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/addresses/{address-id}", addressId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), PostalAddressImpl.class);
-	}
-
-	protected Http.Response invokeGetAddressResponse(
-				Long addressId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/addresses/{address-id}", addressId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-
-	protected void assertEquals(PostalAddress postalAddress1, PostalAddress postalAddress2) {
-		Assert.assertTrue(postalAddress1 + " does not equal " + postalAddress2, equals(postalAddress1, postalAddress2));
-	}
-
-	protected void assertEquals(List<PostalAddress> postalAddresses1, List<PostalAddress> postalAddresses2) {
 		Assert.assertEquals(postalAddresses1.size(), postalAddresses2.size());
 
 		for (int i = 0; i < postalAddresses1.size(); i++) {
@@ -136,10 +85,21 @@ public abstract class BasePostalAddressResourceTestCase {
 			PostalAddress postalAddress2 = postalAddresses2.get(i);
 
 			assertEquals(postalAddress1, postalAddress2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<PostalAddress> postalAddresses1, List<PostalAddress> postalAddresses2) {
+	protected void assertEquals(
+		PostalAddress postalAddress1, PostalAddress postalAddress2) {
+
+		Assert.assertTrue(
+			postalAddress1 + " does not equal " + postalAddress2,
+			equals(postalAddress1, postalAddress2));
+	}
+
+	protected void assertEqualsIgnoringOrder(
+		List<PostalAddress> postalAddresses1,
+		List<PostalAddress> postalAddresses2) {
+
 		Assert.assertEquals(postalAddresses1.size(), postalAddresses2.size());
 
 		for (PostalAddress postalAddress1 : postalAddresses1) {
@@ -150,317 +110,388 @@ public abstract class BasePostalAddressResourceTestCase {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				postalAddresses2 + " does not contain " + postalAddress1,
+				contains);
+		}
 	}
 
-			Assert.assertTrue(postalAddresses2 + " does not contain " + postalAddress1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
-	protected boolean equals(PostalAddress postalAddress1, PostalAddress postalAddress2) {
+	protected boolean equals(
+		PostalAddress postalAddress1, PostalAddress postalAddress2) {
+
 		if (postalAddress1 == postalAddress2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected PostalAddress invokeGetAddress(Long addressId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/addresses/{address-id}", addressId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), PostalAddressImpl.class);
+	}
+
+	protected Http.Response invokeGetAddressResponse(Long addressId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/addresses/{address-id}", addressId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Page<PostalAddress> invokeGetGenericParentPostalAddressesPage(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/addresses", genericParentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<PostalAddressImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetGenericParentPostalAddressesPageResponse(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/addresses", genericParentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected PostalAddress randomPostalAddress() {
 		return new PostalAddressImpl() {
 			{
-
-						addressCountry = RandomTestUtil.randomString();
-						addressLocality = RandomTestUtil.randomString();
-						addressRegion = RandomTestUtil.randomString();
-						addressType = RandomTestUtil.randomString();
-						id = RandomTestUtil.randomLong();
-						postalCode = RandomTestUtil.randomString();
-						streetAddressLine1 = RandomTestUtil.randomString();
-						streetAddressLine2 = RandomTestUtil.randomString();
-						streetAddressLine3 = RandomTestUtil.randomString();
-	}
+				addressCountry = RandomTestUtil.randomString();
+				addressLocality = RandomTestUtil.randomString();
+				addressRegion = RandomTestUtil.randomString();
+				addressType = RandomTestUtil.randomString();
+				id = RandomTestUtil.randomLong();
+				postalCode = RandomTestUtil.randomString();
+				streetAddressLine1 = RandomTestUtil.randomString();
+				streetAddressLine2 = RandomTestUtil.randomString();
+				streetAddressLine3 = RandomTestUtil.randomString();
+			}
 		};
 	}
 
 	protected Group testGroup;
 
+	protected static class Page<T> {
+
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
+
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
+
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
+
+		public int getPageNumber() {
+			return pageNumber;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
+		}
+
+		@JsonProperty
+		protected Collection<T> items;
+
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
+
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty("page")
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
+
+	}
+
 	protected static class PostalAddressImpl implements PostalAddress {
 
-	public String getAddressCountry() {
-				return addressCountry;
-	}
+		public String getAddressCountry() {
+			return addressCountry;
+		}
 
-	public void setAddressCountry(String addressCountry) {
-				this.addressCountry = addressCountry;
-	}
+		public String getAddressLocality() {
+			return addressLocality;
+		}
 
-	@JsonIgnore
-	public void setAddressCountry(
-				UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
+		public String getAddressRegion() {
+			return addressRegion;
+		}
 
-				try {
-					addressCountry = addressCountryUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public String getAddressType() {
+			return addressType;
+		}
 
-	@JsonProperty
-	protected String addressCountry;
-	public String getAddressLocality() {
-				return addressLocality;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public void setAddressLocality(String addressLocality) {
-				this.addressLocality = addressLocality;
-	}
+		public String getPostalCode() {
+			return postalCode;
+		}
 
-	@JsonIgnore
-	public void setAddressLocality(
-				UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
+		public String getStreetAddressLine1() {
+			return streetAddressLine1;
+		}
 
-				try {
-					addressLocality = addressLocalityUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public String getStreetAddressLine2() {
+			return streetAddressLine2;
+		}
 
-	@JsonProperty
-	protected String addressLocality;
-	public String getAddressRegion() {
-				return addressRegion;
-	}
+		public String getStreetAddressLine3() {
+			return streetAddressLine3;
+		}
 
-	public void setAddressRegion(String addressRegion) {
-				this.addressRegion = addressRegion;
-	}
+		public void setAddressCountry(String addressCountry) {
+			this.addressCountry = addressCountry;
+		}
 
-	@JsonIgnore
-	public void setAddressRegion(
-				UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+		@JsonIgnore
+		public void setAddressCountry(
+			UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
 
-				try {
-					addressRegion = addressRegionUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				addressCountry = addressCountryUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String addressRegion;
-	public String getAddressType() {
-				return addressType;
-	}
+		public void setAddressLocality(String addressLocality) {
+			this.addressLocality = addressLocality;
+		}
 
-	public void setAddressType(String addressType) {
-				this.addressType = addressType;
-	}
+		@JsonIgnore
+		public void setAddressLocality(
+			UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setAddressType(
-				UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
+			try {
+				addressLocality = addressLocalityUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					addressType = addressTypeUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setAddressRegion(String addressRegion) {
+			this.addressRegion = addressRegion;
+		}
 
-	@JsonProperty
-	protected String addressType;
-	public Long getId() {
-				return id;
-	}
+		@JsonIgnore
+		public void setAddressRegion(
+			UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+			try {
+				addressRegion = addressRegionUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		public void setAddressType(String addressType) {
+			this.addressType = addressType;
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setAddressType(
+			UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
 
-	@JsonProperty
-	protected Long id;
-	public String getPostalCode() {
-				return postalCode;
-	}
+			try {
+				addressType = addressTypeUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setPostalCode(String postalCode) {
-				this.postalCode = postalCode;
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	@JsonIgnore
-	public void setPostalCode(
-				UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					postalCode = postalCodeUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setPostalCode(String postalCode) {
+			this.postalCode = postalCode;
+		}
 
-	@JsonProperty
-	protected String postalCode;
-	public String getStreetAddressLine1() {
-				return streetAddressLine1;
-	}
+		@JsonIgnore
+		public void setPostalCode(
+			UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
 
-	public void setStreetAddressLine1(String streetAddressLine1) {
-				this.streetAddressLine1 = streetAddressLine1;
-	}
+			try {
+				postalCode = postalCodeUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setStreetAddressLine1(
-				UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
+		public void setStreetAddressLine1(String streetAddressLine1) {
+			this.streetAddressLine1 = streetAddressLine1;
+		}
 
-				try {
-					streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setStreetAddressLine1(
+			UnsafeSupplier<String, Throwable>
+				streetAddressLine1UnsafeSupplier) {
 
-	@JsonProperty
-	protected String streetAddressLine1;
-	public String getStreetAddressLine2() {
-				return streetAddressLine2;
-	}
+			try {
+				streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setStreetAddressLine2(String streetAddressLine2) {
-				this.streetAddressLine2 = streetAddressLine2;
-	}
+		public void setStreetAddressLine2(String streetAddressLine2) {
+			this.streetAddressLine2 = streetAddressLine2;
+		}
 
-	@JsonIgnore
-	public void setStreetAddressLine2(
-				UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
+		@JsonIgnore
+		public void setStreetAddressLine2(
+			UnsafeSupplier<String, Throwable>
+				streetAddressLine2UnsafeSupplier) {
 
-				try {
-					streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String streetAddressLine2;
-	public String getStreetAddressLine3() {
-				return streetAddressLine3;
-	}
+		public void setStreetAddressLine3(String streetAddressLine3) {
+			this.streetAddressLine3 = streetAddressLine3;
+		}
 
-	public void setStreetAddressLine3(String streetAddressLine3) {
-				this.streetAddressLine3 = streetAddressLine3;
-	}
+		@JsonIgnore
+		public void setStreetAddressLine3(
+			UnsafeSupplier<String, Throwable>
+				streetAddressLine3UnsafeSupplier) {
 
-	@JsonIgnore
-	public void setStreetAddressLine3(
-				UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
+			try {
+				streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
-
-	@JsonProperty
-	protected String streetAddressLine3;
-
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		public String toString() {
+			StringBundler sb = new StringBundler(20);
 
 			sb.append("{");
 
-					sb.append("addressCountry=");
+			sb.append("addressCountry=");
 
-				sb.append(addressCountry);
-					sb.append(", addressLocality=");
+			sb.append(addressCountry);
+			sb.append(", addressLocality=");
 
-				sb.append(addressLocality);
-					sb.append(", addressRegion=");
+			sb.append(addressLocality);
+			sb.append(", addressRegion=");
 
-				sb.append(addressRegion);
-					sb.append(", addressType=");
+			sb.append(addressRegion);
+			sb.append(", addressType=");
 
-				sb.append(addressType);
-					sb.append(", id=");
+			sb.append(addressType);
+			sb.append(", id=");
 
-				sb.append(id);
-					sb.append(", postalCode=");
+			sb.append(id);
+			sb.append(", postalCode=");
 
-				sb.append(postalCode);
-					sb.append(", streetAddressLine1=");
+			sb.append(postalCode);
+			sb.append(", streetAddressLine1=");
 
-				sb.append(streetAddressLine1);
-					sb.append(", streetAddressLine2=");
+			sb.append(streetAddressLine1);
+			sb.append(", streetAddressLine2=");
 
-				sb.append(streetAddressLine2);
-					sb.append(", streetAddressLine3=");
+			sb.append(streetAddressLine2);
+			sb.append(", streetAddressLine3=");
 
-				sb.append(streetAddressLine3);
+			sb.append(streetAddressLine3);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
 
-	}
+		@JsonProperty
+		protected String addressCountry;
 
-	protected static class Page<T> {
+		@JsonProperty
+		protected String addressLocality;
 
-	public Collection<T> getItems() {
-			return new ArrayList<>(items);
-	}
+		@JsonProperty
+		protected String addressRegion;
 
-	public int getItemsPerPage() {
-			return itemsPerPage;
-	}
+		@JsonProperty
+		protected String addressType;
 
-	public int getLastPageNumber() {
-			return lastPageNumber;
-	}
+		@JsonProperty
+		protected Long id;
 
-	public int getPageNumber() {
-			return pageNumber;
-	}
+		@JsonProperty
+		protected String postalCode;
 
-	public int getTotalCount() {
-			return totalCount;
-	}
+		@JsonProperty
+		protected String streetAddressLine1;
 
-	@JsonProperty
-	protected Collection<T> items;
+		@JsonProperty
+		protected String streetAddressLine2;
 
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
-
-	@JsonProperty
-	protected int lastPageNumber;
-
-	@JsonProperty("page")
-	protected int pageNumber;
-
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected String streetAddressLine3;
 
 	}
 
@@ -471,9 +502,11 @@ public abstract class BasePostalAddressResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -484,12 +517,12 @@ public abstract class BasePostalAddressResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

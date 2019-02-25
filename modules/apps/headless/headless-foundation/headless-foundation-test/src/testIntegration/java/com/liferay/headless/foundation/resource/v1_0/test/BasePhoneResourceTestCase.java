@@ -66,66 +66,12 @@ public abstract class BasePhoneResourceTestCase {
 
 	@Test
 	public void testGetGenericParentPhonesPage() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testGetPhone() throws Exception {
-			Assert.assertTrue(true);
-	}
-
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
-	}
-
-	protected Page<Phone> invokeGetGenericParentPhonesPage(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<PhoneImpl>>() {});
-	}
-
-	protected Http.Response invokeGetGenericParentPhonesPageResponse(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Phone invokeGetPhone(
-				Long phoneId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/phones/{phone-id}", phoneId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), PhoneImpl.class);
-	}
-
-	protected Http.Response invokeGetPhoneResponse(
-				Long phoneId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/phones/{phone-id}", phoneId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-
-	protected void assertEquals(Phone phone1, Phone phone2) {
-		Assert.assertTrue(phone1 + " does not equal " + phone2, equals(phone1, phone2));
+		Assert.assertTrue(true);
 	}
 
 	protected void assertEquals(List<Phone> phones1, List<Phone> phones2) {
@@ -136,10 +82,17 @@ public abstract class BasePhoneResourceTestCase {
 			Phone phone2 = phones2.get(i);
 
 			assertEquals(phone1, phone2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<Phone> phones1, List<Phone> phones2) {
+	protected void assertEquals(Phone phone1, Phone phone2) {
+		Assert.assertTrue(
+			phone1 + " does not equal " + phone2, equals(phone1, phone2));
+	}
+
+	protected void assertEqualsIgnoringOrder(
+		List<Phone> phones1, List<Phone> phones2) {
+
 		Assert.assertEquals(phones1.size(), phones2.size());
 
 		for (Phone phone1 : phones1) {
@@ -150,187 +103,245 @@ public abstract class BasePhoneResourceTestCase {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				phones2 + " does not contain " + phone1, contains);
+		}
 	}
 
-			Assert.assertTrue(phones2 + " does not contain " + phone1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
 	protected boolean equals(Phone phone1, Phone phone2) {
 		if (phone1 == phone2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected Page<Phone> invokeGetGenericParentPhonesPage(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<PhoneImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetGenericParentPhonesPageResponse(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(_resourceURL + _toPath("/phones", genericParentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Phone invokeGetPhone(Long phoneId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/phones/{phone-id}", phoneId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), PhoneImpl.class);
+	}
+
+	protected Http.Response invokeGetPhoneResponse(Long phoneId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/phones/{phone-id}", phoneId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected Phone randomPhone() {
 		return new PhoneImpl() {
 			{
-
-						extension = RandomTestUtil.randomString();
-						id = RandomTestUtil.randomLong();
-						phoneNumber = RandomTestUtil.randomString();
-						phoneType = RandomTestUtil.randomString();
-	}
+				extension = RandomTestUtil.randomString();
+				id = RandomTestUtil.randomLong();
+				phoneNumber = RandomTestUtil.randomString();
+				phoneType = RandomTestUtil.randomString();
+			}
 		};
 	}
 
 	protected Group testGroup;
 
+	protected static class Page<T> {
+
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
+
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
+
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
+
+		public int getPageNumber() {
+			return pageNumber;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
+		}
+
+		@JsonProperty
+		protected Collection<T> items;
+
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
+
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty("page")
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
+
+	}
+
 	protected static class PhoneImpl implements Phone {
 
-	public String getExtension() {
-				return extension;
-	}
+		public String getExtension() {
+			return extension;
+		}
 
-	public void setExtension(String extension) {
-				this.extension = extension;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	@JsonIgnore
-	public void setExtension(
-				UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
+		public String getPhoneNumber() {
+			return phoneNumber;
+		}
 
-				try {
-					extension = extensionUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public String getPhoneType() {
+			return phoneType;
+		}
 
-	@JsonProperty
-	protected String extension;
-	public Long getId() {
-				return id;
-	}
+		public void setExtension(String extension) {
+			this.extension = extension;
+		}
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+		@JsonIgnore
+		public void setExtension(
+			UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				extension = extensionUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	@JsonProperty
-	protected Long id;
-	public String getPhoneNumber() {
-				return phoneNumber;
-	}
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setPhoneNumber(String phoneNumber) {
-				this.phoneNumber = phoneNumber;
-	}
+		public void setPhoneNumber(String phoneNumber) {
+			this.phoneNumber = phoneNumber;
+		}
 
-	@JsonIgnore
-	public void setPhoneNumber(
-				UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+		@JsonIgnore
+		public void setPhoneNumber(
+			UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
 
-				try {
-					phoneNumber = phoneNumberUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				phoneNumber = phoneNumberUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String phoneNumber;
-	public String getPhoneType() {
-				return phoneType;
-	}
+		public void setPhoneType(String phoneType) {
+			this.phoneType = phoneType;
+		}
 
-	public void setPhoneType(String phoneType) {
-				this.phoneType = phoneType;
-	}
+		@JsonIgnore
+		public void setPhoneType(
+			UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setPhoneType(
-				UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+			try {
+				phoneType = phoneTypeUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					phoneType = phoneTypeUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
-
-	@JsonProperty
-	protected String phoneType;
-
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		public String toString() {
+			StringBundler sb = new StringBundler(10);
 
 			sb.append("{");
 
-					sb.append("extension=");
+			sb.append("extension=");
 
-				sb.append(extension);
-					sb.append(", id=");
+			sb.append(extension);
+			sb.append(", id=");
 
-				sb.append(id);
-					sb.append(", phoneNumber=");
+			sb.append(id);
+			sb.append(", phoneNumber=");
 
-				sb.append(phoneNumber);
-					sb.append(", phoneType=");
+			sb.append(phoneNumber);
+			sb.append(", phoneType=");
 
-				sb.append(phoneType);
+			sb.append(phoneType);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
 
-	}
+		@JsonProperty
+		protected String extension;
 
-	protected static class Page<T> {
+		@JsonProperty
+		protected Long id;
 
-	public Collection<T> getItems() {
-			return new ArrayList<>(items);
-	}
+		@JsonProperty
+		protected String phoneNumber;
 
-	public int getItemsPerPage() {
-			return itemsPerPage;
-	}
-
-	public int getLastPageNumber() {
-			return lastPageNumber;
-	}
-
-	public int getPageNumber() {
-			return pageNumber;
-	}
-
-	public int getTotalCount() {
-			return totalCount;
-	}
-
-	@JsonProperty
-	protected Collection<T> items;
-
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
-
-	@JsonProperty
-	protected int lastPageNumber;
-
-	@JsonProperty("page")
-	protected int pageNumber;
-
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected String phoneType;
 
 	}
 
@@ -341,9 +352,11 @@ public abstract class BasePhoneResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -354,12 +367,12 @@ public abstract class BasePhoneResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

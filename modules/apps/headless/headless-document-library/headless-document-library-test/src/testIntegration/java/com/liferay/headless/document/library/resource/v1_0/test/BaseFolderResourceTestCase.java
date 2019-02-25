@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -68,257 +68,48 @@ public abstract class BaseFolderResourceTestCase {
 	}
 
 	@Test
-	public void testGetContentSpaceFoldersPage() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
-	public void testPostContentSpaceFolder() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
 	public void testDeleteFolder() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
+	@Test
+	public void testGetContentSpaceFoldersPage() throws Exception {
+		Assert.assertTrue(true);
+	}
+
 	@Test
 	public void testGetFolder() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
-	@Test
-	public void testPatchFolder() throws Exception {
-			Assert.assertTrue(true);
-	}
-	@Test
-	public void testPutFolder() throws Exception {
-			Assert.assertTrue(true);
-	}
+
 	@Test
 	public void testGetFolderFoldersPage() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
+	@Test
+	public void testPatchFolder() throws Exception {
+		Assert.assertTrue(true);
+	}
+
+	@Test
+	public void testPostContentSpaceFolder() throws Exception {
+		Assert.assertTrue(true);
+	}
+
 	@Test
 	public void testPostFolderFolder() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
-	}
-
-	protected Page<Folder> invokeGetContentSpaceFoldersPage(
-				Long contentSpaceId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FolderImpl>>() {});
-	}
-
-	protected Http.Response invokeGetContentSpaceFoldersPageResponse(
-				Long contentSpaceId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Folder invokePostContentSpaceFolder(
-				Long contentSpaceId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
-	}
-
-	protected Http.Response invokePostContentSpaceFolderResponse(
-				Long contentSpaceId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/content-spaces/{content-space-id}/folders", contentSpaceId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected boolean invokeDeleteFolder(
-				Long folderId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setDelete(true);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
-	}
-
-	protected Http.Response invokeDeleteFolderResponse(
-				Long folderId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setDelete(true);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Folder invokeGetFolder(
-				Long folderId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
-	}
-
-	protected Http.Response invokeGetFolderResponse(
-				Long folderId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Folder invokePatchFolder(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
-	}
-
-	protected Http.Response invokePatchFolderResponse(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Folder invokePutFolder(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-				options.setPut(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
-	}
-
-	protected Http.Response invokePutFolderResponse(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}", folderId));
-
-				options.setPut(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Page<Folder> invokeGetFolderFoldersPage(
-				Long folderId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<FolderImpl>>() {});
-	}
-
-	protected Http.Response invokeGetFolderFoldersPageResponse(
-				Long folderId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Folder invokePostFolderFolder(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), FolderImpl.class);
-	}
-
-	protected Http.Response invokePostFolderFolderResponse(
-				Long folderId,Folder folder)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(folder), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
+	@Test
+	public void testPutFolder() throws Exception {
+		Assert.assertTrue(true);
 	}
 
 	protected void assertEquals(Folder folder1, Folder folder2) {
-		Assert.assertTrue(folder1 + " does not equal " + folder2, equals(folder1, folder2));
+		Assert.assertTrue(
+			folder1 + " does not equal " + folder2, equals(folder1, folder2));
 	}
 
 	protected void assertEquals(List<Folder> folders1, List<Folder> folders2) {
@@ -329,10 +120,12 @@ public abstract class BaseFolderResourceTestCase {
 			Folder folder2 = folders2.get(i);
 
 			assertEquals(folder1, folder2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<Folder> folders1, List<Folder> folders2) {
+	protected void assertEqualsIgnoringOrder(
+		List<Folder> folders1, List<Folder> folders2) {
+
 		Assert.assertEquals(folders1.size(), folders2.size());
 
 		for (Folder folder1 : folders1) {
@@ -343,34 +136,302 @@ public abstract class BaseFolderResourceTestCase {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				folders2 + " does not contain " + folder1, contains);
+		}
 	}
 
-			Assert.assertTrue(folders2 + " does not contain " + folder1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
 	protected boolean equals(Folder folder1, Folder folder2) {
 		if (folder1 == folder2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected boolean invokeDeleteFolder(Long folderId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), Boolean.class);
+	}
+
+	protected Http.Response invokeDeleteFolderResponse(Long folderId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setDelete(true);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Page<Folder> invokeGetContentSpaceFoldersPage(
+			Long contentSpaceId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/folders",
+					contentSpaceId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<FolderImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetContentSpaceFoldersPageResponse(
+			Long contentSpaceId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/folders",
+					contentSpaceId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Folder invokeGetFolder(Long folderId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Page<Folder> invokeGetFolderFoldersPage(
+			Long folderId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<FolderImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetFolderFoldersPageResponse(
+			Long folderId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Http.Response invokeGetFolderResponse(Long folderId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Folder invokePatchFolder(Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokePatchFolderResponse(
+			Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Folder invokePostContentSpaceFolder(
+			Long contentSpaceId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/folders",
+					contentSpaceId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokePostContentSpaceFolderResponse(
+			Long contentSpaceId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/folders",
+					contentSpaceId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Folder invokePostFolderFolder(Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokePostFolderFolderResponse(
+			Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}/folders", folderId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Folder invokePutFolder(Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		options.setPut(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), FolderImpl.class);
+	}
+
+	protected Http.Response invokePutFolderResponse(
+			Long folderId, Folder folder)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(folder),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL + _toPath("/folders/{folder-id}", folderId));
+
+		options.setPut(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected Folder randomFolder() {
 		return new FolderImpl() {
 			{
-
-						dateCreated = RandomTestUtil.nextDate();
-						dateModified = RandomTestUtil.nextDate();
-						description = RandomTestUtil.randomString();
-						hasDocuments = RandomTestUtil.randomBoolean();
-						hasFolders = RandomTestUtil.randomBoolean();
-						id = RandomTestUtil.randomLong();
-						name = RandomTestUtil.randomString();
-						repositoryId = RandomTestUtil.randomLong();
-	}
+				dateCreated = RandomTestUtil.nextDate();
+				dateModified = RandomTestUtil.nextDate();
+				description = RandomTestUtil.randomString();
+				hasDocuments = RandomTestUtil.randomBoolean();
+				hasFolders = RandomTestUtil.randomBoolean();
+				id = RandomTestUtil.randomLong();
+				name = RandomTestUtil.randomString();
+				repositoryId = RandomTestUtil.randomLong();
+			}
 		};
 	}
 
@@ -378,256 +439,261 @@ public abstract class BaseFolderResourceTestCase {
 
 	protected static class FolderImpl implements Folder {
 
-	public Date getDateCreated() {
-				return dateCreated;
-	}
+		public Date getDateCreated() {
+			return dateCreated;
+		}
 
-	public void setDateCreated(Date dateCreated) {
-				this.dateCreated = dateCreated;
-	}
+		public Date getDateModified() {
+			return dateModified;
+		}
 
-	@JsonIgnore
-	public void setDateCreated(
-				UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		public String getDescription() {
+			return description;
+		}
 
-				try {
-					dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public Boolean getHasDocuments() {
+			return hasDocuments;
+		}
 
-	@JsonProperty
-	protected Date dateCreated;
-	public Date getDateModified() {
-				return dateModified;
-	}
+		public Boolean getHasFolders() {
+			return hasFolders;
+		}
 
-	public void setDateModified(Date dateModified) {
-				this.dateModified = dateModified;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	@JsonIgnore
-	public void setDateModified(
-				UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		public String getName() {
+			return name;
+		}
 
-				try {
-					dateModified = dateModifiedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public Long getRepositoryId() {
+			return repositoryId;
+		}
 
-	@JsonProperty
-	protected Date dateModified;
-	public String getDescription() {
-				return description;
-	}
+		public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+		}
 
-	public void setDescription(String description) {
-				this.description = description;
-	}
+		@JsonIgnore
+		public void setDateCreated(
+			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setDescription(
-				UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+			try {
+				dateCreated = dateCreatedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					description = descriptionUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setDateModified(Date dateModified) {
+			this.dateModified = dateModified;
+		}
 
-	@JsonProperty
-	protected String description;
-	public Boolean getHasDocuments() {
-				return hasDocuments;
-	}
+		@JsonIgnore
+		public void setDateModified(
+			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setHasDocuments(Boolean hasDocuments) {
-				this.hasDocuments = hasDocuments;
-	}
+			try {
+				dateModified = dateModifiedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setHasDocuments(
-				UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier) {
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-				try {
-					hasDocuments = hasDocumentsUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setDescription(
+			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	@JsonProperty
-	protected Boolean hasDocuments;
-	public Boolean getHasFolders() {
-				return hasFolders;
-	}
+			try {
+				description = descriptionUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setHasFolders(Boolean hasFolders) {
-				this.hasFolders = hasFolders;
-	}
+		public void setHasDocuments(Boolean hasDocuments) {
+			this.hasDocuments = hasDocuments;
+		}
 
-	@JsonIgnore
-	public void setHasFolders(
-				UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier) {
+		@JsonIgnore
+		public void setHasDocuments(
+			UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier) {
 
-				try {
-					hasFolders = hasFoldersUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				hasDocuments = hasDocumentsUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected Boolean hasFolders;
-	public Long getId() {
-				return id;
-	}
+		public void setHasFolders(Boolean hasFolders) {
+			this.hasFolders = hasFolders;
+		}
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+		@JsonIgnore
+		public void setHasFolders(
+			UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				hasFolders = hasFoldersUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	@JsonProperty
-	protected Long id;
-	public String getName() {
-				return name;
-	}
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setName(String name) {
-				this.name = name;
-	}
+		public void setName(String name) {
+			this.name = name;
+		}
 
-	@JsonIgnore
-	public void setName(
-				UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		@JsonIgnore
+		public void setName(
+			UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
 
-				try {
-					name = nameUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				name = nameUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String name;
-	public Long getRepositoryId() {
-				return repositoryId;
-	}
+		public void setRepositoryId(Long repositoryId) {
+			this.repositoryId = repositoryId;
+		}
 
-	public void setRepositoryId(Long repositoryId) {
-				this.repositoryId = repositoryId;
-	}
+		@JsonIgnore
+		public void setRepositoryId(
+			UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setRepositoryId(
-				UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+			try {
+				repositoryId = repositoryIdUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					repositoryId = repositoryIdUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
-
-	@JsonProperty
-	protected Long repositoryId;
-
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		public String toString() {
+			StringBundler sb = new StringBundler(18);
 
 			sb.append("{");
 
-					sb.append("dateCreated=");
+			sb.append("dateCreated=");
 
-				sb.append(dateCreated);
-					sb.append(", dateModified=");
+			sb.append(dateCreated);
+			sb.append(", dateModified=");
 
-				sb.append(dateModified);
-					sb.append(", description=");
+			sb.append(dateModified);
+			sb.append(", description=");
 
-				sb.append(description);
-					sb.append(", hasDocuments=");
+			sb.append(description);
+			sb.append(", hasDocuments=");
 
-				sb.append(hasDocuments);
-					sb.append(", hasFolders=");
+			sb.append(hasDocuments);
+			sb.append(", hasFolders=");
 
-				sb.append(hasFolders);
-					sb.append(", id=");
+			sb.append(hasFolders);
+			sb.append(", id=");
 
-				sb.append(id);
-					sb.append(", name=");
+			sb.append(id);
+			sb.append(", name=");
 
-				sb.append(name);
-					sb.append(", repositoryId=");
+			sb.append(name);
+			sb.append(", repositoryId=");
 
-				sb.append(repositoryId);
+			sb.append(repositoryId);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
+
+		@JsonProperty
+		protected Date dateCreated;
+
+		@JsonProperty
+		protected Date dateModified;
+
+		@JsonProperty
+		protected String description;
+
+		@JsonProperty
+		protected Boolean hasDocuments;
+
+		@JsonProperty
+		protected Boolean hasFolders;
+
+		@JsonProperty
+		protected Long id;
+
+		@JsonProperty
+		protected String name;
+
+		@JsonProperty
+		protected Long repositoryId;
 
 	}
 
 	protected static class Page<T> {
 
-	public Collection<T> getItems() {
+		public Collection<T> getItems() {
 			return new ArrayList<>(items);
-	}
+		}
 
-	public int getItemsPerPage() {
+		public int getItemsPerPage() {
 			return itemsPerPage;
-	}
+		}
 
-	public int getLastPageNumber() {
+		public int getLastPageNumber() {
 			return lastPageNumber;
-	}
+		}
 
-	public int getPageNumber() {
+		public int getPageNumber() {
 			return pageNumber;
-	}
+		}
 
-	public int getTotalCount() {
+		public int getTotalCount() {
 			return totalCount;
-	}
+		}
 
-	@JsonProperty
-	protected Collection<T> items;
+		@JsonProperty
+		protected Collection<T> items;
 
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
 
-	@JsonProperty
-	protected int lastPageNumber;
+		@JsonProperty
+		protected int lastPageNumber;
 
-	@JsonProperty("page")
-	protected int pageNumber;
+		@JsonProperty("page")
+		protected int pageNumber;
 
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected int totalCount;
 
 	}
 
@@ -638,9 +704,11 @@ public abstract class BaseFolderResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -651,12 +719,12 @@ public abstract class BaseFolderResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

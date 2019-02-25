@@ -48,203 +48,213 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Comment getComment(
-	@GraphQLName("comment-id") Long commentId)
-			throws Exception {
+	public Comment getComment(@GraphQLName("comment-id") Long commentId)
+		throws Exception {
 
-				CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _getCommentResource();
 
-				commentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				return commentResource.getComment(
-					commentId);
+		return commentResource.getComment(commentId);
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Comment> getCommentCommentsPage(
-	@GraphQLName("comment-id") Long commentId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
-			throws Exception {
+			@GraphQLName("comment-id") Long commentId,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
+		throws Exception {
 
-				CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _getCommentResource();
 
-				commentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = commentResource.getCommentCommentsPage(
-					commentId,filter,Pagination.of(pageSize, page),sorts);
+		Page paginationPage = commentResource.getCommentCommentsPage(
+			commentId, filter, Pagination.of(pageSize, page), sorts);
 
-				return paginationPage.getItems();
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<Comment> getDocumentCommentsPage(
-	@GraphQLName("document-id") Long documentId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
-			throws Exception {
-
-				CommentResource commentResource = _getCommentResource();
-
-				commentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
-				Page paginationPage = commentResource.getDocumentCommentsPage(
-					documentId,filter,Pagination.of(pageSize, page),sorts);
-
-				return paginationPage.getItems();
+		return paginationPage.getItems();
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Document> getContentSpaceDocumentsPage(
-	@GraphQLName("content-space-id") Long contentSpaceId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
-			throws Exception {
+			@GraphQLName("content-space-id") Long contentSpaceId,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
+		throws Exception {
 
-				DocumentResource documentResource = _getDocumentResource();
+		DocumentResource documentResource = _getDocumentResource();
 
-				documentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		documentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = documentResource.getContentSpaceDocumentsPage(
-					contentSpaceId,filter,Pagination.of(pageSize, page),sorts);
+		Page paginationPage = documentResource.getContentSpaceDocumentsPage(
+			contentSpaceId, filter, Pagination.of(pageSize, page), sorts);
 
-				return paginationPage.getItems();
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Document getDocument(
-	@GraphQLName("document-id") Long documentId)
-			throws Exception {
-
-				DocumentResource documentResource = _getDocumentResource();
-
-				documentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
-				return documentResource.getDocument(
-					documentId);
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<Document> getFolderDocumentsPage(
-	@GraphQLName("folder-id") Long folderId,@GraphQLName("filter") Filter filter,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page,@GraphQLName("Sort[]") Sort[] sorts)
-			throws Exception {
-
-				DocumentResource documentResource = _getDocumentResource();
-
-				documentResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
-				Page paginationPage = documentResource.getFolderDocumentsPage(
-					folderId,filter,Pagination.of(pageSize, page),sorts);
-
-				return paginationPage.getItems();
+		return paginationPage.getItems();
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Folder> getContentSpaceFoldersPage(
-	@GraphQLName("content-space-id") Long contentSpaceId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
-			throws Exception {
+			@GraphQLName("content-space-id") Long contentSpaceId,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
+		throws Exception {
 
-				FolderResource folderResource = _getFolderResource();
+		FolderResource folderResource = _getFolderResource();
 
-				folderResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		folderResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = folderResource.getContentSpaceFoldersPage(
-					contentSpaceId,Pagination.of(pageSize, page));
+		Page paginationPage = folderResource.getContentSpaceFoldersPage(
+			contentSpaceId, Pagination.of(pageSize, page));
 
-				return paginationPage.getItems();
+		return paginationPage.getItems();
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Folder getFolder(
-	@GraphQLName("folder-id") Long folderId)
-			throws Exception {
+	public Document getDocument(@GraphQLName("document-id") Long documentId)
+		throws Exception {
 
-				FolderResource folderResource = _getFolderResource();
+		DocumentResource documentResource = _getDocumentResource();
 
-				folderResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		documentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				return folderResource.getFolder(
-					folderId);
+		return documentResource.getDocument(documentId);
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Comment> getDocumentCommentsPage(
+			@GraphQLName("document-id") Long documentId,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
+		throws Exception {
+
+		CommentResource commentResource = _getCommentResource();
+
+		commentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		Page paginationPage = commentResource.getDocumentCommentsPage(
+			documentId, filter, Pagination.of(pageSize, page), sorts);
+
+		return paginationPage.getItems();
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Folder getFolder(@GraphQLName("folder-id") Long folderId)
+		throws Exception {
+
+		FolderResource folderResource = _getFolderResource();
+
+		folderResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		return folderResource.getFolder(folderId);
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<Document> getFolderDocumentsPage(
+			@GraphQLName("folder-id") Long folderId,
+			@GraphQLName("filter") Filter filter,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
+		throws Exception {
+
+		DocumentResource documentResource = _getDocumentResource();
+
+		documentResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		Page paginationPage = documentResource.getFolderDocumentsPage(
+			folderId, filter, Pagination.of(pageSize, page), sorts);
+
+		return paginationPage.getItems();
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Collection<Folder> getFolderFoldersPage(
-	@GraphQLName("folder-id") Long folderId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
-			throws Exception {
+			@GraphQLName("folder-id") Long folderId,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
+		throws Exception {
 
-				FolderResource folderResource = _getFolderResource();
+		FolderResource folderResource = _getFolderResource();
 
-				folderResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		folderResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = folderResource.getFolderFoldersPage(
-					folderId,Pagination.of(pageSize, page));
+		Page paginationPage = folderResource.getFolderFoldersPage(
+			folderId, Pagination.of(pageSize, page));
 
-				return paginationPage.getItems();
+		return paginationPage.getItems();
 	}
 
 	private static CommentResource _getCommentResource() {
-			return _commentResourceServiceTracker.getService();
+		return _commentResourceServiceTracker.getService();
+	}
+
+	private static DocumentResource _getDocumentResource() {
+		return _documentResourceServiceTracker.getService();
+	}
+
+	private static FolderResource _getFolderResource() {
+		return _folderResourceServiceTracker.getService();
 	}
 
 	private static final ServiceTracker<CommentResource, CommentResource>
-			_commentResourceServiceTracker;
-	private static DocumentResource _getDocumentResource() {
-			return _documentResourceServiceTracker.getService();
-	}
-
+		_commentResourceServiceTracker;
 	private static final ServiceTracker<DocumentResource, DocumentResource>
-			_documentResourceServiceTracker;
-	private static FolderResource _getFolderResource() {
-			return _folderResourceServiceTracker.getService();
-	}
-
+		_documentResourceServiceTracker;
 	private static final ServiceTracker<FolderResource, FolderResource>
-			_folderResourceServiceTracker;
+		_folderResourceServiceTracker;
 
-		static {
-			Bundle bundle = FrameworkUtil.getBundle(Query.class);
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
 
-				ServiceTracker<CommentResource, CommentResource>
-					commentResourceServiceTracker =
-						new ServiceTracker<>(
-							bundle.getBundleContext(),
-							CommentResource.class, null);
+		ServiceTracker<CommentResource, CommentResource>
+			commentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), CommentResource.class, null);
 
-				commentResourceServiceTracker.open();
+		commentResourceServiceTracker.open();
 
-				_commentResourceServiceTracker =
-					commentResourceServiceTracker;
-				ServiceTracker<DocumentResource, DocumentResource>
-					documentResourceServiceTracker =
-						new ServiceTracker<>(
-							bundle.getBundleContext(),
-							DocumentResource.class, null);
+		_commentResourceServiceTracker = commentResourceServiceTracker;
+		ServiceTracker<DocumentResource, DocumentResource>
+			documentResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), DocumentResource.class, null);
 
-				documentResourceServiceTracker.open();
+		documentResourceServiceTracker.open();
 
-				_documentResourceServiceTracker =
-					documentResourceServiceTracker;
-				ServiceTracker<FolderResource, FolderResource>
-					folderResourceServiceTracker =
-						new ServiceTracker<>(
-							bundle.getBundleContext(),
-							FolderResource.class, null);
+		_documentResourceServiceTracker = documentResourceServiceTracker;
+		ServiceTracker<FolderResource, FolderResource>
+			folderResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), FolderResource.class, null);
 
-				folderResourceServiceTracker.open();
+		folderResourceServiceTracker.open();
 
-				_folderResourceServiceTracker =
-					folderResourceServiceTracker;
+		_folderResourceServiceTracker = folderResourceServiceTracker;
 	}
 
 }

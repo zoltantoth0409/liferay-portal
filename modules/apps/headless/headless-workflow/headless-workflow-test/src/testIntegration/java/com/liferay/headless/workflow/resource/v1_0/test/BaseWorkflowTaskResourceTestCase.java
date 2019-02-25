@@ -25,6 +25,7 @@ import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
 import com.liferay.petra.function.UnsafeSupplier;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -71,236 +71,42 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 	@Test
 	public void testGetRoleWorkflowTasksPage() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
-	@Test
-	public void testGetWorkflowTasksPage() throws Exception {
-			Assert.assertTrue(true);
-	}
+
 	@Test
 	public void testGetWorkflowTask() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
+	@Test
+	public void testGetWorkflowTasksPage() throws Exception {
+		Assert.assertTrue(true);
+	}
+
 	@Test
 	public void testPostWorkflowTaskAssignToMe() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testPostWorkflowTaskAssignToUser() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testPostWorkflowTaskChangeTransition() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testPostWorkflowTaskUpdateDueDate() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
-	}
+	protected void assertEquals(
+		List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
 
-	protected Page<WorkflowTask> invokeGetRoleWorkflowTasksPage(
-				Long roleId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<WorkflowTaskImpl>>() {});
-	}
-
-	protected Http.Response invokeGetRoleWorkflowTasksPageResponse(
-				Long roleId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected Page<WorkflowTask> invokeGetWorkflowTasksPage(
-				Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks", pagination));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<WorkflowTaskImpl>>() {});
-	}
-
-	protected Http.Response invokeGetWorkflowTasksPageResponse(
-				Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks", pagination));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WorkflowTask invokeGetWorkflowTask(
-				Long workflowTaskId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
-	}
-
-	protected Http.Response invokeGetWorkflowTaskResponse(
-				Long workflowTaskId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WorkflowTask invokePostWorkflowTaskAssignToMe(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-me", workflowTaskId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
-	}
-
-	protected Http.Response invokePostWorkflowTaskAssignToMeResponse(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-me", workflowTaskId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WorkflowTask invokePostWorkflowTaskAssignToUser(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-user", workflowTaskId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
-	}
-
-	protected Http.Response invokePostWorkflowTaskAssignToUserResponse(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/assign-to-user", workflowTaskId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WorkflowTask invokePostWorkflowTaskChangeTransition(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/change-transition", workflowTaskId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
-	}
-
-	protected Http.Response invokePostWorkflowTaskChangeTransitionResponse(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/change-transition", workflowTaskId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WorkflowTask invokePostWorkflowTaskUpdateDueDate(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/update-due-date", workflowTaskId));
-
-				options.setPost(true);
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
-	}
-
-	protected Http.Response invokePostWorkflowTaskUpdateDueDateResponse(
-				Long workflowTaskId,WorkflowTask workflowTask)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-				options.setBody(_inputObjectMapper.writeValueAsString(workflowTask), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
-
-			options.setLocation(_resourceURL + _toPath("/workflow-tasks/{workflow-task-id}/update-due-date", workflowTaskId));
-
-				options.setPost(true);
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-
-	protected void assertEquals(WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
-		Assert.assertTrue(workflowTask1 + " does not equal " + workflowTask2, equals(workflowTask1, workflowTask2));
-	}
-
-	protected void assertEquals(List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
 		Assert.assertEquals(workflowTasks1.size(), workflowTasks2.size());
 
 		for (int i = 0; i < workflowTasks1.size(); i++) {
@@ -308,10 +114,20 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			WorkflowTask workflowTask2 = workflowTasks2.get(i);
 
 			assertEquals(workflowTask1, workflowTask2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
+	protected void assertEquals(
+		WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
+
+		Assert.assertTrue(
+			workflowTask1 + " does not equal " + workflowTask2,
+			equals(workflowTask1, workflowTask2));
+	}
+
+	protected void assertEqualsIgnoringOrder(
+		List<WorkflowTask> workflowTasks1, List<WorkflowTask> workflowTasks2) {
+
 		Assert.assertEquals(workflowTasks1.size(), workflowTasks2.size());
 
 		for (WorkflowTask workflowTask1 : workflowTasks1) {
@@ -322,391 +138,676 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				workflowTasks2 + " does not contain " + workflowTask1,
+				contains);
+		}
 	}
 
-			Assert.assertTrue(workflowTasks2 + " does not contain " + workflowTask1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
-	protected boolean equals(WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
+	protected boolean equals(
+		WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
+
 		if (workflowTask1 == workflowTask2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected Page<WorkflowTask> invokeGetRoleWorkflowTasksPage(
+			Long roleId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<WorkflowTaskImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetRoleWorkflowTasksPageResponse(
+			Long roleId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/roles/{role-id}/workflow-tasks", roleId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WorkflowTask invokeGetWorkflowTask(Long workflowTaskId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
+	}
+
+	protected Http.Response invokeGetWorkflowTaskResponse(Long workflowTaskId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL +
+				_toPath("/workflow-tasks/{workflow-task-id}", workflowTaskId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected Page<WorkflowTask> invokeGetWorkflowTasksPage(
+			Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/workflow-tasks", pagination));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<WorkflowTaskImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetWorkflowTasksPageResponse(
+			Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/workflow-tasks", pagination));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WorkflowTask invokePostWorkflowTaskAssignToMe(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/assign-to-me",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
+	}
+
+	protected Http.Response invokePostWorkflowTaskAssignToMeResponse(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/assign-to-me",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WorkflowTask invokePostWorkflowTaskAssignToUser(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/assign-to-user",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
+	}
+
+	protected Http.Response invokePostWorkflowTaskAssignToUserResponse(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/assign-to-user",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WorkflowTask invokePostWorkflowTaskChangeTransition(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/change-transition",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
+	}
+
+	protected Http.Response invokePostWorkflowTaskChangeTransitionResponse(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/change-transition",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WorkflowTask invokePostWorkflowTaskUpdateDueDate(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/update-due-date",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WorkflowTaskImpl.class);
+	}
+
+	protected Http.Response invokePostWorkflowTaskUpdateDueDateResponse(
+			Long workflowTaskId, WorkflowTask workflowTask)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setBody(
+			_inputObjectMapper.writeValueAsString(workflowTask),
+			ContentTypes.APPLICATION_JSON, StringPool.UTF8);
+
+		options.setLocation(
+			_resourceURL +
+				_toPath(
+					"/workflow-tasks/{workflow-task-id}/update-due-date",
+					workflowTaskId));
+
+		options.setPost(true);
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected WorkflowTask randomWorkflowTask() {
 		return new WorkflowTaskImpl() {
 			{
-
-						completed = RandomTestUtil.randomBoolean();
-						dateCompleted = RandomTestUtil.nextDate();
-						dateCreated = RandomTestUtil.nextDate();
-						definitionName = RandomTestUtil.randomString();
-						description = RandomTestUtil.randomString();
-						dueDate = RandomTestUtil.nextDate();
-						id = RandomTestUtil.randomLong();
-						name = RandomTestUtil.randomString();
-	}
+				completed = RandomTestUtil.randomBoolean();
+				dateCompleted = RandomTestUtil.nextDate();
+				dateCreated = RandomTestUtil.nextDate();
+				definitionName = RandomTestUtil.randomString();
+				description = RandomTestUtil.randomString();
+				dueDate = RandomTestUtil.nextDate();
+				id = RandomTestUtil.randomLong();
+				name = RandomTestUtil.randomString();
+			}
 		};
 	}
 
 	protected Group testGroup;
 
+	protected static class Page<T> {
+
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
+
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
+
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
+
+		public int getPageNumber() {
+			return pageNumber;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
+		}
+
+		@JsonProperty
+		protected Collection<T> items;
+
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
+
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty("page")
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
+
+	}
+
 	protected static class WorkflowTaskImpl implements WorkflowTask {
 
-	public Boolean getCompleted() {
-				return completed;
-	}
+		public Boolean getCompleted() {
+			return completed;
+		}
 
-	public void setCompleted(Boolean completed) {
-				this.completed = completed;
-	}
+		public Date getDateCompleted() {
+			return dateCompleted;
+		}
 
-	@JsonIgnore
-	public void setCompleted(
-				UnsafeSupplier<Boolean, Throwable> completedUnsafeSupplier) {
+		public Date getDateCreated() {
+			return dateCreated;
+		}
 
-				try {
-					completed = completedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public String getDefinitionName() {
+			return definitionName;
+		}
 
-	@JsonProperty
-	protected Boolean completed;
-	public Date getDateCompleted() {
-				return dateCompleted;
-	}
+		public String getDescription() {
+			return description;
+		}
 
-	public void setDateCompleted(Date dateCompleted) {
-				this.dateCompleted = dateCompleted;
-	}
+		public Date getDueDate() {
+			return dueDate;
+		}
 
-	@JsonIgnore
-	public void setDateCompleted(
-				UnsafeSupplier<Date, Throwable> dateCompletedUnsafeSupplier) {
+		public Long getId() {
+			return id;
+		}
 
-				try {
-					dateCompleted = dateCompletedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public WorkflowLog[] getLogs() {
+			return logs;
+		}
 
-	@JsonProperty
-	protected Date dateCompleted;
-	public Date getDateCreated() {
-				return dateCreated;
-	}
+		public Long[] getLogsIds() {
+			return logsIds;
+		}
 
-	public void setDateCreated(Date dateCreated) {
-				this.dateCreated = dateCreated;
-	}
+		public String getName() {
+			return name;
+		}
 
-	@JsonIgnore
-	public void setDateCreated(
-				UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		public ObjectReviewed getObjectReviewed() {
+			return objectReviewed;
+		}
 
-				try {
-					dateCreated = dateCreatedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public String[] getTransitions() {
+			return transitions;
+		}
 
-	@JsonProperty
-	protected Date dateCreated;
-	public String getDefinitionName() {
-				return definitionName;
-	}
+		public void setCompleted(Boolean completed) {
+			this.completed = completed;
+		}
 
-	public void setDefinitionName(String definitionName) {
-				this.definitionName = definitionName;
-	}
+		@JsonIgnore
+		public void setCompleted(
+			UnsafeSupplier<Boolean, Throwable> completedUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setDefinitionName(
-				UnsafeSupplier<String, Throwable> definitionNameUnsafeSupplier) {
+			try {
+				completed = completedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					definitionName = definitionNameUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setDateCompleted(Date dateCompleted) {
+			this.dateCompleted = dateCompleted;
+		}
 
-	@JsonProperty
-	protected String definitionName;
-	public String getDescription() {
-				return description;
-	}
+		@JsonIgnore
+		public void setDateCompleted(
+			UnsafeSupplier<Date, Throwable> dateCompletedUnsafeSupplier) {
 
-	public void setDescription(String description) {
-				this.description = description;
-	}
+			try {
+				dateCompleted = dateCompletedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setDescription(
-				UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		public void setDateCreated(Date dateCreated) {
+			this.dateCreated = dateCreated;
+		}
 
-				try {
-					description = descriptionUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setDateCreated(
+			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	@JsonProperty
-	protected String description;
-	public Date getDueDate() {
-				return dueDate;
-	}
+			try {
+				dateCreated = dateCreatedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setDueDate(Date dueDate) {
-				this.dueDate = dueDate;
-	}
+		public void setDefinitionName(String definitionName) {
+			this.definitionName = definitionName;
+		}
 
-	@JsonIgnore
-	public void setDueDate(
-				UnsafeSupplier<Date, Throwable> dueDateUnsafeSupplier) {
+		@JsonIgnore
+		public void setDefinitionName(
+			UnsafeSupplier<String, Throwable> definitionNameUnsafeSupplier) {
 
-				try {
-					dueDate = dueDateUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				definitionName = definitionNameUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected Date dueDate;
-	public Long getId() {
-				return id;
-	}
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+		@JsonIgnore
+		public void setDescription(
+			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				description = descriptionUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setDueDate(Date dueDate) {
+			this.dueDate = dueDate;
+		}
 
-	@JsonProperty
-	protected Long id;
-	public WorkflowLog[] getLogs() {
-				return logs;
-	}
+		@JsonIgnore
+		public void setDueDate(
+			UnsafeSupplier<Date, Throwable> dueDateUnsafeSupplier) {
 
-	public void setLogs(WorkflowLog[] logs) {
-				this.logs = logs;
-	}
+			try {
+				dueDate = dueDateUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setLogs(
-				UnsafeSupplier<WorkflowLog[], Throwable> logsUnsafeSupplier) {
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-				try {
-					logs = logsUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected WorkflowLog[] logs;
-	public Long[] getLogsIds() {
-				return logsIds;
-	}
+		@JsonIgnore
+		public void setLogs(
+			UnsafeSupplier<WorkflowLog[], Throwable> logsUnsafeSupplier) {
 
-	public void setLogsIds(Long[] logsIds) {
-				this.logsIds = logsIds;
-	}
+			try {
+				logs = logsUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setLogsIds(
-				UnsafeSupplier<Long[], Throwable> logsIdsUnsafeSupplier) {
+		public void setLogs(WorkflowLog[] logs) {
+			this.logs = logs;
+		}
 
-				try {
-					logsIds = logsIdsUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setLogsIds(Long[] logsIds) {
+			this.logsIds = logsIds;
+		}
 
-	@JsonProperty
-	protected Long[] logsIds;
-	public String getName() {
-				return name;
-	}
+		@JsonIgnore
+		public void setLogsIds(
+			UnsafeSupplier<Long[], Throwable> logsIdsUnsafeSupplier) {
 
-	public void setName(String name) {
-				this.name = name;
-	}
+			try {
+				logsIds = logsIdsUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonIgnore
-	public void setName(
-				UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		public void setName(String name) {
+			this.name = name;
+		}
 
-				try {
-					name = nameUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		@JsonIgnore
+		public void setName(
+			UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
 
-	@JsonProperty
-	protected String name;
-	public ObjectReviewed getObjectReviewed() {
-				return objectReviewed;
-	}
+			try {
+				name = nameUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setObjectReviewed(ObjectReviewed objectReviewed) {
-				this.objectReviewed = objectReviewed;
-	}
+		public void setObjectReviewed(ObjectReviewed objectReviewed) {
+			this.objectReviewed = objectReviewed;
+		}
 
-	@JsonIgnore
-	public void setObjectReviewed(
-				UnsafeSupplier<ObjectReviewed, Throwable> objectReviewedUnsafeSupplier) {
+		@JsonIgnore
+		public void setObjectReviewed(
+			UnsafeSupplier<ObjectReviewed, Throwable>
+				objectReviewedUnsafeSupplier) {
 
-				try {
-					objectReviewed = objectReviewedUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				objectReviewed = objectReviewedUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected ObjectReviewed objectReviewed;
-	public String[] getTransitions() {
-				return transitions;
-	}
+		public void setTransitions(String[] transitions) {
+			this.transitions = transitions;
+		}
 
-	public void setTransitions(String[] transitions) {
-				this.transitions = transitions;
-	}
+		@JsonIgnore
+		public void setTransitions(
+			UnsafeSupplier<String[], Throwable> transitionsUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setTransitions(
-				UnsafeSupplier<String[], Throwable> transitionsUnsafeSupplier) {
+			try {
+				transitions = transitionsUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					transitions = transitionsUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
-
-	@JsonProperty
-	protected String[] transitions;
-
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		public String toString() {
+			StringBundler sb = new StringBundler(26);
 
 			sb.append("{");
 
-					sb.append("completed=");
+			sb.append("completed=");
 
-				sb.append(completed);
-					sb.append(", dateCompleted=");
+			sb.append(completed);
+			sb.append(", dateCompleted=");
 
-				sb.append(dateCompleted);
-					sb.append(", dateCreated=");
+			sb.append(dateCompleted);
+			sb.append(", dateCreated=");
 
-				sb.append(dateCreated);
-					sb.append(", definitionName=");
+			sb.append(dateCreated);
+			sb.append(", definitionName=");
 
-				sb.append(definitionName);
-					sb.append(", description=");
+			sb.append(definitionName);
+			sb.append(", description=");
 
-				sb.append(description);
-					sb.append(", dueDate=");
+			sb.append(description);
+			sb.append(", dueDate=");
 
-				sb.append(dueDate);
-					sb.append(", id=");
+			sb.append(dueDate);
+			sb.append(", id=");
 
-				sb.append(id);
-					sb.append(", logs=");
+			sb.append(id);
+			sb.append(", logs=");
 
-				sb.append(logs);
-					sb.append(", logsIds=");
+			sb.append(logs);
+			sb.append(", logsIds=");
 
-				sb.append(logsIds);
-					sb.append(", name=");
+			sb.append(logsIds);
+			sb.append(", name=");
 
-				sb.append(name);
-					sb.append(", objectReviewed=");
+			sb.append(name);
+			sb.append(", objectReviewed=");
 
-				sb.append(objectReviewed);
-					sb.append(", transitions=");
+			sb.append(objectReviewed);
+			sb.append(", transitions=");
 
-				sb.append(transitions);
+			sb.append(transitions);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
 
-	}
+		@JsonProperty
+		protected Boolean completed;
 
-	protected static class Page<T> {
+		@JsonProperty
+		protected Date dateCompleted;
 
-	public Collection<T> getItems() {
-			return new ArrayList<>(items);
-	}
+		@JsonProperty
+		protected Date dateCreated;
 
-	public int getItemsPerPage() {
-			return itemsPerPage;
-	}
+		@JsonProperty
+		protected String definitionName;
 
-	public int getLastPageNumber() {
-			return lastPageNumber;
-	}
+		@JsonProperty
+		protected String description;
 
-	public int getPageNumber() {
-			return pageNumber;
-	}
+		@JsonProperty
+		protected Date dueDate;
 
-	public int getTotalCount() {
-			return totalCount;
-	}
+		@JsonProperty
+		protected Long id;
 
-	@JsonProperty
-	protected Collection<T> items;
+		@JsonProperty
+		protected WorkflowLog[] logs;
 
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
+		@JsonProperty
+		protected Long[] logsIds;
 
-	@JsonProperty
-	protected int lastPageNumber;
+		@JsonProperty
+		protected String name;
 
-	@JsonProperty("page")
-	protected int pageNumber;
+		@JsonProperty
+		protected ObjectReviewed objectReviewed;
 
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected String[] transitions;
 
 	}
 
@@ -717,9 +818,11 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -730,12 +833,12 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 

@@ -44,121 +44,127 @@ public class Query {
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public WorkflowLog getWorkflowLog(
-	@GraphQLName("workflow-log-id") Long workflowLogId)
-			throws Exception {
-
-				WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
-
-				workflowLogResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
-				return workflowLogResource.getWorkflowLog(
-					workflowLogId);
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
-	public Collection<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
-	@GraphQLName("workflow-task-id") Long workflowTaskId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
-			throws Exception {
-
-				WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
-
-				workflowLogResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
-
-				Page paginationPage = workflowLogResource.getWorkflowTaskWorkflowLogsPage(
-					workflowTaskId,Pagination.of(pageSize, page));
-
-				return paginationPage.getItems();
-	}
-
-	@GraphQLField
-	@GraphQLInvokeDetached
 	public Collection<WorkflowTask> getRoleWorkflowTasksPage(
-	@GraphQLName("role-id") Long roleId,@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
-			throws Exception {
+			@GraphQLName("role-id") Long roleId,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
+		throws Exception {
 
-				WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
 
-				workflowTaskResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		workflowTaskResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = workflowTaskResource.getRoleWorkflowTasksPage(
-					roleId,Pagination.of(pageSize, page));
+		Page paginationPage = workflowTaskResource.getRoleWorkflowTasksPage(
+			roleId, Pagination.of(pageSize, page));
 
-				return paginationPage.getItems();
+		return paginationPage.getItems();
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
-	public Collection<WorkflowTask> getWorkflowTasksPage(
-	@GraphQLName("pageSize") int pageSize,@GraphQLName("page") int page)
-			throws Exception {
+	public WorkflowLog getWorkflowLog(
+			@GraphQLName("workflow-log-id") Long workflowLogId)
+		throws Exception {
 
-				WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
 
-				workflowTaskResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		workflowLogResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				Page paginationPage = workflowTaskResource.getWorkflowTasksPage(
-					Pagination.of(pageSize, page));
-
-				return paginationPage.getItems();
+		return workflowLogResource.getWorkflowLog(workflowLogId);
 	}
 
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public WorkflowTask getWorkflowTask(
-	@GraphQLName("workflow-task-id") Long workflowTaskId)
-			throws Exception {
+			@GraphQLName("workflow-task-id") Long workflowTaskId)
+		throws Exception {
 
-				WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
 
-				workflowTaskResource.setContextCompany(
-					CompanyLocalServiceUtil.getCompany(CompanyThreadLocal.getCompanyId()));
+		workflowTaskResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
 
-				return workflowTaskResource.getWorkflowTask(
-					workflowTaskId);
+		return workflowTaskResource.getWorkflowTask(workflowTaskId);
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<WorkflowTask> getWorkflowTasksPage(
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
+		throws Exception {
+
+		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+
+		workflowTaskResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		Page paginationPage = workflowTaskResource.getWorkflowTasksPage(
+			Pagination.of(pageSize, page));
+
+		return paginationPage.getItems();
+	}
+
+	@GraphQLField
+	@GraphQLInvokeDetached
+	public Collection<WorkflowLog> getWorkflowTaskWorkflowLogsPage(
+			@GraphQLName("workflow-task-id") Long workflowTaskId,
+			@GraphQLName("pageSize") int pageSize,
+			@GraphQLName("page") int page)
+		throws Exception {
+
+		WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
+
+		workflowLogResource.setContextCompany(
+			CompanyLocalServiceUtil.getCompany(
+				CompanyThreadLocal.getCompanyId()));
+
+		Page paginationPage =
+			workflowLogResource.getWorkflowTaskWorkflowLogsPage(
+				workflowTaskId, Pagination.of(pageSize, page));
+
+		return paginationPage.getItems();
 	}
 
 	private static WorkflowLogResource _getWorkflowLogResource() {
-			return _workflowLogResourceServiceTracker.getService();
+		return _workflowLogResourceServiceTracker.getService();
 	}
 
-	private static final ServiceTracker<WorkflowLogResource, WorkflowLogResource>
-			_workflowLogResourceServiceTracker;
 	private static WorkflowTaskResource _getWorkflowTaskResource() {
-			return _workflowTaskResourceServiceTracker.getService();
+		return _workflowTaskResourceServiceTracker.getService();
 	}
 
-	private static final ServiceTracker<WorkflowTaskResource, WorkflowTaskResource>
+	private static final ServiceTracker
+		<WorkflowLogResource, WorkflowLogResource>
+			_workflowLogResourceServiceTracker;
+	private static final ServiceTracker
+		<WorkflowTaskResource, WorkflowTaskResource>
 			_workflowTaskResourceServiceTracker;
 
-		static {
-			Bundle bundle = FrameworkUtil.getBundle(Query.class);
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(Query.class);
 
-				ServiceTracker<WorkflowLogResource, WorkflowLogResource>
-					workflowLogResourceServiceTracker =
-						new ServiceTracker<>(
-							bundle.getBundleContext(),
-							WorkflowLogResource.class, null);
+		ServiceTracker<WorkflowLogResource, WorkflowLogResource>
+			workflowLogResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), WorkflowLogResource.class, null);
 
-				workflowLogResourceServiceTracker.open();
+		workflowLogResourceServiceTracker.open();
 
-				_workflowLogResourceServiceTracker =
-					workflowLogResourceServiceTracker;
-				ServiceTracker<WorkflowTaskResource, WorkflowTaskResource>
-					workflowTaskResourceServiceTracker =
-						new ServiceTracker<>(
-							bundle.getBundleContext(),
-							WorkflowTaskResource.class, null);
+		_workflowLogResourceServiceTracker = workflowLogResourceServiceTracker;
+		ServiceTracker<WorkflowTaskResource, WorkflowTaskResource>
+			workflowTaskResourceServiceTracker = new ServiceTracker<>(
+				bundle.getBundleContext(), WorkflowTaskResource.class, null);
 
-				workflowTaskResourceServiceTracker.open();
+		workflowTaskResourceServiceTracker.open();
 
-				_workflowTaskResourceServiceTracker =
-					workflowTaskResourceServiceTracker;
+		_workflowTaskResourceServiceTracker =
+			workflowTaskResourceServiceTracker;
 	}
 
 }

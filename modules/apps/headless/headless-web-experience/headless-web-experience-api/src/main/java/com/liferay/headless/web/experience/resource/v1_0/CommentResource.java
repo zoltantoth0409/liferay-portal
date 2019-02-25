@@ -34,27 +34,27 @@ import javax.annotation.Generated;
 @Generated("")
 public interface CommentResource {
 
-	public boolean deleteComment(
-				Long commentId)
-			throws Exception;
-	public Comment getComment(
-				Long commentId)
-			throws Exception;
-	public Comment putComment(
-				Long commentId,Comment comment)
-			throws Exception;
+	public boolean deleteComment(Long commentId) throws Exception;
+
+	public Comment getComment(Long commentId) throws Exception;
+
 	public Page<Comment> getCommentCommentsPage(
-				Long commentId,Filter filter,Pagination pagination,Sort[] sorts)
-			throws Exception;
-	public Comment postCommentComment(
-				Long commentId,Comment comment)
-			throws Exception;
+			Long commentId, Filter filter, Pagination pagination, Sort[] sorts)
+		throws Exception;
+
 	public Page<Comment> getStructuredContentCommentsPage(
-				Long structuredContentId,Filter filter,Pagination pagination,Sort[] sorts)
-			throws Exception;
+			Long structuredContentId, Filter filter, Pagination pagination,
+			Sort[] sorts)
+		throws Exception;
+
+	public Comment postCommentComment(Long commentId, Comment comment)
+		throws Exception;
+
 	public Comment postStructuredContentComment(
-				Long structuredContentId,Comment comment)
-			throws Exception;
+			Long structuredContentId, Comment comment)
+		throws Exception;
+
+	public Comment putComment(Long commentId, Comment comment) throws Exception;
 
 	public void setContextCompany(Company contextCompany);
 

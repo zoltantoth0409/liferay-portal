@@ -37,82 +37,70 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class GeoImpl implements Geo {
 
 	public Long getId() {
-			return id;
+		return id;
 	}
 
-	public void setId(
-			Long id) {
+	public Number getLatitude() {
+		return latitude;
+	}
 
-			this.id = id;
+	public Number getLongitude() {
+		return longitude;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	@JsonIgnore
-	public void setId(
-			UnsafeSupplier<Long, Throwable>
-				idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-			try {
-				id =
-					idUnsafeSupplier.get();
+	public void setLatitude(Number latitude) {
+		this.latitude = latitude;
 	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+
+	@JsonIgnore
+	public void setLatitude(
+		UnsafeSupplier<Number, Throwable> latitudeUnsafeSupplier) {
+
+		try {
+			latitude = latitudeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
+
+	public void setLongitude(Number longitude) {
+		this.longitude = longitude;
+	}
+
+	@JsonIgnore
+	public void setLongitude(
+		UnsafeSupplier<Number, Throwable> longitudeUnsafeSupplier) {
+
+		try {
+			longitude = longitudeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
 	}
 
 	@GraphQLField
 	@JsonProperty
 	protected Long id;
-	public Number getLatitude() {
-			return latitude;
-	}
-
-	public void setLatitude(
-			Number latitude) {
-
-			this.latitude = latitude;
-	}
-
-	@JsonIgnore
-	public void setLatitude(
-			UnsafeSupplier<Number, Throwable>
-				latitudeUnsafeSupplier) {
-
-			try {
-				latitude =
-					latitudeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty
 	protected Number latitude;
-	public Number getLongitude() {
-			return longitude;
-	}
-
-	public void setLongitude(
-			Number longitude) {
-
-			this.longitude = longitude;
-	}
-
-	@JsonIgnore
-	public void setLongitude(
-			UnsafeSupplier<Number, Throwable>
-				longitudeUnsafeSupplier) {
-
-			try {
-				longitude =
-					longitudeUnsafeSupplier.get();
-	}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-	}
-	}
 
 	@GraphQLField
 	@JsonProperty

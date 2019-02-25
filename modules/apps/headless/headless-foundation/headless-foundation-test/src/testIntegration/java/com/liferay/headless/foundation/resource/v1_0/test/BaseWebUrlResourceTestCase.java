@@ -66,66 +66,12 @@ public abstract class BaseWebUrlResourceTestCase {
 
 	@Test
 	public void testGetGenericParentWebUrlsPage() throws Exception {
-			Assert.assertTrue(true);
+		Assert.assertTrue(true);
 	}
+
 	@Test
 	public void testGetWebUrl() throws Exception {
-			Assert.assertTrue(true);
-	}
-
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
-	}
-
-	protected Page<WebUrl> invokeGetGenericParentWebUrlsPage(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/web-urls", genericParentId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<WebUrlImpl>>() {});
-	}
-
-	protected Http.Response invokeGetGenericParentWebUrlsPageResponse(
-				Object genericParentId,Pagination pagination)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/web-urls", genericParentId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-	protected WebUrl invokeGetWebUrl(
-				Long webUrlId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
-
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), WebUrlImpl.class);
-	}
-
-	protected Http.Response invokeGetWebUrlResponse(
-				Long webUrlId)
-			throws Exception {
-
-			Http.Options options = _createHttpOptions();
-
-			options.setLocation(_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
-
-			HttpUtil.URLtoString(options);
-
-			return options.getResponse();
-	}
-
-	protected void assertEquals(WebUrl webUrl1, WebUrl webUrl2) {
-		Assert.assertTrue(webUrl1 + " does not equal " + webUrl2, equals(webUrl1, webUrl2));
+		Assert.assertTrue(true);
 	}
 
 	protected void assertEquals(List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
@@ -136,10 +82,17 @@ public abstract class BaseWebUrlResourceTestCase {
 			WebUrl webUrl2 = webUrls2.get(i);
 
 			assertEquals(webUrl1, webUrl2);
-	}
+		}
 	}
 
-	protected void assertEqualsIgnoringOrder(List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
+	protected void assertEquals(WebUrl webUrl1, WebUrl webUrl2) {
+		Assert.assertTrue(
+			webUrl1 + " does not equal " + webUrl2, equals(webUrl1, webUrl2));
+	}
+
+	protected void assertEqualsIgnoringOrder(
+		List<WebUrl> webUrls1, List<WebUrl> webUrls2) {
+
 		Assert.assertEquals(webUrls1.size(), webUrls2.size());
 
 		for (WebUrl webUrl1 : webUrls1) {
@@ -150,161 +103,220 @@ public abstract class BaseWebUrlResourceTestCase {
 					contains = true;
 
 					break;
-	}
+				}
+			}
+
+			Assert.assertTrue(
+				webUrls2 + " does not contain " + webUrl1, contains);
+		}
 	}
 
-			Assert.assertTrue(webUrls2 + " does not contain " + webUrl1, contains);
-	}
+	protected void assertResponseCode(
+		int expectedResponseCode, Http.Response actualResponse) {
+
+		Assert.assertEquals(
+			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
 	protected boolean equals(WebUrl webUrl1, WebUrl webUrl2) {
 		if (webUrl1 == webUrl2) {
 			return true;
-	}
+		}
 
 		return false;
+	}
+
+	protected Page<WebUrl> invokeGetGenericParentWebUrlsPage(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/web-urls", genericParentId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options),
+			new TypeReference<Page<WebUrlImpl>>() {
+			});
+	}
+
+	protected Http.Response invokeGetGenericParentWebUrlsPageResponse(
+			Object genericParentId, Pagination pagination)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/web-urls", genericParentId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
+	}
+
+	protected WebUrl invokeGetWebUrl(Long webUrlId) throws Exception {
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+
+		return _outputObjectMapper.readValue(
+			HttpUtil.URLtoString(options), WebUrlImpl.class);
+	}
+
+	protected Http.Response invokeGetWebUrlResponse(Long webUrlId)
+		throws Exception {
+
+		Http.Options options = _createHttpOptions();
+
+		options.setLocation(
+			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
+
+		HttpUtil.URLtoString(options);
+
+		return options.getResponse();
 	}
 
 	protected WebUrl randomWebUrl() {
 		return new WebUrlImpl() {
 			{
-
-						id = RandomTestUtil.randomLong();
-						url = RandomTestUtil.randomString();
-						urlType = RandomTestUtil.randomString();
-	}
+				id = RandomTestUtil.randomLong();
+				url = RandomTestUtil.randomString();
+				urlType = RandomTestUtil.randomString();
+			}
 		};
 	}
 
 	protected Group testGroup;
 
+	protected static class Page<T> {
+
+		public Collection<T> getItems() {
+			return new ArrayList<>(items);
+		}
+
+		public int getItemsPerPage() {
+			return itemsPerPage;
+		}
+
+		public int getLastPageNumber() {
+			return lastPageNumber;
+		}
+
+		public int getPageNumber() {
+			return pageNumber;
+		}
+
+		public int getTotalCount() {
+			return totalCount;
+		}
+
+		@JsonProperty
+		protected Collection<T> items;
+
+		@JsonProperty("pageSize")
+		protected int itemsPerPage;
+
+		@JsonProperty
+		protected int lastPageNumber;
+
+		@JsonProperty("page")
+		protected int pageNumber;
+
+		@JsonProperty
+		protected int totalCount;
+
+	}
+
 	protected static class WebUrlImpl implements WebUrl {
 
-	public Long getId() {
-				return id;
-	}
+		public Long getId() {
+			return id;
+		}
 
-	public void setId(Long id) {
-				this.id = id;
-	}
+		public String getUrl() {
+			return url;
+		}
 
-	@JsonIgnore
-	public void setId(
-				UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		public String getUrlType() {
+			return urlType;
+		}
 
-				try {
-					id = idUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+		public void setId(Long id) {
+			this.id = id;
+		}
 
-	@JsonProperty
-	protected Long id;
-	public String getUrl() {
-				return url;
-	}
+		@JsonIgnore
+		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+			try {
+				id = idUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	public void setUrl(String url) {
-				this.url = url;
-	}
+		public void setUrl(String url) {
+			this.url = url;
+		}
 
-	@JsonIgnore
-	public void setUrl(
-				UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
+		@JsonIgnore
+		public void setUrl(
+			UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
 
-				try {
-					url = urlUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
+			try {
+				url = urlUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-	@JsonProperty
-	protected String url;
-	public String getUrlType() {
-				return urlType;
-	}
+		public void setUrlType(String urlType) {
+			this.urlType = urlType;
+		}
 
-	public void setUrlType(String urlType) {
-				this.urlType = urlType;
-	}
+		@JsonIgnore
+		public void setUrlType(
+			UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
 
-	@JsonIgnore
-	public void setUrlType(
-				UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
+			try {
+				urlType = urlTypeUnsafeSupplier.get();
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
 
-				try {
-					urlType = urlTypeUnsafeSupplier.get();
-	}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-	}
-	}
-
-	@JsonProperty
-	protected String urlType;
-
-	public String toString() {
-			StringBundler sb = new StringBundler();
+		public String toString() {
+			StringBundler sb = new StringBundler(8);
 
 			sb.append("{");
 
-					sb.append("id=");
+			sb.append("id=");
 
-				sb.append(id);
-					sb.append(", url=");
+			sb.append(id);
+			sb.append(", url=");
 
-				sb.append(url);
-					sb.append(", urlType=");
+			sb.append(url);
+			sb.append(", urlType=");
 
-				sb.append(urlType);
+			sb.append(urlType);
 
 			sb.append("}");
 
 			return sb.toString();
-	}
+		}
 
-	}
+		@JsonProperty
+		protected Long id;
 
-	protected static class Page<T> {
+		@JsonProperty
+		protected String url;
 
-	public Collection<T> getItems() {
-			return new ArrayList<>(items);
-	}
-
-	public int getItemsPerPage() {
-			return itemsPerPage;
-	}
-
-	public int getLastPageNumber() {
-			return lastPageNumber;
-	}
-
-	public int getPageNumber() {
-			return pageNumber;
-	}
-
-	public int getTotalCount() {
-			return totalCount;
-	}
-
-	@JsonProperty
-	protected Collection<T> items;
-
-	@JsonProperty("pageSize")
-	protected int itemsPerPage;
-
-	@JsonProperty
-	protected int lastPageNumber;
-
-	@JsonProperty("page")
-	protected int pageNumber;
-
-	@JsonProperty
-	protected int totalCount;
+		@JsonProperty
+		protected String urlType;
 
 	}
 
@@ -315,9 +327,11 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		String userNameAndPassword = "test@liferay.com:test";
 
-		String encodedUserNameAndPassword = Base64.encode(userNameAndPassword.getBytes());
+		String encodedUserNameAndPassword = Base64.encode(
+			userNameAndPassword.getBytes());
 
-		options.addHeader("Authorization", "Basic " + encodedUserNameAndPassword);
+		options.addHeader(
+			"Authorization", "Basic " + encodedUserNameAndPassword);
 
 		options.addHeader("Content-Type", "application/json");
 
@@ -328,12 +342,12 @@ public abstract class BaseWebUrlResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
-	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
+	private static final ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	}
+		}
 	};
-	private final static ObjectMapper _outputObjectMapper = new ObjectMapper();
+	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
 	private URL _resourceURL;
 
