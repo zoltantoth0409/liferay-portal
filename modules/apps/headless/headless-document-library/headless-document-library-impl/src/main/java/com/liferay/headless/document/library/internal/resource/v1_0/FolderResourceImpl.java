@@ -65,8 +65,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			Long folderId, Pagination pagination)
 		throws Exception {
 
-		Folder parentFolder = _toFolder(
-			_dlAppService.getFolder(folderId), null, null);
+		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
 
 		return _getFolderPage(
 			parentFolder.getRepositoryId(), parentFolder.getId(), pagination);
@@ -102,8 +101,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	public Folder postFolderFolder(Long folderId, Folder folder)
 		throws Exception {
 
-		Folder parentFolder = _toFolder(
-			_dlAppService.getFolder(folderId), null, null);
+		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
 
 		return _addFolder(
 			parentFolder.getRepositoryId(), parentFolder.getId(), folder);
@@ -122,8 +120,7 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 		return _toFolder(
 			_dlAppService.addFolder(
 				documentsRepositoryId, parentFolderId, folder.getName(),
-				folder.getDescription(), new ServiceContext()),
-			false, false);
+				folder.getDescription(), new ServiceContext()));
 	}
 
 	private Page<Folder> _getFolderPage(
@@ -170,22 +167,13 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			com.liferay.portal.kernel.repository.model.Folder folder)
 		throws Exception {
 
-		return _toFolder(
-			folder, _getHasDocuments(folder),
-			_getHasFolders(folder.getFolderId()));
-	}
-
-	private Folder _toFolder(
-		com.liferay.portal.kernel.repository.model.Folder folder,
-		Boolean hasDocumentsIn, Boolean hasFoldersIn) {
-
 		return new FolderImpl() {
 			{
 				dateCreated = folder.getCreateDate();
 				dateModified = folder.getModifiedDate();
 				description = folder.getDescription();
-				hasDocuments = hasDocumentsIn;
-				hasFolders = hasFoldersIn;
+				hasDocuments = _getHasDocuments(folder);
+				hasFolders = _getHasFolders(folder.getFolderId());
 				repositoryId = folder.getGroupId();
 				id = folder.getFolderId();
 				name = folder.getName();
