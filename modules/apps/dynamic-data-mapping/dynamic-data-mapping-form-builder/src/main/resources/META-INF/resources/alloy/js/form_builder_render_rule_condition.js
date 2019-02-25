@@ -508,7 +508,6 @@ AUI.add(
 						}
 					}
 				}
-
 			},
 
 			_handleDeleteConditionClick: function(event) {
