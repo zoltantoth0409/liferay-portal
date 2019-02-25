@@ -478,13 +478,13 @@ public abstract class BaseRoleResourceTestCase {
 	@JsonProperty
 	protected Collection<T> items;
 
-	@JsonProperty
+	@JsonProperty("pageSize")
 	protected int itemsPerPage;
 
 	@JsonProperty
 	protected int lastPageNumber;
 
-	@JsonProperty
+	@JsonProperty("page")
 	protected int pageNumber;
 
 	@JsonProperty
