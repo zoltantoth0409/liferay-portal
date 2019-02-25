@@ -102,7 +102,8 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 	public Folder postFolderFolder(Long folderId, Folder folder)
 		throws Exception {
 
-		Folder parentFolder = _toFolder(_dlAppService.getFolder(folderId));
+		Folder parentFolder = _toFolder(
+			_dlAppService.getFolder(folderId), null, null);
 
 		return _addFolder(
 			parentFolder.getRepositoryId(), parentFolder.getId(), folder);
