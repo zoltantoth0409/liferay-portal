@@ -144,7 +144,7 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 					}
 
 					if (localizedDescription != null) {
-						String safeLocalizedDescription = _getSafeString(
+						String safeLocalizedDescription = _truncate(
 							localizedDescription, _MAX_LENGTH_DESCRIPTION);
 
 						if (localizedDescription != safeLocalizedDescription) {
@@ -185,9 +185,18 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 		return db.increment();
 	}
 
-	private String _getSafeString(String value, int maxLength)
-		throws Exception {
+	private void _log(long articleId, String columnName) {
+		if (!_log.isWarnEnabled()) {
+			return;
+		}
 
+		_log.warn(
+			StringBundler.concat(
+				"Truncated the ", columnName, " value for article ", articleId,
+				" because it is too long"));
+	}
+
+	private String _truncate(String value, int maxLength) throws Exception {
 		byte[] valueBytes = value.getBytes(StringPool.UTF8);
 
 		if (valueBytes.length <= maxLength) {
@@ -201,17 +210,6 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 		String returnValue = new String(convertedValue, StringPool.UTF8);
 
 		return StringUtil.shorten(returnValue, returnValue.length() - 1);
-	}
-
-	private void _log(long articleId, String columnName) {
-		if (!_log.isWarnEnabled()) {
-			return;
-		}
-
-		_log.warn(
-			StringBundler.concat(
-				"Truncated the ", columnName, " value for article ", articleId,
-				" because it is too long"));
 	}
 
 	private void _updateDefaultLanguage(
