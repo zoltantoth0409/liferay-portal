@@ -631,7 +631,7 @@ public class FilterParserImplTest {
 		MethodExpression methodExpression = (MethodExpression)expression;
 
 		Assert.assertEquals(
-			MethodExpression.Type.STARSWITH, methodExpression.getType());
+			MethodExpression.Type.STARTS_WITH, methodExpression.getType());
 
 		List<Expression> expressions = methodExpression.getExpressions();
 

@@ -510,7 +510,7 @@ public class ExpressionVisitorImplTest {
 			(PrefixFilter)
 				_expressionVisitorImpl.visitMethodExpression(
 					Arrays.asList(Arrays.array(entityField, value)),
-					MethodExpression.Type.STARSWITH);
+					MethodExpression.Type.STARTS_WITH);
 
 		Assert.assertEquals(entityField.getName(), prefixFilter.getField());
 		Assert.assertEquals(value, prefixFilter.getPrefix());

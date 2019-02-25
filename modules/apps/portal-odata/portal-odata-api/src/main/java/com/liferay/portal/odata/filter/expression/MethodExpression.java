@@ -41,7 +41,7 @@ public interface MethodExpression extends Expression {
 
 	public static enum Type {
 
-		CONTAINS, STARSWITH
+		CONTAINS, STARTS_WITH
 
 	}
 
