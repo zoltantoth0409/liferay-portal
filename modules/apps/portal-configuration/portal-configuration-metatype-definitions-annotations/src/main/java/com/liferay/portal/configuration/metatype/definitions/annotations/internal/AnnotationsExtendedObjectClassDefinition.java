@@ -122,15 +122,15 @@ public class AnnotationsExtendedObjectClassDefinition
 		return _objectClassDefinition.getName();
 	}
 
-	private JSONObject _createJSONObject(Bundle bundle, String filePath) {
-		URL url = bundle.getResource(filePath);
+	private JSONObject _createJSONObject(Bundle bundle, String resourcePath) {
+		URL url = bundle.getResource(resourcePath);
 
 		if (url != null) {
 			try (InputStream is = url.openStream()) {
 				return JSONFactoryUtil.createJSONObject(StringUtil.read(is));
 			}
 			catch (Exception e) {
-				_log.error("Unable to process " + filePath + " file", e);
+				_log.error("Unable to process resource " + resourcePath, e);
 			}
 		}
 
