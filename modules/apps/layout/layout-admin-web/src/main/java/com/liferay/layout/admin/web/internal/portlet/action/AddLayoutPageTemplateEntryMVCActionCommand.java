@@ -95,6 +95,9 @@ public class AddLayoutPageTemplateEntryMVCActionCommand
 				"redirectURL",
 				getRedirectURL(actionRequest, layoutPageTemplateEntry));
 
+			JSONPortletResponseUtil.writeJSON(
+				actionRequest, actionResponse, jsonObject);
+
 			if (type ==
 					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) {
 
@@ -104,9 +107,6 @@ public class AddLayoutPageTemplateEntryMVCActionCommand
 				MultiSessionMessages.add(
 					actionRequest, "layoutPageTemplateAdded");
 			}
-
-			JSONPortletResponseUtil.writeJSON(
-				actionRequest, actionResponse, jsonObject);
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(
