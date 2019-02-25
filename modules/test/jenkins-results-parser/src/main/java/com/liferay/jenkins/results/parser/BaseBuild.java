@@ -1199,6 +1199,11 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
+	public boolean isFromArchive() {
+		return fromArchive;
+	}
+
+	@Override
 	public void reinvoke() {
 		reinvoke(null);
 	}
@@ -2360,11 +2365,11 @@ public abstract class BaseBuild implements Build {
 				"Unable to decode " + buildURL, uee);
 		}
 
-		BaseBuild parentBuild = (BaseBuild)getParentBuild();
+		Build parentBuild = getParentBuild();
 
 		try {
 			if (parentBuild != null) {
-				fromArchive = parentBuild.fromArchive;
+				fromArchive = parentBuild.isFromArchive();
 			}
 			else {
 				String archiveMarkerContent = JenkinsResultsParserUtil.toString(
@@ -2404,7 +2409,7 @@ public abstract class BaseBuild implements Build {
 		setStatus("running");
 
 		if (parentBuild != null) {
-			fromCompletedBuild = parentBuild.fromCompletedBuild;
+			fromCompletedBuild = parentBuild.isFromArchive();
 		}
 		else {
 			String consoleText = getConsoleText();

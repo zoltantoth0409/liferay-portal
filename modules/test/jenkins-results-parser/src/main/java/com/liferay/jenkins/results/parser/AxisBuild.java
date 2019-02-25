@@ -503,10 +503,10 @@ public class AxisBuild extends BaseBuild {
 
 		setStatus("running");
 
-		BaseBuild parentBuild = (BaseBuild)getParentBuild();
+		Build parentBuild = getParentBuild();
 
 		if (parentBuild != null) {
-			fromCompletedBuild = parentBuild.fromCompletedBuild;
+			fromCompletedBuild = parentBuild.isFromArchive();
 		}
 		else {
 			String consoleText = getConsoleText();
