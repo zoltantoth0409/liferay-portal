@@ -2440,14 +2440,9 @@ module.framework.properties.lpkg.index.validator.enabled=true</echo>
 						</then>
 					</if>
 
-					<if>
-						<equals arg1="@{subrepository.name}" arg2="" />
-						<then>
-							<antcall inheritAll="false" target="record-test-class-file-names">
-								<param name="test.class.groups.size" value="${test.batch.size}" />
-							</antcall>
-						</then>
-					</if>
+					<antcall inheritAll="false" target="record-test-class-file-names">
+						<param name="test.class.groups.size" value="${test.batch.size}" />
+					</antcall>
 				</test-set-up>
 
 				<test-tear-down>
