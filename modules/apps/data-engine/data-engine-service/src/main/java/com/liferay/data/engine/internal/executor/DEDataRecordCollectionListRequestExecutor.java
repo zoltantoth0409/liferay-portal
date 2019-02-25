@@ -40,14 +40,14 @@ public class DEDataRecordCollectionListRequestExecutor {
 			DEDataRecordCollectionListRequest deDataRecordCollectionListRequest)
 		throws Exception {
 
+		List<DEDataRecordCollection> deDataRecordCollections =
+			new ArrayList<>();
+
 		List<DDLRecordSet> ddlRecordSets =
 			_ddlRecordSetLocalService.getRecordSets(
 				deDataRecordCollectionListRequest.getGroupId(),
 				deDataRecordCollectionListRequest.getStart(),
 				deDataRecordCollectionListRequest.getEnd());
-
-		List<DEDataRecordCollection> deDataRecordCollections =
-			new ArrayList<>();
 
 		for (DDLRecordSet ddlRecordSet : ddlRecordSets) {
 			deDataRecordCollections.add(
