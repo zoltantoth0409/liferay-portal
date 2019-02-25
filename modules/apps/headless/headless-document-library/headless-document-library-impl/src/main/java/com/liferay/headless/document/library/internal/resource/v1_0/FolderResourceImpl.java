@@ -118,10 +118,11 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 			Long documentsRepositoryId, Long parentFolderId, Folder folder)
 		throws Exception {
 
-		return _toNewFolder(
+		return _toFolder(
 			_dlAppService.addFolder(
 				documentsRepositoryId, parentFolderId, folder.getName(),
-				folder.getDescription(), new ServiceContext()));
+				folder.getDescription(), new ServiceContext()),
+			false, false);
 	}
 
 	private Page<Folder> _getFolderPage(
@@ -189,12 +190,6 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 				name = folder.getName();
 			}
 		};
-	}
-
-	private Folder _toNewFolder(
-		com.liferay.portal.kernel.repository.model.Folder folder) {
-
-		return _toFolder(folder, false, false);
 	}
 
 	private Folder _updateFolder(Long folderId, String name, String description)
