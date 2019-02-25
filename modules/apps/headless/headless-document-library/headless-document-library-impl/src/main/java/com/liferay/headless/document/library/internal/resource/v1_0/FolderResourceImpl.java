@@ -140,29 +140,6 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 				documentsRepositoryId, parentFolderId));
 	}
 
-	private boolean _getHasDocuments(
-			com.liferay.portal.kernel.repository.model.Folder folder)
-		throws Exception {
-
-		if (_dlAppService.getFileEntriesCount(
-				folder.getRepositoryId(), folder.getFolderId()) > 0) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	private boolean _getHasFolders(Long folderId) throws Exception {
-		Page<Folder> page = getFolderFoldersPage(folderId, Pagination.of(1, 1));
-
-		if (page.getTotalCount() > 0) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private Folder _toFolder(
 			com.liferay.portal.kernel.repository.model.Folder folder)
 		throws Exception {
@@ -172,11 +149,28 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 				dateCreated = folder.getCreateDate();
 				dateModified = folder.getModifiedDate();
 				description = folder.getDescription();
-				hasDocuments = _getHasDocuments(folder);
-				hasFolders = _getHasFolders(folder.getFolderId());
 				repositoryId = folder.getGroupId();
 				id = folder.getFolderId();
 				name = folder.getName();
+
+				setHasDocuments(
+					() -> {
+						int count = _dlAppService.getFileEntriesCount(
+							folder.getRepositoryId(), folder.getFolderId());
+
+						return (count > 0);
+					});
+				setHasFolders(
+					() -> {
+						Page<Folder> page = getFolderFoldersPage(
+							folder.getFolderId(), Pagination.of(1, 1));
+
+						if (page.getTotalCount() > 0) {
+							return true;
+						}
+
+						return false;
+					});
 			}
 		};
 	}
