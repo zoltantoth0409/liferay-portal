@@ -106,6 +106,7 @@ definition {
 		property portal.upgrades = "true";
 		property portal.version = "7.1.10";
 		property test.assert.warning.exceptions = "true";
+		property test.run.environment = "EE";
 
 		Upgrade.viewUpgrade();
 
