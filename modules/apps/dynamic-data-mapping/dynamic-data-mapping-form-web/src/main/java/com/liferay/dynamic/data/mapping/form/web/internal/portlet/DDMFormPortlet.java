@@ -173,21 +173,21 @@ public class DDMFormPortlet extends MVCPortlet {
 			DDMFormDisplayContext ddmFormDisplayContext)
 		throws PortalException {
 
-		DDMFormInstance formInstance = ddmFormDisplayContext.getFormInstance();
+		DDMFormInstance ddmFormInstance = ddmFormDisplayContext.getFormInstance();
 
-		if (formInstance == null) {
+		if (ddmFormInstance == null) {
 			return;
 		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		DDMFormInstanceSettings formInstanceSettings =
-			formInstance.getSettingsModel();
+		DDMFormInstanceSettings ddmFormInstanceSettings =
+			ddmFormInstance.getSettingsModel();
 
 		Layout layout = themeDisplay.getLayout();
 
-		if (formInstanceSettings.requireAuthentication() &&
+		if (ddmFormInstanceSettings.requireAuthentication() &&
 			!layout.isPrivateLayout()) {
 
 			throw new PrincipalException.MustBeAuthenticated(
@@ -225,11 +225,11 @@ public class DDMFormPortlet extends MVCPortlet {
 		DDMFormDisplayContext ddmFormPortletDisplayContext) {
 
 		if (ddmFormPortletDisplayContext.getFormInstanceId() > 0) {
-			DDMFormInstance formInstance =
+			DDMFormInstance ddmFormInstance =
 				ddmFormPortletDisplayContext.getFormInstance();
 
 			renderRequest.setAttribute(
-				DDMFormWebKeys.REFERER_GROUP_ID, formInstance.getGroupId());
+				DDMFormWebKeys.REFERER_GROUP_ID, ddmFormInstance.getGroupId());
 		}
 	}
 
