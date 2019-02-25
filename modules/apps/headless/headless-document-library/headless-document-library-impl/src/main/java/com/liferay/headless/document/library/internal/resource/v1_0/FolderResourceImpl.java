@@ -162,14 +162,10 @@ public class FolderResourceImpl extends BaseFolderResourceImpl {
 					});
 				setHasFolders(
 					() -> {
-						Page<Folder> page = getFolderFoldersPage(
-							folder.getFolderId(), Pagination.of(1, 1));
+						int count = _dlAppService.getFoldersCount(
+							folder.getRepositoryId(), folder.getFolderId());
 
-						if (page.getTotalCount() > 0) {
-							return true;
-						}
-
-						return false;
+						return (count > 0);
 					});
 			}
 		};
