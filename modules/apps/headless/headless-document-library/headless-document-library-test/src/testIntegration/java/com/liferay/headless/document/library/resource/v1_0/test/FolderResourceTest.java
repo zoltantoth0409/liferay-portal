@@ -38,6 +38,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class FolderResourceTest extends BaseFolderResourceTestCase {
 
+	@Override
 	@Test
 	public void testDeleteFolder() throws Exception {
 		Folder postFolder = invokePostContentSpaceFolder(
@@ -48,6 +49,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertResponseCode(404, invokeGetFolderResponse(postFolder.getId()));
 	}
 
+	@Override
 	@Test
 	public void testGetContentSpaceFoldersPage() throws Exception {
 		Folder randomFolder1 = randomFolder();
@@ -67,17 +69,28 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertValid(page);
 	}
 
+	@Override
 	@Test
 	public void testGetFolder() throws Exception {
 		Folder postFolder = invokePostContentSpaceFolder(
 			testGroup.getGroupId(), randomFolder());
 
+		Assert.assertEquals(false, postFolder.getHasDocuments());
+
+		DLAppTestUtil.addFileEntryWithWorkflow(
+			UserLocalServiceUtil.getDefaultUserId(testGroup.getCompanyId()),
+			testGroup.getGroupId(), postFolder.getId(), StringPool.BLANK,
+			RandomTestUtil.randomString(10), true, new ServiceContext());
+
 		Folder getFolder = invokeGetFolder(postFolder.getId());
 
 		assertEquals(postFolder, getFolder);
 		assertValid(getFolder);
+
+		Assert.assertEquals(true, getFolder.getHasDocuments());
 	}
 
+	@Override
 	@Test
 	public void testGetFolderFoldersPage() throws Exception {
 		Folder postContentSpaceFolder = invokePostContentSpaceFolder(
@@ -99,20 +112,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertValid(page);
 	}
 
-	@Test
-	public void testGetFolderWithDocuments() throws Exception {
-		Folder postFolder = invokePostContentSpaceFolder(
-			testGroup.getGroupId(), randomFolder());
-
-		Assert.assertEquals(false, postFolder.getHasDocuments());
-
-		_addDocument(postFolder.getId());
-
-		Folder getFolder = invokeGetFolder(postFolder.getId());
-
-		Assert.assertEquals(true, getFolder.getHasDocuments());
-	}
-
+	@Override
 	@Test
 	public void testPostContentSpaceFolder() throws Exception {
 		Folder randomFolder = randomFolder();
@@ -124,6 +124,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertValid(postFolder);
 	}
 
+	@Override
 	@Test
 	public void testPostFolderFolder() throws Exception {
 		Folder randomFolder = randomFolder();
@@ -139,12 +140,12 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		assertEquals(randomFolder, postFolderFolder);
 		assertValid(postFolderFolder);
 
-		Folder postContentSpaceFolderHasFolders = invokeGetFolder(
-			postContentSpaceFolder.getId());
+		Folder getFolder = invokeGetFolder(postContentSpaceFolder.getId());
 
-		Assert.assertTrue(postContentSpaceFolderHasFolders.getHasFolders());
+		Assert.assertTrue(getFolder.getHasFolders());
 	}
 
+	@Override
 	@Test
 	public void testPutFolder() throws Exception {
 		Folder postFolder = invokePostContentSpaceFolder(
@@ -213,15 +214,6 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 				name = RandomTestUtil.randomString();
 			}
 		};
-	}
-
-	private void _addDocument(long folderId) throws Exception {
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
-			testGroup.getCompanyId());
-
-		DLAppTestUtil.addFileEntryWithWorkflow(
-			defaultUserId, testGroup.getGroupId(), folderId, StringPool.BLANK,
-			RandomTestUtil.randomString(10), true, new ServiceContext());
 	}
 
 }
