@@ -177,11 +177,8 @@ public class SoyPortlet extends MVCPortlet {
 				_callProcessAction(
 					resourceRequest, resourceResponse, httpServletResponse,
 					_getPortlet());
-
-				return;
 			}
-
-			if (_isRoutedRequest(resourceRequest)) {
+			else if (_isRoutedRequest(resourceRequest)) {
 				_callRender(resourceRequest, resourceResponse, _getPortlet());
 
 				_prepareTemplate(resourceRequest, resourceResponse);
@@ -194,11 +191,10 @@ public class SoyPortlet extends MVCPortlet {
 				ServletResponseUtil.write(
 					httpServletResponse,
 					_soyPortletHelper.serializeTemplate(template));
-
-				return;
 			}
-
-			callResourceMethod(resourceRequest, resourceResponse);
+			else {
+				callResourceMethod(resourceRequest, resourceResponse);
+			}
 		}
 		catch (Exception e) {
 			_log.error("Error on the Serve Resource Phase", e);
