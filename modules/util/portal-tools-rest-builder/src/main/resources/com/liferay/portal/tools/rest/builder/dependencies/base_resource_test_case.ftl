@@ -153,6 +153,24 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	}
 
+	protected void assertEqualsIgnoringOrder(List<${schemaName}> ${schemaVarNames}1, List<${schemaName}> ${schemaVarNames}2) {
+		Assert.assertEquals(${schemaVarNames}1.size(), ${schemaVarNames}2.size());
+
+		for (${schemaName} ${schemaVarName}1 : ${schemaVarNames}1) {
+			boolean contains = false;
+
+			for (${schemaName} ${schemaVarName}2 : ${schemaVarNames}2) {
+				if (equals(${schemaVarName}1, ${schemaVarName}2)) {
+					contains = true;
+
+					break;
+				}
+			}
+
+			Assert.assertTrue(${schemaVarNames}2 + " does not contain " + ${schemaVarName}1, contains);
+		}
+	}
+
 	protected boolean equals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
 		if (${schemaVarName}1 == ${schemaVarName}2) {
 			return true;
