@@ -36,7 +36,7 @@ import org.osgi.util.tracker.ServiceTracker;
 @Generated("")
 public class Mutation {
 
-	<#assign javaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, openAPIYAML, "mutation", false) />
+	<#assign javaMethodSignatures = freeMarkerTool.getGraphQLJavaMethodSignatures(configYAML, "mutation", openAPIYAML, false) />
 
 	<#list javaMethodSignatures as javaMethodSignature>
 		${freeMarkerTool.getGraphQLMethodAnnotations(javaMethodSignature)}
