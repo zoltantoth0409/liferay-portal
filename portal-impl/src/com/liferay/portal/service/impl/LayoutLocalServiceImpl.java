@@ -1236,9 +1236,24 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public Map<Long, List<Layout>> getLayoutChildLayouts(
 		LayoutSet layoutSet, List<Layout> parentLayouts) {
 
-		List<Layout> childLayouts = _getChildLayouts(
-			layoutSet,
-			ListUtil.toLongArray(parentLayouts, Layout::getLayoutId));
+		Map<LayoutSet, List<Layout>> layoutsMap = new HashMap<>();
+
+		for (Layout parentLayout : parentLayouts) {
+			List<Layout> layouts = layoutsMap.computeIfAbsent(
+				layoutSet, key -> new ArrayList<>());
+
+			layouts.add(parentLayout);
+		}
+
+		List<Layout> childLayouts = new ArrayList<>();
+
+		for (Map.Entry<LayoutSet, List<Layout>> entry : layoutsMap.entrySet()) {
+			List<Layout> newChildLayouts = _getChildLayouts(
+				entry.getKey(),
+				ListUtil.toLongArray(entry.getValue(), Layout::getLayoutId));
+
+			childLayouts.addAll(newChildLayouts);
+		}
 
 		Map<Long, List<Layout>> layoutChildLayouts = new HashMap<>();
 
