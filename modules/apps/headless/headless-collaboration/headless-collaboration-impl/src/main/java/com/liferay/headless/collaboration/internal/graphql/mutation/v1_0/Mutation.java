@@ -17,6 +17,9 @@ package com.liferay.headless.collaboration.internal.graphql.mutation.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingImageResourceImpl;
+import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingResourceImpl;
+import com.liferay.headless.collaboration.internal.resource.v1_0.CommentResourceImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
@@ -27,10 +30,6 @@ import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -44,14 +43,18 @@ public class Mutation {
 			@GraphQLName("blog-posting-id") Long blogPostingId)
 		throws Exception {
 
-		return _getBlogPostingResource().deleteBlogPosting(blogPostingId);
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
+
+		return blogPostingResource.deleteBlogPosting(blogPostingId);
 	}
 
 	@GraphQLInvokeDetached
 	public boolean deleteComment(@GraphQLName("comment-id") Long commentId)
 		throws Exception {
 
-		return _getCommentResource().deleteComment(commentId);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.deleteComment(commentId);
 	}
 
 	@GraphQLInvokeDetached
@@ -59,7 +62,10 @@ public class Mutation {
 			@GraphQLName("image-object-id") Long imageObjectId)
 		throws Exception {
 
-		return _getBlogPostingImageResource().deleteImageObject(imageObjectId);
+		BlogPostingImageResource blogPostingImageResource =
+			_createBlogPostingImageResource();
+
+		return blogPostingImageResource.deleteImageObject(imageObjectId);
 	}
 
 	@GraphQLInvokeDetached
@@ -68,8 +74,9 @@ public class Mutation {
 			@GraphQLName("BlogPosting") BlogPosting blogPosting)
 		throws Exception {
 
-		return _getBlogPostingResource().patchBlogPosting(
-			blogPostingId, blogPosting);
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
+
+		return blogPostingResource.patchBlogPosting(blogPostingId, blogPosting);
 	}
 
 	@GraphQLField
@@ -79,8 +86,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postBlogPostingComment(
-			blogPostingId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postBlogPostingComment(blogPostingId, comment);
 	}
 
 	@GraphQLField
@@ -90,7 +98,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postCommentComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postCommentComment(commentId, comment);
 	}
 
 	@GraphQLField
@@ -100,7 +110,9 @@ public class Mutation {
 			@GraphQLName("BlogPosting") BlogPosting blogPosting)
 		throws Exception {
 
-		return _getBlogPostingResource().postContentSpaceBlogPosting(
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
+
+		return blogPostingResource.postContentSpaceBlogPosting(
 			contentSpaceId, blogPosting);
 	}
 
@@ -111,7 +123,10 @@ public class Mutation {
 			@GraphQLName("MultipartBody") MultipartBody multipartBody)
 		throws Exception {
 
-		return _getBlogPostingImageResource().postContentSpaceBlogPostingImage(
+		BlogPostingImageResource blogPostingImageResource =
+			_createBlogPostingImageResource();
+
+		return blogPostingImageResource.postContentSpaceBlogPostingImage(
 			contentSpaceId, multipartBody);
 	}
 
@@ -121,8 +136,9 @@ public class Mutation {
 			@GraphQLName("BlogPosting") BlogPosting blogPosting)
 		throws Exception {
 
-		return _getBlogPostingResource().putBlogPosting(
-			blogPostingId, blogPosting);
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
+
+		return blogPostingResource.putBlogPosting(blogPostingId, blogPosting);
 	}
 
 	@GraphQLInvokeDetached
@@ -131,56 +147,21 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().putComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.putComment(commentId, comment);
 	}
 
-	private static BlogPostingImageResource _getBlogPostingImageResource() {
-		return _blogPostingImageResourceServiceTracker.getService();
+	private static BlogPostingImageResource _createBlogPostingImageResource() {
+		return new BlogPostingImageResourceImpl();
 	}
 
-	private static BlogPostingResource _getBlogPostingResource() {
-		return _blogPostingResourceServiceTracker.getService();
+	private static BlogPostingResource _createBlogPostingResource() {
+		return new BlogPostingResourceImpl();
 	}
 
-	private static CommentResource _getCommentResource() {
-		return _commentResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker
-		<BlogPostingImageResource, BlogPostingImageResource>
-			_blogPostingImageResourceServiceTracker;
-	private static final ServiceTracker
-		<BlogPostingResource, BlogPostingResource>
-			_blogPostingResourceServiceTracker;
-	private static final ServiceTracker<CommentResource, CommentResource>
-		_commentResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
-
-		ServiceTracker<BlogPostingResource, BlogPostingResource>
-			blogPostingResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), BlogPostingResource.class, null);
-
-		blogPostingResourceServiceTracker.open();
-
-		_blogPostingResourceServiceTracker = blogPostingResourceServiceTracker;
-		ServiceTracker<BlogPostingImageResource, BlogPostingImageResource>
-			blogPostingImageResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), BlogPostingImageResource.class,
-				null);
-
-		blogPostingImageResourceServiceTracker.open();
-
-		_blogPostingImageResourceServiceTracker =
-			blogPostingImageResourceServiceTracker;
-		ServiceTracker<CommentResource, CommentResource>
-			commentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CommentResource.class, null);
-
-		commentResourceServiceTracker.open();
-
-		_commentResourceServiceTracker = commentResourceServiceTracker;
+	private static CommentResource _createCommentResource() {
+		return new CommentResourceImpl();
 	}
 
 }

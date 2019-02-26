@@ -18,6 +18,10 @@ import com.liferay.headless.form.dto.v1_0.Form;
 import com.liferay.headless.form.dto.v1_0.FormDocument;
 import com.liferay.headless.form.dto.v1_0.FormRecord;
 import com.liferay.headless.form.dto.v1_0.FormStructure;
+import com.liferay.headless.form.internal.resource.v1_0.FormDocumentResourceImpl;
+import com.liferay.headless.form.internal.resource.v1_0.FormRecordResourceImpl;
+import com.liferay.headless.form.internal.resource.v1_0.FormResourceImpl;
+import com.liferay.headless.form.internal.resource.v1_0.FormStructureResourceImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.headless.form.resource.v1_0.FormRecordResource;
 import com.liferay.headless.form.resource.v1_0.FormResource;
@@ -35,10 +39,6 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
-
 /**
  * @author Javier Gamarra
  * @generated
@@ -54,7 +54,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		FormResource formResource = _getFormResource();
+		FormResource formResource = _createFormResource();
 
 		formResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -75,7 +75,7 @@ public class Query {
 		throws Exception {
 
 		FormStructureResource formStructureResource =
-			_getFormStructureResource();
+			_createFormStructureResource();
 
 		formStructureResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -91,7 +91,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Form getForm(@GraphQLName("form-id") Long formId) throws Exception {
-		FormResource formResource = _getFormResource();
+		FormResource formResource = _createFormResource();
 
 		formResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -106,7 +106,8 @@ public class Query {
 			@GraphQLName("form-document-id") Long formDocumentId)
 		throws Exception {
 
-		FormDocumentResource formDocumentResource = _getFormDocumentResource();
+		FormDocumentResource formDocumentResource =
+			_createFormDocumentResource();
 
 		formDocumentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -120,7 +121,7 @@ public class Query {
 	public Form getFormFetchLatestDraft(@GraphQLName("form-id") Long formId)
 		throws Exception {
 
-		FormResource formResource = _getFormResource();
+		FormResource formResource = _createFormResource();
 
 		formResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -137,7 +138,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		FormRecordResource formRecordResource = _getFormRecordResource();
+		FormRecordResource formRecordResource = _createFormRecordResource();
 
 		formRecordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -155,7 +156,7 @@ public class Query {
 			@GraphQLName("form-record-id") Long formRecordId)
 		throws Exception {
 
-		FormRecordResource formRecordResource = _getFormRecordResource();
+		FormRecordResource formRecordResource = _createFormRecordResource();
 
 		formRecordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -171,7 +172,7 @@ public class Query {
 		throws Exception {
 
 		FormStructureResource formStructureResource =
-			_getFormStructureResource();
+			_createFormStructureResource();
 
 		formStructureResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -180,66 +181,20 @@ public class Query {
 		return formStructureResource.getFormStructure(formStructureId);
 	}
 
-	private static FormDocumentResource _getFormDocumentResource() {
-		return _formDocumentResourceServiceTracker.getService();
+	private static FormDocumentResource _createFormDocumentResource() {
+		return new FormDocumentResourceImpl();
 	}
 
-	private static FormRecordResource _getFormRecordResource() {
-		return _formRecordResourceServiceTracker.getService();
+	private static FormRecordResource _createFormRecordResource() {
+		return new FormRecordResourceImpl();
 	}
 
-	private static FormResource _getFormResource() {
-		return _formResourceServiceTracker.getService();
+	private static FormResource _createFormResource() {
+		return new FormResourceImpl();
 	}
 
-	private static FormStructureResource _getFormStructureResource() {
-		return _formStructureResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker
-		<FormDocumentResource, FormDocumentResource>
-			_formDocumentResourceServiceTracker;
-	private static final ServiceTracker<FormRecordResource, FormRecordResource>
-		_formRecordResourceServiceTracker;
-	private static final ServiceTracker<FormResource, FormResource>
-		_formResourceServiceTracker;
-	private static final ServiceTracker
-		<FormStructureResource, FormStructureResource>
-			_formStructureResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<FormResource, FormResource> formResourceServiceTracker =
-			new ServiceTracker<>(
-				bundle.getBundleContext(), FormResource.class, null);
-
-		formResourceServiceTracker.open();
-
-		_formResourceServiceTracker = formResourceServiceTracker;
-		ServiceTracker<FormDocumentResource, FormDocumentResource>
-			formDocumentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), FormDocumentResource.class, null);
-
-		formDocumentResourceServiceTracker.open();
-
-		_formDocumentResourceServiceTracker =
-			formDocumentResourceServiceTracker;
-		ServiceTracker<FormRecordResource, FormRecordResource>
-			formRecordResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), FormRecordResource.class, null);
-
-		formRecordResourceServiceTracker.open();
-
-		_formRecordResourceServiceTracker = formRecordResourceServiceTracker;
-		ServiceTracker<FormStructureResource, FormStructureResource>
-			formStructureResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), FormStructureResource.class, null);
-
-		formStructureResourceServiceTracker.open();
-
-		_formStructureResourceServiceTracker =
-			formStructureResourceServiceTracker;
+	private static FormStructureResource _createFormStructureResource() {
+		return new FormStructureResourceImpl();
 	}
 
 }

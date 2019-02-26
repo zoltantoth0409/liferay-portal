@@ -16,6 +16,9 @@ package com.liferay.headless.web.experience.internal.graphql.mutation.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
+import com.liferay.headless.web.experience.internal.resource.v1_0.CommentResourceImpl;
+import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentImageResourceImpl;
+import com.liferay.headless.web.experience.internal.resource.v1_0.StructuredContentResourceImpl;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentImageResource;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
@@ -25,10 +28,6 @@ import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -41,7 +40,9 @@ public class Mutation {
 	public boolean deleteComment(@GraphQLName("comment-id") Long commentId)
 		throws Exception {
 
-		return _getCommentResource().deleteComment(commentId);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.deleteComment(commentId);
 	}
 
 	@GraphQLInvokeDetached
@@ -49,7 +50,10 @@ public class Mutation {
 			@GraphQLName("structured-content-id") Long structuredContentId)
 		throws Exception {
 
-		return _getStructuredContentResource().deleteStructuredContent(
+		StructuredContentResource structuredContentResource =
+			_createStructuredContentResource();
+
+		return structuredContentResource.deleteStructuredContent(
 			structuredContentId);
 	}
 
@@ -59,7 +63,10 @@ public class Mutation {
 			@GraphQLName("content-document-id") Long contentDocumentId)
 		throws Exception {
 
-		return _getStructuredContentImageResource().
+		StructuredContentImageResource structuredContentImageResource =
+			_createStructuredContentImageResource();
+
+		return structuredContentImageResource.
 			deleteStructuredContentContentDocument(
 				structuredContentId, contentDocumentId);
 	}
@@ -71,7 +78,10 @@ public class Mutation {
 				structuredContent)
 		throws Exception {
 
-		return _getStructuredContentResource().patchStructuredContent(
+		StructuredContentResource structuredContentResource =
+			_createStructuredContentResource();
+
+		return structuredContentResource.patchStructuredContent(
 			structuredContentId, structuredContent);
 	}
 
@@ -82,7 +92,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postCommentComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postCommentComment(commentId, comment);
 	}
 
 	@GraphQLField
@@ -93,9 +105,11 @@ public class Mutation {
 				structuredContent)
 		throws Exception {
 
-		return _getStructuredContentResource().
-			postContentSpaceStructuredContent(
-				contentSpaceId, structuredContent);
+		StructuredContentResource structuredContentResource =
+			_createStructuredContentResource();
+
+		return structuredContentResource.postContentSpaceStructuredContent(
+			contentSpaceId, structuredContent);
 	}
 
 	@GraphQLField
@@ -105,7 +119,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postStructuredContentComment(
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postStructuredContentComment(
 			structuredContentId, comment);
 	}
 
@@ -115,7 +131,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().putComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.putComment(commentId, comment);
 	}
 
 	@GraphQLInvokeDetached
@@ -125,63 +143,27 @@ public class Mutation {
 				structuredContent)
 		throws Exception {
 
-		return _getStructuredContentResource().putStructuredContent(
+		StructuredContentResource structuredContentResource =
+			_createStructuredContentResource();
+
+		return structuredContentResource.putStructuredContent(
 			structuredContentId, structuredContent);
 	}
 
-	private static CommentResource _getCommentResource() {
-		return _commentResourceServiceTracker.getService();
+	private static CommentResource _createCommentResource() {
+		return new CommentResourceImpl();
 	}
 
 	private static StructuredContentImageResource
-		_getStructuredContentImageResource() {
+		_createStructuredContentImageResource() {
 
-		return _structuredContentImageResourceServiceTracker.getService();
+		return new StructuredContentImageResourceImpl();
 	}
 
-	private static StructuredContentResource _getStructuredContentResource() {
-		return _structuredContentResourceServiceTracker.getService();
-	}
+	private static StructuredContentResource
+		_createStructuredContentResource() {
 
-	private static final ServiceTracker<CommentResource, CommentResource>
-		_commentResourceServiceTracker;
-	private static final ServiceTracker
-		<StructuredContentImageResource, StructuredContentImageResource>
-			_structuredContentImageResourceServiceTracker;
-	private static final ServiceTracker
-		<StructuredContentResource, StructuredContentResource>
-			_structuredContentResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
-
-		ServiceTracker<CommentResource, CommentResource>
-			commentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CommentResource.class, null);
-
-		commentResourceServiceTracker.open();
-
-		_commentResourceServiceTracker = commentResourceServiceTracker;
-		ServiceTracker<StructuredContentResource, StructuredContentResource>
-			structuredContentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), StructuredContentResource.class,
-				null);
-
-		structuredContentResourceServiceTracker.open();
-
-		_structuredContentResourceServiceTracker =
-			structuredContentResourceServiceTracker;
-		ServiceTracker
-			<StructuredContentImageResource, StructuredContentImageResource>
-				structuredContentImageResourceServiceTracker =
-					new ServiceTracker<>(
-						bundle.getBundleContext(),
-						StructuredContentImageResource.class, null);
-
-		structuredContentImageResourceServiceTracker.open();
-
-		_structuredContentImageResourceServiceTracker =
-			structuredContentImageResourceServiceTracker;
+		return new StructuredContentResourceImpl();
 	}
 
 }

@@ -16,6 +16,8 @@ package com.liferay.headless.workflow.internal.graphql.query.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
+import com.liferay.headless.workflow.internal.resource.v1_0.WorkflowLogResourceImpl;
+import com.liferay.headless.workflow.internal.resource.v1_0.WorkflowTaskResourceImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
@@ -30,10 +32,6 @@ import graphql.annotations.annotationTypes.GraphQLName;
 import java.util.Collection;
 
 import javax.annotation.Generated;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -50,7 +48,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -68,7 +67,7 @@ public class Query {
 			@GraphQLName("workflow-log-id") Long workflowLogId)
 		throws Exception {
 
-		WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
+		WorkflowLogResource workflowLogResource = _createWorkflowLogResource();
 
 		workflowLogResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -83,7 +82,8 @@ public class Query {
 			@GraphQLName("workflow-task-id") Long workflowTaskId)
 		throws Exception {
 
-		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -99,7 +99,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		WorkflowTaskResource workflowTaskResource = _getWorkflowTaskResource();
+		WorkflowTaskResource workflowTaskResource =
+			_createWorkflowTaskResource();
 
 		workflowTaskResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -119,7 +120,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		WorkflowLogResource workflowLogResource = _getWorkflowLogResource();
+		WorkflowLogResource workflowLogResource = _createWorkflowLogResource();
 
 		workflowLogResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -132,39 +133,12 @@ public class Query {
 		return paginationPage.getItems();
 	}
 
-	private static WorkflowLogResource _getWorkflowLogResource() {
-		return _workflowLogResourceServiceTracker.getService();
+	private static WorkflowLogResource _createWorkflowLogResource() {
+		return new WorkflowLogResourceImpl();
 	}
 
-	private static WorkflowTaskResource _getWorkflowTaskResource() {
-		return _workflowTaskResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker
-		<WorkflowLogResource, WorkflowLogResource>
-			_workflowLogResourceServiceTracker;
-	private static final ServiceTracker
-		<WorkflowTaskResource, WorkflowTaskResource>
-			_workflowTaskResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<WorkflowLogResource, WorkflowLogResource>
-			workflowLogResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), WorkflowLogResource.class, null);
-
-		workflowLogResourceServiceTracker.open();
-
-		_workflowLogResourceServiceTracker = workflowLogResourceServiceTracker;
-		ServiceTracker<WorkflowTaskResource, WorkflowTaskResource>
-			workflowTaskResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), WorkflowTaskResource.class, null);
-
-		workflowTaskResourceServiceTracker.open();
-
-		_workflowTaskResourceServiceTracker =
-			workflowTaskResourceServiceTracker;
+	private static WorkflowTaskResource _createWorkflowTaskResource() {
+		return new WorkflowTaskResourceImpl();
 	}
 
 }

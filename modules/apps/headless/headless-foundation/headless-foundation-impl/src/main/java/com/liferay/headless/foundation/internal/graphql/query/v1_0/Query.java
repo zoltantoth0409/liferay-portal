@@ -24,6 +24,16 @@ import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
+import com.liferay.headless.foundation.internal.resource.v1_0.CategoryResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.EmailResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.KeywordResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.OrganizationResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.PhoneResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.PostalAddressResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.RoleResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.UserAccountResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.VocabularyResourceImpl;
+import com.liferay.headless.foundation.internal.resource.v1_0.WebUrlResourceImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.headless.foundation.resource.v1_0.EmailResource;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
@@ -49,10 +59,6 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
-
 /**
  * @author Javier Gamarra
  * @generated
@@ -66,7 +72,7 @@ public class Query {
 		throws Exception {
 
 		PostalAddressResource postalAddressResource =
-			_getPostalAddressResource();
+			_createPostalAddressResource();
 
 		postalAddressResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -80,7 +86,7 @@ public class Query {
 	public Category getCategory(@GraphQLName("category-id") Long categoryId)
 		throws Exception {
 
-		CategoryResource categoryResource = _getCategoryResource();
+		CategoryResource categoryResource = _createCategoryResource();
 
 		categoryResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -98,7 +104,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CategoryResource categoryResource = _getCategoryResource();
+		CategoryResource categoryResource = _createCategoryResource();
 
 		categoryResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -119,7 +125,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		KeywordResource keywordResource = _getKeywordResource();
+		KeywordResource keywordResource = _createKeywordResource();
 
 		keywordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -140,7 +146,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		VocabularyResource vocabularyResource = _getVocabularyResource();
+		VocabularyResource vocabularyResource = _createVocabularyResource();
 
 		vocabularyResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -158,7 +164,7 @@ public class Query {
 	public Email getEmail(@GraphQLName("email-id") Long emailId)
 		throws Exception {
 
-		EmailResource emailResource = _getEmailResource();
+		EmailResource emailResource = _createEmailResource();
 
 		emailResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -175,7 +181,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		EmailResource emailResource = _getEmailResource();
+		EmailResource emailResource = _createEmailResource();
 
 		emailResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -195,7 +201,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		PhoneResource phoneResource = _getPhoneResource();
+		PhoneResource phoneResource = _createPhoneResource();
 
 		phoneResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -216,7 +222,7 @@ public class Query {
 		throws Exception {
 
 		PostalAddressResource postalAddressResource =
-			_getPostalAddressResource();
+			_createPostalAddressResource();
 
 		postalAddressResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -237,7 +243,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		WebUrlResource webUrlResource = _getWebUrlResource();
+		WebUrlResource webUrlResource = _createWebUrlResource();
 
 		webUrlResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -254,7 +260,7 @@ public class Query {
 	public Keyword getKeyword(@GraphQLName("keyword-id") Long keywordId)
 		throws Exception {
 
-		KeywordResource keywordResource = _getKeywordResource();
+		KeywordResource keywordResource = _createKeywordResource();
 
 		keywordResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -269,7 +275,7 @@ public class Query {
 			@GraphQLName("my-user-account-id") Long myUserAccountId)
 		throws Exception {
 
-		UserAccountResource userAccountResource = _getUserAccountResource();
+		UserAccountResource userAccountResource = _createUserAccountResource();
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -286,7 +292,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		OrganizationResource organizationResource = _getOrganizationResource();
+		OrganizationResource organizationResource =
+			_createOrganizationResource();
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -307,7 +314,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		RoleResource roleResource = _getRoleResource();
+		RoleResource roleResource = _createRoleResource();
 
 		roleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -325,7 +332,8 @@ public class Query {
 			@GraphQLName("organization-id") Long organizationId)
 		throws Exception {
 
-		OrganizationResource organizationResource = _getOrganizationResource();
+		OrganizationResource organizationResource =
+			_createOrganizationResource();
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -342,7 +350,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		OrganizationResource organizationResource = _getOrganizationResource();
+		OrganizationResource organizationResource =
+			_createOrganizationResource();
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -362,7 +371,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		OrganizationResource organizationResource = _getOrganizationResource();
+		OrganizationResource organizationResource =
+			_createOrganizationResource();
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -382,7 +392,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		UserAccountResource userAccountResource = _getUserAccountResource();
+		UserAccountResource userAccountResource = _createUserAccountResource();
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -400,7 +410,7 @@ public class Query {
 	public Phone getPhone(@GraphQLName("phone-id") Long phoneId)
 		throws Exception {
 
-		PhoneResource phoneResource = _getPhoneResource();
+		PhoneResource phoneResource = _createPhoneResource();
 
 		phoneResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -412,7 +422,7 @@ public class Query {
 	@GraphQLField
 	@GraphQLInvokeDetached
 	public Role getRole(@GraphQLName("role-id") Long roleId) throws Exception {
-		RoleResource roleResource = _getRoleResource();
+		RoleResource roleResource = _createRoleResource();
 
 		roleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -428,7 +438,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		RoleResource roleResource = _getRoleResource();
+		RoleResource roleResource = _createRoleResource();
 
 		roleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -446,7 +456,7 @@ public class Query {
 			@GraphQLName("user-account-id") Long userAccountId)
 		throws Exception {
 
-		UserAccountResource userAccountResource = _getUserAccountResource();
+		UserAccountResource userAccountResource = _createUserAccountResource();
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -463,7 +473,8 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		OrganizationResource organizationResource = _getOrganizationResource();
+		OrganizationResource organizationResource =
+			_createOrganizationResource();
 
 		organizationResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -484,7 +495,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		RoleResource roleResource = _getRoleResource();
+		RoleResource roleResource = _createRoleResource();
 
 		roleResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -504,7 +515,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		UserAccountResource userAccountResource = _getUserAccountResource();
+		UserAccountResource userAccountResource = _createUserAccountResource();
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -522,7 +533,7 @@ public class Query {
 			@GraphQLName("vocabulary-id") Long vocabularyId)
 		throws Exception {
 
-		VocabularyResource vocabularyResource = _getVocabularyResource();
+		VocabularyResource vocabularyResource = _createVocabularyResource();
 
 		vocabularyResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -540,7 +551,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CategoryResource categoryResource = _getCategoryResource();
+		CategoryResource categoryResource = _createCategoryResource();
 
 		categoryResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -560,7 +571,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		UserAccountResource userAccountResource = _getUserAccountResource();
+		UserAccountResource userAccountResource = _createUserAccountResource();
 
 		userAccountResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -577,7 +588,7 @@ public class Query {
 	public WebUrl getWebUrl(@GraphQLName("web-url-id") Long webUrlId)
 		throws Exception {
 
-		WebUrlResource webUrlResource = _getWebUrlResource();
+		WebUrlResource webUrlResource = _createWebUrlResource();
 
 		webUrlResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -586,145 +597,44 @@ public class Query {
 		return webUrlResource.getWebUrl(webUrlId);
 	}
 
-	private static CategoryResource _getCategoryResource() {
-		return _categoryResourceServiceTracker.getService();
+	private static CategoryResource _createCategoryResource() {
+		return new CategoryResourceImpl();
 	}
 
-	private static EmailResource _getEmailResource() {
-		return _emailResourceServiceTracker.getService();
+	private static EmailResource _createEmailResource() {
+		return new EmailResourceImpl();
 	}
 
-	private static KeywordResource _getKeywordResource() {
-		return _keywordResourceServiceTracker.getService();
+	private static KeywordResource _createKeywordResource() {
+		return new KeywordResourceImpl();
 	}
 
-	private static OrganizationResource _getOrganizationResource() {
-		return _organizationResourceServiceTracker.getService();
+	private static OrganizationResource _createOrganizationResource() {
+		return new OrganizationResourceImpl();
 	}
 
-	private static PhoneResource _getPhoneResource() {
-		return _phoneResourceServiceTracker.getService();
+	private static PhoneResource _createPhoneResource() {
+		return new PhoneResourceImpl();
 	}
 
-	private static PostalAddressResource _getPostalAddressResource() {
-		return _postalAddressResourceServiceTracker.getService();
+	private static PostalAddressResource _createPostalAddressResource() {
+		return new PostalAddressResourceImpl();
 	}
 
-	private static RoleResource _getRoleResource() {
-		return _roleResourceServiceTracker.getService();
+	private static RoleResource _createRoleResource() {
+		return new RoleResourceImpl();
 	}
 
-	private static UserAccountResource _getUserAccountResource() {
-		return _userAccountResourceServiceTracker.getService();
+	private static UserAccountResource _createUserAccountResource() {
+		return new UserAccountResourceImpl();
 	}
 
-	private static VocabularyResource _getVocabularyResource() {
-		return _vocabularyResourceServiceTracker.getService();
+	private static VocabularyResource _createVocabularyResource() {
+		return new VocabularyResourceImpl();
 	}
 
-	private static WebUrlResource _getWebUrlResource() {
-		return _webUrlResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker<CategoryResource, CategoryResource>
-		_categoryResourceServiceTracker;
-	private static final ServiceTracker<EmailResource, EmailResource>
-		_emailResourceServiceTracker;
-	private static final ServiceTracker<KeywordResource, KeywordResource>
-		_keywordResourceServiceTracker;
-	private static final ServiceTracker
-		<OrganizationResource, OrganizationResource>
-			_organizationResourceServiceTracker;
-	private static final ServiceTracker<PhoneResource, PhoneResource>
-		_phoneResourceServiceTracker;
-	private static final ServiceTracker
-		<PostalAddressResource, PostalAddressResource>
-			_postalAddressResourceServiceTracker;
-	private static final ServiceTracker<RoleResource, RoleResource>
-		_roleResourceServiceTracker;
-	private static final ServiceTracker
-		<UserAccountResource, UserAccountResource>
-			_userAccountResourceServiceTracker;
-	private static final ServiceTracker<VocabularyResource, VocabularyResource>
-		_vocabularyResourceServiceTracker;
-	private static final ServiceTracker<WebUrlResource, WebUrlResource>
-		_webUrlResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<CategoryResource, CategoryResource>
-			categoryResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CategoryResource.class, null);
-
-		categoryResourceServiceTracker.open();
-
-		_categoryResourceServiceTracker = categoryResourceServiceTracker;
-		ServiceTracker<EmailResource, EmailResource>
-			emailResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), EmailResource.class, null);
-
-		emailResourceServiceTracker.open();
-
-		_emailResourceServiceTracker = emailResourceServiceTracker;
-		ServiceTracker<KeywordResource, KeywordResource>
-			keywordResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), KeywordResource.class, null);
-
-		keywordResourceServiceTracker.open();
-
-		_keywordResourceServiceTracker = keywordResourceServiceTracker;
-		ServiceTracker<OrganizationResource, OrganizationResource>
-			organizationResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), OrganizationResource.class, null);
-
-		organizationResourceServiceTracker.open();
-
-		_organizationResourceServiceTracker =
-			organizationResourceServiceTracker;
-		ServiceTracker<PhoneResource, PhoneResource>
-			phoneResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), PhoneResource.class, null);
-
-		phoneResourceServiceTracker.open();
-
-		_phoneResourceServiceTracker = phoneResourceServiceTracker;
-		ServiceTracker<PostalAddressResource, PostalAddressResource>
-			postalAddressResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), PostalAddressResource.class, null);
-
-		postalAddressResourceServiceTracker.open();
-
-		_postalAddressResourceServiceTracker =
-			postalAddressResourceServiceTracker;
-		ServiceTracker<RoleResource, RoleResource> roleResourceServiceTracker =
-			new ServiceTracker<>(
-				bundle.getBundleContext(), RoleResource.class, null);
-
-		roleResourceServiceTracker.open();
-
-		_roleResourceServiceTracker = roleResourceServiceTracker;
-		ServiceTracker<UserAccountResource, UserAccountResource>
-			userAccountResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), UserAccountResource.class, null);
-
-		userAccountResourceServiceTracker.open();
-
-		_userAccountResourceServiceTracker = userAccountResourceServiceTracker;
-		ServiceTracker<VocabularyResource, VocabularyResource>
-			vocabularyResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), VocabularyResource.class, null);
-
-		vocabularyResourceServiceTracker.open();
-
-		_vocabularyResourceServiceTracker = vocabularyResourceServiceTracker;
-		ServiceTracker<WebUrlResource, WebUrlResource>
-			webUrlResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), WebUrlResource.class, null);
-
-		webUrlResourceServiceTracker.open();
-
-		_webUrlResourceServiceTracker = webUrlResourceServiceTracker;
+	private static WebUrlResource _createWebUrlResource() {
+		return new WebUrlResourceImpl();
 	}
 
 }

@@ -17,6 +17,9 @@ package com.liferay.headless.collaboration.internal.graphql.query.v1_0;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
+import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingImageResourceImpl;
+import com.liferay.headless.collaboration.internal.resource.v1_0.BlogPostingResourceImpl;
+import com.liferay.headless.collaboration.internal.resource.v1_0.CommentResourceImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.headless.collaboration.resource.v1_0.CommentResource;
@@ -35,10 +38,6 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
-
 /**
  * @author Javier Gamarra
  * @generated
@@ -52,7 +51,7 @@ public class Query {
 			@GraphQLName("blog-posting-id") Long blogPostingId)
 		throws Exception {
 
-		BlogPostingResource blogPostingResource = _getBlogPostingResource();
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
 
 		blogPostingResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -70,7 +69,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -87,7 +86,7 @@ public class Query {
 	public Comment getComment(@GraphQLName("comment-id") Long commentId)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -105,7 +104,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -126,7 +125,7 @@ public class Query {
 		throws Exception {
 
 		BlogPostingImageResource blogPostingImageResource =
-			_getBlogPostingImageResource();
+			_createBlogPostingImageResource();
 
 		blogPostingImageResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -148,7 +147,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		BlogPostingResource blogPostingResource = _getBlogPostingResource();
+		BlogPostingResource blogPostingResource = _createBlogPostingResource();
 
 		blogPostingResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -168,7 +167,7 @@ public class Query {
 		throws Exception {
 
 		BlogPostingImageResource blogPostingImageResource =
-			_getBlogPostingImageResource();
+			_createBlogPostingImageResource();
 
 		blogPostingImageResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -177,53 +176,16 @@ public class Query {
 		return blogPostingImageResource.getImageObject(imageObjectId);
 	}
 
-	private static BlogPostingImageResource _getBlogPostingImageResource() {
-		return _blogPostingImageResourceServiceTracker.getService();
+	private static BlogPostingImageResource _createBlogPostingImageResource() {
+		return new BlogPostingImageResourceImpl();
 	}
 
-	private static BlogPostingResource _getBlogPostingResource() {
-		return _blogPostingResourceServiceTracker.getService();
+	private static BlogPostingResource _createBlogPostingResource() {
+		return new BlogPostingResourceImpl();
 	}
 
-	private static CommentResource _getCommentResource() {
-		return _commentResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker
-		<BlogPostingImageResource, BlogPostingImageResource>
-			_blogPostingImageResourceServiceTracker;
-	private static final ServiceTracker
-		<BlogPostingResource, BlogPostingResource>
-			_blogPostingResourceServiceTracker;
-	private static final ServiceTracker<CommentResource, CommentResource>
-		_commentResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<BlogPostingResource, BlogPostingResource>
-			blogPostingResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), BlogPostingResource.class, null);
-
-		blogPostingResourceServiceTracker.open();
-
-		_blogPostingResourceServiceTracker = blogPostingResourceServiceTracker;
-		ServiceTracker<BlogPostingImageResource, BlogPostingImageResource>
-			blogPostingImageResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), BlogPostingImageResource.class,
-				null);
-
-		blogPostingImageResourceServiceTracker.open();
-
-		_blogPostingImageResourceServiceTracker =
-			blogPostingImageResourceServiceTracker;
-		ServiceTracker<CommentResource, CommentResource>
-			commentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CommentResource.class, null);
-
-		commentResourceServiceTracker.open();
-
-		_commentResourceServiceTracker = commentResourceServiceTracker;
+	private static CommentResource _createCommentResource() {
+		return new CommentResourceImpl();
 	}
 
 }

@@ -17,6 +17,9 @@ package com.liferay.headless.document.library.internal.graphql.mutation.v1_0;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.internal.resource.v1_0.CommentResourceImpl;
+import com.liferay.headless.document.library.internal.resource.v1_0.DocumentResourceImpl;
+import com.liferay.headless.document.library.internal.resource.v1_0.FolderResourceImpl;
 import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
@@ -27,10 +30,6 @@ import graphql.annotations.annotationTypes.GraphQLInvokeDetached;
 import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * @author Javier Gamarra
@@ -43,21 +42,27 @@ public class Mutation {
 	public boolean deleteComment(@GraphQLName("comment-id") Long commentId)
 		throws Exception {
 
-		return _getCommentResource().deleteComment(commentId);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.deleteComment(commentId);
 	}
 
 	@GraphQLInvokeDetached
 	public boolean deleteDocument(@GraphQLName("document-id") Long documentId)
 		throws Exception {
 
-		return _getDocumentResource().deleteDocument(documentId);
+		DocumentResource documentResource = _createDocumentResource();
+
+		return documentResource.deleteDocument(documentId);
 	}
 
 	@GraphQLInvokeDetached
 	public boolean deleteFolder(@GraphQLName("folder-id") Long folderId)
 		throws Exception {
 
-		return _getFolderResource().deleteFolder(folderId);
+		FolderResource folderResource = _createFolderResource();
+
+		return folderResource.deleteFolder(folderId);
 	}
 
 	@GraphQLInvokeDetached
@@ -66,7 +71,9 @@ public class Mutation {
 			@GraphQLName("Folder") Folder folder)
 		throws Exception {
 
-		return _getFolderResource().patchFolder(folderId, folder);
+		FolderResource folderResource = _createFolderResource();
+
+		return folderResource.patchFolder(folderId, folder);
 	}
 
 	@GraphQLField
@@ -76,7 +83,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postCommentComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postCommentComment(commentId, comment);
 	}
 
 	@GraphQLField
@@ -86,7 +95,9 @@ public class Mutation {
 			@GraphQLName("MultipartBody") MultipartBody multipartBody)
 		throws Exception {
 
-		return _getDocumentResource().postContentSpaceDocument(
+		DocumentResource documentResource = _createDocumentResource();
+
+		return documentResource.postContentSpaceDocument(
 			contentSpaceId, multipartBody);
 	}
 
@@ -97,8 +108,9 @@ public class Mutation {
 			@GraphQLName("Folder") Folder folder)
 		throws Exception {
 
-		return _getFolderResource().postContentSpaceFolder(
-			contentSpaceId, folder);
+		FolderResource folderResource = _createFolderResource();
+
+		return folderResource.postContentSpaceFolder(contentSpaceId, folder);
 	}
 
 	@GraphQLField
@@ -108,7 +120,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().postDocumentComment(documentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.postDocumentComment(documentId, comment);
 	}
 
 	@GraphQLField
@@ -118,8 +132,9 @@ public class Mutation {
 			@GraphQLName("MultipartBody") MultipartBody multipartBody)
 		throws Exception {
 
-		return _getDocumentResource().postFolderDocument(
-			folderId, multipartBody);
+		DocumentResource documentResource = _createDocumentResource();
+
+		return documentResource.postFolderDocument(folderId, multipartBody);
 	}
 
 	@GraphQLField
@@ -129,7 +144,9 @@ public class Mutation {
 			@GraphQLName("Folder") Folder folder)
 		throws Exception {
 
-		return _getFolderResource().postFolderFolder(folderId, folder);
+		FolderResource folderResource = _createFolderResource();
+
+		return folderResource.postFolderFolder(folderId, folder);
 	}
 
 	@GraphQLInvokeDetached
@@ -138,7 +155,9 @@ public class Mutation {
 			@GraphQLName("Comment") Comment comment)
 		throws Exception {
 
-		return _getCommentResource().putComment(commentId, comment);
+		CommentResource commentResource = _createCommentResource();
+
+		return commentResource.putComment(commentId, comment);
 	}
 
 	@GraphQLInvokeDetached
@@ -147,7 +166,9 @@ public class Mutation {
 			@GraphQLName("MultipartBody") MultipartBody multipartBody)
 		throws Exception {
 
-		return _getDocumentResource().putDocument(documentId, multipartBody);
+		DocumentResource documentResource = _createDocumentResource();
+
+		return documentResource.putDocument(documentId, multipartBody);
 	}
 
 	@GraphQLInvokeDetached
@@ -156,52 +177,21 @@ public class Mutation {
 			@GraphQLName("Folder") Folder folder)
 		throws Exception {
 
-		return _getFolderResource().putFolder(folderId, folder);
+		FolderResource folderResource = _createFolderResource();
+
+		return folderResource.putFolder(folderId, folder);
 	}
 
-	private static CommentResource _getCommentResource() {
-		return _commentResourceServiceTracker.getService();
+	private static CommentResource _createCommentResource() {
+		return new CommentResourceImpl();
 	}
 
-	private static DocumentResource _getDocumentResource() {
-		return _documentResourceServiceTracker.getService();
+	private static DocumentResource _createDocumentResource() {
+		return new DocumentResourceImpl();
 	}
 
-	private static FolderResource _getFolderResource() {
-		return _folderResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker<CommentResource, CommentResource>
-		_commentResourceServiceTracker;
-	private static final ServiceTracker<DocumentResource, DocumentResource>
-		_documentResourceServiceTracker;
-	private static final ServiceTracker<FolderResource, FolderResource>
-		_folderResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Mutation.class);
-
-		ServiceTracker<CommentResource, CommentResource>
-			commentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CommentResource.class, null);
-
-		commentResourceServiceTracker.open();
-
-		_commentResourceServiceTracker = commentResourceServiceTracker;
-		ServiceTracker<DocumentResource, DocumentResource>
-			documentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), DocumentResource.class, null);
-
-		documentResourceServiceTracker.open();
-
-		_documentResourceServiceTracker = documentResourceServiceTracker;
-		ServiceTracker<FolderResource, FolderResource>
-			folderResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), FolderResource.class, null);
-
-		folderResourceServiceTracker.open();
-
-		_folderResourceServiceTracker = folderResourceServiceTracker;
+	private static FolderResource _createFolderResource() {
+		return new FolderResourceImpl();
 	}
 
 }

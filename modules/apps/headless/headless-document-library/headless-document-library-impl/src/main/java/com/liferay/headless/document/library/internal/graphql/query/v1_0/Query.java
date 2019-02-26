@@ -17,6 +17,9 @@ package com.liferay.headless.document.library.internal.graphql.query.v1_0;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.headless.document.library.dto.v1_0.Document;
 import com.liferay.headless.document.library.dto.v1_0.Folder;
+import com.liferay.headless.document.library.internal.resource.v1_0.CommentResourceImpl;
+import com.liferay.headless.document.library.internal.resource.v1_0.DocumentResourceImpl;
+import com.liferay.headless.document.library.internal.resource.v1_0.FolderResourceImpl;
 import com.liferay.headless.document.library.resource.v1_0.CommentResource;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
@@ -35,10 +38,6 @@ import java.util.Collection;
 
 import javax.annotation.Generated;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
-
 /**
  * @author Javier Gamarra
  * @generated
@@ -51,7 +50,7 @@ public class Query {
 	public Comment getComment(@GraphQLName("comment-id") Long commentId)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -69,7 +68,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -90,7 +89,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		DocumentResource documentResource = _getDocumentResource();
+		DocumentResource documentResource = _createDocumentResource();
 
 		documentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -110,7 +109,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		FolderResource folderResource = _getFolderResource();
+		FolderResource folderResource = _createFolderResource();
 
 		folderResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -127,7 +126,7 @@ public class Query {
 	public Document getDocument(@GraphQLName("document-id") Long documentId)
 		throws Exception {
 
-		DocumentResource documentResource = _getDocumentResource();
+		DocumentResource documentResource = _createDocumentResource();
 
 		documentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -145,7 +144,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		CommentResource commentResource = _getCommentResource();
+		CommentResource commentResource = _createCommentResource();
 
 		commentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -162,7 +161,7 @@ public class Query {
 	public Folder getFolder(@GraphQLName("folder-id") Long folderId)
 		throws Exception {
 
-		FolderResource folderResource = _getFolderResource();
+		FolderResource folderResource = _createFolderResource();
 
 		folderResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -180,7 +179,7 @@ public class Query {
 			@GraphQLName("page") int page, @GraphQLName("Sort[]") Sort[] sorts)
 		throws Exception {
 
-		DocumentResource documentResource = _getDocumentResource();
+		DocumentResource documentResource = _createDocumentResource();
 
 		documentResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -200,7 +199,7 @@ public class Query {
 			@GraphQLName("page") int page)
 		throws Exception {
 
-		FolderResource folderResource = _getFolderResource();
+		FolderResource folderResource = _createFolderResource();
 
 		folderResource.setContextCompany(
 			CompanyLocalServiceUtil.getCompany(
@@ -212,49 +211,16 @@ public class Query {
 		return paginationPage.getItems();
 	}
 
-	private static CommentResource _getCommentResource() {
-		return _commentResourceServiceTracker.getService();
+	private static CommentResource _createCommentResource() {
+		return new CommentResourceImpl();
 	}
 
-	private static DocumentResource _getDocumentResource() {
-		return _documentResourceServiceTracker.getService();
+	private static DocumentResource _createDocumentResource() {
+		return new DocumentResourceImpl();
 	}
 
-	private static FolderResource _getFolderResource() {
-		return _folderResourceServiceTracker.getService();
-	}
-
-	private static final ServiceTracker<CommentResource, CommentResource>
-		_commentResourceServiceTracker;
-	private static final ServiceTracker<DocumentResource, DocumentResource>
-		_documentResourceServiceTracker;
-	private static final ServiceTracker<FolderResource, FolderResource>
-		_folderResourceServiceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(Query.class);
-
-		ServiceTracker<CommentResource, CommentResource>
-			commentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), CommentResource.class, null);
-
-		commentResourceServiceTracker.open();
-
-		_commentResourceServiceTracker = commentResourceServiceTracker;
-		ServiceTracker<DocumentResource, DocumentResource>
-			documentResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), DocumentResource.class, null);
-
-		documentResourceServiceTracker.open();
-
-		_documentResourceServiceTracker = documentResourceServiceTracker;
-		ServiceTracker<FolderResource, FolderResource>
-			folderResourceServiceTracker = new ServiceTracker<>(
-				bundle.getBundleContext(), FolderResource.class, null);
-
-		folderResourceServiceTracker.open();
-
-		_folderResourceServiceTracker = folderResourceServiceTracker;
+	private static FolderResource _createFolderResource() {
+		return new FolderResourceImpl();
 	}
 
 }
