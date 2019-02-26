@@ -185,7 +185,7 @@ public class ConfigurationModelIndexer extends BaseIndexer<ConfigurationModel> {
 
 		document.addUID(
 			ConfigurationAdminPortletKeys.SYSTEM_SETTINGS,
-			configurationModel.getID());
+			configurationModel.getFactoryPid());
 		document.addKeyword(
 			FieldNames.CONFIGURATION_MODEL_FACTORY_PID,
 			configurationModel.getFactoryPid());
