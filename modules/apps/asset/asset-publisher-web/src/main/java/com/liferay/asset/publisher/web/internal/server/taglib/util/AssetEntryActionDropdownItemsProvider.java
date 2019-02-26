@@ -72,6 +72,9 @@ public class AssetEntryActionDropdownItemsProvider {
 								dropdownItem.setHref(
 									editAssetEntryURL.toString());
 
+								dropdownItem.putData(
+									"destroyOnHide", Boolean.TRUE.toString());
+
 								PortletDisplay portletDisplay =
 									_themeDisplay.getPortletDisplay();
 
@@ -80,8 +83,6 @@ public class AssetEntryActionDropdownItemsProvider {
 
 								dropdownItem.putData("id", id + "editAsset");
 
-								dropdownItem.putData(
-									"destroyOnHide", Boolean.TRUE.toString());
 								dropdownItem.putData(
 									"title",
 									LanguageUtil.format(
