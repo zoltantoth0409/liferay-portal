@@ -715,7 +715,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					contentFieldValues = nestedContentFieldValues.toArray(
-						new ContentFieldValue[0]);
+						new ContentFieldValue[nestedContentFieldValues.size()]);
 					document = new ContentDocument() {
 						{
 							creator = CreatorUtil.toCreator(
@@ -749,7 +749,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					contentFieldValues = nestedContentFieldValues.toArray(
-						new ContentFieldValue[0]);
+						new ContentFieldValue[nestedContentFieldValues.size()]);
 					geo = new Geo() {
 						{
 							latitude = jsonObject.getDouble("latitude");
@@ -778,7 +778,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					contentFieldValues = nestedContentFieldValues.toArray(
-						new ContentFieldValue[0]);
+						new ContentFieldValue[nestedContentFieldValues.size()]);
 					structuredContent = _toStructuredContent(journalArticle);
 				}
 			};
@@ -805,7 +805,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					contentFieldValues = nestedContentFieldValues.toArray(
-						new ContentFieldValue[0]);
+						new ContentFieldValue[nestedContentFieldValues.size()]);
 					link = layoutByUuidAndGroupId.getFriendlyURL();
 				}
 			};
@@ -814,7 +814,7 @@ public class StructuredContentResourceImpl
 		return new Value() {
 			{
 				contentFieldValues = nestedContentFieldValues.toArray(
-					new ContentFieldValue[0]);
+					new ContentFieldValue[nestedContentFieldValues.size()]);
 				data = String.valueOf(ddmField.getValue(locale));
 			}
 		};
