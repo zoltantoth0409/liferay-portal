@@ -448,8 +448,8 @@ public class StructuredContentResourceImpl
 					ddmFormField);
 				name = ddmField.getName();
 				value = _toValue(
-					contextAcceptLanguage.getPreferredLocale(), fields,
-					ddmField);
+					ddmField, fields,
+					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
 	}
@@ -696,8 +696,8 @@ public class StructuredContentResourceImpl
 	}
 
 	private Value _toValue(
-			Locale locale, Fields fields,
-			com.liferay.dynamic.data.mapping.storage.Field ddmField)
+			com.liferay.dynamic.data.mapping.storage.Field ddmField,
+			Fields fields, Locale locale)
 		throws Exception {
 
 		DDMStructure ddmStructure = ddmField.getDDMStructure();
