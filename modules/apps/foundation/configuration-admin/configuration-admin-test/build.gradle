@@ -4,4 +4,6 @@ copyLibs {
 
 dependencies {
 	compileOnly project(":apps:foundation:configuration-admin:configuration-admin-web")
+
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 }
