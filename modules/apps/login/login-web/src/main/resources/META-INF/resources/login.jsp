@@ -126,12 +126,6 @@
 
 					<%
 					UserLockoutException.PasswordPolicyLockout ule = (UserLockoutException.PasswordPolicyLockout)errorException;
-
-					TimeZone userTimeZone = TimeZone.getTimeZone(ule.user.getTimeZoneId());
-
-					Format dateFormat = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.SHORT, FastDateFormatConstants.LONG, locale, userTimeZone);
-
-					String unlockDateString = dateFormat.format(ule.user.getUnlockDate());
 					%>
 
 					<c:choose>
@@ -139,7 +133,12 @@
 							<liferay-ui:message key="this-account-is-locked" />
 						</c:when>
 						<c:otherwise>
-							<liferay-ui:message arguments="<%= unlockDateString %>" key="this-account-is-locked-until-x" translateArguments="<%= false %>" />
+
+							<%
+							Format dateFormat = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.SHORT, FastDateFormatConstants.LONG, locale, TimeZone.getTimeZone(ule.user.getTimeZoneId()));
+							%>
+
+							<liferay-ui:message arguments="<%= dateFormat.format(ule.user.getUnlockDate()) %>" key="this-account-is-locked-until-x" translateArguments="<%= false %>" />
 						</c:otherwise>
 					</c:choose>
 				</liferay-ui:error>
