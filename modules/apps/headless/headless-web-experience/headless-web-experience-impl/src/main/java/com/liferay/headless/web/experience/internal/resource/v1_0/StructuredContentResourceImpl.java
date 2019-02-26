@@ -476,7 +476,8 @@ public class StructuredContentResourceImpl
 			}
 		}
 
-		return contentFieldValues.toArray(new ContentFieldValue[0]);
+		return contentFieldValues.toArray(
+			new ContentFieldValue[contentFieldValues.size()]);
 	}
 
 	private Fields _toDDMFields(
