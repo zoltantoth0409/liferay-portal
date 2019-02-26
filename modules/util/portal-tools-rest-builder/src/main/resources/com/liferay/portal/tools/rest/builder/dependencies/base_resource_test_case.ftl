@@ -50,8 +50,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	public void setUp() throws Exception {
 		testGroup = GroupTestUtil.addGroup();
 
-		_resourceURL = new URL(
-			"http://localhost:8080/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
+		_resourceURL = new URL("http://localhost:8080/o${configYAML.application.baseURI}/${openAPIYAML.info.version}");
 	}
 
 	@After
@@ -71,10 +70,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
-		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(
-				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
-			throws Exception {
-
+		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
 			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
@@ -106,10 +102,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		}
 
-		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(
-				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
-			throws Exception {
-
+		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
 			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />

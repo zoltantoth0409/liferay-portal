@@ -29,9 +29,7 @@ import javax.annotation.Generated;
 public interface ${schemaName}Resource {
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
-		public ${javaMethodSignature.returnType} ${javaMethodSignature.methodName}(
-				${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)})
-			throws Exception;
+		public ${javaMethodSignature.returnType} ${javaMethodSignature.methodName}(${freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)}) throws Exception;
 	</#list>
 
 	public void setContextCompany(Company contextCompany);

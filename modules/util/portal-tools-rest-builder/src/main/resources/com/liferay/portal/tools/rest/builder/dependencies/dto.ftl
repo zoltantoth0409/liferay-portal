@@ -29,20 +29,14 @@ public class ${schemaName} {
 			return ${javaParameter.parameterName};
 		}
 
-		public void set${javaParameter.parameterName?cap_first}(
-			${javaParameter.parameterType} ${javaParameter.parameterName}) {
-
+		public void set${javaParameter.parameterName?cap_first}(${javaParameter.parameterType} ${javaParameter.parameterName}) {
 			this.${javaParameter.parameterName} = ${javaParameter.parameterName};
 		}
 
 		@JsonIgnore
-		public void set${javaParameter.parameterName?cap_first}(
-			UnsafeSupplier<${javaParameter.parameterType}, Exception>
-				${javaParameter.parameterName}UnsafeSupplier) {
-
+		public void set${javaParameter.parameterName?cap_first}(UnsafeSupplier<${javaParameter.parameterType}, Exception> ${javaParameter.parameterName}UnsafeSupplier) {
 			try {
-				${javaParameter.parameterName} =
-					${javaParameter.parameterName}UnsafeSupplier.get();
+				${javaParameter.parameterName} = ${javaParameter.parameterName}UnsafeSupplier.get();
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
