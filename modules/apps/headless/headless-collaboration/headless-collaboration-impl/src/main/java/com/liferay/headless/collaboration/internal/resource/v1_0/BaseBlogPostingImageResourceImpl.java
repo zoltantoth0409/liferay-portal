@@ -20,6 +20,8 @@ import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
+import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -72,7 +74,8 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@RequiresScope("everything.read")
 	public Page<BlogPostingImage> getContentSpaceBlogPostingImagesPage(
 			@PathParam("content-space-id") Long contentSpaceId,
-			@Context Pagination pagination)
+			@Context Filter filter, @Context Pagination pagination,
+			@Context Sort[] sorts)
 		throws Exception {
 
 		return Page.of(Collections.emptyList());
