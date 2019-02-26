@@ -202,7 +202,7 @@ public class DocumentResourceImpl
 			title, description, null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_getServiceContext(
-				oldFileEntry.getGroupId(), categoryIds, keywords));
+				categoryIds, oldFileEntry.getGroupId(), keywords));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
@@ -253,7 +253,7 @@ public class DocumentResourceImpl
 			document.getDescription(), null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_getServiceContext(
-				oldFileEntry.getGroupId(), document.getCategoryIds(),
+				document.getCategoryIds(), oldFileEntry.getGroupId(),
 				document.getKeywords()));
 
 		return _toDocument(
@@ -284,7 +284,7 @@ public class DocumentResourceImpl
 			title, document.getDescription(), null, binaryFile.getInputStream(),
 			binaryFile.getSize(),
 			_getServiceContext(
-				groupId, document.getCategoryIds(), document.getKeywords()));
+				document.getCategoryIds(), groupId, document.getKeywords()));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
@@ -367,7 +367,7 @@ public class DocumentResourceImpl
 	}
 
 	private ServiceContext _getServiceContext(
-		long groupId, Long[] categoryIds, String[] keywords) {
+		Long[] categoryIds, long groupId, String[] keywords) {
 
 		return new ServiceContext() {
 			{
