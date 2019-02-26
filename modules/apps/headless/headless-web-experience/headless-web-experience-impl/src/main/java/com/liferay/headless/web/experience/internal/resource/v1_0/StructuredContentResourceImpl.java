@@ -514,15 +514,15 @@ public class StructuredContentResourceImpl
 	}
 
 	private List<DDMFormFieldValue> _toDDMFormFieldValues(
-		ContentFieldValue[] contentFieldValuesArray, DDMStructure ddmStructure,
+		ContentFieldValue[] contentFieldValues, DDMStructure ddmStructure,
 		Locale locale) {
 
-		if (contentFieldValuesArray == null) {
+		if (contentFieldValues == null) {
 			return Collections.emptyList();
 		}
 
 		return transform(
-			Arrays.asList(contentFieldValuesArray),
+			Arrays.asList(contentFieldValues),
 			contentFieldValue -> new DDMFormFieldValue() {
 				{
 					setName(contentFieldValue.getName());
