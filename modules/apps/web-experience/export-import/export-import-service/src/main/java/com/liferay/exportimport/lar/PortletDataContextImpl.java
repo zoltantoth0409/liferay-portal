@@ -1470,6 +1470,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		_importWorkflowDefinitionLink(newClassedModel);
+
 		importLocks(clazz, String.valueOf(classPK), String.valueOf(newClassPK));
 		importPermissions(clazz, classPK, newClassPK);
 	}
