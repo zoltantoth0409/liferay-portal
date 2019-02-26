@@ -20,7 +20,6 @@ const FieldTypeBox = ({fieldType, spritemap}) => {
 							/>
 						</svg>
 					</span>
-
 				</span>
 			</div>
 			<div class="autofit-col autofit-col-expand">
