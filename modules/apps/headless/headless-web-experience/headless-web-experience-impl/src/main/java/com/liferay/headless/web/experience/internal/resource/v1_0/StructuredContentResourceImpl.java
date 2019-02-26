@@ -36,17 +36,12 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.Fields;
 import com.liferay.dynamic.data.mapping.util.DDM;
+import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
 import com.liferay.headless.web.experience.dto.v1_0.Geo;
 import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsURL;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.headless.web.experience.dto.v1_0.Value;
 import com.liferay.headless.web.experience.dto.v1_0.Values;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ContentDocumentImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.GeoImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.RenderedContentsURLImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ValueImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ValuesImpl;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.ContentStructureUtil;
 import com.liferay.headless.web.experience.internal.dto.v1_0.util.CreatorUtil;
@@ -401,7 +396,7 @@ public class StructuredContentResourceImpl
 
 		List<RenderedContentsURL> renderedContentsURLs = transform(
 			ddmStructure.getTemplates(),
-			ddmTemplate -> new RenderedContentsURLImpl() {
+			ddmTemplate -> new RenderedContentsURL() {
 				{
 					renderedContentURL = getJAXRSLink(
 						"getStructuredContentTemplate",
@@ -583,7 +578,7 @@ public class StructuredContentResourceImpl
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
-		return new StructuredContentImpl() {
+		return new StructuredContent() {
 			{
 				availableLanguages = LocaleUtil.toW3cLanguageIds(
 					journalArticle.getAvailableLanguageIds());
@@ -636,9 +631,9 @@ public class StructuredContentResourceImpl
 
 			FileEntry fileEntry = _dlAppService.getFileEntry(classPK);
 
-			return new ValueImpl() {
+			return new Value() {
 				{
-					document = new ContentDocumentImpl() {
+					document = new ContentDocument() {
 						{
 							creator = CreatorUtil.toCreator(
 								_portal,
@@ -668,9 +663,9 @@ public class StructuredContentResourceImpl
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 				String.valueOf(ddmField.getValue(ddmForm.getDefaultLocale())));
 
-			return new ValueImpl() {
+			return new Value() {
 				{
-					geo = new GeoImpl() {
+					geo = new Geo() {
 						{
 							latitude = jsonObject.getDouble("latitude");
 							longitude = jsonObject.getDouble("longitude");
@@ -695,7 +690,7 @@ public class StructuredContentResourceImpl
 			JournalArticle journalArticle =
 				_journalArticleService.getLatestArticle(classPK);
 
-			return new ValueImpl() {
+			return new Value() {
 				{
 					structuredContent = _toStructuredContent(journalArticle);
 				}
@@ -720,14 +715,14 @@ public class StructuredContentResourceImpl
 			Layout layoutByUuidAndGroupId = _layoutLocalService.getLayout(
 				groupId, privateLayout, layoutId);
 
-			return new ValueImpl() {
+			return new Value() {
 				{
 					link = layoutByUuidAndGroupId.getFriendlyURL();
 				}
 			};
 		}
 
-		return new ValueImpl() {
+		return new Value() {
 			{
 				data = String.valueOf(ddmField.getValue(locale));
 			}
@@ -753,7 +748,7 @@ public class StructuredContentResourceImpl
 				ddmField.getName());
 
 			values.add(
-				new ValuesImpl() {
+				new Values() {
 					{
 						dataType = ContentStructureUtil.toDataType(
 							ddmFormField);

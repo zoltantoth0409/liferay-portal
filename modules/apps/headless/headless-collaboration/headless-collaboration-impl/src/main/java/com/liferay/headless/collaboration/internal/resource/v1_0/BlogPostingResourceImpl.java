@@ -27,9 +27,6 @@ import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
 import com.liferay.headless.collaboration.dto.v1_0.Categories;
 import com.liferay.headless.collaboration.dto.v1_0.Image;
-import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.CategoriesImpl;
-import com.liferay.headless.collaboration.internal.dto.v1_0.ImageImpl;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.collaboration.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.collaboration.internal.odata.entity.v1_0.BlogPostingEntityModel;
@@ -213,7 +210,7 @@ public class BlogPostingResourceImpl
 		Stream<AssetCategory> stream = assetCategories.stream();
 
 		return stream.map(
-			assetCategory -> new CategoriesImpl() {
+			assetCategory -> new Categories() {
 				{
 					setCategoryId(assetCategory.getCategoryId());
 					setCategoryName(assetCategory.getName());
@@ -233,7 +230,7 @@ public class BlogPostingResourceImpl
 
 		FileEntry fileEntry = _dlAppService.getFileEntry(coverImageFileEntryId);
 
-		return new ImageImpl() {
+		return new Image() {
 			{
 				contentUrl = _dlURLHelper.getPreviewURL(
 					fileEntry, fileEntry.getFileVersion(), null, "", false,
@@ -277,7 +274,7 @@ public class BlogPostingResourceImpl
 	}
 
 	private BlogPosting _toBlogPosting(BlogsEntry blogsEntry) throws Exception {
-		return new BlogPostingImpl() {
+		return new BlogPosting() {
 			{
 				alternativeHeadline = blogsEntry.getSubtitle();
 				aggregateRating = AggregateRatingUtil.toAggregateRating(

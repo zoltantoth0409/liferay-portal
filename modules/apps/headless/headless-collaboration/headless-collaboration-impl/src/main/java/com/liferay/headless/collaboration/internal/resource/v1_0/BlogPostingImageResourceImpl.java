@@ -17,7 +17,6 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
-import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -55,7 +54,7 @@ public class BlogPostingImageResourceImpl
 	private BlogPostingImage _toBlogPostingImage(
 		FileEntry fileEntry, FileVersion fileVersion) {
 
-		return new BlogPostingImageImpl() {
+		return new BlogPostingImage() {
 			{
 				contentUrl = _dlURLHelper.getPreviewURL(
 					fileEntry, fileVersion, null, "");

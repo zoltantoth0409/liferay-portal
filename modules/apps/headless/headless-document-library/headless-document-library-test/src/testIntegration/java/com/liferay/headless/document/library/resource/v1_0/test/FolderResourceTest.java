@@ -208,7 +208,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 
 	@Override
 	protected Folder randomFolder() {
-		return new FolderImpl() {
+		return new Folder() {
 			{
 				description = RandomTestUtil.randomString();
 				name = RandomTestUtil.randomString();

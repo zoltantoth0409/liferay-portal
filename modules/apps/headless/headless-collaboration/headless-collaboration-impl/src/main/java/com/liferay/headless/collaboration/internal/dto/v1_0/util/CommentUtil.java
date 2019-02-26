@@ -15,7 +15,6 @@
 package com.liferay.headless.collaboration.internal.dto.v1_0.util;
 
 import com.liferay.headless.collaboration.dto.v1_0.Comment;
-import com.liferay.headless.collaboration.internal.dto.v1_0.CommentImpl;
 import com.liferay.portal.kernel.util.Portal;
 
 /**
@@ -31,7 +30,7 @@ public class CommentUtil {
 			return null;
 		}
 
-		return new CommentImpl() {
+		return new Comment() {
 			{
 				creator = CreatorUtil.toCreator(portal, comment.getUser());
 				dateCreated = comment.getCreateDate();

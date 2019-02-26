@@ -32,9 +32,6 @@ import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
 import com.liferay.headless.document.library.dto.v1_0.Categories;
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.headless.document.library.internal.dto.v1_0.AdaptedImagesImpl;
-import com.liferay.headless.document.library.internal.dto.v1_0.CategoriesImpl;
-import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
 import com.liferay.headless.document.library.internal.dto.v1_0.util.AggregateRatingUtil;
 import com.liferay.headless.document.library.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.document.library.internal.odata.entity.v1_0.DocumentEntityModel;
@@ -176,7 +173,7 @@ public class DocumentResourceImpl
 		throws Exception {
 
 		Document document = multipartBody.getValueAsInstance(
-			"Document", DocumentImpl.class);
+			"Document", Document.class);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
@@ -207,7 +204,7 @@ public class DocumentResourceImpl
 		throws Exception {
 
 		Document document = multipartBody.getValueAsInstance(
-			"Document", DocumentImpl.class);
+			"Document", Document.class);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
@@ -261,7 +258,7 @@ public class DocumentResourceImpl
 		Stream<AssetCategory> stream = assetCategories.stream();
 
 		return stream.map(
-			assetCategory -> new CategoriesImpl() {
+			assetCategory -> new Categories() {
 				{
 					setCategoryId(assetCategory.getCategoryId());
 					setCategoryName(assetCategory.getName());
@@ -338,7 +335,7 @@ public class DocumentResourceImpl
 	private AdaptedImages _toAdaptedImages(
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 
-		return new AdaptedImagesImpl() {
+		return new AdaptedImages() {
 			{
 				contentUrl = String.valueOf(adaptiveMedia.getURI());
 				height = _getValue(
@@ -364,7 +361,7 @@ public class DocumentResourceImpl
 			FileEntry fileEntry, FileVersion fileVersion, User user)
 		throws Exception {
 
-		return new DocumentImpl() {
+		return new Document() {
 			{
 				adaptedImages = _getAdaptiveMedias(fileEntry);
 				aggregateRating = AggregateRatingUtil.toAggregateRating(

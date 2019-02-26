@@ -20,9 +20,7 @@ import com.liferay.asset.kernel.service.AssetCategoryService;
 import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.ParentCategory;
-import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
-import com.liferay.headless.foundation.internal.dto.v1_0.ParentCategoryImpl;
-import com.liferay.headless.foundation.internal.dto.v1_0.ParentVocabularyImpl;
+import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.CategoryEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
@@ -223,7 +221,7 @@ public class CategoryResourceImpl
 	}
 
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
-		return new CategoryImpl() {
+		return new Category() {
 			{
 				availableLanguages = LocaleUtil.toW3cLanguageIds(
 					assetCategory.getAvailableLanguageIds());
@@ -251,7 +249,7 @@ public class CategoryResourceImpl
 						assetCategory.getParentCategory());
 				}
 
-				parentVocabulary = new ParentVocabularyImpl() {
+				parentVocabulary = new ParentVocabulary() {
 					{
 						id = assetCategory.getVocabularyId();
 
@@ -270,7 +268,7 @@ public class CategoryResourceImpl
 	}
 
 	private ParentCategory _toParentCategory(AssetCategory parentCategory) {
-		return new ParentCategoryImpl() {
+		return new ParentCategory() {
 			{
 				id = parentCategory.getCategoryId();
 				name = parentCategory.getTitle(

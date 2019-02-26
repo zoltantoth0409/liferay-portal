@@ -19,7 +19,6 @@ import com.liferay.asset.kernel.exception.DuplicateTagException;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetTagService;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
-import com.liferay.headless.foundation.internal.dto.v1_0.KeywordImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.KeywordEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
@@ -158,7 +157,7 @@ public class KeywordResourceImpl
 	}
 
 	private Keyword _toKeyword(AssetTag assetTag) throws Exception {
-		return new KeywordImpl() {
+		return new Keyword() {
 			{
 				contentSpace = assetTag.getGroupId();
 				creator = CreatorUtil.toCreator(

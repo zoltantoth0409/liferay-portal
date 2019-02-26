@@ -17,7 +17,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
@@ -159,7 +158,7 @@ public class VocabularyResourceImpl
 	private Vocabulary _toVocabulary(AssetVocabulary assetVocabulary)
 		throws Exception {
 
-		return new VocabularyImpl() {
+		return new Vocabulary() {
 			{
 				availableLanguages = LocaleUtil.toW3cLanguageIds(
 					assetVocabulary.getAvailableLanguageIds());
