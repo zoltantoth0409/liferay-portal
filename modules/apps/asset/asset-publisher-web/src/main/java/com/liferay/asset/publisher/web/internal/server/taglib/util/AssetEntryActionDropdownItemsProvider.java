@@ -69,9 +69,6 @@ public class AssetEntryActionDropdownItemsProvider {
 					add(
 						SafeConsumer.ignore(
 							dropdownItem -> {
-								dropdownItem.setHref(
-									editAssetEntryURL.toString());
-
 								dropdownItem.putData(
 									"destroyOnHide", Boolean.TRUE.toString());
 
@@ -89,6 +86,8 @@ public class AssetEntryActionDropdownItemsProvider {
 										_request, "edit-x",
 										_assetRenderer.getTitle(
 											_themeDisplay.getLocale())));
+								dropdownItem.setHref(
+									editAssetEntryURL.toString());
 								dropdownItem.setLabel(
 									LanguageUtil.get(_request, "edit"));
 							}));
