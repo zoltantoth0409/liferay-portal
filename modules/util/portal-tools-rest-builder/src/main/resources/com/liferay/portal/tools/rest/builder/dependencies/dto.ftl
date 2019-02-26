@@ -37,15 +37,15 @@ public class ${schemaName} {
 
 		@JsonIgnore
 		public void set${javaParameter.parameterName?cap_first}(
-			UnsafeSupplier<${javaParameter.parameterType}, Throwable>
+			UnsafeSupplier<${javaParameter.parameterType}, Exception>
 				${javaParameter.parameterName}UnsafeSupplier) {
 
 			try {
 				${javaParameter.parameterName} =
 					${javaParameter.parameterName}UnsafeSupplier.get();
 			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+			catch (Exception e) {
+				throw new RuntimeException(e);
 			}
 		}
 

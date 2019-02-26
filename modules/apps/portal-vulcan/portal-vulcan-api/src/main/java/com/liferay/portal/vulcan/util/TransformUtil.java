@@ -25,7 +25,7 @@ import java.util.List;
 public class TransformUtil {
 
 	public static <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
 		List<R> newList = new ArrayList<>();
 
@@ -35,8 +35,8 @@ public class TransformUtil {
 
 				newList.add(newItem);
 			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
+			catch (Exception e) {
+				throw new RuntimeException(e);
 			}
 		}
 
