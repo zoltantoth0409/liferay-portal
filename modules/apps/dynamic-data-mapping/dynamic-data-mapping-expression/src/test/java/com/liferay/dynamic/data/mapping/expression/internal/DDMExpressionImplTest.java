@@ -80,30 +80,30 @@ public class DDMExpressionImplTest extends PowerMockito {
 
 	@Test
 	public void testDivision1() throws Exception {
+		BigDecimal bigDecimal = new BigDecimal(2);
+
 		DDMExpressionImpl<BigDecimal> ddmExpression = createDDMExpression(
 			"6 / 3");
-
-		BigDecimal bigDecimal = new BigDecimal(2);
 
 		Assert.assertEquals(bigDecimal.setScale(2), ddmExpression.evaluate());
 	}
 
 	@Test
 	public void testDivision2() throws Exception {
+		BigDecimal bigDecimal = new BigDecimal(7.5);
+
 		DDMExpressionImpl<BigDecimal> ddmExpression = createDDMExpression(
 			"15 / 2");
-
-		BigDecimal bigDecimal = new BigDecimal(7.5);
 
 		Assert.assertEquals(bigDecimal.setScale(2), ddmExpression.evaluate());
 	}
 
 	@Test
 	public void testDivision3() throws Exception {
+		BigDecimal bigDecimal = new BigDecimal(1.11);
+
 		DDMExpressionImpl<BigDecimal> ddmExpression = createDDMExpression(
 			"10 / 9");
-
-		BigDecimal bigDecimal = new BigDecimal(1.11);
 
 		Assert.assertEquals(
 			bigDecimal.setScale(2, RoundingMode.FLOOR),
@@ -391,10 +391,10 @@ public class DDMExpressionImplTest extends PowerMockito {
 
 	@Test
 	public void testParenthesis() throws Exception {
+		BigDecimal bigDecimal = new BigDecimal(4);
+
 		DDMExpressionImpl<BigDecimal> ddmExpression = createDDMExpression(
 			"(8 + 2) / 2.5");
-
-		BigDecimal bigDecimal = new BigDecimal(4);
 
 		Assert.assertEquals(bigDecimal.setScale(2), ddmExpression.evaluate());
 	}
