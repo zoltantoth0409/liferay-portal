@@ -526,8 +526,6 @@ public class StructuredContentResourceImpl
 			contentFieldValue -> new DDMFormFieldValue() {
 				{
 					setName(contentFieldValue.getName());
-					setValue(
-						_toDDMValue(ddmStructure, locale, contentFieldValue));
 
 					if (contentFieldValue.getValue() != null) {
 						Value value = contentFieldValue.getValue();
@@ -537,6 +535,9 @@ public class StructuredContentResourceImpl
 								value.getContentFieldValues(), ddmStructure,
 								locale));
 					}
+
+					setValue(
+						_toDDMValue(ddmStructure, locale, contentFieldValue));
 				}
 			});
 	}
