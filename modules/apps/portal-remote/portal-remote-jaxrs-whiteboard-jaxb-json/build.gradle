@@ -1,5 +1,5 @@
 dependencies {
-	compileOnly group: "org.apache.aries.jax.rs", name: "org.apache.aries.jax.rs.jaxb.json.cxf-jettison", version: "1.0.0"
+	compileOnly group: "org.apache.aries.jax.rs", name: "org.apache.aries.jax.rs.jaxb.json.cxf-jettison", version: "1.0.4"
 }
 
 deployDependencies {
