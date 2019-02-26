@@ -1248,14 +1248,23 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public Map<Long, List<Layout>> getLayoutChildLayouts(
 		List<Layout> parentLayouts) {
 
-
 		Map<LayoutSet, List<Layout>> layoutsMap = new HashMap<>();
 
 		for (Layout parentLayout : parentLayouts) {
-			List<Layout> layouts = layoutsMap.computeIfAbsent(
-				parentLayout.getLayoutSet(), key -> new ArrayList<>());
+			try {
+				List<Layout> layouts = layoutsMap.computeIfAbsent(
+					parentLayout.getLayoutSet(), key -> new ArrayList<>());
 
-			layouts.add(parentLayout);
+				layouts.add(parentLayout);
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to get layout set for Layout with plid=" +
+							parentLayout.getPlid(),
+						pe);
+				}
+			}
 		}
 
 		List<Layout> childLayouts = new ArrayList<>();
@@ -1271,12 +1280,22 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		Map<Long, List<Layout>> layoutChildLayouts = new HashMap<>();
 
 		for (Layout childLayout : childLayouts) {
-			List<Layout> layoutChildLayoutsList =
-				layoutChildLayouts.computeIfAbsent(
-					childLayout.getParentPlid(),
-					parentPlid -> new ArrayList<>());
+			try {
+				List<Layout> layoutChildLayoutsList =
+					layoutChildLayouts.computeIfAbsent(
+						childLayout.getParentPlid(),
+						parentPlid -> new ArrayList<>());
 
-			layoutChildLayoutsList.add(childLayout);
+				layoutChildLayoutsList.add(childLayout);
+			}
+			catch (PortalException pe) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to get parent plid for Layout with plid=" +
+							childLayout.getPlid(),
+						pe);
+				}
+			}
 		}
 
 		for (List<Layout> layoutChildLayoutsList :
