@@ -537,14 +537,14 @@ public class StructuredContentResourceImpl
 					}
 
 					setValue(
-						_toDDMValue(ddmStructure, locale, contentFieldValue));
+						_toDDMValue(contentFieldValue, ddmStructure, locale));
 				}
 			});
 	}
 
 	private com.liferay.dynamic.data.mapping.model.Value _toDDMValue(
-			DDMStructure ddmStructure, Locale locale,
-			ContentFieldValue contentFieldValue)
+			ContentFieldValue contentFieldValue, DDMStructure ddmStructure,
+			Locale locale)
 		throws PortalException {
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
