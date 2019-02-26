@@ -7914,12 +7914,9 @@ public class PortalImpl implements Portal {
 			return 0;
 		}
 
-		long doAsUserId = 0;
+		long doAsUserId = GetterUtil.getLong(doAsUserIdString);
 
-		try {
-			doAsUserId = Long.parseLong(doAsUserIdString);
-		}
-		catch (NumberFormatException nfe) {
+		if (doAsUserId == 0) {
 			try {
 				Company company = getCompany(request);
 
