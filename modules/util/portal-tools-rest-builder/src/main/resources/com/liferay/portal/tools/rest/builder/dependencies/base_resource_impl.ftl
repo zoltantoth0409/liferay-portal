@@ -3,7 +3,6 @@ package ${configYAML.apiPackagePath}.internal.resource.${versionDirName};
 <#compress>
 	<#list openAPIYAML.components.schemas?keys as schemaName>
 		import ${configYAML.apiPackagePath}.dto.${versionDirName}.${schemaName};
-		import ${configYAML.apiPackagePath}.internal.dto.${versionDirName}.${schemaName}Impl;
 	</#list>
 </#compress>
 
@@ -83,7 +82,7 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 
 				return put${schemaName}(${firstJavaParameter.parameterName}, existing${schemaName});
 			<#else>
-				return new ${javaMethodSignature.returnType}Impl();
+				return new ${javaMethodSignature.returnType}();
 			</#if>
 		}
 	</#list>

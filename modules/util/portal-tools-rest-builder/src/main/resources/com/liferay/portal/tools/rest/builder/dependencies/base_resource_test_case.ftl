@@ -12,8 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -100,11 +98,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 			<#if stringUtil.equals(javaMethodSignature.returnType, "boolean")>
 				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), Boolean.class);
 			<#elseif javaMethodSignature.returnType?contains("Page<")>
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<${schemaName}Impl>>() {});
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), new TypeReference<Page<${schemaName}>>() {});
 			<#elseif stringUtil.equals(javaMethodSignature.returnType, "String")>
 				return HttpUtil.URLtoString(options);
 			<#else>
-				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ${javaMethodSignature.returnType}Impl.class);
+				return _outputObjectMapper.readValue(HttpUtil.URLtoString(options), ${javaMethodSignature.returnType}.class);
 			</#if>
 		}
 
@@ -180,7 +178,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	protected ${schemaName} random${schemaName}() {
-		return new ${schemaName}Impl() {
+		return new ${schemaName}() {
 			{
 				<#assign randomDataTypes = ["Boolean", "Double", "Long", "String"] />
 
@@ -196,55 +194,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class ${schemaName}Impl implements ${schemaName} {
-
-		<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schema, false) as javaParameter>
-			public ${javaParameter.parameterType} get${javaParameter.parameterName?cap_first}() {
-				return ${javaParameter.parameterName};
-			}
-
-			public void set${javaParameter.parameterName?cap_first}(${javaParameter.parameterType} ${javaParameter.parameterName}) {
-				this.${javaParameter.parameterName} = ${javaParameter.parameterName};
-			}
-
-			@JsonIgnore
-			public void set${javaParameter.parameterName?cap_first}(
-				UnsafeSupplier<${javaParameter.parameterType}, Throwable> ${javaParameter.parameterName}UnsafeSupplier) {
-
-				try {
-					${javaParameter.parameterName} = ${javaParameter.parameterName}UnsafeSupplier.get();
-				}
-				catch (Throwable t) {
-					throw new RuntimeException(t);
-				}
-			}
-
-			@JsonProperty
-			protected ${javaParameter.parameterType} ${javaParameter.parameterName};
-		</#list>
-
-		public String toString() {
-			StringBundler sb = new StringBundler();
-
-			sb.append("{");
-
-			<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schema, false) as javaParameter>
-				<#if javaParameter?is_first>
-					sb.append("${javaParameter.parameterName}=");
-				<#else>
-					sb.append(", ${javaParameter.parameterName}=");
-				</#if>
-
-				sb.append(${javaParameter.parameterName});
-			</#list>
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-	}
 
 	protected static class Page<T> {
 
