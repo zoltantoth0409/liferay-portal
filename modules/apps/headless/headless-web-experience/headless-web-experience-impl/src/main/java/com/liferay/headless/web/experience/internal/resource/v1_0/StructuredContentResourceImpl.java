@@ -458,12 +458,12 @@ public class StructuredContentResourceImpl
 			JournalArticle journalArticle)
 		throws Exception {
 
+		List<ContentFieldValue> contentFieldValues = new ArrayList<>();
+
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		Fields ddmFields = _journalConverter.getDDMFields(
 			ddmStructure, journalArticle.getContent());
-
-		List<ContentFieldValue> contentFieldValues = new ArrayList<>();
 
 		List<String> rootFieldNames = ddmStructure.getRootFieldNames();
 
