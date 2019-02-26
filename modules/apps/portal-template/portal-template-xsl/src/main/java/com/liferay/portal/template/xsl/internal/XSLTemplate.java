@@ -72,13 +72,8 @@ public class XSLTemplate implements Template {
 		_errorTemplateResource = errorTemplateResource;
 		_templateContextHelper = templateContextHelper;
 
-		Class<?> transformerFactoryClass = TransformerFactoryImpl.class;
-
-		_transformerFactoryClassLoader =
-			transformerFactoryClass.getClassLoader();
-
 		_transformerFactory = TransformerFactory.newInstance(
-			transformerFactoryClass.getName(), _transformerFactoryClassLoader);
+			_TRANSFORMER_FACTORY_CLASS_NAME, _TRANSFORMER_FACTORY_CLASS_LOADER);
 
 		try {
 			_transformerFactory.setFeature(
@@ -206,7 +201,7 @@ public class XSLTemplate implements Template {
 
 		currentThread.setContextClassLoader(
 			AggregateClassLoader.getAggregateClassLoader(
-				contextClassLoader, _transformerFactoryClassLoader));
+				contextClassLoader, _TRANSFORMER_FACTORY_CLASS_LOADER));
 
 		try {
 			doProcessTemplate(writer);
@@ -308,11 +303,23 @@ public class XSLTemplate implements Template {
 		}
 	}
 
+	private static final ClassLoader _TRANSFORMER_FACTORY_CLASS_LOADER;
+
+	private static final String _TRANSFORMER_FACTORY_CLASS_NAME;
+
+	static {
+		Class<?> transformerFactoryClass = TransformerFactoryImpl.class;
+
+		_TRANSFORMER_FACTORY_CLASS_NAME = transformerFactoryClass.getName();
+
+		_TRANSFORMER_FACTORY_CLASS_LOADER =
+			transformerFactoryClass.getClassLoader();
+	}
+
 	private final Map<String, Object> _context;
 	private TemplateResource _errorTemplateResource;
 	private final TemplateContextHelper _templateContextHelper;
 	private final TransformerFactory _transformerFactory;
-	private final ClassLoader _transformerFactoryClassLoader;
 	private StreamSource _xmlStreamSource;
 	private final XSLTemplateResource _xslTemplateResource;
 
