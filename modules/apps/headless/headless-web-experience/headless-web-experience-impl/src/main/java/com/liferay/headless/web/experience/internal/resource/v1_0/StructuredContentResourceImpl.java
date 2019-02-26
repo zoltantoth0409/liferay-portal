@@ -480,6 +480,26 @@ public class StructuredContentResourceImpl
 			new ContentFieldValue[contentFieldValues.size()]);
 	}
 
+	private ContentFieldValue[] _toContentFieldValues(
+			List<DDMFormField> ddmFormFields, DDMStructure ddmStructure,
+			Fields fields)
+		throws Exception {
+
+		List<ContentFieldValue> contentFieldValues = new ArrayList<>();
+
+		for (DDMFormField ddmFormField : ddmFormFields) {
+			ContentFieldValue contentFieldValue = _toContentFieldValue(
+				ddmStructure, fields, ddmFormField.getName());
+
+			if (contentFieldValue != null) {
+				contentFieldValues.add(contentFieldValue);
+			}
+		}
+
+		return contentFieldValues.toArray(
+			new ContentFieldValue[contentFieldValues.size()]);
+	}
+
 	private Fields _toDDMFields(
 			ContentFieldValue[] contentFieldValues,
 			JournalArticle journalArticle)
@@ -673,26 +693,6 @@ public class StructuredContentResourceImpl
 					contextAcceptLanguage.getPreferredLocale());
 			}
 		};
-	}
-
-	private ContentFieldValue[] _toContentFieldValues(
-			List<DDMFormField> ddmFormFields, DDMStructure ddmStructure,
-			Fields fields)
-		throws Exception {
-
-		List<ContentFieldValue> contentFieldValues = new ArrayList<>();
-
-		for (DDMFormField ddmFormField : ddmFormFields) {
-			ContentFieldValue contentFieldValue = _toContentFieldValue(
-				ddmStructure, fields, ddmFormField.getName());
-
-			if (contentFieldValue != null) {
-				contentFieldValues.add(contentFieldValue);
-			}
-		}
-
-		return contentFieldValues.toArray(
-			new ContentFieldValue[contentFieldValues.size()]);
 	}
 
 	private Value _toValue(
