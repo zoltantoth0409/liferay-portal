@@ -139,6 +139,8 @@ public class FileUtil {
 
 		String oldContent = read(file);
 
+		Files.write(file.toPath(), content.getBytes(StandardCharsets.UTF_8));
+
 		if (!oldContent.equals(_format(file))) {
 			System.out.println("Writing " + file.getCanonicalPath());
 		}
