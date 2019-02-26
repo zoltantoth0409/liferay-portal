@@ -165,7 +165,7 @@ public class DocumentResourceImpl
 
 		Optional<Document> optional = Optional.empty();
 
-		if (Validator.isNotNull(multipartBody.getValueAsString("Document"))) {
+		if (Validator.isNotNull(multipartBody.getValueAsString("document"))) {
 			optional = Optional.of(
 				multipartBody.getValueAsInstance("document", Document.class));
 		}
