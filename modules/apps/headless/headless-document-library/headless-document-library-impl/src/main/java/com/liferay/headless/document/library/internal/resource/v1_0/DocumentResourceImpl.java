@@ -153,14 +153,16 @@ public class DocumentResourceImpl
 	public Document patchDocument(Long documentId, MultipartBody multipartBody)
 		throws Exception {
 
-		FileEntry oldFileEntry = _dlAppService.getFileEntry(documentId);
+		FileEntry existingFileEntry = _dlAppService.getFileEntry(documentId);
 
 		BinaryFile binaryFile = Optional.ofNullable(
 			multipartBody.getBinaryFile("file")
 		).orElse(
 			new BinaryFile(
-				oldFileEntry.getMimeType(), oldFileEntry.getFileName(),
-				oldFileEntry.getContentStream(), oldFileEntry.getSize())
+				existingFileEntry.getMimeType(),
+				existingFileEntry.getFileName(),
+				existingFileEntry.getContentStream(),
+				existingFileEntry.getSize())
 		);
 
 		Optional<Document> optional = Optional.empty();
@@ -173,13 +175,13 @@ public class DocumentResourceImpl
 		String title = optional.map(
 			Document::getTitle
 		).orElseGet(
-			oldFileEntry::getTitle
+			existingFileEntry::getTitle
 		);
 
 		String description = optional.map(
 			Document::getTitle
 		).orElseGet(
-			oldFileEntry::getDescription
+			existingFileEntry::getDescription
 		);
 
 		Long[] categoryIds = optional.map(
@@ -202,7 +204,7 @@ public class DocumentResourceImpl
 			title, description, null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_getServiceContext(
-				categoryIds, oldFileEntry.getGroupId(), keywords));
+				categoryIds, existingFileEntry.getGroupId(), keywords));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
@@ -246,14 +248,14 @@ public class DocumentResourceImpl
 			binaryFileName
 		);
 
-		FileEntry oldFileEntry = _dlAppService.getFileEntry(documentId);
+		FileEntry existingFileEntry = _dlAppService.getFileEntry(documentId);
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFileName, binaryFile.getContentType(), title,
 			document.getDescription(), null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_getServiceContext(
-				document.getCategoryIds(), oldFileEntry.getGroupId(),
+				document.getCategoryIds(), existingFileEntry.getGroupId(),
 				document.getKeywords()));
 
 		return _toDocument(
