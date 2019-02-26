@@ -14,47 +14,168 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface FieldValues {
+@GraphQLName("FieldValues")
+@XmlRootElement(name = "FieldValues")
+public class FieldValues {
 
-	public FormDocument getDocument();
+	public FormDocument getDocument() {
+		return document;
+	}
 
-	public Long getDocumentId();
+	public Long getDocumentId() {
+		return documentId;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public String getValue();
+	public String getValue() {
+		return value;
+	}
 
-	public void setDocument(FormDocument document);
+	public void setDocument(FormDocument document) {
+		this.document = document;
+	}
 
+	@JsonIgnore
 	public void setDocument(
-		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier);
+		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier) {
 
-	public void setDocumentId(Long documentId);
+		try {
+			document = documentUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDocumentId(Long documentId) {
+		this.documentId = documentId;
+	}
+
+	@JsonIgnore
 	public void setDocumentId(
-		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			documentId = documentIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setValue(String value);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setValue(UnsafeSupplier<String, Throwable> valueUnsafeSupplier);
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	@JsonIgnore
+	public void setValue(
+		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+
+		try {
+			value = valueUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(12);
+
+		sb.append("{");
+
+		sb.append("document=");
+
+		sb.append(document);
+		sb.append(", documentId=");
+
+		sb.append(documentId);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", value=");
+
+		sb.append(value);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected FormDocument document;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long documentId;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected String value;
 
 }

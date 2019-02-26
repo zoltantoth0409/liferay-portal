@@ -14,20 +14,10 @@
 
 package com.liferay.headless.workflow.internal.jaxrs.context.resolver.v1_0;
 
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-
-import com.liferay.headless.workflow.dto.v1_0.ObjectReviewed;
-import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
-import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
-import com.liferay.headless.workflow.internal.dto.v1_0.ObjectReviewedImpl;
-import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowLogImpl;
-import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowTaskImpl;
 
 import javax.annotation.Generated;
 
@@ -61,27 +51,6 @@ public class ObjectMapperContextResolver
 		{
 			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
 			enable(SerializationFeature.INDENT_OUTPUT);
-			registerModule(
-				new SimpleModule(
-					"Liferay.Headless.Workflow", Version.unknownVersion()) {
-
-					{
-						setAbstractTypes(
-							new SimpleAbstractTypeResolver() {
-								{
-									addMapping(
-										ObjectReviewed.class,
-										ObjectReviewedImpl.class);
-									addMapping(
-										WorkflowLog.class,
-										WorkflowLogImpl.class);
-									addMapping(
-										WorkflowTask.class,
-										WorkflowTaskImpl.class);
-								}
-							});
-					}
-				});
 			setDateFormat(new ISO8601DateFormat());
 		}
 	};

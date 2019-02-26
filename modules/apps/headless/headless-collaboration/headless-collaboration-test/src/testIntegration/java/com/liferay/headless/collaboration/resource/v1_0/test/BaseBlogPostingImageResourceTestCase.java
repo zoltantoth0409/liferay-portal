@@ -14,15 +14,12 @@
 
 package com.liferay.headless.collaboration.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -198,7 +195,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<BlogPostingImageImpl>>() {
+			new TypeReference<Page<BlogPostingImage>>() {
 			});
 	}
 
@@ -230,7 +227,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 					"/blog-posting-images/{image-object-id}", imageObjectId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPostingImageImpl.class);
+			HttpUtil.URLtoString(options), BlogPostingImage.class);
 	}
 
 	protected Http.Response invokeGetImageObjectResponse(Long imageObjectId)
@@ -263,7 +260,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), BlogPostingImageImpl.class);
+			HttpUtil.URLtoString(options), BlogPostingImage.class);
 	}
 
 	protected Http.Response invokePostContentSpaceBlogPostingImageResponse(
@@ -286,7 +283,7 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 
 	protected BlogPostingImage randomBlogPostingImage() {
-		return new BlogPostingImageImpl() {
+		return new BlogPostingImage() {
 			{
 				contentUrl = RandomTestUtil.randomString();
 				encodingFormat = RandomTestUtil.randomString();
@@ -298,175 +295,6 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class BlogPostingImageImpl implements BlogPostingImage {
-
-		public String getContentUrl() {
-			return contentUrl;
-		}
-
-		public String getEncodingFormat() {
-			return encodingFormat;
-		}
-
-		public String getFileExtension() {
-			return fileExtension;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public Number getSizeInBytes() {
-			return sizeInBytes;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-		public void setContentUrl(String contentUrl) {
-			this.contentUrl = contentUrl;
-		}
-
-		@JsonIgnore
-		public void setContentUrl(
-			UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
-
-			try {
-				contentUrl = contentUrlUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setEncodingFormat(String encodingFormat) {
-			this.encodingFormat = encodingFormat;
-		}
-
-		@JsonIgnore
-		public void setEncodingFormat(
-			UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
-
-			try {
-				encodingFormat = encodingFormatUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFileExtension(String fileExtension) {
-			this.fileExtension = fileExtension;
-		}
-
-		@JsonIgnore
-		public void setFileExtension(
-			UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
-
-			try {
-				fileExtension = fileExtensionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setSizeInBytes(Number sizeInBytes) {
-			this.sizeInBytes = sizeInBytes;
-		}
-
-		@JsonIgnore
-		public void setSizeInBytes(
-			UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
-
-			try {
-				sizeInBytes = sizeInBytesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		@JsonIgnore
-		public void setTitle(
-			UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
-
-			try {
-				title = titleUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(14);
-
-			sb.append("{");
-
-			sb.append("contentUrl=");
-
-			sb.append(contentUrl);
-			sb.append(", encodingFormat=");
-
-			sb.append(encodingFormat);
-			sb.append(", fileExtension=");
-
-			sb.append(fileExtension);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", sizeInBytes=");
-
-			sb.append(sizeInBytes);
-			sb.append(", title=");
-
-			sb.append(title);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String contentUrl;
-
-		@JsonProperty
-		protected String encodingFormat;
-
-		@JsonProperty
-		protected String fileExtension;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected Number sizeInBytes;
-
-		@JsonProperty
-		protected String title;
-
-	}
 
 	protected static class Page<T> {
 

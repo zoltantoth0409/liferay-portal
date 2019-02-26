@@ -14,100 +14,361 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Category {
+@GraphQLName("Category")
+@XmlRootElement(name = "Category")
+public class Category {
 
-	public String[] getAvailableLanguages();
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Long getCreatorId();
+	public Long getCreatorId() {
+		return creatorId;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public Boolean getHasCategories();
+	public Boolean getHasCategories() {
+		return hasCategories;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public ParentCategory getParentCategory();
+	public ParentCategory getParentCategory() {
+		return parentCategory;
+	}
 
-	public ParentVocabulary getParentVocabulary();
+	public ParentVocabulary getParentVocabulary() {
+		return parentVocabulary;
+	}
 
-	public Long getParentVocabularyId();
+	public Long getParentVocabularyId() {
+		return parentVocabularyId;
+	}
 
-	public void setAvailableLanguages(String[] availableLanguages);
+	public void setAvailableLanguages(String[] availableLanguages) {
+		this.availableLanguages = availableLanguages;
+	}
 
+	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			availableLanguages = availableLanguagesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setCreatorId(Long creatorId);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreatorId(Long creatorId) {
+		this.creatorId = creatorId;
+	}
+
+	@JsonIgnore
 	public void setCreatorId(
-		UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creatorId = creatorIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setHasCategories(Boolean hasCategories);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHasCategories(Boolean hasCategories) {
+		this.hasCategories = hasCategories;
+	}
+
+	@JsonIgnore
 	public void setHasCategories(
-		UnsafeSupplier<Boolean, Throwable> hasCategoriesUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> hasCategoriesUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			hasCategories = hasCategoriesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setParentCategory(ParentCategory parentCategory);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setParentCategory(ParentCategory parentCategory) {
+		this.parentCategory = parentCategory;
+	}
+
+	@JsonIgnore
 	public void setParentCategory(
-		UnsafeSupplier<ParentCategory, Throwable> parentCategoryUnsafeSupplier);
+		UnsafeSupplier<ParentCategory, Throwable>
+			parentCategoryUnsafeSupplier) {
 
-	public void setParentVocabulary(ParentVocabulary parentVocabulary);
+		try {
+			parentCategory = parentCategoryUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setParentVocabulary(ParentVocabulary parentVocabulary) {
+		this.parentVocabulary = parentVocabulary;
+	}
+
+	@JsonIgnore
 	public void setParentVocabulary(
 		UnsafeSupplier<ParentVocabulary, Throwable>
-			parentVocabularyUnsafeSupplier);
+			parentVocabularyUnsafeSupplier) {
 
-	public void setParentVocabularyId(Long parentVocabularyId);
+		try {
+			parentVocabulary = parentVocabularyUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setParentVocabularyId(Long parentVocabularyId) {
+		this.parentVocabularyId = parentVocabularyId;
+	}
+
+	@JsonIgnore
 	public void setParentVocabularyId(
-		UnsafeSupplier<Long, Throwable> parentVocabularyIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> parentVocabularyIdUnsafeSupplier) {
+
+		try {
+			parentVocabularyId = parentVocabularyIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(26);
+
+		sb.append("{");
+
+		sb.append("availableLanguages=");
+
+		sb.append(availableLanguages);
+		sb.append(", parentCategory=");
+
+		sb.append(parentCategory);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", creatorId=");
+
+		sb.append(creatorId);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", hasCategories=");
+
+		sb.append(hasCategories);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", parentVocabulary=");
+
+		sb.append(parentVocabulary);
+		sb.append(", parentVocabularyId=");
+
+		sb.append(parentVocabularyId);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long creatorId;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasCategories;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected ParentCategory parentCategory;
+
+	@GraphQLField
+	@JsonProperty
+	protected ParentVocabulary parentVocabulary;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long parentVocabularyId;
 
 }

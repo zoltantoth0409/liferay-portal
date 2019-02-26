@@ -14,27 +14,91 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Options {
+@GraphQLName("Options")
+@XmlRootElement(name = "Options")
+public class Options {
 
-	public String getLabel();
+	public String getLabel() {
+		return label;
+	}
 
-	public String getValue();
+	public String getValue() {
+		return value;
+	}
 
-	public void setLabel(String label);
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
-	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier);
+	@JsonIgnore
+	public void setLabel(
+		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 
-	public void setValue(String value);
+		try {
+			label = labelUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setValue(UnsafeSupplier<String, Throwable> valueUnsafeSupplier);
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	@JsonIgnore
+	public void setValue(
+		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+
+		try {
+			value = valueUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("{");
+
+		sb.append("label=");
+
+		sb.append(label);
+		sb.append(", value=");
+
+		sb.append(value);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	@GraphQLField
+	@JsonProperty
+	protected String value;
 
 }

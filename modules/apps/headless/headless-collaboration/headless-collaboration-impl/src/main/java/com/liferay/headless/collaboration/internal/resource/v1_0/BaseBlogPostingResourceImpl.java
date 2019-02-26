@@ -15,7 +15,6 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPosting;
-import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -78,7 +77,7 @@ public abstract class BaseBlogPostingResourceImpl
 			@PathParam("blog-posting-id") Long blogPostingId)
 		throws Exception {
 
-		return new BlogPostingImpl();
+		return new BlogPosting();
 	}
 
 	@GET
@@ -190,7 +189,7 @@ public abstract class BaseBlogPostingResourceImpl
 			BlogPosting blogPosting)
 		throws Exception {
 
-		return new BlogPostingImpl();
+		return new BlogPosting();
 	}
 
 	@Consumes("application/json")
@@ -204,7 +203,7 @@ public abstract class BaseBlogPostingResourceImpl
 			BlogPosting blogPosting)
 		throws Exception {
 
-		return new BlogPostingImpl();
+		return new BlogPosting();
 	}
 
 	public void setContextCompany(Company contextCompany) {

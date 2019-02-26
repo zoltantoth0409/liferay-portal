@@ -14,15 +14,12 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -133,7 +130,7 @@ public abstract class BaseEmailResourceTestCase {
 			_resourceURL + _toPath("/emails/{email-id}", emailId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), EmailImpl.class);
+			HttpUtil.URLtoString(options), Email.class);
 	}
 
 	protected Http.Response invokeGetEmailResponse(Long emailId)
@@ -159,7 +156,7 @@ public abstract class BaseEmailResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<EmailImpl>>() {
+			new TypeReference<Page<Email>>() {
 			});
 	}
 
@@ -177,7 +174,7 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	protected Email randomEmail() {
-		return new EmailImpl() {
+		return new Email() {
 			{
 				email = RandomTestUtil.randomString();
 				id = RandomTestUtil.randomLong();
@@ -187,97 +184,6 @@ public abstract class BaseEmailResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class EmailImpl implements Email {
-
-		public String getEmail() {
-			return email;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getType() {
-			return type;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
-
-		@JsonIgnore
-		public void setEmail(
-			UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
-
-			try {
-				email = emailUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setType(String type) {
-			this.type = type;
-		}
-
-		@JsonIgnore
-		public void setType(
-			UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
-
-			try {
-				type = typeUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(8);
-
-			sb.append("{");
-
-			sb.append("email=");
-
-			sb.append(email);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", type=");
-
-			sb.append(type);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String email;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String type;
-
-	}
 
 	protected static class Page<T> {
 

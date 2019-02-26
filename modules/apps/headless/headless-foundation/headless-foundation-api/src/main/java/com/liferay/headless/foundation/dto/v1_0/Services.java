@@ -14,36 +14,117 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Services {
+@GraphQLName("Services")
+@XmlRootElement(name = "Services")
+public class Services {
 
-	public HoursAvailable[] getHoursAvailable();
+	public HoursAvailable[] getHoursAvailable() {
+		return hoursAvailable;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getServiceType();
+	public String getServiceType() {
+		return serviceType;
+	}
 
-	public void setHoursAvailable(HoursAvailable[] hoursAvailable);
+	public void setHoursAvailable(HoursAvailable[] hoursAvailable) {
+		this.hoursAvailable = hoursAvailable;
+	}
 
+	@JsonIgnore
 	public void setHoursAvailable(
 		UnsafeSupplier<HoursAvailable[], Throwable>
-			hoursAvailableUnsafeSupplier);
+			hoursAvailableUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			hoursAvailable = hoursAvailableUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setServiceType(String serviceType);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	@JsonIgnore
 	public void setServiceType(
-		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
+
+		try {
+			serviceType = serviceTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("hoursAvailable=");
+
+		sb.append(hoursAvailable);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", serviceType=");
+
+		sb.append(serviceType);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected HoursAvailable[] hoursAvailable;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String serviceType;
 
 }

@@ -14,35 +14,116 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Geo {
+@GraphQLName("Geo")
+@XmlRootElement(name = "Geo")
+public class Geo {
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public Number getLatitude();
+	public Number getLatitude() {
+		return latitude;
+	}
 
-	public Number getLongitude();
+	public Number getLongitude() {
+		return longitude;
+	}
 
-	public void setId(Long id);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setLatitude(Number latitude);
+	public void setLatitude(Number latitude) {
+		this.latitude = latitude;
+	}
 
+	@JsonIgnore
 	public void setLatitude(
-		UnsafeSupplier<Number, Throwable> latitudeUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> latitudeUnsafeSupplier) {
 
-	public void setLongitude(Number longitude);
+		try {
+			latitude = latitudeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setLongitude(Number longitude) {
+		this.longitude = longitude;
+	}
+
+	@JsonIgnore
 	public void setLongitude(
-		UnsafeSupplier<Number, Throwable> longitudeUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> longitudeUnsafeSupplier) {
+
+		try {
+			longitude = longitudeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("id=");
+
+		sb.append(id);
+		sb.append(", latitude=");
+
+		sb.append(latitude);
+		sb.append(", longitude=");
+
+		sb.append(longitude);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number latitude;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number longitude;
 
 }

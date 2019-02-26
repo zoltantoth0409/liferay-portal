@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
-import com.liferay.headless.foundation.internal.dto.v1_0.WebUrlImpl;
 import com.liferay.headless.foundation.resource.v1_0.WebUrlResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -69,7 +68,7 @@ public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 	public WebUrl getWebUrl(@PathParam("web-url-id") Long webUrlId)
 		throws Exception {
 
-		return new WebUrlImpl();
+		return new WebUrl();
 	}
 
 	public void setContextCompany(Company contextCompany) {

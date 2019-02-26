@@ -14,77 +14,278 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface FormRecord {
+@GraphQLName("FormRecord")
+@XmlRootElement(name = "FormRecord")
+public class FormRecord {
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public Date getDatePublished();
+	public Date getDatePublished() {
+		return datePublished;
+	}
 
-	public Boolean getDraft();
+	public Boolean getDraft() {
+		return draft;
+	}
 
-	public FieldValues[] getFieldValues();
+	public FieldValues[] getFieldValues() {
+		return fieldValues;
+	}
 
-	public Form getForm();
+	public Form getForm() {
+		return form;
+	}
 
-	public Long getFormId();
+	public Long getFormId() {
+		return formId;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public void setCreator(Creator creator);
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
 
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDatePublished(Date datePublished);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDatePublished(Date datePublished) {
+		this.datePublished = datePublished;
+	}
+
+	@JsonIgnore
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 
-	public void setDraft(Boolean draft);
+		try {
+			datePublished = datePublishedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDraft(Boolean draft) {
+		this.draft = draft;
+	}
+
+	@JsonIgnore
 	public void setDraft(
-		UnsafeSupplier<Boolean, Throwable> draftUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> draftUnsafeSupplier) {
 
-	public void setFieldValues(FieldValues[] fieldValues);
+		try {
+			draft = draftUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFieldValues(FieldValues[] fieldValues) {
+		this.fieldValues = fieldValues;
+	}
+
+	@JsonIgnore
 	public void setFieldValues(
-		UnsafeSupplier<FieldValues[], Throwable> fieldValuesUnsafeSupplier);
+		UnsafeSupplier<FieldValues[], Throwable> fieldValuesUnsafeSupplier) {
 
-	public void setForm(Form form);
+		try {
+			fieldValues = fieldValuesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setForm(UnsafeSupplier<Form, Throwable> formUnsafeSupplier);
+	public void setForm(Form form) {
+		this.form = form;
+	}
 
-	public void setFormId(Long formId);
+	@JsonIgnore
+	public void setForm(UnsafeSupplier<Form, Throwable> formUnsafeSupplier) {
+		try {
+			form = formUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setFormId(UnsafeSupplier<Long, Throwable> formIdUnsafeSupplier);
+	public void setFormId(Long formId) {
+		this.formId = formId;
+	}
 
-	public void setId(Long id);
+	@JsonIgnore
+	public void setFormId(
+		UnsafeSupplier<Long, Throwable> formIdUnsafeSupplier) {
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+		try {
+			formId = formIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(20);
+
+		sb.append("{");
+
+		sb.append("creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", datePublished=");
+
+		sb.append(datePublished);
+		sb.append(", draft=");
+
+		sb.append(draft);
+		sb.append(", fieldValues=");
+
+		sb.append(fieldValues);
+		sb.append(", form=");
+
+		sb.append(form);
+		sb.append(", formId=");
+
+		sb.append(formId);
+		sb.append(", id=");
+
+		sb.append(id);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date datePublished;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean draft;
+
+	@GraphQLField
+	@JsonProperty
+	protected FieldValues[] fieldValues;
+
+	@GraphQLField
+	@JsonProperty
+	protected Form form;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long formId;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
 
 }

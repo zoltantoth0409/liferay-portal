@@ -14,61 +14,222 @@
 
 package com.liferay.headless.document.library.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Creator {
+@GraphQLName("Creator")
+@XmlRootElement(name = "Creator")
+public class Creator {
 
-	public String getAdditionalName();
+	public String getAdditionalName() {
+		return additionalName;
+	}
 
-	public String getFamilyName();
+	public String getFamilyName() {
+		return familyName;
+	}
 
-	public String getGivenName();
+	public String getGivenName() {
+		return givenName;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getImage();
+	public String getImage() {
+		return image;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public String getProfileURL();
+	public String getProfileURL() {
+		return profileURL;
+	}
 
-	public void setAdditionalName(String additionalName);
+	public void setAdditionalName(String additionalName) {
+		this.additionalName = additionalName;
+	}
 
+	@JsonIgnore
 	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
 
-	public void setFamilyName(String familyName);
+		try {
+			additionalName = additionalNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
+
+	@JsonIgnore
 	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
 
-	public void setGivenName(String givenName);
+		try {
+			familyName = familyNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setGivenName(String givenName) {
+		this.givenName = givenName;
+	}
+
+	@JsonIgnore
 	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			givenName = givenNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setImage(String image);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setImage(UnsafeSupplier<String, Throwable> imageUnsafeSupplier);
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setImage(
+		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+		try {
+			image = imageUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setProfileURL(String profileURL);
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setProfileURL(String profileURL) {
+		this.profileURL = profileURL;
+	}
+
+	@JsonIgnore
 	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+
+		try {
+			profileURL = profileURLUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(16);
+
+		sb.append("{");
+
+		sb.append("additionalName=");
+
+		sb.append(additionalName);
+		sb.append(", familyName=");
+
+		sb.append(familyName);
+		sb.append(", givenName=");
+
+		sb.append(givenName);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", image=");
+
+		sb.append(image);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", profileURL=");
+
+		sb.append(profileURL);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String additionalName;
+
+	@GraphQLField
+	@JsonProperty
+	protected String familyName;
+
+	@GraphQLField
+	@JsonProperty
+	protected String givenName;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String image;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected String profileURL;
 
 }

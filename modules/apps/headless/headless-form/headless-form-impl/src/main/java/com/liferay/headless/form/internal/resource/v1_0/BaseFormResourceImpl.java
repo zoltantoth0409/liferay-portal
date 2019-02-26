@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.Form;
-import com.liferay.headless.form.internal.dto.v1_0.FormImpl;
 import com.liferay.headless.form.resource.v1_0.FormResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -69,7 +68,7 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public Form getForm(@PathParam("form-id") Long formId) throws Exception {
-		return new FormImpl();
+		return new Form();
 	}
 
 	@GET
@@ -80,7 +79,7 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	public Form getFormFetchLatestDraft(@PathParam("form-id") Long formId)
 		throws Exception {
 
-		return new FormImpl();
+		return new Form();
 	}
 
 	@Consumes("application/json")
@@ -93,7 +92,7 @@ public abstract class BaseFormResourceImpl implements FormResource {
 			@PathParam("form-id") Long formId, Form form)
 		throws Exception {
 
-		return new FormImpl();
+		return new Form();
 	}
 
 	@Consumes("application/json")
@@ -105,7 +104,7 @@ public abstract class BaseFormResourceImpl implements FormResource {
 	public Form postFormUploadFile(@PathParam("form-id") Long formId, Form form)
 		throws Exception {
 
-		return new FormImpl();
+		return new Form();
 	}
 
 	public void setContextCompany(Company contextCompany) {

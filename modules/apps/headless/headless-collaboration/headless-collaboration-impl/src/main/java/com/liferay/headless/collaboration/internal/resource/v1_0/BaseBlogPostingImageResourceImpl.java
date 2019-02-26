@@ -15,7 +15,6 @@
 package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
-import com.liferay.headless.collaboration.internal.dto.v1_0.BlogPostingImageImpl;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -87,7 +86,7 @@ public abstract class BaseBlogPostingImageResourceImpl
 			@PathParam("image-object-id") Long imageObjectId)
 		throws Exception {
 
-		return new BlogPostingImageImpl();
+		return new BlogPostingImage();
 	}
 
 	@Consumes("multipart/form-data")
@@ -101,7 +100,7 @@ public abstract class BaseBlogPostingImageResourceImpl
 			MultipartBody multipartBody)
 		throws Exception {
 
-		return new BlogPostingImageImpl();
+		return new BlogPostingImage();
 	}
 
 	public void setContextCompany(Company contextCompany) {

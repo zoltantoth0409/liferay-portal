@@ -14,35 +14,116 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Location {
+@GraphQLName("Location")
+@XmlRootElement(name = "Location")
+public class Location {
 
-	public String getAddressCountry();
+	public String getAddressCountry() {
+		return addressCountry;
+	}
 
-	public String getAddressRegion();
+	public String getAddressRegion() {
+		return addressRegion;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public void setAddressCountry(String addressCountry);
+	public void setAddressCountry(String addressCountry) {
+		this.addressCountry = addressCountry;
+	}
 
+	@JsonIgnore
 	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
 
-	public void setAddressRegion(String addressRegion);
+		try {
+			addressCountry = addressCountryUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAddressRegion(String addressRegion) {
+		this.addressRegion = addressRegion;
+	}
+
+	@JsonIgnore
 	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			addressRegion = addressRegionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("addressCountry=");
+
+		sb.append(addressCountry);
+		sb.append(", addressRegion=");
+
+		sb.append(addressRegion);
+		sb.append(", id=");
+
+		sb.append(id);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressCountry;
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressRegion;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
 
 }

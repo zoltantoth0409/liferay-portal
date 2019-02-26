@@ -14,42 +14,143 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Phone {
+@GraphQLName("Phone")
+@XmlRootElement(name = "Phone")
+public class Phone {
 
-	public String getExtension();
+	public String getExtension() {
+		return extension;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getPhoneNumber();
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 
-	public String getPhoneType();
+	public String getPhoneType() {
+		return phoneType;
+	}
 
-	public void setExtension(String extension);
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
 
+	@JsonIgnore
 	public void setExtension(
-		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			extension = extensionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setPhoneNumber(String phoneNumber);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	@JsonIgnore
 	public void setPhoneNumber(
-		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
 
-	public void setPhoneType(String phoneType);
+		try {
+			phoneNumber = phoneNumberUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPhoneType(String phoneType) {
+		this.phoneType = phoneType;
+	}
+
+	@JsonIgnore
 	public void setPhoneType(
-		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+
+		try {
+			phoneType = phoneTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("{");
+
+		sb.append("extension=");
+
+		sb.append(extension);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", phoneNumber=");
+
+		sb.append(phoneNumber);
+		sb.append(", phoneType=");
+
+		sb.append(phoneType);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String extension;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String phoneNumber;
+
+	@GraphQLField
+	@JsonProperty
+	protected String phoneType;
 
 }

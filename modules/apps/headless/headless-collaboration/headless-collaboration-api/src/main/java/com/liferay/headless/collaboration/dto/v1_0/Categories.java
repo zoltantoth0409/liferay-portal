@@ -14,29 +14,91 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Categories {
+@GraphQLName("Categories")
+@XmlRootElement(name = "Categories")
+public class Categories {
 
-	public Long getCategoryId();
+	public Long getCategoryId() {
+		return categoryId;
+	}
 
-	public String getCategoryName();
+	public String getCategoryName() {
+		return categoryName;
+	}
 
-	public void setCategoryId(Long categoryId);
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
+	}
 
+	@JsonIgnore
 	public void setCategoryId(
-		UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier) {
 
-	public void setCategoryName(String categoryName);
+		try {
+			categoryId = categoryIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	@JsonIgnore
 	public void setCategoryName(
-		UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier) {
+
+		try {
+			categoryName = categoryNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("{");
+
+		sb.append("categoryId=");
+
+		sb.append(categoryId);
+		sb.append(", categoryName=");
+
+		sb.append(categoryName);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long categoryId;
+
+	@GraphQLField
+	@JsonProperty
+	protected String categoryName;
 
 }

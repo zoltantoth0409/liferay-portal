@@ -14,191 +14,731 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Fields {
+@GraphQLName("Fields")
+@XmlRootElement(name = "Fields")
+public class Fields {
 
-	public Boolean getAutocomplete();
+	public Boolean getAutocomplete() {
+		return autocomplete;
+	}
 
-	public String getDataSourceType();
+	public String getDataSourceType() {
+		return dataSourceType;
+	}
 
-	public String getDataType();
+	public String getDataType() {
+		return dataType;
+	}
 
-	public String getDisplayStyle();
+	public String getDisplayStyle() {
+		return displayStyle;
+	}
 
-	public Grid getGrid();
+	public Grid getGrid() {
+		return grid;
+	}
 
-	public Boolean getHasFormRules();
+	public Boolean getHasFormRules() {
+		return hasFormRules;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public Boolean getImmutable();
+	public Boolean getImmutable() {
+		return immutable;
+	}
 
-	public Boolean getInline();
+	public Boolean getInline() {
+		return inline;
+	}
 
-	public String getInputControl();
+	public String getInputControl() {
+		return inputControl;
+	}
 
-	public String getLabel();
+	public String getLabel() {
+		return label;
+	}
 
-	public Boolean getLocalizable();
+	public Boolean getLocalizable() {
+		return localizable;
+	}
 
-	public Boolean getMultiple();
+	public Boolean getMultiple() {
+		return multiple;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public Options getOptions();
+	public Options getOptions() {
+		return options;
+	}
 
-	public String getPlaceholder();
+	public String getPlaceholder() {
+		return placeholder;
+	}
 
-	public String getPredefinedValue();
+	public String getPredefinedValue() {
+		return predefinedValue;
+	}
 
-	public Boolean getReadOnly();
+	public Boolean getReadOnly() {
+		return readOnly;
+	}
 
-	public Boolean getRepeatable();
+	public Boolean getRepeatable() {
+		return repeatable;
+	}
 
-	public Boolean getRequired();
+	public Boolean getRequired() {
+		return required;
+	}
 
-	public Boolean getShowAsSwitcher();
+	public Boolean getShowAsSwitcher() {
+		return showAsSwitcher;
+	}
 
-	public Boolean getShowLabel();
+	public Boolean getShowLabel() {
+		return showLabel;
+	}
 
-	public String getStyle();
+	public String getStyle() {
+		return style;
+	}
 
-	public String getText();
+	public String getText() {
+		return text;
+	}
 
-	public String getTooltip();
+	public String getTooltip() {
+		return tooltip;
+	}
 
-	public Validation getValidation();
+	public Validation getValidation() {
+		return validation;
+	}
 
-	public void setAutocomplete(Boolean autocomplete);
+	public void setAutocomplete(Boolean autocomplete) {
+		this.autocomplete = autocomplete;
+	}
 
+	@JsonIgnore
 	public void setAutocomplete(
-		UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> autocompleteUnsafeSupplier) {
 
-	public void setDataSourceType(String dataSourceType);
+		try {
+			autocomplete = autocompleteUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDataSourceType(String dataSourceType) {
+		this.dataSourceType = dataSourceType;
+	}
+
+	@JsonIgnore
 	public void setDataSourceType(
-		UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> dataSourceTypeUnsafeSupplier) {
 
-	public void setDataType(String dataType);
+		try {
+			dataSourceType = dataSourceTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
+	}
+
+	@JsonIgnore
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
 
-	public void setDisplayStyle(String displayStyle);
+		try {
+			dataType = dataTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDisplayStyle(String displayStyle) {
+		this.displayStyle = displayStyle;
+	}
+
+	@JsonIgnore
 	public void setDisplayStyle(
-		UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> displayStyleUnsafeSupplier) {
 
-	public void setGrid(Grid grid);
+		try {
+			displayStyle = displayStyleUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setGrid(UnsafeSupplier<Grid, Throwable> gridUnsafeSupplier);
+	public void setGrid(Grid grid) {
+		this.grid = grid;
+	}
 
-	public void setHasFormRules(Boolean hasFormRules);
+	@JsonIgnore
+	public void setGrid(UnsafeSupplier<Grid, Throwable> gridUnsafeSupplier) {
+		try {
+			grid = gridUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHasFormRules(Boolean hasFormRules) {
+		this.hasFormRules = hasFormRules;
+	}
+
+	@JsonIgnore
 	public void setHasFormRules(
-		UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> hasFormRulesUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			hasFormRules = hasFormRulesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setImmutable(Boolean immutable);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setImmutable(Boolean immutable) {
+		this.immutable = immutable;
+	}
+
+	@JsonIgnore
 	public void setImmutable(
-		UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> immutableUnsafeSupplier) {
 
-	public void setInline(Boolean inline);
+		try {
+			immutable = immutableUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setInline(Boolean inline) {
+		this.inline = inline;
+	}
+
+	@JsonIgnore
 	public void setInline(
-		UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> inlineUnsafeSupplier) {
 
-	public void setInputControl(String inputControl);
+		try {
+			inline = inlineUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setInputControl(String inputControl) {
+		this.inputControl = inputControl;
+	}
+
+	@JsonIgnore
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
 
-	public void setLabel(String label);
+		try {
+			inputControl = inputControlUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier);
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
-	public void setLocalizable(Boolean localizable);
+	@JsonIgnore
+	public void setLabel(
+		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 
+		try {
+			label = labelUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setLocalizable(Boolean localizable) {
+		this.localizable = localizable;
+	}
+
+	@JsonIgnore
 	public void setLocalizable(
-		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
 
-	public void setMultiple(Boolean multiple);
+		try {
+			localizable = localizableUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setMultiple(Boolean multiple) {
+		this.multiple = multiple;
+	}
+
+	@JsonIgnore
 	public void setMultiple(
-		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
 
-	public void setName(String name);
+		try {
+			multiple = multipleUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setOptions(Options options);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setOptions(Options options) {
+		this.options = options;
+	}
+
+	@JsonIgnore
 	public void setOptions(
-		UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier);
+		UnsafeSupplier<Options, Throwable> optionsUnsafeSupplier) {
 
-	public void setPlaceholder(String placeholder);
+		try {
+			options = optionsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPlaceholder(String placeholder) {
+		this.placeholder = placeholder;
+	}
+
+	@JsonIgnore
 	public void setPlaceholder(
-		UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> placeholderUnsafeSupplier) {
 
-	public void setPredefinedValue(String predefinedValue);
+		try {
+			placeholder = placeholderUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPredefinedValue(String predefinedValue) {
+		this.predefinedValue = predefinedValue;
+	}
+
+	@JsonIgnore
 	public void setPredefinedValue(
-		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
 
-	public void setReadOnly(Boolean readOnly);
+		try {
+			predefinedValue = predefinedValueUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setReadOnly(Boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+
+	@JsonIgnore
 	public void setReadOnly(
-		UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> readOnlyUnsafeSupplier) {
 
-	public void setRepeatable(Boolean repeatable);
+		try {
+			readOnly = readOnlyUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRepeatable(Boolean repeatable) {
+		this.repeatable = repeatable;
+	}
+
+	@JsonIgnore
 	public void setRepeatable(
-		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
 
-	public void setRequired(Boolean required);
+		try {
+			repeatable = repeatableUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRequired(Boolean required) {
+		this.required = required;
+	}
+
+	@JsonIgnore
 	public void setRequired(
-		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
 
-	public void setShowAsSwitcher(Boolean showAsSwitcher);
+		try {
+			required = requiredUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setShowAsSwitcher(Boolean showAsSwitcher) {
+		this.showAsSwitcher = showAsSwitcher;
+	}
+
+	@JsonIgnore
 	public void setShowAsSwitcher(
-		UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> showAsSwitcherUnsafeSupplier) {
 
-	public void setShowLabel(Boolean showLabel);
+		try {
+			showAsSwitcher = showAsSwitcherUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setShowLabel(Boolean showLabel) {
+		this.showLabel = showLabel;
+	}
+
+	@JsonIgnore
 	public void setShowLabel(
-		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
 
-	public void setStyle(String style);
+		try {
+			showLabel = showLabelUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setStyle(UnsafeSupplier<String, Throwable> styleUnsafeSupplier);
+	public void setStyle(String style) {
+		this.style = style;
+	}
 
-	public void setText(String text);
+	@JsonIgnore
+	public void setStyle(
+		UnsafeSupplier<String, Throwable> styleUnsafeSupplier) {
 
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier);
+		try {
+			style = styleUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setTooltip(String tooltip);
+	public void setText(String text) {
+		this.text = text;
+	}
 
+	@JsonIgnore
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+		try {
+			text = textUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setTooltip(String tooltip) {
+		this.tooltip = tooltip;
+	}
+
+	@JsonIgnore
 	public void setTooltip(
-		UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> tooltipUnsafeSupplier) {
 
+		try {
+			tooltip = tooltipUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	@JsonIgnore
 	public void setValidation(
-		UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier);
+		UnsafeSupplier<Validation, Throwable> validationUnsafeSupplier) {
 
-	public void setValidation(Validation validation);
+		try {
+			validation = validationUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setValidation(Validation validation) {
+		this.validation = validation;
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(54);
+
+		sb.append("{");
+
+		sb.append("autocomplete=");
+
+		sb.append(autocomplete);
+		sb.append(", dataSourceType=");
+
+		sb.append(dataSourceType);
+		sb.append(", dataType=");
+
+		sb.append(dataType);
+		sb.append(", displayStyle=");
+
+		sb.append(displayStyle);
+		sb.append(", grid=");
+
+		sb.append(grid);
+		sb.append(", hasFormRules=");
+
+		sb.append(hasFormRules);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", immutable=");
+
+		sb.append(immutable);
+		sb.append(", inline=");
+
+		sb.append(inline);
+		sb.append(", inputControl=");
+
+		sb.append(inputControl);
+		sb.append(", label=");
+
+		sb.append(label);
+		sb.append(", localizable=");
+
+		sb.append(localizable);
+		sb.append(", multiple=");
+
+		sb.append(multiple);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", options=");
+
+		sb.append(options);
+		sb.append(", placeholder=");
+
+		sb.append(placeholder);
+		sb.append(", predefinedValue=");
+
+		sb.append(predefinedValue);
+		sb.append(", readOnly=");
+
+		sb.append(readOnly);
+		sb.append(", repeatable=");
+
+		sb.append(repeatable);
+		sb.append(", required=");
+
+		sb.append(required);
+		sb.append(", showAsSwitcher=");
+
+		sb.append(showAsSwitcher);
+		sb.append(", showLabel=");
+
+		sb.append(showLabel);
+		sb.append(", style=");
+
+		sb.append(style);
+		sb.append(", text=");
+
+		sb.append(text);
+		sb.append(", tooltip=");
+
+		sb.append(tooltip);
+		sb.append(", validation=");
+
+		sb.append(validation);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean autocomplete;
+
+	@GraphQLField
+	@JsonProperty
+	protected String dataSourceType;
+
+	@GraphQLField
+	@JsonProperty
+	protected String dataType;
+
+	@GraphQLField
+	@JsonProperty
+	protected String displayStyle;
+
+	@GraphQLField
+	@JsonProperty
+	protected Grid grid;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasFormRules;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean immutable;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean inline;
+
+	@GraphQLField
+	@JsonProperty
+	protected String inputControl;
+
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean localizable;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean multiple;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected Options options;
+
+	@GraphQLField
+	@JsonProperty
+	protected String placeholder;
+
+	@GraphQLField
+	@JsonProperty
+	protected String predefinedValue;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean readOnly;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean repeatable;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean required;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean showAsSwitcher;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean showLabel;
+
+	@GraphQLField
+	@JsonProperty
+	protected String style;
+
+	@GraphQLField
+	@JsonProperty
+	protected String text;
+
+	@GraphQLField
+	@JsonProperty
+	protected String tooltip;
+
+	@GraphQLField
+	@JsonProperty
+	protected Validation validation;
 
 }

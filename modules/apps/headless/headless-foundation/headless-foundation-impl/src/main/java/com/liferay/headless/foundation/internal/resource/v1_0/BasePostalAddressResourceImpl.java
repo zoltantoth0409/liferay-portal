@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.PostalAddress;
-import com.liferay.headless.foundation.internal.dto.v1_0.PostalAddressImpl;
 import com.liferay.headless.foundation.resource.v1_0.PostalAddressResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -57,7 +56,7 @@ public abstract class BasePostalAddressResourceImpl
 	public PostalAddress getAddress(@PathParam("address-id") Long addressId)
 		throws Exception {
 
-		return new PostalAddressImpl();
+		return new PostalAddress();
 	}
 
 	@GET

@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
-import com.liferay.headless.foundation.internal.dto.v1_0.UserAccountImpl;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -75,7 +74,7 @@ public abstract class BaseUserAccountResourceImpl
 			@PathParam("my-user-account-id") Long myUserAccountId)
 		throws Exception {
 
-		return new UserAccountImpl();
+		return new UserAccount();
 	}
 
 	@GET
@@ -100,7 +99,7 @@ public abstract class BaseUserAccountResourceImpl
 			@PathParam("user-account-id") Long userAccountId)
 		throws Exception {
 
-		return new UserAccountImpl();
+		return new UserAccount();
 	}
 
 	@GET
@@ -138,7 +137,7 @@ public abstract class BaseUserAccountResourceImpl
 	public UserAccount postUserAccount(UserAccount userAccount)
 		throws Exception {
 
-		return new UserAccountImpl();
+		return new UserAccount();
 	}
 
 	@Consumes("application/json")
@@ -152,7 +151,7 @@ public abstract class BaseUserAccountResourceImpl
 			UserAccount userAccount)
 		throws Exception {
 
-		return new UserAccountImpl();
+		return new UserAccount();
 	}
 
 	public void setContextCompany(Company contextCompany) {

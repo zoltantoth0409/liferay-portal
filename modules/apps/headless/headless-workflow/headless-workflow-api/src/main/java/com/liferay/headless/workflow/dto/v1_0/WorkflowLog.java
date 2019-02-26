@@ -14,90 +14,332 @@
 
 package com.liferay.headless.workflow.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface WorkflowLog {
+@GraphQLName("WorkflowLog")
+@XmlRootElement(name = "WorkflowLog")
+public class WorkflowLog {
 
-	public String getAuditPerson();
+	public String getAuditPerson() {
+		return auditPerson;
+	}
 
-	public String getCommentLog();
+	public String getCommentLog() {
+		return commentLog;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getPerson();
+	public String getPerson() {
+		return person;
+	}
 
-	public String getPreviousPerson();
+	public String getPreviousPerson() {
+		return previousPerson;
+	}
 
-	public String getPreviousState();
+	public String getPreviousState() {
+		return previousState;
+	}
 
-	public String getState();
+	public String getState() {
+		return state;
+	}
 
-	public WorkflowTask getTask();
+	public WorkflowTask getTask() {
+		return task;
+	}
 
-	public Long getTaskId();
+	public Long getTaskId() {
+		return taskId;
+	}
 
-	public String getType();
+	public String getType() {
+		return type;
+	}
 
-	public void setAuditPerson(String auditPerson);
+	public void setAuditPerson(String auditPerson) {
+		this.auditPerson = auditPerson;
+	}
 
+	@JsonIgnore
 	public void setAuditPerson(
-		UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier) {
 
-	public void setCommentLog(String commentLog);
+		try {
+			auditPerson = auditPersonUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCommentLog(String commentLog) {
+		this.commentLog = commentLog;
+	}
+
+	@JsonIgnore
 	public void setCommentLog(
-		UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			commentLog = commentLogUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setPerson(String person);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPerson(String person) {
+		this.person = person;
+	}
+
+	@JsonIgnore
 	public void setPerson(
-		UnsafeSupplier<String, Throwable> personUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> personUnsafeSupplier) {
 
-	public void setPreviousPerson(String previousPerson);
+		try {
+			person = personUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPreviousPerson(String previousPerson) {
+		this.previousPerson = previousPerson;
+	}
+
+	@JsonIgnore
 	public void setPreviousPerson(
-		UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier) {
 
-	public void setPreviousState(String previousState);
+		try {
+			previousPerson = previousPersonUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPreviousState(String previousState) {
+		this.previousState = previousState;
+	}
+
+	@JsonIgnore
 	public void setPreviousState(
-		UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier) {
 
-	public void setState(String state);
+		try {
+			previousState = previousStateUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setState(UnsafeSupplier<String, Throwable> stateUnsafeSupplier);
+	public void setState(String state) {
+		this.state = state;
+	}
 
+	@JsonIgnore
+	public void setState(
+		UnsafeSupplier<String, Throwable> stateUnsafeSupplier) {
+
+		try {
+			state = stateUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	@JsonIgnore
 	public void setTask(
-		UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier);
+		UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier) {
 
-	public void setTask(WorkflowTask task);
+		try {
+			task = taskUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setTaskId(Long taskId);
+	public void setTask(WorkflowTask task) {
+		this.task = task;
+	}
 
-	public void setTaskId(UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier);
+	public void setTaskId(Long taskId) {
+		this.taskId = taskId;
+	}
 
-	public void setType(String type);
+	@JsonIgnore
+	public void setTaskId(
+		UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier) {
 
-	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier);
+		try {
+			taskId = taskIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	@JsonIgnore
+	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
+		try {
+			type = typeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(24);
+
+		sb.append("{");
+
+		sb.append("auditPerson=");
+
+		sb.append(auditPerson);
+		sb.append(", commentLog=");
+
+		sb.append(commentLog);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", person=");
+
+		sb.append(person);
+		sb.append(", previousPerson=");
+
+		sb.append(previousPerson);
+		sb.append(", previousState=");
+
+		sb.append(previousState);
+		sb.append(", state=");
+
+		sb.append(state);
+		sb.append(", task=");
+
+		sb.append(task);
+		sb.append(", taskId=");
+
+		sb.append(taskId);
+		sb.append(", type=");
+
+		sb.append(type);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String auditPerson;
+
+	@GraphQLField
+	@JsonProperty
+	protected String commentLog;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String person;
+
+	@GraphQLField
+	@JsonProperty
+	protected String previousPerson;
+
+	@GraphQLField
+	@JsonProperty
+	protected String previousState;
+
+	@GraphQLField
+	@JsonProperty
+	protected String state;
+
+	@GraphQLField
+	@JsonProperty
+	protected WorkflowTask task;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long taskId;
+
+	@GraphQLField
+	@JsonProperty
+	protected String type;
 
 }

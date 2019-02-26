@@ -14,137 +14,500 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface StructuredContent {
+@GraphQLName("StructuredContent")
+@XmlRootElement(name = "StructuredContent")
+public class StructuredContent {
 
-	public AggregateRating getAggregateRating();
+	public AggregateRating getAggregateRating() {
+		return aggregateRating;
+	}
 
-	public String[] getAvailableLanguages();
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
 
-	public Categories[] getCategories();
+	public Categories[] getCategories() {
+		return categories;
+	}
 
-	public Comment[] getComment();
+	public Comment[] getComment() {
+		return comment;
+	}
 
-	public Long getContentSpace();
+	public Long getContentSpace() {
+		return contentSpace;
+	}
 
-	public Long getContentStructureId();
+	public Long getContentStructureId() {
+		return contentStructureId;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public Date getDatePublished();
+	public Date getDatePublished() {
+		return datePublished;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String[] getKeywords();
+	public String[] getKeywords() {
+		return keywords;
+	}
 
-	public Date getLastReviewed();
+	public Date getLastReviewed() {
+		return lastReviewed;
+	}
 
-	public RenderedContentsURL[] getRenderedContentsURL();
+	public RenderedContentsURL[] getRenderedContentsURL() {
+		return renderedContentsURL;
+	}
 
-	public String getTitle();
+	public String getTitle() {
+		return title;
+	}
 
-	public Values[] getValues();
+	public Values[] getValues() {
+		return values;
+	}
 
-	public void setAggregateRating(AggregateRating aggregateRating);
+	public void setAggregateRating(AggregateRating aggregateRating) {
+		this.aggregateRating = aggregateRating;
+	}
 
+	@JsonIgnore
 	public void setAggregateRating(
 		UnsafeSupplier<AggregateRating, Throwable>
-			aggregateRatingUnsafeSupplier);
+			aggregateRatingUnsafeSupplier) {
 
-	public void setAvailableLanguages(String[] availableLanguages);
+		try {
+			aggregateRating = aggregateRatingUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAvailableLanguages(String[] availableLanguages) {
+		this.availableLanguages = availableLanguages;
+	}
+
+	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-	public void setCategories(Categories[] categories);
+		try {
+			availableLanguages = availableLanguagesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCategories(Categories[] categories) {
+		this.categories = categories;
+	}
+
+	@JsonIgnore
 	public void setCategories(
-		UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier);
+		UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
 
-	public void setComment(Comment[] comment);
+		try {
+			categories = categoriesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setComment(Comment[] comment) {
+		this.comment = comment;
+	}
+
+	@JsonIgnore
 	public void setComment(
-		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier);
+		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
 
-	public void setContentSpace(Long contentSpace);
+		try {
+			comment = commentUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setContentSpace(Long contentSpace) {
+		this.contentSpace = contentSpace;
+	}
+
+	@JsonIgnore
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 
-	public void setContentStructureId(Long contentStructureId);
+		try {
+			contentSpace = contentSpaceUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setContentStructureId(Long contentStructureId) {
+		this.contentStructureId = contentStructureId;
+	}
+
+	@JsonIgnore
 	public void setContentStructureId(
-		UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			contentStructureId = contentStructureIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDatePublished(Date datePublished);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDatePublished(Date datePublished) {
+		this.datePublished = datePublished;
+	}
+
+	@JsonIgnore
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			datePublished = datePublishedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setKeywords(String[] keywords);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setKeywords(String[] keywords) {
+		this.keywords = keywords;
+	}
+
+	@JsonIgnore
 	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
 
-	public void setLastReviewed(Date lastReviewed);
+		try {
+			keywords = keywordsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setLastReviewed(Date lastReviewed) {
+		this.lastReviewed = lastReviewed;
+	}
+
+	@JsonIgnore
 	public void setLastReviewed(
-		UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier) {
+
+		try {
+			lastReviewed = lastReviewedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
 	public void setRenderedContentsURL(
-		RenderedContentsURL[] renderedContentsURL);
+		RenderedContentsURL[] renderedContentsURL) {
 
+		this.renderedContentsURL = renderedContentsURL;
+	}
+
+	@JsonIgnore
 	public void setRenderedContentsURL(
 		UnsafeSupplier<RenderedContentsURL[], Throwable>
-			renderedContentsURLUnsafeSupplier);
+			renderedContentsURLUnsafeSupplier) {
 
-	public void setTitle(String title);
+		try {
+			renderedContentsURL = renderedContentsURLUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier);
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
+	@JsonIgnore
+	public void setTitle(
+		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+
+		try {
+			title = titleUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	@JsonIgnore
 	public void setValues(
-		UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier);
+		UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier) {
 
-	public void setValues(Values[] values);
+		try {
+			values = valuesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setValues(Values[] values) {
+		this.values = values;
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(36);
+
+		sb.append("{");
+
+		sb.append("aggregateRating=");
+
+		sb.append(aggregateRating);
+		sb.append(", availableLanguages=");
+
+		sb.append(availableLanguages);
+		sb.append(", categories=");
+
+		sb.append(categories);
+		sb.append(", comment=");
+
+		sb.append(comment);
+		sb.append(", contentSpace=");
+
+		sb.append(contentSpace);
+		sb.append(", contentStructureId=");
+
+		sb.append(contentStructureId);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", datePublished=");
+
+		sb.append(datePublished);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", keywords=");
+
+		sb.append(keywords);
+		sb.append(", lastReviewed=");
+
+		sb.append(lastReviewed);
+		sb.append(", renderedContentsURL=");
+
+		sb.append(renderedContentsURL);
+		sb.append(", title=");
+
+		sb.append(title);
+		sb.append(", values=");
+
+		sb.append(values);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected AggregateRating aggregateRating;
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	@GraphQLField
+	@JsonProperty
+	protected Categories[] categories;
+
+	@GraphQLField
+	@JsonProperty
+	protected Comment[] comment;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentStructureId;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date datePublished;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] keywords;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date lastReviewed;
+
+	@GraphQLField
+	@JsonProperty
+	protected RenderedContentsURL[] renderedContentsURL;
+
+	@GraphQLField
+	@JsonProperty
+	protected String title;
+
+	@GraphQLField
+	@JsonProperty
+	protected Values[] values;
 
 }

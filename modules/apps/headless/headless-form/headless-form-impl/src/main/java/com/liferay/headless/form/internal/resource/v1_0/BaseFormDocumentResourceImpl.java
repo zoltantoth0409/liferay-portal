@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormDocument;
-import com.liferay.headless.form.internal.dto.v1_0.FormDocumentImpl;
 import com.liferay.headless.form.resource.v1_0.FormDocumentResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -68,7 +67,7 @@ public abstract class BaseFormDocumentResourceImpl
 			@PathParam("form-document-id") Long formDocumentId)
 		throws Exception {
 
-		return new FormDocumentImpl();
+		return new FormDocument();
 	}
 
 	public void setContextCompany(Company contextCompany) {

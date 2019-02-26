@@ -14,78 +14,278 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface ContentStructure {
+@GraphQLName("ContentStructure")
+@XmlRootElement(name = "ContentStructure")
+public class ContentStructure {
 
-	public String[] getAvailableLanguages();
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
 
-	public Long getContentSpace();
+	public Long getContentSpace() {
+		return contentSpace;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public Fields[] getFields();
+	public Fields[] getFields() {
+		return fields;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public void setAvailableLanguages(String[] availableLanguages);
+	public void setAvailableLanguages(String[] availableLanguages) {
+		this.availableLanguages = availableLanguages;
+	}
 
+	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-	public void setContentSpace(Long contentSpace);
+		try {
+			availableLanguages = availableLanguagesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setContentSpace(Long contentSpace) {
+		this.contentSpace = contentSpace;
+	}
+
+	@JsonIgnore
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			contentSpace = contentSpaceUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setFields(Fields[] fields);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFields(Fields[] fields) {
+		this.fields = fields;
+	}
+
+	@JsonIgnore
 	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier);
+		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			fields = fieldsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(20);
+
+		sb.append("{");
+
+		sb.append("availableLanguages=");
+
+		sb.append(availableLanguages);
+		sb.append(", contentSpace=");
+
+		sb.append(contentSpace);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", fields=");
+
+		sb.append(fields);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected Fields[] fields;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
 
 }

@@ -14,35 +14,116 @@
 
 package com.liferay.headless.collaboration.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Image {
+@GraphQLName("Image")
+@XmlRootElement(name = "Image")
+public class Image {
 
-	public String getContentUrl();
+	public String getContentUrl() {
+		return contentUrl;
+	}
 
-	public Long getImageId();
+	public Long getImageId() {
+		return imageId;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public void setContentUrl(String contentUrl);
+	public void setContentUrl(String contentUrl) {
+		this.contentUrl = contentUrl;
+	}
 
+	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 
-	public void setImageId(Long imageId);
+		try {
+			contentUrl = contentUrlUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
+	}
+
+	@JsonIgnore
 	public void setImageId(
-		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
 
-	public void setName(String name);
+		try {
+			imageId = imageIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("contentUrl=");
+
+		sb.append(contentUrl);
+		sb.append(", imageId=");
+
+		sb.append(imageId);
+		sb.append(", name=");
+
+		sb.append(name);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String contentUrl;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long imageId;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
 
 }

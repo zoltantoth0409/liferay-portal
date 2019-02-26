@@ -15,7 +15,6 @@
 package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
-import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowLogImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowLogResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -58,7 +57,7 @@ public abstract class BaseWorkflowLogResourceImpl
 			@PathParam("workflow-log-id") Long workflowLogId)
 		throws Exception {
 
-		return new WorkflowLogImpl();
+		return new WorkflowLog();
 	}
 
 	@GET

@@ -15,7 +15,6 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.Comment;
-import com.liferay.headless.web.experience.internal.dto.v1_0.CommentImpl;
 import com.liferay.headless.web.experience.resource.v1_0.CommentResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -73,7 +72,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 	public Comment getComment(@PathParam("comment-id") Long commentId)
 		throws Exception {
 
-		return new CommentImpl();
+		return new Comment();
 	}
 
 	@GET
@@ -113,7 +112,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {
 
-		return new CommentImpl();
+		return new Comment();
 	}
 
 	@Consumes("application/json")
@@ -127,7 +126,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			Comment comment)
 		throws Exception {
 
-		return new CommentImpl();
+		return new Comment();
 	}
 
 	@Consumes("application/json")
@@ -140,7 +139,7 @@ public abstract class BaseCommentResourceImpl implements CommentResource {
 			@PathParam("comment-id") Long commentId, Comment comment)
 		throws Exception {
 
-		return new CommentImpl();
+		return new Comment();
 	}
 
 	public void setContextCompany(Company contextCompany) {

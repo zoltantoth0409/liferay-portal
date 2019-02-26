@@ -15,7 +15,6 @@
 package com.liferay.headless.workflow.internal.resource.v1_0;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
-import com.liferay.headless.workflow.internal.dto.v1_0.WorkflowTaskImpl;
 import com.liferay.headless.workflow.resource.v1_0.WorkflowTaskResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -72,7 +71,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			@PathParam("workflow-task-id") Long workflowTaskId)
 		throws Exception {
 
-		return new WorkflowTaskImpl();
+		return new WorkflowTask();
 	}
 
 	@GET
@@ -98,7 +97,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			WorkflowTask workflowTask)
 		throws Exception {
 
-		return new WorkflowTaskImpl();
+		return new WorkflowTask();
 	}
 
 	@Consumes("application/json")
@@ -112,7 +111,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			WorkflowTask workflowTask)
 		throws Exception {
 
-		return new WorkflowTaskImpl();
+		return new WorkflowTask();
 	}
 
 	@Consumes("application/json")
@@ -126,7 +125,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			WorkflowTask workflowTask)
 		throws Exception {
 
-		return new WorkflowTaskImpl();
+		return new WorkflowTask();
 	}
 
 	@Consumes("application/json")
@@ -140,7 +139,7 @@ public abstract class BaseWorkflowTaskResourceImpl
 			WorkflowTask workflowTask)
 		throws Exception {
 
-		return new WorkflowTaskImpl();
+		return new WorkflowTask();
 	}
 
 	public void setContextCompany(Company contextCompany) {

@@ -14,35 +14,116 @@
 
 package com.liferay.headless.workflow.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface ObjectReviewed {
+@GraphQLName("ObjectReviewed")
+@XmlRootElement(name = "ObjectReviewed")
+public class ObjectReviewed {
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getIdentifier();
+	public String getIdentifier() {
+		return identifier;
+	}
 
-	public String getResourceType();
+	public String getResourceType() {
+		return resourceType;
+	}
 
-	public void setId(Long id);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setIdentifier(String identifier);
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
 
+	@JsonIgnore
 	public void setIdentifier(
-		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier) {
 
-	public void setResourceType(String resourceType);
+		try {
+			identifier = identifierUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setResourceType(String resourceType) {
+		this.resourceType = resourceType;
+	}
+
+	@JsonIgnore
 	public void setResourceType(
-		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier) {
+
+		try {
+			resourceType = resourceTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("id=");
+
+		sb.append(id);
+		sb.append(", identifier=");
+
+		sb.append(identifier);
+		sb.append(", resourceType=");
+
+		sb.append(resourceType);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String identifier;
+
+	@GraphQLField
+	@JsonProperty
+	protected String resourceType;
 
 }

@@ -14,15 +14,12 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -136,7 +133,7 @@ public abstract class BasePhoneResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<PhoneImpl>>() {
+			new TypeReference<Page<Phone>>() {
 			});
 	}
 
@@ -160,7 +157,7 @@ public abstract class BasePhoneResourceTestCase {
 			_resourceURL + _toPath("/phones/{phone-id}", phoneId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), PhoneImpl.class);
+			HttpUtil.URLtoString(options), Phone.class);
 	}
 
 	protected Http.Response invokeGetPhoneResponse(Long phoneId)
@@ -177,7 +174,7 @@ public abstract class BasePhoneResourceTestCase {
 	}
 
 	protected Phone randomPhone() {
-		return new PhoneImpl() {
+		return new Phone() {
 			{
 				extension = RandomTestUtil.randomString();
 				id = RandomTestUtil.randomLong();
@@ -225,123 +222,6 @@ public abstract class BasePhoneResourceTestCase {
 
 		@JsonProperty
 		protected int totalCount;
-
-	}
-
-	protected static class PhoneImpl implements Phone {
-
-		public String getExtension() {
-			return extension;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getPhoneNumber() {
-			return phoneNumber;
-		}
-
-		public String getPhoneType() {
-			return phoneType;
-		}
-
-		public void setExtension(String extension) {
-			this.extension = extension;
-		}
-
-		@JsonIgnore
-		public void setExtension(
-			UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
-
-			try {
-				extension = extensionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setPhoneNumber(String phoneNumber) {
-			this.phoneNumber = phoneNumber;
-		}
-
-		@JsonIgnore
-		public void setPhoneNumber(
-			UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
-
-			try {
-				phoneNumber = phoneNumberUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setPhoneType(String phoneType) {
-			this.phoneType = phoneType;
-		}
-
-		@JsonIgnore
-		public void setPhoneType(
-			UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
-
-			try {
-				phoneType = phoneTypeUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(10);
-
-			sb.append("{");
-
-			sb.append("extension=");
-
-			sb.append(extension);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", phoneNumber=");
-
-			sb.append(phoneNumber);
-			sb.append(", phoneType=");
-
-			sb.append(phoneType);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String extension;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String phoneNumber;
-
-		@JsonProperty
-		protected String phoneType;
 
 	}
 

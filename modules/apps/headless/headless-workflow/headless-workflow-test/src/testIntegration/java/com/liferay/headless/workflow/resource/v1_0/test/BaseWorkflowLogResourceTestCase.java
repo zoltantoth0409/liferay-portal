@@ -14,16 +14,12 @@
 
 package com.liferay.headless.workflow.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.workflow.dto.v1_0.WorkflowLog;
-import com.liferay.headless.workflow.dto.v1_0.WorkflowTask;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -36,7 +32,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -145,7 +140,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 				_toPath("/workflow-logs/{workflow-log-id}", workflowLogId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WorkflowLogImpl.class);
+			HttpUtil.URLtoString(options), WorkflowLog.class);
 	}
 
 	protected Http.Response invokeGetWorkflowLogResponse(Long workflowLogId)
@@ -176,7 +171,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<WorkflowLogImpl>>() {
+			new TypeReference<Page<WorkflowLog>>() {
 			});
 	}
 
@@ -198,7 +193,7 @@ public abstract class BaseWorkflowLogResourceTestCase {
 	}
 
 	protected WorkflowLog randomWorkflowLog() {
-		return new WorkflowLogImpl() {
+		return new WorkflowLog() {
 			{
 				auditPerson = RandomTestUtil.randomString();
 				commentLog = RandomTestUtil.randomString();
@@ -252,305 +247,6 @@ public abstract class BaseWorkflowLogResourceTestCase {
 
 		@JsonProperty
 		protected int totalCount;
-
-	}
-
-	protected static class WorkflowLogImpl implements WorkflowLog {
-
-		public String getAuditPerson() {
-			return auditPerson;
-		}
-
-		public String getCommentLog() {
-			return commentLog;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getPerson() {
-			return person;
-		}
-
-		public String getPreviousPerson() {
-			return previousPerson;
-		}
-
-		public String getPreviousState() {
-			return previousState;
-		}
-
-		public String getState() {
-			return state;
-		}
-
-		public WorkflowTask getTask() {
-			return task;
-		}
-
-		public Long getTaskId() {
-			return taskId;
-		}
-
-		public String getType() {
-			return type;
-		}
-
-		public void setAuditPerson(String auditPerson) {
-			this.auditPerson = auditPerson;
-		}
-
-		@JsonIgnore
-		public void setAuditPerson(
-			UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier) {
-
-			try {
-				auditPerson = auditPersonUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCommentLog(String commentLog) {
-			this.commentLog = commentLog;
-		}
-
-		@JsonIgnore
-		public void setCommentLog(
-			UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier) {
-
-			try {
-				commentLog = commentLogUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setPerson(String person) {
-			this.person = person;
-		}
-
-		@JsonIgnore
-		public void setPerson(
-			UnsafeSupplier<String, Throwable> personUnsafeSupplier) {
-
-			try {
-				person = personUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setPreviousPerson(String previousPerson) {
-			this.previousPerson = previousPerson;
-		}
-
-		@JsonIgnore
-		public void setPreviousPerson(
-			UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier) {
-
-			try {
-				previousPerson = previousPersonUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setPreviousState(String previousState) {
-			this.previousState = previousState;
-		}
-
-		@JsonIgnore
-		public void setPreviousState(
-			UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier) {
-
-			try {
-				previousState = previousStateUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setState(String state) {
-			this.state = state;
-		}
-
-		@JsonIgnore
-		public void setState(
-			UnsafeSupplier<String, Throwable> stateUnsafeSupplier) {
-
-			try {
-				state = stateUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		@JsonIgnore
-		public void setTask(
-			UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier) {
-
-			try {
-				task = taskUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setTask(WorkflowTask task) {
-			this.task = task;
-		}
-
-		public void setTaskId(Long taskId) {
-			this.taskId = taskId;
-		}
-
-		@JsonIgnore
-		public void setTaskId(
-			UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier) {
-
-			try {
-				taskId = taskIdUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setType(String type) {
-			this.type = type;
-		}
-
-		@JsonIgnore
-		public void setType(
-			UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
-
-			try {
-				type = typeUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(24);
-
-			sb.append("{");
-
-			sb.append("auditPerson=");
-
-			sb.append(auditPerson);
-			sb.append(", commentLog=");
-
-			sb.append(commentLog);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", person=");
-
-			sb.append(person);
-			sb.append(", previousPerson=");
-
-			sb.append(previousPerson);
-			sb.append(", previousState=");
-
-			sb.append(previousState);
-			sb.append(", state=");
-
-			sb.append(state);
-			sb.append(", task=");
-
-			sb.append(task);
-			sb.append(", taskId=");
-
-			sb.append(taskId);
-			sb.append(", type=");
-
-			sb.append(type);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String auditPerson;
-
-		@JsonProperty
-		protected String commentLog;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String person;
-
-		@JsonProperty
-		protected String previousPerson;
-
-		@JsonProperty
-		protected String previousState;
-
-		@JsonProperty
-		protected String state;
-
-		@JsonProperty
-		protected WorkflowTask task;
-
-		@JsonProperty
-		protected Long taskId;
-
-		@JsonProperty
-		protected String type;
 
 	}
 

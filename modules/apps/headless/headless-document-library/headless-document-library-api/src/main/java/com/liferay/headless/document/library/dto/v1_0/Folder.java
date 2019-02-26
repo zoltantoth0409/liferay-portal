@@ -14,71 +14,251 @@
 
 package com.liferay.headless.document.library.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Folder {
+@GraphQLName("Folder")
+@XmlRootElement(name = "Folder")
+public class Folder {
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public Boolean getHasDocuments();
+	public Boolean getHasDocuments() {
+		return hasDocuments;
+	}
 
-	public Boolean getHasFolders();
+	public Boolean getHasFolders() {
+		return hasFolders;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public Long getRepositoryId();
+	public Long getRepositoryId() {
+		return repositoryId;
+	}
 
-	public void setDateCreated(Date dateCreated);
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setHasDocuments(Boolean hasDocuments);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHasDocuments(Boolean hasDocuments) {
+		this.hasDocuments = hasDocuments;
+	}
+
+	@JsonIgnore
 	public void setHasDocuments(
-		UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier) {
 
-	public void setHasFolders(Boolean hasFolders);
+		try {
+			hasDocuments = hasDocumentsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHasFolders(Boolean hasFolders) {
+		this.hasFolders = hasFolders;
+	}
+
+	@JsonIgnore
 	public void setHasFolders(
-		UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			hasFolders = hasFoldersUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setRepositoryId(Long repositoryId);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRepositoryId(Long repositoryId) {
+		this.repositoryId = repositoryId;
+	}
+
+	@JsonIgnore
 	public void setRepositoryId(
-		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+
+		try {
+			repositoryId = repositoryIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(18);
+
+		sb.append("{");
+
+		sb.append("dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", hasDocuments=");
+
+		sb.append(hasDocuments);
+		sb.append(", hasFolders=");
+
+		sb.append(hasFolders);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", repositoryId=");
+
+		sb.append(repositoryId);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasDocuments;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasFolders;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long repositoryId;
 
 }

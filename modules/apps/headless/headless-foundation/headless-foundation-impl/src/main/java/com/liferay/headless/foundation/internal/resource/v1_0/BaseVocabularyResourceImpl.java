@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.headless.foundation.internal.dto.v1_0.VocabularyImpl;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -89,7 +88,7 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 			@PathParam("vocabulary-id") Long vocabularyId)
 		throws Exception {
 
-		return new VocabularyImpl();
+		return new Vocabulary();
 	}
 
 	@Consumes("application/json")
@@ -103,7 +102,7 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 			Vocabulary vocabulary)
 		throws Exception {
 
-		return new VocabularyImpl();
+		return new Vocabulary();
 	}
 
 	@Consumes("application/json")
@@ -117,7 +116,7 @@ public abstract class BaseVocabularyResourceImpl implements VocabularyResource {
 			Vocabulary vocabulary)
 		throws Exception {
 
-		return new VocabularyImpl();
+		return new Vocabulary();
 	}
 
 	public void setContextCompany(Company contextCompany) {

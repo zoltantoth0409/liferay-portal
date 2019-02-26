@@ -14,34 +14,114 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Grid {
+@GraphQLName("Grid")
+@XmlRootElement(name = "Grid")
+public class Grid {
 
-	public Columns[] getColumns();
+	public Columns[] getColumns() {
+		return columns;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public Rows[] getRows();
+	public Rows[] getRows() {
+		return rows;
+	}
 
-	public void setColumns(Columns[] columns);
+	public void setColumns(Columns[] columns) {
+		this.columns = columns;
+	}
 
+	@JsonIgnore
 	public void setColumns(
-		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier);
+		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			columns = columnsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setRows(Rows[] rows);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier);
+	public void setRows(Rows[] rows) {
+		this.rows = rows;
+	}
+
+	@JsonIgnore
+	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier) {
+		try {
+			rows = rowsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("columns=");
+
+		sb.append(columns);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", rows=");
+
+		sb.append(rows);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Columns[] columns;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected Rows[] rows;
 
 }

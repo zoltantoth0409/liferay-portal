@@ -14,71 +14,251 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Role {
+@GraphQLName("Role")
+@XmlRootElement(name = "Role")
+public class Role {
 
-	public String[] getAvailableLanguages();
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public String getRoleType();
+	public String getRoleType() {
+		return roleType;
+	}
 
-	public void setAvailableLanguages(String[] availableLanguages);
+	public void setAvailableLanguages(String[] availableLanguages) {
+		this.availableLanguages = availableLanguages;
+	}
 
+	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			availableLanguages = availableLanguagesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setRoleType(String roleType);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRoleType(String roleType) {
+		this.roleType = roleType;
+	}
+
+	@JsonIgnore
 	public void setRoleType(
-		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> roleTypeUnsafeSupplier) {
+
+		try {
+			roleType = roleTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(18);
+
+		sb.append("{");
+
+		sb.append("availableLanguages=");
+
+		sb.append(availableLanguages);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", roleType=");
+
+		sb.append(roleType);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected String roleType;
 
 }

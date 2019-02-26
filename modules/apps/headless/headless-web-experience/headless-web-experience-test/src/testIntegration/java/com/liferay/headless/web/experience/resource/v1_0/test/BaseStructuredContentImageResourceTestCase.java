@@ -14,17 +14,13 @@
 
 package com.liferay.headless.web.experience.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.headless.web.experience.dto.v1_0.Creator;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -36,7 +32,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -208,7 +203,7 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 					structuredContentId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), StructuredContentImageImpl.class);
+			HttpUtil.URLtoString(options), StructuredContentImage.class);
 	}
 
 	protected Http.Response invokeGetStructuredContentContentDocumentResponse(
@@ -243,7 +238,7 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<StructuredContentImageImpl>>() {
+			new TypeReference<Page<StructuredContentImage>>() {
 			});
 	}
 
@@ -266,7 +261,7 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 	}
 
 	protected StructuredContentImage randomStructuredContentImage() {
-		return new StructuredContentImageImpl() {
+		return new StructuredContentImage() {
 			{
 				contentUrl = RandomTestUtil.randomString();
 				dateCreated = RandomTestUtil.nextDate();
@@ -317,254 +312,6 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 
 		@JsonProperty
 		protected int totalCount;
-
-	}
-
-	protected static class StructuredContentImageImpl
-		implements StructuredContentImage {
-
-		public String getContentUrl() {
-			return contentUrl;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public String getEncodingFormat() {
-			return encodingFormat;
-		}
-
-		public String getFileExtension() {
-			return fileExtension;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public Number getSizeInBytes() {
-			return sizeInBytes;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-		public void setContentUrl(String contentUrl) {
-			this.contentUrl = contentUrl;
-		}
-
-		@JsonIgnore
-		public void setContentUrl(
-			UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
-
-			try {
-				contentUrl = contentUrlUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setEncodingFormat(String encodingFormat) {
-			this.encodingFormat = encodingFormat;
-		}
-
-		@JsonIgnore
-		public void setEncodingFormat(
-			UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
-
-			try {
-				encodingFormat = encodingFormatUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFileExtension(String fileExtension) {
-			this.fileExtension = fileExtension;
-		}
-
-		@JsonIgnore
-		public void setFileExtension(
-			UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
-
-			try {
-				fileExtension = fileExtensionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setSizeInBytes(Number sizeInBytes) {
-			this.sizeInBytes = sizeInBytes;
-		}
-
-		@JsonIgnore
-		public void setSizeInBytes(
-			UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
-
-			try {
-				sizeInBytes = sizeInBytesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		@JsonIgnore
-		public void setTitle(
-			UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
-
-			try {
-				title = titleUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(20);
-
-			sb.append("{");
-
-			sb.append("contentUrl=");
-
-			sb.append(contentUrl);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", encodingFormat=");
-
-			sb.append(encodingFormat);
-			sb.append(", fileExtension=");
-
-			sb.append(fileExtension);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", sizeInBytes=");
-
-			sb.append(sizeInBytes);
-			sb.append(", title=");
-
-			sb.append(title);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String contentUrl;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected String encodingFormat;
-
-		@JsonProperty
-		protected String fileExtension;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected Number sizeInBytes;
-
-		@JsonProperty
-		protected String title;
 
 	}
 

@@ -14,18 +14,12 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
-import com.liferay.headless.foundation.dto.v1_0.Creator;
-import com.liferay.headless.foundation.dto.v1_0.ParentCategory;
-import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
@@ -42,7 +36,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -196,7 +189,7 @@ public abstract class BaseCategoryResourceTestCase {
 			_resourceURL + _toPath("/categories/{category-id}", categoryId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CategoryImpl.class);
+			HttpUtil.URLtoString(options), Category.class);
 	}
 
 	protected Page<Category> invokeGetCategoryCategoriesPage(
@@ -211,7 +204,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<CategoryImpl>>() {
+			new TypeReference<Page<Category>>() {
 			});
 	}
 
@@ -257,7 +250,7 @@ public abstract class BaseCategoryResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<CategoryImpl>>() {
+			new TypeReference<Page<Category>>() {
 			});
 	}
 
@@ -295,7 +288,7 @@ public abstract class BaseCategoryResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CategoryImpl.class);
+			HttpUtil.URLtoString(options), Category.class);
 	}
 
 	protected Http.Response invokePostCategoryCategoryResponse(
@@ -337,7 +330,7 @@ public abstract class BaseCategoryResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CategoryImpl.class);
+			HttpUtil.URLtoString(options), Category.class);
 	}
 
 	protected Http.Response invokePostVocabularyCategoryResponse(
@@ -377,7 +370,7 @@ public abstract class BaseCategoryResourceTestCase {
 		options.setPut(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CategoryImpl.class);
+			HttpUtil.URLtoString(options), Category.class);
 	}
 
 	protected Http.Response invokePutCategoryResponse(
@@ -401,7 +394,7 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Category randomCategory() {
-		return new CategoryImpl() {
+		return new Category() {
 			{
 				creatorId = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
@@ -416,334 +409,6 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class CategoryImpl implements Category {
-
-		public String[] getAvailableLanguages() {
-			return availableLanguages;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Long getCreatorId() {
-			return creatorId;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public Boolean getHasCategories() {
-			return hasCategories;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public ParentCategory getParentCategory() {
-			return parentCategory;
-		}
-
-		public ParentVocabulary getParentVocabulary() {
-			return parentVocabulary;
-		}
-
-		public Long getParentVocabularyId() {
-			return parentVocabularyId;
-		}
-
-		public void setAvailableLanguages(String[] availableLanguages) {
-			this.availableLanguages = availableLanguages;
-		}
-
-		@JsonIgnore
-		public void setAvailableLanguages(
-			UnsafeSupplier<String[], Throwable>
-				availableLanguagesUnsafeSupplier) {
-
-			try {
-				availableLanguages = availableLanguagesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreatorId(Long creatorId) {
-			this.creatorId = creatorId;
-		}
-
-		@JsonIgnore
-		public void setCreatorId(
-			UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
-
-			try {
-				creatorId = creatorIdUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		@JsonIgnore
-		public void setDescription(
-			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
-
-			try {
-				description = descriptionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setHasCategories(Boolean hasCategories) {
-			this.hasCategories = hasCategories;
-		}
-
-		@JsonIgnore
-		public void setHasCategories(
-			UnsafeSupplier<Boolean, Throwable> hasCategoriesUnsafeSupplier) {
-
-			try {
-				hasCategories = hasCategoriesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		@JsonIgnore
-		public void setName(
-			UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-
-			try {
-				name = nameUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setParentCategory(ParentCategory parentCategory) {
-			this.parentCategory = parentCategory;
-		}
-
-		@JsonIgnore
-		public void setParentCategory(
-			UnsafeSupplier<ParentCategory, Throwable>
-				parentCategoryUnsafeSupplier) {
-
-			try {
-				parentCategory = parentCategoryUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setParentVocabulary(ParentVocabulary parentVocabulary) {
-			this.parentVocabulary = parentVocabulary;
-		}
-
-		@JsonIgnore
-		public void setParentVocabulary(
-			UnsafeSupplier<ParentVocabulary, Throwable>
-				parentVocabularyUnsafeSupplier) {
-
-			try {
-				parentVocabulary = parentVocabularyUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setParentVocabularyId(Long parentVocabularyId) {
-			this.parentVocabularyId = parentVocabularyId;
-		}
-
-		@JsonIgnore
-		public void setParentVocabularyId(
-			UnsafeSupplier<Long, Throwable> parentVocabularyIdUnsafeSupplier) {
-
-			try {
-				parentVocabularyId = parentVocabularyIdUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(26);
-
-			sb.append("{");
-
-			sb.append("availableLanguages=");
-
-			sb.append(availableLanguages);
-			sb.append(", parentCategory=");
-
-			sb.append(parentCategory);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", creatorId=");
-
-			sb.append(creatorId);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", description=");
-
-			sb.append(description);
-			sb.append(", hasCategories=");
-
-			sb.append(hasCategories);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", name=");
-
-			sb.append(name);
-			sb.append(", parentVocabulary=");
-
-			sb.append(parentVocabulary);
-			sb.append(", parentVocabularyId=");
-
-			sb.append(parentVocabularyId);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String[] availableLanguages;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Long creatorId;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected String description;
-
-		@JsonProperty
-		protected Boolean hasCategories;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String name;
-
-		@JsonProperty
-		protected ParentCategory parentCategory;
-
-		@JsonProperty
-		protected ParentVocabulary parentVocabulary;
-
-		@JsonProperty
-		protected Long parentVocabularyId;
-
-	}
 
 	protected static class Page<T> {
 

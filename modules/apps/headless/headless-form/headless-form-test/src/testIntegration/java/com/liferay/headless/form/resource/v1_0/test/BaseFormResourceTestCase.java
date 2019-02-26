@@ -14,19 +14,13 @@
 
 package com.liferay.headless.form.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.headless.form.dto.v1_0.Creator;
 import com.liferay.headless.form.dto.v1_0.Form;
-import com.liferay.headless.form.dto.v1_0.FormRecord;
-import com.liferay.headless.form.dto.v1_0.FormStructure;
 import com.liferay.headless.form.dto.v1_0.Options;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -41,7 +35,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -159,7 +152,7 @@ public abstract class BaseFormResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<FormImpl>>() {
+			new TypeReference<Page<Form>>() {
 			});
 	}
 
@@ -185,7 +178,7 @@ public abstract class BaseFormResourceTestCase {
 		options.setLocation(_resourceURL + _toPath("/forms/{form-id}", formId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormImpl.class);
+			HttpUtil.URLtoString(options), Form.class);
 	}
 
 	protected Form invokeGetFormFetchLatestDraft(Long formId) throws Exception {
@@ -196,7 +189,7 @@ public abstract class BaseFormResourceTestCase {
 				_toPath("/forms/{form-id}/fetch-latest-draft", formId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormImpl.class);
+			HttpUtil.URLtoString(options), Form.class);
 	}
 
 	protected Http.Response invokeGetFormFetchLatestDraftResponse(Long formId)
@@ -241,7 +234,7 @@ public abstract class BaseFormResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormImpl.class);
+			HttpUtil.URLtoString(options), Form.class);
 	}
 
 	protected Http.Response invokePostFormEvaluateContextResponse(
@@ -280,7 +273,7 @@ public abstract class BaseFormResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), FormImpl.class);
+			HttpUtil.URLtoString(options), Form.class);
 	}
 
 	protected Http.Response invokePostFormUploadFileResponse(
@@ -304,7 +297,7 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Form randomForm() {
-		return new FormImpl() {
+		return new Form() {
 			{
 				contentSpace = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
@@ -320,384 +313,6 @@ public abstract class BaseFormResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class FormImpl implements Form {
-
-		public String[] getAvailableLanguages() {
-			return availableLanguages;
-		}
-
-		public Long getContentSpace() {
-			return contentSpace;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public Date getDatePublished() {
-			return datePublished;
-		}
-
-		public String getDefaultLanguage() {
-			return defaultLanguage;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public FormRecord[] getFormRecords() {
-			return formRecords;
-		}
-
-		public Long[] getFormRecordsIds() {
-			return formRecordsIds;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public FormStructure getStructure() {
-			return structure;
-		}
-
-		public Long getStructureId() {
-			return structureId;
-		}
-
-		public void setAvailableLanguages(String[] availableLanguages) {
-			this.availableLanguages = availableLanguages;
-		}
-
-		@JsonIgnore
-		public void setAvailableLanguages(
-			UnsafeSupplier<String[], Throwable>
-				availableLanguagesUnsafeSupplier) {
-
-			try {
-				availableLanguages = availableLanguagesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setContentSpace(Long contentSpace) {
-			this.contentSpace = contentSpace;
-		}
-
-		@JsonIgnore
-		public void setContentSpace(
-			UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
-
-			try {
-				contentSpace = contentSpaceUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDatePublished(Date datePublished) {
-			this.datePublished = datePublished;
-		}
-
-		@JsonIgnore
-		public void setDatePublished(
-			UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
-
-			try {
-				datePublished = datePublishedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDefaultLanguage(String defaultLanguage) {
-			this.defaultLanguage = defaultLanguage;
-		}
-
-		@JsonIgnore
-		public void setDefaultLanguage(
-			UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier) {
-
-			try {
-				defaultLanguage = defaultLanguageUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		@JsonIgnore
-		public void setDescription(
-			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
-
-			try {
-				description = descriptionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFormRecords(FormRecord[] formRecords) {
-			this.formRecords = formRecords;
-		}
-
-		@JsonIgnore
-		public void setFormRecords(
-			UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier) {
-
-			try {
-				formRecords = formRecordsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFormRecordsIds(Long[] formRecordsIds) {
-			this.formRecordsIds = formRecordsIds;
-		}
-
-		@JsonIgnore
-		public void setFormRecordsIds(
-			UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier) {
-
-			try {
-				formRecordsIds = formRecordsIdsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		@JsonIgnore
-		public void setName(
-			UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-
-			try {
-				name = nameUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setStructure(FormStructure structure) {
-			this.structure = structure;
-		}
-
-		@JsonIgnore
-		public void setStructure(
-			UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier) {
-
-			try {
-				structure = structureUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setStructureId(Long structureId) {
-			this.structureId = structureId;
-		}
-
-		@JsonIgnore
-		public void setStructureId(
-			UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier) {
-
-			try {
-				structureId = structureIdUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(30);
-
-			sb.append("{");
-
-			sb.append("availableLanguages=");
-
-			sb.append(availableLanguages);
-			sb.append(", contentSpace=");
-
-			sb.append(contentSpace);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", datePublished=");
-
-			sb.append(datePublished);
-			sb.append(", defaultLanguage=");
-
-			sb.append(defaultLanguage);
-			sb.append(", description=");
-
-			sb.append(description);
-			sb.append(", formRecords=");
-
-			sb.append(formRecords);
-			sb.append(", formRecordsIds=");
-
-			sb.append(formRecordsIds);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", name=");
-
-			sb.append(name);
-			sb.append(", structure=");
-
-			sb.append(structure);
-			sb.append(", structureId=");
-
-			sb.append(structureId);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String[] availableLanguages;
-
-		@JsonProperty
-		protected Long contentSpace;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected Date datePublished;
-
-		@JsonProperty
-		protected String defaultLanguage;
-
-		@JsonProperty
-		protected String description;
-
-		@JsonProperty
-		protected FormRecord[] formRecords;
-
-		@JsonProperty
-		protected Long[] formRecordsIds;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String name;
-
-		@JsonProperty
-		protected FormStructure structure;
-
-		@JsonProperty
-		protected Long structureId;
-
-	}
 
 	protected static class Page<T> {
 

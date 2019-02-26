@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Phone;
-import com.liferay.headless.foundation.internal.dto.v1_0.PhoneImpl;
 import com.liferay.headless.foundation.resource.v1_0.PhoneResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -69,7 +68,7 @@ public abstract class BasePhoneResourceImpl implements PhoneResource {
 	public Phone getPhone(@PathParam("phone-id") Long phoneId)
 		throws Exception {
 
-		return new PhoneImpl();
+		return new Phone();
 	}
 
 	public void setContextCompany(Company contextCompany) {

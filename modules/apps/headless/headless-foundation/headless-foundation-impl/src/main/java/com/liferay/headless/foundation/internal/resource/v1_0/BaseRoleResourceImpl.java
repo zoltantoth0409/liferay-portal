@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
-import com.liferay.headless.foundation.internal.dto.v1_0.RoleImpl;
 import com.liferay.headless.foundation.resource.v1_0.RoleResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -67,7 +66,7 @@ public abstract class BaseRoleResourceImpl implements RoleResource {
 	@Produces("application/json")
 	@RequiresScope("everything.read")
 	public Role getRole(@PathParam("role-id") Long roleId) throws Exception {
-		return new RoleImpl();
+		return new Role();
 	}
 
 	@GET

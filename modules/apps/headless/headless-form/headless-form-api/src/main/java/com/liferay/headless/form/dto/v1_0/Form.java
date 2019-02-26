@@ -14,113 +14,413 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Form {
+@GraphQLName("Form")
+@XmlRootElement(name = "Form")
+public class Form {
 
-	public String[] getAvailableLanguages();
+	public String[] getAvailableLanguages() {
+		return availableLanguages;
+	}
 
-	public Long getContentSpace();
+	public Long getContentSpace() {
+		return contentSpace;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public Date getDatePublished();
+	public Date getDatePublished() {
+		return datePublished;
+	}
 
-	public String getDefaultLanguage();
+	public String getDefaultLanguage() {
+		return defaultLanguage;
+	}
 
-	public String getDescription();
+	public String getDescription() {
+		return description;
+	}
 
-	public FormRecord[] getFormRecords();
+	public FormRecord[] getFormRecords() {
+		return formRecords;
+	}
 
-	public Long[] getFormRecordsIds();
+	public Long[] getFormRecordsIds() {
+		return formRecordsIds;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public FormStructure getStructure();
+	public FormStructure getStructure() {
+		return structure;
+	}
 
-	public Long getStructureId();
+	public Long getStructureId() {
+		return structureId;
+	}
 
-	public void setAvailableLanguages(String[] availableLanguages);
+	public void setAvailableLanguages(String[] availableLanguages) {
+		this.availableLanguages = availableLanguages;
+	}
 
+	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier);
+		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
 
-	public void setContentSpace(Long contentSpace);
+		try {
+			availableLanguages = availableLanguagesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setContentSpace(Long contentSpace) {
+		this.contentSpace = contentSpace;
+	}
+
+	@JsonIgnore
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			contentSpace = contentSpaceUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setDatePublished(Date datePublished);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDatePublished(Date datePublished) {
+		this.datePublished = datePublished;
+	}
+
+	@JsonIgnore
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
 
-	public void setDefaultLanguage(String defaultLanguage);
+		try {
+			datePublished = datePublishedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDefaultLanguage(String defaultLanguage) {
+		this.defaultLanguage = defaultLanguage;
+	}
+
+	@JsonIgnore
 	public void setDefaultLanguage(
-		UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> defaultLanguageUnsafeSupplier) {
 
-	public void setDescription(String description);
+		try {
+			defaultLanguage = defaultLanguageUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
 
-	public void setFormRecords(FormRecord[] formRecords);
+		try {
+			description = descriptionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFormRecords(FormRecord[] formRecords) {
+		this.formRecords = formRecords;
+	}
+
+	@JsonIgnore
 	public void setFormRecords(
-		UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier);
+		UnsafeSupplier<FormRecord[], Throwable> formRecordsUnsafeSupplier) {
 
-	public void setFormRecordsIds(Long[] formRecordsIds);
+		try {
+			formRecords = formRecordsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFormRecordsIds(Long[] formRecordsIds) {
+		this.formRecordsIds = formRecordsIds;
+	}
+
+	@JsonIgnore
 	public void setFormRecordsIds(
-		UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier);
+		UnsafeSupplier<Long[], Throwable> formRecordsIdsUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			formRecordsIds = formRecordsIdsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setStructure(FormStructure structure);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setStructure(FormStructure structure) {
+		this.structure = structure;
+	}
+
+	@JsonIgnore
 	public void setStructure(
-		UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier);
+		UnsafeSupplier<FormStructure, Throwable> structureUnsafeSupplier) {
 
-	public void setStructureId(Long structureId);
+		try {
+			structure = structureUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setStructureId(Long structureId) {
+		this.structureId = structureId;
+	}
+
+	@JsonIgnore
 	public void setStructureId(
-		UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier);
+		UnsafeSupplier<Long, Throwable> structureIdUnsafeSupplier) {
+
+		try {
+			structureId = structureIdUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(30);
+
+		sb.append("{");
+
+		sb.append("availableLanguages=");
+
+		sb.append(availableLanguages);
+		sb.append(", contentSpace=");
+
+		sb.append(contentSpace);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", datePublished=");
+
+		sb.append(datePublished);
+		sb.append(", defaultLanguage=");
+
+		sb.append(defaultLanguage);
+		sb.append(", description=");
+
+		sb.append(description);
+		sb.append(", formRecords=");
+
+		sb.append(formRecords);
+		sb.append(", formRecordsIds=");
+
+		sb.append(formRecordsIds);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", structure=");
+
+		sb.append(structure);
+		sb.append(", structureId=");
+
+		sb.append(structureId);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String[] availableLanguages;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long contentSpace;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date datePublished;
+
+	@GraphQLField
+	@JsonProperty
+	protected String defaultLanguage;
+
+	@GraphQLField
+	@JsonProperty
+	protected String description;
+
+	@GraphQLField
+	@JsonProperty
+	protected FormRecord[] formRecords;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] formRecordsIds;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected FormStructure structure;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long structureId;
 
 }

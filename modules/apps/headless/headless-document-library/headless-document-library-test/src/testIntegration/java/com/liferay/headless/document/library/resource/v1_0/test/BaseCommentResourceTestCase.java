@@ -14,16 +14,12 @@
 
 package com.liferay.headless.document.library.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.document.library.dto.v1_0.Comment;
-import com.liferay.headless.document.library.dto.v1_0.Creator;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
@@ -40,7 +36,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -194,7 +189,7 @@ public abstract class BaseCommentResourceTestCase {
 			_resourceURL + _toPath("/comments/{comment-id}", commentId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CommentImpl.class);
+			HttpUtil.URLtoString(options), Comment.class);
 	}
 
 	protected Page<Comment> invokeGetCommentCommentsPage(
@@ -209,7 +204,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<CommentImpl>>() {
+			new TypeReference<Page<Comment>>() {
 			});
 	}
 
@@ -253,7 +248,7 @@ public abstract class BaseCommentResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<CommentImpl>>() {
+			new TypeReference<Page<Comment>>() {
 			});
 	}
 
@@ -288,7 +283,7 @@ public abstract class BaseCommentResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CommentImpl.class);
+			HttpUtil.URLtoString(options), Comment.class);
 	}
 
 	protected Http.Response invokePostCommentCommentResponse(
@@ -329,7 +324,7 @@ public abstract class BaseCommentResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CommentImpl.class);
+			HttpUtil.URLtoString(options), Comment.class);
 	}
 
 	protected Http.Response invokePostDocumentCommentResponse(
@@ -368,7 +363,7 @@ public abstract class BaseCommentResourceTestCase {
 		options.setPut(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), CommentImpl.class);
+			HttpUtil.URLtoString(options), Comment.class);
 	}
 
 	protected Http.Response invokePutCommentResponse(
@@ -392,7 +387,7 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Comment randomComment() {
-		return new CommentImpl() {
+		return new Comment() {
 			{
 				dateCreated = RandomTestUtil.nextDate();
 				dateModified = RandomTestUtil.nextDate();
@@ -404,201 +399,6 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class CommentImpl implements Comment {
-
-		public Comment[] getComments() {
-			return comments;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public Boolean getHasComments() {
-			return hasComments;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getText() {
-			return text;
-		}
-
-		public void setComments(Comment[] comments) {
-			this.comments = comments;
-		}
-
-		@JsonIgnore
-		public void setComments(
-			UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier) {
-
-			try {
-				comments = commentsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setHasComments(Boolean hasComments) {
-			this.hasComments = hasComments;
-		}
-
-		@JsonIgnore
-		public void setHasComments(
-			UnsafeSupplier<Boolean, Throwable> hasCommentsUnsafeSupplier) {
-
-			try {
-				hasComments = hasCommentsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setText(String text) {
-			this.text = text;
-		}
-
-		@JsonIgnore
-		public void setText(
-			UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
-
-			try {
-				text = textUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(16);
-
-			sb.append("{");
-
-			sb.append("comments=");
-
-			sb.append(comments);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", hasComments=");
-
-			sb.append(hasComments);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", text=");
-
-			sb.append(text);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected Comment[] comments;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected Boolean hasComments;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String text;
-
-	}
 
 	protected static class Page<T> {
 

@@ -15,7 +15,6 @@
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.headless.document.library.internal.dto.v1_0.DocumentImpl;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -88,7 +87,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 	public Document getDocument(@PathParam("document-id") Long documentId)
 		throws Exception {
 
-		return new DocumentImpl();
+		return new Document();
 	}
 
 	@GET
@@ -115,7 +114,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			MultipartBody multipartBody)
 		throws Exception {
 
-		return new DocumentImpl();
+		return new Document();
 	}
 
 	@Consumes("multipart/form-data")
@@ -128,7 +127,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			@PathParam("folder-id") Long folderId, MultipartBody multipartBody)
 		throws Exception {
 
-		return new DocumentImpl();
+		return new Document();
 	}
 
 	@Consumes("multipart/form-data")
@@ -142,7 +141,7 @@ public abstract class BaseDocumentResourceImpl implements DocumentResource {
 			MultipartBody multipartBody)
 		throws Exception {
 
-		return new DocumentImpl();
+		return new Document();
 	}
 
 	public void setContextCompany(Company contextCompany) {

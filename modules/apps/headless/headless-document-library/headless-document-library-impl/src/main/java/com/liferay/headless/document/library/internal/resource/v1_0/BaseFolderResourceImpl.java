@@ -15,7 +15,6 @@
 package com.liferay.headless.document.library.internal.resource.v1_0;
 
 import com.liferay.headless.document.library.dto.v1_0.Folder;
-import com.liferay.headless.document.library.internal.dto.v1_0.FolderImpl;
 import com.liferay.headless.document.library.resource.v1_0.FolderResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -86,7 +85,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 	public Folder getFolder(@PathParam("folder-id") Long folderId)
 		throws Exception {
 
-		return new FolderImpl();
+		return new Folder();
 	}
 
 	@GET
@@ -159,7 +158,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			@PathParam("content-space-id") Long contentSpaceId, Folder folder)
 		throws Exception {
 
-		return new FolderImpl();
+		return new Folder();
 	}
 
 	@Consumes("application/json")
@@ -172,7 +171,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {
 
-		return new FolderImpl();
+		return new Folder();
 	}
 
 	@Consumes("application/json")
@@ -185,7 +184,7 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {
 
-		return new FolderImpl();
+		return new Folder();
 	}
 
 	public void setContextCompany(Company contextCompany) {

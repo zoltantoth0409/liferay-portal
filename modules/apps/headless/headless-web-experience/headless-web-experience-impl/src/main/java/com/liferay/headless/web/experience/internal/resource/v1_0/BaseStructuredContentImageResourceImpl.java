@@ -15,7 +15,6 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
-import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImageImpl;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentImageResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -76,7 +75,7 @@ public abstract class BaseStructuredContentImageResourceImpl
 			@PathParam("content-document-id") Long contentDocumentId)
 		throws Exception {
 
-		return new StructuredContentImageImpl();
+		return new StructuredContentImage();
 	}
 
 	@GET

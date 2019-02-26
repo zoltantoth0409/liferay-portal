@@ -14,64 +14,224 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import java.util.Date;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Comment {
+@GraphQLName("Comment")
+@XmlRootElement(name = "Comment")
+public class Comment {
 
-	public Comment[] getComments();
+	public Comment[] getComments() {
+		return comments;
+	}
 
-	public Creator getCreator();
+	public Creator getCreator() {
+		return creator;
+	}
 
-	public Date getDateCreated();
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-	public Date getDateModified();
+	public Date getDateModified() {
+		return dateModified;
+	}
 
-	public Boolean getHasComments();
+	public Boolean getHasComments() {
+		return hasComments;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getText();
+	public String getText() {
+		return text;
+	}
 
-	public void setComments(Comment[] comments);
+	public void setComments(Comment[] comments) {
+		this.comments = comments;
+	}
 
+	@JsonIgnore
 	public void setComments(
-		UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier);
+		UnsafeSupplier<Comment[], Throwable> commentsUnsafeSupplier) {
 
-	public void setCreator(Creator creator);
+		try {
+			comments = commentsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setCreator(Creator creator) {
+		this.creator = creator;
+	}
+
+	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier);
+		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
 
-	public void setDateCreated(Date dateCreated);
+		try {
+			creator = creatorUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
 
-	public void setDateModified(Date dateModified);
+		try {
+			dateCreated = dateCreatedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
+	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier);
+		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
 
-	public void setHasComments(Boolean hasComments);
+		try {
+			dateModified = dateModifiedUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHasComments(Boolean hasComments) {
+		this.hasComments = hasComments;
+	}
+
+	@JsonIgnore
 	public void setHasComments(
-		UnsafeSupplier<Boolean, Throwable> hasCommentsUnsafeSupplier);
+		UnsafeSupplier<Boolean, Throwable> hasCommentsUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			hasComments = hasCommentsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setText(String text);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier);
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@JsonIgnore
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+		try {
+			text = textUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(16);
+
+		sb.append("{");
+
+		sb.append("comments=");
+
+		sb.append(comments);
+		sb.append(", creator=");
+
+		sb.append(creator);
+		sb.append(", dateCreated=");
+
+		sb.append(dateCreated);
+		sb.append(", dateModified=");
+
+		sb.append(dateModified);
+		sb.append(", hasComments=");
+
+		sb.append(hasComments);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", text=");
+
+		sb.append(text);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Comment[] comments;
+
+	@GraphQLField
+	@JsonProperty
+	protected Creator creator;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateCreated;
+
+	@GraphQLField
+	@JsonProperty
+	protected Date dateModified;
+
+	@GraphQLField
+	@JsonProperty
+	protected Boolean hasComments;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String text;
 
 }

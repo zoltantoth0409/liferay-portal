@@ -14,35 +14,116 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Validation {
+@GraphQLName("Validation")
+@XmlRootElement(name = "Validation")
+public class Validation {
 
-	public String getErrorMessage();
+	public String getErrorMessage() {
+		return errorMessage;
+	}
 
-	public String getExpression();
+	public String getExpression() {
+		return expression;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public void setErrorMessage(String errorMessage);
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 
+	@JsonIgnore
 	public void setErrorMessage(
-		UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier) {
 
-	public void setExpression(String expression);
+		try {
+			errorMessage = errorMessageUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setExpression(String expression) {
+		this.expression = expression;
+	}
+
+	@JsonIgnore
 	public void setExpression(
-		UnsafeSupplier<String, Throwable> expressionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> expressionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			expression = expressionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(8);
+
+		sb.append("{");
+
+		sb.append("errorMessage=");
+
+		sb.append(errorMessage);
+		sb.append(", expression=");
+
+		sb.append(expression);
+		sb.append(", id=");
+
+		sb.append(id);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String errorMessage;
+
+	@GraphQLField
+	@JsonProperty
+	protected String expression;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
 
 }

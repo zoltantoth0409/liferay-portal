@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Organization;
-import com.liferay.headless.foundation.internal.dto.v1_0.OrganizationImpl;
 import com.liferay.headless.foundation.resource.v1_0.OrganizationResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -71,7 +70,7 @@ public abstract class BaseOrganizationResourceImpl
 			@PathParam("organization-id") Long organizationId)
 		throws Exception {
 
-		return new OrganizationImpl();
+		return new Organization();
 	}
 
 	@GET

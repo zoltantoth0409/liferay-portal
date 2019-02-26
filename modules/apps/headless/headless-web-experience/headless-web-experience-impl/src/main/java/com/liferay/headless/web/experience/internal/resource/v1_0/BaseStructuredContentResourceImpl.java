@@ -15,7 +15,6 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
 import com.liferay.headless.web.experience.resource.v1_0.StructuredContentResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -109,7 +108,7 @@ public abstract class BaseStructuredContentResourceImpl
 			@PathParam("structured-content-id") Long structuredContentId)
 		throws Exception {
 
-		return new StructuredContentImpl();
+		return new StructuredContent();
 	}
 
 	@GET
@@ -209,7 +208,7 @@ public abstract class BaseStructuredContentResourceImpl
 			StructuredContent structuredContent)
 		throws Exception {
 
-		return new StructuredContentImpl();
+		return new StructuredContent();
 	}
 
 	@Consumes("application/json")
@@ -223,7 +222,7 @@ public abstract class BaseStructuredContentResourceImpl
 			StructuredContent structuredContent)
 		throws Exception {
 
-		return new StructuredContentImpl();
+		return new StructuredContent();
 	}
 
 	public void setContextCompany(Company contextCompany) {

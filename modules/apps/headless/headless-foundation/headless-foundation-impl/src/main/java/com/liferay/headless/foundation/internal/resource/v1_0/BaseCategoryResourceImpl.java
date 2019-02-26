@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
-import com.liferay.headless.foundation.internal.dto.v1_0.CategoryImpl;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -73,7 +72,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 	public Category getCategory(@PathParam("category-id") Long categoryId)
 		throws Exception {
 
-		return new CategoryImpl();
+		return new Category();
 	}
 
 	@GET
@@ -113,7 +112,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 			@PathParam("category-id") Long categoryId, Category category)
 		throws Exception {
 
-		return new CategoryImpl();
+		return new Category();
 	}
 
 	@Consumes("application/json")
@@ -126,7 +125,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 			@PathParam("vocabulary-id") Long vocabularyId, Category category)
 		throws Exception {
 
-		return new CategoryImpl();
+		return new Category();
 	}
 
 	@Consumes("application/json")
@@ -139,7 +138,7 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 			@PathParam("category-id") Long categoryId, Category category)
 		throws Exception {
 
-		return new CategoryImpl();
+		return new Category();
 	}
 
 	public void setContextCompany(Company contextCompany) {

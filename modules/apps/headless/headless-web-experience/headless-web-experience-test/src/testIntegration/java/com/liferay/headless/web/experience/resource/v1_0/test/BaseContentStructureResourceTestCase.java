@@ -14,18 +14,13 @@
 
 package com.liferay.headless.web.experience.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
-import com.liferay.headless.web.experience.dto.v1_0.Creator;
-import com.liferay.headless.web.experience.dto.v1_0.Fields;
 import com.liferay.headless.web.experience.dto.v1_0.Options;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -40,7 +35,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -161,7 +155,7 @@ public abstract class BaseContentStructureResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<ContentStructureImpl>>() {
+			new TypeReference<Page<ContentStructure>>() {
 			});
 	}
 
@@ -196,7 +190,7 @@ public abstract class BaseContentStructureResourceTestCase {
 					contentStructureId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), ContentStructureImpl.class);
+			HttpUtil.URLtoString(options), ContentStructure.class);
 	}
 
 	protected Http.Response invokeGetContentStructureResponse(
@@ -217,7 +211,7 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 
 	protected ContentStructure randomContentStructure() {
-		return new ContentStructureImpl() {
+		return new ContentStructure() {
 			{
 				contentSpace = RandomTestUtil.randomLong();
 				dateCreated = RandomTestUtil.nextDate();
@@ -230,254 +224,6 @@ public abstract class BaseContentStructureResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class ContentStructureImpl implements ContentStructure {
-
-		public String[] getAvailableLanguages() {
-			return availableLanguages;
-		}
-
-		public Long getContentSpace() {
-			return contentSpace;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public Fields[] getFields() {
-			return fields;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setAvailableLanguages(String[] availableLanguages) {
-			this.availableLanguages = availableLanguages;
-		}
-
-		@JsonIgnore
-		public void setAvailableLanguages(
-			UnsafeSupplier<String[], Throwable>
-				availableLanguagesUnsafeSupplier) {
-
-			try {
-				availableLanguages = availableLanguagesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setContentSpace(Long contentSpace) {
-			this.contentSpace = contentSpace;
-		}
-
-		@JsonIgnore
-		public void setContentSpace(
-			UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
-
-			try {
-				contentSpace = contentSpaceUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		@JsonIgnore
-		public void setDescription(
-			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
-
-			try {
-				description = descriptionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFields(Fields[] fields) {
-			this.fields = fields;
-		}
-
-		@JsonIgnore
-		public void setFields(
-			UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
-
-			try {
-				fields = fieldsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		@JsonIgnore
-		public void setName(
-			UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
-
-			try {
-				name = nameUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(20);
-
-			sb.append("{");
-
-			sb.append("availableLanguages=");
-
-			sb.append(availableLanguages);
-			sb.append(", contentSpace=");
-
-			sb.append(contentSpace);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", description=");
-
-			sb.append(description);
-			sb.append(", fields=");
-
-			sb.append(fields);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", name=");
-
-			sb.append(name);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected String[] availableLanguages;
-
-		@JsonProperty
-		protected Long contentSpace;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected String description;
-
-		@JsonProperty
-		protected Fields[] fields;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String name;
-
-	}
 
 	protected static class Page<T> {
 

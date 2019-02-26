@@ -14,77 +14,278 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface PostalAddress {
+@GraphQLName("PostalAddress")
+@XmlRootElement(name = "PostalAddress")
+public class PostalAddress {
 
-	public String getAddressCountry();
+	public String getAddressCountry() {
+		return addressCountry;
+	}
 
-	public String getAddressLocality();
+	public String getAddressLocality() {
+		return addressLocality;
+	}
 
-	public String getAddressRegion();
+	public String getAddressRegion() {
+		return addressRegion;
+	}
 
-	public String getAddressType();
+	public String getAddressType() {
+		return addressType;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getPostalCode();
+	public String getPostalCode() {
+		return postalCode;
+	}
 
-	public String getStreetAddressLine1();
+	public String getStreetAddressLine1() {
+		return streetAddressLine1;
+	}
 
-	public String getStreetAddressLine2();
+	public String getStreetAddressLine2() {
+		return streetAddressLine2;
+	}
 
-	public String getStreetAddressLine3();
+	public String getStreetAddressLine3() {
+		return streetAddressLine3;
+	}
 
-	public void setAddressCountry(String addressCountry);
+	public void setAddressCountry(String addressCountry) {
+		this.addressCountry = addressCountry;
+	}
 
+	@JsonIgnore
 	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
 
-	public void setAddressLocality(String addressLocality);
+		try {
+			addressCountry = addressCountryUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAddressLocality(String addressLocality) {
+		this.addressLocality = addressLocality;
+	}
+
+	@JsonIgnore
 	public void setAddressLocality(
-		UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
 
-	public void setAddressRegion(String addressRegion);
+		try {
+			addressLocality = addressLocalityUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAddressRegion(String addressRegion) {
+		this.addressRegion = addressRegion;
+	}
+
+	@JsonIgnore
 	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
 
-	public void setAddressType(String addressType);
+		try {
+			addressRegion = addressRegionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
+	}
+
+	@JsonIgnore
 	public void setAddressType(
-		UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			addressType = addressTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setPostalCode(String postalCode);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
+
+	@JsonIgnore
 	public void setPostalCode(
-		UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
 
-	public void setStreetAddressLine1(String streetAddressLine1);
+		try {
+			postalCode = postalCodeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setStreetAddressLine1(String streetAddressLine1) {
+		this.streetAddressLine1 = streetAddressLine1;
+	}
+
+	@JsonIgnore
 	public void setStreetAddressLine1(
-		UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier);
+		UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
 
-	public void setStreetAddressLine2(String streetAddressLine2);
+		try {
+			streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setStreetAddressLine2(String streetAddressLine2) {
+		this.streetAddressLine2 = streetAddressLine2;
+	}
+
+	@JsonIgnore
 	public void setStreetAddressLine2(
-		UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier);
+		UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
 
-	public void setStreetAddressLine3(String streetAddressLine3);
+		try {
+			streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setStreetAddressLine3(String streetAddressLine3) {
+		this.streetAddressLine3 = streetAddressLine3;
+	}
+
+	@JsonIgnore
 	public void setStreetAddressLine3(
-		UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier);
+		UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
+
+		try {
+			streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(20);
+
+		sb.append("{");
+
+		sb.append("addressCountry=");
+
+		sb.append(addressCountry);
+		sb.append(", addressLocality=");
+
+		sb.append(addressLocality);
+		sb.append(", addressRegion=");
+
+		sb.append(addressRegion);
+		sb.append(", addressType=");
+
+		sb.append(addressType);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", postalCode=");
+
+		sb.append(postalCode);
+		sb.append(", streetAddressLine1=");
+
+		sb.append(streetAddressLine1);
+		sb.append(", streetAddressLine2=");
+
+		sb.append(streetAddressLine2);
+		sb.append(", streetAddressLine3=");
+
+		sb.append(streetAddressLine3);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressCountry;
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressLocality;
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressRegion;
+
+	@GraphQLField
+	@JsonProperty
+	protected String addressType;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String postalCode;
+
+	@GraphQLField
+	@JsonProperty
+	protected String streetAddressLine1;
+
+	@GraphQLField
+	@JsonProperty
+	protected String streetAddressLine2;
+
+	@GraphQLField
+	@JsonProperty
+	protected String streetAddressLine3;
 
 }

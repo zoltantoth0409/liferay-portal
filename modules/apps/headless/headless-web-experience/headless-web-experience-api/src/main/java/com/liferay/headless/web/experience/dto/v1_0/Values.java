@@ -14,53 +14,193 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface Values {
+@GraphQLName("Values")
+@XmlRootElement(name = "Values")
+public class Values {
 
-	public String getDataType();
+	public String getDataType() {
+		return dataType;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getInputControl();
+	public String getInputControl() {
+		return inputControl;
+	}
 
-	public String getLabel();
+	public String getLabel() {
+		return label;
+	}
 
-	public String getName();
+	public String getName() {
+		return name;
+	}
 
-	public Value getValue();
+	public Value getValue() {
+		return value;
+	}
 
-	public void setDataType(String dataType);
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
+	}
 
+	@JsonIgnore
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			dataType = dataTypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setInputControl(String inputControl);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setInputControl(String inputControl) {
+		this.inputControl = inputControl;
+	}
+
+	@JsonIgnore
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
 
-	public void setLabel(String label);
+		try {
+			inputControl = inputControlUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setLabel(UnsafeSupplier<String, Throwable> labelUnsafeSupplier);
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
-	public void setName(String name);
+	@JsonIgnore
+	public void setLabel(
+		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
 
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier);
+		try {
+			label = labelUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setValue(UnsafeSupplier<Value, Throwable> valueUnsafeSupplier);
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public void setValue(Value value);
+	@JsonIgnore
+	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+		try {
+			name = nameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	@JsonIgnore
+	public void setValue(UnsafeSupplier<Value, Throwable> valueUnsafeSupplier) {
+		try {
+			value = valueUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setValue(Value value) {
+		this.value = value;
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(14);
+
+		sb.append("{");
+
+		sb.append("dataType=");
+
+		sb.append(dataType);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", inputControl=");
+
+		sb.append(inputControl);
+		sb.append(", label=");
+
+		sb.append(label);
+		sb.append(", name=");
+
+		sb.append(name);
+		sb.append(", value=");
+
+		sb.append(value);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String dataType;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String inputControl;
+
+	@GraphQLField
+	@JsonProperty
+	protected String label;
+
+	@GraphQLField
+	@JsonProperty
+	protected String name;
+
+	@GraphQLField
+	@JsonProperty
+	protected Value value;
 
 }

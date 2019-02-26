@@ -15,7 +15,6 @@
 package com.liferay.headless.foundation.internal.resource.v1_0;
 
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
-import com.liferay.headless.foundation.internal.dto.v1_0.KeywordImpl;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -87,7 +86,7 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 	public Keyword getKeyword(@PathParam("keyword-id") Long keywordId)
 		throws Exception {
 
-		return new KeywordImpl();
+		return new Keyword();
 	}
 
 	@Consumes("application/json")
@@ -100,7 +99,7 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 			@PathParam("content-space-id") Long contentSpaceId, Keyword keyword)
 		throws Exception {
 
-		return new KeywordImpl();
+		return new Keyword();
 	}
 
 	@Consumes("application/json")
@@ -113,7 +112,7 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 			@PathParam("keyword-id") Long keywordId, Keyword keyword)
 		throws Exception {
 
-		return new KeywordImpl();
+		return new Keyword();
 	}
 
 	public void setContextCompany(Company contextCompany) {

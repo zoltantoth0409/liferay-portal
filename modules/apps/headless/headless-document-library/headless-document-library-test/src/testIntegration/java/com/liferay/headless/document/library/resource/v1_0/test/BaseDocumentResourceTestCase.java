@@ -14,19 +14,12 @@
 
 package com.liferay.headless.document.library.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.headless.document.library.dto.v1_0.AdaptedImages;
-import com.liferay.headless.document.library.dto.v1_0.AggregateRating;
-import com.liferay.headless.document.library.dto.v1_0.Categories;
-import com.liferay.headless.document.library.dto.v1_0.Creator;
 import com.liferay.headless.document.library.dto.v1_0.Document;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -42,7 +35,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Generated;
@@ -204,7 +196,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<DocumentImpl>>() {
+			new TypeReference<Page<Document>>() {
 			});
 	}
 
@@ -233,7 +225,7 @@ public abstract class BaseDocumentResourceTestCase {
 			_resourceURL + _toPath("/documents/{document-id}", documentId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DocumentImpl.class);
+			HttpUtil.URLtoString(options), Document.class);
 	}
 
 	protected Http.Response invokeGetDocumentResponse(Long documentId)
@@ -260,7 +252,7 @@ public abstract class BaseDocumentResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<DocumentImpl>>() {
+			new TypeReference<Page<Document>>() {
 			});
 	}
 
@@ -293,7 +285,7 @@ public abstract class BaseDocumentResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DocumentImpl.class);
+			HttpUtil.URLtoString(options), Document.class);
 	}
 
 	protected Http.Response invokePostContentSpaceDocumentResponse(
@@ -327,7 +319,7 @@ public abstract class BaseDocumentResourceTestCase {
 		options.setPost(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DocumentImpl.class);
+			HttpUtil.URLtoString(options), Document.class);
 	}
 
 	protected Http.Response invokePostFolderDocumentResponse(
@@ -358,7 +350,7 @@ public abstract class BaseDocumentResourceTestCase {
 		options.setPut(true);
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), DocumentImpl.class);
+			HttpUtil.URLtoString(options), Document.class);
 	}
 
 	protected Http.Response invokePutDocumentResponse(
@@ -378,7 +370,7 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Document randomDocument() {
-		return new DocumentImpl() {
+		return new Document() {
 			{
 				contentUrl = RandomTestUtil.randomString();
 				dateCreated = RandomTestUtil.nextDate();
@@ -394,437 +386,6 @@ public abstract class BaseDocumentResourceTestCase {
 	}
 
 	protected Group testGroup;
-
-	protected static class DocumentImpl implements Document {
-
-		public AdaptedImages[] getAdaptedImages() {
-			return adaptedImages;
-		}
-
-		public AggregateRating getAggregateRating() {
-			return aggregateRating;
-		}
-
-		public Categories[] getCategories() {
-			return categories;
-		}
-
-		public Long[] getCategoryIds() {
-			return categoryIds;
-		}
-
-		public String getContentUrl() {
-			return contentUrl;
-		}
-
-		public Creator getCreator() {
-			return creator;
-		}
-
-		public Date getDateCreated() {
-			return dateCreated;
-		}
-
-		public Date getDateModified() {
-			return dateModified;
-		}
-
-		public String getDescription() {
-			return description;
-		}
-
-		public String getEncodingFormat() {
-			return encodingFormat;
-		}
-
-		public String getFileExtension() {
-			return fileExtension;
-		}
-
-		public Long getFolderId() {
-			return folderId;
-		}
-
-		public Long getId() {
-			return id;
-		}
-
-		public String[] getKeywords() {
-			return keywords;
-		}
-
-		public Number getSizeInBytes() {
-			return sizeInBytes;
-		}
-
-		public String getTitle() {
-			return title;
-		}
-
-		public void setAdaptedImages(AdaptedImages[] adaptedImages) {
-			this.adaptedImages = adaptedImages;
-		}
-
-		@JsonIgnore
-		public void setAdaptedImages(
-			UnsafeSupplier<AdaptedImages[], Throwable>
-				adaptedImagesUnsafeSupplier) {
-
-			try {
-				adaptedImages = adaptedImagesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setAggregateRating(AggregateRating aggregateRating) {
-			this.aggregateRating = aggregateRating;
-		}
-
-		@JsonIgnore
-		public void setAggregateRating(
-			UnsafeSupplier<AggregateRating, Throwable>
-				aggregateRatingUnsafeSupplier) {
-
-			try {
-				aggregateRating = aggregateRatingUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCategories(Categories[] categories) {
-			this.categories = categories;
-		}
-
-		@JsonIgnore
-		public void setCategories(
-			UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
-
-			try {
-				categories = categoriesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCategoryIds(Long[] categoryIds) {
-			this.categoryIds = categoryIds;
-		}
-
-		@JsonIgnore
-		public void setCategoryIds(
-			UnsafeSupplier<Long[], Throwable> categoryIdsUnsafeSupplier) {
-
-			try {
-				categoryIds = categoryIdsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setContentUrl(String contentUrl) {
-			this.contentUrl = contentUrl;
-		}
-
-		@JsonIgnore
-		public void setContentUrl(
-			UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
-
-			try {
-				contentUrl = contentUrlUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setCreator(Creator creator) {
-			this.creator = creator;
-		}
-
-		@JsonIgnore
-		public void setCreator(
-			UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
-
-			try {
-				creator = creatorUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateCreated(Date dateCreated) {
-			this.dateCreated = dateCreated;
-		}
-
-		@JsonIgnore
-		public void setDateCreated(
-			UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
-
-			try {
-				dateCreated = dateCreatedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDateModified(Date dateModified) {
-			this.dateModified = dateModified;
-		}
-
-		@JsonIgnore
-		public void setDateModified(
-			UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
-
-			try {
-				dateModified = dateModifiedUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setDescription(String description) {
-			this.description = description;
-		}
-
-		@JsonIgnore
-		public void setDescription(
-			UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
-
-			try {
-				description = descriptionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setEncodingFormat(String encodingFormat) {
-			this.encodingFormat = encodingFormat;
-		}
-
-		@JsonIgnore
-		public void setEncodingFormat(
-			UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
-
-			try {
-				encodingFormat = encodingFormatUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFileExtension(String fileExtension) {
-			this.fileExtension = fileExtension;
-		}
-
-		@JsonIgnore
-		public void setFileExtension(
-			UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
-
-			try {
-				fileExtension = fileExtensionUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setFolderId(Long folderId) {
-			this.folderId = folderId;
-		}
-
-		@JsonIgnore
-		public void setFolderId(
-			UnsafeSupplier<Long, Throwable> folderIdUnsafeSupplier) {
-
-			try {
-				folderId = folderIdUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setKeywords(String[] keywords) {
-			this.keywords = keywords;
-		}
-
-		@JsonIgnore
-		public void setKeywords(
-			UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
-
-			try {
-				keywords = keywordsUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setSizeInBytes(Number sizeInBytes) {
-			this.sizeInBytes = sizeInBytes;
-		}
-
-		@JsonIgnore
-		public void setSizeInBytes(
-			UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
-
-			try {
-				sizeInBytes = sizeInBytesUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setTitle(String title) {
-			this.title = title;
-		}
-
-		@JsonIgnore
-		public void setTitle(
-			UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
-
-			try {
-				title = titleUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(34);
-
-			sb.append("{");
-
-			sb.append("adaptedImages=");
-
-			sb.append(adaptedImages);
-			sb.append(", aggregateRating=");
-
-			sb.append(aggregateRating);
-			sb.append(", categories=");
-
-			sb.append(categories);
-			sb.append(", categoryIds=");
-
-			sb.append(categoryIds);
-			sb.append(", contentUrl=");
-
-			sb.append(contentUrl);
-			sb.append(", creator=");
-
-			sb.append(creator);
-			sb.append(", dateCreated=");
-
-			sb.append(dateCreated);
-			sb.append(", dateModified=");
-
-			sb.append(dateModified);
-			sb.append(", description=");
-
-			sb.append(description);
-			sb.append(", encodingFormat=");
-
-			sb.append(encodingFormat);
-			sb.append(", fileExtension=");
-
-			sb.append(fileExtension);
-			sb.append(", folderId=");
-
-			sb.append(folderId);
-			sb.append(", id=");
-
-			sb.append(id);
-			sb.append(", keywords=");
-
-			sb.append(keywords);
-			sb.append(", sizeInBytes=");
-
-			sb.append(sizeInBytes);
-			sb.append(", title=");
-
-			sb.append(title);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected AdaptedImages[] adaptedImages;
-
-		@JsonProperty
-		protected AggregateRating aggregateRating;
-
-		@JsonProperty
-		protected Categories[] categories;
-
-		@JsonProperty
-		protected Long[] categoryIds;
-
-		@JsonProperty
-		protected String contentUrl;
-
-		@JsonProperty
-		protected Creator creator;
-
-		@JsonProperty
-		protected Date dateCreated;
-
-		@JsonProperty
-		protected Date dateModified;
-
-		@JsonProperty
-		protected String description;
-
-		@JsonProperty
-		protected String encodingFormat;
-
-		@JsonProperty
-		protected String fileExtension;
-
-		@JsonProperty
-		protected Long folderId;
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String[] keywords;
-
-		@JsonProperty
-		protected Number sizeInBytes;
-
-		@JsonProperty
-		protected String title;
-
-	}
 
 	protected static class Page<T> {
 

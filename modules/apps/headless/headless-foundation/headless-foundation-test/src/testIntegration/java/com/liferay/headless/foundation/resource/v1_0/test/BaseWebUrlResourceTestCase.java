@@ -14,15 +14,12 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.WebUrl;
-import com.liferay.petra.function.UnsafeSupplier;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -137,7 +134,7 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
-			new TypeReference<Page<WebUrlImpl>>() {
+			new TypeReference<Page<WebUrl>>() {
 			});
 	}
 
@@ -162,7 +159,7 @@ public abstract class BaseWebUrlResourceTestCase {
 			_resourceURL + _toPath("/web-urls/{web-url-id}", webUrlId));
 
 		return _outputObjectMapper.readValue(
-			HttpUtil.URLtoString(options), WebUrlImpl.class);
+			HttpUtil.URLtoString(options), WebUrl.class);
 	}
 
 	protected Http.Response invokeGetWebUrlResponse(Long webUrlId)
@@ -179,7 +176,7 @@ public abstract class BaseWebUrlResourceTestCase {
 	}
 
 	protected WebUrl randomWebUrl() {
-		return new WebUrlImpl() {
+		return new WebUrl() {
 			{
 				id = RandomTestUtil.randomLong();
 				url = RandomTestUtil.randomString();
@@ -226,97 +223,6 @@ public abstract class BaseWebUrlResourceTestCase {
 
 		@JsonProperty
 		protected int totalCount;
-
-	}
-
-	protected static class WebUrlImpl implements WebUrl {
-
-		public Long getId() {
-			return id;
-		}
-
-		public String getUrl() {
-			return url;
-		}
-
-		public String getUrlType() {
-			return urlType;
-		}
-
-		public void setId(Long id) {
-			this.id = id;
-		}
-
-		@JsonIgnore
-		public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
-			try {
-				id = idUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setUrl(String url) {
-			this.url = url;
-		}
-
-		@JsonIgnore
-		public void setUrl(
-			UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
-
-			try {
-				url = urlUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public void setUrlType(String urlType) {
-			this.urlType = urlType;
-		}
-
-		@JsonIgnore
-		public void setUrlType(
-			UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
-
-			try {
-				urlType = urlTypeUnsafeSupplier.get();
-			}
-			catch (Throwable t) {
-				throw new RuntimeException(t);
-			}
-		}
-
-		public String toString() {
-			StringBundler sb = new StringBundler(8);
-
-			sb.append("{");
-
-			sb.append("id=");
-
-			sb.append(id);
-			sb.append(", url=");
-
-			sb.append(url);
-			sb.append(", urlType=");
-
-			sb.append(urlType);
-
-			sb.append("}");
-
-			return sb.toString();
-		}
-
-		@JsonProperty
-		protected Long id;
-
-		@JsonProperty
-		protected String url;
-
-		@JsonProperty
-		protected String urlType;
 
 	}
 

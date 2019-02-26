@@ -15,7 +15,6 @@
 package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ContentStructureImpl;
 import com.liferay.headless.web.experience.resource.v1_0.ContentStructureResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -74,7 +73,7 @@ public abstract class BaseContentStructureResourceImpl
 			@PathParam("content-structure-id") Long contentStructureId)
 		throws Exception {
 
-		return new ContentStructureImpl();
+		return new ContentStructure();
 	}
 
 	public void setContextCompany(Company contextCompany) {

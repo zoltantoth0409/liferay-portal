@@ -14,41 +14,141 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface FormPages {
+@GraphQLName("FormPages")
+@XmlRootElement(name = "FormPages")
+public class FormPages {
 
-	public Fields[] getFields();
+	public Fields[] getFields() {
+		return fields;
+	}
 
-	public String getHeadline();
+	public String getHeadline() {
+		return headline;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getText();
+	public String getText() {
+		return text;
+	}
 
-	public void setFields(Fields[] fields);
+	public void setFields(Fields[] fields) {
+		this.fields = fields;
+	}
 
+	@JsonIgnore
 	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier);
+		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
 
-	public void setHeadline(String headline);
+		try {
+			fields = fieldsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setHeadline(String headline) {
+		this.headline = headline;
+	}
+
+	@JsonIgnore
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			headline = headlineUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setText(String text);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier);
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@JsonIgnore
+	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+		try {
+			text = textUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("{");
+
+		sb.append("fields=");
+
+		sb.append(fields);
+		sb.append(", headline=");
+
+		sb.append(headline);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", text=");
+
+		sb.append(text);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Fields[] fields;
+
+	@GraphQLField
+	@JsonProperty
+	protected String headline;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String text;
 
 }

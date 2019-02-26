@@ -14,110 +14,411 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface ContactInformation {
+@GraphQLName("ContactInformation")
+@XmlRootElement(name = "ContactInformation")
+public class ContactInformation {
 
-	public PostalAddress[] getAddress();
+	public PostalAddress[] getAddress() {
+		return address;
+	}
 
-	public Long[] getAddressIds();
+	public Long[] getAddressIds() {
+		return addressIds;
+	}
 
-	public Email[] getEmail();
+	public Email[] getEmail() {
+		return email;
+	}
 
-	public Long[] getEmailIds();
+	public Long[] getEmailIds() {
+		return emailIds;
+	}
 
-	public String getFacebook();
+	public String getFacebook() {
+		return facebook;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getJabber();
+	public String getJabber() {
+		return jabber;
+	}
 
-	public String getSkype();
+	public String getSkype() {
+		return skype;
+	}
 
-	public String getSms();
+	public String getSms() {
+		return sms;
+	}
 
-	public Phone[] getTelephone();
+	public Phone[] getTelephone() {
+		return telephone;
+	}
 
-	public Long[] getTelephoneIds();
+	public Long[] getTelephoneIds() {
+		return telephoneIds;
+	}
 
-	public String getTwitter();
+	public String getTwitter() {
+		return twitter;
+	}
 
-	public WebUrl[] getWebUrl();
+	public WebUrl[] getWebUrl() {
+		return webUrl;
+	}
 
-	public Long[] getWebUrlIds();
+	public Long[] getWebUrlIds() {
+		return webUrlIds;
+	}
 
-	public void setAddress(PostalAddress[] address);
+	public void setAddress(PostalAddress[] address) {
+		this.address = address;
+	}
 
+	@JsonIgnore
 	public void setAddress(
-		UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier);
+		UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier) {
 
-	public void setAddressIds(Long[] addressIds);
+		try {
+			address = addressUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setAddressIds(Long[] addressIds) {
+		this.addressIds = addressIds;
+	}
+
+	@JsonIgnore
 	public void setAddressIds(
-		UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier);
+		UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier) {
 
-	public void setEmail(Email[] email);
+		try {
+			addressIds = addressIdsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setEmail(Email[] email) {
+		this.email = email;
+	}
+
+	@JsonIgnore
 	public void setEmail(
-		UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier);
+		UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier) {
 
-	public void setEmailIds(Long[] emailIds);
+		try {
+			email = emailUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setEmailIds(Long[] emailIds) {
+		this.emailIds = emailIds;
+	}
+
+	@JsonIgnore
 	public void setEmailIds(
-		UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier);
+		UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier) {
 
-	public void setFacebook(String facebook);
+		try {
+			emailIds = emailIdsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	@JsonIgnore
 	public void setFacebook(
-		UnsafeSupplier<String, Throwable> facebookUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> facebookUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			facebook = facebookUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setJabber(String jabber);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setJabber(String jabber) {
+		this.jabber = jabber;
+	}
+
+	@JsonIgnore
 	public void setJabber(
-		UnsafeSupplier<String, Throwable> jabberUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> jabberUnsafeSupplier) {
 
-	public void setSkype(String skype);
+		try {
+			jabber = jabberUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setSkype(UnsafeSupplier<String, Throwable> skypeUnsafeSupplier);
+	public void setSkype(String skype) {
+		this.skype = skype;
+	}
 
-	public void setSms(String sms);
+	@JsonIgnore
+	public void setSkype(
+		UnsafeSupplier<String, Throwable> skypeUnsafeSupplier) {
 
-	public void setSms(UnsafeSupplier<String, Throwable> smsUnsafeSupplier);
+		try {
+			skype = skypeUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setTelephone(Phone[] telephone);
+	public void setSms(String sms) {
+		this.sms = sms;
+	}
 
+	@JsonIgnore
+	public void setSms(UnsafeSupplier<String, Throwable> smsUnsafeSupplier) {
+		try {
+			sms = smsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public void setTelephone(Phone[] telephone) {
+		this.telephone = telephone;
+	}
+
+	@JsonIgnore
 	public void setTelephone(
-		UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier);
+		UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier) {
 
-	public void setTelephoneIds(Long[] telephoneIds);
+		try {
+			telephone = telephoneUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setTelephoneIds(Long[] telephoneIds) {
+		this.telephoneIds = telephoneIds;
+	}
+
+	@JsonIgnore
 	public void setTelephoneIds(
-		UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier);
+		UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier) {
 
-	public void setTwitter(String twitter);
+		try {
+			telephoneIds = telephoneIdsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+
+	@JsonIgnore
 	public void setTwitter(
-		UnsafeSupplier<String, Throwable> twitterUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> twitterUnsafeSupplier) {
 
+		try {
+			twitter = twitterUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	@JsonIgnore
 	public void setWebUrl(
-		UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier);
+		UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier) {
 
-	public void setWebUrl(WebUrl[] webUrl);
+		try {
+			webUrl = webUrlUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setWebUrlIds(Long[] webUrlIds);
+	public void setWebUrl(WebUrl[] webUrl) {
+		this.webUrl = webUrl;
+	}
 
+	public void setWebUrlIds(Long[] webUrlIds) {
+		this.webUrlIds = webUrlIds;
+	}
+
+	@JsonIgnore
 	public void setWebUrlIds(
-		UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier);
+		UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier) {
+
+		try {
+			webUrlIds = webUrlIdsUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(30);
+
+		sb.append("{");
+
+		sb.append("address=");
+
+		sb.append(address);
+		sb.append(", addressIds=");
+
+		sb.append(addressIds);
+		sb.append(", email=");
+
+		sb.append(email);
+		sb.append(", emailIds=");
+
+		sb.append(emailIds);
+		sb.append(", facebook=");
+
+		sb.append(facebook);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", jabber=");
+
+		sb.append(jabber);
+		sb.append(", skype=");
+
+		sb.append(skype);
+		sb.append(", sms=");
+
+		sb.append(sms);
+		sb.append(", telephone=");
+
+		sb.append(telephone);
+		sb.append(", telephoneIds=");
+
+		sb.append(telephoneIds);
+		sb.append(", twitter=");
+
+		sb.append(twitter);
+		sb.append(", webUrl=");
+
+		sb.append(webUrl);
+		sb.append(", webUrlIds=");
+
+		sb.append(webUrlIds);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected PostalAddress[] address;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] addressIds;
+
+	@GraphQLField
+	@JsonProperty
+	protected Email[] email;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] emailIds;
+
+	@GraphQLField
+	@JsonProperty
+	protected String facebook;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String jabber;
+
+	@GraphQLField
+	@JsonProperty
+	protected String skype;
+
+	@GraphQLField
+	@JsonProperty
+	protected String sms;
+
+	@GraphQLField
+	@JsonProperty
+	protected Phone[] telephone;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] telephoneIds;
+
+	@GraphQLField
+	@JsonProperty
+	protected String twitter;
+
+	@GraphQLField
+	@JsonProperty
+	protected WebUrl[] webUrl;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long[] webUrlIds;
 
 }

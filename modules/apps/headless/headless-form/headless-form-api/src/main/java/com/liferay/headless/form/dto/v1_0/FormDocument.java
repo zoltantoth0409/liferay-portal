@@ -14,55 +14,197 @@
 
 package com.liferay.headless.form.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface FormDocument {
+@GraphQLName("FormDocument")
+@XmlRootElement(name = "FormDocument")
+public class FormDocument {
 
-	public String getContentUrl();
+	public String getContentUrl() {
+		return contentUrl;
+	}
 
-	public String getEncodingFormat();
+	public String getEncodingFormat() {
+		return encodingFormat;
+	}
 
-	public String getFileExtension();
+	public String getFileExtension() {
+		return fileExtension;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public Number getSizeInBytes();
+	public Number getSizeInBytes() {
+		return sizeInBytes;
+	}
 
-	public String getTitle();
+	public String getTitle() {
+		return title;
+	}
 
-	public void setContentUrl(String contentUrl);
+	public void setContentUrl(String contentUrl) {
+		this.contentUrl = contentUrl;
+	}
 
+	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
 
-	public void setEncodingFormat(String encodingFormat);
+		try {
+			contentUrl = contentUrlUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setEncodingFormat(String encodingFormat) {
+		this.encodingFormat = encodingFormat;
+	}
+
+	@JsonIgnore
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
 
-	public void setFileExtension(String fileExtension);
+		try {
+			encodingFormat = encodingFormatUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+
+	@JsonIgnore
 	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			fileExtension = fileExtensionUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setSizeInBytes(Number sizeInBytes);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setSizeInBytes(Number sizeInBytes) {
+		this.sizeInBytes = sizeInBytes;
+	}
+
+	@JsonIgnore
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
 
-	public void setTitle(String title);
+		try {
+			sizeInBytes = sizeInBytesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setTitle(UnsafeSupplier<String, Throwable> titleUnsafeSupplier);
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@JsonIgnore
+	public void setTitle(
+		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+
+		try {
+			title = titleUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(14);
+
+		sb.append("{");
+
+		sb.append("contentUrl=");
+
+		sb.append(contentUrl);
+		sb.append(", encodingFormat=");
+
+		sb.append(encodingFormat);
+		sb.append(", fileExtension=");
+
+		sb.append(fileExtension);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", sizeInBytes=");
+
+		sb.append(sizeInBytes);
+		sb.append(", title=");
+
+		sb.append(title);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String contentUrl;
+
+	@GraphQLField
+	@JsonProperty
+	protected String encodingFormat;
+
+	@GraphQLField
+	@JsonProperty
+	protected String fileExtension;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number sizeInBytes;
+
+	@GraphQLField
+	@JsonProperty
+	protected String title;
 
 }

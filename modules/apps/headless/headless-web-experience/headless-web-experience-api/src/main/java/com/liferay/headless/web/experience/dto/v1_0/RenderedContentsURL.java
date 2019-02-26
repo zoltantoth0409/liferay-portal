@@ -14,29 +14,91 @@
 
 package com.liferay.headless.web.experience.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface RenderedContentsURL {
+@GraphQLName("RenderedContentsURL")
+@XmlRootElement(name = "RenderedContentsURL")
+public class RenderedContentsURL {
 
-	public String getRenderedContentURL();
+	public String getRenderedContentURL() {
+		return renderedContentURL;
+	}
 
-	public String getTemplateName();
+	public String getTemplateName() {
+		return templateName;
+	}
 
-	public void setRenderedContentURL(String renderedContentURL);
+	public void setRenderedContentURL(String renderedContentURL) {
+		this.renderedContentURL = renderedContentURL;
+	}
 
+	@JsonIgnore
 	public void setRenderedContentURL(
-		UnsafeSupplier<String, Throwable> renderedContentURLUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> renderedContentURLUnsafeSupplier) {
 
-	public void setTemplateName(String templateName);
+		try {
+			renderedContentURL = renderedContentURLUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName;
+	}
+
+	@JsonIgnore
 	public void setTemplateName(
-		UnsafeSupplier<String, Throwable> templateNameUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> templateNameUnsafeSupplier) {
+
+		try {
+			templateName = templateNameUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("{");
+
+		sb.append("renderedContentURL=");
+
+		sb.append(renderedContentURL);
+		sb.append(", templateName=");
+
+		sb.append(templateName);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String renderedContentURL;
+
+	@GraphQLField
+	@JsonProperty
+	protected String templateName;
 
 }

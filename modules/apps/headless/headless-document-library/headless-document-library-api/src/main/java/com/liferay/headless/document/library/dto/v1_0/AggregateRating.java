@@ -14,43 +14,145 @@
 
 package com.liferay.headless.document.library.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface AggregateRating {
+@GraphQLName("AggregateRating")
+@XmlRootElement(name = "AggregateRating")
+public class AggregateRating {
 
-	public Number getBestRating();
+	public Number getBestRating() {
+		return bestRating;
+	}
 
-	public Number getRatingCount();
+	public Number getRatingCount() {
+		return ratingCount;
+	}
 
-	public Number getRatingValue();
+	public Number getRatingValue() {
+		return ratingValue;
+	}
 
-	public Number getWorstRating();
+	public Number getWorstRating() {
+		return worstRating;
+	}
 
-	public void setBestRating(Number bestRating);
+	public void setBestRating(Number bestRating) {
+		this.bestRating = bestRating;
+	}
 
+	@JsonIgnore
 	public void setBestRating(
-		UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier) {
 
-	public void setRatingCount(Number ratingCount);
+		try {
+			bestRating = bestRatingUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRatingCount(Number ratingCount) {
+		this.ratingCount = ratingCount;
+	}
+
+	@JsonIgnore
 	public void setRatingCount(
-		UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier) {
 
-	public void setRatingValue(Number ratingValue);
+		try {
+			ratingCount = ratingCountUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setRatingValue(Number ratingValue) {
+		this.ratingValue = ratingValue;
+	}
+
+	@JsonIgnore
 	public void setRatingValue(
-		UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier) {
 
-	public void setWorstRating(Number worstRating);
+		try {
+			ratingValue = ratingValueUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setWorstRating(Number worstRating) {
+		this.worstRating = worstRating;
+	}
+
+	@JsonIgnore
 	public void setWorstRating(
-		UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier);
+		UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier) {
+
+		try {
+			worstRating = worstRatingUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("{");
+
+		sb.append("bestRating=");
+
+		sb.append(bestRating);
+		sb.append(", ratingCount=");
+
+		sb.append(ratingCount);
+		sb.append(", ratingValue=");
+
+		sb.append(ratingValue);
+		sb.append(", worstRating=");
+
+		sb.append(worstRating);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected Number bestRating;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number ratingCount;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number ratingValue;
+
+	@GraphQLField
+	@JsonProperty
+	protected Number worstRating;
 
 }

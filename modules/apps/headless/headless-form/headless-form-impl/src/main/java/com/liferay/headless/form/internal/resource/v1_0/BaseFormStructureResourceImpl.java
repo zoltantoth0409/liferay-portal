@@ -15,7 +15,6 @@
 package com.liferay.headless.form.internal.resource.v1_0;
 
 import com.liferay.headless.form.dto.v1_0.FormStructure;
-import com.liferay.headless.form.internal.dto.v1_0.FormStructureImpl;
 import com.liferay.headless.form.resource.v1_0.FormStructureResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
@@ -71,7 +70,7 @@ public abstract class BaseFormStructureResourceImpl
 			@PathParam("form-structure-id") Long formStructureId)
 		throws Exception {
 
-		return new FormStructureImpl();
+		return new FormStructure();
 	}
 
 	public void setContextCompany(Company contextCompany) {

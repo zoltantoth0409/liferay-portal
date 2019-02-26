@@ -14,42 +14,10 @@
 
 package com.liferay.headless.web.experience.internal.jaxrs.context.resolver.v1_0;
 
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
-
-import com.liferay.headless.web.experience.dto.v1_0.AggregateRating;
-import com.liferay.headless.web.experience.dto.v1_0.Categories;
-import com.liferay.headless.web.experience.dto.v1_0.Comment;
-import com.liferay.headless.web.experience.dto.v1_0.ContentDocument;
-import com.liferay.headless.web.experience.dto.v1_0.ContentStructure;
-import com.liferay.headless.web.experience.dto.v1_0.Creator;
-import com.liferay.headless.web.experience.dto.v1_0.Fields;
-import com.liferay.headless.web.experience.dto.v1_0.Geo;
-import com.liferay.headless.web.experience.dto.v1_0.Options;
-import com.liferay.headless.web.experience.dto.v1_0.RenderedContentsURL;
-import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
-import com.liferay.headless.web.experience.dto.v1_0.StructuredContentImage;
-import com.liferay.headless.web.experience.dto.v1_0.Value;
-import com.liferay.headless.web.experience.dto.v1_0.Values;
-import com.liferay.headless.web.experience.internal.dto.v1_0.AggregateRatingImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.CategoriesImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.CommentImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ContentDocumentImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ContentStructureImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.CreatorImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.FieldsImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.GeoImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.OptionsImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.RenderedContentsURLImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImageImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.StructuredContentImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ValueImpl;
-import com.liferay.headless.web.experience.internal.dto.v1_0.ValuesImpl;
 
 import javax.annotation.Generated;
 
@@ -83,49 +51,6 @@ public class ObjectMapperContextResolver
 		{
 			configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, true);
 			enable(SerializationFeature.INDENT_OUTPUT);
-			registerModule(
-				new SimpleModule(
-					"Liferay.Headless.Web.Experience",
-					Version.unknownVersion()) {
-
-					{
-						setAbstractTypes(
-							new SimpleAbstractTypeResolver() {
-								{
-									addMapping(
-										AggregateRating.class,
-										AggregateRatingImpl.class);
-									addMapping(
-										Categories.class, CategoriesImpl.class);
-									addMapping(
-										Comment.class, CommentImpl.class);
-									addMapping(
-										ContentDocument.class,
-										ContentDocumentImpl.class);
-									addMapping(
-										ContentStructure.class,
-										ContentStructureImpl.class);
-									addMapping(
-										Creator.class, CreatorImpl.class);
-									addMapping(Fields.class, FieldsImpl.class);
-									addMapping(Geo.class, GeoImpl.class);
-									addMapping(
-										Options.class, OptionsImpl.class);
-									addMapping(
-										RenderedContentsURL.class,
-										RenderedContentsURLImpl.class);
-									addMapping(
-										StructuredContent.class,
-										StructuredContentImpl.class);
-									addMapping(
-										StructuredContentImage.class,
-										StructuredContentImageImpl.class);
-									addMapping(Value.class, ValueImpl.class);
-									addMapping(Values.class, ValuesImpl.class);
-								}
-							});
-					}
-				});
 			setDateFormat(new ISO8601DateFormat());
 		}
 	};

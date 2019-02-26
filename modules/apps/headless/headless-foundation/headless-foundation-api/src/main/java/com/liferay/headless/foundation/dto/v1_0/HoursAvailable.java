@@ -14,41 +14,143 @@
 
 package com.liferay.headless.foundation.dto.v1_0;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.liferay.petra.function.UnsafeSupplier;
+import com.liferay.petra.string.StringBundler;
+
+import graphql.annotations.annotationTypes.GraphQLField;
+import graphql.annotations.annotationTypes.GraphQLName;
 
 import javax.annotation.Generated;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-public interface HoursAvailable {
+@GraphQLName("HoursAvailable")
+@XmlRootElement(name = "HoursAvailable")
+public class HoursAvailable {
 
-	public String getCloses();
+	public String getCloses() {
+		return closes;
+	}
 
-	public String getDayOfWeek();
+	public String getDayOfWeek() {
+		return dayOfWeek;
+	}
 
-	public Long getId();
+	public Long getId() {
+		return id;
+	}
 
-	public String getOpens();
+	public String getOpens() {
+		return opens;
+	}
 
-	public void setCloses(String closes);
+	public void setCloses(String closes) {
+		this.closes = closes;
+	}
 
+	@JsonIgnore
 	public void setCloses(
-		UnsafeSupplier<String, Throwable> closesUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> closesUnsafeSupplier) {
 
-	public void setDayOfWeek(String dayOfWeek);
+		try {
+			closes = closesUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
+	public void setDayOfWeek(String dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	@JsonIgnore
 	public void setDayOfWeek(
-		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier);
+		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier) {
 
-	public void setId(Long id);
+		try {
+			dayOfWeek = dayOfWeekUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier);
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-	public void setOpens(String opens);
+	@JsonIgnore
+	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+		try {
+			id = idUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
 
-	public void setOpens(UnsafeSupplier<String, Throwable> opensUnsafeSupplier);
+	public void setOpens(String opens) {
+		this.opens = opens;
+	}
+
+	@JsonIgnore
+	public void setOpens(
+		UnsafeSupplier<String, Throwable> opensUnsafeSupplier) {
+
+		try {
+			opens = opensUnsafeSupplier.get();
+		}
+		catch (Throwable t) {
+			throw new RuntimeException(t);
+		}
+	}
+
+	public String toString() {
+		StringBundler sb = new StringBundler(10);
+
+		sb.append("{");
+
+		sb.append("closes=");
+
+		sb.append(closes);
+		sb.append(", dayOfWeek=");
+
+		sb.append(dayOfWeek);
+		sb.append(", id=");
+
+		sb.append(id);
+		sb.append(", opens=");
+
+		sb.append(opens);
+
+		sb.append("}");
+
+		return sb.toString();
+	}
+
+	@GraphQLField
+	@JsonProperty
+	protected String closes;
+
+	@GraphQLField
+	@JsonProperty
+	protected String dayOfWeek;
+
+	@GraphQLField
+	@JsonProperty
+	protected Long id;
+
+	@GraphQLField
+	@JsonProperty
+	protected String opens;
 
 }
