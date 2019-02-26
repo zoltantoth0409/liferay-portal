@@ -49,7 +49,8 @@ public class SegmentResourceImpl extends BaseSegmentResourceImpl {
 		long[] segmentsEntryIds = _segmentsEntryProvider.getSegmentsEntryIds(
 			user.getModelClassName(), user.getPrimaryKey());
 
-		List<SegmentsEntry> segmentsEntries = new ArrayList<>();
+		List<SegmentsEntry> segmentsEntries = new ArrayList<>(
+			segmentsEntryIds.length);
 
 		for (long segmentEntryId : segmentsEntryIds) {
 			SegmentsEntry segmentsEntry =
