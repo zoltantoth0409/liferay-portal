@@ -98,13 +98,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setAddress(
-		UnsafeSupplier<PostalAddress[], Throwable> addressUnsafeSupplier) {
+		UnsafeSupplier<PostalAddress[], Exception> addressUnsafeSupplier) {
 
 		try {
 			address = addressUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -114,13 +114,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setAddressIds(
-		UnsafeSupplier<Long[], Throwable> addressIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> addressIdsUnsafeSupplier) {
 
 		try {
 			addressIds = addressIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -130,13 +130,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setEmail(
-		UnsafeSupplier<Email[], Throwable> emailUnsafeSupplier) {
+		UnsafeSupplier<Email[], Exception> emailUnsafeSupplier) {
 
 		try {
 			email = emailUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -146,13 +146,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setEmailIds(
-		UnsafeSupplier<Long[], Throwable> emailIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> emailIdsUnsafeSupplier) {
 
 		try {
 			emailIds = emailIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -162,13 +162,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setFacebook(
-		UnsafeSupplier<String, Throwable> facebookUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> facebookUnsafeSupplier) {
 
 		try {
 			facebook = facebookUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -177,12 +177,12 @@ public class ContactInformation {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -192,13 +192,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setJabber(
-		UnsafeSupplier<String, Throwable> jabberUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> jabberUnsafeSupplier) {
 
 		try {
 			jabber = jabberUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -208,13 +208,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setSkype(
-		UnsafeSupplier<String, Throwable> skypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> skypeUnsafeSupplier) {
 
 		try {
 			skype = skypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -223,12 +223,12 @@ public class ContactInformation {
 	}
 
 	@JsonIgnore
-	public void setSms(UnsafeSupplier<String, Throwable> smsUnsafeSupplier) {
+	public void setSms(UnsafeSupplier<String, Exception> smsUnsafeSupplier) {
 		try {
 			sms = smsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -238,13 +238,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setTelephone(
-		UnsafeSupplier<Phone[], Throwable> telephoneUnsafeSupplier) {
+		UnsafeSupplier<Phone[], Exception> telephoneUnsafeSupplier) {
 
 		try {
 			telephone = telephoneUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -254,13 +254,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setTelephoneIds(
-		UnsafeSupplier<Long[], Throwable> telephoneIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> telephoneIdsUnsafeSupplier) {
 
 		try {
 			telephoneIds = telephoneIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -270,25 +270,25 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setTwitter(
-		UnsafeSupplier<String, Throwable> twitterUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> twitterUnsafeSupplier) {
 
 		try {
 			twitter = twitterUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	@JsonIgnore
 	public void setWebUrl(
-		UnsafeSupplier<WebUrl[], Throwable> webUrlUnsafeSupplier) {
+		UnsafeSupplier<WebUrl[], Exception> webUrlUnsafeSupplier) {
 
 		try {
 			webUrl = webUrlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -302,13 +302,13 @@ public class ContactInformation {
 
 	@JsonIgnore
 	public void setWebUrlIds(
-		UnsafeSupplier<Long[], Throwable> webUrlIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> webUrlIdsUnsafeSupplier) {
 
 		try {
 			webUrlIds = webUrlIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

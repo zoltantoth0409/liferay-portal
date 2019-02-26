@@ -50,13 +50,13 @@ public class Categories {
 
 	@JsonIgnore
 	public void setCategoryId(
-		UnsafeSupplier<Long, Throwable> categoryIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> categoryIdUnsafeSupplier) {
 
 		try {
 			categoryId = categoryIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -66,13 +66,13 @@ public class Categories {
 
 	@JsonIgnore
 	public void setCategoryName(
-		UnsafeSupplier<String, Throwable> categoryNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> categoryNameUnsafeSupplier) {
 
 		try {
 			categoryName = categoryNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

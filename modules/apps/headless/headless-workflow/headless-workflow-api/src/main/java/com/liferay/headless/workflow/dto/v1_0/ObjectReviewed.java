@@ -53,12 +53,12 @@ public class ObjectReviewed {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -68,13 +68,13 @@ public class ObjectReviewed {
 
 	@JsonIgnore
 	public void setIdentifier(
-		UnsafeSupplier<String, Throwable> identifierUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> identifierUnsafeSupplier) {
 
 		try {
 			identifier = identifierUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -84,13 +84,13 @@ public class ObjectReviewed {
 
 	@JsonIgnore
 	public void setResourceType(
-		UnsafeSupplier<String, Throwable> resourceTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> resourceTypeUnsafeSupplier) {
 
 		try {
 			resourceType = resourceTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

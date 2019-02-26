@@ -53,12 +53,12 @@ public class Geo {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -68,13 +68,13 @@ public class Geo {
 
 	@JsonIgnore
 	public void setLatitude(
-		UnsafeSupplier<Number, Throwable> latitudeUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> latitudeUnsafeSupplier) {
 
 		try {
 			latitude = latitudeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -84,13 +84,13 @@ public class Geo {
 
 	@JsonIgnore
 	public void setLongitude(
-		UnsafeSupplier<Number, Throwable> longitudeUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> longitudeUnsafeSupplier) {
 
 		try {
 			longitude = longitudeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

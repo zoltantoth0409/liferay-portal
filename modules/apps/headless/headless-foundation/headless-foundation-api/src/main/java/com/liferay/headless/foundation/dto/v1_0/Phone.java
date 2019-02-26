@@ -58,13 +58,13 @@ public class Phone {
 
 	@JsonIgnore
 	public void setExtension(
-		UnsafeSupplier<String, Throwable> extensionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> extensionUnsafeSupplier) {
 
 		try {
 			extension = extensionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -73,12 +73,12 @@ public class Phone {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -88,13 +88,13 @@ public class Phone {
 
 	@JsonIgnore
 	public void setPhoneNumber(
-		UnsafeSupplier<String, Throwable> phoneNumberUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> phoneNumberUnsafeSupplier) {
 
 		try {
 			phoneNumber = phoneNumberUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -104,13 +104,13 @@ public class Phone {
 
 	@JsonIgnore
 	public void setPhoneType(
-		UnsafeSupplier<String, Throwable> phoneTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> phoneTypeUnsafeSupplier) {
 
 		try {
 			phoneType = phoneTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

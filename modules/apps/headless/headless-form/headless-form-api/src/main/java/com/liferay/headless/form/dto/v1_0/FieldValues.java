@@ -62,13 +62,13 @@ public class FieldValues {
 
 	@JsonIgnore
 	public void setDocument(
-		UnsafeSupplier<FormDocument, Throwable> documentUnsafeSupplier) {
+		UnsafeSupplier<FormDocument, Exception> documentUnsafeSupplier) {
 
 		try {
 			document = documentUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -78,13 +78,13 @@ public class FieldValues {
 
 	@JsonIgnore
 	public void setDocumentId(
-		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> documentIdUnsafeSupplier) {
 
 		try {
 			documentId = documentIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -93,12 +93,12 @@ public class FieldValues {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -107,12 +107,12 @@ public class FieldValues {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -122,13 +122,13 @@ public class FieldValues {
 
 	@JsonIgnore
 	public void setValue(
-		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> valueUnsafeSupplier) {
 
 		try {
 			value = valueUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

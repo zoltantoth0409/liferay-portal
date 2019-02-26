@@ -76,13 +76,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -92,13 +92,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
 
 		try {
 			dateModified = dateModifiedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -108,13 +108,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -124,13 +124,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setHasDocuments(
-		UnsafeSupplier<Boolean, Throwable> hasDocumentsUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> hasDocumentsUnsafeSupplier) {
 
 		try {
 			hasDocuments = hasDocumentsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -140,13 +140,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setHasFolders(
-		UnsafeSupplier<Boolean, Throwable> hasFoldersUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> hasFoldersUnsafeSupplier) {
 
 		try {
 			hasFolders = hasFoldersUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -155,12 +155,12 @@ public class Folder {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -169,12 +169,12 @@ public class Folder {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -184,13 +184,13 @@ public class Folder {
 
 	@JsonIgnore
 	public void setRepositoryId(
-		UnsafeSupplier<Long, Throwable> repositoryIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> repositoryIdUnsafeSupplier) {
 
 		try {
 			repositoryId = repositoryIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

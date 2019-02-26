@@ -78,13 +78,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressCountryUnsafeSupplier) {
 
 		try {
 			addressCountry = addressCountryUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -94,13 +94,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setAddressLocality(
-		UnsafeSupplier<String, Throwable> addressLocalityUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressLocalityUnsafeSupplier) {
 
 		try {
 			addressLocality = addressLocalityUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -110,13 +110,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressRegionUnsafeSupplier) {
 
 		try {
 			addressRegion = addressRegionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -126,13 +126,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setAddressType(
-		UnsafeSupplier<String, Throwable> addressTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressTypeUnsafeSupplier) {
 
 		try {
 			addressType = addressTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -141,12 +141,12 @@ public class PostalAddress {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -156,13 +156,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setPostalCode(
-		UnsafeSupplier<String, Throwable> postalCodeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> postalCodeUnsafeSupplier) {
 
 		try {
 			postalCode = postalCodeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -172,13 +172,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setStreetAddressLine1(
-		UnsafeSupplier<String, Throwable> streetAddressLine1UnsafeSupplier) {
+		UnsafeSupplier<String, Exception> streetAddressLine1UnsafeSupplier) {
 
 		try {
 			streetAddressLine1 = streetAddressLine1UnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -188,13 +188,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setStreetAddressLine2(
-		UnsafeSupplier<String, Throwable> streetAddressLine2UnsafeSupplier) {
+		UnsafeSupplier<String, Exception> streetAddressLine2UnsafeSupplier) {
 
 		try {
 			streetAddressLine2 = streetAddressLine2UnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -204,13 +204,13 @@ public class PostalAddress {
 
 	@JsonIgnore
 	public void setStreetAddressLine3(
-		UnsafeSupplier<String, Throwable> streetAddressLine3UnsafeSupplier) {
+		UnsafeSupplier<String, Exception> streetAddressLine3UnsafeSupplier) {
 
 		try {
 			streetAddressLine3 = streetAddressLine3UnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -66,13 +66,13 @@ public class Values {
 
 	@JsonIgnore
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> dataTypeUnsafeSupplier) {
 
 		try {
 			dataType = dataTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -81,12 +81,12 @@ public class Values {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -96,13 +96,13 @@ public class Values {
 
 	@JsonIgnore
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> inputControlUnsafeSupplier) {
 
 		try {
 			inputControl = inputControlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -112,13 +112,13 @@ public class Values {
 
 	@JsonIgnore
 	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
 
 		try {
 			label = labelUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -127,22 +127,22 @@ public class Values {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	@JsonIgnore
-	public void setValue(UnsafeSupplier<Value, Throwable> valueUnsafeSupplier) {
+	public void setValue(UnsafeSupplier<Value, Exception> valueUnsafeSupplier) {
 		try {
 			value = valueUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

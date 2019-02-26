@@ -54,13 +54,13 @@ public class SuccessPage {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -70,13 +70,13 @@ public class SuccessPage {
 
 	@JsonIgnore
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> headlineUnsafeSupplier) {
 
 		try {
 			headline = headlineUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -85,12 +85,12 @@ public class SuccessPage {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

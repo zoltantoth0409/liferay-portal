@@ -50,13 +50,13 @@ public class Options {
 
 	@JsonIgnore
 	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
 
 		try {
 			label = labelUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -66,13 +66,13 @@ public class Options {
 
 	@JsonIgnore
 	public void setValue(
-		UnsafeSupplier<String, Throwable> valueUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> valueUnsafeSupplier) {
 
 		try {
 			value = valueUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

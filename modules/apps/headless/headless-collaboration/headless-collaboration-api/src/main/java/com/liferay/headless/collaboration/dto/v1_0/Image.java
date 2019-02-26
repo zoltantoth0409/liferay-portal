@@ -54,13 +54,13 @@ public class Image {
 
 	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> contentUrlUnsafeSupplier) {
 
 		try {
 			contentUrl = contentUrlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -70,13 +70,13 @@ public class Image {
 
 	@JsonIgnore
 	public void setImageId(
-		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> imageIdUnsafeSupplier) {
 
 		try {
 			imageId = imageIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -85,12 +85,12 @@ public class Image {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

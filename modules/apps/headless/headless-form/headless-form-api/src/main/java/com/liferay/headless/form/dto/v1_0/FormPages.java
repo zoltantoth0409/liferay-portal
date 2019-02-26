@@ -58,13 +58,13 @@ public class FormPages {
 
 	@JsonIgnore
 	public void setFields(
-		UnsafeSupplier<Fields[], Throwable> fieldsUnsafeSupplier) {
+		UnsafeSupplier<Fields[], Exception> fieldsUnsafeSupplier) {
 
 		try {
 			fields = fieldsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -74,13 +74,13 @@ public class FormPages {
 
 	@JsonIgnore
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> headlineUnsafeSupplier) {
 
 		try {
 			headline = headlineUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -89,12 +89,12 @@ public class FormPages {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -103,12 +103,12 @@ public class FormPages {
 	}
 
 	@JsonIgnore
-	public void setText(UnsafeSupplier<String, Throwable> textUnsafeSupplier) {
+	public void setText(UnsafeSupplier<String, Exception> textUnsafeSupplier) {
 		try {
 			text = textUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

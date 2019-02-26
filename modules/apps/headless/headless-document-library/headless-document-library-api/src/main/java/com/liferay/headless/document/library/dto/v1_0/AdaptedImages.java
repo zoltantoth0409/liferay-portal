@@ -66,13 +66,13 @@ public class AdaptedImages {
 
 	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> contentUrlUnsafeSupplier) {
 
 		try {
 			contentUrl = contentUrlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -82,13 +82,13 @@ public class AdaptedImages {
 
 	@JsonIgnore
 	public void setHeight(
-		UnsafeSupplier<Number, Throwable> heightUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> heightUnsafeSupplier) {
 
 		try {
 			height = heightUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -97,12 +97,12 @@ public class AdaptedImages {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -112,13 +112,13 @@ public class AdaptedImages {
 
 	@JsonIgnore
 	public void setResolutionName(
-		UnsafeSupplier<String, Throwable> resolutionNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> resolutionNameUnsafeSupplier) {
 
 		try {
 			resolutionName = resolutionNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -128,13 +128,13 @@ public class AdaptedImages {
 
 	@JsonIgnore
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> sizeInBytesUnsafeSupplier) {
 
 		try {
 			sizeInBytes = sizeInBytesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -144,13 +144,13 @@ public class AdaptedImages {
 
 	@JsonIgnore
 	public void setWidth(
-		UnsafeSupplier<Number, Throwable> widthUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> widthUnsafeSupplier) {
 
 		try {
 			width = widthUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

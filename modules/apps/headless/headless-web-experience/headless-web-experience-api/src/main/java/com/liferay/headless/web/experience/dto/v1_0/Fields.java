@@ -86,13 +86,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setDataType(
-		UnsafeSupplier<String, Throwable> dataTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> dataTypeUnsafeSupplier) {
 
 		try {
 			dataType = dataTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -102,13 +102,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setInputControl(
-		UnsafeSupplier<String, Throwable> inputControlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> inputControlUnsafeSupplier) {
 
 		try {
 			inputControl = inputControlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -118,13 +118,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setLabel(
-		UnsafeSupplier<String, Throwable> labelUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> labelUnsafeSupplier) {
 
 		try {
 			label = labelUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -134,13 +134,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setLocalizable(
-		UnsafeSupplier<Boolean, Throwable> localizableUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> localizableUnsafeSupplier) {
 
 		try {
 			localizable = localizableUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -150,13 +150,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setMultiple(
-		UnsafeSupplier<Boolean, Throwable> multipleUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> multipleUnsafeSupplier) {
 
 		try {
 			multiple = multipleUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -165,12 +165,12 @@ public class Fields {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -180,13 +180,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setOptions(
-		UnsafeSupplier<Options[], Throwable> optionsUnsafeSupplier) {
+		UnsafeSupplier<Options[], Exception> optionsUnsafeSupplier) {
 
 		try {
 			options = optionsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -196,13 +196,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setPredefinedValue(
-		UnsafeSupplier<String, Throwable> predefinedValueUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> predefinedValueUnsafeSupplier) {
 
 		try {
 			predefinedValue = predefinedValueUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -212,13 +212,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setRepeatable(
-		UnsafeSupplier<Boolean, Throwable> repeatableUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> repeatableUnsafeSupplier) {
 
 		try {
 			repeatable = repeatableUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -228,13 +228,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setRequired(
-		UnsafeSupplier<Boolean, Throwable> requiredUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> requiredUnsafeSupplier) {
 
 		try {
 			required = requiredUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -244,13 +244,13 @@ public class Fields {
 
 	@JsonIgnore
 	public void setShowLabel(
-		UnsafeSupplier<Boolean, Throwable> showLabelUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> showLabelUnsafeSupplier) {
 
 		try {
 			showLabel = showLabelUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

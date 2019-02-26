@@ -70,13 +70,13 @@ public class Creator {
 
 	@JsonIgnore
 	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> additionalNameUnsafeSupplier) {
 
 		try {
 			additionalName = additionalNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -86,13 +86,13 @@ public class Creator {
 
 	@JsonIgnore
 	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> familyNameUnsafeSupplier) {
 
 		try {
 			familyName = familyNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -102,13 +102,13 @@ public class Creator {
 
 	@JsonIgnore
 	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> givenNameUnsafeSupplier) {
 
 		try {
 			givenName = givenNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -117,12 +117,12 @@ public class Creator {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -132,13 +132,13 @@ public class Creator {
 
 	@JsonIgnore
 	public void setImage(
-		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> imageUnsafeSupplier) {
 
 		try {
 			image = imageUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -147,12 +147,12 @@ public class Creator {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -162,13 +162,13 @@ public class Creator {
 
 	@JsonIgnore
 	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> profileURLUnsafeSupplier) {
 
 		try {
 			profileURL = profileURLUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -124,14 +124,14 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setAggregateRating(
-		UnsafeSupplier<AggregateRating, Throwable>
+		UnsafeSupplier<AggregateRating, Exception>
 			aggregateRatingUnsafeSupplier) {
 
 		try {
 			aggregateRating = aggregateRatingUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -141,13 +141,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setAlternativeHeadline(
-		UnsafeSupplier<String, Throwable> alternativeHeadlineUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> alternativeHeadlineUnsafeSupplier) {
 
 		try {
 			alternativeHeadline = alternativeHeadlineUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -157,13 +157,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setArticleBody(
-		UnsafeSupplier<String, Throwable> articleBodyUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> articleBodyUnsafeSupplier) {
 
 		try {
 			articleBody = articleBodyUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -173,13 +173,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setCaption(
-		UnsafeSupplier<String, Throwable> captionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> captionUnsafeSupplier) {
 
 		try {
 			caption = captionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -189,13 +189,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setCategories(
-		UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
+		UnsafeSupplier<Categories[], Exception> categoriesUnsafeSupplier) {
 
 		try {
 			categories = categoriesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -205,13 +205,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setCategoryIds(
-		UnsafeSupplier<Long[], Throwable> categoryIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> categoryIdsUnsafeSupplier) {
 
 		try {
 			categoryIds = categoryIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -221,13 +221,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> contentSpaceUnsafeSupplier) {
 
 		try {
 			contentSpace = contentSpaceUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -237,13 +237,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Exception> creatorUnsafeSupplier) {
 
 		try {
 			creator = creatorUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -253,13 +253,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -269,13 +269,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
 
 		try {
 			dateModified = dateModifiedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -285,13 +285,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> datePublishedUnsafeSupplier) {
 
 		try {
 			datePublished = datePublishedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -301,13 +301,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -317,13 +317,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> encodingFormatUnsafeSupplier) {
 
 		try {
 			encodingFormat = encodingFormatUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -333,13 +333,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setFriendlyUrlPath(
-		UnsafeSupplier<String, Throwable> friendlyUrlPathUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> friendlyUrlPathUnsafeSupplier) {
 
 		try {
 			friendlyUrlPath = friendlyUrlPathUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -349,13 +349,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setHasComments(
-		UnsafeSupplier<Boolean, Throwable> hasCommentsUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> hasCommentsUnsafeSupplier) {
 
 		try {
 			hasComments = hasCommentsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -365,13 +365,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setHeadline(
-		UnsafeSupplier<String, Throwable> headlineUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> headlineUnsafeSupplier) {
 
 		try {
 			headline = headlineUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -380,12 +380,12 @@ public class BlogPosting {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -394,12 +394,12 @@ public class BlogPosting {
 	}
 
 	@JsonIgnore
-	public void setImage(UnsafeSupplier<Image, Throwable> imageUnsafeSupplier) {
+	public void setImage(UnsafeSupplier<Image, Exception> imageUnsafeSupplier) {
 		try {
 			image = imageUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -409,13 +409,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setImageId(
-		UnsafeSupplier<Long, Throwable> imageIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> imageIdUnsafeSupplier) {
 
 		try {
 			imageId = imageIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -425,13 +425,13 @@ public class BlogPosting {
 
 	@JsonIgnore
 	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> keywordsUnsafeSupplier) {
 
 		try {
 			keywords = keywordsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

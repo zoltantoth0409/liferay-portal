@@ -54,13 +54,13 @@ public class Validation {
 
 	@JsonIgnore
 	public void setErrorMessage(
-		UnsafeSupplier<String, Throwable> errorMessageUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> errorMessageUnsafeSupplier) {
 
 		try {
 			errorMessage = errorMessageUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -70,13 +70,13 @@ public class Validation {
 
 	@JsonIgnore
 	public void setExpression(
-		UnsafeSupplier<String, Throwable> expressionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> expressionUnsafeSupplier) {
 
 		try {
 			expression = expressionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -85,12 +85,12 @@ public class Validation {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -108,14 +108,14 @@ public class Document {
 
 	@JsonIgnore
 	public void setAdaptedImages(
-		UnsafeSupplier<AdaptedImages[], Throwable>
+		UnsafeSupplier<AdaptedImages[], Exception>
 			adaptedImagesUnsafeSupplier) {
 
 		try {
 			adaptedImages = adaptedImagesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -125,14 +125,14 @@ public class Document {
 
 	@JsonIgnore
 	public void setAggregateRating(
-		UnsafeSupplier<AggregateRating, Throwable>
+		UnsafeSupplier<AggregateRating, Exception>
 			aggregateRatingUnsafeSupplier) {
 
 		try {
 			aggregateRating = aggregateRatingUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -142,13 +142,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setCategories(
-		UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
+		UnsafeSupplier<Categories[], Exception> categoriesUnsafeSupplier) {
 
 		try {
 			categories = categoriesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -158,13 +158,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setCategoryIds(
-		UnsafeSupplier<Long[], Throwable> categoryIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> categoryIdsUnsafeSupplier) {
 
 		try {
 			categoryIds = categoryIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -174,13 +174,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> contentUrlUnsafeSupplier) {
 
 		try {
 			contentUrl = contentUrlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -190,13 +190,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Exception> creatorUnsafeSupplier) {
 
 		try {
 			creator = creatorUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -206,13 +206,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -222,13 +222,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
 
 		try {
 			dateModified = dateModifiedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -238,13 +238,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -254,13 +254,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> encodingFormatUnsafeSupplier) {
 
 		try {
 			encodingFormat = encodingFormatUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -270,13 +270,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> fileExtensionUnsafeSupplier) {
 
 		try {
 			fileExtension = fileExtensionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -286,13 +286,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setFolderId(
-		UnsafeSupplier<Long, Throwable> folderIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> folderIdUnsafeSupplier) {
 
 		try {
 			folderId = folderIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -301,12 +301,12 @@ public class Document {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -316,13 +316,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> keywordsUnsafeSupplier) {
 
 		try {
 			keywords = keywordsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -332,13 +332,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> sizeInBytesUnsafeSupplier) {
 
 		try {
 			sizeInBytes = sizeInBytesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -348,13 +348,13 @@ public class Document {
 
 	@JsonIgnore
 	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> titleUnsafeSupplier) {
 
 		try {
 			title = titleUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

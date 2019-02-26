@@ -53,12 +53,12 @@ public class WebUrl {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -67,12 +67,12 @@ public class WebUrl {
 	}
 
 	@JsonIgnore
-	public void setUrl(UnsafeSupplier<String, Throwable> urlUnsafeSupplier) {
+	public void setUrl(UnsafeSupplier<String, Exception> urlUnsafeSupplier) {
 		try {
 			url = urlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -82,13 +82,13 @@ public class WebUrl {
 
 	@JsonIgnore
 	public void setUrlType(
-		UnsafeSupplier<String, Throwable> urlTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> urlTypeUnsafeSupplier) {
 
 		try {
 			urlType = urlTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

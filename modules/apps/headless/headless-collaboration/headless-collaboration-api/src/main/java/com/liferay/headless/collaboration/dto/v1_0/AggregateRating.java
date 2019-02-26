@@ -58,13 +58,13 @@ public class AggregateRating {
 
 	@JsonIgnore
 	public void setBestRating(
-		UnsafeSupplier<Number, Throwable> bestRatingUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> bestRatingUnsafeSupplier) {
 
 		try {
 			bestRating = bestRatingUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -74,13 +74,13 @@ public class AggregateRating {
 
 	@JsonIgnore
 	public void setRatingCount(
-		UnsafeSupplier<Number, Throwable> ratingCountUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> ratingCountUnsafeSupplier) {
 
 		try {
 			ratingCount = ratingCountUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -90,13 +90,13 @@ public class AggregateRating {
 
 	@JsonIgnore
 	public void setRatingValue(
-		UnsafeSupplier<Number, Throwable> ratingValueUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> ratingValueUnsafeSupplier) {
 
 		try {
 			ratingValue = ratingValueUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -106,13 +106,13 @@ public class AggregateRating {
 
 	@JsonIgnore
 	public void setWorstRating(
-		UnsafeSupplier<Number, Throwable> worstRatingUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> worstRatingUnsafeSupplier) {
 
 		try {
 			worstRating = worstRatingUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

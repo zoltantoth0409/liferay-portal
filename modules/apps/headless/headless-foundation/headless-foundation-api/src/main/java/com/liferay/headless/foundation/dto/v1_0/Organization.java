@@ -94,13 +94,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setComment(
-		UnsafeSupplier<String, Throwable> commentUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> commentUnsafeSupplier) {
 
 		try {
 			comment = commentUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -110,14 +110,14 @@ public class Organization {
 
 	@JsonIgnore
 	public void setContactInformation(
-		UnsafeSupplier<ContactInformation, Throwable>
+		UnsafeSupplier<ContactInformation, Exception>
 			contactInformationUnsafeSupplier) {
 
 		try {
 			contactInformation = contactInformationUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -126,12 +126,12 @@ public class Organization {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -141,13 +141,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setLocation(
-		UnsafeSupplier<Location, Throwable> locationUnsafeSupplier) {
+		UnsafeSupplier<Location, Exception> locationUnsafeSupplier) {
 
 		try {
 			location = locationUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -156,24 +156,24 @@ public class Organization {
 	}
 
 	@JsonIgnore
-	public void setLogo(UnsafeSupplier<String, Throwable> logoUnsafeSupplier) {
+	public void setLogo(UnsafeSupplier<String, Exception> logoUnsafeSupplier) {
 		try {
 			logo = logoUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	@JsonIgnore
 	public void setMembers(
-		UnsafeSupplier<UserAccount[], Throwable> membersUnsafeSupplier) {
+		UnsafeSupplier<UserAccount[], Exception> membersUnsafeSupplier) {
 
 		try {
 			members = membersUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -187,13 +187,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setMembersIds(
-		UnsafeSupplier<Long[], Throwable> membersIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> membersIdsUnsafeSupplier) {
 
 		try {
 			membersIds = membersIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -202,12 +202,12 @@ public class Organization {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -217,14 +217,14 @@ public class Organization {
 
 	@JsonIgnore
 	public void setParentOrganization(
-		UnsafeSupplier<Organization, Throwable>
+		UnsafeSupplier<Organization, Exception>
 			parentOrganizationUnsafeSupplier) {
 
 		try {
 			parentOrganization = parentOrganizationUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -234,13 +234,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setParentOrganizationId(
-		UnsafeSupplier<Long, Throwable> parentOrganizationIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> parentOrganizationIdUnsafeSupplier) {
 
 		try {
 			parentOrganizationId = parentOrganizationIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -250,13 +250,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setServices(
-		UnsafeSupplier<Services[], Throwable> servicesUnsafeSupplier) {
+		UnsafeSupplier<Services[], Exception> servicesUnsafeSupplier) {
 
 		try {
 			services = servicesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -266,14 +266,14 @@ public class Organization {
 
 	@JsonIgnore
 	public void setSubOrganization(
-		UnsafeSupplier<Organization[], Throwable>
+		UnsafeSupplier<Organization[], Exception>
 			subOrganizationUnsafeSupplier) {
 
 		try {
 			subOrganization = subOrganizationUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -283,13 +283,13 @@ public class Organization {
 
 	@JsonIgnore
 	public void setSubOrganizationIds(
-		UnsafeSupplier<Long[], Throwable> subOrganizationIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> subOrganizationIdsUnsafeSupplier) {
 
 		try {
 			subOrganizationIds = subOrganizationIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

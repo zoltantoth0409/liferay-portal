@@ -50,13 +50,13 @@ public class RenderedContentsURL {
 
 	@JsonIgnore
 	public void setRenderedContentURL(
-		UnsafeSupplier<String, Throwable> renderedContentURLUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> renderedContentURLUnsafeSupplier) {
 
 		try {
 			renderedContentURL = renderedContentURLUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -66,13 +66,13 @@ public class RenderedContentsURL {
 
 	@JsonIgnore
 	public void setTemplateName(
-		UnsafeSupplier<String, Throwable> templateNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> templateNameUnsafeSupplier) {
 
 		try {
 			templateName = templateNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

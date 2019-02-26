@@ -92,13 +92,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> availableLanguagesUnsafeSupplier) {
 
 		try {
 			availableLanguages = availableLanguagesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -108,13 +108,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Exception> creatorUnsafeSupplier) {
 
 		try {
 			creator = creatorUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -124,13 +124,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setCreatorId(
-		UnsafeSupplier<Long, Throwable> creatorIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> creatorIdUnsafeSupplier) {
 
 		try {
 			creatorId = creatorIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -140,13 +140,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -156,13 +156,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
 
 		try {
 			dateModified = dateModifiedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -172,13 +172,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -188,13 +188,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setHasCategories(
-		UnsafeSupplier<Boolean, Throwable> hasCategoriesUnsafeSupplier) {
+		UnsafeSupplier<Boolean, Exception> hasCategoriesUnsafeSupplier) {
 
 		try {
 			hasCategories = hasCategoriesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -203,12 +203,12 @@ public class Category {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -217,12 +217,12 @@ public class Category {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -232,14 +232,14 @@ public class Category {
 
 	@JsonIgnore
 	public void setParentCategory(
-		UnsafeSupplier<ParentCategory, Throwable>
+		UnsafeSupplier<ParentCategory, Exception>
 			parentCategoryUnsafeSupplier) {
 
 		try {
 			parentCategory = parentCategoryUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -249,14 +249,14 @@ public class Category {
 
 	@JsonIgnore
 	public void setParentVocabulary(
-		UnsafeSupplier<ParentVocabulary, Throwable>
+		UnsafeSupplier<ParentVocabulary, Exception>
 			parentVocabularyUnsafeSupplier) {
 
 		try {
 			parentVocabulary = parentVocabularyUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -266,13 +266,13 @@ public class Category {
 
 	@JsonIgnore
 	public void setParentVocabularyId(
-		UnsafeSupplier<Long, Throwable> parentVocabularyIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> parentVocabularyIdUnsafeSupplier) {
 
 		try {
 			parentVocabularyId = parentVocabularyIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

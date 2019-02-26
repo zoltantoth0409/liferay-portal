@@ -54,13 +54,13 @@ public class Grid {
 
 	@JsonIgnore
 	public void setColumns(
-		UnsafeSupplier<Columns[], Throwable> columnsUnsafeSupplier) {
+		UnsafeSupplier<Columns[], Exception> columnsUnsafeSupplier) {
 
 		try {
 			columns = columnsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -69,12 +69,12 @@ public class Grid {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -83,12 +83,12 @@ public class Grid {
 	}
 
 	@JsonIgnore
-	public void setRows(UnsafeSupplier<Rows[], Throwable> rowsUnsafeSupplier) {
+	public void setRows(UnsafeSupplier<Rows[], Exception> rowsUnsafeSupplier) {
 		try {
 			rows = rowsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

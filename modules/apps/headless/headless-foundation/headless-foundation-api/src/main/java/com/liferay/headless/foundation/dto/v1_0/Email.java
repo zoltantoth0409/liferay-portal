@@ -54,13 +54,13 @@ public class Email {
 
 	@JsonIgnore
 	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> emailUnsafeSupplier) {
 
 		try {
 			email = emailUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -69,12 +69,12 @@ public class Email {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -83,12 +83,12 @@ public class Email {
 	}
 
 	@JsonIgnore
-	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
+	public void setType(UnsafeSupplier<String, Exception> typeUnsafeSupplier) {
 		try {
 			type = typeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

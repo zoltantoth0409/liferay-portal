@@ -112,14 +112,14 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setAggregateRating(
-		UnsafeSupplier<AggregateRating, Throwable>
+		UnsafeSupplier<AggregateRating, Exception>
 			aggregateRatingUnsafeSupplier) {
 
 		try {
 			aggregateRating = aggregateRatingUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -129,13 +129,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setAvailableLanguages(
-		UnsafeSupplier<String[], Throwable> availableLanguagesUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> availableLanguagesUnsafeSupplier) {
 
 		try {
 			availableLanguages = availableLanguagesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -145,13 +145,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setCategories(
-		UnsafeSupplier<Categories[], Throwable> categoriesUnsafeSupplier) {
+		UnsafeSupplier<Categories[], Exception> categoriesUnsafeSupplier) {
 
 		try {
 			categories = categoriesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -161,13 +161,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setComment(
-		UnsafeSupplier<Comment[], Throwable> commentUnsafeSupplier) {
+		UnsafeSupplier<Comment[], Exception> commentUnsafeSupplier) {
 
 		try {
 			comment = commentUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -177,13 +177,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setContentSpace(
-		UnsafeSupplier<Long, Throwable> contentSpaceUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> contentSpaceUnsafeSupplier) {
 
 		try {
 			contentSpace = contentSpaceUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -193,13 +193,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setContentStructureId(
-		UnsafeSupplier<Long, Throwable> contentStructureIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> contentStructureIdUnsafeSupplier) {
 
 		try {
 			contentStructureId = contentStructureIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -209,13 +209,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setCreator(
-		UnsafeSupplier<Creator, Throwable> creatorUnsafeSupplier) {
+		UnsafeSupplier<Creator, Exception> creatorUnsafeSupplier) {
 
 		try {
 			creator = creatorUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -225,13 +225,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -241,13 +241,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setDateModified(
-		UnsafeSupplier<Date, Throwable> dateModifiedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateModifiedUnsafeSupplier) {
 
 		try {
 			dateModified = dateModifiedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -257,13 +257,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setDatePublished(
-		UnsafeSupplier<Date, Throwable> datePublishedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> datePublishedUnsafeSupplier) {
 
 		try {
 			datePublished = datePublishedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -273,13 +273,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setDescription(
-		UnsafeSupplier<String, Throwable> descriptionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> descriptionUnsafeSupplier) {
 
 		try {
 			description = descriptionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -288,12 +288,12 @@ public class StructuredContent {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -303,13 +303,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setKeywords(
-		UnsafeSupplier<String[], Throwable> keywordsUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> keywordsUnsafeSupplier) {
 
 		try {
 			keywords = keywordsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -319,13 +319,13 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setLastReviewed(
-		UnsafeSupplier<Date, Throwable> lastReviewedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> lastReviewedUnsafeSupplier) {
 
 		try {
 			lastReviewed = lastReviewedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -337,14 +337,14 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setRenderedContentsURL(
-		UnsafeSupplier<RenderedContentsURL[], Throwable>
+		UnsafeSupplier<RenderedContentsURL[], Exception>
 			renderedContentsURLUnsafeSupplier) {
 
 		try {
 			renderedContentsURL = renderedContentsURLUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -354,25 +354,25 @@ public class StructuredContent {
 
 	@JsonIgnore
 	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> titleUnsafeSupplier) {
 
 		try {
 			title = titleUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	@JsonIgnore
 	public void setValues(
-		UnsafeSupplier<Values[], Throwable> valuesUnsafeSupplier) {
+		UnsafeSupplier<Values[], Exception> valuesUnsafeSupplier) {
 
 		try {
 			values = valuesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

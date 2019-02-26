@@ -93,7 +93,7 @@ public abstract class BaseEmailResourceImpl implements EmailResource {
 	}
 
 	protected <T, R> List<R> transform(
-		List<T> list, UnsafeFunction<T, R, Throwable> unsafeFunction) {
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
 		return TransformUtil.transform(list, unsafeFunction);
 	}

@@ -58,13 +58,13 @@ public class HoursAvailable {
 
 	@JsonIgnore
 	public void setCloses(
-		UnsafeSupplier<String, Throwable> closesUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> closesUnsafeSupplier) {
 
 		try {
 			closes = closesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -74,13 +74,13 @@ public class HoursAvailable {
 
 	@JsonIgnore
 	public void setDayOfWeek(
-		UnsafeSupplier<String, Throwable> dayOfWeekUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> dayOfWeekUnsafeSupplier) {
 
 		try {
 			dayOfWeek = dayOfWeekUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -89,12 +89,12 @@ public class HoursAvailable {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -104,13 +104,13 @@ public class HoursAvailable {
 
 	@JsonIgnore
 	public void setOpens(
-		UnsafeSupplier<String, Throwable> opensUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> opensUnsafeSupplier) {
 
 		try {
 			opens = opensUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -88,13 +88,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setAuditPerson(
-		UnsafeSupplier<String, Throwable> auditPersonUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> auditPersonUnsafeSupplier) {
 
 		try {
 			auditPerson = auditPersonUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -104,13 +104,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setCommentLog(
-		UnsafeSupplier<String, Throwable> commentLogUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> commentLogUnsafeSupplier) {
 
 		try {
 			commentLog = commentLogUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -120,13 +120,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setDateCreated(
-		UnsafeSupplier<Date, Throwable> dateCreatedUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> dateCreatedUnsafeSupplier) {
 
 		try {
 			dateCreated = dateCreatedUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -135,12 +135,12 @@ public class WorkflowLog {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -150,13 +150,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setPerson(
-		UnsafeSupplier<String, Throwable> personUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> personUnsafeSupplier) {
 
 		try {
 			person = personUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -166,13 +166,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setPreviousPerson(
-		UnsafeSupplier<String, Throwable> previousPersonUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> previousPersonUnsafeSupplier) {
 
 		try {
 			previousPerson = previousPersonUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -182,13 +182,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setPreviousState(
-		UnsafeSupplier<String, Throwable> previousStateUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> previousStateUnsafeSupplier) {
 
 		try {
 			previousState = previousStateUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -198,25 +198,25 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setState(
-		UnsafeSupplier<String, Throwable> stateUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> stateUnsafeSupplier) {
 
 		try {
 			state = stateUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	@JsonIgnore
 	public void setTask(
-		UnsafeSupplier<WorkflowTask, Throwable> taskUnsafeSupplier) {
+		UnsafeSupplier<WorkflowTask, Exception> taskUnsafeSupplier) {
 
 		try {
 			task = taskUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -230,13 +230,13 @@ public class WorkflowLog {
 
 	@JsonIgnore
 	public void setTaskId(
-		UnsafeSupplier<Long, Throwable> taskIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> taskIdUnsafeSupplier) {
 
 		try {
 			taskId = taskIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -245,12 +245,12 @@ public class WorkflowLog {
 	}
 
 	@JsonIgnore
-	public void setType(UnsafeSupplier<String, Throwable> typeUnsafeSupplier) {
+	public void setType(UnsafeSupplier<String, Exception> typeUnsafeSupplier) {
 		try {
 			type = typeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

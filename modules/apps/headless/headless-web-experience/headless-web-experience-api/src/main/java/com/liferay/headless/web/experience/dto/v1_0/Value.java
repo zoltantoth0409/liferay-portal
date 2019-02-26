@@ -69,12 +69,12 @@ public class Value {
 	}
 
 	@JsonIgnore
-	public void setData(UnsafeSupplier<String, Throwable> dataUnsafeSupplier) {
+	public void setData(UnsafeSupplier<String, Exception> dataUnsafeSupplier) {
 		try {
 			data = dataUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -84,13 +84,13 @@ public class Value {
 
 	@JsonIgnore
 	public void setDocument(
-		UnsafeSupplier<ContentDocument, Throwable> documentUnsafeSupplier) {
+		UnsafeSupplier<ContentDocument, Exception> documentUnsafeSupplier) {
 
 		try {
 			document = documentUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -100,13 +100,13 @@ public class Value {
 
 	@JsonIgnore
 	public void setDocumentId(
-		UnsafeSupplier<Long, Throwable> documentIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> documentIdUnsafeSupplier) {
 
 		try {
 			documentId = documentIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -115,12 +115,12 @@ public class Value {
 	}
 
 	@JsonIgnore
-	public void setGeo(UnsafeSupplier<Geo, Throwable> geoUnsafeSupplier) {
+	public void setGeo(UnsafeSupplier<Geo, Exception> geoUnsafeSupplier) {
 		try {
 			geo = geoUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -129,12 +129,12 @@ public class Value {
 	}
 
 	@JsonIgnore
-	public void setLink(UnsafeSupplier<String, Throwable> linkUnsafeSupplier) {
+	public void setLink(UnsafeSupplier<String, Exception> linkUnsafeSupplier) {
 		try {
 			link = linkUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -144,14 +144,14 @@ public class Value {
 
 	@JsonIgnore
 	public void setStructuredContent(
-		UnsafeSupplier<StructuredContent, Throwable>
+		UnsafeSupplier<StructuredContent, Exception>
 			structuredContentUnsafeSupplier) {
 
 		try {
 			structuredContent = structuredContentUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -161,13 +161,13 @@ public class Value {
 
 	@JsonIgnore
 	public void setStructuredContentId(
-		UnsafeSupplier<Long, Throwable> structuredContentIdUnsafeSupplier) {
+		UnsafeSupplier<Long, Exception> structuredContentIdUnsafeSupplier) {
 
 		try {
 			structuredContentId = structuredContentIdUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

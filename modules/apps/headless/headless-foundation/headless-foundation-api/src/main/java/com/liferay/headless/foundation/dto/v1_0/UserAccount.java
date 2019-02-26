@@ -128,13 +128,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setAdditionalName(
-		UnsafeSupplier<String, Throwable> additionalNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> additionalNameUnsafeSupplier) {
 
 		try {
 			additionalName = additionalNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -144,13 +144,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setAlternateName(
-		UnsafeSupplier<String, Throwable> alternateNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> alternateNameUnsafeSupplier) {
 
 		try {
 			alternateName = alternateNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -160,13 +160,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setBirthDate(
-		UnsafeSupplier<Date, Throwable> birthDateUnsafeSupplier) {
+		UnsafeSupplier<Date, Exception> birthDateUnsafeSupplier) {
 
 		try {
 			birthDate = birthDateUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -176,14 +176,14 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setContactInformation(
-		UnsafeSupplier<ContactInformation, Throwable>
+		UnsafeSupplier<ContactInformation, Exception>
 			contactInformationUnsafeSupplier) {
 
 		try {
 			contactInformation = contactInformationUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -193,13 +193,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setDashboardURL(
-		UnsafeSupplier<String, Throwable> dashboardURLUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> dashboardURLUnsafeSupplier) {
 
 		try {
 			dashboardURL = dashboardURLUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -209,13 +209,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setEmail(
-		UnsafeSupplier<String, Throwable> emailUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> emailUnsafeSupplier) {
 
 		try {
 			email = emailUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -225,13 +225,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setFamilyName(
-		UnsafeSupplier<String, Throwable> familyNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> familyNameUnsafeSupplier) {
 
 		try {
 			familyName = familyNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -241,13 +241,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setGivenName(
-		UnsafeSupplier<String, Throwable> givenNameUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> givenNameUnsafeSupplier) {
 
 		try {
 			givenName = givenNameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -257,13 +257,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setHonorificPrefix(
-		UnsafeSupplier<String, Throwable> honorificPrefixUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> honorificPrefixUnsafeSupplier) {
 
 		try {
 			honorificPrefix = honorificPrefixUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -273,13 +273,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setHonorificSuffix(
-		UnsafeSupplier<String, Throwable> honorificSuffixUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> honorificSuffixUnsafeSupplier) {
 
 		try {
 			honorificSuffix = honorificSuffixUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -288,12 +288,12 @@ public class UserAccount {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -303,13 +303,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setImage(
-		UnsafeSupplier<String, Throwable> imageUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> imageUnsafeSupplier) {
 
 		try {
 			image = imageUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -319,13 +319,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setJobTitle(
-		UnsafeSupplier<String, Throwable> jobTitleUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> jobTitleUnsafeSupplier) {
 
 		try {
 			jobTitle = jobTitleUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -335,14 +335,14 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setMyOrganizations(
-		UnsafeSupplier<Organization[], Throwable>
+		UnsafeSupplier<Organization[], Exception>
 			myOrganizationsUnsafeSupplier) {
 
 		try {
 			myOrganizations = myOrganizationsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -352,13 +352,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setMyOrganizationsIds(
-		UnsafeSupplier<Long[], Throwable> myOrganizationsIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> myOrganizationsIdsUnsafeSupplier) {
 
 		try {
 			myOrganizationsIds = myOrganizationsIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -367,12 +367,12 @@ public class UserAccount {
 	}
 
 	@JsonIgnore
-	public void setName(UnsafeSupplier<String, Throwable> nameUnsafeSupplier) {
+	public void setName(UnsafeSupplier<String, Exception> nameUnsafeSupplier) {
 		try {
 			name = nameUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -382,13 +382,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setProfileURL(
-		UnsafeSupplier<String, Throwable> profileURLUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> profileURLUnsafeSupplier) {
 
 		try {
 			profileURL = profileURLUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -398,13 +398,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setRoles(
-		UnsafeSupplier<Role[], Throwable> rolesUnsafeSupplier) {
+		UnsafeSupplier<Role[], Exception> rolesUnsafeSupplier) {
 
 		try {
 			roles = rolesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -414,13 +414,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setRolesIds(
-		UnsafeSupplier<Long[], Throwable> rolesIdsUnsafeSupplier) {
+		UnsafeSupplier<Long[], Exception> rolesIdsUnsafeSupplier) {
 
 		try {
 			rolesIds = rolesIdsUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -430,13 +430,13 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setTasksAssignedToMe(
-		UnsafeSupplier<String[], Throwable> tasksAssignedToMeUnsafeSupplier) {
+		UnsafeSupplier<String[], Exception> tasksAssignedToMeUnsafeSupplier) {
 
 		try {
 			tasksAssignedToMe = tasksAssignedToMeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -446,14 +446,14 @@ public class UserAccount {
 
 	@JsonIgnore
 	public void setTasksAssignedToMyRoles(
-		UnsafeSupplier<String[], Throwable>
+		UnsafeSupplier<String[], Exception>
 			tasksAssignedToMyRolesUnsafeSupplier) {
 
 		try {
 			tasksAssignedToMyRoles = tasksAssignedToMyRolesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

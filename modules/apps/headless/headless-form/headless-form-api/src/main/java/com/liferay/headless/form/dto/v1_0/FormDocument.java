@@ -66,13 +66,13 @@ public class FormDocument {
 
 	@JsonIgnore
 	public void setContentUrl(
-		UnsafeSupplier<String, Throwable> contentUrlUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> contentUrlUnsafeSupplier) {
 
 		try {
 			contentUrl = contentUrlUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -82,13 +82,13 @@ public class FormDocument {
 
 	@JsonIgnore
 	public void setEncodingFormat(
-		UnsafeSupplier<String, Throwable> encodingFormatUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> encodingFormatUnsafeSupplier) {
 
 		try {
 			encodingFormat = encodingFormatUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -98,13 +98,13 @@ public class FormDocument {
 
 	@JsonIgnore
 	public void setFileExtension(
-		UnsafeSupplier<String, Throwable> fileExtensionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> fileExtensionUnsafeSupplier) {
 
 		try {
 			fileExtension = fileExtensionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -113,12 +113,12 @@ public class FormDocument {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -128,13 +128,13 @@ public class FormDocument {
 
 	@JsonIgnore
 	public void setSizeInBytes(
-		UnsafeSupplier<Number, Throwable> sizeInBytesUnsafeSupplier) {
+		UnsafeSupplier<Number, Exception> sizeInBytesUnsafeSupplier) {
 
 		try {
 			sizeInBytes = sizeInBytesUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -144,13 +144,13 @@ public class FormDocument {
 
 	@JsonIgnore
 	public void setTitle(
-		UnsafeSupplier<String, Throwable> titleUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> titleUnsafeSupplier) {
 
 		try {
 			title = titleUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

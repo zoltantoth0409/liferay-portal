@@ -54,14 +54,14 @@ public class Services {
 
 	@JsonIgnore
 	public void setHoursAvailable(
-		UnsafeSupplier<HoursAvailable[], Throwable>
+		UnsafeSupplier<HoursAvailable[], Exception>
 			hoursAvailableUnsafeSupplier) {
 
 		try {
 			hoursAvailable = hoursAvailableUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -70,12 +70,12 @@ public class Services {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -85,13 +85,13 @@ public class Services {
 
 	@JsonIgnore
 	public void setServiceType(
-		UnsafeSupplier<String, Throwable> serviceTypeUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> serviceTypeUnsafeSupplier) {
 
 		try {
 			serviceType = serviceTypeUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 

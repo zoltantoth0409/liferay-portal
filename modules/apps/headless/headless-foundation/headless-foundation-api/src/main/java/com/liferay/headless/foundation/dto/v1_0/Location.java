@@ -54,13 +54,13 @@ public class Location {
 
 	@JsonIgnore
 	public void setAddressCountry(
-		UnsafeSupplier<String, Throwable> addressCountryUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressCountryUnsafeSupplier) {
 
 		try {
 			addressCountry = addressCountryUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -70,13 +70,13 @@ public class Location {
 
 	@JsonIgnore
 	public void setAddressRegion(
-		UnsafeSupplier<String, Throwable> addressRegionUnsafeSupplier) {
+		UnsafeSupplier<String, Exception> addressRegionUnsafeSupplier) {
 
 		try {
 			addressRegion = addressRegionUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -85,12 +85,12 @@ public class Location {
 	}
 
 	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Throwable> idUnsafeSupplier) {
+	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
 		}
-		catch (Throwable t) {
-			throw new RuntimeException(t);
+		catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 
