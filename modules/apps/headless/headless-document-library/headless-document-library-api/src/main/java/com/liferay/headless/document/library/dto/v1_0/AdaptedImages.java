@@ -44,10 +44,6 @@ public class AdaptedImages {
 		return height;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
 	public String getResolutionName() {
 		return resolutionName;
 	}
@@ -86,20 +82,6 @@ public class AdaptedImages {
 
 		try {
 			height = heightUnsafeSupplier.get();
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@JsonIgnore
-	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
-		try {
-			id = idUnsafeSupplier.get();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -155,7 +137,7 @@ public class AdaptedImages {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler(12);
 
 		sb.append("{");
 
@@ -165,9 +147,6 @@ public class AdaptedImages {
 		sb.append(", height=");
 
 		sb.append(height);
-		sb.append(", id=");
-
-		sb.append(id);
 		sb.append(", resolutionName=");
 
 		sb.append(resolutionName);
@@ -190,10 +169,6 @@ public class AdaptedImages {
 	@GraphQLField
 	@JsonProperty
 	protected Number height;
-
-	@GraphQLField
-	@JsonProperty
-	protected Long id;
 
 	@GraphQLField
 	@JsonProperty

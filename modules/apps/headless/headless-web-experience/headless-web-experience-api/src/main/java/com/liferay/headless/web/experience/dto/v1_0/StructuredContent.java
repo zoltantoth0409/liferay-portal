@@ -398,6 +398,9 @@ public class StructuredContent {
 		sb.append(", comment=");
 
 		sb.append(comment);
+		sb.append(", contentFieldValues=");
+
+		sb.append(contentFieldValues);
 		sb.append(", contentSpace=");
 
 		sb.append(contentSpace);
@@ -434,9 +437,6 @@ public class StructuredContent {
 		sb.append(", title=");
 
 		sb.append(title);
-		sb.append(", contentFieldValues=");
-
-		sb.append(contentFieldValues);
 
 		sb.append("}");
 
