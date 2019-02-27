@@ -50,7 +50,6 @@ public class FileShortcutBulkSelectionFactory
 		if (BulkSelectionFactoryUtil.isSelectAll(parameterMap)) {
 			long repositoryId = BulkSelectionFactoryUtil.getRepositoryId(
 				parameterMap);
-
 			long folderId = BulkSelectionFactoryUtil.getFolderId(parameterMap);
 
 			return new FolderFileShortcutBulkSelection(
