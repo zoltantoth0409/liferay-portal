@@ -202,7 +202,7 @@ public class DocumentResourceImpl
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
 			title, description, null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
-			_getServiceContext(
+			_createServiceContext(
 				categoryIds, existingFileEntry.getGroupId(), keywords));
 
 		return _toDocument(
@@ -239,21 +239,20 @@ public class DocumentResourceImpl
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
-		String binaryFileName = binaryFile.getFileName();
-
 		String title = Optional.ofNullable(
 			document.getTitle()
 		).orElse(
-			binaryFileName
+			binaryFile.getFileName()
 		);
 
 		FileEntry existingFileEntry = _dlAppService.getFileEntry(documentId);
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
-			documentId, binaryFileName, binaryFile.getContentType(), title,
-			document.getDescription(), null, DLVersionNumberIncrease.AUTOMATIC,
-			binaryFile.getInputStream(), binaryFile.getSize(),
-			_getServiceContext(
+			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
+			title, document.getDescription(), null,
+			DLVersionNumberIncrease.AUTOMATIC, binaryFile.getInputStream(),
+			binaryFile.getSize(),
+			_createServiceContext(
 				document.getCategoryIds(), existingFileEntry.getGroupId(),
 				document.getKeywords()));
 
@@ -272,19 +271,17 @@ public class DocumentResourceImpl
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
-		String binaryFileName = binaryFile.getFileName();
-
 		String title = Optional.ofNullable(
 			document.getTitle()
 		).orElse(
-			binaryFileName
+			binaryFile.getFileName()
 		);
 
 		FileEntry fileEntry = _dlAppService.addFileEntry(
-			repositoryId, folderId, binaryFileName, binaryFile.getContentType(),
-			title, document.getDescription(), null, binaryFile.getInputStream(),
-			binaryFile.getSize(),
-			_getServiceContext(
+			repositoryId, folderId, binaryFile.getFileName(),
+			binaryFile.getContentType(), title, document.getDescription(), null,
+			binaryFile.getInputStream(), binaryFile.getSize(),
+			_createServiceContext(
 				document.getCategoryIds(), groupId, document.getKeywords()));
 
 		return _toDocument(
@@ -348,7 +345,7 @@ public class DocumentResourceImpl
 			fileEntries.size());
 	}
 
-	private ServiceContext _getServiceContext(
+	private ServiceContext _createServiceContext(
 		Long[] categoryIds, long groupId, String[] keywords) {
 
 		return new ServiceContext() {

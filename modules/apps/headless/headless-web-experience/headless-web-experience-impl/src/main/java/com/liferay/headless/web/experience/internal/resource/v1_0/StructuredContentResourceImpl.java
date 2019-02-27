@@ -296,7 +296,7 @@ public class StructuredContentResourceImpl
 				localDateTime.getDayOfMonth(), localDateTime.getYear(),
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, null,
-				_getServiceContext(contentSpaceId, structuredContent)));
+				_createServiceContext(contentSpaceId, structuredContent)));
 	}
 
 	@Override
@@ -343,7 +343,7 @@ public class StructuredContentResourceImpl
 				localDateTime.getHour(), localDateTime.getMinute(), 0, 0, 0, 0,
 				0, true, 0, 0, 0, 0, 0, true, true, false, null, null, null,
 				null,
-				_getServiceContext(
+				_createServiceContext(
 					journalArticle.getGroupId(), structuredContent)));
 	}
 
@@ -395,7 +395,7 @@ public class StructuredContentResourceImpl
 		return ddmTemplate.getTemplateKey();
 	}
 
-	private ServiceContext _getServiceContext(
+	private ServiceContext _createServiceContext(
 		long contentSpaceId, StructuredContent structuredContent) {
 
 		return new ServiceContext() {

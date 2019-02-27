@@ -179,24 +179,23 @@ public class BlogPostingImageResourceImpl
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
-		String binaryFileName = binaryFile.getFileName();
-
 		String title = Optional.ofNullable(
 			blogPostingImage.getTitle()
 		).orElse(
-			binaryFileName
+			binaryFile.getFileName()
 		);
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(contentSpaceId);
-
 		FileEntry fileEntry = _dlAppService.addFileEntry(
-			contentSpaceId, folder.getFolderId(), binaryFileName,
+			contentSpaceId, folder.getFolderId(), binaryFile.getFileName(),
 			binaryFile.getContentType(), title, null, null,
-			binaryFile.getInputStream(), binaryFile.getSize(), serviceContext);
+			binaryFile.getInputStream(), binaryFile.getSize(),
+			new ServiceContext() {
+				{
+					setAddGroupPermissions(true);
+					setAddGuestPermissions(true);
+					setScopeGroupId(contentSpaceId);
+				}
+			});
 
 		return _toBlogPostingImage(fileEntry);
 	}
@@ -206,23 +205,21 @@ public class BlogPostingImageResourceImpl
 			Long blogPostingImageId, MultipartBody multipartBody)
 		throws Exception {
 
-		FileEntry oldFileEntry = _getFileEntry(blogPostingImageId);
+		FileEntry existingFileEntry = _getFileEntry(blogPostingImageId);
 
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
 
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
-		String binaryFileName = binaryFile.getFileName();
-
 		String title = Optional.ofNullable(
 			blogPostingImage.getTitle()
 		).orElse(
-			binaryFileName
+			binaryFile.getFileName()
 		);
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
-			oldFileEntry.getFileEntryId(), binaryFileName,
+			existingFileEntry.getFileEntryId(), binaryFile.getFileName(),
 			binaryFile.getContentType(), title, null, null,
 			DLVersionNumberIncrease.AUTOMATIC, binaryFile.getInputStream(),
 			binaryFile.getSize(), new ServiceContext());
