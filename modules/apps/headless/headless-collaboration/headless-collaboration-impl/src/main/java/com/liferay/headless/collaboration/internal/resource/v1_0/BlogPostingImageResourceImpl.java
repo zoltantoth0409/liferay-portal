@@ -21,7 +21,6 @@ import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.util.DLURLHelper;
 import com.liferay.headless.collaboration.dto.v1_0.BlogPostingImage;
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -174,10 +173,10 @@ public class BlogPostingImageResourceImpl
 
 		Folder folder = _blogsEntryService.addAttachmentsFolder(contentSpaceId);
 
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
-
-		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		String title = Optional.ofNullable(
 			blogPostingImage.getTitle()
@@ -227,7 +226,7 @@ public class BlogPostingImageResourceImpl
 		return _toBlogPostingImage(fileEntry);
 	}
 
-	private FileEntry _getFileEntry(Long fileEntryId) throws PortalException {
+	private FileEntry _getFileEntry(Long fileEntryId) throws Exception {
 		FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
 
 		Folder folder = _blogsEntryService.addAttachmentsFolder(
@@ -243,7 +242,7 @@ public class BlogPostingImageResourceImpl
 	}
 
 	private BlogPostingImage _toBlogPostingImage(FileEntry fileEntry)
-		throws PortalException {
+		throws Exception {
 
 		return new BlogPostingImage() {
 			{

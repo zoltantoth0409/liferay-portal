@@ -60,7 +60,6 @@ import com.liferay.journal.util.JournalConverter;
 import com.liferay.journal.util.JournalHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -465,7 +464,7 @@ public class StructuredContentResourceImpl
 
 	private Fields _toDDMFields(
 			ContentField[] contentFields, JournalArticle journalArticle)
-		throws PortalException {
+		throws Exception {
 
 		Fields ddmFields = _journalConverter.getDDMFields(
 			journalArticle.getDDMStructure(), journalArticle.getContent());
@@ -521,7 +520,7 @@ public class StructuredContentResourceImpl
 	private com.liferay.dynamic.data.mapping.model.Value _toDDMValue(
 			ContentField contentFieldValue, DDMStructure ddmStructure,
 			Locale locale)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
 			contentFieldValue.getName());
