@@ -162,24 +162,27 @@ public class StructuredContentResourceTest
 	}
 
 	@Override
-	protected void assertEquals(
+	protected boolean equals(
 		StructuredContent structuredContent1,
 		StructuredContent structuredContent2) {
 
-		Assert.assertEquals(
-			structuredContent1.getContentSpace(),
-			structuredContent2.getContentSpace());
+		if (Objects.equals(
+				structuredContent1.getContentSpace(),
+				structuredContent2.getContentSpace()) &&
+			Objects.equals(
+				structuredContent1.getContentStructureId(),
+				structuredContent2.getContentStructureId()) &&
+			Objects.equals(
+				structuredContent1.getDescription(),
+				structuredContent2.getDescription()) &&
+			Objects.equals(
+				structuredContent1.getTitle(),
+				structuredContent2.getTitle())) {
 
-		Assert.assertEquals(
-			structuredContent1.getContentStructureId(),
-			structuredContent2.getContentStructureId());
+			return true;
+		}
 
-		Assert.assertEquals(
-			structuredContent1.getDescription(),
-			structuredContent2.getDescription());
-
-		Assert.assertEquals(
-			structuredContent1.getTitle(), structuredContent2.getTitle());
+		return false;
 	}
 
 	protected void assertValid(StructuredContent structuredContent) {
