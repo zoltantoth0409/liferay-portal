@@ -30,13 +30,15 @@ import java.net.UnknownHostException;
  */
 public final class AllowedIPAddressesValidatorFactory {
 
-	public static AllowedIPAddressesValidator create(String filter) {
-		if (Validator.isNull(filter)) {
+	public static AllowedIPAddressesValidator create(
+		String ipAddressAndNetmaskString) {
+
+		if (Validator.isNull(ipAddressAndNetmaskString)) {
 			return _ALLOWED_IP_ADDRESSES_VALIDATOR;
 		}
 
 		String[] ipAddressAndNetmask = StringUtil.split(
-			filter, StringPool.SLASH);
+			ipAddressAndNetmaskString, StringPool.SLASH);
 
 		try {
 			if (Validator.isIPv4Address(ipAddressAndNetmask[0])) {
