@@ -186,11 +186,18 @@ public class StructuredContentResourceTest
 	}
 
 	protected void assertValid(StructuredContent structuredContent) {
-		Assert.assertEquals(
-			structuredContent.getContentSpace(),
-			Long.valueOf(testGroup.getGroupId()));
-		Assert.assertNotNull(structuredContent.getDateCreated());
-		Assert.assertNotNull(structuredContent.getId());
+		boolean valid = false;
+
+		if (Objects.equals(
+				structuredContent.getContentSpace(), testGroup.getGroupId()) &&
+			(structuredContent.getDateCreated() != null) &&
+			(structuredContent.getDateModified() != null) &&
+			(structuredContent.getId() != null)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
 	}
 
 	@Override
