@@ -105,12 +105,10 @@ public class StructuredContentResourceTest
 
 		assertResponseCode(
 			200,
-			invokeDeleteStructuredContentResponse(
-				structuredContent.getId()));
+			invokeDeleteStructuredContentResponse(structuredContent.getId()));
 
 		assertResponseCode(
-			404,
-			invokeGetStructuredContentResponse(structuredContent.getId()));
+			404, invokeGetStructuredContentResponse(structuredContent.getId()));
 
 	}
 
@@ -163,6 +161,21 @@ public class StructuredContentResourceTest
 		assertValid(getStructuredContent);
 	}
 
+	protected void assertValid(StructuredContent structuredContent) {
+		boolean valid = false;
+
+		if (Objects.equals(
+				structuredContent.getContentSpace(), testGroup.getGroupId()) &&
+			(structuredContent.getDateCreated() != null) &&
+			(structuredContent.getDateModified() != null) &&
+			(structuredContent.getId() != null)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	@Override
 	protected boolean equals(
 		StructuredContent structuredContent1,
@@ -178,28 +191,12 @@ public class StructuredContentResourceTest
 				structuredContent1.getDescription(),
 				structuredContent2.getDescription()) &&
 			Objects.equals(
-				structuredContent1.getTitle(),
-				structuredContent2.getTitle())) {
+				structuredContent1.getTitle(), structuredContent2.getTitle())) {
 
 			return true;
 		}
 
 		return false;
-	}
-
-	protected void assertValid(StructuredContent structuredContent) {
-		boolean valid = false;
-
-		if (Objects.equals(
-				structuredContent.getContentSpace(), testGroup.getGroupId()) &&
-			(structuredContent.getDateCreated() != null) &&
-			(structuredContent.getDateModified() != null) &&
-			(structuredContent.getId() != null)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
 	}
 
 	@Override
