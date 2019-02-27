@@ -72,15 +72,15 @@ public abstract class Base${schemaName}ResourceTestCase {
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
 		<#assign
 			arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters)
+			hasFilterAndSorts = false
 			parameters = freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)
-			privateLocationMethod = false
 		/>
 
 		<#if parameters?contains("Filter filter") && parameters?contains("Sort[] sorts")>
 			<#assign
 				arguments = arguments?replace("filter", "filterString")?replace("sorts", "sortString")
+				hasFilterAndSorts = true
 				parameters = parameters?replace("Filter filter", "String filterString")?replace("Sort[] sorts", "String sortString")
-				privateLocationMethod = true
 			/>
 		</#if>
 
@@ -97,7 +97,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				options.setDelete(true);
 			</#if>
 
-			<#if privateLocationMethod>
+			<#if hasFilterAndSorts>
 				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${arguments}));
 			<#else>
 				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName}));
@@ -133,7 +133,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 				options.setDelete(true);
 			</#if>
 
-			<#if privateLocationMethod>
+			<#if hasFilterAndSorts>
 				options.setLocation(_${javaMethodSignature.methodName?remove_ending("Page")}Location(${arguments}));
 			<#else>
 				options.setLocation(_resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName}));
@@ -150,7 +150,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			return options.getResponse();
 		}
 
-		<#if privateLocationMethod>
+		<#if hasFilterAndSorts>
 			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${parameters}) {
 				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
 
