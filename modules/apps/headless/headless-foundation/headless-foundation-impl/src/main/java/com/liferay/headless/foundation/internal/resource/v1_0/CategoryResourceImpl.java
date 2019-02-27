@@ -84,14 +84,15 @@ public class CategoryResourceImpl
 
 	@Override
 	public Category getCategory(Long categoryId) throws Exception {
-		AssetCategory category = _assetCategoryService.getCategory(categoryId);
+		AssetCategory assetCategory = _assetCategoryService.getCategory(
+			categoryId);
 
 		ContentLanguageUtil.addContentLanguageHeader(
-			category.getAvailableLanguageIds(), category.getDefaultLanguageId(),
-			_contextHttpServletResponse,
+			assetCategory.getAvailableLanguageIds(),
+			assetCategory.getDefaultLanguageId(), _contextHttpServletResponse,
 			contextAcceptLanguage.getPreferredLocale());
 
-		return _toCategory(category);
+		return _toCategory(assetCategory);
 	}
 
 	@Override

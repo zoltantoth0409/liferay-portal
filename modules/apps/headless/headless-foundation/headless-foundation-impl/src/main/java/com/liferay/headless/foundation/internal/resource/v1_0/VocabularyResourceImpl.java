@@ -115,15 +115,15 @@ public class VocabularyResourceImpl
 
 	@Override
 	public Vocabulary getVocabulary(Long vocabularyId) throws Exception {
-		AssetVocabulary vocabulary = _assetVocabularyService.getVocabulary(
+		AssetVocabulary assetVocabulary = _assetVocabularyService.getVocabulary(
 			vocabularyId);
 
 		ContentLanguageUtil.addContentLanguageHeader(
-			vocabulary.getAvailableLanguageIds(),
-			vocabulary.getDefaultLanguageId(), _contextHttpServletResponse,
+			assetVocabulary.getAvailableLanguageIds(),
+			assetVocabulary.getDefaultLanguageId(), _contextHttpServletResponse,
 			contextAcceptLanguage.getPreferredLocale());
 
-		return _toVocabulary(vocabulary);
+		return _toVocabulary(assetVocabulary);
 	}
 
 	@Override
