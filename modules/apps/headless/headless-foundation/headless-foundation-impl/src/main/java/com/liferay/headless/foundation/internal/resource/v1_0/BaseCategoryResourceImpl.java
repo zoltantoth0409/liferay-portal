@@ -167,6 +167,9 @@ public abstract class BaseCategoryResourceImpl implements CategoryResource {
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(Category category) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

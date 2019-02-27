@@ -106,6 +106,8 @@ public abstract class BaseBlogPostingResourceImpl
 			BlogPosting blogPosting)
 		throws Exception {
 
+		preparePatch(blogPosting);
+
 		BlogPosting existingBlogPosting = getBlogPosting(blogPostingId);
 
 		if (Validator.isNotNull(blogPosting.getAlternativeHeadline())) {
@@ -162,10 +164,6 @@ public abstract class BaseBlogPostingResourceImpl
 
 		if (Validator.isNotNull(blogPosting.getHeadline())) {
 			existingBlogPosting.setHeadline(blogPosting.getHeadline());
-		}
-
-		if (Validator.isNotNull(blogPosting.getId())) {
-			existingBlogPosting.setId(blogPosting.getId());
 		}
 
 		if (Validator.isNotNull(blogPosting.getImageId())) {
@@ -230,6 +228,9 @@ public abstract class BaseBlogPostingResourceImpl
 		);
 
 		return baseURIString + resourceURI.toString() + methodURI.toString();
+	}
+
+	protected void preparePatch(BlogPosting blogPosting) {
 	}
 
 	protected <T, R> List<R> transform(

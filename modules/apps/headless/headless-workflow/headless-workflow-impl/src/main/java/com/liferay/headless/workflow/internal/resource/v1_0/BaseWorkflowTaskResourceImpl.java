@@ -168,6 +168,9 @@ public abstract class BaseWorkflowTaskResourceImpl
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(WorkflowTask workflowTask) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

@@ -127,6 +127,9 @@ public abstract class BaseFormRecordResourceImpl implements FormRecordResource {
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(FormRecord formRecord) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

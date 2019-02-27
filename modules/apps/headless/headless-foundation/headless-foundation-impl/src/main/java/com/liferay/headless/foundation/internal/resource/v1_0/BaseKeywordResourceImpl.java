@@ -141,6 +141,9 @@ public abstract class BaseKeywordResourceImpl implements KeywordResource {
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(Keyword keyword) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

@@ -96,6 +96,9 @@ public abstract class BaseFormDocumentResourceImpl
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(FormDocument formDocument) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

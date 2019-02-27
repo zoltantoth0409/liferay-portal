@@ -85,6 +85,9 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(Segment segment) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

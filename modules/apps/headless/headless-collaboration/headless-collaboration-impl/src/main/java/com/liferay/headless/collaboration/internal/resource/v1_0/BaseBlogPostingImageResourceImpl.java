@@ -129,6 +129,9 @@ public abstract class BaseBlogPostingImageResourceImpl
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(BlogPostingImage blogPostingImage) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

@@ -97,6 +97,9 @@ public abstract class BaseWebUrlResourceImpl implements WebUrlResource {
 		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
+	protected void preparePatch(WebUrl webUrl) {
+	}
+
 	protected <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 

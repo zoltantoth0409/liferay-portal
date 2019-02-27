@@ -137,6 +137,8 @@ public abstract class BaseStructuredContentResourceImpl
 			StructuredContent structuredContent)
 		throws Exception {
 
+		preparePatch(structuredContent);
+
 		StructuredContent existingStructuredContent = getStructuredContent(
 			structuredContentId);
 
@@ -178,10 +180,6 @@ public abstract class BaseStructuredContentResourceImpl
 		if (Validator.isNotNull(structuredContent.getDescription())) {
 			existingStructuredContent.setDescription(
 				structuredContent.getDescription());
-		}
-
-		if (Validator.isNotNull(structuredContent.getId())) {
-			existingStructuredContent.setId(structuredContent.getId());
 		}
 
 		if (Validator.isNotNull(structuredContent.getKeywords())) {
@@ -253,6 +251,9 @@ public abstract class BaseStructuredContentResourceImpl
 		);
 
 		return baseURIString + resourceURI.toString() + methodURI.toString();
+	}
+
+	protected void preparePatch(StructuredContent structuredContent) {
 	}
 
 	protected <T, R> List<R> transform(

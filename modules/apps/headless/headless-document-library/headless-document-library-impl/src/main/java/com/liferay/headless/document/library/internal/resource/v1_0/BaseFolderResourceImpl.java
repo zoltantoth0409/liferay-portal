@@ -112,6 +112,8 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 			@PathParam("folder-id") Long folderId, Folder folder)
 		throws Exception {
 
+		preparePatch(folder);
+
 		Folder existingFolder = getFolder(folderId);
 
 		if (Validator.isNotNull(folder.getDateCreated())) {
@@ -132,10 +134,6 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 
 		if (Validator.isNotNull(folder.getHasFolders())) {
 			existingFolder.setHasFolders(folder.getHasFolders());
-		}
-
-		if (Validator.isNotNull(folder.getId())) {
-			existingFolder.setId(folder.getId());
 		}
 
 		if (Validator.isNotNull(folder.getName())) {
@@ -211,6 +209,9 @@ public abstract class BaseFolderResourceImpl implements FolderResource {
 		);
 
 		return baseURIString + resourceURI.toString() + methodURI.toString();
+	}
+
+	protected void preparePatch(Folder folder) {
 	}
 
 	protected <T, R> List<R> transform(
