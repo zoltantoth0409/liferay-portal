@@ -151,17 +151,17 @@ public class BlogPostingImageResourceImpl
 					"blogPostingImage", BlogPostingImage.class));
 		}
 
-		String title = optional.map(
-			BlogPostingImage::getTitle
-		).orElseGet(
-			existingFileEntry::getTitle
-		);
-
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			blogPostingImageId, binaryFile.getFileName(),
-			binaryFile.getContentType(), title, null, null,
-			DLVersionNumberIncrease.AUTOMATIC, binaryFile.getInputStream(),
-			binaryFile.getSize(), new ServiceContext());
+			binaryFile.getContentType(),
+			optional.map(
+				BlogPostingImage::getTitle
+			).orElseGet(
+				existingFileEntry::getTitle
+			),
+			null, null, DLVersionNumberIncrease.AUTOMATIC,
+			binaryFile.getInputStream(), binaryFile.getSize(),
+			new ServiceContext());
 
 		return _toBlogPostingImage(fileEntry);
 	}
@@ -178,16 +178,15 @@ public class BlogPostingImageResourceImpl
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
 
-		String title = Optional.ofNullable(
-			blogPostingImage.getTitle()
-		).orElse(
-			binaryFile.getFileName()
-		);
-
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			contentSpaceId, folder.getFolderId(), binaryFile.getFileName(),
-			binaryFile.getContentType(), title, null, null,
-			binaryFile.getInputStream(), binaryFile.getSize(),
+			binaryFile.getContentType(),
+			Optional.ofNullable(
+				blogPostingImage.getTitle()
+			).orElse(
+				binaryFile.getFileName()
+			),
+			null, null, binaryFile.getInputStream(), binaryFile.getSize(),
 			new ServiceContext() {
 				{
 					setAddGroupPermissions(true);

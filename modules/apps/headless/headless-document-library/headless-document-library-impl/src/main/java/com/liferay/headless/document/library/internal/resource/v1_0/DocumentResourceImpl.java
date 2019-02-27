@@ -171,39 +171,35 @@ public class DocumentResourceImpl
 				multipartBody.getValueAsInstance("document", Document.class));
 		}
 
-		String title = optional.map(
-			Document::getTitle
-		).orElseGet(
-			existingFileEntry::getTitle
-		);
-
-		String description = optional.map(
-			Document::getDescription
-		).orElseGet(
-			existingFileEntry::getDescription
-		);
-
-		Long[] categoryIds = optional.map(
-			Document::getCategoryIds
-		).orElseGet(
-			() -> ArrayUtil.toArray(
-				_assetCategoryLocalService.getCategoryIds(
-					DLFileEntry.class.getName(), documentId))
-		);
-
-		String[] keywords = optional.map(
-			Document::getKeywords
-		).orElseGet(
-			() -> _assetTagLocalService.getTagNames(
-				DLFileEntry.class.getName(), documentId)
-		);
-
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
-			title, description, null, DLVersionNumberIncrease.AUTOMATIC,
+			optional.map(
+				Document::getTitle
+			).orElseGet(
+				existingFileEntry::getTitle
+			),
+			optional.map(
+				Document::getDescription
+			).orElseGet(
+				existingFileEntry::getDescription
+			)
+			, null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_createServiceContext(
-				categoryIds, existingFileEntry.getGroupId(), keywords));
+				optional.map(
+					Document::getCategoryIds
+				).orElseGet(
+					() -> ArrayUtil.toArray(
+						_assetCategoryLocalService.getCategoryIds(
+							DLFileEntry.class.getName(), documentId))
+				),
+				existingFileEntry.getGroupId(),
+				optional.map(
+					Document::getKeywords
+				).orElseGet(
+					() -> _assetTagLocalService.getTagNames(
+						DLFileEntry.class.getName(), documentId)
+				)));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
