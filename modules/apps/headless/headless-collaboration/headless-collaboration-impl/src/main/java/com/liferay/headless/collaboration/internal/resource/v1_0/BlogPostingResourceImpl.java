@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -58,8 +57,8 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.BadRequestException;
@@ -134,15 +133,6 @@ public class BlogPostingResourceImpl
 	}
 
 	@Override
-	protected void preparePatch(BlogPosting blogPosting) {
-		blogPosting.setContentSpace((Long)null);
-		blogPosting.setDateCreated((Date)null);
-		blogPosting.setDateModified((Date)null);
-		blogPosting.setEncodingFormat((String)null);
-		blogPosting.setHasComments((Boolean)null);
-	}
-
-	@Override
 	public BlogPosting postContentSpaceBlogPosting(
 			Long contentSpaceId, BlogPosting blogPosting)
 		throws Exception {
@@ -183,6 +173,15 @@ public class BlogPostingResourceImpl
 				new String[0], blogPosting.getCaption(),
 				_getImageSelector(blogPosting), null,
 				_createServiceContext(blogPosting)));
+	}
+
+	@Override
+	protected void preparePatch(BlogPosting blogPosting) {
+		blogPosting.setContentSpace((Long)null);
+		blogPosting.setDateCreated((Date)null);
+		blogPosting.setDateModified((Date)null);
+		blogPosting.setEncodingFormat((String)null);
+		blogPosting.setHasComments((Boolean)null);
 	}
 
 	private ServiceContext _createServiceContext(BlogPosting blogPosting) {
