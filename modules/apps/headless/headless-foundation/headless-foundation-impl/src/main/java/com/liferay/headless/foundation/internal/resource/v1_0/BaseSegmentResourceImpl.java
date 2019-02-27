@@ -18,6 +18,7 @@ import com.liferay.headless.foundation.dto.v1_0.Segment;
 import com.liferay.headless.foundation.resource.v1_0.SegmentResource;
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.petra.function.UnsafeFunction;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.vulcan.accept.language.AcceptLanguage;
 import com.liferay.portal.vulcan.pagination.Page;
@@ -64,7 +65,12 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 	}
 
 	protected String getJAXRSLink(String methodName, Object... values) {
-		URI baseURI = contextUriInfo.getBaseUri();
+		String baseURIString = String.valueOf(contextUriInfo.getBaseUri());
+
+		if (baseURIString.endsWith(StringPool.FORWARD_SLASH)) {
+			baseURIString = baseURIString.substring(
+				0, baseURIString.length() - 1);
+		}
 
 		URI resourceURI = UriBuilder.fromResource(
 			BaseSegmentResourceImpl.class
@@ -76,8 +82,7 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 			values
 		);
 
-		return baseURI.toString() + resourceURI.toString() +
-			methodURI.toString();
+		return baseURIString + resourceURI.toString() + methodURI.toString();
 	}
 
 	protected <T, R> List<R> transform(
