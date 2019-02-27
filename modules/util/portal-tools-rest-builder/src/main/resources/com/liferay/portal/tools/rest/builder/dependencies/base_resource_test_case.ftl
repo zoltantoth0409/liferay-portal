@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.util.HttpImpl;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -155,15 +154,12 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 		<#if privateLocationMethod>
 			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${parameters}) {
-				Http http = new HttpImpl();
+				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
 
-				String url = _resourceURL + _toPath(
-					"${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
-
-				url = http.addParameter(url, "filter", filter);
-				url = http.addParameter(url, "page", pagination.getPageNumber());
-				url = http.addParameter(url, "pageSize", pagination.getItemsPerPage());
-				url = http.addParameter(url, "sort", sort);
+				url = HttpUtil.addParameter(url, "filter", filter);
+				url = HttpUtil.addParameter(url, "page", pagination.getPageNumber());
+				url = HttpUtil.addParameter(url, "pageSize", pagination.getItemsPerPage());
+				url = HttpUtil.addParameter(url, "sort", sort);
 
 				return url;
 			}
