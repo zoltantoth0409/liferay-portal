@@ -182,8 +182,8 @@ public class DocumentResourceImpl
 				Document::getDescription
 			).orElseGet(
 				existingFileEntry::getDescription
-			)
-			, null, DLVersionNumberIncrease.AUTOMATIC,
+			),
+			null, DLVersionNumberIncrease.AUTOMATIC,
 			binaryFile.getInputStream(), binaryFile.getSize(),
 			_createServiceContext(
 				optional.map(
@@ -280,6 +280,27 @@ public class DocumentResourceImpl
 			_userService.getUserById(fileEntry.getUserId()));
 	}
 
+	private ServiceContext _createServiceContext(
+		Long[] categoryIds, long groupId, String[] keywords) {
+
+		return new ServiceContext() {
+			{
+				setAddGroupPermissions(true);
+				setAddGuestPermissions(true);
+
+				if (ArrayUtil.isNotEmpty(categoryIds)) {
+					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
+				}
+
+				if (ArrayUtil.isNotEmpty(keywords)) {
+					setAssetTagNames(keywords);
+				}
+
+				setScopeGroupId(groupId);
+			}
+		};
+	}
+
 	private AdaptedImages[] _getAdaptiveMedias(FileEntry fileEntry)
 		throws Exception {
 
@@ -334,27 +355,6 @@ public class DocumentResourceImpl
 		return Page.of(
 			transform(fileEntries, this::_toDocument), pagination,
 			fileEntries.size());
-	}
-
-	private ServiceContext _createServiceContext(
-		Long[] categoryIds, long groupId, String[] keywords) {
-
-		return new ServiceContext() {
-			{
-				setAddGroupPermissions(true);
-				setAddGuestPermissions(true);
-
-				if (ArrayUtil.isNotEmpty(categoryIds)) {
-					setAssetCategoryIds(ArrayUtil.toArray(categoryIds));
-				}
-
-				if (ArrayUtil.isNotEmpty(keywords)) {
-					setAssetTagNames(keywords);
-				}
-
-				setScopeGroupId(groupId);
-			}
-		};
 	}
 
 	private <T, S> T _getValue(
