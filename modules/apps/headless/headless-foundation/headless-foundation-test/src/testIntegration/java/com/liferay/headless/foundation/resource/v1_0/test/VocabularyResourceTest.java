@@ -34,11 +34,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -106,7 +104,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			Date date = null;
 
 			String entityFieldName = entityField.getName();
-			
+
 			if (entityFieldName.equals("dateCreated")) {
 				date = vocabulary.getDateCreated();
 			}
@@ -116,7 +114,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			else {
 				throw new IllegalArgumentException();
 			}
-			
+
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(),
 				entityField.getName() + " eq " + dateFormat.format(date),
@@ -134,8 +132,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 
 		Vocabulary vocabulary = randomVocabulary();
 
-		invokePostContentSpaceVocabulary(
-			testGroup.getGroupId(), vocabulary);
+		invokePostContentSpaceVocabulary(testGroup.getGroupId(), vocabulary);
 
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());

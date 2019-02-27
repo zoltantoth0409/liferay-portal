@@ -24,7 +24,6 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portlet.documentlibrary.util.test.DLAppTestUtil;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
