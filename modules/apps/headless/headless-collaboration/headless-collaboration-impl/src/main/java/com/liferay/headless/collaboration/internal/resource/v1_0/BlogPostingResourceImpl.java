@@ -325,7 +325,7 @@ public class BlogPostingResourceImpl
 	private ImageSelector _getImageSelector(BlogPosting blogPosting) {
 		Long imageId = blogPosting.getImageId();
 
-		if (Objects.equals(imageId, 0L) || Validator.isNull(imageId)) {
+		if ((imageId == null) || (imageId == 0)) {
 			return null;
 		}
 
