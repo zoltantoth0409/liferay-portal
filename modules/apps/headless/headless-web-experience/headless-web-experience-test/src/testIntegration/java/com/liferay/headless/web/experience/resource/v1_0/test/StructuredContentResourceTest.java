@@ -224,8 +224,8 @@ public class StructuredContentResourceTest
 		ClassLoader classLoader = clazz.getClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
-			"/com/liferay/headless/web/experience/resource/v1_0/test/" +
-				fileName);
+			"/com/liferay/headless/web/experience/resource/v1_0/test" +
+				"/dependencies/" + fileName);
 
 		return StringUtil.read(inputStream);
 	}
