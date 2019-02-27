@@ -137,10 +137,8 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary1);
 
-		Vocabulary randomVocabulary2 = randomVocabulary();
-
 		invokePostContentSpaceVocabulary(
-			testGroup.getGroupId(), randomVocabulary2);
+			testGroup.getGroupId(), randomVocabulary());
 
 		for (EntityField entityField : _getEntityFields(Type.STRING)) {
 			StringBundler sb = new StringBundler(4);
