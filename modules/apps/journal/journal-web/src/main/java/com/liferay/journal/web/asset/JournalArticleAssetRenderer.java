@@ -442,9 +442,9 @@ public class JournalArticleAssetRenderer
 			request, AssetEntryUsage.class.getName(),
 			PortletProvider.Action.VIEW);
 
+		viewUsagesURL.setParameter("redirect", themeDisplay.getURLCurrent());
 		viewUsagesURL.setParameter(
 			"assetEntryId", String.valueOf(assetEntry.getEntryId()));
-		viewUsagesURL.setParameter("redirect", themeDisplay.getURLCurrent());
 
 		return viewUsagesURL.toString();
 	}
