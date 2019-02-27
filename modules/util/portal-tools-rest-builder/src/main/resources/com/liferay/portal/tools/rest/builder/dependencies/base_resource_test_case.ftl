@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
@@ -21,6 +22,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.URLCodec;
@@ -33,6 +35,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -265,6 +269,38 @@ public abstract class Base${schemaName}ResourceTestCase {
 		);
 	}
 
+	protected String getFilterString(EntityField entityField, String operator, ${schemaName} ${schemaVarName}) {
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schema, false) as javaParameter>
+			if (entityFieldName.equals("${javaParameter.parameterName}")) {
+				<#if stringUtil.equals(javaParameter.parameterType, "Date")>
+					sb.append(_dateFormat.format(${schemaVarName}.get${javaParameter.parameterName?cap_first}()));
+
+					return sb.toString();
+				<#elseif stringUtil.equals(javaParameter.parameterType, "String")>
+					sb.append("'");
+					sb.append(String.valueOf(${schemaVarName}.get${javaParameter.parameterName?cap_first}()));
+					sb.append("'");
+
+					return sb.toString();
+				<#else>
+					throw new IllegalArgumentException("Invalid entity field " + entityFieldName);
+				</#if>
+			}
+		</#list>
+
+		throw new IllegalArgumentException("Invalid entity field " + entityFieldName);
+	}
+
 	protected ${schemaName} random${schemaName}() {
 		return new ${schemaName}() {
 			{
@@ -352,6 +388,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 	@Inject
 	private ${schemaName}Resource _${schemaVarName}Resource;
 
+	private DateFormat _dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	private URL _resourceURL;
 
 }

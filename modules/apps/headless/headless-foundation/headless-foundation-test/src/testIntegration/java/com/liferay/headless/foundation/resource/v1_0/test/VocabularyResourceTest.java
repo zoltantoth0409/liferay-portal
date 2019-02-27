@@ -16,26 +16,16 @@ package com.liferay.headless.foundation.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.odata.entity.EntityField;
-import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Pagination;
-import com.liferay.portal.vulcan.resource.EntityModelResource;
-
-import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -94,29 +84,12 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
-		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
-			"yyyy-MM-dd'T'HH:mm:ss'Z'");
-
 		for (EntityField entityField :
 				getEntityFields(EntityField.Type.DATE_TIME)) {
 
-			Date date = null;
-
-			String entityFieldName = entityField.getName();
-
-			if (entityFieldName.equals("dateCreated")) {
-				date = vocabulary.getDateCreated();
-			}
-			else if (entityFieldName.equals("dateModified")) {
-				date = vocabulary.getDateModified();
-			}
-			else {
-				throw new IllegalArgumentException();
-			}
-
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(),
-				entityField.getName() + " eq " + dateFormat.format(date),
+				getFilterString(entityField, "eq", vocabulary),
 				Pagination.of(2, 1), null);
 
 			assertEquals(
@@ -139,26 +112,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		for (EntityField entityField :
 				getEntityFields(EntityField.Type.STRING)) {
 
-			StringBundler sb = new StringBundler(4);
-
-			String entityFieldName = entityField.getName();
-
-			sb.append(entityFieldName);
-
-			sb.append(" eq '");
-
-			if (entityFieldName.equals("name")) {
-				sb.append(vocabulary.getName());
-			}
-			else {
-				throw new IllegalArgumentException();
-			}
-
-			sb.append("'");
-
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
-				testGroup.getGroupId(), sb.toString(), Pagination.of(2, 1),
-				null);
+				testGroup.getGroupId(),
+				getFilterString(entityField, "eq", vocabulary),
+				Pagination.of(2, 1), null);
 
 			assertEquals(
 				Collections.singletonList(vocabulary),
