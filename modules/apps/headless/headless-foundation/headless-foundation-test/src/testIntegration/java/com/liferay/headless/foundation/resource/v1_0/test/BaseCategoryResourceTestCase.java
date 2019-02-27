@@ -22,14 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -193,14 +192,15 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Page<Category> invokeGetCategoryCategoriesPage(
-			Long categoryId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long categoryId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/categories/{category-id}/categories", categoryId));
+			_getCategoryCategoriesLocation(
+				categoryId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -209,14 +209,15 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Http.Response invokeGetCategoryCategoriesPageResponse(
-			Long categoryId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long categoryId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/categories/{category-id}/categories", categoryId));
+			_getCategoryCategoriesLocation(
+				categoryId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -237,16 +238,15 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Page<Category> invokeGetVocabularyCategoriesPage(
-			Long vocabularyId, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long vocabularyId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/vocabularies/{vocabulary-id}/categories", vocabularyId));
+			_getVocabularyCategoriesLocation(
+				vocabularyId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -255,16 +255,15 @@ public abstract class BaseCategoryResourceTestCase {
 	}
 
 	protected Http.Response invokeGetVocabularyCategoriesPageResponse(
-			Long vocabularyId, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long vocabularyId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/vocabularies/{vocabulary-id}/categories", vocabularyId));
+			_getVocabularyCategoriesLocation(
+				vocabularyId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -465,6 +464,39 @@ public abstract class BaseCategoryResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
+	}
+
+	private String _getCategoryCategoriesLocation(
+		Long categoryId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath("/categories/{category-id}/categories", categoryId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
+	}
+
+	private String _getVocabularyCategoriesLocation(
+		Long vocabularyId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath(
+					"/vocabularies/{vocabulary-id}/categories", vocabularyId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
 	}
 
 	private String _toPath(String template, Object value) {

@@ -23,14 +23,13 @@ import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.headless.web.experience.dto.v1_0.StructuredContent;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -212,17 +211,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	protected Page<StructuredContent>
 			invokeGetContentSpaceContentStructureStructuredContentsPage(
-				Long contentSpaceId, Long contentStructureId, Filter filter,
-				Pagination pagination, Sort[] sorts)
+				Long contentSpaceId, Long contentStructureId,
+				String filterString, Pagination pagination, String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-structures/{content-structure-id}/structured-contents",
-					contentSpaceId));
+			_getContentSpaceContentStructureStructuredContentsLocation(
+				contentSpaceId, contentStructureId, filterString, pagination,
+				sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -232,17 +230,16 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	protected Http.Response
 			invokeGetContentSpaceContentStructureStructuredContentsPageResponse(
-				Long contentSpaceId, Long contentStructureId, Filter filter,
-				Pagination pagination, Sort[] sorts)
+				Long contentSpaceId, Long contentStructureId,
+				String filterString, Pagination pagination, String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-structures/{content-structure-id}/structured-contents",
-					contentSpaceId));
+			_getContentSpaceContentStructureStructuredContentsLocation(
+				contentSpaceId, contentStructureId, filterString, pagination,
+				sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -251,17 +248,15 @@ public abstract class BaseStructuredContentResourceTestCase {
 
 	protected Page<StructuredContent>
 			invokeGetContentSpaceStructuredContentsPage(
-				Long contentSpaceId, Filter filter, Pagination pagination,
-				Sort[] sorts)
+				Long contentSpaceId, String filterString, Pagination pagination,
+				String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents",
-					contentSpaceId));
+			_getContentSpaceStructuredContentsLocation(
+				contentSpaceId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -270,17 +265,15 @@ public abstract class BaseStructuredContentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetContentSpaceStructuredContentsPageResponse(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long contentSpaceId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/structured-contents",
-					contentSpaceId));
+			_getContentSpaceStructuredContentsLocation(
+				contentSpaceId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -548,6 +541,42 @@ public abstract class BaseStructuredContentResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
+	}
+
+	private String _getContentSpaceContentStructureStructuredContentsLocation(
+		Long contentSpaceId, Long contentStructureId, String filterString,
+		Pagination pagination, String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath(
+					"/content-structures/{content-structure-id}/structured-contents",
+					contentSpaceId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
+	}
+
+	private String _getContentSpaceStructuredContentsLocation(
+		Long contentSpaceId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/structured-contents",
+					contentSpaceId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
 	}
 
 	private String _toPath(String template, Object value) {

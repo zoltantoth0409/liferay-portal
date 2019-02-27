@@ -22,14 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.document.library.dto.v1_0.Comment;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -193,14 +192,15 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Page<Comment> invokeGetCommentCommentsPage(
-			Long commentId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long commentId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/comments/{comment-id}/comments", commentId));
+			_getCommentCommentsLocation(
+				commentId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -209,14 +209,15 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetCommentCommentsPageResponse(
-			Long commentId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long commentId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/comments/{comment-id}/comments", commentId));
+			_getCommentCommentsLocation(
+				commentId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -237,14 +238,15 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Page<Comment> invokeGetDocumentCommentsPage(
-			Long documentId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long documentId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/documents/{document-id}/comments", documentId));
+			_getDocumentCommentsLocation(
+				documentId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -253,14 +255,15 @@ public abstract class BaseCommentResourceTestCase {
 	}
 
 	protected Http.Response invokeGetDocumentCommentsPageResponse(
-			Long documentId, Filter filter, Pagination pagination, Sort[] sorts)
+			Long documentId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath("/documents/{document-id}/comments", documentId));
+			_getDocumentCommentsLocation(
+				documentId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -455,6 +458,38 @@ public abstract class BaseCommentResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
+	}
+
+	private String _getCommentCommentsLocation(
+		Long commentId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath("/comments/{comment-id}/comments", commentId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
+	}
+
+	private String _getDocumentCommentsLocation(
+		Long documentId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath("/documents/{document-id}/comments", documentId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
 	}
 
 	private String _toPath(String template, Object value) {

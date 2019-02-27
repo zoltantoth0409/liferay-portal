@@ -22,14 +22,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.search.Sort;
-import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
 import java.net.URL;
@@ -173,17 +172,15 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	protected Page<Keyword> invokeGetContentSpaceKeywordsPage(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long contentSpaceId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/keywords",
-					contentSpaceId));
+			_getContentSpaceKeywordsLocation(
+				contentSpaceId, filterString, pagination, sortString));
 
 		return _outputObjectMapper.readValue(
 			HttpUtil.URLtoString(options),
@@ -192,17 +189,15 @@ public abstract class BaseKeywordResourceTestCase {
 	}
 
 	protected Http.Response invokeGetContentSpaceKeywordsPageResponse(
-			Long contentSpaceId, Filter filter, Pagination pagination,
-			Sort[] sorts)
+			Long contentSpaceId, String filterString, Pagination pagination,
+			String sortString)
 		throws Exception {
 
 		Http.Options options = _createHttpOptions();
 
 		options.setLocation(
-			_resourceURL +
-				_toPath(
-					"/content-spaces/{content-space-id}/keywords",
-					contentSpaceId));
+			_getContentSpaceKeywordsLocation(
+				contentSpaceId, filterString, pagination, sortString));
 
 		HttpUtil.URLtoString(options);
 
@@ -384,6 +379,24 @@ public abstract class BaseKeywordResourceTestCase {
 		options.addHeader("Content-Type", "application/json");
 
 		return options;
+	}
+
+	private String _getContentSpaceKeywordsLocation(
+		Long contentSpaceId, String filterString, Pagination pagination,
+		String sortString) {
+
+		String url =
+			_resourceURL +
+				_toPath(
+					"/content-spaces/{content-space-id}/keywords",
+					contentSpaceId);
+
+		url += "?filter=" + URLCodec.encodeURL(filterString);
+		url += "&page=" + pagination.getPageNumber();
+		url += "&pageSize=" + pagination.getItemsPerPage();
+		url += "&sort=" + URLCodec.encodeURL(sortString);
+
+		return url;
 	}
 
 	private String _toPath(String template, Object value) {
