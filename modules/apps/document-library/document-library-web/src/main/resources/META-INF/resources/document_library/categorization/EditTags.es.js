@@ -93,8 +93,10 @@ class EditTags extends Component {
 		this.loading = true;
 
 		let bodyData = {
+			folderId: this.folderId,
 			repositoryId: this.repositoryId,
-			selection: this._getSelection()
+			selectAll: this.selectAll,
+			selection: this.fileEntries
 		};
 
 		this._fetchTagsRequest(
@@ -110,10 +112,6 @@ class EditTags extends Component {
 				}
 			}
 		);
-	}
-
-	_getSelection() {
-		return this.selectAll ? ['all:' + this.folderId] : this.fileEntries;
 	}
 
 	/**
@@ -153,8 +151,10 @@ class EditTags extends Component {
 
 		let bodyData = {
 			append: this.append,
+			folderId: this.folderId,
 			repositoryId: this.repositoryId,
-			selection: this._getSelection(),
+			selectAll: this.selectAll,
+			selection: this.fileEntries,
 			toAddTagNames: addedTags,
 			toRemoveTagNames: removedTags
 		};
