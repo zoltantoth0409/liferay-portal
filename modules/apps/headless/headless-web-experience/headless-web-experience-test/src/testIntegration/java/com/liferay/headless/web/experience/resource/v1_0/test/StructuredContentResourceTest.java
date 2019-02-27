@@ -97,18 +97,18 @@ public class StructuredContentResourceTest
 	@Override
 	@Test
 	public void testDeleteStructuredContent() throws Exception {
-		StructuredContent postStructuredContent =
+		StructuredContent structuredContent =
 			invokePostContentSpaceStructuredContent(
 				testGroup.getGroupId(), randomStructuredContent());
 
 		assertResponseCode(
 			200,
 			invokeDeleteStructuredContentResponse(
-				postStructuredContent.getId()));
+				structuredContent.getId()));
 
 		assertResponseCode(
 			404,
-			invokeGetStructuredContentResponse(postStructuredContent.getId()));
+			invokeGetStructuredContentResponse(structuredContent.getId()));
 
 	}
 

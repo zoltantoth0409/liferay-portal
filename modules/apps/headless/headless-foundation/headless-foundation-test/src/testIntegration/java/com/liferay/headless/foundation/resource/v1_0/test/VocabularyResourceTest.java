@@ -53,14 +53,14 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	@Override
 	@Test
 	public void testDeleteVocabulary() throws Exception {
-		Vocabulary postVocabulary = invokePostContentSpaceVocabulary(
+		Vocabulary vocabulary = invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
 		assertResponseCode(
-			200, invokeDeleteVocabularyResponse(postVocabulary.getId()));
+			200, invokeDeleteVocabularyResponse(vocabulary.getId()));
 
 		assertResponseCode(
-			404, invokeGetVocabularyResponse(postVocabulary.getId()));
+			404, invokeGetVocabularyResponse(vocabulary.getId()));
 	}
 
 	@Override

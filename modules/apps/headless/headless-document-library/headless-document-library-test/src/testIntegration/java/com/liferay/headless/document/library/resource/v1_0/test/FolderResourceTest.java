@@ -40,12 +40,12 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 	@Override
 	@Test
 	public void testDeleteFolder() throws Exception {
-		Folder postFolder = invokePostContentSpaceFolder(
+		Folder folder = invokePostContentSpaceFolder(
 			testGroup.getGroupId(), randomFolder());
 
-		assertResponseCode(200, invokeDeleteFolderResponse(postFolder.getId()));
+		assertResponseCode(200, invokeDeleteFolderResponse(folder.getId()));
 
-		assertResponseCode(404, invokeGetFolderResponse(postFolder.getId()));
+		assertResponseCode(404, invokeGetFolderResponse(folder.getId()));
 	}
 
 	@Override
