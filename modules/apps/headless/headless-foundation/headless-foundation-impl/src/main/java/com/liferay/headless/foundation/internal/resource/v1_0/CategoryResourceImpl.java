@@ -22,6 +22,7 @@ import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.ParentCategory;
 import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
+import com.liferay.headless.foundation.internal.dto.v1_0.util.ContentLanguageUtil;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.CategoryEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
@@ -54,6 +55,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
+import javax.servlet.http.HttpServletResponse;
+
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -80,7 +84,14 @@ public class CategoryResourceImpl
 
 	@Override
 	public Category getCategory(Long categoryId) throws Exception {
-		return _toCategory(_assetCategoryService.getCategory(categoryId));
+		AssetCategory category = _assetCategoryService.getCategory(categoryId);
+
+		ContentLanguageUtil.addContentLanguageHeader(
+			category.getAvailableLanguageIds(), category.getDefaultLanguageId(),
+			contextAcceptLanguage.getPreferredLocale(),
+			_contextHttpServletResponse);
+
+		return _toCategory(category);
 	}
 
 	@Override
@@ -291,6 +302,9 @@ public class CategoryResourceImpl
 
 	@Reference
 	private AssetVocabularyService _assetVocabularyService;
+
+	@Context
+	private HttpServletResponse _contextHttpServletResponse;
 
 	@Reference
 	private IndexerRegistry _indexerRegistry;
