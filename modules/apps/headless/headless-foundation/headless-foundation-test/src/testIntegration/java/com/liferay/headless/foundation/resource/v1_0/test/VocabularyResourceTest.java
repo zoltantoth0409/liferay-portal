@@ -296,9 +296,9 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	protected void assertValid(Page<Vocabulary> page) {
 		boolean valid = false;
 
-		Collection<Vocabulary> folders = page.getItems();
+		Collection<Vocabulary> vocabularies = page.getItems();
 
-		int size = folders.size();
+		int size = vocabularies.size();
 
 		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
 			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
@@ -310,12 +310,14 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
-	protected void assertValid(Vocabulary folder) {
+	protected void assertValid(Vocabulary vocabulary) {
 		boolean valid = false;
 
-		if ((folder.getDateCreated() != null) &&
-			(folder.getDateModified() != null) && (folder.getId() != null) &&
-			Objects.equals(folder.getContentSpace(), testGroup.getGroupId())) {
+		if ((vocabulary.getDateCreated() != null) &&
+			(vocabulary.getDateModified() != null) &&
+			(vocabulary.getId() != null) &&
+			Objects.equals(
+				vocabulary.getContentSpace(), testGroup.getGroupId())) {
 
 			valid = true;
 		}
@@ -324,10 +326,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	}
 
 	@Override
-	protected boolean equals(Vocabulary folder1, Vocabulary folder2) {
+	protected boolean equals(Vocabulary vocabulary1, Vocabulary vocabulary2) {
 		if (Objects.equals(
-				folder1.getDescription(), folder2.getDescription()) &&
-			Objects.equals(folder1.getName(), folder2.getName())) {
+				vocabulary1.getDescription(), vocabulary2.getDescription()) &&
+			Objects.equals(vocabulary1.getName(), vocabulary2.getName())) {
 
 			return true;
 		}
