@@ -102,7 +102,12 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		List<EntityField> stringEntityFields = _getEntityFields(Type.DATE_TIME);
 
 		Map<String, Function<Vocabulary, Date>> map =
-			getDateTimeEntityNameGetterMap();
+			new HashMap<String, Function<Vocabulary, Date>>() {
+				{
+					put("dateCreated", Vocabulary::getDateCreated);
+					put("dateModified", Vocabulary::getDateModified);
+				}
+			};
 
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
@@ -138,7 +143,11 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		List<EntityField> stringEntityFields = _getEntityFields(Type.STRING);
 
 		Map<String, Function<Vocabulary, String>> map =
-			getStringEntityNameGetterMap();
+			new HashMap<String, Function<Vocabulary, String>>() {
+				{
+					put("name", Vocabulary::getName);
+				}
+			};
 
 		for (EntityField entityField : stringEntityFields) {
 			StringBundler sb = new StringBundler(4);
@@ -320,27 +329,6 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		}
 
 		return false;
-	}
-
-	protected Map<String, Function<Vocabulary, Date>>
-		getDateTimeEntityNameGetterMap() {
-
-		return new HashMap<String, Function<Vocabulary, Date>>() {
-			{
-				put("dateCreated", Vocabulary::getDateCreated);
-				put("dateModified", Vocabulary::getDateModified);
-			}
-		};
-	}
-
-	protected Map<String, Function<Vocabulary, String>>
-		getStringEntityNameGetterMap() {
-
-		return new HashMap<String, Function<Vocabulary, String>>() {
-			{
-				put("name", Vocabulary::getName);
-			}
-		};
 	}
 
 	@Override
