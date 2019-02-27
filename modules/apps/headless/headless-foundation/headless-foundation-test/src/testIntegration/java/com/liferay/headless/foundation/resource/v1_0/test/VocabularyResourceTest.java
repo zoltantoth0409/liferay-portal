@@ -14,8 +14,6 @@
 
 package com.liferay.headless.foundation.resource.v1_0.test;
 
-import static com.liferay.portal.odata.entity.EntityField.Type;
-
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.petra.string.StringBundler;
@@ -23,7 +21,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
-import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
@@ -100,7 +97,9 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		for (EntityField entityField : _getEntityFields(Type.DATE_TIME)) {
+		for (EntityField entityField :
+				getEntityFields(EntityField.Type.DATE_TIME)) {
+
 			Date date = null;
 
 			String entityFieldName = entityField.getName();
@@ -137,7 +136,9 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
-		for (EntityField entityField : _getEntityFields(Type.STRING)) {
+		for (EntityField entityField :
+				getEntityFields(EntityField.Type.STRING)) {
+
 			StringBundler sb = new StringBundler(4);
 
 			String entityFieldName = entityField.getName();
@@ -225,7 +226,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary2);
 
-		Collection<EntityField> entityFields = _getEntityFields();
+		Collection<EntityField> entityFields = getEntityFields();
 
 		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
@@ -327,31 +328,5 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			}
 		};
 	}
-
-	private Collection<EntityField> _getEntityFields() throws Exception {
-		EntityModel entityModel = _entityModelResource.getEntityModel(null);
-
-		Map<String, EntityField> entityFieldsMap =
-			entityModel.getEntityFieldsMap();
-
-		return entityFieldsMap.values();
-	}
-
-	private List<EntityField> _getEntityFields(EntityField.Type type)
-		throws Exception {
-
-		Collection<EntityField> entityFields = _getEntityFields();
-
-		Stream<EntityField> stream = entityFields.stream();
-
-		return stream.filter(
-			entityField -> Objects.equals(entityField.getType(), type)
-		).collect(
-			Collectors.toList()
-		);
-	}
-
-	@Inject
-	private EntityModelResource _entityModelResource;
 
 }
