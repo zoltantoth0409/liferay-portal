@@ -207,10 +207,10 @@ public class BlogPostingImageResourceImpl
 
 		FileEntry existingFileEntry = _getFileEntry(blogPostingImageId);
 
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
+
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
-
-		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 
 		String title = Optional.ofNullable(
 			blogPostingImage.getTitle()
