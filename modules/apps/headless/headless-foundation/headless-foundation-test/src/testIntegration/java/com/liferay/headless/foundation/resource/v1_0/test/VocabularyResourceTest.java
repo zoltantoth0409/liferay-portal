@@ -313,11 +313,11 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	protected void assertValid(Vocabulary vocabulary) {
 		boolean valid = false;
 
-		if ((vocabulary.getDateCreated() != null) &&
+		if (Objects.equals(
+				vocabulary.getContentSpace(), testGroup.getGroupId()) &&
+			(vocabulary.getDateCreated() != null) &&
 			(vocabulary.getDateModified() != null) &&
-			(vocabulary.getId() != null) &&
-			Objects.equals(
-				vocabulary.getContentSpace(), testGroup.getGroupId())) {
+			(vocabulary.getId() != null)) {
 
 			valid = true;
 		}
