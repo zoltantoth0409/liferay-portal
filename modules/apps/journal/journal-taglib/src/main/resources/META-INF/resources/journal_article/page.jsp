@@ -31,4 +31,10 @@ boolean showTitle = GetterUtil.getBoolean((String)request.getAttribute("liferay-
 	<%= articleDisplay.getContent() %>
 </div>
 
+<%
+List<AssetTag> assetTags = AssetTagLocalServiceUtil.getTags(JournalArticleDisplay.class.getName(), articleDisplay.getResourcePrimKey());
+
+PortalUtil.setPageKeywords(ListUtil.toString(assetTags, AssetTag.NAME_ACCESSOR), request);
+%>
+
 <liferay-util:dynamic-include key="com.liferay.journal.taglib#/journal_article/page.jsp#post" />
