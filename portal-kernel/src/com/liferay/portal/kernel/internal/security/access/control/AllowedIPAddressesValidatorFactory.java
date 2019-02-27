@@ -66,7 +66,7 @@ public final class AllowedIPAddressesValidatorFactory {
 	};
 
 	private static final AllowedIPAddressesValidator
-		_NULL_IP_ADDRESS_VALIDATOR = a -> false;
+		_NULL_IP_ADDRESS_VALIDATOR = ipAddress -> false;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AllowedIPAddressesValidatorFactory.class);
