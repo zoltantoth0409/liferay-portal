@@ -20,6 +20,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Category;
+import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -29,14 +30,22 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.URLCodec;
+import com.liferay.portal.odata.entity.EntityField;
+import com.liferay.portal.odata.entity.EntityModel;
+import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.vulcan.pagination.Pagination;
+import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.Generated;
 
@@ -177,6 +186,37 @@ public abstract class BaseCategoryResourceTestCase {
 		}
 
 		return false;
+	}
+
+	protected Collection<EntityField> getEntityFields() throws Exception {
+		if (!(_categoryResource instanceof EntityModelResource)) {
+			throw new UnsupportedOperationException(
+				"Resource is not an instance of EntityModelResource");
+		}
+
+		EntityModelResource entityModelResource =
+			(EntityModelResource)_categoryResource;
+
+		EntityModel entityModel = entityModelResource.getEntityModel(null);
+
+		Map<String, EntityField> entityFieldsMap =
+			entityModel.getEntityFieldsMap();
+
+		return entityFieldsMap.values();
+	}
+
+	protected List<EntityField> getEntityFields(EntityField.Type type)
+		throws Exception {
+
+		Collection<EntityField> entityFields = getEntityFields();
+
+		Stream<EntityField> stream = entityFields.stream();
+
+		return stream.filter(
+			entityField -> Objects.equals(entityField.getType(), type)
+		).collect(
+			Collectors.toList()
+		);
 	}
 
 	protected boolean invokeDeleteCategory(Long categoryId) throws Exception {
@@ -533,6 +573,9 @@ public abstract class BaseCategoryResourceTestCase {
 		}
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	@Inject
+	private CategoryResource _categoryResource;
 
 	private URL _resourceURL;
 
