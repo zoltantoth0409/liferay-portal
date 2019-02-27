@@ -778,8 +778,7 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public boolean isShowPublishAlert() {
-		return ParamUtil.getBoolean(
-			_renderRequest, DDMFormWebKeys.SHOW_PUBLISH_ALERT);
+		return ParamUtil.getBoolean(_renderRequest, "showPublishAlert");
 	}
 
 	protected DDMForm getDDMForm() throws PortalException {

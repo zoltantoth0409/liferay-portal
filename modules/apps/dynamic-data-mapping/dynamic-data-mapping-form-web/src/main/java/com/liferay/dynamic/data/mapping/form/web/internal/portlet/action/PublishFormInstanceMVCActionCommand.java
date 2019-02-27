@@ -109,8 +109,7 @@ public class PublishFormInstanceMVCActionCommand
 			"formInstanceId",
 			String.valueOf(ddmFormInstance.getFormInstanceId()));
 
-		portletURL.setParameter(
-			DDMFormWebKeys.SHOW_PUBLISH_ALERT, Boolean.TRUE.toString());
+		portletURL.setParameter("showPublishAlert", Boolean.TRUE.toString());
 	}
 
 	@Reference(unbind = "-")
