@@ -91,6 +91,26 @@ public abstract class BaseSegmentResourceImpl implements SegmentResource {
 		return TransformUtil.transform(list, unsafeFunction);
 	}
 
+	protected <T, R> R[] transform(
+		T[] array, UnsafeFunction<T, R, Exception> unsafeFunction,
+		Class<?> clazz) {
+
+		return TransformUtil.transform(array, unsafeFunction, clazz);
+	}
+
+	protected <T, R> R[] transformToArray(
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction,
+		Class<?> clazz) {
+
+		return TransformUtil.transformToArray(list, unsafeFunction, clazz);
+	}
+
+	protected <T, R> List<R> transformToList(
+		T[] array, UnsafeFunction<T, R, Exception> unsafeFunction) {
+
+		return TransformUtil.transformToList(array, unsafeFunction);
+	}
+
 	@Context
 	protected AcceptLanguage contextAcceptLanguage;
 
