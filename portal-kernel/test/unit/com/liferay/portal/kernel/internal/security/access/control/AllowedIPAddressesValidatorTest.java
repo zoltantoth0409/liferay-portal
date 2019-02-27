@@ -25,19 +25,19 @@ public class AllowedIPAddressesValidatorTest {
 	@Test
 	public void testIPv4AddressDoesNotMatchIPv6Address() {
 		AllowedIPAddressesValidator allowedIPAddressesValidator =
-			AllowedIPAddressesValidatorFactory.create(_IP_V4_ADDRESS);
+			AllowedIPAddressesValidatorFactory.create(_ADDRESS_IP_V4);
 
 		Assert.assertFalse(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V6_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V6));
 	}
 
 	@Test
 	public void testIPv4AddressMatchesIPv4Address() {
 		AllowedIPAddressesValidator allowedIPAddressesValidator =
-			AllowedIPAddressesValidatorFactory.create(_IP_V4_ADDRESS);
+			AllowedIPAddressesValidatorFactory.create(_ADDRESS_IP_V4);
 
 		Assert.assertTrue(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 	}
 
 	@Test
@@ -46,13 +46,13 @@ public class AllowedIPAddressesValidatorTest {
 			AllowedIPAddressesValidatorFactory.create("192.168.1.0/24");
 
 		Assert.assertTrue(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 
 		allowedIPAddressesValidator = AllowedIPAddressesValidatorFactory.create(
 			"192.168.1.128/25");
 
 		Assert.assertFalse(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 
 		Assert.assertTrue(
 			allowedIPAddressesValidator.isAllowedIPAddress("192.168.1.159"));
@@ -65,13 +65,13 @@ public class AllowedIPAddressesValidatorTest {
 				"192.168.1.0/255.255.255.0");
 
 		Assert.assertTrue(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 
 		allowedIPAddressesValidator = AllowedIPAddressesValidatorFactory.create(
 			"192.168.1.128/255.255.255.128");
 
 		Assert.assertFalse(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 
 		Assert.assertTrue(
 			allowedIPAddressesValidator.isAllowedIPAddress("192.168.1.159"));
@@ -83,31 +83,31 @@ public class AllowedIPAddressesValidatorTest {
 			AllowedIPAddressesValidatorFactory.create("192.168.0/24");
 
 		Assert.assertFalse(
-			invalidIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			invalidIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 
 		AllowedIPAddressesValidator invalidNetmaskValidator =
 			AllowedIPAddressesValidatorFactory.create("192.168.1.0/33");
 
 		Assert.assertFalse(
-			invalidNetmaskValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			invalidNetmaskValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 	}
 
 	@Test
 	public void testIPv6AddressDoesNotMatchIPv4Address() {
 		AllowedIPAddressesValidator allowedIPAddressesValidator =
-			AllowedIPAddressesValidatorFactory.create(_IP_V6_ADDRESS);
+			AllowedIPAddressesValidatorFactory.create(_ADDRESS_IP_V6);
 
 		Assert.assertFalse(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V4_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V4));
 	}
 
 	@Test
 	public void testIPv6AddressMatchesIPv6Address() {
 		AllowedIPAddressesValidator allowedIPAddressesValidator =
-			AllowedIPAddressesValidatorFactory.create(_IP_V6_ADDRESS);
+			AllowedIPAddressesValidatorFactory.create(_ADDRESS_IP_V6);
 
 		Assert.assertTrue(
-			allowedIPAddressesValidator.isAllowedIPAddress(_IP_V6_ADDRESS));
+			allowedIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V6));
 	}
 
 	@Test
@@ -138,13 +138,13 @@ public class AllowedIPAddressesValidatorTest {
 			AllowedIPAddressesValidatorFactory.create("2001:AB9::/48");
 
 		Assert.assertFalse(
-			invalidIPAddressesValidator.isAllowedIPAddress(_IP_V6_ADDRESS));
+			invalidIPAddressesValidator.isAllowedIPAddress(_ADDRESS_IP_V6));
 
 		AllowedIPAddressesValidator invalidNetmaskValidator =
 			AllowedIPAddressesValidatorFactory.create("2001:DB8::/130");
 
 		Assert.assertFalse(
-			invalidNetmaskValidator.isAllowedIPAddress(_IP_V6_ADDRESS));
+			invalidNetmaskValidator.isAllowedIPAddress(_ADDRESS_IP_V6));
 	}
 
 	@Test
@@ -168,9 +168,9 @@ public class AllowedIPAddressesValidatorTest {
 			allowedIPAddressesValidator.isAllowedIPAddress("192.168.0.159"));
 	}
 
-	private static final String _IP_V4_ADDRESS = "192.168.1.104";
+	private static final String _ADDRESS_IP_V4 = "192.168.1.104";
 
-	private static final String _IP_V6_ADDRESS =
+	private static final String _ADDRESS_IP_V6 =
 		"2001:AC8:1234:0000:0000:C1C0:ABCD:0876";
 
 }
