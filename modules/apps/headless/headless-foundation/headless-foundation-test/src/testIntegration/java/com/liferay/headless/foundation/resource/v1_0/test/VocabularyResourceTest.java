@@ -52,6 +52,7 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 
+	@Override
 	@Test
 	public void testDeleteVocabulary() throws Exception {
 		Vocabulary postVocabulary = invokePostContentSpaceVocabulary(
@@ -64,6 +65,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			404, invokeGetVocabularyResponse(postVocabulary.getId()));
 	}
 
+	@Override
 	@Test
 	public void testGetContentSpaceVocabulariesPage() throws Exception {
 		Vocabulary randomVocabulary1 = randomVocabulary();
@@ -251,6 +253,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		}
 	}
 
+	@Override
 	@Test
 	public void testGetVocabulary() throws Exception {
 		Vocabulary postVocabulary = invokePostContentSpaceVocabulary(
@@ -262,6 +265,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		assertValid(getVocabulary);
 	}
 
+	@Override
 	@Test
 	public void testPostContentSpaceVocabulary() throws Exception {
 		Vocabulary randomVocabulary = randomVocabulary();
@@ -273,6 +277,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		assertValid(postVocabulary);
 	}
 
+	@Override
 	@Test
 	public void testPutVocabulary() throws Exception {
 		Vocabulary postVocabulary = invokePostContentSpaceVocabulary(
