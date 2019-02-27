@@ -733,7 +733,7 @@ AUI.add(
 						var hasNewOption = value[editingLanguageId].length !== optionValues.length;
 
 						if (hasNewOption) {
-							instance._updateOtherLanguagesValues(value, editingLanguageId, optionValues[optionValues.length -1]);
+							instance._updateOtherLanguagesValues(editingLanguageId, optionValues[optionValues.length -1], value);
 						}
 
 						value[editingLanguageId] = optionValues;
@@ -792,7 +792,7 @@ AUI.add(
 						}
 					},
 
-					_updateOtherLanguagesValues: function(value, editingLanguageId, option) {
+					_updateOtherLanguagesValues: function(editingLanguageId, option, value) {
 						 AObject.keys(value).forEach(function(languageId) {
 							 if(languageId !== editingLanguageId) {
 								 value[languageId].push(option);
