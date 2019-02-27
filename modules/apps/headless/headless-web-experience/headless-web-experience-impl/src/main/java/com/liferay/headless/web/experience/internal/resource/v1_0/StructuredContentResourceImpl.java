@@ -382,18 +382,6 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
-		List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
-
-		if (ddmTemplates.isEmpty()) {
-			return StringPool.BLANK;
-		}
-
-		DDMTemplate ddmTemplate = ddmTemplates.get(0);
-
-		return ddmTemplate.getTemplateKey();
-	}
-
 	private ServiceContext _createServiceContext(
 		long contentSpaceId, StructuredContent structuredContent) {
 
@@ -415,6 +403,18 @@ public class StructuredContentResourceImpl
 				setScopeGroupId(contentSpaceId);
 			}
 		};
+	}
+
+	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
+		List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
+
+		if (ddmTemplates.isEmpty()) {
+			return StringPool.BLANK;
+		}
+
+		DDMTemplate ddmTemplate = ddmTemplates.get(0);
+
+		return ddmTemplate.getTemplateKey();
 	}
 
 	private ContentField _toContentField(
