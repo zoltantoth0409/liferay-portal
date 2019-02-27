@@ -176,11 +176,12 @@ public final class AllowedIPAddressesValidatorFactory {
 			int netmaskBytes = cidr / 8;
 
 			byte[] bytesNetmask = getEmptyNetmask();
-			int byteOffset = cidr % 8;
 
 			for (int i = 0; i < netmaskBytes; i++) {
 				bytesNetmask[i] = (byte)_BYTE[8];
 			}
+
+			int byteOffset = cidr % 8;
 
 			if (netmaskBytes < bytesNetmask.length) {
 				bytesNetmask[netmaskBytes] = (byte)_BYTE[byteOffset];
