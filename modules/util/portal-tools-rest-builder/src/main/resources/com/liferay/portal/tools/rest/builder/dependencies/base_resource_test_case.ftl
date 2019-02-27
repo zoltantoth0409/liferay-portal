@@ -71,13 +71,15 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
 		<#assign
+			arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters)
 			parameters = freeMarkerTool.getResourceParameters(javaMethodSignature.javaParameters, false)
 			privateLocationMethod = false
 		/>
 
 		<#if parameters?contains("Filter filter") && parameters?contains("Sort[] sorts")>
 			<#assign
-				parameters = parameters?replace("Filter filter", "String filter")?replace("Sort[] sorts", "String sorts")
+				arguments = arguments?replace("filter", "filterString")?replace("sorts", "sortString")
+				parameters = parameters?replace("Filter filter", "String filterString")?replace("Sort[] sorts", "String sortString")
 				privateLocationMethod = true
 			/>
 		</#if>
@@ -86,8 +88,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 			throws Exception {
 
 			Http.Options options = _createHttpOptions();
-
-			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
@@ -125,8 +125,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 
 			Http.Options options = _createHttpOptions();
 
-			<#assign arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters) />
-
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
 				options.setBody(_inputObjectMapper.writeValueAsString(${schemaVarName}), ContentTypes.APPLICATION_JSON, StringPool.UTF8);
 			</#if>
@@ -156,10 +154,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${parameters}) {
 				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
 
-				url = HttpUtil.addParameter(url, "filter", filter);
+				url = HttpUtil.addParameter(url, "filter", filterString);
 				url = HttpUtil.addParameter(url, "page", pagination.getPageNumber());
 				url = HttpUtil.addParameter(url, "pageSize", pagination.getItemsPerPage());
-				url = HttpUtil.addParameter(url, "sort", sort);
+				url = HttpUtil.addParameter(url, "sort", sortString);
 
 				return url;
 			}
