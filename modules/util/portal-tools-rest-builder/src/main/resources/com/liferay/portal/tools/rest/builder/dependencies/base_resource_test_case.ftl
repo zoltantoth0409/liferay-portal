@@ -205,6 +205,23 @@ public abstract class Base${schemaName}ResourceTestCase {
 		}
 	}
 
+	protected void assertValid(Page<${schemaName}> page) {
+		boolean valid = false;
+
+		Collection<${schemaName}> ${schemaVarNames} = page.getItems();
+
+		int size = ${schemaVarNames}.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
 		if (${schemaVarName}1 == ${schemaVarName}2) {
 			return true;

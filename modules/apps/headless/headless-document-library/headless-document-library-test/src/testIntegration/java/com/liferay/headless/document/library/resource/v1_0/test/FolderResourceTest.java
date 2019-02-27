@@ -177,23 +177,6 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 		Assert.assertTrue(valid);
 	}
 
-	protected void assertValid(Page<Folder> page) {
-		boolean valid = false;
-
-		Collection<Folder> folders = page.getItems();
-
-		int size = folders.size();
-
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
-			(size > 0)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
-
 	@Override
 	protected boolean equals(Folder folder1, Folder folder2) {
 		if (Objects.equals(

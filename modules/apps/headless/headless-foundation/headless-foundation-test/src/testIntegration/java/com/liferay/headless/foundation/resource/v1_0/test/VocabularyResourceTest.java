@@ -293,23 +293,6 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		assertValid(getVocabulary);
 	}
 
-	protected void assertValid(Page<Vocabulary> page) {
-		boolean valid = false;
-
-		Collection<Vocabulary> vocabularies = page.getItems();
-
-		int size = vocabularies.size();
-
-		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
-			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
-			(size > 0)) {
-
-			valid = true;
-		}
-
-		Assert.assertTrue(valid);
-	}
-
 	protected void assertValid(Vocabulary vocabulary) {
 		boolean valid = false;
 
