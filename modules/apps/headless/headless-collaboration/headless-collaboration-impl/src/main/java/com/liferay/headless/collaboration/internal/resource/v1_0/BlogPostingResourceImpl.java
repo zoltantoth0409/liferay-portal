@@ -16,7 +16,6 @@ package com.liferay.headless.collaboration.internal.resource.v1_0;
 
 import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
 
-import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
@@ -61,9 +60,6 @@ import java.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.MultivaluedMap;
@@ -346,8 +342,7 @@ public class BlogPostingResourceImpl
 				caption = blogsEntry.getCoverImageCaption();
 				categories = transformToArray(
 					_assetCategoryLocalService.getCategories(
-						BlogsEntry.class.getName(),
-						blogsEntry.getEntryId()),
+						BlogsEntry.class.getName(), blogsEntry.getEntryId()),
 					assetCategory -> new Categories() {
 						{
 							categoryId = assetCategory.getCategoryId();

@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.vulcan.util.TransformUtil;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;

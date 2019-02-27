@@ -21,7 +21,6 @@ import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder;
 import com.liferay.adaptive.media.image.mime.type.AMImageMimeTypeProvider;
 import com.liferay.adaptive.media.image.processor.AMImageAttribute;
 import com.liferay.adaptive.media.image.processor.AMImageProcessor;
-import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
