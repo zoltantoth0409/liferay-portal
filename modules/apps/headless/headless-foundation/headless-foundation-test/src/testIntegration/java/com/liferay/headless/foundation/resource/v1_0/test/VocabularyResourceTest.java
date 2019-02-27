@@ -99,22 +99,24 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary2);
 
-		List<EntityField> stringEntityFields = _getEntityFields(Type.DATE_TIME);
-
-		Map<String, Function<Vocabulary, Date>> map =
-			new HashMap<String, Function<Vocabulary, Date>>() {
-				{
-					put("dateCreated", Vocabulary::getDateCreated);
-					put("dateModified", Vocabulary::getDateModified);
-				}
-			};
-
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
 
-		for (EntityField entityField : stringEntityFields) {
-			Date date = map.get(entityField.getName()).apply(vocabulary1);
+		for (EntityField entityField : _getEntityFields(Type.DATE_TIME)) {
+			Date date = null;
 
+			String entityFieldName = entityField.getName();
+			
+			if (entityFieldName.equals("dateCreated")) {
+				date = vocabulary1.getDateCreated();
+			}
+			else if (entityFieldName.equals("dateModified")) {
+				date = vocabulary1.getDateModified();
+			}
+			else {
+				throw new IllegalArgumentException();
+			}
+			
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(),
 				entityField.getName() + " eq " + dateFormat.format(date),
@@ -140,21 +142,22 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary2);
 
-		List<EntityField> stringEntityFields = _getEntityFields(Type.STRING);
-
-		Map<String, Function<Vocabulary, String>> map =
-			new HashMap<String, Function<Vocabulary, String>>() {
-				{
-					put("name", Vocabulary::getName);
-				}
-			};
-
-		for (EntityField entityField : stringEntityFields) {
+		for (EntityField entityField : _getEntityFields(Type.STRING)) {
 			StringBundler sb = new StringBundler(4);
 
-			sb.append(entityField.getName());
+			String entityFieldName = entityField.getName();
+
+			sb.append(entityFieldName);
+
 			sb.append(" eq '");
-			sb.append(map.get(entityField.getName()).apply(randomVocabulary1));
+
+			if (entityFieldName.equals("name")) {
+				sb.append(randomVocabulary1.getName());
+			}
+			else {
+				throw new IllegalArgumentException();
+			}
+
 			sb.append("'");
 
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
