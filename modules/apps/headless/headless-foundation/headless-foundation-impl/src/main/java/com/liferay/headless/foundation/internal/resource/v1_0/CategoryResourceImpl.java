@@ -128,7 +128,6 @@ public class CategoryResourceImpl
 								AssetCategoryConstants.
 									DEFAULT_PARENT_CATEGORY_ID)),
 						BooleanClauseOccur.MUST);
-
 					booleanFilter.add(
 						new TermFilter(
 							Field.ASSET_VOCABULARY_ID,
