@@ -62,50 +62,16 @@ public final class AllowedIPAddressesValidatorFactory {
 		}
 	}
 
+	private static final AllowedIPAddressesValidator
+		_ALLOWED_IP_ADDRESSES_VALIDATOR = ipAddress -> false;
+
 	private static final int[] _BYTE = {
 		0b00000000, 0b10000000, 0b11000000, 0b11100000, 0b11110000, 0b11111000,
 		0b11111100, 0b11111110, 0b11111111
 	};
 
-	private static final AllowedIPAddressesValidator
-		_ALLOWED_IP_ADDRESSES_VALIDATOR = ipAddress -> false;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		AllowedIPAddressesValidatorFactory.class);
-
-	private static class V4AllowedIPAddressesValidator
-		extends BaseAllowedIPAddressesValidator {
-
-		@Override
-		public byte[] getEmptyNetmask() {
-			return new byte[4];
-		}
-
-		private V4AllowedIPAddressesValidator(
-				InetAddress inetAddress, String[] ipAddressAndNetmask)
-			throws UnknownHostException {
-
-			super(inetAddress, ipAddressAndNetmask);
-		}
-
-	}
-
-	private static class V6AllowedIPAddressesValidator
-		extends BaseAllowedIPAddressesValidator {
-
-		@Override
-		public byte[] getEmptyNetmask() {
-			return new byte[16];
-		}
-
-		private V6AllowedIPAddressesValidator(
-				InetAddress inetAddress, String[] ipAddressAndNetmask)
-			throws UnknownHostException {
-
-			super(inetAddress, ipAddressAndNetmask);
-		}
-
-	}
 
 	private abstract static class BaseAllowedIPAddressesValidator
 		implements AllowedIPAddressesValidator {
@@ -211,6 +177,40 @@ public final class AllowedIPAddressesValidatorFactory {
 		private final InetAddress _allowedIpAddress;
 		private final byte[] _allowedIpAddressBytes;
 		private byte[] _netmask;
+
+	}
+
+	private static class V4AllowedIPAddressesValidator
+		extends BaseAllowedIPAddressesValidator {
+
+		@Override
+		public byte[] getEmptyNetmask() {
+			return new byte[4];
+		}
+
+		private V4AllowedIPAddressesValidator(
+				InetAddress inetAddress, String[] ipAddressAndNetmask)
+			throws UnknownHostException {
+
+			super(inetAddress, ipAddressAndNetmask);
+		}
+
+	}
+
+	private static class V6AllowedIPAddressesValidator
+		extends BaseAllowedIPAddressesValidator {
+
+		@Override
+		public byte[] getEmptyNetmask() {
+			return new byte[16];
+		}
+
+		private V6AllowedIPAddressesValidator(
+				InetAddress inetAddress, String[] ipAddressAndNetmask)
+			throws UnknownHostException {
+
+			super(inetAddress, ipAddressAndNetmask);
+		}
 
 	}
 
