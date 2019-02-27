@@ -230,24 +230,20 @@ public class DocumentResourceImpl
 	public Document putDocument(Long documentId, MultipartBody multipartBody)
 		throws Exception {
 
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 		Document document = multipartBody.getValueAsInstance(
 			"document", Document.class);
-
-		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
-		String title = Optional.ofNullable(
-			document.getTitle()
-		).orElse(
-			binaryFile.getFileName()
-		);
-
 		FileEntry existingFileEntry = _dlAppService.getFileEntry(documentId);
 
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
-			title, document.getDescription(), null,
-			DLVersionNumberIncrease.AUTOMATIC, binaryFile.getInputStream(),
-			binaryFile.getSize(),
+			Optional.ofNullable(
+				document.getTitle()
+			).orElse(
+				binaryFile.getFileName()
+			),
+			document.getDescription(), null, DLVersionNumberIncrease.AUTOMATIC,
+			binaryFile.getInputStream(), binaryFile.getSize(),
 			_createServiceContext(
 				document.getCategoryIds(), existingFileEntry.getGroupId(),
 				document.getKeywords()));
@@ -262,21 +258,20 @@ public class DocumentResourceImpl
 			MultipartBody multipartBody)
 		throws Exception {
 
+		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
 		Document document = multipartBody.getValueAsInstance(
 			"document", Document.class);
 
-		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
-		String title = Optional.ofNullable(
-			document.getTitle()
-		).orElse(
-			binaryFile.getFileName()
-		);
-
 		FileEntry fileEntry = _dlAppService.addFileEntry(
 			repositoryId, folderId, binaryFile.getFileName(),
-			binaryFile.getContentType(), title, document.getDescription(), null,
-			binaryFile.getInputStream(), binaryFile.getSize(),
+			binaryFile.getContentType(),
+			Optional.ofNullable(
+				document.getTitle()
+			).orElse(
+				binaryFile.getFileName()
+			),
+			document.getDescription(), null, binaryFile.getInputStream(),
+			binaryFile.getSize(),
 			_createServiceContext(
 				document.getCategoryIds(), groupId, document.getKeywords()));
 

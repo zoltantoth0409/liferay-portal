@@ -172,9 +172,7 @@ public class BlogPostingImageResourceImpl
 		throws Exception {
 
 		Folder folder = _blogsEntryService.addAttachmentsFolder(contentSpaceId);
-
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
 
@@ -204,23 +202,21 @@ public class BlogPostingImageResourceImpl
 		throws Exception {
 
 		FileEntry existingFileEntry = _getFileEntry(blogPostingImageId);
-
 		BinaryFile binaryFile = multipartBody.getBinaryFile("file");
-
 		BlogPostingImage blogPostingImage = multipartBody.getValueAsInstance(
 			"blogPostingImage", BlogPostingImage.class);
 
-		String title = Optional.ofNullable(
-			blogPostingImage.getTitle()
-		).orElse(
-			binaryFile.getFileName()
-		);
-
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			existingFileEntry.getFileEntryId(), binaryFile.getFileName(),
-			binaryFile.getContentType(), title, null, null,
-			DLVersionNumberIncrease.AUTOMATIC, binaryFile.getInputStream(),
-			binaryFile.getSize(), new ServiceContext());
+			binaryFile.getContentType(),
+			Optional.ofNullable(
+				blogPostingImage.getTitle()
+			).orElse(
+				binaryFile.getFileName()
+			),
+			null, null, DLVersionNumberIncrease.AUTOMATIC,
+			binaryFile.getInputStream(), binaryFile.getSize(),
+			new ServiceContext());
 
 		return _toBlogPostingImage(fileEntry);
 	}
