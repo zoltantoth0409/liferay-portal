@@ -67,10 +67,12 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 			<#elseif freeMarkerTool.hasHTTPMethod(javaMethodSignature, "patch") && !javaMethodSignature.operation.requestBody.content?keys?seq_contains("multipart/form-data")>
 				<#assign firstJavaParameter = javaMethodSignature.javaParameters[0] />
 
+				preparePatch(${schemaVarName});
+
 				${schemaName} existing${schemaName} = get${schemaName}(${firstJavaParameter.parameterName});
 
 				<#list freeMarkerTool.getDTOJavaParameters(configYAML, openAPIYAML, schemaName, false) as javaParameter>
-					<#if !freeMarkerTool.isSchemaParameter(javaParameter, openAPIYAML)>
+					<#if !freeMarkerTool.isSchemaParameter(javaParameter, openAPIYAML) && !stringUtil.equals(javaParameter.parameterName, "id")>
 						if (Validator.isNotNull(${schemaVarName}.get${javaParameter.parameterName?cap_first}())) {
 							existing${schemaName}.set${javaParameter.parameterName?cap_first}(${schemaVarName}.get${javaParameter.parameterName?cap_first}());
 						}
@@ -108,6 +110,9 @@ public abstract class Base${schemaName}ResourceImpl implements ${schemaName}Reso
 		);
 
 		return baseURIString + resourceURI.toString() + methodURI.toString();
+	}
+
+	protected void preparePatch(${schemaName} ${schemaVarName}) {
 	}
 
 	protected <T, R> List<R> transform(List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {

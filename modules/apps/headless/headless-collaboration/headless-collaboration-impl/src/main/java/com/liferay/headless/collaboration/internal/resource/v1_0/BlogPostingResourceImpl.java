@@ -58,6 +58,7 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
 
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,81 +134,12 @@ public class BlogPostingResourceImpl
 	}
 
 	@Override
-	public BlogPosting patchBlogPosting(
-			Long blogPostingId, BlogPosting blogPosting)
-		throws Exception {
-
-		BlogPosting existingBlogPosting = getBlogPosting(blogPostingId);
-
-		if (Validator.isNotNull(blogPosting.getAlternativeHeadline())) {
-			existingBlogPosting.setAlternativeHeadline(
-				blogPosting.getAlternativeHeadline());
-		}
-
-		if (Validator.isNotNull(blogPosting.getArticleBody())) {
-			existingBlogPosting.setArticleBody(blogPosting.getArticleBody());
-		}
-
-		if (Validator.isNotNull(blogPosting.getCaption())) {
-			existingBlogPosting.setCaption(blogPosting.getCaption());
-		}
-
-		if (Validator.isNotNull(blogPosting.getCategoryIds())) {
-			existingBlogPosting.setCategoryIds(blogPosting.getCategoryIds());
-		}
-
-		/*if (Validator.isNotNull(blogPosting.getContentSpace())) {
-			existingBlogPosting.setContentSpace(blogPosting.getContentSpace());
-		}
-
-		if (Validator.isNotNull(blogPosting.getDateCreated())) {
-			existingBlogPosting.setDateCreated(blogPosting.getDateCreated());
-		}
-
-		if (Validator.isNotNull(blogPosting.getDateModified())) {
-			existingBlogPosting.setDateModified(blogPosting.getDateModified());
-		}
-
-		if (Validator.isNotNull(blogPosting.getDatePublished())) {
-			existingBlogPosting.setDatePublished(
-				blogPosting.getDatePublished());
-		}*/
-
-		if (Validator.isNotNull(blogPosting.getDescription())) {
-			existingBlogPosting.setDescription(blogPosting.getDescription());
-		}
-
-		/*if (Validator.isNotNull(blogPosting.getEncodingFormat())) {
-			existingBlogPosting.setEncodingFormat(
-				blogPosting.getEncodingFormat());
-		}*/
-
-		if (Validator.isNotNull(blogPosting.getFriendlyUrlPath())) {
-			existingBlogPosting.setFriendlyUrlPath(
-				blogPosting.getFriendlyUrlPath());
-		}
-
-		/*if (Validator.isNotNull(blogPosting.getHasComments())) {
-			existingBlogPosting.setHasComments(blogPosting.getHasComments());
-		}*/
-
-		if (Validator.isNotNull(blogPosting.getHeadline())) {
-			existingBlogPosting.setHeadline(blogPosting.getHeadline());
-		}
-
-		/*if (Validator.isNotNull(blogPosting.getId())) {
-			existingBlogPosting.setId(blogPosting.getId());
-		}*/
-
-		if (Validator.isNotNull(blogPosting.getImageId())) {
-			existingBlogPosting.setImageId(blogPosting.getImageId());
-		}
-
-		if (Validator.isNotNull(blogPosting.getKeywords())) {
-			existingBlogPosting.setKeywords(blogPosting.getKeywords());
-		}
-
-		return putBlogPosting(blogPostingId, existingBlogPosting);
+	protected void preparePatch(BlogPosting blogPosting) {
+		blogPosting.setContentSpace((Long)null);
+		blogPosting.setDateCreated((Date)null);
+		blogPosting.setDateModified((Date)null);
+		blogPosting.setEncodingFormat((String)null);
+		blogPosting.setHasComments((Boolean)null);
 	}
 
 	@Override
