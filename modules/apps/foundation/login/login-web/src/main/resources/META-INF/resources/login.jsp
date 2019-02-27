@@ -126,17 +126,11 @@
 
 					<%
 					UserLockoutException.PasswordPolicyLockout ule = (UserLockoutException.PasswordPolicyLockout)errorException;
-					String userTimeZoneId = ule.user.getTimeZoneId();
+					TimeZone userTimeZone = TimeZone.getTimeZone(ule.user.getTimeZoneId());
 
-					TimeZone userTimeZone = TimeZone.getTimeZone(userTimeZoneId);
-					TimeZone systemTimeZone = TimeZone.getDefault();
+					Format dateFormat = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.SHORT, FastDateFormatConstants.LONG, locale, userTimeZone);
 
-					long userTimeZoneOffset = ule.user.getUnlockDate().getTime() + userTimeZone.getRawOffset() - systemTimeZone.getRawOffset();
-					Date unlockDate = new Date(userTimeZoneOffset);
-					systemTimeZone.setID(userTimeZoneId);
-					Format dateFormat = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.SHORT, FastDateFormatConstants.LONG, locale, systemTimeZone);
-
-					String unlockDateString = dateFormat.format(unlockDate);
+					String unlockDateString = dateFormat.format(ule.user.getUnlockDate());
 					%>
 
 					<c:choose>
