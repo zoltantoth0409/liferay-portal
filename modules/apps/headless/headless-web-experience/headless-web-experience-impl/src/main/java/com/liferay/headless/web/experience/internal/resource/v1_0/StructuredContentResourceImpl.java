@@ -94,6 +94,7 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
@@ -108,13 +109,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
 
 import org.osgi.service.component.annotations.Component;
@@ -223,7 +222,10 @@ public class StructuredContentResourceImpl
 		JournalArticle journalArticle = _journalArticleService.getLatestArticle(
 			structuredContentId);
 
-		_addContentLanguageHeader(journalArticle);
+		ContentLanguageUtil.addContentLanguageHeader(
+			journalArticle.getAvailableLanguageIds(),
+			journalArticle.getDefaultLanguageId(), _contextHttpServletResponse,
+			contextAcceptLanguage.getPreferredLocale());
 
 		return _toStructuredContent(journalArticle);
 	}
@@ -351,24 +353,6 @@ public class StructuredContentResourceImpl
 				null,
 				_createServiceContext(
 					journalArticle.getGroupId(), structuredContent)));
-	}
-
-	private void _addContentLanguageHeader(JournalArticle journalArticle) {
-		Locale contentLocale = Stream.of(
-			journalArticle.getAvailableLanguageIds()
-		).map(
-			LocaleUtil::fromLanguageId
-		).filter(
-			locale -> LocaleUtil.equals(
-				locale, contextAcceptLanguage.getPreferredLocale())
-		).findFirst(
-		).orElse(
-			LocaleUtil.fromLanguageId(journalArticle.getDefaultLanguageId())
-		);
-
-		_contextHttpServletResponse.addHeader(
-			HttpHeaders.CONTENT_LANGUAGE,
-			LocaleUtil.toW3cLanguageId(contentLocale));
 	}
 
 	private String _createJournalArticleContent(

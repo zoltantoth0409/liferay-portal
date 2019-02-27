@@ -17,7 +17,6 @@ package com.liferay.headless.foundation.internal.resource.v1_0;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
-import com.liferay.headless.foundation.internal.dto.v1_0.util.ContentLanguageUtil;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
@@ -38,6 +37,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
@@ -120,9 +120,8 @@ public class VocabularyResourceImpl
 
 		ContentLanguageUtil.addContentLanguageHeader(
 			vocabulary.getAvailableLanguageIds(),
-			vocabulary.getDefaultLanguageId(),
-			contextAcceptLanguage.getPreferredLocale(),
-			_contextHttpServletResponse);
+			vocabulary.getDefaultLanguageId(), _contextHttpServletResponse,
+			contextAcceptLanguage.getPreferredLocale());
 
 		return _toVocabulary(vocabulary);
 	}

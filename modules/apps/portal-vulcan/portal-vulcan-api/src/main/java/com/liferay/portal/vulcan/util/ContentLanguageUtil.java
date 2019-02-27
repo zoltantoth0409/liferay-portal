@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.headless.foundation.internal.dto.v1_0.util;
+package com.liferay.portal.vulcan.util;
 
 import com.liferay.portal.kernel.util.LocaleUtil;
 
@@ -30,7 +30,7 @@ public class ContentLanguageUtil {
 
 	public static void addContentLanguageHeader(
 		String[] availableLocaleIds, String defaultLocaleId,
-		Locale requestedLocale, HttpServletResponse httpServletResponse) {
+		HttpServletResponse httpServletResponse, Locale requestedLocale) {
 
 		Locale contentLocale = Stream.of(
 			availableLocaleIds

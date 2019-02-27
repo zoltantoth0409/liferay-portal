@@ -22,7 +22,6 @@ import com.liferay.asset.kernel.service.AssetVocabularyService;
 import com.liferay.headless.foundation.dto.v1_0.Category;
 import com.liferay.headless.foundation.dto.v1_0.ParentCategory;
 import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
-import com.liferay.headless.foundation.internal.dto.v1_0.util.ContentLanguageUtil;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.CategoryEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
@@ -46,6 +45,7 @@ import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
+import com.liferay.portal.vulcan.util.ContentLanguageUtil;
 import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
@@ -88,8 +88,8 @@ public class CategoryResourceImpl
 
 		ContentLanguageUtil.addContentLanguageHeader(
 			category.getAvailableLanguageIds(), category.getDefaultLanguageId(),
-			contextAcceptLanguage.getPreferredLocale(),
-			_contextHttpServletResponse);
+			_contextHttpServletResponse,
+			contextAcceptLanguage.getPreferredLocale());
 
 		return _toCategory(category);
 	}
