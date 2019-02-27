@@ -32,7 +32,7 @@ public final class AllowedIPAddressesValidatorFactory {
 
 	public static AllowedIPAddressesValidator create(String filter) {
 		if (Validator.isNull(filter)) {
-			return _NULL_IP_ADDRESS_VALIDATOR;
+			return _ALLOWED_IP_ADDRESSES_VALIDATOR;
 		}
 
 		String[] ipAddressAndNetmask = StringUtil.split(
@@ -50,13 +50,13 @@ public final class AllowedIPAddressesValidatorFactory {
 					ipAddressAndNetmask);
 			}
 			else {
-				return _NULL_IP_ADDRESS_VALIDATOR;
+				return _ALLOWED_IP_ADDRESSES_VALIDATOR;
 			}
 		}
 		catch (Exception e) {
 			_log.error("Invalid configured address: ", e);
 
-			return _NULL_IP_ADDRESS_VALIDATOR;
+			return _ALLOWED_IP_ADDRESSES_VALIDATOR;
 		}
 	}
 
@@ -66,7 +66,7 @@ public final class AllowedIPAddressesValidatorFactory {
 	};
 
 	private static final AllowedIPAddressesValidator
-		_NULL_IP_ADDRESS_VALIDATOR = ipAddress -> false;
+		_ALLOWED_IP_ADDRESSES_VALIDATOR = ipAddress -> false;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AllowedIPAddressesValidatorFactory.class);
