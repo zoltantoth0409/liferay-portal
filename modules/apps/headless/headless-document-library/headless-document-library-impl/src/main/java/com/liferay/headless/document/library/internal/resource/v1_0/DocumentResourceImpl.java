@@ -171,6 +171,13 @@ public class DocumentResourceImpl
 				multipartBody.getValueAsInstance("document", Document.class));
 		}
 
+		String[] keywords = optional.map(
+			Document::getKeywords
+		).orElseGet(
+			() -> _assetTagLocalService.getTagNames(
+				DLFileEntry.class.getName(), documentId)
+		);
+
 		FileEntry fileEntry = _dlAppService.updateFileEntry(
 			documentId, binaryFile.getFileName(), binaryFile.getContentType(),
 			optional.map(
@@ -193,13 +200,7 @@ public class DocumentResourceImpl
 						_assetCategoryLocalService.getCategoryIds(
 							DLFileEntry.class.getName(), documentId))
 				),
-				existingFileEntry.getGroupId(),
-				optional.map(
-					Document::getKeywords
-				).orElseGet(
-					() -> _assetTagLocalService.getTagNames(
-						DLFileEntry.class.getName(), documentId)
-				)));
+				existingFileEntry.getGroupId(), keywords));
 
 		return _toDocument(
 			fileEntry, fileEntry.getFileVersion(),
