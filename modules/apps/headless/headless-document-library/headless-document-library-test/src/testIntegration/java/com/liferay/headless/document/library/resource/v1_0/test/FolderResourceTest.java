@@ -95,6 +95,7 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 	public void testGetFolderFoldersPage() throws Exception {
 		Folder postContentSpaceFolder = invokePostContentSpaceFolder(
 			testGroup.getGroupId(), randomFolder());
+
 		Folder randomFolder1 = randomFolder();
 
 		invokePostFolderFolder(postContentSpaceFolder.getId(), randomFolder1);
