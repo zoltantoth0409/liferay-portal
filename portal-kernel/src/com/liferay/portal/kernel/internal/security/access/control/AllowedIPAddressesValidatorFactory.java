@@ -40,12 +40,12 @@ public final class AllowedIPAddressesValidatorFactory {
 
 		try {
 			if (Validator.isIPv4Address(ipAddressAndNetmask[0])) {
-				return new AllowedIPv4AddressesValidator(
+				return new V4AllowedIPAddressesValidator(
 					InetAddress.getByName(ipAddressAndNetmask[0]),
 					ipAddressAndNetmask);
 			}
 			else if (Validator.isIPv6Address(ipAddressAndNetmask[0])) {
-				return new AllowedIPv6AddressesValidator(
+				return new V6AllowedIPAddressesValidator(
 					InetAddress.getByName(ipAddressAndNetmask[0]),
 					ipAddressAndNetmask);
 			}
@@ -71,7 +71,7 @@ public final class AllowedIPAddressesValidatorFactory {
 	private static final Log _log = LogFactoryUtil.getLog(
 		AllowedIPAddressesValidatorFactory.class);
 
-	private static class AllowedIPv4AddressesValidator
+	private static class V4AllowedIPAddressesValidator
 		extends BaseAllowedIPAddressesValidator {
 
 		@Override
@@ -79,7 +79,7 @@ public final class AllowedIPAddressesValidatorFactory {
 			return new byte[4];
 		}
 
-		private AllowedIPv4AddressesValidator(
+		private V4AllowedIPAddressesValidator(
 				InetAddress inetAddress, String[] ipAddressAndNetmask)
 			throws UnknownHostException {
 
@@ -88,7 +88,7 @@ public final class AllowedIPAddressesValidatorFactory {
 
 	}
 
-	private static class AllowedIPv6AddressesValidator
+	private static class V6AllowedIPAddressesValidator
 		extends BaseAllowedIPAddressesValidator {
 
 		@Override
@@ -96,7 +96,7 @@ public final class AllowedIPAddressesValidatorFactory {
 			return new byte[16];
 		}
 
-		private AllowedIPv6AddressesValidator(
+		private V6AllowedIPAddressesValidator(
 				InetAddress inetAddress, String[] ipAddressAndNetmask)
 			throws UnknownHostException {
 
