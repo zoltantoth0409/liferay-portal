@@ -39,6 +39,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -101,6 +102,20 @@ public abstract class BaseBlogPostingImageResourceImpl
 	@RequiresScope("everything.read")
 	public BlogPostingImage postContentSpaceBlogPostingImage(
 			@PathParam("content-space-id") Long contentSpaceId,
+			MultipartBody multipartBody)
+		throws Exception {
+
+		return new BlogPostingImage();
+	}
+
+	@Consumes("multipart/form-data")
+	@Override
+	@Path("/blog-posting-images/{image-object-id}")
+	@Produces("application/json")
+	@PUT
+	@RequiresScope("everything.read")
+	public BlogPostingImage putImageObject(
+			@PathParam("image-object-id") Long imageObjectId,
 			MultipartBody multipartBody)
 		throws Exception {
 
