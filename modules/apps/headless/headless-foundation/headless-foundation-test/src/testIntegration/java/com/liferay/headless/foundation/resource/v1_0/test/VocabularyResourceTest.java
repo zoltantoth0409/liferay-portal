@@ -132,10 +132,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	public void testGetContentSpaceVocabulariesPageWithFilterStringEquals()
 		throws Exception {
 
-		Vocabulary randomVocabulary1 = randomVocabulary();
+		Vocabulary vocabulary = randomVocabulary();
 
 		invokePostContentSpaceVocabulary(
-			testGroup.getGroupId(), randomVocabulary1);
+			testGroup.getGroupId(), vocabulary);
 
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
@@ -150,7 +150,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			sb.append(" eq '");
 
 			if (entityFieldName.equals("name")) {
-				sb.append(randomVocabulary1.getName());
+				sb.append(vocabulary.getName());
 			}
 			else {
 				throw new IllegalArgumentException();
@@ -163,7 +163,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 				null);
 
 			assertEquals(
-				Collections.singletonList(randomVocabulary1),
+				Collections.singletonList(vocabulary),
 				(List<Vocabulary>)page.getItems());
 		}
 	}
