@@ -173,10 +173,7 @@ public abstract class BaseClayTag extends TemplateRendererTag {
 		}
 
 		for (ClayComponentAttributeProvider provider : providers) {
-			Map<String, Object> attributes = provider.getAttributes(
-				getContext());
-
-			setContext(attributes);
+			provider.getAttributes(getContext());
 		}
 	}
 
