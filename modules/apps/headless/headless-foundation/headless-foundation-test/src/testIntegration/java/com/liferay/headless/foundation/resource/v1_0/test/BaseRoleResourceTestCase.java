@@ -21,10 +21,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Role;
 import com.liferay.headless.foundation.resource.v1_0.RoleResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -35,6 +37,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -195,6 +199,74 @@ public abstract class BaseRoleResourceTestCase {
 		).collect(
 			Collectors.toList()
 		);
+	}
+
+	protected String getFilterString(
+		EntityField entityField, String operator, Role role) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("availableLanguages")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("creator")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("dateCreated")) {
+			sb.append(_dateFormat.format(role.getDateCreated()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("dateModified")) {
+			sb.append(_dateFormat.format(role.getDateModified()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("description")) {
+			sb.append("'");
+			sb.append(String.valueOf(role.getDescription()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("name")) {
+			sb.append("'");
+			sb.append(String.valueOf(role.getName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("roleType")) {
+			sb.append("'");
+			sb.append(String.valueOf(role.getRoleType()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
 	}
 
 	protected Page<Role> invokeGetMyUserAccountRolesPage(
@@ -394,6 +466,8 @@ public abstract class BaseRoleResourceTestCase {
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	private URL _resourceURL;
 
 	@Inject

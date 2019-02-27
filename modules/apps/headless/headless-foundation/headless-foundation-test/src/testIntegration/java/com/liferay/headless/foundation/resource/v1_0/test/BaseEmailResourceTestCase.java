@@ -21,10 +21,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.Email;
 import com.liferay.headless.foundation.resource.v1_0.EmailResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -35,6 +37,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -188,6 +192,44 @@ public abstract class BaseEmailResourceTestCase {
 		);
 	}
 
+	protected String getFilterString(
+		EntityField entityField, String operator, Email email) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("email")) {
+			sb.append("'");
+			sb.append(String.valueOf(email.getEmail()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("type")) {
+			sb.append("'");
+			sb.append(String.valueOf(email.getType()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
+	}
+
 	protected Email invokeGetEmail(Long emailId) throws Exception {
 		Http.Options options = _createHttpOptions();
 
@@ -317,6 +359,9 @@ public abstract class BaseEmailResourceTestCase {
 		}
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
+
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 
 	@Inject
 	private EmailResource _emailResource;

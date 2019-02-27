@@ -21,12 +21,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.headless.foundation.dto.v1_0.UserAccount;
 import com.liferay.headless.foundation.resource.v1_0.UserAccountResource;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.odata.entity.EntityField;
@@ -37,6 +39,8 @@ import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 
 import java.net.URL;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -225,6 +229,165 @@ public abstract class BaseUserAccountResourceTestCase {
 		).collect(
 			Collectors.toList()
 		);
+	}
+
+	protected String getFilterString(
+		EntityField entityField, String operator, UserAccount userAccount) {
+
+		StringBundler sb = new StringBundler();
+
+		String entityFieldName = entityField.getName();
+
+		sb.append(entityFieldName);
+
+		sb.append(" ");
+		sb.append(operator);
+		sb.append(" ");
+
+		if (entityFieldName.equals("additionalName")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getAdditionalName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("alternateName")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getAlternateName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("birthDate")) {
+			sb.append(_dateFormat.format(userAccount.getBirthDate()));
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("contactInformation")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("dashboardURL")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getDashboardURL()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("email")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getEmail()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("familyName")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getFamilyName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("givenName")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getGivenName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("honorificPrefix")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getHonorificPrefix()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("honorificSuffix")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getHonorificSuffix()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("id")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("image")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getImage()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("jobTitle")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getJobTitle()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("myOrganizations")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("myOrganizationsIds")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("name")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getName()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("profileURL")) {
+			sb.append("'");
+			sb.append(String.valueOf(userAccount.getProfileURL()));
+			sb.append("'");
+
+			return sb.toString();
+		}
+
+		if (entityFieldName.equals("roles")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("rolesIds")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("tasksAssignedToMe")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		if (entityFieldName.equals("tasksAssignedToMyRoles")) {
+			throw new IllegalArgumentException(
+				"Invalid entity field " + entityFieldName);
+		}
+
+		throw new IllegalArgumentException(
+			"Invalid entity field " + entityFieldName);
 	}
 
 	protected boolean invokeDeleteUserAccount(Long userAccountId)
@@ -571,6 +734,8 @@ public abstract class BaseUserAccountResourceTestCase {
 	};
 	private static final ObjectMapper _outputObjectMapper = new ObjectMapper();
 
+	private final DateFormat _dateFormat =
+		DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	private URL _resourceURL;
 
 	@Inject
