@@ -221,11 +221,8 @@ public class StructuredContentResourceTest
 	private String _read(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		InputStream inputStream = classLoader.getResourceAsStream(
-			"/com/liferay/headless/web/experience/resource/v1_0/test" +
-				"/dependencies/" + fileName);
+		InputStream inputStream = clazz.getResourceAsStream(
+			"dependencies/" + fileName);
 
 		return StringUtil.read(inputStream);
 	}
