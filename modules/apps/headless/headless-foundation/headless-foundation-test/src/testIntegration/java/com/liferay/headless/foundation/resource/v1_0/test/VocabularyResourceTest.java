@@ -330,7 +330,6 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		return false;
 	}
 
-	@Override
 	protected Map<String, Function<Vocabulary, Date>>
 		getDateTimeEntityNameGetterMap() {
 
@@ -342,7 +341,6 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		};
 	}
 
-	@Override
 	protected Map<String, Function<Vocabulary, String>>
 		getStringEntityNameGetterMap() {
 
