@@ -91,7 +91,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 	public void testGetContentSpaceVocabulariesPageWithFilterDateTimeEquals()
 		throws Exception {
 
-		Vocabulary vocabulary1 = invokePostContentSpaceVocabulary(
+		Vocabulary vocabulary = invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
 		Thread.sleep(1000);
@@ -108,10 +108,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 			String entityFieldName = entityField.getName();
 			
 			if (entityFieldName.equals("dateCreated")) {
-				date = vocabulary1.getDateCreated();
+				date = vocabulary.getDateCreated();
 			}
 			else if (entityFieldName.equals("dateModified")) {
-				date = vocabulary1.getDateModified();
+				date = vocabulary.getDateModified();
 			}
 			else {
 				throw new IllegalArgumentException();
@@ -123,7 +123,7 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 				Pagination.of(2, 1), null);
 
 			assertEquals(
-				Collections.singletonList(vocabulary1),
+				Collections.singletonList(vocabulary),
 				(List<Vocabulary>)page.getItems());
 		}
 	}
