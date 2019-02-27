@@ -140,6 +140,23 @@ public abstract class BaseFormRecordResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<FormRecord> page) {
+		boolean valid = false;
+
+		Collection<FormRecord> formRecords = page.getItems();
+
+		int size = formRecords.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(FormRecord formRecord1, FormRecord formRecord2) {
 		if (formRecord1 == formRecord2) {
 			return true;

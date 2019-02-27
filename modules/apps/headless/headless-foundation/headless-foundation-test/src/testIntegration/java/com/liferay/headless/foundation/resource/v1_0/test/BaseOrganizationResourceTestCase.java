@@ -144,6 +144,23 @@ public abstract class BaseOrganizationResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Organization> page) {
+		boolean valid = false;
+
+		Collection<Organization> organizations = page.getItems();
+
+		int size = organizations.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		Organization organization1, Organization organization2) {
 

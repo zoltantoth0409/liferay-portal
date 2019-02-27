@@ -123,6 +123,23 @@ public abstract class BaseEmailResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Email> page) {
+		boolean valid = false;
+
+		Collection<Email> emails = page.getItems();
+
+		int size = emails.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Email email1, Email email2) {
 		if (email1 == email2) {
 			return true;

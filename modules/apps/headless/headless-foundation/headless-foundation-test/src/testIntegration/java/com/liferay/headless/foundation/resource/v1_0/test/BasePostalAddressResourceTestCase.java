@@ -131,6 +131,23 @@ public abstract class BasePostalAddressResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<PostalAddress> page) {
+		boolean valid = false;
+
+		Collection<PostalAddress> postalAddresses = page.getItems();
+
+		int size = postalAddresses.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		PostalAddress postalAddress1, PostalAddress postalAddress2) {
 

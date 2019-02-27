@@ -132,6 +132,23 @@ public abstract class BaseRoleResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Role> page) {
+		boolean valid = false;
+
+		Collection<Role> roles = page.getItems();
+
+		int size = roles.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Role role1, Role role2) {
 		if (role1 == role2) {
 			return true;

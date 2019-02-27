@@ -127,6 +127,23 @@ public abstract class BaseFormDocumentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<FormDocument> page) {
+		boolean valid = false;
+
+		Collection<FormDocument> formDocuments = page.getItems();
+
+		int size = formDocuments.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		FormDocument formDocument1, FormDocument formDocument2) {
 

@@ -154,6 +154,23 @@ public abstract class BaseCommentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Comment> page) {
+		boolean valid = false;
+
+		Collection<Comment> comments = page.getItems();
+
+		int size = comments.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Comment comment1, Comment comment2) {
 		if (comment1 == comment2) {
 			return true;

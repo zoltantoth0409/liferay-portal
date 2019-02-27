@@ -128,6 +128,23 @@ public abstract class BaseWorkflowLogResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<WorkflowLog> page) {
+		boolean valid = false;
+
+		Collection<WorkflowLog> workflowLogs = page.getItems();
+
+		int size = workflowLogs.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		WorkflowLog workflowLog1, WorkflowLog workflowLog2) {
 

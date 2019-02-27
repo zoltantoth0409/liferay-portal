@@ -144,6 +144,23 @@ public abstract class BaseKeywordResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Keyword> page) {
+		boolean valid = false;
+
+		Collection<Keyword> keywords = page.getItems();
+
+		int size = keywords.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Keyword keyword1, Keyword keyword2) {
 		if (keyword1 == keyword2) {
 			return true;

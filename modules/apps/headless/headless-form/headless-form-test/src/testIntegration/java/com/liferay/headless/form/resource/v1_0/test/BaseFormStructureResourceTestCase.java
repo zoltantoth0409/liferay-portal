@@ -131,6 +131,23 @@ public abstract class BaseFormStructureResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<FormStructure> page) {
+		boolean valid = false;
+
+		Collection<FormStructure> formStructures = page.getItems();
+
+		int size = formStructures.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		FormStructure formStructure1, FormStructure formStructure2) {
 

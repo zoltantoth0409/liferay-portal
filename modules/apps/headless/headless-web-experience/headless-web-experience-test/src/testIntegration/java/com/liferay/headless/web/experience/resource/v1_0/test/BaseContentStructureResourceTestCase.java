@@ -136,6 +136,23 @@ public abstract class BaseContentStructureResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<ContentStructure> page) {
+		boolean valid = false;
+
+		Collection<ContentStructure> contentStructures = page.getItems();
+
+		int size = contentStructures.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		ContentStructure contentStructure1,
 		ContentStructure contentStructure2) {

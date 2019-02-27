@@ -145,6 +145,23 @@ public abstract class BaseBlogPostingImageResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<BlogPostingImage> page) {
+		boolean valid = false;
+
+		Collection<BlogPostingImage> blogPostingImages = page.getItems();
+
+		int size = blogPostingImages.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		BlogPostingImage blogPostingImage1,
 		BlogPostingImage blogPostingImage2) {

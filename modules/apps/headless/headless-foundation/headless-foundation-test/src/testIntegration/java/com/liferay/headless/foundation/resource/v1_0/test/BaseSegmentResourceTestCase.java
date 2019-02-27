@@ -121,6 +121,23 @@ public abstract class BaseSegmentResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Segment> page) {
+		boolean valid = false;
+
+		Collection<Segment> segments = page.getItems();
+
+		int size = segments.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Segment segment1, Segment segment2) {
 		if (segment1 == segment2) {
 			return true;

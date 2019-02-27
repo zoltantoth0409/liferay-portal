@@ -149,6 +149,24 @@ public abstract class BaseStructuredContentImageResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<StructuredContentImage> page) {
+		boolean valid = false;
+
+		Collection<StructuredContentImage> structuredContentImages =
+			page.getItems();
+
+		int size = structuredContentImages.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		StructuredContentImage structuredContentImage1,
 		StructuredContentImage structuredContentImage2) {

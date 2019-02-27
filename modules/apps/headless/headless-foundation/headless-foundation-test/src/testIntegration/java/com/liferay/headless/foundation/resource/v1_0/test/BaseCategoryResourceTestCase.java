@@ -154,6 +154,23 @@ public abstract class BaseCategoryResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Category> page) {
+		boolean valid = false;
+
+		Collection<Category> categories = page.getItems();
+
+		int size = categories.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Category category1, Category category2) {
 		if (category1 == category2) {
 			return true;

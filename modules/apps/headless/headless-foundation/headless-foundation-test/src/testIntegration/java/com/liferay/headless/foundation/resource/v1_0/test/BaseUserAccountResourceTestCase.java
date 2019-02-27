@@ -160,6 +160,23 @@ public abstract class BaseUserAccountResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<UserAccount> page) {
+		boolean valid = false;
+
+		Collection<UserAccount> userAccounts = page.getItems();
+
+		int size = userAccounts.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		UserAccount userAccount1, UserAccount userAccount2) {
 

@@ -156,6 +156,23 @@ public abstract class BaseWorkflowTaskResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<WorkflowTask> page) {
+		boolean valid = false;
+
+		Collection<WorkflowTask> workflowTasks = page.getItems();
+
+		int size = workflowTasks.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(
 		WorkflowTask workflowTask1, WorkflowTask workflowTask2) {
 

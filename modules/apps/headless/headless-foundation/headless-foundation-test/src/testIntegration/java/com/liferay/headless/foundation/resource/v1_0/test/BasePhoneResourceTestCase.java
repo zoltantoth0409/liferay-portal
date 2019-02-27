@@ -123,6 +123,23 @@ public abstract class BasePhoneResourceTestCase {
 			expectedResponseCode, actualResponse.getResponseCode());
 	}
 
+	protected void assertValid(Page<Phone> page) {
+		boolean valid = false;
+
+		Collection<Phone> phones = page.getItems();
+
+		int size = phones.size();
+
+		if ((page.getItemsPerPage() > 0) && (page.getLastPageNumber() > 0) &&
+			(page.getPageNumber() > 0) && (page.getTotalCount() > 0) &&
+			(size > 0)) {
+
+			valid = true;
+		}
+
+		Assert.assertTrue(valid);
+	}
+
 	protected boolean equals(Phone phone1, Phone phone2) {
 		if (phone1 == phone2) {
 			return true;
