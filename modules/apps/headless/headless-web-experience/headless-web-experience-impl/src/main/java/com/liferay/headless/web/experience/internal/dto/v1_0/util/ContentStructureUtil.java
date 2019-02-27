@@ -124,29 +124,26 @@ public class ContentStructureUtil {
 				setMultiple(ddmFormField.isMultiple());
 				setName(ddmFormField.getName());
 				setOptions(
-					() -> {
-						return Optional.ofNullable(
-							ddmFormField.getDDMFormFieldOptions()
-						).map(
-							DDMFormFieldOptions::getOptions
-						).map(
-							Map::entrySet
-						).map(
-							Set::stream
-						).orElseGet(
-							Stream::empty
-						).map(
-							entry -> new Options() {
-								{
-									setLabel(
-										_toString(entry.getValue(), locale));
-									setValue(entry.getKey());
-								}
+					() -> Optional.ofNullable(
+						ddmFormField.getDDMFormFieldOptions()
+					).map(
+						DDMFormFieldOptions::getOptions
+					).map(
+						Map::entrySet
+					).map(
+						Set::stream
+					).orElseGet(
+						Stream::empty
+					).map(
+						entry -> new Options() {
+							{
+								setLabel(_toString(entry.getValue(), locale));
+								setValue(entry.getKey());
 							}
-						).toArray(
-							Options[]::new
-						);
-					});
+						}
+					).toArray(
+						Options[]::new
+					));
 			}
 		};
 	}
