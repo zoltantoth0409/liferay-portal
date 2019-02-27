@@ -94,12 +94,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		Vocabulary vocabulary1 = invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
-		Vocabulary randomVocabulary2 = randomVocabulary();
-
 		Thread.sleep(1000);
 
 		invokePostContentSpaceVocabulary(
-			testGroup.getGroupId(), randomVocabulary2);
+			testGroup.getGroupId(), randomVocabulary());
 
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyy-MM-dd'T'HH:mm:ss'Z'");
