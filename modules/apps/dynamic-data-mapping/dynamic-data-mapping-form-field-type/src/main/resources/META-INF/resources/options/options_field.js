@@ -730,6 +730,12 @@ AUI.add(
 
 						var editingLanguageId = instance._getCurrentEditingLanguageId();
 
+						var hasNewOption = value[editingLanguageId].length !== optionValues.length;
+
+						if (hasNewOption) {
+							instance._updateOtherLanguagesValues(value, editingLanguageId, optionValues[optionValues.length -1]);
+						}
+
 						value[editingLanguageId] = optionValues;
 
 						instance.set('value', value);
@@ -784,6 +790,14 @@ AUI.add(
 
 							sortableList.add(container);
 						}
+					},
+
+					_updateOtherLanguagesValues: function(value, editingLanguageId, option) {
+						 AObject.keys(value).forEach(function(languageId) {
+							 if(languageId !== editingLanguageId) {
+								 value[languageId].push(option);
+							 }
+						 });
 					}
 				}
 			}
