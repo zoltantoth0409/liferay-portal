@@ -25,6 +25,7 @@ import com.liferay.headless.web.experience.dto.v1_0.Options;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.vulcan.util.TransformUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -62,18 +63,10 @@ public class ContentStructureUtil {
 				name = ddmStructure.getName(locale);
 
 				setFields(
-					() -> {
-						List<DDMFormField> ddmFormFields =
-							ddmStructure.getDDMFormFields(true);
-
-						Stream<DDMFormField> stream = ddmFormFields.stream();
-
-						return stream.map(
-							ddmFormField -> _toFields(ddmFormField, locale)
-						).toArray(
-							Fields[]::new
-						);
-					});
+					() -> TransformUtil.transformToArray(
+						ddmStructure.getDDMFormFields(true),
+						ddmFormField -> _toFields(ddmFormField, locale),
+						Fields.class));
 			}
 		};
 	}

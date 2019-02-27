@@ -283,25 +283,6 @@ public class BlogPostingResourceImpl
 		};
 	}
 
-	private Categories[] _getCategories(BlogsEntry blogsEntry) {
-		List<AssetCategory> assetCategories =
-			_assetCategoryLocalService.getCategories(
-				BlogsEntry.class.getName(), blogsEntry.getEntryId());
-
-		Stream<AssetCategory> stream = assetCategories.stream();
-
-		return stream.map(
-			assetCategory -> new Categories() {
-				{
-					setCategoryId(assetCategory.getCategoryId());
-					setCategoryName(assetCategory.getName());
-				}
-			}
-		).toArray(
-			Categories[]::new
-		);
-	}
-
 	private Image _getImage(BlogsEntry blogsEntry) throws Exception {
 		long coverImageFileEntryId = blogsEntry.getCoverImageFileEntryId();
 
@@ -363,7 +344,17 @@ public class BlogPostingResourceImpl
 						BlogsEntry.class.getName(), blogsEntry.getEntryId()));
 				articleBody = blogsEntry.getContent();
 				caption = blogsEntry.getCoverImageCaption();
-				categories = _getCategories(blogsEntry);
+				categories = transformToArray(
+					_assetCategoryLocalService.getCategories(
+						BlogsEntry.class.getName(),
+						blogsEntry.getEntryId()),
+					assetCategory -> new Categories() {
+						{
+							categoryId = assetCategory.getCategoryId();
+							categoryName = assetCategory.getName();
+						}
+					},
+					Categories.class);
 				contentSpace = blogsEntry.getGroupId();
 				creator = CreatorUtil.toCreator(
 					_portal, _userLocalService.getUser(blogsEntry.getUserId()));

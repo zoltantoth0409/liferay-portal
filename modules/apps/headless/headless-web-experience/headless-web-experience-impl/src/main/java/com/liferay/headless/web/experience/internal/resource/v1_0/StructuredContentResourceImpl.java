@@ -16,7 +16,6 @@ package com.liferay.headless.web.experience.internal.resource.v1_0;
 
 import static com.liferay.portal.vulcan.util.LocalDateTimeUtil.toLocalDateTime;
 
-import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetTagLocalService;
@@ -103,7 +102,6 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import java.time.LocalDateTime;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -111,7 +109,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -386,26 +383,6 @@ public class StructuredContentResourceImpl
 		}
 	}
 
-	private Categories[] _getCategories(JournalArticle journalArticle) {
-		List<AssetCategory> assetCategories =
-			_assetCategoryLocalService.getCategories(
-				JournalArticle.class.getName(),
-				journalArticle.getResourcePrimKey());
-
-		Stream<AssetCategory> stream = assetCategories.stream();
-
-		return stream.map(
-			assetCategory -> new Categories() {
-				{
-					setCategoryId(assetCategory.getCategoryId());
-					setCategoryName(assetCategory.getName());
-				}
-			}
-		).toArray(
-			Categories[]::new
-		);
-	}
-
 	private String _getDDMTemplateKey(DDMStructure ddmStructure) {
 		List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
 
@@ -416,26 +393,6 @@ public class StructuredContentResourceImpl
 		DDMTemplate ddmTemplate = ddmTemplates.get(0);
 
 		return ddmTemplate.getTemplateKey();
-	}
-
-	private RenderedContentsURL[] _getRenderedContentsURLs(
-		DDMStructure ddmStructure, JournalArticle journalArticle) {
-
-		List<RenderedContentsURL> renderedContentsURLs = transform(
-			ddmStructure.getTemplates(),
-			ddmTemplate -> new RenderedContentsURL() {
-				{
-					renderedContentURL = getJAXRSLink(
-						"getStructuredContentTemplate",
-						journalArticle.getResourcePrimKey(),
-						ddmTemplate.getTemplateId());
-					templateName = ddmTemplate.getName(
-						contextAcceptLanguage.getPreferredLocale());
-				}
-			});
-
-		return renderedContentsURLs.toArray(
-			new RenderedContentsURL[renderedContentsURLs.size()]);
 	}
 
 	private ServiceContext _getServiceContext(
@@ -480,9 +437,11 @@ public class StructuredContentResourceImpl
 				inputControl = ContentStructureUtil.toInputControl(
 					ddmFormField);
 				name = ddmField.getName();
-				nestedFields = _toContentFields(
-					ddmFormField.getNestedDDMFormFields(), ddmStructure,
-					fields);
+				nestedFields = transformToArray(
+					ddmFormField.getNestedDDMFormFields(),
+					ddmFormField -> _toContentField(
+						ddmStructure, fields, ddmFormField.getName()),
+					ContentField.class);
 				value = _toValue(
 					ddmField, contextAcceptLanguage.getPreferredLocale());
 			}
@@ -492,44 +451,16 @@ public class StructuredContentResourceImpl
 	private ContentField[] _toContentFields(JournalArticle journalArticle)
 		throws Exception {
 
-		List<ContentField> contentFields = new ArrayList<>();
-
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
 		Fields ddmFields = _journalConverter.getDDMFields(
 			ddmStructure, journalArticle.getContent());
 
-		List<String> rootFieldNames = ddmStructure.getRootFieldNames();
-
-		for (String rootFieldName : rootFieldNames) {
-			ContentField contentFieldValue = _toContentField(
-				ddmStructure, ddmFields, rootFieldName);
-
-			if (contentFieldValue != null) {
-				contentFields.add(contentFieldValue);
-			}
-		}
-
-		return contentFields.toArray(new ContentField[contentFields.size()]);
-	}
-
-	private ContentField[] _toContentFields(
-			List<DDMFormField> ddmFormFields, DDMStructure ddmStructure,
-			Fields fields)
-		throws Exception {
-
-		List<ContentField> contentFields = new ArrayList<>();
-
-		for (DDMFormField ddmFormField : ddmFormFields) {
-			ContentField contentFieldValue = _toContentField(
-				ddmStructure, fields, ddmFormField.getName());
-
-			if (contentFieldValue != null) {
-				contentFields.add(contentFieldValue);
-			}
-		}
-
-		return contentFields.toArray(new ContentField[contentFields.size()]);
+		return transformToArray(
+			ddmStructure.getRootFieldNames(),
+			rootFieldName -> _toContentField(
+				ddmStructure, ddmFields, rootFieldName),
+			ContentField.class);
 	}
 
 	private Fields _toDDMFields(
@@ -699,7 +630,17 @@ public class StructuredContentResourceImpl
 					_ratingsStatsLocalService.fetchStats(
 						JournalArticle.class.getName(),
 						journalArticle.getResourcePrimKey()));
-				categories = _getCategories(journalArticle);
+				categories = transformToArray(
+					_assetCategoryLocalService.getCategories(
+						JournalArticle.class.getName(),
+						journalArticle.getResourcePrimKey()),
+					assetCategory -> new Categories() {
+						{
+							categoryId = assetCategory.getCategoryId();
+							categoryName = assetCategory.getName();
+						}
+					},
+					Categories.class);
 				contentFields = _toContentFields(journalArticle);
 				contentSpace = journalArticle.getGroupId();
 				contentStructureId = ddmStructure.getStructureId();
@@ -718,8 +659,19 @@ public class StructuredContentResourceImpl
 						journalArticle.getResourcePrimKey()),
 					AssetTag.NAME_ACCESSOR);
 				lastReviewed = journalArticle.getReviewDate();
-				renderedContentsURL = _getRenderedContentsURLs(
-					ddmStructure, journalArticle);
+				renderedContentsURL = transformToArray(
+					ddmStructure.getTemplates(),
+					ddmTemplate -> new RenderedContentsURL() {
+						{
+							renderedContentURL = getJAXRSLink(
+								"getStructuredContentTemplate",
+								journalArticle.getResourcePrimKey(),
+								ddmTemplate.getTemplateId());
+							templateName = ddmTemplate.getName(
+								contextAcceptLanguage.getPreferredLocale());
+						}
+					},
+					RenderedContentsURL.class);
 				title = journalArticle.getTitle(
 					contextAcceptLanguage.getPreferredLocale());
 			}

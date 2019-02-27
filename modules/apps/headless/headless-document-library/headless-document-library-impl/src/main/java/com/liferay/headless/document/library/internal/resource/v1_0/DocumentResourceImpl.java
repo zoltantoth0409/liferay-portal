@@ -317,25 +317,6 @@ public class DocumentResourceImpl
 		);
 	}
 
-	private Categories[] _getCategories(FileEntry fileEntry) {
-		List<AssetCategory> assetCategories =
-			_assetCategoryLocalService.getCategories(
-				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
-
-		Stream<AssetCategory> stream = assetCategories.stream();
-
-		return stream.map(
-			assetCategory -> new Categories() {
-				{
-					setCategoryId(assetCategory.getCategoryId());
-					setCategoryName(assetCategory.getName());
-				}
-			}
-		).toArray(
-			Categories[]::new
-		);
-	}
-
 	private Page<Document> _getDocumentsPage(
 			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
 			Pagination pagination, Sort[] sorts)
@@ -433,7 +414,17 @@ public class DocumentResourceImpl
 					_ratingsStatsLocalService.fetchStats(
 						DLFileEntry.class.getName(),
 						fileEntry.getFileEntryId()));
-				categories = _getCategories(fileEntry);
+				categories = transformToArray(
+					_assetCategoryLocalService.getCategories(
+						DLFileEntry.class.getName(),
+						fileEntry.getFileEntryId()),
+					assetCategory -> new Categories() {
+						{
+							categoryId = assetCategory.getCategoryId();
+							categoryName = assetCategory.getName();
+						}
+					},
+					Categories.class);
 				contentUrl = _dlURLHelper.getPreviewURL(
 					fileEntry, fileVersion, null, "");
 				creator = CreatorUtil.toCreator(_portal, user);
