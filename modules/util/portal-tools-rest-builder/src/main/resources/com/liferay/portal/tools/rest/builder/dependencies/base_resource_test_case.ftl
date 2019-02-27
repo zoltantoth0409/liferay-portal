@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -21,7 +22,7 @@ import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
@@ -154,10 +155,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			private String _${javaMethodSignature.methodName?remove_ending("Page")}Location(${parameters}) {
 				String url = _resourceURL + _toPath("${javaMethodSignature.path}", ${javaMethodSignature.javaParameters[0].parameterName});
 
-				url = HttpUtil.addParameter(url, "filter", filterString);
-				url = HttpUtil.addParameter(url, "page", pagination.getPageNumber());
-				url = HttpUtil.addParameter(url, "pageSize", pagination.getItemsPerPage());
-				url = HttpUtil.addParameter(url, "sort", sortString);
+				url += "?filter=" + URLCodec.encodeURL(filterString);
+				url += "&page=" + pagination.getPageNumber();
+				url += "&pageSize=" + pagination.getItemsPerPage();
+				url += "&sort=" + URLCodec.encodeURL(sortString);
 
 				return url;
 			}
