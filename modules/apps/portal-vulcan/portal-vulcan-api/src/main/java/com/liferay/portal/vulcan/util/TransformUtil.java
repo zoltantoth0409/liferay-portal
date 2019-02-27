@@ -16,6 +16,8 @@ package com.liferay.portal.vulcan.util;
 
 import com.liferay.petra.function.UnsafeFunction;
 
+import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,13 +29,15 @@ public class TransformUtil {
 	public static <T, R> List<R> transform(
 		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction) {
 
-		List<R> newList = new ArrayList<>();
+		List<R> newList = new ArrayList<>(list.size());
 
 		for (T item : list) {
 			try {
 				R newItem = unsafeFunction.apply(item);
 
-				newList.add(newItem);
+				if (newItem != null) {
+					newList.add(newItem);
+				}
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -41,6 +45,45 @@ public class TransformUtil {
 		}
 
 		return newList;
+	}
+
+	public static <T, R> R[] transform(
+		T[] array, UnsafeFunction<T, R, Exception> unsafeFunction,
+		Class<?> clazz) {
+
+		List<R> list = transformToList(array, unsafeFunction);
+
+		return list.toArray((R[])Array.newInstance(clazz, list.size()));
+	}
+
+	public static <T, R> R[] transformToArray(
+		List<T> list, UnsafeFunction<T, R, Exception> unsafeFunction,
+		Class<?> clazz) {
+
+		List<R> newList = transform(list, unsafeFunction);
+
+		return newList.toArray((R[])Array.newInstance(clazz, newList.size()));
+	}
+
+	public static <T, R> List<R> transformToList(
+		T[] array, UnsafeFunction<T, R, Exception> unsafeFunction) {
+
+		List<R> list = new ArrayList<>(array.length);
+
+		for (T item : array) {
+			try {
+				R newItem = unsafeFunction.apply(item);
+
+				if (newItem != null) {
+					list.add(newItem);
+				}
+			}
+			catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+
+		return list;
 	}
 
 }
