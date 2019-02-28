@@ -235,7 +235,6 @@ public class BlogsEntryActionDropdownItemsProvider {
 
 		publishEntryURL.setParameter(
 			ActionRequest.ACTION_NAME, "/blogs/publish_entry");
-
 		publishEntryURL.setParameter("backURL", _getRedirectURL());
 		publishEntryURL.setParameter(
 			"entryId", String.valueOf(_blogsEntry.getEntryId()));
