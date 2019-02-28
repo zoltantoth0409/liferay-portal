@@ -43,7 +43,7 @@ public class SearchUtil {
 		throws Exception {
 
 		BooleanClause<?> booleanClause = _getBooleanClause(
-			filter, booleanQueryConsumer);
+			booleanQueryConsumer, filter);
 
 		return _createSearchContext(
 			booleanClause, pagination, queryConfigConsumer, sorts);
@@ -76,7 +76,7 @@ public class SearchUtil {
 	}
 
 	private static BooleanClause<?> _getBooleanClause(
-			Filter filter, Consumer<BooleanQuery> booleanQueryConsumer)
+			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter)
 		throws Exception {
 
 		BooleanQuery booleanQuery = new BooleanQueryImpl();
