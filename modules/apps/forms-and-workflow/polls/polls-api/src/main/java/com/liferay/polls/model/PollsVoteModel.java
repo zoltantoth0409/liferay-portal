@@ -17,7 +17,6 @@ package com.liferay.polls.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface PollsVoteModel extends BaseModel<PollsVote>, ShardedModel,
-	StagedGroupedModel {
+public interface PollsVoteModel
+	extends BaseModel<PollsVote>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -321,4 +321,5 @@ public interface PollsVoteModel extends BaseModel<PollsVote>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

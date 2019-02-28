@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMStructureLinkPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -63,8 +62,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class DDMStructureLinkLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements DDMStructureLinkLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements DDMStructureLinkLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,6 +81,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public DDMStructureLink addDDMStructureLink(
 		DDMStructureLink ddmStructureLink) {
+
 		ddmStructureLink.setNew(true);
 
 		return ddmStructureLinkPersistence.update(ddmStructureLink);
@@ -109,6 +110,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public DDMStructureLink deleteDDMStructureLink(long structureLinkId)
 		throws PortalException {
+
 		return ddmStructureLinkPersistence.remove(structureLinkId);
 	}
 
@@ -122,6 +124,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public DDMStructureLink deleteDDMStructureLink(
 		DDMStructureLink ddmStructureLink) {
+
 		return ddmStructureLinkPersistence.remove(ddmStructureLink);
 	}
 
@@ -129,8 +132,8 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(DDMStructureLink.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			DDMStructureLink.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -157,10 +160,11 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return ddmStructureLinkPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return ddmStructureLinkPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -177,10 +181,12 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return ddmStructureLinkPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return ddmStructureLinkPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -202,10 +208,11 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return ddmStructureLinkPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return ddmStructureLinkPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -223,14 +230,17 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public DDMStructureLink getDDMStructureLink(long structureLinkId)
 		throws PortalException {
+
 		return ddmStructureLinkPersistence.findByPrimaryKey(structureLinkId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(ddmStructureLinkLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			ddmStructureLinkLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(DDMStructureLink.class);
 
@@ -240,10 +250,14 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(ddmStructureLinkLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			ddmStructureLinkLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(DDMStructureLink.class);
 
@@ -255,7 +269,9 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(ddmStructureLinkLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			ddmStructureLinkLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(DDMStructureLink.class);
 
@@ -268,12 +284,15 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return ddmStructureLinkLocalService.deleteDDMStructureLink((DDMStructureLink)persistedModel);
+
+		return ddmStructureLinkLocalService.deleteDDMStructureLink(
+			(DDMStructureLink)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return ddmStructureLinkPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -313,6 +332,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	@Override
 	public DDMStructureLink updateDDMStructureLink(
 		DDMStructureLink ddmStructureLink) {
+
 		return ddmStructureLinkPersistence.update(ddmStructureLink);
 	}
 
@@ -332,6 +352,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 */
 	public void setDDMStructureLinkLocalService(
 		DDMStructureLinkLocalService ddmStructureLinkLocalService) {
+
 		this.ddmStructureLinkLocalService = ddmStructureLinkLocalService;
 	}
 
@@ -351,6 +372,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 */
 	public void setDDMStructureLinkPersistence(
 		DDMStructureLinkPersistence ddmStructureLinkPersistence) {
+
 		this.ddmStructureLinkPersistence = ddmStructureLinkPersistence;
 	}
 
@@ -359,7 +381,9 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -369,12 +393,15 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.dynamic.data.mapping.model.DDMStructureLink",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.dynamic.data.mapping.model.DDMStructureLink",
 			ddmStructureLinkLocalService);
 	}
 
@@ -415,8 +442,8 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -427,10 +454,18 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 
 	@BeanReference(type = DDMStructureLinkLocalService.class)
 	protected DDMStructureLinkLocalService ddmStructureLinkLocalService;
+
 	@BeanReference(type = DDMStructureLinkPersistence.class)
 	protected DDMStructureLinkPersistence ddmStructureLinkPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

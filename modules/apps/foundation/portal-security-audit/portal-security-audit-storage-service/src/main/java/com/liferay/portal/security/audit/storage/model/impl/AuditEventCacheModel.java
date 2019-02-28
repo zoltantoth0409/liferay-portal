@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class AuditEventCacheModel implements CacheModel<AuditEvent>,
-	Externalizable {
+public class AuditEventCacheModel
+	implements CacheModel<AuditEvent>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -215,8 +216,7 @@ public class AuditEventCacheModel implements CacheModel<AuditEvent>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(auditEventId);
 
 		objectOutput.writeLong(companyId);
@@ -313,4 +313,5 @@ public class AuditEventCacheModel implements CacheModel<AuditEvent>,
 	public int serverPort;
 	public String sessionID;
 	public String additionalInfo;
+
 }

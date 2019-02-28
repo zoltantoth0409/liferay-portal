@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingOrderItem;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class ShoppingOrderItemCacheModel implements CacheModel<ShoppingOrderItem>,
-	Externalizable {
+public class ShoppingOrderItemCacheModel
+	implements CacheModel<ShoppingOrderItem>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class ShoppingOrderItemCacheModel implements CacheModel<ShoppingOrderItem
 			return false;
 		}
 
-		ShoppingOrderItemCacheModel shoppingOrderItemCacheModel = (ShoppingOrderItemCacheModel)obj;
+		ShoppingOrderItemCacheModel shoppingOrderItemCacheModel =
+			(ShoppingOrderItemCacheModel)obj;
 
 		if (orderItemId == shoppingOrderItemCacheModel.orderItemId) {
 			return true;
@@ -95,7 +96,8 @@ public class ShoppingOrderItemCacheModel implements CacheModel<ShoppingOrderItem
 
 	@Override
 	public ShoppingOrderItem toEntityModel() {
-		ShoppingOrderItemImpl shoppingOrderItemImpl = new ShoppingOrderItemImpl();
+		ShoppingOrderItemImpl shoppingOrderItemImpl =
+			new ShoppingOrderItemImpl();
 
 		shoppingOrderItemImpl.setOrderItemId(orderItemId);
 		shoppingOrderItemImpl.setCompanyId(companyId);
@@ -171,8 +173,7 @@ public class ShoppingOrderItemCacheModel implements CacheModel<ShoppingOrderItem
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(orderItemId);
 
 		objectOutput.writeLong(companyId);
@@ -231,4 +232,5 @@ public class ShoppingOrderItemCacheModel implements CacheModel<ShoppingOrderItem
 	public double price;
 	public int quantity;
 	public long shippedDate;
+
 }

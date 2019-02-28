@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -34,7 +33,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
-
 import com.liferay.trash.kernel.model.TrashEntry;
 import com.liferay.trash.kernel.model.TrashEntryModel;
 import com.liferay.trash.kernel.model.TrashEntrySoap;
@@ -66,28 +64,27 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
-	implements TrashEntryModel {
+public class TrashEntryModelImpl
+	extends BaseModelImpl<TrashEntry> implements TrashEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a trash entry model instance should use the <code>TrashEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "TrashEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "entryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "systemEventSetKey", Types.BIGINT },
-			{ "typeSettings", Types.CLOB },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"entryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
+		{"systemEventSetKey", Types.BIGINT}, {"typeSettings", Types.CLOB},
+		{"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("entryId", Types.BIGINT);
@@ -103,26 +100,46 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table TrashEntry (entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,classNameId LONG,classPK LONG,systemEventSetKey LONG,typeSettings TEXT null,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table TrashEntry (entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,classNameId LONG,classPK LONG,systemEventSetKey LONG,typeSettings TEXT null,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table TrashEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY trashEntry.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY TrashEntry.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY trashEntry.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY TrashEntry.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.trash.kernel.model.TrashEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.trash.kernel.model.TrashEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.trash.kernel.model.TrashEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.trash.kernel.model.TrashEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.trash.kernel.model.TrashEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.trash.kernel.model.TrashEntry"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 8L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -173,8 +190,9 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.trash.kernel.model.TrashEntry"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.trash.kernel.model.TrashEntry"));
 
 	public TrashEntryModelImpl() {
 	}
@@ -213,14 +231,18 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<TrashEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((TrashEntry)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((TrashEntry)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -231,35 +253,44 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<TrashEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<TrashEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<TrashEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<TrashEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((TrashEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(TrashEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<TrashEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<TrashEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<TrashEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<TrashEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<TrashEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<TrashEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<TrashEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<TrashEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<TrashEntry, Object>>();
-		Map<String, BiConsumer<TrashEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<TrashEntry, ?>>();
-
+		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<TrashEntry, Object>>();
+		Map<String, BiConsumer<TrashEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<TrashEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"entryId",
@@ -436,7 +467,9 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 			new BiConsumer<TrashEntry, Object>() {
 
 				@Override
-				public void accept(TrashEntry trashEntry, Object systemEventSetKey) {
+				public void accept(
+					TrashEntry trashEntry, Object systemEventSetKey) {
+
 					trashEntry.setSystemEventSetKey((Long)systemEventSetKey);
 				}
 
@@ -482,9 +515,10 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -718,8 +752,8 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			TrashEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), TrashEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -732,8 +766,9 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 	@Override
 	public TrashEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (TrashEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (TrashEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -824,9 +859,11 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 		trashEntryModelImpl._setOriginalCompanyId = false;
 
-		trashEntryModelImpl._originalCreateDate = trashEntryModelImpl._createDate;
+		trashEntryModelImpl._originalCreateDate =
+			trashEntryModelImpl._createDate;
 
-		trashEntryModelImpl._originalClassNameId = trashEntryModelImpl._classNameId;
+		trashEntryModelImpl._originalClassNameId =
+			trashEntryModelImpl._classNameId;
 
 		trashEntryModelImpl._setOriginalClassNameId = false;
 
@@ -887,16 +924,20 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<TrashEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -915,18 +956,22 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<TrashEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -940,10 +985,12 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = TrashEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		TrashEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			TrashEntry.class, ModelWrapper.class
-		};
+		TrashEntry.class, ModelWrapper.class
+	};
+
 	private long _entryId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -966,4 +1013,5 @@ public class TrashEntryModelImpl extends BaseModelImpl<TrashEntry>
 	private int _status;
 	private long _columnBitmask;
 	private TrashEntry _escapedModel;
+
 }

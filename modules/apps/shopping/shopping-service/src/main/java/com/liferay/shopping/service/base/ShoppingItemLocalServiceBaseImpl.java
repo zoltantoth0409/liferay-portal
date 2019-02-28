@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.shopping.model.ShoppingItem;
 import com.liferay.shopping.service.ShoppingItemLocalService;
 import com.liferay.shopping.service.persistence.ShoppingCategoryFinder;
@@ -70,8 +69,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class ShoppingItemLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements ShoppingItemLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements ShoppingItemLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -113,8 +113,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public ShoppingItem deleteShoppingItem(long itemId)
-		throws PortalException {
+	public ShoppingItem deleteShoppingItem(long itemId) throws PortalException {
 		return shoppingItemPersistence.remove(itemId);
 	}
 
@@ -134,8 +133,8 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(ShoppingItem.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			ShoppingItem.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -162,10 +161,11 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return shoppingItemPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return shoppingItemPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -182,10 +182,12 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return shoppingItemPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return shoppingItemPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -207,10 +209,11 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return shoppingItemPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return shoppingItemPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -232,7 +235,8 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(shoppingItemLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -244,10 +248,14 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(shoppingItemLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			shoppingItemLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(ShoppingItem.class);
 
@@ -258,6 +266,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
+
 		actionableDynamicQuery.setBaseLocalService(shoppingItemLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ShoppingItem.class);
@@ -271,12 +280,15 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return shoppingItemLocalService.deleteShoppingItem((ShoppingItem)persistedModel);
+
+		return shoppingItemLocalService.deleteShoppingItem(
+			(ShoppingItem)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return shoppingItemPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -334,6 +346,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingItemLocalService(
 		ShoppingItemLocalService shoppingItemLocalService) {
+
 		this.shoppingItemLocalService = shoppingItemLocalService;
 	}
 
@@ -353,6 +366,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingItemPersistence(
 		ShoppingItemPersistence shoppingItemPersistence) {
+
 		this.shoppingItemPersistence = shoppingItemPersistence;
 	}
 
@@ -379,7 +393,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -389,7 +405,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -398,7 +416,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the image local service
 	 */
-	public com.liferay.portal.kernel.service.ImageLocalService getImageLocalService() {
+	public com.liferay.portal.kernel.service.ImageLocalService
+		getImageLocalService() {
+
 		return imageLocalService;
 	}
 
@@ -409,6 +429,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setImageLocalService(
 		com.liferay.portal.kernel.service.ImageLocalService imageLocalService) {
+
 		this.imageLocalService = imageLocalService;
 	}
 
@@ -435,7 +456,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -445,7 +468,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -454,7 +479,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -465,6 +492,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -491,7 +519,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the shopping category local service
 	 */
-	public com.liferay.shopping.service.ShoppingCategoryLocalService getShoppingCategoryLocalService() {
+	public com.liferay.shopping.service.ShoppingCategoryLocalService
+		getShoppingCategoryLocalService() {
+
 		return shoppingCategoryLocalService;
 	}
 
@@ -501,7 +531,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @param shoppingCategoryLocalService the shopping category local service
 	 */
 	public void setShoppingCategoryLocalService(
-		com.liferay.shopping.service.ShoppingCategoryLocalService shoppingCategoryLocalService) {
+		com.liferay.shopping.service.ShoppingCategoryLocalService
+			shoppingCategoryLocalService) {
+
 		this.shoppingCategoryLocalService = shoppingCategoryLocalService;
 	}
 
@@ -521,6 +553,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingCategoryPersistence(
 		ShoppingCategoryPersistence shoppingCategoryPersistence) {
+
 		this.shoppingCategoryPersistence = shoppingCategoryPersistence;
 	}
 
@@ -540,6 +573,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingCategoryFinder(
 		ShoppingCategoryFinder shoppingCategoryFinder) {
+
 		this.shoppingCategoryFinder = shoppingCategoryFinder;
 	}
 
@@ -548,7 +582,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the shopping item field local service
 	 */
-	public com.liferay.shopping.service.ShoppingItemFieldLocalService getShoppingItemFieldLocalService() {
+	public com.liferay.shopping.service.ShoppingItemFieldLocalService
+		getShoppingItemFieldLocalService() {
+
 		return shoppingItemFieldLocalService;
 	}
 
@@ -558,7 +594,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @param shoppingItemFieldLocalService the shopping item field local service
 	 */
 	public void setShoppingItemFieldLocalService(
-		com.liferay.shopping.service.ShoppingItemFieldLocalService shoppingItemFieldLocalService) {
+		com.liferay.shopping.service.ShoppingItemFieldLocalService
+			shoppingItemFieldLocalService) {
+
 		this.shoppingItemFieldLocalService = shoppingItemFieldLocalService;
 	}
 
@@ -578,6 +616,7 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingItemFieldPersistence(
 		ShoppingItemFieldPersistence shoppingItemFieldPersistence) {
+
 		this.shoppingItemFieldPersistence = shoppingItemFieldPersistence;
 	}
 
@@ -586,7 +625,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 *
 	 * @return the shopping item price local service
 	 */
-	public com.liferay.shopping.service.ShoppingItemPriceLocalService getShoppingItemPriceLocalService() {
+	public com.liferay.shopping.service.ShoppingItemPriceLocalService
+		getShoppingItemPriceLocalService() {
+
 		return shoppingItemPriceLocalService;
 	}
 
@@ -596,7 +637,9 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 * @param shoppingItemPriceLocalService the shopping item price local service
 	 */
 	public void setShoppingItemPriceLocalService(
-		com.liferay.shopping.service.ShoppingItemPriceLocalService shoppingItemPriceLocalService) {
+		com.liferay.shopping.service.ShoppingItemPriceLocalService
+			shoppingItemPriceLocalService) {
+
 		this.shoppingItemPriceLocalService = shoppingItemPriceLocalService;
 	}
 
@@ -616,11 +659,13 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 	 */
 	public void setShoppingItemPricePersistence(
 		ShoppingItemPricePersistence shoppingItemPricePersistence) {
+
 		this.shoppingItemPricePersistence = shoppingItemPricePersistence;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.shopping.model.ShoppingItem",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.shopping.model.ShoppingItem",
 			shoppingItemLocalService);
 	}
 
@@ -661,8 +706,8 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -673,36 +718,75 @@ public abstract class ShoppingItemLocalServiceBaseImpl
 
 	@BeanReference(type = ShoppingItemLocalService.class)
 	protected ShoppingItemLocalService shoppingItemLocalService;
+
 	@BeanReference(type = ShoppingItemPersistence.class)
 	protected ShoppingItemPersistence shoppingItemPersistence;
+
 	@BeanReference(type = ShoppingItemFinder.class)
 	protected ShoppingItemFinder shoppingItemFinder;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ImageLocalService.class)
-	protected com.liferay.portal.kernel.service.ImageLocalService imageLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ImageLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ImageLocalService
+		imageLocalService;
+
 	@ServiceReference(type = ImagePersistence.class)
 	protected ImagePersistence imagePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = com.liferay.shopping.service.ShoppingCategoryLocalService.class)
-	protected com.liferay.shopping.service.ShoppingCategoryLocalService shoppingCategoryLocalService;
+
+	@BeanReference(
+		type = com.liferay.shopping.service.ShoppingCategoryLocalService.class
+	)
+	protected com.liferay.shopping.service.ShoppingCategoryLocalService
+		shoppingCategoryLocalService;
+
 	@BeanReference(type = ShoppingCategoryPersistence.class)
 	protected ShoppingCategoryPersistence shoppingCategoryPersistence;
+
 	@BeanReference(type = ShoppingCategoryFinder.class)
 	protected ShoppingCategoryFinder shoppingCategoryFinder;
-	@BeanReference(type = com.liferay.shopping.service.ShoppingItemFieldLocalService.class)
-	protected com.liferay.shopping.service.ShoppingItemFieldLocalService shoppingItemFieldLocalService;
+
+	@BeanReference(
+		type = com.liferay.shopping.service.ShoppingItemFieldLocalService.class
+	)
+	protected com.liferay.shopping.service.ShoppingItemFieldLocalService
+		shoppingItemFieldLocalService;
+
 	@BeanReference(type = ShoppingItemFieldPersistence.class)
 	protected ShoppingItemFieldPersistence shoppingItemFieldPersistence;
-	@BeanReference(type = com.liferay.shopping.service.ShoppingItemPriceLocalService.class)
-	protected com.liferay.shopping.service.ShoppingItemPriceLocalService shoppingItemPriceLocalService;
+
+	@BeanReference(
+		type = com.liferay.shopping.service.ShoppingItemPriceLocalService.class
+	)
+	protected com.liferay.shopping.service.ShoppingItemPriceLocalService
+		shoppingItemPriceLocalService;
+
 	@BeanReference(type = ShoppingItemPricePersistence.class)
 	protected ShoppingItemPricePersistence shoppingItemPricePersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

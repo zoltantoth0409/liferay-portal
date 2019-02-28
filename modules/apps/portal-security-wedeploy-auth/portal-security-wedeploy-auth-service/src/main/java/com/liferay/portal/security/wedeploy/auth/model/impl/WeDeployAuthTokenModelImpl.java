@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,26 +56,26 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
-	implements WeDeployAuthTokenModel {
+public class WeDeployAuthTokenModelImpl
+	extends BaseModelImpl<WeDeployAuthToken> implements WeDeployAuthTokenModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a we deploy auth token model instance should use the <code>WeDeployAuthToken</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "WeDeployAuth_WeDeployAuthToken";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "weDeployAuthTokenId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "clientId", Types.VARCHAR },
-			{ "token", Types.VARCHAR },
-			{ "type_", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"weDeployAuthTokenId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"clientId", Types.VARCHAR}, {"token", Types.VARCHAR},
+		{"type_", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("weDeployAuthTokenId", Types.BIGINT);
@@ -90,28 +89,50 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 		TABLE_COLUMNS_MAP.put("type_", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table WeDeployAuth_WeDeployAuthToken (weDeployAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,clientId VARCHAR(75) null,token VARCHAR(75) null,type_ INTEGER)";
-	public static final String TABLE_SQL_DROP = "drop table WeDeployAuth_WeDeployAuthToken";
-	public static final String ORDER_BY_JPQL = " ORDER BY weDeployAuthToken.weDeployAuthTokenId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY WeDeployAuth_WeDeployAuthToken.weDeployAuthTokenId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table WeDeployAuth_WeDeployAuthToken (weDeployAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,clientId VARCHAR(75) null,token VARCHAR(75) null,type_ INTEGER)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table WeDeployAuth_WeDeployAuthToken";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY weDeployAuthToken.weDeployAuthTokenId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY WeDeployAuth_WeDeployAuthToken.weDeployAuthTokenId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"),
+		true);
+
 	public static final long CLIENTID_COLUMN_BITMASK = 1L;
+
 	public static final long TOKEN_COLUMN_BITMASK = 2L;
+
 	public static final long TYPE_COLUMN_BITMASK = 4L;
+
 	public static final long WEDEPLOYAUTHTOKENID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.security.wedeploy.auth.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.security.wedeploy.auth.model.WeDeployAuthToken"));
 
 	public WeDeployAuthTokenModelImpl() {
 	}
@@ -150,14 +171,18 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<WeDeployAuthToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WeDeployAuthToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WeDeployAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<WeDeployAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((WeDeployAuthToken)this));
 		}
 
@@ -169,38 +194,47 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<WeDeployAuthToken, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<WeDeployAuthToken, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<WeDeployAuthToken, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<WeDeployAuthToken, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((WeDeployAuthToken)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(WeDeployAuthToken)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<WeDeployAuthToken, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<WeDeployAuthToken, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<WeDeployAuthToken, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<WeDeployAuthToken, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<WeDeployAuthToken, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<WeDeployAuthToken, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<WeDeployAuthToken, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WeDeployAuthToken, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<WeDeployAuthToken, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<WeDeployAuthToken, Object>>();
-		Map<String, BiConsumer<WeDeployAuthToken, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<WeDeployAuthToken, ?>>();
-
+		Map<String, Function<WeDeployAuthToken, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<WeDeployAuthToken, Object>>();
+		Map<String, BiConsumer<WeDeployAuthToken, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<WeDeployAuthToken, ?>>();
 
 		attributeGetterFunctions.put(
 			"weDeployAuthTokenId",
@@ -217,8 +251,12 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object weDeployAuthTokenId) {
-					weDeployAuthToken.setWeDeployAuthTokenId((Long)weDeployAuthTokenId);
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken,
+					Object weDeployAuthTokenId) {
+
+					weDeployAuthToken.setWeDeployAuthTokenId(
+						(Long)weDeployAuthTokenId);
 				}
 
 			});
@@ -237,7 +275,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object companyId) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object companyId) {
+
 					weDeployAuthToken.setCompanyId((Long)companyId);
 				}
 
@@ -257,7 +297,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object userId) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object userId) {
+
 					weDeployAuthToken.setUserId((Long)userId);
 				}
 
@@ -277,7 +319,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object userName) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object userName) {
+
 					weDeployAuthToken.setUserName((String)userName);
 				}
 
@@ -297,7 +341,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object createDate) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object createDate) {
+
 					weDeployAuthToken.setCreateDate((Date)createDate);
 				}
 
@@ -317,7 +363,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object modifiedDate) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object modifiedDate) {
+
 					weDeployAuthToken.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -337,7 +385,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object clientId) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object clientId) {
+
 					weDeployAuthToken.setClientId((String)clientId);
 				}
 
@@ -357,7 +407,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object token) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object token) {
+
 					weDeployAuthToken.setToken((String)token);
 				}
 
@@ -377,15 +429,18 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 			new BiConsumer<WeDeployAuthToken, Object>() {
 
 				@Override
-				public void accept(WeDeployAuthToken weDeployAuthToken, Object type) {
+				public void accept(
+					WeDeployAuthToken weDeployAuthToken, Object type) {
+
 					weDeployAuthToken.setType((Integer)type);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -553,8 +608,8 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			WeDeployAuthToken.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), WeDeployAuthToken.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -567,8 +622,9 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 	@Override
 	public WeDeployAuthToken toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (WeDeployAuthToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (WeDeployAuthToken)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -576,7 +632,8 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public Object clone() {
-		WeDeployAuthTokenImpl weDeployAuthTokenImpl = new WeDeployAuthTokenImpl();
+		WeDeployAuthTokenImpl weDeployAuthTokenImpl =
+			new WeDeployAuthTokenImpl();
 
 		weDeployAuthTokenImpl.setWeDeployAuthTokenId(getWeDeployAuthTokenId());
 		weDeployAuthTokenImpl.setCompanyId(getCompanyId());
@@ -651,11 +708,14 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 		weDeployAuthTokenModelImpl._setModifiedDate = false;
 
-		weDeployAuthTokenModelImpl._originalClientId = weDeployAuthTokenModelImpl._clientId;
+		weDeployAuthTokenModelImpl._originalClientId =
+			weDeployAuthTokenModelImpl._clientId;
 
-		weDeployAuthTokenModelImpl._originalToken = weDeployAuthTokenModelImpl._token;
+		weDeployAuthTokenModelImpl._originalToken =
+			weDeployAuthTokenModelImpl._token;
 
-		weDeployAuthTokenModelImpl._originalType = weDeployAuthTokenModelImpl._type;
+		weDeployAuthTokenModelImpl._originalType =
+			weDeployAuthTokenModelImpl._type;
 
 		weDeployAuthTokenModelImpl._setOriginalType = false;
 
@@ -664,9 +724,11 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public CacheModel<WeDeployAuthToken> toCacheModel() {
-		WeDeployAuthTokenCacheModel weDeployAuthTokenCacheModel = new WeDeployAuthTokenCacheModel();
+		WeDeployAuthTokenCacheModel weDeployAuthTokenCacheModel =
+			new WeDeployAuthTokenCacheModel();
 
-		weDeployAuthTokenCacheModel.weDeployAuthTokenId = getWeDeployAuthTokenId();
+		weDeployAuthTokenCacheModel.weDeployAuthTokenId =
+			getWeDeployAuthTokenId();
 
 		weDeployAuthTokenCacheModel.companyId = getCompanyId();
 
@@ -721,17 +783,20 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public String toString() {
-		Map<String, Function<WeDeployAuthToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WeDeployAuthToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WeDeployAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<WeDeployAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -750,19 +815,22 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<WeDeployAuthToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WeDeployAuthToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WeDeployAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WeDeployAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<WeDeployAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -776,10 +844,12 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = WeDeployAuthToken.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		WeDeployAuthToken.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			WeDeployAuthToken.class, ModelWrapper.class
-		};
+		WeDeployAuthToken.class, ModelWrapper.class
+	};
+
 	private long _weDeployAuthTokenId;
 	private long _companyId;
 	private long _userId;
@@ -796,4 +866,5 @@ public class WeDeployAuthTokenModelImpl extends BaseModelImpl<WeDeployAuthToken>
 	private boolean _setOriginalType;
 	private long _columnBitmask;
 	private WeDeployAuthToken _escapedModel;
+
 }

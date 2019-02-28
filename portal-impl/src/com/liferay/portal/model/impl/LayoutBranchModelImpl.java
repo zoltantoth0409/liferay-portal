@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -61,28 +60,27 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
-	implements LayoutBranchModel {
+public class LayoutBranchModelImpl
+	extends BaseModelImpl<LayoutBranch> implements LayoutBranchModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a layout branch model instance should use the <code>LayoutBranch</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "LayoutBranch";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "layoutBranchId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "layoutSetBranchId", Types.BIGINT },
-			{ "plid", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "master", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"layoutBranchId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"layoutSetBranchId", Types.BIGINT}, {"plid", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"master", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -98,26 +96,46 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 		TABLE_COLUMNS_MAP.put("master", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LayoutBranch (mvccVersion LONG default 0 not null,layoutBranchId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,layoutSetBranchId LONG,plid LONG,name VARCHAR(75) null,description STRING null,master BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table LayoutBranch (mvccVersion LONG default 0 not null,layoutBranchId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,layoutSetBranchId LONG,plid LONG,name VARCHAR(75) null,description STRING null,master BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table LayoutBranch";
-	public static final String ORDER_BY_JPQL = " ORDER BY layoutBranch.layoutBranchId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LayoutBranch.layoutBranchId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY layoutBranch.layoutBranchId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY LayoutBranch.layoutBranchId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.LayoutBranch"),
+		true);
+
 	public static final long LAYOUTSETBRANCHID_COLUMN_BITMASK = 1L;
+
 	public static final long MASTER_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long PLID_COLUMN_BITMASK = 8L;
+
 	public static final long LAYOUTBRANCHID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -159,7 +177,8 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			return null;
 		}
 
-		List<LayoutBranch> models = new ArrayList<LayoutBranch>(soapModels.length);
+		List<LayoutBranch> models = new ArrayList<LayoutBranch>(
+			soapModels.length);
 
 		for (LayoutBranchSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -168,8 +187,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.LayoutBranch"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.LayoutBranch"));
 
 	public LayoutBranchModelImpl() {
 	}
@@ -208,13 +228,18 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<LayoutBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutBranch, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutBranch, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutBranch, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((LayoutBranch)this));
 		}
 
@@ -226,36 +251,44 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<LayoutBranch, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<LayoutBranch, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<LayoutBranch, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<LayoutBranch, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((LayoutBranch)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(LayoutBranch)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<LayoutBranch, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<LayoutBranch, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<LayoutBranch, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<LayoutBranch, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<LayoutBranch, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<LayoutBranch, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<LayoutBranch, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<LayoutBranch, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<LayoutBranch, Object>>();
-		Map<String, BiConsumer<LayoutBranch, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<LayoutBranch, ?>>();
-
+		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<LayoutBranch, Object>>();
+		Map<String, BiConsumer<LayoutBranch, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<LayoutBranch, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -272,7 +305,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object mvccVersion) {
+				public void accept(
+					LayoutBranch layoutBranch, Object mvccVersion) {
+
 					layoutBranch.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -292,7 +327,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object layoutBranchId) {
+				public void accept(
+					LayoutBranch layoutBranch, Object layoutBranchId) {
+
 					layoutBranch.setLayoutBranchId((Long)layoutBranchId);
 				}
 
@@ -332,7 +369,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object companyId) {
+				public void accept(
+					LayoutBranch layoutBranch, Object companyId) {
+
 					layoutBranch.setCompanyId((Long)companyId);
 				}
 
@@ -392,7 +431,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object layoutSetBranchId) {
+				public void accept(
+					LayoutBranch layoutBranch, Object layoutSetBranchId) {
+
 					layoutBranch.setLayoutSetBranchId((Long)layoutSetBranchId);
 				}
 
@@ -452,7 +493,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			new BiConsumer<LayoutBranch, Object>() {
 
 				@Override
-				public void accept(LayoutBranch layoutBranch, Object description) {
+				public void accept(
+					LayoutBranch layoutBranch, Object description) {
+
 					layoutBranch.setDescription((String)description);
 				}
 
@@ -478,9 +521,10 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -693,8 +737,8 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			LayoutBranch.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), LayoutBranch.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -707,8 +751,9 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 	@Override
 	public LayoutBranch toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (LayoutBranch)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (LayoutBranch)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -791,7 +836,8 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 	public void resetOriginalValues() {
 		LayoutBranchModelImpl layoutBranchModelImpl = this;
 
-		layoutBranchModelImpl._originalLayoutSetBranchId = layoutBranchModelImpl._layoutSetBranchId;
+		layoutBranchModelImpl._originalLayoutSetBranchId =
+			layoutBranchModelImpl._layoutSetBranchId;
 
 		layoutBranchModelImpl._setOriginalLayoutSetBranchId = false;
 
@@ -810,7 +856,8 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 	@Override
 	public CacheModel<LayoutBranch> toCacheModel() {
-		LayoutBranchCacheModel layoutBranchCacheModel = new LayoutBranchCacheModel();
+		LayoutBranchCacheModel layoutBranchCacheModel =
+			new LayoutBranchCacheModel();
 
 		layoutBranchCacheModel.mvccVersion = getMvccVersion();
 
@@ -857,16 +904,20 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 	@Override
 	public String toString() {
-		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<LayoutBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutBranch, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutBranch, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutBranch, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -885,18 +936,22 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<LayoutBranch, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<LayoutBranch, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutBranch, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutBranch, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutBranch, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -910,10 +965,12 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = LayoutBranch.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		LayoutBranch.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			LayoutBranch.class, ModelWrapper.class
-		};
+		LayoutBranch.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _layoutBranchId;
 	private long _groupId;
@@ -934,4 +991,5 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 	private boolean _setOriginalMaster;
 	private long _columnBitmask;
 	private LayoutBranch _escapedModel;
+
 }

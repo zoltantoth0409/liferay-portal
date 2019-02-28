@@ -16,7 +16,6 @@ package com.liferay.portlet.asset.service.persistence.impl;
 
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.persistence.AssetVocabularyPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class AssetVocabularyFinderBaseImpl extends BasePersistenceImpl<AssetVocabulary> {
+public class AssetVocabularyFinderBaseImpl
+	extends BasePersistenceImpl<AssetVocabulary> {
+
 	public AssetVocabularyFinderBaseImpl() {
 		setModelClass(AssetVocabulary.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -77,10 +78,14 @@ public class AssetVocabularyFinderBaseImpl extends BasePersistenceImpl<AssetVoca
 	 */
 	public void setAssetVocabularyPersistence(
 		AssetVocabularyPersistence assetVocabularyPersistence) {
+
 		this.assetVocabularyPersistence = assetVocabularyPersistence;
 	}
 
 	@BeanReference(type = AssetVocabularyPersistence.class)
 	protected AssetVocabularyPersistence assetVocabularyPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(AssetVocabularyFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetVocabularyFinderBaseImpl.class);
+
 }

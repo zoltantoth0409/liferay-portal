@@ -50,22 +50,24 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
-	implements OrgGroupRoleModel {
+public class OrgGroupRoleModelImpl
+	extends BaseModelImpl<OrgGroupRole> implements OrgGroupRoleModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a org group role model instance should use the <code>OrgGroupRole</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "OrgGroupRole";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "organizationId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "roleId", Types.BIGINT },
-			{ "companyId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"organizationId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"roleId", Types.BIGINT},
+		{"companyId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -75,27 +77,47 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OrgGroupRole (mvccVersion LONG default 0 not null,organizationId LONG not null,groupId LONG not null,roleId LONG not null,companyId LONG,primary key (organizationId, groupId, roleId))";
+	public static final String TABLE_SQL_CREATE =
+		"create table OrgGroupRole (mvccVersion LONG default 0 not null,organizationId LONG not null,groupId LONG not null,roleId LONG not null,companyId LONG,primary key (organizationId, groupId, roleId))";
+
 	public static final String TABLE_SQL_DROP = "drop table OrgGroupRole";
-	public static final String ORDER_BY_JPQL = " ORDER BY orgGroupRole.id.organizationId ASC, orgGroupRole.id.groupId ASC, orgGroupRole.id.roleId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY OrgGroupRole.organizationId ASC, OrgGroupRole.groupId ASC, OrgGroupRole.roleId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY orgGroupRole.id.organizationId ASC, orgGroupRole.id.groupId ASC, orgGroupRole.id.roleId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY OrgGroupRole.organizationId ASC, OrgGroupRole.groupId ASC, OrgGroupRole.roleId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.OrgGroupRole"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long ROLEID_COLUMN_BITMASK = 2L;
+
 	public static final long ORGANIZATIONID_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.OrgGroupRole"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.OrgGroupRole"));
 
 	public OrgGroupRoleModelImpl() {
 	}
@@ -136,13 +158,18 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgGroupRole, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((OrgGroupRole)this));
 		}
 
@@ -154,36 +181,44 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<OrgGroupRole, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<OrgGroupRole, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<OrgGroupRole, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<OrgGroupRole, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((OrgGroupRole)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(OrgGroupRole)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<OrgGroupRole, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<OrgGroupRole, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<OrgGroupRole, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<OrgGroupRole, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<OrgGroupRole, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<OrgGroupRole, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<OrgGroupRole, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<OrgGroupRole, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<OrgGroupRole, Object>>();
-		Map<String, BiConsumer<OrgGroupRole, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<OrgGroupRole, ?>>();
-
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<OrgGroupRole, Object>>();
+		Map<String, BiConsumer<OrgGroupRole, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<OrgGroupRole, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -200,7 +235,9 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 			new BiConsumer<OrgGroupRole, Object>() {
 
 				@Override
-				public void accept(OrgGroupRole orgGroupRole, Object mvccVersion) {
+				public void accept(
+					OrgGroupRole orgGroupRole, Object mvccVersion) {
+
 					orgGroupRole.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -220,7 +257,9 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 			new BiConsumer<OrgGroupRole, Object>() {
 
 				@Override
-				public void accept(OrgGroupRole orgGroupRole, Object organizationId) {
+				public void accept(
+					OrgGroupRole orgGroupRole, Object organizationId) {
+
 					orgGroupRole.setOrganizationId((Long)organizationId);
 				}
 
@@ -280,15 +319,18 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 			new BiConsumer<OrgGroupRole, Object>() {
 
 				@Override
-				public void accept(OrgGroupRole orgGroupRole, Object companyId) {
+				public void accept(
+					OrgGroupRole orgGroupRole, Object companyId) {
+
 					orgGroupRole.setCompanyId((Long)companyId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -372,8 +414,9 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 	@Override
 	public OrgGroupRole toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (OrgGroupRole)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (OrgGroupRole)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -455,7 +498,8 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public CacheModel<OrgGroupRole> toCacheModel() {
-		OrgGroupRoleCacheModel orgGroupRoleCacheModel = new OrgGroupRoleCacheModel();
+		OrgGroupRoleCacheModel orgGroupRoleCacheModel =
+			new OrgGroupRoleCacheModel();
 
 		orgGroupRoleCacheModel.orgGroupRolePK = getPrimaryKey();
 
@@ -474,16 +518,20 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public String toString() {
-		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgGroupRole, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -502,18 +550,22 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgGroupRole, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgGroupRole, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgGroupRole, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgGroupRole, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -527,10 +579,12 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = OrgGroupRole.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		OrgGroupRole.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			OrgGroupRole.class, ModelWrapper.class
-		};
+		OrgGroupRole.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _organizationId;
 	private long _groupId;
@@ -542,4 +596,5 @@ public class OrgGroupRoleModelImpl extends BaseModelImpl<OrgGroupRole>
 	private long _companyId;
 	private long _columnBitmask;
 	private OrgGroupRole _escapedModel;
+
 }

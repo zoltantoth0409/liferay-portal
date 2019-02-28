@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.social.networking.model.MeetupsEntry;
 import com.liferay.social.networking.model.MeetupsEntryModel;
 
@@ -59,31 +57,28 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
-	implements MeetupsEntryModel {
+public class MeetupsEntryModelImpl
+	extends BaseModelImpl<MeetupsEntry> implements MeetupsEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a meetups entry model instance should use the <code>MeetupsEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SN_MeetupsEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "meetupsEntryId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "title", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
-			{ "totalAttendees", Types.INTEGER },
-			{ "maxAttendees", Types.INTEGER },
-			{ "price", Types.DOUBLE },
-			{ "thumbnailId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"meetupsEntryId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"title", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"startDate", Types.TIMESTAMP}, {"endDate", Types.TIMESTAMP},
+		{"totalAttendees", Types.INTEGER}, {"maxAttendees", Types.INTEGER},
+		{"price", Types.DOUBLE}, {"thumbnailId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("meetupsEntryId", Types.BIGINT);
@@ -102,27 +97,47 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		TABLE_COLUMNS_MAP.put("thumbnailId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SN_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE,thumbnailId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SN_MeetupsEntry (meetupsEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,description VARCHAR(75) null,startDate DATE null,endDate DATE null,totalAttendees INTEGER,maxAttendees INTEGER,price DOUBLE,thumbnailId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table SN_MeetupsEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY meetupsEntry.startDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY SN_MeetupsEntry.startDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY meetupsEntry.startDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SN_MeetupsEntry.startDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.social.networking.model.MeetupsEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.social.networking.model.MeetupsEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.social.networking.model.MeetupsEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.social.networking.model.MeetupsEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.social.networking.model.MeetupsEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.social.networking.model.MeetupsEntry"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long USERID_COLUMN_BITMASK = 2L;
+
 	public static final long STARTDATE_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.social.networking.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.social.networking.model.MeetupsEntry"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.social.networking.model.MeetupsEntry"));
 
 	public MeetupsEntryModelImpl() {
 	}
@@ -161,13 +176,18 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MeetupsEntry)this));
 		}
 
@@ -179,36 +199,44 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MeetupsEntry, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MeetupsEntry, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MeetupsEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MeetupsEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MeetupsEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MeetupsEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MeetupsEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MeetupsEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MeetupsEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MeetupsEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MeetupsEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MeetupsEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MeetupsEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MeetupsEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MeetupsEntry, Object>>();
-		Map<String, BiConsumer<MeetupsEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MeetupsEntry, ?>>();
-
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MeetupsEntry, Object>>();
+		Map<String, BiConsumer<MeetupsEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MeetupsEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"meetupsEntryId",
@@ -225,7 +253,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object meetupsEntryId) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object meetupsEntryId) {
+
 					meetupsEntry.setMeetupsEntryId((Long)meetupsEntryId);
 				}
 
@@ -245,7 +275,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object companyId) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object companyId) {
+
 					meetupsEntry.setCompanyId((Long)companyId);
 				}
 
@@ -305,7 +337,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object createDate) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object createDate) {
+
 					meetupsEntry.setCreateDate((Date)createDate);
 				}
 
@@ -325,7 +359,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object modifiedDate) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object modifiedDate) {
+
 					meetupsEntry.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -365,7 +401,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object description) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object description) {
+
 					meetupsEntry.setDescription((String)description);
 				}
 
@@ -385,7 +423,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object startDate) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object startDate) {
+
 					meetupsEntry.setStartDate((Date)startDate);
 				}
 
@@ -425,7 +465,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object totalAttendees) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object totalAttendees) {
+
 					meetupsEntry.setTotalAttendees((Integer)totalAttendees);
 				}
 
@@ -445,7 +487,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object maxAttendees) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object maxAttendees) {
+
 					meetupsEntry.setMaxAttendees((Integer)maxAttendees);
 				}
 
@@ -485,15 +529,18 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 			new BiConsumer<MeetupsEntry, Object>() {
 
 				@Override
-				public void accept(MeetupsEntry meetupsEntry, Object thumbnailId) {
+				public void accept(
+					MeetupsEntry meetupsEntry, Object thumbnailId) {
+
 					meetupsEntry.setThumbnailId((Long)thumbnailId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -705,8 +752,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MeetupsEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MeetupsEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -719,8 +766,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	@Override
 	public MeetupsEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MeetupsEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MeetupsEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -806,7 +854,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	public void resetOriginalValues() {
 		MeetupsEntryModelImpl meetupsEntryModelImpl = this;
 
-		meetupsEntryModelImpl._originalCompanyId = meetupsEntryModelImpl._companyId;
+		meetupsEntryModelImpl._originalCompanyId =
+			meetupsEntryModelImpl._companyId;
 
 		meetupsEntryModelImpl._setOriginalCompanyId = false;
 
@@ -821,7 +870,8 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public CacheModel<MeetupsEntry> toCacheModel() {
-		MeetupsEntryCacheModel meetupsEntryCacheModel = new MeetupsEntryCacheModel();
+		MeetupsEntryCacheModel meetupsEntryCacheModel =
+			new MeetupsEntryCacheModel();
 
 		meetupsEntryCacheModel.meetupsEntryId = getMeetupsEntryId();
 
@@ -902,16 +952,20 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -930,18 +984,22 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MeetupsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -955,10 +1013,12 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MeetupsEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MeetupsEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MeetupsEntry.class, ModelWrapper.class
-		};
+		MeetupsEntry.class, ModelWrapper.class
+	};
+
 	private long _meetupsEntryId;
 	private long _companyId;
 	private long _originalCompanyId;
@@ -980,4 +1040,5 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	private long _thumbnailId;
 	private long _columnBitmask;
 	private MeetupsEntry _escapedModel;
+
 }

@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingCoupon;
 import com.liferay.shopping.model.ShoppingCouponModel;
 import com.liferay.shopping.model.ShoppingCouponSoap;
@@ -64,35 +62,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
-	implements ShoppingCouponModel {
+public class ShoppingCouponModelImpl
+	extends BaseModelImpl<ShoppingCoupon> implements ShoppingCouponModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a shopping coupon model instance should use the <code>ShoppingCoupon</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ShoppingCoupon";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "couponId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "code_", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
-			{ "active_", Types.BOOLEAN },
-			{ "limitCategories", Types.VARCHAR },
-			{ "limitSkus", Types.VARCHAR },
-			{ "minOrder", Types.DOUBLE },
-			{ "discount", Types.DOUBLE },
-			{ "discountType", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"couponId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"code_", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"startDate", Types.TIMESTAMP}, {"endDate", Types.TIMESTAMP},
+		{"active_", Types.BOOLEAN}, {"limitCategories", Types.VARCHAR},
+		{"limitSkus", Types.VARCHAR}, {"minOrder", Types.DOUBLE},
+		{"discount", Types.DOUBLE}, {"discountType", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("couponId", Types.BIGINT);
@@ -115,24 +108,42 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 		TABLE_COLUMNS_MAP.put("discountType", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ShoppingCoupon (couponId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,code_ VARCHAR(75) null,name VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,active_ BOOLEAN,limitCategories STRING null,limitSkus STRING null,minOrder DOUBLE,discount DOUBLE,discountType VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table ShoppingCoupon (couponId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,code_ VARCHAR(75) null,name VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,active_ BOOLEAN,limitCategories STRING null,limitSkus STRING null,minOrder DOUBLE,discount DOUBLE,discountType VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table ShoppingCoupon";
-	public static final String ORDER_BY_JPQL = " ORDER BY shoppingCoupon.createDate ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ShoppingCoupon.createDate ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY shoppingCoupon.createDate ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ShoppingCoupon.createDate ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingCoupon"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingCoupon"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingCoupon"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingCoupon"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingCoupon"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingCoupon"),
+		true);
+
 	public static final long CODE_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 4L;
 
 	/**
@@ -176,12 +187,15 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	 * @param soapModels the soap model instances to convert
 	 * @return the normal model instances
 	 */
-	public static List<ShoppingCoupon> toModels(ShoppingCouponSoap[] soapModels) {
+	public static List<ShoppingCoupon> toModels(
+		ShoppingCouponSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<ShoppingCoupon> models = new ArrayList<ShoppingCoupon>(soapModels.length);
+		List<ShoppingCoupon> models = new ArrayList<ShoppingCoupon>(
+			soapModels.length);
 
 		for (ShoppingCouponSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -190,8 +204,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.shopping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.shopping.model.ShoppingCoupon"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.shopping.model.ShoppingCoupon"));
 
 	public ShoppingCouponModelImpl() {
 	}
@@ -230,13 +245,18 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCoupon, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCoupon, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ShoppingCoupon)this));
 		}
 
@@ -248,36 +268,44 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ShoppingCoupon, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ShoppingCoupon, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ShoppingCoupon, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ShoppingCoupon, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ShoppingCoupon)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ShoppingCoupon)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ShoppingCoupon, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ShoppingCoupon, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ShoppingCoupon, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ShoppingCoupon, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ShoppingCoupon, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ShoppingCoupon, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ShoppingCoupon, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingCoupon, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ShoppingCoupon, Object>>();
-		Map<String, BiConsumer<ShoppingCoupon, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ShoppingCoupon, ?>>();
-
+		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ShoppingCoupon, Object>>();
+		Map<String, BiConsumer<ShoppingCoupon, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ShoppingCoupon, ?>>();
 
 		attributeGetterFunctions.put(
 			"couponId",
@@ -294,7 +322,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object couponId) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object couponId) {
+
 					shoppingCoupon.setCouponId((Long)couponId);
 				}
 
@@ -314,7 +344,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object groupId) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object groupId) {
+
 					shoppingCoupon.setGroupId((Long)groupId);
 				}
 
@@ -334,7 +366,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object companyId) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object companyId) {
+
 					shoppingCoupon.setCompanyId((Long)companyId);
 				}
 
@@ -354,7 +388,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object userId) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object userId) {
+
 					shoppingCoupon.setUserId((Long)userId);
 				}
 
@@ -374,7 +410,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object userName) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object userName) {
+
 					shoppingCoupon.setUserName((String)userName);
 				}
 
@@ -394,7 +432,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object createDate) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object createDate) {
+
 					shoppingCoupon.setCreateDate((Date)createDate);
 				}
 
@@ -414,7 +454,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object modifiedDate) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object modifiedDate) {
+
 					shoppingCoupon.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -474,7 +516,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object description) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object description) {
+
 					shoppingCoupon.setDescription((String)description);
 				}
 
@@ -494,7 +538,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object startDate) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object startDate) {
+
 					shoppingCoupon.setStartDate((Date)startDate);
 				}
 
@@ -514,7 +560,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object endDate) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object endDate) {
+
 					shoppingCoupon.setEndDate((Date)endDate);
 				}
 
@@ -534,7 +582,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object active) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object active) {
+
 					shoppingCoupon.setActive((Boolean)active);
 				}
 
@@ -554,7 +604,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object limitCategories) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object limitCategories) {
+
 					shoppingCoupon.setLimitCategories((String)limitCategories);
 				}
 
@@ -574,7 +626,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object limitSkus) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object limitSkus) {
+
 					shoppingCoupon.setLimitSkus((String)limitSkus);
 				}
 
@@ -594,7 +648,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object minOrder) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object minOrder) {
+
 					shoppingCoupon.setMinOrder((Double)minOrder);
 				}
 
@@ -614,7 +670,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object discount) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object discount) {
+
 					shoppingCoupon.setDiscount((Double)discount);
 				}
 
@@ -634,15 +692,18 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			new BiConsumer<ShoppingCoupon, Object>() {
 
 				@Override
-				public void accept(ShoppingCoupon shoppingCoupon, Object discountType) {
+				public void accept(
+					ShoppingCoupon shoppingCoupon, Object discountType) {
+
 					shoppingCoupon.setDiscountType((String)discountType);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -936,8 +997,8 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ShoppingCoupon.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ShoppingCoupon.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -950,8 +1011,9 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	@Override
 	public ShoppingCoupon toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingCoupon)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ShoppingCoupon)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -989,8 +1051,8 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	public int compareTo(ShoppingCoupon shoppingCoupon) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				shoppingCoupon.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), shoppingCoupon.getCreateDate());
 
 		if (value != 0) {
 			return value;
@@ -1040,7 +1102,8 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	public void resetOriginalValues() {
 		ShoppingCouponModelImpl shoppingCouponModelImpl = this;
 
-		shoppingCouponModelImpl._originalGroupId = shoppingCouponModelImpl._groupId;
+		shoppingCouponModelImpl._originalGroupId =
+			shoppingCouponModelImpl._groupId;
 
 		shoppingCouponModelImpl._setOriginalGroupId = false;
 
@@ -1053,7 +1116,8 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 
 	@Override
 	public CacheModel<ShoppingCoupon> toCacheModel() {
-		ShoppingCouponCacheModel shoppingCouponCacheModel = new ShoppingCouponCacheModel();
+		ShoppingCouponCacheModel shoppingCouponCacheModel =
+			new ShoppingCouponCacheModel();
 
 		shoppingCouponCacheModel.couponId = getCouponId();
 
@@ -1166,16 +1230,20 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 
 	@Override
 	public String toString() {
-		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCoupon, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCoupon, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1194,18 +1262,22 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCoupon, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCoupon, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCoupon, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCoupon, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1219,10 +1291,12 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ShoppingCoupon.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ShoppingCoupon.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ShoppingCoupon.class, ModelWrapper.class
-		};
+		ShoppingCoupon.class, ModelWrapper.class
+	};
+
 	private long _couponId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -1247,4 +1321,5 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 	private String _discountType;
 	private long _columnBitmask;
 	private ShoppingCoupon _escapedModel;
+
 }

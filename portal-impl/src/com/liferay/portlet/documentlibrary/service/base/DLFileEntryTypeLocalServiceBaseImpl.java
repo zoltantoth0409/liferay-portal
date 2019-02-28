@@ -17,7 +17,6 @@ package com.liferay.portlet.documentlibrary.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.document.library.kernel.model.DLFileEntryType;
 import com.liferay.document.library.kernel.service.DLFileEntryTypeLocalService;
 import com.liferay.document.library.kernel.service.persistence.DLFileEntryFinder;
@@ -27,13 +26,11 @@ import com.liferay.document.library.kernel.service.persistence.DLFileEntryTypePe
 import com.liferay.document.library.kernel.service.persistence.DLFileVersionPersistence;
 import com.liferay.document.library.kernel.service.persistence.DLFolderFinder;
 import com.liferay.document.library.kernel.service.persistence.DLFolderPersistence;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -82,8 +79,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class DLFileEntryTypeLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements DLFileEntryTypeLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements DLFileEntryTypeLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -127,6 +125,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public DLFileEntryType deleteDLFileEntryType(long fileEntryTypeId)
 		throws PortalException {
+
 		return dlFileEntryTypePersistence.remove(fileEntryTypeId);
 	}
 
@@ -140,6 +139,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public DLFileEntryType deleteDLFileEntryType(
 		DLFileEntryType dlFileEntryType) {
+
 		return dlFileEntryTypePersistence.remove(dlFileEntryType);
 	}
 
@@ -147,8 +147,8 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(DLFileEntryType.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			DLFileEntryType.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -175,10 +175,11 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return dlFileEntryTypePersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return dlFileEntryTypePersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -195,10 +196,12 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return dlFileEntryTypePersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return dlFileEntryTypePersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -220,10 +223,11 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return dlFileEntryTypePersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return dlFileEntryTypePersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -239,8 +243,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @return the matching document library file entry type, or <code>null</code> if a matching document library file entry type could not be found
 	 */
 	@Override
-	public DLFileEntryType fetchDLFileEntryTypeByUuidAndGroupId(String uuid,
-		long groupId) {
+	public DLFileEntryType fetchDLFileEntryTypeByUuidAndGroupId(
+		String uuid, long groupId) {
+
 		return dlFileEntryTypePersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -254,12 +259,14 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public DLFileEntryType getDLFileEntryType(long fileEntryTypeId)
 		throws PortalException {
+
 		return dlFileEntryTypePersistence.findByPrimaryKey(fileEntryTypeId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(dlFileEntryTypeLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -271,10 +278,14 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(dlFileEntryTypeLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			dlFileEntryTypeLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(DLFileEntryType.class);
 
@@ -286,6 +297,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
+
 		actionableDynamicQuery.setBaseLocalService(dlFileEntryTypeLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(DLFileEntryType.class);
@@ -296,51 +308,67 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		final PortletDataContext portletDataContext) {
-		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+
+		final ExportActionableDynamicQuery exportActionableDynamicQuery =
+			new ExportActionableDynamicQuery() {
+
 				@Override
 				public long performCount() throws PortalException {
-					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+					ManifestSummary manifestSummary =
+						portletDataContext.getManifestSummary();
 
 					StagedModelType stagedModelType = getStagedModelType();
 
 					long modelAdditionCount = super.performCount();
 
-					manifestSummary.addModelAdditionCount(stagedModelType,
-						modelAdditionCount);
+					manifestSummary.addModelAdditionCount(
+						stagedModelType, modelAdditionCount);
 
-					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
-							stagedModelType);
+					long modelDeletionCount =
+						ExportImportHelperUtil.getModelDeletionCount(
+							portletDataContext, stagedModelType);
 
-					manifestSummary.addModelDeletionCount(stagedModelType,
-						modelDeletionCount);
+					manifestSummary.addModelDeletionCount(
+						stagedModelType, modelDeletionCount);
 
 					return modelAdditionCount;
 				}
+
 			};
 
 		initActionableDynamicQuery(exportActionableDynamicQuery);
 
-		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+		exportActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					portletDataContext.addDateRangeCriteria(dynamicQuery,
-						"modifiedDate");
+					portletDataContext.addDateRangeCriteria(
+						dynamicQuery, "modifiedDate");
 				}
+
 			});
 
-		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+		exportActionableDynamicQuery.setCompanyId(
+			portletDataContext.getCompanyId());
 
-		exportActionableDynamicQuery.setGroupId(portletDataContext.getScopeGroupId());
+		exportActionableDynamicQuery.setGroupId(
+			portletDataContext.getScopeGroupId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<DLFileEntryType>() {
+		exportActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<DLFileEntryType>() {
+
 				@Override
 				public void performAction(DLFileEntryType dlFileEntryType)
 					throws PortalException {
-					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						dlFileEntryType);
+
+					StagedModelDataHandlerUtil.exportStagedModel(
+						portletDataContext, dlFileEntryType);
 				}
+
 			});
-		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
+		exportActionableDynamicQuery.setStagedModelType(
+			new StagedModelType(
 				PortalUtil.getClassNameId(DLFileEntryType.class.getName())));
 
 		return exportActionableDynamicQuery;
@@ -352,12 +380,15 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return dlFileEntryTypeLocalService.deleteDLFileEntryType((DLFileEntryType)persistedModel);
+
+		return dlFileEntryTypeLocalService.deleteDLFileEntryType(
+			(DLFileEntryType)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return dlFileEntryTypePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -371,6 +402,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public List<DLFileEntryType> getDLFileEntryTypesByUuidAndCompanyId(
 		String uuid, long companyId) {
+
 		return dlFileEntryTypePersistence.findByUuid_C(uuid, companyId);
 	}
 
@@ -388,8 +420,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	public List<DLFileEntryType> getDLFileEntryTypesByUuidAndCompanyId(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<DLFileEntryType> orderByComparator) {
-		return dlFileEntryTypePersistence.findByUuid_C(uuid, companyId, start,
-			end, orderByComparator);
+
+		return dlFileEntryTypePersistence.findByUuid_C(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -401,8 +434,10 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @throws PortalException if a matching document library file entry type could not be found
 	 */
 	@Override
-	public DLFileEntryType getDLFileEntryTypeByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException {
+	public DLFileEntryType getDLFileEntryTypeByUuidAndGroupId(
+			String uuid, long groupId)
+		throws PortalException {
+
 		return dlFileEntryTypePersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -442,37 +477,43 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	@Override
 	public DLFileEntryType updateDLFileEntryType(
 		DLFileEntryType dlFileEntryType) {
+
 		return dlFileEntryTypePersistence.update(dlFileEntryType);
 	}
 
 	/**
 	 */
 	@Override
-	public void addDLFolderDLFileEntryType(long folderId, long fileEntryTypeId) {
+	public void addDLFolderDLFileEntryType(
+		long folderId, long fileEntryTypeId) {
+
 		dlFolderPersistence.addDLFileEntryType(folderId, fileEntryTypeId);
 	}
 
 	/**
 	 */
 	@Override
-	public void addDLFolderDLFileEntryType(long folderId,
-		DLFileEntryType dlFileEntryType) {
+	public void addDLFolderDLFileEntryType(
+		long folderId, DLFileEntryType dlFileEntryType) {
+
 		dlFolderPersistence.addDLFileEntryType(folderId, dlFileEntryType);
 	}
 
 	/**
 	 */
 	@Override
-	public void addDLFolderDLFileEntryTypes(long folderId,
-		long[] fileEntryTypeIds) {
+	public void addDLFolderDLFileEntryTypes(
+		long folderId, long[] fileEntryTypeIds) {
+
 		dlFolderPersistence.addDLFileEntryTypes(folderId, fileEntryTypeIds);
 	}
 
 	/**
 	 */
 	@Override
-	public void addDLFolderDLFileEntryTypes(long folderId,
-		List<DLFileEntryType> dlFileEntryTypes) {
+	public void addDLFolderDLFileEntryTypes(
+		long folderId, List<DLFileEntryType> dlFileEntryTypes) {
+
 		dlFolderPersistence.addDLFileEntryTypes(folderId, dlFileEntryTypes);
 	}
 
@@ -486,32 +527,36 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	/**
 	 */
 	@Override
-	public void deleteDLFolderDLFileEntryType(long folderId,
-		long fileEntryTypeId) {
+	public void deleteDLFolderDLFileEntryType(
+		long folderId, long fileEntryTypeId) {
+
 		dlFolderPersistence.removeDLFileEntryType(folderId, fileEntryTypeId);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteDLFolderDLFileEntryType(long folderId,
-		DLFileEntryType dlFileEntryType) {
+	public void deleteDLFolderDLFileEntryType(
+		long folderId, DLFileEntryType dlFileEntryType) {
+
 		dlFolderPersistence.removeDLFileEntryType(folderId, dlFileEntryType);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteDLFolderDLFileEntryTypes(long folderId,
-		long[] fileEntryTypeIds) {
+	public void deleteDLFolderDLFileEntryTypes(
+		long folderId, long[] fileEntryTypeIds) {
+
 		dlFolderPersistence.removeDLFileEntryTypes(folderId, fileEntryTypeIds);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteDLFolderDLFileEntryTypes(long folderId,
-		List<DLFileEntryType> dlFileEntryTypes) {
+	public void deleteDLFolderDLFileEntryTypes(
+		long folderId, List<DLFileEntryType> dlFileEntryTypes) {
+
 		dlFolderPersistence.removeDLFileEntryTypes(folderId, dlFileEntryTypes);
 	}
 
@@ -523,7 +568,8 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	@Override
 	public long[] getDLFolderPrimaryKeys(long fileEntryTypeId) {
-		return dlFileEntryTypePersistence.getDLFolderPrimaryKeys(fileEntryTypeId);
+		return dlFileEntryTypePersistence.getDLFolderPrimaryKeys(
+			fileEntryTypeId);
 	}
 
 	/**
@@ -536,18 +582,21 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	/**
 	 */
 	@Override
-	public List<DLFileEntryType> getDLFolderDLFileEntryTypes(long folderId,
-		int start, int end) {
+	public List<DLFileEntryType> getDLFolderDLFileEntryTypes(
+		long folderId, int start, int end) {
+
 		return dlFolderPersistence.getDLFileEntryTypes(folderId, start, end);
 	}
 
 	/**
 	 */
 	@Override
-	public List<DLFileEntryType> getDLFolderDLFileEntryTypes(long folderId,
-		int start, int end, OrderByComparator<DLFileEntryType> orderByComparator) {
-		return dlFolderPersistence.getDLFileEntryTypes(folderId, start, end,
-			orderByComparator);
+	public List<DLFileEntryType> getDLFolderDLFileEntryTypes(
+		long folderId, int start, int end,
+		OrderByComparator<DLFileEntryType> orderByComparator) {
+
+		return dlFolderPersistence.getDLFileEntryTypes(
+			folderId, start, end, orderByComparator);
 	}
 
 	/**
@@ -560,10 +609,11 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	/**
 	 */
 	@Override
-	public boolean hasDLFolderDLFileEntryType(long folderId,
-		long fileEntryTypeId) {
-		return dlFolderPersistence.containsDLFileEntryType(folderId,
-			fileEntryTypeId);
+	public boolean hasDLFolderDLFileEntryType(
+		long folderId, long fileEntryTypeId) {
+
+		return dlFolderPersistence.containsDLFileEntryType(
+			folderId, fileEntryTypeId);
 	}
 
 	/**
@@ -576,8 +626,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	/**
 	 */
 	@Override
-	public void setDLFolderDLFileEntryTypes(long folderId,
-		long[] fileEntryTypeIds) {
+	public void setDLFolderDLFileEntryTypes(
+		long folderId, long[] fileEntryTypeIds) {
+
 		dlFolderPersistence.setDLFileEntryTypes(folderId, fileEntryTypeIds);
 	}
 
@@ -597,6 +648,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setDLFileEntryTypeLocalService(
 		DLFileEntryTypeLocalService dlFileEntryTypeLocalService) {
+
 		this.dlFileEntryTypeLocalService = dlFileEntryTypeLocalService;
 	}
 
@@ -616,6 +668,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setDLFileEntryTypePersistence(
 		DLFileEntryTypePersistence dlFileEntryTypePersistence) {
+
 		this.dlFileEntryTypePersistence = dlFileEntryTypePersistence;
 	}
 
@@ -635,6 +688,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setDLFileEntryTypeFinder(
 		DLFileEntryTypeFinder dlFileEntryTypeFinder) {
+
 		this.dlFileEntryTypeFinder = dlFileEntryTypeFinder;
 	}
 
@@ -643,7 +697,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -653,7 +709,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -680,7 +738,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -690,7 +750,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -710,6 +772,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -718,7 +781,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -728,7 +793,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -737,7 +804,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -748,6 +817,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -792,7 +862,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the workflow definition link local service
 	 */
-	public com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService getWorkflowDefinitionLinkLocalService() {
+	public com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService
+		getWorkflowDefinitionLinkLocalService() {
+
 		return workflowDefinitionLinkLocalService;
 	}
 
@@ -802,8 +874,11 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param workflowDefinitionLinkLocalService the workflow definition link local service
 	 */
 	public void setWorkflowDefinitionLinkLocalService(
-		com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService workflowDefinitionLinkLocalService) {
-		this.workflowDefinitionLinkLocalService = workflowDefinitionLinkLocalService;
+		com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService
+			workflowDefinitionLinkLocalService) {
+
+		this.workflowDefinitionLinkLocalService =
+			workflowDefinitionLinkLocalService;
 	}
 
 	/**
@@ -811,7 +886,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the workflow definition link persistence
 	 */
-	public WorkflowDefinitionLinkPersistence getWorkflowDefinitionLinkPersistence() {
+	public WorkflowDefinitionLinkPersistence
+		getWorkflowDefinitionLinkPersistence() {
+
 		return workflowDefinitionLinkPersistence;
 	}
 
@@ -822,7 +899,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setWorkflowDefinitionLinkPersistence(
 		WorkflowDefinitionLinkPersistence workflowDefinitionLinkPersistence) {
-		this.workflowDefinitionLinkPersistence = workflowDefinitionLinkPersistence;
+
+		this.workflowDefinitionLinkPersistence =
+			workflowDefinitionLinkPersistence;
 	}
 
 	/**
@@ -830,7 +909,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the workflow instance link local service
 	 */
-	public com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService getWorkflowInstanceLinkLocalService() {
+	public com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService
+		getWorkflowInstanceLinkLocalService() {
+
 		return workflowInstanceLinkLocalService;
 	}
 
@@ -840,8 +921,11 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param workflowInstanceLinkLocalService the workflow instance link local service
 	 */
 	public void setWorkflowInstanceLinkLocalService(
-		com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService) {
-		this.workflowInstanceLinkLocalService = workflowInstanceLinkLocalService;
+		com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService
+			workflowInstanceLinkLocalService) {
+
+		this.workflowInstanceLinkLocalService =
+			workflowInstanceLinkLocalService;
 	}
 
 	/**
@@ -849,7 +933,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the workflow instance link persistence
 	 */
-	public WorkflowInstanceLinkPersistence getWorkflowInstanceLinkPersistence() {
+	public WorkflowInstanceLinkPersistence
+		getWorkflowInstanceLinkPersistence() {
+
 		return workflowInstanceLinkPersistence;
 	}
 
@@ -860,6 +946,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setWorkflowInstanceLinkPersistence(
 		WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence) {
+
 		this.workflowInstanceLinkPersistence = workflowInstanceLinkPersistence;
 	}
 
@@ -868,7 +955,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the dl app helper local service
 	 */
-	public com.liferay.document.library.kernel.service.DLAppHelperLocalService getDLAppHelperLocalService() {
+	public com.liferay.document.library.kernel.service.DLAppHelperLocalService
+		getDLAppHelperLocalService() {
+
 		return dlAppHelperLocalService;
 	}
 
@@ -878,7 +967,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param dlAppHelperLocalService the dl app helper local service
 	 */
 	public void setDLAppHelperLocalService(
-		com.liferay.document.library.kernel.service.DLAppHelperLocalService dlAppHelperLocalService) {
+		com.liferay.document.library.kernel.service.DLAppHelperLocalService
+			dlAppHelperLocalService) {
+
 		this.dlAppHelperLocalService = dlAppHelperLocalService;
 	}
 
@@ -887,7 +978,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the document library file entry local service
 	 */
-	public com.liferay.document.library.kernel.service.DLFileEntryLocalService getDLFileEntryLocalService() {
+	public com.liferay.document.library.kernel.service.DLFileEntryLocalService
+		getDLFileEntryLocalService() {
+
 		return dlFileEntryLocalService;
 	}
 
@@ -897,7 +990,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param dlFileEntryLocalService the document library file entry local service
 	 */
 	public void setDLFileEntryLocalService(
-		com.liferay.document.library.kernel.service.DLFileEntryLocalService dlFileEntryLocalService) {
+		com.liferay.document.library.kernel.service.DLFileEntryLocalService
+			dlFileEntryLocalService) {
+
 		this.dlFileEntryLocalService = dlFileEntryLocalService;
 	}
 
@@ -917,6 +1012,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setDLFileEntryPersistence(
 		DLFileEntryPersistence dlFileEntryPersistence) {
+
 		this.dlFileEntryPersistence = dlFileEntryPersistence;
 	}
 
@@ -943,7 +1039,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the document library file version local service
 	 */
-	public com.liferay.document.library.kernel.service.DLFileVersionLocalService getDLFileVersionLocalService() {
+	public com.liferay.document.library.kernel.service.DLFileVersionLocalService
+		getDLFileVersionLocalService() {
+
 		return dlFileVersionLocalService;
 	}
 
@@ -953,7 +1051,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param dlFileVersionLocalService the document library file version local service
 	 */
 	public void setDLFileVersionLocalService(
-		com.liferay.document.library.kernel.service.DLFileVersionLocalService dlFileVersionLocalService) {
+		com.liferay.document.library.kernel.service.DLFileVersionLocalService
+			dlFileVersionLocalService) {
+
 		this.dlFileVersionLocalService = dlFileVersionLocalService;
 	}
 
@@ -973,6 +1073,7 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 */
 	public void setDLFileVersionPersistence(
 		DLFileVersionPersistence dlFileVersionPersistence) {
+
 		this.dlFileVersionPersistence = dlFileVersionPersistence;
 	}
 
@@ -981,7 +1082,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @return the document library folder local service
 	 */
-	public com.liferay.document.library.kernel.service.DLFolderLocalService getDLFolderLocalService() {
+	public com.liferay.document.library.kernel.service.DLFolderLocalService
+		getDLFolderLocalService() {
+
 		return dlFolderLocalService;
 	}
 
@@ -991,7 +1094,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 * @param dlFolderLocalService the document library folder local service
 	 */
 	public void setDLFolderLocalService(
-		com.liferay.document.library.kernel.service.DLFolderLocalService dlFolderLocalService) {
+		com.liferay.document.library.kernel.service.DLFolderLocalService
+			dlFolderLocalService) {
+
 		this.dlFolderLocalService = dlFolderLocalService;
 	}
 
@@ -1009,7 +1114,9 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	 *
 	 * @param dlFolderPersistence the document library folder persistence
 	 */
-	public void setDLFolderPersistence(DLFolderPersistence dlFolderPersistence) {
+	public void setDLFolderPersistence(
+		DLFolderPersistence dlFolderPersistence) {
+
 		this.dlFolderPersistence = dlFolderPersistence;
 	}
 
@@ -1032,7 +1139,8 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.document.library.kernel.model.DLFileEntryType",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.document.library.kernel.model.DLFileEntryType",
 			dlFileEntryTypeLocalService);
 	}
 
@@ -1073,8 +1181,8 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -1085,52 +1193,113 @@ public abstract class DLFileEntryTypeLocalServiceBaseImpl
 
 	@BeanReference(type = DLFileEntryTypeLocalService.class)
 	protected DLFileEntryTypeLocalService dlFileEntryTypeLocalService;
+
 	@BeanReference(type = DLFileEntryTypePersistence.class)
 	protected DLFileEntryTypePersistence dlFileEntryTypePersistence;
+
 	@BeanReference(type = DLFileEntryTypeFinder.class)
 	protected DLFileEntryTypeFinder dlFileEntryTypeFinder;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@BeanReference(type = UserFinder.class)
 	protected UserFinder userFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService.class)
-	protected com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService workflowDefinitionLinkLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService.class
+	)
+	protected
+		com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService
+			workflowDefinitionLinkLocalService;
+
 	@BeanReference(type = WorkflowDefinitionLinkPersistence.class)
-	protected WorkflowDefinitionLinkPersistence workflowDefinitionLinkPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService.class)
-	protected com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService workflowInstanceLinkLocalService;
+	protected WorkflowDefinitionLinkPersistence
+		workflowDefinitionLinkPersistence;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.WorkflowInstanceLinkLocalService
+		workflowInstanceLinkLocalService;
+
 	@BeanReference(type = WorkflowInstanceLinkPersistence.class)
 	protected WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLAppHelperLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLAppHelperLocalService dlAppHelperLocalService;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFileEntryLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLFileEntryLocalService dlFileEntryLocalService;
+
+	@BeanReference(
+		type = com.liferay.document.library.kernel.service.DLAppHelperLocalService.class
+	)
+	protected
+		com.liferay.document.library.kernel.service.DLAppHelperLocalService
+			dlAppHelperLocalService;
+
+	@BeanReference(
+		type = com.liferay.document.library.kernel.service.DLFileEntryLocalService.class
+	)
+	protected
+		com.liferay.document.library.kernel.service.DLFileEntryLocalService
+			dlFileEntryLocalService;
+
 	@BeanReference(type = DLFileEntryPersistence.class)
 	protected DLFileEntryPersistence dlFileEntryPersistence;
+
 	@BeanReference(type = DLFileEntryFinder.class)
 	protected DLFileEntryFinder dlFileEntryFinder;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFileVersionLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLFileVersionLocalService dlFileVersionLocalService;
+
+	@BeanReference(
+		type = com.liferay.document.library.kernel.service.DLFileVersionLocalService.class
+	)
+	protected
+		com.liferay.document.library.kernel.service.DLFileVersionLocalService
+			dlFileVersionLocalService;
+
 	@BeanReference(type = DLFileVersionPersistence.class)
 	protected DLFileVersionPersistence dlFileVersionPersistence;
-	@BeanReference(type = com.liferay.document.library.kernel.service.DLFolderLocalService.class)
-	protected com.liferay.document.library.kernel.service.DLFolderLocalService dlFolderLocalService;
+
+	@BeanReference(
+		type = com.liferay.document.library.kernel.service.DLFolderLocalService.class
+	)
+	protected com.liferay.document.library.kernel.service.DLFolderLocalService
+		dlFolderLocalService;
+
 	@BeanReference(type = DLFolderPersistence.class)
 	protected DLFolderPersistence dlFolderPersistence;
+
 	@BeanReference(type = DLFolderFinder.class)
 	protected DLFolderFinder dlFolderFinder;
+
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

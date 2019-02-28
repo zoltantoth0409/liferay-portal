@@ -17,7 +17,6 @@ package com.liferay.portlet.documentlibrary.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.document.library.kernel.model.DLFileEntry;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class DLFileEntryCacheModel implements CacheModel<DLFileEntry>,
-	Externalizable {
+public class DLFileEntryCacheModel
+	implements CacheModel<DLFileEntry>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class DLFileEntryCacheModel implements CacheModel<DLFileEntry>,
 			return false;
 		}
 
-		DLFileEntryCacheModel dlFileEntryCacheModel = (DLFileEntryCacheModel)obj;
+		DLFileEntryCacheModel dlFileEntryCacheModel =
+			(DLFileEntryCacheModel)obj;
 
 		if (fileEntryId == dlFileEntryCacheModel.fileEntryId) {
 			return true;
@@ -309,8 +310,7 @@ public class DLFileEntryCacheModel implements CacheModel<DLFileEntry>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -455,4 +455,5 @@ public class DLFileEntryCacheModel implements CacheModel<DLFileEntry>,
 	public long custom2ImageId;
 	public boolean manualCheckInRequired;
 	public long lastPublishDate;
+
 }

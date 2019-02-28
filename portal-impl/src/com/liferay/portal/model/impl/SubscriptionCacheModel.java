@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class SubscriptionCacheModel implements CacheModel<Subscription>,
-	Externalizable, MVCCModel {
+public class SubscriptionCacheModel
+	implements CacheModel<Subscription>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,10 +49,12 @@ public class SubscriptionCacheModel implements CacheModel<Subscription>,
 			return false;
 		}
 
-		SubscriptionCacheModel subscriptionCacheModel = (SubscriptionCacheModel)obj;
+		SubscriptionCacheModel subscriptionCacheModel =
+			(SubscriptionCacheModel)obj;
 
 		if ((subscriptionId == subscriptionCacheModel.subscriptionId) &&
-				(mvccVersion == subscriptionCacheModel.mvccVersion)) {
+			(mvccVersion == subscriptionCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -174,8 +177,7 @@ public class SubscriptionCacheModel implements CacheModel<Subscription>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(subscriptionId);
@@ -219,4 +221,5 @@ public class SubscriptionCacheModel implements CacheModel<Subscription>,
 	public long classNameId;
 	public long classPK;
 	public String frequency;
+
 }

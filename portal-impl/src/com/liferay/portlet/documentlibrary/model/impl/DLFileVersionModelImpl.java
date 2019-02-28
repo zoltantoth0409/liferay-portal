@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.document.library.kernel.model.DLFileVersion;
 import com.liferay.document.library.kernel.model.DLFileVersionModel;
 import com.liferay.document.library.kernel.model.DLFileVersionSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -68,45 +65,35 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
-	implements DLFileVersionModel {
+public class DLFileVersionModelImpl
+	extends BaseModelImpl<DLFileVersion> implements DLFileVersionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a document library file version model instance should use the <code>DLFileVersion</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DLFileVersion";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "fileVersionId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "repositoryId", Types.BIGINT },
-			{ "folderId", Types.BIGINT },
-			{ "fileEntryId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "fileName", Types.VARCHAR },
-			{ "extension", Types.VARCHAR },
-			{ "mimeType", Types.VARCHAR },
-			{ "title", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "changeLog", Types.VARCHAR },
-			{ "extraSettings", Types.CLOB },
-			{ "fileEntryTypeId", Types.BIGINT },
-			{ "version", Types.VARCHAR },
-			{ "size_", Types.BIGINT },
-			{ "checksum", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"fileVersionId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"repositoryId", Types.BIGINT}, {"folderId", Types.BIGINT},
+		{"fileEntryId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"fileName", Types.VARCHAR}, {"extension", Types.VARCHAR},
+		{"mimeType", Types.VARCHAR}, {"title", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"changeLog", Types.VARCHAR},
+		{"extraSettings", Types.CLOB}, {"fileEntryTypeId", Types.BIGINT},
+		{"version", Types.VARCHAR}, {"size_", Types.BIGINT},
+		{"checksum", Types.VARCHAR}, {"lastPublishDate", Types.TIMESTAMP},
+		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
+		{"statusByUserName", Types.VARCHAR}, {"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -139,31 +126,56 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DLFileVersion (uuid_ VARCHAR(75) null,fileVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,folderId LONG,fileEntryId LONG,treePath STRING null,fileName VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,title VARCHAR(255) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,fileEntryTypeId LONG,version VARCHAR(75) null,size_ LONG,checksum VARCHAR(75) null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DLFileVersion (uuid_ VARCHAR(75) null,fileVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,folderId LONG,fileEntryId LONG,treePath STRING null,fileName VARCHAR(255) null,extension VARCHAR(75) null,mimeType VARCHAR(75) null,title VARCHAR(255) null,description STRING null,changeLog VARCHAR(75) null,extraSettings TEXT null,fileEntryTypeId LONG,version VARCHAR(75) null,size_ LONG,checksum VARCHAR(75) null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DLFileVersion";
-	public static final String ORDER_BY_JPQL = " ORDER BY dlFileVersion.fileEntryId DESC, dlFileVersion.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY DLFileVersion.fileEntryId DESC, DLFileVersion.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY dlFileVersion.fileEntryId DESC, dlFileVersion.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DLFileVersion.fileEntryId DESC, DLFileVersion.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFileVersion"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FILEENTRYID_COLUMN_BITMASK = 2L;
+
 	public static final long FOLDERID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long MIMETYPE_COLUMN_BITMASK = 16L;
+
 	public static final long STATUS_COLUMN_BITMASK = 32L;
+
 	public static final long TITLE_COLUMN_BITMASK = 64L;
+
 	public static final long UUID_COLUMN_BITMASK = 128L;
+
 	public static final long VERSION_COLUMN_BITMASK = 256L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 512L;
 
 	/**
@@ -222,7 +234,8 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			return null;
 		}
 
-		List<DLFileVersion> models = new ArrayList<DLFileVersion>(soapModels.length);
+		List<DLFileVersion> models = new ArrayList<DLFileVersion>(
+			soapModels.length);
 
 		for (DLFileVersionSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -231,8 +244,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.document.library.kernel.model.DLFileVersion"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.document.library.kernel.model.DLFileVersion"));
 
 	public DLFileVersionModelImpl() {
 	}
@@ -271,13 +285,18 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DLFileVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DLFileVersion)this));
 		}
 
@@ -289,36 +308,44 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DLFileVersion, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DLFileVersion, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DLFileVersion, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DLFileVersion, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DLFileVersion)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DLFileVersion)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DLFileVersion, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DLFileVersion, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DLFileVersion, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DLFileVersion, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DLFileVersion, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DLFileVersion, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DLFileVersion, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFileVersion, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFileVersion, Object>>();
-		Map<String, BiConsumer<DLFileVersion, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFileVersion, ?>>();
-
+		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DLFileVersion, Object>>();
+		Map<String, BiConsumer<DLFileVersion, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DLFileVersion, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -355,7 +382,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object fileVersionId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object fileVersionId) {
+
 					dlFileVersion.setFileVersionId((Long)fileVersionId);
 				}
 
@@ -375,7 +404,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object groupId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object groupId) {
+
 					dlFileVersion.setGroupId((Long)groupId);
 				}
 
@@ -395,7 +426,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object companyId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object companyId) {
+
 					dlFileVersion.setCompanyId((Long)companyId);
 				}
 
@@ -435,7 +468,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object userName) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object userName) {
+
 					dlFileVersion.setUserName((String)userName);
 				}
 
@@ -455,7 +490,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object createDate) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object createDate) {
+
 					dlFileVersion.setCreateDate((Date)createDate);
 				}
 
@@ -475,7 +512,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object modifiedDate) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object modifiedDate) {
+
 					dlFileVersion.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -495,7 +534,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object repositoryId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object repositoryId) {
+
 					dlFileVersion.setRepositoryId((Long)repositoryId);
 				}
 
@@ -515,7 +556,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object folderId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object folderId) {
+
 					dlFileVersion.setFolderId((Long)folderId);
 				}
 
@@ -535,7 +578,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object fileEntryId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object fileEntryId) {
+
 					dlFileVersion.setFileEntryId((Long)fileEntryId);
 				}
 
@@ -555,7 +600,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object treePath) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object treePath) {
+
 					dlFileVersion.setTreePath((String)treePath);
 				}
 
@@ -575,7 +622,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object fileName) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object fileName) {
+
 					dlFileVersion.setFileName((String)fileName);
 				}
 
@@ -595,7 +644,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object extension) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object extension) {
+
 					dlFileVersion.setExtension((String)extension);
 				}
 
@@ -615,7 +666,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object mimeType) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object mimeType) {
+
 					dlFileVersion.setMimeType((String)mimeType);
 				}
 
@@ -655,7 +708,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object description) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object description) {
+
 					dlFileVersion.setDescription((String)description);
 				}
 
@@ -675,7 +730,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object changeLog) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object changeLog) {
+
 					dlFileVersion.setChangeLog((String)changeLog);
 				}
 
@@ -695,7 +752,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object extraSettings) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object extraSettings) {
+
 					dlFileVersion.setExtraSettings((String)extraSettings);
 				}
 
@@ -715,7 +774,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object fileEntryTypeId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object fileEntryTypeId) {
+
 					dlFileVersion.setFileEntryTypeId((Long)fileEntryTypeId);
 				}
 
@@ -735,7 +796,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object version) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object version) {
+
 					dlFileVersion.setVersion((String)version);
 				}
 
@@ -775,7 +838,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object checksum) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object checksum) {
+
 					dlFileVersion.setChecksum((String)checksum);
 				}
 
@@ -795,7 +860,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object lastPublishDate) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object lastPublishDate) {
+
 					dlFileVersion.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -835,7 +902,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object statusByUserId) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object statusByUserId) {
+
 					dlFileVersion.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -855,7 +924,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object statusByUserName) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object statusByUserName) {
+
 					dlFileVersion.setStatusByUserName((String)statusByUserName);
 				}
 
@@ -875,15 +946,18 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			new BiConsumer<DLFileVersion, Object>() {
 
 				@Override
-				public void accept(DLFileVersion dlFileVersion, Object statusDate) {
+				public void accept(
+					DLFileVersion dlFileVersion, Object statusDate) {
+
 					dlFileVersion.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1401,8 +1475,8 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DLFileVersion.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DLFileVersion.class.getName()));
 	}
 
 	@Override
@@ -1491,8 +1565,8 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DLFileVersion.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DLFileVersion.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1505,8 +1579,9 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 	@Override
 	public DLFileVersion toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DLFileVersion)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DLFileVersion)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1570,8 +1645,8 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 			return value;
 		}
 
-		value = DateUtil.compareTo(getCreateDate(),
-				dlFileVersion.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), dlFileVersion.getCreateDate());
 
 		value = value * -1;
 
@@ -1625,29 +1700,35 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 		dlFileVersionModelImpl._originalUuid = dlFileVersionModelImpl._uuid;
 
-		dlFileVersionModelImpl._originalGroupId = dlFileVersionModelImpl._groupId;
+		dlFileVersionModelImpl._originalGroupId =
+			dlFileVersionModelImpl._groupId;
 
 		dlFileVersionModelImpl._setOriginalGroupId = false;
 
-		dlFileVersionModelImpl._originalCompanyId = dlFileVersionModelImpl._companyId;
+		dlFileVersionModelImpl._originalCompanyId =
+			dlFileVersionModelImpl._companyId;
 
 		dlFileVersionModelImpl._setOriginalCompanyId = false;
 
 		dlFileVersionModelImpl._setModifiedDate = false;
 
-		dlFileVersionModelImpl._originalFolderId = dlFileVersionModelImpl._folderId;
+		dlFileVersionModelImpl._originalFolderId =
+			dlFileVersionModelImpl._folderId;
 
 		dlFileVersionModelImpl._setOriginalFolderId = false;
 
-		dlFileVersionModelImpl._originalFileEntryId = dlFileVersionModelImpl._fileEntryId;
+		dlFileVersionModelImpl._originalFileEntryId =
+			dlFileVersionModelImpl._fileEntryId;
 
 		dlFileVersionModelImpl._setOriginalFileEntryId = false;
 
-		dlFileVersionModelImpl._originalMimeType = dlFileVersionModelImpl._mimeType;
+		dlFileVersionModelImpl._originalMimeType =
+			dlFileVersionModelImpl._mimeType;
 
 		dlFileVersionModelImpl._originalTitle = dlFileVersionModelImpl._title;
 
-		dlFileVersionModelImpl._originalVersion = dlFileVersionModelImpl._version;
+		dlFileVersionModelImpl._originalVersion =
+			dlFileVersionModelImpl._version;
 
 		dlFileVersionModelImpl._originalStatus = dlFileVersionModelImpl._status;
 
@@ -1658,7 +1739,8 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public CacheModel<DLFileVersion> toCacheModel() {
-		DLFileVersionCacheModel dlFileVersionCacheModel = new DLFileVersionCacheModel();
+		DLFileVersionCacheModel dlFileVersionCacheModel =
+			new DLFileVersionCacheModel();
 
 		dlFileVersionCacheModel.uuid = getUuid();
 
@@ -1827,16 +1909,20 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DLFileVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1855,18 +1941,22 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DLFileVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1880,10 +1970,12 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DLFileVersion.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DLFileVersion.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DLFileVersion.class, ModelWrapper.class
-		};
+		DLFileVersion.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _fileVersionId;
@@ -1929,4 +2021,5 @@ public class DLFileVersionModelImpl extends BaseModelImpl<DLFileVersion>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private DLFileVersion _escapedModel;
+
 }

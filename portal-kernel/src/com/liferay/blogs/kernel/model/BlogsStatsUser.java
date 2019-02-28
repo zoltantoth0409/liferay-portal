@@ -27,15 +27,20 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see BlogsStatsUserModel
  * @generated
  */
-@ImplementationClassName("com.liferay.portlet.blogs.model.impl.BlogsStatsUserImpl")
+@ImplementationClassName(
+	"com.liferay.portlet.blogs.model.impl.BlogsStatsUserImpl"
+)
 @ProviderType
 public interface BlogsStatsUser extends BlogsStatsUserModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.portlet.blogs.model.impl.BlogsStatsUserImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<BlogsStatsUser, Long> STATS_USER_ID_ACCESSOR = new Accessor<BlogsStatsUser, Long>() {
+	public static final Accessor<BlogsStatsUser, Long> STATS_USER_ID_ACCESSOR =
+		new Accessor<BlogsStatsUser, Long>() {
+
 			@Override
 			public Long get(BlogsStatsUser blogsStatsUser) {
 				return blogsStatsUser.getStatsUserId();
@@ -50,5 +55,7 @@ public interface BlogsStatsUser extends BlogsStatsUserModel, PersistedModel {
 			public Class<BlogsStatsUser> getTypeClass() {
 				return BlogsStatsUser.class;
 			}
+
 		};
+
 }

@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface DDMStructureLinkModel extends AttachedModel,
-	BaseModel<DDMStructureLink>, ShardedModel {
+public interface DDMStructureLinkModel
+	extends AttachedModel, BaseModel<DDMStructureLink>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -202,4 +202,5 @@ public interface DDMStructureLinkModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

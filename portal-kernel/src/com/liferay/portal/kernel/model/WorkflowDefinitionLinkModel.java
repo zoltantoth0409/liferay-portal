@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -37,8 +36,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface WorkflowDefinitionLinkModel extends AttachedModel,
-	BaseModel<WorkflowDefinitionLink>, GroupedModel, MVCCModel, ShardedModel {
+public interface WorkflowDefinitionLinkModel
+	extends AttachedModel, BaseModel<WorkflowDefinitionLink>, GroupedModel,
+			MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -343,4 +344,5 @@ public interface WorkflowDefinitionLinkModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -39,8 +38,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface DDMStorageLinkModel extends AttachedModel,
-	BaseModel<DDMStorageLink>, ShardedModel {
+public interface DDMStorageLinkModel
+	extends AttachedModel, BaseModel<DDMStorageLink>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -218,4 +218,5 @@ public interface DDMStorageLinkModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

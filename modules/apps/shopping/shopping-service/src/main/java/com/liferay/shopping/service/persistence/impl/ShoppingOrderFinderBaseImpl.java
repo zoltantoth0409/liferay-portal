@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
-
 import com.liferay.shopping.model.ShoppingOrder;
 import com.liferay.shopping.service.persistence.ShoppingOrderPersistence;
 
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class ShoppingOrderFinderBaseImpl extends BasePersistenceImpl<ShoppingOrder> {
+public class ShoppingOrderFinderBaseImpl
+	extends BasePersistenceImpl<ShoppingOrder> {
+
 	public ShoppingOrderFinderBaseImpl() {
 		setModelClass(ShoppingOrder.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +77,14 @@ public class ShoppingOrderFinderBaseImpl extends BasePersistenceImpl<ShoppingOrd
 	 */
 	public void setShoppingOrderPersistence(
 		ShoppingOrderPersistence shoppingOrderPersistence) {
+
 		this.shoppingOrderPersistence = shoppingOrderPersistence;
 	}
 
 	@BeanReference(type = ShoppingOrderPersistence.class)
 	protected ShoppingOrderPersistence shoppingOrderPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(ShoppingOrderFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ShoppingOrderFinderBaseImpl.class);
+
 }

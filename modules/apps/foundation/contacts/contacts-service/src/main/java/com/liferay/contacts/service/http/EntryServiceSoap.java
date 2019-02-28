@@ -17,7 +17,6 @@ package com.liferay.contacts.service.http;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.contacts.service.EntryServiceUtil;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -64,11 +63,15 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class EntryServiceSoap {
-	public static String searchUsersAndContacts(long companyId,
-		String keywords, int start, int end) throws RemoteException {
+
+	public static String searchUsersAndContacts(
+			long companyId, String keywords, int start, int end)
+		throws RemoteException {
+
 		try {
-			com.liferay.portal.kernel.json.JSONArray returnValue = EntryServiceUtil.searchUsersAndContacts(companyId,
-					keywords, start, end);
+			com.liferay.portal.kernel.json.JSONArray returnValue =
+				EntryServiceUtil.searchUsersAndContacts(
+					companyId, keywords, start, end);
 
 			return returnValue.toString();
 		}
@@ -80,4 +83,5 @@ public class EntryServiceSoap {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(EntryServiceSoap.class);
+
 }

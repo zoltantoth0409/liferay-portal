@@ -17,7 +17,6 @@ package com.liferay.portlet.messageboards.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.message.boards.kernel.model.MBStatsUser;
 import com.liferay.message.boards.kernel.service.MBStatsUserLocalService;
 import com.liferay.message.boards.kernel.service.persistence.MBMessageFinder;
@@ -25,7 +24,6 @@ import com.liferay.message.boards.kernel.service.persistence.MBMessagePersistenc
 import com.liferay.message.boards.kernel.service.persistence.MBStatsUserPersistence;
 import com.liferay.message.boards.kernel.service.persistence.MBThreadFinder;
 import com.liferay.message.boards.kernel.service.persistence.MBThreadPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -72,8 +70,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class MBStatsUserLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements MBStatsUserLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements MBStatsUserLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -117,6 +116,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	@Override
 	public MBStatsUser deleteMBStatsUser(long statsUserId)
 		throws PortalException {
+
 		return mbStatsUserPersistence.remove(statsUserId);
 	}
 
@@ -136,8 +136,8 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(MBStatsUser.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			MBStatsUser.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -164,10 +164,11 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return mbStatsUserPersistence.findWithDynamicQuery(dynamicQuery, start,
-			end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return mbStatsUserPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -184,10 +185,12 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return mbStatsUserPersistence.findWithDynamicQuery(dynamicQuery, start,
-			end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return mbStatsUserPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -209,10 +212,11 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return mbStatsUserPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return mbStatsUserPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -228,14 +232,14 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @throws PortalException if a message boards stats user with the primary key could not be found
 	 */
 	@Override
-	public MBStatsUser getMBStatsUser(long statsUserId)
-		throws PortalException {
+	public MBStatsUser getMBStatsUser(long statsUserId) throws PortalException {
 		return mbStatsUserPersistence.findByPrimaryKey(statsUserId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(mbStatsUserLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -247,20 +251,26 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(mbStatsUserLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			mbStatsUserLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(MBStatsUser.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("statsUserId");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
+			"statsUserId");
 
 		return indexableActionableDynamicQuery;
 	}
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
+
 		actionableDynamicQuery.setBaseLocalService(mbStatsUserLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MBStatsUser.class);
@@ -274,12 +284,15 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return mbStatsUserLocalService.deleteMBStatsUser((MBStatsUser)persistedModel);
+
+		return mbStatsUserLocalService.deleteMBStatsUser(
+			(MBStatsUser)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return mbStatsUserPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -337,6 +350,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 */
 	public void setMBStatsUserLocalService(
 		MBStatsUserLocalService mbStatsUserLocalService) {
+
 		this.mbStatsUserLocalService = mbStatsUserLocalService;
 	}
 
@@ -356,6 +370,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 */
 	public void setMBStatsUserPersistence(
 		MBStatsUserPersistence mbStatsUserPersistence) {
+
 		this.mbStatsUserPersistence = mbStatsUserPersistence;
 	}
 
@@ -364,7 +379,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -374,7 +391,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -401,7 +420,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the group local service
 	 */
-	public com.liferay.portal.kernel.service.GroupLocalService getGroupLocalService() {
+	public com.liferay.portal.kernel.service.GroupLocalService
+		getGroupLocalService() {
+
 		return groupLocalService;
 	}
 
@@ -412,6 +433,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 */
 	public void setGroupLocalService(
 		com.liferay.portal.kernel.service.GroupLocalService groupLocalService) {
+
 		this.groupLocalService = groupLocalService;
 	}
 
@@ -456,7 +478,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -467,6 +491,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -511,7 +536,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the message-boards message local service
 	 */
-	public com.liferay.message.boards.kernel.service.MBMessageLocalService getMBMessageLocalService() {
+	public com.liferay.message.boards.kernel.service.MBMessageLocalService
+		getMBMessageLocalService() {
+
 		return mbMessageLocalService;
 	}
 
@@ -521,7 +548,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @param mbMessageLocalService the message-boards message local service
 	 */
 	public void setMBMessageLocalService(
-		com.liferay.message.boards.kernel.service.MBMessageLocalService mbMessageLocalService) {
+		com.liferay.message.boards.kernel.service.MBMessageLocalService
+			mbMessageLocalService) {
+
 		this.mbMessageLocalService = mbMessageLocalService;
 	}
 
@@ -541,6 +570,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 */
 	public void setMBMessagePersistence(
 		MBMessagePersistence mbMessagePersistence) {
+
 		this.mbMessagePersistence = mbMessagePersistence;
 	}
 
@@ -567,7 +597,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the message boards thread local service
 	 */
-	public com.liferay.message.boards.kernel.service.MBThreadLocalService getMBThreadLocalService() {
+	public com.liferay.message.boards.kernel.service.MBThreadLocalService
+		getMBThreadLocalService() {
+
 		return mbThreadLocalService;
 	}
 
@@ -577,7 +609,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @param mbThreadLocalService the message boards thread local service
 	 */
 	public void setMBThreadLocalService(
-		com.liferay.message.boards.kernel.service.MBThreadLocalService mbThreadLocalService) {
+		com.liferay.message.boards.kernel.service.MBThreadLocalService
+			mbThreadLocalService) {
+
 		this.mbThreadLocalService = mbThreadLocalService;
 	}
 
@@ -595,7 +629,9 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @param mbThreadPersistence the message boards thread persistence
 	 */
-	public void setMBThreadPersistence(MBThreadPersistence mbThreadPersistence) {
+	public void setMBThreadPersistence(
+		MBThreadPersistence mbThreadPersistence) {
+
 		this.mbThreadPersistence = mbThreadPersistence;
 	}
 
@@ -618,7 +654,8 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.message.boards.kernel.model.MBStatsUser",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.message.boards.kernel.model.MBStatsUser",
 			mbStatsUserLocalService);
 	}
 
@@ -659,8 +696,8 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -671,36 +708,69 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 
 	@BeanReference(type = MBStatsUserLocalService.class)
 	protected MBStatsUserLocalService mbStatsUserLocalService;
+
 	@BeanReference(type = MBStatsUserPersistence.class)
 	protected MBStatsUserPersistence mbStatsUserPersistence;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.GroupLocalService.class)
-	protected com.liferay.portal.kernel.service.GroupLocalService groupLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.GroupLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.GroupLocalService
+		groupLocalService;
+
 	@BeanReference(type = GroupPersistence.class)
 	protected GroupPersistence groupPersistence;
+
 	@BeanReference(type = GroupFinder.class)
 	protected GroupFinder groupFinder;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@BeanReference(type = UserFinder.class)
 	protected UserFinder userFinder;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBMessageLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBMessageLocalService mbMessageLocalService;
+
+	@BeanReference(
+		type = com.liferay.message.boards.kernel.service.MBMessageLocalService.class
+	)
+	protected com.liferay.message.boards.kernel.service.MBMessageLocalService
+		mbMessageLocalService;
+
 	@BeanReference(type = MBMessagePersistence.class)
 	protected MBMessagePersistence mbMessagePersistence;
+
 	@BeanReference(type = MBMessageFinder.class)
 	protected MBMessageFinder mbMessageFinder;
-	@BeanReference(type = com.liferay.message.boards.kernel.service.MBThreadLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBThreadLocalService mbThreadLocalService;
+
+	@BeanReference(
+		type = com.liferay.message.boards.kernel.service.MBThreadLocalService.class
+	)
+	protected com.liferay.message.boards.kernel.service.MBThreadLocalService
+		mbThreadLocalService;
+
 	@BeanReference(type = MBThreadPersistence.class)
 	protected MBThreadPersistence mbThreadPersistence;
+
 	@BeanReference(type = MBThreadFinder.class)
 	protected MBThreadFinder mbThreadFinder;
+
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

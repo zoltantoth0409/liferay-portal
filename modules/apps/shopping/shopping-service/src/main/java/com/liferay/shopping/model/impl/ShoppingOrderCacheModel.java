@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingOrder;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class ShoppingOrderCacheModel implements CacheModel<ShoppingOrder>,
-	Externalizable {
+public class ShoppingOrderCacheModel
+	implements CacheModel<ShoppingOrder>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class ShoppingOrderCacheModel implements CacheModel<ShoppingOrder>,
 			return false;
 		}
 
-		ShoppingOrderCacheModel shoppingOrderCacheModel = (ShoppingOrderCacheModel)obj;
+		ShoppingOrderCacheModel shoppingOrderCacheModel =
+			(ShoppingOrderCacheModel)obj;
 
 		if (orderId == shoppingOrderCacheModel.orderId) {
 			return true;
@@ -522,8 +523,7 @@ public class ShoppingOrderCacheModel implements CacheModel<ShoppingOrder>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(orderId);
 
 		objectOutput.writeLong(groupId);
@@ -842,4 +842,5 @@ public class ShoppingOrderCacheModel implements CacheModel<ShoppingOrder>,
 	public String ppPayerEmail;
 	public boolean sendOrderEmail;
 	public boolean sendShippingEmail;
+
 }

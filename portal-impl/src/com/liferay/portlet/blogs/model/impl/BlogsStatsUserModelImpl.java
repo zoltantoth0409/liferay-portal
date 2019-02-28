@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.blogs.kernel.model.BlogsStatsUser;
 import com.liferay.blogs.kernel.model.BlogsStatsUserModel;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,26 +56,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
-	implements BlogsStatsUserModel {
+public class BlogsStatsUserModelImpl
+	extends BaseModelImpl<BlogsStatsUser> implements BlogsStatsUserModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a blogs stats user model instance should use the <code>BlogsStatsUser</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "BlogsStatsUser";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "statsUserId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "entryCount", Types.INTEGER },
-			{ "lastPostDate", Types.TIMESTAMP },
-			{ "ratingsTotalEntries", Types.INTEGER },
-			{ "ratingsTotalScore", Types.DOUBLE },
-			{ "ratingsAverageScore", Types.DOUBLE }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"statsUserId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"entryCount", Types.INTEGER}, {"lastPostDate", Types.TIMESTAMP},
+		{"ratingsTotalEntries", Types.INTEGER},
+		{"ratingsTotalScore", Types.DOUBLE},
+		{"ratingsAverageScore", Types.DOUBLE}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("statsUserId", Types.BIGINT);
@@ -91,29 +90,51 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 		TABLE_COLUMNS_MAP.put("ratingsAverageScore", Types.DOUBLE);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table BlogsStatsUser (statsUserId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,entryCount INTEGER,lastPostDate DATE null,ratingsTotalEntries INTEGER,ratingsTotalScore DOUBLE,ratingsAverageScore DOUBLE)";
+	public static final String TABLE_SQL_CREATE =
+		"create table BlogsStatsUser (statsUserId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,entryCount INTEGER,lastPostDate DATE null,ratingsTotalEntries INTEGER,ratingsTotalScore DOUBLE,ratingsAverageScore DOUBLE)";
+
 	public static final String TABLE_SQL_DROP = "drop table BlogsStatsUser";
-	public static final String ORDER_BY_JPQL = " ORDER BY blogsStatsUser.entryCount DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY BlogsStatsUser.entryCount DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY blogsStatsUser.entryCount DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY BlogsStatsUser.entryCount DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.blogs.kernel.model.BlogsStatsUser"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long ENTRYCOUNT_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long LASTPOSTDATE_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.blogs.kernel.model.BlogsStatsUser"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.blogs.kernel.model.BlogsStatsUser"));
 
 	public BlogsStatsUserModelImpl() {
 	}
@@ -152,13 +173,18 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsStatsUser, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsStatsUser, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((BlogsStatsUser)this));
 		}
 
@@ -170,36 +196,44 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<BlogsStatsUser, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<BlogsStatsUser, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<BlogsStatsUser, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<BlogsStatsUser, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((BlogsStatsUser)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(BlogsStatsUser)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<BlogsStatsUser, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<BlogsStatsUser, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<BlogsStatsUser, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<BlogsStatsUser, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<BlogsStatsUser, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<BlogsStatsUser, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<BlogsStatsUser, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<BlogsStatsUser, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<BlogsStatsUser, Object>>();
-		Map<String, BiConsumer<BlogsStatsUser, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<BlogsStatsUser, ?>>();
-
+		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<BlogsStatsUser, Object>>();
+		Map<String, BiConsumer<BlogsStatsUser, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<BlogsStatsUser, ?>>();
 
 		attributeGetterFunctions.put(
 			"statsUserId",
@@ -216,7 +250,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object statsUserId) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object statsUserId) {
+
 					blogsStatsUser.setStatsUserId((Long)statsUserId);
 				}
 
@@ -236,7 +272,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object groupId) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object groupId) {
+
 					blogsStatsUser.setGroupId((Long)groupId);
 				}
 
@@ -256,7 +294,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object companyId) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object companyId) {
+
 					blogsStatsUser.setCompanyId((Long)companyId);
 				}
 
@@ -276,7 +316,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object userId) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object userId) {
+
 					blogsStatsUser.setUserId((Long)userId);
 				}
 
@@ -296,7 +338,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object entryCount) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object entryCount) {
+
 					blogsStatsUser.setEntryCount((Integer)entryCount);
 				}
 
@@ -316,7 +360,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object lastPostDate) {
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object lastPostDate) {
+
 					blogsStatsUser.setLastPostDate((Date)lastPostDate);
 				}
 
@@ -336,8 +382,11 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object ratingsTotalEntries) {
-					blogsStatsUser.setRatingsTotalEntries((Integer)ratingsTotalEntries);
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object ratingsTotalEntries) {
+
+					blogsStatsUser.setRatingsTotalEntries(
+						(Integer)ratingsTotalEntries);
 				}
 
 			});
@@ -356,8 +405,11 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object ratingsTotalScore) {
-					blogsStatsUser.setRatingsTotalScore((Double)ratingsTotalScore);
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object ratingsTotalScore) {
+
+					blogsStatsUser.setRatingsTotalScore(
+						(Double)ratingsTotalScore);
 				}
 
 			});
@@ -376,15 +428,19 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 			new BiConsumer<BlogsStatsUser, Object>() {
 
 				@Override
-				public void accept(BlogsStatsUser blogsStatsUser, Object ratingsAverageScore) {
-					blogsStatsUser.setRatingsAverageScore((Double)ratingsAverageScore);
+				public void accept(
+					BlogsStatsUser blogsStatsUser, Object ratingsAverageScore) {
+
+					blogsStatsUser.setRatingsAverageScore(
+						(Double)ratingsAverageScore);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -573,8 +629,8 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			BlogsStatsUser.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), BlogsStatsUser.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -587,8 +643,9 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 	@Override
 	public BlogsStatsUser toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (BlogsStatsUser)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (BlogsStatsUser)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -677,30 +734,36 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 	public void resetOriginalValues() {
 		BlogsStatsUserModelImpl blogsStatsUserModelImpl = this;
 
-		blogsStatsUserModelImpl._originalGroupId = blogsStatsUserModelImpl._groupId;
+		blogsStatsUserModelImpl._originalGroupId =
+			blogsStatsUserModelImpl._groupId;
 
 		blogsStatsUserModelImpl._setOriginalGroupId = false;
 
-		blogsStatsUserModelImpl._originalCompanyId = blogsStatsUserModelImpl._companyId;
+		blogsStatsUserModelImpl._originalCompanyId =
+			blogsStatsUserModelImpl._companyId;
 
 		blogsStatsUserModelImpl._setOriginalCompanyId = false;
 
-		blogsStatsUserModelImpl._originalUserId = blogsStatsUserModelImpl._userId;
+		blogsStatsUserModelImpl._originalUserId =
+			blogsStatsUserModelImpl._userId;
 
 		blogsStatsUserModelImpl._setOriginalUserId = false;
 
-		blogsStatsUserModelImpl._originalEntryCount = blogsStatsUserModelImpl._entryCount;
+		blogsStatsUserModelImpl._originalEntryCount =
+			blogsStatsUserModelImpl._entryCount;
 
 		blogsStatsUserModelImpl._setOriginalEntryCount = false;
 
-		blogsStatsUserModelImpl._originalLastPostDate = blogsStatsUserModelImpl._lastPostDate;
+		blogsStatsUserModelImpl._originalLastPostDate =
+			blogsStatsUserModelImpl._lastPostDate;
 
 		blogsStatsUserModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<BlogsStatsUser> toCacheModel() {
-		BlogsStatsUserCacheModel blogsStatsUserCacheModel = new BlogsStatsUserCacheModel();
+		BlogsStatsUserCacheModel blogsStatsUserCacheModel =
+			new BlogsStatsUserCacheModel();
 
 		blogsStatsUserCacheModel.statsUserId = getStatsUserId();
 
@@ -732,16 +795,20 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 
 	@Override
 	public String toString() {
-		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsStatsUser, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsStatsUser, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -760,18 +827,22 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsStatsUser, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsStatsUser, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsStatsUser, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsStatsUser, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -785,10 +856,12 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = BlogsStatsUser.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		BlogsStatsUser.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			BlogsStatsUser.class, ModelWrapper.class
-		};
+		BlogsStatsUser.class, ModelWrapper.class
+	};
+
 	private long _statsUserId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -809,4 +882,5 @@ public class BlogsStatsUserModelImpl extends BaseModelImpl<BlogsStatsUser>
 	private double _ratingsAverageScore;
 	private long _columnBitmask;
 	private BlogsStatsUser _escapedModel;
+
 }

@@ -40,12 +40,20 @@ import java.util.List;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=kaleo", "json.web.service.context.path=KaleoDefinition"}, service = KaleoDefinitionService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=kaleo",
+		"json.web.service.context.path=KaleoDefinition"
+	},
+	service = KaleoDefinitionService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface KaleoDefinitionService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -55,13 +63,14 @@ public interface KaleoDefinitionService extends BaseService {
 	public List<KaleoDefinition> getKaleoDefinitions(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoDefinition> getKaleoDefinitions(long companyId, int start,
-		int end);
+	public List<KaleoDefinition> getKaleoDefinitions(
+		long companyId, int start, int end);
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
+
 }

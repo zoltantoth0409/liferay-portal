@@ -29,13 +29,17 @@ import com.liferay.portal.kernel.util.Accessor;
  */
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCategoryImpl")
 @ProviderType
-public interface ShoppingCategory extends ShoppingCategoryModel, PersistedModel {
+public interface ShoppingCategory
+	extends ShoppingCategoryModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingCategoryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ShoppingCategory, Long> CATEGORY_ID_ACCESSOR = new Accessor<ShoppingCategory, Long>() {
+	public static final Accessor<ShoppingCategory, Long> CATEGORY_ID_ACCESSOR =
+		new Accessor<ShoppingCategory, Long>() {
+
 			@Override
 			public Long get(ShoppingCategory shoppingCategory) {
 				return shoppingCategory.getCategoryId();
@@ -50,7 +54,9 @@ public interface ShoppingCategory extends ShoppingCategoryModel, PersistedModel 
 			public Class<ShoppingCategory> getTypeClass() {
 				return ShoppingCategory.class;
 			}
+
 		};
 
 	public boolean isRoot();
+
 }

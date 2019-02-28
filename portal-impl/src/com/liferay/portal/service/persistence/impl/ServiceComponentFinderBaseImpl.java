@@ -31,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class ServiceComponentFinderBaseImpl extends BasePersistenceImpl<ServiceComponent> {
+public class ServiceComponentFinderBaseImpl
+	extends BasePersistenceImpl<ServiceComponent> {
+
 	public ServiceComponentFinderBaseImpl() {
 		setModelClass(ServiceComponent.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -75,10 +77,14 @@ public class ServiceComponentFinderBaseImpl extends BasePersistenceImpl<ServiceC
 	 */
 	public void setServiceComponentPersistence(
 		ServiceComponentPersistence serviceComponentPersistence) {
+
 		this.serviceComponentPersistence = serviceComponentPersistence;
 	}
 
 	@BeanReference(type = ServiceComponentPersistence.class)
 	protected ServiceComponentPersistence serviceComponentPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(ServiceComponentFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ServiceComponentFinderBaseImpl.class);
+
 }

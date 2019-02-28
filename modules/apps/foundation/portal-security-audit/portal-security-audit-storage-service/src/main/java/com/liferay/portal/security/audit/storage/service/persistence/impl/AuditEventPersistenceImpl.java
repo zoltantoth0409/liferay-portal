@@ -61,18 +61,23 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
-	implements AuditEventPersistence {
+public class AuditEventPersistenceImpl
+	extends BasePersistenceImpl<AuditEvent> implements AuditEventPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>AuditEventUtil</code> to access the audit event persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = AuditEventImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		AuditEventImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -88,8 +93,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public List<AuditEvent> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -105,7 +110,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the range of matching audit events
 	 */
 	@Override
-	public List<AuditEvent> findByCompanyId(long companyId, int start, int end) {
+	public List<AuditEvent> findByCompanyId(
+		long companyId, int start, int end) {
+
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -123,8 +130,10 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the ordered range of matching audit events
 	 */
 	@Override
-	public List<AuditEvent> findByCompanyId(long companyId, int start, int end,
+	public List<AuditEvent> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<AuditEvent> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -143,29 +152,34 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the ordered range of matching audit events
 	 */
 	@Override
-	public List<AuditEvent> findByCompanyId(long companyId, int start, int end,
+	public List<AuditEvent> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<AuditEvent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<AuditEvent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<AuditEvent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<AuditEvent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AuditEvent auditEvent : list) {
@@ -182,8 +196,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -194,11 +208,10 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(AuditEventModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -216,16 +229,16 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<AuditEvent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<AuditEvent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<AuditEvent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<AuditEvent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -254,11 +267,12 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @throws NoSuchEventException if a matching audit event could not be found
 	 */
 	@Override
-	public AuditEvent findByCompanyId_First(long companyId,
-		OrderByComparator<AuditEvent> orderByComparator)
+	public AuditEvent findByCompanyId_First(
+			long companyId, OrderByComparator<AuditEvent> orderByComparator)
 		throws NoSuchEventException {
-		AuditEvent auditEvent = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		AuditEvent auditEvent = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (auditEvent != null) {
 			return auditEvent;
@@ -284,10 +298,11 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the first matching audit event, or <code>null</code> if a matching audit event could not be found
 	 */
 	@Override
-	public AuditEvent fetchByCompanyId_First(long companyId,
-		OrderByComparator<AuditEvent> orderByComparator) {
-		List<AuditEvent> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public AuditEvent fetchByCompanyId_First(
+		long companyId, OrderByComparator<AuditEvent> orderByComparator) {
+
+		List<AuditEvent> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -305,11 +320,12 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @throws NoSuchEventException if a matching audit event could not be found
 	 */
 	@Override
-	public AuditEvent findByCompanyId_Last(long companyId,
-		OrderByComparator<AuditEvent> orderByComparator)
+	public AuditEvent findByCompanyId_Last(
+			long companyId, OrderByComparator<AuditEvent> orderByComparator)
 		throws NoSuchEventException {
-		AuditEvent auditEvent = fetchByCompanyId_Last(companyId,
-				orderByComparator);
+
+		AuditEvent auditEvent = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (auditEvent != null) {
 			return auditEvent;
@@ -335,16 +351,17 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the last matching audit event, or <code>null</code> if a matching audit event could not be found
 	 */
 	@Override
-	public AuditEvent fetchByCompanyId_Last(long companyId,
-		OrderByComparator<AuditEvent> orderByComparator) {
+	public AuditEvent fetchByCompanyId_Last(
+		long companyId, OrderByComparator<AuditEvent> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<AuditEvent> list = findByCompanyId(companyId, count - 1, count,
-				orderByComparator);
+		List<AuditEvent> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -363,9 +380,11 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @throws NoSuchEventException if a audit event with the primary key could not be found
 	 */
 	@Override
-	public AuditEvent[] findByCompanyId_PrevAndNext(long auditEventId,
-		long companyId, OrderByComparator<AuditEvent> orderByComparator)
+	public AuditEvent[] findByCompanyId_PrevAndNext(
+			long auditEventId, long companyId,
+			OrderByComparator<AuditEvent> orderByComparator)
 		throws NoSuchEventException {
+
 		AuditEvent auditEvent = findByPrimaryKey(auditEventId);
 
 		Session session = null;
@@ -375,13 +394,13 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 
 			AuditEvent[] array = new AuditEventImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, auditEvent,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, auditEvent, companyId, orderByComparator, true);
 
 			array[1] = auditEvent;
 
-			array[2] = getByCompanyId_PrevAndNext(session, auditEvent,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, auditEvent, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -393,14 +412,15 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		}
 	}
 
-	protected AuditEvent getByCompanyId_PrevAndNext(Session session,
-		AuditEvent auditEvent, long companyId,
+	protected AuditEvent getByCompanyId_PrevAndNext(
+		Session session, AuditEvent auditEvent, long companyId,
 		OrderByComparator<AuditEvent> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -412,7 +432,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -482,8 +503,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					auditEvent)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(auditEvent)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -505,8 +527,10 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (AuditEvent auditEvent : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (AuditEvent auditEvent :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(auditEvent);
 		}
 	}
@@ -521,7 +545,7 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -562,7 +586,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "auditEvent.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"auditEvent.companyId = ?";
 
 	public AuditEventPersistenceImpl() {
 		setModelClass(AuditEvent.class);
@@ -575,8 +600,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public void cacheResult(AuditEvent auditEvent) {
-		entityCache.putResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-			AuditEventImpl.class, auditEvent.getPrimaryKey(), auditEvent);
+		entityCache.putResult(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+			auditEvent.getPrimaryKey(), auditEvent);
 
 		auditEvent.resetOriginalValues();
 	}
@@ -590,8 +616,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	public void cacheResult(List<AuditEvent> auditEvents) {
 		for (AuditEvent auditEvent : auditEvents) {
 			if (entityCache.getResult(
-						AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-						AuditEventImpl.class, auditEvent.getPrimaryKey()) == null) {
+					AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+					AuditEventImpl.class, auditEvent.getPrimaryKey()) == null) {
+
 				cacheResult(auditEvent);
 			}
 			else {
@@ -625,8 +652,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public void clearCache(AuditEvent auditEvent) {
-		entityCache.removeResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-			AuditEventImpl.class, auditEvent.getPrimaryKey());
+		entityCache.removeResult(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+			auditEvent.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -638,8 +666,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (AuditEvent auditEvent : auditEvents) {
-			entityCache.removeResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventImpl.class, auditEvent.getPrimaryKey());
+			entityCache.removeResult(
+				AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+				auditEvent.getPrimaryKey());
 		}
 	}
 
@@ -683,21 +712,22 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	@Override
 	public AuditEvent remove(Serializable primaryKey)
 		throws NoSuchEventException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			AuditEvent auditEvent = (AuditEvent)session.get(AuditEventImpl.class,
-					primaryKey);
+			AuditEvent auditEvent = (AuditEvent)session.get(
+				AuditEventImpl.class, primaryKey);
 
 			if (auditEvent == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchEventException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchEventException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(auditEvent);
@@ -721,8 +751,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			session = openSession();
 
 			if (!session.contains(auditEvent)) {
-				auditEvent = (AuditEvent)session.get(AuditEventImpl.class,
-						auditEvent.getPrimaryKeyObj());
+				auditEvent = (AuditEvent)session.get(
+					AuditEventImpl.class, auditEvent.getPrimaryKeyObj());
 			}
 
 			if (auditEvent != null) {
@@ -755,15 +785,16 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in auditEvent proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom AuditEvent implementation " +
-				auditEvent.getClass());
+					auditEvent.getClass());
 		}
 
-		AuditEventModelImpl auditEventModelImpl = (AuditEventModelImpl)auditEvent;
+		AuditEventModelImpl auditEventModelImpl =
+			(AuditEventModelImpl)auditEvent;
 
 		Session session = null;
 
@@ -791,40 +822,41 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		if (!AuditEventModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { auditEventModelImpl.getCompanyId() };
+		else if (isNew) {
+			Object[] args = new Object[] {auditEventModelImpl.getCompanyId()};
 
 			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
 		}
-
 		else {
 			if ((auditEventModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
+
 				Object[] args = new Object[] {
-						auditEventModelImpl.getOriginalCompanyId()
-					};
+					auditEventModelImpl.getOriginalCompanyId()
+				};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 
-				args = new Object[] { auditEventModelImpl.getCompanyId() };
+				args = new Object[] {auditEventModelImpl.getCompanyId()};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 			}
 		}
 
-		entityCache.putResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-			AuditEventImpl.class, auditEvent.getPrimaryKey(), auditEvent, false);
+		entityCache.putResult(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+			auditEvent.getPrimaryKey(), auditEvent, false);
 
 		auditEvent.resetOriginalValues();
 
@@ -841,6 +873,7 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	@Override
 	public AuditEvent findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchEventException {
+
 		AuditEvent auditEvent = fetchByPrimaryKey(primaryKey);
 
 		if (auditEvent == null) {
@@ -848,8 +881,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchEventException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchEventException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return auditEvent;
@@ -865,6 +898,7 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	@Override
 	public AuditEvent findByPrimaryKey(long auditEventId)
 		throws NoSuchEventException {
+
 		return findByPrimaryKey((Serializable)auditEventId);
 	}
 
@@ -876,8 +910,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public AuditEvent fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+			primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -891,19 +926,21 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			try {
 				session = openSession();
 
-				auditEvent = (AuditEvent)session.get(AuditEventImpl.class,
-						primaryKey);
+				auditEvent = (AuditEvent)session.get(
+					AuditEventImpl.class, primaryKey);
 
 				if (auditEvent != null) {
 					cacheResult(auditEvent);
 				}
 				else {
-					entityCache.putResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						AuditEventModelImpl.ENTITY_CACHE_ENABLED,
 						AuditEventImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					AuditEventModelImpl.ENTITY_CACHE_ENABLED,
 					AuditEventImpl.class, primaryKey);
 
 				throw processException(e);
@@ -930,11 +967,13 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	@Override
 	public Map<Serializable, AuditEvent> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, AuditEvent> map = new HashMap<Serializable, AuditEvent>();
+		Map<Serializable, AuditEvent> map =
+			new HashMap<Serializable, AuditEvent>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -953,8 +992,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-					AuditEventImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				AuditEventModelImpl.ENTITY_CACHE_ENABLED, AuditEventImpl.class,
+				primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -974,8 +1014,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_AUDITEVENT_WHERE_PKS_IN);
 
@@ -1007,7 +1047,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					AuditEventModelImpl.ENTITY_CACHE_ENABLED,
 					AuditEventImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -1060,8 +1101,9 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the ordered range of audit events
 	 */
 	@Override
-	public List<AuditEvent> findAll(int start, int end,
-		OrderByComparator<AuditEvent> orderByComparator) {
+	public List<AuditEvent> findAll(
+		int start, int end, OrderByComparator<AuditEvent> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1079,29 +1121,31 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * @return the ordered range of audit events
 	 */
 	@Override
-	public List<AuditEvent> findAll(int start, int end,
-		OrderByComparator<AuditEvent> orderByComparator,
+	public List<AuditEvent> findAll(
+		int start, int end, OrderByComparator<AuditEvent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<AuditEvent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<AuditEvent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<AuditEvent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1109,13 +1153,13 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_AUDITEVENT);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1135,16 +1179,16 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<AuditEvent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<AuditEvent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<AuditEvent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<AuditEvent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1182,8 +1226,8 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1195,11 +1239,12 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -1220,41 +1265,45 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 	 * Initializes the audit event persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				AuditEventModelImpl.COMPANYID_COLUMN_BITMASK |
-				AuditEventModelImpl.CREATEDATE_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, AuditEventImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] {Long.class.getName()},
+			AuditEventModelImpl.COMPANYID_COLUMN_BITMASK |
+			AuditEventModelImpl.CREATEDATE_COLUMN_BITMASK);
 
-		_finderPathCountByCompanyId = new FinderPath(AuditEventModelImpl.ENTITY_CACHE_ENABLED,
-				AuditEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByCompanyId = new FinderPath(
+			AuditEventModelImpl.ENTITY_CACHE_ENABLED,
+			AuditEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
 	}
 
 	public void destroy() {
@@ -1266,17 +1315,37 @@ public class AuditEventPersistenceImpl extends BasePersistenceImpl<AuditEvent>
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_AUDITEVENT = "SELECT auditEvent FROM AuditEvent auditEvent";
-	private static final String _SQL_SELECT_AUDITEVENT_WHERE_PKS_IN = "SELECT auditEvent FROM AuditEvent auditEvent WHERE auditEventId IN (";
-	private static final String _SQL_SELECT_AUDITEVENT_WHERE = "SELECT auditEvent FROM AuditEvent auditEvent WHERE ";
-	private static final String _SQL_COUNT_AUDITEVENT = "SELECT COUNT(auditEvent) FROM AuditEvent auditEvent";
-	private static final String _SQL_COUNT_AUDITEVENT_WHERE = "SELECT COUNT(auditEvent) FROM AuditEvent auditEvent WHERE ";
+
+	private static final String _SQL_SELECT_AUDITEVENT =
+		"SELECT auditEvent FROM AuditEvent auditEvent";
+
+	private static final String _SQL_SELECT_AUDITEVENT_WHERE_PKS_IN =
+		"SELECT auditEvent FROM AuditEvent auditEvent WHERE auditEventId IN (";
+
+	private static final String _SQL_SELECT_AUDITEVENT_WHERE =
+		"SELECT auditEvent FROM AuditEvent auditEvent WHERE ";
+
+	private static final String _SQL_COUNT_AUDITEVENT =
+		"SELECT COUNT(auditEvent) FROM AuditEvent auditEvent";
+
+	private static final String _SQL_COUNT_AUDITEVENT_WHERE =
+		"SELECT COUNT(auditEvent) FROM AuditEvent auditEvent WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "auditEvent.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No AuditEvent exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AuditEvent exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(AuditEventPersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No AuditEvent exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No AuditEvent exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AuditEventPersistenceImpl.class);
+
 }

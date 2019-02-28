@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.shopping.model.ShoppingOrderItem;
 import com.liferay.shopping.service.ShoppingOrderItemLocalService;
 import com.liferay.shopping.service.persistence.ShoppingOrderItemPersistence;
@@ -63,8 +62,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class ShoppingOrderItemLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements ShoppingOrderItemLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements ShoppingOrderItemLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,6 +81,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public ShoppingOrderItem addShoppingOrderItem(
 		ShoppingOrderItem shoppingOrderItem) {
+
 		shoppingOrderItem.setNew(true);
 
 		return shoppingOrderItemPersistence.update(shoppingOrderItem);
@@ -109,6 +110,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public ShoppingOrderItem deleteShoppingOrderItem(long orderItemId)
 		throws PortalException {
+
 		return shoppingOrderItemPersistence.remove(orderItemId);
 	}
 
@@ -122,6 +124,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public ShoppingOrderItem deleteShoppingOrderItem(
 		ShoppingOrderItem shoppingOrderItem) {
+
 		return shoppingOrderItemPersistence.remove(shoppingOrderItem);
 	}
 
@@ -129,8 +132,8 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(ShoppingOrderItem.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			ShoppingOrderItem.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -157,10 +160,11 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return shoppingOrderItemPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return shoppingOrderItemPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -177,10 +181,12 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return shoppingOrderItemPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return shoppingOrderItemPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -202,10 +208,11 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return shoppingOrderItemPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return shoppingOrderItemPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -223,14 +230,17 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public ShoppingOrderItem getShoppingOrderItem(long orderItemId)
 		throws PortalException {
+
 		return shoppingOrderItemPersistence.findByPrimaryKey(orderItemId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(shoppingOrderItemLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			shoppingOrderItemLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ShoppingOrderItem.class);
 
@@ -240,21 +250,28 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(shoppingOrderItemLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			shoppingOrderItemLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(ShoppingOrderItem.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("orderItemId");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
+			"orderItemId");
 
 		return indexableActionableDynamicQuery;
 	}
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(shoppingOrderItemLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			shoppingOrderItemLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ShoppingOrderItem.class);
 
@@ -267,12 +284,15 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return shoppingOrderItemLocalService.deleteShoppingOrderItem((ShoppingOrderItem)persistedModel);
+
+		return shoppingOrderItemLocalService.deleteShoppingOrderItem(
+			(ShoppingOrderItem)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return shoppingOrderItemPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -312,6 +332,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	@Override
 	public ShoppingOrderItem updateShoppingOrderItem(
 		ShoppingOrderItem shoppingOrderItem) {
+
 		return shoppingOrderItemPersistence.update(shoppingOrderItem);
 	}
 
@@ -331,6 +352,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 */
 	public void setShoppingOrderItemLocalService(
 		ShoppingOrderItemLocalService shoppingOrderItemLocalService) {
+
 		this.shoppingOrderItemLocalService = shoppingOrderItemLocalService;
 	}
 
@@ -350,6 +372,7 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 */
 	public void setShoppingOrderItemPersistence(
 		ShoppingOrderItemPersistence shoppingOrderItemPersistence) {
+
 		this.shoppingOrderItemPersistence = shoppingOrderItemPersistence;
 	}
 
@@ -358,7 +381,9 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -368,12 +393,15 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.shopping.model.ShoppingOrderItem",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.shopping.model.ShoppingOrderItem",
 			shoppingOrderItemLocalService);
 	}
 
@@ -407,15 +435,16 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = shoppingOrderItemPersistence.getDataSource();
+			DataSource dataSource =
+				shoppingOrderItemPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -426,10 +455,18 @@ public abstract class ShoppingOrderItemLocalServiceBaseImpl
 
 	@BeanReference(type = ShoppingOrderItemLocalService.class)
 	protected ShoppingOrderItemLocalService shoppingOrderItemLocalService;
+
 	@BeanReference(type = ShoppingOrderItemPersistence.class)
 	protected ShoppingOrderItemPersistence shoppingOrderItemPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

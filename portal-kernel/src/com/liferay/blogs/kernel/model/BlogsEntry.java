@@ -30,12 +30,15 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.portlet.blogs.model.impl.BlogsEntryImpl")
 @ProviderType
 public interface BlogsEntry extends BlogsEntryModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.portlet.blogs.model.impl.BlogsEntryImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<BlogsEntry, Long> ENTRY_ID_ACCESSOR = new Accessor<BlogsEntry, Long>() {
+	public static final Accessor<BlogsEntry, Long> ENTRY_ID_ACCESSOR =
+		new Accessor<BlogsEntry, Long>() {
+
 			@Override
 			public Long get(BlogsEntry blogsEntry) {
 				return blogsEntry.getEntryId();
@@ -50,17 +53,18 @@ public interface BlogsEntry extends BlogsEntryModel, PersistedModel {
 			public Class<BlogsEntry> getTypeClass() {
 				return BlogsEntry.class;
 			}
+
 		};
 
 	public String getCoverImageURL(
-		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
+			com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	#getSmallImageURL(ThemeDisplay)}
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #getSmallImageURL(ThemeDisplay)}
+	 */
+	@Deprecated
 	public String getEntryImageURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
@@ -68,10 +72,11 @@ public interface BlogsEntry extends BlogsEntryModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public String getSmallImageURL(
-		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
+			com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public boolean isVisible();
 
 	public void setSmallImageType(String smallImageType);
+
 }

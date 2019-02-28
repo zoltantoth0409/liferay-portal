@@ -17,7 +17,6 @@ package com.liferay.social.privatemessaging.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.message.boards.kernel.model.MBMessage;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -28,7 +27,6 @@ import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-
 import com.liferay.social.privatemessaging.model.UserThread;
 
 import java.util.List;
@@ -44,12 +42,20 @@ import java.util.List;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=pm", "json.web.service.context.path=UserThread"}, service = UserThreadService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=pm",
+		"json.web.service.context.path=UserThread"
+	},
+	service = UserThreadService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface UserThreadService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -60,21 +66,22 @@ public interface UserThreadService extends BaseService {
 		throws PortalException;
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBMessage> getThreadMessages(long mbThreadId, int start,
-		int end, boolean ascending) throws PortalException;
+	public List<MBMessage> getThreadMessages(
+			long mbThreadId, int start, int end, boolean ascending)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getThreadMessagesCount(long mbThreadId)
-		throws PortalException;
+	public int getThreadMessagesCount(long mbThreadId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserThread> getUserUserThreads(boolean deleted)
 		throws PrincipalException;
+
 }

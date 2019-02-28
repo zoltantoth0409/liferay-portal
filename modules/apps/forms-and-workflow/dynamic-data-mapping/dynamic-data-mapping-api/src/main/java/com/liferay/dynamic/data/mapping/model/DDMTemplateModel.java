@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -46,8 +45,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface DDMTemplateModel extends AttachedModel, BaseModel<DDMTemplate>,
-	LocalizedModel, ShardedModel, StagedGroupedModel {
+public interface DDMTemplateModel
+	extends AttachedModel, BaseModel<DDMTemplate>, LocalizedModel, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -519,8 +520,8 @@ public interface DDMTemplateModel extends AttachedModel, BaseModel<DDMTemplate>,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -537,8 +538,8 @@ public interface DDMTemplateModel extends AttachedModel, BaseModel<DDMTemplate>,
 	 * @param descriptionMap the locales and localized descriptions of this ddm template
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the type of this ddm template.
@@ -756,4 +757,5 @@ public interface DDMTemplateModel extends AttachedModel, BaseModel<DDMTemplate>,
 
 	@Override
 	public String toXmlString();
+
 }

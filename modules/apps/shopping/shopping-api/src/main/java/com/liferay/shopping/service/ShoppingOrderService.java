@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-
 import com.liferay.shopping.model.ShoppingOrder;
 
 /**
@@ -40,53 +39,66 @@ import com.liferay.shopping.model.ShoppingOrder;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=shopping", "json.web.service.context.path=ShoppingOrder"}, service = ShoppingOrderService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=shopping",
+		"json.web.service.context.path=ShoppingOrder"
+	},
+	service = ShoppingOrderService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface ShoppingOrderService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingOrderServiceUtil} to access the shopping order remote service. Add custom service methods to <code>com.liferay.shopping.service.impl.ShoppingOrderServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public void completeOrder(long groupId, String number, String ppTxnId,
-		String ppPaymentStatus, double ppPaymentGross, String ppReceiverEmail,
-		String ppPayerEmail, ServiceContext serviceContext)
+	public void completeOrder(
+			long groupId, String number, String ppTxnId, String ppPaymentStatus,
+			double ppPaymentGross, String ppReceiverEmail, String ppPayerEmail,
+			ServiceContext serviceContext)
 		throws PortalException;
 
-	public void deleteOrder(long groupId, long orderId)
-		throws PortalException;
+	public void deleteOrder(long groupId, long orderId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ShoppingOrder getOrder(long groupId, long orderId)
 		throws PortalException;
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
-	public void sendEmail(long groupId, long orderId, String emailType,
-		ServiceContext serviceContext) throws PortalException;
-
-	public ShoppingOrder updateOrder(long groupId, long orderId,
-		String ppTxnId, String ppPaymentStatus, double ppPaymentGross,
-		String ppReceiverEmail, String ppPayerEmail) throws PortalException;
-
-	public ShoppingOrder updateOrder(long groupId, long orderId,
-		String billingFirstName, String billingLastName,
-		String billingEmailAddress, String billingCompany,
-		String billingStreet, String billingCity, String billingState,
-		String billingZip, String billingCountry, String billingPhone,
-		boolean shipToBilling, String shippingFirstName,
-		String shippingLastName, String shippingEmailAddress,
-		String shippingCompany, String shippingStreet, String shippingCity,
-		String shippingState, String shippingZip, String shippingCountry,
-		String shippingPhone, String ccName, String ccType, String ccNumber,
-		int ccExpMonth, int ccExpYear, String ccVerNumber, String comments)
+	public void sendEmail(
+			long groupId, long orderId, String emailType,
+			ServiceContext serviceContext)
 		throws PortalException;
+
+	public ShoppingOrder updateOrder(
+			long groupId, long orderId, String ppTxnId, String ppPaymentStatus,
+			double ppPaymentGross, String ppReceiverEmail, String ppPayerEmail)
+		throws PortalException;
+
+	public ShoppingOrder updateOrder(
+			long groupId, long orderId, String billingFirstName,
+			String billingLastName, String billingEmailAddress,
+			String billingCompany, String billingStreet, String billingCity,
+			String billingState, String billingZip, String billingCountry,
+			String billingPhone, boolean shipToBilling,
+			String shippingFirstName, String shippingLastName,
+			String shippingEmailAddress, String shippingCompany,
+			String shippingStreet, String shippingCity, String shippingState,
+			String shippingZip, String shippingCountry, String shippingPhone,
+			String ccName, String ccType, String ccNumber, int ccExpMonth,
+			int ccExpYear, String ccVerNumber, String comments)
+		throws PortalException;
+
 }

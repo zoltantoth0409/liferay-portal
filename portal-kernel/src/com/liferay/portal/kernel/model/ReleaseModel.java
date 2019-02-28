@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -38,6 +37,7 @@ import java.util.Date;
  */
 @ProviderType
 public interface ReleaseModel extends BaseModel<Release>, MVCCModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -280,4 +280,5 @@ public interface ReleaseModel extends BaseModel<Release>, MVCCModel {
 
 	@Override
 	public String toXmlString();
+
 }

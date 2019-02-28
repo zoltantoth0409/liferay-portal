@@ -38,12 +38,20 @@ import com.liferay.portal.kernel.transaction.Transactional;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=contacts", "json.web.service.context.path=Entry"}, service = EntryService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=contacts",
+		"json.web.service.context.path=Entry"
+	},
+	service = EntryService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface EntryService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -51,13 +59,15 @@ public interface EntryService extends BaseService {
 	 */
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JSONArray searchUsersAndContacts(long companyId, String keywords,
-		int start, int end) throws PortalException;
+	public JSONArray searchUsersAndContacts(
+			long companyId, String keywords, int start, int end)
+		throws PortalException;
+
 }

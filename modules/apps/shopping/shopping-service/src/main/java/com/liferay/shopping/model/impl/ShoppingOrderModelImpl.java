@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingOrder;
 import com.liferay.shopping.model.ShoppingOrderModel;
 import com.liferay.shopping.model.ShoppingOrderSoap;
@@ -64,68 +62,49 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
-	implements ShoppingOrderModel {
+public class ShoppingOrderModelImpl
+	extends BaseModelImpl<ShoppingOrder> implements ShoppingOrderModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a shopping order model instance should use the <code>ShoppingOrder</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ShoppingOrder";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "orderId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "number_", Types.VARCHAR },
-			{ "tax", Types.DOUBLE },
-			{ "shipping", Types.DOUBLE },
-			{ "altShipping", Types.VARCHAR },
-			{ "requiresShipping", Types.BOOLEAN },
-			{ "insure", Types.BOOLEAN },
-			{ "insurance", Types.DOUBLE },
-			{ "couponCodes", Types.VARCHAR },
-			{ "couponDiscount", Types.DOUBLE },
-			{ "billingFirstName", Types.VARCHAR },
-			{ "billingLastName", Types.VARCHAR },
-			{ "billingEmailAddress", Types.VARCHAR },
-			{ "billingCompany", Types.VARCHAR },
-			{ "billingStreet", Types.VARCHAR },
-			{ "billingCity", Types.VARCHAR },
-			{ "billingState", Types.VARCHAR },
-			{ "billingZip", Types.VARCHAR },
-			{ "billingCountry", Types.VARCHAR },
-			{ "billingPhone", Types.VARCHAR },
-			{ "shipToBilling", Types.BOOLEAN },
-			{ "shippingFirstName", Types.VARCHAR },
-			{ "shippingLastName", Types.VARCHAR },
-			{ "shippingEmailAddress", Types.VARCHAR },
-			{ "shippingCompany", Types.VARCHAR },
-			{ "shippingStreet", Types.VARCHAR },
-			{ "shippingCity", Types.VARCHAR },
-			{ "shippingState", Types.VARCHAR },
-			{ "shippingZip", Types.VARCHAR },
-			{ "shippingCountry", Types.VARCHAR },
-			{ "shippingPhone", Types.VARCHAR },
-			{ "ccName", Types.VARCHAR },
-			{ "ccType", Types.VARCHAR },
-			{ "ccNumber", Types.VARCHAR },
-			{ "ccExpMonth", Types.INTEGER },
-			{ "ccExpYear", Types.INTEGER },
-			{ "ccVerNumber", Types.VARCHAR },
-			{ "comments", Types.CLOB },
-			{ "ppTxnId", Types.VARCHAR },
-			{ "ppPaymentStatus", Types.VARCHAR },
-			{ "ppPaymentGross", Types.DOUBLE },
-			{ "ppReceiverEmail", Types.VARCHAR },
-			{ "ppPayerEmail", Types.VARCHAR },
-			{ "sendOrderEmail", Types.BOOLEAN },
-			{ "sendShippingEmail", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"orderId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"number_", Types.VARCHAR},
+		{"tax", Types.DOUBLE}, {"shipping", Types.DOUBLE},
+		{"altShipping", Types.VARCHAR}, {"requiresShipping", Types.BOOLEAN},
+		{"insure", Types.BOOLEAN}, {"insurance", Types.DOUBLE},
+		{"couponCodes", Types.VARCHAR}, {"couponDiscount", Types.DOUBLE},
+		{"billingFirstName", Types.VARCHAR}, {"billingLastName", Types.VARCHAR},
+		{"billingEmailAddress", Types.VARCHAR},
+		{"billingCompany", Types.VARCHAR}, {"billingStreet", Types.VARCHAR},
+		{"billingCity", Types.VARCHAR}, {"billingState", Types.VARCHAR},
+		{"billingZip", Types.VARCHAR}, {"billingCountry", Types.VARCHAR},
+		{"billingPhone", Types.VARCHAR}, {"shipToBilling", Types.BOOLEAN},
+		{"shippingFirstName", Types.VARCHAR},
+		{"shippingLastName", Types.VARCHAR},
+		{"shippingEmailAddress", Types.VARCHAR},
+		{"shippingCompany", Types.VARCHAR}, {"shippingStreet", Types.VARCHAR},
+		{"shippingCity", Types.VARCHAR}, {"shippingState", Types.VARCHAR},
+		{"shippingZip", Types.VARCHAR}, {"shippingCountry", Types.VARCHAR},
+		{"shippingPhone", Types.VARCHAR}, {"ccName", Types.VARCHAR},
+		{"ccType", Types.VARCHAR}, {"ccNumber", Types.VARCHAR},
+		{"ccExpMonth", Types.INTEGER}, {"ccExpYear", Types.INTEGER},
+		{"ccVerNumber", Types.VARCHAR}, {"comments", Types.CLOB},
+		{"ppTxnId", Types.VARCHAR}, {"ppPaymentStatus", Types.VARCHAR},
+		{"ppPaymentGross", Types.DOUBLE}, {"ppReceiverEmail", Types.VARCHAR},
+		{"ppPayerEmail", Types.VARCHAR}, {"sendOrderEmail", Types.BOOLEAN},
+		{"sendShippingEmail", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("orderId", Types.BIGINT);
@@ -181,27 +160,48 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 		TABLE_COLUMNS_MAP.put("sendShippingEmail", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ShoppingOrder (orderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,number_ VARCHAR(75) null,tax DOUBLE,shipping DOUBLE,altShipping VARCHAR(75) null,requiresShipping BOOLEAN,insure BOOLEAN,insurance DOUBLE,couponCodes VARCHAR(75) null,couponDiscount DOUBLE,billingFirstName VARCHAR(75) null,billingLastName VARCHAR(75) null,billingEmailAddress VARCHAR(254) null,billingCompany VARCHAR(75) null,billingStreet VARCHAR(75) null,billingCity VARCHAR(75) null,billingState VARCHAR(75) null,billingZip VARCHAR(75) null,billingCountry VARCHAR(75) null,billingPhone VARCHAR(75) null,shipToBilling BOOLEAN,shippingFirstName VARCHAR(75) null,shippingLastName VARCHAR(75) null,shippingEmailAddress VARCHAR(254) null,shippingCompany VARCHAR(75) null,shippingStreet VARCHAR(75) null,shippingCity VARCHAR(75) null,shippingState VARCHAR(75) null,shippingZip VARCHAR(75) null,shippingCountry VARCHAR(75) null,shippingPhone VARCHAR(75) null,ccName VARCHAR(75) null,ccType VARCHAR(75) null,ccNumber VARCHAR(75) null,ccExpMonth INTEGER,ccExpYear INTEGER,ccVerNumber VARCHAR(75) null,comments TEXT null,ppTxnId VARCHAR(75) null,ppPaymentStatus VARCHAR(75) null,ppPaymentGross DOUBLE,ppReceiverEmail VARCHAR(254) null,ppPayerEmail VARCHAR(254) null,sendOrderEmail BOOLEAN,sendShippingEmail BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table ShoppingOrder (orderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,number_ VARCHAR(75) null,tax DOUBLE,shipping DOUBLE,altShipping VARCHAR(75) null,requiresShipping BOOLEAN,insure BOOLEAN,insurance DOUBLE,couponCodes VARCHAR(75) null,couponDiscount DOUBLE,billingFirstName VARCHAR(75) null,billingLastName VARCHAR(75) null,billingEmailAddress VARCHAR(254) null,billingCompany VARCHAR(75) null,billingStreet VARCHAR(75) null,billingCity VARCHAR(75) null,billingState VARCHAR(75) null,billingZip VARCHAR(75) null,billingCountry VARCHAR(75) null,billingPhone VARCHAR(75) null,shipToBilling BOOLEAN,shippingFirstName VARCHAR(75) null,shippingLastName VARCHAR(75) null,shippingEmailAddress VARCHAR(254) null,shippingCompany VARCHAR(75) null,shippingStreet VARCHAR(75) null,shippingCity VARCHAR(75) null,shippingState VARCHAR(75) null,shippingZip VARCHAR(75) null,shippingCountry VARCHAR(75) null,shippingPhone VARCHAR(75) null,ccName VARCHAR(75) null,ccType VARCHAR(75) null,ccNumber VARCHAR(75) null,ccExpMonth INTEGER,ccExpYear INTEGER,ccVerNumber VARCHAR(75) null,comments TEXT null,ppTxnId VARCHAR(75) null,ppPaymentStatus VARCHAR(75) null,ppPaymentGross DOUBLE,ppReceiverEmail VARCHAR(254) null,ppPayerEmail VARCHAR(254) null,sendOrderEmail BOOLEAN,sendShippingEmail BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table ShoppingOrder";
-	public static final String ORDER_BY_JPQL = " ORDER BY shoppingOrder.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY ShoppingOrder.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY shoppingOrder.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ShoppingOrder.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingOrder"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingOrder"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingOrder"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingOrder"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingOrder"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingOrder"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long NUMBER_COLUMN_BITMASK = 2L;
+
 	public static final long PPPAYMENTSTATUS_COLUMN_BITMASK = 4L;
+
 	public static final long PPTXNID_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 32L;
 
 	/**
@@ -283,7 +283,8 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			return null;
 		}
 
-		List<ShoppingOrder> models = new ArrayList<ShoppingOrder>(soapModels.length);
+		List<ShoppingOrder> models = new ArrayList<ShoppingOrder>(
+			soapModels.length);
 
 		for (ShoppingOrderSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -292,8 +293,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.shopping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.shopping.model.ShoppingOrder"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.shopping.model.ShoppingOrder"));
 
 	public ShoppingOrderModelImpl() {
 	}
@@ -332,13 +334,18 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingOrder, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ShoppingOrder)this));
 		}
 
@@ -350,36 +357,44 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ShoppingOrder, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ShoppingOrder, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ShoppingOrder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ShoppingOrder, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ShoppingOrder)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ShoppingOrder)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ShoppingOrder, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ShoppingOrder, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ShoppingOrder, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ShoppingOrder, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ShoppingOrder, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ShoppingOrder, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ShoppingOrder, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingOrder, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<ShoppingOrder, Object>>();
-		Map<String, BiConsumer<ShoppingOrder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ShoppingOrder, ?>>();
-
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<ShoppingOrder, Object>>();
+		Map<String, BiConsumer<ShoppingOrder, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<ShoppingOrder, ?>>();
 
 		attributeGetterFunctions.put(
 			"orderId",
@@ -396,7 +411,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object orderId) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object orderId) {
+
 					shoppingOrder.setOrderId((Long)orderId);
 				}
 
@@ -416,7 +433,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object groupId) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object groupId) {
+
 					shoppingOrder.setGroupId((Long)groupId);
 				}
 
@@ -436,7 +455,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object companyId) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object companyId) {
+
 					shoppingOrder.setCompanyId((Long)companyId);
 				}
 
@@ -476,7 +497,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object userName) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object userName) {
+
 					shoppingOrder.setUserName((String)userName);
 				}
 
@@ -496,7 +519,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object createDate) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object createDate) {
+
 					shoppingOrder.setCreateDate((Date)createDate);
 				}
 
@@ -516,7 +541,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object modifiedDate) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object modifiedDate) {
+
 					shoppingOrder.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -576,7 +603,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shipping) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shipping) {
+
 					shoppingOrder.setShipping((Double)shipping);
 				}
 
@@ -596,7 +625,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object altShipping) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object altShipping) {
+
 					shoppingOrder.setAltShipping((String)altShipping);
 				}
 
@@ -616,8 +647,11 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object requiresShipping) {
-					shoppingOrder.setRequiresShipping((Boolean)requiresShipping);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object requiresShipping) {
+
+					shoppingOrder.setRequiresShipping(
+						(Boolean)requiresShipping);
 				}
 
 			});
@@ -656,7 +690,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object insurance) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object insurance) {
+
 					shoppingOrder.setInsurance((Double)insurance);
 				}
 
@@ -676,7 +712,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object couponCodes) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object couponCodes) {
+
 					shoppingOrder.setCouponCodes((String)couponCodes);
 				}
 
@@ -696,7 +734,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object couponDiscount) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object couponDiscount) {
+
 					shoppingOrder.setCouponDiscount((Double)couponDiscount);
 				}
 
@@ -716,7 +756,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingFirstName) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingFirstName) {
+
 					shoppingOrder.setBillingFirstName((String)billingFirstName);
 				}
 
@@ -736,7 +778,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingLastName) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingLastName) {
+
 					shoppingOrder.setBillingLastName((String)billingLastName);
 				}
 
@@ -756,8 +800,11 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingEmailAddress) {
-					shoppingOrder.setBillingEmailAddress((String)billingEmailAddress);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingEmailAddress) {
+
+					shoppingOrder.setBillingEmailAddress(
+						(String)billingEmailAddress);
 				}
 
 			});
@@ -776,7 +823,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingCompany) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingCompany) {
+
 					shoppingOrder.setBillingCompany((String)billingCompany);
 				}
 
@@ -796,7 +845,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingStreet) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingStreet) {
+
 					shoppingOrder.setBillingStreet((String)billingStreet);
 				}
 
@@ -816,7 +867,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingCity) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingCity) {
+
 					shoppingOrder.setBillingCity((String)billingCity);
 				}
 
@@ -836,7 +889,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingState) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingState) {
+
 					shoppingOrder.setBillingState((String)billingState);
 				}
 
@@ -856,7 +911,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingZip) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingZip) {
+
 					shoppingOrder.setBillingZip((String)billingZip);
 				}
 
@@ -876,7 +933,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingCountry) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingCountry) {
+
 					shoppingOrder.setBillingCountry((String)billingCountry);
 				}
 
@@ -896,7 +955,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object billingPhone) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object billingPhone) {
+
 					shoppingOrder.setBillingPhone((String)billingPhone);
 				}
 
@@ -916,7 +977,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shipToBilling) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shipToBilling) {
+
 					shoppingOrder.setShipToBilling((Boolean)shipToBilling);
 				}
 
@@ -936,8 +999,11 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingFirstName) {
-					shoppingOrder.setShippingFirstName((String)shippingFirstName);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingFirstName) {
+
+					shoppingOrder.setShippingFirstName(
+						(String)shippingFirstName);
 				}
 
 			});
@@ -956,7 +1022,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingLastName) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingLastName) {
+
 					shoppingOrder.setShippingLastName((String)shippingLastName);
 				}
 
@@ -976,8 +1044,11 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingEmailAddress) {
-					shoppingOrder.setShippingEmailAddress((String)shippingEmailAddress);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingEmailAddress) {
+
+					shoppingOrder.setShippingEmailAddress(
+						(String)shippingEmailAddress);
 				}
 
 			});
@@ -996,7 +1067,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingCompany) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingCompany) {
+
 					shoppingOrder.setShippingCompany((String)shippingCompany);
 				}
 
@@ -1016,7 +1089,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingStreet) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingStreet) {
+
 					shoppingOrder.setShippingStreet((String)shippingStreet);
 				}
 
@@ -1036,7 +1111,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingCity) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingCity) {
+
 					shoppingOrder.setShippingCity((String)shippingCity);
 				}
 
@@ -1056,7 +1133,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingState) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingState) {
+
 					shoppingOrder.setShippingState((String)shippingState);
 				}
 
@@ -1076,7 +1155,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingZip) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingZip) {
+
 					shoppingOrder.setShippingZip((String)shippingZip);
 				}
 
@@ -1096,7 +1177,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingCountry) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingCountry) {
+
 					shoppingOrder.setShippingCountry((String)shippingCountry);
 				}
 
@@ -1116,7 +1199,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object shippingPhone) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object shippingPhone) {
+
 					shoppingOrder.setShippingPhone((String)shippingPhone);
 				}
 
@@ -1176,7 +1261,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccNumber) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccNumber) {
+
 					shoppingOrder.setCcNumber((String)ccNumber);
 				}
 
@@ -1196,7 +1283,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccExpMonth) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccExpMonth) {
+
 					shoppingOrder.setCcExpMonth((Integer)ccExpMonth);
 				}
 
@@ -1216,7 +1305,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccExpYear) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccExpYear) {
+
 					shoppingOrder.setCcExpYear((Integer)ccExpYear);
 				}
 
@@ -1236,7 +1327,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ccVerNumber) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ccVerNumber) {
+
 					shoppingOrder.setCcVerNumber((String)ccVerNumber);
 				}
 
@@ -1256,7 +1349,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object comments) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object comments) {
+
 					shoppingOrder.setComments((String)comments);
 				}
 
@@ -1276,7 +1371,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ppTxnId) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ppTxnId) {
+
 					shoppingOrder.setPpTxnId((String)ppTxnId);
 				}
 
@@ -1296,7 +1393,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ppPaymentStatus) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ppPaymentStatus) {
+
 					shoppingOrder.setPpPaymentStatus((String)ppPaymentStatus);
 				}
 
@@ -1316,7 +1415,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ppPaymentGross) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ppPaymentGross) {
+
 					shoppingOrder.setPpPaymentGross((Double)ppPaymentGross);
 				}
 
@@ -1336,7 +1437,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ppReceiverEmail) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ppReceiverEmail) {
+
 					shoppingOrder.setPpReceiverEmail((String)ppReceiverEmail);
 				}
 
@@ -1356,7 +1459,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object ppPayerEmail) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object ppPayerEmail) {
+
 					shoppingOrder.setPpPayerEmail((String)ppPayerEmail);
 				}
 
@@ -1376,7 +1481,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object sendOrderEmail) {
+				public void accept(
+					ShoppingOrder shoppingOrder, Object sendOrderEmail) {
+
 					shoppingOrder.setSendOrderEmail((Boolean)sendOrderEmail);
 				}
 
@@ -1396,15 +1503,19 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			new BiConsumer<ShoppingOrder, Object>() {
 
 				@Override
-				public void accept(ShoppingOrder shoppingOrder, Object sendShippingEmail) {
-					shoppingOrder.setSendShippingEmail((Boolean)sendShippingEmail);
+				public void accept(
+					ShoppingOrder shoppingOrder, Object sendShippingEmail) {
+
+					shoppingOrder.setSendShippingEmail(
+						(Boolean)sendShippingEmail);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -2247,8 +2358,8 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ShoppingOrder.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ShoppingOrder.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -2261,8 +2372,9 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	@Override
 	public ShoppingOrder toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingOrder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ShoppingOrder)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -2333,8 +2445,8 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	public int compareTo(ShoppingOrder shoppingOrder) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				shoppingOrder.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), shoppingOrder.getCreateDate());
 
 		value = value * -1;
 
@@ -2386,7 +2498,8 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	public void resetOriginalValues() {
 		ShoppingOrderModelImpl shoppingOrderModelImpl = this;
 
-		shoppingOrderModelImpl._originalGroupId = shoppingOrderModelImpl._groupId;
+		shoppingOrderModelImpl._originalGroupId =
+			shoppingOrderModelImpl._groupId;
 
 		shoppingOrderModelImpl._setOriginalGroupId = false;
 
@@ -2398,16 +2511,19 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 		shoppingOrderModelImpl._originalNumber = shoppingOrderModelImpl._number;
 
-		shoppingOrderModelImpl._originalPpTxnId = shoppingOrderModelImpl._ppTxnId;
+		shoppingOrderModelImpl._originalPpTxnId =
+			shoppingOrderModelImpl._ppTxnId;
 
-		shoppingOrderModelImpl._originalPpPaymentStatus = shoppingOrderModelImpl._ppPaymentStatus;
+		shoppingOrderModelImpl._originalPpPaymentStatus =
+			shoppingOrderModelImpl._ppPaymentStatus;
 
 		shoppingOrderModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<ShoppingOrder> toCacheModel() {
-		ShoppingOrderCacheModel shoppingOrderCacheModel = new ShoppingOrderCacheModel();
+		ShoppingOrderCacheModel shoppingOrderCacheModel =
+			new ShoppingOrderCacheModel();
 
 		shoppingOrderCacheModel.orderId = getOrderId();
 
@@ -2497,10 +2613,12 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 		shoppingOrderCacheModel.billingEmailAddress = getBillingEmailAddress();
 
-		String billingEmailAddress = shoppingOrderCacheModel.billingEmailAddress;
+		String billingEmailAddress =
+			shoppingOrderCacheModel.billingEmailAddress;
 
 		if ((billingEmailAddress != null) &&
-				(billingEmailAddress.length() == 0)) {
+			(billingEmailAddress.length() == 0)) {
+
 			shoppingOrderCacheModel.billingEmailAddress = null;
 		}
 
@@ -2578,12 +2696,15 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 			shoppingOrderCacheModel.shippingLastName = null;
 		}
 
-		shoppingOrderCacheModel.shippingEmailAddress = getShippingEmailAddress();
+		shoppingOrderCacheModel.shippingEmailAddress =
+			getShippingEmailAddress();
 
-		String shippingEmailAddress = shoppingOrderCacheModel.shippingEmailAddress;
+		String shippingEmailAddress =
+			shoppingOrderCacheModel.shippingEmailAddress;
 
 		if ((shippingEmailAddress != null) &&
-				(shippingEmailAddress.length() == 0)) {
+			(shippingEmailAddress.length() == 0)) {
+
 			shoppingOrderCacheModel.shippingEmailAddress = null;
 		}
 
@@ -2730,16 +2851,20 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public String toString() {
-		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingOrder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -2758,18 +2883,22 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<ShoppingOrder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingOrder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingOrder, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingOrder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -2783,10 +2912,12 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ShoppingOrder.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ShoppingOrder.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ShoppingOrder.class, ModelWrapper.class
-		};
+		ShoppingOrder.class, ModelWrapper.class
+	};
+
 	private long _orderId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -2848,4 +2979,5 @@ public class ShoppingOrderModelImpl extends BaseModelImpl<ShoppingOrder>
 	private boolean _sendShippingEmail;
 	private long _columnBitmask;
 	private ShoppingOrder _escapedModel;
+
 }

@@ -27,30 +27,37 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see MeetupsRegistrationModel
  * @generated
  */
-@ImplementationClassName("com.liferay.social.networking.model.impl.MeetupsRegistrationImpl")
+@ImplementationClassName(
+	"com.liferay.social.networking.model.impl.MeetupsRegistrationImpl"
+)
 @ProviderType
-public interface MeetupsRegistration extends MeetupsRegistrationModel,
-	PersistedModel {
+public interface MeetupsRegistration
+	extends MeetupsRegistrationModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.social.networking.model.impl.MeetupsRegistrationImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<MeetupsRegistration, Long> MEETUPS_REGISTRATION_ID_ACCESSOR =
-		new Accessor<MeetupsRegistration, Long>() {
-			@Override
-			public Long get(MeetupsRegistration meetupsRegistration) {
-				return meetupsRegistration.getMeetupsRegistrationId();
-			}
+	public static final Accessor<MeetupsRegistration, Long>
+		MEETUPS_REGISTRATION_ID_ACCESSOR =
+			new Accessor<MeetupsRegistration, Long>() {
 
-			@Override
-			public Class<Long> getAttributeClass() {
-				return Long.class;
-			}
+				@Override
+				public Long get(MeetupsRegistration meetupsRegistration) {
+					return meetupsRegistration.getMeetupsRegistrationId();
+				}
 
-			@Override
-			public Class<MeetupsRegistration> getTypeClass() {
-				return MeetupsRegistration.class;
-			}
-		};
+				@Override
+				public Class<Long> getAttributeClass() {
+					return Long.class;
+				}
+
+				@Override
+				public Class<MeetupsRegistration> getTypeClass() {
+					return MeetupsRegistration.class;
+				}
+
+			};
+
 }

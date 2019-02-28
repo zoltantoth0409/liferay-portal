@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class AccountCacheModel implements CacheModel<Account>, Externalizable,
-	MVCCModel {
+public class AccountCacheModel
+	implements CacheModel<Account>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -51,7 +52,8 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable,
 		AccountCacheModel accountCacheModel = (AccountCacheModel)obj;
 
 		if ((accountId == accountCacheModel.accountId) &&
-				(mvccVersion == accountCacheModel.mvccVersion)) {
+			(mvccVersion == accountCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -244,8 +246,7 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(accountId);
@@ -347,4 +348,5 @@ public class AccountCacheModel implements CacheModel<Account>, Externalizable,
 	public String industry;
 	public String type;
 	public String size;
+
 }

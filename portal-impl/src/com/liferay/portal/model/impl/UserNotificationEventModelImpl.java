@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -56,30 +55,29 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificationEvent>
+public class UserNotificationEventModelImpl
+	extends BaseModelImpl<UserNotificationEvent>
 	implements UserNotificationEventModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a user notification event model instance should use the <code>UserNotificationEvent</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "UserNotificationEvent";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "userNotificationEventId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "type_", Types.VARCHAR },
-			{ "timestamp", Types.BIGINT },
-			{ "deliveryType", Types.INTEGER },
-			{ "deliverBy", Types.BIGINT },
-			{ "delivered", Types.BOOLEAN },
-			{ "payload", Types.CLOB },
-			{ "actionRequired", Types.BOOLEAN },
-			{ "archived", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"userNotificationEventId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"type_", Types.VARCHAR},
+		{"timestamp", Types.BIGINT}, {"deliveryType", Types.INTEGER},
+		{"deliverBy", Types.BIGINT}, {"delivered", Types.BOOLEAN},
+		{"payload", Types.CLOB}, {"actionRequired", Types.BOOLEAN},
+		{"archived", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -97,33 +95,60 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 		TABLE_COLUMNS_MAP.put("archived", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table UserNotificationEvent (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userNotificationEventId LONG not null primary key,companyId LONG,userId LONG,type_ VARCHAR(200) null,timestamp LONG,deliveryType INTEGER,deliverBy LONG,delivered BOOLEAN,payload TEXT null,actionRequired BOOLEAN,archived BOOLEAN)";
-	public static final String TABLE_SQL_DROP = "drop table UserNotificationEvent";
-	public static final String ORDER_BY_JPQL = " ORDER BY userNotificationEvent.timestamp DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY UserNotificationEvent.timestamp DESC";
+	public static final String TABLE_SQL_CREATE =
+		"create table UserNotificationEvent (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userNotificationEventId LONG not null primary key,companyId LONG,userId LONG,type_ VARCHAR(200) null,timestamp LONG,deliveryType INTEGER,deliverBy LONG,delivered BOOLEAN,payload TEXT null,actionRequired BOOLEAN,archived BOOLEAN)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table UserNotificationEvent";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY userNotificationEvent.timestamp DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY UserNotificationEvent.timestamp DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserNotificationEvent"),
+		true);
+
 	public static final long ACTIONREQUIRED_COLUMN_BITMASK = 1L;
+
 	public static final long ARCHIVED_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long DELIVERED_COLUMN_BITMASK = 8L;
+
 	public static final long DELIVERYTYPE_COLUMN_BITMASK = 16L;
+
 	public static final long TYPE_COLUMN_BITMASK = 32L;
+
 	public static final long USERID_COLUMN_BITMASK = 64L;
+
 	public static final long UUID_COLUMN_BITMASK = 128L;
+
 	public static final long TIMESTAMP_COLUMN_BITMASK = 256L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.UserNotificationEvent"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.UserNotificationEvent"));
 
 	public UserNotificationEventModelImpl() {
 	}
@@ -162,14 +187,18 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<UserNotificationEvent, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<UserNotificationEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((UserNotificationEvent)this));
 		}
 
@@ -181,45 +210,58 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<UserNotificationEvent, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<UserNotificationEvent, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<UserNotificationEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<UserNotificationEvent, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((UserNotificationEvent)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(UserNotificationEvent)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<UserNotificationEvent, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<UserNotificationEvent, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<UserNotificationEvent, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<UserNotificationEvent, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<UserNotificationEvent, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<UserNotificationEvent, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<UserNotificationEvent, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserNotificationEvent, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<UserNotificationEvent, Object>>();
-		Map<String, BiConsumer<UserNotificationEvent, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<UserNotificationEvent, ?>>();
-
+		Map<String, Function<UserNotificationEvent, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<UserNotificationEvent, Object>>();
+		Map<String, BiConsumer<UserNotificationEvent, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<UserNotificationEvent, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getMvccVersion();
 				}
 
@@ -229,7 +271,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object mvccVersion) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object mvccVersion) {
+
 					userNotificationEvent.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -239,7 +284,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getUuid();
 				}
 
@@ -249,7 +296,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object uuid) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent, Object uuid) {
+
 					userNotificationEvent.setUuid((String)uuid);
 				}
 
@@ -259,7 +308,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getUserNotificationEventId();
 				}
 
@@ -269,8 +320,12 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object userNotificationEventId) {
-					userNotificationEvent.setUserNotificationEventId((Long)userNotificationEventId);
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object userNotificationEventId) {
+
+					userNotificationEvent.setUserNotificationEventId(
+						(Long)userNotificationEventId);
 				}
 
 			});
@@ -279,7 +334,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getCompanyId();
 				}
 
@@ -289,7 +346,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object companyId) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object companyId) {
+
 					userNotificationEvent.setCompanyId((Long)companyId);
 				}
 
@@ -299,7 +359,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getUserId();
 				}
 
@@ -309,7 +371,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object userId) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object userId) {
+
 					userNotificationEvent.setUserId((Long)userId);
 				}
 
@@ -319,7 +384,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getType();
 				}
 
@@ -329,7 +396,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object type) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent, Object type) {
+
 					userNotificationEvent.setType((String)type);
 				}
 
@@ -339,7 +408,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getTimestamp();
 				}
 
@@ -349,7 +420,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object timestamp) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object timestamp) {
+
 					userNotificationEvent.setTimestamp((Long)timestamp);
 				}
 
@@ -359,7 +433,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getDeliveryType();
 				}
 
@@ -369,8 +445,12 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object deliveryType) {
-					userNotificationEvent.setDeliveryType((Integer)deliveryType);
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object deliveryType) {
+
+					userNotificationEvent.setDeliveryType(
+						(Integer)deliveryType);
 				}
 
 			});
@@ -379,7 +459,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getDeliverBy();
 				}
 
@@ -389,7 +471,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object deliverBy) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object deliverBy) {
+
 					userNotificationEvent.setDeliverBy((Long)deliverBy);
 				}
 
@@ -399,7 +484,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getDelivered();
 				}
 
@@ -409,7 +496,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object delivered) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object delivered) {
+
 					userNotificationEvent.setDelivered((Boolean)delivered);
 				}
 
@@ -419,7 +509,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getPayload();
 				}
 
@@ -429,7 +521,10 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object payload) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object payload) {
+
 					userNotificationEvent.setPayload((String)payload);
 				}
 
@@ -439,7 +534,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getActionRequired();
 				}
 
@@ -449,8 +546,12 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object actionRequired) {
-					userNotificationEvent.setActionRequired((Boolean)actionRequired);
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object actionRequired) {
+
+					userNotificationEvent.setActionRequired(
+						(Boolean)actionRequired);
 				}
 
 			});
@@ -459,7 +560,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new Function<UserNotificationEvent, Object>() {
 
 				@Override
-				public Object apply(UserNotificationEvent userNotificationEvent) {
+				public Object apply(
+					UserNotificationEvent userNotificationEvent) {
+
 					return userNotificationEvent.getArchived();
 				}
 
@@ -469,15 +572,19 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			new BiConsumer<UserNotificationEvent, Object>() {
 
 				@Override
-				public void accept(UserNotificationEvent userNotificationEvent, Object archived) {
+				public void accept(
+					UserNotificationEvent userNotificationEvent,
+					Object archived) {
+
 					userNotificationEvent.setArchived((Boolean)archived);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -756,8 +863,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			UserNotificationEvent.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), UserNotificationEvent.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -770,8 +878,9 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 	@Override
 	public UserNotificationEvent toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (UserNotificationEvent)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (UserNotificationEvent)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -779,11 +888,13 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public Object clone() {
-		UserNotificationEventImpl userNotificationEventImpl = new UserNotificationEventImpl();
+		UserNotificationEventImpl userNotificationEventImpl =
+			new UserNotificationEventImpl();
 
 		userNotificationEventImpl.setMvccVersion(getMvccVersion());
 		userNotificationEventImpl.setUuid(getUuid());
-		userNotificationEventImpl.setUserNotificationEventId(getUserNotificationEventId());
+		userNotificationEventImpl.setUserNotificationEventId(
+			getUserNotificationEventId());
 		userNotificationEventImpl.setCompanyId(getCompanyId());
 		userNotificationEventImpl.setUserId(getUserId());
 		userNotificationEventImpl.setType(getType());
@@ -833,7 +944,8 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			return false;
 		}
 
-		UserNotificationEvent userNotificationEvent = (UserNotificationEvent)obj;
+		UserNotificationEvent userNotificationEvent =
+			(UserNotificationEvent)obj;
 
 		long primaryKey = userNotificationEvent.getPrimaryKey();
 
@@ -864,31 +976,39 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 	public void resetOriginalValues() {
 		UserNotificationEventModelImpl userNotificationEventModelImpl = this;
 
-		userNotificationEventModelImpl._originalUuid = userNotificationEventModelImpl._uuid;
+		userNotificationEventModelImpl._originalUuid =
+			userNotificationEventModelImpl._uuid;
 
-		userNotificationEventModelImpl._originalCompanyId = userNotificationEventModelImpl._companyId;
+		userNotificationEventModelImpl._originalCompanyId =
+			userNotificationEventModelImpl._companyId;
 
 		userNotificationEventModelImpl._setOriginalCompanyId = false;
 
-		userNotificationEventModelImpl._originalUserId = userNotificationEventModelImpl._userId;
+		userNotificationEventModelImpl._originalUserId =
+			userNotificationEventModelImpl._userId;
 
 		userNotificationEventModelImpl._setOriginalUserId = false;
 
-		userNotificationEventModelImpl._originalType = userNotificationEventModelImpl._type;
+		userNotificationEventModelImpl._originalType =
+			userNotificationEventModelImpl._type;
 
-		userNotificationEventModelImpl._originalDeliveryType = userNotificationEventModelImpl._deliveryType;
+		userNotificationEventModelImpl._originalDeliveryType =
+			userNotificationEventModelImpl._deliveryType;
 
 		userNotificationEventModelImpl._setOriginalDeliveryType = false;
 
-		userNotificationEventModelImpl._originalDelivered = userNotificationEventModelImpl._delivered;
+		userNotificationEventModelImpl._originalDelivered =
+			userNotificationEventModelImpl._delivered;
 
 		userNotificationEventModelImpl._setOriginalDelivered = false;
 
-		userNotificationEventModelImpl._originalActionRequired = userNotificationEventModelImpl._actionRequired;
+		userNotificationEventModelImpl._originalActionRequired =
+			userNotificationEventModelImpl._actionRequired;
 
 		userNotificationEventModelImpl._setOriginalActionRequired = false;
 
-		userNotificationEventModelImpl._originalArchived = userNotificationEventModelImpl._archived;
+		userNotificationEventModelImpl._originalArchived =
+			userNotificationEventModelImpl._archived;
 
 		userNotificationEventModelImpl._setOriginalArchived = false;
 
@@ -897,7 +1017,8 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public CacheModel<UserNotificationEvent> toCacheModel() {
-		UserNotificationEventCacheModel userNotificationEventCacheModel = new UserNotificationEventCacheModel();
+		UserNotificationEventCacheModel userNotificationEventCacheModel =
+			new UserNotificationEventCacheModel();
 
 		userNotificationEventCacheModel.mvccVersion = getMvccVersion();
 
@@ -909,7 +1030,8 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 			userNotificationEventCacheModel.uuid = null;
 		}
 
-		userNotificationEventCacheModel.userNotificationEventId = getUserNotificationEventId();
+		userNotificationEventCacheModel.userNotificationEventId =
+			getUserNotificationEventId();
 
 		userNotificationEventCacheModel.companyId = getCompanyId();
 
@@ -948,21 +1070,25 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public String toString() {
-		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<UserNotificationEvent, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<UserNotificationEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply((UserNotificationEvent)this));
+			sb.append(
+				attributeGetterFunction.apply((UserNotificationEvent)this));
 			sb.append(", ");
 		}
 
@@ -977,24 +1103,28 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<UserNotificationEvent, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<UserNotificationEvent, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserNotificationEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserNotificationEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<UserNotificationEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply((UserNotificationEvent)this));
+			sb.append(
+				attributeGetterFunction.apply((UserNotificationEvent)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1003,10 +1133,12 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = UserNotificationEvent.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		UserNotificationEvent.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			UserNotificationEvent.class, ModelWrapper.class
-		};
+		UserNotificationEvent.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -1036,4 +1168,5 @@ public class UserNotificationEventModelImpl extends BaseModelImpl<UserNotificati
 	private boolean _setOriginalArchived;
 	private long _columnBitmask;
 	private UserNotificationEvent _escapedModel;
+
 }

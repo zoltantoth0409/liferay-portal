@@ -53,14 +53,19 @@ import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionServiceUtil;
  */
 @ProviderType
 public class KaleoDefinitionServiceHttp {
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		HttpPrincipal httpPrincipal, int start, int end) {
-		try {
-			MethodKey methodKey = new MethodKey(KaleoDefinitionServiceUtil.class,
-					"getKaleoDefinitions", _getKaleoDefinitionsParameterTypes0);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, start,
-					end);
+	public static java.util.List
+		<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>
+			getKaleoDefinitions(
+				HttpPrincipal httpPrincipal, int start, int end) {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				KaleoDefinitionServiceUtil.class, "getKaleoDefinitions",
+				_getKaleoDefinitionsParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, start, end);
 
 			Object returnObj = null;
 
@@ -68,10 +73,13 @@ public class KaleoDefinitionServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
-			return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>)returnObj;
+			return (java.util.List
+				<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>)
+					returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -80,14 +88,19 @@ public class KaleoDefinitionServiceHttp {
 		}
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
-		HttpPrincipal httpPrincipal, long companyId, int start, int end) {
-		try {
-			MethodKey methodKey = new MethodKey(KaleoDefinitionServiceUtil.class,
-					"getKaleoDefinitions", _getKaleoDefinitionsParameterTypes1);
+	public static java.util.List
+		<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>
+			getKaleoDefinitions(
+				HttpPrincipal httpPrincipal, long companyId, int start,
+				int end) {
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					companyId, start, end);
+		try {
+			MethodKey methodKey = new MethodKey(
+				KaleoDefinitionServiceUtil.class, "getKaleoDefinitions",
+				_getKaleoDefinitionsParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, companyId, start, end);
 
 			Object returnObj = null;
 
@@ -95,10 +108,13 @@ public class KaleoDefinitionServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
-			return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>)returnObj;
+			return (java.util.List
+				<com.liferay.portal.workflow.kaleo.model.KaleoDefinition>)
+					returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -107,11 +123,12 @@ public class KaleoDefinitionServiceHttp {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(KaleoDefinitionServiceHttp.class);
-	private static final Class<?>[] _getKaleoDefinitionsParameterTypes0 = new Class[] {
-			int.class, int.class
-		};
-	private static final Class<?>[] _getKaleoDefinitionsParameterTypes1 = new Class[] {
-			long.class, int.class, int.class
-		};
+	private static Log _log = LogFactoryUtil.getLog(
+		KaleoDefinitionServiceHttp.class);
+
+	private static final Class<?>[] _getKaleoDefinitionsParameterTypes0 =
+		new Class[] {int.class, int.class};
+	private static final Class<?>[] _getKaleoDefinitionsParameterTypes1 =
+		new Class[] {long.class, int.class, int.class};
+
 }

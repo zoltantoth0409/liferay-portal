@@ -20,10 +20,8 @@ import com.liferay.document.library.kernel.model.DLContent;
 import com.liferay.document.library.kernel.model.DLContentDataBlobModel;
 import com.liferay.document.library.kernel.model.DLContentModel;
 import com.liferay.document.library.kernel.service.DLContentLocalServiceUtil;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -57,25 +55,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class DLContentModelImpl extends BaseModelImpl<DLContent>
-	implements DLContentModel {
+public class DLContentModelImpl
+	extends BaseModelImpl<DLContent> implements DLContentModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a document library content model instance should use the <code>DLContent</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DLContent";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "contentId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "repositoryId", Types.BIGINT },
-			{ "path_", Types.VARCHAR },
-			{ "version", Types.VARCHAR },
-			{ "data_", Types.BLOB },
-			{ "size_", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"contentId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"repositoryId", Types.BIGINT},
+		{"path_", Types.VARCHAR}, {"version", Types.VARCHAR},
+		{"data_", Types.BLOB}, {"size_", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("contentId", Types.BIGINT);
@@ -88,28 +86,49 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DLContent (contentId LONG not null primary key,groupId LONG,companyId LONG,repositoryId LONG,path_ VARCHAR(255) null,version VARCHAR(75) null,data_ BLOB,size_ LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DLContent (contentId LONG not null primary key,groupId LONG,companyId LONG,repositoryId LONG,path_ VARCHAR(255) null,version VARCHAR(75) null,data_ BLOB,size_ LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table DLContent";
-	public static final String ORDER_BY_JPQL = " ORDER BY dlContent.version DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY DLContent.version DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY dlContent.version DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DLContent.version DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLContent"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLContent"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLContent"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLContent"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLContent"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLContent"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long PATH_COLUMN_BITMASK = 2L;
+
 	public static final long REPOSITORYID_COLUMN_BITMASK = 4L;
+
 	public static final long VERSION_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.document.library.kernel.model.DLContent"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.document.library.kernel.model.DLContent"));
 
 	public DLContentModelImpl() {
 	}
@@ -148,14 +167,18 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DLContent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLContent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DLContent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLContent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLContent, Object> attributeGetterFunction = entry.getValue();
+			Function<DLContent, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((DLContent)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((DLContent)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -166,35 +189,44 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DLContent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DLContent, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DLContent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DLContent, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DLContent)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DLContent)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DLContent, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DLContent, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DLContent, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DLContent, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DLContent, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DLContent, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DLContent, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLContent, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DLContent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLContent, Object>>();
-		Map<String, BiConsumer<DLContent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLContent, ?>>();
-
+		Map<String, Function<DLContent, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DLContent, Object>>();
+		Map<String, BiConsumer<DLContent, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DLContent, ?>>();
 
 		attributeGetterFunctions.put(
 			"contentId",
@@ -357,9 +389,10 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -480,7 +513,8 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 	public Blob getData() {
 		if (_dataBlobModel == null) {
 			try {
-				_dataBlobModel = DLContentLocalServiceUtil.getDataBlobModel(getPrimaryKey());
+				_dataBlobModel = DLContentLocalServiceUtil.getDataBlobModel(
+					getPrimaryKey());
 			}
 			catch (Exception e) {
 			}
@@ -521,8 +555,8 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DLContent.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DLContent.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -535,8 +569,9 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 	@Override
 	public DLContent toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DLContent)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DLContent)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -619,7 +654,8 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 
 		dlContentModelImpl._setOriginalCompanyId = false;
 
-		dlContentModelImpl._originalRepositoryId = dlContentModelImpl._repositoryId;
+		dlContentModelImpl._originalRepositoryId =
+			dlContentModelImpl._repositoryId;
 
 		dlContentModelImpl._setOriginalRepositoryId = false;
 
@@ -730,10 +766,12 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DLContent.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DLContent.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DLContent.class, ModelWrapper.class
-		};
+		DLContent.class, ModelWrapper.class
+	};
+
 	private long _contentId;
 	private long _groupId;
 	private long _companyId;
@@ -750,4 +788,5 @@ public class DLContentModelImpl extends BaseModelImpl<DLContent>
 	private long _size;
 	private long _columnBitmask;
 	private DLContent _escapedModel;
+
 }

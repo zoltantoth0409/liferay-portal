@@ -17,7 +17,6 @@ package com.liferay.calendar.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNotificationTemplate>,
-	ShardedModel, StagedGroupedModel {
+public interface CalendarNotificationTemplateModel
+	extends BaseModel<CalendarNotificationTemplate>, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -370,4 +371,5 @@ public interface CalendarNotificationTemplateModel extends BaseModel<CalendarNot
 
 	@Override
 	public String toXmlString();
+
 }

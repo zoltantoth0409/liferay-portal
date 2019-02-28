@@ -30,12 +30,15 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingOrderImpl")
 @ProviderType
 public interface ShoppingOrder extends ShoppingOrderModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingOrderImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ShoppingOrder, Long> ORDER_ID_ACCESSOR = new Accessor<ShoppingOrder, Long>() {
+	public static final Accessor<ShoppingOrder, Long> ORDER_ID_ACCESSOR =
+		new Accessor<ShoppingOrder, Long>() {
+
 			@Override
 			public Long get(ShoppingOrder shoppingOrder) {
 				return shoppingOrder.getOrderId();
@@ -50,5 +53,7 @@ public interface ShoppingOrder extends ShoppingOrderModel, PersistedModel {
 			public Class<ShoppingOrder> getTypeClass() {
 				return ShoppingOrder.class;
 			}
+
 		};
+
 }

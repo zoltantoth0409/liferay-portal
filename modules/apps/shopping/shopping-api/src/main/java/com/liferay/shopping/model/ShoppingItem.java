@@ -30,12 +30,15 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingItemImpl")
 @ProviderType
 public interface ShoppingItem extends ShoppingItemModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingItemImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ShoppingItem, Long> ITEM_ID_ACCESSOR = new Accessor<ShoppingItem, Long>() {
+	public static final Accessor<ShoppingItem, Long> ITEM_ID_ACCESSOR =
+		new Accessor<ShoppingItem, Long>() {
+
 			@Override
 			public Long get(ShoppingItem shoppingItem) {
 				return shoppingItem.getItemId();
@@ -50,6 +53,7 @@ public interface ShoppingItem extends ShoppingItemModel, PersistedModel {
 			public Class<ShoppingItem> getTypeClass() {
 				return ShoppingItem.class;
 			}
+
 		};
 
 	public ShoppingCategory getCategory();
@@ -65,4 +69,5 @@ public interface ShoppingItem extends ShoppingItemModel, PersistedModel {
 	public boolean isInfiniteStock();
 
 	public void setFieldsQuantitiesArray(String[] fieldsQuantitiesArray);
+
 }

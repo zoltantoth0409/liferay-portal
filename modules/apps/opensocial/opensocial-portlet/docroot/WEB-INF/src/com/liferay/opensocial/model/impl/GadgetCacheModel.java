@@ -17,7 +17,6 @@ package com.liferay.opensocial.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.opensocial.model.Gadget;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -37,6 +36,7 @@ import java.util.Date;
  */
 @ProviderType
 public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -165,8 +165,7 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -213,4 +212,5 @@ public class GadgetCacheModel implements CacheModel<Gadget>, Externalizable {
 	public String url;
 	public String portletCategoryNames;
 	public long lastPublishDate;
+
 }

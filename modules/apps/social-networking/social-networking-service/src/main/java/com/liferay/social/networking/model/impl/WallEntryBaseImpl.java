@@ -32,8 +32,9 @@ import com.liferay.social.networking.service.WallEntryLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class WallEntryBaseImpl extends WallEntryModelImpl
-	implements WallEntry {
+public abstract class WallEntryBaseImpl
+	extends WallEntryModelImpl implements WallEntry {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class WallEntryBaseImpl extends WallEntryModelImpl
 			WallEntryLocalServiceUtil.updateWallEntry(this);
 		}
 	}
+
 }

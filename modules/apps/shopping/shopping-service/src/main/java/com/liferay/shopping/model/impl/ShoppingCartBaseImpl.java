@@ -32,8 +32,9 @@ import com.liferay.shopping.service.ShoppingCartLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class ShoppingCartBaseImpl extends ShoppingCartModelImpl
-	implements ShoppingCart {
+public abstract class ShoppingCartBaseImpl
+	extends ShoppingCartModelImpl implements ShoppingCart {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ShoppingCartBaseImpl extends ShoppingCartModelImpl
 			ShoppingCartLocalServiceUtil.updateShoppingCart(this);
 		}
 	}
+
 }

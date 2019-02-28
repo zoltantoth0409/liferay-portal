@@ -17,7 +17,6 @@ package com.liferay.asset.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AssetTagModel extends BaseModel<AssetTag>, ShardedModel,
-	StagedGroupedModel {
+public interface AssetTagModel
+	extends BaseModel<AssetTag>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -308,4 +308,5 @@ public interface AssetTagModel extends BaseModel<AssetTag>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

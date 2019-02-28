@@ -30,12 +30,15 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.shopping.model.impl.ShoppingCouponImpl")
 @ProviderType
 public interface ShoppingCoupon extends ShoppingCouponModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingCouponImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ShoppingCoupon, Long> COUPON_ID_ACCESSOR = new Accessor<ShoppingCoupon, Long>() {
+	public static final Accessor<ShoppingCoupon, Long> COUPON_ID_ACCESSOR =
+		new Accessor<ShoppingCoupon, Long>() {
+
 			@Override
 			public Long get(ShoppingCoupon shoppingCoupon) {
 				return shoppingCoupon.getCouponId();
@@ -50,6 +53,7 @@ public interface ShoppingCoupon extends ShoppingCouponModel, PersistedModel {
 			public Class<ShoppingCoupon> getTypeClass() {
 				return ShoppingCoupon.class;
 			}
+
 		};
 
 	public boolean hasValidDateRange();
@@ -57,4 +61,5 @@ public interface ShoppingCoupon extends ShoppingCouponModel, PersistedModel {
 	public boolean hasValidEndDate();
 
 	public boolean hasValidStartDate();
+
 }

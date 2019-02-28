@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.model.AMImageEntryModel;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -55,28 +53,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
-	implements AMImageEntryModel {
+public class AMImageEntryModelImpl
+	extends BaseModelImpl<AMImageEntry> implements AMImageEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a am image entry model instance should use the <code>AMImageEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "AMImageEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "amImageEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "configurationUuid", Types.VARCHAR },
-			{ "fileVersionId", Types.BIGINT },
-			{ "mimeType", Types.VARCHAR },
-			{ "height", Types.INTEGER },
-			{ "width", Types.INTEGER },
-			{ "size_", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"amImageEntryId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"createDate", Types.TIMESTAMP}, {"configurationUuid", Types.VARCHAR},
+		{"fileVersionId", Types.BIGINT}, {"mimeType", Types.VARCHAR},
+		{"height", Types.INTEGER}, {"width", Types.INTEGER},
+		{"size_", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -92,30 +89,53 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table AMImageEntry (uuid_ VARCHAR(75) null,amImageEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,configurationUuid VARCHAR(75) null,fileVersionId LONG,mimeType VARCHAR(75) null,height INTEGER,width INTEGER,size_ LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table AMImageEntry (uuid_ VARCHAR(75) null,amImageEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,configurationUuid VARCHAR(75) null,fileVersionId LONG,mimeType VARCHAR(75) null,height INTEGER,width INTEGER,size_ LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table AMImageEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY amImageEntry.amImageEntryId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY AMImageEntry.amImageEntryId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY amImageEntry.amImageEntryId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY AMImageEntry.amImageEntryId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.adaptive.media.image.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.adaptive.media.image.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.adaptive.media.image.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.adaptive.media.image.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.adaptive.media.image.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.adaptive.media.image.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.adaptive.media.image.model.AMImageEntry"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long CONFIGURATIONUUID_COLUMN_BITMASK = 2L;
+
 	public static final long FILEVERSIONID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long AMIMAGEENTRYID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.adaptive.media.image.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.adaptive.media.image.model.AMImageEntry"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.adaptive.media.image.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.adaptive.media.image.model.AMImageEntry"));
 
 	public AMImageEntryModelImpl() {
 	}
@@ -154,13 +174,18 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AMImageEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((AMImageEntry)this));
 		}
 
@@ -172,36 +197,44 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<AMImageEntry, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<AMImageEntry, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<AMImageEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<AMImageEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((AMImageEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(AMImageEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<AMImageEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<AMImageEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<AMImageEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<AMImageEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<AMImageEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<AMImageEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<AMImageEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AMImageEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AMImageEntry, Object>>();
-		Map<String, BiConsumer<AMImageEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AMImageEntry, ?>>();
-
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<AMImageEntry, Object>>();
+		Map<String, BiConsumer<AMImageEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AMImageEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -238,7 +271,9 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object amImageEntryId) {
+				public void accept(
+					AMImageEntry amImageEntry, Object amImageEntryId) {
+
 					amImageEntry.setAmImageEntryId((Long)amImageEntryId);
 				}
 
@@ -278,7 +313,9 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object companyId) {
+				public void accept(
+					AMImageEntry amImageEntry, Object companyId) {
+
 					amImageEntry.setCompanyId((Long)companyId);
 				}
 
@@ -298,7 +335,9 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object createDate) {
+				public void accept(
+					AMImageEntry amImageEntry, Object createDate) {
+
 					amImageEntry.setCreateDate((Date)createDate);
 				}
 
@@ -318,8 +357,11 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object configurationUuid) {
-					amImageEntry.setConfigurationUuid((String)configurationUuid);
+				public void accept(
+					AMImageEntry amImageEntry, Object configurationUuid) {
+
+					amImageEntry.setConfigurationUuid(
+						(String)configurationUuid);
 				}
 
 			});
@@ -338,7 +380,9 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 			new BiConsumer<AMImageEntry, Object>() {
 
 				@Override
-				public void accept(AMImageEntry amImageEntry, Object fileVersionId) {
+				public void accept(
+					AMImageEntry amImageEntry, Object fileVersionId) {
+
 					amImageEntry.setFileVersionId((Long)fileVersionId);
 				}
 
@@ -424,9 +468,10 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -616,8 +661,8 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			AMImageEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), AMImageEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -630,8 +675,9 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 	@Override
 	public AMImageEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (AMImageEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (AMImageEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -720,13 +766,16 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 		amImageEntryModelImpl._setOriginalGroupId = false;
 
-		amImageEntryModelImpl._originalCompanyId = amImageEntryModelImpl._companyId;
+		amImageEntryModelImpl._originalCompanyId =
+			amImageEntryModelImpl._companyId;
 
 		amImageEntryModelImpl._setOriginalCompanyId = false;
 
-		amImageEntryModelImpl._originalConfigurationUuid = amImageEntryModelImpl._configurationUuid;
+		amImageEntryModelImpl._originalConfigurationUuid =
+			amImageEntryModelImpl._configurationUuid;
 
-		amImageEntryModelImpl._originalFileVersionId = amImageEntryModelImpl._fileVersionId;
+		amImageEntryModelImpl._originalFileVersionId =
+			amImageEntryModelImpl._fileVersionId;
 
 		amImageEntryModelImpl._setOriginalFileVersionId = false;
 
@@ -735,7 +784,8 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public CacheModel<AMImageEntry> toCacheModel() {
-		AMImageEntryCacheModel amImageEntryCacheModel = new AMImageEntryCacheModel();
+		AMImageEntryCacheModel amImageEntryCacheModel =
+			new AMImageEntryCacheModel();
 
 		amImageEntryCacheModel.uuid = getUuid();
 
@@ -789,16 +839,20 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AMImageEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -817,18 +871,22 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AMImageEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<AMImageEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AMImageEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AMImageEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AMImageEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -842,10 +900,12 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = AMImageEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		AMImageEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			AMImageEntry.class, ModelWrapper.class
-		};
+		AMImageEntry.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _amImageEntryId;
@@ -867,4 +927,5 @@ public class AMImageEntryModelImpl extends BaseModelImpl<AMImageEntry>
 	private long _size;
 	private long _columnBitmask;
 	private AMImageEntry _escapedModel;
+
 }

@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
 import com.liferay.shopping.model.ShoppingItem;
 import com.liferay.shopping.model.ShoppingItemField;
 import com.liferay.shopping.model.ShoppingItemPrice;
@@ -47,26 +46,35 @@ import java.util.List;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=shopping", "json.web.service.context.path=ShoppingItem"}, service = ShoppingItemService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=shopping",
+		"json.web.service.context.path=ShoppingItem"
+	},
+	service = ShoppingItemService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface ShoppingItemService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingItemServiceUtil} to access the shopping item remote service. Add custom service methods to <code>com.liferay.shopping.service.impl.ShoppingItemServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public ShoppingItem addItem(long groupId, long categoryId, String sku,
-		String name, String description, String properties,
-		String fieldsQuantities, boolean requiresShipping, int stockQuantity,
-		boolean featured, Boolean sale, boolean smallImage,
-		String smallImageURL, File smallFile, boolean mediumImage,
-		String mediumImageURL, File mediumFile, boolean largeImage,
-		String largeImageURL, File largeFile,
-		List<ShoppingItemField> itemFields, List<ShoppingItemPrice> itemPrices,
-		ServiceContext serviceContext) throws PortalException;
+	public ShoppingItem addItem(
+			long groupId, long categoryId, String sku, String name,
+			String description, String properties, String fieldsQuantities,
+			boolean requiresShipping, int stockQuantity, boolean featured,
+			Boolean sale, boolean smallImage, String smallImageURL,
+			File smallFile, boolean mediumImage, String mediumImageURL,
+			File mediumFile, boolean largeImage, String largeImageURL,
+			File largeFile, List<ShoppingItemField> itemFields,
+			List<ShoppingItemPrice> itemPrices, ServiceContext serviceContext)
+		throws PortalException;
 
 	public void deleteItem(long itemId) throws PortalException;
 
@@ -80,30 +88,34 @@ public interface ShoppingItemService extends BaseService {
 	public List<ShoppingItem> getItems(long groupId, long categoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> getItems(long groupId, long categoryId,
-		int start, int end, OrderByComparator<ShoppingItem> obc);
+	public List<ShoppingItem> getItems(
+		long groupId, long categoryId, int start, int end,
+		OrderByComparator<ShoppingItem> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getItemsCount(long groupId, long categoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ShoppingItem[] getItemsPrevAndNext(long itemId,
-		OrderByComparator<ShoppingItem> obc) throws PortalException;
+	public ShoppingItem[] getItemsPrevAndNext(
+			long itemId, OrderByComparator<ShoppingItem> obc)
+		throws PortalException;
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
-	public ShoppingItem updateItem(long itemId, long groupId, long categoryId,
-		String sku, String name, String description, String properties,
-		String fieldsQuantities, boolean requiresShipping, int stockQuantity,
-		boolean featured, Boolean sale, boolean smallImage,
-		String smallImageURL, File smallFile, boolean mediumImage,
-		String mediumImageURL, File mediumFile, boolean largeImage,
-		String largeImageURL, File largeFile,
-		List<ShoppingItemField> itemFields, List<ShoppingItemPrice> itemPrices,
-		ServiceContext serviceContext) throws PortalException;
+	public ShoppingItem updateItem(
+			long itemId, long groupId, long categoryId, String sku, String name,
+			String description, String properties, String fieldsQuantities,
+			boolean requiresShipping, int stockQuantity, boolean featured,
+			Boolean sale, boolean smallImage, String smallImageURL,
+			File smallFile, boolean mediumImage, String mediumImageURL,
+			File mediumFile, boolean largeImage, String largeImageURL,
+			File largeFile, List<ShoppingItemField> itemFields,
+			List<ShoppingItemPrice> itemPrices, ServiceContext serviceContext)
+		throws PortalException;
+
 }

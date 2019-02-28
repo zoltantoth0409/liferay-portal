@@ -17,7 +17,6 @@ package com.liferay.portlet.announcements.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.announcements.kernel.model.AnnouncementsDelivery;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,8 +33,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class AnnouncementsDeliveryCacheModel implements CacheModel<AnnouncementsDelivery>,
-	Externalizable {
+public class AnnouncementsDeliveryCacheModel
+	implements CacheModel<AnnouncementsDelivery>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -46,7 +46,8 @@ public class AnnouncementsDeliveryCacheModel implements CacheModel<Announcements
 			return false;
 		}
 
-		AnnouncementsDeliveryCacheModel announcementsDeliveryCacheModel = (AnnouncementsDeliveryCacheModel)obj;
+		AnnouncementsDeliveryCacheModel announcementsDeliveryCacheModel =
+			(AnnouncementsDeliveryCacheModel)obj;
 
 		if (deliveryId == announcementsDeliveryCacheModel.deliveryId) {
 			return true;
@@ -85,7 +86,8 @@ public class AnnouncementsDeliveryCacheModel implements CacheModel<Announcements
 
 	@Override
 	public AnnouncementsDelivery toEntityModel() {
-		AnnouncementsDeliveryImpl announcementsDeliveryImpl = new AnnouncementsDeliveryImpl();
+		AnnouncementsDeliveryImpl announcementsDeliveryImpl =
+			new AnnouncementsDeliveryImpl();
 
 		announcementsDeliveryImpl.setDeliveryId(deliveryId);
 		announcementsDeliveryImpl.setCompanyId(companyId);
@@ -124,8 +126,7 @@ public class AnnouncementsDeliveryCacheModel implements CacheModel<Announcements
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(deliveryId);
 
 		objectOutput.writeLong(companyId);
@@ -153,4 +154,5 @@ public class AnnouncementsDeliveryCacheModel implements CacheModel<Announcements
 	public boolean email;
 	public boolean sms;
 	public boolean website;
+
 }

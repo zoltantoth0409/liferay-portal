@@ -17,7 +17,6 @@ package com.liferay.opensocial.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -40,8 +39,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface OAuthConsumerModel extends BaseModel<OAuthConsumer>,
-	ShardedModel {
+public interface OAuthConsumerModel
+	extends BaseModel<OAuthConsumer>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -251,4 +251,5 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer>,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,28 +56,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
-	implements KaleoTaskModel {
+public class KaleoTaskModelImpl
+	extends BaseModelImpl<KaleoTask> implements KaleoTaskModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo task model instance should use the <code>KaleoTask</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoTask";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoTaskId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoDefinitionId", Types.BIGINT},
+		{"kaleoNodeId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"description", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoTaskId", Types.BIGINT);
@@ -94,28 +92,49 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoTask (kaleoTaskId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description STRING null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoTask (kaleoTaskId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description STRING null)";
+
 	public static final String TABLE_SQL_DROP = "drop table KaleoTask";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTask.kaleoTaskId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoTask.kaleoTaskId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoTask.kaleoTaskId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoTask.kaleoTaskId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTask"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
+
 	public static final long KALEONODEID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEOTASKID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTask"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTask"));
 
 	public KaleoTaskModelImpl() {
 	}
@@ -154,14 +173,18 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTask, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTask, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTask, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((KaleoTask)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((KaleoTask)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -172,35 +195,44 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoTask, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoTask, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoTask, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoTask, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoTask)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoTask)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoTask, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoTask, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoTask, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoTask, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoTask, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoTask, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoTask, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoTask, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KaleoTask, Object>>();
-		Map<String, BiConsumer<KaleoTask, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KaleoTask, ?>>();
-
+		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KaleoTask, Object>>();
+		Map<String, BiConsumer<KaleoTask, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KaleoTask, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoTaskId",
@@ -357,7 +389,9 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 			new BiConsumer<KaleoTask, Object>() {
 
 				@Override
-				public void accept(KaleoTask kaleoTask, Object kaleoDefinitionId) {
+				public void accept(
+					KaleoTask kaleoTask, Object kaleoDefinitionId) {
+
 					kaleoTask.setKaleoDefinitionId((Long)kaleoDefinitionId);
 				}
 
@@ -423,9 +457,10 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -619,8 +654,8 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoTask.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoTask.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -633,8 +668,9 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	@Override
 	public KaleoTask toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoTask)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoTask)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -729,11 +765,13 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 		kaleoTaskModelImpl._setModifiedDate = false;
 
-		kaleoTaskModelImpl._originalKaleoDefinitionId = kaleoTaskModelImpl._kaleoDefinitionId;
+		kaleoTaskModelImpl._originalKaleoDefinitionId =
+			kaleoTaskModelImpl._kaleoDefinitionId;
 
 		kaleoTaskModelImpl._setOriginalKaleoDefinitionId = false;
 
-		kaleoTaskModelImpl._originalKaleoNodeId = kaleoTaskModelImpl._kaleoNodeId;
+		kaleoTaskModelImpl._originalKaleoNodeId =
+			kaleoTaskModelImpl._kaleoNodeId;
 
 		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
 
@@ -803,16 +841,20 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTask, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTask, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTask, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -831,18 +873,22 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTask, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoTask, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTask, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTask, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTask, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -856,10 +902,12 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoTask.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoTask.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoTask.class, ModelWrapper.class
-		};
+		KaleoTask.class, ModelWrapper.class
+	};
+
 	private long _kaleoTaskId;
 	private long _groupId;
 	private long _companyId;
@@ -880,4 +928,5 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	private String _description;
 	private long _columnBitmask;
 	private KaleoTask _escapedModel;
+
 }

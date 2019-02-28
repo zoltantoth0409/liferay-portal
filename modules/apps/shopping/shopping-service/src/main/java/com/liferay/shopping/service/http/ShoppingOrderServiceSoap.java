@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import com.liferay.shopping.service.ShoppingOrderServiceUtil;
 
 import java.rmi.RemoteException;
@@ -64,15 +63,17 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class ShoppingOrderServiceSoap {
-	public static void completeOrder(long groupId, String number,
-		String ppTxnId, String ppPaymentStatus, double ppPaymentGross,
-		String ppReceiverEmail, String ppPayerEmail,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+
+	public static void completeOrder(
+			long groupId, String number, String ppTxnId, String ppPaymentStatus,
+			double ppPaymentGross, String ppReceiverEmail, String ppPayerEmail,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
+
 		try {
-			ShoppingOrderServiceUtil.completeOrder(groupId, number, ppTxnId,
-				ppPaymentStatus, ppPaymentGross, ppReceiverEmail, ppPayerEmail,
-				serviceContext);
+			ShoppingOrderServiceUtil.completeOrder(
+				groupId, number, ppTxnId, ppPaymentStatus, ppPaymentGross,
+				ppReceiverEmail, ppPayerEmail, serviceContext);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -83,6 +84,7 @@ public class ShoppingOrderServiceSoap {
 
 	public static void deleteOrder(long groupId, long orderId)
 		throws RemoteException {
+
 		try {
 			ShoppingOrderServiceUtil.deleteOrder(groupId, orderId);
 		}
@@ -94,12 +96,15 @@ public class ShoppingOrderServiceSoap {
 	}
 
 	public static com.liferay.shopping.model.ShoppingOrderSoap getOrder(
-		long groupId, long orderId) throws RemoteException {
-		try {
-			com.liferay.shopping.model.ShoppingOrder returnValue = ShoppingOrderServiceUtil.getOrder(groupId,
-					orderId);
+			long groupId, long orderId)
+		throws RemoteException {
 
-			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(returnValue);
+		try {
+			com.liferay.shopping.model.ShoppingOrder returnValue =
+				ShoppingOrderServiceUtil.getOrder(groupId, orderId);
+
+			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -108,12 +113,14 @@ public class ShoppingOrderServiceSoap {
 		}
 	}
 
-	public static void sendEmail(long groupId, long orderId, String emailType,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+	public static void sendEmail(
+			long groupId, long orderId, String emailType,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws RemoteException {
+
 		try {
-			ShoppingOrderServiceUtil.sendEmail(groupId, orderId, emailType,
-				serviceContext);
+			ShoppingOrderServiceUtil.sendEmail(
+				groupId, orderId, emailType, serviceContext);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -123,15 +130,18 @@ public class ShoppingOrderServiceSoap {
 	}
 
 	public static com.liferay.shopping.model.ShoppingOrderSoap updateOrder(
-		long groupId, long orderId, String ppTxnId, String ppPaymentStatus,
-		double ppPaymentGross, String ppReceiverEmail, String ppPayerEmail)
+			long groupId, long orderId, String ppTxnId, String ppPaymentStatus,
+			double ppPaymentGross, String ppReceiverEmail, String ppPayerEmail)
 		throws RemoteException {
+
 		try {
-			com.liferay.shopping.model.ShoppingOrder returnValue = ShoppingOrderServiceUtil.updateOrder(groupId,
-					orderId, ppTxnId, ppPaymentStatus, ppPaymentGross,
+			com.liferay.shopping.model.ShoppingOrder returnValue =
+				ShoppingOrderServiceUtil.updateOrder(
+					groupId, orderId, ppTxnId, ppPaymentStatus, ppPaymentGross,
 					ppReceiverEmail, ppPayerEmail);
 
-			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(returnValue);
+			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -141,20 +151,23 @@ public class ShoppingOrderServiceSoap {
 	}
 
 	public static com.liferay.shopping.model.ShoppingOrderSoap updateOrder(
-		long groupId, long orderId, String billingFirstName,
-		String billingLastName, String billingEmailAddress,
-		String billingCompany, String billingStreet, String billingCity,
-		String billingState, String billingZip, String billingCountry,
-		String billingPhone, boolean shipToBilling, String shippingFirstName,
-		String shippingLastName, String shippingEmailAddress,
-		String shippingCompany, String shippingStreet, String shippingCity,
-		String shippingState, String shippingZip, String shippingCountry,
-		String shippingPhone, String ccName, String ccType, String ccNumber,
-		int ccExpMonth, int ccExpYear, String ccVerNumber, String comments)
+			long groupId, long orderId, String billingFirstName,
+			String billingLastName, String billingEmailAddress,
+			String billingCompany, String billingStreet, String billingCity,
+			String billingState, String billingZip, String billingCountry,
+			String billingPhone, boolean shipToBilling,
+			String shippingFirstName, String shippingLastName,
+			String shippingEmailAddress, String shippingCompany,
+			String shippingStreet, String shippingCity, String shippingState,
+			String shippingZip, String shippingCountry, String shippingPhone,
+			String ccName, String ccType, String ccNumber, int ccExpMonth,
+			int ccExpYear, String ccVerNumber, String comments)
 		throws RemoteException {
+
 		try {
-			com.liferay.shopping.model.ShoppingOrder returnValue = ShoppingOrderServiceUtil.updateOrder(groupId,
-					orderId, billingFirstName, billingLastName,
+			com.liferay.shopping.model.ShoppingOrder returnValue =
+				ShoppingOrderServiceUtil.updateOrder(
+					groupId, orderId, billingFirstName, billingLastName,
 					billingEmailAddress, billingCompany, billingStreet,
 					billingCity, billingState, billingZip, billingCountry,
 					billingPhone, shipToBilling, shippingFirstName,
@@ -163,7 +176,8 @@ public class ShoppingOrderServiceSoap {
 					shippingCountry, shippingPhone, ccName, ccType, ccNumber,
 					ccExpMonth, ccExpYear, ccVerNumber, comments);
 
-			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(returnValue);
+			return com.liferay.shopping.model.ShoppingOrderSoap.toSoapModel(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -172,5 +186,7 @@ public class ShoppingOrderServiceSoap {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ShoppingOrderServiceSoap.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		ShoppingOrderServiceSoap.class);
+
 }

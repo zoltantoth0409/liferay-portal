@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -30,7 +28,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerModel;
 
@@ -58,31 +55,30 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
-	implements WSRPConsumerModel {
+public class WSRPConsumerModelImpl
+	extends BaseModelImpl<WSRPConsumer> implements WSRPConsumerModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a wsrp consumer model instance should use the <code>WSRPConsumer</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "WSRP_WSRPConsumer";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "wsrpConsumerId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "url", Types.VARCHAR },
-			{ "wsdl", Types.CLOB },
-			{ "registrationContextString", Types.CLOB },
-			{ "registrationPropertiesString", Types.VARCHAR },
-			{ "forwardCookies", Types.VARCHAR },
-			{ "forwardHeaders", Types.VARCHAR },
-			{ "markupCharacterSets", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"wsrpConsumerId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"name", Types.VARCHAR},
+		{"url", Types.VARCHAR}, {"wsdl", Types.CLOB},
+		{"registrationContextString", Types.CLOB},
+		{"registrationPropertiesString", Types.VARCHAR},
+		{"forwardCookies", Types.VARCHAR}, {"forwardHeaders", Types.VARCHAR},
+		{"markupCharacterSets", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -101,27 +97,47 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (uuid_ VARCHAR(75) null,wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null,forwardCookies VARCHAR(255) null,forwardHeaders VARCHAR(255) null,markupCharacterSets VARCHAR(255) null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table WSRP_WSRPConsumer (uuid_ VARCHAR(75) null,wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null,forwardCookies VARCHAR(255) null,forwardHeaders VARCHAR(255) null,markupCharacterSets VARCHAR(255) null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumer";
-	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumer.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumer.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY wsrpConsumer.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY WSRP_WSRPConsumer.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConsumer"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumer"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPConsumer"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConsumer"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumer"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPConsumer"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long UUID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.wsrp.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumer"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumer"));
 
 	public WSRPConsumerModelImpl() {
 	}
@@ -160,13 +176,18 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumer, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((WSRPConsumer)this));
 		}
 
@@ -178,36 +199,44 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<WSRPConsumer, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<WSRPConsumer, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<WSRPConsumer, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<WSRPConsumer, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((WSRPConsumer)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(WSRPConsumer)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<WSRPConsumer, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<WSRPConsumer, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<WSRPConsumer, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<WSRPConsumer, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<WSRPConsumer, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<WSRPConsumer, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<WSRPConsumer, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WSRPConsumer, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<WSRPConsumer, Object>>();
-		Map<String, BiConsumer<WSRPConsumer, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<WSRPConsumer, ?>>();
-
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<WSRPConsumer, Object>>();
+		Map<String, BiConsumer<WSRPConsumer, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<WSRPConsumer, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -244,7 +273,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object wsrpConsumerId) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object wsrpConsumerId) {
+
 					wsrpConsumer.setWsrpConsumerId((Long)wsrpConsumerId);
 				}
 
@@ -264,7 +295,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object companyId) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object companyId) {
+
 					wsrpConsumer.setCompanyId((Long)companyId);
 				}
 
@@ -284,7 +317,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object createDate) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object createDate) {
+
 					wsrpConsumer.setCreateDate((Date)createDate);
 				}
 
@@ -304,7 +339,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object modifiedDate) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object modifiedDate) {
+
 					wsrpConsumer.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -384,8 +421,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object registrationContextString) {
-					wsrpConsumer.setRegistrationContextString((String)registrationContextString);
+				public void accept(
+					WSRPConsumer wsrpConsumer,
+					Object registrationContextString) {
+
+					wsrpConsumer.setRegistrationContextString(
+						(String)registrationContextString);
 				}
 
 			});
@@ -404,8 +445,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object registrationPropertiesString) {
-					wsrpConsumer.setRegistrationPropertiesString((String)registrationPropertiesString);
+				public void accept(
+					WSRPConsumer wsrpConsumer,
+					Object registrationPropertiesString) {
+
+					wsrpConsumer.setRegistrationPropertiesString(
+						(String)registrationPropertiesString);
 				}
 
 			});
@@ -424,7 +469,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object forwardCookies) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object forwardCookies) {
+
 					wsrpConsumer.setForwardCookies((String)forwardCookies);
 				}
 
@@ -444,7 +491,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object forwardHeaders) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object forwardHeaders) {
+
 					wsrpConsumer.setForwardHeaders((String)forwardHeaders);
 				}
 
@@ -464,8 +513,11 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object markupCharacterSets) {
-					wsrpConsumer.setMarkupCharacterSets((String)markupCharacterSets);
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object markupCharacterSets) {
+
+					wsrpConsumer.setMarkupCharacterSets(
+						(String)markupCharacterSets);
 				}
 
 			});
@@ -484,15 +536,18 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			new BiConsumer<WSRPConsumer, Object>() {
 
 				@Override
-				public void accept(WSRPConsumer wsrpConsumer, Object lastPublishDate) {
+				public void accept(
+					WSRPConsumer wsrpConsumer, Object lastPublishDate) {
+
 					wsrpConsumer.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -653,6 +708,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	@Override
 	public void setRegistrationPropertiesString(
 		String registrationPropertiesString) {
+
 		_registrationPropertiesString = registrationPropertiesString;
 	}
 
@@ -713,8 +769,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				WSRPConsumer.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(WSRPConsumer.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -723,8 +779,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			WSRPConsumer.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), WSRPConsumer.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -737,8 +793,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	@Override
 	public WSRPConsumer toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (WSRPConsumer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (WSRPConsumer)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -756,8 +813,10 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		wsrpConsumerImpl.setName(getName());
 		wsrpConsumerImpl.setUrl(getUrl());
 		wsrpConsumerImpl.setWsdl(getWsdl());
-		wsrpConsumerImpl.setRegistrationContextString(getRegistrationContextString());
-		wsrpConsumerImpl.setRegistrationPropertiesString(getRegistrationPropertiesString());
+		wsrpConsumerImpl.setRegistrationContextString(
+			getRegistrationContextString());
+		wsrpConsumerImpl.setRegistrationPropertiesString(
+			getRegistrationPropertiesString());
 		wsrpConsumerImpl.setForwardCookies(getForwardCookies());
 		wsrpConsumerImpl.setForwardHeaders(getForwardHeaders());
 		wsrpConsumerImpl.setMarkupCharacterSets(getMarkupCharacterSets());
@@ -824,7 +883,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 		wsrpConsumerModelImpl._originalUuid = wsrpConsumerModelImpl._uuid;
 
-		wsrpConsumerModelImpl._originalCompanyId = wsrpConsumerModelImpl._companyId;
+		wsrpConsumerModelImpl._originalCompanyId =
+			wsrpConsumerModelImpl._companyId;
 
 		wsrpConsumerModelImpl._setOriginalCompanyId = false;
 
@@ -835,7 +895,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public CacheModel<WSRPConsumer> toCacheModel() {
-		WSRPConsumerCacheModel wsrpConsumerCacheModel = new WSRPConsumerCacheModel();
+		WSRPConsumerCacheModel wsrpConsumerCacheModel =
+			new WSRPConsumerCacheModel();
 
 		wsrpConsumerCacheModel.uuid = getUuid();
 
@@ -891,21 +952,27 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			wsrpConsumerCacheModel.wsdl = null;
 		}
 
-		wsrpConsumerCacheModel.registrationContextString = getRegistrationContextString();
+		wsrpConsumerCacheModel.registrationContextString =
+			getRegistrationContextString();
 
-		String registrationContextString = wsrpConsumerCacheModel.registrationContextString;
+		String registrationContextString =
+			wsrpConsumerCacheModel.registrationContextString;
 
 		if ((registrationContextString != null) &&
-				(registrationContextString.length() == 0)) {
+			(registrationContextString.length() == 0)) {
+
 			wsrpConsumerCacheModel.registrationContextString = null;
 		}
 
-		wsrpConsumerCacheModel.registrationPropertiesString = getRegistrationPropertiesString();
+		wsrpConsumerCacheModel.registrationPropertiesString =
+			getRegistrationPropertiesString();
 
-		String registrationPropertiesString = wsrpConsumerCacheModel.registrationPropertiesString;
+		String registrationPropertiesString =
+			wsrpConsumerCacheModel.registrationPropertiesString;
 
 		if ((registrationPropertiesString != null) &&
-				(registrationPropertiesString.length() == 0)) {
+			(registrationPropertiesString.length() == 0)) {
+
 			wsrpConsumerCacheModel.registrationPropertiesString = null;
 		}
 
@@ -930,7 +997,8 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		String markupCharacterSets = wsrpConsumerCacheModel.markupCharacterSets;
 
 		if ((markupCharacterSets != null) &&
-				(markupCharacterSets.length() == 0)) {
+			(markupCharacterSets.length() == 0)) {
+
 			wsrpConsumerCacheModel.markupCharacterSets = null;
 		}
 
@@ -948,16 +1016,20 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public String toString() {
-		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumer, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -976,18 +1048,22 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumer, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumer, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1001,10 +1077,12 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = WSRPConsumer.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		WSRPConsumer.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			WSRPConsumer.class, ModelWrapper.class
-		};
+		WSRPConsumer.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _wsrpConsumerId;
@@ -1025,4 +1103,5 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private WSRPConsumer _escapedModel;
+
 }

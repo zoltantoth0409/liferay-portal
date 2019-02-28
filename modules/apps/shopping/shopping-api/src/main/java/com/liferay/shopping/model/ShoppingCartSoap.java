@@ -30,6 +30,7 @@ import java.util.List;
  */
 @ProviderType
 public class ShoppingCartSoap implements Serializable {
+
 	public static ShoppingCartSoap toSoapModel(ShoppingCart model) {
 		ShoppingCartSoap soapModel = new ShoppingCartSoap();
 
@@ -76,7 +77,8 @@ public class ShoppingCartSoap implements Serializable {
 	}
 
 	public static ShoppingCartSoap[] toSoapModels(List<ShoppingCart> models) {
-		List<ShoppingCartSoap> soapModels = new ArrayList<ShoppingCartSoap>(models.size());
+		List<ShoppingCartSoap> soapModels = new ArrayList<ShoppingCartSoap>(
+			models.size());
 
 		for (ShoppingCart model : models) {
 			soapModels.add(toSoapModel(model));
@@ -199,4 +201,5 @@ public class ShoppingCartSoap implements Serializable {
 	private String _couponCodes;
 	private int _altShipping;
 	private boolean _insure;
+
 }

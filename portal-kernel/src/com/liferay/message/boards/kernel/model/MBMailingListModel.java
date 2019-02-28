@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -42,8 +41,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MBMailingListModel extends BaseModel<MBMailingList>,
-	GroupedModel, ShardedModel, StagedAuditedModel {
+public interface MBMailingListModel
+	extends BaseModel<MBMailingList>, GroupedModel, ShardedModel,
+			StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -560,4 +561,5 @@ public interface MBMailingListModel extends BaseModel<MBMailingList>,
 
 	@Override
 	public String toXmlString();
+
 }

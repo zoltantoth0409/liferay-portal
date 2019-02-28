@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class PasswordTrackerCacheModel implements CacheModel<PasswordTracker>,
-	Externalizable, MVCCModel {
+public class PasswordTrackerCacheModel
+	implements CacheModel<PasswordTracker>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,10 +49,13 @@ public class PasswordTrackerCacheModel implements CacheModel<PasswordTracker>,
 			return false;
 		}
 
-		PasswordTrackerCacheModel passwordTrackerCacheModel = (PasswordTrackerCacheModel)obj;
+		PasswordTrackerCacheModel passwordTrackerCacheModel =
+			(PasswordTrackerCacheModel)obj;
 
-		if ((passwordTrackerId == passwordTrackerCacheModel.passwordTrackerId) &&
-				(mvccVersion == passwordTrackerCacheModel.mvccVersion)) {
+		if ((passwordTrackerId ==
+				passwordTrackerCacheModel.passwordTrackerId) &&
+			(mvccVersion == passwordTrackerCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -138,8 +142,7 @@ public class PasswordTrackerCacheModel implements CacheModel<PasswordTracker>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(passwordTrackerId);
@@ -163,4 +166,5 @@ public class PasswordTrackerCacheModel implements CacheModel<PasswordTracker>,
 	public long userId;
 	public long createDate;
 	public String password;
+
 }

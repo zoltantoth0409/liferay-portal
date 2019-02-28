@@ -33,6 +33,7 @@ import com.liferay.twitter.service.FeedLocalServiceUtil;
  */
 @ProviderType
 public abstract class FeedBaseImpl extends FeedModelImpl implements Feed {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -47,4 +48,5 @@ public abstract class FeedBaseImpl extends FeedModelImpl implements Feed {
 			FeedLocalServiceUtil.updateFeed(this);
 		}
 	}
+
 }

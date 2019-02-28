@@ -30,14 +30,17 @@ import com.liferay.portal.kernel.util.Accessor;
  */
 @ImplementationClassName("com.liferay.journal.model.impl.JournalArticleImpl")
 @ProviderType
-public interface JournalArticle extends JournalArticleModel, PersistedModel,
-	TreeModel {
+public interface JournalArticle
+	extends JournalArticleModel, PersistedModel, TreeModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.journal.model.impl.JournalArticleImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<JournalArticle, Long> ID_ACCESSOR = new Accessor<JournalArticle, Long>() {
+	public static final Accessor<JournalArticle, Long> ID_ACCESSOR =
+		new Accessor<JournalArticle, Long>() {
+
 			@Override
 			public Long get(JournalArticle journalArticle) {
 				return journalArticle.getId();
@@ -52,9 +55,11 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 			public Class<JournalArticle> getTypeClass() {
 				return JournalArticle.class;
 			}
-		};
 
-	public static final Accessor<JournalArticle, String> ARTICLE_ID_ACCESSOR = new Accessor<JournalArticle, String>() {
+		};
+	public static final Accessor<JournalArticle, String> ARTICLE_ID_ACCESSOR =
+		new Accessor<JournalArticle, String>() {
+
 			@Override
 			public String get(JournalArticle journalArticle) {
 				return journalArticle.getArticleId();
@@ -69,14 +74,15 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 			public Class<JournalArticle> getTypeClass() {
 				return JournalArticle.class;
 			}
+
 		};
 
 	@Override
 	public String buildTreePath()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public long getArticleImageId(String elInstanceId, String elName,
-		String languageId);
+	public long getArticleImageId(
+		String elInstanceId, String elName, String languageId);
 
 	public String getArticleImageURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
@@ -106,25 +112,25 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	#getDDMStructureKey()}
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #getDDMStructureKey()}
+	 */
+	@Deprecated
 	public String getStructureId();
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	#getDDMTemplateKey()}
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #getDDMTemplateKey()}
+	 */
+	@Deprecated
 	public String getTemplateId();
 
 	public boolean hasApprovedVersion();
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
+	 */
+	@Deprecated
 	public boolean isTemplateDriven();
 
 	public void setDefaultLanguageId(String defaultLanguageId);
@@ -134,16 +140,17 @@ public interface JournalArticle extends JournalArticleModel, PersistedModel,
 	public void setSmallImageType(String smallImageType);
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	#setDDMStructureKey(String)}
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #setDDMStructureKey(String)}
+	 */
+	@Deprecated
 	public void setStructureId(String ddmStructureKey);
 
 	/**
-	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
-	#setDDMTemplateKey(String)}
-	*/
-	@Deprecated()
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 #setDDMTemplateKey(String)}
+	 */
+	@Deprecated
 	public void setTemplateId(String ddmTemplateKey);
+
 }

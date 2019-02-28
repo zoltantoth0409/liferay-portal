@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -37,8 +36,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface PasswordPolicyModel extends BaseModel<PasswordPolicy>, MVCCModel,
-	ShardedModel, StagedAuditedModel {
+public interface PasswordPolicyModel
+	extends BaseModel<PasswordPolicy>, MVCCModel, ShardedModel,
+			StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -703,4 +704,5 @@ public interface PasswordPolicyModel extends BaseModel<PasswordPolicy>, MVCCMode
 
 	@Override
 	public String toXmlString();
+
 }

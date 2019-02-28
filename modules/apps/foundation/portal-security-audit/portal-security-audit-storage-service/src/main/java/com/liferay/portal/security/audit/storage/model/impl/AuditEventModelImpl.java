@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -63,32 +62,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
-	implements AuditEventModel {
+public class AuditEventModelImpl
+	extends BaseModelImpl<AuditEvent> implements AuditEventModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a audit event model instance should use the <code>AuditEvent</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Audit_AuditEvent";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "auditEventId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "eventType", Types.VARCHAR },
-			{ "className", Types.VARCHAR },
-			{ "classPK", Types.VARCHAR },
-			{ "message", Types.VARCHAR },
-			{ "clientHost", Types.VARCHAR },
-			{ "clientIP", Types.VARCHAR },
-			{ "serverName", Types.VARCHAR },
-			{ "serverPort", Types.INTEGER },
-			{ "sessionID", Types.VARCHAR },
-			{ "additionalInfo", Types.CLOB }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"auditEventId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"eventType", Types.VARCHAR},
+		{"className", Types.VARCHAR}, {"classPK", Types.VARCHAR},
+		{"message", Types.VARCHAR}, {"clientHost", Types.VARCHAR},
+		{"clientIP", Types.VARCHAR}, {"serverName", Types.VARCHAR},
+		{"serverPort", Types.INTEGER}, {"sessionID", Types.VARCHAR},
+		{"additionalInfo", Types.CLOB}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("auditEventId", Types.BIGINT);
@@ -108,23 +104,40 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 		TABLE_COLUMNS_MAP.put("additionalInfo", Types.CLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Audit_AuditEvent (auditEventId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,eventType VARCHAR(75) null,className VARCHAR(200) null,classPK VARCHAR(75) null,message STRING null,clientHost VARCHAR(255) null,clientIP VARCHAR(75) null,serverName VARCHAR(255) null,serverPort INTEGER,sessionID VARCHAR(255) null,additionalInfo TEXT null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Audit_AuditEvent (auditEventId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,eventType VARCHAR(75) null,className VARCHAR(200) null,classPK VARCHAR(75) null,message STRING null,clientHost VARCHAR(255) null,clientIP VARCHAR(75) null,serverName VARCHAR(255) null,serverPort INTEGER,sessionID VARCHAR(255) null,additionalInfo TEXT null)";
+
 	public static final String TABLE_SQL_DROP = "drop table Audit_AuditEvent";
-	public static final String ORDER_BY_JPQL = " ORDER BY auditEvent.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY Audit_AuditEvent.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY auditEvent.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Audit_AuditEvent.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.security.audit.storage.model.AuditEvent"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
 
 	/**
@@ -179,8 +192,9 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.security.audit.storage.model.AuditEvent"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.security.audit.storage.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.security.audit.storage.model.AuditEvent"));
 
 	public AuditEventModelImpl() {
 	}
@@ -219,14 +233,18 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<AuditEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((AuditEvent)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((AuditEvent)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -237,35 +255,44 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<AuditEvent, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<AuditEvent, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<AuditEvent, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<AuditEvent, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((AuditEvent)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(AuditEvent)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<AuditEvent, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<AuditEvent, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<AuditEvent, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<AuditEvent, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<AuditEvent, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<AuditEvent, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<AuditEvent, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AuditEvent, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AuditEvent, Object>>();
-		Map<String, BiConsumer<AuditEvent, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AuditEvent, ?>>();
-
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<AuditEvent, Object>>();
+		Map<String, BiConsumer<AuditEvent, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AuditEvent, ?>>();
 
 		attributeGetterFunctions.put(
 			"auditEventId",
@@ -562,15 +589,18 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 			new BiConsumer<AuditEvent, Object>() {
 
 				@Override
-				public void accept(AuditEvent auditEvent, Object additionalInfo) {
+				public void accept(
+					AuditEvent auditEvent, Object additionalInfo) {
+
 					auditEvent.setAdditionalInfo((String)additionalInfo);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -824,8 +854,8 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			AuditEvent.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), AuditEvent.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -838,8 +868,9 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 	@Override
 	public AuditEvent toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (AuditEvent)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (AuditEvent)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1039,16 +1070,20 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public String toString() {
-		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<AuditEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1067,18 +1102,22 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AuditEvent, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<AuditEvent, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AuditEvent, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AuditEvent, Object> attributeGetterFunction = entry.getValue();
+			Function<AuditEvent, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1092,10 +1131,12 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = AuditEvent.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		AuditEvent.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			AuditEvent.class, ModelWrapper.class
-		};
+		AuditEvent.class, ModelWrapper.class
+	};
+
 	private long _auditEventId;
 	private long _companyId;
 	private long _originalCompanyId;
@@ -1115,4 +1156,5 @@ public class AuditEventModelImpl extends BaseModelImpl<AuditEvent>
 	private String _additionalInfo;
 	private long _columnBitmask;
 	private AuditEvent _escapedModel;
+
 }

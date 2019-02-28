@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class WeDeployAuthTokenCacheModel implements CacheModel<WeDeployAuthToken>,
-	Externalizable {
+public class WeDeployAuthTokenCacheModel
+	implements CacheModel<WeDeployAuthToken>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,9 +48,12 @@ public class WeDeployAuthTokenCacheModel implements CacheModel<WeDeployAuthToken
 			return false;
 		}
 
-		WeDeployAuthTokenCacheModel weDeployAuthTokenCacheModel = (WeDeployAuthTokenCacheModel)obj;
+		WeDeployAuthTokenCacheModel weDeployAuthTokenCacheModel =
+			(WeDeployAuthTokenCacheModel)obj;
 
-		if (weDeployAuthTokenId == weDeployAuthTokenCacheModel.weDeployAuthTokenId) {
+		if (weDeployAuthTokenId ==
+				weDeployAuthTokenCacheModel.weDeployAuthTokenId) {
+
 			return true;
 		}
 
@@ -90,7 +94,8 @@ public class WeDeployAuthTokenCacheModel implements CacheModel<WeDeployAuthToken
 
 	@Override
 	public WeDeployAuthToken toEntityModel() {
-		WeDeployAuthTokenImpl weDeployAuthTokenImpl = new WeDeployAuthTokenImpl();
+		WeDeployAuthTokenImpl weDeployAuthTokenImpl =
+			new WeDeployAuthTokenImpl();
 
 		weDeployAuthTokenImpl.setWeDeployAuthTokenId(weDeployAuthTokenId);
 		weDeployAuthTokenImpl.setCompanyId(companyId);
@@ -155,8 +160,7 @@ public class WeDeployAuthTokenCacheModel implements CacheModel<WeDeployAuthToken
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(weDeployAuthTokenId);
 
 		objectOutput.writeLong(companyId);
@@ -199,4 +203,5 @@ public class WeDeployAuthTokenCacheModel implements CacheModel<WeDeployAuthToken
 	public String clientId;
 	public String token;
 	public int type;
+
 }

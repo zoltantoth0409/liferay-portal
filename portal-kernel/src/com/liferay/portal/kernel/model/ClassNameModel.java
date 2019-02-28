@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -35,8 +34,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ClassNameModel extends BaseModel<ClassName>, MVCCModel,
-	TypedModel {
+public interface ClassNameModel
+	extends BaseModel<ClassName>, MVCCModel, TypedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -170,4 +170,5 @@ public interface ClassNameModel extends BaseModel<ClassName>, MVCCModel,
 
 	@Override
 	public String toXmlString();
+
 }

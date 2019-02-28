@@ -27,17 +27,21 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see JournalArticleImageModel
  * @generated
  */
-@ImplementationClassName("com.liferay.journal.model.impl.JournalArticleImageImpl")
+@ImplementationClassName(
+	"com.liferay.journal.model.impl.JournalArticleImageImpl"
+)
 @ProviderType
-public interface JournalArticleImage extends JournalArticleImageModel,
-	PersistedModel {
+public interface JournalArticleImage
+	extends JournalArticleImageModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.journal.model.impl.JournalArticleImageImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<JournalArticleImage, Long> ARTICLE_IMAGE_ID_ACCESSOR =
-		new Accessor<JournalArticleImage, Long>() {
+	public static final Accessor<JournalArticleImage, Long>
+		ARTICLE_IMAGE_ID_ACCESSOR = new Accessor<JournalArticleImage, Long>() {
+
 			@Override
 			public Long get(JournalArticleImage journalArticleImage) {
 				return journalArticleImage.getArticleImageId();
@@ -52,5 +56,7 @@ public interface JournalArticleImage extends JournalArticleImageModel,
 			public Class<JournalArticleImage> getTypeClass() {
 				return JournalArticleImage.class;
 			}
+
 		};
+
 }

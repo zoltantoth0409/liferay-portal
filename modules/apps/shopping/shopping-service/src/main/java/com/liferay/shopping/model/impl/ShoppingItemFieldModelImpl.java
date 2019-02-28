@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -27,7 +26,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingItemField;
 import com.liferay.shopping.model.ShoppingItemFieldModel;
 
@@ -54,23 +52,24 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
-	implements ShoppingItemFieldModel {
+public class ShoppingItemFieldModelImpl
+	extends BaseModelImpl<ShoppingItemField> implements ShoppingItemFieldModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a shopping item field model instance should use the <code>ShoppingItemField</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ShoppingItemField";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "itemFieldId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "itemId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "values_", Types.VARCHAR },
-			{ "description", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"itemFieldId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"itemId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"values_", Types.VARCHAR}, {"description", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("itemFieldId", Types.BIGINT);
@@ -81,26 +80,45 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ShoppingItemField (itemFieldId LONG not null primary key,companyId LONG,itemId LONG,name VARCHAR(75) null,values_ STRING null,description STRING null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table ShoppingItemField (itemFieldId LONG not null primary key,companyId LONG,itemId LONG,name VARCHAR(75) null,values_ STRING null,description STRING null)";
+
 	public static final String TABLE_SQL_DROP = "drop table ShoppingItemField";
-	public static final String ORDER_BY_JPQL = " ORDER BY shoppingItemField.itemId ASC, shoppingItemField.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ShoppingItemField.itemId ASC, ShoppingItemField.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY shoppingItemField.itemId ASC, shoppingItemField.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ShoppingItemField.itemId ASC, ShoppingItemField.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingItemField"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingItemField"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingItemField"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingItemField"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingItemField"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingItemField"),
+		true);
+
 	public static final long ITEMID_COLUMN_BITMASK = 1L;
+
 	public static final long NAME_COLUMN_BITMASK = 2L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.shopping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.shopping.model.ShoppingItemField"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.shopping.model.ShoppingItemField"));
 
 	public ShoppingItemFieldModelImpl() {
 	}
@@ -139,14 +157,18 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemField, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemField, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ShoppingItemField)this));
 		}
 
@@ -158,38 +180,47 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ShoppingItemField, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ShoppingItemField, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ShoppingItemField, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ShoppingItemField, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ShoppingItemField)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ShoppingItemField)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ShoppingItemField, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ShoppingItemField, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ShoppingItemField, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ShoppingItemField, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ShoppingItemField, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ShoppingItemField, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ShoppingItemField, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingItemField, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<ShoppingItemField, Object>>();
-		Map<String, BiConsumer<ShoppingItemField, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<ShoppingItemField, ?>>();
-
+		Map<String, Function<ShoppingItemField, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<ShoppingItemField, Object>>();
+		Map<String, BiConsumer<ShoppingItemField, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<ShoppingItemField, ?>>();
 
 		attributeGetterFunctions.put(
 			"itemFieldId",
@@ -206,7 +237,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object itemFieldId) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object itemFieldId) {
+
 					shoppingItemField.setItemFieldId((Long)itemFieldId);
 				}
 
@@ -226,7 +259,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object companyId) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object companyId) {
+
 					shoppingItemField.setCompanyId((Long)companyId);
 				}
 
@@ -246,7 +281,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object itemId) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object itemId) {
+
 					shoppingItemField.setItemId((Long)itemId);
 				}
 
@@ -266,7 +303,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object name) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object name) {
+
 					shoppingItemField.setName((String)name);
 				}
 
@@ -286,7 +325,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object values) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object values) {
+
 					shoppingItemField.setValues((String)values);
 				}
 
@@ -306,15 +347,18 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 			new BiConsumer<ShoppingItemField, Object>() {
 
 				@Override
-				public void accept(ShoppingItemField shoppingItemField, Object description) {
+				public void accept(
+					ShoppingItemField shoppingItemField, Object description) {
+
 					shoppingItemField.setDescription((String)description);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -412,8 +456,8 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ShoppingItemField.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ShoppingItemField.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -426,8 +470,9 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 	@Override
 	public ShoppingItemField toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingItemField)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ShoppingItemField)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -435,7 +480,8 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public Object clone() {
-		ShoppingItemFieldImpl shoppingItemFieldImpl = new ShoppingItemFieldImpl();
+		ShoppingItemFieldImpl shoppingItemFieldImpl =
+			new ShoppingItemFieldImpl();
 
 		shoppingItemFieldImpl.setItemFieldId(getItemFieldId());
 		shoppingItemFieldImpl.setCompanyId(getCompanyId());
@@ -517,7 +563,8 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 	public void resetOriginalValues() {
 		ShoppingItemFieldModelImpl shoppingItemFieldModelImpl = this;
 
-		shoppingItemFieldModelImpl._originalItemId = shoppingItemFieldModelImpl._itemId;
+		shoppingItemFieldModelImpl._originalItemId =
+			shoppingItemFieldModelImpl._itemId;
 
 		shoppingItemFieldModelImpl._setOriginalItemId = false;
 
@@ -526,7 +573,8 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public CacheModel<ShoppingItemField> toCacheModel() {
-		ShoppingItemFieldCacheModel shoppingItemFieldCacheModel = new ShoppingItemFieldCacheModel();
+		ShoppingItemFieldCacheModel shoppingItemFieldCacheModel =
+			new ShoppingItemFieldCacheModel();
 
 		shoppingItemFieldCacheModel.itemFieldId = getItemFieldId();
 
@@ -563,17 +611,20 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public String toString() {
-		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemField, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemField, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -592,19 +643,22 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ShoppingItemField, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemField, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemField, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemField, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemField, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -618,10 +672,12 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ShoppingItemField.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ShoppingItemField.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ShoppingItemField.class, ModelWrapper.class
-		};
+		ShoppingItemField.class, ModelWrapper.class
+	};
+
 	private long _itemFieldId;
 	private long _companyId;
 	private long _itemId;
@@ -632,4 +688,5 @@ public class ShoppingItemFieldModelImpl extends BaseModelImpl<ShoppingItemField>
 	private String _description;
 	private long _columnBitmask;
 	private ShoppingItemField _escapedModel;
+
 }

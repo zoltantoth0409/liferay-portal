@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.shopping.exception.NoSuchCategoryException;
 import com.liferay.shopping.model.ShoppingCategory;
 import com.liferay.shopping.model.impl.ShoppingCategoryImpl;
@@ -69,18 +68,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<ShoppingCategory>
+public class ShoppingCategoryPersistenceImpl
+	extends BasePersistenceImpl<ShoppingCategory>
 	implements ShoppingCategoryPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ShoppingCategoryUtil</code> to access the shopping category persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = ShoppingCategoryImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		ShoppingCategoryImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -96,7 +101,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public List<ShoppingCategory> findByGroupId(long groupId) {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -112,7 +118,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByGroupId(long groupId, int start, int end) {
+	public List<ShoppingCategory> findByGroupId(
+		long groupId, int start, int end) {
+
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -130,8 +138,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByGroupId(long groupId, int start,
-		int end, OrderByComparator<ShoppingCategory> orderByComparator) {
+	public List<ShoppingCategory> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
@@ -150,29 +160,32 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByGroupId(long groupId, int start,
-		int end, OrderByComparator<ShoppingCategory> orderByComparator,
+	public List<ShoppingCategory> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<ShoppingCategory> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId };
+			finderArgs = new Object[] {groupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId, start, end, orderByComparator };
+			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<ShoppingCategory> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ShoppingCategory>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ShoppingCategory>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingCategory shoppingCategory : list) {
@@ -189,8 +202,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -201,11 +214,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ShoppingCategoryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -223,16 +235,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -261,11 +273,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory findByGroupId_First(long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory findByGroupId_First(
+			long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
-		ShoppingCategory shoppingCategory = fetchByGroupId_First(groupId,
-				orderByComparator);
+
+		ShoppingCategory shoppingCategory = fetchByGroupId_First(
+			groupId, orderByComparator);
 
 		if (shoppingCategory != null) {
 			return shoppingCategory;
@@ -291,10 +304,11 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the first matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByGroupId_First(long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator) {
-		List<ShoppingCategory> list = findByGroupId(groupId, 0, 1,
-				orderByComparator);
+	public ShoppingCategory fetchByGroupId_First(
+		long groupId, OrderByComparator<ShoppingCategory> orderByComparator) {
+
+		List<ShoppingCategory> list = findByGroupId(
+			groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -312,11 +326,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory findByGroupId_Last(long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory findByGroupId_Last(
+			long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
-		ShoppingCategory shoppingCategory = fetchByGroupId_Last(groupId,
-				orderByComparator);
+
+		ShoppingCategory shoppingCategory = fetchByGroupId_Last(
+			groupId, orderByComparator);
 
 		if (shoppingCategory != null) {
 			return shoppingCategory;
@@ -342,16 +357,17 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the last matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByGroupId_Last(long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator) {
+	public ShoppingCategory fetchByGroupId_Last(
+		long groupId, OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ShoppingCategory> list = findByGroupId(groupId, count - 1, count,
-				orderByComparator);
+		List<ShoppingCategory> list = findByGroupId(
+			groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -370,9 +386,11 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a shopping category with the primary key could not be found
 	 */
 	@Override
-	public ShoppingCategory[] findByGroupId_PrevAndNext(long categoryId,
-		long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory[] findByGroupId_PrevAndNext(
+			long categoryId, long groupId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
+
 		ShoppingCategory shoppingCategory = findByPrimaryKey(categoryId);
 
 		Session session = null;
@@ -382,13 +400,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			ShoppingCategory[] array = new ShoppingCategoryImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(session, shoppingCategory,
-					groupId, orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(
+				session, shoppingCategory, groupId, orderByComparator, true);
 
 			array[1] = shoppingCategory;
 
-			array[2] = getByGroupId_PrevAndNext(session, shoppingCategory,
-					groupId, orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(
+				session, shoppingCategory, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -400,14 +418,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	protected ShoppingCategory getByGroupId_PrevAndNext(Session session,
-		ShoppingCategory shoppingCategory, long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator, boolean previous) {
+	protected ShoppingCategory getByGroupId_PrevAndNext(
+		Session session, ShoppingCategory shoppingCategory, long groupId,
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -419,7 +439,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -489,8 +510,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					shoppingCategory)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						shoppingCategory)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -513,8 +536,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public List<ShoppingCategory> filterFindByGroupId(long groupId) {
-		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -530,8 +553,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the range of matching shopping categories that the user has permission to view
 	 */
 	@Override
-	public List<ShoppingCategory> filterFindByGroupId(long groupId, int start,
-		int end) {
+	public List<ShoppingCategory> filterFindByGroupId(
+		long groupId, int start, int end) {
+
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -549,8 +573,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories that the user has permission to view
 	 */
 	@Override
-	public List<ShoppingCategory> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator<ShoppingCategory> orderByComparator) {
+	public List<ShoppingCategory> filterFindByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -558,8 +584,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(3 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				3 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(4);
@@ -569,23 +595,25 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -597,9 +625,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -619,8 +647,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			qPos.add(groupId);
 
-			return (List<ShoppingCategory>)QueryUtil.list(q, getDialect(),
-				start, end);
+			return (List<ShoppingCategory>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -640,12 +668,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a shopping category with the primary key could not be found
 	 */
 	@Override
-	public ShoppingCategory[] filterFindByGroupId_PrevAndNext(long categoryId,
-		long groupId, OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory[] filterFindByGroupId_PrevAndNext(
+			long categoryId, long groupId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByGroupId_PrevAndNext(categoryId, groupId,
-				orderByComparator);
+			return findByGroupId_PrevAndNext(
+				categoryId, groupId, orderByComparator);
 		}
 
 		ShoppingCategory shoppingCategory = findByPrimaryKey(categoryId);
@@ -657,13 +687,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			ShoppingCategory[] array = new ShoppingCategoryImpl[3];
 
-			array[0] = filterGetByGroupId_PrevAndNext(session,
-					shoppingCategory, groupId, orderByComparator, true);
+			array[0] = filterGetByGroupId_PrevAndNext(
+				session, shoppingCategory, groupId, orderByComparator, true);
 
 			array[1] = shoppingCategory;
 
-			array[2] = filterGetByGroupId_PrevAndNext(session,
-					shoppingCategory, groupId, orderByComparator, false);
+			array[2] = filterGetByGroupId_PrevAndNext(
+				session, shoppingCategory, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -675,14 +705,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	protected ShoppingCategory filterGetByGroupId_PrevAndNext(Session session,
-		ShoppingCategory shoppingCategory, long groupId,
-		OrderByComparator<ShoppingCategory> orderByComparator, boolean previous) {
+	protected ShoppingCategory filterGetByGroupId_PrevAndNext(
+		Session session, ShoppingCategory shoppingCategory, long groupId,
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -693,17 +725,20 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -711,12 +746,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -743,12 +782,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -778,9 +819,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -799,8 +840,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					shoppingCategory)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						shoppingCategory)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -822,8 +865,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (ShoppingCategory shoppingCategory : findByGroupId(groupId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ShoppingCategory shoppingCategory :
+				findByGroupId(
+					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(shoppingCategory);
 		}
 	}
@@ -838,7 +883,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] { groupId };
+		Object[] finderArgs = new Object[] {groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -897,9 +942,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -908,8 +953,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -927,7 +972,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "shoppingCategory.groupId = ?";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
+		"shoppingCategory.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_P;
 	private FinderPath _finderPathWithoutPaginationFindByG_P;
 	private FinderPath _finderPathCountByG_P;
@@ -940,9 +987,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByG_P(long groupId, long parentCategoryId) {
-		return findByG_P(groupId, parentCategoryId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<ShoppingCategory> findByG_P(
+		long groupId, long parentCategoryId) {
+
+		return findByG_P(
+			groupId, parentCategoryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -959,8 +1009,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByG_P(long groupId,
-		long parentCategoryId, int start, int end) {
+	public List<ShoppingCategory> findByG_P(
+		long groupId, long parentCategoryId, int start, int end) {
+
 		return findByG_P(groupId, parentCategoryId, start, end, null);
 	}
 
@@ -979,11 +1030,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByG_P(long groupId,
-		long parentCategoryId, int start, int end,
+	public List<ShoppingCategory> findByG_P(
+		long groupId, long parentCategoryId, int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator) {
-		return findByG_P(groupId, parentCategoryId, start, end,
-			orderByComparator, true);
+
+		return findByG_P(
+			groupId, parentCategoryId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1002,39 +1054,41 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findByG_P(long groupId,
-		long parentCategoryId, int start, int end,
+	public List<ShoppingCategory> findByG_P(
+		long groupId, long parentCategoryId, int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] { groupId, parentCategoryId };
+			finderArgs = new Object[] {groupId, parentCategoryId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
-					groupId, parentCategoryId,
-					
-					start, end, orderByComparator
-				};
+				groupId, parentCategoryId, start, end, orderByComparator
+			};
 		}
 
 		List<ShoppingCategory> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ShoppingCategory>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ShoppingCategory>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ShoppingCategory shoppingCategory : list) {
 					if ((groupId != shoppingCategory.getGroupId()) ||
-							(parentCategoryId != shoppingCategory.getParentCategoryId())) {
+						(parentCategoryId !=
+							shoppingCategory.getParentCategoryId())) {
+
 						list = null;
 
 						break;
@@ -1047,8 +1101,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1061,11 +1115,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FINDER_COLUMN_G_P_PARENTCATEGORYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ShoppingCategoryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1085,16 +1138,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				qPos.add(parentCategoryId);
 
 				if (!pagination) {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1124,12 +1177,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory findByG_P_First(long groupId,
-		long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory findByG_P_First(
+			long groupId, long parentCategoryId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
-		ShoppingCategory shoppingCategory = fetchByG_P_First(groupId,
-				parentCategoryId, orderByComparator);
+
+		ShoppingCategory shoppingCategory = fetchByG_P_First(
+			groupId, parentCategoryId, orderByComparator);
 
 		if (shoppingCategory != null) {
 			return shoppingCategory;
@@ -1159,11 +1213,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the first matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByG_P_First(long groupId,
-		long parentCategoryId,
+	public ShoppingCategory fetchByG_P_First(
+		long groupId, long parentCategoryId,
 		OrderByComparator<ShoppingCategory> orderByComparator) {
-		List<ShoppingCategory> list = findByG_P(groupId, parentCategoryId, 0,
-				1, orderByComparator);
+
+		List<ShoppingCategory> list = findByG_P(
+			groupId, parentCategoryId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1182,11 +1237,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory findByG_P_Last(long groupId, long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory findByG_P_Last(
+			long groupId, long parentCategoryId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
-		ShoppingCategory shoppingCategory = fetchByG_P_Last(groupId,
-				parentCategoryId, orderByComparator);
+
+		ShoppingCategory shoppingCategory = fetchByG_P_Last(
+			groupId, parentCategoryId, orderByComparator);
 
 		if (shoppingCategory != null) {
 			return shoppingCategory;
@@ -1216,17 +1273,18 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the last matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByG_P_Last(long groupId,
-		long parentCategoryId,
+	public ShoppingCategory fetchByG_P_Last(
+		long groupId, long parentCategoryId,
 		OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		int count = countByG_P(groupId, parentCategoryId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ShoppingCategory> list = findByG_P(groupId, parentCategoryId,
-				count - 1, count, orderByComparator);
+		List<ShoppingCategory> list = findByG_P(
+			groupId, parentCategoryId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1246,10 +1304,11 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a shopping category with the primary key could not be found
 	 */
 	@Override
-	public ShoppingCategory[] findByG_P_PrevAndNext(long categoryId,
-		long groupId, long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory[] findByG_P_PrevAndNext(
+			long categoryId, long groupId, long parentCategoryId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
+
 		ShoppingCategory shoppingCategory = findByPrimaryKey(categoryId);
 
 		Session session = null;
@@ -1259,13 +1318,15 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			ShoppingCategory[] array = new ShoppingCategoryImpl[3];
 
-			array[0] = getByG_P_PrevAndNext(session, shoppingCategory, groupId,
-					parentCategoryId, orderByComparator, true);
+			array[0] = getByG_P_PrevAndNext(
+				session, shoppingCategory, groupId, parentCategoryId,
+				orderByComparator, true);
 
 			array[1] = shoppingCategory;
 
-			array[2] = getByG_P_PrevAndNext(session, shoppingCategory, groupId,
-					parentCategoryId, orderByComparator, false);
+			array[2] = getByG_P_PrevAndNext(
+				session, shoppingCategory, groupId, parentCategoryId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -1277,14 +1338,17 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	protected ShoppingCategory getByG_P_PrevAndNext(Session session,
-		ShoppingCategory shoppingCategory, long groupId, long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator, boolean previous) {
+	protected ShoppingCategory getByG_P_PrevAndNext(
+		Session session, ShoppingCategory shoppingCategory, long groupId,
+		long parentCategoryId,
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1298,7 +1362,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		query.append(_FINDER_COLUMN_G_P_PARENTCATEGORYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1370,8 +1435,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		qPos.add(parentCategoryId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					shoppingCategory)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						shoppingCategory)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1394,10 +1461,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the matching shopping categories that the user has permission to view
 	 */
 	@Override
-	public List<ShoppingCategory> filterFindByG_P(long groupId,
-		long parentCategoryId) {
-		return filterFindByG_P(groupId, parentCategoryId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<ShoppingCategory> filterFindByG_P(
+		long groupId, long parentCategoryId) {
+
+		return filterFindByG_P(
+			groupId, parentCategoryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -1414,8 +1483,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the range of matching shopping categories that the user has permission to view
 	 */
 	@Override
-	public List<ShoppingCategory> filterFindByG_P(long groupId,
-		long parentCategoryId, int start, int end) {
+	public List<ShoppingCategory> filterFindByG_P(
+		long groupId, long parentCategoryId, int start, int end) {
+
 		return filterFindByG_P(groupId, parentCategoryId, start, end, null);
 	}
 
@@ -1434,19 +1504,20 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of matching shopping categories that the user has permission to view
 	 */
 	@Override
-	public List<ShoppingCategory> filterFindByG_P(long groupId,
-		long parentCategoryId, int start, int end,
+	public List<ShoppingCategory> filterFindByG_P(
+		long groupId, long parentCategoryId, int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P(groupId, parentCategoryId, start, end,
-				orderByComparator);
+			return findByG_P(
+				groupId, parentCategoryId, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -1456,7 +1527,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_P_GROUPID_2);
@@ -1464,17 +1536,18 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		query.append(_FINDER_COLUMN_G_P_PARENTCATEGORYID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -1486,9 +1559,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -1510,8 +1583,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			qPos.add(parentCategoryId);
 
-			return (List<ShoppingCategory>)QueryUtil.list(q, getDialect(),
-				start, end);
+			return (List<ShoppingCategory>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1532,13 +1605,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @throws NoSuchCategoryException if a shopping category with the primary key could not be found
 	 */
 	@Override
-	public ShoppingCategory[] filterFindByG_P_PrevAndNext(long categoryId,
-		long groupId, long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator)
+	public ShoppingCategory[] filterFindByG_P_PrevAndNext(
+			long categoryId, long groupId, long parentCategoryId,
+			OrderByComparator<ShoppingCategory> orderByComparator)
 		throws NoSuchCategoryException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_PrevAndNext(categoryId, groupId, parentCategoryId,
-				orderByComparator);
+			return findByG_P_PrevAndNext(
+				categoryId, groupId, parentCategoryId, orderByComparator);
 		}
 
 		ShoppingCategory shoppingCategory = findByPrimaryKey(categoryId);
@@ -1550,13 +1624,15 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			ShoppingCategory[] array = new ShoppingCategoryImpl[3];
 
-			array[0] = filterGetByG_P_PrevAndNext(session, shoppingCategory,
-					groupId, parentCategoryId, orderByComparator, true);
+			array[0] = filterGetByG_P_PrevAndNext(
+				session, shoppingCategory, groupId, parentCategoryId,
+				orderByComparator, true);
 
 			array[1] = shoppingCategory;
 
-			array[2] = filterGetByG_P_PrevAndNext(session, shoppingCategory,
-					groupId, parentCategoryId, orderByComparator, false);
+			array[2] = filterGetByG_P_PrevAndNext(
+				session, shoppingCategory, groupId, parentCategoryId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -1568,14 +1644,17 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	protected ShoppingCategory filterGetByG_P_PrevAndNext(Session session,
-		ShoppingCategory shoppingCategory, long groupId, long parentCategoryId,
-		OrderByComparator<ShoppingCategory> orderByComparator, boolean previous) {
+	protected ShoppingCategory filterGetByG_P_PrevAndNext(
+		Session session, ShoppingCategory shoppingCategory, long groupId,
+		long parentCategoryId,
+		OrderByComparator<ShoppingCategory> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1586,7 +1665,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_P_GROUPID_2);
@@ -1594,11 +1674,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		query.append(_FINDER_COLUMN_G_P_PARENTCATEGORYID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1606,12 +1688,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -1638,12 +1724,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -1673,9 +1761,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -1696,8 +1784,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		qPos.add(parentCategoryId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					shoppingCategory)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						shoppingCategory)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1720,8 +1810,11 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public void removeByG_P(long groupId, long parentCategoryId) {
-		for (ShoppingCategory shoppingCategory : findByG_P(groupId,
-				parentCategoryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ShoppingCategory shoppingCategory :
+				findByG_P(
+					groupId, parentCategoryId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(shoppingCategory);
 		}
 	}
@@ -1737,7 +1830,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	public int countByG_P(long groupId, long parentCategoryId) {
 		FinderPath finderPath = _finderPathCountByG_P;
 
-		Object[] finderArgs = new Object[] { groupId, parentCategoryId };
+		Object[] finderArgs = new Object[] {groupId, parentCategoryId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1803,9 +1896,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 		query.append(_FINDER_COLUMN_G_P_PARENTCATEGORYID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				ShoppingCategory.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), ShoppingCategory.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -1814,8 +1907,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1835,8 +1928,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_P_GROUPID_2 = "shoppingCategory.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_PARENTCATEGORYID_2 = "shoppingCategory.parentCategoryId = ?";
+	private static final String _FINDER_COLUMN_G_P_GROUPID_2 =
+		"shoppingCategory.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_P_PARENTCATEGORYID_2 =
+		"shoppingCategory.parentCategoryId = ?";
+
 	private FinderPath _finderPathFetchByG_N;
 	private FinderPath _finderPathCountByG_N;
 
@@ -1851,6 +1948,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory findByG_N(long groupId, String name)
 		throws NoSuchCategoryException {
+
 		ShoppingCategory shoppingCategory = fetchByG_N(groupId, name);
 
 		if (shoppingCategory == null) {
@@ -1897,24 +1995,26 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the matching shopping category, or <code>null</code> if a matching shopping category could not be found
 	 */
 	@Override
-	public ShoppingCategory fetchByG_N(long groupId, String name,
-		boolean retrieveFromCache) {
+	public ShoppingCategory fetchByG_N(
+		long groupId, String name, boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = new Object[] { groupId, name };
+		Object[] finderArgs = new Object[] {groupId, name};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByG_N, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByG_N, finderArgs, this);
 		}
 
 		if (result instanceof ShoppingCategory) {
 			ShoppingCategory shoppingCategory = (ShoppingCategory)result;
 
 			if ((groupId != shoppingCategory.getGroupId()) ||
-					!Objects.equals(name, shoppingCategory.getName())) {
+				!Objects.equals(name, shoppingCategory.getName())) {
+
 				result = null;
 			}
 		}
@@ -1957,8 +2057,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				List<ShoppingCategory> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByG_N, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByG_N, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -1967,8 +2067,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"ShoppingCategoryPersistenceImpl.fetchByG_N(long, String, boolean) with parameters (" +
-								StringUtil.merge(finderArgs) +
-								") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+									StringUtil.merge(finderArgs) +
+										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 						}
 					}
 
@@ -2007,6 +2107,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory removeByG_N(long groupId, String name)
 		throws NoSuchCategoryException {
+
 		ShoppingCategory shoppingCategory = findByG_N(groupId, name);
 
 		return remove(shoppingCategory);
@@ -2025,7 +2126,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 		FinderPath finderPath = _finderPathCountByG_N;
 
-		Object[] finderArgs = new Object[] { groupId, name };
+		Object[] finderArgs = new Object[] {groupId, name};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2081,9 +2182,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_N_GROUPID_2 = "shoppingCategory.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_N_NAME_2 = "shoppingCategory.name = ?";
-	private static final String _FINDER_COLUMN_G_N_NAME_3 = "(shoppingCategory.name IS NULL OR shoppingCategory.name = '')";
+	private static final String _FINDER_COLUMN_G_N_GROUPID_2 =
+		"shoppingCategory.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_N_NAME_2 =
+		"shoppingCategory.name = ?";
+
+	private static final String _FINDER_COLUMN_G_N_NAME_3 =
+		"(shoppingCategory.name IS NULL OR shoppingCategory.name = '')";
 
 	public ShoppingCategoryPersistenceImpl() {
 		setModelClass(ShoppingCategory.class);
@@ -2096,14 +2202,17 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public void cacheResult(ShoppingCategory shoppingCategory) {
-		entityCache.putResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingCategoryImpl.class, shoppingCategory.getPrimaryKey(),
 			shoppingCategory);
 
-		finderCache.putResult(_finderPathFetchByG_N,
+		finderCache.putResult(
+			_finderPathFetchByG_N,
 			new Object[] {
 				shoppingCategory.getGroupId(), shoppingCategory.getName()
-			}, shoppingCategory);
+			},
+			shoppingCategory);
 
 		shoppingCategory.resetOriginalValues();
 	}
@@ -2117,9 +2226,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	public void cacheResult(List<ShoppingCategory> shoppingCategories) {
 		for (ShoppingCategory shoppingCategory : shoppingCategories) {
 			if (entityCache.getResult(
-						ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-						ShoppingCategoryImpl.class,
-						shoppingCategory.getPrimaryKey()) == null) {
+					ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+					ShoppingCategoryImpl.class,
+					shoppingCategory.getPrimaryKey()) == null) {
+
 				cacheResult(shoppingCategory);
 			}
 			else {
@@ -2153,14 +2263,15 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public void clearCache(ShoppingCategory shoppingCategory) {
-		entityCache.removeResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingCategoryImpl.class, shoppingCategory.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((ShoppingCategoryModelImpl)shoppingCategory,
-			true);
+		clearUniqueFindersCache(
+			(ShoppingCategoryModelImpl)shoppingCategory, true);
 	}
 
 	@Override
@@ -2169,46 +2280,50 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (ShoppingCategory shoppingCategory : shoppingCategories) {
-			entityCache.removeResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 				ShoppingCategoryImpl.class, shoppingCategory.getPrimaryKey());
 
-			clearUniqueFindersCache((ShoppingCategoryModelImpl)shoppingCategory,
-				true);
+			clearUniqueFindersCache(
+				(ShoppingCategoryModelImpl)shoppingCategory, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		ShoppingCategoryModelImpl shoppingCategoryModelImpl) {
-		Object[] args = new Object[] {
-				shoppingCategoryModelImpl.getGroupId(),
-				shoppingCategoryModelImpl.getName()
-			};
 
-		finderCache.putResult(_finderPathCountByG_N, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByG_N, args,
-			shoppingCategoryModelImpl, false);
+		Object[] args = new Object[] {
+			shoppingCategoryModelImpl.getGroupId(),
+			shoppingCategoryModelImpl.getName()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByG_N, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByG_N, args, shoppingCategoryModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		ShoppingCategoryModelImpl shoppingCategoryModelImpl,
 		boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					shoppingCategoryModelImpl.getGroupId(),
-					shoppingCategoryModelImpl.getName()
-				};
+				shoppingCategoryModelImpl.getGroupId(),
+				shoppingCategoryModelImpl.getName()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_N, args);
 			finderCache.removeResult(_finderPathFetchByG_N, args);
 		}
 
 		if ((shoppingCategoryModelImpl.getColumnBitmask() &
-				_finderPathFetchByG_N.getColumnBitmask()) != 0) {
+			 _finderPathFetchByG_N.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					shoppingCategoryModelImpl.getOriginalGroupId(),
-					shoppingCategoryModelImpl.getOriginalName()
-				};
+				shoppingCategoryModelImpl.getOriginalGroupId(),
+				shoppingCategoryModelImpl.getOriginalName()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_N, args);
 			finderCache.removeResult(_finderPathFetchByG_N, args);
@@ -2243,6 +2358,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory remove(long categoryId)
 		throws NoSuchCategoryException {
+
 		return remove((Serializable)categoryId);
 	}
 
@@ -2256,21 +2372,22 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory remove(Serializable primaryKey)
 		throws NoSuchCategoryException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ShoppingCategory shoppingCategory = (ShoppingCategory)session.get(ShoppingCategoryImpl.class,
-					primaryKey);
+			ShoppingCategory shoppingCategory = (ShoppingCategory)session.get(
+				ShoppingCategoryImpl.class, primaryKey);
 
 			if (shoppingCategory == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchCategoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchCategoryException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(shoppingCategory);
@@ -2294,8 +2411,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			session = openSession();
 
 			if (!session.contains(shoppingCategory)) {
-				shoppingCategory = (ShoppingCategory)session.get(ShoppingCategoryImpl.class,
-						shoppingCategory.getPrimaryKeyObj());
+				shoppingCategory = (ShoppingCategory)session.get(
+					ShoppingCategoryImpl.class,
+					shoppingCategory.getPrimaryKeyObj());
 			}
 
 			if (shoppingCategory != null) {
@@ -2324,21 +2442,24 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(shoppingCategory.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(shoppingCategory);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					shoppingCategory);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in shoppingCategory proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom ShoppingCategory implementation " +
-				shoppingCategory.getClass());
+					shoppingCategory.getClass());
 		}
 
-		ShoppingCategoryModelImpl shoppingCategoryModelImpl = (ShoppingCategoryModelImpl)shoppingCategory;
+		ShoppingCategoryModelImpl shoppingCategoryModelImpl =
+			(ShoppingCategoryModelImpl)shoppingCategory;
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -2347,7 +2468,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				shoppingCategory.setCreateDate(now);
 			}
 			else {
-				shoppingCategory.setCreateDate(serviceContext.getCreateDate(now));
+				shoppingCategory.setCreateDate(
+					serviceContext.getCreateDate(now));
 			}
 		}
 
@@ -2356,8 +2478,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				shoppingCategory.setModifiedDate(now);
 			}
 			else {
-				shoppingCategory.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				shoppingCategory.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -2372,7 +2494,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				shoppingCategory.setNew(false);
 			}
 			else {
-				shoppingCategory = (ShoppingCategory)session.merge(shoppingCategory);
+				shoppingCategory = (ShoppingCategory)session.merge(
+					shoppingCategory);
 			}
 		}
 		catch (Exception e) {
@@ -2387,68 +2510,74 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		if (!ShoppingCategoryModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { shoppingCategoryModelImpl.getGroupId() };
+		else if (isNew) {
+			Object[] args = new Object[] {
+				shoppingCategoryModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByGroupId, args);
 
 			args = new Object[] {
+				shoppingCategoryModelImpl.getGroupId(),
+				shoppingCategoryModelImpl.getParentCategoryId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_P, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_P, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((shoppingCategoryModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByGroupId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					shoppingCategoryModelImpl.getOriginalGroupId()
+				};
+
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
+
+				args = new Object[] {shoppingCategoryModelImpl.getGroupId()};
+
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
+			}
+
+			if ((shoppingCategoryModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_P.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					shoppingCategoryModelImpl.getOriginalGroupId(),
+					shoppingCategoryModelImpl.getOriginalParentCategoryId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_P, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_P, args);
+
+				args = new Object[] {
 					shoppingCategoryModelImpl.getGroupId(),
 					shoppingCategoryModelImpl.getParentCategoryId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_P, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_P, args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((shoppingCategoryModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						shoppingCategoryModelImpl.getOriginalGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-
-				args = new Object[] { shoppingCategoryModelImpl.getGroupId() };
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-			}
-
-			if ((shoppingCategoryModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_P.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						shoppingCategoryModelImpl.getOriginalGroupId(),
-						shoppingCategoryModelImpl.getOriginalParentCategoryId()
-					};
-
 				finderCache.removeResult(_finderPathCountByG_P, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_P,
-					args);
-
-				args = new Object[] {
-						shoppingCategoryModelImpl.getGroupId(),
-						shoppingCategoryModelImpl.getParentCategoryId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_P, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_P,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_P, args);
 			}
 		}
 
-		entityCache.putResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingCategoryImpl.class, shoppingCategory.getPrimaryKey(),
 			shoppingCategory, false);
 
@@ -2470,6 +2599,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchCategoryException {
+
 		ShoppingCategory shoppingCategory = fetchByPrimaryKey(primaryKey);
 
 		if (shoppingCategory == null) {
@@ -2477,8 +2607,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchCategoryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchCategoryException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return shoppingCategory;
@@ -2494,6 +2624,7 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public ShoppingCategory findByPrimaryKey(long categoryId)
 		throws NoSuchCategoryException {
+
 		return findByPrimaryKey((Serializable)categoryId);
 	}
 
@@ -2505,8 +2636,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public ShoppingCategory fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -2520,19 +2652,21 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			try {
 				session = openSession();
 
-				shoppingCategory = (ShoppingCategory)session.get(ShoppingCategoryImpl.class,
-						primaryKey);
+				shoppingCategory = (ShoppingCategory)session.get(
+					ShoppingCategoryImpl.class, primaryKey);
 
 				if (shoppingCategory != null) {
 					cacheResult(shoppingCategory);
 				}
 				else {
-					entityCache.putResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 						ShoppingCategoryImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 					ShoppingCategoryImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2559,11 +2693,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	@Override
 	public Map<Serializable, ShoppingCategory> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, ShoppingCategory> map = new HashMap<Serializable, ShoppingCategory>();
+		Map<Serializable, ShoppingCategory> map =
+			new HashMap<Serializable, ShoppingCategory>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -2582,8 +2718,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-					ShoppingCategoryImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCategoryImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -2603,8 +2740,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_SHOPPINGCATEGORY_WHERE_PKS_IN);
 
@@ -2627,7 +2764,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 			Query q = session.createQuery(sql);
 
-			for (ShoppingCategory shoppingCategory : (List<ShoppingCategory>)q.list()) {
+			for (ShoppingCategory shoppingCategory :
+					(List<ShoppingCategory>)q.list()) {
+
 				map.put(shoppingCategory.getPrimaryKeyObj(), shoppingCategory);
 
 				cacheResult(shoppingCategory);
@@ -2636,7 +2775,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 					ShoppingCategoryImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -2689,8 +2829,10 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findAll(int start, int end,
+	public List<ShoppingCategory> findAll(
+		int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -2708,29 +2850,32 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * @return the ordered range of shopping categories
 	 */
 	@Override
-	public List<ShoppingCategory> findAll(int start, int end,
+	public List<ShoppingCategory> findAll(
+		int start, int end,
 		OrderByComparator<ShoppingCategory> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ShoppingCategory> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ShoppingCategory>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ShoppingCategory>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -2738,13 +2883,13 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_SHOPPINGCATEGORY);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -2764,16 +2909,16 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ShoppingCategory>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ShoppingCategory>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2811,8 +2956,8 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2824,11 +2969,12 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2849,84 +2995,91 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	 * Initializes the shopping category persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByGroupId = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+			new String[] {Long.class.getName()},
+			ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
+			ShoppingCategoryModelImpl.PARENTCATEGORYID_COLUMN_BITMASK |
+			ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
+
+		_finderPathCountByGroupId = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByG_P = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-				new String[] { Long.class.getName() },
-				ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
-				ShoppingCategoryModelImpl.PARENTCATEGORYID_COLUMN_BITMASK |
-				ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_P = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_P",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
+			ShoppingCategoryModelImpl.PARENTCATEGORYID_COLUMN_BITMASK |
+			ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathCountByGroupId = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByG_P = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_P",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByG_P = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathFetchByG_N = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
+			ShoppingCategoryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_N",
+			new String[] {Long.class.getName(), String.class.getName()},
+			ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
+			ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathWithoutPaginationFindByG_P = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_P",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
-				ShoppingCategoryModelImpl.PARENTCATEGORYID_COLUMN_BITMASK |
-				ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
-
-		_finderPathCountByG_P = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_P",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathFetchByG_N = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED,
-				ShoppingCategoryImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByG_N",
-				new String[] { Long.class.getName(), String.class.getName() },
-				ShoppingCategoryModelImpl.GROUPID_COLUMN_BITMASK |
-				ShoppingCategoryModelImpl.NAME_COLUMN_BITMASK);
-
-		_finderPathCountByG_N = new FinderPath(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
-				ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_N",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByG_N = new FinderPath(
+			ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+			ShoppingCategoryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_N",
+			new String[] {Long.class.getName(), String.class.getName()});
 	}
 
 	public void destroy() {
@@ -2938,27 +3091,60 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_SHOPPINGCATEGORY = "SELECT shoppingCategory FROM ShoppingCategory shoppingCategory";
-	private static final String _SQL_SELECT_SHOPPINGCATEGORY_WHERE_PKS_IN = "SELECT shoppingCategory FROM ShoppingCategory shoppingCategory WHERE categoryId IN (";
-	private static final String _SQL_SELECT_SHOPPINGCATEGORY_WHERE = "SELECT shoppingCategory FROM ShoppingCategory shoppingCategory WHERE ";
-	private static final String _SQL_COUNT_SHOPPINGCATEGORY = "SELECT COUNT(shoppingCategory) FROM ShoppingCategory shoppingCategory";
-	private static final String _SQL_COUNT_SHOPPINGCATEGORY_WHERE = "SELECT COUNT(shoppingCategory) FROM ShoppingCategory shoppingCategory WHERE ";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "shoppingCategory.categoryId";
-	private static final String _FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE = "SELECT DISTINCT {shoppingCategory.*} FROM ShoppingCategory shoppingCategory WHERE ";
-	private static final String _FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {ShoppingCategory.*} FROM (SELECT DISTINCT shoppingCategory.categoryId FROM ShoppingCategory shoppingCategory WHERE ";
-	private static final String _FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN ShoppingCategory ON TEMP_TABLE.categoryId = ShoppingCategory.categoryId";
-	private static final String _FILTER_SQL_COUNT_SHOPPINGCATEGORY_WHERE = "SELECT COUNT(DISTINCT shoppingCategory.categoryId) AS COUNT_VALUE FROM ShoppingCategory shoppingCategory WHERE ";
+
+	private static final String _SQL_SELECT_SHOPPINGCATEGORY =
+		"SELECT shoppingCategory FROM ShoppingCategory shoppingCategory";
+
+	private static final String _SQL_SELECT_SHOPPINGCATEGORY_WHERE_PKS_IN =
+		"SELECT shoppingCategory FROM ShoppingCategory shoppingCategory WHERE categoryId IN (";
+
+	private static final String _SQL_SELECT_SHOPPINGCATEGORY_WHERE =
+		"SELECT shoppingCategory FROM ShoppingCategory shoppingCategory WHERE ";
+
+	private static final String _SQL_COUNT_SHOPPINGCATEGORY =
+		"SELECT COUNT(shoppingCategory) FROM ShoppingCategory shoppingCategory";
+
+	private static final String _SQL_COUNT_SHOPPINGCATEGORY_WHERE =
+		"SELECT COUNT(shoppingCategory) FROM ShoppingCategory shoppingCategory WHERE ";
+
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN =
+		"shoppingCategory.categoryId";
+
+	private static final String _FILTER_SQL_SELECT_SHOPPINGCATEGORY_WHERE =
+		"SELECT DISTINCT {shoppingCategory.*} FROM ShoppingCategory shoppingCategory WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_1 =
+			"SELECT {ShoppingCategory.*} FROM (SELECT DISTINCT shoppingCategory.categoryId FROM ShoppingCategory shoppingCategory WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_SHOPPINGCATEGORY_NO_INLINE_DISTINCT_WHERE_2 =
+			") TEMP_TABLE INNER JOIN ShoppingCategory ON TEMP_TABLE.categoryId = ShoppingCategory.categoryId";
+
+	private static final String _FILTER_SQL_COUNT_SHOPPINGCATEGORY_WHERE =
+		"SELECT COUNT(DISTINCT shoppingCategory.categoryId) AS COUNT_VALUE FROM ShoppingCategory shoppingCategory WHERE ";
+
 	private static final String _FILTER_ENTITY_ALIAS = "shoppingCategory";
+
 	private static final String _FILTER_ENTITY_TABLE = "ShoppingCategory";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "shoppingCategory.";
+
 	private static final String _ORDER_BY_ENTITY_TABLE = "ShoppingCategory.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ShoppingCategory exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ShoppingCategory exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(ShoppingCategoryPersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No ShoppingCategory exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No ShoppingCategory exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ShoppingCategoryPersistenceImpl.class);
+
 }

@@ -17,7 +17,6 @@ package com.liferay.journal.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface JournalArticleImageModel extends BaseModel<JournalArticleImage>,
-	ShardedModel {
+public interface JournalArticleImageModel
+	extends BaseModel<JournalArticleImage>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -255,4 +255,5 @@ public interface JournalArticleImageModel extends BaseModel<JournalArticleImage>
 
 	@Override
 	public String toXmlString();
+
 }

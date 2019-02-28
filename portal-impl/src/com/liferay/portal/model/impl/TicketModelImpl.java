@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -56,27 +55,26 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class TicketModelImpl extends BaseModelImpl<Ticket>
-	implements TicketModel {
+public class TicketModelImpl
+	extends BaseModelImpl<Ticket> implements TicketModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ticket model instance should use the <code>Ticket</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Ticket";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "ticketId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "key_", Types.VARCHAR },
-			{ "type_", Types.INTEGER },
-			{ "extraInfo", Types.CLOB },
-			{ "expirationDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"ticketId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
+		{"key_", Types.VARCHAR}, {"type_", Types.INTEGER},
+		{"extraInfo", Types.CLOB}, {"expirationDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -91,29 +89,49 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 		TABLE_COLUMNS_MAP.put("expirationDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Ticket (mvccVersion LONG default 0 not null,ticketId LONG not null primary key,companyId LONG,createDate DATE null,classNameId LONG,classPK LONG,key_ VARCHAR(75) null,type_ INTEGER,extraInfo TEXT null,expirationDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Ticket (mvccVersion LONG default 0 not null,ticketId LONG not null primary key,companyId LONG,createDate DATE null,classNameId LONG,classPK LONG,key_ VARCHAR(75) null,type_ INTEGER,extraInfo TEXT null,expirationDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table Ticket";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY ticket.ticketId ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY Ticket.ticketId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Ticket"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Ticket"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Ticket"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Ticket"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Ticket"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Ticket"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long KEY_COLUMN_BITMASK = 4L;
+
 	public static final long TYPE_COLUMN_BITMASK = 8L;
+
 	public static final long TICKETID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.Ticket"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.Ticket"));
 
 	public TicketModelImpl() {
 	}
@@ -152,14 +170,17 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Ticket, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Ticket, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Ticket, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Ticket, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Ticket, Object> attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Ticket)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Ticket)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -170,15 +191,18 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Ticket, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Ticket, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Ticket, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Ticket, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Ticket)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Ticket)this, entry.getValue());
 			}
 		}
 	}
@@ -187,17 +211,22 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Ticket, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Ticket, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Ticket, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Ticket, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Ticket, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Ticket, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Ticket, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Ticket, Object>>();
-		Map<String, BiConsumer<Ticket, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Ticket, ?>>();
-
+		Map<String, Function<Ticket, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Ticket, Object>>();
+		Map<String, BiConsumer<Ticket, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Ticket, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -400,9 +429,10 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -589,8 +619,8 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Ticket.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Ticket.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -603,8 +633,9 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 	@Override
 	public Ticket toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Ticket)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Ticket)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -764,14 +795,17 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Ticket, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Ticket, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Ticket, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Ticket, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Ticket, Object> attributeGetterFunction = entry.getValue();
 
@@ -792,16 +826,19 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Ticket, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Ticket, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Ticket, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Ticket, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Ticket, Object> attributeGetterFunction = entry.getValue();
 
@@ -817,10 +854,12 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Ticket.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Ticket.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Ticket.class, ModelWrapper.class
-		};
+		Ticket.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _ticketId;
 	private long _companyId;
@@ -840,4 +879,5 @@ public class TicketModelImpl extends BaseModelImpl<Ticket>
 	private Date _expirationDate;
 	private long _columnBitmask;
 	private Ticket _escapedModel;
+
 }

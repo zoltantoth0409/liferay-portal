@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingCategory;
 import com.liferay.shopping.model.ShoppingCategoryModel;
 import com.liferay.shopping.model.ShoppingCategorySoap;
@@ -63,27 +61,26 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
-	implements ShoppingCategoryModel {
+public class ShoppingCategoryModelImpl
+	extends BaseModelImpl<ShoppingCategory> implements ShoppingCategoryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a shopping category model instance should use the <code>ShoppingCategory</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ShoppingCategory";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "categoryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentCategoryId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"categoryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"parentCategoryId", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("categoryId", Types.BIGINT);
@@ -98,24 +95,42 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ShoppingCategory (categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,name VARCHAR(75) null,description STRING null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table ShoppingCategory (categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,name VARCHAR(75) null,description STRING null)";
+
 	public static final String TABLE_SQL_DROP = "drop table ShoppingCategory";
-	public static final String ORDER_BY_JPQL = " ORDER BY shoppingCategory.parentCategoryId ASC, shoppingCategory.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ShoppingCategory.parentCategoryId ASC, ShoppingCategory.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY shoppingCategory.parentCategoryId ASC, shoppingCategory.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ShoppingCategory.parentCategoryId ASC, ShoppingCategory.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingCategory"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingCategory"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingCategory"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingCategory"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingCategory"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingCategory"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long NAME_COLUMN_BITMASK = 2L;
+
 	public static final long PARENTCATEGORYID_COLUMN_BITMASK = 4L;
 
 	/**
@@ -153,11 +168,13 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 	 */
 	public static List<ShoppingCategory> toModels(
 		ShoppingCategorySoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<ShoppingCategory> models = new ArrayList<ShoppingCategory>(soapModels.length);
+		List<ShoppingCategory> models = new ArrayList<ShoppingCategory>(
+			soapModels.length);
 
 		for (ShoppingCategorySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -166,8 +183,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.shopping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.shopping.model.ShoppingCategory"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.shopping.model.ShoppingCategory"));
 
 	public ShoppingCategoryModelImpl() {
 	}
@@ -206,14 +224,18 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ShoppingCategory, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCategory, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCategory, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCategory, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ShoppingCategory)this));
 		}
 
@@ -225,37 +247,46 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ShoppingCategory, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ShoppingCategory, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ShoppingCategory, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ShoppingCategory, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ShoppingCategory)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ShoppingCategory)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ShoppingCategory, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ShoppingCategory, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ShoppingCategory, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ShoppingCategory, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ShoppingCategory, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ShoppingCategory, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ShoppingCategory, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingCategory, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ShoppingCategory, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<ShoppingCategory, Object>>();
-		Map<String, BiConsumer<ShoppingCategory, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<ShoppingCategory, ?>>();
-
+		Map<String, Function<ShoppingCategory, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<ShoppingCategory, Object>>();
+		Map<String, BiConsumer<ShoppingCategory, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<ShoppingCategory, ?>>();
 
 		attributeGetterFunctions.put(
 			"categoryId",
@@ -272,7 +303,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object categoryId) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object categoryId) {
+
 					shoppingCategory.setCategoryId((Long)categoryId);
 				}
 
@@ -292,7 +325,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object groupId) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object groupId) {
+
 					shoppingCategory.setGroupId((Long)groupId);
 				}
 
@@ -312,7 +347,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object companyId) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object companyId) {
+
 					shoppingCategory.setCompanyId((Long)companyId);
 				}
 
@@ -332,7 +369,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object userId) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object userId) {
+
 					shoppingCategory.setUserId((Long)userId);
 				}
 
@@ -352,7 +391,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object userName) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object userName) {
+
 					shoppingCategory.setUserName((String)userName);
 				}
 
@@ -372,7 +413,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object createDate) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object createDate) {
+
 					shoppingCategory.setCreateDate((Date)createDate);
 				}
 
@@ -392,7 +435,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object modifiedDate) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object modifiedDate) {
+
 					shoppingCategory.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -412,8 +457,12 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object parentCategoryId) {
-					shoppingCategory.setParentCategoryId((Long)parentCategoryId);
+				public void accept(
+					ShoppingCategory shoppingCategory,
+					Object parentCategoryId) {
+
+					shoppingCategory.setParentCategoryId(
+						(Long)parentCategoryId);
 				}
 
 			});
@@ -432,7 +481,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object name) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object name) {
+
 					shoppingCategory.setName((String)name);
 				}
 
@@ -452,15 +503,18 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			new BiConsumer<ShoppingCategory, Object>() {
 
 				@Override
-				public void accept(ShoppingCategory shoppingCategory, Object description) {
+				public void accept(
+					ShoppingCategory shoppingCategory, Object description) {
+
 					shoppingCategory.setDescription((String)description);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -650,8 +704,8 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ShoppingCategory.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ShoppingCategory.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -664,8 +718,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 	@Override
 	public ShoppingCategory toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingCategory)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ShoppingCategory)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -698,7 +753,9 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 		if (getParentCategoryId() < shoppingCategory.getParentCategoryId()) {
 			value = -1;
 		}
-		else if (getParentCategoryId() > shoppingCategory.getParentCategoryId()) {
+		else if (getParentCategoryId() >
+					shoppingCategory.getParentCategoryId()) {
+
 			value = 1;
 		}
 		else {
@@ -759,24 +816,28 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 	public void resetOriginalValues() {
 		ShoppingCategoryModelImpl shoppingCategoryModelImpl = this;
 
-		shoppingCategoryModelImpl._originalGroupId = shoppingCategoryModelImpl._groupId;
+		shoppingCategoryModelImpl._originalGroupId =
+			shoppingCategoryModelImpl._groupId;
 
 		shoppingCategoryModelImpl._setOriginalGroupId = false;
 
 		shoppingCategoryModelImpl._setModifiedDate = false;
 
-		shoppingCategoryModelImpl._originalParentCategoryId = shoppingCategoryModelImpl._parentCategoryId;
+		shoppingCategoryModelImpl._originalParentCategoryId =
+			shoppingCategoryModelImpl._parentCategoryId;
 
 		shoppingCategoryModelImpl._setOriginalParentCategoryId = false;
 
-		shoppingCategoryModelImpl._originalName = shoppingCategoryModelImpl._name;
+		shoppingCategoryModelImpl._originalName =
+			shoppingCategoryModelImpl._name;
 
 		shoppingCategoryModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<ShoppingCategory> toCacheModel() {
-		ShoppingCategoryCacheModel shoppingCategoryCacheModel = new ShoppingCategoryCacheModel();
+		ShoppingCategoryCacheModel shoppingCategoryCacheModel =
+			new ShoppingCategoryCacheModel();
 
 		shoppingCategoryCacheModel.categoryId = getCategoryId();
 
@@ -835,17 +896,20 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 
 	@Override
 	public String toString() {
-		Map<String, Function<ShoppingCategory, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCategory, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCategory, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCategory, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -864,19 +928,22 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ShoppingCategory, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingCategory, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingCategory, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingCategory, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingCategory, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -890,10 +957,12 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ShoppingCategory.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ShoppingCategory.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ShoppingCategory.class, ModelWrapper.class
-		};
+		ShoppingCategory.class, ModelWrapper.class
+	};
+
 	private long _categoryId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -912,4 +981,5 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 	private String _description;
 	private long _columnBitmask;
 	private ShoppingCategory _escapedModel;
+
 }

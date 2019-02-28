@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class LayoutSetBranchCacheModel implements CacheModel<LayoutSetBranch>,
-	Externalizable, MVCCModel {
+public class LayoutSetBranchCacheModel
+	implements CacheModel<LayoutSetBranch>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,10 +49,13 @@ public class LayoutSetBranchCacheModel implements CacheModel<LayoutSetBranch>,
 			return false;
 		}
 
-		LayoutSetBranchCacheModel layoutSetBranchCacheModel = (LayoutSetBranchCacheModel)obj;
+		LayoutSetBranchCacheModel layoutSetBranchCacheModel =
+			(LayoutSetBranchCacheModel)obj;
 
-		if ((layoutSetBranchId == layoutSetBranchCacheModel.layoutSetBranchId) &&
-				(mvccVersion == layoutSetBranchCacheModel.mvccVersion)) {
+		if ((layoutSetBranchId ==
+				layoutSetBranchCacheModel.layoutSetBranchId) &&
+			(mvccVersion == layoutSetBranchCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -204,10 +208,12 @@ public class LayoutSetBranchCacheModel implements CacheModel<LayoutSetBranch>,
 			layoutSetBranchImpl.setLayoutSetPrototypeUuid("");
 		}
 		else {
-			layoutSetBranchImpl.setLayoutSetPrototypeUuid(layoutSetPrototypeUuid);
+			layoutSetBranchImpl.setLayoutSetPrototypeUuid(
+				layoutSetPrototypeUuid);
 		}
 
-		layoutSetBranchImpl.setLayoutSetPrototypeLinkEnabled(layoutSetPrototypeLinkEnabled);
+		layoutSetBranchImpl.setLayoutSetPrototypeLinkEnabled(
+			layoutSetPrototypeLinkEnabled);
 
 		layoutSetBranchImpl.resetOriginalValues();
 
@@ -246,8 +252,7 @@ public class LayoutSetBranchCacheModel implements CacheModel<LayoutSetBranch>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(layoutSetBranchId);
@@ -345,4 +350,5 @@ public class LayoutSetBranchCacheModel implements CacheModel<LayoutSetBranch>,
 	public String settings;
 	public String layoutSetPrototypeUuid;
 	public boolean layoutSetPrototypeLinkEnabled;
+
 }

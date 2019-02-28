@@ -16,7 +16,6 @@ package com.liferay.bookmarks.service.persistence.impl;
 
 import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.service.persistence.BookmarksEntryPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class BookmarksEntryFinderBaseImpl extends BasePersistenceImpl<BookmarksEntry> {
+public class BookmarksEntryFinderBaseImpl
+	extends BasePersistenceImpl<BookmarksEntry> {
+
 	public BookmarksEntryFinderBaseImpl() {
 		setModelClass(BookmarksEntry.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +77,14 @@ public class BookmarksEntryFinderBaseImpl extends BasePersistenceImpl<BookmarksE
 	 */
 	public void setBookmarksEntryPersistence(
 		BookmarksEntryPersistence bookmarksEntryPersistence) {
+
 		this.bookmarksEntryPersistence = bookmarksEntryPersistence;
 	}
 
 	@BeanReference(type = BookmarksEntryPersistence.class)
 	protected BookmarksEntryPersistence bookmarksEntryPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(BookmarksEntryFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		BookmarksEntryFinderBaseImpl.class);
+
 }

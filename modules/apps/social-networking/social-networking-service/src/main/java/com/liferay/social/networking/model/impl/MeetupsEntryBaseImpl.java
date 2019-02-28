@@ -32,8 +32,9 @@ import com.liferay.social.networking.service.MeetupsEntryLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class MeetupsEntryBaseImpl extends MeetupsEntryModelImpl
-	implements MeetupsEntry {
+public abstract class MeetupsEntryBaseImpl
+	extends MeetupsEntryModelImpl implements MeetupsEntry {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class MeetupsEntryBaseImpl extends MeetupsEntryModelImpl
 			MeetupsEntryLocalServiceUtil.updateMeetupsEntry(this);
 		}
 	}
+
 }

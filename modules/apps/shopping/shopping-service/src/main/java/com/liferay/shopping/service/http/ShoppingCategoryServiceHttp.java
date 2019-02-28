@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.service.http.TunnelUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
-
 import com.liferay.shopping.service.ShoppingCategoryServiceUtil;
 
 /**
@@ -54,17 +53,20 @@ import com.liferay.shopping.service.ShoppingCategoryServiceUtil;
  */
 @ProviderType
 public class ShoppingCategoryServiceHttp {
-	public static com.liferay.shopping.model.ShoppingCategory addCategory(
-		HttpPrincipal httpPrincipal, long parentCategoryId, String name,
-		String description,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"addCategory", _addCategoryParameterTypes0);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					parentCategoryId, name, description, serviceContext);
+	public static com.liferay.shopping.model.ShoppingCategory addCategory(
+			HttpPrincipal httpPrincipal, long parentCategoryId, String name,
+			String description,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "addCategory",
+				_addCategoryParameterTypes0);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, parentCategoryId, name, description, serviceContext);
 
 			Object returnObj = null;
 
@@ -72,11 +74,15 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
 				}
 
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return (com.liferay.shopping.model.ShoppingCategory)returnObj;
@@ -88,25 +94,31 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static void deleteCategory(HttpPrincipal httpPrincipal,
-		long categoryId)
+	public static void deleteCategory(
+			HttpPrincipal httpPrincipal, long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"deleteCategory", _deleteCategoryParameterTypes1);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					categoryId);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "deleteCategory",
+				_deleteCategoryParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, categoryId);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
 				}
 
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
@@ -116,11 +128,13 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static java.util.List<com.liferay.shopping.model.ShoppingCategory> getCategories(
-		HttpPrincipal httpPrincipal, long groupId) {
+	public static java.util.List<com.liferay.shopping.model.ShoppingCategory>
+		getCategories(HttpPrincipal httpPrincipal, long groupId) {
+
 		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategories", _getCategoriesParameterTypes2);
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategories",
+				_getCategoriesParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId);
 
@@ -130,10 +144,12 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
-			return (java.util.List<com.liferay.shopping.model.ShoppingCategory>)returnObj;
+			return (java.util.List<com.liferay.shopping.model.ShoppingCategory>)
+				returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -142,15 +158,18 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static java.util.List<com.liferay.shopping.model.ShoppingCategory> getCategories(
-		HttpPrincipal httpPrincipal, long groupId, long parentCategoryId,
-		int start, int end) {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategories", _getCategoriesParameterTypes3);
+	public static java.util.List<com.liferay.shopping.model.ShoppingCategory>
+		getCategories(
+			HttpPrincipal httpPrincipal, long groupId, long parentCategoryId,
+			int start, int end) {
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					parentCategoryId, start, end);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategories",
+				_getCategoriesParameterTypes3);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, groupId, parentCategoryId, start, end);
 
 			Object returnObj = null;
 
@@ -158,10 +177,12 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
-			return (java.util.List<com.liferay.shopping.model.ShoppingCategory>)returnObj;
+			return (java.util.List<com.liferay.shopping.model.ShoppingCategory>)
+				returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -173,13 +194,14 @@ public class ShoppingCategoryServiceHttp {
 	public static java.util.List<Object> getCategoriesAndItems(
 		HttpPrincipal httpPrincipal, long groupId, long categoryId, int start,
 		int end, com.liferay.portal.kernel.util.OrderByComparator<?> obc) {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategoriesAndItems",
-					_getCategoriesAndItemsParameterTypes4);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					categoryId, start, end, obc);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategoriesAndItems",
+				_getCategoriesAndItemsParameterTypes4);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, groupId, categoryId, start, end, obc);
 
 			Object returnObj = null;
 
@@ -187,7 +209,8 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return (java.util.List<Object>)returnObj;
@@ -199,15 +222,16 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static int getCategoriesAndItemsCount(HttpPrincipal httpPrincipal,
-		long groupId, long categoryId) {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategoriesAndItemsCount",
-					_getCategoriesAndItemsCountParameterTypes5);
+	public static int getCategoriesAndItemsCount(
+		HttpPrincipal httpPrincipal, long groupId, long categoryId) {
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					categoryId);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategoriesAndItemsCount",
+				_getCategoriesAndItemsCountParameterTypes5);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, groupId, categoryId);
 
 			Object returnObj = null;
 
@@ -215,7 +239,8 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return ((Integer)returnObj).intValue();
@@ -227,14 +252,16 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static int getCategoriesCount(HttpPrincipal httpPrincipal,
-		long groupId, long parentCategoryId) {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategoriesCount", _getCategoriesCountParameterTypes6);
+	public static int getCategoriesCount(
+		HttpPrincipal httpPrincipal, long groupId, long parentCategoryId) {
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					parentCategoryId);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategoriesCount",
+				_getCategoriesCountParameterTypes6);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, groupId, parentCategoryId);
 
 			Object returnObj = null;
 
@@ -242,7 +269,8 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return ((Integer)returnObj).intValue();
@@ -255,14 +283,16 @@ public class ShoppingCategoryServiceHttp {
 	}
 
 	public static com.liferay.shopping.model.ShoppingCategory getCategory(
-		HttpPrincipal httpPrincipal, long categoryId)
+			HttpPrincipal httpPrincipal, long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getCategory", _getCategoryParameterTypes7);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					categoryId);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getCategory",
+				_getCategoryParameterTypes7);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, categoryId);
 
 			Object returnObj = null;
 
@@ -270,11 +300,15 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
 				}
 
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return (com.liferay.shopping.model.ShoppingCategory)returnObj;
@@ -286,20 +320,24 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	public static void getSubcategoryIds(HttpPrincipal httpPrincipal,
-		java.util.List<Long> categoryIds, long groupId, long categoryId) {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"getSubcategoryIds", _getSubcategoryIdsParameterTypes8);
+	public static void getSubcategoryIds(
+		HttpPrincipal httpPrincipal, java.util.List<Long> categoryIds,
+		long groupId, long categoryId) {
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					categoryIds, groupId, categoryId);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "getSubcategoryIds",
+				_getSubcategoryIdsParameterTypes8);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, categoryIds, groupId, categoryId);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
@@ -310,17 +348,19 @@ public class ShoppingCategoryServiceHttp {
 	}
 
 	public static com.liferay.shopping.model.ShoppingCategory updateCategory(
-		HttpPrincipal httpPrincipal, long categoryId, long parentCategoryId,
-		String name, String description, boolean mergeWithParentCategory,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			HttpPrincipal httpPrincipal, long categoryId, long parentCategoryId,
+			String name, String description, boolean mergeWithParentCategory,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(ShoppingCategoryServiceUtil.class,
-					"updateCategory", _updateCategoryParameterTypes9);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					categoryId, parentCategoryId, name, description,
-					mergeWithParentCategory, serviceContext);
+		try {
+			MethodKey methodKey = new MethodKey(
+				ShoppingCategoryServiceUtil.class, "updateCategory",
+				_updateCategoryParameterTypes9);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, categoryId, parentCategoryId, name, description,
+				mergeWithParentCategory, serviceContext);
 
 			Object returnObj = null;
 
@@ -328,11 +368,15 @@ public class ShoppingCategoryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
 				}
 
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return (com.liferay.shopping.model.ShoppingCategory)returnObj;
@@ -344,38 +388,37 @@ public class ShoppingCategoryServiceHttp {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ShoppingCategoryServiceHttp.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		ShoppingCategoryServiceHttp.class);
+
 	private static final Class<?>[] _addCategoryParameterTypes0 = new Class[] {
-			long.class, String.class, String.class,
-			com.liferay.portal.kernel.service.ServiceContext.class
-		};
-	private static final Class<?>[] _deleteCategoryParameterTypes1 = new Class[] {
-			long.class
-		};
-	private static final Class<?>[] _getCategoriesParameterTypes2 = new Class[] {
-			long.class
-		};
-	private static final Class<?>[] _getCategoriesParameterTypes3 = new Class[] {
-			long.class, long.class, int.class, int.class
-		};
-	private static final Class<?>[] _getCategoriesAndItemsParameterTypes4 = new Class[] {
+		long.class, String.class, String.class,
+		com.liferay.portal.kernel.service.ServiceContext.class
+	};
+	private static final Class<?>[] _deleteCategoryParameterTypes1 =
+		new Class[] {long.class};
+	private static final Class<?>[] _getCategoriesParameterTypes2 =
+		new Class[] {long.class};
+	private static final Class<?>[] _getCategoriesParameterTypes3 =
+		new Class[] {long.class, long.class, int.class, int.class};
+	private static final Class<?>[] _getCategoriesAndItemsParameterTypes4 =
+		new Class[] {
 			long.class, long.class, int.class, int.class,
 			com.liferay.portal.kernel.util.OrderByComparator.class
 		};
-	private static final Class<?>[] _getCategoriesAndItemsCountParameterTypes5 = new Class[] {
-			long.class, long.class
-		};
-	private static final Class<?>[] _getCategoriesCountParameterTypes6 = new Class[] {
-			long.class, long.class
-		};
+	private static final Class<?>[] _getCategoriesAndItemsCountParameterTypes5 =
+		new Class[] {long.class, long.class};
+	private static final Class<?>[] _getCategoriesCountParameterTypes6 =
+		new Class[] {long.class, long.class};
 	private static final Class<?>[] _getCategoryParameterTypes7 = new Class[] {
-			long.class
-		};
-	private static final Class<?>[] _getSubcategoryIdsParameterTypes8 = new Class[] {
-			java.util.List.class, long.class, long.class
-		};
-	private static final Class<?>[] _updateCategoryParameterTypes9 = new Class[] {
+		long.class
+	};
+	private static final Class<?>[] _getSubcategoryIdsParameterTypes8 =
+		new Class[] {java.util.List.class, long.class, long.class};
+	private static final Class<?>[] _updateCategoryParameterTypes9 =
+		new Class[] {
 			long.class, long.class, String.class, String.class, boolean.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
+
 }

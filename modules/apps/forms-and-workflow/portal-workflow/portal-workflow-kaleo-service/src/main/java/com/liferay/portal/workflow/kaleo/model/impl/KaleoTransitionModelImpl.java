@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,33 +56,31 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
-	implements KaleoTransitionModel {
+public class KaleoTransitionModelImpl
+	extends BaseModelImpl<KaleoTransition> implements KaleoTransitionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo transition model instance should use the <code>KaleoTransition</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoTransition";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTransitionId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "sourceKaleoNodeId", Types.BIGINT },
-			{ "sourceKaleoNodeName", Types.VARCHAR },
-			{ "targetKaleoNodeId", Types.BIGINT },
-			{ "targetKaleoNodeName", Types.VARCHAR },
-			{ "defaultTransition", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoTransitionId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoDefinitionId", Types.BIGINT},
+		{"kaleoNodeId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"sourceKaleoNodeId", Types.BIGINT},
+		{"sourceKaleoNodeName", Types.VARCHAR},
+		{"targetKaleoNodeId", Types.BIGINT},
+		{"targetKaleoNodeName", Types.VARCHAR},
+		{"defaultTransition", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoTransitionId", Types.BIGINT);
@@ -104,30 +101,53 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		TABLE_COLUMNS_MAP.put("defaultTransition", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoTransition (kaleoTransitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description STRING null,sourceKaleoNodeId LONG,sourceKaleoNodeName VARCHAR(200) null,targetKaleoNodeId LONG,targetKaleoNodeName VARCHAR(200) null,defaultTransition BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoTransition (kaleoTransitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(200) null,description STRING null,sourceKaleoNodeId LONG,sourceKaleoNodeName VARCHAR(200) null,targetKaleoNodeId LONG,targetKaleoNodeName VARCHAR(200) null,defaultTransition BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table KaleoTransition";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTransition.kaleoTransitionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoTransition.kaleoTransitionId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoTransition.kaleoTransitionId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoTransition.kaleoTransitionId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTransition"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long DEFAULTTRANSITION_COLUMN_BITMASK = 2L;
+
 	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEONODEID_COLUMN_BITMASK = 8L;
+
 	public static final long NAME_COLUMN_BITMASK = 16L;
+
 	public static final long KALEOTRANSITIONID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTransition"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTransition"));
 
 	public KaleoTransitionModelImpl() {
 	}
@@ -166,13 +186,18 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoTransition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTransition, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoTransition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTransition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTransition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTransition, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((KaleoTransition)this));
 		}
 
@@ -184,36 +209,45 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoTransition, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoTransition, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoTransition, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoTransition, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoTransition)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoTransition)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoTransition, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoTransition, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoTransition, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoTransition, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoTransition, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoTransition, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoTransition, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoTransition, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoTransition, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KaleoTransition, Object>>();
-		Map<String, BiConsumer<KaleoTransition, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KaleoTransition, ?>>();
-
+		Map<String, Function<KaleoTransition, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<KaleoTransition, Object>>();
+		Map<String, BiConsumer<KaleoTransition, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KaleoTransition, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoTransitionId",
@@ -230,8 +264,11 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object kaleoTransitionId) {
-					kaleoTransition.setKaleoTransitionId((Long)kaleoTransitionId);
+				public void accept(
+					KaleoTransition kaleoTransition, Object kaleoTransitionId) {
+
+					kaleoTransition.setKaleoTransitionId(
+						(Long)kaleoTransitionId);
 				}
 
 			});
@@ -250,7 +287,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object groupId) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object groupId) {
+
 					kaleoTransition.setGroupId((Long)groupId);
 				}
 
@@ -270,7 +309,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object companyId) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object companyId) {
+
 					kaleoTransition.setCompanyId((Long)companyId);
 				}
 
@@ -290,7 +331,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object userId) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object userId) {
+
 					kaleoTransition.setUserId((Long)userId);
 				}
 
@@ -310,7 +353,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object userName) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object userName) {
+
 					kaleoTransition.setUserName((String)userName);
 				}
 
@@ -330,7 +375,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object createDate) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object createDate) {
+
 					kaleoTransition.setCreateDate((Date)createDate);
 				}
 
@@ -350,7 +397,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object modifiedDate) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object modifiedDate) {
+
 					kaleoTransition.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -370,8 +419,11 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object kaleoDefinitionId) {
-					kaleoTransition.setKaleoDefinitionId((Long)kaleoDefinitionId);
+				public void accept(
+					KaleoTransition kaleoTransition, Object kaleoDefinitionId) {
+
+					kaleoTransition.setKaleoDefinitionId(
+						(Long)kaleoDefinitionId);
 				}
 
 			});
@@ -390,7 +442,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object kaleoNodeId) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object kaleoNodeId) {
+
 					kaleoTransition.setKaleoNodeId((Long)kaleoNodeId);
 				}
 
@@ -410,7 +464,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object name) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object name) {
+
 					kaleoTransition.setName((String)name);
 				}
 
@@ -430,7 +486,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object description) {
+				public void accept(
+					KaleoTransition kaleoTransition, Object description) {
+
 					kaleoTransition.setDescription((String)description);
 				}
 
@@ -450,8 +508,11 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object sourceKaleoNodeId) {
-					kaleoTransition.setSourceKaleoNodeId((Long)sourceKaleoNodeId);
+				public void accept(
+					KaleoTransition kaleoTransition, Object sourceKaleoNodeId) {
+
+					kaleoTransition.setSourceKaleoNodeId(
+						(Long)sourceKaleoNodeId);
 				}
 
 			});
@@ -470,8 +531,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object sourceKaleoNodeName) {
-					kaleoTransition.setSourceKaleoNodeName((String)sourceKaleoNodeName);
+				public void accept(
+					KaleoTransition kaleoTransition,
+					Object sourceKaleoNodeName) {
+
+					kaleoTransition.setSourceKaleoNodeName(
+						(String)sourceKaleoNodeName);
 				}
 
 			});
@@ -490,8 +555,11 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object targetKaleoNodeId) {
-					kaleoTransition.setTargetKaleoNodeId((Long)targetKaleoNodeId);
+				public void accept(
+					KaleoTransition kaleoTransition, Object targetKaleoNodeId) {
+
+					kaleoTransition.setTargetKaleoNodeId(
+						(Long)targetKaleoNodeId);
 				}
 
 			});
@@ -510,8 +578,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object targetKaleoNodeName) {
-					kaleoTransition.setTargetKaleoNodeName((String)targetKaleoNodeName);
+				public void accept(
+					KaleoTransition kaleoTransition,
+					Object targetKaleoNodeName) {
+
+					kaleoTransition.setTargetKaleoNodeName(
+						(String)targetKaleoNodeName);
 				}
 
 			});
@@ -530,15 +602,19 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 			new BiConsumer<KaleoTransition, Object>() {
 
 				@Override
-				public void accept(KaleoTransition kaleoTransition, Object defaultTransition) {
-					kaleoTransition.setDefaultTransition((Boolean)defaultTransition);
+				public void accept(
+					KaleoTransition kaleoTransition, Object defaultTransition) {
+
+					kaleoTransition.setDefaultTransition(
+						(Boolean)defaultTransition);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -819,8 +895,8 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoTransition.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoTransition.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -833,8 +909,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	@Override
 	public KaleoTransition toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoTransition)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoTransition)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -873,7 +950,9 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		if (getKaleoTransitionId() < kaleoTransition.getKaleoTransitionId()) {
 			value = -1;
 		}
-		else if (getKaleoTransitionId() > kaleoTransition.getKaleoTransitionId()) {
+		else if (getKaleoTransitionId() >
+					kaleoTransition.getKaleoTransitionId()) {
+
 			value = 1;
 		}
 		else {
@@ -928,23 +1007,27 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	public void resetOriginalValues() {
 		KaleoTransitionModelImpl kaleoTransitionModelImpl = this;
 
-		kaleoTransitionModelImpl._originalCompanyId = kaleoTransitionModelImpl._companyId;
+		kaleoTransitionModelImpl._originalCompanyId =
+			kaleoTransitionModelImpl._companyId;
 
 		kaleoTransitionModelImpl._setOriginalCompanyId = false;
 
 		kaleoTransitionModelImpl._setModifiedDate = false;
 
-		kaleoTransitionModelImpl._originalKaleoDefinitionId = kaleoTransitionModelImpl._kaleoDefinitionId;
+		kaleoTransitionModelImpl._originalKaleoDefinitionId =
+			kaleoTransitionModelImpl._kaleoDefinitionId;
 
 		kaleoTransitionModelImpl._setOriginalKaleoDefinitionId = false;
 
-		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
+		kaleoTransitionModelImpl._originalKaleoNodeId =
+			kaleoTransitionModelImpl._kaleoNodeId;
 
 		kaleoTransitionModelImpl._setOriginalKaleoNodeId = false;
 
 		kaleoTransitionModelImpl._originalName = kaleoTransitionModelImpl._name;
 
-		kaleoTransitionModelImpl._originalDefaultTransition = kaleoTransitionModelImpl._defaultTransition;
+		kaleoTransitionModelImpl._originalDefaultTransition =
+			kaleoTransitionModelImpl._defaultTransition;
 
 		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
 
@@ -953,7 +1036,8 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public CacheModel<KaleoTransition> toCacheModel() {
-		KaleoTransitionCacheModel kaleoTransitionCacheModel = new KaleoTransitionCacheModel();
+		KaleoTransitionCacheModel kaleoTransitionCacheModel =
+			new KaleoTransitionCacheModel();
 
 		kaleoTransitionCacheModel.kaleoTransitionId = getKaleoTransitionId();
 
@@ -1011,23 +1095,29 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 		kaleoTransitionCacheModel.sourceKaleoNodeId = getSourceKaleoNodeId();
 
-		kaleoTransitionCacheModel.sourceKaleoNodeName = getSourceKaleoNodeName();
+		kaleoTransitionCacheModel.sourceKaleoNodeName =
+			getSourceKaleoNodeName();
 
-		String sourceKaleoNodeName = kaleoTransitionCacheModel.sourceKaleoNodeName;
+		String sourceKaleoNodeName =
+			kaleoTransitionCacheModel.sourceKaleoNodeName;
 
 		if ((sourceKaleoNodeName != null) &&
-				(sourceKaleoNodeName.length() == 0)) {
+			(sourceKaleoNodeName.length() == 0)) {
+
 			kaleoTransitionCacheModel.sourceKaleoNodeName = null;
 		}
 
 		kaleoTransitionCacheModel.targetKaleoNodeId = getTargetKaleoNodeId();
 
-		kaleoTransitionCacheModel.targetKaleoNodeName = getTargetKaleoNodeName();
+		kaleoTransitionCacheModel.targetKaleoNodeName =
+			getTargetKaleoNodeName();
 
-		String targetKaleoNodeName = kaleoTransitionCacheModel.targetKaleoNodeName;
+		String targetKaleoNodeName =
+			kaleoTransitionCacheModel.targetKaleoNodeName;
 
 		if ((targetKaleoNodeName != null) &&
-				(targetKaleoNodeName.length() == 0)) {
+			(targetKaleoNodeName.length() == 0)) {
+
 			kaleoTransitionCacheModel.targetKaleoNodeName = null;
 		}
 
@@ -1038,16 +1128,20 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoTransition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTransition, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoTransition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTransition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTransition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTransition, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1066,18 +1160,22 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoTransition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoTransition, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoTransition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTransition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTransition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTransition, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1091,10 +1189,12 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoTransition.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoTransition.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoTransition.class, ModelWrapper.class
-		};
+		KaleoTransition.class, ModelWrapper.class
+	};
+
 	private long _kaleoTransitionId;
 	private long _groupId;
 	private long _companyId;
@@ -1123,4 +1223,5 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	private boolean _setOriginalDefaultTransition;
 	private long _columnBitmask;
 	private KaleoTransition _escapedModel;
+
 }

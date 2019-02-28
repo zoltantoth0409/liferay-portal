@@ -34,6 +34,7 @@ import com.liferay.social.networking.service.MeetupsRegistrationLocalServiceUtil
 @ProviderType
 public abstract class MeetupsRegistrationBaseImpl
 	extends MeetupsRegistrationModelImpl implements MeetupsRegistration {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class MeetupsRegistrationBaseImpl
 			MeetupsRegistrationLocalServiceUtil.updateMeetupsRegistration(this);
 		}
 	}
+
 }

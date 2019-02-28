@@ -33,43 +33,49 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 @ProviderType
 public class MBBanServiceUtil {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.portlet.messageboards.service.impl.MBBanServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.message.boards.kernel.model.MBBan addBan(
-		long banUserId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+			long banUserId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
+
 		return getService().addBan(banUserId, serviceContext);
 	}
 
-	public static void deleteBan(long banUserId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+	public static void deleteBan(
+			long banUserId,
+			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
+
 		getService().deleteBan(banUserId, serviceContext);
 	}
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
 	public static MBBanService getService() {
 		if (_service == null) {
-			_service = (MBBanService)PortalBeanLocatorUtil.locate(MBBanService.class.getName());
+			_service = (MBBanService)PortalBeanLocatorUtil.locate(
+				MBBanService.class.getName());
 
-			ReferenceRegistry.registerReference(MBBanServiceUtil.class,
-				"_service");
+			ReferenceRegistry.registerReference(
+				MBBanServiceUtil.class, "_service");
 		}
 
 		return _service;
 	}
 
 	private static MBBanService _service;
+
 }

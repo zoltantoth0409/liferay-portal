@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class WeDeployAuthAppCacheModel implements CacheModel<WeDeployAuthApp>,
-	Externalizable {
+public class WeDeployAuthAppCacheModel
+	implements CacheModel<WeDeployAuthApp>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,7 +48,8 @@ public class WeDeployAuthAppCacheModel implements CacheModel<WeDeployAuthApp>,
 			return false;
 		}
 
-		WeDeployAuthAppCacheModel weDeployAuthAppCacheModel = (WeDeployAuthAppCacheModel)obj;
+		WeDeployAuthAppCacheModel weDeployAuthAppCacheModel =
+			(WeDeployAuthAppCacheModel)obj;
 
 		if (weDeployAuthAppId == weDeployAuthAppCacheModel.weDeployAuthAppId) {
 			return true;
@@ -169,8 +171,7 @@ public class WeDeployAuthAppCacheModel implements CacheModel<WeDeployAuthApp>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(weDeployAuthAppId);
 
 		objectOutput.writeLong(companyId);
@@ -226,4 +227,5 @@ public class WeDeployAuthAppCacheModel implements CacheModel<WeDeployAuthApp>,
 	public String redirectURI;
 	public String clientId;
 	public String clientSecret;
+
 }

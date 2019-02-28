@@ -18,12 +18,9 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayoutModel;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -61,27 +58,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayout>
+public class DDMStructureLayoutModelImpl
+	extends BaseModelImpl<DDMStructureLayout>
 	implements DDMStructureLayoutModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ddm structure layout model instance should use the <code>DDMStructureLayout</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DDMStructureLayout";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "structureLayoutId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "structureVersionId", Types.BIGINT },
-			{ "definition", Types.CLOB }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"structureLayoutId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"structureVersionId", Types.BIGINT}, {"definition", Types.CLOB}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -96,29 +93,51 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 		TABLE_COLUMNS_MAP.put("definition", Types.CLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DDMStructureLayout (uuid_ VARCHAR(75) null,structureLayoutId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,structureVersionId LONG,definition TEXT null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DDMStructureLayout (uuid_ VARCHAR(75) null,structureLayoutId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,structureVersionId LONG,definition TEXT null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DDMStructureLayout";
-	public static final String ORDER_BY_JPQL = " ORDER BY ddmStructureLayout.structureLayoutId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DDMStructureLayout.structureLayoutId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY ddmStructureLayout.structureLayoutId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DDMStructureLayout.structureLayoutId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long STRUCTUREVERSIONID_COLUMN_BITMASK = 4L;
+
 	public static final long UUID_COLUMN_BITMASK = 8L;
+
 	public static final long STRUCTURELAYOUTID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMStructureLayout"));
 
 	public DDMStructureLayoutModelImpl() {
 	}
@@ -157,14 +176,18 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DDMStructureLayout, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMStructureLayout, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMStructureLayout, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMStructureLayout, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DDMStructureLayout)this));
 		}
 
@@ -176,38 +199,47 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DDMStructureLayout, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DDMStructureLayout, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DDMStructureLayout, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DDMStructureLayout, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DDMStructureLayout)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DDMStructureLayout)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DDMStructureLayout, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DDMStructureLayout, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DDMStructureLayout, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DDMStructureLayout, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DDMStructureLayout, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DDMStructureLayout, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DDMStructureLayout, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDMStructureLayout, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DDMStructureLayout, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<DDMStructureLayout, Object>>();
-		Map<String, BiConsumer<DDMStructureLayout, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<DDMStructureLayout, ?>>();
-
+		Map<String, Function<DDMStructureLayout, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<DDMStructureLayout, Object>>();
+		Map<String, BiConsumer<DDMStructureLayout, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<DDMStructureLayout, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -224,7 +256,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object uuid) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object uuid) {
+
 					ddmStructureLayout.setUuid((String)uuid);
 				}
 
@@ -244,8 +278,12 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object structureLayoutId) {
-					ddmStructureLayout.setStructureLayoutId((Long)structureLayoutId);
+				public void accept(
+					DDMStructureLayout ddmStructureLayout,
+					Object structureLayoutId) {
+
+					ddmStructureLayout.setStructureLayoutId(
+						(Long)structureLayoutId);
 				}
 
 			});
@@ -264,7 +302,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object groupId) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object groupId) {
+
 					ddmStructureLayout.setGroupId((Long)groupId);
 				}
 
@@ -284,7 +324,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object companyId) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object companyId) {
+
 					ddmStructureLayout.setCompanyId((Long)companyId);
 				}
 
@@ -304,7 +346,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object userId) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object userId) {
+
 					ddmStructureLayout.setUserId((Long)userId);
 				}
 
@@ -324,7 +368,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object userName) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object userName) {
+
 					ddmStructureLayout.setUserName((String)userName);
 				}
 
@@ -344,7 +390,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object createDate) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object createDate) {
+
 					ddmStructureLayout.setCreateDate((Date)createDate);
 				}
 
@@ -364,7 +412,10 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object modifiedDate) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout,
+					Object modifiedDate) {
+
 					ddmStructureLayout.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -384,8 +435,12 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object structureVersionId) {
-					ddmStructureLayout.setStructureVersionId((Long)structureVersionId);
+				public void accept(
+					DDMStructureLayout ddmStructureLayout,
+					Object structureVersionId) {
+
+					ddmStructureLayout.setStructureVersionId(
+						(Long)structureVersionId);
 				}
 
 			});
@@ -404,15 +459,18 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			new BiConsumer<DDMStructureLayout, Object>() {
 
 				@Override
-				public void accept(DDMStructureLayout ddmStructureLayout, Object definition) {
+				public void accept(
+					DDMStructureLayout ddmStructureLayout, Object definition) {
+
 					ddmStructureLayout.setDefinition((String)definition);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -598,7 +656,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 		_definition = definition;
 	}
 
-	public com.liferay.dynamic.data.mapping.model.DDMFormLayout getDDMFormLayout() {
+	public com.liferay.dynamic.data.mapping.model.DDMFormLayout
+		getDDMFormLayout() {
+
 		return null;
 	}
 
@@ -608,8 +668,8 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DDMStructureLayout.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DDMStructureLayout.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -618,8 +678,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DDMStructureLayout.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DDMStructureLayout.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -632,8 +693,9 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 	@Override
 	public DDMStructureLayout toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DDMStructureLayout)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DDMStructureLayout)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -641,7 +703,8 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public Object clone() {
-		DDMStructureLayoutImpl ddmStructureLayoutImpl = new DDMStructureLayoutImpl();
+		DDMStructureLayoutImpl ddmStructureLayoutImpl =
+			new DDMStructureLayoutImpl();
 
 		ddmStructureLayoutImpl.setUuid(getUuid());
 		ddmStructureLayoutImpl.setStructureLayoutId(getStructureLayoutId());
@@ -715,19 +778,23 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 	public void resetOriginalValues() {
 		DDMStructureLayoutModelImpl ddmStructureLayoutModelImpl = this;
 
-		ddmStructureLayoutModelImpl._originalUuid = ddmStructureLayoutModelImpl._uuid;
+		ddmStructureLayoutModelImpl._originalUuid =
+			ddmStructureLayoutModelImpl._uuid;
 
-		ddmStructureLayoutModelImpl._originalGroupId = ddmStructureLayoutModelImpl._groupId;
+		ddmStructureLayoutModelImpl._originalGroupId =
+			ddmStructureLayoutModelImpl._groupId;
 
 		ddmStructureLayoutModelImpl._setOriginalGroupId = false;
 
-		ddmStructureLayoutModelImpl._originalCompanyId = ddmStructureLayoutModelImpl._companyId;
+		ddmStructureLayoutModelImpl._originalCompanyId =
+			ddmStructureLayoutModelImpl._companyId;
 
 		ddmStructureLayoutModelImpl._setOriginalCompanyId = false;
 
 		ddmStructureLayoutModelImpl._setModifiedDate = false;
 
-		ddmStructureLayoutModelImpl._originalStructureVersionId = ddmStructureLayoutModelImpl._structureVersionId;
+		ddmStructureLayoutModelImpl._originalStructureVersionId =
+			ddmStructureLayoutModelImpl._structureVersionId;
 
 		ddmStructureLayoutModelImpl._setOriginalStructureVersionId = false;
 
@@ -738,7 +805,8 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public CacheModel<DDMStructureLayout> toCacheModel() {
-		DDMStructureLayoutCacheModel ddmStructureLayoutCacheModel = new DDMStructureLayoutCacheModel();
+		DDMStructureLayoutCacheModel ddmStructureLayoutCacheModel =
+			new DDMStructureLayoutCacheModel();
 
 		ddmStructureLayoutCacheModel.uuid = getUuid();
 
@@ -782,7 +850,8 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 			ddmStructureLayoutCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		ddmStructureLayoutCacheModel.structureVersionId = getStructureVersionId();
+		ddmStructureLayoutCacheModel.structureVersionId =
+			getStructureVersionId();
 
 		ddmStructureLayoutCacheModel.definition = getDefinition();
 
@@ -799,17 +868,20 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public String toString() {
-		Map<String, Function<DDMStructureLayout, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMStructureLayout, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMStructureLayout, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMStructureLayout, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -828,19 +900,22 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DDMStructureLayout, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMStructureLayout, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMStructureLayout, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMStructureLayout, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMStructureLayout, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -854,10 +929,12 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DDMStructureLayout.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DDMStructureLayout.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DDMStructureLayout.class, ModelWrapper.class
-		};
+		DDMStructureLayout.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _structureLayoutId;
@@ -878,4 +955,5 @@ public class DDMStructureLayoutModelImpl extends BaseModelImpl<DDMStructureLayou
 	private String _definition;
 	private long _columnBitmask;
 	private DDMStructureLayout _escapedModel;
+
 }

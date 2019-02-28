@@ -32,8 +32,9 @@ import com.liferay.message.boards.kernel.service.MBThreadFlagLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class MBThreadFlagBaseImpl extends MBThreadFlagModelImpl
-	implements MBThreadFlag {
+public abstract class MBThreadFlagBaseImpl
+	extends MBThreadFlagModelImpl implements MBThreadFlag {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class MBThreadFlagBaseImpl extends MBThreadFlagModelImpl
 			MBThreadFlagLocalServiceUtil.updateMBThreadFlag(this);
 		}
 	}
+
 }

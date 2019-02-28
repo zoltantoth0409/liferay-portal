@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -56,24 +55,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
-	implements UserIdMapperModel {
+public class UserIdMapperModelImpl
+	extends BaseModelImpl<UserIdMapper> implements UserIdMapperModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a user ID mapper model instance should use the <code>UserIdMapper</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "UserIdMapper";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "userIdMapperId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "type_", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "externalUserId", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"userIdMapperId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"type_", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"externalUserId", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -85,28 +85,49 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 		TABLE_COLUMNS_MAP.put("externalUserId", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table UserIdMapper (mvccVersion LONG default 0 not null,userIdMapperId LONG not null primary key,companyId LONG,userId LONG,type_ VARCHAR(75) null,description VARCHAR(75) null,externalUserId VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table UserIdMapper (mvccVersion LONG default 0 not null,userIdMapperId LONG not null primary key,companyId LONG,userId LONG,type_ VARCHAR(75) null,description VARCHAR(75) null,externalUserId VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table UserIdMapper";
-	public static final String ORDER_BY_JPQL = " ORDER BY userIdMapper.userIdMapperId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY UserIdMapper.userIdMapperId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY userIdMapper.userIdMapperId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY UserIdMapper.userIdMapperId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserIdMapper"),
+		true);
+
 	public static final long EXTERNALUSERID_COLUMN_BITMASK = 1L;
+
 	public static final long TYPE_COLUMN_BITMASK = 2L;
+
 	public static final long USERID_COLUMN_BITMASK = 4L;
+
 	public static final long USERIDMAPPERID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.UserIdMapper"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.UserIdMapper"));
 
 	public UserIdMapperModelImpl() {
 	}
@@ -145,13 +166,18 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<UserIdMapper, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserIdMapper, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserIdMapper, Object> attributeGetterFunction = entry.getValue();
+			Function<UserIdMapper, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((UserIdMapper)this));
 		}
 
@@ -163,36 +189,44 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<UserIdMapper, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<UserIdMapper, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<UserIdMapper, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<UserIdMapper, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((UserIdMapper)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(UserIdMapper)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<UserIdMapper, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<UserIdMapper, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<UserIdMapper, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<UserIdMapper, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<UserIdMapper, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<UserIdMapper, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<UserIdMapper, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserIdMapper, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<UserIdMapper, Object>>();
-		Map<String, BiConsumer<UserIdMapper, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<UserIdMapper, ?>>();
-
+		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<UserIdMapper, Object>>();
+		Map<String, BiConsumer<UserIdMapper, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<UserIdMapper, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -209,7 +243,9 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object mvccVersion) {
+				public void accept(
+					UserIdMapper userIdMapper, Object mvccVersion) {
+
 					userIdMapper.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -229,7 +265,9 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object userIdMapperId) {
+				public void accept(
+					UserIdMapper userIdMapper, Object userIdMapperId) {
+
 					userIdMapper.setUserIdMapperId((Long)userIdMapperId);
 				}
 
@@ -249,7 +287,9 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object companyId) {
+				public void accept(
+					UserIdMapper userIdMapper, Object companyId) {
+
 					userIdMapper.setCompanyId((Long)companyId);
 				}
 
@@ -309,7 +349,9 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object description) {
+				public void accept(
+					UserIdMapper userIdMapper, Object description) {
+
 					userIdMapper.setDescription((String)description);
 				}
 
@@ -329,15 +371,18 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 			new BiConsumer<UserIdMapper, Object>() {
 
 				@Override
-				public void accept(UserIdMapper userIdMapper, Object externalUserId) {
+				public void accept(
+					UserIdMapper userIdMapper, Object externalUserId) {
+
 					userIdMapper.setExternalUserId((String)externalUserId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -479,8 +524,8 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			UserIdMapper.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), UserIdMapper.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -493,8 +538,9 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 	@Override
 	public UserIdMapper toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (UserIdMapper)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (UserIdMapper)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -579,14 +625,16 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 
 		userIdMapperModelImpl._originalType = userIdMapperModelImpl._type;
 
-		userIdMapperModelImpl._originalExternalUserId = userIdMapperModelImpl._externalUserId;
+		userIdMapperModelImpl._originalExternalUserId =
+			userIdMapperModelImpl._externalUserId;
 
 		userIdMapperModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<UserIdMapper> toCacheModel() {
-		UserIdMapperCacheModel userIdMapperCacheModel = new UserIdMapperCacheModel();
+		UserIdMapperCacheModel userIdMapperCacheModel =
+			new UserIdMapperCacheModel();
 
 		userIdMapperCacheModel.mvccVersion = getMvccVersion();
 
@@ -625,16 +673,20 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 
 	@Override
 	public String toString() {
-		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<UserIdMapper, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserIdMapper, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserIdMapper, Object> attributeGetterFunction = entry.getValue();
+			Function<UserIdMapper, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -653,18 +705,22 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserIdMapper, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<UserIdMapper, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserIdMapper, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserIdMapper, Object> attributeGetterFunction = entry.getValue();
+			Function<UserIdMapper, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -678,10 +734,12 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = UserIdMapper.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		UserIdMapper.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			UserIdMapper.class, ModelWrapper.class
-		};
+		UserIdMapper.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _userIdMapperId;
 	private long _companyId;
@@ -695,4 +753,5 @@ public class UserIdMapperModelImpl extends BaseModelImpl<UserIdMapper>
 	private String _originalExternalUserId;
 	private long _columnBitmask;
 	private UserIdMapper _escapedModel;
+
 }

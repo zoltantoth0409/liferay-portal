@@ -32,8 +32,9 @@ import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class WSRPProducerBaseImpl extends WSRPProducerModelImpl
-	implements WSRPProducer {
+public abstract class WSRPProducerBaseImpl
+	extends WSRPProducerModelImpl implements WSRPProducer {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class WSRPProducerBaseImpl extends WSRPProducerModelImpl
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(this);
 		}
 	}
+
 }

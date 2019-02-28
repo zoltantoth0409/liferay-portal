@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.message.boards.kernel.model.MBThread;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -45,9 +44,12 @@ import java.util.List;
 @AccessControlled
 @JSONWebService
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface MBThreadService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -56,58 +58,65 @@ public interface MBThreadService extends BaseService {
 	public void deleteThread(long threadId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getGroupThreads(long groupId, long userId,
-		Date modifiedDate, boolean includeAnonymous, int status, int start,
-		int end) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getGroupThreads(long groupId, long userId,
-		Date modifiedDate, int status, int start, int end)
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, Date modifiedDate,
+			boolean includeAnonymous, int status, int start, int end)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getGroupThreads(long groupId, long userId,
-		int status, boolean subscribed, boolean includeAnonymous, int start,
-		int end) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getGroupThreads(long groupId, long userId,
-		int status, boolean subscribed, int start, int end)
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, Date modifiedDate, int status, int start,
+			int end)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getGroupThreads(long groupId, long userId,
-		int status, int start, int end) throws PortalException;
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, int status, boolean subscribed,
+			boolean includeAnonymous, int start, int end)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupThreadsCount(long groupId, long userId,
-		Date modifiedDate, boolean includeAnonymous, int status);
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, int status, boolean subscribed,
+			int start, int end)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupThreadsCount(long groupId, long userId,
-		Date modifiedDate, int status);
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, int status, int start, int end)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupThreadsCount(
+		long groupId, long userId, Date modifiedDate, boolean includeAnonymous,
+		int status);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupThreadsCount(
+		long groupId, long userId, Date modifiedDate, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupThreadsCount(long groupId, long userId, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupThreadsCount(long groupId, long userId, int status,
-		boolean subscribed);
+	public int getGroupThreadsCount(
+		long groupId, long userId, int status, boolean subscribed);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupThreadsCount(long groupId, long userId, int status,
-		boolean subscribed, boolean includeAnonymous);
+	public int getGroupThreadsCount(
+		long groupId, long userId, int status, boolean subscribed,
+		boolean includeAnonymous);
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<MBThread> getThreads(long groupId, long categoryId, int status,
-		int start, int end);
+	public List<MBThread> getThreads(
+		long groupId, long categoryId, int status, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getThreadsCount(long groupId, long categoryId, int status);
@@ -125,15 +134,20 @@ public interface MBThreadService extends BaseService {
 	public void restoreThreadFromTrash(long threadId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Hits search(long groupId, long creatorUserId, int status, int start,
-		int end) throws PortalException;
+	public Hits search(
+			long groupId, long creatorUserId, int status, int start, int end)
+		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Hits search(long groupId, long creatorUserId, long startDate,
-		long endDate, int status, int start, int end) throws PortalException;
+	public Hits search(
+			long groupId, long creatorUserId, long startDate, long endDate,
+			int status, int start, int end)
+		throws PortalException;
 
-	public MBThread splitThread(long messageId, String subject,
-		ServiceContext serviceContext) throws PortalException;
+	public MBThread splitThread(
+			long messageId, String subject, ServiceContext serviceContext)
+		throws PortalException;
 
 	public void unlockThread(long threadId) throws PortalException;
+
 }

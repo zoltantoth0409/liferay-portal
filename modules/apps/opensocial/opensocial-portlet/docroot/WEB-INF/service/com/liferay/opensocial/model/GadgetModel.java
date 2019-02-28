@@ -17,7 +17,6 @@ package com.liferay.opensocial.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,7 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface GadgetModel extends BaseModel<Gadget>, ShardedModel, StagedModel {
+public interface GadgetModel
+	extends BaseModel<Gadget>, ShardedModel, StagedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -256,4 +257,5 @@ public interface GadgetModel extends BaseModel<Gadget>, ShardedModel, StagedMode
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.journal.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.journal.model.JournalArticle;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
-	Externalizable {
+public class JournalArticleCacheModel
+	implements CacheModel<JournalArticle>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 			return false;
 		}
 
-		JournalArticleCacheModel journalArticleCacheModel = (JournalArticleCacheModel)obj;
+		JournalArticleCacheModel journalArticleCacheModel =
+			(JournalArticleCacheModel)obj;
 
 		if (id == journalArticleCacheModel.id) {
 			return true;
@@ -314,6 +315,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 	@Override
 	public void readExternal(ObjectInput objectInput)
 		throws ClassNotFoundException, IOException {
+
 		uuid = objectInput.readUTF();
 
 		id = objectInput.readLong();
@@ -364,12 +366,12 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 		statusDate = objectInput.readLong();
 
 		_defaultLanguageId = (String)objectInput.readObject();
-		_document = (com.liferay.portal.kernel.xml.Document)objectInput.readObject();
+		_document =
+			(com.liferay.portal.kernel.xml.Document)objectInput.readObject();
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -540,4 +542,5 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 	public long statusDate;
 	public String _defaultLanguageId;
 	public com.liferay.portal.kernel.xml.Document _document;
+
 }

@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.service.ResourceTypePermissionLocalServiceUtil;
 @ProviderType
 public abstract class ResourceTypePermissionBaseImpl
 	extends ResourceTypePermissionModelImpl implements ResourceTypePermission {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -42,10 +43,13 @@ public abstract class ResourceTypePermissionBaseImpl
 	@Override
 	public void persist() {
 		if (this.isNew()) {
-			ResourceTypePermissionLocalServiceUtil.addResourceTypePermission(this);
+			ResourceTypePermissionLocalServiceUtil.addResourceTypePermission(
+				this);
 		}
 		else {
-			ResourceTypePermissionLocalServiceUtil.updateResourceTypePermission(this);
+			ResourceTypePermissionLocalServiceUtil.updateResourceTypePermission(
+				this);
 		}
 	}
+
 }

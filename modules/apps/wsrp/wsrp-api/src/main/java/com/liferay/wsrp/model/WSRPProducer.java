@@ -30,12 +30,15 @@ import com.liferay.portal.kernel.util.Accessor;
 @ImplementationClassName("com.liferay.wsrp.model.impl.WSRPProducerImpl")
 @ProviderType
 public interface WSRPProducer extends WSRPProducerModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.wsrp.model.impl.WSRPProducerImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<WSRPProducer, Long> WSRP_PRODUCER_ID_ACCESSOR = new Accessor<WSRPProducer, Long>() {
+	public static final Accessor<WSRPProducer, Long> WSRP_PRODUCER_ID_ACCESSOR =
+		new Accessor<WSRPProducer, Long>() {
+
 			@Override
 			public Long get(WSRPProducer wsrpProducer) {
 				return wsrpProducer.getWsrpProducerId();
@@ -50,7 +53,9 @@ public interface WSRPProducer extends WSRPProducerModel, PersistedModel {
 			public Class<WSRPProducer> getTypeClass() {
 				return WSRPProducer.class;
 			}
+
 		};
 
 	public String getURL(String prefixURL);
+
 }

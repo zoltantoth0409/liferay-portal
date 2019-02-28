@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -45,8 +44,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MBMessageModel extends AttachedModel, BaseModel<MBMessage>,
-	ShardedModel, StagedGroupedModel, TrashedModel, WorkflowedModel {
+public interface MBMessageModel
+	extends AttachedModel, BaseModel<MBMessage>, ShardedModel,
+			StagedGroupedModel, TrashedModel, WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -697,4 +698,5 @@ public interface MBMessageModel extends AttachedModel, BaseModel<MBMessage>,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -34,6 +34,7 @@ import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 @ProviderType
 public abstract class WSRPConsumerPortletBaseImpl
 	extends WSRPConsumerPortletModelImpl implements WSRPConsumerPortlet {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class WSRPConsumerPortletBaseImpl
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(this);
 		}
 	}
+
 }

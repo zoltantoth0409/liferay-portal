@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -65,29 +63,27 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
-	implements UserGroupModel {
+public class UserGroupModelImpl
+	extends BaseModelImpl<UserGroup> implements UserGroupModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a user group model instance should use the <code>UserGroup</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "UserGroup";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "userGroupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentUserGroupId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "addedByLDAPImport", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"userGroupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"parentUserGroupId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"addedByLDAPImport", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -104,26 +100,44 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 		TABLE_COLUMNS_MAP.put("addedByLDAPImport", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table UserGroup (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userGroupId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentUserGroupId LONG,name VARCHAR(75) null,description STRING null,addedByLDAPImport BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table UserGroup (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userGroupId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentUserGroupId LONG,name VARCHAR(75) null,description STRING null,addedByLDAPImport BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table UserGroup";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY userGroup.name ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY UserGroup.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserGroup"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserGroup"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserGroup"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.UserGroup"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.UserGroup"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.UserGroup"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long NAME_COLUMN_BITMASK = 2L;
+
 	public static final long PARENTUSERGROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long USERGROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -175,35 +189,60 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_GROUPS_USERGROUPS_NAME = "Groups_UserGroups";
+	public static final String MAPPING_TABLE_GROUPS_USERGROUPS_NAME =
+		"Groups_UserGroups";
+
 	public static final Object[][] MAPPING_TABLE_GROUPS_USERGROUPS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "userGroupId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_GROUPS_USERGROUPS_SQL_CREATE = "create table Groups_UserGroups (companyId LONG not null,groupId LONG not null,userGroupId LONG not null,primary key (groupId, userGroupId))";
-	public static final boolean FINDER_CACHE_ENABLED_GROUPS_USERGROUPS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Groups_UserGroups"), true);
-	public static final String MAPPING_TABLE_USERGROUPS_TEAMS_NAME = "UserGroups_Teams";
+		{"companyId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"userGroupId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_GROUPS_USERGROUPS_SQL_CREATE =
+		"create table Groups_UserGroups (companyId LONG not null,groupId LONG not null,userGroupId LONG not null,primary key (groupId, userGroupId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_GROUPS_USERGROUPS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Groups_UserGroups"),
+			true);
+
+	public static final String MAPPING_TABLE_USERGROUPS_TEAMS_NAME =
+		"UserGroups_Teams";
+
 	public static final Object[][] MAPPING_TABLE_USERGROUPS_TEAMS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "teamId", Types.BIGINT },
-			{ "userGroupId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERGROUPS_TEAMS_SQL_CREATE = "create table UserGroups_Teams (companyId LONG not null,teamId LONG not null,userGroupId LONG not null,primary key (teamId, userGroupId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERGROUPS_TEAMS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.UserGroups_Teams"), true);
-	public static final String MAPPING_TABLE_USERS_USERGROUPS_NAME = "Users_UserGroups";
+		{"companyId", Types.BIGINT}, {"teamId", Types.BIGINT},
+		{"userGroupId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERGROUPS_TEAMS_SQL_CREATE =
+		"create table UserGroups_Teams (companyId LONG not null,teamId LONG not null,userGroupId LONG not null,primary key (teamId, userGroupId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERGROUPS_TEAMS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.UserGroups_Teams"),
+			true);
+
+	public static final String MAPPING_TABLE_USERS_USERGROUPS_NAME =
+		"Users_UserGroups";
+
 	public static final Object[][] MAPPING_TABLE_USERS_USERGROUPS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userGroupId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_USERGROUPS_SQL_CREATE = "create table Users_UserGroups (companyId LONG not null,userId LONG not null,userGroupId LONG not null,primary key (userId, userGroupId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_USERGROUPS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_UserGroups"), true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.UserGroup"));
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userGroupId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_USERGROUPS_SQL_CREATE =
+		"create table Users_UserGroups (companyId LONG not null,userId LONG not null,userGroupId LONG not null,primary key (userId, userGroupId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_USERGROUPS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_UserGroups"),
+			true);
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.UserGroup"));
 
 	public UserGroupModelImpl() {
 	}
@@ -242,14 +281,18 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<UserGroup, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserGroup, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<UserGroup, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserGroup, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserGroup, Object> attributeGetterFunction = entry.getValue();
+			Function<UserGroup, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((UserGroup)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((UserGroup)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -260,35 +303,44 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<UserGroup, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<UserGroup, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<UserGroup, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<UserGroup, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((UserGroup)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(UserGroup)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<UserGroup, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<UserGroup, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<UserGroup, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<UserGroup, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<UserGroup, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<UserGroup, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<UserGroup, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserGroup, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<UserGroup, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<UserGroup, Object>>();
-		Map<String, BiConsumer<UserGroup, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<UserGroup, ?>>();
-
+		Map<String, Function<UserGroup, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<UserGroup, Object>>();
+		Map<String, BiConsumer<UserGroup, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<UserGroup, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -465,7 +517,9 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object parentUserGroupId) {
+				public void accept(
+					UserGroup userGroup, Object parentUserGroupId) {
+
 					userGroup.setParentUserGroupId((Long)parentUserGroupId);
 				}
 
@@ -525,15 +579,18 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 			new BiConsumer<UserGroup, Object>() {
 
 				@Override
-				public void accept(UserGroup userGroup, Object addedByLDAPImport) {
+				public void accept(
+					UserGroup userGroup, Object addedByLDAPImport) {
+
 					userGroup.setAddedByLDAPImport((Boolean)addedByLDAPImport);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -774,8 +831,8 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				UserGroup.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(UserGroup.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -784,8 +841,8 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			UserGroup.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), UserGroup.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -798,8 +855,9 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 	@Override
 	public UserGroup toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (UserGroup)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (UserGroup)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -883,7 +941,8 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 		userGroupModelImpl._originalUuid = userGroupModelImpl._uuid;
 
-		userGroupModelImpl._originalUserGroupId = userGroupModelImpl._userGroupId;
+		userGroupModelImpl._originalUserGroupId =
+			userGroupModelImpl._userGroupId;
 
 		userGroupModelImpl._setOriginalUserGroupId = false;
 
@@ -893,7 +952,8 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 		userGroupModelImpl._setModifiedDate = false;
 
-		userGroupModelImpl._originalParentUserGroupId = userGroupModelImpl._parentUserGroupId;
+		userGroupModelImpl._originalParentUserGroupId =
+			userGroupModelImpl._parentUserGroupId;
 
 		userGroupModelImpl._setOriginalParentUserGroupId = false;
 
@@ -973,16 +1033,20 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 	@Override
 	public String toString() {
-		Map<String, Function<UserGroup, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserGroup, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<UserGroup, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserGroup, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserGroup, Object> attributeGetterFunction = entry.getValue();
+			Function<UserGroup, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1001,18 +1065,22 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<UserGroup, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserGroup, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<UserGroup, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserGroup, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserGroup, Object> attributeGetterFunction = entry.getValue();
+			Function<UserGroup, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1026,10 +1094,12 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = UserGroup.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		UserGroup.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			UserGroup.class, ModelWrapper.class
-		};
+		UserGroup.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -1053,4 +1123,5 @@ public class UserGroupModelImpl extends BaseModelImpl<UserGroup>
 	private boolean _addedByLDAPImport;
 	private long _columnBitmask;
 	private UserGroup _escapedModel;
+
 }

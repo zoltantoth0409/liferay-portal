@@ -34,6 +34,7 @@ import com.liferay.journal.service.JournalArticleImageLocalServiceUtil;
 @ProviderType
 public abstract class JournalArticleImageBaseImpl
 	extends JournalArticleImageModelImpl implements JournalArticleImage {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class JournalArticleImageBaseImpl
 			JournalArticleImageLocalServiceUtil.updateJournalArticleImage(this);
 		}
 	}
+
 }

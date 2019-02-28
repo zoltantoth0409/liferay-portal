@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.social.privatemessaging.model.UserThread;
 import com.liferay.social.privatemessaging.model.UserThreadModel;
 import com.liferay.social.privatemessaging.model.UserThreadSoap;
@@ -64,27 +62,26 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class UserThreadModelImpl extends BaseModelImpl<UserThread>
-	implements UserThreadModel {
+public class UserThreadModelImpl
+	extends BaseModelImpl<UserThread> implements UserThreadModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a user thread model instance should use the <code>UserThread</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PM_UserThread";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "userThreadId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "mbThreadId", Types.BIGINT },
-			{ "topMBMessageId", Types.BIGINT },
-			{ "read_", Types.BOOLEAN },
-			{ "deleted", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"userThreadId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"mbThreadId", Types.BIGINT}, {"topMBMessageId", Types.BIGINT},
+		{"read_", Types.BOOLEAN}, {"deleted", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("userThreadId", Types.BIGINT);
@@ -99,26 +96,46 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		TABLE_COLUMNS_MAP.put("deleted", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PM_UserThread (userThreadId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,mbThreadId LONG,topMBMessageId LONG,read_ BOOLEAN,deleted BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PM_UserThread (userThreadId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,mbThreadId LONG,topMBMessageId LONG,read_ BOOLEAN,deleted BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table PM_UserThread";
-	public static final String ORDER_BY_JPQL = " ORDER BY userThread.modifiedDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PM_UserThread.modifiedDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY userThread.modifiedDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PM_UserThread.modifiedDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.privatemessaging.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.social.privatemessaging.model.UserThread"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.privatemessaging.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.social.privatemessaging.model.UserThread"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.social.privatemessaging.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.social.privatemessaging.model.UserThread"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.privatemessaging.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.social.privatemessaging.model.UserThread"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.privatemessaging.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.social.privatemessaging.model.UserThread"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.privatemessaging.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.social.privatemessaging.model.UserThread"),
+		true);
+
 	public static final long DELETED_COLUMN_BITMASK = 1L;
+
 	public static final long MBTHREADID_COLUMN_BITMASK = 2L;
+
 	public static final long READ_COLUMN_BITMASK = 4L;
+
 	public static final long USERID_COLUMN_BITMASK = 8L;
+
 	public static final long MODIFIEDDATE_COLUMN_BITMASK = 16L;
 
 	/**
@@ -168,8 +185,9 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.social.privatemessaging.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.social.privatemessaging.model.UserThread"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.social.privatemessaging.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.social.privatemessaging.model.UserThread"));
 
 	public UserThreadModelImpl() {
 	}
@@ -208,14 +226,18 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserThread, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+			Function<UserThread, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((UserThread)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((UserThread)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -226,35 +248,44 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<UserThread, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<UserThread, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<UserThread, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<UserThread, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((UserThread)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(UserThread)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<UserThread, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<UserThread, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<UserThread, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<UserThread, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<UserThread, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<UserThread, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<UserThread, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<UserThread, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<UserThread, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<UserThread, Object>>();
-		Map<String, BiConsumer<UserThread, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<UserThread, ?>>();
-
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<UserThread, Object>>();
+		Map<String, BiConsumer<UserThread, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<UserThread, ?>>();
 
 		attributeGetterFunctions.put(
 			"userThreadId",
@@ -411,7 +442,9 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			new BiConsumer<UserThread, Object>() {
 
 				@Override
-				public void accept(UserThread userThread, Object topMBMessageId) {
+				public void accept(
+					UserThread userThread, Object topMBMessageId) {
+
 					userThread.setTopMBMessageId((Long)topMBMessageId);
 				}
 
@@ -457,9 +490,10 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -667,8 +701,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			UserThread.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), UserThread.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -681,8 +715,9 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	@Override
 	public UserThread toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (UserThread)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (UserThread)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -712,8 +747,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public int compareTo(UserThread userThread) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getModifiedDate(),
-				userThread.getModifiedDate());
+		value = DateUtil.compareTo(
+			getModifiedDate(), userThread.getModifiedDate());
 
 		value = value * -1;
 
@@ -771,7 +806,8 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 		userThreadModelImpl._setModifiedDate = false;
 
-		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
+		userThreadModelImpl._originalMbThreadId =
+			userThreadModelImpl._mbThreadId;
 
 		userThreadModelImpl._setOriginalMbThreadId = false;
 
@@ -835,16 +871,20 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public String toString() {
-		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserThread, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+			Function<UserThread, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -863,18 +903,22 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<UserThread, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<UserThread, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<UserThread, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<UserThread, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<UserThread, Object> attributeGetterFunction = entry.getValue();
+			Function<UserThread, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -888,10 +932,12 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = UserThread.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		UserThread.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			UserThread.class, ModelWrapper.class
-		};
+		UserThread.class, ModelWrapper.class
+	};
+
 	private long _userThreadId;
 	private long _companyId;
 	private long _userId;
@@ -913,4 +959,5 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private boolean _setOriginalDeleted;
 	private long _columnBitmask;
 	private UserThread _escapedModel;
+
 }

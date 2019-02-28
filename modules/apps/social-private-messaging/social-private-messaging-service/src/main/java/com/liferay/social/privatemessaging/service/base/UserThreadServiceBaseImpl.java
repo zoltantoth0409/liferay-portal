@@ -15,7 +15,6 @@
 package com.liferay.social.privatemessaging.service.base;
 
 import com.liferay.message.boards.kernel.service.persistence.MBMessagePersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.service.persistence.UserNotificationEventPersis
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.social.privatemessaging.model.UserThread;
 import com.liferay.social.privatemessaging.service.UserThreadService;
 import com.liferay.social.privatemessaging.service.persistence.UserThreadPersistence;
@@ -50,8 +48,10 @@ import javax.sql.DataSource;
  * @see com.liferay.social.privatemessaging.service.impl.UserThreadServiceImpl
  * @generated
  */
-public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
+public abstract class UserThreadServiceBaseImpl
+	extends BaseServiceImpl
 	implements UserThreadService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -63,7 +63,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user thread local service
 	 */
-	public com.liferay.social.privatemessaging.service.UserThreadLocalService getUserThreadLocalService() {
+	public com.liferay.social.privatemessaging.service.UserThreadLocalService
+		getUserThreadLocalService() {
+
 		return userThreadLocalService;
 	}
 
@@ -73,7 +75,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param userThreadLocalService the user thread local service
 	 */
 	public void setUserThreadLocalService(
-		com.liferay.social.privatemessaging.service.UserThreadLocalService userThreadLocalService) {
+		com.liferay.social.privatemessaging.service.UserThreadLocalService
+			userThreadLocalService) {
+
 		this.userThreadLocalService = userThreadLocalService;
 	}
 
@@ -111,6 +115,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserThreadPersistence(
 		UserThreadPersistence userThreadPersistence) {
+
 		this.userThreadPersistence = userThreadPersistence;
 	}
 
@@ -119,7 +124,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -129,7 +136,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -149,6 +158,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setMailService(
 		com.liferay.mail.kernel.service.MailService mailService) {
+
 		this.mailService = mailService;
 	}
 
@@ -157,7 +167,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -167,7 +179,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -176,7 +190,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the class name remote service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameService getClassNameService() {
+	public com.liferay.portal.kernel.service.ClassNameService
+		getClassNameService() {
+
 		return classNameService;
 	}
 
@@ -187,6 +203,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setClassNameService(
 		com.liferay.portal.kernel.service.ClassNameService classNameService) {
+
 		this.classNameService = classNameService;
 	}
 
@@ -206,6 +223,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -214,7 +232,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the company local service
 	 */
-	public com.liferay.portal.kernel.service.CompanyLocalService getCompanyLocalService() {
+	public com.liferay.portal.kernel.service.CompanyLocalService
+		getCompanyLocalService() {
+
 		return companyLocalService;
 	}
 
@@ -224,7 +244,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param companyLocalService the company local service
 	 */
 	public void setCompanyLocalService(
-		com.liferay.portal.kernel.service.CompanyLocalService companyLocalService) {
+		com.liferay.portal.kernel.service.CompanyLocalService
+			companyLocalService) {
+
 		this.companyLocalService = companyLocalService;
 	}
 
@@ -233,7 +255,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the company remote service
 	 */
-	public com.liferay.portal.kernel.service.CompanyService getCompanyService() {
+	public com.liferay.portal.kernel.service.CompanyService
+		getCompanyService() {
+
 		return companyService;
 	}
 
@@ -244,6 +268,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setCompanyService(
 		com.liferay.portal.kernel.service.CompanyService companyService) {
+
 		this.companyService = companyService;
 	}
 
@@ -270,7 +295,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the group local service
 	 */
-	public com.liferay.portal.kernel.service.GroupLocalService getGroupLocalService() {
+	public com.liferay.portal.kernel.service.GroupLocalService
+		getGroupLocalService() {
+
 		return groupLocalService;
 	}
 
@@ -281,6 +308,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setGroupLocalService(
 		com.liferay.portal.kernel.service.GroupLocalService groupLocalService) {
+
 		this.groupLocalService = groupLocalService;
 	}
 
@@ -300,6 +328,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setGroupService(
 		com.liferay.portal.kernel.service.GroupService groupService) {
+
 		this.groupService = groupService;
 	}
 
@@ -326,7 +355,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the layout local service
 	 */
-	public com.liferay.portal.kernel.service.LayoutLocalService getLayoutLocalService() {
+	public com.liferay.portal.kernel.service.LayoutLocalService
+		getLayoutLocalService() {
+
 		return layoutLocalService;
 	}
 
@@ -336,7 +367,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param layoutLocalService the layout local service
 	 */
 	public void setLayoutLocalService(
-		com.liferay.portal.kernel.service.LayoutLocalService layoutLocalService) {
+		com.liferay.portal.kernel.service.LayoutLocalService
+			layoutLocalService) {
+
 		this.layoutLocalService = layoutLocalService;
 	}
 
@@ -356,6 +389,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setLayoutService(
 		com.liferay.portal.kernel.service.LayoutService layoutService) {
+
 		this.layoutService = layoutService;
 	}
 
@@ -382,7 +416,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -392,7 +428,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -401,7 +439,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -412,6 +452,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -431,6 +472,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserService(
 		com.liferay.portal.kernel.service.UserService userService) {
+
 		this.userService = userService;
 	}
 
@@ -457,7 +499,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user notification event local service
 	 */
-	public com.liferay.portal.kernel.service.UserNotificationEventLocalService getUserNotificationEventLocalService() {
+	public com.liferay.portal.kernel.service.UserNotificationEventLocalService
+		getUserNotificationEventLocalService() {
+
 		return userNotificationEventLocalService;
 	}
 
@@ -467,8 +511,11 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param userNotificationEventLocalService the user notification event local service
 	 */
 	public void setUserNotificationEventLocalService(
-		com.liferay.portal.kernel.service.UserNotificationEventLocalService userNotificationEventLocalService) {
-		this.userNotificationEventLocalService = userNotificationEventLocalService;
+		com.liferay.portal.kernel.service.UserNotificationEventLocalService
+			userNotificationEventLocalService) {
+
+		this.userNotificationEventLocalService =
+			userNotificationEventLocalService;
 	}
 
 	/**
@@ -476,7 +523,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user notification event persistence
 	 */
-	public UserNotificationEventPersistence getUserNotificationEventPersistence() {
+	public UserNotificationEventPersistence
+		getUserNotificationEventPersistence() {
+
 		return userNotificationEventPersistence;
 	}
 
@@ -487,7 +536,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserNotificationEventPersistence(
 		UserNotificationEventPersistence userNotificationEventPersistence) {
-		this.userNotificationEventPersistence = userNotificationEventPersistence;
+
+		this.userNotificationEventPersistence =
+			userNotificationEventPersistence;
 	}
 
 	/**
@@ -495,7 +546,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the message-boards message local service
 	 */
-	public com.liferay.message.boards.kernel.service.MBMessageLocalService getMBMessageLocalService() {
+	public com.liferay.message.boards.kernel.service.MBMessageLocalService
+		getMBMessageLocalService() {
+
 		return mbMessageLocalService;
 	}
 
@@ -505,7 +558,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param mbMessageLocalService the message-boards message local service
 	 */
 	public void setMBMessageLocalService(
-		com.liferay.message.boards.kernel.service.MBMessageLocalService mbMessageLocalService) {
+		com.liferay.message.boards.kernel.service.MBMessageLocalService
+			mbMessageLocalService) {
+
 		this.mbMessageLocalService = mbMessageLocalService;
 	}
 
@@ -514,7 +569,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the message-boards message remote service
 	 */
-	public com.liferay.message.boards.kernel.service.MBMessageService getMBMessageService() {
+	public com.liferay.message.boards.kernel.service.MBMessageService
+		getMBMessageService() {
+
 		return mbMessageService;
 	}
 
@@ -524,7 +581,9 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 * @param mbMessageService the message-boards message remote service
 	 */
 	public void setMBMessageService(
-		com.liferay.message.boards.kernel.service.MBMessageService mbMessageService) {
+		com.liferay.message.boards.kernel.service.MBMessageService
+			mbMessageService) {
+
 		this.mbMessageService = mbMessageService;
 	}
 
@@ -544,6 +603,7 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setMBMessagePersistence(
 		MBMessagePersistence mbMessagePersistence) {
+
 		this.mbMessagePersistence = mbMessagePersistence;
 	}
 
@@ -585,8 +645,8 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -595,56 +655,127 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.social.privatemessaging.service.UserThreadLocalService.class)
-	protected com.liferay.social.privatemessaging.service.UserThreadLocalService userThreadLocalService;
+	@BeanReference(
+		type = com.liferay.social.privatemessaging.service.UserThreadLocalService.class
+	)
+	protected com.liferay.social.privatemessaging.service.UserThreadLocalService
+		userThreadLocalService;
+
 	@BeanReference(type = UserThreadService.class)
 	protected UserThreadService userThreadService;
+
 	@BeanReference(type = UserThreadPersistence.class)
 	protected UserThreadPersistence userThreadPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@ServiceReference(type = com.liferay.mail.kernel.service.MailService.class)
 	protected com.liferay.mail.kernel.service.MailService mailService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameService.class)
-	protected com.liferay.portal.kernel.service.ClassNameService classNameService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ClassNameService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameService
+		classNameService;
+
 	@ServiceReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.CompanyLocalService.class)
-	protected com.liferay.portal.kernel.service.CompanyLocalService companyLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.CompanyService.class)
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.CompanyLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.CompanyLocalService
+		companyLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.CompanyService.class
+	)
 	protected com.liferay.portal.kernel.service.CompanyService companyService;
+
 	@ServiceReference(type = CompanyPersistence.class)
 	protected CompanyPersistence companyPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.GroupLocalService.class)
-	protected com.liferay.portal.kernel.service.GroupLocalService groupLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.GroupService.class)
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.GroupLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.GroupLocalService
+		groupLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.GroupService.class
+	)
 	protected com.liferay.portal.kernel.service.GroupService groupService;
+
 	@ServiceReference(type = GroupPersistence.class)
 	protected GroupPersistence groupPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.LayoutLocalService.class)
-	protected com.liferay.portal.kernel.service.LayoutLocalService layoutLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.LayoutService.class)
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.LayoutLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.LayoutLocalService
+		layoutLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.LayoutService.class
+	)
 	protected com.liferay.portal.kernel.service.LayoutService layoutService;
+
 	@ServiceReference(type = LayoutPersistence.class)
 	protected LayoutPersistence layoutPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserService.class)
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserService.class
+	)
 	protected com.liferay.portal.kernel.service.UserService userService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserNotificationEventLocalService.class)
-	protected com.liferay.portal.kernel.service.UserNotificationEventLocalService userNotificationEventLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserNotificationEventLocalService.class
+	)
+	protected
+		com.liferay.portal.kernel.service.UserNotificationEventLocalService
+			userNotificationEventLocalService;
+
 	@ServiceReference(type = UserNotificationEventPersistence.class)
 	protected UserNotificationEventPersistence userNotificationEventPersistence;
-	@ServiceReference(type = com.liferay.message.boards.kernel.service.MBMessageLocalService.class)
-	protected com.liferay.message.boards.kernel.service.MBMessageLocalService mbMessageLocalService;
-	@ServiceReference(type = com.liferay.message.boards.kernel.service.MBMessageService.class)
-	protected com.liferay.message.boards.kernel.service.MBMessageService mbMessageService;
+
+	@ServiceReference(
+		type = com.liferay.message.boards.kernel.service.MBMessageLocalService.class
+	)
+	protected com.liferay.message.boards.kernel.service.MBMessageLocalService
+		mbMessageLocalService;
+
+	@ServiceReference(
+		type = com.liferay.message.boards.kernel.service.MBMessageService.class
+	)
+	protected com.liferay.message.boards.kernel.service.MBMessageService
+		mbMessageService;
+
 	@ServiceReference(type = MBMessagePersistence.class)
 	protected MBMessagePersistence mbMessagePersistence;
+
 }

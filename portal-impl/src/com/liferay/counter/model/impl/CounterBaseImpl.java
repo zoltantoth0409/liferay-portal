@@ -32,8 +32,9 @@ import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class CounterBaseImpl extends CounterModelImpl
-	implements Counter {
+public abstract class CounterBaseImpl
+	extends CounterModelImpl implements Counter {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class CounterBaseImpl extends CounterModelImpl
 			CounterLocalServiceUtil.updateCounter(this);
 		}
 	}
+
 }

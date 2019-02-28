@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,29 +56,28 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
-	implements KaleoConditionModel {
+public class KaleoConditionModelImpl
+	extends BaseModelImpl<KaleoCondition> implements KaleoConditionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo condition model instance should use the <code>KaleoCondition</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoCondition";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoConditionId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "script", Types.CLOB },
-			{ "scriptLanguage", Types.VARCHAR },
-			{ "scriptRequiredContexts", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoConditionId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoDefinitionId", Types.BIGINT},
+		{"kaleoNodeId", Types.BIGINT}, {"script", Types.CLOB},
+		{"scriptLanguage", Types.VARCHAR},
+		{"scriptRequiredContexts", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoConditionId", Types.BIGINT);
@@ -96,28 +94,49 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		TABLE_COLUMNS_MAP.put("scriptRequiredContexts", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null,scriptRequiredContexts STRING null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,script TEXT null,scriptLanguage VARCHAR(75) null,scriptRequiredContexts STRING null)";
+
 	public static final String TABLE_SQL_DROP = "drop table KaleoCondition";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoCondition.kaleoConditionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoCondition.kaleoConditionId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoCondition.kaleoConditionId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoCondition.kaleoConditionId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoCondition"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 2L;
+
 	public static final long KALEONODEID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEOCONDITIONID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoCondition"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoCondition"));
 
 	public KaleoConditionModelImpl() {
 	}
@@ -156,13 +175,18 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoCondition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoCondition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoCondition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoCondition, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((KaleoCondition)this));
 		}
 
@@ -174,36 +198,44 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoCondition, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoCondition, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoCondition, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoCondition, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoCondition)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoCondition)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoCondition, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoCondition, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoCondition, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoCondition, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoCondition, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoCondition, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoCondition, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoCondition, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KaleoCondition, Object>>();
-		Map<String, BiConsumer<KaleoCondition, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KaleoCondition, ?>>();
-
+		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KaleoCondition, Object>>();
+		Map<String, BiConsumer<KaleoCondition, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KaleoCondition, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoConditionId",
@@ -220,7 +252,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object kaleoConditionId) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object kaleoConditionId) {
+
 					kaleoCondition.setKaleoConditionId((Long)kaleoConditionId);
 				}
 
@@ -240,7 +274,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object groupId) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object groupId) {
+
 					kaleoCondition.setGroupId((Long)groupId);
 				}
 
@@ -260,7 +296,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object companyId) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object companyId) {
+
 					kaleoCondition.setCompanyId((Long)companyId);
 				}
 
@@ -280,7 +318,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object userId) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object userId) {
+
 					kaleoCondition.setUserId((Long)userId);
 				}
 
@@ -300,7 +340,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object userName) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object userName) {
+
 					kaleoCondition.setUserName((String)userName);
 				}
 
@@ -320,7 +362,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object createDate) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object createDate) {
+
 					kaleoCondition.setCreateDate((Date)createDate);
 				}
 
@@ -340,7 +384,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object modifiedDate) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object modifiedDate) {
+
 					kaleoCondition.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -360,8 +406,11 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object kaleoDefinitionId) {
-					kaleoCondition.setKaleoDefinitionId((Long)kaleoDefinitionId);
+				public void accept(
+					KaleoCondition kaleoCondition, Object kaleoDefinitionId) {
+
+					kaleoCondition.setKaleoDefinitionId(
+						(Long)kaleoDefinitionId);
 				}
 
 			});
@@ -380,7 +429,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object kaleoNodeId) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object kaleoNodeId) {
+
 					kaleoCondition.setKaleoNodeId((Long)kaleoNodeId);
 				}
 
@@ -400,7 +451,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object script) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object script) {
+
 					kaleoCondition.setScript((String)script);
 				}
 
@@ -420,7 +473,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object scriptLanguage) {
+				public void accept(
+					KaleoCondition kaleoCondition, Object scriptLanguage) {
+
 					kaleoCondition.setScriptLanguage((String)scriptLanguage);
 				}
 
@@ -440,15 +495,20 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			new BiConsumer<KaleoCondition, Object>() {
 
 				@Override
-				public void accept(KaleoCondition kaleoCondition, Object scriptRequiredContexts) {
-					kaleoCondition.setScriptRequiredContexts((String)scriptRequiredContexts);
+				public void accept(
+					KaleoCondition kaleoCondition,
+					Object scriptRequiredContexts) {
+
+					kaleoCondition.setScriptRequiredContexts(
+						(String)scriptRequiredContexts);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -657,8 +717,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoCondition.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoCondition.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -671,8 +731,9 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	@Override
 	public KaleoCondition toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoCondition)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoCondition)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -693,7 +754,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionImpl.setKaleoNodeId(getKaleoNodeId());
 		kaleoConditionImpl.setScript(getScript());
 		kaleoConditionImpl.setScriptLanguage(getScriptLanguage());
-		kaleoConditionImpl.setScriptRequiredContexts(getScriptRequiredContexts());
+		kaleoConditionImpl.setScriptRequiredContexts(
+			getScriptRequiredContexts());
 
 		kaleoConditionImpl.resetOriginalValues();
 
@@ -762,17 +824,20 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	public void resetOriginalValues() {
 		KaleoConditionModelImpl kaleoConditionModelImpl = this;
 
-		kaleoConditionModelImpl._originalCompanyId = kaleoConditionModelImpl._companyId;
+		kaleoConditionModelImpl._originalCompanyId =
+			kaleoConditionModelImpl._companyId;
 
 		kaleoConditionModelImpl._setOriginalCompanyId = false;
 
 		kaleoConditionModelImpl._setModifiedDate = false;
 
-		kaleoConditionModelImpl._originalKaleoDefinitionId = kaleoConditionModelImpl._kaleoDefinitionId;
+		kaleoConditionModelImpl._originalKaleoDefinitionId =
+			kaleoConditionModelImpl._kaleoDefinitionId;
 
 		kaleoConditionModelImpl._setOriginalKaleoDefinitionId = false;
 
-		kaleoConditionModelImpl._originalKaleoNodeId = kaleoConditionModelImpl._kaleoNodeId;
+		kaleoConditionModelImpl._originalKaleoNodeId =
+			kaleoConditionModelImpl._kaleoNodeId;
 
 		kaleoConditionModelImpl._setOriginalKaleoNodeId = false;
 
@@ -781,7 +846,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public CacheModel<KaleoCondition> toCacheModel() {
-		KaleoConditionCacheModel kaleoConditionCacheModel = new KaleoConditionCacheModel();
+		KaleoConditionCacheModel kaleoConditionCacheModel =
+			new KaleoConditionCacheModel();
 
 		kaleoConditionCacheModel.kaleoConditionId = getKaleoConditionId();
 
@@ -837,12 +903,15 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			kaleoConditionCacheModel.scriptLanguage = null;
 		}
 
-		kaleoConditionCacheModel.scriptRequiredContexts = getScriptRequiredContexts();
+		kaleoConditionCacheModel.scriptRequiredContexts =
+			getScriptRequiredContexts();
 
-		String scriptRequiredContexts = kaleoConditionCacheModel.scriptRequiredContexts;
+		String scriptRequiredContexts =
+			kaleoConditionCacheModel.scriptRequiredContexts;
 
 		if ((scriptRequiredContexts != null) &&
-				(scriptRequiredContexts.length() == 0)) {
+			(scriptRequiredContexts.length() == 0)) {
+
 			kaleoConditionCacheModel.scriptRequiredContexts = null;
 		}
 
@@ -851,16 +920,20 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoCondition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoCondition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoCondition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoCondition, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -879,18 +952,22 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoCondition, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoCondition, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoCondition, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoCondition, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoCondition, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -904,10 +981,12 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoCondition.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoCondition.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoCondition.class, ModelWrapper.class
-		};
+		KaleoCondition.class, ModelWrapper.class
+	};
+
 	private long _kaleoConditionId;
 	private long _groupId;
 	private long _companyId;
@@ -929,4 +1008,5 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private String _scriptRequiredContexts;
 	private long _columnBitmask;
 	private KaleoCondition _escapedModel;
+
 }

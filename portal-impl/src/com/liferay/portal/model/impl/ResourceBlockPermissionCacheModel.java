@@ -34,8 +34,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class ResourceBlockPermissionCacheModel implements CacheModel<ResourceBlockPermission>,
-	Externalizable, MVCCModel {
+public class ResourceBlockPermissionCacheModel
+	implements CacheModel<ResourceBlockPermission>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -46,10 +47,13 @@ public class ResourceBlockPermissionCacheModel implements CacheModel<ResourceBlo
 			return false;
 		}
 
-		ResourceBlockPermissionCacheModel resourceBlockPermissionCacheModel = (ResourceBlockPermissionCacheModel)obj;
+		ResourceBlockPermissionCacheModel resourceBlockPermissionCacheModel =
+			(ResourceBlockPermissionCacheModel)obj;
 
-		if ((resourceBlockPermissionId == resourceBlockPermissionCacheModel.resourceBlockPermissionId) &&
-				(mvccVersion == resourceBlockPermissionCacheModel.mvccVersion)) {
+		if ((resourceBlockPermissionId ==
+				resourceBlockPermissionCacheModel.resourceBlockPermissionId) &&
+			(mvccVersion == resourceBlockPermissionCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -96,10 +100,12 @@ public class ResourceBlockPermissionCacheModel implements CacheModel<ResourceBlo
 
 	@Override
 	public ResourceBlockPermission toEntityModel() {
-		ResourceBlockPermissionImpl resourceBlockPermissionImpl = new ResourceBlockPermissionImpl();
+		ResourceBlockPermissionImpl resourceBlockPermissionImpl =
+			new ResourceBlockPermissionImpl();
 
 		resourceBlockPermissionImpl.setMvccVersion(mvccVersion);
-		resourceBlockPermissionImpl.setResourceBlockPermissionId(resourceBlockPermissionId);
+		resourceBlockPermissionImpl.setResourceBlockPermissionId(
+			resourceBlockPermissionId);
 		resourceBlockPermissionImpl.setCompanyId(companyId);
 		resourceBlockPermissionImpl.setResourceBlockId(resourceBlockId);
 		resourceBlockPermissionImpl.setRoleId(roleId);
@@ -126,8 +132,7 @@ public class ResourceBlockPermissionCacheModel implements CacheModel<ResourceBlo
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(resourceBlockPermissionId);
@@ -147,4 +152,5 @@ public class ResourceBlockPermissionCacheModel implements CacheModel<ResourceBlo
 	public long resourceBlockId;
 	public long roleId;
 	public long actionIds;
+
 }

@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.twitter.model.Feed;
 
 import java.io.Externalizable;
@@ -37,6 +36,7 @@ import java.util.Date;
  */
 @ProviderType
 public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -151,8 +151,7 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(feedId);
 
 		objectOutput.writeLong(companyId);
@@ -190,4 +189,5 @@ public class FeedCacheModel implements CacheModel<Feed>, Externalizable {
 	public long twitterUserId;
 	public String twitterScreenName;
 	public long lastStatusId;
+
 }

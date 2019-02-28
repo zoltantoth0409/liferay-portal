@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,36 +56,32 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInstanceToken>
+public class KaleoTaskInstanceTokenModelImpl
+	extends BaseModelImpl<KaleoTaskInstanceToken>
 	implements KaleoTaskInstanceTokenModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo task instance token model instance should use the <code>KaleoTaskInstanceToken</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoTaskInstanceToken";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskInstanceTokenId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "kaleoInstanceTokenId", Types.BIGINT },
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "kaleoTaskName", Types.VARCHAR },
-			{ "className", Types.VARCHAR },
-			{ "classPK", Types.BIGINT },
-			{ "completionUserId", Types.BIGINT },
-			{ "completed", Types.BOOLEAN },
-			{ "completionDate", Types.TIMESTAMP },
-			{ "dueDate", Types.TIMESTAMP },
-			{ "workflowContext", Types.CLOB }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoTaskInstanceTokenId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoDefinitionId", Types.BIGINT},
+		{"kaleoInstanceId", Types.BIGINT},
+		{"kaleoInstanceTokenId", Types.BIGINT}, {"kaleoTaskId", Types.BIGINT},
+		{"kaleoTaskName", Types.VARCHAR}, {"className", Types.VARCHAR},
+		{"classPK", Types.BIGINT}, {"completionUserId", Types.BIGINT},
+		{"completed", Types.BOOLEAN}, {"completionDate", Types.TIMESTAMP},
+		{"dueDate", Types.TIMESTAMP}, {"workflowContext", Types.CLOB}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoTaskInstanceTokenId", Types.BIGINT);
@@ -110,31 +105,56 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		TABLE_COLUMNS_MAP.put("workflowContext", Types.CLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(200) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
-	public static final String TABLE_SQL_DROP = "drop table KaleoTaskInstanceToken";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(200) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table KaleoTaskInstanceToken";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"),
+		true);
+
 	public static final long CLASSNAME_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEODEFINITIONID_COLUMN_BITMASK = 8L;
+
 	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 16L;
+
 	public static final long KALEOTASKID_COLUMN_BITMASK = 32L;
+
 	public static final long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 64L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken"));
 
 	public KaleoTaskInstanceTokenModelImpl() {
 	}
@@ -173,14 +193,18 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoTaskInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((KaleoTaskInstanceToken)this));
 		}
 
@@ -192,46 +216,58 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoTaskInstanceToken, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoTaskInstanceToken, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoTaskInstanceToken, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoTaskInstanceToken, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoTaskInstanceToken)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoTaskInstanceToken)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoTaskInstanceToken, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoTaskInstanceToken, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoTaskInstanceToken, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoTaskInstanceToken, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoTaskInstanceToken, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoTaskInstanceToken, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoTaskInstanceToken, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoTaskInstanceToken, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoTaskInstanceToken, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<KaleoTaskInstanceToken, Object>>();
-		Map<String, BiConsumer<KaleoTaskInstanceToken, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<KaleoTaskInstanceToken, ?>>();
-
+		Map<String, Function<KaleoTaskInstanceToken, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<KaleoTaskInstanceToken, Object>>();
+		Map<String, BiConsumer<KaleoTaskInstanceToken, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<KaleoTaskInstanceToken, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoTaskInstanceTokenId",
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId();
 				}
 
@@ -241,8 +277,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoTaskInstanceTokenId) {
-					kaleoTaskInstanceToken.setKaleoTaskInstanceTokenId((Long)kaleoTaskInstanceTokenId);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoTaskInstanceTokenId) {
+
+					kaleoTaskInstanceToken.setKaleoTaskInstanceTokenId(
+						(Long)kaleoTaskInstanceTokenId);
 				}
 
 			});
@@ -251,7 +291,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getGroupId();
 				}
 
@@ -261,7 +303,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object groupId) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object groupId) {
+
 					kaleoTaskInstanceToken.setGroupId((Long)groupId);
 				}
 
@@ -271,7 +316,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getCompanyId();
 				}
 
@@ -281,7 +328,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object companyId) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object companyId) {
+
 					kaleoTaskInstanceToken.setCompanyId((Long)companyId);
 				}
 
@@ -291,7 +341,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getUserId();
 				}
 
@@ -301,7 +353,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object userId) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object userId) {
+
 					kaleoTaskInstanceToken.setUserId((Long)userId);
 				}
 
@@ -311,7 +366,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getUserName();
 				}
 
@@ -321,7 +378,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object userName) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object userName) {
+
 					kaleoTaskInstanceToken.setUserName((String)userName);
 				}
 
@@ -331,7 +391,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getCreateDate();
 				}
 
@@ -341,7 +403,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object createDate) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object createDate) {
+
 					kaleoTaskInstanceToken.setCreateDate((Date)createDate);
 				}
 
@@ -351,7 +416,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getModifiedDate();
 				}
 
@@ -361,7 +428,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object modifiedDate) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object modifiedDate) {
+
 					kaleoTaskInstanceToken.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -371,7 +441,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoDefinitionId();
 				}
 
@@ -381,8 +453,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoDefinitionId) {
-					kaleoTaskInstanceToken.setKaleoDefinitionId((Long)kaleoDefinitionId);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoDefinitionId) {
+
+					kaleoTaskInstanceToken.setKaleoDefinitionId(
+						(Long)kaleoDefinitionId);
 				}
 
 			});
@@ -391,7 +467,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoInstanceId();
 				}
 
@@ -401,8 +479,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoInstanceId) {
-					kaleoTaskInstanceToken.setKaleoInstanceId((Long)kaleoInstanceId);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoInstanceId) {
+
+					kaleoTaskInstanceToken.setKaleoInstanceId(
+						(Long)kaleoInstanceId);
 				}
 
 			});
@@ -411,7 +493,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoInstanceTokenId();
 				}
 
@@ -421,8 +505,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoInstanceTokenId) {
-					kaleoTaskInstanceToken.setKaleoInstanceTokenId((Long)kaleoInstanceTokenId);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoInstanceTokenId) {
+
+					kaleoTaskInstanceToken.setKaleoInstanceTokenId(
+						(Long)kaleoInstanceTokenId);
 				}
 
 			});
@@ -431,7 +519,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoTaskId();
 				}
 
@@ -441,7 +531,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoTaskId) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoTaskId) {
+
 					kaleoTaskInstanceToken.setKaleoTaskId((Long)kaleoTaskId);
 				}
 
@@ -451,7 +544,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getKaleoTaskName();
 				}
 
@@ -461,8 +556,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object kaleoTaskName) {
-					kaleoTaskInstanceToken.setKaleoTaskName((String)kaleoTaskName);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object kaleoTaskName) {
+
+					kaleoTaskInstanceToken.setKaleoTaskName(
+						(String)kaleoTaskName);
 				}
 
 			});
@@ -471,7 +570,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getClassName();
 				}
 
@@ -481,7 +582,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object className) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object className) {
+
 					kaleoTaskInstanceToken.setClassName((String)className);
 				}
 
@@ -491,7 +595,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getClassPK();
 				}
 
@@ -501,7 +607,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object classPK) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object classPK) {
+
 					kaleoTaskInstanceToken.setClassPK((Long)classPK);
 				}
 
@@ -511,7 +620,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getCompletionUserId();
 				}
 
@@ -521,8 +632,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object completionUserId) {
-					kaleoTaskInstanceToken.setCompletionUserId((Long)completionUserId);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object completionUserId) {
+
+					kaleoTaskInstanceToken.setCompletionUserId(
+						(Long)completionUserId);
 				}
 
 			});
@@ -531,7 +646,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getCompleted();
 				}
 
@@ -541,7 +658,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object completed) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object completed) {
+
 					kaleoTaskInstanceToken.setCompleted((Boolean)completed);
 				}
 
@@ -551,7 +671,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getCompletionDate();
 				}
 
@@ -561,8 +683,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object completionDate) {
-					kaleoTaskInstanceToken.setCompletionDate((Date)completionDate);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object completionDate) {
+
+					kaleoTaskInstanceToken.setCompletionDate(
+						(Date)completionDate);
 				}
 
 			});
@@ -571,7 +697,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getDueDate();
 				}
 
@@ -581,7 +709,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object dueDate) {
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object dueDate) {
+
 					kaleoTaskInstanceToken.setDueDate((Date)dueDate);
 				}
 
@@ -591,7 +722,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new Function<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+				public Object apply(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken) {
+
 					return kaleoTaskInstanceToken.getWorkflowContext();
 				}
 
@@ -601,15 +734,20 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			new BiConsumer<KaleoTaskInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTaskInstanceToken kaleoTaskInstanceToken, Object workflowContext) {
-					kaleoTaskInstanceToken.setWorkflowContext((String)workflowContext);
+				public void accept(
+					KaleoTaskInstanceToken kaleoTaskInstanceToken,
+					Object workflowContext) {
+
+					kaleoTaskInstanceToken.setWorkflowContext(
+						(String)workflowContext);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -943,8 +1081,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoTaskInstanceToken.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoTaskInstanceToken.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -957,8 +1096,9 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	@Override
 	public KaleoTaskInstanceToken toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoTaskInstanceToken)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -966,9 +1106,11 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public Object clone() {
-		KaleoTaskInstanceTokenImpl kaleoTaskInstanceTokenImpl = new KaleoTaskInstanceTokenImpl();
+		KaleoTaskInstanceTokenImpl kaleoTaskInstanceTokenImpl =
+			new KaleoTaskInstanceTokenImpl();
 
-		kaleoTaskInstanceTokenImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
+		kaleoTaskInstanceTokenImpl.setKaleoTaskInstanceTokenId(
+			getKaleoTaskInstanceTokenId());
 		kaleoTaskInstanceTokenImpl.setGroupId(getGroupId());
 		kaleoTaskInstanceTokenImpl.setCompanyId(getCompanyId());
 		kaleoTaskInstanceTokenImpl.setUserId(getUserId());
@@ -977,7 +1119,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		kaleoTaskInstanceTokenImpl.setModifiedDate(getModifiedDate());
 		kaleoTaskInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
-		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
+		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(
+			getKaleoInstanceTokenId());
 		kaleoTaskInstanceTokenImpl.setKaleoTaskId(getKaleoTaskId());
 		kaleoTaskInstanceTokenImpl.setKaleoTaskName(getKaleoTaskName());
 		kaleoTaskInstanceTokenImpl.setClassName(getClassName());
@@ -997,10 +1140,14 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken) {
 		int value = 0;
 
-		if (getKaleoTaskInstanceTokenId() < kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId()) {
+		if (getKaleoTaskInstanceTokenId() <
+				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId()) {
+
 			value = -1;
 		}
-		else if (getKaleoTaskInstanceTokenId() > kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId()) {
+		else if (getKaleoTaskInstanceTokenId() >
+					kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId()) {
+
 			value = 1;
 		}
 		else {
@@ -1024,7 +1171,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			return false;
 		}
 
-		KaleoTaskInstanceToken kaleoTaskInstanceToken = (KaleoTaskInstanceToken)obj;
+		KaleoTaskInstanceToken kaleoTaskInstanceToken =
+			(KaleoTaskInstanceToken)obj;
 
 		long primaryKey = kaleoTaskInstanceToken.getPrimaryKey();
 
@@ -1055,27 +1203,33 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public void resetOriginalValues() {
 		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = this;
 
-		kaleoTaskInstanceTokenModelImpl._originalCompanyId = kaleoTaskInstanceTokenModelImpl._companyId;
+		kaleoTaskInstanceTokenModelImpl._originalCompanyId =
+			kaleoTaskInstanceTokenModelImpl._companyId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalCompanyId = false;
 
 		kaleoTaskInstanceTokenModelImpl._setModifiedDate = false;
 
-		kaleoTaskInstanceTokenModelImpl._originalKaleoDefinitionId = kaleoTaskInstanceTokenModelImpl._kaleoDefinitionId;
+		kaleoTaskInstanceTokenModelImpl._originalKaleoDefinitionId =
+			kaleoTaskInstanceTokenModelImpl._kaleoDefinitionId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoDefinitionId = false;
 
-		kaleoTaskInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTaskInstanceTokenModelImpl._kaleoInstanceId;
+		kaleoTaskInstanceTokenModelImpl._originalKaleoInstanceId =
+			kaleoTaskInstanceTokenModelImpl._kaleoInstanceId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
 
-		kaleoTaskInstanceTokenModelImpl._originalKaleoTaskId = kaleoTaskInstanceTokenModelImpl._kaleoTaskId;
+		kaleoTaskInstanceTokenModelImpl._originalKaleoTaskId =
+			kaleoTaskInstanceTokenModelImpl._kaleoTaskId;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoTaskId = false;
 
-		kaleoTaskInstanceTokenModelImpl._originalClassName = kaleoTaskInstanceTokenModelImpl._className;
+		kaleoTaskInstanceTokenModelImpl._originalClassName =
+			kaleoTaskInstanceTokenModelImpl._className;
 
-		kaleoTaskInstanceTokenModelImpl._originalClassPK = kaleoTaskInstanceTokenModelImpl._classPK;
+		kaleoTaskInstanceTokenModelImpl._originalClassPK =
+			kaleoTaskInstanceTokenModelImpl._classPK;
 
 		kaleoTaskInstanceTokenModelImpl._setOriginalClassPK = false;
 
@@ -1084,9 +1238,11 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public CacheModel<KaleoTaskInstanceToken> toCacheModel() {
-		KaleoTaskInstanceTokenCacheModel kaleoTaskInstanceTokenCacheModel = new KaleoTaskInstanceTokenCacheModel();
+		KaleoTaskInstanceTokenCacheModel kaleoTaskInstanceTokenCacheModel =
+			new KaleoTaskInstanceTokenCacheModel();
 
-		kaleoTaskInstanceTokenCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+		kaleoTaskInstanceTokenCacheModel.kaleoTaskInstanceTokenId =
+			getKaleoTaskInstanceTokenId();
 
 		kaleoTaskInstanceTokenCacheModel.groupId = getGroupId();
 
@@ -1114,17 +1270,20 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			kaleoTaskInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+			kaleoTaskInstanceTokenCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			kaleoTaskInstanceTokenCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		kaleoTaskInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+		kaleoTaskInstanceTokenCacheModel.kaleoDefinitionId =
+			getKaleoDefinitionId();
 
 		kaleoTaskInstanceTokenCacheModel.kaleoInstanceId = getKaleoInstanceId();
 
-		kaleoTaskInstanceTokenCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+		kaleoTaskInstanceTokenCacheModel.kaleoInstanceTokenId =
+			getKaleoInstanceTokenId();
 
 		kaleoTaskInstanceTokenCacheModel.kaleoTaskId = getKaleoTaskId();
 
@@ -1146,14 +1305,16 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 		kaleoTaskInstanceTokenCacheModel.classPK = getClassPK();
 
-		kaleoTaskInstanceTokenCacheModel.completionUserId = getCompletionUserId();
+		kaleoTaskInstanceTokenCacheModel.completionUserId =
+			getCompletionUserId();
 
 		kaleoTaskInstanceTokenCacheModel.completed = isCompleted();
 
 		Date completionDate = getCompletionDate();
 
 		if (completionDate != null) {
-			kaleoTaskInstanceTokenCacheModel.completionDate = completionDate.getTime();
+			kaleoTaskInstanceTokenCacheModel.completionDate =
+				completionDate.getTime();
 		}
 		else {
 			kaleoTaskInstanceTokenCacheModel.completionDate = Long.MIN_VALUE;
@@ -1170,7 +1331,8 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 		kaleoTaskInstanceTokenCacheModel.workflowContext = getWorkflowContext();
 
-		String workflowContext = kaleoTaskInstanceTokenCacheModel.workflowContext;
+		String workflowContext =
+			kaleoTaskInstanceTokenCacheModel.workflowContext;
 
 		if ((workflowContext != null) && (workflowContext.length() == 0)) {
 			kaleoTaskInstanceTokenCacheModel.workflowContext = null;
@@ -1181,22 +1343,25 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoTaskInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(KaleoTaskInstanceToken)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTaskInstanceToken)this));
 			sb.append(", ");
 		}
 
@@ -1211,25 +1376,28 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoTaskInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskInstanceToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(KaleoTaskInstanceToken)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTaskInstanceToken)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1238,10 +1406,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoTaskInstanceToken.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoTaskInstanceToken.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoTaskInstanceToken.class, ModelWrapper.class
-		};
+		KaleoTaskInstanceToken.class, ModelWrapper.class
+	};
+
 	private long _kaleoTaskInstanceTokenId;
 	private long _groupId;
 	private long _companyId;
@@ -1275,4 +1445,5 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private String _workflowContext;
 	private long _columnBitmask;
 	private KaleoTaskInstanceToken _escapedModel;
+
 }

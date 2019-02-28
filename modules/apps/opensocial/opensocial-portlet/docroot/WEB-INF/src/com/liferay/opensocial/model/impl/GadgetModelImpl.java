@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.GadgetModel;
 import com.liferay.opensocial.model.GadgetSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -63,26 +60,26 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class GadgetModelImpl extends BaseModelImpl<Gadget>
-	implements GadgetModel {
+public class GadgetModelImpl
+	extends BaseModelImpl<Gadget> implements GadgetModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a gadget model instance should use the <code>Gadget</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "OpenSocial_Gadget";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "gadgetId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "url", Types.VARCHAR },
-			{ "portletCategoryNames", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"gadgetId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"name", Types.VARCHAR},
+		{"url", Types.VARCHAR}, {"portletCategoryNames", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -96,25 +93,43 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY OpenSocial_Gadget.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.opensocial.model.Gadget"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.opensocial.model.Gadget"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.Gadget"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.opensocial.model.Gadget"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.opensocial.model.Gadget"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.opensocial.model.Gadget"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long URL_COLUMN_BITMASK = 2L;
+
 	public static final long UUID_COLUMN_BITMASK = 4L;
+
 	public static final long NAME_COLUMN_BITMASK = 8L;
 
 	/**
@@ -163,8 +178,9 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.util.service.ServiceProps.get(
+			"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
 
 	public GadgetModelImpl() {
 	}
@@ -203,14 +219,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Gadget, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Gadget, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Gadget, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Gadget, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Gadget, Object> attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Gadget)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Gadget)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -221,15 +240,18 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Gadget, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Gadget, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Gadget, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Gadget, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Gadget)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Gadget)this, entry.getValue());
 			}
 		}
 	}
@@ -238,17 +260,22 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Gadget, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Gadget, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Gadget, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Gadget, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Gadget, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Gadget, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Gadget, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Gadget, Object>>();
-		Map<String, BiConsumer<Gadget, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Gadget, ?>>();
-
+		Map<String, Function<Gadget, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Gadget, Object>>();
+		Map<String, BiConsumer<Gadget, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Gadget, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -406,7 +433,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 				@Override
 				public void accept(Gadget gadget, Object portletCategoryNames) {
-					gadget.setPortletCategoryNames((String)portletCategoryNames);
+					gadget.setPortletCategoryNames(
+						(String)portletCategoryNames);
 				}
 
 			});
@@ -431,9 +459,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -597,8 +626,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				Gadget.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(Gadget.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -607,8 +636,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Gadget.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Gadget.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -621,8 +650,9 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	@Override
 	public Gadget toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Gadget)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Gadget)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -769,7 +799,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		String portletCategoryNames = gadgetCacheModel.portletCategoryNames;
 
 		if ((portletCategoryNames != null) &&
-				(portletCategoryNames.length() == 0)) {
+			(portletCategoryNames.length() == 0)) {
+
 			gadgetCacheModel.portletCategoryNames = null;
 		}
 
@@ -787,14 +818,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Gadget, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Gadget, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Gadget, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Gadget, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Gadget, Object> attributeGetterFunction = entry.getValue();
 
@@ -815,16 +849,19 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Gadget, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Gadget, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Gadget, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Gadget, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Gadget, Object> attributeGetterFunction = entry.getValue();
 
@@ -840,10 +877,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Gadget.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Gadget.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Gadget.class, ModelWrapper.class
-		};
+		Gadget.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _gadgetId;
@@ -860,4 +899,5 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private Gadget _escapedModel;
+
 }

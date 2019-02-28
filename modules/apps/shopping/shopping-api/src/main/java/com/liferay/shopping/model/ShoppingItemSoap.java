@@ -30,6 +30,7 @@ import java.util.List;
  */
 @ProviderType
 public class ShoppingItemSoap implements Serializable {
+
 	public static ShoppingItemSoap toSoapModel(ShoppingItem model) {
 		ShoppingItemSoap soapModel = new ShoppingItemSoap();
 
@@ -99,7 +100,8 @@ public class ShoppingItemSoap implements Serializable {
 	}
 
 	public static ShoppingItemSoap[] toSoapModels(List<ShoppingItem> models) {
-		List<ShoppingItemSoap> soapModels = new ArrayList<ShoppingItemSoap>(models.size());
+		List<ShoppingItemSoap> soapModels = new ArrayList<ShoppingItemSoap>(
+			models.size());
 
 		for (ShoppingItem model : models) {
 			soapModels.add(toSoapModel(model));
@@ -461,4 +463,5 @@ public class ShoppingItemSoap implements Serializable {
 	private boolean _largeImage;
 	private long _largeImageId;
 	private String _largeImageURL;
+
 }

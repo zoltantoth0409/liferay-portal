@@ -17,7 +17,6 @@ package com.liferay.shopping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ShardedModel;
@@ -37,8 +36,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ShoppingItemPriceModel extends BaseModel<ShoppingItemPrice>,
-	ShardedModel {
+public interface ShoppingItemPriceModel
+	extends BaseModel<ShoppingItemPrice>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -285,4 +285,5 @@ public interface ShoppingItemPriceModel extends BaseModel<ShoppingItemPrice>,
 
 	@Override
 	public String toXmlString();
+
 }

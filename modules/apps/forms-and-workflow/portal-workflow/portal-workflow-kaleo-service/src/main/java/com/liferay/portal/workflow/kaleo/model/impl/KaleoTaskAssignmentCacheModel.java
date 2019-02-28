@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssignment>,
-	Externalizable {
+public class KaleoTaskAssignmentCacheModel
+	implements CacheModel<KaleoTaskAssignment>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,9 +48,12 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 			return false;
 		}
 
-		KaleoTaskAssignmentCacheModel kaleoTaskAssignmentCacheModel = (KaleoTaskAssignmentCacheModel)obj;
+		KaleoTaskAssignmentCacheModel kaleoTaskAssignmentCacheModel =
+			(KaleoTaskAssignmentCacheModel)obj;
 
-		if (kaleoTaskAssignmentId == kaleoTaskAssignmentCacheModel.kaleoTaskAssignmentId) {
+		if (kaleoTaskAssignmentId ==
+				kaleoTaskAssignmentCacheModel.kaleoTaskAssignmentId) {
+
 			return true;
 		}
 
@@ -106,7 +110,8 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 
 	@Override
 	public KaleoTaskAssignment toEntityModel() {
-		KaleoTaskAssignmentImpl kaleoTaskAssignmentImpl = new KaleoTaskAssignmentImpl();
+		KaleoTaskAssignmentImpl kaleoTaskAssignmentImpl =
+			new KaleoTaskAssignmentImpl();
 
 		kaleoTaskAssignmentImpl.setKaleoTaskAssignmentId(kaleoTaskAssignmentId);
 		kaleoTaskAssignmentImpl.setGroupId(groupId);
@@ -172,14 +177,16 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 			kaleoTaskAssignmentImpl.setAssigneeScriptLanguage("");
 		}
 		else {
-			kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(assigneeScriptLanguage);
+			kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(
+				assigneeScriptLanguage);
 		}
 
 		if (assigneeScriptRequiredContexts == null) {
 			kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts("");
 		}
 		else {
-			kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(assigneeScriptRequiredContexts);
+			kaleoTaskAssignmentImpl.setAssigneeScriptRequiredContexts(
+				assigneeScriptRequiredContexts);
 		}
 
 		kaleoTaskAssignmentImpl.resetOriginalValues();
@@ -216,8 +223,7 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(kaleoTaskAssignmentId);
 
 		objectOutput.writeLong(groupId);
@@ -304,4 +310,5 @@ public class KaleoTaskAssignmentCacheModel implements CacheModel<KaleoTaskAssign
 	public String assigneeScript;
 	public String assigneeScriptLanguage;
 	public String assigneeScriptRequiredContexts;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -36,6 +35,7 @@ import java.io.Serializable;
  */
 @ProviderType
 public interface ClusterGroupModel extends BaseModel<ClusterGroup>, MVCCModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -193,4 +193,5 @@ public interface ClusterGroupModel extends BaseModel<ClusterGroup>, MVCCModel {
 
 	@Override
 	public String toXmlString();
+
 }

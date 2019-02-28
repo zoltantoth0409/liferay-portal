@@ -17,7 +17,6 @@ package com.liferay.mobile.device.rules.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -42,8 +41,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MDRRuleGroupInstanceModel extends AttachedModel,
-	BaseModel<MDRRuleGroupInstance>, ShardedModel, StagedGroupedModel {
+public interface MDRRuleGroupInstanceModel
+	extends AttachedModel, BaseModel<MDRRuleGroupInstance>, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -350,4 +351,5 @@ public interface MDRRuleGroupInstanceModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

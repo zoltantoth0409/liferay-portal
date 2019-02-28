@@ -32,8 +32,9 @@ import com.liferay.shopping.service.ShoppingOrderLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class ShoppingOrderBaseImpl extends ShoppingOrderModelImpl
-	implements ShoppingOrder {
+public abstract class ShoppingOrderBaseImpl
+	extends ShoppingOrderModelImpl implements ShoppingOrder {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ShoppingOrderBaseImpl extends ShoppingOrderModelImpl
 			ShoppingOrderLocalServiceUtil.updateShoppingOrder(this);
 		}
 	}
+
 }

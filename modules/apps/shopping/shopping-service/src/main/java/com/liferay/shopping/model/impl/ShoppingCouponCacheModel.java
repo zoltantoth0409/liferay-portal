@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingCoupon;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class ShoppingCouponCacheModel implements CacheModel<ShoppingCoupon>,
-	Externalizable {
+public class ShoppingCouponCacheModel
+	implements CacheModel<ShoppingCoupon>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class ShoppingCouponCacheModel implements CacheModel<ShoppingCoupon>,
 			return false;
 		}
 
-		ShoppingCouponCacheModel shoppingCouponCacheModel = (ShoppingCouponCacheModel)obj;
+		ShoppingCouponCacheModel shoppingCouponCacheModel =
+			(ShoppingCouponCacheModel)obj;
 
 		if (couponId == shoppingCouponCacheModel.couponId) {
 			return true;
@@ -232,8 +233,7 @@ public class ShoppingCouponCacheModel implements CacheModel<ShoppingCoupon>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(couponId);
 
 		objectOutput.writeLong(groupId);
@@ -322,4 +322,5 @@ public class ShoppingCouponCacheModel implements CacheModel<ShoppingCoupon>,
 	public double minOrder;
 	public double discount;
 	public String discountType;
+
 }

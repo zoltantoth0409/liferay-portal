@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.social.networking.model.WallEntry;
 import com.liferay.social.networking.model.WallEntryModel;
 
@@ -59,25 +57,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
-	implements WallEntryModel {
+public class WallEntryModelImpl
+	extends BaseModelImpl<WallEntry> implements WallEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a wall entry model instance should use the <code>WallEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SN_WallEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "wallEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "comments", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"wallEntryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"comments", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("wallEntryId", Types.BIGINT);
@@ -90,27 +88,47 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		TABLE_COLUMNS_MAP.put("comments", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SN_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SN_WallEntry (wallEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,comments VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table SN_WallEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY wallEntry.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY SN_WallEntry.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY wallEntry.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SN_WallEntry.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.social.networking.model.WallEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.social.networking.model.WallEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.social.networking.model.WallEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.social.networking.model.WallEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.social.networking.model.WallEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.social.networking.model.WallEntry"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long USERID_COLUMN_BITMASK = 2L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.social.networking.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.social.networking.model.WallEntry"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.social.networking.model.WallEntry"));
 
 	public WallEntryModelImpl() {
 	}
@@ -149,14 +167,18 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<WallEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WallEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<WallEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WallEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WallEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<WallEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((WallEntry)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((WallEntry)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -167,35 +189,44 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<WallEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<WallEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<WallEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<WallEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((WallEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(WallEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<WallEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<WallEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<WallEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<WallEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<WallEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<WallEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<WallEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WallEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<WallEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<WallEntry, Object>>();
-		Map<String, BiConsumer<WallEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<WallEntry, ?>>();
-
+		Map<String, Function<WallEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<WallEntry, Object>>();
+		Map<String, BiConsumer<WallEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<WallEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"wallEntryId",
@@ -358,9 +389,10 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -507,8 +539,8 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			WallEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), WallEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -521,8 +553,9 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	@Override
 	public WallEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (WallEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (WallEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -666,16 +699,20 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<WallEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WallEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<WallEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WallEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WallEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<WallEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -694,18 +731,22 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<WallEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<WallEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<WallEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WallEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WallEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<WallEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -719,10 +760,12 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = WallEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		WallEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			WallEntry.class, ModelWrapper.class
-		};
+		WallEntry.class, ModelWrapper.class
+	};
+
 	private long _wallEntryId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -738,4 +781,5 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	private String _comments;
 	private long _columnBitmask;
 	private WallEntry _escapedModel;
+
 }

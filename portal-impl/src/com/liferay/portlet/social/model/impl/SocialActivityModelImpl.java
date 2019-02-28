@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -33,7 +32,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
-
 import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.social.kernel.model.SocialActivityModel;
 import com.liferay.social.kernel.model.SocialActivitySoap;
@@ -64,31 +62,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
-	implements SocialActivityModel {
+public class SocialActivityModelImpl
+	extends BaseModelImpl<SocialActivity> implements SocialActivityModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a social activity model instance should use the <code>SocialActivity</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SocialActivity";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "activityId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "createDate", Types.BIGINT },
-			{ "activitySetId", Types.BIGINT },
-			{ "mirrorActivityId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "parentClassNameId", Types.BIGINT },
-			{ "parentClassPK", Types.BIGINT },
-			{ "type_", Types.INTEGER },
-			{ "extraData", Types.VARCHAR },
-			{ "receiverUserId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"activityId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"createDate", Types.BIGINT}, {"activitySetId", Types.BIGINT},
+		{"mirrorActivityId", Types.BIGINT}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}, {"parentClassNameId", Types.BIGINT},
+		{"parentClassPK", Types.BIGINT}, {"type_", Types.INTEGER},
+		{"extraData", Types.VARCHAR}, {"receiverUserId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("activityId", Types.BIGINT);
@@ -107,31 +102,56 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 		TABLE_COLUMNS_MAP.put("receiverUserId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SocialActivity (activityId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate LONG,activitySetId LONG,mirrorActivityId LONG,classNameId LONG,classPK LONG,parentClassNameId LONG,parentClassPK LONG,type_ INTEGER,extraData STRING null,receiverUserId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SocialActivity (activityId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate LONG,activitySetId LONG,mirrorActivityId LONG,classNameId LONG,classPK LONG,parentClassNameId LONG,parentClassPK LONG,type_ INTEGER,extraData STRING null,receiverUserId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table SocialActivity";
-	public static final String ORDER_BY_JPQL = " ORDER BY socialActivity.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY SocialActivity.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY socialActivity.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SocialActivity.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.social.kernel.model.SocialActivity"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.social.kernel.model.SocialActivity"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.social.kernel.model.SocialActivity"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.social.kernel.model.SocialActivity"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.social.kernel.model.SocialActivity"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.social.kernel.model.SocialActivity"),
+		true);
+
 	public static final long ACTIVITYSETID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 2L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 4L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 8L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 16L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 32L;
+
 	public static final long MIRRORACTIVITYID_COLUMN_BITMASK = 64L;
+
 	public static final long RECEIVERUSERID_COLUMN_BITMASK = 128L;
+
 	public static final long TYPE_COLUMN_BITMASK = 256L;
+
 	public static final long USERID_COLUMN_BITMASK = 512L;
 
 	/**
@@ -171,12 +191,15 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	 * @param soapModels the soap model instances to convert
 	 * @return the normal model instances
 	 */
-	public static List<SocialActivity> toModels(SocialActivitySoap[] soapModels) {
+	public static List<SocialActivity> toModels(
+		SocialActivitySoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<SocialActivity> models = new ArrayList<SocialActivity>(soapModels.length);
+		List<SocialActivity> models = new ArrayList<SocialActivity>(
+			soapModels.length);
 
 		for (SocialActivitySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -185,8 +208,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.social.kernel.model.SocialActivity"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.social.kernel.model.SocialActivity"));
 
 	public SocialActivityModelImpl() {
 	}
@@ -225,13 +249,18 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+			Function<SocialActivity, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((SocialActivity)this));
 		}
 
@@ -243,36 +272,44 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<SocialActivity, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<SocialActivity, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<SocialActivity, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<SocialActivity, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((SocialActivity)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(SocialActivity)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<SocialActivity, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<SocialActivity, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<SocialActivity, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<SocialActivity, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<SocialActivity, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<SocialActivity, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<SocialActivity, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SocialActivity, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<SocialActivity, Object>>();
-		Map<String, BiConsumer<SocialActivity, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<SocialActivity, ?>>();
-
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<SocialActivity, Object>>();
+		Map<String, BiConsumer<SocialActivity, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<SocialActivity, ?>>();
 
 		attributeGetterFunctions.put(
 			"activityId",
@@ -289,7 +326,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object activityId) {
+				public void accept(
+					SocialActivity socialActivity, Object activityId) {
+
 					socialActivity.setActivityId((Long)activityId);
 				}
 
@@ -309,7 +348,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object groupId) {
+				public void accept(
+					SocialActivity socialActivity, Object groupId) {
+
 					socialActivity.setGroupId((Long)groupId);
 				}
 
@@ -329,7 +370,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object companyId) {
+				public void accept(
+					SocialActivity socialActivity, Object companyId) {
+
 					socialActivity.setCompanyId((Long)companyId);
 				}
 
@@ -349,7 +392,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object userId) {
+				public void accept(
+					SocialActivity socialActivity, Object userId) {
+
 					socialActivity.setUserId((Long)userId);
 				}
 
@@ -369,7 +414,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object createDate) {
+				public void accept(
+					SocialActivity socialActivity, Object createDate) {
+
 					socialActivity.setCreateDate((Long)createDate);
 				}
 
@@ -389,7 +436,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object activitySetId) {
+				public void accept(
+					SocialActivity socialActivity, Object activitySetId) {
+
 					socialActivity.setActivitySetId((Long)activitySetId);
 				}
 
@@ -409,7 +458,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object mirrorActivityId) {
+				public void accept(
+					SocialActivity socialActivity, Object mirrorActivityId) {
+
 					socialActivity.setMirrorActivityId((Long)mirrorActivityId);
 				}
 
@@ -429,7 +480,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object classNameId) {
+				public void accept(
+					SocialActivity socialActivity, Object classNameId) {
+
 					socialActivity.setClassNameId((Long)classNameId);
 				}
 
@@ -449,7 +502,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object classPK) {
+				public void accept(
+					SocialActivity socialActivity, Object classPK) {
+
 					socialActivity.setClassPK((Long)classPK);
 				}
 
@@ -469,8 +524,11 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object parentClassNameId) {
-					socialActivity.setParentClassNameId((Long)parentClassNameId);
+				public void accept(
+					SocialActivity socialActivity, Object parentClassNameId) {
+
+					socialActivity.setParentClassNameId(
+						(Long)parentClassNameId);
 				}
 
 			});
@@ -489,7 +547,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object parentClassPK) {
+				public void accept(
+					SocialActivity socialActivity, Object parentClassPK) {
+
 					socialActivity.setParentClassPK((Long)parentClassPK);
 				}
 
@@ -529,7 +589,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object extraData) {
+				public void accept(
+					SocialActivity socialActivity, Object extraData) {
+
 					socialActivity.setExtraData((String)extraData);
 				}
 
@@ -549,15 +611,18 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 			new BiConsumer<SocialActivity, Object>() {
 
 				@Override
-				public void accept(SocialActivity socialActivity, Object receiverUserId) {
+				public void accept(
+					SocialActivity socialActivity, Object receiverUserId) {
+
 					socialActivity.setReceiverUserId((Long)receiverUserId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -897,8 +962,8 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			SocialActivity.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), SocialActivity.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -911,8 +976,9 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	@Override
 	public SocialActivity toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (SocialActivity)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (SocialActivity)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1006,35 +1072,43 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	public void resetOriginalValues() {
 		SocialActivityModelImpl socialActivityModelImpl = this;
 
-		socialActivityModelImpl._originalGroupId = socialActivityModelImpl._groupId;
+		socialActivityModelImpl._originalGroupId =
+			socialActivityModelImpl._groupId;
 
 		socialActivityModelImpl._setOriginalGroupId = false;
 
-		socialActivityModelImpl._originalCompanyId = socialActivityModelImpl._companyId;
+		socialActivityModelImpl._originalCompanyId =
+			socialActivityModelImpl._companyId;
 
 		socialActivityModelImpl._setOriginalCompanyId = false;
 
-		socialActivityModelImpl._originalUserId = socialActivityModelImpl._userId;
+		socialActivityModelImpl._originalUserId =
+			socialActivityModelImpl._userId;
 
 		socialActivityModelImpl._setOriginalUserId = false;
 
-		socialActivityModelImpl._originalCreateDate = socialActivityModelImpl._createDate;
+		socialActivityModelImpl._originalCreateDate =
+			socialActivityModelImpl._createDate;
 
 		socialActivityModelImpl._setOriginalCreateDate = false;
 
-		socialActivityModelImpl._originalActivitySetId = socialActivityModelImpl._activitySetId;
+		socialActivityModelImpl._originalActivitySetId =
+			socialActivityModelImpl._activitySetId;
 
 		socialActivityModelImpl._setOriginalActivitySetId = false;
 
-		socialActivityModelImpl._originalMirrorActivityId = socialActivityModelImpl._mirrorActivityId;
+		socialActivityModelImpl._originalMirrorActivityId =
+			socialActivityModelImpl._mirrorActivityId;
 
 		socialActivityModelImpl._setOriginalMirrorActivityId = false;
 
-		socialActivityModelImpl._originalClassNameId = socialActivityModelImpl._classNameId;
+		socialActivityModelImpl._originalClassNameId =
+			socialActivityModelImpl._classNameId;
 
 		socialActivityModelImpl._setOriginalClassNameId = false;
 
-		socialActivityModelImpl._originalClassPK = socialActivityModelImpl._classPK;
+		socialActivityModelImpl._originalClassPK =
+			socialActivityModelImpl._classPK;
 
 		socialActivityModelImpl._setOriginalClassPK = false;
 
@@ -1042,7 +1116,8 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 		socialActivityModelImpl._setOriginalType = false;
 
-		socialActivityModelImpl._originalReceiverUserId = socialActivityModelImpl._receiverUserId;
+		socialActivityModelImpl._originalReceiverUserId =
+			socialActivityModelImpl._receiverUserId;
 
 		socialActivityModelImpl._setOriginalReceiverUserId = false;
 
@@ -1051,7 +1126,8 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public CacheModel<SocialActivity> toCacheModel() {
-		SocialActivityCacheModel socialActivityCacheModel = new SocialActivityCacheModel();
+		SocialActivityCacheModel socialActivityCacheModel =
+			new SocialActivityCacheModel();
 
 		socialActivityCacheModel.activityId = getActivityId();
 
@@ -1092,16 +1168,20 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public String toString() {
-		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+			Function<SocialActivity, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1120,18 +1200,22 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SocialActivity, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<SocialActivity, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SocialActivity, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SocialActivity, Object> attributeGetterFunction = entry.getValue();
+			Function<SocialActivity, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1145,10 +1229,12 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = SocialActivity.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		SocialActivity.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			SocialActivity.class, ModelWrapper.class
-		};
+		SocialActivity.class, ModelWrapper.class
+	};
+
 	private long _activityId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -1185,4 +1271,5 @@ public class SocialActivityModelImpl extends BaseModelImpl<SocialActivity>
 	private boolean _setOriginalReceiverUserId;
 	private long _columnBitmask;
 	private SocialActivity _escapedModel;
+
 }

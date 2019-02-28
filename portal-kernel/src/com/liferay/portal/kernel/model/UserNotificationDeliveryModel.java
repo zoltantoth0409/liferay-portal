@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -35,8 +34,10 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface UserNotificationDeliveryModel extends BaseModel<UserNotificationDelivery>,
-	MVCCModel, ShardedModel, TypedModel {
+public interface UserNotificationDeliveryModel
+	extends BaseModel<UserNotificationDelivery>, MVCCModel, ShardedModel,
+			TypedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -277,4 +278,5 @@ public interface UserNotificationDeliveryModel extends BaseModel<UserNotificatio
 
 	@Override
 	public String toXmlString();
+
 }

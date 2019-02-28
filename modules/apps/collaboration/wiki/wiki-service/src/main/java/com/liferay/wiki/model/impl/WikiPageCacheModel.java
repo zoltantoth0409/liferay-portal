@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.wiki.model.WikiPage;
 
 import java.io.Externalizable;
@@ -36,7 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable {
+public class WikiPageCacheModel
+	implements CacheModel<WikiPage>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -274,8 +275,7 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -393,4 +393,5 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 	public long statusByUserId;
 	public String statusByUserName;
 	public long statusDate;
+
 }

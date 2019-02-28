@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
 import com.liferay.shopping.model.ShoppingItem;
 import com.liferay.shopping.model.ShoppingItemField;
 import com.liferay.shopping.model.ShoppingItemPrice;
@@ -54,53 +53,61 @@ import java.util.List;
  * @generated
  */
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
-public interface ShoppingItemLocalService extends BaseLocalService,
-	PersistedModelLocalService {
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
+public interface ShoppingItemLocalService
+	extends BaseLocalService, PersistedModelLocalService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingItemLocalServiceUtil} to access the shopping item local service. Add custom service methods to <code>com.liferay.shopping.service.impl.ShoppingItemLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public ShoppingItem addItem(long userId, long groupId, long categoryId,
-		String sku, String name, String description, String properties,
-		String fieldsQuantities, boolean requiresShipping, int stockQuantity,
-		boolean featured, Boolean sale, boolean smallImage,
-		String smallImageURL, File smallImageFile, boolean mediumImage,
-		String mediumImageURL, File mediumImageFile, boolean largeImage,
-		String largeImageURL, File largeImageFile,
-		List<ShoppingItemField> itemFields, List<ShoppingItemPrice> itemPrices,
-		ServiceContext serviceContext) throws PortalException;
+	public ShoppingItem addItem(
+			long userId, long groupId, long categoryId, String sku, String name,
+			String description, String properties, String fieldsQuantities,
+			boolean requiresShipping, int stockQuantity, boolean featured,
+			Boolean sale, boolean smallImage, String smallImageURL,
+			File smallImageFile, boolean mediumImage, String mediumImageURL,
+			File mediumImageFile, boolean largeImage, String largeImageURL,
+			File largeImageFile, List<ShoppingItemField> itemFields,
+			List<ShoppingItemPrice> itemPrices, ServiceContext serviceContext)
+		throws PortalException;
 
-	public void addItemResources(long itemId, boolean addGroupPermissions,
-		boolean addGuestPermissions) throws PortalException;
+	public void addItemResources(
+			long itemId, boolean addGroupPermissions,
+			boolean addGuestPermissions)
+		throws PortalException;
 
 	public void addItemResources(long itemId, ModelPermissions modelPermissions)
 		throws PortalException;
 
-	public void addItemResources(ShoppingItem item,
-		boolean addGroupPermissions, boolean addGuestPermissions)
+	public void addItemResources(
+			ShoppingItem item, boolean addGroupPermissions,
+			boolean addGuestPermissions)
 		throws PortalException;
 
-	public void addItemResources(ShoppingItem item,
-		ModelPermissions modelPermissions) throws PortalException;
+	public void addItemResources(
+			ShoppingItem item, ModelPermissions modelPermissions)
+		throws PortalException;
 
 	/**
-	* Adds the shopping item to the database. Also notifies the appropriate model listeners.
-	*
-	* @param shoppingItem the shopping item
-	* @return the shopping item that was added
-	*/
+	 * Adds the shopping item to the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param shoppingItem the shopping item
+	 * @return the shopping item that was added
+	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public ShoppingItem addShoppingItem(ShoppingItem shoppingItem);
 
 	/**
-	* Creates a new shopping item with the primary key. Does not add the shopping item to the database.
-	*
-	* @param itemId the primary key for the new shopping item
-	* @return the new shopping item
-	*/
+	 * Creates a new shopping item with the primary key. Does not add the shopping item to the database.
+	 *
+	 * @param itemId the primary key for the new shopping item
+	 * @return the new shopping item
+	 */
 	@Transactional(enabled = false)
 	public ShoppingItem createShoppingItem(long itemId);
 
@@ -112,29 +119,28 @@ public interface ShoppingItemLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @throws PortalException
-	*/
+	 * @throws PortalException
+	 */
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
-	* Deletes the shopping item with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param itemId the primary key of the shopping item
-	* @return the shopping item that was removed
-	* @throws PortalException if a shopping item with the primary key could not be found
-	*/
+	 * Deletes the shopping item with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param itemId the primary key of the shopping item
+	 * @return the shopping item that was removed
+	 * @throws PortalException if a shopping item with the primary key could not be found
+	 */
 	@Indexable(type = IndexableType.DELETE)
-	public ShoppingItem deleteShoppingItem(long itemId)
-		throws PortalException;
+	public ShoppingItem deleteShoppingItem(long itemId) throws PortalException;
 
 	/**
-	* Deletes the shopping item from the database. Also notifies the appropriate model listeners.
-	*
-	* @param shoppingItem the shopping item
-	* @return the shopping item that was removed
-	*/
+	 * Deletes the shopping item from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param shoppingItem the shopping item
+	 * @return the shopping item that was removed
+	 */
 	@Indexable(type = IndexableType.DELETE)
 	public ShoppingItem deleteShoppingItem(ShoppingItem shoppingItem);
 
@@ -142,66 +148,67 @@ public interface ShoppingItemLocalService extends BaseLocalService,
 	public DynamicQuery dynamicQuery();
 
 	/**
-	* Performs a dynamic query on the database and returns the matching rows.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the matching rows
-	*/
+	 * Performs a dynamic query on the database and returns the matching rows.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
-	* Performs a dynamic query on the database and returns a range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @return the range of matching rows
-	*/
+	 * Performs a dynamic query on the database and returns a range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @return the range of matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
-	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching rows
-	*/
+	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param projection the projection to apply to the query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ShoppingItem fetchShoppingItem(long itemId);
@@ -213,8 +220,8 @@ public interface ShoppingItemLocalService extends BaseLocalService,
 	public int getCategoriesItemsCount(long groupId, List<Long> categoryIds);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> getFeaturedItems(long groupId, long categoryId,
-		int numOfItems);
+	public List<ShoppingItem> getFeaturedItems(
+		long groupId, long categoryId, int numOfItems);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -242,21 +249,23 @@ public interface ShoppingItemLocalService extends BaseLocalService,
 	public List<ShoppingItem> getItems(long groupId, long categoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> getItems(long groupId, long categoryId,
-		int start, int end, OrderByComparator<ShoppingItem> obc);
+	public List<ShoppingItem> getItems(
+		long groupId, long categoryId, int start, int end,
+		OrderByComparator<ShoppingItem> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getItemsCount(long groupId, long categoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ShoppingItem[] getItemsPrevAndNext(long itemId,
-		OrderByComparator<ShoppingItem> obc) throws PortalException;
+	public ShoppingItem[] getItemsPrevAndNext(
+			long itemId, OrderByComparator<ShoppingItem> obc)
+		throws PortalException;
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Override
@@ -265,72 +274,77 @@ public interface ShoppingItemLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> getSaleItems(long groupId, long categoryId,
-		int numOfItems);
+	public List<ShoppingItem> getSaleItems(
+		long groupId, long categoryId, int numOfItems);
 
 	/**
-	* Returns the shopping item with the primary key.
-	*
-	* @param itemId the primary key of the shopping item
-	* @return the shopping item
-	* @throws PortalException if a shopping item with the primary key could not be found
-	*/
+	 * Returns the shopping item with the primary key.
+	 *
+	 * @param itemId the primary key of the shopping item
+	 * @return the shopping item
+	 * @throws PortalException if a shopping item with the primary key could not be found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ShoppingItem getShoppingItem(long itemId) throws PortalException;
 
 	/**
-	* Returns a range of all the shopping items.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of shopping items
-	* @param end the upper bound of the range of shopping items (not inclusive)
-	* @return the range of shopping items
-	*/
+	 * Returns a range of all the shopping items.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.shopping.model.impl.ShoppingItemModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of shopping items
+	 * @param end the upper bound of the range of shopping items (not inclusive)
+	 * @return the range of shopping items
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<ShoppingItem> getShoppingItems(int start, int end);
 
 	/**
-	* Returns the number of shopping items.
-	*
-	* @return the number of shopping items
-	*/
+	 * Returns the number of shopping items.
+	 *
+	 * @return the number of shopping items
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getShoppingItemsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> search(long groupId, long[] categoryIds,
-		String keywords, int start, int end);
+	public List<ShoppingItem> search(
+		long groupId, long[] categoryIds, String keywords, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<ShoppingItem> search(long groupId, long[] categoryIds,
-		String keywords, int start, int end, OrderByComparator<ShoppingItem> obc);
+	public List<ShoppingItem> search(
+		long groupId, long[] categoryIds, String keywords, int start, int end,
+		OrderByComparator<ShoppingItem> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long groupId, long[] categoryIds, String keywords);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long groupId, long[] categoryIds, String keywords,
+	public int searchCount(
+		long groupId, long[] categoryIds, String keywords,
 		OrderByComparator<ShoppingItem> obc);
 
-	public ShoppingItem updateItem(long userId, long itemId, long groupId,
-		long categoryId, String sku, String name, String description,
-		String properties, String fieldsQuantities, boolean requiresShipping,
-		int stockQuantity, boolean featured, Boolean sale, boolean smallImage,
-		String smallImageURL, File smallImageFile, boolean mediumImage,
-		String mediumImageURL, File mediumImageFile, boolean largeImage,
-		String largeImageURL, File largeImageFile,
-		List<ShoppingItemField> itemFields, List<ShoppingItemPrice> itemPrices,
-		ServiceContext serviceContext) throws PortalException;
+	public ShoppingItem updateItem(
+			long userId, long itemId, long groupId, long categoryId, String sku,
+			String name, String description, String properties,
+			String fieldsQuantities, boolean requiresShipping,
+			int stockQuantity, boolean featured, Boolean sale,
+			boolean smallImage, String smallImageURL, File smallImageFile,
+			boolean mediumImage, String mediumImageURL, File mediumImageFile,
+			boolean largeImage, String largeImageURL, File largeImageFile,
+			List<ShoppingItemField> itemFields,
+			List<ShoppingItemPrice> itemPrices, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
-	* Updates the shopping item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param shoppingItem the shopping item
-	* @return the shopping item that was updated
-	*/
+	 * Updates the shopping item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * @param shoppingItem the shopping item
+	 * @return the shopping item that was updated
+	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public ShoppingItem updateShoppingItem(ShoppingItem shoppingItem);
+
 }

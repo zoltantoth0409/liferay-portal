@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ShardedModel;
@@ -40,6 +39,7 @@ import java.util.Date;
  */
 @ProviderType
 public interface DLFileRankModel extends BaseModel<DLFileRank>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -237,4 +237,5 @@ public interface DLFileRankModel extends BaseModel<DLFileRank>, ShardedModel {
 
 	@Override
 	public String toXmlString();
+
 }

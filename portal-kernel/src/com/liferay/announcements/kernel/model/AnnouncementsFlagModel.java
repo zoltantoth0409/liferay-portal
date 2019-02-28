@@ -17,7 +17,6 @@ package com.liferay.announcements.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ShardedModel;
@@ -39,8 +38,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AnnouncementsFlagModel extends BaseModel<AnnouncementsFlag>,
-	ShardedModel {
+public interface AnnouncementsFlagModel
+	extends BaseModel<AnnouncementsFlag>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -217,4 +217,5 @@ public interface AnnouncementsFlagModel extends BaseModel<AnnouncementsFlag>,
 
 	@Override
 	public String toXmlString();
+
 }

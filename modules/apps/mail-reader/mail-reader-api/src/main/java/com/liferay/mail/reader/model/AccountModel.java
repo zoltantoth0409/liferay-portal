@@ -17,7 +17,6 @@ package com.liferay.mail.reader.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AccountModel extends AuditedModel, BaseModel<Account>,
-	ShardedModel {
+public interface AccountModel
+	extends AuditedModel, BaseModel<Account>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -554,4 +554,5 @@ public interface AccountModel extends AuditedModel, BaseModel<Account>,
 
 	@Override
 	public String toXmlString();
+
 }

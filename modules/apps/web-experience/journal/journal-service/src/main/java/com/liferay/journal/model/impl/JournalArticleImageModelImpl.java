@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.model.JournalArticleImageModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -54,26 +52,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleImage>
+public class JournalArticleImageModelImpl
+	extends BaseModelImpl<JournalArticleImage>
 	implements JournalArticleImageModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a journal article image model instance should use the <code>JournalArticleImage</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "JournalArticleImage";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "articleImageId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "articleId", Types.VARCHAR },
-			{ "version", Types.DOUBLE },
-			{ "elInstanceId", Types.VARCHAR },
-			{ "elName", Types.VARCHAR },
-			{ "languageId", Types.VARCHAR },
-			{ "tempImage", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"articleImageId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"articleId", Types.VARCHAR},
+		{"version", Types.DOUBLE}, {"elInstanceId", Types.VARCHAR},
+		{"elName", Types.VARCHAR}, {"languageId", Types.VARCHAR},
+		{"tempImage", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("articleImageId", Types.BIGINT);
@@ -87,32 +86,58 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		TABLE_COLUMNS_MAP.put("tempImage", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table JournalArticleImage (articleImageId LONG not null primary key,groupId LONG,companyId LONG,articleId VARCHAR(75) null,version DOUBLE,elInstanceId VARCHAR(75) null,elName VARCHAR(75) null,languageId VARCHAR(75) null,tempImage BOOLEAN)";
-	public static final String TABLE_SQL_DROP = "drop table JournalArticleImage";
-	public static final String ORDER_BY_JPQL = " ORDER BY journalArticleImage.articleImageId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY JournalArticleImage.articleImageId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table JournalArticleImage (articleImageId LONG not null primary key,groupId LONG,companyId LONG,articleId VARCHAR(75) null,version DOUBLE,elInstanceId VARCHAR(75) null,elName VARCHAR(75) null,languageId VARCHAR(75) null,tempImage BOOLEAN)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table JournalArticleImage";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY journalArticleImage.articleImageId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY JournalArticleImage.articleImageId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.journal.model.JournalArticleImage"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.journal.model.JournalArticleImage"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.journal.model.JournalArticleImage"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.journal.model.JournalArticleImage"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.journal.model.JournalArticleImage"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.journal.model.JournalArticleImage"),
+		true);
+
 	public static final long ARTICLEID_COLUMN_BITMASK = 1L;
+
 	public static final long ELINSTANCEID_COLUMN_BITMASK = 2L;
+
 	public static final long ELNAME_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long LANGUAGEID_COLUMN_BITMASK = 16L;
+
 	public static final long TEMPIMAGE_COLUMN_BITMASK = 32L;
+
 	public static final long VERSION_COLUMN_BITMASK = 64L;
+
 	public static final long ARTICLEIMAGEID_COLUMN_BITMASK = 128L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.journal.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.journal.model.JournalArticleImage"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.journal.model.JournalArticleImage"));
 
 	public JournalArticleImageModelImpl() {
 	}
@@ -151,14 +176,18 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<JournalArticleImage, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalArticleImage, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((JournalArticleImage)this));
 		}
 
@@ -170,38 +199,47 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<JournalArticleImage, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<JournalArticleImage, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<JournalArticleImage, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<JournalArticleImage, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((JournalArticleImage)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(JournalArticleImage)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<JournalArticleImage, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<JournalArticleImage, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<JournalArticleImage, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<JournalArticleImage, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<JournalArticleImage, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<JournalArticleImage, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<JournalArticleImage, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<JournalArticleImage, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<JournalArticleImage, Object>>();
-		Map<String, BiConsumer<JournalArticleImage, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<JournalArticleImage, ?>>();
-
+		Map<String, Function<JournalArticleImage, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<JournalArticleImage, Object>>();
+		Map<String, BiConsumer<JournalArticleImage, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<JournalArticleImage, ?>>();
 
 		attributeGetterFunctions.put(
 			"articleImageId",
@@ -218,7 +256,10 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object articleImageId) {
+				public void accept(
+					JournalArticleImage journalArticleImage,
+					Object articleImageId) {
+
 					journalArticleImage.setArticleImageId((Long)articleImageId);
 				}
 
@@ -238,7 +279,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object groupId) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object groupId) {
+
 					journalArticleImage.setGroupId((Long)groupId);
 				}
 
@@ -258,7 +301,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object companyId) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object companyId) {
+
 					journalArticleImage.setCompanyId((Long)companyId);
 				}
 
@@ -278,7 +323,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object articleId) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object articleId) {
+
 					journalArticleImage.setArticleId((String)articleId);
 				}
 
@@ -298,7 +345,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object version) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object version) {
+
 					journalArticleImage.setVersion((Double)version);
 				}
 
@@ -318,7 +367,10 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object elInstanceId) {
+				public void accept(
+					JournalArticleImage journalArticleImage,
+					Object elInstanceId) {
+
 					journalArticleImage.setElInstanceId((String)elInstanceId);
 				}
 
@@ -338,7 +390,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object elName) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object elName) {
+
 					journalArticleImage.setElName((String)elName);
 				}
 
@@ -358,7 +412,10 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object languageId) {
+				public void accept(
+					JournalArticleImage journalArticleImage,
+					Object languageId) {
+
 					journalArticleImage.setLanguageId((String)languageId);
 				}
 
@@ -378,15 +435,18 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 			new BiConsumer<JournalArticleImage, Object>() {
 
 				@Override
-				public void accept(JournalArticleImage journalArticleImage, Object tempImage) {
+				public void accept(
+					JournalArticleImage journalArticleImage, Object tempImage) {
+
 					journalArticleImage.setTempImage((Boolean)tempImage);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -586,8 +646,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			JournalArticleImage.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), JournalArticleImage.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -600,8 +661,9 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 	@Override
 	public JournalArticleImage toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (JournalArticleImage)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (JournalArticleImage)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -609,7 +671,8 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public Object clone() {
-		JournalArticleImageImpl journalArticleImageImpl = new JournalArticleImageImpl();
+		JournalArticleImageImpl journalArticleImageImpl =
+			new JournalArticleImageImpl();
 
 		journalArticleImageImpl.setArticleImageId(getArticleImageId());
 		journalArticleImageImpl.setGroupId(getGroupId());
@@ -682,23 +745,30 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 	public void resetOriginalValues() {
 		JournalArticleImageModelImpl journalArticleImageModelImpl = this;
 
-		journalArticleImageModelImpl._originalGroupId = journalArticleImageModelImpl._groupId;
+		journalArticleImageModelImpl._originalGroupId =
+			journalArticleImageModelImpl._groupId;
 
 		journalArticleImageModelImpl._setOriginalGroupId = false;
 
-		journalArticleImageModelImpl._originalArticleId = journalArticleImageModelImpl._articleId;
+		journalArticleImageModelImpl._originalArticleId =
+			journalArticleImageModelImpl._articleId;
 
-		journalArticleImageModelImpl._originalVersion = journalArticleImageModelImpl._version;
+		journalArticleImageModelImpl._originalVersion =
+			journalArticleImageModelImpl._version;
 
 		journalArticleImageModelImpl._setOriginalVersion = false;
 
-		journalArticleImageModelImpl._originalElInstanceId = journalArticleImageModelImpl._elInstanceId;
+		journalArticleImageModelImpl._originalElInstanceId =
+			journalArticleImageModelImpl._elInstanceId;
 
-		journalArticleImageModelImpl._originalElName = journalArticleImageModelImpl._elName;
+		journalArticleImageModelImpl._originalElName =
+			journalArticleImageModelImpl._elName;
 
-		journalArticleImageModelImpl._originalLanguageId = journalArticleImageModelImpl._languageId;
+		journalArticleImageModelImpl._originalLanguageId =
+			journalArticleImageModelImpl._languageId;
 
-		journalArticleImageModelImpl._originalTempImage = journalArticleImageModelImpl._tempImage;
+		journalArticleImageModelImpl._originalTempImage =
+			journalArticleImageModelImpl._tempImage;
 
 		journalArticleImageModelImpl._setOriginalTempImage = false;
 
@@ -707,7 +777,8 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public CacheModel<JournalArticleImage> toCacheModel() {
-		JournalArticleImageCacheModel journalArticleImageCacheModel = new JournalArticleImageCacheModel();
+		JournalArticleImageCacheModel journalArticleImageCacheModel =
+			new JournalArticleImageCacheModel();
 
 		journalArticleImageCacheModel.articleImageId = getArticleImageId();
 
@@ -756,17 +827,20 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public String toString() {
-		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<JournalArticleImage, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalArticleImage, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -785,19 +859,22 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<JournalArticleImage, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<JournalArticleImage, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalArticleImage, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalArticleImage, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalArticleImage, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -811,10 +888,12 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = JournalArticleImage.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		JournalArticleImage.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			JournalArticleImage.class, ModelWrapper.class
-		};
+		JournalArticleImage.class, ModelWrapper.class
+	};
+
 	private long _articleImageId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -836,4 +915,5 @@ public class JournalArticleImageModelImpl extends BaseModelImpl<JournalArticleIm
 	private boolean _setOriginalTempImage;
 	private long _columnBitmask;
 	private JournalArticleImage _escapedModel;
+
 }

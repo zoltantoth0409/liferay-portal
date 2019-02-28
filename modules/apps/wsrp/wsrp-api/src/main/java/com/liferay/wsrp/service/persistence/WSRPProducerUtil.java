@@ -19,19 +19,17 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
 import com.liferay.wsrp.model.WSRPProducer;
-
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-
-import org.osgi.util.tracker.ServiceTracker;
 
 import java.io.Serializable;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * The persistence utility for the wsrp producer service. This utility wraps <code>com.liferay.wsrp.service.persistence.impl.WSRPProducerPersistenceImpl</code> and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
@@ -46,6 +44,7 @@ import java.util.Set;
  */
 @ProviderType
 public class WSRPProducerUtil {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -78,6 +77,7 @@ public class WSRPProducerUtil {
 	 */
 	public static Map<Serializable, WSRPProducer> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		return getPersistence().fetchByPrimaryKeys(primaryKeys);
 	}
 
@@ -86,6 +86,7 @@ public class WSRPProducerUtil {
 	 */
 	public static List<WSRPProducer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery) {
+
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -94,6 +95,7 @@ public class WSRPProducerUtil {
 	 */
 	public static List<WSRPProducer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end) {
+
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -103,9 +105,9 @@ public class WSRPProducerUtil {
 	public static List<WSRPProducer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .findWithDynamicQuery(dynamicQuery, start, end,
-			orderByComparator);
+
+		return getPersistence().findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -118,595 +120,630 @@ public class WSRPProducerUtil {
 	/**
 	 * @see com.liferay.portal.kernel.service.persistence.BasePersistence#update(com.liferay.portal.kernel.model.BaseModel, ServiceContext)
 	 */
-	public static WSRPProducer update(WSRPProducer wsrpProducer,
-		ServiceContext serviceContext) {
+	public static WSRPProducer update(
+		WSRPProducer wsrpProducer, ServiceContext serviceContext) {
+
 		return getPersistence().update(wsrpProducer, serviceContext);
 	}
 
 	/**
-	* Returns all the wsrp producers where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the matching wsrp producers
-	*/
+	 * Returns all the wsrp producers where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the matching wsrp producers
+	 */
 	public static List<WSRPProducer> findByUuid(String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
 	/**
-	* Returns a range of all the wsrp producers where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @return the range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid(String uuid, int start, int end) {
+	 * Returns a range of all the wsrp producers where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @return the range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid(
+		String uuid, int start, int end) {
+
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid(String uuid, int start,
-		int end, OrderByComparator<WSRPProducer> orderByComparator) {
+	 * Returns an ordered range of all the wsrp producers where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid(
+		String uuid, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator) {
+
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where uuid = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid(String uuid, int start,
-		int end, OrderByComparator<WSRPProducer> orderByComparator,
+	 * Returns an ordered range of all the wsrp producers where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid(
+		String uuid, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache) {
-		return getPersistence()
-				   .findByUuid(uuid, start, end, orderByComparator,
-			retrieveFromCache);
+
+		return getPersistence().findByUuid(
+			uuid, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByUuid_First(String uuid,
-		OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the first wsrp producer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByUuid_First(
+			String uuid, OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByUuid_First(String uuid,
-		OrderByComparator<WSRPProducer> orderByComparator) {
+	 * Returns the first wsrp producer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByUuid_First(
+		String uuid, OrderByComparator<WSRPProducer> orderByComparator) {
+
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
 	/**
-	* Returns the last wsrp producer in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByUuid_Last(String uuid,
-		OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the last wsrp producer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByUuid_Last(
+			String uuid, OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
 	/**
-	* Returns the last wsrp producer in the ordered set where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByUuid_Last(String uuid,
-		OrderByComparator<WSRPProducer> orderByComparator) {
+	 * Returns the last wsrp producer in the ordered set where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByUuid_Last(
+		String uuid, OrderByComparator<WSRPProducer> orderByComparator) {
+
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
 	/**
-	* Returns the wsrp producers before and after the current wsrp producer in the ordered set where uuid = &#63;.
-	*
-	* @param wsrpProducerId the primary key of the current wsrp producer
-	* @param uuid the uuid
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next wsrp producer
-	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
-	*/
-	public static WSRPProducer[] findByUuid_PrevAndNext(long wsrpProducerId,
-		String uuid, OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the wsrp producers before and after the current wsrp producer in the ordered set where uuid = &#63;.
+	 *
+	 * @param wsrpProducerId the primary key of the current wsrp producer
+	 * @param uuid the uuid
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next wsrp producer
+	 * @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
+	 */
+	public static WSRPProducer[] findByUuid_PrevAndNext(
+			long wsrpProducerId, String uuid,
+			OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByUuid_PrevAndNext(wsrpProducerId, uuid,
-			orderByComparator);
+
+		return getPersistence().findByUuid_PrevAndNext(
+			wsrpProducerId, uuid, orderByComparator);
 	}
 
 	/**
-	* Removes all the wsrp producers where uuid = &#63; from the database.
-	*
-	* @param uuid the uuid
-	*/
+	 * Removes all the wsrp producers where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 */
 	public static void removeByUuid(String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
 	/**
-	* Returns the number of wsrp producers where uuid = &#63;.
-	*
-	* @param uuid the uuid
-	* @return the number of matching wsrp producers
-	*/
+	 * Returns the number of wsrp producers where uuid = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @return the number of matching wsrp producers
+	 */
 	public static int countByUuid(String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
 	/**
-	* Returns the wsrp producer where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchProducerException</code> if it could not be found.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
+	 * Returns the wsrp producer where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchProducerException</code> if it could not be found.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
 	public static WSRPProducer findByUUID_G(String uuid, long groupId)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Returns the wsrp producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
+	 * Returns the wsrp producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
 	public static WSRPProducer fetchByUUID_G(String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Returns the wsrp producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	 * Returns the wsrp producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
 	/**
-	* Removes the wsrp producer where uuid = &#63; and groupId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the wsrp producer that was removed
-	*/
+	 * Removes the wsrp producer where uuid = &#63; and groupId = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the wsrp producer that was removed
+	 */
 	public static WSRPProducer removeByUUID_G(String uuid, long groupId)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Returns the number of wsrp producers where uuid = &#63; and groupId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param groupId the group ID
-	* @return the number of matching wsrp producers
-	*/
+	 * Returns the number of wsrp producers where uuid = &#63; and groupId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param groupId the group ID
+	 * @return the number of matching wsrp producers
+	 */
 	public static int countByUUID_G(String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
 	/**
-	* Returns all the wsrp producers where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the matching wsrp producers
-	*/
+	 * Returns all the wsrp producers where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @return the matching wsrp producers
+	 */
 	public static List<WSRPProducer> findByUuid_C(String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
 	/**
-	* Returns a range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @return the range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	 * Returns a range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @return the range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
+	 * Returns an ordered range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().findByUuid_C(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<WSRPProducer> orderByComparator,
+	 * Returns an ordered range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache) {
-		return getPersistence()
-				   .findByUuid_C(uuid, companyId, start, end,
-			orderByComparator, retrieveFromCache);
+
+		return getPersistence().findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the first wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByUuid_C_First(uuid, companyId, orderByComparator);
+
+		return getPersistence().findByUuid_C_First(
+			uuid, companyId, orderByComparator);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the last wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the last wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
-	}
-
-	/**
-	* Returns the wsrp producers before and after the current wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
-	*
-	* @param wsrpProducerId the primary key of the current wsrp producer
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next wsrp producer
-	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
-	*/
-	public static WSRPProducer[] findByUuid_C_PrevAndNext(long wsrpProducerId,
+	 * Returns the first wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByUuid_C_First(
 		String uuid, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
-		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByUuid_C_PrevAndNext(wsrpProducerId, uuid, companyId,
-			orderByComparator);
+		OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 	}
 
 	/**
-	* Removes all the wsrp producers where uuid = &#63; and companyId = &#63; from the database.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	*/
+	 * Returns the last wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<WSRPProducer> orderByComparator)
+		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
+		return getPersistence().findByUuid_C_Last(
+			uuid, companyId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByUuid_C_Last(
+		String uuid, long companyId,
+		OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
+	}
+
+	/**
+	 * Returns the wsrp producers before and after the current wsrp producer in the ordered set where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param wsrpProducerId the primary key of the current wsrp producer
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next wsrp producer
+	 * @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
+	 */
+	public static WSRPProducer[] findByUuid_C_PrevAndNext(
+			long wsrpProducerId, String uuid, long companyId,
+			OrderByComparator<WSRPProducer> orderByComparator)
+		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
+		return getPersistence().findByUuid_C_PrevAndNext(
+			wsrpProducerId, uuid, companyId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the wsrp producers where uuid = &#63; and companyId = &#63; from the database.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 */
 	public static void removeByUuid_C(String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
 	/**
-	* Returns the number of wsrp producers where uuid = &#63; and companyId = &#63;.
-	*
-	* @param uuid the uuid
-	* @param companyId the company ID
-	* @return the number of matching wsrp producers
-	*/
+	 * Returns the number of wsrp producers where uuid = &#63; and companyId = &#63;.
+	 *
+	 * @param uuid the uuid
+	 * @param companyId the company ID
+	 * @return the number of matching wsrp producers
+	 */
 	public static int countByUuid_C(String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
 	/**
-	* Returns all the wsrp producers where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the matching wsrp producers
-	*/
+	 * Returns all the wsrp producers where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @return the matching wsrp producers
+	 */
 	public static List<WSRPProducer> findByCompanyId(long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
 	/**
-	* Returns a range of all the wsrp producers where companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @return the range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByCompanyId(long companyId, int start,
-		int end) {
+	 * Returns a range of all the wsrp producers where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @return the range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByCompanyId(
+		long companyId, int start, int end) {
+
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .findByCompanyId(companyId, start, end, orderByComparator);
+	 * Returns an ordered range of all the wsrp producers where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().findByCompanyId(
+			companyId, start, end, orderByComparator);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers where companyId = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param companyId the company ID
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the ordered range of matching wsrp producers
-	*/
-	public static List<WSRPProducer> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<WSRPProducer> orderByComparator,
+	 * Returns an ordered range of all the wsrp producers where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param companyId the company ID
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of matching wsrp producers
+	 */
+	public static List<WSRPProducer> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache) {
-		return getPersistence()
-				   .findByCompanyId(companyId, start, end, orderByComparator,
-			retrieveFromCache);
+
+		return getPersistence().findByCompanyId(
+			companyId, start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByCompanyId_First(long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the first wsrp producer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByCompanyId_First(
+			long companyId, OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByCompanyId_First(companyId, orderByComparator);
+
+		return getPersistence().findByCompanyId_First(
+			companyId, orderByComparator);
 	}
 
 	/**
-	* Returns the first wsrp producer in the ordered set where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByCompanyId_First(long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .fetchByCompanyId_First(companyId, orderByComparator);
+	 * Returns the first wsrp producer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByCompanyId_First(
+		long companyId, OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().fetchByCompanyId_First(
+			companyId, orderByComparator);
 	}
 
 	/**
-	* Returns the last wsrp producer in the ordered set where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer
-	* @throws NoSuchProducerException if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer findByCompanyId_Last(long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
+	 * Returns the last wsrp producer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer
+	 * @throws NoSuchProducerException if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer findByCompanyId_Last(
+			long companyId, OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByCompanyId_Last(companyId, orderByComparator);
+
+		return getPersistence().findByCompanyId_Last(
+			companyId, orderByComparator);
 	}
 
 	/**
-	* Returns the last wsrp producer in the ordered set where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
-	public static WSRPProducer fetchByCompanyId_Last(long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator) {
-		return getPersistence()
-				   .fetchByCompanyId_Last(companyId, orderByComparator);
+	 * Returns the last wsrp producer in the ordered set where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
+	public static WSRPProducer fetchByCompanyId_Last(
+		long companyId, OrderByComparator<WSRPProducer> orderByComparator) {
+
+		return getPersistence().fetchByCompanyId_Last(
+			companyId, orderByComparator);
 	}
 
 	/**
-	* Returns the wsrp producers before and after the current wsrp producer in the ordered set where companyId = &#63;.
-	*
-	* @param wsrpProducerId the primary key of the current wsrp producer
-	* @param companyId the company ID
-	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	* @return the previous, current, and next wsrp producer
-	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
-	*/
+	 * Returns the wsrp producers before and after the current wsrp producer in the ordered set where companyId = &#63;.
+	 *
+	 * @param wsrpProducerId the primary key of the current wsrp producer
+	 * @param companyId the company ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next wsrp producer
+	 * @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
+	 */
 	public static WSRPProducer[] findByCompanyId_PrevAndNext(
-		long wsrpProducerId, long companyId,
-		OrderByComparator<WSRPProducer> orderByComparator)
+			long wsrpProducerId, long companyId,
+			OrderByComparator<WSRPProducer> orderByComparator)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
-		return getPersistence()
-				   .findByCompanyId_PrevAndNext(wsrpProducerId, companyId,
-			orderByComparator);
+
+		return getPersistence().findByCompanyId_PrevAndNext(
+			wsrpProducerId, companyId, orderByComparator);
 	}
 
 	/**
-	* Removes all the wsrp producers where companyId = &#63; from the database.
-	*
-	* @param companyId the company ID
-	*/
+	 * Removes all the wsrp producers where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company ID
+	 */
 	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
 	/**
-	* Returns the number of wsrp producers where companyId = &#63;.
-	*
-	* @param companyId the company ID
-	* @return the number of matching wsrp producers
-	*/
+	 * Returns the number of wsrp producers where companyId = &#63;.
+	 *
+	 * @param companyId the company ID
+	 * @return the number of matching wsrp producers
+	 */
 	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
 	/**
-	* Caches the wsrp producer in the entity cache if it is enabled.
-	*
-	* @param wsrpProducer the wsrp producer
-	*/
+	 * Caches the wsrp producer in the entity cache if it is enabled.
+	 *
+	 * @param wsrpProducer the wsrp producer
+	 */
 	public static void cacheResult(WSRPProducer wsrpProducer) {
 		getPersistence().cacheResult(wsrpProducer);
 	}
 
 	/**
-	* Caches the wsrp producers in the entity cache if it is enabled.
-	*
-	* @param wsrpProducers the wsrp producers
-	*/
+	 * Caches the wsrp producers in the entity cache if it is enabled.
+	 *
+	 * @param wsrpProducers the wsrp producers
+	 */
 	public static void cacheResult(List<WSRPProducer> wsrpProducers) {
 		getPersistence().cacheResult(wsrpProducers);
 	}
 
 	/**
-	* Creates a new wsrp producer with the primary key. Does not add the wsrp producer to the database.
-	*
-	* @param wsrpProducerId the primary key for the new wsrp producer
-	* @return the new wsrp producer
-	*/
+	 * Creates a new wsrp producer with the primary key. Does not add the wsrp producer to the database.
+	 *
+	 * @param wsrpProducerId the primary key for the new wsrp producer
+	 * @return the new wsrp producer
+	 */
 	public static WSRPProducer create(long wsrpProducerId) {
 		return getPersistence().create(wsrpProducerId);
 	}
 
 	/**
-	* Removes the wsrp producer with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpProducerId the primary key of the wsrp producer
-	* @return the wsrp producer that was removed
-	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
-	*/
+	 * Removes the wsrp producer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducerId the primary key of the wsrp producer
+	 * @return the wsrp producer that was removed
+	 * @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
+	 */
 	public static WSRPProducer remove(long wsrpProducerId)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().remove(wsrpProducerId);
 	}
 
@@ -715,100 +752,103 @@ public class WSRPProducerUtil {
 	}
 
 	/**
-	* Returns the wsrp producer with the primary key or throws a <code>NoSuchProducerException</code> if it could not be found.
-	*
-	* @param wsrpProducerId the primary key of the wsrp producer
-	* @return the wsrp producer
-	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
-	*/
+	 * Returns the wsrp producer with the primary key or throws a <code>NoSuchProducerException</code> if it could not be found.
+	 *
+	 * @param wsrpProducerId the primary key of the wsrp producer
+	 * @return the wsrp producer
+	 * @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
+	 */
 	public static WSRPProducer findByPrimaryKey(long wsrpProducerId)
 		throws com.liferay.wsrp.exception.NoSuchProducerException {
+
 		return getPersistence().findByPrimaryKey(wsrpProducerId);
 	}
 
 	/**
-	* Returns the wsrp producer with the primary key or returns <code>null</code> if it could not be found.
-	*
-	* @param wsrpProducerId the primary key of the wsrp producer
-	* @return the wsrp producer, or <code>null</code> if a wsrp producer with the primary key could not be found
-	*/
+	 * Returns the wsrp producer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpProducerId the primary key of the wsrp producer
+	 * @return the wsrp producer, or <code>null</code> if a wsrp producer with the primary key could not be found
+	 */
 	public static WSRPProducer fetchByPrimaryKey(long wsrpProducerId) {
 		return getPersistence().fetchByPrimaryKey(wsrpProducerId);
 	}
 
 	/**
-	* Returns all the wsrp producers.
-	*
-	* @return the wsrp producers
-	*/
+	 * Returns all the wsrp producers.
+	 *
+	 * @return the wsrp producers
+	 */
 	public static List<WSRPProducer> findAll() {
 		return getPersistence().findAll();
 	}
 
 	/**
-	* Returns a range of all the wsrp producers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @return the range of wsrp producers
-	*/
+	 * Returns a range of all the wsrp producers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @return the range of wsrp producers
+	 */
 	public static List<WSRPProducer> findAll(int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of wsrp producers
-	*/
-	public static List<WSRPProducer> findAll(int start, int end,
-		OrderByComparator<WSRPProducer> orderByComparator) {
+	 * Returns an ordered range of all the wsrp producers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of wsrp producers
+	 */
+	public static List<WSRPProducer> findAll(
+		int start, int end, OrderByComparator<WSRPProducer> orderByComparator) {
+
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
-	* Returns an ordered range of all the wsrp producers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the ordered range of wsrp producers
-	*/
-	public static List<WSRPProducer> findAll(int start, int end,
-		OrderByComparator<WSRPProducer> orderByComparator,
+	 * Returns an ordered range of all the wsrp producers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the ordered range of wsrp producers
+	 */
+	public static List<WSRPProducer> findAll(
+		int start, int end, OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache) {
-		return getPersistence()
-				   .findAll(start, end, orderByComparator, retrieveFromCache);
+
+		return getPersistence().findAll(
+			start, end, orderByComparator, retrieveFromCache);
 	}
 
 	/**
-	* Removes all the wsrp producers from the database.
-	*/
+	 * Removes all the wsrp producers from the database.
+	 */
 	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
 	/**
-	* Returns the number of wsrp producers.
-	*
-	* @return the number of wsrp producers
-	*/
+	 * Returns the number of wsrp producers.
+	 *
+	 * @return the number of wsrp producers
+	 */
 	public static int countAll() {
 		return getPersistence().countAll();
 	}
@@ -821,17 +861,22 @@ public class WSRPProducerUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<WSRPProducerPersistence, WSRPProducerPersistence> _serviceTracker;
+	private static ServiceTracker
+		<WSRPProducerPersistence, WSRPProducerPersistence> _serviceTracker;
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(WSRPProducerPersistence.class);
 
-		ServiceTracker<WSRPProducerPersistence, WSRPProducerPersistence> serviceTracker =
-			new ServiceTracker<WSRPProducerPersistence, WSRPProducerPersistence>(bundle.getBundleContext(),
-				WSRPProducerPersistence.class, null);
+		ServiceTracker<WSRPProducerPersistence, WSRPProducerPersistence>
+			serviceTracker =
+				new ServiceTracker
+					<WSRPProducerPersistence, WSRPProducerPersistence>(
+						bundle.getBundleContext(),
+						WSRPProducerPersistence.class, null);
 
 		serviceTracker.open();
 
 		_serviceTracker = serviceTracker;
 	}
+
 }

@@ -17,7 +17,6 @@ package com.liferay.polls.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -45,8 +44,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface PollsQuestionModel extends BaseModel<PollsQuestion>,
-	LocalizedModel, ShardedModel, StagedGroupedModel {
+public interface PollsQuestionModel
+	extends BaseModel<PollsQuestion>, LocalizedModel, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -390,8 +391,8 @@ public interface PollsQuestionModel extends BaseModel<PollsQuestion>,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -408,8 +409,8 @@ public interface PollsQuestionModel extends BaseModel<PollsQuestion>,
 	 * @param descriptionMap the locales and localized descriptions of this polls question
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the expiration date of this polls question.
@@ -524,4 +525,5 @@ public interface PollsQuestionModel extends BaseModel<PollsQuestion>,
 
 	@Override
 	public String toXmlString();
+
 }

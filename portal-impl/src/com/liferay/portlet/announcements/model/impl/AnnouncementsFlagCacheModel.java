@@ -17,7 +17,6 @@ package com.liferay.portlet.announcements.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.announcements.kernel.model.AnnouncementsFlag;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class AnnouncementsFlagCacheModel implements CacheModel<AnnouncementsFlag>,
-	Externalizable {
+public class AnnouncementsFlagCacheModel
+	implements CacheModel<AnnouncementsFlag>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class AnnouncementsFlagCacheModel implements CacheModel<AnnouncementsFlag
 			return false;
 		}
 
-		AnnouncementsFlagCacheModel announcementsFlagCacheModel = (AnnouncementsFlagCacheModel)obj;
+		AnnouncementsFlagCacheModel announcementsFlagCacheModel =
+			(AnnouncementsFlagCacheModel)obj;
 
 		if (flagId == announcementsFlagCacheModel.flagId) {
 			return true;
@@ -85,7 +86,8 @@ public class AnnouncementsFlagCacheModel implements CacheModel<AnnouncementsFlag
 
 	@Override
 	public AnnouncementsFlag toEntityModel() {
-		AnnouncementsFlagImpl announcementsFlagImpl = new AnnouncementsFlagImpl();
+		AnnouncementsFlagImpl announcementsFlagImpl =
+			new AnnouncementsFlagImpl();
 
 		announcementsFlagImpl.setFlagId(flagId);
 		announcementsFlagImpl.setCompanyId(companyId);
@@ -121,8 +123,7 @@ public class AnnouncementsFlagCacheModel implements CacheModel<AnnouncementsFlag
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(flagId);
 
 		objectOutput.writeLong(companyId);
@@ -141,4 +142,5 @@ public class AnnouncementsFlagCacheModel implements CacheModel<AnnouncementsFlag
 	public long createDate;
 	public long entryId;
 	public int value;
+
 }

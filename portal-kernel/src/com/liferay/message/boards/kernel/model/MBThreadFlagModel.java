@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MBThreadFlagModel extends BaseModel<MBThreadFlag>, ShardedModel,
-	StagedGroupedModel {
+public interface MBThreadFlagModel
+	extends BaseModel<MBThreadFlag>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -293,4 +293,5 @@ public interface MBThreadFlagModel extends BaseModel<MBThreadFlag>, ShardedModel
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.social.privatemessaging.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface UserThreadModel extends AuditedModel, BaseModel<UserThread>,
-	ShardedModel {
+public interface UserThreadModel
+	extends AuditedModel, BaseModel<UserThread>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -300,4 +300,5 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread>,
 
 	@Override
 	public String toXmlString();
+
 }

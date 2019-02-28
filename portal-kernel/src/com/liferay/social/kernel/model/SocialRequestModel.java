@@ -17,7 +17,6 @@ package com.liferay.social.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -39,8 +38,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface SocialRequestModel extends AttachedModel,
-	BaseModel<SocialRequest>, ShardedModel {
+public interface SocialRequestModel
+	extends AttachedModel, BaseModel<SocialRequest>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -345,4 +345,5 @@ public interface SocialRequestModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

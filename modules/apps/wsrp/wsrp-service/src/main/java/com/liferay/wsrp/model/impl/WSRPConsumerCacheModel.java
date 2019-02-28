@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.wsrp.model.WSRPConsumer;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
-	Externalizable {
+public class WSRPConsumerCacheModel
+	implements CacheModel<WSRPConsumer>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 			return false;
 		}
 
-		WSRPConsumerCacheModel wsrpConsumerCacheModel = (WSRPConsumerCacheModel)obj;
+		WSRPConsumerCacheModel wsrpConsumerCacheModel =
+			(WSRPConsumerCacheModel)obj;
 
 		if (wsrpConsumerId == wsrpConsumerCacheModel.wsrpConsumerId) {
 			return true;
@@ -152,14 +153,16 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 			wsrpConsumerImpl.setRegistrationContextString("");
 		}
 		else {
-			wsrpConsumerImpl.setRegistrationContextString(registrationContextString);
+			wsrpConsumerImpl.setRegistrationContextString(
+				registrationContextString);
 		}
 
 		if (registrationPropertiesString == null) {
 			wsrpConsumerImpl.setRegistrationPropertiesString("");
 		}
 		else {
-			wsrpConsumerImpl.setRegistrationPropertiesString(registrationPropertiesString);
+			wsrpConsumerImpl.setRegistrationPropertiesString(
+				registrationPropertiesString);
 		}
 
 		if (forwardCookies == null) {
@@ -216,8 +219,7 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -304,4 +306,5 @@ public class WSRPConsumerCacheModel implements CacheModel<WSRPConsumer>,
 	public String forwardHeaders;
 	public String markupCharacterSets;
 	public long lastPublishDate;
+
 }

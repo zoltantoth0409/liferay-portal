@@ -27,16 +27,21 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see ShoppingItemPriceModel
  * @generated
  */
-@ImplementationClassName("com.liferay.shopping.model.impl.ShoppingItemPriceImpl")
+@ImplementationClassName(
+	"com.liferay.shopping.model.impl.ShoppingItemPriceImpl"
+)
 @ProviderType
-public interface ShoppingItemPrice extends ShoppingItemPriceModel, PersistedModel {
+public interface ShoppingItemPrice
+	extends ShoppingItemPriceModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.shopping.model.impl.ShoppingItemPriceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<ShoppingItemPrice, Long> ITEM_PRICE_ID_ACCESSOR =
-		new Accessor<ShoppingItemPrice, Long>() {
+	public static final Accessor<ShoppingItemPrice, Long>
+		ITEM_PRICE_ID_ACCESSOR = new Accessor<ShoppingItemPrice, Long>() {
+
 			@Override
 			public Long get(ShoppingItemPrice shoppingItemPrice) {
 				return shoppingItemPrice.getItemPriceId();
@@ -51,5 +56,7 @@ public interface ShoppingItemPrice extends ShoppingItemPriceModel, PersistedMode
 			public Class<ShoppingItemPrice> getTypeClass() {
 				return ShoppingItemPrice.class;
 			}
+
 		};
+
 }

@@ -17,7 +17,6 @@ package com.liferay.journal.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -50,9 +49,11 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface JournalArticleModel extends AttachedModel,
-	BaseModel<JournalArticle>, LocalizedModel, ResourcedModel, ShardedModel,
-	StagedGroupedModel, TrashedModel, WorkflowedModel {
+public interface JournalArticleModel
+	extends AttachedModel, BaseModel<JournalArticle>, LocalizedModel,
+			ResourcedModel, ShardedModel, StagedGroupedModel, TrashedModel,
+			WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -530,8 +531,8 @@ public interface JournalArticleModel extends AttachedModel,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -548,8 +549,8 @@ public interface JournalArticleModel extends AttachedModel,
 	 * @param descriptionMap the locales and localized descriptions of this journal article
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the content of this journal article.
@@ -1003,4 +1004,5 @@ public interface JournalArticleModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

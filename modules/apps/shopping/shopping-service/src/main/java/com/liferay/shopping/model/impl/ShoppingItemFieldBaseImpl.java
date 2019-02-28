@@ -34,6 +34,7 @@ import com.liferay.shopping.service.ShoppingItemFieldLocalServiceUtil;
 @ProviderType
 public abstract class ShoppingItemFieldBaseImpl
 	extends ShoppingItemFieldModelImpl implements ShoppingItemField {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ShoppingItemFieldBaseImpl
 			ShoppingItemFieldLocalServiceUtil.updateShoppingItemField(this);
 		}
 	}
+
 }

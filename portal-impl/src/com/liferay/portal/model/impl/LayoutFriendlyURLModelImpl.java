@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -60,31 +58,28 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
-	implements LayoutFriendlyURLModel {
+public class LayoutFriendlyURLModelImpl
+	extends BaseModelImpl<LayoutFriendlyURL> implements LayoutFriendlyURLModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a layout friendly url model instance should use the <code>LayoutFriendlyURL</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "LayoutFriendlyURL";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "layoutFriendlyURLId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "plid", Types.BIGINT },
-			{ "privateLayout", Types.BOOLEAN },
-			{ "friendlyURL", Types.VARCHAR },
-			{ "languageId", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"layoutFriendlyURLId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"plid", Types.BIGINT},
+		{"privateLayout", Types.BOOLEAN}, {"friendlyURL", Types.VARCHAR},
+		{"languageId", Types.VARCHAR}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -103,32 +98,57 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LayoutFriendlyURL (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,layoutFriendlyURLId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,plid LONG,privateLayout BOOLEAN,friendlyURL VARCHAR(255) null,languageId VARCHAR(75) null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table LayoutFriendlyURL (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,layoutFriendlyURLId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,plid LONG,privateLayout BOOLEAN,friendlyURL VARCHAR(255) null,languageId VARCHAR(75) null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table LayoutFriendlyURL";
-	public static final String ORDER_BY_JPQL = " ORDER BY layoutFriendlyURL.layoutFriendlyURLId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LayoutFriendlyURL.layoutFriendlyURLId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY layoutFriendlyURL.layoutFriendlyURLId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY LayoutFriendlyURL.layoutFriendlyURLId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.LayoutFriendlyURL"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FRIENDLYURL_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long LANGUAGEID_COLUMN_BITMASK = 8L;
+
 	public static final long PLID_COLUMN_BITMASK = 16L;
+
 	public static final long PRIVATELAYOUT_COLUMN_BITMASK = 32L;
+
 	public static final long UUID_COLUMN_BITMASK = 64L;
+
 	public static final long LAYOUTFRIENDLYURLID_COLUMN_BITMASK = 128L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.LayoutFriendlyURL"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.LayoutFriendlyURL"));
 
 	public LayoutFriendlyURLModelImpl() {
 	}
@@ -167,14 +187,18 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<LayoutFriendlyURL, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((LayoutFriendlyURL)this));
 		}
 
@@ -186,38 +210,47 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<LayoutFriendlyURL, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<LayoutFriendlyURL, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<LayoutFriendlyURL, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<LayoutFriendlyURL, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((LayoutFriendlyURL)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(LayoutFriendlyURL)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<LayoutFriendlyURL, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<LayoutFriendlyURL, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<LayoutFriendlyURL, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<LayoutFriendlyURL, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<LayoutFriendlyURL, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<LayoutFriendlyURL, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<LayoutFriendlyURL, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<LayoutFriendlyURL, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<LayoutFriendlyURL, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<LayoutFriendlyURL, Object>>();
-		Map<String, BiConsumer<LayoutFriendlyURL, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<LayoutFriendlyURL, ?>>();
-
+		Map<String, Function<LayoutFriendlyURL, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<LayoutFriendlyURL, Object>>();
+		Map<String, BiConsumer<LayoutFriendlyURL, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<LayoutFriendlyURL, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -234,7 +267,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object mvccVersion) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object mvccVersion) {
+
 					layoutFriendlyURL.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -254,7 +289,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object uuid) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object uuid) {
+
 					layoutFriendlyURL.setUuid((String)uuid);
 				}
 
@@ -274,8 +311,12 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object layoutFriendlyURLId) {
-					layoutFriendlyURL.setLayoutFriendlyURLId((Long)layoutFriendlyURLId);
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object layoutFriendlyURLId) {
+
+					layoutFriendlyURL.setLayoutFriendlyURLId(
+						(Long)layoutFriendlyURLId);
 				}
 
 			});
@@ -294,7 +335,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object groupId) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object groupId) {
+
 					layoutFriendlyURL.setGroupId((Long)groupId);
 				}
 
@@ -314,7 +357,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object companyId) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object companyId) {
+
 					layoutFriendlyURL.setCompanyId((Long)companyId);
 				}
 
@@ -334,7 +379,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object userId) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object userId) {
+
 					layoutFriendlyURL.setUserId((Long)userId);
 				}
 
@@ -354,7 +401,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object userName) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object userName) {
+
 					layoutFriendlyURL.setUserName((String)userName);
 				}
 
@@ -374,7 +423,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object createDate) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object createDate) {
+
 					layoutFriendlyURL.setCreateDate((Date)createDate);
 				}
 
@@ -394,7 +445,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object modifiedDate) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object modifiedDate) {
+
 					layoutFriendlyURL.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -414,7 +467,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object plid) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object plid) {
+
 					layoutFriendlyURL.setPlid((Long)plid);
 				}
 
@@ -434,7 +489,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object privateLayout) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object privateLayout) {
+
 					layoutFriendlyURL.setPrivateLayout((Boolean)privateLayout);
 				}
 
@@ -454,7 +511,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object friendlyURL) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object friendlyURL) {
+
 					layoutFriendlyURL.setFriendlyURL((String)friendlyURL);
 				}
 
@@ -474,7 +533,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object languageId) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL, Object languageId) {
+
 					layoutFriendlyURL.setLanguageId((String)languageId);
 				}
 
@@ -494,15 +555,19 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			new BiConsumer<LayoutFriendlyURL, Object>() {
 
 				@Override
-				public void accept(LayoutFriendlyURL layoutFriendlyURL, Object lastPublishDate) {
+				public void accept(
+					LayoutFriendlyURL layoutFriendlyURL,
+					Object lastPublishDate) {
+
 					layoutFriendlyURL.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -772,8 +837,8 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				LayoutFriendlyURL.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(LayoutFriendlyURL.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -782,8 +847,8 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			LayoutFriendlyURL.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), LayoutFriendlyURL.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -796,8 +861,9 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 	@Override
 	public LayoutFriendlyURL toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (LayoutFriendlyURL)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (LayoutFriendlyURL)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -805,7 +871,8 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public Object clone() {
-		LayoutFriendlyURLImpl layoutFriendlyURLImpl = new LayoutFriendlyURLImpl();
+		LayoutFriendlyURLImpl layoutFriendlyURLImpl =
+			new LayoutFriendlyURLImpl();
 
 		layoutFriendlyURLImpl.setMvccVersion(getMvccVersion());
 		layoutFriendlyURLImpl.setUuid(getUuid());
@@ -883,36 +950,44 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 	public void resetOriginalValues() {
 		LayoutFriendlyURLModelImpl layoutFriendlyURLModelImpl = this;
 
-		layoutFriendlyURLModelImpl._originalUuid = layoutFriendlyURLModelImpl._uuid;
+		layoutFriendlyURLModelImpl._originalUuid =
+			layoutFriendlyURLModelImpl._uuid;
 
-		layoutFriendlyURLModelImpl._originalGroupId = layoutFriendlyURLModelImpl._groupId;
+		layoutFriendlyURLModelImpl._originalGroupId =
+			layoutFriendlyURLModelImpl._groupId;
 
 		layoutFriendlyURLModelImpl._setOriginalGroupId = false;
 
-		layoutFriendlyURLModelImpl._originalCompanyId = layoutFriendlyURLModelImpl._companyId;
+		layoutFriendlyURLModelImpl._originalCompanyId =
+			layoutFriendlyURLModelImpl._companyId;
 
 		layoutFriendlyURLModelImpl._setOriginalCompanyId = false;
 
 		layoutFriendlyURLModelImpl._setModifiedDate = false;
 
-		layoutFriendlyURLModelImpl._originalPlid = layoutFriendlyURLModelImpl._plid;
+		layoutFriendlyURLModelImpl._originalPlid =
+			layoutFriendlyURLModelImpl._plid;
 
 		layoutFriendlyURLModelImpl._setOriginalPlid = false;
 
-		layoutFriendlyURLModelImpl._originalPrivateLayout = layoutFriendlyURLModelImpl._privateLayout;
+		layoutFriendlyURLModelImpl._originalPrivateLayout =
+			layoutFriendlyURLModelImpl._privateLayout;
 
 		layoutFriendlyURLModelImpl._setOriginalPrivateLayout = false;
 
-		layoutFriendlyURLModelImpl._originalFriendlyURL = layoutFriendlyURLModelImpl._friendlyURL;
+		layoutFriendlyURLModelImpl._originalFriendlyURL =
+			layoutFriendlyURLModelImpl._friendlyURL;
 
-		layoutFriendlyURLModelImpl._originalLanguageId = layoutFriendlyURLModelImpl._languageId;
+		layoutFriendlyURLModelImpl._originalLanguageId =
+			layoutFriendlyURLModelImpl._languageId;
 
 		layoutFriendlyURLModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<LayoutFriendlyURL> toCacheModel() {
-		LayoutFriendlyURLCacheModel layoutFriendlyURLCacheModel = new LayoutFriendlyURLCacheModel();
+		LayoutFriendlyURLCacheModel layoutFriendlyURLCacheModel =
+			new LayoutFriendlyURLCacheModel();
 
 		layoutFriendlyURLCacheModel.mvccVersion = getMvccVersion();
 
@@ -924,7 +999,8 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 			layoutFriendlyURLCacheModel.uuid = null;
 		}
 
-		layoutFriendlyURLCacheModel.layoutFriendlyURLId = getLayoutFriendlyURLId();
+		layoutFriendlyURLCacheModel.layoutFriendlyURLId =
+			getLayoutFriendlyURLId();
 
 		layoutFriendlyURLCacheModel.groupId = getGroupId();
 
@@ -981,7 +1057,8 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			layoutFriendlyURLCacheModel.lastPublishDate = lastPublishDate.getTime();
+			layoutFriendlyURLCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			layoutFriendlyURLCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -992,17 +1069,20 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public String toString() {
-		Map<String, Function<LayoutFriendlyURL, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1021,19 +1101,22 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<LayoutFriendlyURL, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1047,10 +1130,12 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = LayoutFriendlyURL.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		LayoutFriendlyURL.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			LayoutFriendlyURL.class, ModelWrapper.class
-		};
+		LayoutFriendlyURL.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -1079,4 +1164,5 @@ public class LayoutFriendlyURLModelImpl extends BaseModelImpl<LayoutFriendlyURL>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private LayoutFriendlyURL _escapedModel;
+
 }

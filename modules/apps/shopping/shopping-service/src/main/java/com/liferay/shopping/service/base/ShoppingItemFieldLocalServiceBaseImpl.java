@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.shopping.model.ShoppingItemField;
 import com.liferay.shopping.service.ShoppingItemFieldLocalService;
 import com.liferay.shopping.service.persistence.ShoppingItemFieldPersistence;
@@ -63,8 +62,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class ShoppingItemFieldLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements ShoppingItemFieldLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements ShoppingItemFieldLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -81,6 +81,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public ShoppingItemField addShoppingItemField(
 		ShoppingItemField shoppingItemField) {
+
 		shoppingItemField.setNew(true);
 
 		return shoppingItemFieldPersistence.update(shoppingItemField);
@@ -109,6 +110,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public ShoppingItemField deleteShoppingItemField(long itemFieldId)
 		throws PortalException {
+
 		return shoppingItemFieldPersistence.remove(itemFieldId);
 	}
 
@@ -122,6 +124,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public ShoppingItemField deleteShoppingItemField(
 		ShoppingItemField shoppingItemField) {
+
 		return shoppingItemFieldPersistence.remove(shoppingItemField);
 	}
 
@@ -129,8 +132,8 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(ShoppingItemField.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			ShoppingItemField.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -157,10 +160,11 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return shoppingItemFieldPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return shoppingItemFieldPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -177,10 +181,12 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return shoppingItemFieldPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return shoppingItemFieldPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -202,10 +208,11 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return shoppingItemFieldPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return shoppingItemFieldPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -223,14 +230,17 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public ShoppingItemField getShoppingItemField(long itemFieldId)
 		throws PortalException {
+
 		return shoppingItemFieldPersistence.findByPrimaryKey(itemFieldId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(shoppingItemFieldLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			shoppingItemFieldLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ShoppingItemField.class);
 
@@ -240,21 +250,28 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(shoppingItemFieldLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			shoppingItemFieldLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(ShoppingItemField.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("itemFieldId");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
+			"itemFieldId");
 
 		return indexableActionableDynamicQuery;
 	}
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(shoppingItemFieldLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			shoppingItemFieldLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(ShoppingItemField.class);
 
@@ -267,12 +284,15 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return shoppingItemFieldLocalService.deleteShoppingItemField((ShoppingItemField)persistedModel);
+
+		return shoppingItemFieldLocalService.deleteShoppingItemField(
+			(ShoppingItemField)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return shoppingItemFieldPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -312,6 +332,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	@Override
 	public ShoppingItemField updateShoppingItemField(
 		ShoppingItemField shoppingItemField) {
+
 		return shoppingItemFieldPersistence.update(shoppingItemField);
 	}
 
@@ -331,6 +352,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 */
 	public void setShoppingItemFieldLocalService(
 		ShoppingItemFieldLocalService shoppingItemFieldLocalService) {
+
 		this.shoppingItemFieldLocalService = shoppingItemFieldLocalService;
 	}
 
@@ -350,6 +372,7 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 */
 	public void setShoppingItemFieldPersistence(
 		ShoppingItemFieldPersistence shoppingItemFieldPersistence) {
+
 		this.shoppingItemFieldPersistence = shoppingItemFieldPersistence;
 	}
 
@@ -358,7 +381,9 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -368,12 +393,15 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.shopping.model.ShoppingItemField",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.shopping.model.ShoppingItemField",
 			shoppingItemFieldLocalService);
 	}
 
@@ -407,15 +435,16 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = shoppingItemFieldPersistence.getDataSource();
+			DataSource dataSource =
+				shoppingItemFieldPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -426,10 +455,18 @@ public abstract class ShoppingItemFieldLocalServiceBaseImpl
 
 	@BeanReference(type = ShoppingItemFieldLocalService.class)
 	protected ShoppingItemFieldLocalService shoppingItemFieldLocalService;
+
 	@BeanReference(type = ShoppingItemFieldPersistence.class)
 	protected ShoppingItemFieldPersistence shoppingItemFieldPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.wsrp.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
@@ -37,7 +36,6 @@ import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
-
 import com.liferay.wsrp.model.WSRPProducer;
 
 import java.io.Serializable;
@@ -55,68 +53,76 @@ import java.util.List;
  * @generated
  */
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
-public interface WSRPProducerLocalService extends BaseLocalService,
-	PersistedModelLocalService {
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
+public interface WSRPProducerLocalService
+	extends BaseLocalService, PersistedModelLocalService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPProducerLocalServiceUtil} to access the wsrp producer local service. Add custom service methods to <code>com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public WSRPProducer addWSRPProducer(long userId, long groupId, String name,
-		String version, String portletIds, ServiceContext serviceContext)
+	public WSRPProducer addWSRPProducer(
+			long userId, long groupId, String name, String version,
+			String portletIds, ServiceContext serviceContext)
 		throws PortalException;
 
-	public WSRPProducer addWSRPProducer(long userId, String name,
-		String version, String portletIds, ServiceContext serviceContext)
+	public WSRPProducer addWSRPProducer(
+			long userId, String name, String version, String portletIds,
+			ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
-	* Adds the wsrp producer to the database. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpProducer the wsrp producer
-	* @return the wsrp producer that was added
-	*/
+	 * Adds the wsrp producer to the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducer the wsrp producer
+	 * @return the wsrp producer that was added
+	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer addWSRPProducer(WSRPProducer wsrpProducer);
 
 	/**
-	* Creates a new wsrp producer with the primary key. Does not add the wsrp producer to the database.
-	*
-	* @param wsrpProducerId the primary key for the new wsrp producer
-	* @return the new wsrp producer
-	*/
+	 * Creates a new wsrp producer with the primary key. Does not add the wsrp producer to the database.
+	 *
+	 * @param wsrpProducerId the primary key for the new wsrp producer
+	 * @return the new wsrp producer
+	 */
 	@Transactional(enabled = false)
 	public WSRPProducer createWSRPProducer(long wsrpProducerId);
 
 	/**
-	* @throws PortalException
-	*/
+	 * @throws PortalException
+	 */
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
 	/**
-	* Deletes the wsrp producer with the primary key from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpProducerId the primary key of the wsrp producer
-	* @return the wsrp producer that was removed
-	* @throws PortalException if a wsrp producer with the primary key could not be found
-	*/
+	 * Deletes the wsrp producer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducerId the primary key of the wsrp producer
+	 * @return the wsrp producer that was removed
+	 * @throws PortalException if a wsrp producer with the primary key could not be found
+	 */
 	@Indexable(type = IndexableType.DELETE)
 	public WSRPProducer deleteWSRPProducer(long wsrpProducerId)
 		throws PortalException;
 
 	/**
-	* Deletes the wsrp producer from the database. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpProducer the wsrp producer
-	* @return the wsrp producer that was removed
-	* @throws PortalException
-	*/
+	 * Deletes the wsrp producer from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducer the wsrp producer
+	 * @return the wsrp producer that was removed
+	 * @throws PortalException
+	 */
 	@Indexable(type = IndexableType.DELETE)
-	@SystemEvent(action = SystemEventConstants.ACTION_SKIP, type = SystemEventConstants.TYPE_DELETE)
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP,
+		type = SystemEventConstants.TYPE_DELETE
+	)
 	public WSRPProducer deleteWSRPProducer(WSRPProducer wsrpProducer)
 		throws PortalException;
 
@@ -126,80 +132,81 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	public DynamicQuery dynamicQuery();
 
 	/**
-	* Performs a dynamic query on the database and returns the matching rows.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the matching rows
-	*/
+	 * Performs a dynamic query on the database and returns the matching rows.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery);
 
 	/**
-	* Performs a dynamic query on the database and returns a range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @return the range of matching rows
-	*/
+	 * Performs a dynamic query on the database and returns a range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @return the range of matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end);
 
 	/**
-	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param dynamicQuery the dynamic query
-	* @param start the lower bound of the range of model instances
-	* @param end the upper bound of the range of model instances (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the ordered range of matching rows
-	*/
+	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param start the lower bound of the range of model instances
+	 * @param end the upper bound of the range of model instances (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching rows
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long dynamicQueryCount(DynamicQuery dynamicQuery);
 
 	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
-	*/
+	 * Returns the number of rows matching the dynamic query.
+	 *
+	 * @param dynamicQuery the dynamic query
+	 * @param projection the projection to apply to the query
+	 * @return the number of rows matching the dynamic query
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPProducer fetchWSRPProducer(long wsrpProducerId);
 
 	/**
-	* Returns the wsrp producer matching the UUID and group.
-	*
-	* @param uuid the wsrp producer's UUID
-	* @param groupId the primary key of the group
-	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
-	*/
+	 * Returns the wsrp producer matching the UUID and group.
+	 *
+	 * @param uuid the wsrp producer's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPProducer fetchWSRPProducerByUuidAndGroupId(String uuid,
-		long groupId);
+	public WSRPProducer fetchWSRPProducerByUuidAndGroupId(
+		String uuid, long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -212,10 +219,10 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Override
@@ -224,12 +231,12 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* Returns the wsrp producer with the primary key.
-	*
-	* @param wsrpProducerId the primary key of the wsrp producer
-	* @return the wsrp producer
-	* @throws PortalException if a wsrp producer with the primary key could not be found
-	*/
+	 * Returns the wsrp producer with the primary key.
+	 *
+	 * @param wsrpProducerId the primary key of the wsrp producer
+	 * @return the wsrp producer
+	 * @throws PortalException if a wsrp producer with the primary key could not be found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPProducer getWSRPProducer(long wsrpProducerId)
 		throws PortalException;
@@ -239,81 +246,84 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* Returns the wsrp producer matching the UUID and group.
-	*
-	* @param uuid the wsrp producer's UUID
-	* @param groupId the primary key of the group
-	* @return the matching wsrp producer
-	* @throws PortalException if a matching wsrp producer could not be found
-	*/
+	 * Returns the wsrp producer matching the UUID and group.
+	 *
+	 * @param uuid the wsrp producer's UUID
+	 * @param groupId the primary key of the group
+	 * @return the matching wsrp producer
+	 * @throws PortalException if a matching wsrp producer could not be found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPProducer getWSRPProducerByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException;
+	public WSRPProducer getWSRPProducerByUuidAndGroupId(
+			String uuid, long groupId)
+		throws PortalException;
 
 	/**
-	* Returns a range of all the wsrp producers.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
-	* </p>
-	*
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @return the range of wsrp producers
-	*/
+	 * Returns a range of all the wsrp producers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.wsrp.model.impl.WSRPProducerModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @return the range of wsrp producers
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<WSRPProducer> getWSRPProducers(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPProducer> getWSRPProducers(long companyId, int start,
-		int end);
+	public List<WSRPProducer> getWSRPProducers(
+		long companyId, int start, int end);
 
 	/**
-	* Returns all the wsrp producers matching the UUID and company.
-	*
-	* @param uuid the UUID of the wsrp producers
-	* @param companyId the primary key of the company
-	* @return the matching wsrp producers, or an empty list if no matches were found
-	*/
+	 * Returns all the wsrp producers matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the wsrp producers
+	 * @param companyId the primary key of the company
+	 * @return the matching wsrp producers, or an empty list if no matches were found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
-		long companyId);
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		String uuid, long companyId);
 
 	/**
-	* Returns a range of wsrp producers matching the UUID and company.
-	*
-	* @param uuid the UUID of the wsrp producers
-	* @param companyId the primary key of the company
-	* @param start the lower bound of the range of wsrp producers
-	* @param end the upper bound of the range of wsrp producers (not inclusive)
-	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	* @return the range of matching wsrp producers, or an empty list if no matches were found
-	*/
+	 * Returns a range of wsrp producers matching the UUID and company.
+	 *
+	 * @param uuid the UUID of the wsrp producers
+	 * @param companyId the primary key of the company
+	 * @param start the lower bound of the range of wsrp producers
+	 * @param end the upper bound of the range of wsrp producers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the range of matching wsrp producers, or an empty list if no matches were found
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
-		long companyId, int start, int end,
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
-	* Returns the number of wsrp producers.
-	*
-	* @return the number of wsrp producers
-	*/
+	 * Returns the number of wsrp producers.
+	 *
+	 * @return the number of wsrp producers
+	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWSRPProducersCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWSRPProducersCount(long companyId);
 
-	public WSRPProducer updateWSRPProducer(long wsrpProducerId, String name,
-		String version, String portletIds) throws PortalException;
+	public WSRPProducer updateWSRPProducer(
+			long wsrpProducerId, String name, String version, String portletIds)
+		throws PortalException;
 
 	/**
-	* Updates the wsrp producer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param wsrpProducer the wsrp producer
-	* @return the wsrp producer that was updated
-	*/
+	 * Updates the wsrp producer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducer the wsrp producer
+	 * @return the wsrp producer that was updated
+	 */
 	@Indexable(type = IndexableType.REINDEX)
 	public WSRPProducer updateWSRPProducer(WSRPProducer wsrpProducer);
+
 }

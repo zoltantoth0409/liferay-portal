@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -30,7 +28,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.model.WSRPConsumerPortletModel;
 
@@ -58,26 +55,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPortlet>
+public class WSRPConsumerPortletModelImpl
+	extends BaseModelImpl<WSRPConsumerPortlet>
 	implements WSRPConsumerPortletModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a wsrp consumer portlet model instance should use the <code>WSRPConsumerPortlet</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "WSRP_WSRPConsumerPortlet";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "wsrpConsumerPortletId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "wsrpConsumerId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "portletHandle", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"wsrpConsumerPortletId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"wsrpConsumerId", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"portletHandle", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -91,29 +89,52 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (uuid_ VARCHAR(75) null,wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle VARCHAR(255) null,lastPublishDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumerPortlet";
-	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumerPortlet.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumerPortlet.name ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table WSRP_WSRPConsumerPortlet (uuid_ VARCHAR(75) null,wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle VARCHAR(255) null,lastPublishDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table WSRP_WSRPConsumerPortlet";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY wsrpConsumerPortlet.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY WSRP_WSRPConsumerPortlet.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.wsrp.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.wsrp.model.WSRPConsumerPortlet"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long PORTLETHANDLE_COLUMN_BITMASK = 2L;
+
 	public static final long UUID_COLUMN_BITMASK = 4L;
+
 	public static final long WSRPCONSUMERID_COLUMN_BITMASK = 8L;
+
 	public static final long NAME_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.wsrp.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumerPortlet"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.wsrp.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.wsrp.model.WSRPConsumerPortlet"));
 
 	public WSRPConsumerPortletModelImpl() {
 	}
@@ -152,14 +173,18 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<WSRPConsumerPortlet, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumerPortlet, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumerPortlet, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumerPortlet, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((WSRPConsumerPortlet)this));
 		}
 
@@ -171,38 +196,47 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<WSRPConsumerPortlet, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<WSRPConsumerPortlet, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<WSRPConsumerPortlet, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<WSRPConsumerPortlet, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((WSRPConsumerPortlet)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(WSRPConsumerPortlet)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<WSRPConsumerPortlet, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<WSRPConsumerPortlet, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<WSRPConsumerPortlet, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<WSRPConsumerPortlet, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<WSRPConsumerPortlet, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<WSRPConsumerPortlet, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<WSRPConsumerPortlet, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<WSRPConsumerPortlet, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<WSRPConsumerPortlet, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<WSRPConsumerPortlet, Object>>();
-		Map<String, BiConsumer<WSRPConsumerPortlet, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<WSRPConsumerPortlet, ?>>();
-
+		Map<String, Function<WSRPConsumerPortlet, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<WSRPConsumerPortlet, Object>>();
+		Map<String, BiConsumer<WSRPConsumerPortlet, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<WSRPConsumerPortlet, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -219,7 +253,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object uuid) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet, Object uuid) {
+
 					wsrpConsumerPortlet.setUuid((String)uuid);
 				}
 
@@ -239,8 +275,12 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object wsrpConsumerPortletId) {
-					wsrpConsumerPortlet.setWsrpConsumerPortletId((Long)wsrpConsumerPortletId);
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object wsrpConsumerPortletId) {
+
+					wsrpConsumerPortlet.setWsrpConsumerPortletId(
+						(Long)wsrpConsumerPortletId);
 				}
 
 			});
@@ -259,7 +299,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object companyId) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet, Object companyId) {
+
 					wsrpConsumerPortlet.setCompanyId((Long)companyId);
 				}
 
@@ -279,7 +321,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object createDate) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object createDate) {
+
 					wsrpConsumerPortlet.setCreateDate((Date)createDate);
 				}
 
@@ -299,7 +344,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object modifiedDate) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object modifiedDate) {
+
 					wsrpConsumerPortlet.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -319,7 +367,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object wsrpConsumerId) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object wsrpConsumerId) {
+
 					wsrpConsumerPortlet.setWsrpConsumerId((Long)wsrpConsumerId);
 				}
 
@@ -339,7 +390,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object name) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet, Object name) {
+
 					wsrpConsumerPortlet.setName((String)name);
 				}
 
@@ -359,7 +412,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object portletHandle) {
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object portletHandle) {
+
 					wsrpConsumerPortlet.setPortletHandle((String)portletHandle);
 				}
 
@@ -379,15 +435,20 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			new BiConsumer<WSRPConsumerPortlet, Object>() {
 
 				@Override
-				public void accept(WSRPConsumerPortlet wsrpConsumerPortlet, Object lastPublishDate) {
-					wsrpConsumerPortlet.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					WSRPConsumerPortlet wsrpConsumerPortlet,
+					Object lastPublishDate) {
+
+					wsrpConsumerPortlet.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -549,8 +610,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				WSRPConsumerPortlet.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(WSRPConsumerPortlet.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -559,8 +620,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			WSRPConsumerPortlet.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), WSRPConsumerPortlet.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -573,8 +635,9 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	@Override
 	public WSRPConsumerPortlet toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (WSRPConsumerPortlet)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -582,10 +645,12 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public Object clone() {
-		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
+		WSRPConsumerPortletImpl wsrpConsumerPortletImpl =
+			new WSRPConsumerPortletImpl();
 
 		wsrpConsumerPortletImpl.setUuid(getUuid());
-		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
+		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(
+			getWsrpConsumerPortletId());
 		wsrpConsumerPortletImpl.setCompanyId(getCompanyId());
 		wsrpConsumerPortletImpl.setCreateDate(getCreateDate());
 		wsrpConsumerPortletImpl.setModifiedDate(getModifiedDate());
@@ -653,26 +718,31 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public void resetOriginalValues() {
 		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = this;
 
-		wsrpConsumerPortletModelImpl._originalUuid = wsrpConsumerPortletModelImpl._uuid;
+		wsrpConsumerPortletModelImpl._originalUuid =
+			wsrpConsumerPortletModelImpl._uuid;
 
-		wsrpConsumerPortletModelImpl._originalCompanyId = wsrpConsumerPortletModelImpl._companyId;
+		wsrpConsumerPortletModelImpl._originalCompanyId =
+			wsrpConsumerPortletModelImpl._companyId;
 
 		wsrpConsumerPortletModelImpl._setOriginalCompanyId = false;
 
 		wsrpConsumerPortletModelImpl._setModifiedDate = false;
 
-		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
+		wsrpConsumerPortletModelImpl._originalWsrpConsumerId =
+			wsrpConsumerPortletModelImpl._wsrpConsumerId;
 
 		wsrpConsumerPortletModelImpl._setOriginalWsrpConsumerId = false;
 
-		wsrpConsumerPortletModelImpl._originalPortletHandle = wsrpConsumerPortletModelImpl._portletHandle;
+		wsrpConsumerPortletModelImpl._originalPortletHandle =
+			wsrpConsumerPortletModelImpl._portletHandle;
 
 		wsrpConsumerPortletModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<WSRPConsumerPortlet> toCacheModel() {
-		WSRPConsumerPortletCacheModel wsrpConsumerPortletCacheModel = new WSRPConsumerPortletCacheModel();
+		WSRPConsumerPortletCacheModel wsrpConsumerPortletCacheModel =
+			new WSRPConsumerPortletCacheModel();
 
 		wsrpConsumerPortletCacheModel.uuid = getUuid();
 
@@ -682,7 +752,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			wsrpConsumerPortletCacheModel.uuid = null;
 		}
 
-		wsrpConsumerPortletCacheModel.wsrpConsumerPortletId = getWsrpConsumerPortletId();
+		wsrpConsumerPortletCacheModel.wsrpConsumerPortletId =
+			getWsrpConsumerPortletId();
 
 		wsrpConsumerPortletCacheModel.companyId = getCompanyId();
 
@@ -725,7 +796,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			wsrpConsumerPortletCacheModel.lastPublishDate = lastPublishDate.getTime();
+			wsrpConsumerPortletCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			wsrpConsumerPortletCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -736,17 +808,20 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public String toString() {
-		Map<String, Function<WSRPConsumerPortlet, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumerPortlet, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumerPortlet, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumerPortlet, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -765,19 +840,22 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<WSRPConsumerPortlet, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<WSRPConsumerPortlet, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<WSRPConsumerPortlet, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<WSRPConsumerPortlet, Object> attributeGetterFunction = entry.getValue();
+			Function<WSRPConsumerPortlet, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -791,10 +869,12 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = WSRPConsumerPortlet.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		WSRPConsumerPortlet.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			WSRPConsumerPortlet.class, ModelWrapper.class
-		};
+		WSRPConsumerPortlet.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _wsrpConsumerPortletId;
@@ -813,4 +893,5 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private WSRPConsumerPortlet _escapedModel;
+
 }

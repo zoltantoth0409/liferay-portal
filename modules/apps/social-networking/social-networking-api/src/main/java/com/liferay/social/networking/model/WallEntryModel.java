@@ -17,7 +17,6 @@ package com.liferay.social.networking.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel,
-	ShardedModel {
+public interface WallEntryModel
+	extends BaseModel<WallEntry>, GroupedModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -261,4 +261,5 @@ public interface WallEntryModel extends BaseModel<WallEntry>, GroupedModel,
 
 	@Override
 	public String toXmlString();
+
 }

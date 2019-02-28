@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.social.networking.model.MeetupsRegistration;
 import com.liferay.social.networking.model.MeetupsRegistrationModel;
 
@@ -59,26 +57,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistration>
+public class MeetupsRegistrationModelImpl
+	extends BaseModelImpl<MeetupsRegistration>
 	implements MeetupsRegistrationModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a meetups registration model instance should use the <code>MeetupsRegistration</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SN_MeetupsRegistration";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "meetupsRegistrationId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "meetupsEntryId", Types.BIGINT },
-			{ "status", Types.INTEGER },
-			{ "comments", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"meetupsRegistrationId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"meetupsEntryId", Types.BIGINT}, {"status", Types.INTEGER},
+		{"comments", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("meetupsRegistrationId", Types.BIGINT);
@@ -92,28 +91,50 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		TABLE_COLUMNS_MAP.put("comments", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments VARCHAR(75) null)";
-	public static final String TABLE_SQL_DROP = "drop table SN_MeetupsRegistration";
-	public static final String ORDER_BY_JPQL = " ORDER BY meetupsRegistration.modifiedDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY SN_MeetupsRegistration.modifiedDate DESC";
+	public static final String TABLE_SQL_CREATE =
+		"create table SN_MeetupsRegistration (meetupsRegistrationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,meetupsEntryId LONG,status INTEGER,comments VARCHAR(75) null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table SN_MeetupsRegistration";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY meetupsRegistration.modifiedDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SN_MeetupsRegistration.modifiedDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.social.networking.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.social.networking.model.MeetupsRegistration"),
+		true);
+
 	public static final long MEETUPSENTRYID_COLUMN_BITMASK = 1L;
+
 	public static final long STATUS_COLUMN_BITMASK = 2L;
+
 	public static final long USERID_COLUMN_BITMASK = 4L;
+
 	public static final long MODIFIEDDATE_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.social.networking.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.social.networking.model.MeetupsRegistration"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.social.networking.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.social.networking.model.MeetupsRegistration"));
 
 	public MeetupsRegistrationModelImpl() {
 	}
@@ -152,14 +173,18 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MeetupsRegistration, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsRegistration, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MeetupsRegistration)this));
 		}
 
@@ -171,38 +196,47 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MeetupsRegistration, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MeetupsRegistration, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MeetupsRegistration, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MeetupsRegistration, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MeetupsRegistration)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MeetupsRegistration)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MeetupsRegistration, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MeetupsRegistration, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MeetupsRegistration, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MeetupsRegistration, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MeetupsRegistration, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MeetupsRegistration, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MeetupsRegistration, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MeetupsRegistration, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<MeetupsRegistration, Object>>();
-		Map<String, BiConsumer<MeetupsRegistration, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<MeetupsRegistration, ?>>();
-
+		Map<String, Function<MeetupsRegistration, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<MeetupsRegistration, Object>>();
+		Map<String, BiConsumer<MeetupsRegistration, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<MeetupsRegistration, ?>>();
 
 		attributeGetterFunctions.put(
 			"meetupsRegistrationId",
@@ -219,8 +253,12 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object meetupsRegistrationId) {
-					meetupsRegistration.setMeetupsRegistrationId((Long)meetupsRegistrationId);
+				public void accept(
+					MeetupsRegistration meetupsRegistration,
+					Object meetupsRegistrationId) {
+
+					meetupsRegistration.setMeetupsRegistrationId(
+						(Long)meetupsRegistrationId);
 				}
 
 			});
@@ -239,7 +277,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object companyId) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object companyId) {
+
 					meetupsRegistration.setCompanyId((Long)companyId);
 				}
 
@@ -259,7 +299,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object userId) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object userId) {
+
 					meetupsRegistration.setUserId((Long)userId);
 				}
 
@@ -279,7 +321,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object userName) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object userName) {
+
 					meetupsRegistration.setUserName((String)userName);
 				}
 
@@ -299,7 +343,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object createDate) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration,
+					Object createDate) {
+
 					meetupsRegistration.setCreateDate((Date)createDate);
 				}
 
@@ -319,7 +366,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object modifiedDate) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration,
+					Object modifiedDate) {
+
 					meetupsRegistration.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -339,7 +389,10 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object meetupsEntryId) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration,
+					Object meetupsEntryId) {
+
 					meetupsRegistration.setMeetupsEntryId((Long)meetupsEntryId);
 				}
 
@@ -359,7 +412,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object status) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object status) {
+
 					meetupsRegistration.setStatus((Integer)status);
 				}
 
@@ -379,15 +434,18 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 			new BiConsumer<MeetupsRegistration, Object>() {
 
 				@Override
-				public void accept(MeetupsRegistration meetupsRegistration, Object comments) {
+				public void accept(
+					MeetupsRegistration meetupsRegistration, Object comments) {
+
 					meetupsRegistration.setComments((String)comments);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -556,8 +614,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MeetupsRegistration.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MeetupsRegistration.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -570,8 +629,9 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	@Override
 	public MeetupsRegistration toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MeetupsRegistration)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MeetupsRegistration)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -579,9 +639,11 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public Object clone() {
-		MeetupsRegistrationImpl meetupsRegistrationImpl = new MeetupsRegistrationImpl();
+		MeetupsRegistrationImpl meetupsRegistrationImpl =
+			new MeetupsRegistrationImpl();
 
-		meetupsRegistrationImpl.setMeetupsRegistrationId(getMeetupsRegistrationId());
+		meetupsRegistrationImpl.setMeetupsRegistrationId(
+			getMeetupsRegistrationId());
 		meetupsRegistrationImpl.setCompanyId(getCompanyId());
 		meetupsRegistrationImpl.setUserId(getUserId());
 		meetupsRegistrationImpl.setUserName(getUserName());
@@ -600,8 +662,8 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public int compareTo(MeetupsRegistration meetupsRegistration) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getModifiedDate(),
-				meetupsRegistration.getModifiedDate());
+		value = DateUtil.compareTo(
+			getModifiedDate(), meetupsRegistration.getModifiedDate());
 
 		value = value * -1;
 
@@ -653,17 +715,20 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public void resetOriginalValues() {
 		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = this;
 
-		meetupsRegistrationModelImpl._originalUserId = meetupsRegistrationModelImpl._userId;
+		meetupsRegistrationModelImpl._originalUserId =
+			meetupsRegistrationModelImpl._userId;
 
 		meetupsRegistrationModelImpl._setOriginalUserId = false;
 
 		meetupsRegistrationModelImpl._setModifiedDate = false;
 
-		meetupsRegistrationModelImpl._originalMeetupsEntryId = meetupsRegistrationModelImpl._meetupsEntryId;
+		meetupsRegistrationModelImpl._originalMeetupsEntryId =
+			meetupsRegistrationModelImpl._meetupsEntryId;
 
 		meetupsRegistrationModelImpl._setOriginalMeetupsEntryId = false;
 
-		meetupsRegistrationModelImpl._originalStatus = meetupsRegistrationModelImpl._status;
+		meetupsRegistrationModelImpl._originalStatus =
+			meetupsRegistrationModelImpl._status;
 
 		meetupsRegistrationModelImpl._setOriginalStatus = false;
 
@@ -672,9 +737,11 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public CacheModel<MeetupsRegistration> toCacheModel() {
-		MeetupsRegistrationCacheModel meetupsRegistrationCacheModel = new MeetupsRegistrationCacheModel();
+		MeetupsRegistrationCacheModel meetupsRegistrationCacheModel =
+			new MeetupsRegistrationCacheModel();
 
-		meetupsRegistrationCacheModel.meetupsRegistrationId = getMeetupsRegistrationId();
+		meetupsRegistrationCacheModel.meetupsRegistrationId =
+			getMeetupsRegistrationId();
 
 		meetupsRegistrationCacheModel.companyId = getCompanyId();
 
@@ -723,17 +790,20 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public String toString() {
-		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MeetupsRegistration, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsRegistration, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -752,19 +822,22 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MeetupsRegistration, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MeetupsRegistration, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MeetupsRegistration, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MeetupsRegistration, Object> attributeGetterFunction = entry.getValue();
+			Function<MeetupsRegistration, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -778,10 +851,12 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MeetupsRegistration.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MeetupsRegistration.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MeetupsRegistration.class, ModelWrapper.class
-		};
+		MeetupsRegistration.class, ModelWrapper.class
+	};
+
 	private long _meetupsRegistrationId;
 	private long _companyId;
 	private long _userId;
@@ -800,4 +875,5 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	private String _comments;
 	private long _columnBitmask;
 	private MeetupsRegistration _escapedModel;
+
 }

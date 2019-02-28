@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.model.OAuthTokenModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,31 +56,28 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
-	implements OAuthTokenModel {
+public class OAuthTokenModelImpl
+	extends BaseModelImpl<OAuthToken> implements OAuthTokenModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a o auth token model instance should use the <code>OAuthToken</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthToken";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oAuthTokenId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "gadgetKey", Types.VARCHAR },
-			{ "serviceName", Types.VARCHAR },
-			{ "moduleId", Types.BIGINT },
-			{ "accessToken", Types.VARCHAR },
-			{ "tokenName", Types.VARCHAR },
-			{ "tokenSecret", Types.VARCHAR },
-			{ "sessionHandle", Types.VARCHAR },
-			{ "expiration", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"oAuthTokenId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"gadgetKey", Types.VARCHAR}, {"serviceName", Types.VARCHAR},
+		{"moduleId", Types.BIGINT}, {"accessToken", Types.VARCHAR},
+		{"tokenName", Types.VARCHAR}, {"tokenSecret", Types.VARCHAR},
+		{"sessionHandle", Types.VARCHAR}, {"expiration", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("oAuthTokenId", Types.BIGINT);
@@ -101,30 +96,54 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		TABLE_COLUMNS_MAP.put("expiration", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
-	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
-	public static final String ORDER_BY_JPQL = " ORDER BY oAuthToken.oAuthTokenId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_OAuthToken.oAuthTokenId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetKey VARCHAR(75) null,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table OpenSocial_OAuthToken";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY oAuthToken.oAuthTokenId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY OpenSocial_OAuthToken.oAuthTokenId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.opensocial.model.OAuthToken"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.opensocial.model.OAuthToken"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.opensocial.model.OAuthToken"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.opensocial.model.OAuthToken"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.opensocial.model.OAuthToken"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.opensocial.model.OAuthToken"),
+		true);
+
 	public static final long GADGETKEY_COLUMN_BITMASK = 1L;
+
 	public static final long MODULEID_COLUMN_BITMASK = 2L;
+
 	public static final long SERVICENAME_COLUMN_BITMASK = 4L;
+
 	public static final long TOKENNAME_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long OAUTHTOKENID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.opensocial.model.OAuthToken"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.util.service.ServiceProps.get(
+			"lock.expiration.time.com.liferay.opensocial.model.OAuthToken"));
 
 	public OAuthTokenModelImpl() {
 	}
@@ -163,14 +182,18 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<OAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((OAuthToken)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((OAuthToken)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -181,35 +204,44 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<OAuthToken, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<OAuthToken, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<OAuthToken, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<OAuthToken, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((OAuthToken)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(OAuthToken)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<OAuthToken, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<OAuthToken, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<OAuthToken, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<OAuthToken, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<OAuthToken, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<OAuthToken, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<OAuthToken, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<OAuthToken, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<OAuthToken, Object>>();
-		Map<String, BiConsumer<OAuthToken, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<OAuthToken, ?>>();
-
+		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<OAuthToken, Object>>();
+		Map<String, BiConsumer<OAuthToken, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<OAuthToken, ?>>();
 
 		attributeGetterFunctions.put(
 			"oAuthTokenId",
@@ -466,7 +498,9 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			new BiConsumer<OAuthToken, Object>() {
 
 				@Override
-				public void accept(OAuthToken oAuthToken, Object sessionHandle) {
+				public void accept(
+					OAuthToken oAuthToken, Object sessionHandle) {
+
 					oAuthToken.setSessionHandle((String)sessionHandle);
 				}
 
@@ -492,9 +526,10 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -754,8 +789,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			OAuthToken.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), OAuthToken.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -768,8 +803,9 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	@Override
 	public OAuthToken toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (OAuthToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (OAuthToken)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -863,7 +899,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 		oAuthTokenModelImpl._originalGadgetKey = oAuthTokenModelImpl._gadgetKey;
 
-		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
+		oAuthTokenModelImpl._originalServiceName =
+			oAuthTokenModelImpl._serviceName;
 
 		oAuthTokenModelImpl._originalModuleId = oAuthTokenModelImpl._moduleId;
 
@@ -967,16 +1004,20 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public String toString() {
-		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<OAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -995,18 +1036,22 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OAuthToken, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<OAuthToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuthToken, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuthToken, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuthToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1020,10 +1065,12 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = OAuthToken.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		OAuthToken.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			OAuthToken.class, ModelWrapper.class
-		};
+		OAuthToken.class, ModelWrapper.class
+	};
+
 	private long _oAuthTokenId;
 	private long _companyId;
 	private long _userId;
@@ -1048,4 +1095,5 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private long _expiration;
 	private long _columnBitmask;
 	private OAuthToken _escapedModel;
+
 }

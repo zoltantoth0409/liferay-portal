@@ -17,7 +17,6 @@ package com.liferay.contacts.service.http;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.contacts.service.EntryServiceUtil;
-
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
@@ -54,17 +53,20 @@ import com.liferay.portal.kernel.util.MethodKey;
  */
 @ProviderType
 public class EntryServiceHttp {
-	public static com.liferay.portal.kernel.json.JSONArray searchUsersAndContacts(
-		HttpPrincipal httpPrincipal, long companyId, String keywords,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(EntryServiceUtil.class,
-					"searchUsersAndContacts",
-					_searchUsersAndContactsParameterTypes1);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					companyId, keywords, start, end);
+	public static com.liferay.portal.kernel.json.JSONArray
+			searchUsersAndContacts(
+				HttpPrincipal httpPrincipal, long companyId, String keywords,
+				int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+
+		try {
+			MethodKey methodKey = new MethodKey(
+				EntryServiceUtil.class, "searchUsersAndContacts",
+				_searchUsersAndContactsParameterTypes1);
+
+			MethodHandler methodHandler = new MethodHandler(
+				methodKey, companyId, keywords, start, end);
 
 			Object returnObj = null;
 
@@ -72,11 +74,15 @@ public class EntryServiceHttp {
 				returnObj = TunnelUtil.invoke(httpPrincipal, methodHandler);
 			}
 			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				if (e instanceof
+						com.liferay.portal.kernel.exception.PortalException) {
+
+					throw (com.liferay.portal.kernel.exception.PortalException)
+						e;
 				}
 
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
+				throw new com.liferay.portal.kernel.exception.SystemException(
+					e);
 			}
 
 			return (com.liferay.portal.kernel.json.JSONArray)returnObj;
@@ -89,7 +95,8 @@ public class EntryServiceHttp {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(EntryServiceHttp.class);
-	private static final Class<?>[] _searchUsersAndContactsParameterTypes1 = new Class[] {
-			long.class, String.class, int.class, int.class
-		};
+
+	private static final Class<?>[] _searchUsersAndContactsParameterTypes1 =
+		new Class[] {long.class, String.class, int.class, int.class};
+
 }

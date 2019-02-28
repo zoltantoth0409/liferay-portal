@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.model.BlogsEntryModel;
 import com.liferay.blogs.kernel.model.BlogsEntrySoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -72,46 +69,36 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
-	implements BlogsEntryModel {
+public class BlogsEntryModelImpl
+	extends BaseModelImpl<BlogsEntry> implements BlogsEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a blogs entry model instance should use the <code>BlogsEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "BlogsEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "entryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "title", Types.VARCHAR },
-			{ "subtitle", Types.VARCHAR },
-			{ "urlTitle", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "content", Types.CLOB },
-			{ "displayDate", Types.TIMESTAMP },
-			{ "allowPingbacks", Types.BOOLEAN },
-			{ "allowTrackbacks", Types.BOOLEAN },
-			{ "trackbacks", Types.CLOB },
-			{ "coverImageCaption", Types.VARCHAR },
-			{ "coverImageFileEntryId", Types.BIGINT },
-			{ "coverImageURL", Types.VARCHAR },
-			{ "smallImage", Types.BOOLEAN },
-			{ "smallImageFileEntryId", Types.BIGINT },
-			{ "smallImageId", Types.BIGINT },
-			{ "smallImageURL", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"entryId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"title", Types.VARCHAR}, {"subtitle", Types.VARCHAR},
+		{"urlTitle", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"content", Types.CLOB}, {"displayDate", Types.TIMESTAMP},
+		{"allowPingbacks", Types.BOOLEAN}, {"allowTrackbacks", Types.BOOLEAN},
+		{"trackbacks", Types.CLOB}, {"coverImageCaption", Types.VARCHAR},
+		{"coverImageFileEntryId", Types.BIGINT},
+		{"coverImageURL", Types.VARCHAR}, {"smallImage", Types.BOOLEAN},
+		{"smallImageFileEntryId", Types.BIGINT}, {"smallImageId", Types.BIGINT},
+		{"smallImageURL", Types.VARCHAR}, {"lastPublishDate", Types.TIMESTAMP},
+		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
+		{"statusByUserName", Types.VARCHAR}, {"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -145,29 +132,52 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table BlogsEntry (uuid_ VARCHAR(75) null,entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(150) null,subtitle STRING null,urlTitle VARCHAR(150) null,description STRING null,content TEXT null,displayDate DATE null,allowPingbacks BOOLEAN,allowTrackbacks BOOLEAN,trackbacks TEXT null,coverImageCaption STRING null,coverImageFileEntryId LONG,coverImageURL STRING null,smallImage BOOLEAN,smallImageFileEntryId LONG,smallImageId LONG,smallImageURL STRING null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table BlogsEntry (uuid_ VARCHAR(75) null,entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(150) null,subtitle STRING null,urlTitle VARCHAR(150) null,description STRING null,content TEXT null,displayDate DATE null,allowPingbacks BOOLEAN,allowTrackbacks BOOLEAN,trackbacks TEXT null,coverImageCaption STRING null,coverImageFileEntryId LONG,coverImageURL STRING null,smallImage BOOLEAN,smallImageFileEntryId LONG,smallImageId LONG,smallImageURL STRING null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table BlogsEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY blogsEntry.displayDate DESC, blogsEntry.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY BlogsEntry.displayDate DESC, BlogsEntry.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY blogsEntry.displayDate DESC, blogsEntry.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY BlogsEntry.displayDate DESC, BlogsEntry.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.blogs.kernel.model.BlogsEntry"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long DISPLAYDATE_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long STATUS_COLUMN_BITMASK = 8L;
+
 	public static final long URLTITLE_COLUMN_BITMASK = 16L;
+
 	public static final long USERID_COLUMN_BITMASK = 32L;
+
 	public static final long UUID_COLUMN_BITMASK = 64L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 128L;
 
 	/**
@@ -236,8 +246,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.blogs.kernel.model.BlogsEntry"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.blogs.kernel.model.BlogsEntry"));
 
 	public BlogsEntryModelImpl() {
 	}
@@ -276,14 +287,18 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<BlogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((BlogsEntry)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((BlogsEntry)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -294,35 +309,44 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<BlogsEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<BlogsEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<BlogsEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<BlogsEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((BlogsEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(BlogsEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<BlogsEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<BlogsEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<BlogsEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<BlogsEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<BlogsEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<BlogsEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<BlogsEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<BlogsEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<BlogsEntry, Object>>();
-		Map<String, BiConsumer<BlogsEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<BlogsEntry, ?>>();
-
+		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<BlogsEntry, Object>>();
+		Map<String, BiConsumer<BlogsEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<BlogsEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -619,7 +643,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object allowPingbacks) {
+				public void accept(
+					BlogsEntry blogsEntry, Object allowPingbacks) {
+
 					blogsEntry.setAllowPingbacks((Boolean)allowPingbacks);
 				}
 
@@ -639,7 +665,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object allowTrackbacks) {
+				public void accept(
+					BlogsEntry blogsEntry, Object allowTrackbacks) {
+
 					blogsEntry.setAllowTrackbacks((Boolean)allowTrackbacks);
 				}
 
@@ -679,7 +707,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object coverImageCaption) {
+				public void accept(
+					BlogsEntry blogsEntry, Object coverImageCaption) {
+
 					blogsEntry.setCoverImageCaption((String)coverImageCaption);
 				}
 
@@ -699,8 +729,11 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object coverImageFileEntryId) {
-					blogsEntry.setCoverImageFileEntryId((Long)coverImageFileEntryId);
+				public void accept(
+					BlogsEntry blogsEntry, Object coverImageFileEntryId) {
+
+					blogsEntry.setCoverImageFileEntryId(
+						(Long)coverImageFileEntryId);
 				}
 
 			});
@@ -719,7 +752,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object coverImageURL) {
+				public void accept(
+					BlogsEntry blogsEntry, Object coverImageURL) {
+
 					blogsEntry.setCoverImageURL((String)coverImageURL);
 				}
 
@@ -759,8 +794,11 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object smallImageFileEntryId) {
-					blogsEntry.setSmallImageFileEntryId((Long)smallImageFileEntryId);
+				public void accept(
+					BlogsEntry blogsEntry, Object smallImageFileEntryId) {
+
+					blogsEntry.setSmallImageFileEntryId(
+						(Long)smallImageFileEntryId);
 				}
 
 			});
@@ -799,7 +837,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object smallImageURL) {
+				public void accept(
+					BlogsEntry blogsEntry, Object smallImageURL) {
+
 					blogsEntry.setSmallImageURL((String)smallImageURL);
 				}
 
@@ -819,7 +859,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object lastPublishDate) {
+				public void accept(
+					BlogsEntry blogsEntry, Object lastPublishDate) {
+
 					blogsEntry.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -859,7 +901,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object statusByUserId) {
+				public void accept(
+					BlogsEntry blogsEntry, Object statusByUserId) {
+
 					blogsEntry.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -879,7 +923,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			new BiConsumer<BlogsEntry, Object>() {
 
 				@Override
-				public void accept(BlogsEntry blogsEntry, Object statusByUserName) {
+				public void accept(
+					BlogsEntry blogsEntry, Object statusByUserName) {
+
 					blogsEntry.setStatusByUserName((String)statusByUserName);
 				}
 
@@ -905,9 +951,10 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1427,28 +1474,32 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				BlogsEntry.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(BlogsEntry.class.getName()));
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashEntry getTrashEntry()
 		throws PortalException {
+
 		if (!isInTrash()) {
 			return null;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
 		}
 
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
-		if (Validator.isNotNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+		if (Validator.isNotNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			ContainerModel containerModel = null;
 
 			try {
@@ -1465,14 +1516,18 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 					return trashedModel.getTrashEntry();
 				}
 
-				trashHandler = com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName(
-							containerModel.getContainerModelId()));
+				trashHandler =
+					com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+						getTrashHandler(
+							trashHandler.getContainerModelClassName(
+								containerModel.getContainerModelId()));
 
 				if (trashHandler == null) {
 					return null;
 				}
 
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
+				containerModel = trashHandler.getContainerModel(
+					containerModel.getParentContainerModelId());
 			}
 		}
 
@@ -1485,12 +1540,13 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), with no direct replacement
-	*/
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
 	@Deprecated
 	@Override
 	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
+		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+			getTrashHandler(getModelClassName());
 	}
 
 	@Override
@@ -1505,16 +1561,19 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public boolean isInTrashContainer() {
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
 		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+			Validator.isNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			return false;
 		}
 
 		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel =
+				trashHandler.getParentContainerModel(this);
 
 			if (containerModel == null) {
 				return false;
@@ -1536,8 +1595,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return true;
@@ -1552,8 +1612,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return false;
@@ -1648,8 +1709,8 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			BlogsEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), BlogsEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1662,8 +1723,9 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 	@Override
 	public BlogsEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (BlogsEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (BlogsEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1712,7 +1774,8 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 	public int compareTo(BlogsEntry blogsEntry) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getDisplayDate(), blogsEntry.getDisplayDate());
+		value = DateUtil.compareTo(
+			getDisplayDate(), blogsEntry.getDisplayDate());
 
 		value = value * -1;
 
@@ -1790,7 +1853,8 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 		blogsEntryModelImpl._originalUrlTitle = blogsEntryModelImpl._urlTitle;
 
-		blogsEntryModelImpl._originalDisplayDate = blogsEntryModelImpl._displayDate;
+		blogsEntryModelImpl._originalDisplayDate =
+			blogsEntryModelImpl._displayDate;
 
 		blogsEntryModelImpl._originalStatus = blogsEntryModelImpl._status;
 
@@ -1973,16 +2037,20 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<BlogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -2001,18 +2069,22 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BlogsEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<BlogsEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BlogsEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BlogsEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<BlogsEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -2026,10 +2098,12 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = BlogsEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		BlogsEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			BlogsEntry.class, ModelWrapper.class
-		};
+		BlogsEntry.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _entryId;
@@ -2073,4 +2147,5 @@ public class BlogsEntryModelImpl extends BaseModelImpl<BlogsEntry>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private BlogsEntry _escapedModel;
+
 }

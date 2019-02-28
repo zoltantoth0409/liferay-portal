@@ -18,12 +18,9 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.message.boards.kernel.model.MBThreadFlag;
 import com.liferay.message.boards.kernel.model.MBThreadFlagModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -61,27 +58,26 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
-	implements MBThreadFlagModel {
+public class MBThreadFlagModelImpl
+	extends BaseModelImpl<MBThreadFlag> implements MBThreadFlagModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a message boards thread flag model instance should use the <code>MBThreadFlag</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "MBThreadFlag";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "threadFlagId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "threadId", Types.BIGINT },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"threadFlagId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"threadId", Types.BIGINT}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -96,30 +92,53 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table MBThreadFlag (uuid_ VARCHAR(75) null,threadFlagId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,threadId LONG,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table MBThreadFlag (uuid_ VARCHAR(75) null,threadFlagId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,threadId LONG,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table MBThreadFlag";
-	public static final String ORDER_BY_JPQL = " ORDER BY mbThreadFlag.threadFlagId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY MBThreadFlag.threadFlagId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY mbThreadFlag.threadFlagId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY MBThreadFlag.threadFlagId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.message.boards.kernel.model.MBThreadFlag"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long THREADID_COLUMN_BITMASK = 4L;
+
 	public static final long USERID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long THREADFLAGID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.message.boards.kernel.model.MBThreadFlag"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.message.boards.kernel.model.MBThreadFlag"));
 
 	public MBThreadFlagModelImpl() {
 	}
@@ -158,13 +177,18 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBThreadFlag, Object> attributeGetterFunction = entry.getValue();
+			Function<MBThreadFlag, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MBThreadFlag)this));
 		}
 
@@ -176,36 +200,44 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MBThreadFlag, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MBThreadFlag, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MBThreadFlag, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MBThreadFlag, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MBThreadFlag)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MBThreadFlag)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MBThreadFlag, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MBThreadFlag, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MBThreadFlag, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MBThreadFlag, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MBThreadFlag, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MBThreadFlag, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MBThreadFlag, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MBThreadFlag, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MBThreadFlag, Object>>();
-		Map<String, BiConsumer<MBThreadFlag, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MBThreadFlag, ?>>();
-
+		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MBThreadFlag, Object>>();
+		Map<String, BiConsumer<MBThreadFlag, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MBThreadFlag, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -242,7 +274,9 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object threadFlagId) {
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object threadFlagId) {
+
 					mbThreadFlag.setThreadFlagId((Long)threadFlagId);
 				}
 
@@ -282,7 +316,9 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object companyId) {
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object companyId) {
+
 					mbThreadFlag.setCompanyId((Long)companyId);
 				}
 
@@ -342,7 +378,9 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object createDate) {
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object createDate) {
+
 					mbThreadFlag.setCreateDate((Date)createDate);
 				}
 
@@ -362,7 +400,9 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object modifiedDate) {
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object modifiedDate) {
+
 					mbThreadFlag.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -402,15 +442,18 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 			new BiConsumer<MBThreadFlag, Object>() {
 
 				@Override
-				public void accept(MBThreadFlag mbThreadFlag, Object lastPublishDate) {
+				public void accept(
+					MBThreadFlag mbThreadFlag, Object lastPublishDate) {
+
 					mbThreadFlag.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -605,8 +648,8 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				MBThreadFlag.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(MBThreadFlag.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -615,8 +658,8 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MBThreadFlag.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MBThreadFlag.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -629,8 +672,9 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 	@Override
 	public MBThreadFlag toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MBThreadFlag)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MBThreadFlag)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -718,7 +762,8 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 		mbThreadFlagModelImpl._setOriginalGroupId = false;
 
-		mbThreadFlagModelImpl._originalCompanyId = mbThreadFlagModelImpl._companyId;
+		mbThreadFlagModelImpl._originalCompanyId =
+			mbThreadFlagModelImpl._companyId;
 
 		mbThreadFlagModelImpl._setOriginalCompanyId = false;
 
@@ -728,7 +773,8 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 		mbThreadFlagModelImpl._setModifiedDate = false;
 
-		mbThreadFlagModelImpl._originalThreadId = mbThreadFlagModelImpl._threadId;
+		mbThreadFlagModelImpl._originalThreadId =
+			mbThreadFlagModelImpl._threadId;
 
 		mbThreadFlagModelImpl._setOriginalThreadId = false;
 
@@ -737,7 +783,8 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public CacheModel<MBThreadFlag> toCacheModel() {
-		MBThreadFlagCacheModel mbThreadFlagCacheModel = new MBThreadFlagCacheModel();
+		MBThreadFlagCacheModel mbThreadFlagCacheModel =
+			new MBThreadFlagCacheModel();
 
 		mbThreadFlagCacheModel.uuid = getUuid();
 
@@ -797,16 +844,20 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public String toString() {
-		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBThreadFlag, Object> attributeGetterFunction = entry.getValue();
+			Function<MBThreadFlag, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -825,18 +876,22 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBThreadFlag, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBThreadFlag, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBThreadFlag, Object> attributeGetterFunction = entry.getValue();
+			Function<MBThreadFlag, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -850,10 +905,12 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MBThreadFlag.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MBThreadFlag.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MBThreadFlag.class, ModelWrapper.class
-		};
+		MBThreadFlag.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _threadFlagId;
@@ -876,4 +933,5 @@ public class MBThreadFlagModelImpl extends BaseModelImpl<MBThreadFlag>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private MBThreadFlag _escapedModel;
+
 }

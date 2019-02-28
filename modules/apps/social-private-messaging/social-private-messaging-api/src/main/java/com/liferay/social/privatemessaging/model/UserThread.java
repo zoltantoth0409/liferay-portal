@@ -27,15 +27,20 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see UserThreadModel
  * @generated
  */
-@ImplementationClassName("com.liferay.social.privatemessaging.model.impl.UserThreadImpl")
+@ImplementationClassName(
+	"com.liferay.social.privatemessaging.model.impl.UserThreadImpl"
+)
 @ProviderType
 public interface UserThread extends UserThreadModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.social.privatemessaging.model.impl.UserThreadImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<UserThread, Long> USER_THREAD_ID_ACCESSOR = new Accessor<UserThread, Long>() {
+	public static final Accessor<UserThread, Long> USER_THREAD_ID_ACCESSOR =
+		new Accessor<UserThread, Long>() {
+
 			@Override
 			public Long get(UserThread userThread) {
 				return userThread.getUserThreadId();
@@ -50,5 +55,7 @@ public interface UserThread extends UserThreadModel, PersistedModel {
 			public Class<UserThread> getTypeClass() {
 				return UserThread.class;
 			}
+
 		};
+
 }

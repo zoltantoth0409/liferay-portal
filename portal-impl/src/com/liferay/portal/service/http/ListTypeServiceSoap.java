@@ -63,12 +63,17 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class ListTypeServiceSoap {
-	public static com.liferay.portal.kernel.model.ListTypeSoap getListType(
-		long listTypeId) throws RemoteException {
-		try {
-			com.liferay.portal.kernel.model.ListType returnValue = ListTypeServiceUtil.getListType(listTypeId);
 
-			return com.liferay.portal.kernel.model.ListTypeSoap.toSoapModel(returnValue);
+	public static com.liferay.portal.kernel.model.ListTypeSoap getListType(
+			long listTypeId)
+		throws RemoteException {
+
+		try {
+			com.liferay.portal.kernel.model.ListType returnValue =
+				ListTypeServiceUtil.getListType(listTypeId);
+
+			return com.liferay.portal.kernel.model.ListTypeSoap.toSoapModel(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -78,12 +83,15 @@ public class ListTypeServiceSoap {
 	}
 
 	public static com.liferay.portal.kernel.model.ListTypeSoap[] getListTypes(
-		String type) throws RemoteException {
-		try {
-			java.util.List<com.liferay.portal.kernel.model.ListType> returnValue =
-				ListTypeServiceUtil.getListTypes(type);
+			String type)
+		throws RemoteException {
 
-			return com.liferay.portal.kernel.model.ListTypeSoap.toSoapModels(returnValue);
+		try {
+			java.util.List<com.liferay.portal.kernel.model.ListType>
+				returnValue = ListTypeServiceUtil.getListTypes(type);
+
+			return com.liferay.portal.kernel.model.ListTypeSoap.toSoapModels(
+				returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -94,6 +102,7 @@ public class ListTypeServiceSoap {
 
 	public static void validate(long listTypeId, long classNameId, String type)
 		throws RemoteException {
+
 		try {
 			ListTypeServiceUtil.validate(listTypeId, classNameId, type);
 		}
@@ -106,6 +115,7 @@ public class ListTypeServiceSoap {
 
 	public static void validate(long listTypeId, String type)
 		throws RemoteException {
+
 		try {
 			ListTypeServiceUtil.validate(listTypeId, type);
 		}
@@ -117,4 +127,5 @@ public class ListTypeServiceSoap {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ListTypeServiceSoap.class);
+
 }

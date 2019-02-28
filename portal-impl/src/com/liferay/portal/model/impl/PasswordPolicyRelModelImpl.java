@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -55,23 +54,24 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
-	implements PasswordPolicyRelModel {
+public class PasswordPolicyRelModelImpl
+	extends BaseModelImpl<PasswordPolicyRel> implements PasswordPolicyRelModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a password policy rel model instance should use the <code>PasswordPolicyRel</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PasswordPolicyRel";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "passwordPolicyRelId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "passwordPolicyId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"passwordPolicyRelId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"passwordPolicyId", Types.BIGINT},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -82,28 +82,49 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 		TABLE_COLUMNS_MAP.put("classPK", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PasswordPolicyRel (mvccVersion LONG default 0 not null,passwordPolicyRelId LONG not null primary key,companyId LONG,passwordPolicyId LONG,classNameId LONG,classPK LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PasswordPolicyRel (mvccVersion LONG default 0 not null,passwordPolicyRelId LONG not null primary key,companyId LONG,passwordPolicyId LONG,classNameId LONG,classPK LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table PasswordPolicyRel";
-	public static final String ORDER_BY_JPQL = " ORDER BY passwordPolicyRel.passwordPolicyRelId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PasswordPolicyRel.passwordPolicyRelId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY passwordPolicyRel.passwordPolicyRelId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PasswordPolicyRel.passwordPolicyRelId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordPolicyRel"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long PASSWORDPOLICYID_COLUMN_BITMASK = 4L;
+
 	public static final long PASSWORDPOLICYRELID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.PasswordPolicyRel"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.PasswordPolicyRel"));
 
 	public PasswordPolicyRelModelImpl() {
 	}
@@ -142,14 +163,18 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PasswordPolicyRel, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicyRel, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicyRel, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicyRel, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PasswordPolicyRel)this));
 		}
 
@@ -161,38 +186,47 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PasswordPolicyRel, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PasswordPolicyRel, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PasswordPolicyRel, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PasswordPolicyRel, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PasswordPolicyRel)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PasswordPolicyRel)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PasswordPolicyRel, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PasswordPolicyRel, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PasswordPolicyRel, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PasswordPolicyRel, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PasswordPolicyRel, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PasswordPolicyRel, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PasswordPolicyRel, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PasswordPolicyRel, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PasswordPolicyRel, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<PasswordPolicyRel, Object>>();
-		Map<String, BiConsumer<PasswordPolicyRel, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<PasswordPolicyRel, ?>>();
-
+		Map<String, Function<PasswordPolicyRel, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<PasswordPolicyRel, Object>>();
+		Map<String, BiConsumer<PasswordPolicyRel, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<PasswordPolicyRel, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -209,7 +243,9 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object mvccVersion) {
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel, Object mvccVersion) {
+
 					passwordPolicyRel.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -229,8 +265,12 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object passwordPolicyRelId) {
-					passwordPolicyRel.setPasswordPolicyRelId((Long)passwordPolicyRelId);
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel,
+					Object passwordPolicyRelId) {
+
+					passwordPolicyRel.setPasswordPolicyRelId(
+						(Long)passwordPolicyRelId);
 				}
 
 			});
@@ -249,7 +289,9 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object companyId) {
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel, Object companyId) {
+
 					passwordPolicyRel.setCompanyId((Long)companyId);
 				}
 
@@ -269,8 +311,12 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object passwordPolicyId) {
-					passwordPolicyRel.setPasswordPolicyId((Long)passwordPolicyId);
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel,
+					Object passwordPolicyId) {
+
+					passwordPolicyRel.setPasswordPolicyId(
+						(Long)passwordPolicyId);
 				}
 
 			});
@@ -289,7 +335,9 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object classNameId) {
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel, Object classNameId) {
+
 					passwordPolicyRel.setClassNameId((Long)classNameId);
 				}
 
@@ -309,15 +357,18 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 			new BiConsumer<PasswordPolicyRel, Object>() {
 
 				@Override
-				public void accept(PasswordPolicyRel passwordPolicyRel, Object classPK) {
+				public void accept(
+					PasswordPolicyRel passwordPolicyRel, Object classPK) {
+
 					passwordPolicyRel.setClassPK((Long)classPK);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -442,8 +493,8 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PasswordPolicyRel.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PasswordPolicyRel.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -456,8 +507,9 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 	@Override
 	public PasswordPolicyRel toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PasswordPolicyRel)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PasswordPolicyRel)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -465,7 +517,8 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public Object clone() {
-		PasswordPolicyRelImpl passwordPolicyRelImpl = new PasswordPolicyRelImpl();
+		PasswordPolicyRelImpl passwordPolicyRelImpl =
+			new PasswordPolicyRelImpl();
 
 		passwordPolicyRelImpl.setMvccVersion(getMvccVersion());
 		passwordPolicyRelImpl.setPasswordPolicyRelId(getPasswordPolicyRelId());
@@ -535,15 +588,18 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 	public void resetOriginalValues() {
 		PasswordPolicyRelModelImpl passwordPolicyRelModelImpl = this;
 
-		passwordPolicyRelModelImpl._originalPasswordPolicyId = passwordPolicyRelModelImpl._passwordPolicyId;
+		passwordPolicyRelModelImpl._originalPasswordPolicyId =
+			passwordPolicyRelModelImpl._passwordPolicyId;
 
 		passwordPolicyRelModelImpl._setOriginalPasswordPolicyId = false;
 
-		passwordPolicyRelModelImpl._originalClassNameId = passwordPolicyRelModelImpl._classNameId;
+		passwordPolicyRelModelImpl._originalClassNameId =
+			passwordPolicyRelModelImpl._classNameId;
 
 		passwordPolicyRelModelImpl._setOriginalClassNameId = false;
 
-		passwordPolicyRelModelImpl._originalClassPK = passwordPolicyRelModelImpl._classPK;
+		passwordPolicyRelModelImpl._originalClassPK =
+			passwordPolicyRelModelImpl._classPK;
 
 		passwordPolicyRelModelImpl._setOriginalClassPK = false;
 
@@ -552,11 +608,13 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public CacheModel<PasswordPolicyRel> toCacheModel() {
-		PasswordPolicyRelCacheModel passwordPolicyRelCacheModel = new PasswordPolicyRelCacheModel();
+		PasswordPolicyRelCacheModel passwordPolicyRelCacheModel =
+			new PasswordPolicyRelCacheModel();
 
 		passwordPolicyRelCacheModel.mvccVersion = getMvccVersion();
 
-		passwordPolicyRelCacheModel.passwordPolicyRelId = getPasswordPolicyRelId();
+		passwordPolicyRelCacheModel.passwordPolicyRelId =
+			getPasswordPolicyRelId();
 
 		passwordPolicyRelCacheModel.companyId = getCompanyId();
 
@@ -571,17 +629,20 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PasswordPolicyRel, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicyRel, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicyRel, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicyRel, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -600,19 +661,22 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PasswordPolicyRel, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicyRel, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicyRel, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicyRel, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicyRel, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -626,10 +690,12 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PasswordPolicyRel.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PasswordPolicyRel.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PasswordPolicyRel.class, ModelWrapper.class
-		};
+		PasswordPolicyRel.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _passwordPolicyRelId;
 	private long _companyId;
@@ -644,4 +710,5 @@ public class PasswordPolicyRelModelImpl extends BaseModelImpl<PasswordPolicyRel>
 	private boolean _setOriginalClassPK;
 	private long _columnBitmask;
 	private PasswordPolicyRel _escapedModel;
+
 }

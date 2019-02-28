@@ -32,8 +32,9 @@ import com.liferay.portal.kernel.service.ResourceBlockLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class ResourceBlockBaseImpl extends ResourceBlockModelImpl
-	implements ResourceBlock {
+public abstract class ResourceBlockBaseImpl
+	extends ResourceBlockModelImpl implements ResourceBlock {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ResourceBlockBaseImpl extends ResourceBlockModelImpl
 			ResourceBlockLocalServiceUtil.updateResourceBlock(this);
 		}
 	}
+
 }

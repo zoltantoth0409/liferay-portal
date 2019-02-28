@@ -17,7 +17,6 @@ package com.liferay.social.networking.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>,
-	ShardedModel {
+public interface MeetupsEntryModel
+	extends AuditedModel, BaseModel<MeetupsEntry>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -344,4 +344,5 @@ public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry>
 
 	@Override
 	public String toXmlString();
+
 }

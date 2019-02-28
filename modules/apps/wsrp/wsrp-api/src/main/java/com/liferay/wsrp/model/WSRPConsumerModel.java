@@ -17,7 +17,6 @@ package com.liferay.wsrp.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, ShardedModel,
-	StagedModel {
+public interface WSRPConsumerModel
+	extends BaseModel<WSRPConsumer>, ShardedModel, StagedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -333,4 +333,5 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer>, ShardedModel
 
 	@Override
 	public String toXmlString();
+
 }

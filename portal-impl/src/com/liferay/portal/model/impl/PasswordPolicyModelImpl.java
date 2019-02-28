@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -65,52 +63,39 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
-	implements PasswordPolicyModel {
+public class PasswordPolicyModelImpl
+	extends BaseModelImpl<PasswordPolicy> implements PasswordPolicyModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a password policy model instance should use the <code>PasswordPolicy</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PasswordPolicy";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "passwordPolicyId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "defaultPolicy", Types.BOOLEAN },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "changeable", Types.BOOLEAN },
-			{ "changeRequired", Types.BOOLEAN },
-			{ "minAge", Types.BIGINT },
-			{ "checkSyntax", Types.BOOLEAN },
-			{ "allowDictionaryWords", Types.BOOLEAN },
-			{ "minAlphanumeric", Types.INTEGER },
-			{ "minLength", Types.INTEGER },
-			{ "minLowerCase", Types.INTEGER },
-			{ "minNumbers", Types.INTEGER },
-			{ "minSymbols", Types.INTEGER },
-			{ "minUpperCase", Types.INTEGER },
-			{ "regex", Types.VARCHAR },
-			{ "history", Types.BOOLEAN },
-			{ "historyCount", Types.INTEGER },
-			{ "expireable", Types.BOOLEAN },
-			{ "maxAge", Types.BIGINT },
-			{ "warningTime", Types.BIGINT },
-			{ "graceLimit", Types.INTEGER },
-			{ "lockout", Types.BOOLEAN },
-			{ "maxFailure", Types.INTEGER },
-			{ "lockoutDuration", Types.BIGINT },
-			{ "requireUnlock", Types.BOOLEAN },
-			{ "resetFailureCount", Types.BIGINT },
-			{ "resetTicketMaxAge", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"passwordPolicyId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"defaultPolicy", Types.BOOLEAN}, {"name", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"changeable", Types.BOOLEAN},
+		{"changeRequired", Types.BOOLEAN}, {"minAge", Types.BIGINT},
+		{"checkSyntax", Types.BOOLEAN}, {"allowDictionaryWords", Types.BOOLEAN},
+		{"minAlphanumeric", Types.INTEGER}, {"minLength", Types.INTEGER},
+		{"minLowerCase", Types.INTEGER}, {"minNumbers", Types.INTEGER},
+		{"minSymbols", Types.INTEGER}, {"minUpperCase", Types.INTEGER},
+		{"regex", Types.VARCHAR}, {"history", Types.BOOLEAN},
+		{"historyCount", Types.INTEGER}, {"expireable", Types.BOOLEAN},
+		{"maxAge", Types.BIGINT}, {"warningTime", Types.BIGINT},
+		{"graceLimit", Types.INTEGER}, {"lockout", Types.BOOLEAN},
+		{"maxFailure", Types.INTEGER}, {"lockoutDuration", Types.BIGINT},
+		{"requireUnlock", Types.BOOLEAN}, {"resetFailureCount", Types.BIGINT},
+		{"resetTicketMaxAge", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -150,26 +135,46 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 		TABLE_COLUMNS_MAP.put("resetTicketMaxAge", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PasswordPolicy (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,passwordPolicyId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,defaultPolicy BOOLEAN,name VARCHAR(75) null,description STRING null,changeable BOOLEAN,changeRequired BOOLEAN,minAge LONG,checkSyntax BOOLEAN,allowDictionaryWords BOOLEAN,minAlphanumeric INTEGER,minLength INTEGER,minLowerCase INTEGER,minNumbers INTEGER,minSymbols INTEGER,minUpperCase INTEGER,regex VARCHAR(75) null,history BOOLEAN,historyCount INTEGER,expireable BOOLEAN,maxAge LONG,warningTime LONG,graceLimit INTEGER,lockout BOOLEAN,maxFailure INTEGER,lockoutDuration LONG,requireUnlock BOOLEAN,resetFailureCount LONG,resetTicketMaxAge LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PasswordPolicy (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,passwordPolicyId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,defaultPolicy BOOLEAN,name VARCHAR(75) null,description STRING null,changeable BOOLEAN,changeRequired BOOLEAN,minAge LONG,checkSyntax BOOLEAN,allowDictionaryWords BOOLEAN,minAlphanumeric INTEGER,minLength INTEGER,minLowerCase INTEGER,minNumbers INTEGER,minSymbols INTEGER,minUpperCase INTEGER,regex VARCHAR(75) null,history BOOLEAN,historyCount INTEGER,expireable BOOLEAN,maxAge LONG,warningTime LONG,graceLimit INTEGER,lockout BOOLEAN,maxFailure INTEGER,lockoutDuration LONG,requireUnlock BOOLEAN,resetFailureCount LONG,resetTicketMaxAge LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table PasswordPolicy";
-	public static final String ORDER_BY_JPQL = " ORDER BY passwordPolicy.passwordPolicyId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PasswordPolicy.passwordPolicyId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY passwordPolicy.passwordPolicyId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PasswordPolicy.passwordPolicyId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordPolicy"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long DEFAULTPOLICY_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long UUID_COLUMN_BITMASK = 8L;
+
 	public static final long PASSWORDPOLICYID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -230,12 +235,15 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 	 * @param soapModels the soap model instances to convert
 	 * @return the normal model instances
 	 */
-	public static List<PasswordPolicy> toModels(PasswordPolicySoap[] soapModels) {
+	public static List<PasswordPolicy> toModels(
+		PasswordPolicySoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<PasswordPolicy> models = new ArrayList<PasswordPolicy>(soapModels.length);
+		List<PasswordPolicy> models = new ArrayList<PasswordPolicy>(
+			soapModels.length);
 
 		for (PasswordPolicySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -244,8 +252,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.PasswordPolicy"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.PasswordPolicy"));
 
 	public PasswordPolicyModelImpl() {
 	}
@@ -284,13 +293,18 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicy, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicy, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PasswordPolicy)this));
 		}
 
@@ -302,36 +316,44 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PasswordPolicy, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PasswordPolicy, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PasswordPolicy, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PasswordPolicy, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PasswordPolicy)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PasswordPolicy)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PasswordPolicy, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PasswordPolicy, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PasswordPolicy, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PasswordPolicy, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PasswordPolicy, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PasswordPolicy, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PasswordPolicy, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PasswordPolicy, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PasswordPolicy, Object>>();
-		Map<String, BiConsumer<PasswordPolicy, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PasswordPolicy, ?>>();
-
+		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<PasswordPolicy, Object>>();
+		Map<String, BiConsumer<PasswordPolicy, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<PasswordPolicy, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -348,7 +370,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object mvccVersion) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object mvccVersion) {
+
 					passwordPolicy.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -388,7 +412,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object passwordPolicyId) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object passwordPolicyId) {
+
 					passwordPolicy.setPasswordPolicyId((Long)passwordPolicyId);
 				}
 
@@ -408,7 +434,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object companyId) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object companyId) {
+
 					passwordPolicy.setCompanyId((Long)companyId);
 				}
 
@@ -428,7 +456,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object userId) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object userId) {
+
 					passwordPolicy.setUserId((Long)userId);
 				}
 
@@ -448,7 +478,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object userName) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object userName) {
+
 					passwordPolicy.setUserName((String)userName);
 				}
 
@@ -468,7 +500,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object createDate) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object createDate) {
+
 					passwordPolicy.setCreateDate((Date)createDate);
 				}
 
@@ -488,7 +522,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object modifiedDate) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object modifiedDate) {
+
 					passwordPolicy.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -508,7 +544,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object defaultPolicy) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object defaultPolicy) {
+
 					passwordPolicy.setDefaultPolicy((Boolean)defaultPolicy);
 				}
 
@@ -548,7 +586,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object description) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object description) {
+
 					passwordPolicy.setDescription((String)description);
 				}
 
@@ -568,7 +608,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object changeable) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object changeable) {
+
 					passwordPolicy.setChangeable((Boolean)changeable);
 				}
 
@@ -588,7 +630,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object changeRequired) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object changeRequired) {
+
 					passwordPolicy.setChangeRequired((Boolean)changeRequired);
 				}
 
@@ -608,7 +652,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minAge) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minAge) {
+
 					passwordPolicy.setMinAge((Long)minAge);
 				}
 
@@ -628,7 +674,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object checkSyntax) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object checkSyntax) {
+
 					passwordPolicy.setCheckSyntax((Boolean)checkSyntax);
 				}
 
@@ -648,8 +696,12 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object allowDictionaryWords) {
-					passwordPolicy.setAllowDictionaryWords((Boolean)allowDictionaryWords);
+				public void accept(
+					PasswordPolicy passwordPolicy,
+					Object allowDictionaryWords) {
+
+					passwordPolicy.setAllowDictionaryWords(
+						(Boolean)allowDictionaryWords);
 				}
 
 			});
@@ -668,7 +720,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minAlphanumeric) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minAlphanumeric) {
+
 					passwordPolicy.setMinAlphanumeric((Integer)minAlphanumeric);
 				}
 
@@ -688,7 +742,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minLength) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minLength) {
+
 					passwordPolicy.setMinLength((Integer)minLength);
 				}
 
@@ -708,7 +764,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minLowerCase) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minLowerCase) {
+
 					passwordPolicy.setMinLowerCase((Integer)minLowerCase);
 				}
 
@@ -728,7 +786,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minNumbers) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minNumbers) {
+
 					passwordPolicy.setMinNumbers((Integer)minNumbers);
 				}
 
@@ -748,7 +808,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minSymbols) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minSymbols) {
+
 					passwordPolicy.setMinSymbols((Integer)minSymbols);
 				}
 
@@ -768,7 +830,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object minUpperCase) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object minUpperCase) {
+
 					passwordPolicy.setMinUpperCase((Integer)minUpperCase);
 				}
 
@@ -788,7 +852,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object regex) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object regex) {
+
 					passwordPolicy.setRegex((String)regex);
 				}
 
@@ -808,7 +874,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object history) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object history) {
+
 					passwordPolicy.setHistory((Boolean)history);
 				}
 
@@ -828,7 +896,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object historyCount) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object historyCount) {
+
 					passwordPolicy.setHistoryCount((Integer)historyCount);
 				}
 
@@ -848,7 +918,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object expireable) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object expireable) {
+
 					passwordPolicy.setExpireable((Boolean)expireable);
 				}
 
@@ -868,7 +940,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object maxAge) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object maxAge) {
+
 					passwordPolicy.setMaxAge((Long)maxAge);
 				}
 
@@ -888,7 +962,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object warningTime) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object warningTime) {
+
 					passwordPolicy.setWarningTime((Long)warningTime);
 				}
 
@@ -908,7 +984,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object graceLimit) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object graceLimit) {
+
 					passwordPolicy.setGraceLimit((Integer)graceLimit);
 				}
 
@@ -928,7 +1006,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object lockout) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object lockout) {
+
 					passwordPolicy.setLockout((Boolean)lockout);
 				}
 
@@ -948,7 +1028,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object maxFailure) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object maxFailure) {
+
 					passwordPolicy.setMaxFailure((Integer)maxFailure);
 				}
 
@@ -968,7 +1050,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object lockoutDuration) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object lockoutDuration) {
+
 					passwordPolicy.setLockoutDuration((Long)lockoutDuration);
 				}
 
@@ -988,7 +1072,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object requireUnlock) {
+				public void accept(
+					PasswordPolicy passwordPolicy, Object requireUnlock) {
+
 					passwordPolicy.setRequireUnlock((Boolean)requireUnlock);
 				}
 
@@ -1008,8 +1094,11 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object resetFailureCount) {
-					passwordPolicy.setResetFailureCount((Long)resetFailureCount);
+				public void accept(
+					PasswordPolicy passwordPolicy, Object resetFailureCount) {
+
+					passwordPolicy.setResetFailureCount(
+						(Long)resetFailureCount);
 				}
 
 			});
@@ -1028,15 +1117,19 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 			new BiConsumer<PasswordPolicy, Object>() {
 
 				@Override
-				public void accept(PasswordPolicy passwordPolicy, Object resetTicketMaxAge) {
-					passwordPolicy.setResetTicketMaxAge((Long)resetTicketMaxAge);
+				public void accept(
+					PasswordPolicy passwordPolicy, Object resetTicketMaxAge) {
+
+					passwordPolicy.setResetTicketMaxAge(
+						(Long)resetTicketMaxAge);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1571,8 +1664,8 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				PasswordPolicy.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(PasswordPolicy.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -1581,8 +1674,8 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PasswordPolicy.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PasswordPolicy.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1595,8 +1688,9 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 	@Override
 	public PasswordPolicy toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PasswordPolicy)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PasswordPolicy)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1705,13 +1799,15 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 		passwordPolicyModelImpl._originalUuid = passwordPolicyModelImpl._uuid;
 
-		passwordPolicyModelImpl._originalCompanyId = passwordPolicyModelImpl._companyId;
+		passwordPolicyModelImpl._originalCompanyId =
+			passwordPolicyModelImpl._companyId;
 
 		passwordPolicyModelImpl._setOriginalCompanyId = false;
 
 		passwordPolicyModelImpl._setModifiedDate = false;
 
-		passwordPolicyModelImpl._originalDefaultPolicy = passwordPolicyModelImpl._defaultPolicy;
+		passwordPolicyModelImpl._originalDefaultPolicy =
+			passwordPolicyModelImpl._defaultPolicy;
 
 		passwordPolicyModelImpl._setOriginalDefaultPolicy = false;
 
@@ -1722,7 +1818,8 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public CacheModel<PasswordPolicy> toCacheModel() {
-		PasswordPolicyCacheModel passwordPolicyCacheModel = new PasswordPolicyCacheModel();
+		PasswordPolicyCacheModel passwordPolicyCacheModel =
+			new PasswordPolicyCacheModel();
 
 		passwordPolicyCacheModel.mvccVersion = getMvccVersion();
 
@@ -1792,7 +1889,8 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 		passwordPolicyCacheModel.checkSyntax = isCheckSyntax();
 
-		passwordPolicyCacheModel.allowDictionaryWords = isAllowDictionaryWords();
+		passwordPolicyCacheModel.allowDictionaryWords =
+			isAllowDictionaryWords();
 
 		passwordPolicyCacheModel.minAlphanumeric = getMinAlphanumeric();
 
@@ -1843,16 +1941,20 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicy, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicy, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1871,18 +1973,22 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordPolicy, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordPolicy, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordPolicy, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordPolicy, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1896,10 +2002,12 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PasswordPolicy.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PasswordPolicy.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PasswordPolicy.class, ModelWrapper.class
-		};
+		PasswordPolicy.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -1944,4 +2052,5 @@ public class PasswordPolicyModelImpl extends BaseModelImpl<PasswordPolicy>
 	private long _resetTicketMaxAge;
 	private long _columnBitmask;
 	private PasswordPolicy _escapedModel;
+
 }

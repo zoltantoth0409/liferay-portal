@@ -22,10 +22,14 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface ShoppingCouponFinder {
-	public int countByG_C_C_A_DT(long groupId, long companyId, String code,
-		boolean active, String discountType, boolean andOperator);
 
-	public java.util.List<com.liferay.shopping.model.ShoppingCoupon> findByG_C_C_A_DT(
+	public int countByG_C_C_A_DT(
 		long groupId, long companyId, String code, boolean active,
-		String discountType, boolean andOperator, int start, int end);
+		String discountType, boolean andOperator);
+
+	public java.util.List<com.liferay.shopping.model.ShoppingCoupon>
+		findByG_C_C_A_DT(
+			long groupId, long companyId, String code, boolean active,
+			String discountType, boolean andOperator, int start, int end);
+
 }

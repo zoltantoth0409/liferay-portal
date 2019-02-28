@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -30,7 +29,6 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.powwow.model.PowwowServer;
 import com.liferay.powwow.model.PowwowServerModel;
 
@@ -58,29 +56,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
-	implements PowwowServerModel {
+public class PowwowServerModelImpl
+	extends BaseModelImpl<PowwowServer> implements PowwowServerModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a powwow server model instance should use the <code>PowwowServer</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PowwowServer";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "powwowServerId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "providerType", Types.VARCHAR },
-			{ "url", Types.VARCHAR },
-			{ "apiKey", Types.VARCHAR },
-			{ "secret", Types.VARCHAR },
-			{ "active_", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"powwowServerId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR}, {"providerType", Types.VARCHAR},
+		{"url", Types.VARCHAR}, {"apiKey", Types.VARCHAR},
+		{"secret", Types.VARCHAR}, {"active_", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("powwowServerId", Types.BIGINT);
@@ -97,27 +93,46 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PowwowServer (powwowServerId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,providerType VARCHAR(75) null,url STRING null,apiKey VARCHAR(75) null,secret VARCHAR(75) null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PowwowServer (powwowServerId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,providerType VARCHAR(75) null,url STRING null,apiKey VARCHAR(75) null,secret VARCHAR(75) null,active_ BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table PowwowServer";
-	public static final String ORDER_BY_JPQL = " ORDER BY powwowServer.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY powwowServer.name ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY PowwowServer.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.powwow.model.PowwowServer"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.powwow.model.PowwowServer"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.powwow.model.PowwowServer"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.powwow.model.PowwowServer"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.powwow.model.PowwowServer"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.powwow.model.PowwowServer"),
+		true);
+
 	public static final long ACTIVE_COLUMN_BITMASK = 1L;
+
 	public static final long PROVIDERTYPE_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.powwow.model.PowwowServer"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.util.service.ServiceProps.get(
+			"lock.expiration.time.com.liferay.powwow.model.PowwowServer"));
 
 	public PowwowServerModelImpl() {
 	}
@@ -156,13 +171,18 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PowwowServer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowServer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowServer, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowServer, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PowwowServer)this));
 		}
 
@@ -174,36 +194,44 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PowwowServer, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PowwowServer, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PowwowServer, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PowwowServer, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PowwowServer)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PowwowServer)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PowwowServer, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PowwowServer, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PowwowServer, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PowwowServer, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PowwowServer, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PowwowServer, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PowwowServer, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PowwowServer, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PowwowServer, Object>>();
-		Map<String, BiConsumer<PowwowServer, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PowwowServer, ?>>();
-
+		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<PowwowServer, Object>>();
+		Map<String, BiConsumer<PowwowServer, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<PowwowServer, ?>>();
 
 		attributeGetterFunctions.put(
 			"powwowServerId",
@@ -220,7 +248,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object powwowServerId) {
+				public void accept(
+					PowwowServer powwowServer, Object powwowServerId) {
+
 					powwowServer.setPowwowServerId((Long)powwowServerId);
 				}
 
@@ -240,7 +270,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object companyId) {
+				public void accept(
+					PowwowServer powwowServer, Object companyId) {
+
 					powwowServer.setCompanyId((Long)companyId);
 				}
 
@@ -300,7 +332,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object createDate) {
+				public void accept(
+					PowwowServer powwowServer, Object createDate) {
+
 					powwowServer.setCreateDate((Date)createDate);
 				}
 
@@ -320,7 +354,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object modifiedDate) {
+				public void accept(
+					PowwowServer powwowServer, Object modifiedDate) {
+
 					powwowServer.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -360,7 +396,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 			new BiConsumer<PowwowServer, Object>() {
 
 				@Override
-				public void accept(PowwowServer powwowServer, Object providerType) {
+				public void accept(
+					PowwowServer powwowServer, Object providerType) {
+
 					powwowServer.setProviderType((String)providerType);
 				}
 
@@ -446,9 +484,10 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -658,8 +697,8 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PowwowServer.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PowwowServer.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -672,8 +711,9 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 	@Override
 	public PowwowServer toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PowwowServer)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PowwowServer)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -757,7 +797,8 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 		powwowServerModelImpl._setModifiedDate = false;
 
-		powwowServerModelImpl._originalProviderType = powwowServerModelImpl._providerType;
+		powwowServerModelImpl._originalProviderType =
+			powwowServerModelImpl._providerType;
 
 		powwowServerModelImpl._originalActive = powwowServerModelImpl._active;
 
@@ -768,7 +809,8 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 	@Override
 	public CacheModel<PowwowServer> toCacheModel() {
-		PowwowServerCacheModel powwowServerCacheModel = new PowwowServerCacheModel();
+		PowwowServerCacheModel powwowServerCacheModel =
+			new PowwowServerCacheModel();
 
 		powwowServerCacheModel.powwowServerId = getPowwowServerId();
 
@@ -849,16 +891,20 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PowwowServer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowServer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowServer, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowServer, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -877,18 +923,22 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowServer, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PowwowServer, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowServer, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowServer, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowServer, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -902,10 +952,12 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PowwowServer.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PowwowServer.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PowwowServer.class, ModelWrapper.class
-		};
+		PowwowServer.class, ModelWrapper.class
+	};
+
 	private long _powwowServerId;
 	private long _companyId;
 	private long _userId;
@@ -924,4 +976,5 @@ public class PowwowServerModelImpl extends BaseModelImpl<PowwowServer>
 	private boolean _setOriginalActive;
 	private long _columnBitmask;
 	private PowwowServer _escapedModel;
+
 }

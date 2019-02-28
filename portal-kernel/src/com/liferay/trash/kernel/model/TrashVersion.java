@@ -27,15 +27,20 @@ import com.liferay.portal.kernel.util.Accessor;
  * @see TrashVersionModel
  * @generated
  */
-@ImplementationClassName("com.liferay.portlet.trash.model.impl.TrashVersionImpl")
+@ImplementationClassName(
+	"com.liferay.portlet.trash.model.impl.TrashVersionImpl"
+)
 @ProviderType
 public interface TrashVersion extends TrashVersionModel, PersistedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this interface directly. Add methods to <code>com.liferay.portlet.trash.model.impl.TrashVersionImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<TrashVersion, Long> VERSION_ID_ACCESSOR = new Accessor<TrashVersion, Long>() {
+	public static final Accessor<TrashVersion, Long> VERSION_ID_ACCESSOR =
+		new Accessor<TrashVersion, Long>() {
+
 			@Override
 			public Long get(TrashVersion trashVersion) {
 				return trashVersion.getVersionId();
@@ -50,14 +55,18 @@ public interface TrashVersion extends TrashVersionModel, PersistedModel {
 			public Class<TrashVersion> getTypeClass() {
 				return TrashVersion.class;
 			}
+
 		};
 
-	public com.liferay.portal.kernel.util.UnicodeProperties getTypeSettingsProperties();
+	public com.liferay.portal.kernel.util.UnicodeProperties
+		getTypeSettingsProperties();
 
 	public String getTypeSettingsProperty(String key);
 
 	public String getTypeSettingsProperty(String key, String defaultValue);
 
 	public void setTypeSettingsProperties(
-		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties);
+		com.liferay.portal.kernel.util.UnicodeProperties
+			typeSettingsProperties);
+
 }

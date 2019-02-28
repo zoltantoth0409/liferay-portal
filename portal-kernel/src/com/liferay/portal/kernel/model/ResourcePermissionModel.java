@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -35,8 +34,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ResourcePermissionModel extends BaseModel<ResourcePermission>,
-	MVCCModel, ShardedModel {
+public interface ResourcePermissionModel
+	extends BaseModel<ResourcePermission>, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -280,4 +280,5 @@ public interface ResourcePermissionModel extends BaseModel<ResourcePermission>,
 
 	@Override
 	public String toXmlString();
+
 }

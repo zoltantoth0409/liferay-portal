@@ -17,7 +17,6 @@ package com.liferay.ratings.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -42,8 +41,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface RatingsEntryModel extends AttachedModel, BaseModel<RatingsEntry>,
-	ShardedModel, StagedAuditedModel {
+public interface RatingsEntryModel
+	extends AttachedModel, BaseModel<RatingsEntry>, ShardedModel,
+			StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -304,4 +305,5 @@ public interface RatingsEntryModel extends AttachedModel, BaseModel<RatingsEntry
 
 	@Override
 	public String toXmlString();
+
 }

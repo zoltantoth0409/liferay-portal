@@ -25,21 +25,25 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 @ProviderType
 public class DLFileRankFinderUtil {
+
 	public static java.util.List<Object[]> findByStaleRanks(int count) {
 		return getFinder().findByStaleRanks(count);
 	}
 
-	public static java.util.List<com.liferay.document.library.kernel.model.DLFileRank> findByFolderId(
-		long folderId) {
+	public static java.util.List
+		<com.liferay.document.library.kernel.model.DLFileRank> findByFolderId(
+			long folderId) {
+
 		return getFinder().findByFolderId(folderId);
 	}
 
 	public static DLFileRankFinder getFinder() {
 		if (_finder == null) {
-			_finder = (DLFileRankFinder)PortalBeanLocatorUtil.locate(DLFileRankFinder.class.getName());
+			_finder = (DLFileRankFinder)PortalBeanLocatorUtil.locate(
+				DLFileRankFinder.class.getName());
 
-			ReferenceRegistry.registerReference(DLFileRankFinderUtil.class,
-				"_finder");
+			ReferenceRegistry.registerReference(
+				DLFileRankFinderUtil.class, "_finder");
 		}
 
 		return _finder;
@@ -48,9 +52,10 @@ public class DLFileRankFinderUtil {
 	public void setFinder(DLFileRankFinder finder) {
 		_finder = finder;
 
-		ReferenceRegistry.registerReference(DLFileRankFinderUtil.class,
-			"_finder");
+		ReferenceRegistry.registerReference(
+			DLFileRankFinderUtil.class, "_finder");
 	}
 
 	private static DLFileRankFinder _finder;
+
 }

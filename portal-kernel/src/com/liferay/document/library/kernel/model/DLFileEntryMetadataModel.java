@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface DLFileEntryMetadataModel extends BaseModel<DLFileEntryMetadata>,
-	ShardedModel {
+public interface DLFileEntryMetadataModel
+	extends BaseModel<DLFileEntryMetadata>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -217,4 +217,5 @@ public interface DLFileEntryMetadataModel extends BaseModel<DLFileEntryMetadata>
 
 	@Override
 	public String toXmlString();
+
 }

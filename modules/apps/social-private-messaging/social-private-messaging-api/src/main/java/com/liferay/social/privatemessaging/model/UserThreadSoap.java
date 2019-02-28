@@ -30,6 +30,7 @@ import java.util.List;
  */
 @ProviderType
 public class UserThreadSoap implements Serializable {
+
 	public static UserThreadSoap toSoapModel(UserThread model) {
 		UserThreadSoap soapModel = new UserThreadSoap();
 
@@ -75,7 +76,8 @@ public class UserThreadSoap implements Serializable {
 	}
 
 	public static UserThreadSoap[] toSoapModels(List<UserThread> models) {
-		List<UserThreadSoap> soapModels = new ArrayList<UserThreadSoap>(models.size());
+		List<UserThreadSoap> soapModels = new ArrayList<UserThreadSoap>(
+			models.size());
 
 		for (UserThread model : models) {
 			soapModels.add(toSoapModel(model));
@@ -193,4 +195,5 @@ public class UserThreadSoap implements Serializable {
 	private long _topMBMessageId;
 	private boolean _read;
 	private boolean _deleted;
+
 }

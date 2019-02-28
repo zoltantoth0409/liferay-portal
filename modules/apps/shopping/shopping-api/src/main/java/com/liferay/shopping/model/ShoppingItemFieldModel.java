@@ -17,7 +17,6 @@ package com.liferay.shopping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ShoppingItemFieldModel extends BaseModel<ShoppingItemField>,
-	ShardedModel {
+public interface ShoppingItemFieldModel
+	extends BaseModel<ShoppingItemField>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -205,4 +205,5 @@ public interface ShoppingItemFieldModel extends BaseModel<ShoppingItemField>,
 
 	@Override
 	public String toXmlString();
+
 }

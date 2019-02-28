@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
-
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
@@ -35,40 +34,48 @@ import org.osgi.util.tracker.ServiceTracker;
  */
 @ProviderType
 public class UserThreadServiceUtil {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.social.privatemessaging.service.impl.UserThreadServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
-		long mbThreadId)
+	public static com.liferay.message.boards.kernel.model.MBMessage
+			getLastThreadMessage(long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
+
 		return getService().getLastThreadMessage(mbThreadId);
 	}
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static java.util.List<com.liferay.message.boards.kernel.model.MBMessage> getThreadMessages(
-		long mbThreadId, int start, int end, boolean ascending)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getThreadMessages(mbThreadId, start, end, ascending);
+	public static java.util.List
+		<com.liferay.message.boards.kernel.model.MBMessage> getThreadMessages(
+				long mbThreadId, int start, int end, boolean ascending)
+			throws com.liferay.portal.kernel.exception.PortalException {
+
+		return getService().getThreadMessages(
+			mbThreadId, start, end, ascending);
 	}
 
 	public static int getThreadMessagesCount(long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException {
+
 		return getService().getThreadMessagesCount(mbThreadId);
 	}
 
-	public static java.util.List<com.liferay.social.privatemessaging.model.UserThread> getUserUserThreads(
-		boolean deleted)
-		throws com.liferay.portal.kernel.security.auth.PrincipalException {
+	public static java.util.List
+		<com.liferay.social.privatemessaging.model.UserThread>
+				getUserUserThreads(boolean deleted)
+			throws com.liferay.portal.kernel.security.auth.PrincipalException {
+
 		return getService().getUserUserThreads(deleted);
 	}
 
@@ -76,16 +83,19 @@ public class UserThreadServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<UserThreadService, UserThreadService> _serviceTracker;
+	private static ServiceTracker<UserThreadService, UserThreadService>
+		_serviceTracker;
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(UserThreadService.class);
 
-		ServiceTracker<UserThreadService, UserThreadService> serviceTracker = new ServiceTracker<UserThreadService, UserThreadService>(bundle.getBundleContext(),
-				UserThreadService.class, null);
+		ServiceTracker<UserThreadService, UserThreadService> serviceTracker =
+			new ServiceTracker<UserThreadService, UserThreadService>(
+				bundle.getBundleContext(), UserThreadService.class, null);
 
 		serviceTracker.open();
 
 		_serviceTracker = serviceTracker;
 	}
+
 }

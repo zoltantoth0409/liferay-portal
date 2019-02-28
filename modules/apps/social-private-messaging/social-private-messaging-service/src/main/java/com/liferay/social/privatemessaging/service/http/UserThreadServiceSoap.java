@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
 import com.liferay.social.privatemessaging.service.UserThreadServiceUtil;
 
 import java.rmi.RemoteException;
@@ -64,10 +63,14 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class UserThreadServiceSoap {
-	public static com.liferay.message.boards.kernel.model.MBMessage getLastThreadMessage(
-		long mbThreadId) throws RemoteException {
+
+	public static com.liferay.message.boards.kernel.model.MBMessage
+			getLastThreadMessage(long mbThreadId)
+		throws RemoteException {
+
 		try {
-			com.liferay.message.boards.kernel.model.MBMessage returnValue = UserThreadServiceUtil.getLastThreadMessage(mbThreadId);
+			com.liferay.message.boards.kernel.model.MBMessage returnValue =
+				UserThreadServiceUtil.getLastThreadMessage(mbThreadId);
 
 			return returnValue;
 		}
@@ -78,15 +81,18 @@ public class UserThreadServiceSoap {
 		}
 	}
 
-	public static com.liferay.message.boards.kernel.model.MBMessageSoap[] getThreadMessages(
-		long mbThreadId, int start, int end, boolean ascending)
+	public static com.liferay.message.boards.kernel.model.MBMessageSoap[]
+			getThreadMessages(
+				long mbThreadId, int start, int end, boolean ascending)
 		throws RemoteException {
-		try {
-			java.util.List<com.liferay.message.boards.kernel.model.MBMessage> returnValue =
-				UserThreadServiceUtil.getThreadMessages(mbThreadId, start, end,
-					ascending);
 
-			return com.liferay.message.boards.kernel.model.MBMessageSoap.toSoapModels(returnValue);
+		try {
+			java.util.List<com.liferay.message.boards.kernel.model.MBMessage>
+				returnValue = UserThreadServiceUtil.getThreadMessages(
+					mbThreadId, start, end, ascending);
+
+			return com.liferay.message.boards.kernel.model.MBMessageSoap.
+				toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -97,8 +103,10 @@ public class UserThreadServiceSoap {
 
 	public static int getThreadMessagesCount(long mbThreadId)
 		throws RemoteException {
+
 		try {
-			int returnValue = UserThreadServiceUtil.getThreadMessagesCount(mbThreadId);
+			int returnValue = UserThreadServiceUtil.getThreadMessagesCount(
+				mbThreadId);
 
 			return returnValue;
 		}
@@ -109,13 +117,16 @@ public class UserThreadServiceSoap {
 		}
 	}
 
-	public static com.liferay.social.privatemessaging.model.UserThreadSoap[] getUserUserThreads(
-		boolean deleted) throws RemoteException {
-		try {
-			java.util.List<com.liferay.social.privatemessaging.model.UserThread> returnValue =
-				UserThreadServiceUtil.getUserUserThreads(deleted);
+	public static com.liferay.social.privatemessaging.model.UserThreadSoap[]
+			getUserUserThreads(boolean deleted)
+		throws RemoteException {
 
-			return com.liferay.social.privatemessaging.model.UserThreadSoap.toSoapModels(returnValue);
+		try {
+			java.util.List<com.liferay.social.privatemessaging.model.UserThread>
+				returnValue = UserThreadServiceUtil.getUserUserThreads(deleted);
+
+			return com.liferay.social.privatemessaging.model.UserThreadSoap.
+				toSoapModels(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -124,5 +135,7 @@ public class UserThreadServiceSoap {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UserThreadServiceSoap.class);
+	private static Log _log = LogFactoryUtil.getLog(
+		UserThreadServiceSoap.class);
+
 }

@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -30,7 +29,6 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.twitter.model.Feed;
 import com.liferay.twitter.model.FeedModel;
 
@@ -59,24 +57,24 @@ import java.util.function.Function;
  */
 @ProviderType
 public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a feed model instance should use the <code>Feed</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Twitter_Feed";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "feedId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "twitterUserId", Types.BIGINT },
-			{ "twitterScreenName", Types.VARCHAR },
-			{ "lastStatusId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"feedId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"twitterUserId", Types.BIGINT}, {"twitterScreenName", Types.VARCHAR},
+		{"lastStatusId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("feedId", Types.BIGINT);
@@ -90,27 +88,46 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		TABLE_COLUMNS_MAP.put("lastStatusId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,twitterUserId LONG,twitterScreenName VARCHAR(75) null,lastStatusId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,twitterUserId LONG,twitterScreenName VARCHAR(75) null,lastStatusId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table Twitter_Feed";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY feed.feedId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Twitter_Feed.feedId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Twitter_Feed.feedId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.twitter.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.twitter.model.Feed"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.twitter.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.twitter.model.Feed"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.twitter.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.twitter.model.Feed"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.twitter.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.twitter.model.Feed"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.twitter.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.twitter.model.Feed"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.twitter.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.twitter.model.Feed"),
+		true);
+
 	public static final long TWITTERSCREENNAME_COLUMN_BITMASK = 1L;
+
 	public static final long USERID_COLUMN_BITMASK = 2L;
+
 	public static final long FEEDID_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.twitter.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.twitter.model.Feed"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.twitter.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.twitter.model.Feed"));
 
 	public FeedModelImpl() {
 	}
@@ -149,14 +166,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Feed, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Feed, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Feed, Object> attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Feed)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Feed)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -167,12 +187,14 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Feed, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Feed, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Feed, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Feed, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
 				attributeSetterBiConsumer.accept((Feed)this, entry.getValue());
@@ -184,17 +206,22 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Feed, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Feed, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Feed, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Feed, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Feed, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Feed, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Feed, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Feed, Object>>();
-		Map<String, BiConsumer<Feed, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Feed, ?>>();
-
+		Map<String, Function<Feed, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Feed, Object>>();
+		Map<String, BiConsumer<Feed, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Feed, ?>>();
 
 		attributeGetterFunctions.put(
 			"feedId",
@@ -377,9 +404,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -548,8 +576,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Feed.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Feed.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -562,8 +590,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	@Override
 	public Feed toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Feed)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Feed)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -650,7 +679,8 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 		feedModelImpl._setModifiedDate = false;
 
-		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
+		feedModelImpl._originalTwitterScreenName =
+			feedModelImpl._twitterScreenName;
 
 		feedModelImpl._columnBitmask = 0;
 	}
@@ -708,14 +738,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public String toString() {
-		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Feed, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Feed, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Feed, Object> attributeGetterFunction = entry.getValue();
 
@@ -736,16 +769,19 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Feed, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Feed, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Feed, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Feed, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Feed, Object> attributeGetterFunction = entry.getValue();
 
@@ -763,8 +799,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	private static final ClassLoader _classLoader = Feed.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Feed.class, ModelWrapper.class
-		};
+		Feed.class, ModelWrapper.class
+	};
+
 	private long _feedId;
 	private long _companyId;
 	private long _userId;
@@ -780,4 +817,5 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private long _lastStatusId;
 	private long _columnBitmask;
 	private Feed _escapedModel;
+
 }

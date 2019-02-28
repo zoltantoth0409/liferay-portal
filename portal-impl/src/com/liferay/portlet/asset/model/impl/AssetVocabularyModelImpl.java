@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.model.AssetVocabularyModel;
 import com.liferay.asset.kernel.model.AssetVocabularySoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -73,30 +70,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
-	implements AssetVocabularyModel {
+public class AssetVocabularyModelImpl
+	extends BaseModelImpl<AssetVocabulary> implements AssetVocabularyModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a asset vocabulary model instance should use the <code>AssetVocabulary</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "AssetVocabulary";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "vocabularyId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "title", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "settings_", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"vocabularyId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR}, {"title", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"settings_", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -114,25 +109,44 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table AssetVocabulary (uuid_ VARCHAR(75) null,vocabularyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,title STRING null,description STRING null,settings_ STRING null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table AssetVocabulary (uuid_ VARCHAR(75) null,vocabularyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,title STRING null,description STRING null,settings_ STRING null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table AssetVocabulary";
-	public static final String ORDER_BY_JPQL = " ORDER BY assetVocabulary.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY AssetVocabulary.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY assetVocabulary.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY AssetVocabulary.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.asset.kernel.model.AssetVocabulary"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long UUID_COLUMN_BITMASK = 8L;
 
 	/**
@@ -173,11 +187,13 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	 */
 	public static List<AssetVocabulary> toModels(
 		AssetVocabularySoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<AssetVocabulary> models = new ArrayList<AssetVocabulary>(soapModels.length);
+		List<AssetVocabulary> models = new ArrayList<AssetVocabulary>(
+			soapModels.length);
 
 		for (AssetVocabularySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -186,8 +202,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.asset.kernel.model.AssetVocabulary"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.asset.kernel.model.AssetVocabulary"));
 
 	public AssetVocabularyModelImpl() {
 	}
@@ -226,13 +243,18 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<AssetVocabulary, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetVocabulary, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetVocabulary, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetVocabulary, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((AssetVocabulary)this));
 		}
 
@@ -244,36 +266,45 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<AssetVocabulary, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<AssetVocabulary, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<AssetVocabulary, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<AssetVocabulary, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((AssetVocabulary)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(AssetVocabulary)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<AssetVocabulary, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<AssetVocabulary, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<AssetVocabulary, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<AssetVocabulary, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<AssetVocabulary, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<AssetVocabulary, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<AssetVocabulary, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AssetVocabulary, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<AssetVocabulary, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AssetVocabulary, Object>>();
-		Map<String, BiConsumer<AssetVocabulary, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AssetVocabulary, ?>>();
-
+		Map<String, Function<AssetVocabulary, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<AssetVocabulary, Object>>();
+		Map<String, BiConsumer<AssetVocabulary, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AssetVocabulary, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -290,7 +321,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object uuid) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object uuid) {
+
 					assetVocabulary.setUuid((String)uuid);
 				}
 
@@ -310,7 +343,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object vocabularyId) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object vocabularyId) {
+
 					assetVocabulary.setVocabularyId((Long)vocabularyId);
 				}
 
@@ -330,7 +365,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object groupId) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object groupId) {
+
 					assetVocabulary.setGroupId((Long)groupId);
 				}
 
@@ -350,7 +387,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object companyId) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object companyId) {
+
 					assetVocabulary.setCompanyId((Long)companyId);
 				}
 
@@ -370,7 +409,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object userId) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object userId) {
+
 					assetVocabulary.setUserId((Long)userId);
 				}
 
@@ -390,7 +431,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object userName) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object userName) {
+
 					assetVocabulary.setUserName((String)userName);
 				}
 
@@ -410,7 +453,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object createDate) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object createDate) {
+
 					assetVocabulary.setCreateDate((Date)createDate);
 				}
 
@@ -430,7 +475,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object modifiedDate) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object modifiedDate) {
+
 					assetVocabulary.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -450,7 +497,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object name) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object name) {
+
 					assetVocabulary.setName((String)name);
 				}
 
@@ -470,7 +519,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object title) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object title) {
+
 					assetVocabulary.setTitle((String)title);
 				}
 
@@ -490,7 +541,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object description) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object description) {
+
 					assetVocabulary.setDescription((String)description);
 				}
 
@@ -510,7 +563,9 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object settings) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object settings) {
+
 					assetVocabulary.setSettings((String)settings);
 				}
 
@@ -530,15 +585,18 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			new BiConsumer<AssetVocabulary, Object>() {
 
 				@Override
-				public void accept(AssetVocabulary assetVocabulary, Object lastPublishDate) {
+				public void accept(
+					AssetVocabulary assetVocabulary, Object lastPublishDate) {
+
 					assetVocabulary.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -753,8 +811,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public String getTitle(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getTitle(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getTitle(), languageId, useDefault);
 	}
 
 	@Override
@@ -791,12 +849,14 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(title)) {
-			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
-					title, languageId, defaultLanguageId));
+			setTitle(
+				LocalizationUtil.updateLocalization(
+					getTitle(), "Title", title, languageId, defaultLanguageId));
 		}
 		else {
-			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
-					languageId));
+			setTitle(
+				LocalizationUtil.removeLocalization(
+					getTitle(), "Title", languageId));
 		}
 	}
 
@@ -811,13 +871,17 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	}
 
 	@Override
-	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
+	public void setTitleMap(
+		Map<Locale, String> titleMap, Locale defaultLocale) {
+
 		if (titleMap == null) {
 			return;
 		}
 
-		setTitle(LocalizationUtil.updateLocalization(titleMap, getTitle(),
-				"Title", LocaleUtil.toLanguageId(defaultLocale)));
+		setTitle(
+			LocalizationUtil.updateLocalization(
+				titleMap, getTitle(), "Title",
+				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
 	@JSON
@@ -852,8 +916,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getDescription(), languageId, useDefault);
 	}
 
 	@Override
@@ -885,18 +949,21 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	}
 
 	@Override
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale) {
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale) {
+
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(description)) {
-			setDescription(LocalizationUtil.updateLocalization(
+			setDescription(
+				LocalizationUtil.updateLocalization(
 					getDescription(), "Description", description, languageId,
 					defaultLanguageId));
 		}
 		else {
-			setDescription(LocalizationUtil.removeLocalization(
+			setDescription(
+				LocalizationUtil.removeLocalization(
 					getDescription(), "Description", languageId));
 		}
 	}
@@ -912,14 +979,16 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	}
 
 	@Override
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale) {
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale) {
+
 		if (descriptionMap == null) {
 			return;
 		}
 
-		setDescription(LocalizationUtil.updateLocalization(descriptionMap,
-				getDescription(), "Description",
+		setDescription(
+			LocalizationUtil.updateLocalization(
+				descriptionMap, getDescription(), "Description",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -952,8 +1021,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				AssetVocabulary.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(AssetVocabulary.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -962,8 +1031,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			AssetVocabulary.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), AssetVocabulary.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -999,7 +1068,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 			}
 		}
 
-		return availableLanguageIds.toArray(new String[availableLanguageIds.size()]);
+		return availableLanguageIds.toArray(
+			new String[availableLanguageIds.size()]);
 	}
 
 	@Override
@@ -1017,12 +1087,15 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public void prepareLocalizedFieldsForImport() throws LocaleException {
-		Locale defaultLocale = LocaleUtil.fromLanguageId(getDefaultLanguageId());
+		Locale defaultLocale = LocaleUtil.fromLanguageId(
+			getDefaultLanguageId());
 
-		Locale[] availableLocales = LocaleUtil.fromLanguageIds(getAvailableLanguageIds());
+		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
+			getAvailableLanguageIds());
 
-		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(AssetVocabulary.class.getName(),
-				getPrimaryKey(), defaultLocale, availableLocales);
+		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
+			AssetVocabulary.class.getName(), getPrimaryKey(), defaultLocale,
+			availableLocales);
 
 		prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
@@ -1031,6 +1104,7 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
+
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
@@ -1047,19 +1121,21 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		String description = getDescription(defaultLocale);
 
 		if (Validator.isNull(description)) {
-			setDescription(getDescription(modelDefaultLanguageId), defaultLocale);
+			setDescription(
+				getDescription(modelDefaultLanguageId), defaultLocale);
 		}
 		else {
-			setDescription(getDescription(defaultLocale), defaultLocale,
-				defaultLocale);
+			setDescription(
+				getDescription(defaultLocale), defaultLocale, defaultLocale);
 		}
 	}
 
 	@Override
 	public AssetVocabulary toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (AssetVocabulary)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (AssetVocabulary)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1144,11 +1220,13 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 		assetVocabularyModelImpl._originalUuid = assetVocabularyModelImpl._uuid;
 
-		assetVocabularyModelImpl._originalGroupId = assetVocabularyModelImpl._groupId;
+		assetVocabularyModelImpl._originalGroupId =
+			assetVocabularyModelImpl._groupId;
 
 		assetVocabularyModelImpl._setOriginalGroupId = false;
 
-		assetVocabularyModelImpl._originalCompanyId = assetVocabularyModelImpl._companyId;
+		assetVocabularyModelImpl._originalCompanyId =
+			assetVocabularyModelImpl._companyId;
 
 		assetVocabularyModelImpl._setOriginalCompanyId = false;
 
@@ -1161,7 +1239,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public CacheModel<AssetVocabulary> toCacheModel() {
-		AssetVocabularyCacheModel assetVocabularyCacheModel = new AssetVocabularyCacheModel();
+		AssetVocabularyCacheModel assetVocabularyCacheModel =
+			new AssetVocabularyCacheModel();
 
 		assetVocabularyCacheModel.uuid = getUuid();
 
@@ -1240,7 +1319,8 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			assetVocabularyCacheModel.lastPublishDate = lastPublishDate.getTime();
+			assetVocabularyCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			assetVocabularyCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1251,16 +1331,20 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public String toString() {
-		Map<String, Function<AssetVocabulary, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetVocabulary, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetVocabulary, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetVocabulary, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1279,18 +1363,22 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<AssetVocabulary, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetVocabulary, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetVocabulary, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetVocabulary, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetVocabulary, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1304,10 +1392,12 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = AssetVocabulary.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		AssetVocabulary.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			AssetVocabulary.class, ModelWrapper.class
-		};
+		AssetVocabulary.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _vocabularyId;
@@ -1332,4 +1422,5 @@ public class AssetVocabularyModelImpl extends BaseModelImpl<AssetVocabulary>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private AssetVocabulary _escapedModel;
+
 }

@@ -21,7 +21,6 @@ import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -54,7 +53,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalService;
 import com.liferay.wsrp.service.persistence.WSRPConsumerPersistence;
@@ -80,8 +78,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class WSRPConsumerPortletLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements WSRPConsumerPortletLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements WSRPConsumerPortletLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -98,6 +97,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Override
 	public WSRPConsumerPortlet addWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet) {
+
 		wsrpConsumerPortlet.setNew(true);
 
 		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet);
@@ -113,6 +113,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Transactional(enabled = false)
 	public WSRPConsumerPortlet createWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) {
+
 		return wsrpConsumerPortletPersistence.create(wsrpConsumerPortletId);
 	}
 
@@ -126,7 +127,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
-		long wsrpConsumerPortletId) throws PortalException {
+			long wsrpConsumerPortletId)
+		throws PortalException {
+
 		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortletId);
 	}
 
@@ -140,7 +143,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
-		WSRPConsumerPortlet wsrpConsumerPortlet) throws PortalException {
+			WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws PortalException {
+
 		return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 	}
 
@@ -148,8 +153,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(WSRPConsumerPortlet.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			WSRPConsumerPortlet.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -160,7 +165,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	@Override
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
-		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery);
+		return wsrpConsumerPortletPersistence.findWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -176,10 +182,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return wsrpConsumerPortletPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -196,10 +203,12 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return wsrpConsumerPortletPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return wsrpConsumerPortletPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -210,7 +219,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
-		return wsrpConsumerPortletPersistence.countWithDynamicQuery(dynamicQuery);
+		return wsrpConsumerPortletPersistence.countWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -221,16 +231,19 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return wsrpConsumerPortletPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return wsrpConsumerPortletPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public WSRPConsumerPortlet fetchWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) {
-		return wsrpConsumerPortletPersistence.fetchByPrimaryKey(wsrpConsumerPortletId);
+
+		return wsrpConsumerPortletPersistence.fetchByPrimaryKey(
+			wsrpConsumerPortletId);
 	}
 
 	/**
@@ -243,8 +256,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Override
 	public WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
 		String uuid, long companyId) {
-		return wsrpConsumerPortletPersistence.fetchByUuid_C_First(uuid,
-			companyId, null);
+
+		return wsrpConsumerPortletPersistence.fetchByUuid_C_First(
+			uuid, companyId, null);
 	}
 
 	/**
@@ -256,15 +270,20 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	@Override
 	public WSRPConsumerPortlet getWSRPConsumerPortlet(
-		long wsrpConsumerPortletId) throws PortalException {
-		return wsrpConsumerPortletPersistence.findByPrimaryKey(wsrpConsumerPortletId);
+			long wsrpConsumerPortletId)
+		throws PortalException {
+
+		return wsrpConsumerPortletPersistence.findByPrimaryKey(
+			wsrpConsumerPortletId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(wsrpConsumerPortletLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			wsrpConsumerPortletLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WSRPConsumerPortlet.class);
 
@@ -275,12 +294,17 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(wsrpConsumerPortletLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			wsrpConsumerPortletLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
-		indexableActionableDynamicQuery.setModelClass(WSRPConsumerPortlet.class);
+		indexableActionableDynamicQuery.setModelClass(
+			WSRPConsumerPortlet.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
 			"wsrpConsumerPortletId");
@@ -290,7 +314,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(wsrpConsumerPortletLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			wsrpConsumerPortletLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WSRPConsumerPortlet.class);
 
@@ -301,51 +327,68 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Override
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		final PortletDataContext portletDataContext) {
-		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+
+		final ExportActionableDynamicQuery exportActionableDynamicQuery =
+			new ExportActionableDynamicQuery() {
+
 				@Override
 				public long performCount() throws PortalException {
-					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+					ManifestSummary manifestSummary =
+						portletDataContext.getManifestSummary();
 
 					StagedModelType stagedModelType = getStagedModelType();
 
 					long modelAdditionCount = super.performCount();
 
-					manifestSummary.addModelAdditionCount(stagedModelType,
-						modelAdditionCount);
+					manifestSummary.addModelAdditionCount(
+						stagedModelType, modelAdditionCount);
 
-					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
-							stagedModelType);
+					long modelDeletionCount =
+						ExportImportHelperUtil.getModelDeletionCount(
+							portletDataContext, stagedModelType);
 
-					manifestSummary.addModelDeletionCount(stagedModelType,
-						modelDeletionCount);
+					manifestSummary.addModelDeletionCount(
+						stagedModelType, modelDeletionCount);
 
 					return modelAdditionCount;
 				}
+
 			};
 
 		initActionableDynamicQuery(exportActionableDynamicQuery);
 
-		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+		exportActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					portletDataContext.addDateRangeCriteria(dynamicQuery,
-						"modifiedDate");
+					portletDataContext.addDateRangeCriteria(
+						dynamicQuery, "modifiedDate");
 				}
+
 			});
 
-		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+		exportActionableDynamicQuery.setCompanyId(
+			portletDataContext.getCompanyId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<WSRPConsumerPortlet>() {
+		exportActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod
+				<WSRPConsumerPortlet>() {
+
 				@Override
 				public void performAction(
-					WSRPConsumerPortlet wsrpConsumerPortlet)
+						WSRPConsumerPortlet wsrpConsumerPortlet)
 					throws PortalException {
-					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						wsrpConsumerPortlet);
+
+					StagedModelDataHandlerUtil.exportStagedModel(
+						portletDataContext, wsrpConsumerPortlet);
 				}
+
 			});
-		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
-				PortalUtil.getClassNameId(WSRPConsumerPortlet.class.getName())));
+		exportActionableDynamicQuery.setStagedModelType(
+			new StagedModelType(
+				PortalUtil.getClassNameId(
+					WSRPConsumerPortlet.class.getName())));
 
 		return exportActionableDynamicQuery;
 	}
@@ -356,12 +399,15 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet((WSRPConsumerPortlet)persistedModel);
+
+		return wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet(
+			(WSRPConsumerPortlet)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return wsrpConsumerPortletPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -375,9 +421,11 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	@Override
 	public WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
-		String uuid, long companyId) throws PortalException {
-		return wsrpConsumerPortletPersistence.findByUuid_C_First(uuid,
-			companyId, null);
+			String uuid, long companyId)
+		throws PortalException {
+
+		return wsrpConsumerPortletPersistence.findByUuid_C_First(
+			uuid, companyId, null);
 	}
 
 	/**
@@ -392,7 +440,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the range of wsrp consumer portlets
 	 */
 	@Override
-	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(int start, int end) {
+	public List<WSRPConsumerPortlet> getWSRPConsumerPortlets(
+		int start, int end) {
+
 		return wsrpConsumerPortletPersistence.findAll(start, end);
 	}
 
@@ -416,6 +466,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	@Override
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		WSRPConsumerPortlet wsrpConsumerPortlet) {
+
 		return wsrpConsumerPortletPersistence.update(wsrpConsumerPortlet);
 	}
 
@@ -424,7 +475,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the wsrp consumer local service
 	 */
-	public com.liferay.wsrp.service.WSRPConsumerLocalService getWSRPConsumerLocalService() {
+	public com.liferay.wsrp.service.WSRPConsumerLocalService
+		getWSRPConsumerLocalService() {
+
 		return wsrpConsumerLocalService;
 	}
 
@@ -434,7 +487,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param wsrpConsumerLocalService the wsrp consumer local service
 	 */
 	public void setWSRPConsumerLocalService(
-		com.liferay.wsrp.service.WSRPConsumerLocalService wsrpConsumerLocalService) {
+		com.liferay.wsrp.service.WSRPConsumerLocalService
+			wsrpConsumerLocalService) {
+
 		this.wsrpConsumerLocalService = wsrpConsumerLocalService;
 	}
 
@@ -454,6 +509,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setWSRPConsumerPersistence(
 		WSRPConsumerPersistence wsrpConsumerPersistence) {
+
 		this.wsrpConsumerPersistence = wsrpConsumerPersistence;
 	}
 
@@ -462,7 +518,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the wsrp consumer portlet local service
 	 */
-	public WSRPConsumerPortletLocalService getWSRPConsumerPortletLocalService() {
+	public WSRPConsumerPortletLocalService
+		getWSRPConsumerPortletLocalService() {
+
 		return wsrpConsumerPortletLocalService;
 	}
 
@@ -473,6 +531,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setWSRPConsumerPortletLocalService(
 		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
+
 		this.wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
 	}
 
@@ -492,6 +551,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setWSRPConsumerPortletPersistence(
 		WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence) {
+
 		this.wsrpConsumerPortletPersistence = wsrpConsumerPortletPersistence;
 	}
 
@@ -500,7 +560,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the wsrp producer local service
 	 */
-	public com.liferay.wsrp.service.WSRPProducerLocalService getWSRPProducerLocalService() {
+	public com.liferay.wsrp.service.WSRPProducerLocalService
+		getWSRPProducerLocalService() {
+
 		return wsrpProducerLocalService;
 	}
 
@@ -510,7 +572,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param wsrpProducerLocalService the wsrp producer local service
 	 */
 	public void setWSRPProducerLocalService(
-		com.liferay.wsrp.service.WSRPProducerLocalService wsrpProducerLocalService) {
+		com.liferay.wsrp.service.WSRPProducerLocalService
+			wsrpProducerLocalService) {
+
 		this.wsrpProducerLocalService = wsrpProducerLocalService;
 	}
 
@@ -530,6 +594,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setWSRPProducerPersistence(
 		WSRPProducerPersistence wsrpProducerPersistence) {
+
 		this.wsrpProducerPersistence = wsrpProducerPersistence;
 	}
 
@@ -538,7 +603,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -548,7 +615,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -557,7 +626,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the address local service
 	 */
-	public com.liferay.portal.kernel.service.AddressLocalService getAddressLocalService() {
+	public com.liferay.portal.kernel.service.AddressLocalService
+		getAddressLocalService() {
+
 		return addressLocalService;
 	}
 
@@ -567,7 +638,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param addressLocalService the address local service
 	 */
 	public void setAddressLocalService(
-		com.liferay.portal.kernel.service.AddressLocalService addressLocalService) {
+		com.liferay.portal.kernel.service.AddressLocalService
+			addressLocalService) {
+
 		this.addressLocalService = addressLocalService;
 	}
 
@@ -594,7 +667,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -604,7 +679,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -624,6 +701,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -632,7 +710,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the email address local service
 	 */
-	public com.liferay.portal.kernel.service.EmailAddressLocalService getEmailAddressLocalService() {
+	public com.liferay.portal.kernel.service.EmailAddressLocalService
+		getEmailAddressLocalService() {
+
 		return emailAddressLocalService;
 	}
 
@@ -642,7 +722,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param emailAddressLocalService the email address local service
 	 */
 	public void setEmailAddressLocalService(
-		com.liferay.portal.kernel.service.EmailAddressLocalService emailAddressLocalService) {
+		com.liferay.portal.kernel.service.EmailAddressLocalService
+			emailAddressLocalService) {
+
 		this.emailAddressLocalService = emailAddressLocalService;
 	}
 
@@ -662,6 +744,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setEmailAddressPersistence(
 		EmailAddressPersistence emailAddressPersistence) {
+
 		this.emailAddressPersistence = emailAddressPersistence;
 	}
 
@@ -670,7 +753,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the list type local service
 	 */
-	public com.liferay.portal.kernel.service.ListTypeLocalService getListTypeLocalService() {
+	public com.liferay.portal.kernel.service.ListTypeLocalService
+		getListTypeLocalService() {
+
 		return listTypeLocalService;
 	}
 
@@ -680,7 +765,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param listTypeLocalService the list type local service
 	 */
 	public void setListTypeLocalService(
-		com.liferay.portal.kernel.service.ListTypeLocalService listTypeLocalService) {
+		com.liferay.portal.kernel.service.ListTypeLocalService
+			listTypeLocalService) {
+
 		this.listTypeLocalService = listTypeLocalService;
 	}
 
@@ -698,7 +785,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @param listTypePersistence the list type persistence
 	 */
-	public void setListTypePersistence(ListTypePersistence listTypePersistence) {
+	public void setListTypePersistence(
+		ListTypePersistence listTypePersistence) {
+
 		this.listTypePersistence = listTypePersistence;
 	}
 
@@ -707,7 +796,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the phone local service
 	 */
-	public com.liferay.portal.kernel.service.PhoneLocalService getPhoneLocalService() {
+	public com.liferay.portal.kernel.service.PhoneLocalService
+		getPhoneLocalService() {
+
 		return phoneLocalService;
 	}
 
@@ -718,6 +809,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setPhoneLocalService(
 		com.liferay.portal.kernel.service.PhoneLocalService phoneLocalService) {
+
 		this.phoneLocalService = phoneLocalService;
 	}
 
@@ -744,7 +836,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the portlet local service
 	 */
-	public com.liferay.portal.kernel.service.PortletLocalService getPortletLocalService() {
+	public com.liferay.portal.kernel.service.PortletLocalService
+		getPortletLocalService() {
+
 		return portletLocalService;
 	}
 
@@ -754,7 +848,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param portletLocalService the portlet local service
 	 */
 	public void setPortletLocalService(
-		com.liferay.portal.kernel.service.PortletLocalService portletLocalService) {
+		com.liferay.portal.kernel.service.PortletLocalService
+			portletLocalService) {
+
 		this.portletLocalService = portletLocalService;
 	}
 
@@ -781,7 +877,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -791,7 +889,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -800,7 +900,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -811,6 +913,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -837,7 +940,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 *
 	 * @return the website local service
 	 */
-	public com.liferay.portal.kernel.service.WebsiteLocalService getWebsiteLocalService() {
+	public com.liferay.portal.kernel.service.WebsiteLocalService
+		getWebsiteLocalService() {
+
 		return websiteLocalService;
 	}
 
@@ -847,7 +952,9 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @param websiteLocalService the website local service
 	 */
 	public void setWebsiteLocalService(
-		com.liferay.portal.kernel.service.WebsiteLocalService websiteLocalService) {
+		com.liferay.portal.kernel.service.WebsiteLocalService
+			websiteLocalService) {
+
 		this.websiteLocalService = websiteLocalService;
 	}
 
@@ -870,7 +977,8 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.wsrp.model.WSRPConsumerPortlet",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.wsrp.model.WSRPConsumerPortlet",
 			wsrpConsumerPortletLocalService);
 	}
 
@@ -904,15 +1012,16 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = wsrpConsumerPortletPersistence.getDataSource();
+			DataSource dataSource =
+				wsrpConsumerPortletPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -921,54 +1030,116 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.wsrp.service.WSRPConsumerLocalService.class)
-	protected com.liferay.wsrp.service.WSRPConsumerLocalService wsrpConsumerLocalService;
+	@BeanReference(
+		type = com.liferay.wsrp.service.WSRPConsumerLocalService.class
+	)
+	protected com.liferay.wsrp.service.WSRPConsumerLocalService
+		wsrpConsumerLocalService;
+
 	@BeanReference(type = WSRPConsumerPersistence.class)
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
+
 	@BeanReference(type = WSRPConsumerPortletLocalService.class)
 	protected WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService;
+
 	@BeanReference(type = WSRPConsumerPortletPersistence.class)
 	protected WSRPConsumerPortletPersistence wsrpConsumerPortletPersistence;
-	@BeanReference(type = com.liferay.wsrp.service.WSRPProducerLocalService.class)
-	protected com.liferay.wsrp.service.WSRPProducerLocalService wsrpProducerLocalService;
+
+	@BeanReference(
+		type = com.liferay.wsrp.service.WSRPProducerLocalService.class
+	)
+	protected com.liferay.wsrp.service.WSRPProducerLocalService
+		wsrpProducerLocalService;
+
 	@BeanReference(type = WSRPProducerPersistence.class)
 	protected WSRPProducerPersistence wsrpProducerPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.AddressLocalService.class)
-	protected com.liferay.portal.kernel.service.AddressLocalService addressLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.AddressLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.AddressLocalService
+		addressLocalService;
+
 	@ServiceReference(type = AddressPersistence.class)
 	protected AddressPersistence addressPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
 	@ServiceReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.EmailAddressLocalService.class)
-	protected com.liferay.portal.kernel.service.EmailAddressLocalService emailAddressLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.EmailAddressLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.EmailAddressLocalService
+		emailAddressLocalService;
+
 	@ServiceReference(type = EmailAddressPersistence.class)
 	protected EmailAddressPersistence emailAddressPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ListTypeLocalService.class)
-	protected com.liferay.portal.kernel.service.ListTypeLocalService listTypeLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ListTypeLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ListTypeLocalService
+		listTypeLocalService;
+
 	@ServiceReference(type = ListTypePersistence.class)
 	protected ListTypePersistence listTypePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.PhoneLocalService.class)
-	protected com.liferay.portal.kernel.service.PhoneLocalService phoneLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.PhoneLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.PhoneLocalService
+		phoneLocalService;
+
 	@ServiceReference(type = PhonePersistence.class)
 	protected PhonePersistence phonePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.PortletLocalService.class)
-	protected com.liferay.portal.kernel.service.PortletLocalService portletLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.PortletLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.PortletLocalService
+		portletLocalService;
+
 	@ServiceReference(type = PortletPersistence.class)
 	protected PortletPersistence portletPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.WebsiteLocalService.class)
-	protected com.liferay.portal.kernel.service.WebsiteLocalService websiteLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.WebsiteLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.WebsiteLocalService
+		websiteLocalService;
+
 	@ServiceReference(type = WebsitePersistence.class)
 	protected WebsitePersistence websitePersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

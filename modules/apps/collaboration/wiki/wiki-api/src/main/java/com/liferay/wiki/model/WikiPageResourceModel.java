@@ -17,7 +17,6 @@ package com.liferay.wiki.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface WikiPageResourceModel extends BaseModel<WikiPageResource>,
-	ShardedModel {
+public interface WikiPageResourceModel
+	extends BaseModel<WikiPageResource>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -204,4 +204,5 @@ public interface WikiPageResourceModel extends BaseModel<WikiPageResource>,
 
 	@Override
 	public String toXmlString();
+
 }

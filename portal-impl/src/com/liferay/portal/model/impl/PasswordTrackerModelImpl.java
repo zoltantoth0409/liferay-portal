@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,23 +57,24 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
-	implements PasswordTrackerModel {
+public class PasswordTrackerModelImpl
+	extends BaseModelImpl<PasswordTracker> implements PasswordTrackerModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a password tracker model instance should use the <code>PasswordTracker</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PasswordTracker";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "passwordTrackerId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "password_", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"passwordTrackerId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"createDate", Types.TIMESTAMP}, {"password_", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -85,26 +85,45 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 		TABLE_COLUMNS_MAP.put("password_", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PasswordTracker (mvccVersion LONG default 0 not null,passwordTrackerId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,password_ VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PasswordTracker (mvccVersion LONG default 0 not null,passwordTrackerId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,password_ VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table PasswordTracker";
-	public static final String ORDER_BY_JPQL = " ORDER BY passwordTracker.userId DESC, passwordTracker.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PasswordTracker.userId DESC, PasswordTracker.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY passwordTracker.userId DESC, passwordTracker.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PasswordTracker.userId DESC, PasswordTracker.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PasswordTracker"),
+		true);
+
 	public static final long USERID_COLUMN_BITMASK = 1L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 2L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.PasswordTracker"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.PasswordTracker"));
 
 	public PasswordTrackerModelImpl() {
 	}
@@ -143,13 +162,18 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PasswordTracker, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordTracker, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PasswordTracker, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordTracker, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordTracker, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordTracker, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PasswordTracker)this));
 		}
 
@@ -161,36 +185,45 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PasswordTracker, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PasswordTracker, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PasswordTracker, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PasswordTracker, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PasswordTracker)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PasswordTracker)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PasswordTracker, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PasswordTracker, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PasswordTracker, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PasswordTracker, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PasswordTracker, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PasswordTracker, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PasswordTracker, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PasswordTracker, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PasswordTracker, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PasswordTracker, Object>>();
-		Map<String, BiConsumer<PasswordTracker, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PasswordTracker, ?>>();
-
+		Map<String, Function<PasswordTracker, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<PasswordTracker, Object>>();
+		Map<String, BiConsumer<PasswordTracker, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<PasswordTracker, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -207,7 +240,9 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object mvccVersion) {
+				public void accept(
+					PasswordTracker passwordTracker, Object mvccVersion) {
+
 					passwordTracker.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -227,8 +262,11 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object passwordTrackerId) {
-					passwordTracker.setPasswordTrackerId((Long)passwordTrackerId);
+				public void accept(
+					PasswordTracker passwordTracker, Object passwordTrackerId) {
+
+					passwordTracker.setPasswordTrackerId(
+						(Long)passwordTrackerId);
 				}
 
 			});
@@ -247,7 +285,9 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object companyId) {
+				public void accept(
+					PasswordTracker passwordTracker, Object companyId) {
+
 					passwordTracker.setCompanyId((Long)companyId);
 				}
 
@@ -267,7 +307,9 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object userId) {
+				public void accept(
+					PasswordTracker passwordTracker, Object userId) {
+
 					passwordTracker.setUserId((Long)userId);
 				}
 
@@ -287,7 +329,9 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object createDate) {
+				public void accept(
+					PasswordTracker passwordTracker, Object createDate) {
+
 					passwordTracker.setCreateDate((Date)createDate);
 				}
 
@@ -307,15 +351,18 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			new BiConsumer<PasswordTracker, Object>() {
 
 				@Override
-				public void accept(PasswordTracker passwordTracker, Object password) {
+				public void accept(
+					PasswordTracker passwordTracker, Object password) {
+
 					passwordTracker.setPassword((String)password);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -419,8 +466,8 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PasswordTracker.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PasswordTracker.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -433,8 +480,9 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 	@Override
 	public PasswordTracker toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PasswordTracker)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PasswordTracker)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -476,8 +524,8 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 			return value;
 		}
 
-		value = DateUtil.compareTo(getCreateDate(),
-				passwordTracker.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), passwordTracker.getCreateDate());
 
 		value = value * -1;
 
@@ -529,7 +577,8 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 	public void resetOriginalValues() {
 		PasswordTrackerModelImpl passwordTrackerModelImpl = this;
 
-		passwordTrackerModelImpl._originalUserId = passwordTrackerModelImpl._userId;
+		passwordTrackerModelImpl._originalUserId =
+			passwordTrackerModelImpl._userId;
 
 		passwordTrackerModelImpl._setOriginalUserId = false;
 
@@ -538,7 +587,8 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 
 	@Override
 	public CacheModel<PasswordTracker> toCacheModel() {
-		PasswordTrackerCacheModel passwordTrackerCacheModel = new PasswordTrackerCacheModel();
+		PasswordTrackerCacheModel passwordTrackerCacheModel =
+			new PasswordTrackerCacheModel();
 
 		passwordTrackerCacheModel.mvccVersion = getMvccVersion();
 
@@ -570,16 +620,20 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PasswordTracker, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordTracker, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PasswordTracker, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordTracker, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordTracker, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordTracker, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -598,18 +652,22 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PasswordTracker, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PasswordTracker, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PasswordTracker, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PasswordTracker, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PasswordTracker, Object> attributeGetterFunction = entry.getValue();
+			Function<PasswordTracker, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -623,10 +681,12 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PasswordTracker.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PasswordTracker.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PasswordTracker.class, ModelWrapper.class
-		};
+		PasswordTracker.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _passwordTrackerId;
 	private long _companyId;
@@ -637,4 +697,5 @@ public class PasswordTrackerModelImpl extends BaseModelImpl<PasswordTracker>
 	private String _password;
 	private long _columnBitmask;
 	private PasswordTracker _escapedModel;
+
 }

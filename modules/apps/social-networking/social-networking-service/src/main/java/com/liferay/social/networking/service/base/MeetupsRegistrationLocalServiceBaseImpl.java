@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.social.networking.model.MeetupsRegistration;
 import com.liferay.social.networking.service.MeetupsRegistrationLocalService;
 import com.liferay.social.networking.service.persistence.MeetupsEntryPersistence;
@@ -68,8 +67,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class MeetupsRegistrationLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements MeetupsRegistrationLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements MeetupsRegistrationLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -86,6 +86,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Override
 	public MeetupsRegistration addMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) {
+
 		meetupsRegistration.setNew(true);
 
 		return meetupsRegistrationPersistence.update(meetupsRegistration);
@@ -101,6 +102,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Transactional(enabled = false)
 	public MeetupsRegistration createMeetupsRegistration(
 		long meetupsRegistrationId) {
+
 		return meetupsRegistrationPersistence.create(meetupsRegistrationId);
 	}
 
@@ -114,7 +116,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
-		long meetupsRegistrationId) throws PortalException {
+			long meetupsRegistrationId)
+		throws PortalException {
+
 		return meetupsRegistrationPersistence.remove(meetupsRegistrationId);
 	}
 
@@ -128,6 +132,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) {
+
 		return meetupsRegistrationPersistence.remove(meetupsRegistration);
 	}
 
@@ -135,8 +140,8 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(MeetupsRegistration.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			MeetupsRegistration.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -147,7 +152,8 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	@Override
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
-		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery);
+		return meetupsRegistrationPersistence.findWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -163,10 +169,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return meetupsRegistrationPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -183,10 +190,12 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return meetupsRegistrationPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -197,7 +206,8 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
-		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery);
+		return meetupsRegistrationPersistence.countWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -208,16 +218,19 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return meetupsRegistrationPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public MeetupsRegistration fetchMeetupsRegistration(
 		long meetupsRegistrationId) {
-		return meetupsRegistrationPersistence.fetchByPrimaryKey(meetupsRegistrationId);
+
+		return meetupsRegistrationPersistence.fetchByPrimaryKey(
+			meetupsRegistrationId);
 	}
 
 	/**
@@ -229,15 +242,20 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	@Override
 	public MeetupsRegistration getMeetupsRegistration(
-		long meetupsRegistrationId) throws PortalException {
-		return meetupsRegistrationPersistence.findByPrimaryKey(meetupsRegistrationId);
+			long meetupsRegistrationId)
+		throws PortalException {
+
+		return meetupsRegistrationPersistence.findByPrimaryKey(
+			meetupsRegistrationId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(meetupsRegistrationLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			meetupsRegistrationLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MeetupsRegistration.class);
 
@@ -248,12 +266,17 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(meetupsRegistrationLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			meetupsRegistrationLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
-		indexableActionableDynamicQuery.setModelClass(MeetupsRegistration.class);
+		indexableActionableDynamicQuery.setModelClass(
+			MeetupsRegistration.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
 			"meetupsRegistrationId");
@@ -263,7 +286,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(meetupsRegistrationLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			meetupsRegistrationLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MeetupsRegistration.class);
 
@@ -277,12 +302,15 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return meetupsRegistrationLocalService.deleteMeetupsRegistration((MeetupsRegistration)persistedModel);
+
+		return meetupsRegistrationLocalService.deleteMeetupsRegistration(
+			(MeetupsRegistration)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return meetupsRegistrationPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -298,7 +326,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the range of meetups registrations
 	 */
 	@Override
-	public List<MeetupsRegistration> getMeetupsRegistrations(int start, int end) {
+	public List<MeetupsRegistration> getMeetupsRegistrations(
+		int start, int end) {
+
 		return meetupsRegistrationPersistence.findAll(start, end);
 	}
 
@@ -322,6 +352,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Override
 	public MeetupsRegistration updateMeetupsRegistration(
 		MeetupsRegistration meetupsRegistration) {
+
 		return meetupsRegistrationPersistence.update(meetupsRegistration);
 	}
 
@@ -330,7 +361,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the meetups entry local service
 	 */
-	public com.liferay.social.networking.service.MeetupsEntryLocalService getMeetupsEntryLocalService() {
+	public com.liferay.social.networking.service.MeetupsEntryLocalService
+		getMeetupsEntryLocalService() {
+
 		return meetupsEntryLocalService;
 	}
 
@@ -340,7 +373,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param meetupsEntryLocalService the meetups entry local service
 	 */
 	public void setMeetupsEntryLocalService(
-		com.liferay.social.networking.service.MeetupsEntryLocalService meetupsEntryLocalService) {
+		com.liferay.social.networking.service.MeetupsEntryLocalService
+			meetupsEntryLocalService) {
+
 		this.meetupsEntryLocalService = meetupsEntryLocalService;
 	}
 
@@ -360,6 +395,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setMeetupsEntryPersistence(
 		MeetupsEntryPersistence meetupsEntryPersistence) {
+
 		this.meetupsEntryPersistence = meetupsEntryPersistence;
 	}
 
@@ -368,7 +404,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the meetups registration local service
 	 */
-	public MeetupsRegistrationLocalService getMeetupsRegistrationLocalService() {
+	public MeetupsRegistrationLocalService
+		getMeetupsRegistrationLocalService() {
+
 		return meetupsRegistrationLocalService;
 	}
 
@@ -379,6 +417,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setMeetupsRegistrationLocalService(
 		MeetupsRegistrationLocalService meetupsRegistrationLocalService) {
+
 		this.meetupsRegistrationLocalService = meetupsRegistrationLocalService;
 	}
 
@@ -398,6 +437,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setMeetupsRegistrationPersistence(
 		MeetupsRegistrationPersistence meetupsRegistrationPersistence) {
+
 		this.meetupsRegistrationPersistence = meetupsRegistrationPersistence;
 	}
 
@@ -406,7 +446,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the wall entry local service
 	 */
-	public com.liferay.social.networking.service.WallEntryLocalService getWallEntryLocalService() {
+	public com.liferay.social.networking.service.WallEntryLocalService
+		getWallEntryLocalService() {
+
 		return wallEntryLocalService;
 	}
 
@@ -416,7 +458,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param wallEntryLocalService the wall entry local service
 	 */
 	public void setWallEntryLocalService(
-		com.liferay.social.networking.service.WallEntryLocalService wallEntryLocalService) {
+		com.liferay.social.networking.service.WallEntryLocalService
+			wallEntryLocalService) {
+
 		this.wallEntryLocalService = wallEntryLocalService;
 	}
 
@@ -436,6 +480,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setWallEntryPersistence(
 		WallEntryPersistence wallEntryPersistence) {
+
 		this.wallEntryPersistence = wallEntryPersistence;
 	}
 
@@ -462,7 +507,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -472,7 +519,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -481,7 +530,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -491,7 +542,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -511,6 +564,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -519,7 +573,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -529,7 +585,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -538,7 +596,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -549,6 +609,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -571,7 +632,8 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.social.networking.model.MeetupsRegistration",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.social.networking.model.MeetupsRegistration",
 			meetupsRegistrationLocalService);
 	}
 
@@ -605,15 +667,16 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = meetupsRegistrationPersistence.getDataSource();
+			DataSource dataSource =
+				meetupsRegistrationPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -622,32 +685,65 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.social.networking.service.MeetupsEntryLocalService.class)
-	protected com.liferay.social.networking.service.MeetupsEntryLocalService meetupsEntryLocalService;
+	@BeanReference(
+		type = com.liferay.social.networking.service.MeetupsEntryLocalService.class
+	)
+	protected com.liferay.social.networking.service.MeetupsEntryLocalService
+		meetupsEntryLocalService;
+
 	@BeanReference(type = MeetupsEntryPersistence.class)
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
+
 	@BeanReference(type = MeetupsRegistrationLocalService.class)
 	protected MeetupsRegistrationLocalService meetupsRegistrationLocalService;
+
 	@BeanReference(type = MeetupsRegistrationPersistence.class)
 	protected MeetupsRegistrationPersistence meetupsRegistrationPersistence;
-	@BeanReference(type = com.liferay.social.networking.service.WallEntryLocalService.class)
-	protected com.liferay.social.networking.service.WallEntryLocalService wallEntryLocalService;
+
+	@BeanReference(
+		type = com.liferay.social.networking.service.WallEntryLocalService.class
+	)
+	protected com.liferay.social.networking.service.WallEntryLocalService
+		wallEntryLocalService;
+
 	@BeanReference(type = WallEntryPersistence.class)
 	protected WallEntryPersistence wallEntryPersistence;
+
 	@BeanReference(type = WallEntryFinder.class)
 	protected WallEntryFinder wallEntryFinder;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
 	@ServiceReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

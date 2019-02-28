@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -65,35 +63,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class OrganizationModelImpl extends BaseModelImpl<Organization>
-	implements OrganizationModel {
+public class OrganizationModelImpl
+	extends BaseModelImpl<Organization> implements OrganizationModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a organization model instance should use the <code>Organization</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Organization_";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "organizationId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentOrganizationId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "type_", Types.VARCHAR },
-			{ "recursable", Types.BOOLEAN },
-			{ "regionId", Types.BIGINT },
-			{ "countryId", Types.BIGINT },
-			{ "statusId", Types.BIGINT },
-			{ "comments", Types.VARCHAR },
-			{ "logoId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"organizationId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"parentOrganizationId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"type_", Types.VARCHAR},
+		{"recursable", Types.BOOLEAN}, {"regionId", Types.BIGINT},
+		{"countryId", Types.BIGINT}, {"statusId", Types.BIGINT},
+		{"comments", Types.VARCHAR}, {"logoId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -116,27 +109,48 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 		TABLE_COLUMNS_MAP.put("logoId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Organization_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,organizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentOrganizationId LONG,treePath STRING null,name VARCHAR(100) null,type_ VARCHAR(75) null,recursable BOOLEAN,regionId LONG,countryId LONG,statusId LONG,comments STRING null,logoId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Organization_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,organizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentOrganizationId LONG,treePath STRING null,name VARCHAR(100) null,type_ VARCHAR(75) null,recursable BOOLEAN,regionId LONG,countryId LONG,statusId LONG,comments STRING null,logoId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table Organization_";
-	public static final String ORDER_BY_JPQL = " ORDER BY organization.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Organization_.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY organization.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Organization_.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Organization"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Organization"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Organization"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Organization"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Organization"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Organization"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long NAME_COLUMN_BITMASK = 2L;
+
 	public static final long ORGANIZATIONID_COLUMN_BITMASK = 4L;
+
 	public static final long PARENTORGANIZATIONID_COLUMN_BITMASK = 8L;
+
 	public static final long TREEPATH_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
 
 	/**
@@ -185,7 +199,8 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			return null;
 		}
 
-		List<Organization> models = new ArrayList<Organization>(soapModels.length);
+		List<Organization> models = new ArrayList<Organization>(
+			soapModels.length);
 
 		for (OrganizationSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -195,25 +210,40 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 	}
 
 	public static final String MAPPING_TABLE_GROUPS_ORGS_NAME = "Groups_Orgs";
+
 	public static final Object[][] MAPPING_TABLE_GROUPS_ORGS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "organizationId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_GROUPS_ORGS_SQL_CREATE = "create table Groups_Orgs (companyId LONG not null,groupId LONG not null,organizationId LONG not null,primary key (groupId, organizationId))";
-	public static final boolean FINDER_CACHE_ENABLED_GROUPS_ORGS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Groups_Orgs"), true);
+		{"companyId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"organizationId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_GROUPS_ORGS_SQL_CREATE =
+		"create table Groups_Orgs (companyId LONG not null,groupId LONG not null,organizationId LONG not null,primary key (groupId, organizationId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_GROUPS_ORGS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Groups_Orgs"),
+			true);
+
 	public static final String MAPPING_TABLE_USERS_ORGS_NAME = "Users_Orgs";
+
 	public static final Object[][] MAPPING_TABLE_USERS_ORGS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "organizationId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_ORGS_SQL_CREATE = "create table Users_Orgs (companyId LONG not null,organizationId LONG not null,userId LONG not null,primary key (organizationId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_ORGS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_Orgs"), true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.Organization"));
+		{"companyId", Types.BIGINT}, {"organizationId", Types.BIGINT},
+		{"userId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_ORGS_SQL_CREATE =
+		"create table Users_Orgs (companyId LONG not null,organizationId LONG not null,userId LONG not null,primary key (organizationId, userId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_ORGS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_Orgs"),
+			true);
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.Organization"));
 
 	public OrganizationModelImpl() {
 	}
@@ -252,13 +282,18 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Organization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Organization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+			Function<Organization, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((Organization)this));
 		}
 
@@ -270,36 +305,44 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Organization, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Organization, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Organization, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Organization, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Organization)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Organization)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Organization, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Organization, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Organization, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Organization, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Organization, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Organization, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Organization, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Organization, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Organization, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Organization, Object>>();
-		Map<String, BiConsumer<Organization, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Organization, ?>>();
-
+		Map<String, Function<Organization, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Organization, Object>>();
+		Map<String, BiConsumer<Organization, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Organization, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -316,7 +359,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object mvccVersion) {
+				public void accept(
+					Organization organization, Object mvccVersion) {
+
 					organization.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -356,7 +401,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object organizationId) {
+				public void accept(
+					Organization organization, Object organizationId) {
+
 					organization.setOrganizationId((Long)organizationId);
 				}
 
@@ -376,7 +423,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object companyId) {
+				public void accept(
+					Organization organization, Object companyId) {
+
 					organization.setCompanyId((Long)companyId);
 				}
 
@@ -436,7 +485,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object createDate) {
+				public void accept(
+					Organization organization, Object createDate) {
+
 					organization.setCreateDate((Date)createDate);
 				}
 
@@ -456,7 +507,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object modifiedDate) {
+				public void accept(
+					Organization organization, Object modifiedDate) {
+
 					organization.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -476,8 +529,11 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object parentOrganizationId) {
-					organization.setParentOrganizationId((Long)parentOrganizationId);
+				public void accept(
+					Organization organization, Object parentOrganizationId) {
+
+					organization.setParentOrganizationId(
+						(Long)parentOrganizationId);
 				}
 
 			});
@@ -556,7 +612,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object recursable) {
+				public void accept(
+					Organization organization, Object recursable) {
+
 					organization.setRecursable((Boolean)recursable);
 				}
 
@@ -596,7 +654,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 			new BiConsumer<Organization, Object>() {
 
 				@Override
-				public void accept(Organization organization, Object countryId) {
+				public void accept(
+					Organization organization, Object countryId) {
+
 					organization.setCountryId((Long)countryId);
 				}
 
@@ -662,9 +722,10 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -991,8 +1052,8 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				Organization.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(Organization.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -1001,8 +1062,8 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Organization.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Organization.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1015,8 +1076,9 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 	@Override
 	public Organization toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Organization)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Organization)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1106,21 +1168,25 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 		organizationModelImpl._originalUuid = organizationModelImpl._uuid;
 
-		organizationModelImpl._originalOrganizationId = organizationModelImpl._organizationId;
+		organizationModelImpl._originalOrganizationId =
+			organizationModelImpl._organizationId;
 
 		organizationModelImpl._setOriginalOrganizationId = false;
 
-		organizationModelImpl._originalCompanyId = organizationModelImpl._companyId;
+		organizationModelImpl._originalCompanyId =
+			organizationModelImpl._companyId;
 
 		organizationModelImpl._setOriginalCompanyId = false;
 
 		organizationModelImpl._setModifiedDate = false;
 
-		organizationModelImpl._originalParentOrganizationId = organizationModelImpl._parentOrganizationId;
+		organizationModelImpl._originalParentOrganizationId =
+			organizationModelImpl._parentOrganizationId;
 
 		organizationModelImpl._setOriginalParentOrganizationId = false;
 
-		organizationModelImpl._originalTreePath = organizationModelImpl._treePath;
+		organizationModelImpl._originalTreePath =
+			organizationModelImpl._treePath;
 
 		organizationModelImpl._originalName = organizationModelImpl._name;
 
@@ -1129,7 +1195,8 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public CacheModel<Organization> toCacheModel() {
-		OrganizationCacheModel organizationCacheModel = new OrganizationCacheModel();
+		OrganizationCacheModel organizationCacheModel =
+			new OrganizationCacheModel();
 
 		organizationCacheModel.mvccVersion = getMvccVersion();
 
@@ -1222,16 +1289,20 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Organization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Organization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+			Function<Organization, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1250,18 +1321,22 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Organization, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Organization, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Organization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Organization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Organization, Object> attributeGetterFunction = entry.getValue();
+			Function<Organization, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1275,10 +1350,12 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Organization.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Organization.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Organization.class, ModelWrapper.class
-		};
+		Organization.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -1309,4 +1386,5 @@ public class OrganizationModelImpl extends BaseModelImpl<Organization>
 	private long _logoId;
 	private long _columnBitmask;
 	private Organization _escapedModel;
+
 }

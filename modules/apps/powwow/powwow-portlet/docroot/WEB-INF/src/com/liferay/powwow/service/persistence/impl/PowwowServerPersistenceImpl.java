@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.powwow.exception.NoSuchServerException;
 import com.liferay.powwow.model.PowwowServer;
 import com.liferay.powwow.model.impl.PowwowServerImpl;
@@ -68,18 +67,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServer>
+public class PowwowServerPersistenceImpl
+	extends BasePersistenceImpl<PowwowServer>
 	implements PowwowServerPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>PowwowServerUtil</code> to access the powwow server persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = PowwowServerImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		PowwowServerImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -96,8 +101,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public List<PowwowServer> findByPT_A(String providerType, boolean active) {
-		return findByPT_A(providerType, active, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByPT_A(
+			providerType, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -114,8 +119,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the range of matching powwow servers
 	 */
 	@Override
-	public List<PowwowServer> findByPT_A(String providerType, boolean active,
-		int start, int end) {
+	public List<PowwowServer> findByPT_A(
+		String providerType, boolean active, int start, int end) {
+
 		return findByPT_A(providerType, active, start, end, null);
 	}
 
@@ -134,10 +140,12 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the ordered range of matching powwow servers
 	 */
 	@Override
-	public List<PowwowServer> findByPT_A(String providerType, boolean active,
-		int start, int end, OrderByComparator<PowwowServer> orderByComparator) {
-		return findByPT_A(providerType, active, start, end, orderByComparator,
-			true);
+	public List<PowwowServer> findByPT_A(
+		String providerType, boolean active, int start, int end,
+		OrderByComparator<PowwowServer> orderByComparator) {
+
+		return findByPT_A(
+			providerType, active, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -156,9 +164,11 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the ordered range of matching powwow servers
 	 */
 	@Override
-	public List<PowwowServer> findByPT_A(String providerType, boolean active,
-		int start, int end, OrderByComparator<PowwowServer> orderByComparator,
+	public List<PowwowServer> findByPT_A(
+		String providerType, boolean active, int start, int end,
+		OrderByComparator<PowwowServer> orderByComparator,
 		boolean retrieveFromCache) {
+
 		providerType = Objects.toString(providerType, "");
 
 		boolean pagination = true;
@@ -166,30 +176,30 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByPT_A;
-			finderArgs = new Object[] { providerType, active };
+			finderArgs = new Object[] {providerType, active};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByPT_A;
 			finderArgs = new Object[] {
-					providerType, active,
-					
-					start, end, orderByComparator
-				};
+				providerType, active, start, end, orderByComparator
+			};
 		}
 
 		List<PowwowServer> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<PowwowServer>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<PowwowServer>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (PowwowServer powwowServer : list) {
 					if (!providerType.equals(powwowServer.getProviderType()) ||
-							(active != powwowServer.isActive())) {
+						(active != powwowServer.isActive())) {
+
 						list = null;
 
 						break;
@@ -202,8 +212,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -225,11 +235,10 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			query.append(_FINDER_COLUMN_PT_A_ACTIVE_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(PowwowServerModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -251,16 +260,16 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 				qPos.add(active);
 
 				if (!pagination) {
-					list = (List<PowwowServer>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<PowwowServer>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<PowwowServer>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<PowwowServer>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -290,11 +299,13 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @throws NoSuchServerException if a matching powwow server could not be found
 	 */
 	@Override
-	public PowwowServer findByPT_A_First(String providerType, boolean active,
-		OrderByComparator<PowwowServer> orderByComparator)
+	public PowwowServer findByPT_A_First(
+			String providerType, boolean active,
+			OrderByComparator<PowwowServer> orderByComparator)
 		throws NoSuchServerException {
-		PowwowServer powwowServer = fetchByPT_A_First(providerType, active,
-				orderByComparator);
+
+		PowwowServer powwowServer = fetchByPT_A_First(
+			providerType, active, orderByComparator);
 
 		if (powwowServer != null) {
 			return powwowServer;
@@ -324,10 +335,12 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the first matching powwow server, or <code>null</code> if a matching powwow server could not be found
 	 */
 	@Override
-	public PowwowServer fetchByPT_A_First(String providerType, boolean active,
+	public PowwowServer fetchByPT_A_First(
+		String providerType, boolean active,
 		OrderByComparator<PowwowServer> orderByComparator) {
-		List<PowwowServer> list = findByPT_A(providerType, active, 0, 1,
-				orderByComparator);
+
+		List<PowwowServer> list = findByPT_A(
+			providerType, active, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -346,11 +359,13 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @throws NoSuchServerException if a matching powwow server could not be found
 	 */
 	@Override
-	public PowwowServer findByPT_A_Last(String providerType, boolean active,
-		OrderByComparator<PowwowServer> orderByComparator)
+	public PowwowServer findByPT_A_Last(
+			String providerType, boolean active,
+			OrderByComparator<PowwowServer> orderByComparator)
 		throws NoSuchServerException {
-		PowwowServer powwowServer = fetchByPT_A_Last(providerType, active,
-				orderByComparator);
+
+		PowwowServer powwowServer = fetchByPT_A_Last(
+			providerType, active, orderByComparator);
 
 		if (powwowServer != null) {
 			return powwowServer;
@@ -380,16 +395,18 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the last matching powwow server, or <code>null</code> if a matching powwow server could not be found
 	 */
 	@Override
-	public PowwowServer fetchByPT_A_Last(String providerType, boolean active,
+	public PowwowServer fetchByPT_A_Last(
+		String providerType, boolean active,
 		OrderByComparator<PowwowServer> orderByComparator) {
+
 		int count = countByPT_A(providerType, active);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<PowwowServer> list = findByPT_A(providerType, active, count - 1,
-				count, orderByComparator);
+		List<PowwowServer> list = findByPT_A(
+			providerType, active, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -409,10 +426,11 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @throws NoSuchServerException if a powwow server with the primary key could not be found
 	 */
 	@Override
-	public PowwowServer[] findByPT_A_PrevAndNext(long powwowServerId,
-		String providerType, boolean active,
-		OrderByComparator<PowwowServer> orderByComparator)
+	public PowwowServer[] findByPT_A_PrevAndNext(
+			long powwowServerId, String providerType, boolean active,
+			OrderByComparator<PowwowServer> orderByComparator)
 		throws NoSuchServerException {
+
 		providerType = Objects.toString(providerType, "");
 
 		PowwowServer powwowServer = findByPrimaryKey(powwowServerId);
@@ -424,13 +442,15 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 
 			PowwowServer[] array = new PowwowServerImpl[3];
 
-			array[0] = getByPT_A_PrevAndNext(session, powwowServer,
-					providerType, active, orderByComparator, true);
+			array[0] = getByPT_A_PrevAndNext(
+				session, powwowServer, providerType, active, orderByComparator,
+				true);
 
 			array[1] = powwowServer;
 
-			array[2] = getByPT_A_PrevAndNext(session, powwowServer,
-					providerType, active, orderByComparator, false);
+			array[2] = getByPT_A_PrevAndNext(
+				session, powwowServer, providerType, active, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -442,14 +462,16 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		}
 	}
 
-	protected PowwowServer getByPT_A_PrevAndNext(Session session,
-		PowwowServer powwowServer, String providerType, boolean active,
-		OrderByComparator<PowwowServer> orderByComparator, boolean previous) {
+	protected PowwowServer getByPT_A_PrevAndNext(
+		Session session, PowwowServer powwowServer, String providerType,
+		boolean active, OrderByComparator<PowwowServer> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -472,7 +494,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		query.append(_FINDER_COLUMN_PT_A_ACTIVE_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -546,8 +569,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					powwowServer)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(powwowServer)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -570,8 +594,11 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public void removeByPT_A(String providerType, boolean active) {
-		for (PowwowServer powwowServer : findByPT_A(providerType, active,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (PowwowServer powwowServer :
+				findByPT_A(
+					providerType, active, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(powwowServer);
 		}
 	}
@@ -589,10 +616,10 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 
 		FinderPath finderPath = _finderPathCountByPT_A;
 
-		Object[] finderArgs = new Object[] { providerType, active };
+		Object[] finderArgs = new Object[] {providerType, active};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -646,16 +673,21 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_PT_A_PROVIDERTYPE_2 = "powwowServer.providerType = ? AND ";
-	private static final String _FINDER_COLUMN_PT_A_PROVIDERTYPE_3 = "(powwowServer.providerType IS NULL OR powwowServer.providerType = '') AND ";
-	private static final String _FINDER_COLUMN_PT_A_ACTIVE_2 = "powwowServer.active = ?";
+	private static final String _FINDER_COLUMN_PT_A_PROVIDERTYPE_2 =
+		"powwowServer.providerType = ? AND ";
+
+	private static final String _FINDER_COLUMN_PT_A_PROVIDERTYPE_3 =
+		"(powwowServer.providerType IS NULL OR powwowServer.providerType = '') AND ";
+
+	private static final String _FINDER_COLUMN_PT_A_ACTIVE_2 =
+		"powwowServer.active = ?";
 
 	public PowwowServerPersistenceImpl() {
 		setModelClass(PowwowServer.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -679,8 +711,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public void cacheResult(PowwowServer powwowServer) {
-		EntityCacheUtil.putResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-			PowwowServerImpl.class, powwowServer.getPrimaryKey(), powwowServer);
+		EntityCacheUtil.putResult(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED, PowwowServerImpl.class,
+			powwowServer.getPrimaryKey(), powwowServer);
 
 		powwowServer.resetOriginalValues();
 	}
@@ -694,8 +727,10 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	public void cacheResult(List<PowwowServer> powwowServers) {
 		for (PowwowServer powwowServer : powwowServers) {
 			if (EntityCacheUtil.getResult(
-						PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-						PowwowServerImpl.class, powwowServer.getPrimaryKey()) == null) {
+					PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+					PowwowServerImpl.class, powwowServer.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(powwowServer);
 			}
 			else {
@@ -729,8 +764,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public void clearCache(PowwowServer powwowServer) {
-		EntityCacheUtil.removeResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-			PowwowServerImpl.class, powwowServer.getPrimaryKey());
+		EntityCacheUtil.removeResult(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED, PowwowServerImpl.class,
+			powwowServer.getPrimaryKey());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -742,7 +778,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (PowwowServer powwowServer : powwowServers) {
-			EntityCacheUtil.removeResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(
+				PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
 				PowwowServerImpl.class, powwowServer.getPrimaryKey());
 		}
 	}
@@ -775,6 +812,7 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	@Override
 	public PowwowServer remove(long powwowServerId)
 		throws NoSuchServerException {
+
 		return remove((Serializable)powwowServerId);
 	}
 
@@ -788,21 +826,22 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	@Override
 	public PowwowServer remove(Serializable primaryKey)
 		throws NoSuchServerException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			PowwowServer powwowServer = (PowwowServer)session.get(PowwowServerImpl.class,
-					primaryKey);
+			PowwowServer powwowServer = (PowwowServer)session.get(
+				PowwowServerImpl.class, primaryKey);
 
 			if (powwowServer == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchServerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchServerException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(powwowServer);
@@ -826,8 +865,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			session = openSession();
 
 			if (!session.contains(powwowServer)) {
-				powwowServer = (PowwowServer)session.get(PowwowServerImpl.class,
-						powwowServer.getPrimaryKeyObj());
+				powwowServer = (PowwowServer)session.get(
+					PowwowServerImpl.class, powwowServer.getPrimaryKeyObj());
 			}
 
 			if (powwowServer != null) {
@@ -856,21 +895,24 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(powwowServer.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(powwowServer);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					powwowServer);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in powwowServer proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom PowwowServer implementation " +
-				powwowServer.getClass());
+					powwowServer.getClass());
 		}
 
-		PowwowServerModelImpl powwowServerModelImpl = (PowwowServerModelImpl)powwowServer;
+		PowwowServerModelImpl powwowServerModelImpl =
+			(PowwowServerModelImpl)powwowServer;
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -888,7 +930,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 				powwowServer.setModifiedDate(now);
 			}
 			else {
-				powwowServer.setModifiedDate(serviceContext.getModifiedDate(now));
+				powwowServer.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -916,50 +959,52 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (!PowwowServerModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			FinderCacheUtil.clearCache(
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				powwowServerModelImpl.getProviderType(),
+				powwowServerModelImpl.isActive()
+			};
+
+			FinderCacheUtil.removeResult(_finderPathCountByPT_A, args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByPT_A, args);
+
+			FinderCacheUtil.removeResult(
+				_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((powwowServerModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByPT_A.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					powwowServerModelImpl.getOriginalProviderType(),
+					powwowServerModelImpl.getOriginalActive()
+				};
+
+				FinderCacheUtil.removeResult(_finderPathCountByPT_A, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByPT_A, args);
+
+				args = new Object[] {
 					powwowServerModelImpl.getProviderType(),
 					powwowServerModelImpl.isActive()
 				};
 
-			FinderCacheUtil.removeResult(_finderPathCountByPT_A, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByPT_A,
-				args);
-
-			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((powwowServerModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByPT_A.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						powwowServerModelImpl.getOriginalProviderType(),
-						powwowServerModelImpl.getOriginalActive()
-					};
-
 				FinderCacheUtil.removeResult(_finderPathCountByPT_A, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByPT_A,
-					args);
-
-				args = new Object[] {
-						powwowServerModelImpl.getProviderType(),
-						powwowServerModelImpl.isActive()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByPT_A, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByPT_A,
-					args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByPT_A, args);
 			}
 		}
 
-		EntityCacheUtil.putResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-			PowwowServerImpl.class, powwowServer.getPrimaryKey(), powwowServer,
-			false);
+		EntityCacheUtil.putResult(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED, PowwowServerImpl.class,
+			powwowServer.getPrimaryKey(), powwowServer, false);
 
 		powwowServer.resetOriginalValues();
 
@@ -976,6 +1021,7 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	@Override
 	public PowwowServer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchServerException {
+
 		PowwowServer powwowServer = fetchByPrimaryKey(primaryKey);
 
 		if (powwowServer == null) {
@@ -983,8 +1029,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchServerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchServerException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return powwowServer;
@@ -1000,6 +1046,7 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	@Override
 	public PowwowServer findByPrimaryKey(long powwowServerId)
 		throws NoSuchServerException {
+
 		return findByPrimaryKey((Serializable)powwowServerId);
 	}
 
@@ -1011,8 +1058,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public PowwowServer fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = EntityCacheUtil.getResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerImpl.class, primaryKey);
+		Serializable serializable = EntityCacheUtil.getResult(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED, PowwowServerImpl.class,
+			primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -1026,19 +1074,21 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			try {
 				session = openSession();
 
-				powwowServer = (PowwowServer)session.get(PowwowServerImpl.class,
-						primaryKey);
+				powwowServer = (PowwowServer)session.get(
+					PowwowServerImpl.class, primaryKey);
 
 				if (powwowServer != null) {
 					cacheResult(powwowServer);
 				}
 				else {
-					EntityCacheUtil.putResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+					EntityCacheUtil.putResult(
+						PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
 						PowwowServerImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(
+					PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
 					PowwowServerImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1065,11 +1115,13 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	@Override
 	public Map<Serializable, PowwowServer> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, PowwowServer> map = new HashMap<Serializable, PowwowServer>();
+		Map<Serializable, PowwowServer> map =
+			new HashMap<Serializable, PowwowServer>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -1088,8 +1140,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = EntityCacheUtil.getResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-					PowwowServerImpl.class, primaryKey);
+			Serializable serializable = EntityCacheUtil.getResult(
+				PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+				PowwowServerImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1109,8 +1162,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_POWWOWSERVER_WHERE_PKS_IN);
 
@@ -1142,7 +1195,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.putResult(
+					PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
 					PowwowServerImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -1195,8 +1249,9 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the ordered range of powwow servers
 	 */
 	@Override
-	public List<PowwowServer> findAll(int start, int end,
-		OrderByComparator<PowwowServer> orderByComparator) {
+	public List<PowwowServer> findAll(
+		int start, int end, OrderByComparator<PowwowServer> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1214,29 +1269,31 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * @return the ordered range of powwow servers
 	 */
 	@Override
-	public List<PowwowServer> findAll(int start, int end,
-		OrderByComparator<PowwowServer> orderByComparator,
+	public List<PowwowServer> findAll(
+		int start, int end, OrderByComparator<PowwowServer> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<PowwowServer> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<PowwowServer>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<PowwowServer>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1244,13 +1301,13 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_POWWOWSERVER);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1270,16 +1327,16 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<PowwowServer>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<PowwowServer>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<PowwowServer>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<PowwowServer>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1317,8 +1374,8 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1330,12 +1387,12 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY, count);
+				FinderCacheUtil.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY);
+				FinderCacheUtil.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -1361,46 +1418,47 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 	 * Initializes the powwow server persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED,
-				PowwowServerImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, PowwowServerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED,
-				PowwowServerImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, PowwowServerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByPT_A = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED,
-				PowwowServerImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByPT_A",
-				new String[] {
-					String.class.getName(), Boolean.class.getName(),
-					
+		_finderPathWithPaginationFindByPT_A = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, PowwowServerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByPT_A",
+			new String[] {
+				String.class.getName(), Boolean.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByPT_A = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED,
-				PowwowServerImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByPT_A",
-				new String[] { String.class.getName(), Boolean.class.getName() },
-				PowwowServerModelImpl.PROVIDERTYPE_COLUMN_BITMASK |
-				PowwowServerModelImpl.ACTIVE_COLUMN_BITMASK |
-				PowwowServerModelImpl.NAME_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByPT_A = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, PowwowServerImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByPT_A",
+			new String[] {String.class.getName(), Boolean.class.getName()},
+			PowwowServerModelImpl.PROVIDERTYPE_COLUMN_BITMASK |
+			PowwowServerModelImpl.ACTIVE_COLUMN_BITMASK |
+			PowwowServerModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathCountByPT_A = new FinderPath(PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
-				PowwowServerModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPT_A",
-				new String[] { String.class.getName(), Boolean.class.getName() });
+		_finderPathCountByPT_A = new FinderPath(
+			PowwowServerModelImpl.ENTITY_CACHE_ENABLED,
+			PowwowServerModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPT_A",
+			new String[] {String.class.getName(), Boolean.class.getName()});
 	}
 
 	public void destroy() {
@@ -1412,16 +1470,34 @@ public class PowwowServerPersistenceImpl extends BasePersistenceImpl<PowwowServe
 
 	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
-	private static final String _SQL_SELECT_POWWOWSERVER = "SELECT powwowServer FROM PowwowServer powwowServer";
-	private static final String _SQL_SELECT_POWWOWSERVER_WHERE_PKS_IN = "SELECT powwowServer FROM PowwowServer powwowServer WHERE powwowServerId IN (";
-	private static final String _SQL_SELECT_POWWOWSERVER_WHERE = "SELECT powwowServer FROM PowwowServer powwowServer WHERE ";
-	private static final String _SQL_COUNT_POWWOWSERVER = "SELECT COUNT(powwowServer) FROM PowwowServer powwowServer";
-	private static final String _SQL_COUNT_POWWOWSERVER_WHERE = "SELECT COUNT(powwowServer) FROM PowwowServer powwowServer WHERE ";
+
+	private static final String _SQL_SELECT_POWWOWSERVER =
+		"SELECT powwowServer FROM PowwowServer powwowServer";
+
+	private static final String _SQL_SELECT_POWWOWSERVER_WHERE_PKS_IN =
+		"SELECT powwowServer FROM PowwowServer powwowServer WHERE powwowServerId IN (";
+
+	private static final String _SQL_SELECT_POWWOWSERVER_WHERE =
+		"SELECT powwowServer FROM PowwowServer powwowServer WHERE ";
+
+	private static final String _SQL_COUNT_POWWOWSERVER =
+		"SELECT COUNT(powwowServer) FROM PowwowServer powwowServer";
+
+	private static final String _SQL_COUNT_POWWOWSERVER_WHERE =
+		"SELECT COUNT(powwowServer) FROM PowwowServer powwowServer WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "powwowServer.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No PowwowServer exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No PowwowServer exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(PowwowServerPersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"active"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No PowwowServer exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No PowwowServer exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		PowwowServerPersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"active"});
+
 }

@@ -17,7 +17,6 @@ package com.liferay.portal.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -67,8 +66,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements WorkflowDefinitionLinkLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements WorkflowDefinitionLinkLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -85,6 +85,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Override
 	public WorkflowDefinitionLink addWorkflowDefinitionLink(
 		WorkflowDefinitionLink workflowDefinitionLink) {
+
 		workflowDefinitionLink.setNew(true);
 
 		return workflowDefinitionLinkPersistence.update(workflowDefinitionLink);
@@ -100,7 +101,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Transactional(enabled = false)
 	public WorkflowDefinitionLink createWorkflowDefinitionLink(
 		long workflowDefinitionLinkId) {
-		return workflowDefinitionLinkPersistence.create(workflowDefinitionLinkId);
+
+		return workflowDefinitionLinkPersistence.create(
+			workflowDefinitionLinkId);
 	}
 
 	/**
@@ -113,8 +116,11 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public WorkflowDefinitionLink deleteWorkflowDefinitionLink(
-		long workflowDefinitionLinkId) throws PortalException {
-		return workflowDefinitionLinkPersistence.remove(workflowDefinitionLinkId);
+			long workflowDefinitionLinkId)
+		throws PortalException {
+
+		return workflowDefinitionLinkPersistence.remove(
+			workflowDefinitionLinkId);
 	}
 
 	/**
@@ -127,6 +133,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Override
 	public WorkflowDefinitionLink deleteWorkflowDefinitionLink(
 		WorkflowDefinitionLink workflowDefinitionLink) {
+
 		return workflowDefinitionLinkPersistence.remove(workflowDefinitionLink);
 	}
 
@@ -134,8 +141,8 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(WorkflowDefinitionLink.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			WorkflowDefinitionLink.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -146,7 +153,8 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	@Override
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
-		return workflowDefinitionLinkPersistence.findWithDynamicQuery(dynamicQuery);
+		return workflowDefinitionLinkPersistence.findWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -162,10 +170,11 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return workflowDefinitionLinkPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return workflowDefinitionLinkPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -182,10 +191,12 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return workflowDefinitionLinkPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return workflowDefinitionLinkPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -196,7 +207,8 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
-		return workflowDefinitionLinkPersistence.countWithDynamicQuery(dynamicQuery);
+		return workflowDefinitionLinkPersistence.countWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -207,16 +219,19 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return workflowDefinitionLinkPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return workflowDefinitionLinkPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public WorkflowDefinitionLink fetchWorkflowDefinitionLink(
 		long workflowDefinitionLinkId) {
-		return workflowDefinitionLinkPersistence.fetchByPrimaryKey(workflowDefinitionLinkId);
+
+		return workflowDefinitionLinkPersistence.fetchByPrimaryKey(
+			workflowDefinitionLinkId);
 	}
 
 	/**
@@ -228,15 +243,20 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	@Override
 	public WorkflowDefinitionLink getWorkflowDefinitionLink(
-		long workflowDefinitionLinkId) throws PortalException {
-		return workflowDefinitionLinkPersistence.findByPrimaryKey(workflowDefinitionLinkId);
+			long workflowDefinitionLinkId)
+		throws PortalException {
+
+		return workflowDefinitionLinkPersistence.findByPrimaryKey(
+			workflowDefinitionLinkId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(workflowDefinitionLinkLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			workflowDefinitionLinkLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WorkflowDefinitionLink.class);
 
@@ -247,12 +267,17 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(workflowDefinitionLinkLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			workflowDefinitionLinkLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
-		indexableActionableDynamicQuery.setModelClass(WorkflowDefinitionLink.class);
+		indexableActionableDynamicQuery.setModelClass(
+			WorkflowDefinitionLink.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
 			"workflowDefinitionLinkId");
@@ -262,7 +287,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(workflowDefinitionLinkLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			workflowDefinitionLinkLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(WorkflowDefinitionLink.class);
 
@@ -276,13 +303,17 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink((WorkflowDefinitionLink)persistedModel);
+
+		return workflowDefinitionLinkLocalService.deleteWorkflowDefinitionLink(
+			(WorkflowDefinitionLink)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
-		return workflowDefinitionLinkPersistence.findByPrimaryKey(primaryKeyObj);
+
+		return workflowDefinitionLinkPersistence.findByPrimaryKey(
+			primaryKeyObj);
 	}
 
 	/**
@@ -297,8 +328,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @return the range of workflow definition links
 	 */
 	@Override
-	public List<WorkflowDefinitionLink> getWorkflowDefinitionLinks(int start,
-		int end) {
+	public List<WorkflowDefinitionLink> getWorkflowDefinitionLinks(
+		int start, int end) {
+
 		return workflowDefinitionLinkPersistence.findAll(start, end);
 	}
 
@@ -322,6 +354,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	@Override
 	public WorkflowDefinitionLink updateWorkflowDefinitionLink(
 		WorkflowDefinitionLink workflowDefinitionLink) {
+
 		return workflowDefinitionLinkPersistence.update(workflowDefinitionLink);
 	}
 
@@ -330,7 +363,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the workflow definition link local service
 	 */
-	public WorkflowDefinitionLinkLocalService getWorkflowDefinitionLinkLocalService() {
+	public WorkflowDefinitionLinkLocalService
+		getWorkflowDefinitionLinkLocalService() {
+
 		return workflowDefinitionLinkLocalService;
 	}
 
@@ -341,7 +376,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	public void setWorkflowDefinitionLinkLocalService(
 		WorkflowDefinitionLinkLocalService workflowDefinitionLinkLocalService) {
-		this.workflowDefinitionLinkLocalService = workflowDefinitionLinkLocalService;
+
+		this.workflowDefinitionLinkLocalService =
+			workflowDefinitionLinkLocalService;
 	}
 
 	/**
@@ -349,7 +386,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the workflow definition link persistence
 	 */
-	public WorkflowDefinitionLinkPersistence getWorkflowDefinitionLinkPersistence() {
+	public WorkflowDefinitionLinkPersistence
+		getWorkflowDefinitionLinkPersistence() {
+
 		return workflowDefinitionLinkPersistence;
 	}
 
@@ -360,7 +399,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	public void setWorkflowDefinitionLinkPersistence(
 		WorkflowDefinitionLinkPersistence workflowDefinitionLinkPersistence) {
-		this.workflowDefinitionLinkPersistence = workflowDefinitionLinkPersistence;
+
+		this.workflowDefinitionLinkPersistence =
+			workflowDefinitionLinkPersistence;
 	}
 
 	/**
@@ -368,7 +409,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -378,7 +421,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -405,7 +450,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -415,7 +462,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -435,6 +484,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -443,7 +493,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the subscription local service
 	 */
-	public com.liferay.portal.kernel.service.SubscriptionLocalService getSubscriptionLocalService() {
+	public com.liferay.portal.kernel.service.SubscriptionLocalService
+		getSubscriptionLocalService() {
+
 		return subscriptionLocalService;
 	}
 
@@ -453,7 +505,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 * @param subscriptionLocalService the subscription local service
 	 */
 	public void setSubscriptionLocalService(
-		com.liferay.portal.kernel.service.SubscriptionLocalService subscriptionLocalService) {
+		com.liferay.portal.kernel.service.SubscriptionLocalService
+			subscriptionLocalService) {
+
 		this.subscriptionLocalService = subscriptionLocalService;
 	}
 
@@ -473,6 +527,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	public void setSubscriptionPersistence(
 		SubscriptionPersistence subscriptionPersistence) {
+
 		this.subscriptionPersistence = subscriptionPersistence;
 	}
 
@@ -481,7 +536,9 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -492,6 +549,7 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -532,7 +590,8 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.portal.kernel.model.WorkflowDefinitionLink",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.portal.kernel.model.WorkflowDefinitionLink",
 			workflowDefinitionLinkLocalService);
 	}
 
@@ -566,15 +625,16 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = workflowDefinitionLinkPersistence.getDataSource();
+			DataSource dataSource =
+				workflowDefinitionLinkPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -584,27 +644,54 @@ public abstract class WorkflowDefinitionLinkLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = WorkflowDefinitionLinkLocalService.class)
-	protected WorkflowDefinitionLinkLocalService workflowDefinitionLinkLocalService;
+	protected WorkflowDefinitionLinkLocalService
+		workflowDefinitionLinkLocalService;
+
 	@BeanReference(type = WorkflowDefinitionLinkPersistence.class)
-	protected WorkflowDefinitionLinkPersistence workflowDefinitionLinkPersistence;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	protected WorkflowDefinitionLinkPersistence
+		workflowDefinitionLinkPersistence;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.SubscriptionLocalService.class)
-	protected com.liferay.portal.kernel.service.SubscriptionLocalService subscriptionLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.SubscriptionLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.SubscriptionLocalService
+		subscriptionLocalService;
+
 	@BeanReference(type = SubscriptionPersistence.class)
 	protected SubscriptionPersistence subscriptionPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@BeanReference(type = UserFinder.class)
 	protected UserFinder userFinder;
+
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

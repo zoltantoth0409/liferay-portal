@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.mail.reader.model.Attachment;
 import com.liferay.mail.reader.model.AttachmentModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,26 +55,26 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class AttachmentModelImpl extends BaseModelImpl<Attachment>
-	implements AttachmentModel {
+public class AttachmentModelImpl
+	extends BaseModelImpl<Attachment> implements AttachmentModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a attachment model instance should use the <code>Attachment</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Mail_Attachment";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "attachmentId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "accountId", Types.BIGINT },
-			{ "folderId", Types.BIGINT },
-			{ "messageId", Types.BIGINT },
-			{ "contentPath", Types.VARCHAR },
-			{ "fileName", Types.VARCHAR },
-			{ "size_", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"attachmentId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"accountId", Types.BIGINT},
+		{"folderId", Types.BIGINT}, {"messageId", Types.BIGINT},
+		{"contentPath", Types.VARCHAR}, {"fileName", Types.VARCHAR},
+		{"size_", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("attachmentId", Types.BIGINT);
@@ -90,26 +88,45 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		TABLE_COLUMNS_MAP.put("size_", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Mail_Attachment (attachmentId LONG not null primary key,companyId LONG,userId LONG,accountId LONG,folderId LONG,messageId LONG,contentPath VARCHAR(75) null,fileName VARCHAR(75) null,size_ LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Mail_Attachment (attachmentId LONG not null primary key,companyId LONG,userId LONG,accountId LONG,folderId LONG,messageId LONG,contentPath VARCHAR(75) null,fileName VARCHAR(75) null,size_ LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table Mail_Attachment";
-	public static final String ORDER_BY_JPQL = " ORDER BY attachment.attachmentId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Mail_Attachment.attachmentId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY attachment.attachmentId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Mail_Attachment.attachmentId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.mail.reader.model.Attachment"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.mail.reader.model.Attachment"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.mail.reader.model.Attachment"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.mail.reader.model.Attachment"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.mail.reader.model.Attachment"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.mail.reader.model.Attachment"),
+		true);
+
 	public static final long MESSAGEID_COLUMN_BITMASK = 1L;
+
 	public static final long ATTACHMENTID_COLUMN_BITMASK = 2L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.mail.reader.model.Attachment"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.mail.reader.model.Attachment"));
 
 	public AttachmentModelImpl() {
 	}
@@ -148,14 +165,18 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Attachment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Attachment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Attachment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Attachment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Attachment, Object> attributeGetterFunction = entry.getValue();
+			Function<Attachment, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Attachment)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Attachment)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -166,35 +187,44 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Attachment, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Attachment, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Attachment, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Attachment, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Attachment)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Attachment)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Attachment, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Attachment, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Attachment, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Attachment, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Attachment, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Attachment, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Attachment, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Attachment, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Attachment, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Attachment, Object>>();
-		Map<String, BiConsumer<Attachment, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Attachment, ?>>();
-
+		Map<String, Function<Attachment, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Attachment, Object>>();
+		Map<String, BiConsumer<Attachment, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Attachment, ?>>();
 
 		attributeGetterFunctions.put(
 			"attachmentId",
@@ -377,9 +407,10 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -516,8 +547,8 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Attachment.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Attachment.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -530,8 +561,9 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	@Override
 	public Attachment toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Attachment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Attachment)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -658,16 +690,20 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Attachment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Attachment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Attachment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Attachment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Attachment, Object> attributeGetterFunction = entry.getValue();
+			Function<Attachment, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -686,18 +722,22 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Attachment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Attachment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Attachment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Attachment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Attachment, Object> attributeGetterFunction = entry.getValue();
+			Function<Attachment, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -711,10 +751,12 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Attachment.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Attachment.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Attachment.class, ModelWrapper.class
-		};
+		Attachment.class, ModelWrapper.class
+	};
+
 	private long _attachmentId;
 	private long _companyId;
 	private long _userId;
@@ -728,4 +770,5 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	private long _size;
 	private long _columnBitmask;
 	private Attachment _escapedModel;
+
 }

@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,37 +56,34 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerInstanceToken>
+public class KaleoTimerInstanceTokenModelImpl
+	extends BaseModelImpl<KaleoTimerInstanceToken>
 	implements KaleoTimerInstanceTokenModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo timer instance token model instance should use the <code>KaleoTimerInstanceToken</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoTimerInstanceToken";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTimerInstanceTokenId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoClassName", Types.VARCHAR },
-			{ "kaleoClassPK", Types.BIGINT },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "kaleoInstanceTokenId", Types.BIGINT },
-			{ "kaleoTaskInstanceTokenId", Types.BIGINT },
-			{ "kaleoTimerId", Types.BIGINT },
-			{ "kaleoTimerName", Types.VARCHAR },
-			{ "blocking", Types.BOOLEAN },
-			{ "completionUserId", Types.BIGINT },
-			{ "completed", Types.BOOLEAN },
-			{ "completionDate", Types.TIMESTAMP },
-			{ "workflowContext", Types.CLOB }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoTimerInstanceTokenId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoClassName", Types.VARCHAR},
+		{"kaleoClassPK", Types.BIGINT}, {"kaleoDefinitionId", Types.BIGINT},
+		{"kaleoInstanceId", Types.BIGINT},
+		{"kaleoInstanceTokenId", Types.BIGINT},
+		{"kaleoTaskInstanceTokenId", Types.BIGINT},
+		{"kaleoTimerId", Types.BIGINT}, {"kaleoTimerName", Types.VARCHAR},
+		{"blocking", Types.BOOLEAN}, {"completionUserId", Types.BIGINT},
+		{"completed", Types.BOOLEAN}, {"completionDate", Types.TIMESTAMP},
+		{"workflowContext", Types.CLOB}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoTimerInstanceTokenId", Types.BIGINT);
@@ -112,30 +108,54 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		TABLE_COLUMNS_MAP.put("workflowContext", Types.CLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoTimerInstanceToken (kaleoTimerInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoTimerId LONG,kaleoTimerName VARCHAR(200) null,blocking BOOLEAN,completionUserId LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
-	public static final String TABLE_SQL_DROP = "drop table KaleoTimerInstanceToken";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTimerInstanceToken.kaleoTimerInstanceTokenId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoTimerInstanceToken.kaleoTimerInstanceTokenId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoTimerInstanceToken (kaleoTimerInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoTimerId LONG,kaleoTimerName VARCHAR(200) null,blocking BOOLEAN,completionUserId LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table KaleoTimerInstanceToken";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoTimerInstanceToken.kaleoTimerInstanceTokenId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoTimerInstanceToken.kaleoTimerInstanceTokenId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"),
+		true);
+
 	public static final long BLOCKING_COLUMN_BITMASK = 1L;
+
 	public static final long COMPLETED_COLUMN_BITMASK = 2L;
+
 	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEOINSTANCETOKENID_COLUMN_BITMASK = 8L;
+
 	public static final long KALEOTIMERID_COLUMN_BITMASK = 16L;
+
 	public static final long KALEOTIMERINSTANCETOKENID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken"));
 
 	public KaleoTimerInstanceTokenModelImpl() {
 	}
@@ -174,14 +194,18 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoTimerInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTimerInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((KaleoTimerInstanceToken)this));
 		}
 
@@ -193,47 +217,61 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoTimerInstanceToken, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoTimerInstanceToken, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoTimerInstanceToken, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoTimerInstanceToken, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoTimerInstanceToken)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoTimerInstanceToken)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoTimerInstanceToken, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoTimerInstanceToken, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoTimerInstanceToken, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoTimerInstanceToken, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoTimerInstanceToken, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoTimerInstanceToken, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoTimerInstanceToken, Object>>
+		_attributeGetterFunctions;
+	private static final Map
+		<String, BiConsumer<KaleoTimerInstanceToken, Object>>
+			_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoTimerInstanceToken, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<KaleoTimerInstanceToken, Object>>();
-		Map<String, BiConsumer<KaleoTimerInstanceToken, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<KaleoTimerInstanceToken, ?>>();
-
+		Map<String, Function<KaleoTimerInstanceToken, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<KaleoTimerInstanceToken, Object>>();
+		Map<String, BiConsumer<KaleoTimerInstanceToken, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<KaleoTimerInstanceToken, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoTimerInstanceTokenId",
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
-					return kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId();
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
+					return kaleoTimerInstanceToken.
+						getKaleoTimerInstanceTokenId();
 				}
 
 			});
@@ -242,8 +280,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoTimerInstanceTokenId) {
-					kaleoTimerInstanceToken.setKaleoTimerInstanceTokenId((Long)kaleoTimerInstanceTokenId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoTimerInstanceTokenId) {
+
+					kaleoTimerInstanceToken.setKaleoTimerInstanceTokenId(
+						(Long)kaleoTimerInstanceTokenId);
 				}
 
 			});
@@ -252,7 +294,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getGroupId();
 				}
 
@@ -262,7 +306,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object groupId) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object groupId) {
+
 					kaleoTimerInstanceToken.setGroupId((Long)groupId);
 				}
 
@@ -272,7 +319,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getCompanyId();
 				}
 
@@ -282,7 +331,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object companyId) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object companyId) {
+
 					kaleoTimerInstanceToken.setCompanyId((Long)companyId);
 				}
 
@@ -292,7 +344,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getUserId();
 				}
 
@@ -302,7 +356,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object userId) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object userId) {
+
 					kaleoTimerInstanceToken.setUserId((Long)userId);
 				}
 
@@ -312,7 +369,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getUserName();
 				}
 
@@ -322,7 +381,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object userName) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object userName) {
+
 					kaleoTimerInstanceToken.setUserName((String)userName);
 				}
 
@@ -332,7 +394,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getCreateDate();
 				}
 
@@ -342,7 +406,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object createDate) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object createDate) {
+
 					kaleoTimerInstanceToken.setCreateDate((Date)createDate);
 				}
 
@@ -352,7 +419,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getModifiedDate();
 				}
 
@@ -362,7 +431,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object modifiedDate) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object modifiedDate) {
+
 					kaleoTimerInstanceToken.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -372,7 +444,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoClassName();
 				}
 
@@ -382,8 +456,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoClassName) {
-					kaleoTimerInstanceToken.setKaleoClassName((String)kaleoClassName);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoClassName) {
+
+					kaleoTimerInstanceToken.setKaleoClassName(
+						(String)kaleoClassName);
 				}
 
 			});
@@ -392,7 +470,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoClassPK();
 				}
 
@@ -402,7 +482,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoClassPK) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoClassPK) {
+
 					kaleoTimerInstanceToken.setKaleoClassPK((Long)kaleoClassPK);
 				}
 
@@ -412,7 +495,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoDefinitionId();
 				}
 
@@ -422,8 +507,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoDefinitionId) {
-					kaleoTimerInstanceToken.setKaleoDefinitionId((Long)kaleoDefinitionId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoDefinitionId) {
+
+					kaleoTimerInstanceToken.setKaleoDefinitionId(
+						(Long)kaleoDefinitionId);
 				}
 
 			});
@@ -432,7 +521,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoInstanceId();
 				}
 
@@ -442,8 +533,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoInstanceId) {
-					kaleoTimerInstanceToken.setKaleoInstanceId((Long)kaleoInstanceId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoInstanceId) {
+
+					kaleoTimerInstanceToken.setKaleoInstanceId(
+						(Long)kaleoInstanceId);
 				}
 
 			});
@@ -452,7 +547,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoInstanceTokenId();
 				}
 
@@ -462,8 +559,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoInstanceTokenId) {
-					kaleoTimerInstanceToken.setKaleoInstanceTokenId((Long)kaleoInstanceTokenId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoInstanceTokenId) {
+
+					kaleoTimerInstanceToken.setKaleoInstanceTokenId(
+						(Long)kaleoInstanceTokenId);
 				}
 
 			});
@@ -472,8 +573,11 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
-					return kaleoTimerInstanceToken.getKaleoTaskInstanceTokenId();
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
+					return kaleoTimerInstanceToken.
+						getKaleoTaskInstanceTokenId();
 				}
 
 			});
@@ -482,8 +586,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoTaskInstanceTokenId) {
-					kaleoTimerInstanceToken.setKaleoTaskInstanceTokenId((Long)kaleoTaskInstanceTokenId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoTaskInstanceTokenId) {
+
+					kaleoTimerInstanceToken.setKaleoTaskInstanceTokenId(
+						(Long)kaleoTaskInstanceTokenId);
 				}
 
 			});
@@ -492,7 +600,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoTimerId();
 				}
 
@@ -502,7 +612,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoTimerId) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoTimerId) {
+
 					kaleoTimerInstanceToken.setKaleoTimerId((Long)kaleoTimerId);
 				}
 
@@ -512,7 +625,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getKaleoTimerName();
 				}
 
@@ -522,8 +637,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object kaleoTimerName) {
-					kaleoTimerInstanceToken.setKaleoTimerName((String)kaleoTimerName);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object kaleoTimerName) {
+
+					kaleoTimerInstanceToken.setKaleoTimerName(
+						(String)kaleoTimerName);
 				}
 
 			});
@@ -532,7 +651,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getBlocking();
 				}
 
@@ -542,7 +663,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object blocking) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object blocking) {
+
 					kaleoTimerInstanceToken.setBlocking((Boolean)blocking);
 				}
 
@@ -552,7 +676,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getCompletionUserId();
 				}
 
@@ -562,8 +688,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object completionUserId) {
-					kaleoTimerInstanceToken.setCompletionUserId((Long)completionUserId);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object completionUserId) {
+
+					kaleoTimerInstanceToken.setCompletionUserId(
+						(Long)completionUserId);
 				}
 
 			});
@@ -572,7 +702,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getCompleted();
 				}
 
@@ -582,7 +714,10 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object completed) {
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object completed) {
+
 					kaleoTimerInstanceToken.setCompleted((Boolean)completed);
 				}
 
@@ -592,7 +727,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getCompletionDate();
 				}
 
@@ -602,8 +739,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object completionDate) {
-					kaleoTimerInstanceToken.setCompletionDate((Date)completionDate);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object completionDate) {
+
+					kaleoTimerInstanceToken.setCompletionDate(
+						(Date)completionDate);
 				}
 
 			});
@@ -612,7 +753,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new Function<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public Object apply(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+				public Object apply(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 					return kaleoTimerInstanceToken.getWorkflowContext();
 				}
 
@@ -622,15 +765,20 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			new BiConsumer<KaleoTimerInstanceToken, Object>() {
 
 				@Override
-				public void accept(KaleoTimerInstanceToken kaleoTimerInstanceToken, Object workflowContext) {
-					kaleoTimerInstanceToken.setWorkflowContext((String)workflowContext);
+				public void accept(
+					KaleoTimerInstanceToken kaleoTimerInstanceToken,
+					Object workflowContext) {
+
+					kaleoTimerInstanceToken.setWorkflowContext(
+						(String)workflowContext);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -969,8 +1117,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoTimerInstanceToken.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoTimerInstanceToken.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -983,8 +1132,9 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	@Override
 	public KaleoTimerInstanceToken toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoTimerInstanceToken)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -992,9 +1142,11 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public Object clone() {
-		KaleoTimerInstanceTokenImpl kaleoTimerInstanceTokenImpl = new KaleoTimerInstanceTokenImpl();
+		KaleoTimerInstanceTokenImpl kaleoTimerInstanceTokenImpl =
+			new KaleoTimerInstanceTokenImpl();
 
-		kaleoTimerInstanceTokenImpl.setKaleoTimerInstanceTokenId(getKaleoTimerInstanceTokenId());
+		kaleoTimerInstanceTokenImpl.setKaleoTimerInstanceTokenId(
+			getKaleoTimerInstanceTokenId());
 		kaleoTimerInstanceTokenImpl.setGroupId(getGroupId());
 		kaleoTimerInstanceTokenImpl.setCompanyId(getCompanyId());
 		kaleoTimerInstanceTokenImpl.setUserId(getUserId());
@@ -1003,10 +1155,13 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		kaleoTimerInstanceTokenImpl.setModifiedDate(getModifiedDate());
 		kaleoTimerInstanceTokenImpl.setKaleoClassName(getKaleoClassName());
 		kaleoTimerInstanceTokenImpl.setKaleoClassPK(getKaleoClassPK());
-		kaleoTimerInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
+		kaleoTimerInstanceTokenImpl.setKaleoDefinitionId(
+			getKaleoDefinitionId());
 		kaleoTimerInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
-		kaleoTimerInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-		kaleoTimerInstanceTokenImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
+		kaleoTimerInstanceTokenImpl.setKaleoInstanceTokenId(
+			getKaleoInstanceTokenId());
+		kaleoTimerInstanceTokenImpl.setKaleoTaskInstanceTokenId(
+			getKaleoTaskInstanceTokenId());
 		kaleoTimerInstanceTokenImpl.setKaleoTimerId(getKaleoTimerId());
 		kaleoTimerInstanceTokenImpl.setKaleoTimerName(getKaleoTimerName());
 		kaleoTimerInstanceTokenImpl.setBlocking(isBlocking());
@@ -1024,10 +1179,14 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	public int compareTo(KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 		int value = 0;
 
-		if (getKaleoTimerInstanceTokenId() < kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()) {
+		if (getKaleoTimerInstanceTokenId() <
+				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()) {
+
 			value = -1;
 		}
-		else if (getKaleoTimerInstanceTokenId() > kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()) {
+		else if (getKaleoTimerInstanceTokenId() >
+					kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()) {
+
 			value = 1;
 		}
 		else {
@@ -1051,7 +1210,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 			return false;
 		}
 
-		KaleoTimerInstanceToken kaleoTimerInstanceToken = (KaleoTimerInstanceToken)obj;
+		KaleoTimerInstanceToken kaleoTimerInstanceToken =
+			(KaleoTimerInstanceToken)obj;
 
 		long primaryKey = kaleoTimerInstanceToken.getPrimaryKey();
 
@@ -1080,27 +1240,34 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public void resetOriginalValues() {
-		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = this;
+		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl =
+			this;
 
 		kaleoTimerInstanceTokenModelImpl._setModifiedDate = false;
 
-		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
+		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId =
+			kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
 
-		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceTokenId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceTokenId;
+		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceTokenId =
+			kaleoTimerInstanceTokenModelImpl._kaleoInstanceTokenId;
 
-		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceTokenId = false;
+		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceTokenId =
+			false;
 
-		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId = kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
+		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId =
+			kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoTimerId = false;
 
-		kaleoTimerInstanceTokenModelImpl._originalBlocking = kaleoTimerInstanceTokenModelImpl._blocking;
+		kaleoTimerInstanceTokenModelImpl._originalBlocking =
+			kaleoTimerInstanceTokenModelImpl._blocking;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalBlocking = false;
 
-		kaleoTimerInstanceTokenModelImpl._originalCompleted = kaleoTimerInstanceTokenModelImpl._completed;
+		kaleoTimerInstanceTokenModelImpl._originalCompleted =
+			kaleoTimerInstanceTokenModelImpl._completed;
 
 		kaleoTimerInstanceTokenModelImpl._setOriginalCompleted = false;
 
@@ -1109,9 +1276,11 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public CacheModel<KaleoTimerInstanceToken> toCacheModel() {
-		KaleoTimerInstanceTokenCacheModel kaleoTimerInstanceTokenCacheModel = new KaleoTimerInstanceTokenCacheModel();
+		KaleoTimerInstanceTokenCacheModel kaleoTimerInstanceTokenCacheModel =
+			new KaleoTimerInstanceTokenCacheModel();
 
-		kaleoTimerInstanceTokenCacheModel.kaleoTimerInstanceTokenId = getKaleoTimerInstanceTokenId();
+		kaleoTimerInstanceTokenCacheModel.kaleoTimerInstanceTokenId =
+			getKaleoTimerInstanceTokenId();
 
 		kaleoTimerInstanceTokenCacheModel.groupId = getGroupId();
 
@@ -1139,7 +1308,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			kaleoTimerInstanceTokenCacheModel.modifiedDate = modifiedDate.getTime();
+			kaleoTimerInstanceTokenCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			kaleoTimerInstanceTokenCacheModel.modifiedDate = Long.MIN_VALUE;
@@ -1147,7 +1317,8 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 		kaleoTimerInstanceTokenCacheModel.kaleoClassName = getKaleoClassName();
 
-		String kaleoClassName = kaleoTimerInstanceTokenCacheModel.kaleoClassName;
+		String kaleoClassName =
+			kaleoTimerInstanceTokenCacheModel.kaleoClassName;
 
 		if ((kaleoClassName != null) && (kaleoClassName.length() == 0)) {
 			kaleoTimerInstanceTokenCacheModel.kaleoClassName = null;
@@ -1155,19 +1326,24 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 		kaleoTimerInstanceTokenCacheModel.kaleoClassPK = getKaleoClassPK();
 
-		kaleoTimerInstanceTokenCacheModel.kaleoDefinitionId = getKaleoDefinitionId();
+		kaleoTimerInstanceTokenCacheModel.kaleoDefinitionId =
+			getKaleoDefinitionId();
 
-		kaleoTimerInstanceTokenCacheModel.kaleoInstanceId = getKaleoInstanceId();
+		kaleoTimerInstanceTokenCacheModel.kaleoInstanceId =
+			getKaleoInstanceId();
 
-		kaleoTimerInstanceTokenCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
+		kaleoTimerInstanceTokenCacheModel.kaleoInstanceTokenId =
+			getKaleoInstanceTokenId();
 
-		kaleoTimerInstanceTokenCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+		kaleoTimerInstanceTokenCacheModel.kaleoTaskInstanceTokenId =
+			getKaleoTaskInstanceTokenId();
 
 		kaleoTimerInstanceTokenCacheModel.kaleoTimerId = getKaleoTimerId();
 
 		kaleoTimerInstanceTokenCacheModel.kaleoTimerName = getKaleoTimerName();
 
-		String kaleoTimerName = kaleoTimerInstanceTokenCacheModel.kaleoTimerName;
+		String kaleoTimerName =
+			kaleoTimerInstanceTokenCacheModel.kaleoTimerName;
 
 		if ((kaleoTimerName != null) && (kaleoTimerName.length() == 0)) {
 			kaleoTimerInstanceTokenCacheModel.kaleoTimerName = null;
@@ -1175,22 +1351,26 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 		kaleoTimerInstanceTokenCacheModel.blocking = isBlocking();
 
-		kaleoTimerInstanceTokenCacheModel.completionUserId = getCompletionUserId();
+		kaleoTimerInstanceTokenCacheModel.completionUserId =
+			getCompletionUserId();
 
 		kaleoTimerInstanceTokenCacheModel.completed = isCompleted();
 
 		Date completionDate = getCompletionDate();
 
 		if (completionDate != null) {
-			kaleoTimerInstanceTokenCacheModel.completionDate = completionDate.getTime();
+			kaleoTimerInstanceTokenCacheModel.completionDate =
+				completionDate.getTime();
 		}
 		else {
 			kaleoTimerInstanceTokenCacheModel.completionDate = Long.MIN_VALUE;
 		}
 
-		kaleoTimerInstanceTokenCacheModel.workflowContext = getWorkflowContext();
+		kaleoTimerInstanceTokenCacheModel.workflowContext =
+			getWorkflowContext();
 
-		String workflowContext = kaleoTimerInstanceTokenCacheModel.workflowContext;
+		String workflowContext =
+			kaleoTimerInstanceTokenCacheModel.workflowContext;
 
 		if ((workflowContext != null) && (workflowContext.length() == 0)) {
 			kaleoTimerInstanceTokenCacheModel.workflowContext = null;
@@ -1201,22 +1381,25 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoTimerInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTimerInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(KaleoTimerInstanceToken)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTimerInstanceToken)this));
 			sb.append(", ");
 		}
 
@@ -1231,25 +1414,28 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoTimerInstanceToken, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTimerInstanceToken, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTimerInstanceToken, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTimerInstanceToken, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(KaleoTimerInstanceToken)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTimerInstanceToken)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1258,10 +1444,12 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoTimerInstanceToken.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoTimerInstanceToken.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoTimerInstanceToken.class, ModelWrapper.class
-		};
+		KaleoTimerInstanceToken.class, ModelWrapper.class
+	};
+
 	private long _kaleoTimerInstanceTokenId;
 	private long _groupId;
 	private long _companyId;
@@ -1295,4 +1483,5 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 	private String _workflowContext;
 	private long _columnBitmask;
 	private KaleoTimerInstanceToken _escapedModel;
+
 }

@@ -16,7 +16,6 @@ package com.liferay.chat.service.persistence.impl;
 
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.persistence.StatusPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -33,12 +32,13 @@ import java.util.Set;
  * @generated
  */
 public class StatusFinderBaseImpl extends BasePersistenceImpl<Status> {
+
 	public StatusFinderBaseImpl() {
 		setModelClass(Status.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -80,5 +80,8 @@ public class StatusFinderBaseImpl extends BasePersistenceImpl<Status> {
 
 	@BeanReference(type = StatusPersistence.class)
 	protected StatusPersistence statusPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(StatusFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		StatusFinderBaseImpl.class);
+
 }

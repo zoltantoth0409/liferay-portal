@@ -32,8 +32,9 @@ import com.liferay.shopping.service.ShoppingCouponLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class ShoppingCouponBaseImpl extends ShoppingCouponModelImpl
-	implements ShoppingCoupon {
+public abstract class ShoppingCouponBaseImpl
+	extends ShoppingCouponModelImpl implements ShoppingCoupon {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ShoppingCouponBaseImpl extends ShoppingCouponModelImpl
 			ShoppingCouponLocalServiceUtil.updateShoppingCoupon(this);
 		}
 	}
+
 }

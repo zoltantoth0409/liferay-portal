@@ -32,8 +32,9 @@ import com.liferay.social.privatemessaging.service.UserThreadLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class UserThreadBaseImpl extends UserThreadModelImpl
-	implements UserThread {
+public abstract class UserThreadBaseImpl
+	extends UserThreadModelImpl implements UserThread {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class UserThreadBaseImpl extends UserThreadModelImpl
 			UserThreadLocalServiceUtil.updateUserThread(this);
 		}
 	}
+
 }

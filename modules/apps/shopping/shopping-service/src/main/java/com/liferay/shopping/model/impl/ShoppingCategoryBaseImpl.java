@@ -32,8 +32,9 @@ import com.liferay.shopping.service.ShoppingCategoryLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class ShoppingCategoryBaseImpl extends ShoppingCategoryModelImpl
-	implements ShoppingCategory {
+public abstract class ShoppingCategoryBaseImpl
+	extends ShoppingCategoryModelImpl implements ShoppingCategory {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class ShoppingCategoryBaseImpl extends ShoppingCategoryModelImpl
 			ShoppingCategoryLocalServiceUtil.updateShoppingCategory(this);
 		}
 	}
+
 }

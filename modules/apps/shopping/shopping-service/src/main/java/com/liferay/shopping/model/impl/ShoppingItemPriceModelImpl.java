@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -27,7 +26,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.shopping.model.ShoppingItemPrice;
 import com.liferay.shopping.model.ShoppingItemPriceModel;
 
@@ -54,28 +52,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
-	implements ShoppingItemPriceModel {
+public class ShoppingItemPriceModelImpl
+	extends BaseModelImpl<ShoppingItemPrice> implements ShoppingItemPriceModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a shopping item price model instance should use the <code>ShoppingItemPrice</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ShoppingItemPrice";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "itemPriceId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "itemId", Types.BIGINT },
-			{ "minQuantity", Types.INTEGER },
-			{ "maxQuantity", Types.INTEGER },
-			{ "price", Types.DOUBLE },
-			{ "discount", Types.DOUBLE },
-			{ "taxable", Types.BOOLEAN },
-			{ "shipping", Types.DOUBLE },
-			{ "useShippingFormula", Types.BOOLEAN },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"itemPriceId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"itemId", Types.BIGINT}, {"minQuantity", Types.INTEGER},
+		{"maxQuantity", Types.INTEGER}, {"price", Types.DOUBLE},
+		{"discount", Types.DOUBLE}, {"taxable", Types.BOOLEAN},
+		{"shipping", Types.DOUBLE}, {"useShippingFormula", Types.BOOLEAN},
+		{"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("itemPriceId", Types.BIGINT);
@@ -91,26 +88,45 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ShoppingItemPrice (itemPriceId LONG not null primary key,companyId LONG,itemId LONG,minQuantity INTEGER,maxQuantity INTEGER,price DOUBLE,discount DOUBLE,taxable BOOLEAN,shipping DOUBLE,useShippingFormula BOOLEAN,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table ShoppingItemPrice (itemPriceId LONG not null primary key,companyId LONG,itemId LONG,minQuantity INTEGER,maxQuantity INTEGER,price DOUBLE,discount DOUBLE,taxable BOOLEAN,shipping DOUBLE,useShippingFormula BOOLEAN,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table ShoppingItemPrice";
-	public static final String ORDER_BY_JPQL = " ORDER BY shoppingItemPrice.itemId ASC, shoppingItemPrice.itemPriceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ShoppingItemPrice.itemId ASC, ShoppingItemPrice.itemPriceId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY shoppingItemPrice.itemId ASC, shoppingItemPrice.itemPriceId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ShoppingItemPrice.itemId ASC, ShoppingItemPrice.itemPriceId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.shopping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.shopping.model.ShoppingItemPrice"),
+		true);
+
 	public static final long ITEMID_COLUMN_BITMASK = 1L;
+
 	public static final long ITEMPRICEID_COLUMN_BITMASK = 2L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.shopping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.shopping.model.ShoppingItemPrice"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.shopping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.shopping.model.ShoppingItemPrice"));
 
 	public ShoppingItemPriceModelImpl() {
 	}
@@ -149,14 +165,18 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemPrice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ShoppingItemPrice)this));
 		}
 
@@ -168,38 +188,47 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ShoppingItemPrice, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ShoppingItemPrice, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ShoppingItemPrice, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ShoppingItemPrice, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ShoppingItemPrice)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ShoppingItemPrice)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ShoppingItemPrice, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ShoppingItemPrice, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ShoppingItemPrice, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ShoppingItemPrice, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ShoppingItemPrice, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ShoppingItemPrice, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ShoppingItemPrice, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<ShoppingItemPrice, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<ShoppingItemPrice, Object>>();
-		Map<String, BiConsumer<ShoppingItemPrice, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<ShoppingItemPrice, ?>>();
-
+		Map<String, Function<ShoppingItemPrice, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<ShoppingItemPrice, Object>>();
+		Map<String, BiConsumer<ShoppingItemPrice, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<ShoppingItemPrice, ?>>();
 
 		attributeGetterFunctions.put(
 			"itemPriceId",
@@ -216,7 +245,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object itemPriceId) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object itemPriceId) {
+
 					shoppingItemPrice.setItemPriceId((Long)itemPriceId);
 				}
 
@@ -236,7 +267,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object companyId) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object companyId) {
+
 					shoppingItemPrice.setCompanyId((Long)companyId);
 				}
 
@@ -256,7 +289,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object itemId) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object itemId) {
+
 					shoppingItemPrice.setItemId((Long)itemId);
 				}
 
@@ -276,7 +311,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object minQuantity) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object minQuantity) {
+
 					shoppingItemPrice.setMinQuantity((Integer)minQuantity);
 				}
 
@@ -296,7 +333,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object maxQuantity) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object maxQuantity) {
+
 					shoppingItemPrice.setMaxQuantity((Integer)maxQuantity);
 				}
 
@@ -316,7 +355,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object price) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object price) {
+
 					shoppingItemPrice.setPrice((Double)price);
 				}
 
@@ -336,7 +377,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object discount) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object discount) {
+
 					shoppingItemPrice.setDiscount((Double)discount);
 				}
 
@@ -356,7 +399,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object taxable) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object taxable) {
+
 					shoppingItemPrice.setTaxable((Boolean)taxable);
 				}
 
@@ -376,7 +421,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object shipping) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object shipping) {
+
 					shoppingItemPrice.setShipping((Double)shipping);
 				}
 
@@ -396,8 +443,12 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object useShippingFormula) {
-					shoppingItemPrice.setUseShippingFormula((Boolean)useShippingFormula);
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice,
+					Object useShippingFormula) {
+
+					shoppingItemPrice.setUseShippingFormula(
+						(Boolean)useShippingFormula);
 				}
 
 			});
@@ -416,15 +467,18 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 			new BiConsumer<ShoppingItemPrice, Object>() {
 
 				@Override
-				public void accept(ShoppingItemPrice shoppingItemPrice, Object status) {
+				public void accept(
+					ShoppingItemPrice shoppingItemPrice, Object status) {
+
 					shoppingItemPrice.setStatus((Integer)status);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -567,8 +621,8 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ShoppingItemPrice.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ShoppingItemPrice.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -581,8 +635,9 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 	@Override
 	public ShoppingItemPrice toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ShoppingItemPrice)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ShoppingItemPrice)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -590,7 +645,8 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public Object clone() {
-		ShoppingItemPriceImpl shoppingItemPriceImpl = new ShoppingItemPriceImpl();
+		ShoppingItemPriceImpl shoppingItemPriceImpl =
+			new ShoppingItemPriceImpl();
 
 		shoppingItemPriceImpl.setItemPriceId(getItemPriceId());
 		shoppingItemPriceImpl.setCompanyId(getCompanyId());
@@ -685,7 +741,8 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 	public void resetOriginalValues() {
 		ShoppingItemPriceModelImpl shoppingItemPriceModelImpl = this;
 
-		shoppingItemPriceModelImpl._originalItemId = shoppingItemPriceModelImpl._itemId;
+		shoppingItemPriceModelImpl._originalItemId =
+			shoppingItemPriceModelImpl._itemId;
 
 		shoppingItemPriceModelImpl._setOriginalItemId = false;
 
@@ -694,7 +751,8 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public CacheModel<ShoppingItemPrice> toCacheModel() {
-		ShoppingItemPriceCacheModel shoppingItemPriceCacheModel = new ShoppingItemPriceCacheModel();
+		ShoppingItemPriceCacheModel shoppingItemPriceCacheModel =
+			new ShoppingItemPriceCacheModel();
 
 		shoppingItemPriceCacheModel.itemPriceId = getItemPriceId();
 
@@ -723,17 +781,20 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public String toString() {
-		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemPrice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -752,19 +813,22 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ShoppingItemPrice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ShoppingItemPrice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ShoppingItemPrice, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ShoppingItemPrice, Object> attributeGetterFunction = entry.getValue();
+			Function<ShoppingItemPrice, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -778,10 +842,12 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ShoppingItemPrice.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ShoppingItemPrice.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ShoppingItemPrice.class, ModelWrapper.class
-		};
+		ShoppingItemPrice.class, ModelWrapper.class
+	};
+
 	private long _itemPriceId;
 	private long _companyId;
 	private long _itemId;
@@ -797,4 +863,5 @@ public class ShoppingItemPriceModelImpl extends BaseModelImpl<ShoppingItemPrice>
 	private int _status;
 	private long _columnBitmask;
 	private ShoppingItemPrice _escapedModel;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.message.boards.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface MBBanModel extends BaseModel<MBBan>, ShardedModel,
-	StagedGroupedModel {
+public interface MBBanModel
+	extends BaseModel<MBBan>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -307,4 +307,5 @@ public interface MBBanModel extends BaseModel<MBBan>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

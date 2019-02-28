@@ -32,8 +32,9 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
  * @generated
  */
 @ProviderType
-public abstract class WSRPConsumerBaseImpl extends WSRPConsumerModelImpl
-	implements WSRPConsumer {
+public abstract class WSRPConsumerBaseImpl
+	extends WSRPConsumerModelImpl implements WSRPConsumer {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class WSRPConsumerBaseImpl extends WSRPConsumerModelImpl
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(this);
 		}
 	}
+
 }
