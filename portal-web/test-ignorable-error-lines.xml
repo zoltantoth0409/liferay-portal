@@ -68,10 +68,6 @@
 			<contains>No theme found for specified theme id userdashboard_WAR_userdashboardtheme</contains>
 			<matches></matches>
 		</ignore-error>
-		<ignore-error description="APIO-202 temporary workaround">
-			<contains></contains>
-			<matches>.*Failed to install artifact.*com.liferay.apio.architect.impl.internal.application.ApioApplication-default.config[\s\S]*</matches>
-		</ignore-error>
 		<ignore-error description="LPS-22821">
 			<contains>Exception sending context destroyed event to listener instance of class com.liferay.portal.spring.context.PortalContextLoaderListener</contains>
 			<matches></matches>
