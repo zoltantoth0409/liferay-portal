@@ -97,8 +97,10 @@ public class BlogPostingImageResourceImpl
 			filter, Folder.class, pagination,
 			queryConfig -> queryConfig.setSelectedFieldNames(
 				Field.ENTRY_CLASS_PK),
-			searchContext -> searchContext.setCompanyId(
-				contextCompany.getCompanyId()),
+			searchContext -> {
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
+			}
 			document -> _toBlogPostingImage(
 				_dlAppService.getFileEntry(
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
