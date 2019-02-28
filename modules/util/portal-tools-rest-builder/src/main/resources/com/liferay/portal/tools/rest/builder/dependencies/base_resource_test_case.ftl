@@ -105,9 +105,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			/>
 		</#if>
 
-		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${parameters})
-			throws Exception {
-
+		protected ${javaMethodSignature.returnType} invoke${javaMethodSignature.methodName?cap_first}(${parameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
@@ -141,9 +139,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 			</#if>
 		}
 
-		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${parameters})
-			throws Exception {
-
+		protected Http.Response invoke${javaMethodSignature.methodName?cap_first}Response(${parameters}) throws Exception {
 			Http.Options options = _createHttpOptions();
 
 			<#if freeMarkerTool.hasHTTPMethod(javaMethodSignature, "post", "put") && arguments?ends_with(",${schemaVarName}")>
