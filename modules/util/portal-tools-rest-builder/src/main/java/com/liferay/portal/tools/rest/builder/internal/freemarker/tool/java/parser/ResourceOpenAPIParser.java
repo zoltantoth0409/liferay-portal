@@ -526,7 +526,7 @@ public class ResourceOpenAPIParser {
 				}
 
 				return javaDataTypeMap.get(
-					OpenAPIParserUtil.getComponentType(schemaReference));
+					OpenAPIParserUtil.getReferenceName(schemaReference));
 			}
 		}
 
