@@ -87,9 +87,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
-		for (EntityField entityField :
-				getEntityFields(EntityField.Type.DATE_TIME)) {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.DATE_TIME);
 
+		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(),
 				getFilterString(entityField, "eq", vocabulary),
@@ -112,9 +113,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary());
 
-		for (EntityField entityField :
-				getEntityFields(EntityField.Type.STRING)) {
+		List<EntityField> entityFields = getEntityFields(
+			EntityField.Type.STRING);
 
+		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> page = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(),
 				getFilterString(entityField, "eq", vocabulary),
@@ -184,10 +186,10 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary2);
 
-		List<EntityField> stringEntityFields = getEntityFields(
+		List<EntityField> entityFields = getEntityFields(
 			EntityField.Type.DATE_TIME);
 
-		for (EntityField entityField : stringEntityFields) {
+		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(), null, Pagination.of(2, 1),
 				entityField.getName() + ":asc");
@@ -213,24 +215,22 @@ public class VocabularyResourceTest extends BaseVocabularyResourceTestCase {
 		Vocabulary randomVocabulary1 = randomVocabulary();
 		Vocabulary randomVocabulary2 = randomVocabulary();
 
-		List<EntityField> stringEntityFields = getEntityFields(
+		List<EntityField> entityFields = getEntityFields(
 			EntityField.Type.STRING);
 
-		for (EntityField entityField : stringEntityFields) {
+		for (EntityField entityField : entityFields) {
 			BeanUtils.setProperty(
 				randomVocabulary1, entityField.getName(), "Value1");
-
 			BeanUtils.setProperty(
 				randomVocabulary2, entityField.getName(), "Value2");
 		}
 
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary1);
-
 		invokePostContentSpaceVocabulary(
 			testGroup.getGroupId(), randomVocabulary2);
 
-		for (EntityField entityField : stringEntityFields) {
+		for (EntityField entityField : entityFields) {
 			Page<Vocabulary> ascPage = invokeGetContentSpaceVocabulariesPage(
 				testGroup.getGroupId(), null, Pagination.of(2, 1),
 				entityField.getName() + ":asc");
