@@ -37,8 +37,8 @@ import java.util.function.Consumer;
 public class SearchUtil {
 
 	public static SearchContext createSearchContext(
-			Filter filter, Pagination pagination,
 			Consumer<BooleanQuery> booleanQueryConsumer,
+			Filter filter, Pagination pagination,
 			Consumer<QueryConfig> queryConfigConsumer, Sort[] sorts)
 		throws Exception {
 
