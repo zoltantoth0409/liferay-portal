@@ -434,7 +434,7 @@ public class JournalArticleAssetRenderer
 				groupFriendlyURL.concat(
 					JournalArticleConstants.CANONICAL_URL_SEPARATOR
 				).concat(
-					_article.getUrlTitle()
+					_article.getUrlTitle(themeDisplay.getLocale())
 				));
 		}
 
