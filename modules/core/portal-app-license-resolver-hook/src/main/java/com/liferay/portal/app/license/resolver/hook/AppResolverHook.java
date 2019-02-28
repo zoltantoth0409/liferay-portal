@@ -102,7 +102,7 @@ public class AppResolverHook implements ResolverHook {
 
 					sb.append("Unable to resolve ");
 					sb.append(bundleRevision.getSymbolicName());
-					sb.append(". ");
+					sb.append(": ");
 					sb.append(e.getMessage());
 
 					_log.error(sb.toString());
