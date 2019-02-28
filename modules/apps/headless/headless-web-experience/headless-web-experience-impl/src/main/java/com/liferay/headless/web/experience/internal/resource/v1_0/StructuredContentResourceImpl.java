@@ -57,7 +57,6 @@ import com.liferay.journal.model.JournalArticleDisplay;
 import com.liferay.journal.service.JournalArticleService;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
-import com.liferay.journal.util.JournalHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -67,10 +66,6 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -162,10 +157,7 @@ public class StructuredContentResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		Indexer<JournalArticle> indexer = _indexerRegistry.getIndexer(
-			JournalArticle.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 				if (contentStructureId != null) {
 					BooleanFilter booleanFilter =
@@ -177,24 +169,21 @@ public class StructuredContentResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(
-					Field.ARTICLE_ID, Field.SCOPE_GROUP_ID);
+			filter, JournalArticle.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ARTICLE_ID, Field.SCOPE_GROUP_ID),
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+				searchContext.setAttribute("head", Boolean.TRUE);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},
+			document -> _toStructuredContent(
+				_journalArticleService.getLatestArticle(
+					GetterUtil.getLong(document.get(Field.SCOPE_GROUP_ID)),
+					document.get(Field.ARTICLE_ID),
+					WorkflowConstants.STATUS_APPROVED)),
 			sorts);
-
-		searchContext.setAttribute(
-			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
-		searchContext.setAttribute("head", Boolean.TRUE);
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-
-		Hits hits = indexer.search(searchContext);
-
-		return Page.of(
-			transform(
-				_journalHelper.getArticles(hits), this::_toStructuredContent),
-			pagination, indexer.searchCount(searchContext));
 	}
 
 	@Override
@@ -849,9 +838,6 @@ public class StructuredContentResourceImpl
 	private EntityFieldsProvider _entityFieldsProvider;
 
 	@Reference
-	private IndexerRegistry _indexerRegistry;
-
-	@Reference
 	private JournalArticleService _journalArticleService;
 
 	@Reference
@@ -859,9 +845,6 @@ public class StructuredContentResourceImpl
 
 	@Reference
 	private JournalConverter _journalConverter;
-
-	@Reference
-	private JournalHelper _journalHelper;
 
 	@Reference
 	private LayoutLocalService _layoutLocalService;
