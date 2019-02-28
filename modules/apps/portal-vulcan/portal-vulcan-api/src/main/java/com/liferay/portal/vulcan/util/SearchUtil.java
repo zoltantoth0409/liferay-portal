@@ -45,17 +45,12 @@ public class SearchUtil {
 		BooleanClause<?> booleanClause = _getBooleanClause(
 			filter, booleanQueryConsumer);
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		return _createSearchContext(
-			booleanClause, pagination, permissionChecker, queryConfigConsumer,
-			sorts);
+			booleanClause, pagination, queryConfigConsumer, sorts);
 	}
 
 	private static SearchContext _createSearchContext(
 		BooleanClause<?> booleanClause, Pagination pagination,
-		PermissionChecker permissionChecker,
 		Consumer<QueryConfig> queryConfigConsumer, Sort[] sorts) {
 
 		SearchContext searchContext = new SearchContext();
@@ -64,6 +59,10 @@ public class SearchUtil {
 		searchContext.setEnd(pagination.getEndPosition());
 		searchContext.setSorts(sorts);
 		searchContext.setStart(pagination.getStartPosition());
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
 		searchContext.setUserId(permissionChecker.getUserId());
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
