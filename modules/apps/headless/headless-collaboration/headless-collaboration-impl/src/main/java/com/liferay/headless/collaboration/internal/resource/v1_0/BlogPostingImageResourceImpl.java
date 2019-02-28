@@ -90,14 +90,15 @@ public class BlogPostingImageResourceImpl
 
 		List<FileEntry> fileEntries = new ArrayList<>();
 
-		Folder folder = _blogsEntryService.addAttachmentsFolder(contentSpaceId);
-
 		Indexer<Folder> indexer = _indexerRegistry.getIndexer(Folder.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
+
+				Folder folder = _blogsEntryService.addAttachmentsFolder(
+					contentSpaceId);
 
 				booleanFilter.add(
 					new TermFilter(
