@@ -52,6 +52,7 @@ import javax.annotation.Generated;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -66,6 +67,11 @@ public abstract class Base${schemaName}ResourceTestCase {
 	@ClassRule
 	@Rule
 	public static final LiferayIntegrationTestRule liferayIntegrationTestRule = new LiferayIntegrationTestRule();
+
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		_dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -372,6 +378,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		return template.replaceFirst("\\{.*\\}", String.valueOf(value));
 	}
 
+	private static DateFormat _dateFormat;
 	private final static ObjectMapper _inputObjectMapper = new ObjectMapper() {
 		{
 			setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -382,7 +389,6 @@ public abstract class Base${schemaName}ResourceTestCase {
 	@Inject
 	private ${schemaName}Resource _${schemaVarName}Resource;
 
-	private DateFormat _dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 	private URL _resourceURL;
 
 }
