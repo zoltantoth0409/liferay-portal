@@ -167,10 +167,10 @@ public class FolderResourceTest extends BaseFolderResourceTestCase {
 	protected void assertValid(Folder folder) {
 		boolean valid = false;
 
-		if ((folder.getDateCreated() != null) &&
-			(folder.getDateModified() != null) && (folder.getId() != null) &&
-			Objects.equals(
-				folder.getContentSpaceId(), testGroup.getGroupId())) {
+		if (Objects.equals(
+				folder.getContentSpaceId(), testGroup.getGroupId()) &&
+			(folder.getDateCreated() != null) &&
+			(folder.getDateModified() != null) && (folder.getId() != null)) {
 
 			valid = true;
 		}
