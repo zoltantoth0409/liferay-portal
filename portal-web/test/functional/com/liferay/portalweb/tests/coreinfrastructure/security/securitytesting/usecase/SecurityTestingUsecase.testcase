@@ -127,7 +127,7 @@ out.println(PortalUtil.escapeRedirect("/"));
 		WaitForSPARefresh();
 
 		var authToken = Page.getAuthTokenFromHtmlSource();
- 		var plid = Page.getPlidFromHtmlSource();
+		var plid = Page.getPlidFromHtmlSource();
 		var portalURL = PropsUtil.get("portal.url");
 
 		Navigator.openSpecificURL(
