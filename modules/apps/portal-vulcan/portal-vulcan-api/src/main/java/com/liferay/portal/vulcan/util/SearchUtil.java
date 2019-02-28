@@ -14,6 +14,7 @@
 
 package com.liferay.portal.vulcan.util;
 
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.search.BooleanClause;
 import com.liferay.portal.kernel.search.BooleanClauseFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -29,29 +30,30 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.vulcan.pagination.Pagination;
 
-import java.util.function.Consumer;
-
 /**
  * @author Brian Wing Shun Chan
  */
 public class SearchUtil {
 
 	public static SearchContext createSearchContext(
-			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
-			Pagination pagination, Consumer<QueryConfig> queryConfigConsumer,
+			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
+			Filter filter, Pagination pagination,
+			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
 			Sort[] sorts)
 		throws Exception {
 
 		BooleanClause<?> booleanClause = _getBooleanClause(
-			booleanQueryConsumer, filter);
+			booleanQueryUnsafeConsumer, filter);
 
 		return _createSearchContext(
-			booleanClause, pagination, queryConfigConsumer, sorts);
+			booleanClause, pagination, queryConfigUnsafeConsumer, sorts);
 	}
 
 	private static SearchContext _createSearchContext(
-		BooleanClause<?> booleanClause, Pagination pagination,
-		Consumer<QueryConfig> queryConfigConsumer, Sort[] sorts) {
+			BooleanClause<?> booleanClause, Pagination pagination,
+			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
+			Sort[] sorts)
+		throws Exception {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -70,13 +72,14 @@ public class SearchUtil {
 		queryConfig.setHighlightEnabled(false);
 		queryConfig.setScoreEnabled(false);
 
-		queryConfigConsumer.accept(queryConfig);
+		queryConfigUnsafeConsumer.accept(queryConfig);
 
 		return searchContext;
 	}
 
 	private static BooleanClause<?> _getBooleanClause(
-			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter)
+			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
+			Filter filter)
 		throws Exception {
 
 		BooleanQuery booleanQuery = new BooleanQueryImpl() {
@@ -93,7 +96,7 @@ public class SearchUtil {
 			}
 		};
 
-		booleanQueryConsumer.accept(booleanQuery);
+		booleanQueryUnsafeConsumer.accept(booleanQuery);
 
 		return BooleanClauseFactoryUtil.create(
 			booleanQuery, BooleanClauseOccur.MUST.getName());

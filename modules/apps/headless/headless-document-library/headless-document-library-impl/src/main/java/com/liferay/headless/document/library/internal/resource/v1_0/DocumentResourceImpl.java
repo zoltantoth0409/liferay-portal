@@ -35,6 +35,7 @@ import com.liferay.headless.document.library.internal.dto.v1_0.util.AggregateRat
 import com.liferay.headless.document.library.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.document.library.internal.odata.entity.v1_0.DocumentEntityModel;
 import com.liferay.headless.document.library.resource.v1_0.DocumentResource;
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -69,7 +70,6 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 import javax.ws.rs.core.MultivaluedMap;
@@ -328,8 +328,8 @@ public class DocumentResourceImpl
 	}
 
 	private Page<Document> _getDocumentsPage(
-			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
-			Pagination pagination, Sort[] sorts)
+			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
+			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		List<FileEntry> fileEntries = new ArrayList<>();
@@ -338,7 +338,7 @@ public class DocumentResourceImpl
 			DLFileEntry.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			booleanQueryConsumer, filter, pagination,
+			booleanQueryUnsafeConsumer, filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
 			},

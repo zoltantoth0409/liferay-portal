@@ -25,6 +25,7 @@ import com.liferay.headless.foundation.dto.v1_0.ParentVocabulary;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.CategoryEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
+import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
@@ -54,7 +55,6 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Consumer;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -213,8 +213,8 @@ public class CategoryResourceImpl
 	}
 
 	private Page<Category> _getCategoriesPage(
-			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter,
-			Pagination pagination, Sort[] sorts)
+			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
+			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
 		List<AssetCategory> assetCategories = new ArrayList<>();
@@ -223,7 +223,7 @@ public class CategoryResourceImpl
 			AssetCategory.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			booleanQueryConsumer, filter, pagination,
+			booleanQueryUnsafeConsumer, filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
 			},
