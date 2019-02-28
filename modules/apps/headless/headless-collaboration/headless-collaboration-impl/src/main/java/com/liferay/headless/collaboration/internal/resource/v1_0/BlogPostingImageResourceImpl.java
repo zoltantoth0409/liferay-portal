@@ -100,7 +100,7 @@ public class BlogPostingImageResourceImpl
 			searchContext -> {
 				searchContext.setCompanyId(contextCompany.getCompanyId());
 				searchContext.setGroupIds(new long[] {contentSpaceId});
-			}
+			},
 			document -> _toBlogPostingImage(
 				_dlAppService.getFileEntry(
 					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
