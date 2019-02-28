@@ -28,12 +28,7 @@ import com.liferay.headless.foundation.resource.v1_0.CategoryResource;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -52,9 +47,7 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -217,32 +210,16 @@ public class CategoryResourceImpl
 			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		List<AssetCategory> assetCategories = new ArrayList<>();
-
-		Indexer<AssetCategory> indexer = _indexerRegistry.getIndexer(
-			AssetCategory.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
-			booleanQueryUnsafeConsumer, filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
-			},
+		return SearchUtil.search(
+			booleanQueryUnsafeConsumer, filter, AssetCategory.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ASSET_CATEGORY_ID),
+			searchContext -> searchContext.setCompanyId(
+				contextCompany.getCompanyId()),
+			document -> _toCategory(
+				_assetCategoryService.getCategory(
+					GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)))),
 			sorts);
-
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			AssetCategory assetCategory = _assetCategoryService.getCategory(
-				GetterUtil.getLong(document.get(Field.ASSET_CATEGORY_ID)));
-
-			assetCategories.add(assetCategory);
-		}
-
-		return Page.of(
-			transform(assetCategories, this::_toCategory), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	private Category _toCategory(AssetCategory assetCategory) throws Exception {
@@ -311,9 +288,6 @@ public class CategoryResourceImpl
 
 	@Context
 	private HttpServletResponse _contextHttpServletResponse;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;

@@ -22,12 +22,7 @@ import com.liferay.headless.foundation.dto.v1_0.Keyword;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.KeywordEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.KeywordResource;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -39,9 +34,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.core.MultivaluedMap;
@@ -74,34 +66,20 @@ public class KeywordResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<AssetTag> assetTags = new ArrayList<>();
-
-		Indexer<AssetTag> indexer = _indexerRegistry.getIndexer(AssetTag.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_TAG_IDS);
+			filter, AssetTag.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ASSET_TAG_IDS),
+			searchContext -> {
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
+			document -> _toKeyword(
+				_assetTagService.getTag(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-		searchContext.setGroupIds(new long[] {contentSpaceId});
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			AssetTag assetTag = _assetTagService.getTag(
-				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
-
-			assetTags.add(assetTag);
-		}
-
-		return Page.of(
-			transform(assetTags, this::_toKeyword), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	@Override
@@ -180,9 +158,6 @@ public class KeywordResourceImpl
 
 	@Reference
 	private AssetTagService _assetTagService;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;

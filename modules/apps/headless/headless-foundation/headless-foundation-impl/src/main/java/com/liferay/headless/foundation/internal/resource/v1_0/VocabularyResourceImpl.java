@@ -20,12 +20,7 @@ import com.liferay.headless.foundation.dto.v1_0.Vocabulary;
 import com.liferay.headless.foundation.internal.dto.v1_0.util.CreatorUtil;
 import com.liferay.headless.foundation.internal.odata.entity.v1_0.VocabularyEntityModel;
 import com.liferay.headless.foundation.resource.v1_0.VocabularyResource;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -43,9 +38,7 @@ import com.liferay.portal.vulcan.util.LocalizedMapUtil;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,37 +73,21 @@ public class VocabularyResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<AssetVocabulary> assetVocabularies = new ArrayList<>();
-
-		Indexer<AssetVocabulary> indexer = _indexerRegistry.getIndexer(
-			AssetVocabulary.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ASSET_VOCABULARY_ID);
+			filter, AssetVocabulary.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ASSET_VOCABULARY_ID),
+			searchContext -> {
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
-			sorts);
-
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-		searchContext.setGroupIds(new long[] {contentSpaceId});
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			AssetVocabulary assetVocabulary =
+			document -> _toVocabulary(
 				_assetVocabularyService.getVocabulary(
 					GetterUtil.getLong(
-						document.get(Field.ASSET_VOCABULARY_ID)));
-
-			assetVocabularies.add(assetVocabulary);
-		}
-
-		return Page.of(
-			transform(assetVocabularies, this::_toVocabulary), pagination,
-			indexer.searchCount(searchContext));
+						document.get(Field.ASSET_VOCABULARY_ID)))),
+			sorts);
 	}
 
 	@Override
@@ -202,9 +179,6 @@ public class VocabularyResourceImpl
 
 	@Context
 	private HttpServletResponse _contextHttpServletResponse;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;

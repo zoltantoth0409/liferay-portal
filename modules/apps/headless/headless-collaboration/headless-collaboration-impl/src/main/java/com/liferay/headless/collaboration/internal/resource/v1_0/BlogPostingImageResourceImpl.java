@@ -23,12 +23,7 @@ import com.liferay.headless.collaboration.resource.v1_0.BlogPostingImageResource
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -42,8 +37,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.ws.rs.BadRequestException;
@@ -88,11 +81,7 @@ public class BlogPostingImageResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<FileEntry> fileEntries = new ArrayList<>();
-
-		Indexer<Folder> indexer = _indexerRegistry.getIndexer(Folder.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -105,28 +94,15 @@ public class BlogPostingImageResourceImpl
 						Field.FOLDER_ID, String.valueOf(folder.getFolderId())),
 					BooleanClauseOccur.MUST);
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
-			},
+			filter, Folder.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> searchContext.setCompanyId(
+				contextCompany.getCompanyId()),
+			document -> _toBlogPostingImage(
+				_dlAppService.getFileEntry(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			long fileEntryId = GetterUtil.getLong(
-				document.get(Field.ENTRY_CLASS_PK));
-
-			FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
-
-			fileEntries.add(fileEntry);
-		}
-
-		return Page.of(
-			transform(fileEntries, this::_toBlogPostingImage), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	@Override
@@ -265,8 +241,5 @@ public class BlogPostingImageResourceImpl
 
 	@Reference
 	private DLURLHelper _dlURLHelper;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 }

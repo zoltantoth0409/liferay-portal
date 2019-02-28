@@ -21,13 +21,7 @@ import com.liferay.headless.web.experience.internal.dto.v1_0.util.ContentStructu
 import com.liferay.headless.web.experience.internal.odata.entity.v1_0.ContentStructureEntityModel;
 import com.liferay.headless.web.experience.resource.v1_0.ContentStructureResource;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -38,9 +32,6 @@ import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.ws.rs.core.MultivaluedMap;
 
@@ -65,36 +56,22 @@ public class ContentStructureResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<DDMStructure> ddmStructures = new ArrayList<>();
-
-		Indexer<DDMStructure> indexer = IndexerRegistryUtil.getIndexer(
-			DDMStructure.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
+			filter, DDMStructure.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> {
+				searchContext.setAttribute(
+					"searchPermissionContext", StringPool.BLANK);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
+				searchContext.setGroupIds(new long[] {contentSpaceId});
 			},
+			document -> _toContentStructure(
+				_ddmStructureService.getStructure(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-
-		searchContext.setAttribute("searchPermissionContext", StringPool.BLANK);
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-		searchContext.setGroupIds(new long[] {contentSpaceId});
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			DDMStructure ddmStructure = _ddmStructureService.getStructure(
-				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
-
-			ddmStructures.add(ddmStructure);
-		}
-
-		return Page.of(
-			transform(ddmStructures, this::_toContentStructure), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	@Override
@@ -123,9 +100,6 @@ public class ContentStructureResourceImpl
 
 	@Reference
 	private DDMStructureService _ddmStructureService;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;

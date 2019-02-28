@@ -43,10 +43,6 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -67,8 +63,6 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -332,36 +326,16 @@ public class DocumentResourceImpl
 			Filter filter, Pagination pagination, Sort[] sorts)
 		throws Exception {
 
-		List<FileEntry> fileEntries = new ArrayList<>();
-
-		Indexer<DLFileEntry> indexer = _indexerRegistry.getIndexer(
-			DLFileEntry.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
-			booleanQueryUnsafeConsumer, filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
-			},
+		return SearchUtil.search(
+			booleanQueryUnsafeConsumer, filter, DLFileEntry.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> searchContext.setCompanyId(
+				contextCompany.getCompanyId()),
+			document -> _toDocument(
+				_dlAppService.getFileEntry(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-
-		Hits hits = indexer.search(searchContext);
-
-		for (com.liferay.portal.kernel.search.Document document :
-				hits.getDocs()) {
-
-			long fileEntryId = GetterUtil.getLong(
-				document.get(Field.ENTRY_CLASS_PK));
-
-			FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
-
-			fileEntries.add(fileEntry);
-		}
-
-		return Page.of(
-			transform(fileEntries, this::_toDocument), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	private <T, S> T _getValue(
@@ -459,9 +433,6 @@ public class DocumentResourceImpl
 
 	@Reference
 	private DLURLHelper _dlURLHelper;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;
