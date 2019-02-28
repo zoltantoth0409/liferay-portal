@@ -79,17 +79,19 @@ public class SearchUtil {
 			Consumer<BooleanQuery> booleanQueryConsumer, Filter filter)
 		throws Exception {
 
-		BooleanQuery booleanQuery = new BooleanQueryImpl();
+		BooleanQuery booleanQuery = new BooleanQueryImpl() {
+			{
+				add(new MatchAllQuery(), BooleanClauseOccur.MUST);
 
-		booleanQuery.add(new MatchAllQuery(), BooleanClauseOccur.MUST);
+				BooleanFilter booleanFilter = new BooleanFilter();
 
-		BooleanFilter booleanFilter = new BooleanFilter();
+				if (filter != null) {
+					booleanFilter.add(filter, BooleanClauseOccur.MUST);
+				}
 
-		if (filter != null) {
-			booleanFilter.add(filter, BooleanClauseOccur.MUST);
-		}
-
-		booleanQuery.setPreBooleanFilter(booleanFilter);
+				setPreBooleanFilter(booleanFilter);
+			}
+		};
 
 		booleanQueryConsumer.accept(booleanQuery);
 
