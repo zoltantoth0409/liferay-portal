@@ -86,9 +86,9 @@ public class VocabularyResourceImpl
 			AssetVocabulary.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination,
 			booleanQuery -> {
 			},
+			filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ASSET_VOCABULARY_ID);
 			},

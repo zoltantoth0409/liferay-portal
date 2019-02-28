@@ -240,7 +240,6 @@ public class CommentResourceImpl
 			MBMessage.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination,
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -250,6 +249,7 @@ public class CommentResourceImpl
 						"parentMessageId", String.valueOf(parentCommentId)),
 					BooleanClauseOccur.MUST);
 			},
+			filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
 			},

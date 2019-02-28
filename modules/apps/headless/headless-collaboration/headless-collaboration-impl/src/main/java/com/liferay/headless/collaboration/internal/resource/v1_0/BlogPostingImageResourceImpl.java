@@ -95,7 +95,6 @@ public class BlogPostingImageResourceImpl
 		Indexer<Folder> indexer = _indexerRegistry.getIndexer(Folder.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination,
 			booleanQuery -> {
 				BooleanFilter booleanFilter =
 					booleanQuery.getPreBooleanFilter();
@@ -105,6 +104,7 @@ public class BlogPostingImageResourceImpl
 						Field.FOLDER_ID, String.valueOf(folder.getFolderId())),
 					BooleanClauseOccur.MUST);
 			},
+			filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
 			},

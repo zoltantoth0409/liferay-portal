@@ -223,7 +223,7 @@ public class CategoryResourceImpl
 			AssetCategory.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination, booleanQueryConsumer,
+			booleanQueryConsumer, filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ASSET_CATEGORY_ID);
 			},

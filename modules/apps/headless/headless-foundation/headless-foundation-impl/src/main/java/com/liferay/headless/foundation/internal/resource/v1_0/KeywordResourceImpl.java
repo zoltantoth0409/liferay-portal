@@ -79,9 +79,9 @@ public class KeywordResourceImpl
 		Indexer<AssetTag> indexer = _indexerRegistry.getIndexer(AssetTag.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination,
 			booleanQuery -> {
 			},
+			filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ASSET_TAG_IDS);
 			},

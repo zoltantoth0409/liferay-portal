@@ -166,7 +166,6 @@ public class StructuredContentResourceImpl
 			JournalArticle.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination,
 			booleanQuery -> {
 				if (contentStructureId != null) {
 					BooleanFilter booleanFilter =
@@ -178,6 +177,7 @@ public class StructuredContentResourceImpl
 						BooleanClauseOccur.MUST);
 				}
 			},
+			filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(
 					Field.ARTICLE_ID, Field.SCOPE_GROUP_ID);

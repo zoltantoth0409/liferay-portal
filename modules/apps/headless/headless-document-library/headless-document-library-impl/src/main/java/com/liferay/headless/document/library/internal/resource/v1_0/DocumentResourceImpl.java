@@ -338,7 +338,7 @@ public class DocumentResourceImpl
 			DLFileEntry.class);
 
 		SearchContext searchContext = SearchUtil.createSearchContext(
-			filter, pagination, booleanQueryConsumer,
+			booleanQueryConsumer, filter, pagination,
 			queryConfig -> {
 				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
 			},
