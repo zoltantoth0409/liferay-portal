@@ -359,9 +359,8 @@ public class DDMFormTemplateContextFactoryImpl
 	@Reference
 	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
 
-	private final DDMFormTemplateContextFactoryHelper
-		_ddmFormTemplateContextFactoryHelper =
-			new DDMFormTemplateContextFactoryHelper();
+	private DDMFormTemplateContextFactoryHelper
+		_ddmFormTemplateContextFactoryHelper;
 
 	@Reference
 	private JSONFactory _jsonFactory;
