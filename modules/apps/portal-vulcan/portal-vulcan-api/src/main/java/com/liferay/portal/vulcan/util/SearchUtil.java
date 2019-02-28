@@ -15,10 +15,15 @@
 package com.liferay.portal.vulcan.util;
 
 import com.liferay.petra.function.UnsafeConsumer;
+import com.liferay.petra.function.UnsafeFunction;
 import com.liferay.portal.kernel.search.BooleanClause;
 import com.liferay.portal.kernel.search.BooleanClauseFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
@@ -28,25 +33,48 @@ import com.liferay.portal.kernel.search.generic.BooleanQueryImpl;
 import com.liferay.portal.kernel.search.generic.MatchAllQuery;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
+import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class SearchUtil {
 
-	public static SearchContext createSearchContext(
+	public static <T> Page<T> search(
 			UnsafeConsumer<BooleanQuery, Exception> booleanQueryUnsafeConsumer,
-			Filter filter, Pagination pagination,
+			Filter filter, Class<?> indexerClass, Pagination pagination,
 			UnsafeConsumer<QueryConfig, Exception> queryConfigUnsafeConsumer,
+			UnsafeConsumer<SearchContext, Exception>
+				searchContextUnsafeConsumer,
+			UnsafeFunction<Document, T, Exception> transformUnsafeFunction,
 			Sort[] sorts)
 		throws Exception {
 
-		BooleanClause<?> booleanClause = _getBooleanClause(
-			booleanQueryUnsafeConsumer, filter);
+		List<T> items = new ArrayList<>();
 
-		return _createSearchContext(
-			booleanClause, pagination, queryConfigUnsafeConsumer, sorts);
+		Indexer<?> indexer = IndexerRegistryUtil.getIndexer(indexerClass);
+
+		SearchContext searchContext = _createSearchContext(
+			_getBooleanClause(booleanQueryUnsafeConsumer, filter), pagination,
+			queryConfigUnsafeConsumer, sorts);
+
+		searchContextUnsafeConsumer.accept(searchContext);
+
+		Hits hits = indexer.search(searchContext);
+
+		for (Document document : hits.getDocs()) {
+			T item = transformUnsafeFunction.apply(document);
+
+			if (item != null) {
+				items.add(item);
+			}
+		}
+
+		return Page.of(items, pagination, indexer.searchCount(searchContext));
 	}
 
 	private static SearchContext _createSearchContext(

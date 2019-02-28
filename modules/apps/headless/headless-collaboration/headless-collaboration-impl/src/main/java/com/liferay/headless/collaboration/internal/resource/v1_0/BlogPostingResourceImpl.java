@@ -32,12 +32,7 @@ import com.liferay.headless.collaboration.internal.odata.entity.v1_0.BlogPosting
 import com.liferay.headless.collaboration.resource.v1_0.BlogPostingResource;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -58,9 +53,7 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 
 import java.time.LocalDateTime;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.ws.rs.BadRequestException;
 import javax.ws.rs.core.MultivaluedMap;
@@ -100,36 +93,21 @@ public class BlogPostingResourceImpl
 			Sort[] sorts)
 		throws Exception {
 
-		List<BlogsEntry> blogEntries = new ArrayList<>();
-
-		Indexer<BlogsEntry> indexer = _indexerRegistry.getIndexer(
-			BlogsEntry.class);
-
-		SearchContext searchContext = SearchUtil.createSearchContext(
+		return SearchUtil.search(
 			booleanQuery -> {
 			},
-			filter, pagination,
-			queryConfig -> {
-				queryConfig.setSelectedFieldNames(Field.ENTRY_CLASS_PK);
+			filter, BlogsEntry.class, pagination,
+			queryConfig -> queryConfig.setSelectedFieldNames(
+				Field.ENTRY_CLASS_PK),
+			searchContext -> {
+				searchContext.setAttribute(
+					Field.STATUS, WorkflowConstants.STATUS_APPROVED);
+				searchContext.setCompanyId(contextCompany.getCompanyId());
 			},
+			document -> _toBlogPosting(
+				_blogsEntryService.getEntry(
+					GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)))),
 			sorts);
-
-		searchContext.setAttribute(
-			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
-		searchContext.setCompanyId(contextCompany.getCompanyId());
-
-		Hits hits = indexer.search(searchContext);
-
-		for (Document document : hits.getDocs()) {
-			BlogsEntry blogsEntry = _blogsEntryService.getEntry(
-				GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK)));
-
-			blogEntries.add(blogsEntry);
-		}
-
-		return Page.of(
-			transform(blogEntries, this::_toBlogPosting), pagination,
-			indexer.searchCount(searchContext));
 	}
 
 	@Override
@@ -327,9 +305,6 @@ public class BlogPostingResourceImpl
 
 	@Reference
 	private DLURLHelper _dlURLHelper;
-
-	@Reference
-	private IndexerRegistry _indexerRegistry;
 
 	@Reference
 	private Portal _portal;
