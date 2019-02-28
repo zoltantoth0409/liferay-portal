@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink;
 import com.liferay.dynamic.data.mapping.model.impl.DDMDataProviderInstanceLinkImpl;
 import com.liferay.dynamic.data.mapping.model.impl.DDMDataProviderInstanceLinkModelImpl;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMDataProviderInstanceLinkPersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -65,16 +64,21 @@ import java.util.Set;
 public class DDMDataProviderInstanceLinkPersistenceImpl
 	extends BasePersistenceImpl<DDMDataProviderInstanceLink>
 	implements DDMDataProviderInstanceLinkPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DDMDataProviderInstanceLinkUtil</code> to access the ddm data provider instance link persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = DDMDataProviderInstanceLinkImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		DDMDataProviderInstanceLinkImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -91,8 +95,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public List<DDMDataProviderInstanceLink> findByDataProviderInstanceId(
 		long dataProviderInstanceId) {
-		return findByDataProviderInstanceId(dataProviderInstanceId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		return findByDataProviderInstanceId(
+			dataProviderInstanceId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -110,8 +115,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public List<DDMDataProviderInstanceLink> findByDataProviderInstanceId(
 		long dataProviderInstanceId, int start, int end) {
-		return findByDataProviderInstanceId(dataProviderInstanceId, start, end,
-			null);
+
+		return findByDataProviderInstanceId(
+			dataProviderInstanceId, start, end, null);
 	}
 
 	/**
@@ -131,8 +137,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public List<DDMDataProviderInstanceLink> findByDataProviderInstanceId(
 		long dataProviderInstanceId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
-		return findByDataProviderInstanceId(dataProviderInstanceId, start, end,
-			orderByComparator, true);
+
+		return findByDataProviderInstanceId(
+			dataProviderInstanceId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -154,34 +161,40 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		long dataProviderInstanceId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByDataProviderInstanceId;
-			finderArgs = new Object[] { dataProviderInstanceId };
+			finderPath =
+				_finderPathWithoutPaginationFindByDataProviderInstanceId;
+			finderArgs = new Object[] {dataProviderInstanceId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByDataProviderInstanceId;
 			finderArgs = new Object[] {
-					dataProviderInstanceId,
-					
-					start, end, orderByComparator
-				};
+				dataProviderInstanceId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMDataProviderInstanceLink> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
-				for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : list) {
-					if ((dataProviderInstanceId != ddmDataProviderInstanceLink.getDataProviderInstanceId())) {
+				for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+						list) {
+
+					if ((dataProviderInstanceId !=
+							ddmDataProviderInstanceLink.
+								getDataProviderInstanceId())) {
+
 						list = null;
 
 						break;
@@ -194,8 +207,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -203,15 +216,16 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 			query.append(_SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE);
 
-			query.append(_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
+			query.append(
+				_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
-				query.append(DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
+			else if (pagination) {
+				query.append(
+					DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
 			}
 
 			String sql = query.toString();
@@ -228,16 +242,16 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				qPos.add(dataProviderInstanceId);
 
 				if (!pagination) {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -267,11 +281,13 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink findByDataProviderInstanceId_First(
-		long dataProviderInstanceId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+			long dataProviderInstanceId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByDataProviderInstanceId_First(dataProviderInstanceId,
-				orderByComparator);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			fetchByDataProviderInstanceId_First(
+				dataProviderInstanceId, orderByComparator);
 
 		if (ddmDataProviderInstanceLink != null) {
 			return ddmDataProviderInstanceLink;
@@ -300,8 +316,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public DDMDataProviderInstanceLink fetchByDataProviderInstanceId_First(
 		long dataProviderInstanceId,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
-		List<DDMDataProviderInstanceLink> list = findByDataProviderInstanceId(dataProviderInstanceId,
-				0, 1, orderByComparator);
+
+		List<DDMDataProviderInstanceLink> list = findByDataProviderInstanceId(
+			dataProviderInstanceId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -320,11 +337,13 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink findByDataProviderInstanceId_Last(
-		long dataProviderInstanceId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+			long dataProviderInstanceId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByDataProviderInstanceId_Last(dataProviderInstanceId,
-				orderByComparator);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			fetchByDataProviderInstanceId_Last(
+				dataProviderInstanceId, orderByComparator);
 
 		if (ddmDataProviderInstanceLink != null) {
 			return ddmDataProviderInstanceLink;
@@ -353,14 +372,15 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public DDMDataProviderInstanceLink fetchByDataProviderInstanceId_Last(
 		long dataProviderInstanceId,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
+
 		int count = countByDataProviderInstanceId(dataProviderInstanceId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMDataProviderInstanceLink> list = findByDataProviderInstanceId(dataProviderInstanceId,
-				count - 1, count, orderByComparator);
+		List<DDMDataProviderInstanceLink> list = findByDataProviderInstanceId(
+			dataProviderInstanceId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -379,28 +399,33 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @throws NoSuchDataProviderInstanceLinkException if a ddm data provider instance link with the primary key could not be found
 	 */
 	@Override
-	public DDMDataProviderInstanceLink[] findByDataProviderInstanceId_PrevAndNext(
-		long dataProviderInstanceLinkId, long dataProviderInstanceId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+	public DDMDataProviderInstanceLink[]
+			findByDataProviderInstanceId_PrevAndNext(
+				long dataProviderInstanceLinkId, long dataProviderInstanceId,
+				OrderByComparator<DDMDataProviderInstanceLink>
+					orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = findByPrimaryKey(dataProviderInstanceLinkId);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			findByPrimaryKey(dataProviderInstanceLinkId);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDMDataProviderInstanceLink[] array = new DDMDataProviderInstanceLinkImpl[3];
+			DDMDataProviderInstanceLink[] array =
+				new DDMDataProviderInstanceLinkImpl[3];
 
-			array[0] = getByDataProviderInstanceId_PrevAndNext(session,
-					ddmDataProviderInstanceLink, dataProviderInstanceId,
-					orderByComparator, true);
+			array[0] = getByDataProviderInstanceId_PrevAndNext(
+				session, ddmDataProviderInstanceLink, dataProviderInstanceId,
+				orderByComparator, true);
 
 			array[1] = ddmDataProviderInstanceLink;
 
-			array[2] = getByDataProviderInstanceId_PrevAndNext(session,
-					ddmDataProviderInstanceLink, dataProviderInstanceId,
-					orderByComparator, false);
+			array[2] = getByDataProviderInstanceId_PrevAndNext(
+				session, ddmDataProviderInstanceLink, dataProviderInstanceId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -412,17 +437,19 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		}
 	}
 
-	protected DDMDataProviderInstanceLink getByDataProviderInstanceId_PrevAndNext(
-		Session session,
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
-		long dataProviderInstanceId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
-		boolean previous) {
+	protected DDMDataProviderInstanceLink
+		getByDataProviderInstanceId_PrevAndNext(
+			Session session,
+			DDMDataProviderInstanceLink ddmDataProviderInstanceLink,
+			long dataProviderInstanceId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
+			boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -431,10 +458,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 		query.append(_SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE);
 
-		query.append(_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
+		query.append(
+			_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -504,8 +533,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		qPos.add(dataProviderInstanceId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmDataProviderInstanceLink)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						ddmDataProviderInstanceLink)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -527,9 +558,11 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public void removeByDataProviderInstanceId(long dataProviderInstanceId) {
-		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : findByDataProviderInstanceId(
-				dataProviderInstanceId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+				findByDataProviderInstanceId(
+					dataProviderInstanceId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddmDataProviderInstanceLink);
 		}
 	}
@@ -544,7 +577,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public int countByDataProviderInstanceId(long dataProviderInstanceId) {
 		FinderPath finderPath = _finderPathCountByDataProviderInstanceId;
 
-		Object[] finderArgs = new Object[] { dataProviderInstanceId };
+		Object[] finderArgs = new Object[] {dataProviderInstanceId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -553,7 +586,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 			query.append(_SQL_COUNT_DDMDATAPROVIDERINSTANCELINK_WHERE);
 
-			query.append(_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
+			query.append(
+				_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2);
 
 			String sql = query.toString();
 
@@ -585,8 +619,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2 =
-		"ddmDataProviderInstanceLink.dataProviderInstanceId = ?";
+	private static final String
+		_FINDER_COLUMN_DATAPROVIDERINSTANCEID_DATAPROVIDERINSTANCEID_2 =
+			"ddmDataProviderInstanceLink.dataProviderInstanceId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByStructureId;
 	private FinderPath _finderPathWithoutPaginationFindByStructureId;
 	private FinderPath _finderPathCountByStructureId;
@@ -598,9 +634,11 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @return the matching ddm data provider instance links
 	 */
 	@Override
-	public List<DDMDataProviderInstanceLink> findByStructureId(long structureId) {
-		return findByStructureId(structureId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDMDataProviderInstanceLink> findByStructureId(
+		long structureId) {
+
+		return findByStructureId(
+			structureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -618,6 +656,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public List<DDMDataProviderInstanceLink> findByStructureId(
 		long structureId, int start, int end) {
+
 		return findByStructureId(structureId, start, end, null);
 	}
 
@@ -638,8 +677,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public List<DDMDataProviderInstanceLink> findByStructureId(
 		long structureId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
-		return findByStructureId(structureId, start, end, orderByComparator,
-			true);
+
+		return findByStructureId(
+			structureId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -661,30 +701,38 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		long structureId, int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByStructureId;
-			finderArgs = new Object[] { structureId };
+			finderArgs = new Object[] {structureId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByStructureId;
-			finderArgs = new Object[] { structureId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				structureId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMDataProviderInstanceLink> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
-				for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : list) {
-					if ((structureId != ddmDataProviderInstanceLink.getStructureId())) {
+				for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+						list) {
+
+					if ((structureId !=
+							ddmDataProviderInstanceLink.getStructureId())) {
+
 						list = null;
 
 						break;
@@ -697,8 +745,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -709,12 +757,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			query.append(_FINDER_COLUMN_STRUCTUREID_STRUCTUREID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
-				query.append(DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
+			else if (pagination) {
+				query.append(
+					DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
 			}
 
 			String sql = query.toString();
@@ -731,16 +779,16 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				qPos.add(structureId);
 
 				if (!pagination) {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -770,11 +818,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink findByStructureId_First(
-		long structureId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+			long structureId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByStructureId_First(structureId,
-				orderByComparator);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			fetchByStructureId_First(structureId, orderByComparator);
 
 		if (ddmDataProviderInstanceLink != null) {
 			return ddmDataProviderInstanceLink;
@@ -803,8 +852,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public DDMDataProviderInstanceLink fetchByStructureId_First(
 		long structureId,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
-		List<DDMDataProviderInstanceLink> list = findByStructureId(structureId,
-				0, 1, orderByComparator);
+
+		List<DDMDataProviderInstanceLink> list = findByStructureId(
+			structureId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -823,11 +873,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink findByStructureId_Last(
-		long structureId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+			long structureId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByStructureId_Last(structureId,
-				orderByComparator);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			fetchByStructureId_Last(structureId, orderByComparator);
 
 		if (ddmDataProviderInstanceLink != null) {
 			return ddmDataProviderInstanceLink;
@@ -856,14 +907,15 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public DDMDataProviderInstanceLink fetchByStructureId_Last(
 		long structureId,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
+
 		int count = countByStructureId(structureId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMDataProviderInstanceLink> list = findByStructureId(structureId,
-				count - 1, count, orderByComparator);
+		List<DDMDataProviderInstanceLink> list = findByStructureId(
+			structureId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -883,27 +935,30 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink[] findByStructureId_PrevAndNext(
-		long dataProviderInstanceLinkId, long structureId,
-		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
+			long dataProviderInstanceLinkId, long structureId,
+			OrderByComparator<DDMDataProviderInstanceLink> orderByComparator)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = findByPrimaryKey(dataProviderInstanceLinkId);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			findByPrimaryKey(dataProviderInstanceLinkId);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDMDataProviderInstanceLink[] array = new DDMDataProviderInstanceLinkImpl[3];
+			DDMDataProviderInstanceLink[] array =
+				new DDMDataProviderInstanceLinkImpl[3];
 
-			array[0] = getByStructureId_PrevAndNext(session,
-					ddmDataProviderInstanceLink, structureId,
-					orderByComparator, true);
+			array[0] = getByStructureId_PrevAndNext(
+				session, ddmDataProviderInstanceLink, structureId,
+				orderByComparator, true);
 
 			array[1] = ddmDataProviderInstanceLink;
 
-			array[2] = getByStructureId_PrevAndNext(session,
-					ddmDataProviderInstanceLink, structureId,
-					orderByComparator, false);
+			array[2] = getByStructureId_PrevAndNext(
+				session, ddmDataProviderInstanceLink, structureId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -921,11 +976,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		long structureId,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -937,7 +993,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		query.append(_FINDER_COLUMN_STRUCTUREID_STRUCTUREID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1007,8 +1064,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		qPos.add(structureId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmDataProviderInstanceLink)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						ddmDataProviderInstanceLink)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1030,8 +1089,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public void removeByStructureId(long structureId) {
-		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : findByStructureId(
-				structureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+				findByStructureId(
+					structureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmDataProviderInstanceLink);
 		}
 	}
@@ -1046,7 +1107,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public int countByStructureId(long structureId) {
 		FinderPath finderPath = _finderPathCountByStructureId;
 
-		Object[] finderArgs = new Object[] { structureId };
+		Object[] finderArgs = new Object[] {structureId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1087,7 +1148,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_STRUCTUREID_STRUCTUREID_2 = "ddmDataProviderInstanceLink.structureId = ?";
+	private static final String _FINDER_COLUMN_STRUCTUREID_STRUCTUREID_2 =
+		"ddmDataProviderInstanceLink.structureId = ?";
+
 	private FinderPath _finderPathFetchByD_S;
 	private FinderPath _finderPathCountByD_S;
 
@@ -1100,10 +1163,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @throws NoSuchDataProviderInstanceLinkException if a matching ddm data provider instance link could not be found
 	 */
 	@Override
-	public DDMDataProviderInstanceLink findByD_S(long dataProviderInstanceId,
-		long structureId) throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByD_S(dataProviderInstanceId,
-				structureId);
+	public DDMDataProviderInstanceLink findByD_S(
+			long dataProviderInstanceId, long structureId)
+		throws NoSuchDataProviderInstanceLinkException {
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByD_S(
+			dataProviderInstanceId, structureId);
 
 		if (ddmDataProviderInstanceLink == null) {
 			StringBundler msg = new StringBundler(6);
@@ -1136,8 +1201,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @return the matching ddm data provider instance link, or <code>null</code> if a matching ddm data provider instance link could not be found
 	 */
 	@Override
-	public DDMDataProviderInstanceLink fetchByD_S(long dataProviderInstanceId,
-		long structureId) {
+	public DDMDataProviderInstanceLink fetchByD_S(
+		long dataProviderInstanceId, long structureId) {
+
 		return fetchByD_S(dataProviderInstanceId, structureId, true);
 	}
 
@@ -1150,22 +1216,29 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @return the matching ddm data provider instance link, or <code>null</code> if a matching ddm data provider instance link could not be found
 	 */
 	@Override
-	public DDMDataProviderInstanceLink fetchByD_S(long dataProviderInstanceId,
-		long structureId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { dataProviderInstanceId, structureId };
+	public DDMDataProviderInstanceLink fetchByD_S(
+		long dataProviderInstanceId, long structureId,
+		boolean retrieveFromCache) {
+
+		Object[] finderArgs = new Object[] {
+			dataProviderInstanceId, structureId
+		};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByD_S, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByD_S, finderArgs, this);
 		}
 
 		if (result instanceof DDMDataProviderInstanceLink) {
-			DDMDataProviderInstanceLink ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)result;
+			DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+				(DDMDataProviderInstanceLink)result;
 
-			if ((dataProviderInstanceId != ddmDataProviderInstanceLink.getDataProviderInstanceId()) ||
-					(structureId != ddmDataProviderInstanceLink.getStructureId())) {
+			if ((dataProviderInstanceId !=
+					ddmDataProviderInstanceLink.getDataProviderInstanceId()) ||
+				(structureId != ddmDataProviderInstanceLink.getStructureId())) {
+
 				result = null;
 			}
 		}
@@ -1197,11 +1270,12 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				List<DDMDataProviderInstanceLink> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByD_S, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByD_S, finderArgs, list);
 				}
 				else {
-					DDMDataProviderInstanceLink ddmDataProviderInstanceLink = list.get(0);
+					DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+						list.get(0);
 
 					result = ddmDataProviderInstanceLink;
 
@@ -1235,10 +1309,11 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink removeByD_S(
-		long dataProviderInstanceId, long structureId)
+			long dataProviderInstanceId, long structureId)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = findByD_S(dataProviderInstanceId,
-				structureId);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = findByD_S(
+			dataProviderInstanceId, structureId);
 
 		return remove(ddmDataProviderInstanceLink);
 	}
@@ -1254,7 +1329,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	public int countByD_S(long dataProviderInstanceId, long structureId) {
 		FinderPath finderPath = _finderPathCountByD_S;
 
-		Object[] finderArgs = new Object[] { dataProviderInstanceId, structureId };
+		Object[] finderArgs = new Object[] {
+			dataProviderInstanceId, structureId
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1299,8 +1376,11 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_D_S_DATAPROVIDERINSTANCEID_2 = "ddmDataProviderInstanceLink.dataProviderInstanceId = ? AND ";
-	private static final String _FINDER_COLUMN_D_S_STRUCTUREID_2 = "ddmDataProviderInstanceLink.structureId = ?";
+	private static final String _FINDER_COLUMN_D_S_DATAPROVIDERINSTANCEID_2 =
+		"ddmDataProviderInstanceLink.dataProviderInstanceId = ? AND ";
+
+	private static final String _FINDER_COLUMN_D_S_STRUCTUREID_2 =
+		"ddmDataProviderInstanceLink.structureId = ?";
 
 	public DDMDataProviderInstanceLinkPersistenceImpl() {
 		setModelClass(DDMDataProviderInstanceLink.class);
@@ -1314,16 +1394,20 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public void cacheResult(
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink) {
-		entityCache.putResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+
+		entityCache.putResult(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 			DDMDataProviderInstanceLinkImpl.class,
 			ddmDataProviderInstanceLink.getPrimaryKey(),
 			ddmDataProviderInstanceLink);
 
-		finderCache.putResult(_finderPathFetchByD_S,
+		finderCache.putResult(
+			_finderPathFetchByD_S,
 			new Object[] {
 				ddmDataProviderInstanceLink.getDataProviderInstanceId(),
 				ddmDataProviderInstanceLink.getStructureId()
-			}, ddmDataProviderInstanceLink);
+			},
+			ddmDataProviderInstanceLink);
 
 		ddmDataProviderInstanceLink.resetOriginalValues();
 	}
@@ -1336,11 +1420,15 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public void cacheResult(
 		List<DDMDataProviderInstanceLink> ddmDataProviderInstanceLinks) {
-		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : ddmDataProviderInstanceLinks) {
+
+		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+				ddmDataProviderInstanceLinks) {
+
 			if (entityCache.getResult(
-						DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-						DDMDataProviderInstanceLinkImpl.class,
-						ddmDataProviderInstanceLink.getPrimaryKey()) == null) {
+					DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+					DDMDataProviderInstanceLinkImpl.class,
+					ddmDataProviderInstanceLink.getPrimaryKey()) == null) {
+
 				cacheResult(ddmDataProviderInstanceLink);
 			}
 			else {
@@ -1375,65 +1463,82 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public void clearCache(
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink) {
-		entityCache.removeResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+
+		entityCache.removeResult(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 			DDMDataProviderInstanceLinkImpl.class,
 			ddmDataProviderInstanceLink.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((DDMDataProviderInstanceLinkModelImpl)ddmDataProviderInstanceLink,
+		clearUniqueFindersCache(
+			(DDMDataProviderInstanceLinkModelImpl)ddmDataProviderInstanceLink,
 			true);
 	}
 
 	@Override
 	public void clearCache(
 		List<DDMDataProviderInstanceLink> ddmDataProviderInstanceLinks) {
+
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : ddmDataProviderInstanceLinks) {
-			entityCache.removeResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+				ddmDataProviderInstanceLinks) {
+
+			entityCache.removeResult(
+				DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 				DDMDataProviderInstanceLinkImpl.class,
 				ddmDataProviderInstanceLink.getPrimaryKey());
 
-			clearUniqueFindersCache((DDMDataProviderInstanceLinkModelImpl)ddmDataProviderInstanceLink,
+			clearUniqueFindersCache(
+				(DDMDataProviderInstanceLinkModelImpl)
+					ddmDataProviderInstanceLink,
 				true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
-		DDMDataProviderInstanceLinkModelImpl ddmDataProviderInstanceLinkModelImpl) {
-		Object[] args = new Object[] {
-				ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId(),
-				ddmDataProviderInstanceLinkModelImpl.getStructureId()
-			};
+		DDMDataProviderInstanceLinkModelImpl
+			ddmDataProviderInstanceLinkModelImpl) {
 
-		finderCache.putResult(_finderPathCountByD_S, args, Long.valueOf(1),
+		Object[] args = new Object[] {
+			ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId(),
+			ddmDataProviderInstanceLinkModelImpl.getStructureId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByD_S, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByD_S, args, ddmDataProviderInstanceLinkModelImpl,
 			false);
-		finderCache.putResult(_finderPathFetchByD_S, args,
-			ddmDataProviderInstanceLinkModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
-		DDMDataProviderInstanceLinkModelImpl ddmDataProviderInstanceLinkModelImpl,
+		DDMDataProviderInstanceLinkModelImpl
+			ddmDataProviderInstanceLinkModelImpl,
 		boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId(),
-					ddmDataProviderInstanceLinkModelImpl.getStructureId()
-				};
+				ddmDataProviderInstanceLinkModelImpl.
+					getDataProviderInstanceId(),
+				ddmDataProviderInstanceLinkModelImpl.getStructureId()
+			};
 
 			finderCache.removeResult(_finderPathCountByD_S, args);
 			finderCache.removeResult(_finderPathFetchByD_S, args);
 		}
 
 		if ((ddmDataProviderInstanceLinkModelImpl.getColumnBitmask() &
-				_finderPathFetchByD_S.getColumnBitmask()) != 0) {
+			 _finderPathFetchByD_S.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					ddmDataProviderInstanceLinkModelImpl.getOriginalDataProviderInstanceId(),
-					ddmDataProviderInstanceLinkModelImpl.getOriginalStructureId()
-				};
+				ddmDataProviderInstanceLinkModelImpl.
+					getOriginalDataProviderInstanceId(),
+				ddmDataProviderInstanceLinkModelImpl.getOriginalStructureId()
+			};
 
 			finderCache.removeResult(_finderPathCountByD_S, args);
 			finderCache.removeResult(_finderPathFetchByD_S, args);
@@ -1448,12 +1553,14 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink create(long dataProviderInstanceLinkId) {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = new DDMDataProviderInstanceLinkImpl();
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			new DDMDataProviderInstanceLinkImpl();
 
 		ddmDataProviderInstanceLink.setNew(true);
 		ddmDataProviderInstanceLink.setPrimaryKey(dataProviderInstanceLinkId);
 
-		ddmDataProviderInstanceLink.setCompanyId(companyProvider.getCompanyId());
+		ddmDataProviderInstanceLink.setCompanyId(
+			companyProvider.getCompanyId());
 
 		return ddmDataProviderInstanceLink;
 	}
@@ -1468,6 +1575,7 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink remove(long dataProviderInstanceLinkId)
 		throws NoSuchDataProviderInstanceLinkException {
+
 		return remove((Serializable)dataProviderInstanceLinkId);
 	}
 
@@ -1481,21 +1589,23 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink remove(Serializable primaryKey)
 		throws NoSuchDataProviderInstanceLinkException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDMDataProviderInstanceLink ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)session.get(DDMDataProviderInstanceLinkImpl.class,
-					primaryKey);
+			DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+				(DDMDataProviderInstanceLink)session.get(
+					DDMDataProviderInstanceLinkImpl.class, primaryKey);
 
 			if (ddmDataProviderInstanceLink == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchDataProviderInstanceLinkException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchDataProviderInstanceLinkException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(ddmDataProviderInstanceLink);
@@ -1514,13 +1624,16 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	protected DDMDataProviderInstanceLink removeImpl(
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink) {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			if (!session.contains(ddmDataProviderInstanceLink)) {
-				ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)session.get(DDMDataProviderInstanceLinkImpl.class,
+				ddmDataProviderInstanceLink =
+					(DDMDataProviderInstanceLink)session.get(
+						DDMDataProviderInstanceLinkImpl.class,
 						ddmDataProviderInstanceLink.getPrimaryKeyObj());
 			}
 
@@ -1545,26 +1658,34 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink updateImpl(
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink) {
+
 		boolean isNew = ddmDataProviderInstanceLink.isNew();
 
-		if (!(ddmDataProviderInstanceLink instanceof DDMDataProviderInstanceLinkModelImpl)) {
+		if (!(ddmDataProviderInstanceLink instanceof
+				DDMDataProviderInstanceLinkModelImpl)) {
+
 			InvocationHandler invocationHandler = null;
 
-			if (ProxyUtil.isProxyClass(ddmDataProviderInstanceLink.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(ddmDataProviderInstanceLink);
+			if (ProxyUtil.isProxyClass(
+					ddmDataProviderInstanceLink.getClass())) {
+
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					ddmDataProviderInstanceLink);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in ddmDataProviderInstanceLink proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom DDMDataProviderInstanceLink implementation " +
-				ddmDataProviderInstanceLink.getClass());
+					ddmDataProviderInstanceLink.getClass());
 		}
 
-		DDMDataProviderInstanceLinkModelImpl ddmDataProviderInstanceLinkModelImpl =
-			(DDMDataProviderInstanceLinkModelImpl)ddmDataProviderInstanceLink;
+		DDMDataProviderInstanceLinkModelImpl
+			ddmDataProviderInstanceLinkModelImpl =
+				(DDMDataProviderInstanceLinkModelImpl)
+					ddmDataProviderInstanceLink;
 
 		Session session = null;
 
@@ -1577,7 +1698,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				ddmDataProviderInstanceLink.setNew(false);
 			}
 			else {
-				ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)session.merge(ddmDataProviderInstanceLink);
+				ddmDataProviderInstanceLink =
+					(DDMDataProviderInstanceLink)session.merge(
+						ddmDataProviderInstanceLink);
 			}
 		}
 		catch (Exception e) {
@@ -1592,73 +1715,81 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		if (!DDMDataProviderInstanceLinkModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
-					ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId()
-				};
+				ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId()
+			};
 
-			finderCache.removeResult(_finderPathCountByDataProviderInstanceId,
-				args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByDataProviderInstanceId,
-				args);
+			finderCache.removeResult(
+				_finderPathCountByDataProviderInstanceId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByDataProviderInstanceId, args);
 
 			args = new Object[] {
+				ddmDataProviderInstanceLinkModelImpl.getStructureId()
+			};
+
+			finderCache.removeResult(_finderPathCountByStructureId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByStructureId, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((ddmDataProviderInstanceLinkModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByDataProviderInstanceId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddmDataProviderInstanceLinkModelImpl.
+						getOriginalDataProviderInstanceId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByDataProviderInstanceId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDataProviderInstanceId,
+					args);
+
+				args = new Object[] {
+					ddmDataProviderInstanceLinkModelImpl.
+						getDataProviderInstanceId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByDataProviderInstanceId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDataProviderInstanceId,
+					args);
+			}
+
+			if ((ddmDataProviderInstanceLinkModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByStructureId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddmDataProviderInstanceLinkModelImpl.
+						getOriginalStructureId()
+				};
+
+				finderCache.removeResult(_finderPathCountByStructureId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByStructureId, args);
+
+				args = new Object[] {
 					ddmDataProviderInstanceLinkModelImpl.getStructureId()
 				};
 
-			finderCache.removeResult(_finderPathCountByStructureId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByStructureId,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((ddmDataProviderInstanceLinkModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByDataProviderInstanceId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmDataProviderInstanceLinkModelImpl.getOriginalDataProviderInstanceId()
-					};
-
-				finderCache.removeResult(_finderPathCountByDataProviderInstanceId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDataProviderInstanceId,
-					args);
-
-				args = new Object[] {
-						ddmDataProviderInstanceLinkModelImpl.getDataProviderInstanceId()
-					};
-
-				finderCache.removeResult(_finderPathCountByDataProviderInstanceId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDataProviderInstanceId,
-					args);
-			}
-
-			if ((ddmDataProviderInstanceLinkModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByStructureId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmDataProviderInstanceLinkModelImpl.getOriginalStructureId()
-					};
-
 				finderCache.removeResult(_finderPathCountByStructureId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByStructureId,
-					args);
-
-				args = new Object[] {
-						ddmDataProviderInstanceLinkModelImpl.getStructureId()
-					};
-
-				finderCache.removeResult(_finderPathCountByStructureId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByStructureId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByStructureId, args);
 			}
 		}
 
-		entityCache.putResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 			DDMDataProviderInstanceLinkImpl.class,
 			ddmDataProviderInstanceLink.getPrimaryKey(),
 			ddmDataProviderInstanceLink, false);
@@ -1681,15 +1812,17 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchDataProviderInstanceLinkException {
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByPrimaryKey(primaryKey);
+
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			fetchByPrimaryKey(primaryKey);
 
 		if (ddmDataProviderInstanceLink == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchDataProviderInstanceLinkException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchDataProviderInstanceLinkException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return ddmDataProviderInstanceLink;
@@ -1704,8 +1837,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public DDMDataProviderInstanceLink findByPrimaryKey(
-		long dataProviderInstanceLinkId)
+			long dataProviderInstanceLinkId)
 		throws NoSuchDataProviderInstanceLinkException {
+
 		return findByPrimaryKey((Serializable)dataProviderInstanceLinkId);
 	}
 
@@ -1718,14 +1852,17 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink fetchByPrimaryKey(
 		Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class, primaryKey);
+
+		Serializable serializable = entityCache.getResult(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
 		}
 
-		DDMDataProviderInstanceLink ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)serializable;
+		DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+			(DDMDataProviderInstanceLink)serializable;
 
 		if (ddmDataProviderInstanceLink == null) {
 			Session session = null;
@@ -1733,20 +1870,24 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			try {
 				session = openSession();
 
-				ddmDataProviderInstanceLink = (DDMDataProviderInstanceLink)session.get(DDMDataProviderInstanceLinkImpl.class,
-						primaryKey);
+				ddmDataProviderInstanceLink =
+					(DDMDataProviderInstanceLink)session.get(
+						DDMDataProviderInstanceLinkImpl.class, primaryKey);
 
 				if (ddmDataProviderInstanceLink != null) {
 					cacheResult(ddmDataProviderInstanceLink);
 				}
 				else {
-					entityCache.putResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						DDMDataProviderInstanceLinkModelImpl.
+							ENTITY_CACHE_ENABLED,
 						DDMDataProviderInstanceLinkImpl.class, primaryKey,
 						nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 					DDMDataProviderInstanceLinkImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1768,24 +1909,28 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	@Override
 	public DDMDataProviderInstanceLink fetchByPrimaryKey(
 		long dataProviderInstanceLinkId) {
+
 		return fetchByPrimaryKey((Serializable)dataProviderInstanceLinkId);
 	}
 
 	@Override
 	public Map<Serializable, DDMDataProviderInstanceLink> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, DDMDataProviderInstanceLink> map = new HashMap<Serializable, DDMDataProviderInstanceLink>();
+		Map<Serializable, DDMDataProviderInstanceLink> map =
+			new HashMap<Serializable, DDMDataProviderInstanceLink>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
 
 			Serializable primaryKey = iterator.next();
 
-			DDMDataProviderInstanceLink ddmDataProviderInstanceLink = fetchByPrimaryKey(primaryKey);
+			DDMDataProviderInstanceLink ddmDataProviderInstanceLink =
+				fetchByPrimaryKey(primaryKey);
 
 			if (ddmDataProviderInstanceLink != null) {
 				map.put(primaryKey, ddmDataProviderInstanceLink);
@@ -1797,8 +1942,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-					DDMDataProviderInstanceLinkImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+				DDMDataProviderInstanceLinkImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1809,8 +1955,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 					uncachedPrimaryKeys.add(primaryKey);
 				}
 				else {
-					map.put(primaryKey,
-						(DDMDataProviderInstanceLink)serializable);
+					map.put(
+						primaryKey, (DDMDataProviderInstanceLink)serializable);
 				}
 			}
 		}
@@ -1819,8 +1965,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE_PKS_IN);
 
@@ -1843,18 +1989,24 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 			Query q = session.createQuery(sql);
 
-			for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : (List<DDMDataProviderInstanceLink>)q.list()) {
-				map.put(ddmDataProviderInstanceLink.getPrimaryKeyObj(),
+			for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+					(List<DDMDataProviderInstanceLink>)q.list()) {
+
+				map.put(
+					ddmDataProviderInstanceLink.getPrimaryKeyObj(),
 					ddmDataProviderInstanceLink);
 
 				cacheResult(ddmDataProviderInstanceLink);
 
-				uncachedPrimaryKeys.remove(ddmDataProviderInstanceLink.getPrimaryKeyObj());
+				uncachedPrimaryKeys.remove(
+					ddmDataProviderInstanceLink.getPrimaryKeyObj());
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-					DDMDataProviderInstanceLinkImpl.class, primaryKey, nullModel);
+				entityCache.putResult(
+					DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+					DDMDataProviderInstanceLinkImpl.class, primaryKey,
+					nullModel);
 			}
 		}
 		catch (Exception e) {
@@ -1906,8 +2058,10 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @return the ordered range of ddm data provider instance links
 	 */
 	@Override
-	public List<DDMDataProviderInstanceLink> findAll(int start, int end,
+	public List<DDMDataProviderInstanceLink> findAll(
+		int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1925,29 +2079,32 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * @return the ordered range of ddm data provider instance links
 	 */
 	@Override
-	public List<DDMDataProviderInstanceLink> findAll(int start, int end,
+	public List<DDMDataProviderInstanceLink> findAll(
+		int start, int end,
 		OrderByComparator<DDMDataProviderInstanceLink> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMDataProviderInstanceLink> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMDataProviderInstanceLink>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1955,13 +2112,13 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_DDMDATAPROVIDERINSTANCELINK);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1969,7 +2126,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				sql = _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK;
 
 				if (pagination) {
-					sql = sql.concat(DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
+					sql = sql.concat(
+						DDMDataProviderInstanceLinkModelImpl.ORDER_BY_JPQL);
 				}
 			}
 
@@ -1981,16 +2139,16 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<DDMDataProviderInstanceLink>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2016,7 +2174,9 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public void removeAll() {
-		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink : findAll()) {
+		for (DDMDataProviderInstanceLink ddmDataProviderInstanceLink :
+				findAll()) {
+
 			remove(ddmDataProviderInstanceLink);
 		}
 	}
@@ -2028,8 +2188,8 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2037,15 +2197,17 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(_SQL_COUNT_DDMDATAPROVIDERINSTANCELINK);
+				Query q = session.createQuery(
+					_SQL_COUNT_DDMDATAPROVIDERINSTANCELINK);
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2066,88 +2228,98 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 	 * Initializes the ddm data provider instance link persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countAll", new String[0]);
+		_finderPathCountAll = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByDataProviderInstanceId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByDataProviderInstanceId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByDataProviderInstanceId = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByDataProviderInstanceId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByDataProviderInstanceId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithoutPaginationFindByDataProviderInstanceId =
+			new FinderPath(
+				DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
 				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
 				DDMDataProviderInstanceLinkImpl.class,
 				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 				"findByDataProviderInstanceId",
-				new String[] { Long.class.getName() },
-				DDMDataProviderInstanceLinkModelImpl.DATAPROVIDERINSTANCEID_COLUMN_BITMASK);
+				new String[] {Long.class.getName()},
+				DDMDataProviderInstanceLinkModelImpl.
+					DATAPROVIDERINSTANCEID_COLUMN_BITMASK);
 
-		_finderPathCountByDataProviderInstanceId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByDataProviderInstanceId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByDataProviderInstanceId = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByDataProviderInstanceId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByStructureId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByStructureId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByStructureId = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByStructureId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByStructureId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByStructureId",
-				new String[] { Long.class.getName() },
-				DDMDataProviderInstanceLinkModelImpl.STRUCTUREID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByStructureId = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByStructureId",
+			new String[] {Long.class.getName()},
+			DDMDataProviderInstanceLinkModelImpl.STRUCTUREID_COLUMN_BITMASK);
 
-		_finderPathCountByStructureId = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByStructureId", new String[] { Long.class.getName() });
+		_finderPathCountByStructureId = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByStructureId", new String[] {Long.class.getName()});
 
-		_finderPathFetchByD_S = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkImpl.class,
-				FINDER_CLASS_NAME_ENTITY, "fetchByD_S",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				DDMDataProviderInstanceLinkModelImpl.DATAPROVIDERINSTANCEID_COLUMN_BITMASK |
-				DDMDataProviderInstanceLinkModelImpl.STRUCTUREID_COLUMN_BITMASK);
+		_finderPathFetchByD_S = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByD_S",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			DDMDataProviderInstanceLinkModelImpl.
+				DATAPROVIDERINSTANCEID_COLUMN_BITMASK |
+			DDMDataProviderInstanceLinkModelImpl.STRUCTUREID_COLUMN_BITMASK);
 
-		_finderPathCountByD_S = new FinderPath(DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
-				DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByD_S",
-				new String[] { Long.class.getName(), Long.class.getName() });
+		_finderPathCountByD_S = new FinderPath(
+			DDMDataProviderInstanceLinkModelImpl.ENTITY_CACHE_ENABLED,
+			DDMDataProviderInstanceLinkModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByD_S",
+			new String[] {Long.class.getName(), Long.class.getName()});
 	}
 
 	public void destroy() {
-		entityCache.removeCache(DDMDataProviderInstanceLinkImpl.class.getName());
+		entityCache.removeCache(
+			DDMDataProviderInstanceLinkImpl.class.getName());
 		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -2155,18 +2327,39 @@ public class DDMDataProviderInstanceLinkPersistenceImpl
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK = "SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink";
-	private static final String _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE_PKS_IN =
-		"SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE dataProviderInstanceLinkId IN (";
-	private static final String _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE = "SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE ";
-	private static final String _SQL_COUNT_DDMDATAPROVIDERINSTANCELINK = "SELECT COUNT(ddmDataProviderInstanceLink) FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink";
-	private static final String _SQL_COUNT_DDMDATAPROVIDERINSTANCELINK_WHERE = "SELECT COUNT(ddmDataProviderInstanceLink) FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE ";
-	private static final String _ORDER_BY_ENTITY_ALIAS = "ddmDataProviderInstanceLink.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No DDMDataProviderInstanceLink exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMDataProviderInstanceLink exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(DDMDataProviderInstanceLinkPersistenceImpl.class);
+
+	private static final String _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK =
+		"SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink";
+
+	private static final String
+		_SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE_PKS_IN =
+			"SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE dataProviderInstanceLinkId IN (";
+
+	private static final String _SQL_SELECT_DDMDATAPROVIDERINSTANCELINK_WHERE =
+		"SELECT ddmDataProviderInstanceLink FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE ";
+
+	private static final String _SQL_COUNT_DDMDATAPROVIDERINSTANCELINK =
+		"SELECT COUNT(ddmDataProviderInstanceLink) FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink";
+
+	private static final String _SQL_COUNT_DDMDATAPROVIDERINSTANCELINK_WHERE =
+		"SELECT COUNT(ddmDataProviderInstanceLink) FROM DDMDataProviderInstanceLink ddmDataProviderInstanceLink WHERE ";
+
+	private static final String _ORDER_BY_ENTITY_ALIAS =
+		"ddmDataProviderInstanceLink.";
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No DDMDataProviderInstanceLink exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No DDMDataProviderInstanceLink exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMDataProviderInstanceLinkPersistenceImpl.class);
+
 }

@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -63,28 +62,27 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
-	implements MembershipRequestModel {
+public class MembershipRequestModelImpl
+	extends BaseModelImpl<MembershipRequest> implements MembershipRequestModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a membership request model instance should use the <code>MembershipRequest</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "MembershipRequest";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "membershipRequestId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "comments", Types.VARCHAR },
-			{ "replyComments", Types.VARCHAR },
-			{ "replyDate", Types.TIMESTAMP },
-			{ "replierUserId", Types.BIGINT },
-			{ "statusId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"membershipRequestId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"comments", Types.VARCHAR}, {"replyComments", Types.VARCHAR},
+		{"replyDate", Types.TIMESTAMP}, {"replierUserId", Types.BIGINT},
+		{"statusId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -100,25 +98,44 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 		TABLE_COLUMNS_MAP.put("statusId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table MembershipRequest (mvccVersion LONG default 0 not null,membershipRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate DATE null,comments STRING null,replyComments STRING null,replyDate DATE null,replierUserId LONG,statusId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table MembershipRequest (mvccVersion LONG default 0 not null,membershipRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate DATE null,comments STRING null,replyComments STRING null,replyDate DATE null,replierUserId LONG,statusId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table MembershipRequest";
-	public static final String ORDER_BY_JPQL = " ORDER BY membershipRequest.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY MembershipRequest.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY membershipRequest.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY MembershipRequest.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.MembershipRequest"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long STATUSID_COLUMN_BITMASK = 2L;
+
 	public static final long USERID_COLUMN_BITMASK = 4L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 8L;
 
 	/**
@@ -157,11 +174,13 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	 */
 	public static List<MembershipRequest> toModels(
 		MembershipRequestSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<MembershipRequest> models = new ArrayList<MembershipRequest>(soapModels.length);
+		List<MembershipRequest> models = new ArrayList<MembershipRequest>(
+			soapModels.length);
 
 		for (MembershipRequestSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -170,8 +189,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.MembershipRequest"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.MembershipRequest"));
 
 	public MembershipRequestModelImpl() {
 	}
@@ -210,14 +230,18 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MembershipRequest, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MembershipRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MembershipRequest)this));
 		}
 
@@ -229,38 +253,47 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MembershipRequest, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MembershipRequest, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MembershipRequest, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MembershipRequest, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MembershipRequest)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MembershipRequest)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MembershipRequest, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MembershipRequest, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MembershipRequest, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MembershipRequest, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MembershipRequest, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MembershipRequest, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MembershipRequest, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MembershipRequest, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<MembershipRequest, Object>>();
-		Map<String, BiConsumer<MembershipRequest, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<MembershipRequest, ?>>();
-
+		Map<String, Function<MembershipRequest, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<MembershipRequest, Object>>();
+		Map<String, BiConsumer<MembershipRequest, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<MembershipRequest, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -277,7 +310,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object mvccVersion) {
+				public void accept(
+					MembershipRequest membershipRequest, Object mvccVersion) {
+
 					membershipRequest.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -297,8 +332,12 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object membershipRequestId) {
-					membershipRequest.setMembershipRequestId((Long)membershipRequestId);
+				public void accept(
+					MembershipRequest membershipRequest,
+					Object membershipRequestId) {
+
+					membershipRequest.setMembershipRequestId(
+						(Long)membershipRequestId);
 				}
 
 			});
@@ -317,7 +356,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object groupId) {
+				public void accept(
+					MembershipRequest membershipRequest, Object groupId) {
+
 					membershipRequest.setGroupId((Long)groupId);
 				}
 
@@ -337,7 +378,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object companyId) {
+				public void accept(
+					MembershipRequest membershipRequest, Object companyId) {
+
 					membershipRequest.setCompanyId((Long)companyId);
 				}
 
@@ -357,7 +400,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object userId) {
+				public void accept(
+					MembershipRequest membershipRequest, Object userId) {
+
 					membershipRequest.setUserId((Long)userId);
 				}
 
@@ -377,7 +422,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object createDate) {
+				public void accept(
+					MembershipRequest membershipRequest, Object createDate) {
+
 					membershipRequest.setCreateDate((Date)createDate);
 				}
 
@@ -397,7 +444,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object comments) {
+				public void accept(
+					MembershipRequest membershipRequest, Object comments) {
+
 					membershipRequest.setComments((String)comments);
 				}
 
@@ -417,7 +466,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object replyComments) {
+				public void accept(
+					MembershipRequest membershipRequest, Object replyComments) {
+
 					membershipRequest.setReplyComments((String)replyComments);
 				}
 
@@ -437,7 +488,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object replyDate) {
+				public void accept(
+					MembershipRequest membershipRequest, Object replyDate) {
+
 					membershipRequest.setReplyDate((Date)replyDate);
 				}
 
@@ -457,7 +510,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object replierUserId) {
+				public void accept(
+					MembershipRequest membershipRequest, Object replierUserId) {
+
 					membershipRequest.setReplierUserId((Long)replierUserId);
 				}
 
@@ -477,15 +532,18 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 			new BiConsumer<MembershipRequest, Object>() {
 
 				@Override
-				public void accept(MembershipRequest membershipRequest, Object statusId) {
+				public void accept(
+					MembershipRequest membershipRequest, Object statusId) {
+
 					membershipRequest.setStatusId((Long)statusId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -695,8 +753,8 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MembershipRequest.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MembershipRequest.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -709,8 +767,9 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	@Override
 	public MembershipRequest toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MembershipRequest)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MembershipRequest)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -718,7 +777,8 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public Object clone() {
-		MembershipRequestImpl membershipRequestImpl = new MembershipRequestImpl();
+		MembershipRequestImpl membershipRequestImpl =
+			new MembershipRequestImpl();
 
 		membershipRequestImpl.setMvccVersion(getMvccVersion());
 		membershipRequestImpl.setMembershipRequestId(getMembershipRequestId());
@@ -741,8 +801,8 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	public int compareTo(MembershipRequest membershipRequest) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				membershipRequest.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), membershipRequest.getCreateDate());
 
 		value = value * -1;
 
@@ -794,15 +854,18 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	public void resetOriginalValues() {
 		MembershipRequestModelImpl membershipRequestModelImpl = this;
 
-		membershipRequestModelImpl._originalGroupId = membershipRequestModelImpl._groupId;
+		membershipRequestModelImpl._originalGroupId =
+			membershipRequestModelImpl._groupId;
 
 		membershipRequestModelImpl._setOriginalGroupId = false;
 
-		membershipRequestModelImpl._originalUserId = membershipRequestModelImpl._userId;
+		membershipRequestModelImpl._originalUserId =
+			membershipRequestModelImpl._userId;
 
 		membershipRequestModelImpl._setOriginalUserId = false;
 
-		membershipRequestModelImpl._originalStatusId = membershipRequestModelImpl._statusId;
+		membershipRequestModelImpl._originalStatusId =
+			membershipRequestModelImpl._statusId;
 
 		membershipRequestModelImpl._setOriginalStatusId = false;
 
@@ -811,11 +874,13 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public CacheModel<MembershipRequest> toCacheModel() {
-		MembershipRequestCacheModel membershipRequestCacheModel = new MembershipRequestCacheModel();
+		MembershipRequestCacheModel membershipRequestCacheModel =
+			new MembershipRequestCacheModel();
 
 		membershipRequestCacheModel.mvccVersion = getMvccVersion();
 
-		membershipRequestCacheModel.membershipRequestId = getMembershipRequestId();
+		membershipRequestCacheModel.membershipRequestId =
+			getMembershipRequestId();
 
 		membershipRequestCacheModel.groupId = getGroupId();
 
@@ -866,17 +931,20 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public String toString() {
-		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MembershipRequest, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MembershipRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -895,19 +963,22 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MembershipRequest, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<MembershipRequest, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MembershipRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MembershipRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MembershipRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MembershipRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -921,10 +992,12 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MembershipRequest.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MembershipRequest.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MembershipRequest.class, ModelWrapper.class
-		};
+		MembershipRequest.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _membershipRequestId;
 	private long _groupId;
@@ -944,4 +1017,5 @@ public class MembershipRequestModelImpl extends BaseModelImpl<MembershipRequest>
 	private boolean _setOriginalStatusId;
 	private long _columnBitmask;
 	private MembershipRequest _escapedModel;
+
 }

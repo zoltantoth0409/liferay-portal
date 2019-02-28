@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class PortletItemCacheModel implements CacheModel<PortletItem>,
-	Externalizable, MVCCModel {
+public class PortletItemCacheModel
+	implements CacheModel<PortletItem>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,10 +49,12 @@ public class PortletItemCacheModel implements CacheModel<PortletItem>,
 			return false;
 		}
 
-		PortletItemCacheModel portletItemCacheModel = (PortletItemCacheModel)obj;
+		PortletItemCacheModel portletItemCacheModel =
+			(PortletItemCacheModel)obj;
 
 		if ((portletItemId == portletItemCacheModel.portletItemId) &&
-				(mvccVersion == portletItemCacheModel.mvccVersion)) {
+			(mvccVersion == portletItemCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -179,8 +182,7 @@ public class PortletItemCacheModel implements CacheModel<PortletItem>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		objectOutput.writeLong(portletItemId);
@@ -229,4 +231,5 @@ public class PortletItemCacheModel implements CacheModel<PortletItem>,
 	public String name;
 	public String portletId;
 	public long classNameId;
+
 }

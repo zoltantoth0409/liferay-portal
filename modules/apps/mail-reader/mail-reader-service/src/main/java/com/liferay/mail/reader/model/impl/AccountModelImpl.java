@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.mail.reader.model.Account;
 import com.liferay.mail.reader.model.AccountModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,43 +56,34 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class AccountModelImpl extends BaseModelImpl<Account>
-	implements AccountModel {
+public class AccountModelImpl
+	extends BaseModelImpl<Account> implements AccountModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a account model instance should use the <code>Account</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Mail_Account";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "accountId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "address", Types.VARCHAR },
-			{ "personalName", Types.VARCHAR },
-			{ "protocol", Types.VARCHAR },
-			{ "incomingHostName", Types.VARCHAR },
-			{ "incomingPort", Types.INTEGER },
-			{ "incomingSecure", Types.BOOLEAN },
-			{ "outgoingHostName", Types.VARCHAR },
-			{ "outgoingPort", Types.INTEGER },
-			{ "outgoingSecure", Types.BOOLEAN },
-			{ "login", Types.VARCHAR },
-			{ "password_", Types.VARCHAR },
-			{ "savePassword", Types.BOOLEAN },
-			{ "signature", Types.VARCHAR },
-			{ "useSignature", Types.BOOLEAN },
-			{ "folderPrefix", Types.VARCHAR },
-			{ "inboxFolderId", Types.BIGINT },
-			{ "draftFolderId", Types.BIGINT },
-			{ "sentFolderId", Types.BIGINT },
-			{ "trashFolderId", Types.BIGINT },
-			{ "defaultSender", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"accountId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"address", Types.VARCHAR}, {"personalName", Types.VARCHAR},
+		{"protocol", Types.VARCHAR}, {"incomingHostName", Types.VARCHAR},
+		{"incomingPort", Types.INTEGER}, {"incomingSecure", Types.BOOLEAN},
+		{"outgoingHostName", Types.VARCHAR}, {"outgoingPort", Types.INTEGER},
+		{"outgoingSecure", Types.BOOLEAN}, {"login", Types.VARCHAR},
+		{"password_", Types.VARCHAR}, {"savePassword", Types.BOOLEAN},
+		{"signature", Types.VARCHAR}, {"useSignature", Types.BOOLEAN},
+		{"folderPrefix", Types.VARCHAR}, {"inboxFolderId", Types.BIGINT},
+		{"draftFolderId", Types.BIGINT}, {"sentFolderId", Types.BIGINT},
+		{"trashFolderId", Types.BIGINT}, {"defaultSender", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("accountId", Types.BIGINT);
@@ -125,26 +114,44 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		TABLE_COLUMNS_MAP.put("defaultSender", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Mail_Account (accountId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,address VARCHAR(75) null,personalName VARCHAR(75) null,protocol VARCHAR(75) null,incomingHostName VARCHAR(75) null,incomingPort INTEGER,incomingSecure BOOLEAN,outgoingHostName VARCHAR(75) null,outgoingPort INTEGER,outgoingSecure BOOLEAN,login VARCHAR(75) null,password_ VARCHAR(75) null,savePassword BOOLEAN,signature VARCHAR(75) null,useSignature BOOLEAN,folderPrefix VARCHAR(75) null,inboxFolderId LONG,draftFolderId LONG,sentFolderId LONG,trashFolderId LONG,defaultSender BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Mail_Account (accountId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,address VARCHAR(75) null,personalName VARCHAR(75) null,protocol VARCHAR(75) null,incomingHostName VARCHAR(75) null,incomingPort INTEGER,incomingSecure BOOLEAN,outgoingHostName VARCHAR(75) null,outgoingPort INTEGER,outgoingSecure BOOLEAN,login VARCHAR(75) null,password_ VARCHAR(75) null,savePassword BOOLEAN,signature VARCHAR(75) null,useSignature BOOLEAN,folderPrefix VARCHAR(75) null,inboxFolderId LONG,draftFolderId LONG,sentFolderId LONG,trashFolderId LONG,defaultSender BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table Mail_Account";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY account.address ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Mail_Account.address ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Mail_Account.address ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.mail.reader.model.Account"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.mail.reader.model.Account"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.mail.reader.model.Account"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.mail.reader.model.Account"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.mail.reader.model.Account"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.mail.reader.model.Account"),
+		true);
+
 	public static final long ADDRESS_COLUMN_BITMASK = 1L;
+
 	public static final long USERID_COLUMN_BITMASK = 2L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.mail.reader.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.mail.reader.model.Account"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.mail.reader.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.mail.reader.model.Account"));
 
 	public AccountModelImpl() {
 	}
@@ -183,14 +190,18 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Account, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Account, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Account, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Account, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Account, Object> attributeGetterFunction = entry.getValue();
+			Function<Account, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Account)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Account)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -201,34 +212,44 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Account, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Account, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Account, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Account, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Account)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Account)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Account, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Account, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Account, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Account, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Account, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Account, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Account, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Account, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Account, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Account, Object>>();
-		Map<String, BiConsumer<Account, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Account, ?>>();
-
+		Map<String, Function<Account, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Account, Object>>();
+		Map<String, BiConsumer<Account, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Account, ?>>();
 
 		attributeGetterFunctions.put(
 			"accountId",
@@ -751,9 +772,10 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -1141,8 +1163,8 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Account.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Account.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1155,8 +1177,9 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	@Override
 	public Account toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Account)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Account)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1398,16 +1421,20 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Account, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Account, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Account, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Account, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Account, Object> attributeGetterFunction = entry.getValue();
+			Function<Account, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1426,18 +1453,22 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Account, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Account, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Account, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Account, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Account, Object> attributeGetterFunction = entry.getValue();
+			Function<Account, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1451,10 +1482,12 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Account.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Account.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Account.class, ModelWrapper.class
-		};
+		Account.class, ModelWrapper.class
+	};
+
 	private long _accountId;
 	private long _companyId;
 	private long _userId;
@@ -1487,4 +1520,5 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	private boolean _defaultSender;
 	private long _columnBitmask;
 	private Account _escapedModel;
+
 }

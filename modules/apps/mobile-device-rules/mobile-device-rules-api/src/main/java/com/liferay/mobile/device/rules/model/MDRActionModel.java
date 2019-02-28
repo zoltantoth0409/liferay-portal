@@ -17,7 +17,6 @@ package com.liferay.mobile.device.rules.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -46,8 +45,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface MDRActionModel extends AttachedModel, BaseModel<MDRAction>,
-	LocalizedModel, ShardedModel, StagedGroupedModel {
+public interface MDRActionModel
+	extends AttachedModel, BaseModel<MDRAction>, LocalizedModel, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -447,8 +448,8 @@ public interface MDRActionModel extends AttachedModel, BaseModel<MDRAction>,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -465,8 +466,8 @@ public interface MDRActionModel extends AttachedModel, BaseModel<MDRAction>,
 	 * @param descriptionMap the locales and localized descriptions of this mdr action
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the type of this mdr action.
@@ -583,4 +584,5 @@ public interface MDRActionModel extends AttachedModel, BaseModel<MDRAction>,
 
 	@Override
 	public String toXmlString();
+
 }

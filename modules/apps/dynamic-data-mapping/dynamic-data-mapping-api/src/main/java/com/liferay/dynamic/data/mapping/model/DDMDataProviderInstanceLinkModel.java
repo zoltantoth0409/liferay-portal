@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ShardedModel;
@@ -37,8 +36,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface DDMDataProviderInstanceLinkModel extends BaseModel<DDMDataProviderInstanceLink>,
-	ShardedModel {
+public interface DDMDataProviderInstanceLinkModel
+	extends BaseModel<DDMDataProviderInstanceLink>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -174,4 +174,5 @@ public interface DDMDataProviderInstanceLinkModel extends BaseModel<DDMDataProvi
 
 	@Override
 	public String toXmlString();
+
 }

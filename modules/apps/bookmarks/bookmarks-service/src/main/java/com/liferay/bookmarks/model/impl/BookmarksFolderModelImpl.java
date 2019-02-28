@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.model.BookmarksFolderModel;
 import com.liferay.bookmarks.model.BookmarksFolderSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,34 +68,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
-	implements BookmarksFolderModel {
+public class BookmarksFolderModelImpl
+	extends BaseModelImpl<BookmarksFolder> implements BookmarksFolderModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a bookmarks folder model instance should use the <code>BookmarksFolder</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "BookmarksFolder";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "folderId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentFolderId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"folderId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"parentFolderId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}, {"status", Types.INTEGER},
+		{"statusByUserId", Types.BIGINT}, {"statusByUserName", Types.VARCHAR},
+		{"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -120,28 +113,50 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table BookmarksFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentFolderId LONG,treePath STRING null,name VARCHAR(75) null,description STRING null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table BookmarksFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentFolderId LONG,treePath STRING null,name VARCHAR(75) null,description STRING null,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table BookmarksFolder";
-	public static final String ORDER_BY_JPQL = " ORDER BY bookmarksFolder.parentFolderId ASC, bookmarksFolder.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY BookmarksFolder.parentFolderId ASC, BookmarksFolder.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY bookmarksFolder.parentFolderId ASC, bookmarksFolder.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY BookmarksFolder.parentFolderId ASC, BookmarksFolder.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.bookmarks.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.bookmarks.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.bookmarks.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.bookmarks.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.bookmarks.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.bookmarks.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.bookmarks.model.BookmarksFolder"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FOLDERID_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long PARENTFOLDERID_COLUMN_BITMASK = 8L;
+
 	public static final long STATUS_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long NAME_COLUMN_BITMASK = 64L;
 
 	/**
@@ -186,11 +201,13 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 	 */
 	public static List<BookmarksFolder> toModels(
 		BookmarksFolderSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<BookmarksFolder> models = new ArrayList<BookmarksFolder>(soapModels.length);
+		List<BookmarksFolder> models = new ArrayList<BookmarksFolder>(
+			soapModels.length);
 
 		for (BookmarksFolderSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -199,8 +216,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.bookmarks.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.bookmarks.model.BookmarksFolder"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.bookmarks.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.bookmarks.model.BookmarksFolder"));
 
 	public BookmarksFolderModelImpl() {
 	}
@@ -239,13 +257,18 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<BookmarksFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BookmarksFolder, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BookmarksFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<BookmarksFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((BookmarksFolder)this));
 		}
 
@@ -257,36 +280,45 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<BookmarksFolder, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<BookmarksFolder, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<BookmarksFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<BookmarksFolder, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((BookmarksFolder)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(BookmarksFolder)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<BookmarksFolder, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<BookmarksFolder, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<BookmarksFolder, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<BookmarksFolder, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<BookmarksFolder, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<BookmarksFolder, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<BookmarksFolder, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<BookmarksFolder, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<BookmarksFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<BookmarksFolder, Object>>();
-		Map<String, BiConsumer<BookmarksFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<BookmarksFolder, ?>>();
-
+		Map<String, Function<BookmarksFolder, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<BookmarksFolder, Object>>();
+		Map<String, BiConsumer<BookmarksFolder, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<BookmarksFolder, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -303,7 +335,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object uuid) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object uuid) {
+
 					bookmarksFolder.setUuid((String)uuid);
 				}
 
@@ -323,7 +357,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object folderId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object folderId) {
+
 					bookmarksFolder.setFolderId((Long)folderId);
 				}
 
@@ -343,7 +379,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object groupId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object groupId) {
+
 					bookmarksFolder.setGroupId((Long)groupId);
 				}
 
@@ -363,7 +401,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object companyId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object companyId) {
+
 					bookmarksFolder.setCompanyId((Long)companyId);
 				}
 
@@ -383,7 +423,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object userId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object userId) {
+
 					bookmarksFolder.setUserId((Long)userId);
 				}
 
@@ -403,7 +445,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object userName) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object userName) {
+
 					bookmarksFolder.setUserName((String)userName);
 				}
 
@@ -423,7 +467,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object createDate) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object createDate) {
+
 					bookmarksFolder.setCreateDate((Date)createDate);
 				}
 
@@ -443,7 +489,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object modifiedDate) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object modifiedDate) {
+
 					bookmarksFolder.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -463,7 +511,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object parentFolderId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object parentFolderId) {
+
 					bookmarksFolder.setParentFolderId((Long)parentFolderId);
 				}
 
@@ -483,7 +533,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object treePath) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object treePath) {
+
 					bookmarksFolder.setTreePath((String)treePath);
 				}
 
@@ -503,7 +555,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object name) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object name) {
+
 					bookmarksFolder.setName((String)name);
 				}
 
@@ -523,7 +577,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object description) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object description) {
+
 					bookmarksFolder.setDescription((String)description);
 				}
 
@@ -543,7 +599,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object lastPublishDate) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object lastPublishDate) {
+
 					bookmarksFolder.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -563,7 +621,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object status) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object status) {
+
 					bookmarksFolder.setStatus((Integer)status);
 				}
 
@@ -583,7 +643,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object statusByUserId) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object statusByUserId) {
+
 					bookmarksFolder.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -603,8 +665,11 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object statusByUserName) {
-					bookmarksFolder.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object statusByUserName) {
+
+					bookmarksFolder.setStatusByUserName(
+						(String)statusByUserName);
 				}
 
 			});
@@ -623,15 +688,18 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			new BiConsumer<BookmarksFolder, Object>() {
 
 				@Override
-				public void accept(BookmarksFolder bookmarksFolder, Object statusDate) {
+				public void accept(
+					BookmarksFolder bookmarksFolder, Object statusDate) {
+
 					bookmarksFolder.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -988,28 +1056,32 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				BookmarksFolder.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(BookmarksFolder.class.getName()));
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashEntry getTrashEntry()
 		throws PortalException {
+
 		if (!isInTrash()) {
 			return null;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
 		}
 
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
-		if (Validator.isNotNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+		if (Validator.isNotNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			ContainerModel containerModel = null;
 
 			try {
@@ -1026,14 +1098,18 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 					return trashedModel.getTrashEntry();
 				}
 
-				trashHandler = com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName(
-							containerModel.getContainerModelId()));
+				trashHandler =
+					com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+						getTrashHandler(
+							trashHandler.getContainerModelClassName(
+								containerModel.getContainerModelId()));
 
 				if (trashHandler == null) {
 					return null;
 				}
 
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
+				containerModel = trashHandler.getContainerModel(
+					containerModel.getParentContainerModelId());
 			}
 		}
 
@@ -1046,12 +1122,13 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), with no direct replacement
-	*/
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
 	@Deprecated
 	@Override
 	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
+		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+			getTrashHandler(getModelClassName());
 	}
 
 	@Override
@@ -1066,16 +1143,19 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public boolean isInTrashContainer() {
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
 		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+			Validator.isNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			return false;
 		}
 
 		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel =
+				trashHandler.getParentContainerModel(this);
 
 			if (containerModel == null) {
 				return false;
@@ -1097,8 +1177,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return true;
@@ -1113,8 +1194,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return false;
@@ -1209,8 +1291,8 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			BookmarksFolder.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), BookmarksFolder.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1223,8 +1305,9 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 	@Override
 	public BookmarksFolder toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (BookmarksFolder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (BookmarksFolder)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1327,25 +1410,30 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 		bookmarksFolderModelImpl._originalUuid = bookmarksFolderModelImpl._uuid;
 
-		bookmarksFolderModelImpl._originalFolderId = bookmarksFolderModelImpl._folderId;
+		bookmarksFolderModelImpl._originalFolderId =
+			bookmarksFolderModelImpl._folderId;
 
 		bookmarksFolderModelImpl._setOriginalFolderId = false;
 
-		bookmarksFolderModelImpl._originalGroupId = bookmarksFolderModelImpl._groupId;
+		bookmarksFolderModelImpl._originalGroupId =
+			bookmarksFolderModelImpl._groupId;
 
 		bookmarksFolderModelImpl._setOriginalGroupId = false;
 
-		bookmarksFolderModelImpl._originalCompanyId = bookmarksFolderModelImpl._companyId;
+		bookmarksFolderModelImpl._originalCompanyId =
+			bookmarksFolderModelImpl._companyId;
 
 		bookmarksFolderModelImpl._setOriginalCompanyId = false;
 
 		bookmarksFolderModelImpl._setModifiedDate = false;
 
-		bookmarksFolderModelImpl._originalParentFolderId = bookmarksFolderModelImpl._parentFolderId;
+		bookmarksFolderModelImpl._originalParentFolderId =
+			bookmarksFolderModelImpl._parentFolderId;
 
 		bookmarksFolderModelImpl._setOriginalParentFolderId = false;
 
-		bookmarksFolderModelImpl._originalStatus = bookmarksFolderModelImpl._status;
+		bookmarksFolderModelImpl._originalStatus =
+			bookmarksFolderModelImpl._status;
 
 		bookmarksFolderModelImpl._setOriginalStatus = false;
 
@@ -1354,7 +1442,8 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public CacheModel<BookmarksFolder> toCacheModel() {
-		BookmarksFolderCacheModel bookmarksFolderCacheModel = new BookmarksFolderCacheModel();
+		BookmarksFolderCacheModel bookmarksFolderCacheModel =
+			new BookmarksFolderCacheModel();
 
 		bookmarksFolderCacheModel.uuid = getUuid();
 
@@ -1427,7 +1516,8 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			bookmarksFolderCacheModel.lastPublishDate = lastPublishDate.getTime();
+			bookmarksFolderCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			bookmarksFolderCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1459,16 +1549,20 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public String toString() {
-		Map<String, Function<BookmarksFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BookmarksFolder, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BookmarksFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<BookmarksFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1487,18 +1581,22 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<BookmarksFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<BookmarksFolder, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<BookmarksFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<BookmarksFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<BookmarksFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1512,10 +1610,12 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = BookmarksFolder.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		BookmarksFolder.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			BookmarksFolder.class, ModelWrapper.class
-		};
+		BookmarksFolder.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _folderId;
@@ -1547,4 +1647,5 @@ public class BookmarksFolderModelImpl extends BaseModelImpl<BookmarksFolder>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private BookmarksFolder _escapedModel;
+
 }

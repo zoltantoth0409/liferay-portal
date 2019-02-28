@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
-	GroupedModel, ShardedModel {
+public interface KaleoConditionModel
+	extends BaseModel<KaleoCondition>, GroupedModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -319,4 +319,5 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition>,
 
 	@Override
 	public String toXmlString();
+
 }

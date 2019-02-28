@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.impl.DDMStructureImpl;
 import com.liferay.dynamic.data.mapping.model.impl.DDMStructureModelImpl;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMStructurePersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -75,18 +74,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructure>
+public class DDMStructurePersistenceImpl
+	extends BasePersistenceImpl<DDMStructure>
 	implements DDMStructurePersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DDMStructureUtil</code> to access the ddm structure persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = DDMStructureImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		DDMStructureImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -136,8 +141,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByUuid(String uuid, int start, int end,
+	public List<DDMStructure> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -156,9 +163,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByUuid(String uuid, int start, int end,
+	public List<DDMStructure> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -166,21 +175,22 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
@@ -197,8 +207,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -218,11 +228,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -242,16 +251,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				}
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -280,9 +289,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByUuid_First(String uuid,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByUuid_First(
+			String uuid, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = fetchByUuid_First(uuid, orderByComparator);
 
 		if (ddmStructure != null) {
@@ -309,8 +319,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByUuid_First(String uuid,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public DDMStructure fetchByUuid_First(
+		String uuid, OrderByComparator<DDMStructure> orderByComparator) {
+
 		List<DDMStructure> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -329,9 +340,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByUuid_Last(String uuid,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByUuid_Last(
+			String uuid, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (ddmStructure != null) {
@@ -358,16 +370,17 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByUuid_Last(String uuid,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public DDMStructure fetchByUuid_Last(
+		String uuid, OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<DDMStructure> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -386,9 +399,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByUuid_PrevAndNext(long structureId, String uuid,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByUuid_PrevAndNext(
+			long structureId, String uuid,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -400,13 +415,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, ddmStructure, uuid,
-					orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, ddmStructure, uuid, orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByUuid_PrevAndNext(session, ddmStructure, uuid,
-					orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, ddmStructure, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -418,14 +433,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByUuid_PrevAndNext(Session session,
-		DDMStructure ddmStructure, String uuid,
+	protected DDMStructure getByUuid_PrevAndNext(
+		Session session, DDMStructure ddmStructure, String uuid,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -446,7 +462,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -518,8 +535,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -541,8 +559,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (DDMStructure ddmStructure : findByUuid(uuid, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -559,7 +578,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -611,8 +630,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "ddmStructure.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"ddmStructure.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -627,6 +650,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure findByUUID_G(String uuid, long groupId)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = fetchByUUID_G(uuid, groupId);
 
 		if (ddmStructure == null) {
@@ -673,24 +697,26 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public DDMStructure fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof DDMStructure) {
 			DDMStructure ddmStructure = (DDMStructure)result;
 
 			if (!Objects.equals(uuid, ddmStructure.getUuid()) ||
-					(groupId != ddmStructure.getGroupId())) {
+				(groupId != ddmStructure.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -733,8 +759,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				List<DDMStructure> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					DDMStructure ddmStructure = list.get(0);
@@ -772,6 +798,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure removeByUUID_G(String uuid, long groupId)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByUUID_G(uuid, groupId);
 
 		return remove(ddmStructure);
@@ -790,7 +817,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -846,9 +873,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "ddmStructure.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "ddmStructure.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"ddmStructure.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"ddmStructure.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -862,8 +895,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -880,8 +913,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	public List<DDMStructure> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -900,9 +934,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	public List<DDMStructure> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -921,9 +958,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -931,30 +970,30 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if (!uuid.equals(ddmStructure.getUuid()) ||
-							(companyId != ddmStructure.getCompanyId())) {
+						(companyId != ddmStructure.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -967,8 +1006,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -990,11 +1029,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1016,16 +1054,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1055,11 +1093,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByUuid_C_First(uuid, companyId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -1089,10 +1129,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByUuid_C_First(String uuid, long companyId,
+	public DDMStructure fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<DDMStructure> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1111,11 +1153,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByUuid_C_Last(uuid, companyId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -1145,16 +1189,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByUuid_C_Last(String uuid, long companyId,
+	public DDMStructure fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByUuid_C(uuid, companyId, count - 1,
-				count, orderByComparator);
+		List<DDMStructure> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1174,10 +1220,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByUuid_C_PrevAndNext(long structureId,
-		String uuid, long companyId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByUuid_C_PrevAndNext(
+			long structureId, String uuid, long companyId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -1189,13 +1236,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, ddmStructure, uuid,
-					companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, ddmStructure, uuid, companyId, orderByComparator,
+				true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByUuid_C_PrevAndNext(session, ddmStructure, uuid,
-					companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, ddmStructure, uuid, companyId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -1207,14 +1256,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByUuid_C_PrevAndNext(Session session,
-		DDMStructure ddmStructure, String uuid, long companyId,
+	protected DDMStructure getByUuid_C_PrevAndNext(
+		Session session, DDMStructure ddmStructure, String uuid, long companyId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1237,7 +1287,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1311,8 +1362,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1335,8 +1387,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (DDMStructure ddmStructure : findByUuid_C(uuid, companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -1354,7 +1409,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1410,9 +1465,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "ddmStructure.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "ddmStructure.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"ddmStructure.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(ddmStructure.uuid IS NULL OR ddmStructure.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"ddmStructure.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByGroupId;
 	private FinderPath _finderPathWithoutPaginationFindByGroupId;
 	private FinderPath _finderPathCountByGroupId;
@@ -1426,7 +1487,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByGroupId(long groupId) {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1460,8 +1522,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByGroupId(long groupId, int start, int end,
+	public List<DDMStructure> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
@@ -1480,29 +1544,32 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByGroupId(long groupId, int start, int end,
+	public List<DDMStructure> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId };
+			finderArgs = new Object[] {groupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId, start, end, orderByComparator };
+			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
@@ -1519,8 +1586,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1531,11 +1598,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1553,16 +1619,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1591,11 +1657,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByGroupId_First(long groupId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByGroupId_First(
+			long groupId, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByGroupId_First(groupId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByGroupId_First(
+			groupId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -1621,9 +1688,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByGroupId_First(long groupId,
-		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByGroupId(groupId, 0, 1, orderByComparator);
+	public DDMStructure fetchByGroupId_First(
+		long groupId, OrderByComparator<DDMStructure> orderByComparator) {
+
+		List<DDMStructure> list = findByGroupId(
+			groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1641,11 +1710,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByGroupId_Last(long groupId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByGroupId_Last(
+			long groupId, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByGroupId_Last(groupId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByGroupId_Last(
+			groupId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -1671,16 +1741,17 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByGroupId_Last(long groupId,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public DDMStructure fetchByGroupId_Last(
+		long groupId, OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByGroupId(groupId, count - 1, count,
-				orderByComparator);
+		List<DDMStructure> list = findByGroupId(
+			groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1699,9 +1770,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByGroupId_PrevAndNext(long structureId,
-		long groupId, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByGroupId_PrevAndNext(
+			long structureId, long groupId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -1711,13 +1784,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(session, ddmStructure, groupId,
-					orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(
+				session, ddmStructure, groupId, orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByGroupId_PrevAndNext(session, ddmStructure, groupId,
-					orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(
+				session, ddmStructure, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -1729,14 +1802,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByGroupId_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId,
+	protected DDMStructure getByGroupId_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1748,7 +1822,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1818,8 +1893,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1842,8 +1918,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> filterFindByGroupId(long groupId) {
-		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1859,8 +1935,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByGroupId(long groupId, int start,
-		int end) {
+	public List<DDMStructure> filterFindByGroupId(
+		long groupId, int start, int end) {
+
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -1878,8 +1955,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> filterFindByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1887,8 +1966,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(3 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				3 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(4);
@@ -1898,23 +1977,25 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -1926,9 +2007,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -1948,8 +2029,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			qPos.add(groupId);
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1969,12 +2050,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] filterFindByGroupId_PrevAndNext(long structureId,
-		long groupId, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] filterFindByGroupId_PrevAndNext(
+			long structureId, long groupId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByGroupId_PrevAndNext(structureId, groupId,
-				orderByComparator);
+			return findByGroupId_PrevAndNext(
+				structureId, groupId, orderByComparator);
 		}
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -1986,13 +2069,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = filterGetByGroupId_PrevAndNext(session, ddmStructure,
-					groupId, orderByComparator, true);
+			array[0] = filterGetByGroupId_PrevAndNext(
+				session, ddmStructure, groupId, orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = filterGetByGroupId_PrevAndNext(session, ddmStructure,
-					groupId, orderByComparator, false);
+			array[2] = filterGetByGroupId_PrevAndNext(
+				session, ddmStructure, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -2004,14 +2087,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure filterGetByGroupId_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId,
+	protected DDMStructure filterGetByGroupId_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2022,17 +2106,20 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2040,12 +2127,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -2072,12 +2163,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -2107,9 +2200,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -2128,8 +2221,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2152,8 +2246,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> filterFindByGroupId(long[] groupIds) {
-		return filterFindByGroupId(groupIds, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByGroupId(
+			groupIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2169,8 +2263,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByGroupId(long[] groupIds, int start,
-		int end) {
+	public List<DDMStructure> filterFindByGroupId(
+		long[] groupIds, int start, int end) {
+
 		return filterFindByGroupId(groupIds, start, end, null);
 	}
 
@@ -2188,8 +2283,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByGroupId(long[] groupIds, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> filterFindByGroupId(
+		long[] groupIds, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
 			return findByGroupId(groupIds, start, end, orderByComparator);
 		}
@@ -2209,7 +2306,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		if (groupIds.length > 0) {
@@ -2224,21 +2322,23 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -2250,9 +2350,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -2268,8 +2368,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				q.addEntity(_FILTER_ENTITY_TABLE, DDMStructureImpl.class);
 			}
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -2291,8 +2391,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByGroupId(long[] groupIds) {
-		return findByGroupId(groupIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByGroupId(
+			groupIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2308,7 +2408,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByGroupId(long[] groupIds, int start, int end) {
+	public List<DDMStructure> findByGroupId(
+		long[] groupIds, int start, int end) {
+
 		return findByGroupId(groupIds, start, end, null);
 	}
 
@@ -2326,8 +2428,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByGroupId(long[] groupIds, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> findByGroupId(
+		long[] groupIds, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
 		return findByGroupId(groupIds, start, end, orderByComparator, true);
 	}
 
@@ -2346,9 +2450,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByGroupId(long[] groupIds, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByGroupId(
+		long[] groupIds, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (groupIds == null) {
 			groupIds = new long[0];
 		}
@@ -2366,27 +2472,28 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderArgs = new Object[] { StringUtil.merge(groupIds) };
+			finderArgs = new Object[] {StringUtil.merge(groupIds)};
 		}
 		else {
 			finderArgs = new Object[] {
-					StringUtil.merge(groupIds),
-					
-					start, end, orderByComparator
-				};
+				StringUtil.merge(groupIds), start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(_finderPathWithPaginationFindByGroupId,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				_finderPathWithPaginationFindByGroupId, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
-					if (!ArrayUtil.contains(groupIds, ddmStructure.getGroupId())) {
+					if (!ArrayUtil.contains(
+							groupIds, ddmStructure.getGroupId())) {
+
 						list = null;
 
 						break;
@@ -2412,15 +2519,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2434,26 +2541,26 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByGroupId,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByGroupId, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByGroupId,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByGroupId, finderArgs);
 
 				throw processException(e);
 			}
@@ -2472,8 +2579,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (DDMStructure ddmStructure : findByGroupId(groupId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByGroupId(
+					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -2488,7 +2597,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] { groupId };
+		Object[] finderArgs = new Object[] {groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2546,10 +2655,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			Arrays.sort(groupIds);
 		}
 
-		Object[] finderArgs = new Object[] { StringUtil.merge(groupIds) };
+		Object[] finderArgs = new Object[] {StringUtil.merge(groupIds)};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByGroupId,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByGroupId, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -2568,8 +2677,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -2582,12 +2692,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByGroupId,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByGroupId, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByGroupId,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByGroupId, finderArgs);
 
 				throw processException(e);
 			}
@@ -2617,9 +2727,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -2628,8 +2738,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2684,12 +2794,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -2698,8 +2809,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			Long count = (Long)q.uniqueResult();
 
@@ -2713,8 +2824,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "ddmStructure.groupId = ?";
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_7 = "ddmStructure.groupId IN (";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
+		"ddmStructure.groupId = ?";
+
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_7 =
+		"ddmStructure.groupId IN (";
+
 	private FinderPath _finderPathWithPaginationFindByParentStructureId;
 	private FinderPath _finderPathWithoutPaginationFindByParentStructureId;
 	private FinderPath _finderPathCountByParentStructureId;
@@ -2727,8 +2842,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByParentStructureId(long parentStructureId) {
-		return findByParentStructureId(parentStructureId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByParentStructureId(
+			parentStructureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2744,8 +2859,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByParentStructureId(long parentStructureId,
-		int start, int end) {
+	public List<DDMStructure> findByParentStructureId(
+		long parentStructureId, int start, int end) {
+
 		return findByParentStructureId(parentStructureId, start, end, null);
 	}
 
@@ -2763,10 +2879,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByParentStructureId(long parentStructureId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByParentStructureId(parentStructureId, start, end,
-			orderByComparator, true);
+	public List<DDMStructure> findByParentStructureId(
+		long parentStructureId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByParentStructureId(
+			parentStructureId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2784,37 +2902,40 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByParentStructureId(long parentStructureId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByParentStructureId(
+		long parentStructureId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByParentStructureId;
-			finderArgs = new Object[] { parentStructureId };
+			finderArgs = new Object[] {parentStructureId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByParentStructureId;
 			finderArgs = new Object[] {
-					parentStructureId,
-					
-					start, end, orderByComparator
-				};
+				parentStructureId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
-					if ((parentStructureId != ddmStructure.getParentStructureId())) {
+					if ((parentStructureId !=
+							ddmStructure.getParentStructureId())) {
+
 						list = null;
 
 						break;
@@ -2827,8 +2948,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2839,11 +2960,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_PARENTSTRUCTUREID_PARENTSTRUCTUREID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2861,16 +2981,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(parentStructureId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2899,11 +3019,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByParentStructureId_First(long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByParentStructureId_First(
+			long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByParentStructureId_First(parentStructureId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByParentStructureId_First(
+			parentStructureId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -2929,10 +3051,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByParentStructureId_First(long parentStructureId,
+	public DDMStructure fetchByParentStructureId_First(
+		long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByParentStructureId(parentStructureId, 0,
-				1, orderByComparator);
+
+		List<DDMStructure> list = findByParentStructureId(
+			parentStructureId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2950,11 +3074,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByParentStructureId_Last(long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByParentStructureId_Last(
+			long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByParentStructureId_Last(parentStructureId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByParentStructureId_Last(
+			parentStructureId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -2980,16 +3106,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByParentStructureId_Last(long parentStructureId,
+	public DDMStructure fetchByParentStructureId_Last(
+		long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByParentStructureId(parentStructureId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByParentStructureId(parentStructureId,
-				count - 1, count, orderByComparator);
+		List<DDMStructure> list = findByParentStructureId(
+			parentStructureId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3009,9 +3137,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public DDMStructure[] findByParentStructureId_PrevAndNext(
-		long structureId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+			long structureId, long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -3021,13 +3150,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByParentStructureId_PrevAndNext(session,
-					ddmStructure, parentStructureId, orderByComparator, true);
+			array[0] = getByParentStructureId_PrevAndNext(
+				session, ddmStructure, parentStructureId, orderByComparator,
+				true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByParentStructureId_PrevAndNext(session,
-					ddmStructure, parentStructureId, orderByComparator, false);
+			array[2] = getByParentStructureId_PrevAndNext(
+				session, ddmStructure, parentStructureId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -3039,14 +3170,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByParentStructureId_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long parentStructureId,
+	protected DDMStructure getByParentStructureId_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3058,7 +3190,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_PARENTSTRUCTUREID_PARENTSTRUCTUREID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3128,8 +3261,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3151,8 +3285,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByParentStructureId(long parentStructureId) {
-		for (DDMStructure ddmStructure : findByParentStructureId(
-				parentStructureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByParentStructureId(
+					parentStructureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -3167,7 +3304,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByParentStructureId(long parentStructureId) {
 		FinderPath finderPath = _finderPathCountByParentStructureId;
 
-		Object[] finderArgs = new Object[] { parentStructureId };
+		Object[] finderArgs = new Object[] {parentStructureId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -3208,8 +3345,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_PARENTSTRUCTUREID_PARENTSTRUCTUREID_2 =
-		"ddmStructure.parentStructureId = ?";
+	private static final String
+		_FINDER_COLUMN_PARENTSTRUCTUREID_PARENTSTRUCTUREID_2 =
+			"ddmStructure.parentStructureId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByClassNameId;
 	private FinderPath _finderPathWithoutPaginationFindByClassNameId;
 	private FinderPath _finderPathCountByClassNameId;
@@ -3222,8 +3361,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByClassNameId(long classNameId) {
-		return findByClassNameId(classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByClassNameId(
+			classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -3239,8 +3378,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByClassNameId(long classNameId, int start,
-		int end) {
+	public List<DDMStructure> findByClassNameId(
+		long classNameId, int start, int end) {
+
 		return findByClassNameId(classNameId, start, end, null);
 	}
 
@@ -3258,10 +3398,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByClassNameId(long classNameId, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByClassNameId(classNameId, start, end, orderByComparator,
-			true);
+	public List<DDMStructure> findByClassNameId(
+		long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByClassNameId(
+			classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3279,29 +3421,34 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByClassNameId(long classNameId, int start,
-		int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByClassNameId(
+		long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByClassNameId;
-			finderArgs = new Object[] { classNameId };
+			finderArgs = new Object[] {classNameId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByClassNameId;
-			finderArgs = new Object[] { classNameId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				classNameId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
@@ -3318,8 +3465,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -3330,11 +3477,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_CLASSNAMEID_CLASSNAMEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3352,16 +3498,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(classNameId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3390,11 +3536,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByClassNameId_First(long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByClassNameId_First(
+			long classNameId, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByClassNameId_First(classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByClassNameId_First(
+			classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -3420,10 +3567,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByClassNameId_First(long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByClassNameId(classNameId, 0, 1,
-				orderByComparator);
+	public DDMStructure fetchByClassNameId_First(
+		long classNameId, OrderByComparator<DDMStructure> orderByComparator) {
+
+		List<DDMStructure> list = findByClassNameId(
+			classNameId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3441,11 +3589,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByClassNameId_Last(long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByClassNameId_Last(
+			long classNameId, OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByClassNameId_Last(classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByClassNameId_Last(
+			classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -3471,16 +3620,17 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByClassNameId_Last(long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public DDMStructure fetchByClassNameId_Last(
+		long classNameId, OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByClassNameId(classNameId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByClassNameId(classNameId, count - 1,
-				count, orderByComparator);
+		List<DDMStructure> list = findByClassNameId(
+			classNameId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3499,9 +3649,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByClassNameId_PrevAndNext(long structureId,
-		long classNameId, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByClassNameId_PrevAndNext(
+			long structureId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -3511,13 +3663,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByClassNameId_PrevAndNext(session, ddmStructure,
-					classNameId, orderByComparator, true);
+			array[0] = getByClassNameId_PrevAndNext(
+				session, ddmStructure, classNameId, orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByClassNameId_PrevAndNext(session, ddmStructure,
-					classNameId, orderByComparator, false);
+			array[2] = getByClassNameId_PrevAndNext(
+				session, ddmStructure, classNameId, orderByComparator, false);
 
 			return array;
 		}
@@ -3529,14 +3681,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByClassNameId_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long classNameId,
+	protected DDMStructure getByClassNameId_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long classNameId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3548,7 +3701,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_CLASSNAMEID_CLASSNAMEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3618,8 +3772,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3641,8 +3796,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByClassNameId(long classNameId) {
-		for (DDMStructure ddmStructure : findByClassNameId(classNameId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByClassNameId(
+					classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -3657,7 +3814,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByClassNameId(long classNameId) {
 		FinderPath finderPath = _finderPathCountByClassNameId;
 
-		Object[] finderArgs = new Object[] { classNameId };
+		Object[] finderArgs = new Object[] {classNameId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -3698,7 +3855,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_CLASSNAMEID_CLASSNAMEID_2 = "ddmStructure.classNameId = ?";
+	private static final String _FINDER_COLUMN_CLASSNAMEID_CLASSNAMEID_2 =
+		"ddmStructure.classNameId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByStructureKey;
 	private FinderPath _finderPathWithoutPaginationFindByStructureKey;
 	private FinderPath _finderPathCountByStructureKey;
@@ -3711,8 +3870,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByStructureKey(String structureKey) {
-		return findByStructureKey(structureKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByStructureKey(
+			structureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -3728,8 +3887,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByStructureKey(String structureKey,
-		int start, int end) {
+	public List<DDMStructure> findByStructureKey(
+		String structureKey, int start, int end) {
+
 		return findByStructureKey(structureKey, start, end, null);
 	}
 
@@ -3747,10 +3907,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByStructureKey(String structureKey,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByStructureKey(structureKey, start, end, orderByComparator,
-			true);
+	public List<DDMStructure> findByStructureKey(
+		String structureKey, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByStructureKey(
+			structureKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3768,9 +3930,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByStructureKey(String structureKey,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByStructureKey(
+		String structureKey, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		structureKey = Objects.toString(structureKey, "");
 
 		boolean pagination = true;
@@ -3778,25 +3942,24 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByStructureKey;
-			finderArgs = new Object[] { structureKey };
+			finderArgs = new Object[] {structureKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByStructureKey;
 			finderArgs = new Object[] {
-					structureKey,
-					
-					start, end, orderByComparator
-				};
+				structureKey, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
@@ -3813,8 +3976,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -3834,11 +3997,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3858,16 +4020,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				}
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3896,11 +4058,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByStructureKey_First(String structureKey,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByStructureKey_First(
+			String structureKey,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByStructureKey_First(structureKey,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByStructureKey_First(
+			structureKey, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -3926,10 +4090,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByStructureKey_First(String structureKey,
+	public DDMStructure fetchByStructureKey_First(
+		String structureKey,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByStructureKey(structureKey, 0, 1,
-				orderByComparator);
+
+		List<DDMStructure> list = findByStructureKey(
+			structureKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3947,11 +4113,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByStructureKey_Last(String structureKey,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByStructureKey_Last(
+			String structureKey,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByStructureKey_Last(structureKey,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByStructureKey_Last(
+			structureKey, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -3977,16 +4145,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByStructureKey_Last(String structureKey,
+	public DDMStructure fetchByStructureKey_Last(
+		String structureKey,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByStructureKey(structureKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByStructureKey(structureKey, count - 1,
-				count, orderByComparator);
+		List<DDMStructure> list = findByStructureKey(
+			structureKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4005,9 +4175,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByStructureKey_PrevAndNext(long structureId,
-		String structureKey, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByStructureKey_PrevAndNext(
+			long structureId, String structureKey,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		structureKey = Objects.toString(structureKey, "");
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -4019,13 +4191,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByStructureKey_PrevAndNext(session, ddmStructure,
-					structureKey, orderByComparator, true);
+			array[0] = getByStructureKey_PrevAndNext(
+				session, ddmStructure, structureKey, orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByStructureKey_PrevAndNext(session, ddmStructure,
-					structureKey, orderByComparator, false);
+			array[2] = getByStructureKey_PrevAndNext(
+				session, ddmStructure, structureKey, orderByComparator, false);
 
 			return array;
 		}
@@ -4037,14 +4209,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByStructureKey_PrevAndNext(Session session,
-		DDMStructure ddmStructure, String structureKey,
+	protected DDMStructure getByStructureKey_PrevAndNext(
+		Session session, DDMStructure ddmStructure, String structureKey,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -4065,7 +4238,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -4137,8 +4311,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -4160,8 +4335,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByStructureKey(String structureKey) {
-		for (DDMStructure ddmStructure : findByStructureKey(structureKey,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByStructureKey(
+					structureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -4178,7 +4355,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		FinderPath finderPath = _finderPathCountByStructureKey;
 
-		Object[] finderArgs = new Object[] { structureKey };
+		Object[] finderArgs = new Object[] {structureKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -4230,8 +4407,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_STRUCTUREKEY_STRUCTUREKEY_2 = "ddmStructure.structureKey = ?";
-	private static final String _FINDER_COLUMN_STRUCTUREKEY_STRUCTUREKEY_3 = "(ddmStructure.structureKey IS NULL OR ddmStructure.structureKey = '')";
+	private static final String _FINDER_COLUMN_STRUCTUREKEY_STRUCTUREKEY_2 =
+		"ddmStructure.structureKey = ?";
+
+	private static final String _FINDER_COLUMN_STRUCTUREKEY_STRUCTUREKEY_3 =
+		"(ddmStructure.structureKey IS NULL OR ddmStructure.structureKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_P;
 	private FinderPath _finderPathWithoutPaginationFindByG_P;
 	private FinderPath _finderPathCountByG_P;
@@ -4245,8 +4426,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByG_P(long groupId, long parentStructureId) {
-		return findByG_P(groupId, parentStructureId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_P(
+			groupId, parentStructureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -4263,8 +4445,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_P(long groupId, long parentStructureId,
-		int start, int end) {
+	public List<DDMStructure> findByG_P(
+		long groupId, long parentStructureId, int start, int end) {
+
 		return findByG_P(groupId, parentStructureId, start, end, null);
 	}
 
@@ -4283,10 +4466,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_P(long groupId, long parentStructureId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_P(groupId, parentStructureId, start, end,
-			orderByComparator, true);
+	public List<DDMStructure> findByG_P(
+		long groupId, long parentStructureId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByG_P(
+			groupId, parentStructureId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -4305,38 +4490,41 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_P(long groupId, long parentStructureId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByG_P(
+		long groupId, long parentStructureId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_P;
-			finderArgs = new Object[] { groupId, parentStructureId };
+			finderArgs = new Object[] {groupId, parentStructureId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_P;
 			finderArgs = new Object[] {
-					groupId, parentStructureId,
-					
-					start, end, orderByComparator
-				};
+				groupId, parentStructureId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if ((groupId != ddmStructure.getGroupId()) ||
-							(parentStructureId != ddmStructure.getParentStructureId())) {
+						(parentStructureId !=
+							ddmStructure.getParentStructureId())) {
+
 						list = null;
 
 						break;
@@ -4349,8 +4537,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -4363,11 +4551,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4387,16 +4574,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(parentStructureId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -4426,11 +4613,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_P_First(long groupId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_P_First(
+			long groupId, long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_P_First(groupId,
-				parentStructureId, orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_P_First(
+			groupId, parentStructureId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -4460,10 +4649,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_P_First(long groupId, long parentStructureId,
+	public DDMStructure fetchByG_P_First(
+		long groupId, long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByG_P(groupId, parentStructureId, 0, 1,
-				orderByComparator);
+
+		List<DDMStructure> list = findByG_P(
+			groupId, parentStructureId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4482,11 +4673,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_P_Last(long groupId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_P_Last(
+			long groupId, long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_P_Last(groupId, parentStructureId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_P_Last(
+			groupId, parentStructureId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -4516,16 +4709,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_P_Last(long groupId, long parentStructureId,
+	public DDMStructure fetchByG_P_Last(
+		long groupId, long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByG_P(groupId, parentStructureId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByG_P(groupId, parentStructureId,
-				count - 1, count, orderByComparator);
+		List<DDMStructure> list = findByG_P(
+			groupId, parentStructureId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4545,10 +4740,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByG_P_PrevAndNext(long structureId, long groupId,
-		long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByG_P_PrevAndNext(
+			long structureId, long groupId, long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -4558,13 +4754,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByG_P_PrevAndNext(session, ddmStructure, groupId,
-					parentStructureId, orderByComparator, true);
+			array[0] = getByG_P_PrevAndNext(
+				session, ddmStructure, groupId, parentStructureId,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByG_P_PrevAndNext(session, ddmStructure, groupId,
-					parentStructureId, orderByComparator, false);
+			array[2] = getByG_P_PrevAndNext(
+				session, ddmStructure, groupId, parentStructureId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -4576,14 +4774,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByG_P_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long parentStructureId,
+	protected DDMStructure getByG_P_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -4597,7 +4797,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -4669,8 +4870,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -4693,10 +4895,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_P(long groupId,
-		long parentStructureId) {
-		return filterFindByG_P(groupId, parentStructureId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDMStructure> filterFindByG_P(
+		long groupId, long parentStructureId) {
+
+		return filterFindByG_P(
+			groupId, parentStructureId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -4713,8 +4917,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_P(long groupId,
-		long parentStructureId, int start, int end) {
+	public List<DDMStructure> filterFindByG_P(
+		long groupId, long parentStructureId, int start, int end) {
+
 		return filterFindByG_P(groupId, parentStructureId, start, end, null);
 	}
 
@@ -4733,19 +4938,20 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_P(long groupId,
-		long parentStructureId, int start, int end,
+	public List<DDMStructure> filterFindByG_P(
+		long groupId, long parentStructureId, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P(groupId, parentStructureId, start, end,
-				orderByComparator);
+			return findByG_P(
+				groupId, parentStructureId, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -4755,7 +4961,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_P_GROUPID_2);
@@ -4763,17 +4970,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -4785,9 +4993,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -4809,8 +5017,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			qPos.add(parentStructureId);
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -4831,13 +5039,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] filterFindByG_P_PrevAndNext(long structureId,
-		long groupId, long parentStructureId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] filterFindByG_P_PrevAndNext(
+			long structureId, long groupId, long parentStructureId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_PrevAndNext(structureId, groupId,
-				parentStructureId, orderByComparator);
+			return findByG_P_PrevAndNext(
+				structureId, groupId, parentStructureId, orderByComparator);
 		}
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -4849,13 +5058,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = filterGetByG_P_PrevAndNext(session, ddmStructure,
-					groupId, parentStructureId, orderByComparator, true);
+			array[0] = filterGetByG_P_PrevAndNext(
+				session, ddmStructure, groupId, parentStructureId,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = filterGetByG_P_PrevAndNext(session, ddmStructure,
-					groupId, parentStructureId, orderByComparator, false);
+			array[2] = filterGetByG_P_PrevAndNext(
+				session, ddmStructure, groupId, parentStructureId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -4867,14 +5078,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure filterGetByG_P_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long parentStructureId,
+	protected DDMStructure filterGetByG_P_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long parentStructureId,
 		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -4885,7 +5098,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_P_GROUPID_2);
@@ -4893,11 +5107,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -4905,12 +5121,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -4937,12 +5157,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -4972,9 +5194,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -4995,8 +5217,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -5019,8 +5242,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByG_P(long groupId, long parentStructureId) {
-		for (DDMStructure ddmStructure : findByG_P(groupId, parentStructureId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByG_P(
+					groupId, parentStructureId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -5036,7 +5262,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByG_P(long groupId, long parentStructureId) {
 		FinderPath finderPath = _finderPathCountByG_P;
 
-		Object[] finderArgs = new Object[] { groupId, parentStructureId };
+		Object[] finderArgs = new Object[] {groupId, parentStructureId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -5102,9 +5328,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		query.append(_FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -5113,8 +5339,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -5134,8 +5360,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_P_GROUPID_2 = "ddmStructure.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2 = "ddmStructure.parentStructureId = ?";
+	private static final String _FINDER_COLUMN_G_P_GROUPID_2 =
+		"ddmStructure.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_P_PARENTSTRUCTUREID_2 =
+		"ddmStructure.parentStructureId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_C;
 	private FinderPath _finderPathWithoutPaginationFindByG_C;
 	private FinderPath _finderPathCountByG_C;
@@ -5150,8 +5380,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByG_C(long groupId, long classNameId) {
-		return findByG_C(groupId, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_C(
+			groupId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -5168,8 +5398,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long groupId, long classNameId,
-		int start, int end) {
+	public List<DDMStructure> findByG_C(
+		long groupId, long classNameId, int start, int end) {
+
 		return findByG_C(groupId, classNameId, start, end, null);
 	}
 
@@ -5188,10 +5419,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long groupId, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_C(groupId, classNameId, start, end, orderByComparator,
-			true);
+	public List<DDMStructure> findByG_C(
+		long groupId, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByG_C(
+			groupId, classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5210,38 +5443,40 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long groupId, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByG_C(
+		long groupId, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C;
-			finderArgs = new Object[] { groupId, classNameId };
+			finderArgs = new Object[] {groupId, classNameId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C;
 			finderArgs = new Object[] {
-					groupId, classNameId,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if ((groupId != ddmStructure.getGroupId()) ||
-							(classNameId != ddmStructure.getClassNameId())) {
+						(classNameId != ddmStructure.getClassNameId())) {
+
 						list = null;
 
 						break;
@@ -5254,8 +5489,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -5268,11 +5503,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5292,16 +5526,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(classNameId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -5331,11 +5565,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_C_First(long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_C_First(
+			long groupId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_C_First(groupId, classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_C_First(
+			groupId, classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -5365,10 +5601,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_First(long groupId, long classNameId,
+	public DDMStructure fetchByG_C_First(
+		long groupId, long classNameId,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByG_C(groupId, classNameId, 0, 1,
-				orderByComparator);
+
+		List<DDMStructure> list = findByG_C(
+			groupId, classNameId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5387,11 +5625,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_C_Last(long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_C_Last(
+			long groupId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_C_Last(groupId, classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_C_Last(
+			groupId, classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -5421,16 +5661,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_Last(long groupId, long classNameId,
+	public DDMStructure fetchByG_C_Last(
+		long groupId, long classNameId,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByG_C(groupId, classNameId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByG_C(groupId, classNameId, count - 1,
-				count, orderByComparator);
+		List<DDMStructure> list = findByG_C(
+			groupId, classNameId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5450,9 +5692,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByG_C_PrevAndNext(long structureId, long groupId,
-		long classNameId, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByG_C_PrevAndNext(
+			long structureId, long groupId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -5462,13 +5706,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByG_C_PrevAndNext(session, ddmStructure, groupId,
-					classNameId, orderByComparator, true);
+			array[0] = getByG_C_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, orderByComparator,
+				true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByG_C_PrevAndNext(session, ddmStructure, groupId,
-					classNameId, orderByComparator, false);
+			array[2] = getByG_C_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -5480,14 +5726,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByG_C_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+	protected DDMStructure getByG_C_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long classNameId, OrderByComparator<DDMStructure> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -5501,7 +5749,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -5573,8 +5822,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -5598,8 +5848,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> filterFindByG_C(long groupId, long classNameId) {
-		return filterFindByG_C(groupId, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByG_C(
+			groupId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -5616,8 +5866,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C(long groupId, long classNameId,
-		int start, int end) {
+	public List<DDMStructure> filterFindByG_C(
+		long groupId, long classNameId, int start, int end) {
+
 		return filterFindByG_C(groupId, classNameId, start, end, null);
 	}
 
@@ -5636,17 +5887,20 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C(long groupId, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> filterFindByG_C(
+		long groupId, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C(groupId, classNameId, start, end, orderByComparator);
+			return findByG_C(
+				groupId, classNameId, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -5656,7 +5910,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_GROUPID_2);
@@ -5664,17 +5919,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -5686,9 +5942,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -5710,8 +5966,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			qPos.add(classNameId);
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -5732,13 +5988,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] filterFindByG_C_PrevAndNext(long structureId,
-		long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] filterFindByG_C_PrevAndNext(
+			long structureId, long groupId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_PrevAndNext(structureId, groupId, classNameId,
-				orderByComparator);
+			return findByG_C_PrevAndNext(
+				structureId, groupId, classNameId, orderByComparator);
 		}
 
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
@@ -5750,13 +6007,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = filterGetByG_C_PrevAndNext(session, ddmStructure,
-					groupId, classNameId, orderByComparator, true);
+			array[0] = filterGetByG_C_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, orderByComparator,
+				true);
 
 			array[1] = ddmStructure;
 
-			array[2] = filterGetByG_C_PrevAndNext(session, ddmStructure,
-					groupId, classNameId, orderByComparator, false);
+			array[2] = filterGetByG_C_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -5768,14 +6027,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure filterGetByG_C_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+	protected DDMStructure filterGetByG_C_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long classNameId, OrderByComparator<DDMStructure> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -5786,7 +6047,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_GROUPID_2);
@@ -5794,11 +6056,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -5806,12 +6070,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -5838,12 +6106,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -5873,9 +6143,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -5896,8 +6166,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -5920,9 +6191,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C(long[] groupIds, long classNameId) {
-		return filterFindByG_C(groupIds, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDMStructure> filterFindByG_C(
+		long[] groupIds, long classNameId) {
+
+		return filterFindByG_C(
+			groupIds, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -5939,8 +6212,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C(long[] groupIds,
-		long classNameId, int start, int end) {
+	public List<DDMStructure> filterFindByG_C(
+		long[] groupIds, long classNameId, int start, int end) {
+
 		return filterFindByG_C(groupIds, classNameId, start, end, null);
 	}
 
@@ -5959,12 +6233,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C(long[] groupIds,
-		long classNameId, int start, int end,
+	public List<DDMStructure> filterFindByG_C(
+		long[] groupIds, long classNameId, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
-			return findByG_C(groupIds, classNameId, start, end,
-				orderByComparator);
+			return findByG_C(
+				groupIds, classNameId, start, end, orderByComparator);
 		}
 
 		if (groupIds == null) {
@@ -5982,7 +6257,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		if (groupIds.length > 0) {
@@ -6001,21 +6277,23 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -6027,9 +6305,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -6049,8 +6327,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			qPos.add(classNameId);
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -6073,8 +6351,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByG_C(long[] groupIds, long classNameId) {
-		return findByG_C(groupIds, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_C(
+			groupIds, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -6091,8 +6369,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long[] groupIds, long classNameId,
-		int start, int end) {
+	public List<DDMStructure> findByG_C(
+		long[] groupIds, long classNameId, int start, int end) {
+
 		return findByG_C(groupIds, classNameId, start, end, null);
 	}
 
@@ -6111,10 +6390,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long[] groupIds, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_C(groupIds, classNameId, start, end, orderByComparator,
-			true);
+	public List<DDMStructure> findByG_C(
+		long[] groupIds, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByG_C(
+			groupIds, classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -6133,9 +6414,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C(long[] groupIds, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByG_C(
+		long[] groupIds, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (groupIds == null) {
 			groupIds = new long[0];
 		}
@@ -6146,36 +6429,38 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (groupIds.length == 1) {
-			return findByG_C(groupIds[0], classNameId, start, end,
-				orderByComparator);
+			return findByG_C(
+				groupIds[0], classNameId, start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderArgs = new Object[] { StringUtil.merge(groupIds), classNameId };
+			finderArgs = new Object[] {StringUtil.merge(groupIds), classNameId};
 		}
 		else {
 			finderArgs = new Object[] {
-					StringUtil.merge(groupIds), classNameId,
-					
-					start, end, orderByComparator
-				};
+				StringUtil.merge(groupIds), classNameId, start, end,
+				orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(_finderPathWithPaginationFindByG_C,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_C, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
-					if (!ArrayUtil.contains(groupIds, ddmStructure.getGroupId()) ||
-							(classNameId != ddmStructure.getClassNameId())) {
+					if (!ArrayUtil.contains(
+							groupIds, ddmStructure.getGroupId()) ||
+						(classNameId != ddmStructure.getClassNameId())) {
+
 						list = null;
 
 						break;
@@ -6205,15 +6490,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6231,26 +6516,26 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(classNameId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_C,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_C, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_C,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -6270,8 +6555,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByG_C(long groupId, long classNameId) {
-		for (DDMStructure ddmStructure : findByG_C(groupId, classNameId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByG_C(
+					groupId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -6287,7 +6575,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByG_C(long groupId, long classNameId) {
 		FinderPath finderPath = _finderPathCountByG_C;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId };
+		Object[] finderArgs = new Object[] {groupId, classNameId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -6351,11 +6639,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(groupIds), classNameId
-			};
+			StringUtil.merge(groupIds), classNameId
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_C,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_C, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -6378,8 +6666,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -6396,12 +6685,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_C,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_C, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_C,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -6434,9 +6723,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -6445,8 +6734,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -6508,12 +6797,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		query.append(_FINDER_COLUMN_G_C_CLASSNAMEID_2);
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -6522,8 +6812,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -6541,9 +6831,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_GROUPID_2 = "ddmStructure.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_GROUPID_7 = "ddmStructure.groupId IN (";
-	private static final String _FINDER_COLUMN_G_C_CLASSNAMEID_2 = "ddmStructure.classNameId = ?";
+	private static final String _FINDER_COLUMN_G_C_GROUPID_2 =
+		"ddmStructure.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_GROUPID_7 =
+		"ddmStructure.groupId IN (";
+
+	private static final String _FINDER_COLUMN_G_C_CLASSNAMEID_2 =
+		"ddmStructure.classNameId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_C;
 	private FinderPath _finderPathWithoutPaginationFindByC_C;
 	private FinderPath _finderPathCountByC_C;
@@ -6557,8 +6853,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public List<DDMStructure> findByC_C(long companyId, long classNameId) {
-		return findByC_C(companyId, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByC_C(
+			companyId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -6575,8 +6871,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByC_C(long companyId, long classNameId,
-		int start, int end) {
+	public List<DDMStructure> findByC_C(
+		long companyId, long classNameId, int start, int end) {
+
 		return findByC_C(companyId, classNameId, start, end, null);
 	}
 
@@ -6595,10 +6892,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByC_C(long companyId, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
-		return findByC_C(companyId, classNameId, start, end, orderByComparator,
-			true);
+	public List<DDMStructure> findByC_C(
+		long companyId, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByC_C(
+			companyId, classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -6617,38 +6916,40 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByC_C(long companyId, long classNameId,
-		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByC_C(
+		long companyId, long classNameId, int start, int end,
+		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_C;
-			finderArgs = new Object[] { companyId, classNameId };
+			finderArgs = new Object[] {companyId, classNameId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
-					companyId, classNameId,
-					
-					start, end, orderByComparator
-				};
+				companyId, classNameId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if ((companyId != ddmStructure.getCompanyId()) ||
-							(classNameId != ddmStructure.getClassNameId())) {
+						(classNameId != ddmStructure.getClassNameId())) {
+
 						list = null;
 
 						break;
@@ -6661,8 +6962,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -6675,11 +6976,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6699,16 +6999,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(classNameId);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -6738,11 +7038,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByC_C_First(long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByC_C_First(
+			long companyId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByC_C_First(companyId, classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByC_C_First(
+			companyId, classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -6772,10 +7074,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByC_C_First(long companyId, long classNameId,
+	public DDMStructure fetchByC_C_First(
+		long companyId, long classNameId,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByC_C(companyId, classNameId, 0, 1,
-				orderByComparator);
+
+		List<DDMStructure> list = findByC_C(
+			companyId, classNameId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -6794,11 +7098,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByC_C_Last(long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByC_C_Last(
+			long companyId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByC_C_Last(companyId, classNameId,
-				orderByComparator);
+
+		DDMStructure ddmStructure = fetchByC_C_Last(
+			companyId, classNameId, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -6828,16 +7134,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByC_C_Last(long companyId, long classNameId,
+	public DDMStructure fetchByC_C_Last(
+		long companyId, long classNameId,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByC_C(companyId, classNameId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByC_C(companyId, classNameId, count - 1,
-				count, orderByComparator);
+		List<DDMStructure> list = findByC_C(
+			companyId, classNameId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -6857,10 +7165,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByC_C_PrevAndNext(long structureId,
-		long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByC_C_PrevAndNext(
+			long structureId, long companyId, long classNameId,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = findByPrimaryKey(structureId);
 
 		Session session = null;
@@ -6870,13 +7179,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByC_C_PrevAndNext(session, ddmStructure, companyId,
-					classNameId, orderByComparator, true);
+			array[0] = getByC_C_PrevAndNext(
+				session, ddmStructure, companyId, classNameId,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByC_C_PrevAndNext(session, ddmStructure, companyId,
-					classNameId, orderByComparator, false);
+			array[2] = getByC_C_PrevAndNext(
+				session, ddmStructure, companyId, classNameId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -6888,14 +7199,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByC_C_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long companyId, long classNameId,
-		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+	protected DDMStructure getByC_C_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long companyId,
+		long classNameId, OrderByComparator<DDMStructure> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -6909,7 +7222,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		query.append(_FINDER_COLUMN_C_C_CLASSNAMEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -6981,8 +7295,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -7005,8 +7320,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByC_C(long companyId, long classNameId) {
-		for (DDMStructure ddmStructure : findByC_C(companyId, classNameId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByC_C(
+					companyId, classNameId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -7022,7 +7340,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public int countByC_C(long companyId, long classNameId) {
 		FinderPath finderPath = _finderPathCountByC_C;
 
-		Object[] finderArgs = new Object[] { companyId, classNameId };
+		Object[] finderArgs = new Object[] {companyId, classNameId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -7067,8 +7385,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_C_COMPANYID_2 = "ddmStructure.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "ddmStructure.classNameId = ?";
+	private static final String _FINDER_COLUMN_C_C_COMPANYID_2 =
+		"ddmStructure.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 =
+		"ddmStructure.classNameId = ?";
+
 	private FinderPath _finderPathFetchByG_C_S;
 	private FinderPath _finderPathCountByG_C_S;
 
@@ -7082,10 +7404,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_C_S(long groupId, long classNameId,
-		String structureKey) throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_C_S(groupId, classNameId,
-				structureKey);
+	public DDMStructure findByG_C_S(
+			long groupId, long classNameId, String structureKey)
+		throws NoSuchStructureException {
+
+		DDMStructure ddmStructure = fetchByG_C_S(
+			groupId, classNameId, structureKey);
 
 		if (ddmStructure == null) {
 			StringBundler msg = new StringBundler(8);
@@ -7122,8 +7446,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_S(long groupId, long classNameId,
-		String structureKey) {
+	public DDMStructure fetchByG_C_S(
+		long groupId, long classNameId, String structureKey) {
+
 		return fetchByG_C_S(groupId, classNameId, structureKey, true);
 	}
 
@@ -7137,25 +7462,28 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_S(long groupId, long classNameId,
-		String structureKey, boolean retrieveFromCache) {
+	public DDMStructure fetchByG_C_S(
+		long groupId, long classNameId, String structureKey,
+		boolean retrieveFromCache) {
+
 		structureKey = Objects.toString(structureKey, "");
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, structureKey };
+		Object[] finderArgs = new Object[] {groupId, classNameId, structureKey};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByG_C_S, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByG_C_S, finderArgs, this);
 		}
 
 		if (result instanceof DDMStructure) {
 			DDMStructure ddmStructure = (DDMStructure)result;
 
 			if ((groupId != ddmStructure.getGroupId()) ||
-					(classNameId != ddmStructure.getClassNameId()) ||
-					!Objects.equals(structureKey, ddmStructure.getStructureKey())) {
+				(classNameId != ddmStructure.getClassNameId()) ||
+				!Objects.equals(structureKey, ddmStructure.getStructureKey())) {
+
 				result = null;
 			}
 		}
@@ -7202,8 +7530,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				List<DDMStructure> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByG_C_S, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByG_C_S, finderArgs, list);
 				}
 				else {
 					DDMStructure ddmStructure = list.get(0);
@@ -7240,10 +7568,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ddm structure that was removed
 	 */
 	@Override
-	public DDMStructure removeByG_C_S(long groupId, long classNameId,
-		String structureKey) throws NoSuchStructureException {
-		DDMStructure ddmStructure = findByG_C_S(groupId, classNameId,
-				structureKey);
+	public DDMStructure removeByG_C_S(
+			long groupId, long classNameId, String structureKey)
+		throws NoSuchStructureException {
+
+		DDMStructure ddmStructure = findByG_C_S(
+			groupId, classNameId, structureKey);
 
 		return remove(ddmStructure);
 	}
@@ -7257,12 +7587,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures
 	 */
 	@Override
-	public int countByG_C_S(long groupId, long classNameId, String structureKey) {
+	public int countByG_C_S(
+		long groupId, long classNameId, String structureKey) {
+
 		structureKey = Objects.toString(structureKey, "");
 
 		FinderPath finderPath = _finderPathCountByG_C_S;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, structureKey };
+		Object[] finderArgs = new Object[] {groupId, classNameId, structureKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -7322,10 +7654,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_C_S_GROUPID_2 = "ddmStructure.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_S_CLASSNAMEID_2 = "ddmStructure.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_S_STRUCTUREKEY_2 = "ddmStructure.structureKey = ?";
-	private static final String _FINDER_COLUMN_G_C_S_STRUCTUREKEY_3 = "(ddmStructure.structureKey IS NULL OR ddmStructure.structureKey = '')";
+	private static final String _FINDER_COLUMN_G_C_S_GROUPID_2 =
+		"ddmStructure.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_S_CLASSNAMEID_2 =
+		"ddmStructure.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_S_STRUCTUREKEY_2 =
+		"ddmStructure.structureKey = ?";
+
+	private static final String _FINDER_COLUMN_G_C_S_STRUCTUREKEY_3 =
+		"(ddmStructure.structureKey IS NULL OR ddmStructure.structureKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_N_D;
 	private FinderPath _finderPathWithoutPaginationFindByG_N_D;
 	private FinderPath _finderPathCountByG_N_D;
@@ -7339,10 +7679,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_N_D(long groupId, String name,
-		String description) {
-		return findByG_N_D(groupId, name, description, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDMStructure> findByG_N_D(
+		long groupId, String name, String description) {
+
+		return findByG_N_D(
+			groupId, name, description, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -7360,8 +7702,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_N_D(long groupId, String name,
-		String description, int start, int end) {
+	public List<DDMStructure> findByG_N_D(
+		long groupId, String name, String description, int start, int end) {
+
 		return findByG_N_D(groupId, name, description, start, end, null);
 	}
 
@@ -7381,11 +7724,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_N_D(long groupId, String name,
-		String description, int start, int end,
+	public List<DDMStructure> findByG_N_D(
+		long groupId, String name, String description, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_N_D(groupId, name, description, start, end,
-			orderByComparator, true);
+
+		return findByG_N_D(
+			groupId, name, description, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -7405,10 +7749,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_N_D(long groupId, String name,
-		String description, int start, int end,
+	public List<DDMStructure> findByG_N_D(
+		long groupId, String name, String description, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 		description = Objects.toString(description, "");
 
@@ -7417,31 +7762,31 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_N_D;
-			finderArgs = new Object[] { groupId, name, description };
+			finderArgs = new Object[] {groupId, name, description};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_N_D;
 			finderArgs = new Object[] {
-					groupId, name, description,
-					
-					start, end, orderByComparator
-				};
+				groupId, name, description, start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if ((groupId != ddmStructure.getGroupId()) ||
-							!name.equals(ddmStructure.getName()) ||
-							!description.equals(ddmStructure.getDescription())) {
+						!name.equals(ddmStructure.getName()) ||
+						!description.equals(ddmStructure.getDescription())) {
+
 						list = null;
 
 						break;
@@ -7454,8 +7799,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -7488,11 +7833,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -7518,16 +7862,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				}
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -7558,11 +7902,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_N_D_First(long groupId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_N_D_First(
+			long groupId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_N_D_First(groupId, name,
-				description, orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_N_D_First(
+			groupId, name, description, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -7596,10 +7942,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_N_D_First(long groupId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByG_N_D(groupId, name, description, 0, 1,
-				orderByComparator);
+	public DDMStructure fetchByG_N_D_First(
+		long groupId, String name, String description,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
+		List<DDMStructure> list = findByG_N_D(
+			groupId, name, description, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -7619,11 +7967,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_N_D_Last(long groupId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_N_D_Last(
+			long groupId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_N_D_Last(groupId, name,
-				description, orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_N_D_Last(
+			groupId, name, description, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -7657,16 +8007,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_N_D_Last(long groupId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator) {
+	public DDMStructure fetchByG_N_D_Last(
+		long groupId, String name, String description,
+		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByG_N_D(groupId, name, description);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByG_N_D(groupId, name, description,
-				count - 1, count, orderByComparator);
+		List<DDMStructure> list = findByG_N_D(
+			groupId, name, description, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -7687,10 +8039,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByG_N_D_PrevAndNext(long structureId,
-		long groupId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByG_N_D_PrevAndNext(
+			long structureId, long groupId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		name = Objects.toString(name, "");
 		description = Objects.toString(description, "");
 
@@ -7703,13 +8056,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByG_N_D_PrevAndNext(session, ddmStructure, groupId,
-					name, description, orderByComparator, true);
+			array[0] = getByG_N_D_PrevAndNext(
+				session, ddmStructure, groupId, name, description,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByG_N_D_PrevAndNext(session, ddmStructure, groupId,
-					name, description, orderByComparator, false);
+			array[2] = getByG_N_D_PrevAndNext(
+				session, ddmStructure, groupId, name, description,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -7721,15 +8076,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByG_N_D_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, String name,
+	protected DDMStructure getByG_N_D_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId, String name,
 		String description, OrderByComparator<DDMStructure> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -7763,7 +8119,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -7841,8 +8198,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -7866,10 +8224,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_N_D(long groupId, String name,
-		String description) {
-		return filterFindByG_N_D(groupId, name, description, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDMStructure> filterFindByG_N_D(
+		long groupId, String name, String description) {
+
+		return filterFindByG_N_D(
+			groupId, name, description, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -7887,8 +8247,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_N_D(long groupId, String name,
-		String description, int start, int end) {
+	public List<DDMStructure> filterFindByG_N_D(
+		long groupId, String name, String description, int start, int end) {
+
 		return filterFindByG_N_D(groupId, name, description, start, end, null);
 	}
 
@@ -7908,12 +8269,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_N_D(long groupId, String name,
-		String description, int start, int end,
+	public List<DDMStructure> filterFindByG_N_D(
+		long groupId, String name, String description, int start, int end,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_N_D(groupId, name, description, start, end,
-				orderByComparator);
+			return findByG_N_D(
+				groupId, name, description, start, end, orderByComparator);
 		}
 
 		name = Objects.toString(name, "");
@@ -7922,8 +8284,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -7933,7 +8295,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_N_D_GROUPID_2);
@@ -7961,17 +8324,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -7983,9 +8347,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -8013,8 +8377,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(description);
 			}
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -8036,13 +8400,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] filterFindByG_N_D_PrevAndNext(long structureId,
-		long groupId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] filterFindByG_N_D_PrevAndNext(
+			long structureId, long groupId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_N_D_PrevAndNext(structureId, groupId, name,
-				description, orderByComparator);
+			return findByG_N_D_PrevAndNext(
+				structureId, groupId, name, description, orderByComparator);
 		}
 
 		name = Objects.toString(name, "");
@@ -8057,13 +8422,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = filterGetByG_N_D_PrevAndNext(session, ddmStructure,
-					groupId, name, description, orderByComparator, true);
+			array[0] = filterGetByG_N_D_PrevAndNext(
+				session, ddmStructure, groupId, name, description,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = filterGetByG_N_D_PrevAndNext(session, ddmStructure,
-					groupId, name, description, orderByComparator, false);
+			array[2] = filterGetByG_N_D_PrevAndNext(
+				session, ddmStructure, groupId, name, description,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -8075,15 +8442,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure filterGetByG_N_D_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, String name,
+	protected DDMStructure filterGetByG_N_D_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId, String name,
 		String description, OrderByComparator<DDMStructure> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -8094,7 +8462,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_N_D_GROUPID_2);
@@ -8122,11 +8491,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -8134,12 +8505,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -8166,12 +8541,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -8201,9 +8578,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -8230,8 +8607,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -8255,8 +8633,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void removeByG_N_D(long groupId, String name, String description) {
-		for (DDMStructure ddmStructure : findByG_N_D(groupId, name,
-				description, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMStructure ddmStructure :
+				findByG_N_D(
+					groupId, name, description, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -8276,7 +8657,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		FinderPath finderPath = _finderPathCountByG_N_D;
 
-		Object[] finderArgs = new Object[] { groupId, name, description };
+		Object[] finderArgs = new Object[] {groupId, name, description};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -8356,7 +8737,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_N_D(long groupId, String name, String description) {
+	public int filterCountByG_N_D(
+		long groupId, String name, String description) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_N_D(groupId, name, description);
 		}
@@ -8392,9 +8775,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_N_D_DESCRIPTION_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -8403,8 +8786,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -8430,11 +8813,21 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_N_D_GROUPID_2 = "ddmStructure.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_N_D_NAME_2 = "ddmStructure.name = ? AND ";
-	private static final String _FINDER_COLUMN_G_N_D_NAME_3 = "(ddmStructure.name IS NULL OR ddmStructure.name = '') AND ";
-	private static final String _FINDER_COLUMN_G_N_D_DESCRIPTION_2 = "CAST_CLOB_TEXT(ddmStructure.description) = ?";
-	private static final String _FINDER_COLUMN_G_N_D_DESCRIPTION_3 = "(ddmStructure.description IS NULL OR CAST_CLOB_TEXT(ddmStructure.description) = '')";
+	private static final String _FINDER_COLUMN_G_N_D_GROUPID_2 =
+		"ddmStructure.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_N_D_NAME_2 =
+		"ddmStructure.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_N_D_NAME_3 =
+		"(ddmStructure.name IS NULL OR ddmStructure.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_N_D_DESCRIPTION_2 =
+		"CAST_CLOB_TEXT(ddmStructure.description) = ?";
+
+	private static final String _FINDER_COLUMN_G_N_D_DESCRIPTION_3 =
+		"(ddmStructure.description IS NULL OR CAST_CLOB_TEXT(ddmStructure.description) = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_C_N_D;
 	private FinderPath _finderPathWithoutPaginationFindByG_C_N_D;
 	private FinderPath _finderPathCountByG_C_N_D;
@@ -8450,10 +8843,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long groupId, long classNameId,
-		String name, String description) {
-		return findByG_C_N_D(groupId, classNameId, name, description,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<DDMStructure> findByG_C_N_D(
+		long groupId, long classNameId, String name, String description) {
+
+		return findByG_C_N_D(
+			groupId, classNameId, name, description, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -8472,10 +8867,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long groupId, long classNameId,
-		String name, String description, int start, int end) {
-		return findByG_C_N_D(groupId, classNameId, name, description, start,
-			end, null);
+	public List<DDMStructure> findByG_C_N_D(
+		long groupId, long classNameId, String name, String description,
+		int start, int end) {
+
+		return findByG_C_N_D(
+			groupId, classNameId, name, description, start, end, null);
 	}
 
 	/**
@@ -8495,11 +8892,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long groupId, long classNameId,
-		String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_C_N_D(groupId, classNameId, name, description, start,
-			end, orderByComparator, true);
+	public List<DDMStructure> findByG_C_N_D(
+		long groupId, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByG_C_N_D(
+			groupId, classNameId, name, description, start, end,
+			orderByComparator, true);
 	}
 
 	/**
@@ -8520,10 +8919,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long groupId, long classNameId,
-		String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByG_C_N_D(
+		long groupId, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 		description = Objects.toString(description, "");
 
@@ -8532,32 +8932,33 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C_N_D;
-			finderArgs = new Object[] { groupId, classNameId, name, description };
+			finderArgs = new Object[] {groupId, classNameId, name, description};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C_N_D;
 			finderArgs = new Object[] {
-					groupId, classNameId, name, description,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, name, description, start, end,
+				orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
 					if ((groupId != ddmStructure.getGroupId()) ||
-							(classNameId != ddmStructure.getClassNameId()) ||
-							!name.equals(ddmStructure.getName()) ||
-							!description.equals(ddmStructure.getDescription())) {
+						(classNameId != ddmStructure.getClassNameId()) ||
+						!name.equals(ddmStructure.getName()) ||
+						!description.equals(ddmStructure.getDescription())) {
+
 						list = null;
 
 						break;
@@ -8570,8 +8971,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(6 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					6 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(6);
@@ -8606,11 +9007,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -8638,16 +9038,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				}
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -8679,12 +9079,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_C_N_D_First(long groupId, long classNameId,
-		String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_C_N_D_First(
+			long groupId, long classNameId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_C_N_D_First(groupId, classNameId,
-				name, description, orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_C_N_D_First(
+			groupId, classNameId, name, description, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -8722,11 +9123,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the first matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_N_D_First(long groupId, long classNameId,
-		String name, String description,
+	public DDMStructure fetchByG_C_N_D_First(
+		long groupId, long classNameId, String name, String description,
 		OrderByComparator<DDMStructure> orderByComparator) {
-		List<DDMStructure> list = findByG_C_N_D(groupId, classNameId, name,
-				description, 0, 1, orderByComparator);
+
+		List<DDMStructure> list = findByG_C_N_D(
+			groupId, classNameId, name, description, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8747,12 +9149,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure findByG_C_N_D_Last(long groupId, long classNameId,
-		String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure findByG_C_N_D_Last(
+			long groupId, long classNameId, String name, String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
-		DDMStructure ddmStructure = fetchByG_C_N_D_Last(groupId, classNameId,
-				name, description, orderByComparator);
+
+		DDMStructure ddmStructure = fetchByG_C_N_D_Last(
+			groupId, classNameId, name, description, orderByComparator);
 
 		if (ddmStructure != null) {
 			return ddmStructure;
@@ -8790,17 +9193,19 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the last matching ddm structure, or <code>null</code> if a matching ddm structure could not be found
 	 */
 	@Override
-	public DDMStructure fetchByG_C_N_D_Last(long groupId, long classNameId,
-		String name, String description,
+	public DDMStructure fetchByG_C_N_D_Last(
+		long groupId, long classNameId, String name, String description,
 		OrderByComparator<DDMStructure> orderByComparator) {
+
 		int count = countByG_C_N_D(groupId, classNameId, name, description);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMStructure> list = findByG_C_N_D(groupId, classNameId, name,
-				description, count - 1, count, orderByComparator);
+		List<DDMStructure> list = findByG_C_N_D(
+			groupId, classNameId, name, description, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8822,10 +9227,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] findByG_C_N_D_PrevAndNext(long structureId,
-		long groupId, long classNameId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] findByG_C_N_D_PrevAndNext(
+			long structureId, long groupId, long classNameId, String name,
+			String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		name = Objects.toString(name, "");
 		description = Objects.toString(description, "");
 
@@ -8838,13 +9245,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = getByG_C_N_D_PrevAndNext(session, ddmStructure, groupId,
-					classNameId, name, description, orderByComparator, true);
+			array[0] = getByG_C_N_D_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, name, description,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = getByG_C_N_D_PrevAndNext(session, ddmStructure, groupId,
-					classNameId, name, description, orderByComparator, false);
+			array[2] = getByG_C_N_D_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, name, description,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -8856,15 +9265,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure getByG_C_N_D_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long classNameId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator,
-		boolean previous) {
+	protected DDMStructure getByG_C_N_D_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long classNameId, String name, String description,
+		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -8900,7 +9310,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -8980,8 +9391,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -9006,10 +9418,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long groupId,
-		long classNameId, String name, String description) {
-		return filterFindByG_C_N_D(groupId, classNameId, name, description,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long groupId, long classNameId, String name, String description) {
+
+		return filterFindByG_C_N_D(
+			groupId, classNameId, name, description, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -9028,10 +9442,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long groupId,
-		long classNameId, String name, String description, int start, int end) {
-		return filterFindByG_C_N_D(groupId, classNameId, name, description,
-			start, end, null);
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long groupId, long classNameId, String name, String description,
+		int start, int end) {
+
+		return filterFindByG_C_N_D(
+			groupId, classNameId, name, description, start, end, null);
 	}
 
 	/**
@@ -9051,12 +9467,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long groupId,
-		long classNameId, String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long groupId, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_N_D(groupId, classNameId, name, description,
-				start, end, orderByComparator);
+			return findByG_C_N_D(
+				groupId, classNameId, name, description, start, end,
+				orderByComparator);
 		}
 
 		name = Objects.toString(name, "");
@@ -9065,8 +9483,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(7);
@@ -9076,7 +9494,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_N_D_GROUPID_2);
@@ -9106,17 +9525,18 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -9128,9 +9548,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -9160,8 +9580,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(description);
 			}
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -9184,13 +9604,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @throws NoSuchStructureException if a ddm structure with the primary key could not be found
 	 */
 	@Override
-	public DDMStructure[] filterFindByG_C_N_D_PrevAndNext(long structureId,
-		long groupId, long classNameId, String name, String description,
-		OrderByComparator<DDMStructure> orderByComparator)
+	public DDMStructure[] filterFindByG_C_N_D_PrevAndNext(
+			long structureId, long groupId, long classNameId, String name,
+			String description,
+			OrderByComparator<DDMStructure> orderByComparator)
 		throws NoSuchStructureException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_N_D_PrevAndNext(structureId, groupId, classNameId,
-				name, description, orderByComparator);
+			return findByG_C_N_D_PrevAndNext(
+				structureId, groupId, classNameId, name, description,
+				orderByComparator);
 		}
 
 		name = Objects.toString(name, "");
@@ -9205,15 +9628,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			DDMStructure[] array = new DDMStructureImpl[3];
 
-			array[0] = filterGetByG_C_N_D_PrevAndNext(session, ddmStructure,
-					groupId, classNameId, name, description, orderByComparator,
-					true);
+			array[0] = filterGetByG_C_N_D_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, name, description,
+				orderByComparator, true);
 
 			array[1] = ddmStructure;
 
-			array[2] = filterGetByG_C_N_D_PrevAndNext(session, ddmStructure,
-					groupId, classNameId, name, description, orderByComparator,
-					false);
+			array[2] = filterGetByG_C_N_D_PrevAndNext(
+				session, ddmStructure, groupId, classNameId, name, description,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -9225,15 +9648,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	protected DDMStructure filterGetByG_C_N_D_PrevAndNext(Session session,
-		DDMStructure ddmStructure, long groupId, long classNameId, String name,
-		String description, OrderByComparator<DDMStructure> orderByComparator,
-		boolean previous) {
+	protected DDMStructure filterGetByG_C_N_D_PrevAndNext(
+		Session session, DDMStructure ddmStructure, long groupId,
+		long classNameId, String name, String description,
+		OrderByComparator<DDMStructure> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(8 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				8 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -9244,7 +9668,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_N_D_GROUPID_2);
@@ -9274,11 +9699,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -9286,12 +9713,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -9318,12 +9749,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -9353,9 +9786,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -9384,8 +9817,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmStructure)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmStructure)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -9410,10 +9844,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long[] groupIds,
-		long classNameId, String name, String description) {
-		return filterFindByG_C_N_D(groupIds, classNameId, name, description,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description) {
+
+		return filterFindByG_C_N_D(
+			groupIds, classNameId, name, description, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -9432,10 +9868,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long[] groupIds,
-		long classNameId, String name, String description, int start, int end) {
-		return filterFindByG_C_N_D(groupIds, classNameId, name, description,
-			start, end, null);
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description,
+		int start, int end) {
+
+		return filterFindByG_C_N_D(
+			groupIds, classNameId, name, description, start, end, null);
 	}
 
 	/**
@@ -9455,12 +9893,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public List<DDMStructure> filterFindByG_C_N_D(long[] groupIds,
-		long classNameId, String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> filterFindByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
-			return findByG_C_N_D(groupIds, classNameId, name, description,
-				start, end, orderByComparator);
+			return findByG_C_N_D(
+				groupIds, classNameId, name, description, start, end,
+				orderByComparator);
 		}
 
 		if (groupIds == null) {
@@ -9481,7 +9921,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		if (groupIds.length > 0) {
@@ -9522,21 +9963,23 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_C_N_D_DESCRIPTION_2);
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -9548,9 +9991,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -9578,8 +10021,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				qPos.add(description);
 			}
 
-			return (List<DDMStructure>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<DDMStructure>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -9603,10 +10046,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long[] groupIds, long classNameId,
-		String name, String description) {
-		return findByG_C_N_D(groupIds, classNameId, name, description,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<DDMStructure> findByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description) {
+
+		return findByG_C_N_D(
+			groupIds, classNameId, name, description, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -9625,10 +10070,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long[] groupIds, long classNameId,
-		String name, String description, int start, int end) {
-		return findByG_C_N_D(groupIds, classNameId, name, description, start,
-			end, null);
+	public List<DDMStructure> findByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description,
+		int start, int end) {
+
+		return findByG_C_N_D(
+			groupIds, classNameId, name, description, start, end, null);
 	}
 
 	/**
@@ -9648,11 +10095,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long[] groupIds, long classNameId,
-		String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator) {
-		return findByG_C_N_D(groupIds, classNameId, name, description, start,
-			end, orderByComparator, true);
+	public List<DDMStructure> findByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+
+		return findByG_C_N_D(
+			groupIds, classNameId, name, description, start, end,
+			orderByComparator, true);
 	}
 
 	/**
@@ -9673,10 +10122,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of matching ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findByG_C_N_D(long[] groupIds, long classNameId,
-		String name, String description, int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description,
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (groupIds == null) {
 			groupIds = new long[0];
 		}
@@ -9690,40 +10140,43 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		description = Objects.toString(description, "");
 
 		if (groupIds.length == 1) {
-			return findByG_C_N_D(groupIds[0], classNameId, name, description,
-				start, end, orderByComparator);
+			return findByG_C_N_D(
+				groupIds[0], classNameId, name, description, start, end,
+				orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderArgs = new Object[] {
-					StringUtil.merge(groupIds), classNameId, name, description
-				};
+				StringUtil.merge(groupIds), classNameId, name, description
+			};
 		}
 		else {
 			finderArgs = new Object[] {
-					StringUtil.merge(groupIds), classNameId, name, description,
-					
-					start, end, orderByComparator
-				};
+				StringUtil.merge(groupIds), classNameId, name, description,
+				start, end, orderByComparator
+			};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(_finderPathWithPaginationFindByG_C_N_D,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_C_N_D, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMStructure ddmStructure : list) {
-					if (!ArrayUtil.contains(groupIds, ddmStructure.getGroupId()) ||
-							(classNameId != ddmStructure.getClassNameId()) ||
-							!name.equals(ddmStructure.getName()) ||
-							!description.equals(ddmStructure.getDescription())) {
+					if (!ArrayUtil.contains(
+							groupIds, ddmStructure.getGroupId()) ||
+						(classNameId != ddmStructure.getClassNameId()) ||
+						!name.equals(ddmStructure.getName()) ||
+						!description.equals(ddmStructure.getDescription())) {
+
 						list = null;
 
 						break;
@@ -9775,15 +10228,15 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				query.append(_FINDER_COLUMN_G_C_N_D_DESCRIPTION_2);
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMStructureModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -9809,26 +10262,26 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				}
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_C_N_D,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_C_N_D, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_C_N_D,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_C_N_D, finderArgs);
 
 				throw processException(e);
 			}
@@ -9849,10 +10302,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @param description the description
 	 */
 	@Override
-	public void removeByG_C_N_D(long groupId, long classNameId, String name,
-		String description) {
-		for (DDMStructure ddmStructure : findByG_C_N_D(groupId, classNameId,
-				name, description, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+	public void removeByG_C_N_D(
+		long groupId, long classNameId, String name, String description) {
+
+		for (DDMStructure ddmStructure :
+				findByG_C_N_D(
+					groupId, classNameId, name, description, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddmStructure);
 		}
 	}
@@ -9867,16 +10324,17 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures
 	 */
 	@Override
-	public int countByG_C_N_D(long groupId, long classNameId, String name,
-		String description) {
+	public int countByG_C_N_D(
+		long groupId, long classNameId, String name, String description) {
+
 		name = Objects.toString(name, "");
 		description = Objects.toString(description, "");
 
 		FinderPath finderPath = _finderPathCountByG_C_N_D;
 
 		Object[] finderArgs = new Object[] {
-				groupId, classNameId, name, description
-			};
+			groupId, classNameId, name, description
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -9961,8 +10419,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures
 	 */
 	@Override
-	public int countByG_C_N_D(long[] groupIds, long classNameId, String name,
-		String description) {
+	public int countByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description) {
+
 		if (groupIds == null) {
 			groupIds = new long[0];
 		}
@@ -9976,11 +10435,11 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		description = Objects.toString(description, "");
 
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(groupIds), classNameId, name, description
-			};
+			StringUtil.merge(groupIds), classNameId, name, description
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_C_N_D,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_C_N_D, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -10025,8 +10484,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				query.append(_FINDER_COLUMN_G_C_N_D_DESCRIPTION_2);
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -10051,12 +10511,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_C_N_D,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_C_N_D, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_C_N_D,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_C_N_D, finderArgs);
 
 				throw processException(e);
 			}
@@ -10078,8 +10538,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_N_D(long groupId, long classNameId,
-		String name, String description) {
+	public int filterCountByG_C_N_D(
+		long groupId, long classNameId, String name, String description) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_C_N_D(groupId, classNameId, name, description);
 		}
@@ -10117,9 +10578,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_C_N_D_DESCRIPTION_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -10128,8 +10589,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -10167,8 +10628,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the number of matching ddm structures that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_N_D(long[] groupIds, long classNameId,
-		String name, String description) {
+	public int filterCountByG_C_N_D(
+		long[] groupIds, long classNameId, String name, String description) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
 			return countByG_C_N_D(groupIds, classNameId, name, description);
 		}
@@ -10227,12 +10689,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			query.append(_FINDER_COLUMN_G_C_N_D_DESCRIPTION_2);
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				DDMStructure.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), DDMStructure.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupIds);
 
 		Session session = null;
 
@@ -10241,8 +10704,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -10268,20 +10731,33 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_N_D_GROUPID_2 = "ddmStructure.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_N_D_GROUPID_7 = "ddmStructure.groupId IN (";
-	private static final String _FINDER_COLUMN_G_C_N_D_CLASSNAMEID_2 = "ddmStructure.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_N_D_NAME_2 = "ddmStructure.name = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_N_D_NAME_3 = "(ddmStructure.name IS NULL OR ddmStructure.name = '') AND ";
-	private static final String _FINDER_COLUMN_G_C_N_D_DESCRIPTION_2 = "CAST_CLOB_TEXT(ddmStructure.description) = ?";
-	private static final String _FINDER_COLUMN_G_C_N_D_DESCRIPTION_3 = "(ddmStructure.description IS NULL OR CAST_CLOB_TEXT(ddmStructure.description) = '')";
+	private static final String _FINDER_COLUMN_G_C_N_D_GROUPID_2 =
+		"ddmStructure.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_GROUPID_7 =
+		"ddmStructure.groupId IN (";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_CLASSNAMEID_2 =
+		"ddmStructure.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_NAME_2 =
+		"ddmStructure.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_NAME_3 =
+		"(ddmStructure.name IS NULL OR ddmStructure.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_DESCRIPTION_2 =
+		"CAST_CLOB_TEXT(ddmStructure.description) = ?";
+
+	private static final String _FINDER_COLUMN_G_C_N_D_DESCRIPTION_3 =
+		"(ddmStructure.description IS NULL OR CAST_CLOB_TEXT(ddmStructure.description) = '')";
 
 	public DDMStructurePersistenceImpl() {
 		setModelClass(DDMStructure.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -10306,18 +10782,22 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void cacheResult(DDMStructure ddmStructure) {
-		entityCache.putResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-			DDMStructureImpl.class, ddmStructure.getPrimaryKey(), ddmStructure);
+		entityCache.putResult(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED, DDMStructureImpl.class,
+			ddmStructure.getPrimaryKey(), ddmStructure);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
-			new Object[] { ddmStructure.getUuid(), ddmStructure.getGroupId() },
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
+			new Object[] {ddmStructure.getUuid(), ddmStructure.getGroupId()},
 			ddmStructure);
 
-		finderCache.putResult(_finderPathFetchByG_C_S,
+		finderCache.putResult(
+			_finderPathFetchByG_C_S,
 			new Object[] {
 				ddmStructure.getGroupId(), ddmStructure.getClassNameId(),
 				ddmStructure.getStructureKey()
-			}, ddmStructure);
+			},
+			ddmStructure);
 
 		ddmStructure.resetOriginalValues();
 	}
@@ -10331,8 +10811,10 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	public void cacheResult(List<DDMStructure> ddmStructures) {
 		for (DDMStructure ddmStructure : ddmStructures) {
 			if (entityCache.getResult(
-						DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-						DDMStructureImpl.class, ddmStructure.getPrimaryKey()) == null) {
+					DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+					DDMStructureImpl.class, ddmStructure.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(ddmStructure);
 			}
 			else {
@@ -10366,8 +10848,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public void clearCache(DDMStructure ddmStructure) {
-		entityCache.removeResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-			DDMStructureImpl.class, ddmStructure.getPrimaryKey());
+		entityCache.removeResult(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED, DDMStructureImpl.class,
+			ddmStructure.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -10381,7 +10864,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (DDMStructure ddmStructure : ddmStructures) {
-			entityCache.removeResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
 				DDMStructureImpl.class, ddmStructure.getPrimaryKey());
 
 			clearUniqueFindersCache((DDMStructureModelImpl)ddmStructure, true);
@@ -10390,46 +10874,48 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 	protected void cacheUniqueFindersCache(
 		DDMStructureModelImpl ddmStructureModelImpl) {
-		Object[] args = new Object[] {
-				ddmStructureModelImpl.getUuid(),
-				ddmStructureModelImpl.getGroupId()
-			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			ddmStructureModelImpl, false);
+		Object[] args = new Object[] {
+			ddmStructureModelImpl.getUuid(), ddmStructureModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, ddmStructureModelImpl, false);
 
 		args = new Object[] {
-				ddmStructureModelImpl.getGroupId(),
-				ddmStructureModelImpl.getClassNameId(),
-				ddmStructureModelImpl.getStructureKey()
-			};
+			ddmStructureModelImpl.getGroupId(),
+			ddmStructureModelImpl.getClassNameId(),
+			ddmStructureModelImpl.getStructureKey()
+		};
 
-		finderCache.putResult(_finderPathCountByG_C_S, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByG_C_S, args,
-			ddmStructureModelImpl, false);
+		finderCache.putResult(
+			_finderPathCountByG_C_S, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByG_C_S, args, ddmStructureModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		DDMStructureModelImpl ddmStructureModelImpl, boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					ddmStructureModelImpl.getUuid(),
-					ddmStructureModelImpl.getGroupId()
-				};
+				ddmStructureModelImpl.getUuid(),
+				ddmStructureModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((ddmStructureModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					ddmStructureModelImpl.getOriginalUuid(),
-					ddmStructureModelImpl.getOriginalGroupId()
-				};
+				ddmStructureModelImpl.getOriginalUuid(),
+				ddmStructureModelImpl.getOriginalGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
@@ -10437,22 +10923,23 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					ddmStructureModelImpl.getGroupId(),
-					ddmStructureModelImpl.getClassNameId(),
-					ddmStructureModelImpl.getStructureKey()
-				};
+				ddmStructureModelImpl.getGroupId(),
+				ddmStructureModelImpl.getClassNameId(),
+				ddmStructureModelImpl.getStructureKey()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_C_S, args);
 			finderCache.removeResult(_finderPathFetchByG_C_S, args);
 		}
 
 		if ((ddmStructureModelImpl.getColumnBitmask() &
-				_finderPathFetchByG_C_S.getColumnBitmask()) != 0) {
+			 _finderPathFetchByG_C_S.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					ddmStructureModelImpl.getOriginalGroupId(),
-					ddmStructureModelImpl.getOriginalClassNameId(),
-					ddmStructureModelImpl.getOriginalStructureKey()
-				};
+				ddmStructureModelImpl.getOriginalGroupId(),
+				ddmStructureModelImpl.getOriginalClassNameId(),
+				ddmStructureModelImpl.getOriginalStructureKey()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_C_S, args);
 			finderCache.removeResult(_finderPathFetchByG_C_S, args);
@@ -10491,6 +10978,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure remove(long structureId)
 		throws NoSuchStructureException {
+
 		return remove((Serializable)structureId);
 	}
 
@@ -10504,21 +10992,22 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure remove(Serializable primaryKey)
 		throws NoSuchStructureException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDMStructure ddmStructure = (DDMStructure)session.get(DDMStructureImpl.class,
-					primaryKey);
+			DDMStructure ddmStructure = (DDMStructure)session.get(
+				DDMStructureImpl.class, primaryKey);
 
 			if (ddmStructure == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchStructureException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchStructureException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(ddmStructure);
@@ -10542,8 +11031,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			session = openSession();
 
 			if (!session.contains(ddmStructure)) {
-				ddmStructure = (DDMStructure)session.get(DDMStructureImpl.class,
-						ddmStructure.getPrimaryKeyObj());
+				ddmStructure = (DDMStructure)session.get(
+					DDMStructureImpl.class, ddmStructure.getPrimaryKeyObj());
 			}
 
 			if (ddmStructure != null) {
@@ -10572,19 +11061,21 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(ddmStructure.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(ddmStructure);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					ddmStructure);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in ddmStructure proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom DDMStructure implementation " +
-				ddmStructure.getClass());
+					ddmStructure.getClass());
 		}
 
-		DDMStructureModelImpl ddmStructureModelImpl = (DDMStructureModelImpl)ddmStructure;
+		DDMStructureModelImpl ddmStructureModelImpl =
+			(DDMStructureModelImpl)ddmStructure;
 
 		if (Validator.isNull(ddmStructure.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -10592,7 +11083,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			ddmStructure.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -10610,7 +11102,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				ddmStructure.setModifiedDate(now);
 			}
 			else {
-				ddmStructure.setModifiedDate(serviceContext.getModifiedDate(now));
+				ddmStructure.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -10640,321 +11133,346 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		if (!DDMStructureModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { ddmStructureModelImpl.getUuid() };
+		else if (isNew) {
+			Object[] args = new Object[] {ddmStructureModelImpl.getUuid()};
 
 			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
 
 			args = new Object[] {
+				ddmStructureModelImpl.getUuid(),
+				ddmStructureModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			args = new Object[] {ddmStructureModelImpl.getGroupId()};
+
+			finderCache.removeResult(_finderPathCountByGroupId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByGroupId, args);
+
+			args = new Object[] {ddmStructureModelImpl.getParentStructureId()};
+
+			finderCache.removeResult(_finderPathCountByParentStructureId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByParentStructureId, args);
+
+			args = new Object[] {ddmStructureModelImpl.getClassNameId()};
+
+			finderCache.removeResult(_finderPathCountByClassNameId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByClassNameId, args);
+
+			args = new Object[] {ddmStructureModelImpl.getStructureKey()};
+
+			finderCache.removeResult(_finderPathCountByStructureKey, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByStructureKey, args);
+
+			args = new Object[] {
+				ddmStructureModelImpl.getGroupId(),
+				ddmStructureModelImpl.getParentStructureId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_P, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_P, args);
+
+			args = new Object[] {
+				ddmStructureModelImpl.getGroupId(),
+				ddmStructureModelImpl.getClassNameId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C, args);
+
+			args = new Object[] {
+				ddmStructureModelImpl.getCompanyId(),
+				ddmStructureModelImpl.getClassNameId()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_C, args);
+
+			args = new Object[] {
+				ddmStructureModelImpl.getGroupId(),
+				ddmStructureModelImpl.getName(),
+				ddmStructureModelImpl.getDescription()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_N_D, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_N_D, args);
+
+			args = new Object[] {
+				ddmStructureModelImpl.getGroupId(),
+				ddmStructureModelImpl.getClassNameId(),
+				ddmStructureModelImpl.getName(),
+				ddmStructureModelImpl.getDescription()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_N_D, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C_N_D, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {ddmStructureModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalUuid(),
+					ddmStructureModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getUuid(),
 					ddmStructureModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+			}
 
-			args = new Object[] { ddmStructureModelImpl.getGroupId() };
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByGroupId.
+					 getColumnBitmask()) != 0) {
 
-			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-				args);
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalGroupId()
+				};
 
-			args = new Object[] { ddmStructureModelImpl.getParentStructureId() };
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
 
-			finderCache.removeResult(_finderPathCountByParentStructureId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByParentStructureId,
-				args);
+				args = new Object[] {ddmStructureModelImpl.getGroupId()};
 
-			args = new Object[] { ddmStructureModelImpl.getClassNameId() };
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
+			}
 
-			finderCache.removeResult(_finderPathCountByClassNameId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByClassNameId,
-				args);
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByParentStructureId.
+					 getColumnBitmask()) != 0) {
 
-			args = new Object[] { ddmStructureModelImpl.getStructureKey() };
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalParentStructureId()
+				};
 
-			finderCache.removeResult(_finderPathCountByStructureKey, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByStructureKey,
-				args);
+				finderCache.removeResult(
+					_finderPathCountByParentStructureId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByParentStructureId, args);
 
-			args = new Object[] {
+				args = new Object[] {
+					ddmStructureModelImpl.getParentStructureId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByParentStructureId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByParentStructureId, args);
+			}
+
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByClassNameId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalClassNameId()
+				};
+
+				finderCache.removeResult(_finderPathCountByClassNameId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByClassNameId, args);
+
+				args = new Object[] {ddmStructureModelImpl.getClassNameId()};
+
+				finderCache.removeResult(_finderPathCountByClassNameId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByClassNameId, args);
+			}
+
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByStructureKey.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalStructureKey()
+				};
+
+				finderCache.removeResult(_finderPathCountByStructureKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByStructureKey, args);
+
+				args = new Object[] {ddmStructureModelImpl.getStructureKey()};
+
+				finderCache.removeResult(_finderPathCountByStructureKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByStructureKey, args);
+			}
+
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_P.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalGroupId(),
+					ddmStructureModelImpl.getOriginalParentStructureId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_P, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_P, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getGroupId(),
 					ddmStructureModelImpl.getParentStructureId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_P, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_P, args);
+				finderCache.removeResult(_finderPathCountByG_P, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_P, args);
+			}
 
-			args = new Object[] {
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalGroupId(),
+					ddmStructureModelImpl.getOriginalClassNameId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getGroupId(),
 					ddmStructureModelImpl.getClassNameId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C, args);
+				finderCache.removeResult(_finderPathCountByG_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C, args);
+			}
 
-			args = new Object[] {
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalCompanyId(),
+					ddmStructureModelImpl.getOriginalClassNameId()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_C, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getCompanyId(),
 					ddmStructureModelImpl.getClassNameId()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_C, args);
+				finderCache.removeResult(_finderPathCountByC_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_C, args);
+			}
 
-			args = new Object[] {
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_N_D.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalGroupId(),
+					ddmStructureModelImpl.getOriginalName(),
+					ddmStructureModelImpl.getOriginalDescription()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_N_D, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_N_D, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getGroupId(),
 					ddmStructureModelImpl.getName(),
 					ddmStructureModelImpl.getDescription()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_N_D, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_N_D,
-				args);
+				finderCache.removeResult(_finderPathCountByG_N_D, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_N_D, args);
+			}
 
-			args = new Object[] {
+			if ((ddmStructureModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C_N_D.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddmStructureModelImpl.getOriginalGroupId(),
+					ddmStructureModelImpl.getOriginalClassNameId(),
+					ddmStructureModelImpl.getOriginalName(),
+					ddmStructureModelImpl.getOriginalDescription()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C_N_D, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_N_D, args);
+
+				args = new Object[] {
 					ddmStructureModelImpl.getGroupId(),
 					ddmStructureModelImpl.getClassNameId(),
 					ddmStructureModelImpl.getName(),
 					ddmStructureModelImpl.getDescription()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C_N_D, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_N_D,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { ddmStructureModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalUuid(),
-						ddmStructureModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getUuid(),
-						ddmStructureModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-
-				args = new Object[] { ddmStructureModelImpl.getGroupId() };
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByParentStructureId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalParentStructureId()
-					};
-
-				finderCache.removeResult(_finderPathCountByParentStructureId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByParentStructureId,
-					args);
-
-				args = new Object[] { ddmStructureModelImpl.getParentStructureId() };
-
-				finderCache.removeResult(_finderPathCountByParentStructureId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByParentStructureId,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByClassNameId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByClassNameId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByClassNameId,
-					args);
-
-				args = new Object[] { ddmStructureModelImpl.getClassNameId() };
-
-				finderCache.removeResult(_finderPathCountByClassNameId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByClassNameId,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByStructureKey.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalStructureKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByStructureKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByStructureKey,
-					args);
-
-				args = new Object[] { ddmStructureModelImpl.getStructureKey() };
-
-				finderCache.removeResult(_finderPathCountByStructureKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByStructureKey,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_P.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalGroupId(),
-						ddmStructureModelImpl.getOriginalParentStructureId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_P, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_P,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getGroupId(),
-						ddmStructureModelImpl.getParentStructureId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_P, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_P,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalGroupId(),
-						ddmStructureModelImpl.getOriginalClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getGroupId(),
-						ddmStructureModelImpl.getClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalCompanyId(),
-						ddmStructureModelImpl.getOriginalClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_C,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getCompanyId(),
-						ddmStructureModelImpl.getClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_C,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_N_D.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalGroupId(),
-						ddmStructureModelImpl.getOriginalName(),
-						ddmStructureModelImpl.getOriginalDescription()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_N_D, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_N_D,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getGroupId(),
-						ddmStructureModelImpl.getName(),
-						ddmStructureModelImpl.getDescription()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_N_D, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_N_D,
-					args);
-			}
-
-			if ((ddmStructureModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C_N_D.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmStructureModelImpl.getOriginalGroupId(),
-						ddmStructureModelImpl.getOriginalClassNameId(),
-						ddmStructureModelImpl.getOriginalName(),
-						ddmStructureModelImpl.getOriginalDescription()
-					};
-
 				finderCache.removeResult(_finderPathCountByG_C_N_D, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_N_D,
-					args);
-
-				args = new Object[] {
-						ddmStructureModelImpl.getGroupId(),
-						ddmStructureModelImpl.getClassNameId(),
-						ddmStructureModelImpl.getName(),
-						ddmStructureModelImpl.getDescription()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_N_D, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_N_D,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_N_D, args);
 			}
 		}
 
-		entityCache.putResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-			DDMStructureImpl.class, ddmStructure.getPrimaryKey(), ddmStructure,
-			false);
+		entityCache.putResult(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED, DDMStructureImpl.class,
+			ddmStructure.getPrimaryKey(), ddmStructure, false);
 
 		clearUniqueFindersCache(ddmStructureModelImpl, false);
 		cacheUniqueFindersCache(ddmStructureModelImpl);
@@ -10974,6 +11492,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchStructureException {
+
 		DDMStructure ddmStructure = fetchByPrimaryKey(primaryKey);
 
 		if (ddmStructure == null) {
@@ -10981,8 +11500,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchStructureException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchStructureException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return ddmStructure;
@@ -10998,6 +11517,7 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public DDMStructure findByPrimaryKey(long structureId)
 		throws NoSuchStructureException {
+
 		return findByPrimaryKey((Serializable)structureId);
 	}
 
@@ -11009,8 +11529,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public DDMStructure fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED, DDMStructureImpl.class,
+			primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -11024,19 +11545,21 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			try {
 				session = openSession();
 
-				ddmStructure = (DDMStructure)session.get(DDMStructureImpl.class,
-						primaryKey);
+				ddmStructure = (DDMStructure)session.get(
+					DDMStructureImpl.class, primaryKey);
 
 				if (ddmStructure != null) {
 					cacheResult(ddmStructure);
 				}
 				else {
-					entityCache.putResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
 						DDMStructureImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
 					DDMStructureImpl.class, primaryKey);
 
 				throw processException(e);
@@ -11063,11 +11586,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	@Override
 	public Map<Serializable, DDMStructure> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, DDMStructure> map = new HashMap<Serializable, DDMStructure>();
+		Map<Serializable, DDMStructure> map =
+			new HashMap<Serializable, DDMStructure>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -11086,8 +11611,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-					DDMStructureImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+				DDMStructureImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -11107,8 +11633,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_DDMSTRUCTURE_WHERE_PKS_IN);
 
@@ -11140,7 +11666,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
 					DDMStructureImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -11193,8 +11720,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findAll(int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator) {
+	public List<DDMStructure> findAll(
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -11212,29 +11740,31 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * @return the ordered range of ddm structures
 	 */
 	@Override
-	public List<DDMStructure> findAll(int start, int end,
-		OrderByComparator<DDMStructure> orderByComparator,
+	public List<DDMStructure> findAll(
+		int start, int end, OrderByComparator<DDMStructure> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMStructure> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMStructure>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMStructure>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -11242,13 +11772,13 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_DDMSTRUCTURE);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -11268,16 +11798,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMStructure>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMStructure>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -11315,8 +11845,8 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -11328,11 +11858,12 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -11358,350 +11889,348 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	 * Initializes the ddm structure persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] {String.class.getName()},
+			DDMStructureModelImpl.UUID_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDMStructureModelImpl.UUID_COLUMN_BITMASK |
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				DDMStructureModelImpl.UUID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDMStructureModelImpl.UUID_COLUMN_BITMASK |
+			DDMStructureModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDMStructureModelImpl.UUID_COLUMN_BITMASK |
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithPaginationFindByGroupId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathCountByUUID_G = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+			new String[] {Long.class.getName()},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
+		_finderPathCountByGroupId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationCountByGroupId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByParentStructureId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByParentStructureId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByParentStructureId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByParentStructureId", new String[] {Long.class.getName()},
+			DDMStructureModelImpl.PARENTSTRUCTUREID_COLUMN_BITMASK);
+
+		_finderPathCountByParentStructureId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByParentStructureId", new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByClassNameId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByClassNameId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByClassNameId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByClassNameId",
+			new String[] {Long.class.getName()},
+			DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
+
+		_finderPathCountByClassNameId = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByClassNameId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByStructureKey = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByStructureKey",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByStructureKey = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByStructureKey",
+			new String[] {String.class.getName()},
+			DDMStructureModelImpl.STRUCTUREKEY_COLUMN_BITMASK);
+
+		_finderPathCountByStructureKey = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByStructureKey",
+			new String[] {String.class.getName()});
+
+		_finderPathWithPaginationFindByG_P = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDMStructureModelImpl.UUID_COLUMN_BITMASK |
-				DDMStructureModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_P = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_P",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
+			DDMStructureModelImpl.PARENTSTRUCTUREID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathCountByG_P = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_P",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByGroupId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByG_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-				new String[] { Long.class.getName() },
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
+			DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
 
-		_finderPathCountByGroupId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByG_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationCountByGroupId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
+		_finderPathWithPaginationCountByG_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByParentStructureId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByParentStructureId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByC_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByParentStructureId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByParentStructureId",
-				new String[] { Long.class.getName() },
-				DDMStructureModelImpl.PARENTSTRUCTUREID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			DDMStructureModelImpl.COMPANYID_COLUMN_BITMASK |
+			DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
 
-		_finderPathCountByParentStructureId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByParentStructureId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByC_C = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByClassNameId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByClassNameId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathFetchByG_C_S = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByG_C_S",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
+			DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			DDMStructureModelImpl.STRUCTUREKEY_COLUMN_BITMASK);
+
+		_finderPathCountByG_C_S = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_S",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_N_D",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByG_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_N_D",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
+			DDMStructureModelImpl.NAME_COLUMN_BITMASK |
+			DDMStructureModelImpl.DESCRIPTION_COLUMN_BITMASK);
+
+		_finderPathCountByG_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_N_D",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				String.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_C_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_N_D",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByClassNameId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByClassNameId",
-				new String[] { Long.class.getName() },
-				DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_C_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, DDMStructureImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_N_D",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName()
+			},
+			DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
+			DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			DDMStructureModelImpl.NAME_COLUMN_BITMASK |
+			DDMStructureModelImpl.DESCRIPTION_COLUMN_BITMASK);
 
-		_finderPathCountByClassNameId = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByClassNameId", new String[] { Long.class.getName() });
+		_finderPathCountByG_C_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_N_D",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName()
+			});
 
-		_finderPathWithPaginationFindByStructureKey = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByStructureKey",
-				new String[] {
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByStructureKey = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByStructureKey", new String[] { String.class.getName() },
-				DDMStructureModelImpl.STRUCTUREKEY_COLUMN_BITMASK);
-
-		_finderPathCountByStructureKey = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByStructureKey", new String[] { String.class.getName() });
-
-		_finderPathWithPaginationFindByG_P = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByG_P",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_P = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_P",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
-				DDMStructureModelImpl.PARENTSTRUCTUREID_COLUMN_BITMASK);
-
-		_finderPathCountByG_P = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_P",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByG_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByG_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
-				DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
-
-		_finderPathCountByG_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationCountByG_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByC_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByC_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByC_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				DDMStructureModelImpl.COMPANYID_COLUMN_BITMASK |
-				DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK);
-
-		_finderPathCountByC_C = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathFetchByG_C_S = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByG_C_S",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				},
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
-				DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				DDMStructureModelImpl.STRUCTUREKEY_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_S = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_S",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByG_N_D",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_N_D",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					String.class.getName()
-				},
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
-				DDMStructureModelImpl.NAME_COLUMN_BITMASK |
-				DDMStructureModelImpl.DESCRIPTION_COLUMN_BITMASK);
-
-		_finderPathCountByG_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_N_D",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					String.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_C_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByG_C_N_D",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED,
-				DDMStructureImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_N_D",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName()
-				},
-				DDMStructureModelImpl.GROUPID_COLUMN_BITMASK |
-				DDMStructureModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				DDMStructureModelImpl.NAME_COLUMN_BITMASK |
-				DDMStructureModelImpl.DESCRIPTION_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_N_D",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName()
-				});
-
-		_finderPathWithPaginationCountByG_C_N_D = new FinderPath(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
-				DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C_N_D",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName()
-				});
+		_finderPathWithPaginationCountByG_C_N_D = new FinderPath(
+			DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+			DDMStructureModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C_N_D",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -11713,30 +12242,63 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_DDMSTRUCTURE = "SELECT ddmStructure FROM DDMStructure ddmStructure";
-	private static final String _SQL_SELECT_DDMSTRUCTURE_WHERE_PKS_IN = "SELECT ddmStructure FROM DDMStructure ddmStructure WHERE structureId IN (";
-	private static final String _SQL_SELECT_DDMSTRUCTURE_WHERE = "SELECT ddmStructure FROM DDMStructure ddmStructure WHERE ";
-	private static final String _SQL_COUNT_DDMSTRUCTURE = "SELECT COUNT(ddmStructure) FROM DDMStructure ddmStructure";
-	private static final String _SQL_COUNT_DDMSTRUCTURE_WHERE = "SELECT COUNT(ddmStructure) FROM DDMStructure ddmStructure WHERE ";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "ddmStructure.structureId";
-	private static final String _FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE = "SELECT DISTINCT {ddmStructure.*} FROM DDMStructure ddmStructure WHERE ";
-	private static final String _FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {DDMStructure.*} FROM (SELECT DISTINCT ddmStructure.structureId FROM DDMStructure ddmStructure WHERE ";
-	private static final String _FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN DDMStructure ON TEMP_TABLE.structureId = DDMStructure.structureId";
-	private static final String _FILTER_SQL_COUNT_DDMSTRUCTURE_WHERE = "SELECT COUNT(DISTINCT ddmStructure.structureId) AS COUNT_VALUE FROM DDMStructure ddmStructure WHERE ";
+
+	private static final String _SQL_SELECT_DDMSTRUCTURE =
+		"SELECT ddmStructure FROM DDMStructure ddmStructure";
+
+	private static final String _SQL_SELECT_DDMSTRUCTURE_WHERE_PKS_IN =
+		"SELECT ddmStructure FROM DDMStructure ddmStructure WHERE structureId IN (";
+
+	private static final String _SQL_SELECT_DDMSTRUCTURE_WHERE =
+		"SELECT ddmStructure FROM DDMStructure ddmStructure WHERE ";
+
+	private static final String _SQL_COUNT_DDMSTRUCTURE =
+		"SELECT COUNT(ddmStructure) FROM DDMStructure ddmStructure";
+
+	private static final String _SQL_COUNT_DDMSTRUCTURE_WHERE =
+		"SELECT COUNT(ddmStructure) FROM DDMStructure ddmStructure WHERE ";
+
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN =
+		"ddmStructure.structureId";
+
+	private static final String _FILTER_SQL_SELECT_DDMSTRUCTURE_WHERE =
+		"SELECT DISTINCT {ddmStructure.*} FROM DDMStructure ddmStructure WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_1 =
+			"SELECT {DDMStructure.*} FROM (SELECT DISTINCT ddmStructure.structureId FROM DDMStructure ddmStructure WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_DDMSTRUCTURE_NO_INLINE_DISTINCT_WHERE_2 =
+			") TEMP_TABLE INNER JOIN DDMStructure ON TEMP_TABLE.structureId = DDMStructure.structureId";
+
+	private static final String _FILTER_SQL_COUNT_DDMSTRUCTURE_WHERE =
+		"SELECT COUNT(DISTINCT ddmStructure.structureId) AS COUNT_VALUE FROM DDMStructure ddmStructure WHERE ";
+
 	private static final String _FILTER_ENTITY_ALIAS = "ddmStructure";
+
 	private static final String _FILTER_ENTITY_TABLE = "DDMStructure";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "ddmStructure.";
+
 	private static final String _ORDER_BY_ENTITY_TABLE = "DDMStructure.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No DDMStructure exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMStructure exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(DDMStructurePersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid", "type"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No DDMStructure exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No DDMStructure exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMStructurePersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid", "type"});
+
 }

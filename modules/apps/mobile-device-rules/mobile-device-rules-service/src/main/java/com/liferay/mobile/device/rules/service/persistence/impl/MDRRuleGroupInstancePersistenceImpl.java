@@ -21,7 +21,6 @@ import com.liferay.mobile.device.rules.model.MDRRuleGroupInstance;
 import com.liferay.mobile.device.rules.model.impl.MDRRuleGroupInstanceImpl;
 import com.liferay.mobile.device.rules.model.impl.MDRRuleGroupInstanceModelImpl;
 import com.liferay.mobile.device.rules.service.persistence.MDRRuleGroupInstancePersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -72,18 +71,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDRRuleGroupInstance>
+public class MDRRuleGroupInstancePersistenceImpl
+	extends BasePersistenceImpl<MDRRuleGroupInstance>
 	implements MDRRuleGroupInstancePersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>MDRRuleGroupInstanceUtil</code> to access the mdr rule group instance persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = MDRRuleGroupInstanceImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		MDRRuleGroupInstanceImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -115,7 +120,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid(String uuid, int start, int end) {
+	public List<MDRRuleGroupInstance> findByUuid(
+		String uuid, int start, int end) {
+
 		return findByUuid(uuid, start, end, null);
 	}
 
@@ -133,8 +140,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid(String uuid, int start,
-		int end, OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+	public List<MDRRuleGroupInstance> findByUuid(
+		String uuid, int start, int end,
+		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -153,9 +162,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid(String uuid, int start,
-		int end, OrderByComparator<MDRRuleGroupInstance> orderByComparator,
+	public List<MDRRuleGroupInstance> findByUuid(
+		String uuid, int start, int end,
+		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -163,21 +174,22 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
@@ -194,8 +206,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -215,11 +227,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -239,16 +250,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				}
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -277,11 +288,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByUuid_First(String uuid,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByUuid_First(
+			String uuid,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_First(uuid,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_First(
+			uuid, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -307,10 +320,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByUuid_First(String uuid,
+	public MDRRuleGroupInstance fetchByUuid_First(
+		String uuid,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByUuid(uuid, 0, 1,
-				orderByComparator);
+
+		List<MDRRuleGroupInstance> list = findByUuid(
+			uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -328,11 +343,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByUuid_Last(String uuid,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByUuid_Last(
+			String uuid,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_Last(uuid,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_Last(
+			uuid, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -358,16 +375,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByUuid_Last(String uuid,
+	public MDRRuleGroupInstance fetchByUuid_Last(
+		String uuid,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<MDRRuleGroupInstance> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -387,12 +406,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByUuid_PrevAndNext(
-		long ruleGroupInstanceId, String uuid,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, String uuid,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
+
 		uuid = Objects.toString(uuid, "");
 
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -401,13 +422,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, mdrRuleGroupInstance,
-					uuid, orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, mdrRuleGroupInstance, uuid, orderByComparator, true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByUuid_PrevAndNext(session, mdrRuleGroupInstance,
-					uuid, orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, mdrRuleGroupInstance, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -419,15 +440,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	protected MDRRuleGroupInstance getByUuid_PrevAndNext(Session session,
-		MDRRuleGroupInstance mdrRuleGroupInstance, String uuid,
+	protected MDRRuleGroupInstance getByUuid_PrevAndNext(
+		Session session, MDRRuleGroupInstance mdrRuleGroupInstance, String uuid,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -448,7 +470,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -520,8 +543,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -543,8 +568,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByUuid(uuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -561,7 +587,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -613,8 +639,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "mdrRuleGroupInstance.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"mdrRuleGroupInstance.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -629,7 +659,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance findByUUID_G(String uuid, long groupId)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUUID_G(uuid, groupId);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUUID_G(
+			uuid, groupId);
 
 		if (mdrRuleGroupInstance == null) {
 			StringBundler msg = new StringBundler(6);
@@ -675,24 +707,27 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public MDRRuleGroupInstance fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof MDRRuleGroupInstance) {
-			MDRRuleGroupInstance mdrRuleGroupInstance = (MDRRuleGroupInstance)result;
+			MDRRuleGroupInstance mdrRuleGroupInstance =
+				(MDRRuleGroupInstance)result;
 
 			if (!Objects.equals(uuid, mdrRuleGroupInstance.getUuid()) ||
-					(groupId != mdrRuleGroupInstance.getGroupId())) {
+				(groupId != mdrRuleGroupInstance.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -735,8 +770,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				List<MDRRuleGroupInstance> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					MDRRuleGroupInstance mdrRuleGroupInstance = list.get(0);
@@ -774,6 +809,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance removeByUUID_G(String uuid, long groupId)
 		throws NoSuchRuleGroupInstanceException {
+
 		MDRRuleGroupInstance mdrRuleGroupInstance = findByUUID_G(uuid, groupId);
 
 		return remove(mdrRuleGroupInstance);
@@ -792,7 +828,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -848,9 +884,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "mdrRuleGroupInstance.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "mdrRuleGroupInstance.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"mdrRuleGroupInstance.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"mdrRuleGroupInstance.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -863,9 +905,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<MDRRuleGroupInstance> findByUuid_C(
+		String uuid, long companyId) {
+
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -882,8 +926,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	public List<MDRRuleGroupInstance> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -902,10 +947,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid_C(String uuid, long companyId,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByUuid_C(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -924,10 +971,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByUuid_C(String uuid, long companyId,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByUuid_C(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -935,30 +983,30 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
 					if (!uuid.equals(mdrRuleGroupInstance.getUuid()) ||
-							(companyId != mdrRuleGroupInstance.getCompanyId())) {
+						(companyId != mdrRuleGroupInstance.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -971,8 +1019,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -994,11 +1042,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1020,16 +1067,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1059,11 +1106,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_C_First(uuid,
-				companyId, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -1093,11 +1142,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByUuid_C_First(String uuid,
-		long companyId,
+	public MDRRuleGroupInstance fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<MDRRuleGroupInstance> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1116,11 +1166,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_C_Last(uuid,
-				companyId, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -1150,16 +1202,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByUuid_C_Last(String uuid, long companyId,
+	public MDRRuleGroupInstance fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByUuid_C(uuid, companyId,
-				count - 1, count, orderByComparator);
+		List<MDRRuleGroupInstance> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1180,12 +1234,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByUuid_C_PrevAndNext(
-		long ruleGroupInstanceId, String uuid, long companyId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, String uuid, long companyId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
+
 		uuid = Objects.toString(uuid, "");
 
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -1194,13 +1250,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, mdrRuleGroupInstance,
-					uuid, companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, mdrRuleGroupInstance, uuid, companyId,
+				orderByComparator, true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByUuid_C_PrevAndNext(session, mdrRuleGroupInstance,
-					uuid, companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, mdrRuleGroupInstance, uuid, companyId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -1212,15 +1270,17 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	protected MDRRuleGroupInstance getByUuid_C_PrevAndNext(Session session,
-		MDRRuleGroupInstance mdrRuleGroupInstance, String uuid, long companyId,
+	protected MDRRuleGroupInstance getByUuid_C_PrevAndNext(
+		Session session, MDRRuleGroupInstance mdrRuleGroupInstance, String uuid,
+		long companyId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1243,7 +1303,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1317,8 +1378,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1341,8 +1404,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByUuid_C(uuid,
-				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -1360,7 +1426,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1416,9 +1482,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "mdrRuleGroupInstance.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "mdrRuleGroupInstance.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"mdrRuleGroupInstance.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(mdrRuleGroupInstance.uuid IS NULL OR mdrRuleGroupInstance.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"mdrRuleGroupInstance.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByGroupId;
 	private FinderPath _finderPathWithoutPaginationFindByGroupId;
 	private FinderPath _finderPathCountByGroupId;
@@ -1431,7 +1503,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public List<MDRRuleGroupInstance> findByGroupId(long groupId) {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1447,8 +1520,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByGroupId(long groupId, int start,
-		int end) {
+	public List<MDRRuleGroupInstance> findByGroupId(
+		long groupId, int start, int end) {
+
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -1466,8 +1540,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByGroupId(long groupId, int start,
-		int end, OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+	public List<MDRRuleGroupInstance> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
@@ -1486,29 +1562,32 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByGroupId(long groupId, int start,
-		int end, OrderByComparator<MDRRuleGroupInstance> orderByComparator,
+	public List<MDRRuleGroupInstance> findByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId };
+			finderArgs = new Object[] {groupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId, start, end, orderByComparator };
+			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
@@ -1525,8 +1604,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1537,11 +1616,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1559,16 +1637,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1597,11 +1675,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByGroupId_First(long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByGroupId_First(
+			long groupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByGroupId_First(groupId,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByGroupId_First(
+			groupId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -1627,10 +1707,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByGroupId_First(long groupId,
+	public MDRRuleGroupInstance fetchByGroupId_First(
+		long groupId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByGroupId(groupId, 0, 1,
-				orderByComparator);
+
+		List<MDRRuleGroupInstance> list = findByGroupId(
+			groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1648,11 +1730,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByGroupId_Last(long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByGroupId_Last(
+			long groupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByGroupId_Last(groupId,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByGroupId_Last(
+			groupId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -1678,16 +1762,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByGroupId_Last(long groupId,
+	public MDRRuleGroupInstance fetchByGroupId_Last(
+		long groupId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByGroupId(groupId, count - 1,
-				count, orderByComparator);
+		List<MDRRuleGroupInstance> list = findByGroupId(
+			groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1707,10 +1793,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByGroupId_PrevAndNext(
-		long ruleGroupInstanceId, long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long groupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -1719,13 +1807,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(session, mdrRuleGroupInstance,
-					groupId, orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, orderByComparator,
+				true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByGroupId_PrevAndNext(session, mdrRuleGroupInstance,
-					groupId, orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -1737,15 +1827,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	protected MDRRuleGroupInstance getByGroupId_PrevAndNext(Session session,
-		MDRRuleGroupInstance mdrRuleGroupInstance, long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
+	protected MDRRuleGroupInstance getByGroupId_PrevAndNext(
+		Session session, MDRRuleGroupInstance mdrRuleGroupInstance,
+		long groupId, OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1757,7 +1848,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1827,8 +1919,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1851,8 +1945,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public List<MDRRuleGroupInstance> filterFindByGroupId(long groupId) {
-		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1868,8 +1962,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> filterFindByGroupId(long groupId,
-		int start, int end) {
+	public List<MDRRuleGroupInstance> filterFindByGroupId(
+		long groupId, int start, int end) {
+
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -1887,9 +1982,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> filterFindByGroupId(long groupId,
-		int start, int end,
+	public List<MDRRuleGroupInstance> filterFindByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -1897,8 +1993,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(3 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				3 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(4);
@@ -1908,23 +2004,25 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -1936,9 +2034,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -1948,18 +2046,20 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, MDRRuleGroupInstanceImpl.class);
+				q.addEntity(
+					_FILTER_ENTITY_ALIAS, MDRRuleGroupInstanceImpl.class);
 			}
 			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, MDRRuleGroupInstanceImpl.class);
+				q.addEntity(
+					_FILTER_ENTITY_TABLE, MDRRuleGroupInstanceImpl.class);
 			}
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(groupId);
 
-			return (List<MDRRuleGroupInstance>)QueryUtil.list(q, getDialect(),
-				start, end);
+			return (List<MDRRuleGroupInstance>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1980,15 +2080,17 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] filterFindByGroupId_PrevAndNext(
-		long ruleGroupInstanceId, long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long groupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByGroupId_PrevAndNext(ruleGroupInstanceId, groupId,
-				orderByComparator);
+			return findByGroupId_PrevAndNext(
+				ruleGroupInstanceId, groupId, orderByComparator);
 		}
 
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -1997,13 +2099,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = filterGetByGroupId_PrevAndNext(session,
-					mdrRuleGroupInstance, groupId, orderByComparator, true);
+			array[0] = filterGetByGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, orderByComparator,
+				true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = filterGetByGroupId_PrevAndNext(session,
-					mdrRuleGroupInstance, groupId, orderByComparator, false);
+			array[2] = filterGetByGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -2017,14 +2121,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 	protected MDRRuleGroupInstance filterGetByGroupId_PrevAndNext(
 		Session session, MDRRuleGroupInstance mdrRuleGroupInstance,
-		long groupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
+		long groupId, OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2035,17 +2139,20 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2053,12 +2160,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -2085,12 +2196,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -2120,9 +2233,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -2141,8 +2254,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2164,8 +2279,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByGroupId(
-				groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByGroupId(
+					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -2180,7 +2297,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] { groupId };
+		Object[] finderArgs = new Object[] {groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2239,9 +2356,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -2250,8 +2367,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2269,7 +2386,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "mdrRuleGroupInstance.groupId = ?";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
+		"mdrRuleGroupInstance.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByRuleGroupId;
 	private FinderPath _finderPathWithoutPaginationFindByRuleGroupId;
 	private FinderPath _finderPathCountByRuleGroupId;
@@ -2282,8 +2401,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public List<MDRRuleGroupInstance> findByRuleGroupId(long ruleGroupId) {
-		return findByRuleGroupId(ruleGroupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByRuleGroupId(
+			ruleGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2299,8 +2418,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByRuleGroupId(long ruleGroupId,
-		int start, int end) {
+	public List<MDRRuleGroupInstance> findByRuleGroupId(
+		long ruleGroupId, int start, int end) {
+
 		return findByRuleGroupId(ruleGroupId, start, end, null);
 	}
 
@@ -2318,11 +2438,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByRuleGroupId(long ruleGroupId,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByRuleGroupId(
+		long ruleGroupId, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		return findByRuleGroupId(ruleGroupId, start, end, orderByComparator,
-			true);
+
+		return findByRuleGroupId(
+			ruleGroupId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2340,34 +2461,40 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByRuleGroupId(long ruleGroupId,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByRuleGroupId(
+		long ruleGroupId, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByRuleGroupId;
-			finderArgs = new Object[] { ruleGroupId };
+			finderArgs = new Object[] {ruleGroupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByRuleGroupId;
-			finderArgs = new Object[] { ruleGroupId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				ruleGroupId, start, end, orderByComparator
+			};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
-					if ((ruleGroupId != mdrRuleGroupInstance.getRuleGroupId())) {
+					if ((ruleGroupId !=
+							mdrRuleGroupInstance.getRuleGroupId())) {
+
 						list = null;
 
 						break;
@@ -2380,8 +2507,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2392,11 +2519,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FINDER_COLUMN_RULEGROUPID_RULEGROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2414,16 +2540,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				qPos.add(ruleGroupId);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2452,11 +2578,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByRuleGroupId_First(long ruleGroupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByRuleGroupId_First(
+			long ruleGroupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByRuleGroupId_First(ruleGroupId,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByRuleGroupId_First(
+			ruleGroupId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -2482,10 +2610,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByRuleGroupId_First(long ruleGroupId,
+	public MDRRuleGroupInstance fetchByRuleGroupId_First(
+		long ruleGroupId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByRuleGroupId(ruleGroupId, 0, 1,
-				orderByComparator);
+
+		List<MDRRuleGroupInstance> list = findByRuleGroupId(
+			ruleGroupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2503,11 +2633,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByRuleGroupId_Last(long ruleGroupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByRuleGroupId_Last(
+			long ruleGroupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByRuleGroupId_Last(ruleGroupId,
-				orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByRuleGroupId_Last(
+			ruleGroupId, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -2533,16 +2665,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByRuleGroupId_Last(long ruleGroupId,
+	public MDRRuleGroupInstance fetchByRuleGroupId_Last(
+		long ruleGroupId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByRuleGroupId(ruleGroupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByRuleGroupId(ruleGroupId,
-				count - 1, count, orderByComparator);
+		List<MDRRuleGroupInstance> list = findByRuleGroupId(
+			ruleGroupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2562,10 +2696,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByRuleGroupId_PrevAndNext(
-		long ruleGroupInstanceId, long ruleGroupId,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long ruleGroupId,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -2574,13 +2710,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByRuleGroupId_PrevAndNext(session,
-					mdrRuleGroupInstance, ruleGroupId, orderByComparator, true);
+			array[0] = getByRuleGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, ruleGroupId, orderByComparator,
+				true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByRuleGroupId_PrevAndNext(session,
-					mdrRuleGroupInstance, ruleGroupId, orderByComparator, false);
+			array[2] = getByRuleGroupId_PrevAndNext(
+				session, mdrRuleGroupInstance, ruleGroupId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -2597,11 +2735,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		long ruleGroupId,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2613,7 +2752,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_RULEGROUPID_RULEGROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2683,8 +2823,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(ruleGroupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2706,8 +2848,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByRuleGroupId(long ruleGroupId) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByRuleGroupId(
-				ruleGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByRuleGroupId(
+					ruleGroupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -2722,7 +2866,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	public int countByRuleGroupId(long ruleGroupId) {
 		FinderPath finderPath = _finderPathCountByRuleGroupId;
 
-		Object[] finderArgs = new Object[] { ruleGroupId };
+		Object[] finderArgs = new Object[] {ruleGroupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2763,7 +2907,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_RULEGROUPID_RULEGROUPID_2 = "mdrRuleGroupInstance.ruleGroupId = ?";
+	private static final String _FINDER_COLUMN_RULEGROUPID_RULEGROUPID_2 =
+		"mdrRuleGroupInstance.ruleGroupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_C;
 	private FinderPath _finderPathWithoutPaginationFindByC_C;
 	private FinderPath _finderPathCountByC_C;
@@ -2776,9 +2922,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByC_C(long classNameId, long classPK) {
-		return findByC_C(classNameId, classPK, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<MDRRuleGroupInstance> findByC_C(
+		long classNameId, long classPK) {
+
+		return findByC_C(
+			classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2795,8 +2943,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByC_C(long classNameId, long classPK,
-		int start, int end) {
+	public List<MDRRuleGroupInstance> findByC_C(
+		long classNameId, long classPK, int start, int end) {
+
 		return findByC_C(classNameId, classPK, start, end, null);
 	}
 
@@ -2815,11 +2964,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByC_C(long classNameId, long classPK,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByC_C(
+		long classNameId, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		return findByC_C(classNameId, classPK, start, end, orderByComparator,
-			true);
+
+		return findByC_C(
+			classNameId, classPK, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2838,39 +2988,41 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByC_C(long classNameId, long classPK,
-		int start, int end,
+	public List<MDRRuleGroupInstance> findByC_C(
+		long classNameId, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_C;
-			finderArgs = new Object[] { classNameId, classPK };
+			finderArgs = new Object[] {classNameId, classPK};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
-					classNameId, classPK,
-					
-					start, end, orderByComparator
-				};
+				classNameId, classPK, start, end, orderByComparator
+			};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
-					if ((classNameId != mdrRuleGroupInstance.getClassNameId()) ||
-							(classPK != mdrRuleGroupInstance.getClassPK())) {
+					if ((classNameId !=
+							mdrRuleGroupInstance.getClassNameId()) ||
+						(classPK != mdrRuleGroupInstance.getClassPK())) {
+
 						list = null;
 
 						break;
@@ -2883,8 +3035,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -2897,11 +3049,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2921,16 +3072,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				qPos.add(classPK);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2960,11 +3111,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByC_C_First(long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByC_C_First(
+			long classNameId, long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_First(classNameId,
-				classPK, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_First(
+			classNameId, classPK, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -2994,10 +3147,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByC_C_First(long classNameId,
-		long classPK, OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByC_C(classNameId, classPK, 0, 1,
-				orderByComparator);
+	public MDRRuleGroupInstance fetchByC_C_First(
+		long classNameId, long classPK,
+		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
+		List<MDRRuleGroupInstance> list = findByC_C(
+			classNameId, classPK, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3016,11 +3171,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByC_C_Last(long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByC_C_Last(
+			long classNameId, long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_Last(classNameId,
-				classPK, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_Last(
+			classNameId, classPK, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -3050,16 +3207,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByC_C_Last(long classNameId, long classPK,
+	public MDRRuleGroupInstance fetchByC_C_Last(
+		long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByC_C(classNameId, classPK);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByC_C(classNameId, classPK,
-				count - 1, count, orderByComparator);
+		List<MDRRuleGroupInstance> list = findByC_C(
+			classNameId, classPK, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3080,10 +3239,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByC_C_PrevAndNext(
-		long ruleGroupInstanceId, long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long classNameId, long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -3092,13 +3253,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByC_C_PrevAndNext(session, mdrRuleGroupInstance,
-					classNameId, classPK, orderByComparator, true);
+			array[0] = getByC_C_PrevAndNext(
+				session, mdrRuleGroupInstance, classNameId, classPK,
+				orderByComparator, true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByC_C_PrevAndNext(session, mdrRuleGroupInstance,
-					classNameId, classPK, orderByComparator, false);
+			array[2] = getByC_C_PrevAndNext(
+				session, mdrRuleGroupInstance, classNameId, classPK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -3110,16 +3273,17 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	protected MDRRuleGroupInstance getByC_C_PrevAndNext(Session session,
-		MDRRuleGroupInstance mdrRuleGroupInstance, long classNameId,
-		long classPK,
+	protected MDRRuleGroupInstance getByC_C_PrevAndNext(
+		Session session, MDRRuleGroupInstance mdrRuleGroupInstance,
+		long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3133,7 +3297,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3205,8 +3370,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3229,8 +3396,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByC_C(long classNameId, long classPK) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByC_C(
-				classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByC_C(
+					classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -3246,7 +3416,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	public int countByC_C(long classNameId, long classPK) {
 		FinderPath finderPath = _finderPathCountByC_C;
 
-		Object[] finderArgs = new Object[] { classNameId, classPK };
+		Object[] finderArgs = new Object[] {classNameId, classPK};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -3291,8 +3461,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "mdrRuleGroupInstance.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 = "mdrRuleGroupInstance.classPK = ?";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 =
+		"mdrRuleGroupInstance.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 =
+		"mdrRuleGroupInstance.classPK = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_C_C;
 	private FinderPath _finderPathWithoutPaginationFindByG_C_C;
 	private FinderPath _finderPathCountByG_C_C;
@@ -3306,10 +3480,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByG_C_C(long groupId,
-		long classNameId, long classPK) {
-		return findByG_C_C(groupId, classNameId, classPK, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<MDRRuleGroupInstance> findByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
+		return findByG_C_C(
+			groupId, classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -3327,8 +3503,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end) {
+	public List<MDRRuleGroupInstance> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end) {
+
 		return findByG_C_C(groupId, classNameId, classPK, start, end, null);
 	}
 
@@ -3348,11 +3525,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end,
+	public List<MDRRuleGroupInstance> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		return findByG_C_C(groupId, classNameId, classPK, start, end,
-			orderByComparator, true);
+
+		return findByG_C_C(
+			groupId, classNameId, classPK, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3372,40 +3550,42 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end,
+	public List<MDRRuleGroupInstance> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C_C;
-			finderArgs = new Object[] { groupId, classNameId, classPK };
+			finderArgs = new Object[] {groupId, classNameId, classPK};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C_C;
 			finderArgs = new Object[] {
-					groupId, classNameId, classPK,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, classPK, start, end, orderByComparator
+			};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRuleGroupInstance mdrRuleGroupInstance : list) {
 					if ((groupId != mdrRuleGroupInstance.getGroupId()) ||
-							(classNameId != mdrRuleGroupInstance.getClassNameId()) ||
-							(classPK != mdrRuleGroupInstance.getClassPK())) {
+						(classNameId !=
+							mdrRuleGroupInstance.getClassNameId()) ||
+						(classPK != mdrRuleGroupInstance.getClassPK())) {
+
 						list = null;
 
 						break;
@@ -3418,8 +3598,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -3434,11 +3614,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3460,16 +3639,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				qPos.add(classPK);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3500,12 +3679,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByG_C_C_First(long groupId,
-		long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByG_C_C_First(
+			long groupId, long classNameId, long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByG_C_C_First(groupId,
-				classNameId, classPK, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByG_C_C_First(
+			groupId, classNameId, classPK, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -3539,11 +3719,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the first matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByG_C_C_First(long groupId,
-		long classNameId, long classPK,
+	public MDRRuleGroupInstance fetchByG_C_C_First(
+		long groupId, long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
-		List<MDRRuleGroupInstance> list = findByG_C_C(groupId, classNameId,
-				classPK, 0, 1, orderByComparator);
+
+		List<MDRRuleGroupInstance> list = findByG_C_C(
+			groupId, classNameId, classPK, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3563,12 +3744,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByG_C_C_Last(long groupId,
-		long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+	public MDRRuleGroupInstance findByG_C_C_Last(
+			long groupId, long classNameId, long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByG_C_C_Last(groupId,
-				classNameId, classPK, orderByComparator);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByG_C_C_Last(
+			groupId, classNameId, classPK, orderByComparator);
 
 		if (mdrRuleGroupInstance != null) {
 			return mdrRuleGroupInstance;
@@ -3602,17 +3784,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the last matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByG_C_C_Last(long groupId,
-		long classNameId, long classPK,
+	public MDRRuleGroupInstance fetchByG_C_C_Last(
+		long groupId, long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		int count = countByG_C_C(groupId, classNameId, classPK);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<MDRRuleGroupInstance> list = findByG_C_C(groupId, classNameId,
-				classPK, count - 1, count, orderByComparator);
+		List<MDRRuleGroupInstance> list = findByG_C_C(
+			groupId, classNameId, classPK, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3634,10 +3817,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] findByG_C_C_PrevAndNext(
-		long ruleGroupInstanceId, long groupId, long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long groupId, long classNameId,
+			long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -3646,13 +3832,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = getByG_C_C_PrevAndNext(session, mdrRuleGroupInstance,
-					groupId, classNameId, classPK, orderByComparator, true);
+			array[0] = getByG_C_C_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, classNameId, classPK,
+				orderByComparator, true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = getByG_C_C_PrevAndNext(session, mdrRuleGroupInstance,
-					groupId, classNameId, classPK, orderByComparator, false);
+			array[2] = getByG_C_C_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, classNameId, classPK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -3664,16 +3852,17 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	protected MDRRuleGroupInstance getByG_C_C_PrevAndNext(Session session,
-		MDRRuleGroupInstance mdrRuleGroupInstance, long groupId,
-		long classNameId, long classPK,
+	protected MDRRuleGroupInstance getByG_C_C_PrevAndNext(
+		Session session, MDRRuleGroupInstance mdrRuleGroupInstance,
+		long groupId, long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3689,7 +3878,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3763,8 +3953,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3788,10 +3980,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK) {
-		return filterFindByG_C_C(groupId, classNameId, classPK,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<MDRRuleGroupInstance> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
+		return filterFindByG_C_C(
+			groupId, classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -3809,9 +4003,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the range of matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end) {
-		return filterFindByG_C_C(groupId, classNameId, classPK, start, end, null);
+	public List<MDRRuleGroupInstance> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end) {
+
+		return filterFindByG_C_C(
+			groupId, classNameId, classPK, start, end, null);
 	}
 
 	/**
@@ -3830,19 +4026,20 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end,
+	public List<MDRRuleGroupInstance> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_C(groupId, classNameId, classPK, start, end,
-				orderByComparator);
+			return findByG_C_C(
+				groupId, classNameId, classPK, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -3852,7 +4049,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_C_GROUPID_2);
@@ -3862,17 +4060,18 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -3884,9 +4083,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -3896,10 +4095,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, MDRRuleGroupInstanceImpl.class);
+				q.addEntity(
+					_FILTER_ENTITY_ALIAS, MDRRuleGroupInstanceImpl.class);
 			}
 			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, MDRRuleGroupInstanceImpl.class);
+				q.addEntity(
+					_FILTER_ENTITY_TABLE, MDRRuleGroupInstanceImpl.class);
 			}
 
 			QueryPos qPos = QueryPos.getInstance(q);
@@ -3910,8 +4111,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			qPos.add(classPK);
 
-			return (List<MDRRuleGroupInstance>)QueryUtil.list(q, getDialect(),
-				start, end);
+			return (List<MDRRuleGroupInstance>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -3934,15 +4135,19 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance[] filterFindByG_C_C_PrevAndNext(
-		long ruleGroupInstanceId, long groupId, long classNameId, long classPK,
-		OrderByComparator<MDRRuleGroupInstance> orderByComparator)
+			long ruleGroupInstanceId, long groupId, long classNameId,
+			long classPK,
+			OrderByComparator<MDRRuleGroupInstance> orderByComparator)
 		throws NoSuchRuleGroupInstanceException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_C_PrevAndNext(ruleGroupInstanceId, groupId,
-				classNameId, classPK, orderByComparator);
+			return findByG_C_C_PrevAndNext(
+				ruleGroupInstanceId, groupId, classNameId, classPK,
+				orderByComparator);
 		}
 
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(ruleGroupInstanceId);
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByPrimaryKey(
+			ruleGroupInstanceId);
 
 		Session session = null;
 
@@ -3951,15 +4156,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			MDRRuleGroupInstance[] array = new MDRRuleGroupInstanceImpl[3];
 
-			array[0] = filterGetByG_C_C_PrevAndNext(session,
-					mdrRuleGroupInstance, groupId, classNameId, classPK,
-					orderByComparator, true);
+			array[0] = filterGetByG_C_C_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, classNameId, classPK,
+				orderByComparator, true);
 
 			array[1] = mdrRuleGroupInstance;
 
-			array[2] = filterGetByG_C_C_PrevAndNext(session,
-					mdrRuleGroupInstance, groupId, classNameId, classPK,
-					orderByComparator, false);
+			array[2] = filterGetByG_C_C_PrevAndNext(
+				session, mdrRuleGroupInstance, groupId, classNameId, classPK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -3976,11 +4181,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		long groupId, long classNameId, long classPK,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3991,7 +4197,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_C_GROUPID_2);
@@ -4001,11 +4208,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -4013,12 +4222,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -4045,12 +4258,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -4080,9 +4295,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -4105,8 +4320,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					mdrRuleGroupInstance)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						mdrRuleGroupInstance)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -4130,8 +4347,11 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void removeByG_C_C(long groupId, long classNameId, long classPK) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : findByG_C_C(groupId,
-				classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				findByG_C_C(
+					groupId, classNameId, classPK, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(mdrRuleGroupInstance);
 		}
 	}
@@ -4148,7 +4368,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	public int countByG_C_C(long groupId, long classNameId, long classPK) {
 		FinderPath finderPath = _finderPathCountByG_C_C;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, classPK };
+		Object[] finderArgs = new Object[] {groupId, classNameId, classPK};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -4206,7 +4426,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the number of matching mdr rule group instances that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_C(long groupId, long classNameId, long classPK) {
+	public int filterCountByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_C_C(groupId, classNameId, classPK);
 		}
@@ -4221,9 +4443,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				MDRRuleGroupInstance.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), MDRRuleGroupInstance.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -4232,8 +4454,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -4255,9 +4477,15 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 = "mdrRuleGroupInstance.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 = "mdrRuleGroupInstance.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 = "mdrRuleGroupInstance.classPK = ?";
+	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 =
+		"mdrRuleGroupInstance.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 =
+		"mdrRuleGroupInstance.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 =
+		"mdrRuleGroupInstance.classPK = ?";
+
 	private FinderPath _finderPathFetchByC_C_R;
 	private FinderPath _finderPathCountByC_C_R;
 
@@ -4271,10 +4499,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @throws NoSuchRuleGroupInstanceException if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance findByC_C_R(long classNameId, long classPK,
-		long ruleGroupId) throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_R(classNameId,
-				classPK, ruleGroupId);
+	public MDRRuleGroupInstance findByC_C_R(
+			long classNameId, long classPK, long ruleGroupId)
+		throws NoSuchRuleGroupInstanceException {
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByC_C_R(
+			classNameId, classPK, ruleGroupId);
 
 		if (mdrRuleGroupInstance == null) {
 			StringBundler msg = new StringBundler(8);
@@ -4311,8 +4541,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByC_C_R(long classNameId, long classPK,
-		long ruleGroupId) {
+	public MDRRuleGroupInstance fetchByC_C_R(
+		long classNameId, long classPK, long ruleGroupId) {
+
 		return fetchByC_C_R(classNameId, classPK, ruleGroupId, true);
 	}
 
@@ -4326,23 +4557,27 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the matching mdr rule group instance, or <code>null</code> if a matching mdr rule group instance could not be found
 	 */
 	@Override
-	public MDRRuleGroupInstance fetchByC_C_R(long classNameId, long classPK,
-		long ruleGroupId, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { classNameId, classPK, ruleGroupId };
+	public MDRRuleGroupInstance fetchByC_C_R(
+		long classNameId, long classPK, long ruleGroupId,
+		boolean retrieveFromCache) {
+
+		Object[] finderArgs = new Object[] {classNameId, classPK, ruleGroupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByC_C_R, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByC_C_R, finderArgs, this);
 		}
 
 		if (result instanceof MDRRuleGroupInstance) {
-			MDRRuleGroupInstance mdrRuleGroupInstance = (MDRRuleGroupInstance)result;
+			MDRRuleGroupInstance mdrRuleGroupInstance =
+				(MDRRuleGroupInstance)result;
 
 			if ((classNameId != mdrRuleGroupInstance.getClassNameId()) ||
-					(classPK != mdrRuleGroupInstance.getClassPK()) ||
-					(ruleGroupId != mdrRuleGroupInstance.getRuleGroupId())) {
+				(classPK != mdrRuleGroupInstance.getClassPK()) ||
+				(ruleGroupId != mdrRuleGroupInstance.getRuleGroupId())) {
+
 				result = null;
 			}
 		}
@@ -4378,8 +4613,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				List<MDRRuleGroupInstance> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByC_C_R, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByC_C_R, finderArgs, list);
 				}
 				else {
 					MDRRuleGroupInstance mdrRuleGroupInstance = list.get(0);
@@ -4416,10 +4651,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the mdr rule group instance that was removed
 	 */
 	@Override
-	public MDRRuleGroupInstance removeByC_C_R(long classNameId, long classPK,
-		long ruleGroupId) throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = findByC_C_R(classNameId,
-				classPK, ruleGroupId);
+	public MDRRuleGroupInstance removeByC_C_R(
+			long classNameId, long classPK, long ruleGroupId)
+		throws NoSuchRuleGroupInstanceException {
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = findByC_C_R(
+			classNameId, classPK, ruleGroupId);
 
 		return remove(mdrRuleGroupInstance);
 	}
@@ -4436,7 +4673,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	public int countByC_C_R(long classNameId, long classPK, long ruleGroupId) {
 		FinderPath finderPath = _finderPathCountByC_C_R;
 
-		Object[] finderArgs = new Object[] { classNameId, classPK, ruleGroupId };
+		Object[] finderArgs = new Object[] {classNameId, classPK, ruleGroupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -4485,16 +4722,21 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_C_R_CLASSNAMEID_2 = "mdrRuleGroupInstance.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_C_C_R_CLASSPK_2 = "mdrRuleGroupInstance.classPK = ? AND ";
-	private static final String _FINDER_COLUMN_C_C_R_RULEGROUPID_2 = "mdrRuleGroupInstance.ruleGroupId = ?";
+	private static final String _FINDER_COLUMN_C_C_R_CLASSNAMEID_2 =
+		"mdrRuleGroupInstance.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_C_R_CLASSPK_2 =
+		"mdrRuleGroupInstance.classPK = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_C_R_RULEGROUPID_2 =
+		"mdrRuleGroupInstance.ruleGroupId = ?";
 
 	public MDRRuleGroupInstancePersistenceImpl() {
 		setModelClass(MDRRuleGroupInstance.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -4518,22 +4760,27 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void cacheResult(MDRRuleGroupInstance mdrRuleGroupInstance) {
-		entityCache.putResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			MDRRuleGroupInstanceImpl.class,
 			mdrRuleGroupInstance.getPrimaryKey(), mdrRuleGroupInstance);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
 			new Object[] {
 				mdrRuleGroupInstance.getUuid(),
 				mdrRuleGroupInstance.getGroupId()
-			}, mdrRuleGroupInstance);
+			},
+			mdrRuleGroupInstance);
 
-		finderCache.putResult(_finderPathFetchByC_C_R,
+		finderCache.putResult(
+			_finderPathFetchByC_C_R,
 			new Object[] {
 				mdrRuleGroupInstance.getClassNameId(),
 				mdrRuleGroupInstance.getClassPK(),
 				mdrRuleGroupInstance.getRuleGroupId()
-			}, mdrRuleGroupInstance);
+			},
+			mdrRuleGroupInstance);
 
 		mdrRuleGroupInstance.resetOriginalValues();
 	}
@@ -4545,11 +4792,14 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void cacheResult(List<MDRRuleGroupInstance> mdrRuleGroupInstances) {
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : mdrRuleGroupInstances) {
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				mdrRuleGroupInstances) {
+
 			if (entityCache.getResult(
-						MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-						MDRRuleGroupInstanceImpl.class,
-						mdrRuleGroupInstance.getPrimaryKey()) == null) {
+					MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+					MDRRuleGroupInstanceImpl.class,
+					mdrRuleGroupInstance.getPrimaryKey()) == null) {
+
 				cacheResult(mdrRuleGroupInstance);
 			}
 			else {
@@ -4583,14 +4833,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public void clearCache(MDRRuleGroupInstance mdrRuleGroupInstance) {
-		entityCache.removeResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-			MDRRuleGroupInstanceImpl.class, mdrRuleGroupInstance.getPrimaryKey());
+		entityCache.removeResult(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			mdrRuleGroupInstance.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance,
-			true);
+		clearUniqueFindersCache(
+			(MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance, true);
 	}
 
 	@Override
@@ -4598,59 +4850,67 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (MDRRuleGroupInstance mdrRuleGroupInstance : mdrRuleGroupInstances) {
-			entityCache.removeResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+		for (MDRRuleGroupInstance mdrRuleGroupInstance :
+				mdrRuleGroupInstances) {
+
+			entityCache.removeResult(
+				MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 				MDRRuleGroupInstanceImpl.class,
 				mdrRuleGroupInstance.getPrimaryKey());
 
-			clearUniqueFindersCache((MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance,
-				true);
+			clearUniqueFindersCache(
+				(MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		MDRRuleGroupInstanceModelImpl mdrRuleGroupInstanceModelImpl) {
-		Object[] args = new Object[] {
-				mdrRuleGroupInstanceModelImpl.getUuid(),
-				mdrRuleGroupInstanceModelImpl.getGroupId()
-			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
+		Object[] args = new Object[] {
+			mdrRuleGroupInstanceModelImpl.getUuid(),
+			mdrRuleGroupInstanceModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, mdrRuleGroupInstanceModelImpl,
 			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			mdrRuleGroupInstanceModelImpl, false);
 
 		args = new Object[] {
-				mdrRuleGroupInstanceModelImpl.getClassNameId(),
-				mdrRuleGroupInstanceModelImpl.getClassPK(),
-				mdrRuleGroupInstanceModelImpl.getRuleGroupId()
-			};
+			mdrRuleGroupInstanceModelImpl.getClassNameId(),
+			mdrRuleGroupInstanceModelImpl.getClassPK(),
+			mdrRuleGroupInstanceModelImpl.getRuleGroupId()
+		};
 
-		finderCache.putResult(_finderPathCountByC_C_R, args, Long.valueOf(1),
+		finderCache.putResult(
+			_finderPathCountByC_C_R, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByC_C_R, args, mdrRuleGroupInstanceModelImpl,
 			false);
-		finderCache.putResult(_finderPathFetchByC_C_R, args,
-			mdrRuleGroupInstanceModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		MDRRuleGroupInstanceModelImpl mdrRuleGroupInstanceModelImpl,
 		boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					mdrRuleGroupInstanceModelImpl.getUuid(),
-					mdrRuleGroupInstanceModelImpl.getGroupId()
-				};
+				mdrRuleGroupInstanceModelImpl.getUuid(),
+				mdrRuleGroupInstanceModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					mdrRuleGroupInstanceModelImpl.getOriginalUuid(),
-					mdrRuleGroupInstanceModelImpl.getOriginalGroupId()
-				};
+				mdrRuleGroupInstanceModelImpl.getOriginalUuid(),
+				mdrRuleGroupInstanceModelImpl.getOriginalGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
@@ -4658,22 +4918,23 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					mdrRuleGroupInstanceModelImpl.getClassNameId(),
-					mdrRuleGroupInstanceModelImpl.getClassPK(),
-					mdrRuleGroupInstanceModelImpl.getRuleGroupId()
-				};
+				mdrRuleGroupInstanceModelImpl.getClassNameId(),
+				mdrRuleGroupInstanceModelImpl.getClassPK(),
+				mdrRuleGroupInstanceModelImpl.getRuleGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByC_C_R, args);
 			finderCache.removeResult(_finderPathFetchByC_C_R, args);
 		}
 
 		if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-				_finderPathFetchByC_C_R.getColumnBitmask()) != 0) {
+			 _finderPathFetchByC_C_R.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
-					mdrRuleGroupInstanceModelImpl.getOriginalClassPK(),
-					mdrRuleGroupInstanceModelImpl.getOriginalRuleGroupId()
-				};
+				mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
+				mdrRuleGroupInstanceModelImpl.getOriginalClassPK(),
+				mdrRuleGroupInstanceModelImpl.getOriginalRuleGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByC_C_R, args);
 			finderCache.removeResult(_finderPathFetchByC_C_R, args);
@@ -4688,7 +4949,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance create(long ruleGroupInstanceId) {
-		MDRRuleGroupInstance mdrRuleGroupInstance = new MDRRuleGroupInstanceImpl();
+		MDRRuleGroupInstance mdrRuleGroupInstance =
+			new MDRRuleGroupInstanceImpl();
 
 		mdrRuleGroupInstance.setNew(true);
 		mdrRuleGroupInstance.setPrimaryKey(ruleGroupInstanceId);
@@ -4712,6 +4974,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance remove(long ruleGroupInstanceId)
 		throws NoSuchRuleGroupInstanceException {
+
 		return remove((Serializable)ruleGroupInstanceId);
 	}
 
@@ -4725,21 +4988,23 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance remove(Serializable primaryKey)
 		throws NoSuchRuleGroupInstanceException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			MDRRuleGroupInstance mdrRuleGroupInstance = (MDRRuleGroupInstance)session.get(MDRRuleGroupInstanceImpl.class,
-					primaryKey);
+			MDRRuleGroupInstance mdrRuleGroupInstance =
+				(MDRRuleGroupInstance)session.get(
+					MDRRuleGroupInstanceImpl.class, primaryKey);
 
 			if (mdrRuleGroupInstance == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchRuleGroupInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchRuleGroupInstanceException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(mdrRuleGroupInstance);
@@ -4758,14 +5023,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	protected MDRRuleGroupInstance removeImpl(
 		MDRRuleGroupInstance mdrRuleGroupInstance) {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			if (!session.contains(mdrRuleGroupInstance)) {
-				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.get(MDRRuleGroupInstanceImpl.class,
-						mdrRuleGroupInstance.getPrimaryKeyObj());
+				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.get(
+					MDRRuleGroupInstanceImpl.class,
+					mdrRuleGroupInstance.getPrimaryKeyObj());
 			}
 
 			if (mdrRuleGroupInstance != null) {
@@ -4789,25 +5056,28 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance updateImpl(
 		MDRRuleGroupInstance mdrRuleGroupInstance) {
+
 		boolean isNew = mdrRuleGroupInstance.isNew();
 
 		if (!(mdrRuleGroupInstance instanceof MDRRuleGroupInstanceModelImpl)) {
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(mdrRuleGroupInstance.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(mdrRuleGroupInstance);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					mdrRuleGroupInstance);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in mdrRuleGroupInstance proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom MDRRuleGroupInstance implementation " +
-				mdrRuleGroupInstance.getClass());
+					mdrRuleGroupInstance.getClass());
 		}
 
-		MDRRuleGroupInstanceModelImpl mdrRuleGroupInstanceModelImpl = (MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance;
+		MDRRuleGroupInstanceModelImpl mdrRuleGroupInstanceModelImpl =
+			(MDRRuleGroupInstanceModelImpl)mdrRuleGroupInstance;
 
 		if (Validator.isNull(mdrRuleGroupInstance.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -4815,7 +5085,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			mdrRuleGroupInstance.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -4824,8 +5095,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				mdrRuleGroupInstance.setCreateDate(now);
 			}
 			else {
-				mdrRuleGroupInstance.setCreateDate(serviceContext.getCreateDate(
-						now));
+				mdrRuleGroupInstance.setCreateDate(
+					serviceContext.getCreateDate(now));
 			}
 		}
 
@@ -4834,8 +5105,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				mdrRuleGroupInstance.setModifiedDate(now);
 			}
 			else {
-				mdrRuleGroupInstance.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				mdrRuleGroupInstance.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -4850,7 +5121,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				mdrRuleGroupInstance.setNew(false);
 			}
 			else {
-				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.merge(mdrRuleGroupInstance);
+				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.merge(
+					mdrRuleGroupInstance);
 			}
 		}
 		catch (Exception e) {
@@ -4865,179 +5137,197 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		if (!MDRRuleGroupInstanceModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { mdrRuleGroupInstanceModelImpl.getUuid() };
+		else if (isNew) {
+			Object[] args = new Object[] {
+				mdrRuleGroupInstanceModelImpl.getUuid()
+			};
 
 			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
 
 			args = new Object[] {
+				mdrRuleGroupInstanceModelImpl.getUuid(),
+				mdrRuleGroupInstanceModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			args = new Object[] {mdrRuleGroupInstanceModelImpl.getGroupId()};
+
+			finderCache.removeResult(_finderPathCountByGroupId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByGroupId, args);
+
+			args = new Object[] {
+				mdrRuleGroupInstanceModelImpl.getRuleGroupId()
+			};
+
+			finderCache.removeResult(_finderPathCountByRuleGroupId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByRuleGroupId, args);
+
+			args = new Object[] {
+				mdrRuleGroupInstanceModelImpl.getClassNameId(),
+				mdrRuleGroupInstanceModelImpl.getClassPK()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_C, args);
+
+			args = new Object[] {
+				mdrRuleGroupInstanceModelImpl.getGroupId(),
+				mdrRuleGroupInstanceModelImpl.getClassNameId(),
+				mdrRuleGroupInstanceModelImpl.getClassPK()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C_C, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {mdrRuleGroupInstanceModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalUuid(),
+					mdrRuleGroupInstanceModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					mdrRuleGroupInstanceModelImpl.getUuid(),
 					mdrRuleGroupInstanceModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+			}
 
-			args = new Object[] { mdrRuleGroupInstanceModelImpl.getGroupId() };
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByGroupId.
+					 getColumnBitmask()) != 0) {
 
-			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-				args);
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalGroupId()
+				};
 
-			args = new Object[] { mdrRuleGroupInstanceModelImpl.getRuleGroupId() };
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
 
-			finderCache.removeResult(_finderPathCountByRuleGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByRuleGroupId,
-				args);
+				args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getGroupId()
+				};
 
-			args = new Object[] {
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
+			}
+
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByRuleGroupId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalRuleGroupId()
+				};
+
+				finderCache.removeResult(_finderPathCountByRuleGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByRuleGroupId, args);
+
+				args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getRuleGroupId()
+				};
+
+				finderCache.removeResult(_finderPathCountByRuleGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByRuleGroupId, args);
+			}
+
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
+					mdrRuleGroupInstanceModelImpl.getOriginalClassPK()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_C, args);
+
+				args = new Object[] {
 					mdrRuleGroupInstanceModelImpl.getClassNameId(),
 					mdrRuleGroupInstanceModelImpl.getClassPK()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_C, args);
+				finderCache.removeResult(_finderPathCountByC_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_C, args);
+			}
 
-			args = new Object[] {
+			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					mdrRuleGroupInstanceModelImpl.getOriginalGroupId(),
+					mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
+					mdrRuleGroupInstanceModelImpl.getOriginalClassPK()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_C, args);
+
+				args = new Object[] {
 					mdrRuleGroupInstanceModelImpl.getGroupId(),
 					mdrRuleGroupInstanceModelImpl.getClassNameId(),
 					mdrRuleGroupInstanceModelImpl.getClassPK()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { mdrRuleGroupInstanceModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-			}
-
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalUuid(),
-						mdrRuleGroupInstanceModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getUuid(),
-						mdrRuleGroupInstanceModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-			}
-
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-
-				args = new Object[] { mdrRuleGroupInstanceModelImpl.getGroupId() };
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-			}
-
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByRuleGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalRuleGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByRuleGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByRuleGroupId,
-					args);
-
-				args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getRuleGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByRuleGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByRuleGroupId,
-					args);
-			}
-
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
-						mdrRuleGroupInstanceModelImpl.getOriginalClassPK()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_C,
-					args);
-
-				args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getClassNameId(),
-						mdrRuleGroupInstanceModelImpl.getClassPK()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_C,
-					args);
-			}
-
-			if ((mdrRuleGroupInstanceModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getOriginalGroupId(),
-						mdrRuleGroupInstanceModelImpl.getOriginalClassNameId(),
-						mdrRuleGroupInstanceModelImpl.getOriginalClassPK()
-					};
-
 				finderCache.removeResult(_finderPathCountByG_C_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-					args);
-
-				args = new Object[] {
-						mdrRuleGroupInstanceModelImpl.getGroupId(),
-						mdrRuleGroupInstanceModelImpl.getClassNameId(),
-						mdrRuleGroupInstanceModelImpl.getClassPK()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_C, args);
 			}
 		}
 
-		entityCache.putResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			MDRRuleGroupInstanceImpl.class,
 			mdrRuleGroupInstance.getPrimaryKey(), mdrRuleGroupInstance, false);
 
@@ -5059,15 +5349,17 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchRuleGroupInstanceException {
-		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByPrimaryKey(primaryKey);
+
+		MDRRuleGroupInstance mdrRuleGroupInstance = fetchByPrimaryKey(
+			primaryKey);
 
 		if (mdrRuleGroupInstance == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchRuleGroupInstanceException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchRuleGroupInstanceException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return mdrRuleGroupInstance;
@@ -5083,6 +5375,7 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public MDRRuleGroupInstance findByPrimaryKey(long ruleGroupInstanceId)
 		throws NoSuchRuleGroupInstanceException {
+
 		return findByPrimaryKey((Serializable)ruleGroupInstanceId);
 	}
 
@@ -5094,14 +5387,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public MDRRuleGroupInstance fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
 		}
 
-		MDRRuleGroupInstance mdrRuleGroupInstance = (MDRRuleGroupInstance)serializable;
+		MDRRuleGroupInstance mdrRuleGroupInstance =
+			(MDRRuleGroupInstance)serializable;
 
 		if (mdrRuleGroupInstance == null) {
 			Session session = null;
@@ -5109,19 +5404,21 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			try {
 				session = openSession();
 
-				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.get(MDRRuleGroupInstanceImpl.class,
-						primaryKey);
+				mdrRuleGroupInstance = (MDRRuleGroupInstance)session.get(
+					MDRRuleGroupInstanceImpl.class, primaryKey);
 
 				if (mdrRuleGroupInstance != null) {
 					cacheResult(mdrRuleGroupInstance);
 				}
 				else {
-					entityCache.putResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 						MDRRuleGroupInstanceImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 					MDRRuleGroupInstanceImpl.class, primaryKey);
 
 				throw processException(e);
@@ -5148,18 +5445,21 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	@Override
 	public Map<Serializable, MDRRuleGroupInstance> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, MDRRuleGroupInstance> map = new HashMap<Serializable, MDRRuleGroupInstance>();
+		Map<Serializable, MDRRuleGroupInstance> map =
+			new HashMap<Serializable, MDRRuleGroupInstance>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
 
 			Serializable primaryKey = iterator.next();
 
-			MDRRuleGroupInstance mdrRuleGroupInstance = fetchByPrimaryKey(primaryKey);
+			MDRRuleGroupInstance mdrRuleGroupInstance = fetchByPrimaryKey(
+				primaryKey);
 
 			if (mdrRuleGroupInstance != null) {
 				map.put(primaryKey, mdrRuleGroupInstance);
@@ -5171,8 +5471,9 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-					MDRRuleGroupInstanceImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				MDRRuleGroupInstanceImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -5192,8 +5493,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE_PKS_IN);
 
@@ -5216,17 +5517,22 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 			Query q = session.createQuery(sql);
 
-			for (MDRRuleGroupInstance mdrRuleGroupInstance : (List<MDRRuleGroupInstance>)q.list()) {
-				map.put(mdrRuleGroupInstance.getPrimaryKeyObj(),
+			for (MDRRuleGroupInstance mdrRuleGroupInstance :
+					(List<MDRRuleGroupInstance>)q.list()) {
+
+				map.put(
+					mdrRuleGroupInstance.getPrimaryKeyObj(),
 					mdrRuleGroupInstance);
 
 				cacheResult(mdrRuleGroupInstance);
 
-				uncachedPrimaryKeys.remove(mdrRuleGroupInstance.getPrimaryKeyObj());
+				uncachedPrimaryKeys.remove(
+					mdrRuleGroupInstance.getPrimaryKeyObj());
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
 					MDRRuleGroupInstanceImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -5279,8 +5585,10 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findAll(int start, int end,
+	public List<MDRRuleGroupInstance> findAll(
+		int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -5298,29 +5606,32 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * @return the ordered range of mdr rule group instances
 	 */
 	@Override
-	public List<MDRRuleGroupInstance> findAll(int start, int end,
+	public List<MDRRuleGroupInstance> findAll(
+		int start, int end,
 		OrderByComparator<MDRRuleGroupInstance> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<MDRRuleGroupInstance> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<MDRRuleGroupInstance>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<MDRRuleGroupInstance>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -5328,13 +5639,13 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_MDRRULEGROUPINSTANCE);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -5342,7 +5653,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				sql = _SQL_SELECT_MDRRULEGROUPINSTANCE;
 
 				if (pagination) {
-					sql = sql.concat(MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
+					sql = sql.concat(
+						MDRRuleGroupInstanceModelImpl.ORDER_BY_JPQL);
 				}
 			}
 
@@ -5354,16 +5666,16 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<MDRRuleGroupInstance>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<MDRRuleGroupInstance>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -5401,8 +5713,8 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -5414,11 +5726,12 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -5444,203 +5757,214 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 	 * Initializes the mdr rule group instance persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] {String.class.getName()},
+			MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithPaginationFindByGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathCountByUUID_G = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+			new String[] {Long.class.getName()},
+			MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
+		_finderPathCountByGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByRuleGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRuleGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByRuleGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRuleGroupId",
+			new String[] {Long.class.getName()},
+			MDRRuleGroupInstanceModelImpl.RULEGROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByRuleGroupId = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRuleGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByC_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				MDRRuleGroupInstanceModelImpl.UUID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK);
 
-		_finderPathCountByUuid_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathCountByC_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByG_C_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-				new String[] { Long.class.getName() },
-				MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_C_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK);
 
-		_finderPathCountByGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByG_C_C = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
 
-		_finderPathWithPaginationFindByRuleGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRuleGroupId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathFetchByC_C_R = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
+			MDRRuleGroupInstanceImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC_C_R",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK |
+			MDRRuleGroupInstanceModelImpl.RULEGROUPID_COLUMN_BITMASK);
 
-		_finderPathWithoutPaginationFindByRuleGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRuleGroupId",
-				new String[] { Long.class.getName() },
-				MDRRuleGroupInstanceModelImpl.RULEGROUPID_COLUMN_BITMASK);
-
-		_finderPathCountByRuleGroupId = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByRuleGroupId", new String[] { Long.class.getName() });
-
-		_finderPathWithPaginationFindByC_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByC_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK);
-
-		_finderPathCountByC_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByG_C_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				},
-				MDRRuleGroupInstanceModelImpl.GROUPID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_C = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				});
-
-		_finderPathFetchByC_C_R = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED,
-				MDRRuleGroupInstanceImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByC_C_R",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				},
-				MDRRuleGroupInstanceModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.CLASSPK_COLUMN_BITMASK |
-				MDRRuleGroupInstanceModelImpl.RULEGROUPID_COLUMN_BITMASK);
-
-		_finderPathCountByC_C_R = new FinderPath(MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
-				MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_R",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				});
+		_finderPathCountByC_C_R = new FinderPath(
+			MDRRuleGroupInstanceModelImpl.ENTITY_CACHE_ENABLED,
+			MDRRuleGroupInstanceModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_R",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -5652,30 +5976,65 @@ public class MDRRuleGroupInstancePersistenceImpl extends BasePersistenceImpl<MDR
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE = "SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance";
-	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE_PKS_IN = "SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ruleGroupInstanceId IN (";
-	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE = "SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
-	private static final String _SQL_COUNT_MDRRULEGROUPINSTANCE = "SELECT COUNT(mdrRuleGroupInstance) FROM MDRRuleGroupInstance mdrRuleGroupInstance";
-	private static final String _SQL_COUNT_MDRRULEGROUPINSTANCE_WHERE = "SELECT COUNT(mdrRuleGroupInstance) FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "mdrRuleGroupInstance.ruleGroupInstanceId";
-	private static final String _FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE = "SELECT DISTINCT {mdrRuleGroupInstance.*} FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
-	private static final String _FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {MDRRuleGroupInstance.*} FROM (SELECT DISTINCT mdrRuleGroupInstance.ruleGroupInstanceId FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
-	private static final String _FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN MDRRuleGroupInstance ON TEMP_TABLE.ruleGroupInstanceId = MDRRuleGroupInstance.ruleGroupInstanceId";
-	private static final String _FILTER_SQL_COUNT_MDRRULEGROUPINSTANCE_WHERE = "SELECT COUNT(DISTINCT mdrRuleGroupInstance.ruleGroupInstanceId) AS COUNT_VALUE FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
+	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE =
+		"SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance";
+
+	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE_PKS_IN =
+		"SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ruleGroupInstanceId IN (";
+
+	private static final String _SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE =
+		"SELECT mdrRuleGroupInstance FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
+	private static final String _SQL_COUNT_MDRRULEGROUPINSTANCE =
+		"SELECT COUNT(mdrRuleGroupInstance) FROM MDRRuleGroupInstance mdrRuleGroupInstance";
+
+	private static final String _SQL_COUNT_MDRRULEGROUPINSTANCE_WHERE =
+		"SELECT COUNT(mdrRuleGroupInstance) FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN =
+		"mdrRuleGroupInstance.ruleGroupInstanceId";
+
+	private static final String _FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_WHERE =
+		"SELECT DISTINCT {mdrRuleGroupInstance.*} FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_1 =
+			"SELECT {MDRRuleGroupInstance.*} FROM (SELECT DISTINCT mdrRuleGroupInstance.ruleGroupInstanceId FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_MDRRULEGROUPINSTANCE_NO_INLINE_DISTINCT_WHERE_2 =
+			") TEMP_TABLE INNER JOIN MDRRuleGroupInstance ON TEMP_TABLE.ruleGroupInstanceId = MDRRuleGroupInstance.ruleGroupInstanceId";
+
+	private static final String _FILTER_SQL_COUNT_MDRRULEGROUPINSTANCE_WHERE =
+		"SELECT COUNT(DISTINCT mdrRuleGroupInstance.ruleGroupInstanceId) AS COUNT_VALUE FROM MDRRuleGroupInstance mdrRuleGroupInstance WHERE ";
+
 	private static final String _FILTER_ENTITY_ALIAS = "mdrRuleGroupInstance";
+
 	private static final String _FILTER_ENTITY_TABLE = "MDRRuleGroupInstance";
-	private static final String _ORDER_BY_ENTITY_ALIAS = "mdrRuleGroupInstance.";
-	private static final String _ORDER_BY_ENTITY_TABLE = "MDRRuleGroupInstance.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No MDRRuleGroupInstance exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No MDRRuleGroupInstance exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(MDRRuleGroupInstancePersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid"
-			});
+
+	private static final String _ORDER_BY_ENTITY_ALIAS =
+		"mdrRuleGroupInstance.";
+
+	private static final String _ORDER_BY_ENTITY_TABLE =
+		"MDRRuleGroupInstance.";
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No MDRRuleGroupInstance exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No MDRRuleGroupInstance exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MDRRuleGroupInstancePersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid"});
+
 }

@@ -17,7 +17,6 @@ package com.liferay.portal.background.task.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -43,8 +42,9 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface BackgroundTaskModel extends BaseModel<BackgroundTask>,
-	GroupedModel, MVCCModel, ShardedModel {
+public interface BackgroundTaskModel
+	extends BaseModel<BackgroundTask>, GroupedModel, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -387,4 +387,5 @@ public interface BackgroundTaskModel extends BaseModel<BackgroundTask>,
 
 	@Override
 	public String toXmlString();
+
 }

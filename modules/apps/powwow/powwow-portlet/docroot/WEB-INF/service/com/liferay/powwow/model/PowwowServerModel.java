@@ -17,7 +17,6 @@ package com.liferay.powwow.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface PowwowServerModel extends AuditedModel, BaseModel<PowwowServer>,
-	ShardedModel {
+public interface PowwowServerModel
+	extends AuditedModel, BaseModel<PowwowServer>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -326,4 +326,5 @@ public interface PowwowServerModel extends AuditedModel, BaseModel<PowwowServer>
 
 	@Override
 	public String toXmlString();
+
 }

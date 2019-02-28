@@ -64,18 +64,24 @@ import java.util.Set;
  */
 @Deprecated
 @ProviderType
-public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBlock>
+public class ResourceBlockPersistenceImpl
+	extends BasePersistenceImpl<ResourceBlock>
 	implements ResourceBlockPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ResourceBlockUtil</code> to access the resource block persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = ResourceBlockImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		ResourceBlockImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -92,8 +98,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public List<ResourceBlock> findByC_N(long companyId, String name) {
-		return findByC_N(companyId, name, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByC_N(
+			companyId, name, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -110,8 +116,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_N(long companyId, String name,
-		int start, int end) {
+	public List<ResourceBlock> findByC_N(
+		long companyId, String name, int start, int end) {
+
 		return findByC_N(companyId, name, start, end, null);
 	}
 
@@ -130,8 +137,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_N(long companyId, String name,
-		int start, int end, OrderByComparator<ResourceBlock> orderByComparator) {
+	public List<ResourceBlock> findByC_N(
+		long companyId, String name, int start, int end,
+		OrderByComparator<ResourceBlock> orderByComparator) {
+
 		return findByC_N(companyId, name, start, end, orderByComparator, true);
 	}
 
@@ -151,9 +160,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_N(long companyId, String name,
-		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
+	public List<ResourceBlock> findByC_N(
+		long companyId, String name, int start, int end,
+		OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
 		boolean pagination = true;
@@ -161,30 +172,30 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_N;
-			finderArgs = new Object[] { companyId, name };
+			finderArgs = new Object[] {companyId, name};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_N;
 			finderArgs = new Object[] {
-					companyId, name,
-					
-					start, end, orderByComparator
-				};
+				companyId, name, start, end, orderByComparator
+			};
 		}
 
 		List<ResourceBlock> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceBlock resourceBlock : list) {
 					if ((companyId != resourceBlock.getCompanyId()) ||
-							!name.equals(resourceBlock.getName())) {
+						!name.equals(resourceBlock.getName())) {
+
 						list = null;
 
 						break;
@@ -197,8 +208,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -220,11 +231,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ResourceBlockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -246,16 +256,16 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				}
 
 				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -285,11 +295,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock findByC_N_First(long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock findByC_N_First(
+			long companyId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = fetchByC_N_First(companyId, name,
-				orderByComparator);
+
+		ResourceBlock resourceBlock = fetchByC_N_First(
+			companyId, name, orderByComparator);
 
 		if (resourceBlock != null) {
 			return resourceBlock;
@@ -319,10 +331,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the first matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_N_First(long companyId, String name,
+	public ResourceBlock fetchByC_N_First(
+		long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator) {
-		List<ResourceBlock> list = findByC_N(companyId, name, 0, 1,
-				orderByComparator);
+
+		List<ResourceBlock> list = findByC_N(
+			companyId, name, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -341,11 +355,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock findByC_N_Last(long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock findByC_N_Last(
+			long companyId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = fetchByC_N_Last(companyId, name,
-				orderByComparator);
+
+		ResourceBlock resourceBlock = fetchByC_N_Last(
+			companyId, name, orderByComparator);
 
 		if (resourceBlock != null) {
 			return resourceBlock;
@@ -375,16 +391,18 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the last matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_N_Last(long companyId, String name,
+	public ResourceBlock fetchByC_N_Last(
+		long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator) {
+
 		int count = countByC_N(companyId, name);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ResourceBlock> list = findByC_N(companyId, name, count - 1, count,
-				orderByComparator);
+		List<ResourceBlock> list = findByC_N(
+			companyId, name, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -404,10 +422,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a resource block with the primary key could not be found
 	 */
 	@Override
-	public ResourceBlock[] findByC_N_PrevAndNext(long resourceBlockId,
-		long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock[] findByC_N_PrevAndNext(
+			long resourceBlockId, long companyId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
+
 		name = Objects.toString(name, "");
 
 		ResourceBlock resourceBlock = findByPrimaryKey(resourceBlockId);
@@ -419,13 +438,15 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			ResourceBlock[] array = new ResourceBlockImpl[3];
 
-			array[0] = getByC_N_PrevAndNext(session, resourceBlock, companyId,
-					name, orderByComparator, true);
+			array[0] = getByC_N_PrevAndNext(
+				session, resourceBlock, companyId, name, orderByComparator,
+				true);
 
 			array[1] = resourceBlock;
 
-			array[2] = getByC_N_PrevAndNext(session, resourceBlock, companyId,
-					name, orderByComparator, false);
+			array[2] = getByC_N_PrevAndNext(
+				session, resourceBlock, companyId, name, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -437,14 +458,16 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 	}
 
-	protected ResourceBlock getByC_N_PrevAndNext(Session session,
-		ResourceBlock resourceBlock, long companyId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator, boolean previous) {
+	protected ResourceBlock getByC_N_PrevAndNext(
+		Session session, ResourceBlock resourceBlock, long companyId,
+		String name, OrderByComparator<ResourceBlock> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -467,7 +490,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -541,8 +565,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					resourceBlock)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						resourceBlock)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -565,8 +591,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public void removeByC_N(long companyId, String name) {
-		for (ResourceBlock resourceBlock : findByC_N(companyId, name,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ResourceBlock resourceBlock :
+				findByC_N(
+					companyId, name, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(resourceBlock);
 		}
 	}
@@ -584,10 +613,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 		FinderPath finderPath = _finderPathCountByC_N;
 
-		Object[] finderArgs = new Object[] { companyId, name };
+		Object[] finderArgs = new Object[] {companyId, name};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -641,9 +670,15 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_N_COMPANYID_2 = "resourceBlock.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_N_NAME_2 = "resourceBlock.name = ?";
-	private static final String _FINDER_COLUMN_C_N_NAME_3 = "(resourceBlock.name IS NULL OR resourceBlock.name = '')";
+	private static final String _FINDER_COLUMN_C_N_COMPANYID_2 =
+		"resourceBlock.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_N_NAME_2 =
+		"resourceBlock.name = ?";
+
+	private static final String _FINDER_COLUMN_C_N_NAME_3 =
+		"(resourceBlock.name IS NULL OR resourceBlock.name = '')";
+
 	private FinderPath _finderPathWithPaginationFindByC_G_N;
 	private FinderPath _finderPathWithoutPaginationFindByC_G_N;
 	private FinderPath _finderPathCountByC_G_N;
@@ -657,10 +692,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		String name) {
-		return findByC_G_N(companyId, groupId, name, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<ResourceBlock> findByC_G_N(
+		long companyId, long groupId, String name) {
+
+		return findByC_G_N(
+			companyId, groupId, name, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -678,8 +715,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		String name, int start, int end) {
+	public List<ResourceBlock> findByC_G_N(
+		long companyId, long groupId, String name, int start, int end) {
+
 		return findByC_G_N(companyId, groupId, name, start, end, null);
 	}
 
@@ -699,11 +737,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		String name, int start, int end,
+	public List<ResourceBlock> findByC_G_N(
+		long companyId, long groupId, String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator) {
-		return findByC_G_N(companyId, groupId, name, start, end,
-			orderByComparator, true);
+
+		return findByC_G_N(
+			companyId, groupId, name, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -723,10 +762,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of matching resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		String name, int start, int end,
+	public List<ResourceBlock> findByC_G_N(
+		long companyId, long groupId, String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
 		boolean pagination = true;
@@ -734,31 +774,31 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_G_N;
-			finderArgs = new Object[] { companyId, groupId, name };
+			finderArgs = new Object[] {companyId, groupId, name};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_G_N;
 			finderArgs = new Object[] {
-					companyId, groupId, name,
-					
-					start, end, orderByComparator
-				};
+				companyId, groupId, name, start, end, orderByComparator
+			};
 		}
 
 		List<ResourceBlock> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceBlock resourceBlock : list) {
 					if ((companyId != resourceBlock.getCompanyId()) ||
-							(groupId != resourceBlock.getGroupId()) ||
-							!name.equals(resourceBlock.getName())) {
+						(groupId != resourceBlock.getGroupId()) ||
+						!name.equals(resourceBlock.getName())) {
+
 						list = null;
 
 						break;
@@ -771,8 +811,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -796,11 +836,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ResourceBlockModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -824,16 +863,16 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				}
 
 				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -864,11 +903,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock findByC_G_N_First(long companyId, long groupId,
-		String name, OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock findByC_G_N_First(
+			long companyId, long groupId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = fetchByC_G_N_First(companyId, groupId,
-				name, orderByComparator);
+
+		ResourceBlock resourceBlock = fetchByC_G_N_First(
+			companyId, groupId, name, orderByComparator);
 
 		if (resourceBlock != null) {
 			return resourceBlock;
@@ -902,10 +943,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the first matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_G_N_First(long companyId, long groupId,
-		String name, OrderByComparator<ResourceBlock> orderByComparator) {
-		List<ResourceBlock> list = findByC_G_N(companyId, groupId, name, 0, 1,
-				orderByComparator);
+	public ResourceBlock fetchByC_G_N_First(
+		long companyId, long groupId, String name,
+		OrderByComparator<ResourceBlock> orderByComparator) {
+
+		List<ResourceBlock> list = findByC_G_N(
+			companyId, groupId, name, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -925,11 +968,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock findByC_G_N_Last(long companyId, long groupId,
-		String name, OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock findByC_G_N_Last(
+			long companyId, long groupId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = fetchByC_G_N_Last(companyId, groupId,
-				name, orderByComparator);
+
+		ResourceBlock resourceBlock = fetchByC_G_N_Last(
+			companyId, groupId, name, orderByComparator);
 
 		if (resourceBlock != null) {
 			return resourceBlock;
@@ -963,16 +1008,18 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the last matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_G_N_Last(long companyId, long groupId,
-		String name, OrderByComparator<ResourceBlock> orderByComparator) {
+	public ResourceBlock fetchByC_G_N_Last(
+		long companyId, long groupId, String name,
+		OrderByComparator<ResourceBlock> orderByComparator) {
+
 		int count = countByC_G_N(companyId, groupId, name);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ResourceBlock> list = findByC_G_N(companyId, groupId, name,
-				count - 1, count, orderByComparator);
+		List<ResourceBlock> list = findByC_G_N(
+			companyId, groupId, name, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -993,10 +1040,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a resource block with the primary key could not be found
 	 */
 	@Override
-	public ResourceBlock[] findByC_G_N_PrevAndNext(long resourceBlockId,
-		long companyId, long groupId, String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+	public ResourceBlock[] findByC_G_N_PrevAndNext(
+			long resourceBlockId, long companyId, long groupId, String name,
+			OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
+
 		name = Objects.toString(name, "");
 
 		ResourceBlock resourceBlock = findByPrimaryKey(resourceBlockId);
@@ -1008,13 +1056,15 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			ResourceBlock[] array = new ResourceBlockImpl[3];
 
-			array[0] = getByC_G_N_PrevAndNext(session, resourceBlock,
-					companyId, groupId, name, orderByComparator, true);
+			array[0] = getByC_G_N_PrevAndNext(
+				session, resourceBlock, companyId, groupId, name,
+				orderByComparator, true);
 
 			array[1] = resourceBlock;
 
-			array[2] = getByC_G_N_PrevAndNext(session, resourceBlock,
-					companyId, groupId, name, orderByComparator, false);
+			array[2] = getByC_G_N_PrevAndNext(
+				session, resourceBlock, companyId, groupId, name,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -1026,14 +1076,16 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 	}
 
-	protected ResourceBlock getByC_G_N_PrevAndNext(Session session,
-		ResourceBlock resourceBlock, long companyId, long groupId, String name,
+	protected ResourceBlock getByC_G_N_PrevAndNext(
+		Session session, ResourceBlock resourceBlock, long companyId,
+		long groupId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1058,7 +1110,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1134,8 +1187,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					resourceBlock)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						resourceBlock)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1159,8 +1214,11 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public void removeByC_G_N(long companyId, long groupId, String name) {
-		for (ResourceBlock resourceBlock : findByC_G_N(companyId, groupId,
-				name, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ResourceBlock resourceBlock :
+				findByC_G_N(
+					companyId, groupId, name, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(resourceBlock);
 		}
 	}
@@ -1179,10 +1237,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 		FinderPath finderPath = _finderPathCountByC_G_N;
 
-		Object[] finderArgs = new Object[] { companyId, groupId, name };
+		Object[] finderArgs = new Object[] {companyId, groupId, name};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -1240,10 +1298,18 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_G_N_COMPANYID_2 = "resourceBlock.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_GROUPID_2 = "resourceBlock.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_NAME_2 = "resourceBlock.name = ?";
-	private static final String _FINDER_COLUMN_C_G_N_NAME_3 = "(resourceBlock.name IS NULL OR resourceBlock.name = '')";
+	private static final String _FINDER_COLUMN_C_G_N_COMPANYID_2 =
+		"resourceBlock.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_GROUPID_2 =
+		"resourceBlock.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_NAME_2 =
+		"resourceBlock.name = ?";
+
+	private static final String _FINDER_COLUMN_C_G_N_NAME_3 =
+		"(resourceBlock.name IS NULL OR resourceBlock.name = '')";
+
 	private FinderPath _finderPathFetchByC_G_N_P;
 	private FinderPath _finderPathCountByC_G_N_P;
 
@@ -1258,11 +1324,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @throws NoSuchResourceBlockException if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock findByC_G_N_P(long companyId, long groupId,
-		String name, String permissionsHash)
+	public ResourceBlock findByC_G_N_P(
+			long companyId, long groupId, String name, String permissionsHash)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = fetchByC_G_N_P(companyId, groupId, name,
-				permissionsHash);
+
+		ResourceBlock resourceBlock = fetchByC_G_N_P(
+			companyId, groupId, name, permissionsHash);
 
 		if (resourceBlock == null) {
 			StringBundler msg = new StringBundler(10);
@@ -1303,8 +1370,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_G_N_P(long companyId, long groupId,
-		String name, String permissionsHash) {
+	public ResourceBlock fetchByC_G_N_P(
+		long companyId, long groupId, String name, String permissionsHash) {
+
 		return fetchByC_G_N_P(companyId, groupId, name, permissionsHash, true);
 	}
 
@@ -1319,30 +1387,33 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	 */
 	@Override
-	public ResourceBlock fetchByC_G_N_P(long companyId, long groupId,
-		String name, String permissionsHash, boolean retrieveFromCache) {
+	public ResourceBlock fetchByC_G_N_P(
+		long companyId, long groupId, String name, String permissionsHash,
+		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 		permissionsHash = Objects.toString(permissionsHash, "");
 
 		Object[] finderArgs = new Object[] {
-				companyId, groupId, name, permissionsHash
-			};
+			companyId, groupId, name, permissionsHash
+		};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(_finderPathFetchByC_G_N_P,
-					finderArgs, this);
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByC_G_N_P, finderArgs, this);
 		}
 
 		if (result instanceof ResourceBlock) {
 			ResourceBlock resourceBlock = (ResourceBlock)result;
 
 			if ((companyId != resourceBlock.getCompanyId()) ||
-					(groupId != resourceBlock.getGroupId()) ||
-					!Objects.equals(name, resourceBlock.getName()) ||
-					!Objects.equals(permissionsHash,
-						resourceBlock.getPermissionsHash())) {
+				(groupId != resourceBlock.getGroupId()) ||
+				!Objects.equals(name, resourceBlock.getName()) ||
+				!Objects.equals(
+					permissionsHash, resourceBlock.getPermissionsHash())) {
+
 				result = null;
 			}
 		}
@@ -1404,8 +1475,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				List<ResourceBlock> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(_finderPathFetchByC_G_N_P,
-						finderArgs, list);
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_G_N_P, finderArgs, list);
 				}
 				else {
 					ResourceBlock resourceBlock = list.get(0);
@@ -1416,8 +1487,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_P,
-					finderArgs);
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByC_G_N_P, finderArgs);
 
 				throw processException(e);
 			}
@@ -1444,11 +1515,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the resource block that was removed
 	 */
 	@Override
-	public ResourceBlock removeByC_G_N_P(long companyId, long groupId,
-		String name, String permissionsHash)
+	public ResourceBlock removeByC_G_N_P(
+			long companyId, long groupId, String name, String permissionsHash)
 		throws NoSuchResourceBlockException {
-		ResourceBlock resourceBlock = findByC_G_N_P(companyId, groupId, name,
-				permissionsHash);
+
+		ResourceBlock resourceBlock = findByC_G_N_P(
+			companyId, groupId, name, permissionsHash);
 
 		return remove(resourceBlock);
 	}
@@ -1463,19 +1535,20 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the number of matching resource blocks
 	 */
 	@Override
-	public int countByC_G_N_P(long companyId, long groupId, String name,
-		String permissionsHash) {
+	public int countByC_G_N_P(
+		long companyId, long groupId, String name, String permissionsHash) {
+
 		name = Objects.toString(name, "");
 		permissionsHash = Objects.toString(permissionsHash, "");
 
 		FinderPath finderPath = _finderPathCountByC_G_N_P;
 
 		Object[] finderArgs = new Object[] {
-				companyId, groupId, name, permissionsHash
-			};
+			companyId, groupId, name, permissionsHash
+		};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -1548,12 +1621,23 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_G_N_P_COMPANYID_2 = "resourceBlock.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_P_GROUPID_2 = "resourceBlock.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_P_NAME_2 = "resourceBlock.name = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_P_NAME_3 = "(resourceBlock.name IS NULL OR resourceBlock.name = '') AND ";
-	private static final String _FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_2 = "resourceBlock.permissionsHash = ?";
-	private static final String _FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_3 = "(resourceBlock.permissionsHash IS NULL OR resourceBlock.permissionsHash = '')";
+	private static final String _FINDER_COLUMN_C_G_N_P_COMPANYID_2 =
+		"resourceBlock.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_P_GROUPID_2 =
+		"resourceBlock.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_P_NAME_2 =
+		"resourceBlock.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_P_NAME_3 =
+		"(resourceBlock.name IS NULL OR resourceBlock.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_2 =
+		"resourceBlock.permissionsHash = ?";
+
+	private static final String _FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_3 =
+		"(resourceBlock.permissionsHash IS NULL OR resourceBlock.permissionsHash = '')";
 
 	public ResourceBlockPersistenceImpl() {
 		setModelClass(ResourceBlock.class);
@@ -1566,15 +1650,18 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public void cacheResult(ResourceBlock resourceBlock) {
-		EntityCacheUtil.putResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceBlockImpl.class, resourceBlock.getPrimaryKey(),
 			resourceBlock);
 
-		FinderCacheUtil.putResult(_finderPathFetchByC_G_N_P,
+		FinderCacheUtil.putResult(
+			_finderPathFetchByC_G_N_P,
 			new Object[] {
 				resourceBlock.getCompanyId(), resourceBlock.getGroupId(),
 				resourceBlock.getName(), resourceBlock.getPermissionsHash()
-			}, resourceBlock);
+			},
+			resourceBlock);
 
 		resourceBlock.resetOriginalValues();
 	}
@@ -1588,8 +1675,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	public void cacheResult(List<ResourceBlock> resourceBlocks) {
 		for (ResourceBlock resourceBlock : resourceBlocks) {
 			if (EntityCacheUtil.getResult(
-						ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-						ResourceBlockImpl.class, resourceBlock.getPrimaryKey()) == null) {
+					ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+					ResourceBlockImpl.class, resourceBlock.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(resourceBlock);
 			}
 			else {
@@ -1623,7 +1712,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public void clearCache(ResourceBlock resourceBlock) {
-		EntityCacheUtil.removeResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceBlockImpl.class, resourceBlock.getPrimaryKey());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1638,50 +1728,55 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (ResourceBlock resourceBlock : resourceBlocks) {
-			EntityCacheUtil.removeResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(
+				ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 				ResourceBlockImpl.class, resourceBlock.getPrimaryKey());
 
-			clearUniqueFindersCache((ResourceBlockModelImpl)resourceBlock, true);
+			clearUniqueFindersCache(
+				(ResourceBlockModelImpl)resourceBlock, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		ResourceBlockModelImpl resourceBlockModelImpl) {
+
 		Object[] args = new Object[] {
+			resourceBlockModelImpl.getCompanyId(),
+			resourceBlockModelImpl.getGroupId(),
+			resourceBlockModelImpl.getName(),
+			resourceBlockModelImpl.getPermissionsHash()
+		};
+
+		FinderCacheUtil.putResult(
+			_finderPathCountByC_G_N_P, args, Long.valueOf(1), false);
+		FinderCacheUtil.putResult(
+			_finderPathFetchByC_G_N_P, args, resourceBlockModelImpl, false);
+	}
+
+	protected void clearUniqueFindersCache(
+		ResourceBlockModelImpl resourceBlockModelImpl, boolean clearCurrent) {
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
 				resourceBlockModelImpl.getCompanyId(),
 				resourceBlockModelImpl.getGroupId(),
 				resourceBlockModelImpl.getName(),
 				resourceBlockModelImpl.getPermissionsHash()
 			};
 
-		FinderCacheUtil.putResult(_finderPathCountByC_G_N_P, args,
-			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(_finderPathFetchByC_G_N_P, args,
-			resourceBlockModelImpl, false);
-	}
-
-	protected void clearUniqueFindersCache(
-		ResourceBlockModelImpl resourceBlockModelImpl, boolean clearCurrent) {
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-					resourceBlockModelImpl.getCompanyId(),
-					resourceBlockModelImpl.getGroupId(),
-					resourceBlockModelImpl.getName(),
-					resourceBlockModelImpl.getPermissionsHash()
-				};
-
 			FinderCacheUtil.removeResult(_finderPathCountByC_G_N_P, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_P, args);
 		}
 
 		if ((resourceBlockModelImpl.getColumnBitmask() &
-				_finderPathFetchByC_G_N_P.getColumnBitmask()) != 0) {
+			 _finderPathFetchByC_G_N_P.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					resourceBlockModelImpl.getOriginalCompanyId(),
-					resourceBlockModelImpl.getOriginalGroupId(),
-					resourceBlockModelImpl.getOriginalName(),
-					resourceBlockModelImpl.getOriginalPermissionsHash()
-				};
+				resourceBlockModelImpl.getOriginalCompanyId(),
+				resourceBlockModelImpl.getOriginalGroupId(),
+				resourceBlockModelImpl.getOriginalName(),
+				resourceBlockModelImpl.getOriginalPermissionsHash()
+			};
 
 			FinderCacheUtil.removeResult(_finderPathCountByC_G_N_P, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_P, args);
@@ -1716,6 +1811,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public ResourceBlock remove(long resourceBlockId)
 		throws NoSuchResourceBlockException {
+
 		return remove((Serializable)resourceBlockId);
 	}
 
@@ -1729,21 +1825,22 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public ResourceBlock remove(Serializable primaryKey)
 		throws NoSuchResourceBlockException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ResourceBlock resourceBlock = (ResourceBlock)session.get(ResourceBlockImpl.class,
-					primaryKey);
+			ResourceBlock resourceBlock = (ResourceBlock)session.get(
+				ResourceBlockImpl.class, primaryKey);
 
 			if (resourceBlock == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchResourceBlockException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchResourceBlockException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(resourceBlock);
@@ -1767,8 +1864,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			session = openSession();
 
 			if (!session.contains(resourceBlock)) {
-				resourceBlock = (ResourceBlock)session.get(ResourceBlockImpl.class,
-						resourceBlock.getPrimaryKeyObj());
+				resourceBlock = (ResourceBlock)session.get(
+					ResourceBlockImpl.class, resourceBlock.getPrimaryKeyObj());
 			}
 
 			if (resourceBlock != null) {
@@ -1797,19 +1894,21 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(resourceBlock.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(resourceBlock);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					resourceBlock);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in resourceBlock proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom ResourceBlock implementation " +
-				resourceBlock.getClass());
+					resourceBlock.getClass());
 		}
 
-		ResourceBlockModelImpl resourceBlockModelImpl = (ResourceBlockModelImpl)resourceBlock;
+		ResourceBlockModelImpl resourceBlockModelImpl =
+			(ResourceBlockModelImpl)resourceBlock;
 
 		Session session = null;
 
@@ -1835,81 +1934,86 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (!ResourceBlockModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			FinderCacheUtil.clearCache(
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				resourceBlockModelImpl.getCompanyId(),
+				resourceBlockModelImpl.getName()
+			};
+
+			FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByC_N, args);
+
+			args = new Object[] {
+				resourceBlockModelImpl.getCompanyId(),
+				resourceBlockModelImpl.getGroupId(),
+				resourceBlockModelImpl.getName()
+			};
+
+			FinderCacheUtil.removeResult(_finderPathCountByC_G_N, args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByC_G_N, args);
+
+			FinderCacheUtil.removeResult(
+				_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((resourceBlockModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_N.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					resourceBlockModelImpl.getOriginalCompanyId(),
+					resourceBlockModelImpl.getOriginalName()
+				};
+
+				FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_N, args);
+
+				args = new Object[] {
 					resourceBlockModelImpl.getCompanyId(),
 					resourceBlockModelImpl.getName()
 				};
 
-			FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N,
-				args);
+				FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_N, args);
+			}
 
-			args = new Object[] {
+			if ((resourceBlockModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_G_N.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					resourceBlockModelImpl.getOriginalCompanyId(),
+					resourceBlockModelImpl.getOriginalGroupId(),
+					resourceBlockModelImpl.getOriginalName()
+				};
+
+				FinderCacheUtil.removeResult(_finderPathCountByC_G_N, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_G_N, args);
+
+				args = new Object[] {
 					resourceBlockModelImpl.getCompanyId(),
 					resourceBlockModelImpl.getGroupId(),
 					resourceBlockModelImpl.getName()
 				};
 
-			FinderCacheUtil.removeResult(_finderPathCountByC_G_N, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_G_N,
-				args);
-
-			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((resourceBlockModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_N.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						resourceBlockModelImpl.getOriginalCompanyId(),
-						resourceBlockModelImpl.getOriginalName()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N,
-					args);
-
-				args = new Object[] {
-						resourceBlockModelImpl.getCompanyId(),
-						resourceBlockModelImpl.getName()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByC_N, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N,
-					args);
-			}
-
-			if ((resourceBlockModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_G_N.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						resourceBlockModelImpl.getOriginalCompanyId(),
-						resourceBlockModelImpl.getOriginalGroupId(),
-						resourceBlockModelImpl.getOriginalName()
-					};
-
 				FinderCacheUtil.removeResult(_finderPathCountByC_G_N, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_G_N,
-					args);
-
-				args = new Object[] {
-						resourceBlockModelImpl.getCompanyId(),
-						resourceBlockModelImpl.getGroupId(),
-						resourceBlockModelImpl.getName()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByC_G_N, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_G_N,
-					args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_G_N, args);
 			}
 		}
 
-		EntityCacheUtil.putResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceBlockImpl.class, resourceBlock.getPrimaryKey(),
 			resourceBlock, false);
 
@@ -1931,6 +2035,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public ResourceBlock findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchResourceBlockException {
+
 		ResourceBlock resourceBlock = fetchByPrimaryKey(primaryKey);
 
 		if (resourceBlock == null) {
@@ -1938,8 +2043,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchResourceBlockException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchResourceBlockException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return resourceBlock;
@@ -1955,6 +2060,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public ResourceBlock findByPrimaryKey(long resourceBlockId)
 		throws NoSuchResourceBlockException {
+
 		return findByPrimaryKey((Serializable)resourceBlockId);
 	}
 
@@ -1966,8 +2072,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public ResourceBlock fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = EntityCacheUtil.getResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockImpl.class, primaryKey);
+		Serializable serializable = EntityCacheUtil.getResult(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -1981,19 +2088,21 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			try {
 				session = openSession();
 
-				resourceBlock = (ResourceBlock)session.get(ResourceBlockImpl.class,
-						primaryKey);
+				resourceBlock = (ResourceBlock)session.get(
+					ResourceBlockImpl.class, primaryKey);
 
 				if (resourceBlock != null) {
 					cacheResult(resourceBlock);
 				}
 				else {
-					EntityCacheUtil.putResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+					EntityCacheUtil.putResult(
+						ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 						ResourceBlockImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(
+					ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceBlockImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2020,11 +2129,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public Map<Serializable, ResourceBlock> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, ResourceBlock> map = new HashMap<Serializable, ResourceBlock>();
+		Map<Serializable, ResourceBlock> map =
+			new HashMap<Serializable, ResourceBlock>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -2043,8 +2154,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = EntityCacheUtil.getResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-					ResourceBlockImpl.class, primaryKey);
+			Serializable serializable = EntityCacheUtil.getResult(
+				ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+				ResourceBlockImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -2064,8 +2176,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_RESOURCEBLOCK_WHERE_PKS_IN);
 
@@ -2097,7 +2209,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.putResult(
+					ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceBlockImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -2150,8 +2263,10 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findAll(int start, int end,
+	public List<ResourceBlock> findAll(
+		int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -2169,29 +2284,31 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * @return the ordered range of resource blocks
 	 */
 	@Override
-	public List<ResourceBlock> findAll(int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
+	public List<ResourceBlock> findAll(
+		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ResourceBlock> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceBlock>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceBlock>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -2199,13 +2316,13 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_RESOURCEBLOCK);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -2225,16 +2342,16 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceBlock>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<ResourceBlock>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2272,8 +2389,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2285,12 +2402,12 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY, count);
+				FinderCacheUtil.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY);
+				FinderCacheUtil.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2311,98 +2428,104 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 * Initializes the resource block persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathCountAll = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByC_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_N",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByC_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_N",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_N",
-				new String[] { Long.class.getName(), String.class.getName() },
-				ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
-				ResourceBlockModelImpl.NAME_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_N",
+			new String[] {Long.class.getName(), String.class.getName()},
+			ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
+			ResourceBlockModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathCountByC_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByC_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindByC_G_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_G_N",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByC_G_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_G_N",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_G_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_G_N",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				},
-				ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
-				ResourceBlockModelImpl.GROUPID_COLUMN_BITMASK |
-				ResourceBlockModelImpl.NAME_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_G_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_G_N",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
+			ResourceBlockModelImpl.GROUPID_COLUMN_BITMASK |
+			ResourceBlockModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathCountByC_G_N = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_G_N",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				});
+		_finderPathCountByC_G_N = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_G_N",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
 
-		_finderPathFetchByC_G_N_P = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
-				ResourceBlockImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByC_G_N_P",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName()
-				},
-				ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
-				ResourceBlockModelImpl.GROUPID_COLUMN_BITMASK |
-				ResourceBlockModelImpl.NAME_COLUMN_BITMASK |
-				ResourceBlockModelImpl.PERMISSIONSHASH_COLUMN_BITMASK);
+		_finderPathFetchByC_G_N_P = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED,
+			ResourceBlockImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByC_G_N_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName()
+			},
+			ResourceBlockModelImpl.COMPANYID_COLUMN_BITMASK |
+			ResourceBlockModelImpl.GROUPID_COLUMN_BITMASK |
+			ResourceBlockModelImpl.NAME_COLUMN_BITMASK |
+			ResourceBlockModelImpl.PERMISSIONSHASH_COLUMN_BITMASK);
 
-		_finderPathCountByC_G_N_P = new FinderPath(ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_G_N_P",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), String.class.getName()
-				});
+		_finderPathCountByC_G_N_P = new FinderPath(
+			ResourceBlockModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceBlockModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_G_N_P",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), String.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -2414,13 +2537,31 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
-	private static final String _SQL_SELECT_RESOURCEBLOCK = "SELECT resourceBlock FROM ResourceBlock resourceBlock";
-	private static final String _SQL_SELECT_RESOURCEBLOCK_WHERE_PKS_IN = "SELECT resourceBlock FROM ResourceBlock resourceBlock WHERE resourceBlockId IN (";
-	private static final String _SQL_SELECT_RESOURCEBLOCK_WHERE = "SELECT resourceBlock FROM ResourceBlock resourceBlock WHERE ";
-	private static final String _SQL_COUNT_RESOURCEBLOCK = "SELECT COUNT(resourceBlock) FROM ResourceBlock resourceBlock";
-	private static final String _SQL_COUNT_RESOURCEBLOCK_WHERE = "SELECT COUNT(resourceBlock) FROM ResourceBlock resourceBlock WHERE ";
+
+	private static final String _SQL_SELECT_RESOURCEBLOCK =
+		"SELECT resourceBlock FROM ResourceBlock resourceBlock";
+
+	private static final String _SQL_SELECT_RESOURCEBLOCK_WHERE_PKS_IN =
+		"SELECT resourceBlock FROM ResourceBlock resourceBlock WHERE resourceBlockId IN (";
+
+	private static final String _SQL_SELECT_RESOURCEBLOCK_WHERE =
+		"SELECT resourceBlock FROM ResourceBlock resourceBlock WHERE ";
+
+	private static final String _SQL_COUNT_RESOURCEBLOCK =
+		"SELECT COUNT(resourceBlock) FROM ResourceBlock resourceBlock";
+
+	private static final String _SQL_COUNT_RESOURCEBLOCK_WHERE =
+		"SELECT COUNT(resourceBlock) FROM ResourceBlock resourceBlock WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "resourceBlock.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ResourceBlock exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ResourceBlock exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(ResourceBlockPersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No ResourceBlock exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No ResourceBlock exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceBlockPersistenceImpl.class);
+
 }

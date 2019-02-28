@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.model.DLFolderModel;
 import com.liferay.document.library.kernel.model.DLFolderSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,40 +68,34 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
-	implements DLFolderModel {
+public class DLFolderModelImpl
+	extends BaseModelImpl<DLFolder> implements DLFolderModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a document library folder model instance should use the <code>DLFolder</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DLFolder";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "folderId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "repositoryId", Types.BIGINT },
-			{ "mountPoint", Types.BOOLEAN },
-			{ "parentFolderId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "lastPostDate", Types.TIMESTAMP },
-			{ "defaultFileEntryTypeId", Types.BIGINT },
-			{ "hidden_", Types.BOOLEAN },
-			{ "restrictionType", Types.INTEGER },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"folderId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"repositoryId", Types.BIGINT}, {"mountPoint", Types.BOOLEAN},
+		{"parentFolderId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"lastPostDate", Types.TIMESTAMP},
+		{"defaultFileEntryTypeId", Types.BIGINT}, {"hidden_", Types.BOOLEAN},
+		{"restrictionType", Types.INTEGER},
+		{"lastPublishDate", Types.TIMESTAMP}, {"status", Types.INTEGER},
+		{"statusByUserId", Types.BIGINT}, {"statusByUserName", Types.VARCHAR},
+		{"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -132,32 +123,58 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DLFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,mountPoint BOOLEAN,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,description STRING null,lastPostDate DATE null,defaultFileEntryTypeId LONG,hidden_ BOOLEAN,restrictionType INTEGER,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DLFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,mountPoint BOOLEAN,parentFolderId LONG,treePath STRING null,name VARCHAR(255) null,description STRING null,lastPostDate DATE null,defaultFileEntryTypeId LONG,hidden_ BOOLEAN,restrictionType INTEGER,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DLFolder";
-	public static final String ORDER_BY_JPQL = " ORDER BY dlFolder.parentFolderId ASC, dlFolder.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DLFolder.parentFolderId ASC, DLFolder.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY dlFolder.parentFolderId ASC, dlFolder.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DLFolder.parentFolderId ASC, DLFolder.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFolder"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFolder"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFolder"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFolder"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFolder"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFolder"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FOLDERID_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long HIDDEN_COLUMN_BITMASK = 8L;
+
 	public static final long MOUNTPOINT_COLUMN_BITMASK = 16L;
+
 	public static final long NAME_COLUMN_BITMASK = 32L;
+
 	public static final long PARENTFOLDERID_COLUMN_BITMASK = 64L;
+
 	public static final long REPOSITORYID_COLUMN_BITMASK = 128L;
+
 	public static final long STATUS_COLUMN_BITMASK = 256L;
+
 	public static final long TREEPATH_COLUMN_BITMASK = 512L;
+
 	public static final long UUID_COLUMN_BITMASK = 1024L;
 
 	/**
@@ -220,20 +237,28 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_NAME = "DLFileEntryTypes_DLFolders";
-	public static final Object[][] MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_COLUMNS =
-		{
-			{ "companyId", Types.BIGINT },
-			{ "fileEntryTypeId", Types.BIGINT },
-			{ "folderId", Types.BIGINT }
+	public static final String MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_NAME =
+		"DLFileEntryTypes_DLFolders";
+
+	public static final Object[][]
+		MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_COLUMNS = {
+			{"companyId", Types.BIGINT}, {"fileEntryTypeId", Types.BIGINT},
+			{"folderId", Types.BIGINT}
 		};
-	public static final String MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_SQL_CREATE =
-		"create table DLFileEntryTypes_DLFolders (companyId LONG not null,fileEntryTypeId LONG not null,folderId LONG not null,primary key (fileEntryTypeId, folderId))";
-	public static final boolean FINDER_CACHE_ENABLED_DLFILEENTRYTYPES_DLFOLDERS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
+
+	public static final String
+		MAPPING_TABLE_DLFILEENTRYTYPES_DLFOLDERS_SQL_CREATE =
+			"create table DLFileEntryTypes_DLFolders (companyId LONG not null,fileEntryTypeId LONG not null,folderId LONG not null,primary key (fileEntryTypeId, folderId))";
+
+	public static final boolean
+		FINDER_CACHE_ENABLED_DLFILEENTRYTYPES_DLFOLDERS = GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.DLFileEntryTypes_DLFolders"),
 			true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.document.library.kernel.model.DLFolder"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.document.library.kernel.model.DLFolder"));
 
 	public DLFolderModelImpl() {
 	}
@@ -272,14 +297,18 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((DLFolder)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((DLFolder)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -290,35 +319,44 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DLFolder, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DLFolder, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DLFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DLFolder, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DLFolder)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DLFolder)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DLFolder, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DLFolder, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DLFolder, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DLFolder, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DLFolder, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DLFolder, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DLFolder, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFolder, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFolder, Object>>();
-		Map<String, BiConsumer<DLFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFolder, ?>>();
-
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DLFolder, Object>>();
+		Map<String, BiConsumer<DLFolder, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DLFolder, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -635,8 +673,11 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 			new BiConsumer<DLFolder, Object>() {
 
 				@Override
-				public void accept(DLFolder dlFolder, Object defaultFileEntryTypeId) {
-					dlFolder.setDefaultFileEntryTypeId((Long)defaultFileEntryTypeId);
+				public void accept(
+					DLFolder dlFolder, Object defaultFileEntryTypeId) {
+
+					dlFolder.setDefaultFileEntryTypeId(
+						(Long)defaultFileEntryTypeId);
 				}
 
 			});
@@ -781,9 +822,10 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1272,28 +1314,32 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DLFolder.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DLFolder.class.getName()));
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashEntry getTrashEntry()
 		throws PortalException {
+
 		if (!isInTrash()) {
 			return null;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
 		}
 
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
-		if (Validator.isNotNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+		if (Validator.isNotNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			ContainerModel containerModel = null;
 
 			try {
@@ -1310,14 +1356,18 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 					return trashedModel.getTrashEntry();
 				}
 
-				trashHandler = com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName(
-							containerModel.getContainerModelId()));
+				trashHandler =
+					com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+						getTrashHandler(
+							trashHandler.getContainerModelClassName(
+								containerModel.getContainerModelId()));
 
 				if (trashHandler == null) {
 					return null;
 				}
 
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
+				containerModel = trashHandler.getContainerModel(
+					containerModel.getParentContainerModelId());
 			}
 		}
 
@@ -1330,12 +1380,13 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), with no direct replacement
-	*/
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
 	@Deprecated
 	@Override
 	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
+		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+			getTrashHandler(getModelClassName());
 	}
 
 	@Override
@@ -1350,16 +1401,19 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public boolean isInTrashContainer() {
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
 		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+			Validator.isNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			return false;
 		}
 
 		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel =
+				trashHandler.getParentContainerModel(this);
 
 			if (containerModel == null) {
 				return false;
@@ -1381,8 +1435,9 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return true;
@@ -1397,8 +1452,9 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return false;
@@ -1493,8 +1549,8 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DLFolder.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DLFolder.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1507,8 +1563,9 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 	@Override
 	public DLFolder toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DLFolder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DLFolder)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1631,7 +1688,8 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 		dlFolderModelImpl._setModifiedDate = false;
 
-		dlFolderModelImpl._originalRepositoryId = dlFolderModelImpl._repositoryId;
+		dlFolderModelImpl._originalRepositoryId =
+			dlFolderModelImpl._repositoryId;
 
 		dlFolderModelImpl._setOriginalRepositoryId = false;
 
@@ -1639,7 +1697,8 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 		dlFolderModelImpl._setOriginalMountPoint = false;
 
-		dlFolderModelImpl._originalParentFolderId = dlFolderModelImpl._parentFolderId;
+		dlFolderModelImpl._originalParentFolderId =
+			dlFolderModelImpl._parentFolderId;
 
 		dlFolderModelImpl._setOriginalParentFolderId = false;
 
@@ -1784,16 +1843,20 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1812,18 +1875,22 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DLFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DLFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1837,10 +1904,12 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DLFolder.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DLFolder.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DLFolder.class, ModelWrapper.class
-		};
+		DLFolder.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _folderId;
@@ -1886,4 +1955,5 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private DLFolder _escapedModel;
+
 }

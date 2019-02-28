@@ -36,8 +36,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ExpandoColumnModel extends BaseModel<ExpandoColumn>,
-	ShardedModel {
+public interface ExpandoColumnModel
+	extends BaseModel<ExpandoColumn>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -217,4 +218,5 @@ public interface ExpandoColumnModel extends BaseModel<ExpandoColumn>,
 
 	@Override
 	public String toXmlString();
+
 }

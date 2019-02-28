@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
-
 import com.liferay.reading.time.exception.NoSuchEntryException;
 import com.liferay.reading.time.model.ReadingTimeEntry;
 import com.liferay.reading.time.model.impl.ReadingTimeEntryImpl;
@@ -70,18 +69,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<ReadingTimeEntry>
+public class ReadingTimeEntryPersistenceImpl
+	extends BasePersistenceImpl<ReadingTimeEntry>
 	implements ReadingTimeEntryPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ReadingTimeEntryUtil</code> to access the reading time entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = ReadingTimeEntryImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		ReadingTimeEntryImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -131,8 +136,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of matching reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findByUuid(String uuid, int start, int end,
+	public List<ReadingTimeEntry> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -151,9 +158,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of matching reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findByUuid(String uuid, int start, int end,
+	public List<ReadingTimeEntry> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -161,21 +170,22 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<ReadingTimeEntry> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ReadingTimeEntry>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ReadingTimeEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ReadingTimeEntry readingTimeEntry : list) {
@@ -192,8 +202,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -213,11 +223,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ReadingTimeEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -237,16 +246,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				}
 
 				if (!pagination) {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -275,11 +284,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry findByUuid_First(String uuid,
-		OrderByComparator<ReadingTimeEntry> orderByComparator)
+	public ReadingTimeEntry findByUuid_First(
+			String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = fetchByUuid_First(uuid,
-				orderByComparator);
+
+		ReadingTimeEntry readingTimeEntry = fetchByUuid_First(
+			uuid, orderByComparator);
 
 		if (readingTimeEntry != null) {
 			return readingTimeEntry;
@@ -305,8 +315,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the first matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByUuid_First(String uuid,
-		OrderByComparator<ReadingTimeEntry> orderByComparator) {
+	public ReadingTimeEntry fetchByUuid_First(
+		String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator) {
+
 		List<ReadingTimeEntry> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -325,11 +336,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry findByUuid_Last(String uuid,
-		OrderByComparator<ReadingTimeEntry> orderByComparator)
+	public ReadingTimeEntry findByUuid_Last(
+			String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = fetchByUuid_Last(uuid,
-				orderByComparator);
+
+		ReadingTimeEntry readingTimeEntry = fetchByUuid_Last(
+			uuid, orderByComparator);
 
 		if (readingTimeEntry != null) {
 			return readingTimeEntry;
@@ -355,16 +367,17 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the last matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByUuid_Last(String uuid,
-		OrderByComparator<ReadingTimeEntry> orderByComparator) {
+	public ReadingTimeEntry fetchByUuid_Last(
+		String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ReadingTimeEntry> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<ReadingTimeEntry> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -383,12 +396,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
-	public ReadingTimeEntry[] findByUuid_PrevAndNext(long readingTimeEntryId,
-		String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator)
+	public ReadingTimeEntry[] findByUuid_PrevAndNext(
+			long readingTimeEntryId, String uuid,
+			OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
+
 		uuid = Objects.toString(uuid, "");
 
-		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
+		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(
+			readingTimeEntryId);
 
 		Session session = null;
 
@@ -397,13 +413,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			ReadingTimeEntry[] array = new ReadingTimeEntryImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, readingTimeEntry, uuid,
-					orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, readingTimeEntry, uuid, orderByComparator, true);
 
 			array[1] = readingTimeEntry;
 
-			array[2] = getByUuid_PrevAndNext(session, readingTimeEntry, uuid,
-					orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, readingTimeEntry, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -415,14 +431,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		}
 	}
 
-	protected ReadingTimeEntry getByUuid_PrevAndNext(Session session,
-		ReadingTimeEntry readingTimeEntry, String uuid,
-		OrderByComparator<ReadingTimeEntry> orderByComparator, boolean previous) {
+	protected ReadingTimeEntry getByUuid_PrevAndNext(
+		Session session, ReadingTimeEntry readingTimeEntry, String uuid,
+		OrderByComparator<ReadingTimeEntry> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -443,7 +461,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -515,8 +534,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					readingTimeEntry)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						readingTimeEntry)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -538,8 +559,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (ReadingTimeEntry readingTimeEntry : findByUuid(uuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ReadingTimeEntry readingTimeEntry :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(readingTimeEntry);
 		}
 	}
@@ -556,7 +578,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -608,8 +630,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "readingTimeEntry.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"readingTimeEntry.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -624,6 +650,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry findByUUID_G(String uuid, long groupId)
 		throws NoSuchEntryException {
+
 		ReadingTimeEntry readingTimeEntry = fetchByUUID_G(uuid, groupId);
 
 		if (readingTimeEntry == null) {
@@ -670,24 +697,26 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public ReadingTimeEntry fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof ReadingTimeEntry) {
 			ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)result;
 
 			if (!Objects.equals(uuid, readingTimeEntry.getUuid()) ||
-					(groupId != readingTimeEntry.getGroupId())) {
+				(groupId != readingTimeEntry.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -730,8 +759,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				List<ReadingTimeEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					ReadingTimeEntry readingTimeEntry = list.get(0);
@@ -769,6 +798,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry removeByUUID_G(String uuid, long groupId)
 		throws NoSuchEntryException {
+
 		ReadingTimeEntry readingTimeEntry = findByUUID_G(uuid, groupId);
 
 		return remove(readingTimeEntry);
@@ -787,7 +817,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -843,9 +873,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "readingTimeEntry.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "readingTimeEntry.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"readingTimeEntry.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"readingTimeEntry.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -859,8 +895,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public List<ReadingTimeEntry> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -877,8 +913,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the range of matching reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	public List<ReadingTimeEntry> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -897,10 +934,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of matching reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findByUuid_C(String uuid, long companyId,
-		int start, int end,
+	public List<ReadingTimeEntry> findByUuid_C(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -919,10 +958,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of matching reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findByUuid_C(String uuid, long companyId,
-		int start, int end,
+	public List<ReadingTimeEntry> findByUuid_C(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -930,30 +970,30 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<ReadingTimeEntry> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ReadingTimeEntry>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ReadingTimeEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ReadingTimeEntry readingTimeEntry : list) {
 					if (!uuid.equals(readingTimeEntry.getUuid()) ||
-							(companyId != readingTimeEntry.getCompanyId())) {
+						(companyId != readingTimeEntry.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -966,8 +1006,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -989,11 +1029,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ReadingTimeEntryModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1015,16 +1054,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1054,11 +1093,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<ReadingTimeEntry> orderByComparator)
+	public ReadingTimeEntry findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_First(uuid,
-				companyId, orderByComparator);
+
+		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (readingTimeEntry != null) {
 			return readingTimeEntry;
@@ -1088,10 +1129,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the first matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByUuid_C_First(String uuid, long companyId,
+	public ReadingTimeEntry fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator) {
-		List<ReadingTimeEntry> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<ReadingTimeEntry> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1110,11 +1153,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<ReadingTimeEntry> orderByComparator)
+	public ReadingTimeEntry findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_Last(uuid, companyId,
-				orderByComparator);
+
+		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (readingTimeEntry != null) {
 			return readingTimeEntry;
@@ -1144,16 +1189,18 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the last matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByUuid_C_Last(String uuid, long companyId,
+	public ReadingTimeEntry fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ReadingTimeEntry> list = findByUuid_C(uuid, companyId, count - 1,
-				count, orderByComparator);
+		List<ReadingTimeEntry> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1174,12 +1221,14 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public ReadingTimeEntry[] findByUuid_C_PrevAndNext(
-		long readingTimeEntryId, String uuid, long companyId,
-		OrderByComparator<ReadingTimeEntry> orderByComparator)
+			long readingTimeEntryId, String uuid, long companyId,
+			OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
+
 		uuid = Objects.toString(uuid, "");
 
-		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
+		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(
+			readingTimeEntryId);
 
 		Session session = null;
 
@@ -1188,13 +1237,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			ReadingTimeEntry[] array = new ReadingTimeEntryImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, readingTimeEntry, uuid,
-					companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, readingTimeEntry, uuid, companyId, orderByComparator,
+				true);
 
 			array[1] = readingTimeEntry;
 
-			array[2] = getByUuid_C_PrevAndNext(session, readingTimeEntry, uuid,
-					companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, readingTimeEntry, uuid, companyId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -1206,14 +1257,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		}
 	}
 
-	protected ReadingTimeEntry getByUuid_C_PrevAndNext(Session session,
-		ReadingTimeEntry readingTimeEntry, String uuid, long companyId,
-		OrderByComparator<ReadingTimeEntry> orderByComparator, boolean previous) {
+	protected ReadingTimeEntry getByUuid_C_PrevAndNext(
+		Session session, ReadingTimeEntry readingTimeEntry, String uuid,
+		long companyId, OrderByComparator<ReadingTimeEntry> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1236,7 +1289,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1310,8 +1364,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					readingTimeEntry)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						readingTimeEntry)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1334,8 +1390,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (ReadingTimeEntry readingTimeEntry : findByUuid_C(uuid, companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ReadingTimeEntry readingTimeEntry :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(readingTimeEntry);
 		}
 	}
@@ -1353,7 +1412,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1409,9 +1468,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "readingTimeEntry.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "readingTimeEntry.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"readingTimeEntry.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(readingTimeEntry.uuid IS NULL OR readingTimeEntry.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"readingTimeEntry.companyId = ?";
+
 	private FinderPath _finderPathFetchByG_C_C;
 	private FinderPath _finderPathCountByG_C_C;
 
@@ -1425,10 +1490,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry findByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = fetchByG_C_C(groupId, classNameId,
-				classPK);
+	public ReadingTimeEntry findByG_C_C(
+			long groupId, long classNameId, long classPK)
+		throws NoSuchEntryException {
+
+		ReadingTimeEntry readingTimeEntry = fetchByG_C_C(
+			groupId, classNameId, classPK);
 
 		if (readingTimeEntry == null) {
 			StringBundler msg = new StringBundler(8);
@@ -1465,8 +1532,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByG_C_C(long groupId, long classNameId,
-		long classPK) {
+	public ReadingTimeEntry fetchByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
 		return fetchByG_C_C(groupId, classNameId, classPK, true);
 	}
 
@@ -1480,23 +1548,26 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the matching reading time entry, or <code>null</code> if a matching reading time entry could not be found
 	 */
 	@Override
-	public ReadingTimeEntry fetchByG_C_C(long groupId, long classNameId,
-		long classPK, boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { groupId, classNameId, classPK };
+	public ReadingTimeEntry fetchByG_C_C(
+		long groupId, long classNameId, long classPK,
+		boolean retrieveFromCache) {
+
+		Object[] finderArgs = new Object[] {groupId, classNameId, classPK};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByG_C_C, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByG_C_C, finderArgs, this);
 		}
 
 		if (result instanceof ReadingTimeEntry) {
 			ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)result;
 
 			if ((groupId != readingTimeEntry.getGroupId()) ||
-					(classNameId != readingTimeEntry.getClassNameId()) ||
-					(classPK != readingTimeEntry.getClassPK())) {
+				(classNameId != readingTimeEntry.getClassNameId()) ||
+				(classPK != readingTimeEntry.getClassPK())) {
+
 				result = null;
 			}
 		}
@@ -1532,8 +1603,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				List<ReadingTimeEntry> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByG_C_C, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByG_C_C, finderArgs, list);
 				}
 				else {
 					ReadingTimeEntry readingTimeEntry = list.get(0);
@@ -1570,10 +1641,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the reading time entry that was removed
 	 */
 	@Override
-	public ReadingTimeEntry removeByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchEntryException {
-		ReadingTimeEntry readingTimeEntry = findByG_C_C(groupId, classNameId,
-				classPK);
+	public ReadingTimeEntry removeByG_C_C(
+			long groupId, long classNameId, long classPK)
+		throws NoSuchEntryException {
+
+		ReadingTimeEntry readingTimeEntry = findByG_C_C(
+			groupId, classNameId, classPK);
 
 		return remove(readingTimeEntry);
 	}
@@ -1590,7 +1663,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	public int countByG_C_C(long groupId, long classNameId, long classPK) {
 		FinderPath finderPath = _finderPathCountByG_C_C;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, classPK };
+		Object[] finderArgs = new Object[] {groupId, classNameId, classPK};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1639,16 +1712,21 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 = "readingTimeEntry.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 = "readingTimeEntry.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 = "readingTimeEntry.classPK = ?";
+	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 =
+		"readingTimeEntry.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 =
+		"readingTimeEntry.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 =
+		"readingTimeEntry.classPK = ?";
 
 	public ReadingTimeEntryPersistenceImpl() {
 		setModelClass(ReadingTimeEntry.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -1672,20 +1750,25 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public void cacheResult(ReadingTimeEntry readingTimeEntry) {
-		entityCache.putResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ReadingTimeEntryImpl.class, readingTimeEntry.getPrimaryKey(),
 			readingTimeEntry);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
 			new Object[] {
 				readingTimeEntry.getUuid(), readingTimeEntry.getGroupId()
-			}, readingTimeEntry);
+			},
+			readingTimeEntry);
 
-		finderCache.putResult(_finderPathFetchByG_C_C,
+		finderCache.putResult(
+			_finderPathFetchByG_C_C,
 			new Object[] {
-				readingTimeEntry.getGroupId(), readingTimeEntry.getClassNameId(),
-				readingTimeEntry.getClassPK()
-			}, readingTimeEntry);
+				readingTimeEntry.getGroupId(),
+				readingTimeEntry.getClassNameId(), readingTimeEntry.getClassPK()
+			},
+			readingTimeEntry);
 
 		readingTimeEntry.resetOriginalValues();
 	}
@@ -1699,9 +1782,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	public void cacheResult(List<ReadingTimeEntry> readingTimeEntries) {
 		for (ReadingTimeEntry readingTimeEntry : readingTimeEntries) {
 			if (entityCache.getResult(
-						ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-						ReadingTimeEntryImpl.class,
-						readingTimeEntry.getPrimaryKey()) == null) {
+					ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+					ReadingTimeEntryImpl.class,
+					readingTimeEntry.getPrimaryKey()) == null) {
+
 				cacheResult(readingTimeEntry);
 			}
 			else {
@@ -1735,14 +1819,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public void clearCache(ReadingTimeEntry readingTimeEntry) {
-		entityCache.removeResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ReadingTimeEntryImpl.class, readingTimeEntry.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((ReadingTimeEntryModelImpl)readingTimeEntry,
-			true);
+		clearUniqueFindersCache(
+			(ReadingTimeEntryModelImpl)readingTimeEntry, true);
 	}
 
 	@Override
@@ -1751,57 +1836,61 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (ReadingTimeEntry readingTimeEntry : readingTimeEntries) {
-			entityCache.removeResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 				ReadingTimeEntryImpl.class, readingTimeEntry.getPrimaryKey());
 
-			clearUniqueFindersCache((ReadingTimeEntryModelImpl)readingTimeEntry,
-				true);
+			clearUniqueFindersCache(
+				(ReadingTimeEntryModelImpl)readingTimeEntry, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		ReadingTimeEntryModelImpl readingTimeEntryModelImpl) {
-		Object[] args = new Object[] {
-				readingTimeEntryModelImpl.getUuid(),
-				readingTimeEntryModelImpl.getGroupId()
-			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			readingTimeEntryModelImpl, false);
+		Object[] args = new Object[] {
+			readingTimeEntryModelImpl.getUuid(),
+			readingTimeEntryModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, readingTimeEntryModelImpl, false);
 
 		args = new Object[] {
-				readingTimeEntryModelImpl.getGroupId(),
-				readingTimeEntryModelImpl.getClassNameId(),
-				readingTimeEntryModelImpl.getClassPK()
-			};
+			readingTimeEntryModelImpl.getGroupId(),
+			readingTimeEntryModelImpl.getClassNameId(),
+			readingTimeEntryModelImpl.getClassPK()
+		};
 
-		finderCache.putResult(_finderPathCountByG_C_C, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByG_C_C, args,
-			readingTimeEntryModelImpl, false);
+		finderCache.putResult(
+			_finderPathCountByG_C_C, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByG_C_C, args, readingTimeEntryModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		ReadingTimeEntryModelImpl readingTimeEntryModelImpl,
 		boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					readingTimeEntryModelImpl.getUuid(),
-					readingTimeEntryModelImpl.getGroupId()
-				};
+				readingTimeEntryModelImpl.getUuid(),
+				readingTimeEntryModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((readingTimeEntryModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					readingTimeEntryModelImpl.getOriginalUuid(),
-					readingTimeEntryModelImpl.getOriginalGroupId()
-				};
+				readingTimeEntryModelImpl.getOriginalUuid(),
+				readingTimeEntryModelImpl.getOriginalGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
@@ -1809,22 +1898,23 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					readingTimeEntryModelImpl.getGroupId(),
-					readingTimeEntryModelImpl.getClassNameId(),
-					readingTimeEntryModelImpl.getClassPK()
-				};
+				readingTimeEntryModelImpl.getGroupId(),
+				readingTimeEntryModelImpl.getClassNameId(),
+				readingTimeEntryModelImpl.getClassPK()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_C_C, args);
 			finderCache.removeResult(_finderPathFetchByG_C_C, args);
 		}
 
 		if ((readingTimeEntryModelImpl.getColumnBitmask() &
-				_finderPathFetchByG_C_C.getColumnBitmask()) != 0) {
+			 _finderPathFetchByG_C_C.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					readingTimeEntryModelImpl.getOriginalGroupId(),
-					readingTimeEntryModelImpl.getOriginalClassNameId(),
-					readingTimeEntryModelImpl.getOriginalClassPK()
-				};
+				readingTimeEntryModelImpl.getOriginalGroupId(),
+				readingTimeEntryModelImpl.getOriginalClassNameId(),
+				readingTimeEntryModelImpl.getOriginalClassPK()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_C_C, args);
 			finderCache.removeResult(_finderPathFetchByG_C_C, args);
@@ -1863,6 +1953,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry remove(long readingTimeEntryId)
 		throws NoSuchEntryException {
+
 		return remove((Serializable)readingTimeEntryId);
 	}
 
@@ -1876,21 +1967,22 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry remove(Serializable primaryKey)
 		throws NoSuchEntryException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)session.get(ReadingTimeEntryImpl.class,
-					primaryKey);
+			ReadingTimeEntry readingTimeEntry = (ReadingTimeEntry)session.get(
+				ReadingTimeEntryImpl.class, primaryKey);
 
 			if (readingTimeEntry == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchEntryException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(readingTimeEntry);
@@ -1914,8 +2006,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			session = openSession();
 
 			if (!session.contains(readingTimeEntry)) {
-				readingTimeEntry = (ReadingTimeEntry)session.get(ReadingTimeEntryImpl.class,
-						readingTimeEntry.getPrimaryKeyObj());
+				readingTimeEntry = (ReadingTimeEntry)session.get(
+					ReadingTimeEntryImpl.class,
+					readingTimeEntry.getPrimaryKeyObj());
 			}
 
 			if (readingTimeEntry != null) {
@@ -1944,19 +2037,21 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(readingTimeEntry.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(readingTimeEntry);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					readingTimeEntry);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in readingTimeEntry proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom ReadingTimeEntry implementation " +
-				readingTimeEntry.getClass());
+					readingTimeEntry.getClass());
 		}
 
-		ReadingTimeEntryModelImpl readingTimeEntryModelImpl = (ReadingTimeEntryModelImpl)readingTimeEntry;
+		ReadingTimeEntryModelImpl readingTimeEntryModelImpl =
+			(ReadingTimeEntryModelImpl)readingTimeEntry;
 
 		if (Validator.isNull(readingTimeEntry.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -1964,7 +2059,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			readingTimeEntry.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -1973,7 +2069,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				readingTimeEntry.setCreateDate(now);
 			}
 			else {
-				readingTimeEntry.setCreateDate(serviceContext.getCreateDate(now));
+				readingTimeEntry.setCreateDate(
+					serviceContext.getCreateDate(now));
 			}
 		}
 
@@ -1982,8 +2079,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				readingTimeEntry.setModifiedDate(now);
 			}
 			else {
-				readingTimeEntry.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				readingTimeEntry.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -1998,7 +2095,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				readingTimeEntry.setNew(false);
 			}
 			else {
-				readingTimeEntry = (ReadingTimeEntry)session.merge(readingTimeEntry);
+				readingTimeEntry = (ReadingTimeEntry)session.merge(
+					readingTimeEntry);
 			}
 		}
 		catch (Exception e) {
@@ -2013,69 +2111,72 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		if (!ReadingTimeEntryModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { readingTimeEntryModelImpl.getUuid() };
+		else if (isNew) {
+			Object[] args = new Object[] {readingTimeEntryModelImpl.getUuid()};
 
 			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
 
 			args = new Object[] {
+				readingTimeEntryModelImpl.getUuid(),
+				readingTimeEntryModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((readingTimeEntryModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					readingTimeEntryModelImpl.getOriginalUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {readingTimeEntryModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((readingTimeEntryModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					readingTimeEntryModelImpl.getOriginalUuid(),
+					readingTimeEntryModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					readingTimeEntryModelImpl.getUuid(),
 					readingTimeEntryModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((readingTimeEntryModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						readingTimeEntryModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { readingTimeEntryModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-			}
-
-			if ((readingTimeEntryModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						readingTimeEntryModelImpl.getOriginalUuid(),
-						readingTimeEntryModelImpl.getOriginalCompanyId()
-					};
-
 				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						readingTimeEntryModelImpl.getUuid(),
-						readingTimeEntryModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
 			}
 		}
 
-		entityCache.putResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ReadingTimeEntryImpl.class, readingTimeEntry.getPrimaryKey(),
 			readingTimeEntry, false);
 
@@ -2097,6 +2198,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchEntryException {
+
 		ReadingTimeEntry readingTimeEntry = fetchByPrimaryKey(primaryKey);
 
 		if (readingTimeEntry == null) {
@@ -2104,8 +2206,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchEntryException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return readingTimeEntry;
@@ -2121,6 +2223,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry findByPrimaryKey(long readingTimeEntryId)
 		throws NoSuchEntryException {
+
 		return findByPrimaryKey((Serializable)readingTimeEntryId);
 	}
 
@@ -2132,8 +2235,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public ReadingTimeEntry fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -2147,19 +2251,21 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			try {
 				session = openSession();
 
-				readingTimeEntry = (ReadingTimeEntry)session.get(ReadingTimeEntryImpl.class,
-						primaryKey);
+				readingTimeEntry = (ReadingTimeEntry)session.get(
+					ReadingTimeEntryImpl.class, primaryKey);
 
 				if (readingTimeEntry != null) {
 					cacheResult(readingTimeEntry);
 				}
 				else {
-					entityCache.putResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 						ReadingTimeEntryImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 					ReadingTimeEntryImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2186,11 +2292,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public Map<Serializable, ReadingTimeEntry> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, ReadingTimeEntry> map = new HashMap<Serializable, ReadingTimeEntry>();
+		Map<Serializable, ReadingTimeEntry> map =
+			new HashMap<Serializable, ReadingTimeEntry>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -2209,8 +2317,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-					ReadingTimeEntryImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+				ReadingTimeEntryImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -2230,8 +2339,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_READINGTIMEENTRY_WHERE_PKS_IN);
 
@@ -2254,7 +2363,9 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			Query q = session.createQuery(sql);
 
-			for (ReadingTimeEntry readingTimeEntry : (List<ReadingTimeEntry>)q.list()) {
+			for (ReadingTimeEntry readingTimeEntry :
+					(List<ReadingTimeEntry>)q.list()) {
+
 				map.put(readingTimeEntry.getPrimaryKeyObj(), readingTimeEntry);
 
 				cacheResult(readingTimeEntry);
@@ -2263,7 +2374,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
 					ReadingTimeEntryImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -2316,8 +2428,10 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findAll(int start, int end,
+	public List<ReadingTimeEntry> findAll(
+		int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -2335,29 +2449,32 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @return the ordered range of reading time entries
 	 */
 	@Override
-	public List<ReadingTimeEntry> findAll(int start, int end,
+	public List<ReadingTimeEntry> findAll(
+		int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ReadingTimeEntry> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ReadingTimeEntry>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ReadingTimeEntry>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -2365,13 +2482,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_READINGTIMEENTRY);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -2391,16 +2508,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ReadingTimeEntry>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ReadingTimeEntry>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2438,8 +2555,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2451,11 +2568,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2481,103 +2599,111 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * Initializes the reading time entry persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] {String.class.getName()},
+			ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.CREATEDATE_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.COMPANYID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.CREATEDATE_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathFetchByG_C_C = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
+			ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			ReadingTimeEntryModelImpl.GROUPID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			ReadingTimeEntryModelImpl.CLASSPK_COLUMN_BITMASK);
 
-		_finderPathCountByUUID_G = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				ReadingTimeEntryModelImpl.UUID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.COMPANYID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.CREATEDATE_COLUMN_BITMASK);
-
-		_finderPathCountByUuid_C = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
-
-		_finderPathFetchByG_C_C = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED,
-				ReadingTimeEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				},
-				ReadingTimeEntryModelImpl.GROUPID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				ReadingTimeEntryModelImpl.CLASSPK_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_C = new FinderPath(ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
-				ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				});
+		_finderPathCountByG_C_C = new FinderPath(
+			ReadingTimeEntryModelImpl.ENTITY_CACHE_ENABLED,
+			ReadingTimeEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -2589,20 +2715,40 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_READINGTIMEENTRY = "SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry";
-	private static final String _SQL_SELECT_READINGTIMEENTRY_WHERE_PKS_IN = "SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry WHERE readingTimeEntryId IN (";
-	private static final String _SQL_SELECT_READINGTIMEENTRY_WHERE = "SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry WHERE ";
-	private static final String _SQL_COUNT_READINGTIMEENTRY = "SELECT COUNT(readingTimeEntry) FROM ReadingTimeEntry readingTimeEntry";
-	private static final String _SQL_COUNT_READINGTIMEENTRY_WHERE = "SELECT COUNT(readingTimeEntry) FROM ReadingTimeEntry readingTimeEntry WHERE ";
+
+	private static final String _SQL_SELECT_READINGTIMEENTRY =
+		"SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry";
+
+	private static final String _SQL_SELECT_READINGTIMEENTRY_WHERE_PKS_IN =
+		"SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry WHERE readingTimeEntryId IN (";
+
+	private static final String _SQL_SELECT_READINGTIMEENTRY_WHERE =
+		"SELECT readingTimeEntry FROM ReadingTimeEntry readingTimeEntry WHERE ";
+
+	private static final String _SQL_COUNT_READINGTIMEENTRY =
+		"SELECT COUNT(readingTimeEntry) FROM ReadingTimeEntry readingTimeEntry";
+
+	private static final String _SQL_COUNT_READINGTIMEENTRY_WHERE =
+		"SELECT COUNT(readingTimeEntry) FROM ReadingTimeEntry readingTimeEntry WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "readingTimeEntry.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ReadingTimeEntry exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ReadingTimeEntry exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(ReadingTimeEntryPersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No ReadingTimeEntry exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No ReadingTimeEntry exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ReadingTimeEntryPersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid"});
+
 }

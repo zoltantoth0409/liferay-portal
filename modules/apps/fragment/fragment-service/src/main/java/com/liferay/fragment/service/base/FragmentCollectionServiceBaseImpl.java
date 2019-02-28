@@ -18,7 +18,6 @@ import com.liferay.fragment.model.FragmentCollection;
 import com.liferay.fragment.service.FragmentCollectionService;
 import com.liferay.fragment.service.persistence.FragmentCollectionPersistence;
 import com.liferay.fragment.service.persistence.FragmentEntryPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -44,8 +43,10 @@ import javax.sql.DataSource;
  * @see com.liferay.fragment.service.impl.FragmentCollectionServiceImpl
  * @generated
  */
-public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
+public abstract class FragmentCollectionServiceBaseImpl
+	extends BaseServiceImpl
 	implements FragmentCollectionService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -57,7 +58,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the fragment collection local service
 	 */
-	public com.liferay.fragment.service.FragmentCollectionLocalService getFragmentCollectionLocalService() {
+	public com.liferay.fragment.service.FragmentCollectionLocalService
+		getFragmentCollectionLocalService() {
+
 		return fragmentCollectionLocalService;
 	}
 
@@ -67,7 +70,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 * @param fragmentCollectionLocalService the fragment collection local service
 	 */
 	public void setFragmentCollectionLocalService(
-		com.liferay.fragment.service.FragmentCollectionLocalService fragmentCollectionLocalService) {
+		com.liferay.fragment.service.FragmentCollectionLocalService
+			fragmentCollectionLocalService) {
+
 		this.fragmentCollectionLocalService = fragmentCollectionLocalService;
 	}
 
@@ -87,6 +92,7 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setFragmentCollectionService(
 		FragmentCollectionService fragmentCollectionService) {
+
 		this.fragmentCollectionService = fragmentCollectionService;
 	}
 
@@ -106,6 +112,7 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setFragmentCollectionPersistence(
 		FragmentCollectionPersistence fragmentCollectionPersistence) {
+
 		this.fragmentCollectionPersistence = fragmentCollectionPersistence;
 	}
 
@@ -114,7 +121,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -124,7 +133,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -133,7 +144,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -144,6 +157,7 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -163,6 +177,7 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setUserService(
 		com.liferay.portal.kernel.service.UserService userService) {
+
 		this.userService = userService;
 	}
 
@@ -189,7 +204,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the fragment entry local service
 	 */
-	public com.liferay.fragment.service.FragmentEntryLocalService getFragmentEntryLocalService() {
+	public com.liferay.fragment.service.FragmentEntryLocalService
+		getFragmentEntryLocalService() {
+
 		return fragmentEntryLocalService;
 	}
 
@@ -199,7 +216,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 * @param fragmentEntryLocalService the fragment entry local service
 	 */
 	public void setFragmentEntryLocalService(
-		com.liferay.fragment.service.FragmentEntryLocalService fragmentEntryLocalService) {
+		com.liferay.fragment.service.FragmentEntryLocalService
+			fragmentEntryLocalService) {
+
 		this.fragmentEntryLocalService = fragmentEntryLocalService;
 	}
 
@@ -208,7 +227,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the fragment entry remote service
 	 */
-	public com.liferay.fragment.service.FragmentEntryService getFragmentEntryService() {
+	public com.liferay.fragment.service.FragmentEntryService
+		getFragmentEntryService() {
+
 		return fragmentEntryService;
 	}
 
@@ -218,7 +239,9 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 * @param fragmentEntryService the fragment entry remote service
 	 */
 	public void setFragmentEntryService(
-		com.liferay.fragment.service.FragmentEntryService fragmentEntryService) {
+		com.liferay.fragment.service.FragmentEntryService
+			fragmentEntryService) {
+
 		this.fragmentEntryService = fragmentEntryService;
 	}
 
@@ -238,6 +261,7 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	public void setFragmentEntryPersistence(
 		FragmentEntryPersistence fragmentEntryPersistence) {
+
 		this.fragmentEntryPersistence = fragmentEntryPersistence;
 	}
 
@@ -272,15 +296,16 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = fragmentCollectionPersistence.getDataSource();
+			DataSource dataSource =
+				fragmentCollectionPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -289,24 +314,51 @@ public abstract class FragmentCollectionServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
-	@BeanReference(type = com.liferay.fragment.service.FragmentCollectionLocalService.class)
-	protected com.liferay.fragment.service.FragmentCollectionLocalService fragmentCollectionLocalService;
+	@BeanReference(
+		type = com.liferay.fragment.service.FragmentCollectionLocalService.class
+	)
+	protected com.liferay.fragment.service.FragmentCollectionLocalService
+		fragmentCollectionLocalService;
+
 	@BeanReference(type = FragmentCollectionService.class)
 	protected FragmentCollectionService fragmentCollectionService;
+
 	@BeanReference(type = FragmentCollectionPersistence.class)
 	protected FragmentCollectionPersistence fragmentCollectionPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserService.class)
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserService.class
+	)
 	protected com.liferay.portal.kernel.service.UserService userService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = com.liferay.fragment.service.FragmentEntryLocalService.class)
-	protected com.liferay.fragment.service.FragmentEntryLocalService fragmentEntryLocalService;
-	@BeanReference(type = com.liferay.fragment.service.FragmentEntryService.class)
-	protected com.liferay.fragment.service.FragmentEntryService fragmentEntryService;
+
+	@BeanReference(
+		type = com.liferay.fragment.service.FragmentEntryLocalService.class
+	)
+	protected com.liferay.fragment.service.FragmentEntryLocalService
+		fragmentEntryLocalService;
+
+	@BeanReference(
+		type = com.liferay.fragment.service.FragmentEntryService.class
+	)
+	protected com.liferay.fragment.service.FragmentEntryService
+		fragmentEntryService;
+
 	@BeanReference(type = FragmentEntryPersistence.class)
 	protected FragmentEntryPersistence fragmentEntryPersistence;
+
 }

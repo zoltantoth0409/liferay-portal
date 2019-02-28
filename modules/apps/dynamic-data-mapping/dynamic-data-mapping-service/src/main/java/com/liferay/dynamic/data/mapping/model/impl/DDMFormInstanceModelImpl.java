@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceModel;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -73,33 +70,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
-	implements DDMFormInstanceModel {
+public class DDMFormInstanceModelImpl
+	extends BaseModelImpl<DDMFormInstance> implements DDMFormInstanceModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ddm form instance model instance should use the <code>DDMFormInstance</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DDMFormInstance";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "formInstanceId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "versionUserId", Types.BIGINT },
-			{ "versionUserName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "structureId", Types.BIGINT },
-			{ "version", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "settings_", Types.CLOB },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"formInstanceId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"versionUserId", Types.BIGINT}, {"versionUserName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"structureId", Types.BIGINT}, {"version", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"settings_", Types.CLOB}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -120,25 +113,44 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DDMFormInstance (uuid_ VARCHAR(75) null,formInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,structureId LONG,version VARCHAR(75) null,name STRING null,description STRING null,settings_ TEXT null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DDMFormInstance (uuid_ VARCHAR(75) null,formInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,structureId LONG,version VARCHAR(75) null,name STRING null,description STRING null,settings_ TEXT null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DDMFormInstance";
-	public static final String ORDER_BY_JPQL = " ORDER BY ddmFormInstance.formInstanceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DDMFormInstance.formInstanceId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY ddmFormInstance.formInstanceId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DDMFormInstance.formInstanceId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstance"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long UUID_COLUMN_BITMASK = 4L;
+
 	public static final long FORMINSTANCEID_COLUMN_BITMASK = 8L;
 
 	/**
@@ -182,11 +194,13 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	 */
 	public static List<DDMFormInstance> toModels(
 		DDMFormInstanceSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<DDMFormInstance> models = new ArrayList<DDMFormInstance>(soapModels.length);
+		List<DDMFormInstance> models = new ArrayList<DDMFormInstance>(
+			soapModels.length);
 
 		for (DDMFormInstanceSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -195,8 +209,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMFormInstance"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMFormInstance"));
 
 	public DDMFormInstanceModelImpl() {
 	}
@@ -235,13 +250,18 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DDMFormInstance, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DDMFormInstance)this));
 		}
 
@@ -253,36 +273,45 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DDMFormInstance, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DDMFormInstance, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DDMFormInstance, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DDMFormInstance, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DDMFormInstance)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DDMFormInstance)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DDMFormInstance, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DDMFormInstance, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DDMFormInstance, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DDMFormInstance, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DDMFormInstance, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DDMFormInstance, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DDMFormInstance, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDMFormInstance, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DDMFormInstance, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DDMFormInstance, Object>>();
-		Map<String, BiConsumer<DDMFormInstance, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DDMFormInstance, ?>>();
-
+		Map<String, Function<DDMFormInstance, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<DDMFormInstance, Object>>();
+		Map<String, BiConsumer<DDMFormInstance, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DDMFormInstance, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -299,7 +328,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object uuid) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object uuid) {
+
 					ddmFormInstance.setUuid((String)uuid);
 				}
 
@@ -319,7 +350,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object formInstanceId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object formInstanceId) {
+
 					ddmFormInstance.setFormInstanceId((Long)formInstanceId);
 				}
 
@@ -339,7 +372,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object groupId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object groupId) {
+
 					ddmFormInstance.setGroupId((Long)groupId);
 				}
 
@@ -359,7 +394,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object companyId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object companyId) {
+
 					ddmFormInstance.setCompanyId((Long)companyId);
 				}
 
@@ -379,7 +416,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object userId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object userId) {
+
 					ddmFormInstance.setUserId((Long)userId);
 				}
 
@@ -399,7 +438,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object userName) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object userName) {
+
 					ddmFormInstance.setUserName((String)userName);
 				}
 
@@ -419,7 +460,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object versionUserId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object versionUserId) {
+
 					ddmFormInstance.setVersionUserId((Long)versionUserId);
 				}
 
@@ -439,7 +482,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object versionUserName) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object versionUserName) {
+
 					ddmFormInstance.setVersionUserName((String)versionUserName);
 				}
 
@@ -459,7 +504,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object createDate) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object createDate) {
+
 					ddmFormInstance.setCreateDate((Date)createDate);
 				}
 
@@ -479,7 +526,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object modifiedDate) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object modifiedDate) {
+
 					ddmFormInstance.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -499,7 +548,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object structureId) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object structureId) {
+
 					ddmFormInstance.setStructureId((Long)structureId);
 				}
 
@@ -519,7 +570,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object version) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object version) {
+
 					ddmFormInstance.setVersion((String)version);
 				}
 
@@ -539,7 +592,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object name) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object name) {
+
 					ddmFormInstance.setName((String)name);
 				}
 
@@ -559,7 +614,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object description) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object description) {
+
 					ddmFormInstance.setDescription((String)description);
 				}
 
@@ -579,7 +636,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object settings) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object settings) {
+
 					ddmFormInstance.setSettings((String)settings);
 				}
 
@@ -599,15 +658,18 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			new BiConsumer<DDMFormInstance, Object>() {
 
 				@Override
-				public void accept(DDMFormInstance ddmFormInstance, Object lastPublishDate) {
+				public void accept(
+					DDMFormInstance ddmFormInstance, Object lastPublishDate) {
+
 					ddmFormInstance.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -866,8 +928,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public String getName(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getName(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getName(), languageId, useDefault);
 	}
 
 	@Override
@@ -904,12 +966,14 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(name)) {
-			setName(LocalizationUtil.updateLocalization(getName(), "Name",
-					name, languageId, defaultLanguageId));
+			setName(
+				LocalizationUtil.updateLocalization(
+					getName(), "Name", name, languageId, defaultLanguageId));
 		}
 		else {
-			setName(LocalizationUtil.removeLocalization(getName(), "Name",
-					languageId));
+			setName(
+				LocalizationUtil.removeLocalization(
+					getName(), "Name", languageId));
 		}
 	}
 
@@ -929,7 +993,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			return;
 		}
 
-		setName(LocalizationUtil.updateLocalization(nameMap, getName(), "Name",
+		setName(
+			LocalizationUtil.updateLocalization(
+				nameMap, getName(), "Name",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -965,8 +1031,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getDescription(), languageId, useDefault);
 	}
 
 	@Override
@@ -998,18 +1064,21 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	}
 
 	@Override
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale) {
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale) {
+
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(description)) {
-			setDescription(LocalizationUtil.updateLocalization(
+			setDescription(
+				LocalizationUtil.updateLocalization(
 					getDescription(), "Description", description, languageId,
 					defaultLanguageId));
 		}
 		else {
-			setDescription(LocalizationUtil.removeLocalization(
+			setDescription(
+				LocalizationUtil.removeLocalization(
 					getDescription(), "Description", languageId));
 		}
 	}
@@ -1025,14 +1094,16 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	}
 
 	@Override
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale) {
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale) {
+
 		if (descriptionMap == null) {
 			return;
 		}
 
-		setDescription(LocalizationUtil.updateLocalization(descriptionMap,
-				getDescription(), "Description",
+		setDescription(
+			LocalizationUtil.updateLocalization(
+				descriptionMap, getDescription(), "Description",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -1063,7 +1134,9 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		_lastPublishDate = lastPublishDate;
 	}
 
-	public com.liferay.dynamic.data.mapping.storage.DDMFormValues getDDMFormValues() {
+	public com.liferay.dynamic.data.mapping.storage.DDMFormValues
+		getDDMFormValues() {
+
 		return null;
 	}
 
@@ -1073,8 +1146,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DDMFormInstance.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DDMFormInstance.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -1083,8 +1156,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DDMFormInstance.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DDMFormInstance.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1120,7 +1193,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 			}
 		}
 
-		return availableLanguageIds.toArray(new String[availableLanguageIds.size()]);
+		return availableLanguageIds.toArray(
+			new String[availableLanguageIds.size()]);
 	}
 
 	@Override
@@ -1138,12 +1212,15 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public void prepareLocalizedFieldsForImport() throws LocaleException {
-		Locale defaultLocale = LocaleUtil.fromLanguageId(getDefaultLanguageId());
+		Locale defaultLocale = LocaleUtil.fromLanguageId(
+			getDefaultLanguageId());
 
-		Locale[] availableLocales = LocaleUtil.fromLanguageIds(getAvailableLanguageIds());
+		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
+			getAvailableLanguageIds());
 
-		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(DDMFormInstance.class.getName(),
-				getPrimaryKey(), defaultLocale, availableLocales);
+		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
+			DDMFormInstance.class.getName(), getPrimaryKey(), defaultLocale,
+			availableLocales);
 
 		prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
@@ -1152,6 +1229,7 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
+
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
@@ -1168,19 +1246,21 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		String description = getDescription(defaultLocale);
 
 		if (Validator.isNull(description)) {
-			setDescription(getDescription(modelDefaultLanguageId), defaultLocale);
+			setDescription(
+				getDescription(modelDefaultLanguageId), defaultLocale);
 		}
 		else {
-			setDescription(getDescription(defaultLocale), defaultLocale,
-				defaultLocale);
+			setDescription(
+				getDescription(defaultLocale), defaultLocale, defaultLocale);
 		}
 	}
 
 	@Override
 	public DDMFormInstance toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DDMFormInstance)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DDMFormInstance)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1270,11 +1350,13 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 		ddmFormInstanceModelImpl._originalUuid = ddmFormInstanceModelImpl._uuid;
 
-		ddmFormInstanceModelImpl._originalGroupId = ddmFormInstanceModelImpl._groupId;
+		ddmFormInstanceModelImpl._originalGroupId =
+			ddmFormInstanceModelImpl._groupId;
 
 		ddmFormInstanceModelImpl._setOriginalGroupId = false;
 
-		ddmFormInstanceModelImpl._originalCompanyId = ddmFormInstanceModelImpl._companyId;
+		ddmFormInstanceModelImpl._originalCompanyId =
+			ddmFormInstanceModelImpl._companyId;
 
 		ddmFormInstanceModelImpl._setOriginalCompanyId = false;
 
@@ -1287,7 +1369,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public CacheModel<DDMFormInstance> toCacheModel() {
-		DDMFormInstanceCacheModel ddmFormInstanceCacheModel = new DDMFormInstanceCacheModel();
+		DDMFormInstanceCacheModel ddmFormInstanceCacheModel =
+			new DDMFormInstanceCacheModel();
 
 		ddmFormInstanceCacheModel.uuid = getUuid();
 
@@ -1378,7 +1461,8 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			ddmFormInstanceCacheModel.lastPublishDate = lastPublishDate.getTime();
+			ddmFormInstanceCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			ddmFormInstanceCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1391,16 +1475,20 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DDMFormInstance, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1419,18 +1507,22 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DDMFormInstance, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1444,10 +1536,12 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DDMFormInstance.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DDMFormInstance.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DDMFormInstance.class, ModelWrapper.class
-		};
+		DDMFormInstance.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _formInstanceId;
@@ -1474,4 +1568,5 @@ public class DDMFormInstanceModelImpl extends BaseModelImpl<DDMFormInstance>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private DDMFormInstance _escapedModel;
+
 }

@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.sync.model.SyncDevice;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class SyncDeviceCacheModel implements CacheModel<SyncDevice>,
-	Externalizable {
+public class SyncDeviceCacheModel
+	implements CacheModel<SyncDevice>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -178,8 +178,7 @@ public class SyncDeviceCacheModel implements CacheModel<SyncDevice>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -236,4 +235,5 @@ public class SyncDeviceCacheModel implements CacheModel<SyncDevice>,
 	public int featureSet;
 	public String hostname;
 	public int status;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class DDMFormInstanceVersionCacheModel implements CacheModel<DDMFormInstanceVersion>,
-	Externalizable {
+public class DDMFormInstanceVersionCacheModel
+	implements CacheModel<DDMFormInstanceVersion>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,9 +48,12 @@ public class DDMFormInstanceVersionCacheModel implements CacheModel<DDMFormInsta
 			return false;
 		}
 
-		DDMFormInstanceVersionCacheModel ddmFormInstanceVersionCacheModel = (DDMFormInstanceVersionCacheModel)obj;
+		DDMFormInstanceVersionCacheModel ddmFormInstanceVersionCacheModel =
+			(DDMFormInstanceVersionCacheModel)obj;
 
-		if (formInstanceVersionId == ddmFormInstanceVersionCacheModel.formInstanceVersionId) {
+		if (formInstanceVersionId ==
+				ddmFormInstanceVersionCacheModel.formInstanceVersionId) {
+
 			return true;
 		}
 
@@ -105,9 +108,11 @@ public class DDMFormInstanceVersionCacheModel implements CacheModel<DDMFormInsta
 
 	@Override
 	public DDMFormInstanceVersion toEntityModel() {
-		DDMFormInstanceVersionImpl ddmFormInstanceVersionImpl = new DDMFormInstanceVersionImpl();
+		DDMFormInstanceVersionImpl ddmFormInstanceVersionImpl =
+			new DDMFormInstanceVersionImpl();
 
-		ddmFormInstanceVersionImpl.setFormInstanceVersionId(formInstanceVersionId);
+		ddmFormInstanceVersionImpl.setFormInstanceVersionId(
+			formInstanceVersionId);
 		ddmFormInstanceVersionImpl.setGroupId(groupId);
 		ddmFormInstanceVersionImpl.setCompanyId(companyId);
 		ddmFormInstanceVersionImpl.setUserId(userId);
@@ -207,8 +212,7 @@ public class DDMFormInstanceVersionCacheModel implements CacheModel<DDMFormInsta
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(formInstanceVersionId);
 
 		objectOutput.writeLong(groupId);
@@ -288,4 +292,5 @@ public class DDMFormInstanceVersionCacheModel implements CacheModel<DDMFormInsta
 	public long statusByUserId;
 	public String statusByUserName;
 	public long statusDate;
+
 }

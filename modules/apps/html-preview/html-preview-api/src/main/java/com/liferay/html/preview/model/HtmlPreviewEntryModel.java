@@ -17,7 +17,6 @@ package com.liferay.html.preview.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -42,8 +41,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface HtmlPreviewEntryModel extends AttachedModel,
-	BaseModel<HtmlPreviewEntry>, GroupedModel, ShardedModel {
+public interface HtmlPreviewEntryModel
+	extends AttachedModel, BaseModel<HtmlPreviewEntry>, GroupedModel,
+			ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -303,4 +304,5 @@ public interface HtmlPreviewEntryModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface DDMFormInstanceRecordVersionModel extends BaseModel<DDMFormInstanceRecordVersion>,
-	ShardedModel, WorkflowedModel {
+public interface DDMFormInstanceRecordVersionModel
+	extends BaseModel<DDMFormInstanceRecordVersion>, ShardedModel,
+			WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -75,7 +76,8 @@ public interface DDMFormInstanceRecordVersionModel extends BaseModel<DDMFormInst
 	 *
 	 * @param formInstanceRecordVersionId the form instance record version ID of this ddm form instance record version
 	 */
-	public void setFormInstanceRecordVersionId(long formInstanceRecordVersionId);
+	public void setFormInstanceRecordVersionId(
+		long formInstanceRecordVersionId);
 
 	/**
 	 * Returns the group ID of this ddm form instance record version.
@@ -438,4 +440,5 @@ public interface DDMFormInstanceRecordVersionModel extends BaseModel<DDMFormInst
 
 	@Override
 	public String toXmlString();
+
 }

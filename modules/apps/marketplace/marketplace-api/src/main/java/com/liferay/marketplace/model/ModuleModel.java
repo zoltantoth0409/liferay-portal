@@ -17,7 +17,6 @@ package com.liferay.marketplace.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -39,6 +38,7 @@ import java.io.Serializable;
  */
 @ProviderType
 public interface ModuleModel extends BaseModel<Module>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -219,4 +219,5 @@ public interface ModuleModel extends BaseModel<Module>, ShardedModel {
 
 	@Override
 	public String toXmlString();
+
 }

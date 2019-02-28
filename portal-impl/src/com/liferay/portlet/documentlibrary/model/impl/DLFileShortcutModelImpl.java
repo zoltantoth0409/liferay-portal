@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.document.library.kernel.model.DLFileShortcut;
 import com.liferay.document.library.kernel.model.DLFileShortcutModel;
 import com.liferay.document.library.kernel.model.DLFileShortcutSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,35 +68,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
-	implements DLFileShortcutModel {
+public class DLFileShortcutModelImpl
+	extends BaseModelImpl<DLFileShortcut> implements DLFileShortcutModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a document library file shortcut model instance should use the <code>DLFileShortcut</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DLFileShortcut";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "fileShortcutId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "repositoryId", Types.BIGINT },
-			{ "folderId", Types.BIGINT },
-			{ "toFileEntryId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "active_", Types.BOOLEAN },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"fileShortcutId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"repositoryId", Types.BIGINT}, {"folderId", Types.BIGINT},
+		{"toFileEntryId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"active_", Types.BOOLEAN}, {"lastPublishDate", Types.TIMESTAMP},
+		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
+		{"statusByUserName", Types.VARCHAR}, {"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -122,29 +114,52 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DLFileShortcut (uuid_ VARCHAR(75) null,fileShortcutId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,folderId LONG,toFileEntryId LONG,treePath STRING null,active_ BOOLEAN,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DLFileShortcut (uuid_ VARCHAR(75) null,fileShortcutId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,folderId LONG,toFileEntryId LONG,treePath STRING null,active_ BOOLEAN,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DLFileShortcut";
-	public static final String ORDER_BY_JPQL = " ORDER BY dlFileShortcut.fileShortcutId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DLFileShortcut.fileShortcutId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY dlFileShortcut.fileShortcutId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DLFileShortcut.fileShortcutId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.document.library.kernel.model.DLFileShortcut"),
+		true);
+
 	public static final long ACTIVE_COLUMN_BITMASK = 1L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+
 	public static final long FOLDERID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long STATUS_COLUMN_BITMASK = 16L;
+
 	public static final long TOFILEENTRYID_COLUMN_BITMASK = 32L;
+
 	public static final long UUID_COLUMN_BITMASK = 64L;
+
 	public static final long FILESHORTCUTID_COLUMN_BITMASK = 128L;
 
 	/**
@@ -188,12 +203,15 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 	 * @param soapModels the soap model instances to convert
 	 * @return the normal model instances
 	 */
-	public static List<DLFileShortcut> toModels(DLFileShortcutSoap[] soapModels) {
+	public static List<DLFileShortcut> toModels(
+		DLFileShortcutSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<DLFileShortcut> models = new ArrayList<DLFileShortcut>(soapModels.length);
+		List<DLFileShortcut> models = new ArrayList<DLFileShortcut>(
+			soapModels.length);
 
 		for (DLFileShortcutSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -202,8 +220,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.document.library.kernel.model.DLFileShortcut"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.document.library.kernel.model.DLFileShortcut"));
 
 	public DLFileShortcutModelImpl() {
 	}
@@ -242,13 +261,18 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileShortcut, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileShortcut, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DLFileShortcut)this));
 		}
 
@@ -260,36 +284,44 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DLFileShortcut, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DLFileShortcut, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DLFileShortcut, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DLFileShortcut, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DLFileShortcut)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DLFileShortcut)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DLFileShortcut, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DLFileShortcut, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DLFileShortcut, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DLFileShortcut, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DLFileShortcut, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DLFileShortcut, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DLFileShortcut, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFileShortcut, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFileShortcut, Object>>();
-		Map<String, BiConsumer<DLFileShortcut, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFileShortcut, ?>>();
-
+		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DLFileShortcut, Object>>();
+		Map<String, BiConsumer<DLFileShortcut, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DLFileShortcut, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -326,7 +358,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object fileShortcutId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object fileShortcutId) {
+
 					dlFileShortcut.setFileShortcutId((Long)fileShortcutId);
 				}
 
@@ -346,7 +380,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object groupId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object groupId) {
+
 					dlFileShortcut.setGroupId((Long)groupId);
 				}
 
@@ -366,7 +402,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object companyId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object companyId) {
+
 					dlFileShortcut.setCompanyId((Long)companyId);
 				}
 
@@ -386,7 +424,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object userId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object userId) {
+
 					dlFileShortcut.setUserId((Long)userId);
 				}
 
@@ -406,7 +446,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object userName) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object userName) {
+
 					dlFileShortcut.setUserName((String)userName);
 				}
 
@@ -426,7 +468,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object createDate) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object createDate) {
+
 					dlFileShortcut.setCreateDate((Date)createDate);
 				}
 
@@ -446,7 +490,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object modifiedDate) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object modifiedDate) {
+
 					dlFileShortcut.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -466,7 +512,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object repositoryId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object repositoryId) {
+
 					dlFileShortcut.setRepositoryId((Long)repositoryId);
 				}
 
@@ -486,7 +534,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object folderId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object folderId) {
+
 					dlFileShortcut.setFolderId((Long)folderId);
 				}
 
@@ -506,7 +556,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object toFileEntryId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object toFileEntryId) {
+
 					dlFileShortcut.setToFileEntryId((Long)toFileEntryId);
 				}
 
@@ -526,7 +578,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object treePath) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object treePath) {
+
 					dlFileShortcut.setTreePath((String)treePath);
 				}
 
@@ -546,7 +600,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object active) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object active) {
+
 					dlFileShortcut.setActive((Boolean)active);
 				}
 
@@ -566,7 +622,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object lastPublishDate) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object lastPublishDate) {
+
 					dlFileShortcut.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -586,7 +644,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object status) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object status) {
+
 					dlFileShortcut.setStatus((Integer)status);
 				}
 
@@ -606,7 +666,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object statusByUserId) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object statusByUserId) {
+
 					dlFileShortcut.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -626,8 +688,11 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object statusByUserName) {
-					dlFileShortcut.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object statusByUserName) {
+
+					dlFileShortcut.setStatusByUserName(
+						(String)statusByUserName);
 				}
 
 			});
@@ -646,15 +711,18 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			new BiConsumer<DLFileShortcut, Object>() {
 
 				@Override
-				public void accept(DLFileShortcut dlFileShortcut, Object statusDate) {
+				public void accept(
+					DLFileShortcut dlFileShortcut, Object statusDate) {
+
 					dlFileShortcut.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1003,28 +1071,32 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DLFileShortcut.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DLFileShortcut.class.getName()));
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashEntry getTrashEntry()
 		throws PortalException {
+
 		if (!isInTrash()) {
 			return null;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
 		}
 
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
-		if (Validator.isNotNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+		if (Validator.isNotNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			ContainerModel containerModel = null;
 
 			try {
@@ -1041,14 +1113,18 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 					return trashedModel.getTrashEntry();
 				}
 
-				trashHandler = com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName(
-							containerModel.getContainerModelId()));
+				trashHandler =
+					com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+						getTrashHandler(
+							trashHandler.getContainerModelClassName(
+								containerModel.getContainerModelId()));
 
 				if (trashHandler == null) {
 					return null;
 				}
 
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
+				containerModel = trashHandler.getContainerModel(
+					containerModel.getParentContainerModelId());
 			}
 		}
 
@@ -1061,12 +1137,13 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), with no direct replacement
-	*/
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
 	@Deprecated
 	@Override
 	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
+		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+			getTrashHandler(getModelClassName());
 	}
 
 	@Override
@@ -1081,16 +1158,19 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public boolean isInTrashContainer() {
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
 		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+			Validator.isNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			return false;
 		}
 
 		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel =
+				trashHandler.getParentContainerModel(this);
 
 			if (containerModel == null) {
 				return false;
@@ -1112,8 +1192,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return true;
@@ -1128,8 +1209,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return false;
@@ -1224,8 +1306,8 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DLFileShortcut.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DLFileShortcut.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1238,8 +1320,9 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 	@Override
 	public DLFileShortcut toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DLFileShortcut)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DLFileShortcut)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1331,29 +1414,35 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 		dlFileShortcutModelImpl._originalUuid = dlFileShortcutModelImpl._uuid;
 
-		dlFileShortcutModelImpl._originalGroupId = dlFileShortcutModelImpl._groupId;
+		dlFileShortcutModelImpl._originalGroupId =
+			dlFileShortcutModelImpl._groupId;
 
 		dlFileShortcutModelImpl._setOriginalGroupId = false;
 
-		dlFileShortcutModelImpl._originalCompanyId = dlFileShortcutModelImpl._companyId;
+		dlFileShortcutModelImpl._originalCompanyId =
+			dlFileShortcutModelImpl._companyId;
 
 		dlFileShortcutModelImpl._setOriginalCompanyId = false;
 
 		dlFileShortcutModelImpl._setModifiedDate = false;
 
-		dlFileShortcutModelImpl._originalFolderId = dlFileShortcutModelImpl._folderId;
+		dlFileShortcutModelImpl._originalFolderId =
+			dlFileShortcutModelImpl._folderId;
 
 		dlFileShortcutModelImpl._setOriginalFolderId = false;
 
-		dlFileShortcutModelImpl._originalToFileEntryId = dlFileShortcutModelImpl._toFileEntryId;
+		dlFileShortcutModelImpl._originalToFileEntryId =
+			dlFileShortcutModelImpl._toFileEntryId;
 
 		dlFileShortcutModelImpl._setOriginalToFileEntryId = false;
 
-		dlFileShortcutModelImpl._originalActive = dlFileShortcutModelImpl._active;
+		dlFileShortcutModelImpl._originalActive =
+			dlFileShortcutModelImpl._active;
 
 		dlFileShortcutModelImpl._setOriginalActive = false;
 
-		dlFileShortcutModelImpl._originalStatus = dlFileShortcutModelImpl._status;
+		dlFileShortcutModelImpl._originalStatus =
+			dlFileShortcutModelImpl._status;
 
 		dlFileShortcutModelImpl._setOriginalStatus = false;
 
@@ -1362,7 +1451,8 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public CacheModel<DLFileShortcut> toCacheModel() {
-		DLFileShortcutCacheModel dlFileShortcutCacheModel = new DLFileShortcutCacheModel();
+		DLFileShortcutCacheModel dlFileShortcutCacheModel =
+			new DLFileShortcutCacheModel();
 
 		dlFileShortcutCacheModel.uuid = getUuid();
 
@@ -1425,7 +1515,8 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			dlFileShortcutCacheModel.lastPublishDate = lastPublishDate.getTime();
+			dlFileShortcutCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			dlFileShortcutCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1457,16 +1548,20 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileShortcut, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileShortcut, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1485,18 +1580,22 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileShortcut, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileShortcut, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileShortcut, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileShortcut, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1510,10 +1609,12 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DLFileShortcut.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DLFileShortcut.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DLFileShortcut.class, ModelWrapper.class
-		};
+		DLFileShortcut.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _fileShortcutId;
@@ -1548,4 +1649,5 @@ public class DLFileShortcutModelImpl extends BaseModelImpl<DLFileShortcut>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private DLFileShortcut _escapedModel;
+
 }

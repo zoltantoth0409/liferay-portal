@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.model.JournalFolderModel;
 import com.liferay.journal.model.JournalFolderSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,35 +68,31 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
-	implements JournalFolderModel {
+public class JournalFolderModelImpl
+	extends BaseModelImpl<JournalFolder> implements JournalFolderModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a journal folder model instance should use the <code>JournalFolder</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "JournalFolder";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "folderId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentFolderId", Types.BIGINT },
-			{ "treePath", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "restrictionType", Types.INTEGER },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"folderId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"parentFolderId", Types.BIGINT}, {"treePath", Types.VARCHAR},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"restrictionType", Types.INTEGER},
+		{"lastPublishDate", Types.TIMESTAMP}, {"status", Types.INTEGER},
+		{"statusByUserId", Types.BIGINT}, {"statusByUserName", Types.VARCHAR},
+		{"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -122,28 +115,50 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table JournalFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentFolderId LONG,treePath STRING null,name VARCHAR(100) null,description STRING null,restrictionType INTEGER,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table JournalFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentFolderId LONG,treePath STRING null,name VARCHAR(100) null,description STRING null,restrictionType INTEGER,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table JournalFolder";
-	public static final String ORDER_BY_JPQL = " ORDER BY journalFolder.parentFolderId ASC, journalFolder.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY JournalFolder.parentFolderId ASC, JournalFolder.name ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY journalFolder.parentFolderId ASC, journalFolder.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY JournalFolder.parentFolderId ASC, JournalFolder.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.journal.model.JournalFolder"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.journal.model.JournalFolder"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.journal.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.journal.model.JournalFolder"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.journal.model.JournalFolder"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.journal.model.JournalFolder"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.journal.model.JournalFolder"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FOLDERID_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long NAME_COLUMN_BITMASK = 8L;
+
 	public static final long PARENTFOLDERID_COLUMN_BITMASK = 16L;
+
 	public static final long STATUS_COLUMN_BITMASK = 32L;
+
 	public static final long UUID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -192,7 +207,8 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			return null;
 		}
 
-		List<JournalFolder> models = new ArrayList<JournalFolder>(soapModels.length);
+		List<JournalFolder> models = new ArrayList<JournalFolder>(
+			soapModels.length);
 
 		for (JournalFolderSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -201,8 +217,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.journal.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.journal.model.JournalFolder"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.journal.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.journal.model.JournalFolder"));
 
 	public JournalFolderModelImpl() {
 	}
@@ -241,13 +258,18 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<JournalFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((JournalFolder)this));
 		}
 
@@ -259,36 +281,44 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<JournalFolder, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<JournalFolder, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<JournalFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<JournalFolder, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((JournalFolder)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(JournalFolder)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<JournalFolder, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<JournalFolder, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<JournalFolder, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<JournalFolder, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<JournalFolder, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<JournalFolder, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<JournalFolder, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<JournalFolder, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<JournalFolder, Object>>();
-		Map<String, BiConsumer<JournalFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<JournalFolder, ?>>();
-
+		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<JournalFolder, Object>>();
+		Map<String, BiConsumer<JournalFolder, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<JournalFolder, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -325,7 +355,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object folderId) {
+				public void accept(
+					JournalFolder journalFolder, Object folderId) {
+
 					journalFolder.setFolderId((Long)folderId);
 				}
 
@@ -345,7 +377,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object groupId) {
+				public void accept(
+					JournalFolder journalFolder, Object groupId) {
+
 					journalFolder.setGroupId((Long)groupId);
 				}
 
@@ -365,7 +399,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object companyId) {
+				public void accept(
+					JournalFolder journalFolder, Object companyId) {
+
 					journalFolder.setCompanyId((Long)companyId);
 				}
 
@@ -405,7 +441,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object userName) {
+				public void accept(
+					JournalFolder journalFolder, Object userName) {
+
 					journalFolder.setUserName((String)userName);
 				}
 
@@ -425,7 +463,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object createDate) {
+				public void accept(
+					JournalFolder journalFolder, Object createDate) {
+
 					journalFolder.setCreateDate((Date)createDate);
 				}
 
@@ -445,7 +485,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object modifiedDate) {
+				public void accept(
+					JournalFolder journalFolder, Object modifiedDate) {
+
 					journalFolder.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -465,7 +507,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object parentFolderId) {
+				public void accept(
+					JournalFolder journalFolder, Object parentFolderId) {
+
 					journalFolder.setParentFolderId((Long)parentFolderId);
 				}
 
@@ -485,7 +529,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object treePath) {
+				public void accept(
+					JournalFolder journalFolder, Object treePath) {
+
 					journalFolder.setTreePath((String)treePath);
 				}
 
@@ -525,7 +571,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object description) {
+				public void accept(
+					JournalFolder journalFolder, Object description) {
+
 					journalFolder.setDescription((String)description);
 				}
 
@@ -545,7 +593,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object restrictionType) {
+				public void accept(
+					JournalFolder journalFolder, Object restrictionType) {
+
 					journalFolder.setRestrictionType((Integer)restrictionType);
 				}
 
@@ -565,7 +615,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object lastPublishDate) {
+				public void accept(
+					JournalFolder journalFolder, Object lastPublishDate) {
+
 					journalFolder.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -605,7 +657,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object statusByUserId) {
+				public void accept(
+					JournalFolder journalFolder, Object statusByUserId) {
+
 					journalFolder.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -625,7 +679,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object statusByUserName) {
+				public void accept(
+					JournalFolder journalFolder, Object statusByUserName) {
+
 					journalFolder.setStatusByUserName((String)statusByUserName);
 				}
 
@@ -645,15 +701,18 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			new BiConsumer<JournalFolder, Object>() {
 
 				@Override
-				public void accept(JournalFolder journalFolder, Object statusDate) {
+				public void accept(
+					JournalFolder journalFolder, Object statusDate) {
+
 					journalFolder.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1029,28 +1088,32 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				JournalFolder.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(JournalFolder.class.getName()));
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashEntry getTrashEntry()
 		throws PortalException {
+
 		if (!isInTrash()) {
 			return null;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
 		}
 
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
-		if (Validator.isNotNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+		if (Validator.isNotNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			ContainerModel containerModel = null;
 
 			try {
@@ -1067,14 +1130,18 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 					return trashedModel.getTrashEntry();
 				}
 
-				trashHandler = com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(trashHandler.getContainerModelClassName(
-							containerModel.getContainerModelId()));
+				trashHandler =
+					com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+						getTrashHandler(
+							trashHandler.getContainerModelClassName(
+								containerModel.getContainerModelId()));
 
 				if (trashHandler == null) {
 					return null;
 				}
 
-				containerModel = trashHandler.getContainerModel(containerModel.getParentContainerModelId());
+				containerModel = trashHandler.getContainerModel(
+					containerModel.getParentContainerModelId());
 			}
 		}
 
@@ -1087,12 +1154,13 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), with no direct replacement
-	*/
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
+	 */
 	@Deprecated
 	@Override
 	public com.liferay.portal.kernel.trash.TrashHandler getTrashHandler() {
-		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.getTrashHandler(getModelClassName());
+		return com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil.
+			getTrashHandler(getModelClassName());
 	}
 
 	@Override
@@ -1107,16 +1175,19 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public boolean isInTrashContainer() {
-		com.liferay.portal.kernel.trash.TrashHandler trashHandler = getTrashHandler();
+		com.liferay.portal.kernel.trash.TrashHandler trashHandler =
+			getTrashHandler();
 
 		if ((trashHandler == null) ||
-				Validator.isNull(trashHandler.getContainerModelClassName(
-						getPrimaryKey()))) {
+			Validator.isNull(
+				trashHandler.getContainerModelClassName(getPrimaryKey()))) {
+
 			return false;
 		}
 
 		try {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel =
+				trashHandler.getParentContainerModel(this);
 
 			if (containerModel == null) {
 				return false;
@@ -1138,8 +1209,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return true;
@@ -1154,8 +1226,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 			return false;
 		}
 
-		com.liferay.trash.kernel.model.TrashEntry trashEntry = com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getTrashEntryClassPK());
+		com.liferay.trash.kernel.model.TrashEntry trashEntry =
+			com.liferay.trash.kernel.service.TrashEntryLocalServiceUtil.
+				fetchEntry(getModelClassName(), getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return false;
@@ -1250,8 +1323,8 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			JournalFolder.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), JournalFolder.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1264,8 +1337,9 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 	@Override
 	public JournalFolder toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (JournalFolder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (JournalFolder)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1369,21 +1443,25 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 		journalFolderModelImpl._originalUuid = journalFolderModelImpl._uuid;
 
-		journalFolderModelImpl._originalFolderId = journalFolderModelImpl._folderId;
+		journalFolderModelImpl._originalFolderId =
+			journalFolderModelImpl._folderId;
 
 		journalFolderModelImpl._setOriginalFolderId = false;
 
-		journalFolderModelImpl._originalGroupId = journalFolderModelImpl._groupId;
+		journalFolderModelImpl._originalGroupId =
+			journalFolderModelImpl._groupId;
 
 		journalFolderModelImpl._setOriginalGroupId = false;
 
-		journalFolderModelImpl._originalCompanyId = journalFolderModelImpl._companyId;
+		journalFolderModelImpl._originalCompanyId =
+			journalFolderModelImpl._companyId;
 
 		journalFolderModelImpl._setOriginalCompanyId = false;
 
 		journalFolderModelImpl._setModifiedDate = false;
 
-		journalFolderModelImpl._originalParentFolderId = journalFolderModelImpl._parentFolderId;
+		journalFolderModelImpl._originalParentFolderId =
+			journalFolderModelImpl._parentFolderId;
 
 		journalFolderModelImpl._setOriginalParentFolderId = false;
 
@@ -1398,7 +1476,8 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public CacheModel<JournalFolder> toCacheModel() {
-		JournalFolderCacheModel journalFolderCacheModel = new JournalFolderCacheModel();
+		JournalFolderCacheModel journalFolderCacheModel =
+			new JournalFolderCacheModel();
 
 		journalFolderCacheModel.uuid = getUuid();
 
@@ -1505,16 +1584,20 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public String toString() {
-		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<JournalFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1533,18 +1616,22 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<JournalFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<JournalFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<JournalFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<JournalFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<JournalFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1558,10 +1645,12 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = JournalFolder.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		JournalFolder.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			JournalFolder.class, ModelWrapper.class
-		};
+		JournalFolder.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _folderId;
@@ -1595,4 +1684,5 @@ public class JournalFolderModelImpl extends BaseModelImpl<JournalFolder>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private JournalFolder _escapedModel;
+
 }

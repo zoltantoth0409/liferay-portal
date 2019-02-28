@@ -17,7 +17,6 @@ package com.liferay.message.boards.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.message.boards.model.MBMailingList;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class MBMailingListCacheModel implements CacheModel<MBMailingList>,
-	Externalizable {
+public class MBMailingListCacheModel
+	implements CacheModel<MBMailingList>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class MBMailingListCacheModel implements CacheModel<MBMailingList>,
 			return false;
 		}
 
-		MBMailingListCacheModel mbMailingListCacheModel = (MBMailingListCacheModel)obj;
+		MBMailingListCacheModel mbMailingListCacheModel =
+			(MBMailingListCacheModel)obj;
 
 		if (mailingListId == mbMailingListCacheModel.mailingListId) {
 			return true;
@@ -287,8 +288,7 @@ public class MBMailingListCacheModel implements CacheModel<MBMailingList>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -422,4 +422,5 @@ public class MBMailingListCacheModel implements CacheModel<MBMailingList>,
 	public String outPassword;
 	public boolean allowAnonymous;
 	public boolean active;
+
 }

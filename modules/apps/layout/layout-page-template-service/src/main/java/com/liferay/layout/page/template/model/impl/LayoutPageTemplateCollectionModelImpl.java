@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollection;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollectionModel;
 import com.liferay.layout.page.template.model.LayoutPageTemplateCollectionSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -66,28 +63,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutPageTemplateCollection>
+public class LayoutPageTemplateCollectionModelImpl
+	extends BaseModelImpl<LayoutPageTemplateCollection>
 	implements LayoutPageTemplateCollectionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a layout page template collection model instance should use the <code>LayoutPageTemplateCollection</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "LayoutPageTemplateCollection";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "layoutPageTemplateCollectionId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR},
+		{"layoutPageTemplateCollectionId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -103,25 +101,45 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LayoutPageTemplateCollection (uuid_ VARCHAR(75) null,layoutPageTemplateCollectionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description STRING null,lastPublishDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table LayoutPageTemplateCollection";
-	public static final String ORDER_BY_JPQL = " ORDER BY layoutPageTemplateCollection.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LayoutPageTemplateCollection.name ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table LayoutPageTemplateCollection (uuid_ VARCHAR(75) null,layoutPageTemplateCollectionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description STRING null,lastPublishDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table LayoutPageTemplateCollection";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY layoutPageTemplateCollection.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY LayoutPageTemplateCollection.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long UUID_COLUMN_BITMASK = 8L;
 
 	/**
@@ -132,14 +150,17 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	 */
 	public static LayoutPageTemplateCollection toModel(
 		LayoutPageTemplateCollectionSoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
 
-		LayoutPageTemplateCollection model = new LayoutPageTemplateCollectionImpl();
+		LayoutPageTemplateCollection model =
+			new LayoutPageTemplateCollectionImpl();
 
 		model.setUuid(soapModel.getUuid());
-		model.setLayoutPageTemplateCollectionId(soapModel.getLayoutPageTemplateCollectionId());
+		model.setLayoutPageTemplateCollectionId(
+			soapModel.getLayoutPageTemplateCollectionId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
@@ -161,11 +182,13 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	 */
 	public static List<LayoutPageTemplateCollection> toModels(
 		LayoutPageTemplateCollectionSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<LayoutPageTemplateCollection> models = new ArrayList<LayoutPageTemplateCollection>(soapModels.length);
+		List<LayoutPageTemplateCollection> models =
+			new ArrayList<LayoutPageTemplateCollection>(soapModels.length);
 
 		for (LayoutPageTemplateCollectionSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -174,8 +197,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.layout.page.template.model.LayoutPageTemplateCollection"));
 
 	public LayoutPageTemplateCollectionModelImpl() {
 	}
@@ -214,15 +238,18 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<LayoutPageTemplateCollection, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateCollection, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateCollection, Object> attributeGetterFunction =
-				entry.getValue();
+			Function<LayoutPageTemplateCollection, Object>
+				attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply(
 					(LayoutPageTemplateCollection)this));
 		}
@@ -235,46 +262,60 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<LayoutPageTemplateCollection, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<LayoutPageTemplateCollection, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<LayoutPageTemplateCollection, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<LayoutPageTemplateCollection, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((LayoutPageTemplateCollection)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(LayoutPageTemplateCollection)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<LayoutPageTemplateCollection, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<LayoutPageTemplateCollection, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<LayoutPageTemplateCollection, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<LayoutPageTemplateCollection, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<LayoutPageTemplateCollection, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<LayoutPageTemplateCollection, Object>> _attributeSetterBiConsumers;
+	private static final Map
+		<String, Function<LayoutPageTemplateCollection, Object>>
+			_attributeGetterFunctions;
+	private static final Map
+		<String, BiConsumer<LayoutPageTemplateCollection, Object>>
+			_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<LayoutPageTemplateCollection, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<LayoutPageTemplateCollection, Object>>();
-		Map<String, BiConsumer<LayoutPageTemplateCollection, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<LayoutPageTemplateCollection, ?>>();
-
+		Map<String, Function<LayoutPageTemplateCollection, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<LayoutPageTemplateCollection, Object>>();
+		Map<String, BiConsumer<LayoutPageTemplateCollection, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<LayoutPageTemplateCollection, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getUuid();
 				}
 
@@ -284,7 +325,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object uuid) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object uuid) {
+
 					layoutPageTemplateCollection.setUuid((String)uuid);
 				}
 
@@ -294,8 +338,11 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
-					return layoutPageTemplateCollection.getLayoutPageTemplateCollectionId();
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
+					return layoutPageTemplateCollection.
+						getLayoutPageTemplateCollectionId();
 				}
 
 			});
@@ -304,8 +351,13 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object layoutPageTemplateCollectionId) {
-					layoutPageTemplateCollection.setLayoutPageTemplateCollectionId((Long)layoutPageTemplateCollectionId);
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object layoutPageTemplateCollectionId) {
+
+					layoutPageTemplateCollection.
+						setLayoutPageTemplateCollectionId(
+							(Long)layoutPageTemplateCollectionId);
 				}
 
 			});
@@ -314,7 +366,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getGroupId();
 				}
 
@@ -324,7 +378,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object groupId) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object groupId) {
+
 					layoutPageTemplateCollection.setGroupId((Long)groupId);
 				}
 
@@ -334,7 +391,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getCompanyId();
 				}
 
@@ -344,7 +403,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object companyId) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object companyId) {
+
 					layoutPageTemplateCollection.setCompanyId((Long)companyId);
 				}
 
@@ -354,7 +416,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getUserId();
 				}
 
@@ -364,7 +428,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object userId) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object userId) {
+
 					layoutPageTemplateCollection.setUserId((Long)userId);
 				}
 
@@ -374,7 +441,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getUserName();
 				}
 
@@ -384,7 +453,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object userName) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object userName) {
+
 					layoutPageTemplateCollection.setUserName((String)userName);
 				}
 
@@ -394,7 +466,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getCreateDate();
 				}
 
@@ -404,8 +478,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object createDate) {
-					layoutPageTemplateCollection.setCreateDate((Date)createDate);
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object createDate) {
+
+					layoutPageTemplateCollection.setCreateDate(
+						(Date)createDate);
 				}
 
 			});
@@ -414,7 +492,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getModifiedDate();
 				}
 
@@ -424,8 +504,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object modifiedDate) {
-					layoutPageTemplateCollection.setModifiedDate((Date)modifiedDate);
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object modifiedDate) {
+
+					layoutPageTemplateCollection.setModifiedDate(
+						(Date)modifiedDate);
 				}
 
 			});
@@ -434,7 +518,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getName();
 				}
 
@@ -444,7 +530,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object name) {
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object name) {
+
 					layoutPageTemplateCollection.setName((String)name);
 				}
 
@@ -454,7 +543,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getDescription();
 				}
 
@@ -464,8 +555,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object description) {
-					layoutPageTemplateCollection.setDescription((String)description);
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object description) {
+
+					layoutPageTemplateCollection.setDescription(
+						(String)description);
 				}
 
 			});
@@ -474,7 +569,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new Function<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateCollection layoutPageTemplateCollection) {
+				public Object apply(
+					LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 					return layoutPageTemplateCollection.getLastPublishDate();
 				}
 
@@ -484,15 +581,20 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			new BiConsumer<LayoutPageTemplateCollection, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateCollection layoutPageTemplateCollection, Object lastPublishDate) {
-					layoutPageTemplateCollection.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					LayoutPageTemplateCollection layoutPageTemplateCollection,
+					Object lastPublishDate) {
+
+					layoutPageTemplateCollection.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -530,6 +632,7 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	@Override
 	public void setLayoutPageTemplateCollectionId(
 		long layoutPageTemplateCollectionId) {
+
 		_layoutPageTemplateCollectionId = layoutPageTemplateCollectionId;
 	}
 
@@ -705,7 +808,8 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
+		return new StagedModelType(
+			PortalUtil.getClassNameId(
 				LayoutPageTemplateCollection.class.getName()));
 	}
 
@@ -715,8 +819,9 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			LayoutPageTemplateCollection.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), LayoutPageTemplateCollection.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -729,8 +834,10 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	@Override
 	public LayoutPageTemplateCollection toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (LayoutPageTemplateCollection)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel =
+				(LayoutPageTemplateCollection)ProxyUtil.newProxyInstance(
+					_classLoader, _escapedModelInterfaces,
+					new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -738,10 +845,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public Object clone() {
-		LayoutPageTemplateCollectionImpl layoutPageTemplateCollectionImpl = new LayoutPageTemplateCollectionImpl();
+		LayoutPageTemplateCollectionImpl layoutPageTemplateCollectionImpl =
+			new LayoutPageTemplateCollectionImpl();
 
 		layoutPageTemplateCollectionImpl.setUuid(getUuid());
-		layoutPageTemplateCollectionImpl.setLayoutPageTemplateCollectionId(getLayoutPageTemplateCollectionId());
+		layoutPageTemplateCollectionImpl.setLayoutPageTemplateCollectionId(
+			getLayoutPageTemplateCollectionId());
 		layoutPageTemplateCollectionImpl.setGroupId(getGroupId());
 		layoutPageTemplateCollectionImpl.setCompanyId(getCompanyId());
 		layoutPageTemplateCollectionImpl.setUserId(getUserId());
@@ -750,7 +859,8 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		layoutPageTemplateCollectionImpl.setModifiedDate(getModifiedDate());
 		layoutPageTemplateCollectionImpl.setName(getName());
 		layoutPageTemplateCollectionImpl.setDescription(getDescription());
-		layoutPageTemplateCollectionImpl.setLastPublishDate(getLastPublishDate());
+		layoutPageTemplateCollectionImpl.setLastPublishDate(
+			getLastPublishDate());
 
 		layoutPageTemplateCollectionImpl.resetOriginalValues();
 
@@ -760,6 +870,7 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	@Override
 	public int compareTo(
 		LayoutPageTemplateCollection layoutPageTemplateCollection) {
+
 		int value = 0;
 
 		value = getName().compareTo(layoutPageTemplateCollection.getName());
@@ -781,7 +892,8 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			return false;
 		}
 
-		LayoutPageTemplateCollection layoutPageTemplateCollection = (LayoutPageTemplateCollection)obj;
+		LayoutPageTemplateCollection layoutPageTemplateCollection =
+			(LayoutPageTemplateCollection)obj;
 
 		long primaryKey = layoutPageTemplateCollection.getPrimaryKey();
 
@@ -810,30 +922,35 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public void resetOriginalValues() {
-		LayoutPageTemplateCollectionModelImpl layoutPageTemplateCollectionModelImpl =
-			this;
+		LayoutPageTemplateCollectionModelImpl
+			layoutPageTemplateCollectionModelImpl = this;
 
-		layoutPageTemplateCollectionModelImpl._originalUuid = layoutPageTemplateCollectionModelImpl._uuid;
+		layoutPageTemplateCollectionModelImpl._originalUuid =
+			layoutPageTemplateCollectionModelImpl._uuid;
 
-		layoutPageTemplateCollectionModelImpl._originalGroupId = layoutPageTemplateCollectionModelImpl._groupId;
+		layoutPageTemplateCollectionModelImpl._originalGroupId =
+			layoutPageTemplateCollectionModelImpl._groupId;
 
 		layoutPageTemplateCollectionModelImpl._setOriginalGroupId = false;
 
-		layoutPageTemplateCollectionModelImpl._originalCompanyId = layoutPageTemplateCollectionModelImpl._companyId;
+		layoutPageTemplateCollectionModelImpl._originalCompanyId =
+			layoutPageTemplateCollectionModelImpl._companyId;
 
 		layoutPageTemplateCollectionModelImpl._setOriginalCompanyId = false;
 
 		layoutPageTemplateCollectionModelImpl._setModifiedDate = false;
 
-		layoutPageTemplateCollectionModelImpl._originalName = layoutPageTemplateCollectionModelImpl._name;
+		layoutPageTemplateCollectionModelImpl._originalName =
+			layoutPageTemplateCollectionModelImpl._name;
 
 		layoutPageTemplateCollectionModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<LayoutPageTemplateCollection> toCacheModel() {
-		LayoutPageTemplateCollectionCacheModel layoutPageTemplateCollectionCacheModel =
-			new LayoutPageTemplateCollectionCacheModel();
+		LayoutPageTemplateCollectionCacheModel
+			layoutPageTemplateCollectionCacheModel =
+				new LayoutPageTemplateCollectionCacheModel();
 
 		layoutPageTemplateCollectionCacheModel.uuid = getUuid();
 
@@ -843,7 +960,8 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 			layoutPageTemplateCollectionCacheModel.uuid = null;
 		}
 
-		layoutPageTemplateCollectionCacheModel.layoutPageTemplateCollectionId = getLayoutPageTemplateCollectionId();
+		layoutPageTemplateCollectionCacheModel.layoutPageTemplateCollectionId =
+			getLayoutPageTemplateCollectionId();
 
 		layoutPageTemplateCollectionCacheModel.groupId = getGroupId();
 
@@ -862,7 +980,8 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		Date createDate = getCreateDate();
 
 		if (createDate != null) {
-			layoutPageTemplateCollectionCacheModel.createDate = createDate.getTime();
+			layoutPageTemplateCollectionCacheModel.createDate =
+				createDate.getTime();
 		}
 		else {
 			layoutPageTemplateCollectionCacheModel.createDate = Long.MIN_VALUE;
@@ -871,10 +990,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			layoutPageTemplateCollectionCacheModel.modifiedDate = modifiedDate.getTime();
+			layoutPageTemplateCollectionCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
-			layoutPageTemplateCollectionCacheModel.modifiedDate = Long.MIN_VALUE;
+			layoutPageTemplateCollectionCacheModel.modifiedDate =
+				Long.MIN_VALUE;
 		}
 
 		layoutPageTemplateCollectionCacheModel.name = getName();
@@ -896,10 +1017,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			layoutPageTemplateCollectionCacheModel.lastPublishDate = lastPublishDate.getTime();
+			layoutPageTemplateCollectionCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
-			layoutPageTemplateCollectionCacheModel.lastPublishDate = Long.MIN_VALUE;
+			layoutPageTemplateCollectionCacheModel.lastPublishDate =
+				Long.MIN_VALUE;
 		}
 
 		return layoutPageTemplateCollectionCacheModel;
@@ -907,22 +1030,25 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public String toString() {
-		Map<String, Function<LayoutPageTemplateCollection, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateCollection, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateCollection, Object> attributeGetterFunction =
-				entry.getValue();
+			Function<LayoutPageTemplateCollection, Object>
+				attributeGetterFunction = entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
+			sb.append(
+				attributeGetterFunction.apply(
 					(LayoutPageTemplateCollection)this));
 			sb.append(", ");
 		}
@@ -938,25 +1064,28 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<LayoutPageTemplateCollection, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateCollection, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateCollection, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateCollection, Object> attributeGetterFunction =
-				entry.getValue();
+			Function<LayoutPageTemplateCollection, Object>
+				attributeGetterFunction = entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
+			sb.append(
+				attributeGetterFunction.apply(
 					(LayoutPageTemplateCollection)this));
 			sb.append("]]></column-value></column>");
 		}
@@ -966,10 +1095,12 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = LayoutPageTemplateCollection.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		LayoutPageTemplateCollection.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			LayoutPageTemplateCollection.class, ModelWrapper.class
-		};
+		LayoutPageTemplateCollection.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _layoutPageTemplateCollectionId;
@@ -990,4 +1121,5 @@ public class LayoutPageTemplateCollectionModelImpl extends BaseModelImpl<LayoutP
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private LayoutPageTemplateCollection _escapedModel;
+
 }

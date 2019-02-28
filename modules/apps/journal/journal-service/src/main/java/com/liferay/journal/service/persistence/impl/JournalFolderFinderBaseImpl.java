@@ -16,7 +16,6 @@ package com.liferay.journal.service.persistence.impl;
 
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.service.persistence.JournalFolderPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class JournalFolderFinderBaseImpl extends BasePersistenceImpl<JournalFolder> {
+public class JournalFolderFinderBaseImpl
+	extends BasePersistenceImpl<JournalFolder> {
+
 	public JournalFolderFinderBaseImpl() {
 		setModelClass(JournalFolder.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +77,14 @@ public class JournalFolderFinderBaseImpl extends BasePersistenceImpl<JournalFold
 	 */
 	public void setJournalFolderPersistence(
 		JournalFolderPersistence journalFolderPersistence) {
+
 		this.journalFolderPersistence = journalFolderPersistence;
 	}
 
 	@BeanReference(type = JournalFolderPersistence.class)
 	protected JournalFolderPersistence journalFolderPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(JournalFolderFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalFolderFinderBaseImpl.class);
+
 }

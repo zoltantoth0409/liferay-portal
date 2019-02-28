@@ -65,18 +65,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCondition>
+public class KaleoConditionPersistenceImpl
+	extends BasePersistenceImpl<KaleoCondition>
 	implements KaleoConditionPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>KaleoConditionUtil</code> to access the kaleo condition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = KaleoConditionImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		KaleoConditionImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -92,8 +98,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public List<KaleoCondition> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -109,8 +115,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the range of matching kaleo conditions
 	 */
 	@Override
-	public List<KaleoCondition> findByCompanyId(long companyId, int start,
-		int end) {
+	public List<KaleoCondition> findByCompanyId(
+		long companyId, int start, int end) {
+
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -128,8 +135,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the ordered range of matching kaleo conditions
 	 */
 	@Override
-	public List<KaleoCondition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<KaleoCondition> orderByComparator) {
+	public List<KaleoCondition> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<KaleoCondition> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -148,29 +157,34 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the ordered range of matching kaleo conditions
 	 */
 	@Override
-	public List<KaleoCondition> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<KaleoCondition> orderByComparator,
+	public List<KaleoCondition> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<KaleoCondition> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<KaleoCondition> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoCondition>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoCondition>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoCondition kaleoCondition : list) {
@@ -187,8 +201,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -199,11 +213,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(KaleoConditionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -221,16 +234,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -259,11 +272,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @throws NoSuchConditionException if a matching kaleo condition could not be found
 	 */
 	@Override
-	public KaleoCondition findByCompanyId_First(long companyId,
-		OrderByComparator<KaleoCondition> orderByComparator)
+	public KaleoCondition findByCompanyId_First(
+			long companyId, OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
-		KaleoCondition kaleoCondition = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		KaleoCondition kaleoCondition = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (kaleoCondition != null) {
 			return kaleoCondition;
@@ -289,10 +303,11 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the first matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 */
 	@Override
-	public KaleoCondition fetchByCompanyId_First(long companyId,
-		OrderByComparator<KaleoCondition> orderByComparator) {
-		List<KaleoCondition> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public KaleoCondition fetchByCompanyId_First(
+		long companyId, OrderByComparator<KaleoCondition> orderByComparator) {
+
+		List<KaleoCondition> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -310,11 +325,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @throws NoSuchConditionException if a matching kaleo condition could not be found
 	 */
 	@Override
-	public KaleoCondition findByCompanyId_Last(long companyId,
-		OrderByComparator<KaleoCondition> orderByComparator)
+	public KaleoCondition findByCompanyId_Last(
+			long companyId, OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
-		KaleoCondition kaleoCondition = fetchByCompanyId_Last(companyId,
-				orderByComparator);
+
+		KaleoCondition kaleoCondition = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (kaleoCondition != null) {
 			return kaleoCondition;
@@ -340,16 +356,17 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the last matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 */
 	@Override
-	public KaleoCondition fetchByCompanyId_Last(long companyId,
-		OrderByComparator<KaleoCondition> orderByComparator) {
+	public KaleoCondition fetchByCompanyId_Last(
+		long companyId, OrderByComparator<KaleoCondition> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<KaleoCondition> list = findByCompanyId(companyId, count - 1,
-				count, orderByComparator);
+		List<KaleoCondition> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -368,9 +385,11 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @throws NoSuchConditionException if a kaleo condition with the primary key could not be found
 	 */
 	@Override
-	public KaleoCondition[] findByCompanyId_PrevAndNext(long kaleoConditionId,
-		long companyId, OrderByComparator<KaleoCondition> orderByComparator)
+	public KaleoCondition[] findByCompanyId_PrevAndNext(
+			long kaleoConditionId, long companyId,
+			OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
+
 		KaleoCondition kaleoCondition = findByPrimaryKey(kaleoConditionId);
 
 		Session session = null;
@@ -380,13 +399,13 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			KaleoCondition[] array = new KaleoConditionImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, kaleoCondition,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, kaleoCondition, companyId, orderByComparator, true);
 
 			array[1] = kaleoCondition;
 
-			array[2] = getByCompanyId_PrevAndNext(session, kaleoCondition,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, kaleoCondition, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -398,14 +417,15 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		}
 	}
 
-	protected KaleoCondition getByCompanyId_PrevAndNext(Session session,
-		KaleoCondition kaleoCondition, long companyId,
+	protected KaleoCondition getByCompanyId_PrevAndNext(
+		Session session, KaleoCondition kaleoCondition, long companyId,
 		OrderByComparator<KaleoCondition> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -417,7 +437,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -487,8 +508,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					kaleoCondition)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						kaleoCondition)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -510,8 +533,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (KaleoCondition kaleoCondition : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (KaleoCondition kaleoCondition :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(kaleoCondition);
 		}
 	}
@@ -526,7 +551,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -567,9 +592,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoCondition.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"kaleoCondition.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByKaleoDefinitionVersionId;
-	private FinderPath _finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
+	private FinderPath
+		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
 	private FinderPath _finderPathCountByKaleoDefinitionVersionId;
 
 	/**
@@ -581,8 +609,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public List<KaleoCondition> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -600,8 +630,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public List<KaleoCondition> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId, start,
-			end, null);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, start, end, null);
 	}
 
 	/**
@@ -621,8 +652,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public List<KaleoCondition> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoCondition> orderByComparator) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId, start,
-			end, orderByComparator, true);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -644,34 +676,38 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoCondition> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
-			finderArgs = new Object[] { kaleoDefinitionVersionId };
+			finderPath =
+				_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
+			finderArgs = new Object[] {kaleoDefinitionVersionId};
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByKaleoDefinitionVersionId;
+			finderPath =
+				_finderPathWithPaginationFindByKaleoDefinitionVersionId;
 			finderArgs = new Object[] {
-					kaleoDefinitionVersionId,
-					
-					start, end, orderByComparator
-				};
+				kaleoDefinitionVersionId, start, end, orderByComparator
+			};
 		}
 
 		List<KaleoCondition> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoCondition>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoCondition>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoCondition kaleoCondition : list) {
-					if ((kaleoDefinitionVersionId != kaleoCondition.getKaleoDefinitionVersionId())) {
+					if ((kaleoDefinitionVersionId !=
+							kaleoCondition.getKaleoDefinitionVersionId())) {
+
 						list = null;
 
 						break;
@@ -684,8 +720,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -693,14 +729,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			query.append(_SQL_SELECT_KALEOCONDITION_WHERE);
 
-			query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+			query.append(
+				_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(KaleoConditionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -718,16 +754,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				qPos.add(kaleoDefinitionVersionId);
 
 				if (!pagination) {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -757,11 +793,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByKaleoDefinitionVersionId_First(
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoCondition> orderByComparator)
+			long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
-		KaleoCondition kaleoCondition = fetchByKaleoDefinitionVersionId_First(kaleoDefinitionVersionId,
-				orderByComparator);
+
+		KaleoCondition kaleoCondition = fetchByKaleoDefinitionVersionId_First(
+			kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoCondition != null) {
 			return kaleoCondition;
@@ -790,8 +827,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public KaleoCondition fetchByKaleoDefinitionVersionId_First(
 		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoCondition> orderByComparator) {
-		List<KaleoCondition> list = findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-				0, 1, orderByComparator);
+
+		List<KaleoCondition> list = findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -810,11 +848,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition findByKaleoDefinitionVersionId_Last(
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoCondition> orderByComparator)
+			long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
-		KaleoCondition kaleoCondition = fetchByKaleoDefinitionVersionId_Last(kaleoDefinitionVersionId,
-				orderByComparator);
+
+		KaleoCondition kaleoCondition = fetchByKaleoDefinitionVersionId_Last(
+			kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoCondition != null) {
 			return kaleoCondition;
@@ -843,14 +882,15 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public KaleoCondition fetchByKaleoDefinitionVersionId_Last(
 		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoCondition> orderByComparator) {
+
 		int count = countByKaleoDefinitionVersionId(kaleoDefinitionVersionId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<KaleoCondition> list = findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-				count - 1, count, orderByComparator);
+		List<KaleoCondition> list = findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -870,9 +910,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition[] findByKaleoDefinitionVersionId_PrevAndNext(
-		long kaleoConditionId, long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoCondition> orderByComparator)
+			long kaleoConditionId, long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoCondition> orderByComparator)
 		throws NoSuchConditionException {
+
 		KaleoCondition kaleoCondition = findByPrimaryKey(kaleoConditionId);
 
 		Session session = null;
@@ -882,15 +923,15 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			KaleoCondition[] array = new KaleoConditionImpl[3];
 
-			array[0] = getByKaleoDefinitionVersionId_PrevAndNext(session,
-					kaleoCondition, kaleoDefinitionVersionId,
-					orderByComparator, true);
+			array[0] = getByKaleoDefinitionVersionId_PrevAndNext(
+				session, kaleoCondition, kaleoDefinitionVersionId,
+				orderByComparator, true);
 
 			array[1] = kaleoCondition;
 
-			array[2] = getByKaleoDefinitionVersionId_PrevAndNext(session,
-					kaleoCondition, kaleoDefinitionVersionId,
-					orderByComparator, false);
+			array[2] = getByKaleoDefinitionVersionId_PrevAndNext(
+				session, kaleoCondition, kaleoDefinitionVersionId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -906,11 +947,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		Session session, KaleoCondition kaleoCondition,
 		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoCondition> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -919,10 +961,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		query.append(_SQL_SELECT_KALEOCONDITION_WHERE);
 
-		query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+		query.append(
+			_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -992,8 +1036,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		qPos.add(kaleoDefinitionVersionId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					kaleoCondition)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						kaleoCondition)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1014,10 +1060,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @param kaleoDefinitionVersionId the kaleo definition version ID
 	 */
 	@Override
-	public void removeByKaleoDefinitionVersionId(long kaleoDefinitionVersionId) {
-		for (KaleoCondition kaleoCondition : findByKaleoDefinitionVersionId(
-				kaleoDefinitionVersionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+	public void removeByKaleoDefinitionVersionId(
+		long kaleoDefinitionVersionId) {
+
+		for (KaleoCondition kaleoCondition :
+				findByKaleoDefinitionVersionId(
+					kaleoDefinitionVersionId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(kaleoCondition);
 		}
 	}
@@ -1032,7 +1082,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public int countByKaleoDefinitionVersionId(long kaleoDefinitionVersionId) {
 		FinderPath finderPath = _finderPathCountByKaleoDefinitionVersionId;
 
-		Object[] finderArgs = new Object[] { kaleoDefinitionVersionId };
+		Object[] finderArgs = new Object[] {kaleoDefinitionVersionId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1041,7 +1091,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			query.append(_SQL_COUNT_KALEOCONDITION_WHERE);
 
-			query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+			query.append(
+				_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 			String sql = query.toString();
 
@@ -1073,8 +1124,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2 =
-		"kaleoCondition.kaleoDefinitionVersionId = ?";
+	private static final String
+		_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2 =
+			"kaleoCondition.kaleoDefinitionVersionId = ?";
+
 	private FinderPath _finderPathFetchByKaleoNodeId;
 	private FinderPath _finderPathCountByKaleoNodeId;
 
@@ -1088,6 +1141,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition findByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchConditionException {
+
 		KaleoCondition kaleoCondition = fetchByKaleoNodeId(kaleoNodeId);
 
 		if (kaleoCondition == null) {
@@ -1129,15 +1183,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 */
 	@Override
-	public KaleoCondition fetchByKaleoNodeId(long kaleoNodeId,
-		boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { kaleoNodeId };
+	public KaleoCondition fetchByKaleoNodeId(
+		long kaleoNodeId, boolean retrieveFromCache) {
+
+		Object[] finderArgs = new Object[] {kaleoNodeId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByKaleoNodeId,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByKaleoNodeId, finderArgs, this);
 		}
 
 		if (result instanceof KaleoCondition) {
@@ -1171,8 +1226,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				List<KaleoCondition> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByKaleoNodeId,
-						finderArgs, list);
+					finderCache.putResult(
+						_finderPathFetchByKaleoNodeId, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -1181,8 +1236,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"KaleoConditionPersistenceImpl.fetchByKaleoNodeId(long, boolean) with parameters (" +
-								StringUtil.merge(finderArgs) +
-								") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+									StringUtil.merge(finderArgs) +
+										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 						}
 					}
 
@@ -1194,8 +1249,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByKaleoNodeId,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathFetchByKaleoNodeId, finderArgs);
 
 				throw processException(e);
 			}
@@ -1221,6 +1276,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition removeByKaleoNodeId(long kaleoNodeId)
 		throws NoSuchConditionException {
+
 		KaleoCondition kaleoCondition = findByKaleoNodeId(kaleoNodeId);
 
 		return remove(kaleoCondition);
@@ -1236,7 +1292,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public int countByKaleoNodeId(long kaleoNodeId) {
 		FinderPath finderPath = _finderPathCountByKaleoNodeId;
 
-		Object[] finderArgs = new Object[] { kaleoNodeId };
+		Object[] finderArgs = new Object[] {kaleoNodeId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1277,7 +1333,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_KALEONODEID_KALEONODEID_2 = "kaleoCondition.kaleoNodeId = ?";
+	private static final String _FINDER_COLUMN_KALEONODEID_KALEONODEID_2 =
+		"kaleoCondition.kaleoNodeId = ?";
 
 	public KaleoConditionPersistenceImpl() {
 		setModelClass(KaleoCondition.class);
@@ -1290,12 +1347,14 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public void cacheResult(KaleoCondition kaleoCondition) {
-		entityCache.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey(),
 			kaleoCondition);
 
-		finderCache.putResult(_finderPathFetchByKaleoNodeId,
-			new Object[] { kaleoCondition.getKaleoNodeId() }, kaleoCondition);
+		finderCache.putResult(
+			_finderPathFetchByKaleoNodeId,
+			new Object[] {kaleoCondition.getKaleoNodeId()}, kaleoCondition);
 
 		kaleoCondition.resetOriginalValues();
 	}
@@ -1309,8 +1368,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	public void cacheResult(List<KaleoCondition> kaleoConditions) {
 		for (KaleoCondition kaleoCondition : kaleoConditions) {
 			if (entityCache.getResult(
-						KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoConditionImpl.class, kaleoCondition.getPrimaryKey()) == null) {
+					KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoConditionImpl.class, kaleoCondition.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(kaleoCondition);
 			}
 			else {
@@ -1344,7 +1405,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public void clearCache(KaleoCondition kaleoCondition) {
-		entityCache.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1359,40 +1421,45 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (KaleoCondition kaleoCondition : kaleoConditions) {
-			entityCache.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
 
-			clearUniqueFindersCache((KaleoConditionModelImpl)kaleoCondition,
-				true);
+			clearUniqueFindersCache(
+				(KaleoConditionModelImpl)kaleoCondition, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		KaleoConditionModelImpl kaleoConditionModelImpl) {
-		Object[] args = new Object[] { kaleoConditionModelImpl.getKaleoNodeId() };
 
-		finderCache.putResult(_finderPathCountByKaleoNodeId, args,
-			Long.valueOf(1), false);
-		finderCache.putResult(_finderPathFetchByKaleoNodeId, args,
-			kaleoConditionModelImpl, false);
+		Object[] args = new Object[] {kaleoConditionModelImpl.getKaleoNodeId()};
+
+		finderCache.putResult(
+			_finderPathCountByKaleoNodeId, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByKaleoNodeId, args, kaleoConditionModelImpl,
+			false);
 	}
 
 	protected void clearUniqueFindersCache(
 		KaleoConditionModelImpl kaleoConditionModelImpl, boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					kaleoConditionModelImpl.getKaleoNodeId()
-				};
+				kaleoConditionModelImpl.getKaleoNodeId()
+			};
 
 			finderCache.removeResult(_finderPathCountByKaleoNodeId, args);
 			finderCache.removeResult(_finderPathFetchByKaleoNodeId, args);
 		}
 
 		if ((kaleoConditionModelImpl.getColumnBitmask() &
-				_finderPathFetchByKaleoNodeId.getColumnBitmask()) != 0) {
+			 _finderPathFetchByKaleoNodeId.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					kaleoConditionModelImpl.getOriginalKaleoNodeId()
-				};
+				kaleoConditionModelImpl.getOriginalKaleoNodeId()
+			};
 
 			finderCache.removeResult(_finderPathCountByKaleoNodeId, args);
 			finderCache.removeResult(_finderPathFetchByKaleoNodeId, args);
@@ -1427,6 +1494,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition remove(long kaleoConditionId)
 		throws NoSuchConditionException {
+
 		return remove((Serializable)kaleoConditionId);
 	}
 
@@ -1440,21 +1508,22 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition remove(Serializable primaryKey)
 		throws NoSuchConditionException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			KaleoCondition kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-					primaryKey);
+			KaleoCondition kaleoCondition = (KaleoCondition)session.get(
+				KaleoConditionImpl.class, primaryKey);
 
 			if (kaleoCondition == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchConditionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchConditionException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(kaleoCondition);
@@ -1478,8 +1547,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			session = openSession();
 
 			if (!session.contains(kaleoCondition)) {
-				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-						kaleoCondition.getPrimaryKeyObj());
+				kaleoCondition = (KaleoCondition)session.get(
+					KaleoConditionImpl.class,
+					kaleoCondition.getPrimaryKeyObj());
 			}
 
 			if (kaleoCondition != null) {
@@ -1508,21 +1578,24 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(kaleoCondition.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(kaleoCondition);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					kaleoCondition);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in kaleoCondition proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom KaleoCondition implementation " +
-				kaleoCondition.getClass());
+					kaleoCondition.getClass());
 		}
 
-		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
+		KaleoConditionModelImpl kaleoConditionModelImpl =
+			(KaleoConditionModelImpl)kaleoCondition;
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -1540,8 +1613,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				kaleoCondition.setModifiedDate(now);
 			}
 			else {
-				kaleoCondition.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				kaleoCondition.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -1571,69 +1644,78 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		if (!KaleoConditionModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { kaleoConditionModelImpl.getCompanyId() };
+		else if (isNew) {
+			Object[] args = new Object[] {
+				kaleoConditionModelImpl.getCompanyId()
+			};
 
 			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
 
 			args = new Object[] {
-					kaleoConditionModelImpl.getKaleoDefinitionVersionId()
-				};
+				kaleoConditionModelImpl.getKaleoDefinitionVersionId()
+			};
 
-			finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-				args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+			finderCache.removeResult(
+				_finderPathCountByKaleoDefinitionVersionId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
 				args);
 
 			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
 		}
-
 		else {
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
+
 				Object[] args = new Object[] {
-						kaleoConditionModelImpl.getOriginalCompanyId()
-					};
+					kaleoConditionModelImpl.getOriginalCompanyId()
+				};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 
-				args = new Object[] { kaleoConditionModelImpl.getCompanyId() };
+				args = new Object[] {kaleoConditionModelImpl.getCompanyId()};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 			}
 
 			if ((kaleoConditionModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoConditionModelImpl.getOriginalKaleoDefinitionVersionId()
-					};
+				 _finderPathWithoutPaginationFindByKaleoDefinitionVersionId.
+					 getColumnBitmask()) != 0) {
 
-				finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+				Object[] args = new Object[] {
+					kaleoConditionModelImpl.
+						getOriginalKaleoDefinitionVersionId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByKaleoDefinitionVersionId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
 					args);
 
 				args = new Object[] {
-						kaleoConditionModelImpl.getKaleoDefinitionVersionId()
-					};
+					kaleoConditionModelImpl.getKaleoDefinitionVersionId()
+				};
 
-				finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+				finderCache.removeResult(
+					_finderPathCountByKaleoDefinitionVersionId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
 					args);
 			}
 		}
 
-		entityCache.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey(),
 			kaleoCondition, false);
 
@@ -1655,6 +1737,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchConditionException {
+
 		KaleoCondition kaleoCondition = fetchByPrimaryKey(primaryKey);
 
 		if (kaleoCondition == null) {
@@ -1662,8 +1745,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchConditionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchConditionException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return kaleoCondition;
@@ -1679,6 +1762,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public KaleoCondition findByPrimaryKey(long kaleoConditionId)
 		throws NoSuchConditionException {
+
 		return findByPrimaryKey((Serializable)kaleoConditionId);
 	}
 
@@ -1690,8 +1774,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public KaleoCondition fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -1705,19 +1790,21 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			try {
 				session = openSession();
 
-				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-						primaryKey);
+				kaleoCondition = (KaleoCondition)session.get(
+					KaleoConditionImpl.class, primaryKey);
 
 				if (kaleoCondition != null) {
 					cacheResult(kaleoCondition);
 				}
 				else {
-					entityCache.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 						KaleoConditionImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 					KaleoConditionImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1744,11 +1831,13 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	@Override
 	public Map<Serializable, KaleoCondition> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, KaleoCondition> map = new HashMap<Serializable, KaleoCondition>();
+		Map<Serializable, KaleoCondition> map =
+			new HashMap<Serializable, KaleoCondition>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -1767,8 +1856,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-					KaleoConditionImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+				KaleoConditionImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1788,8 +1878,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_KALEOCONDITION_WHERE_PKS_IN);
 
@@ -1812,7 +1902,9 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			Query q = session.createQuery(sql);
 
-			for (KaleoCondition kaleoCondition : (List<KaleoCondition>)q.list()) {
+			for (KaleoCondition kaleoCondition :
+					(List<KaleoCondition>)q.list()) {
+
 				map.put(kaleoCondition.getPrimaryKeyObj(), kaleoCondition);
 
 				cacheResult(kaleoCondition);
@@ -1821,7 +1913,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 					KaleoConditionImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -1874,8 +1967,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the ordered range of kaleo conditions
 	 */
 	@Override
-	public List<KaleoCondition> findAll(int start, int end,
+	public List<KaleoCondition> findAll(
+		int start, int end,
 		OrderByComparator<KaleoCondition> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1893,29 +1988,31 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * @return the ordered range of kaleo conditions
 	 */
 	@Override
-	public List<KaleoCondition> findAll(int start, int end,
-		OrderByComparator<KaleoCondition> orderByComparator,
+	public List<KaleoCondition> findAll(
+		int start, int end, OrderByComparator<KaleoCondition> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<KaleoCondition> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoCondition>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoCondition>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1923,13 +2020,13 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_KALEOCONDITION);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1949,16 +2046,16 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoCondition>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<KaleoCondition>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1996,8 +2093,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2009,11 +2106,12 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2034,81 +2132,89 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 * Initializes the kaleo condition persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-				KaleoConditionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-				KaleoConditionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathCountAll = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-				KaleoConditionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-				KaleoConditionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				KaleoConditionModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByCompanyId", new String[] {Long.class.getName()},
+			KaleoConditionModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByCompanyId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByCompanyId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByKaleoDefinitionVersionId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithPaginationFindByKaleoDefinitionVersionId =
+			new FinderPath(
+				KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
 				KaleoConditionImpl.class,
 				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 				"findByKaleoDefinitionVersionId",
 				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
+					Long.class.getName(), Integer.class.getName(),
+					Integer.class.getName(), OrderByComparator.class.getName()
 				});
 
-		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId =
+			new FinderPath(
+				KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
 				KaleoConditionImpl.class,
 				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 				"findByKaleoDefinitionVersionId",
-				new String[] { Long.class.getName() },
-				KaleoConditionModelImpl.KALEODEFINITIONVERSIONID_COLUMN_BITMASK);
+				new String[] {Long.class.getName()},
+				KaleoConditionModelImpl.
+					KALEODEFINITIONVERSIONID_COLUMN_BITMASK);
 
-		_finderPathCountByKaleoDefinitionVersionId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByKaleoDefinitionVersionId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByKaleoDefinitionVersionId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByKaleoDefinitionVersionId",
+			new String[] {Long.class.getName()});
 
-		_finderPathFetchByKaleoNodeId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-				KaleoConditionImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByKaleoNodeId", new String[] { Long.class.getName() },
-				KaleoConditionModelImpl.KALEONODEID_COLUMN_BITMASK);
+		_finderPathFetchByKaleoNodeId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
+			KaleoConditionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByKaleoNodeId", new String[] {Long.class.getName()},
+			KaleoConditionModelImpl.KALEONODEID_COLUMN_BITMASK);
 
-		_finderPathCountByKaleoNodeId = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByKaleoNodeId", new String[] { Long.class.getName() });
+		_finderPathCountByKaleoNodeId = new FinderPath(
+			KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoConditionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByKaleoNodeId",
+			new String[] {Long.class.getName()});
 	}
 
 	public void destroy() {
@@ -2120,17 +2226,37 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_KALEOCONDITION = "SELECT kaleoCondition FROM KaleoCondition kaleoCondition";
-	private static final String _SQL_SELECT_KALEOCONDITION_WHERE_PKS_IN = "SELECT kaleoCondition FROM KaleoCondition kaleoCondition WHERE kaleoConditionId IN (";
-	private static final String _SQL_SELECT_KALEOCONDITION_WHERE = "SELECT kaleoCondition FROM KaleoCondition kaleoCondition WHERE ";
-	private static final String _SQL_COUNT_KALEOCONDITION = "SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition";
-	private static final String _SQL_COUNT_KALEOCONDITION_WHERE = "SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition WHERE ";
+
+	private static final String _SQL_SELECT_KALEOCONDITION =
+		"SELECT kaleoCondition FROM KaleoCondition kaleoCondition";
+
+	private static final String _SQL_SELECT_KALEOCONDITION_WHERE_PKS_IN =
+		"SELECT kaleoCondition FROM KaleoCondition kaleoCondition WHERE kaleoConditionId IN (";
+
+	private static final String _SQL_SELECT_KALEOCONDITION_WHERE =
+		"SELECT kaleoCondition FROM KaleoCondition kaleoCondition WHERE ";
+
+	private static final String _SQL_COUNT_KALEOCONDITION =
+		"SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition";
+
+	private static final String _SQL_COUNT_KALEOCONDITION_WHERE =
+		"SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoCondition.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoCondition exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoCondition exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(KaleoConditionPersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No KaleoCondition exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No KaleoCondition exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KaleoConditionPersistenceImpl.class);
+
 }

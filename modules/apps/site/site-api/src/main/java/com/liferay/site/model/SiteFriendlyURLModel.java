@@ -17,7 +17,6 @@ package com.liferay.site.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SiteFriendlyURLModel extends BaseModel<SiteFriendlyURL>,
-	ShardedModel, StagedGroupedModel {
+public interface SiteFriendlyURLModel
+	extends BaseModel<SiteFriendlyURL>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -309,4 +309,5 @@ public interface SiteFriendlyURLModel extends BaseModel<SiteFriendlyURL>,
 
 	@Override
 	public String toXmlString();
+
 }

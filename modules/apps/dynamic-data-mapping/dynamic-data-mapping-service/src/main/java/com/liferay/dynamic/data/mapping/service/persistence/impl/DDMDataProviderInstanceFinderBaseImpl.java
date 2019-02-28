@@ -16,7 +16,6 @@ package com.liferay.dynamic.data.mapping.service.persistence.impl;
 
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMDataProviderInstancePersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class DDMDataProviderInstanceFinderBaseImpl extends BasePersistenceImpl<DDMDataProviderInstance> {
+public class DDMDataProviderInstanceFinderBaseImpl
+	extends BasePersistenceImpl<DDMDataProviderInstance> {
+
 	public DDMDataProviderInstanceFinderBaseImpl() {
 		setModelClass(DDMDataProviderInstance.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -66,7 +67,9 @@ public class DDMDataProviderInstanceFinderBaseImpl extends BasePersistenceImpl<D
 	 *
 	 * @return the ddm data provider instance persistence
 	 */
-	public DDMDataProviderInstancePersistence getDDMDataProviderInstancePersistence() {
+	public DDMDataProviderInstancePersistence
+		getDDMDataProviderInstancePersistence() {
+
 		return ddmDataProviderInstancePersistence;
 	}
 
@@ -77,10 +80,16 @@ public class DDMDataProviderInstanceFinderBaseImpl extends BasePersistenceImpl<D
 	 */
 	public void setDDMDataProviderInstancePersistence(
 		DDMDataProviderInstancePersistence ddmDataProviderInstancePersistence) {
-		this.ddmDataProviderInstancePersistence = ddmDataProviderInstancePersistence;
+
+		this.ddmDataProviderInstancePersistence =
+			ddmDataProviderInstancePersistence;
 	}
 
 	@BeanReference(type = DDMDataProviderInstancePersistence.class)
-	protected DDMDataProviderInstancePersistence ddmDataProviderInstancePersistence;
-	private static final Log _log = LogFactoryUtil.getLog(DDMDataProviderInstanceFinderBaseImpl.class);
+	protected DDMDataProviderInstancePersistence
+		ddmDataProviderInstancePersistence;
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMDataProviderInstanceFinderBaseImpl.class);
+
 }

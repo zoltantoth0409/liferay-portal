@@ -17,7 +17,6 @@ package com.liferay.oauth2.provider.service;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
@@ -42,12 +41,20 @@ import java.util.List;
  */
 @AccessControlled
 @JSONWebService
-@OSGiBeanProperties(property =  {
-	"json.web.service.context.name=oauthtwo", "json.web.service.context.path=OAuth2Authorization"}, service = OAuth2AuthorizationService.class)
+@OSGiBeanProperties(
+	property = {
+		"json.web.service.context.name=oauthtwo",
+		"json.web.service.context.path=OAuth2Authorization"
+	},
+	service = OAuth2AuthorizationService.class
+)
 @ProviderType
-@Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
-	PortalException.class, SystemException.class})
+@Transactional(
+	isolation = Isolation.PORTAL,
+	rollbackFor = {PortalException.class, SystemException.class}
+)
 public interface OAuth2AuthorizationService extends BaseService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -55,8 +62,8 @@ public interface OAuth2AuthorizationService extends BaseService {
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<OAuth2Authorization> getApplicationOAuth2Authorizations(
-		long oAuth2ApplicationId, int start, int end,
-		OrderByComparator<OAuth2Authorization> orderByComparator)
+			long oAuth2ApplicationId, int start, int end,
+			OrderByComparator<OAuth2Authorization> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -64,15 +71,16 @@ public interface OAuth2AuthorizationService extends BaseService {
 		throws PortalException;
 
 	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
+	 * Returns the OSGi service identifier.
+	 *
+	 * @return the OSGi service identifier
+	 */
 	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<OAuth2Authorization> getUserOAuth2Authorizations(int start,
-		int end, OrderByComparator<OAuth2Authorization> orderByComparator)
+	public List<OAuth2Authorization> getUserOAuth2Authorizations(
+			int start, int end,
+			OrderByComparator<OAuth2Authorization> orderByComparator)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -80,4 +88,5 @@ public interface OAuth2AuthorizationService extends BaseService {
 
 	public void revokeOAuth2Authorization(long oAuth2AuthorizationId)
 		throws PortalException;
+
 }

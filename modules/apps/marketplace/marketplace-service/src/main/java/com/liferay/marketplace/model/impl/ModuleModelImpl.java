@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.model.ModuleModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -54,24 +52,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class ModuleModelImpl extends BaseModelImpl<Module>
-	implements ModuleModel {
+public class ModuleModelImpl
+	extends BaseModelImpl<Module> implements ModuleModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a module model instance should use the <code>Module</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Marketplace_Module";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "moduleId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "appId", Types.BIGINT },
-			{ "bundleSymbolicName", Types.VARCHAR },
-			{ "bundleVersion", Types.VARCHAR },
-			{ "contextName", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"moduleId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"appId", Types.BIGINT},
+		{"bundleSymbolicName", Types.VARCHAR}, {"bundleVersion", Types.VARCHAR},
+		{"contextName", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -83,31 +82,54 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		TABLE_COLUMNS_MAP.put("contextName", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,companyId LONG,appId LONG,bundleSymbolicName VARCHAR(500) null,bundleVersion VARCHAR(75) null,contextName VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Marketplace_Module (uuid_ VARCHAR(75) null,moduleId LONG not null primary key,companyId LONG,appId LONG,bundleSymbolicName VARCHAR(500) null,bundleVersion VARCHAR(75) null,contextName VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table Marketplace_Module";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY module.moduleId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Marketplace_Module.moduleId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Marketplace_Module.moduleId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.marketplace.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.marketplace.model.Module"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.marketplace.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.marketplace.model.Module"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.marketplace.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.marketplace.model.Module"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.marketplace.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.marketplace.model.Module"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.marketplace.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.marketplace.model.Module"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.marketplace.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.marketplace.model.Module"),
+		true);
+
 	public static final long APPID_COLUMN_BITMASK = 1L;
+
 	public static final long BUNDLESYMBOLICNAME_COLUMN_BITMASK = 2L;
+
 	public static final long BUNDLEVERSION_COLUMN_BITMASK = 4L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 8L;
+
 	public static final long CONTEXTNAME_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long MODULEID_COLUMN_BITMASK = 64L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.marketplace.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.marketplace.model.Module"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.marketplace.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.marketplace.model.Module"));
 
 	public ModuleModelImpl() {
 	}
@@ -146,14 +168,17 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Module, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Module, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Module, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Module, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Module, Object> attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Module)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Module)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -164,15 +189,18 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Module, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Module, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Module, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Module, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Module)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Module)this, entry.getValue());
 			}
 		}
 	}
@@ -181,17 +209,22 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Module, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Module, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Module, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Module, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Module, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Module, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Module, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Module, Object>>();
-		Map<String, BiConsumer<Module, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Module, ?>>();
-
+		Map<String, Function<Module, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Module, Object>>();
+		Map<String, BiConsumer<Module, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Module, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -334,9 +367,10 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -499,8 +533,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Module.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Module.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -513,8 +547,9 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	@Override
 	public Module toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Module)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Module)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -603,7 +638,8 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		moduleModelImpl._setOriginalAppId = false;
 
-		moduleModelImpl._originalBundleSymbolicName = moduleModelImpl._bundleSymbolicName;
+		moduleModelImpl._originalBundleSymbolicName =
+			moduleModelImpl._bundleSymbolicName;
 
 		moduleModelImpl._originalBundleVersion = moduleModelImpl._bundleVersion;
 
@@ -634,7 +670,9 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 		String bundleSymbolicName = moduleCacheModel.bundleSymbolicName;
 
-		if ((bundleSymbolicName != null) && (bundleSymbolicName.length() == 0)) {
+		if ((bundleSymbolicName != null) &&
+			(bundleSymbolicName.length() == 0)) {
+
 			moduleCacheModel.bundleSymbolicName = null;
 		}
 
@@ -659,14 +697,17 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Module, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Module, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Module, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Module, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Module, Object> attributeGetterFunction = entry.getValue();
 
@@ -687,16 +728,19 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Module, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Module, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Module, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Module, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<Module, Object> attributeGetterFunction = entry.getValue();
 
@@ -712,10 +756,12 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Module.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Module.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Module.class, ModelWrapper.class
-		};
+		Module.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _moduleId;
@@ -733,4 +779,5 @@ public class ModuleModelImpl extends BaseModelImpl<Module>
 	private String _originalContextName;
 	private long _columnBitmask;
 	private Module _escapedModel;
+
 }

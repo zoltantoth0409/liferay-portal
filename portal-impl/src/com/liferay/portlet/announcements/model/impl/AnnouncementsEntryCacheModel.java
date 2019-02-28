@@ -17,7 +17,6 @@ package com.liferay.portlet.announcements.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.announcements.kernel.model.AnnouncementsEntry;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class AnnouncementsEntryCacheModel implements CacheModel<AnnouncementsEntry>,
-	Externalizable {
+public class AnnouncementsEntryCacheModel
+	implements CacheModel<AnnouncementsEntry>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class AnnouncementsEntryCacheModel implements CacheModel<AnnouncementsEnt
 			return false;
 		}
 
-		AnnouncementsEntryCacheModel announcementsEntryCacheModel = (AnnouncementsEntryCacheModel)obj;
+		AnnouncementsEntryCacheModel announcementsEntryCacheModel =
+			(AnnouncementsEntryCacheModel)obj;
 
 		if (entryId == announcementsEntryCacheModel.entryId) {
 			return true;
@@ -107,7 +108,8 @@ public class AnnouncementsEntryCacheModel implements CacheModel<AnnouncementsEnt
 
 	@Override
 	public AnnouncementsEntry toEntityModel() {
-		AnnouncementsEntryImpl announcementsEntryImpl = new AnnouncementsEntryImpl();
+		AnnouncementsEntryImpl announcementsEntryImpl =
+			new AnnouncementsEntryImpl();
 
 		if (uuid == null) {
 			announcementsEntryImpl.setUuid("");
@@ -223,8 +225,7 @@ public class AnnouncementsEntryCacheModel implements CacheModel<AnnouncementsEnt
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -305,4 +306,5 @@ public class AnnouncementsEntryCacheModel implements CacheModel<AnnouncementsEnt
 	public long expirationDate;
 	public int priority;
 	public boolean alert;
+
 }

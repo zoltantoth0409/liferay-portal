@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntryModel;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntrySoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -68,38 +65,34 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTemplateEntry>
+public class LayoutPageTemplateEntryModelImpl
+	extends BaseModelImpl<LayoutPageTemplateEntry>
 	implements LayoutPageTemplateEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a layout page template entry model instance should use the <code>LayoutPageTemplateEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "LayoutPageTemplateEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "layoutPageTemplateEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "layoutPageTemplateCollectionId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
-			{ "classTypeId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "type_", Types.INTEGER },
-			{ "previewFileEntryId", Types.BIGINT },
-			{ "defaultTemplate", Types.BOOLEAN },
-			{ "layoutPrototypeId", Types.BIGINT },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"layoutPageTemplateEntryId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"layoutPageTemplateCollectionId", Types.BIGINT},
+		{"classNameId", Types.BIGINT}, {"classTypeId", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"type_", Types.INTEGER},
+		{"previewFileEntryId", Types.BIGINT},
+		{"defaultTemplate", Types.BOOLEAN}, {"layoutPrototypeId", Types.BIGINT},
+		{"lastPublishDate", Types.TIMESTAMP}, {"status", Types.INTEGER},
+		{"statusByUserId", Types.BIGINT}, {"statusByUserName", Types.VARCHAR},
+		{"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -125,32 +118,60 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LayoutPageTemplateEntry (uuid_ VARCHAR(75) null,layoutPageTemplateEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,layoutPageTemplateCollectionId LONG,classNameId LONG,classTypeId LONG,name VARCHAR(75) null,type_ INTEGER,previewFileEntryId LONG,defaultTemplate BOOLEAN,layoutPrototypeId LONG,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table LayoutPageTemplateEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY layoutPageTemplateEntry.name ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY LayoutPageTemplateEntry.name ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table LayoutPageTemplateEntry (uuid_ VARCHAR(75) null,layoutPageTemplateEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,layoutPageTemplateCollectionId LONG,classNameId LONG,classTypeId LONG,name VARCHAR(75) null,type_ INTEGER,previewFileEntryId LONG,defaultTemplate BOOLEAN,layoutPrototypeId LONG,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table LayoutPageTemplateEntry";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY layoutPageTemplateEntry.name ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY LayoutPageTemplateEntry.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSTYPEID_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long DEFAULTTEMPLATE_COLUMN_BITMASK = 8L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 16L;
-	public static final long LAYOUTPAGETEMPLATECOLLECTIONID_COLUMN_BITMASK = 32L;
+
+	public static final long LAYOUTPAGETEMPLATECOLLECTIONID_COLUMN_BITMASK =
+		32L;
+
 	public static final long LAYOUTPROTOTYPEID_COLUMN_BITMASK = 64L;
+
 	public static final long NAME_COLUMN_BITMASK = 128L;
+
 	public static final long STATUS_COLUMN_BITMASK = 256L;
+
 	public static final long TYPE_COLUMN_BITMASK = 512L;
+
 	public static final long UUID_COLUMN_BITMASK = 1024L;
 
 	/**
@@ -161,6 +182,7 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	 */
 	public static LayoutPageTemplateEntry toModel(
 		LayoutPageTemplateEntrySoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
@@ -168,14 +190,16 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 		LayoutPageTemplateEntry model = new LayoutPageTemplateEntryImpl();
 
 		model.setUuid(soapModel.getUuid());
-		model.setLayoutPageTemplateEntryId(soapModel.getLayoutPageTemplateEntryId());
+		model.setLayoutPageTemplateEntryId(
+			soapModel.getLayoutPageTemplateEntryId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setLayoutPageTemplateCollectionId(soapModel.getLayoutPageTemplateCollectionId());
+		model.setLayoutPageTemplateCollectionId(
+			soapModel.getLayoutPageTemplateCollectionId());
 		model.setClassNameId(soapModel.getClassNameId());
 		model.setClassTypeId(soapModel.getClassTypeId());
 		model.setName(soapModel.getName());
@@ -200,11 +224,13 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	 */
 	public static List<LayoutPageTemplateEntry> toModels(
 		LayoutPageTemplateEntrySoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<LayoutPageTemplateEntry> models = new ArrayList<LayoutPageTemplateEntry>(soapModels.length);
+		List<LayoutPageTemplateEntry> models =
+			new ArrayList<LayoutPageTemplateEntry>(soapModels.length);
 
 		for (LayoutPageTemplateEntrySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -213,8 +239,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.layout.page.template.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.layout.page.template.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.layout.page.template.model.LayoutPageTemplateEntry"));
 
 	public LayoutPageTemplateEntryModelImpl() {
 	}
@@ -253,14 +280,18 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((LayoutPageTemplateEntry)this));
 		}
 
@@ -272,46 +303,59 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<LayoutPageTemplateEntry, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<LayoutPageTemplateEntry, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<LayoutPageTemplateEntry, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((LayoutPageTemplateEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(LayoutPageTemplateEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<LayoutPageTemplateEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<LayoutPageTemplateEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<LayoutPageTemplateEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<LayoutPageTemplateEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<LayoutPageTemplateEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<LayoutPageTemplateEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map
+		<String, BiConsumer<LayoutPageTemplateEntry, Object>>
+			_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<LayoutPageTemplateEntry, Object>>();
-		Map<String, BiConsumer<LayoutPageTemplateEntry, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<LayoutPageTemplateEntry, ?>>();
-
+		Map<String, Function<LayoutPageTemplateEntry, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<LayoutPageTemplateEntry, Object>>();
+		Map<String, BiConsumer<LayoutPageTemplateEntry, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<LayoutPageTemplateEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getUuid();
 				}
 
@@ -321,7 +365,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object uuid) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object uuid) {
+
 					layoutPageTemplateEntry.setUuid((String)uuid);
 				}
 
@@ -331,8 +378,11 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
-					return layoutPageTemplateEntry.getLayoutPageTemplateEntryId();
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
+					return layoutPageTemplateEntry.
+						getLayoutPageTemplateEntryId();
 				}
 
 			});
@@ -341,8 +391,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPageTemplateEntryId) {
-					layoutPageTemplateEntry.setLayoutPageTemplateEntryId((Long)layoutPageTemplateEntryId);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object layoutPageTemplateEntryId) {
+
+					layoutPageTemplateEntry.setLayoutPageTemplateEntryId(
+						(Long)layoutPageTemplateEntryId);
 				}
 
 			});
@@ -351,7 +405,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getGroupId();
 				}
 
@@ -361,7 +417,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object groupId) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object groupId) {
+
 					layoutPageTemplateEntry.setGroupId((Long)groupId);
 				}
 
@@ -371,7 +430,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getCompanyId();
 				}
 
@@ -381,7 +442,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object companyId) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object companyId) {
+
 					layoutPageTemplateEntry.setCompanyId((Long)companyId);
 				}
 
@@ -391,7 +455,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getUserId();
 				}
 
@@ -401,7 +467,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object userId) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object userId) {
+
 					layoutPageTemplateEntry.setUserId((Long)userId);
 				}
 
@@ -411,7 +480,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getUserName();
 				}
 
@@ -421,7 +492,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object userName) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object userName) {
+
 					layoutPageTemplateEntry.setUserName((String)userName);
 				}
 
@@ -431,7 +505,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getCreateDate();
 				}
 
@@ -441,7 +517,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object createDate) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object createDate) {
+
 					layoutPageTemplateEntry.setCreateDate((Date)createDate);
 				}
 
@@ -451,7 +530,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getModifiedDate();
 				}
 
@@ -461,7 +542,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object modifiedDate) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object modifiedDate) {
+
 					layoutPageTemplateEntry.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -471,8 +555,11 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
-					return layoutPageTemplateEntry.getLayoutPageTemplateCollectionId();
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
+					return layoutPageTemplateEntry.
+						getLayoutPageTemplateCollectionId();
 				}
 
 			});
@@ -481,8 +568,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPageTemplateCollectionId) {
-					layoutPageTemplateEntry.setLayoutPageTemplateCollectionId((Long)layoutPageTemplateCollectionId);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object layoutPageTemplateCollectionId) {
+
+					layoutPageTemplateEntry.setLayoutPageTemplateCollectionId(
+						(Long)layoutPageTemplateCollectionId);
 				}
 
 			});
@@ -491,7 +582,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getClassNameId();
 				}
 
@@ -501,7 +594,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object classNameId) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object classNameId) {
+
 					layoutPageTemplateEntry.setClassNameId((Long)classNameId);
 				}
 
@@ -511,7 +607,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getClassTypeId();
 				}
 
@@ -521,7 +619,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object classTypeId) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object classTypeId) {
+
 					layoutPageTemplateEntry.setClassTypeId((Long)classTypeId);
 				}
 
@@ -531,7 +632,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getName();
 				}
 
@@ -541,7 +644,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object name) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object name) {
+
 					layoutPageTemplateEntry.setName((String)name);
 				}
 
@@ -551,7 +657,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getType();
 				}
 
@@ -561,7 +669,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object type) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object type) {
+
 					layoutPageTemplateEntry.setType((Integer)type);
 				}
 
@@ -571,7 +682,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getPreviewFileEntryId();
 				}
 
@@ -581,8 +694,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object previewFileEntryId) {
-					layoutPageTemplateEntry.setPreviewFileEntryId((Long)previewFileEntryId);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object previewFileEntryId) {
+
+					layoutPageTemplateEntry.setPreviewFileEntryId(
+						(Long)previewFileEntryId);
 				}
 
 			});
@@ -591,7 +708,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getDefaultTemplate();
 				}
 
@@ -601,8 +720,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object defaultTemplate) {
-					layoutPageTemplateEntry.setDefaultTemplate((Boolean)defaultTemplate);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object defaultTemplate) {
+
+					layoutPageTemplateEntry.setDefaultTemplate(
+						(Boolean)defaultTemplate);
 				}
 
 			});
@@ -611,7 +734,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getLayoutPrototypeId();
 				}
 
@@ -621,8 +746,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object layoutPrototypeId) {
-					layoutPageTemplateEntry.setLayoutPrototypeId((Long)layoutPrototypeId);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object layoutPrototypeId) {
+
+					layoutPageTemplateEntry.setLayoutPrototypeId(
+						(Long)layoutPrototypeId);
 				}
 
 			});
@@ -631,7 +760,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getLastPublishDate();
 				}
 
@@ -641,8 +772,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object lastPublishDate) {
-					layoutPageTemplateEntry.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object lastPublishDate) {
+
+					layoutPageTemplateEntry.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
@@ -651,7 +786,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getStatus();
 				}
 
@@ -661,7 +798,10 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object status) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object status) {
+
 					layoutPageTemplateEntry.setStatus((Integer)status);
 				}
 
@@ -671,7 +811,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getStatusByUserId();
 				}
 
@@ -681,8 +823,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusByUserId) {
-					layoutPageTemplateEntry.setStatusByUserId((Long)statusByUserId);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object statusByUserId) {
+
+					layoutPageTemplateEntry.setStatusByUserId(
+						(Long)statusByUserId);
 				}
 
 			});
@@ -691,7 +837,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getStatusByUserName();
 				}
 
@@ -701,8 +849,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusByUserName) {
-					layoutPageTemplateEntry.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object statusByUserName) {
+
+					layoutPageTemplateEntry.setStatusByUserName(
+						(String)statusByUserName);
 				}
 
 			});
@@ -711,7 +863,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new Function<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public Object apply(LayoutPageTemplateEntry layoutPageTemplateEntry) {
+				public Object apply(
+					LayoutPageTemplateEntry layoutPageTemplateEntry) {
+
 					return layoutPageTemplateEntry.getStatusDate();
 				}
 
@@ -721,15 +875,19 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			new BiConsumer<LayoutPageTemplateEntry, Object>() {
 
 				@Override
-				public void accept(LayoutPageTemplateEntry layoutPageTemplateEntry, Object statusDate) {
+				public void accept(
+					LayoutPageTemplateEntry layoutPageTemplateEntry,
+					Object statusDate) {
+
 					layoutPageTemplateEntry.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -895,12 +1053,14 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	@Override
 	public void setLayoutPageTemplateCollectionId(
 		long layoutPageTemplateCollectionId) {
+
 		_columnBitmask |= LAYOUTPAGETEMPLATECOLLECTIONID_COLUMN_BITMASK;
 
 		if (!_setOriginalLayoutPageTemplateCollectionId) {
 			_setOriginalLayoutPageTemplateCollectionId = true;
 
-			_originalLayoutPageTemplateCollectionId = _layoutPageTemplateCollectionId;
+			_originalLayoutPageTemplateCollectionId =
+				_layoutPageTemplateCollectionId;
 		}
 
 		_layoutPageTemplateCollectionId = layoutPageTemplateCollectionId;
@@ -1178,8 +1338,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				LayoutPageTemplateEntry.class.getName()), getClassNameId());
+		return new StagedModelType(
+			PortalUtil.getClassNameId(LayoutPageTemplateEntry.class.getName()),
+			getClassNameId());
 	}
 
 	@Override
@@ -1268,8 +1429,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			LayoutPageTemplateEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), LayoutPageTemplateEntry.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -1282,8 +1444,9 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	@Override
 	public LayoutPageTemplateEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (LayoutPageTemplateEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (LayoutPageTemplateEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1291,24 +1454,29 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public Object clone() {
-		LayoutPageTemplateEntryImpl layoutPageTemplateEntryImpl = new LayoutPageTemplateEntryImpl();
+		LayoutPageTemplateEntryImpl layoutPageTemplateEntryImpl =
+			new LayoutPageTemplateEntryImpl();
 
 		layoutPageTemplateEntryImpl.setUuid(getUuid());
-		layoutPageTemplateEntryImpl.setLayoutPageTemplateEntryId(getLayoutPageTemplateEntryId());
+		layoutPageTemplateEntryImpl.setLayoutPageTemplateEntryId(
+			getLayoutPageTemplateEntryId());
 		layoutPageTemplateEntryImpl.setGroupId(getGroupId());
 		layoutPageTemplateEntryImpl.setCompanyId(getCompanyId());
 		layoutPageTemplateEntryImpl.setUserId(getUserId());
 		layoutPageTemplateEntryImpl.setUserName(getUserName());
 		layoutPageTemplateEntryImpl.setCreateDate(getCreateDate());
 		layoutPageTemplateEntryImpl.setModifiedDate(getModifiedDate());
-		layoutPageTemplateEntryImpl.setLayoutPageTemplateCollectionId(getLayoutPageTemplateCollectionId());
+		layoutPageTemplateEntryImpl.setLayoutPageTemplateCollectionId(
+			getLayoutPageTemplateCollectionId());
 		layoutPageTemplateEntryImpl.setClassNameId(getClassNameId());
 		layoutPageTemplateEntryImpl.setClassTypeId(getClassTypeId());
 		layoutPageTemplateEntryImpl.setName(getName());
 		layoutPageTemplateEntryImpl.setType(getType());
-		layoutPageTemplateEntryImpl.setPreviewFileEntryId(getPreviewFileEntryId());
+		layoutPageTemplateEntryImpl.setPreviewFileEntryId(
+			getPreviewFileEntryId());
 		layoutPageTemplateEntryImpl.setDefaultTemplate(isDefaultTemplate());
-		layoutPageTemplateEntryImpl.setLayoutPrototypeId(getLayoutPrototypeId());
+		layoutPageTemplateEntryImpl.setLayoutPrototypeId(
+			getLayoutPrototypeId());
 		layoutPageTemplateEntryImpl.setLastPublishDate(getLastPublishDate());
 		layoutPageTemplateEntryImpl.setStatus(getStatus());
 		layoutPageTemplateEntryImpl.setStatusByUserId(getStatusByUserId());
@@ -1343,7 +1511,8 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			return false;
 		}
 
-		LayoutPageTemplateEntry layoutPageTemplateEntry = (LayoutPageTemplateEntry)obj;
+		LayoutPageTemplateEntry layoutPageTemplateEntry =
+			(LayoutPageTemplateEntry)obj;
 
 		long primaryKey = layoutPageTemplateEntry.getPrimaryKey();
 
@@ -1372,47 +1541,62 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public void resetOriginalValues() {
-		LayoutPageTemplateEntryModelImpl layoutPageTemplateEntryModelImpl = this;
+		LayoutPageTemplateEntryModelImpl layoutPageTemplateEntryModelImpl =
+			this;
 
-		layoutPageTemplateEntryModelImpl._originalUuid = layoutPageTemplateEntryModelImpl._uuid;
+		layoutPageTemplateEntryModelImpl._originalUuid =
+			layoutPageTemplateEntryModelImpl._uuid;
 
-		layoutPageTemplateEntryModelImpl._originalGroupId = layoutPageTemplateEntryModelImpl._groupId;
+		layoutPageTemplateEntryModelImpl._originalGroupId =
+			layoutPageTemplateEntryModelImpl._groupId;
 
 		layoutPageTemplateEntryModelImpl._setOriginalGroupId = false;
 
-		layoutPageTemplateEntryModelImpl._originalCompanyId = layoutPageTemplateEntryModelImpl._companyId;
+		layoutPageTemplateEntryModelImpl._originalCompanyId =
+			layoutPageTemplateEntryModelImpl._companyId;
 
 		layoutPageTemplateEntryModelImpl._setOriginalCompanyId = false;
 
 		layoutPageTemplateEntryModelImpl._setModifiedDate = false;
 
-		layoutPageTemplateEntryModelImpl._originalLayoutPageTemplateCollectionId = layoutPageTemplateEntryModelImpl._layoutPageTemplateCollectionId;
+		layoutPageTemplateEntryModelImpl.
+			_originalLayoutPageTemplateCollectionId =
+				layoutPageTemplateEntryModelImpl.
+					_layoutPageTemplateCollectionId;
 
-		layoutPageTemplateEntryModelImpl._setOriginalLayoutPageTemplateCollectionId = false;
+		layoutPageTemplateEntryModelImpl.
+			_setOriginalLayoutPageTemplateCollectionId = false;
 
-		layoutPageTemplateEntryModelImpl._originalClassNameId = layoutPageTemplateEntryModelImpl._classNameId;
+		layoutPageTemplateEntryModelImpl._originalClassNameId =
+			layoutPageTemplateEntryModelImpl._classNameId;
 
 		layoutPageTemplateEntryModelImpl._setOriginalClassNameId = false;
 
-		layoutPageTemplateEntryModelImpl._originalClassTypeId = layoutPageTemplateEntryModelImpl._classTypeId;
+		layoutPageTemplateEntryModelImpl._originalClassTypeId =
+			layoutPageTemplateEntryModelImpl._classTypeId;
 
 		layoutPageTemplateEntryModelImpl._setOriginalClassTypeId = false;
 
-		layoutPageTemplateEntryModelImpl._originalName = layoutPageTemplateEntryModelImpl._name;
+		layoutPageTemplateEntryModelImpl._originalName =
+			layoutPageTemplateEntryModelImpl._name;
 
-		layoutPageTemplateEntryModelImpl._originalType = layoutPageTemplateEntryModelImpl._type;
+		layoutPageTemplateEntryModelImpl._originalType =
+			layoutPageTemplateEntryModelImpl._type;
 
 		layoutPageTemplateEntryModelImpl._setOriginalType = false;
 
-		layoutPageTemplateEntryModelImpl._originalDefaultTemplate = layoutPageTemplateEntryModelImpl._defaultTemplate;
+		layoutPageTemplateEntryModelImpl._originalDefaultTemplate =
+			layoutPageTemplateEntryModelImpl._defaultTemplate;
 
 		layoutPageTemplateEntryModelImpl._setOriginalDefaultTemplate = false;
 
-		layoutPageTemplateEntryModelImpl._originalLayoutPrototypeId = layoutPageTemplateEntryModelImpl._layoutPrototypeId;
+		layoutPageTemplateEntryModelImpl._originalLayoutPrototypeId =
+			layoutPageTemplateEntryModelImpl._layoutPrototypeId;
 
 		layoutPageTemplateEntryModelImpl._setOriginalLayoutPrototypeId = false;
 
-		layoutPageTemplateEntryModelImpl._originalStatus = layoutPageTemplateEntryModelImpl._status;
+		layoutPageTemplateEntryModelImpl._originalStatus =
+			layoutPageTemplateEntryModelImpl._status;
 
 		layoutPageTemplateEntryModelImpl._setOriginalStatus = false;
 
@@ -1421,7 +1605,8 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public CacheModel<LayoutPageTemplateEntry> toCacheModel() {
-		LayoutPageTemplateEntryCacheModel layoutPageTemplateEntryCacheModel = new LayoutPageTemplateEntryCacheModel();
+		LayoutPageTemplateEntryCacheModel layoutPageTemplateEntryCacheModel =
+			new LayoutPageTemplateEntryCacheModel();
 
 		layoutPageTemplateEntryCacheModel.uuid = getUuid();
 
@@ -1431,7 +1616,8 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 			layoutPageTemplateEntryCacheModel.uuid = null;
 		}
 
-		layoutPageTemplateEntryCacheModel.layoutPageTemplateEntryId = getLayoutPageTemplateEntryId();
+		layoutPageTemplateEntryCacheModel.layoutPageTemplateEntryId =
+			getLayoutPageTemplateEntryId();
 
 		layoutPageTemplateEntryCacheModel.groupId = getGroupId();
 
@@ -1459,13 +1645,15 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			layoutPageTemplateEntryCacheModel.modifiedDate = modifiedDate.getTime();
+			layoutPageTemplateEntryCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			layoutPageTemplateEntryCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		layoutPageTemplateEntryCacheModel.layoutPageTemplateCollectionId = getLayoutPageTemplateCollectionId();
+		layoutPageTemplateEntryCacheModel.layoutPageTemplateCollectionId =
+			getLayoutPageTemplateCollectionId();
 
 		layoutPageTemplateEntryCacheModel.classNameId = getClassNameId();
 
@@ -1481,16 +1669,19 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 		layoutPageTemplateEntryCacheModel.type = getType();
 
-		layoutPageTemplateEntryCacheModel.previewFileEntryId = getPreviewFileEntryId();
+		layoutPageTemplateEntryCacheModel.previewFileEntryId =
+			getPreviewFileEntryId();
 
 		layoutPageTemplateEntryCacheModel.defaultTemplate = isDefaultTemplate();
 
-		layoutPageTemplateEntryCacheModel.layoutPrototypeId = getLayoutPrototypeId();
+		layoutPageTemplateEntryCacheModel.layoutPrototypeId =
+			getLayoutPrototypeId();
 
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			layoutPageTemplateEntryCacheModel.lastPublishDate = lastPublishDate.getTime();
+			layoutPageTemplateEntryCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			layoutPageTemplateEntryCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1500,9 +1691,11 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 		layoutPageTemplateEntryCacheModel.statusByUserId = getStatusByUserId();
 
-		layoutPageTemplateEntryCacheModel.statusByUserName = getStatusByUserName();
+		layoutPageTemplateEntryCacheModel.statusByUserName =
+			getStatusByUserName();
 
-		String statusByUserName = layoutPageTemplateEntryCacheModel.statusByUserName;
+		String statusByUserName =
+			layoutPageTemplateEntryCacheModel.statusByUserName;
 
 		if ((statusByUserName != null) && (statusByUserName.length() == 0)) {
 			layoutPageTemplateEntryCacheModel.statusByUserName = null;
@@ -1522,22 +1715,25 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public String toString() {
-		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(LayoutPageTemplateEntry)this));
+			sb.append(
+				attributeGetterFunction.apply((LayoutPageTemplateEntry)this));
 			sb.append(", ");
 		}
 
@@ -1552,25 +1748,28 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<LayoutPageTemplateEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<LayoutPageTemplateEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<LayoutPageTemplateEntry, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<LayoutPageTemplateEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(LayoutPageTemplateEntry)this));
+			sb.append(
+				attributeGetterFunction.apply((LayoutPageTemplateEntry)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1579,10 +1778,12 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = LayoutPageTemplateEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		LayoutPageTemplateEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			LayoutPageTemplateEntry.class, ModelWrapper.class
-		};
+		LayoutPageTemplateEntry.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _layoutPageTemplateEntryId;
@@ -1627,4 +1828,5 @@ public class LayoutPageTemplateEntryModelImpl extends BaseModelImpl<LayoutPageTe
 	private Date _statusDate;
 	private long _columnBitmask;
 	private LayoutPageTemplateEntry _escapedModel;
+
 }

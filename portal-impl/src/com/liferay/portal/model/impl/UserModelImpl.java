@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -65,58 +63,42 @@ import java.util.function.Function;
 @JSON(strict = true)
 @ProviderType
 public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a user model instance should use the <code>User</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "User_";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "externalReferenceCode", Types.VARCHAR },
-			{ "userId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "defaultUser", Types.BOOLEAN },
-			{ "contactId", Types.BIGINT },
-			{ "password_", Types.VARCHAR },
-			{ "passwordEncrypted", Types.BOOLEAN },
-			{ "passwordReset", Types.BOOLEAN },
-			{ "passwordModifiedDate", Types.TIMESTAMP },
-			{ "digest", Types.VARCHAR },
-			{ "reminderQueryQuestion", Types.VARCHAR },
-			{ "reminderQueryAnswer", Types.VARCHAR },
-			{ "graceLoginCount", Types.INTEGER },
-			{ "screenName", Types.VARCHAR },
-			{ "emailAddress", Types.VARCHAR },
-			{ "facebookId", Types.BIGINT },
-			{ "googleUserId", Types.VARCHAR },
-			{ "ldapServerId", Types.BIGINT },
-			{ "openId", Types.VARCHAR },
-			{ "portraitId", Types.BIGINT },
-			{ "languageId", Types.VARCHAR },
-			{ "timeZoneId", Types.VARCHAR },
-			{ "greeting", Types.VARCHAR },
-			{ "comments", Types.VARCHAR },
-			{ "firstName", Types.VARCHAR },
-			{ "middleName", Types.VARCHAR },
-			{ "lastName", Types.VARCHAR },
-			{ "jobTitle", Types.VARCHAR },
-			{ "loginDate", Types.TIMESTAMP },
-			{ "loginIP", Types.VARCHAR },
-			{ "lastLoginDate", Types.TIMESTAMP },
-			{ "lastLoginIP", Types.VARCHAR },
-			{ "lastFailedLoginDate", Types.TIMESTAMP },
-			{ "failedLoginAttempts", Types.INTEGER },
-			{ "lockout", Types.BOOLEAN },
-			{ "lockoutDate", Types.TIMESTAMP },
-			{ "agreedToTermsOfUse", Types.BOOLEAN },
-			{ "emailAddressVerified", Types.BOOLEAN },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR}, {"userId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"defaultUser", Types.BOOLEAN},
+		{"contactId", Types.BIGINT}, {"password_", Types.VARCHAR},
+		{"passwordEncrypted", Types.BOOLEAN}, {"passwordReset", Types.BOOLEAN},
+		{"passwordModifiedDate", Types.TIMESTAMP}, {"digest", Types.VARCHAR},
+		{"reminderQueryQuestion", Types.VARCHAR},
+		{"reminderQueryAnswer", Types.VARCHAR},
+		{"graceLoginCount", Types.INTEGER}, {"screenName", Types.VARCHAR},
+		{"emailAddress", Types.VARCHAR}, {"facebookId", Types.BIGINT},
+		{"googleUserId", Types.VARCHAR}, {"ldapServerId", Types.BIGINT},
+		{"openId", Types.VARCHAR}, {"portraitId", Types.BIGINT},
+		{"languageId", Types.VARCHAR}, {"timeZoneId", Types.VARCHAR},
+		{"greeting", Types.VARCHAR}, {"comments", Types.VARCHAR},
+		{"firstName", Types.VARCHAR}, {"middleName", Types.VARCHAR},
+		{"lastName", Types.VARCHAR}, {"jobTitle", Types.VARCHAR},
+		{"loginDate", Types.TIMESTAMP}, {"loginIP", Types.VARCHAR},
+		{"lastLoginDate", Types.TIMESTAMP}, {"lastLoginIP", Types.VARCHAR},
+		{"lastFailedLoginDate", Types.TIMESTAMP},
+		{"failedLoginAttempts", Types.INTEGER}, {"lockout", Types.BOOLEAN},
+		{"lockoutDate", Types.TIMESTAMP}, {"agreedToTermsOfUse", Types.BOOLEAN},
+		{"emailAddressVerified", Types.BOOLEAN}, {"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -164,36 +146,64 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table User_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,userId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,defaultUser BOOLEAN,contactId LONG,password_ VARCHAR(75) null,passwordEncrypted BOOLEAN,passwordReset BOOLEAN,passwordModifiedDate DATE null,digest VARCHAR(255) null,reminderQueryQuestion VARCHAR(75) null,reminderQueryAnswer VARCHAR(75) null,graceLoginCount INTEGER,screenName VARCHAR(75) null,emailAddress VARCHAR(254) null,facebookId LONG,googleUserId VARCHAR(75) null,ldapServerId LONG,openId VARCHAR(1024) null,portraitId LONG,languageId VARCHAR(75) null,timeZoneId VARCHAR(75) null,greeting VARCHAR(255) null,comments STRING null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,jobTitle VARCHAR(100) null,loginDate DATE null,loginIP VARCHAR(75) null,lastLoginDate DATE null,lastLoginIP VARCHAR(75) null,lastFailedLoginDate DATE null,failedLoginAttempts INTEGER,lockout BOOLEAN,lockoutDate DATE null,agreedToTermsOfUse BOOLEAN,emailAddressVerified BOOLEAN,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table User_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,userId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,defaultUser BOOLEAN,contactId LONG,password_ VARCHAR(75) null,passwordEncrypted BOOLEAN,passwordReset BOOLEAN,passwordModifiedDate DATE null,digest VARCHAR(255) null,reminderQueryQuestion VARCHAR(75) null,reminderQueryAnswer VARCHAR(75) null,graceLoginCount INTEGER,screenName VARCHAR(75) null,emailAddress VARCHAR(254) null,facebookId LONG,googleUserId VARCHAR(75) null,ldapServerId LONG,openId VARCHAR(1024) null,portraitId LONG,languageId VARCHAR(75) null,timeZoneId VARCHAR(75) null,greeting VARCHAR(255) null,comments STRING null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,jobTitle VARCHAR(100) null,loginDate DATE null,loginIP VARCHAR(75) null,lastLoginDate DATE null,lastLoginIP VARCHAR(75) null,lastFailedLoginDate DATE null,failedLoginAttempts INTEGER,lockout BOOLEAN,lockoutDate DATE null,agreedToTermsOfUse BOOLEAN,emailAddressVerified BOOLEAN,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table User_";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY user.userId ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY User_.userId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.User"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.User"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.User"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.User"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.User"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.User"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long CONTACTID_COLUMN_BITMASK = 2L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 4L;
+
 	public static final long DEFAULTUSER_COLUMN_BITMASK = 8L;
+
 	public static final long EMAILADDRESS_COLUMN_BITMASK = 16L;
+
 	public static final long EXTERNALREFERENCECODE_COLUMN_BITMASK = 32L;
+
 	public static final long FACEBOOKID_COLUMN_BITMASK = 64L;
+
 	public static final long GOOGLEUSERID_COLUMN_BITMASK = 128L;
+
 	public static final long MODIFIEDDATE_COLUMN_BITMASK = 256L;
+
 	public static final long OPENID_COLUMN_BITMASK = 512L;
+
 	public static final long PORTRAITID_COLUMN_BITMASK = 1024L;
+
 	public static final long SCREENNAME_COLUMN_BITMASK = 2048L;
+
 	public static final long STATUS_COLUMN_BITMASK = 4096L;
+
 	public static final long USERID_COLUMN_BITMASK = 8192L;
+
 	public static final long UUID_COLUMN_BITMASK = 16384L;
 
 	/**
@@ -277,52 +287,89 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 	}
 
 	public static final String MAPPING_TABLE_USERS_GROUPS_NAME = "Users_Groups";
+
 	public static final Object[][] MAPPING_TABLE_USERS_GROUPS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_GROUPS_SQL_CREATE = "create table Users_Groups (companyId LONG not null,groupId LONG not null,userId LONG not null,primary key (groupId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_GROUPS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_Groups"), true);
+		{"companyId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"userId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_GROUPS_SQL_CREATE =
+		"create table Users_Groups (companyId LONG not null,groupId LONG not null,userId LONG not null,primary key (groupId, userId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_GROUPS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_Groups"),
+			true);
+
 	public static final String MAPPING_TABLE_USERS_ORGS_NAME = "Users_Orgs";
+
 	public static final Object[][] MAPPING_TABLE_USERS_ORGS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "organizationId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_ORGS_SQL_CREATE = "create table Users_Orgs (companyId LONG not null,organizationId LONG not null,userId LONG not null,primary key (organizationId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_ORGS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_Orgs"), true);
+		{"companyId", Types.BIGINT}, {"organizationId", Types.BIGINT},
+		{"userId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_ORGS_SQL_CREATE =
+		"create table Users_Orgs (companyId LONG not null,organizationId LONG not null,userId LONG not null,primary key (organizationId, userId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_ORGS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_Orgs"),
+			true);
+
 	public static final String MAPPING_TABLE_USERS_ROLES_NAME = "Users_Roles";
+
 	public static final Object[][] MAPPING_TABLE_USERS_ROLES_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "roleId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_ROLES_SQL_CREATE = "create table Users_Roles (companyId LONG not null,roleId LONG not null,userId LONG not null,primary key (roleId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_ROLES = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_Roles"), true);
+		{"companyId", Types.BIGINT}, {"roleId", Types.BIGINT},
+		{"userId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_ROLES_SQL_CREATE =
+		"create table Users_Roles (companyId LONG not null,roleId LONG not null,userId LONG not null,primary key (roleId, userId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_ROLES =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_Roles"),
+			true);
+
 	public static final String MAPPING_TABLE_USERS_TEAMS_NAME = "Users_Teams";
+
 	public static final Object[][] MAPPING_TABLE_USERS_TEAMS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "teamId", Types.BIGINT },
-			{ "userId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_TEAMS_SQL_CREATE = "create table Users_Teams (companyId LONG not null,teamId LONG not null,userId LONG not null,primary key (teamId, userId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_TEAMS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_Teams"), true);
-	public static final String MAPPING_TABLE_USERS_USERGROUPS_NAME = "Users_UserGroups";
+		{"companyId", Types.BIGINT}, {"teamId", Types.BIGINT},
+		{"userId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_TEAMS_SQL_CREATE =
+		"create table Users_Teams (companyId LONG not null,teamId LONG not null,userId LONG not null,primary key (teamId, userId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_TEAMS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_Teams"),
+			true);
+
+	public static final String MAPPING_TABLE_USERS_USERGROUPS_NAME =
+		"Users_UserGroups";
+
 	public static final Object[][] MAPPING_TABLE_USERS_USERGROUPS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userGroupId", Types.BIGINT }
-		};
-	public static final String MAPPING_TABLE_USERS_USERGROUPS_SQL_CREATE = "create table Users_UserGroups (companyId LONG not null,userId LONG not null,userGroupId LONG not null,primary key (userId, userGroupId))";
-	public static final boolean FINDER_CACHE_ENABLED_USERS_USERGROUPS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.Users_UserGroups"), true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.User"));
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userGroupId", Types.BIGINT}
+	};
+
+	public static final String MAPPING_TABLE_USERS_USERGROUPS_SQL_CREATE =
+		"create table Users_UserGroups (companyId LONG not null,userId LONG not null,userGroupId LONG not null,primary key (userId, userGroupId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_USERS_USERGROUPS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
+				"value.object.finder.cache.enabled.Users_UserGroups"),
+			true);
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.User"));
 
 	public UserModelImpl() {
 	}
@@ -361,14 +408,17 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<User, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<User, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<User, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<User, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<User, Object> attributeGetterFunction = entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((User)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((User)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -379,12 +429,14 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<User, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<User, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<User, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<User, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
 				attributeSetterBiConsumer.accept((User)this, entry.getValue());
@@ -396,17 +448,22 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<User, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<User, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<User, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<User, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<User, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<User, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<User, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<User, Object>>();
-		Map<String, BiConsumer<User, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<User, ?>>();
-
+		Map<String, Function<User, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<User, Object>>();
+		Map<String, BiConsumer<User, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<User, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -464,7 +521,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 				@Override
 				public void accept(User user, Object externalReferenceCode) {
-					user.setExternalReferenceCode((String)externalReferenceCode);
+					user.setExternalReferenceCode(
+						(String)externalReferenceCode);
 				}
 
 			});
@@ -704,7 +762,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 				@Override
 				public void accept(User user, Object reminderQueryQuestion) {
-					user.setReminderQueryQuestion((String)reminderQueryQuestion);
+					user.setReminderQueryQuestion(
+						(String)reminderQueryQuestion);
 				}
 
 			});
@@ -1269,9 +1328,10 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -2069,8 +2129,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				User.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(User.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -2079,8 +2139,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			User.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), User.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -2093,8 +2153,9 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 	@Override
 	public User toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (User)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (User)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -2211,7 +2272,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 		userModelImpl._originalUuid = userModelImpl._uuid;
 
-		userModelImpl._originalExternalReferenceCode = userModelImpl._externalReferenceCode;
+		userModelImpl._originalExternalReferenceCode =
+			userModelImpl._externalReferenceCode;
 
 		userModelImpl._originalUserId = userModelImpl._userId;
 
@@ -2277,7 +2339,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		String externalReferenceCode = userCacheModel.externalReferenceCode;
 
 		if ((externalReferenceCode != null) &&
-				(externalReferenceCode.length() == 0)) {
+			(externalReferenceCode.length() == 0)) {
+
 			userCacheModel.externalReferenceCode = null;
 		}
 
@@ -2322,7 +2385,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		Date passwordModifiedDate = getPasswordModifiedDate();
 
 		if (passwordModifiedDate != null) {
-			userCacheModel.passwordModifiedDate = passwordModifiedDate.getTime();
+			userCacheModel.passwordModifiedDate =
+				passwordModifiedDate.getTime();
 		}
 		else {
 			userCacheModel.passwordModifiedDate = Long.MIN_VALUE;
@@ -2341,7 +2405,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		String reminderQueryQuestion = userCacheModel.reminderQueryQuestion;
 
 		if ((reminderQueryQuestion != null) &&
-				(reminderQueryQuestion.length() == 0)) {
+			(reminderQueryQuestion.length() == 0)) {
+
 			userCacheModel.reminderQueryQuestion = null;
 		}
 
@@ -2350,7 +2415,8 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 		String reminderQueryAnswer = userCacheModel.reminderQueryAnswer;
 
 		if ((reminderQueryAnswer != null) &&
-				(reminderQueryAnswer.length() == 0)) {
+			(reminderQueryAnswer.length() == 0)) {
+
 			userCacheModel.reminderQueryAnswer = null;
 		}
 
@@ -2525,14 +2591,17 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	@Override
 	public String toString() {
-		Map<String, Function<User, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<User, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<User, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<User, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<User, Object> attributeGetterFunction = entry.getValue();
 
@@ -2553,16 +2622,19 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<User, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<User, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<User, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<User, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
 			Function<User, Object> attributeGetterFunction = entry.getValue();
 
@@ -2580,8 +2652,9 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 
 	private static final ClassLoader _classLoader = User.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			User.class, ModelWrapper.class
-		};
+		User.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -2650,4 +2723,5 @@ public class UserModelImpl extends BaseModelImpl<User> implements UserModel {
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private User _escapedModel;
+
 }

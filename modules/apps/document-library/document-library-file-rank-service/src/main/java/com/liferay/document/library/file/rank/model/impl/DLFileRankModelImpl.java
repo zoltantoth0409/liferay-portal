@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.document.library.file.rank.model.DLFileRank;
 import com.liferay.document.library.file.rank.model.DLFileRankModel;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -59,24 +57,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
-	implements DLFileRankModel {
+public class DLFileRankModelImpl
+	extends BaseModelImpl<DLFileRank> implements DLFileRankModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a document library file rank model instance should use the <code>DLFileRank</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DLFileRank";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "fileRankId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "fileEntryId", Types.BIGINT },
-			{ "active_", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"fileRankId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"createDate", Types.TIMESTAMP}, {"fileEntryId", Types.BIGINT},
+		{"active_", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("fileRankId", Types.BIGINT);
@@ -88,30 +87,53 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DLFileRank (fileRankId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate DATE null,fileEntryId LONG,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DLFileRank (fileRankId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,createDate DATE null,fileEntryId LONG,active_ BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table DLFileRank";
-	public static final String ORDER_BY_JPQL = " ORDER BY dlFileRank.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY DLFileRank.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY dlFileRank.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DLFileRank.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.document.library.file.rank.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.document.library.file.rank.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.document.library.file.rank.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.document.library.file.rank.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.document.library.file.rank.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.document.library.file.rank.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.document.library.file.rank.model.DLFileRank"),
+		true);
+
 	public static final long ACTIVE_COLUMN_BITMASK = 1L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+
 	public static final long FILEENTRYID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.document.library.file.rank.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.document.library.file.rank.model.DLFileRank"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.document.library.file.rank.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.document.library.file.rank.model.DLFileRank"));
 
 	public DLFileRankModelImpl() {
 	}
@@ -150,14 +172,18 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileRank, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((DLFileRank)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((DLFileRank)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -168,35 +194,44 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DLFileRank, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DLFileRank, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DLFileRank, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DLFileRank, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DLFileRank)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DLFileRank)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DLFileRank, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DLFileRank, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DLFileRank, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DLFileRank, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DLFileRank, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DLFileRank, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DLFileRank, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DLFileRank, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DLFileRank, Object>>();
-		Map<String, BiConsumer<DLFileRank, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DLFileRank, ?>>();
-
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DLFileRank, Object>>();
+		Map<String, BiConsumer<DLFileRank, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DLFileRank, ?>>();
 
 		attributeGetterFunctions.put(
 			"fileRankId",
@@ -339,9 +374,10 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -503,8 +539,8 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DLFileRank.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DLFileRank.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -517,8 +553,9 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 	@Override
 	public DLFileRank toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DLFileRank)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DLFileRank)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -609,7 +646,8 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 		dlFileRankModelImpl._setOriginalUserId = false;
 
-		dlFileRankModelImpl._originalFileEntryId = dlFileRankModelImpl._fileEntryId;
+		dlFileRankModelImpl._originalFileEntryId =
+			dlFileRankModelImpl._fileEntryId;
 
 		dlFileRankModelImpl._setOriginalFileEntryId = false;
 
@@ -650,16 +688,20 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileRank, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -678,18 +720,22 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DLFileRank, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DLFileRank, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DLFileRank, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DLFileRank, Object> attributeGetterFunction = entry.getValue();
+			Function<DLFileRank, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -703,10 +749,12 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DLFileRank.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DLFileRank.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DLFileRank.class, ModelWrapper.class
-		};
+		DLFileRank.class, ModelWrapper.class
+	};
+
 	private long _fileRankId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -726,4 +774,5 @@ public class DLFileRankModelImpl extends BaseModelImpl<DLFileRank>
 	private boolean _setOriginalActive;
 	private long _columnBitmask;
 	private DLFileRank _escapedModel;
+
 }

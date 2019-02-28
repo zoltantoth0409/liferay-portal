@@ -64,18 +64,24 @@ import java.util.Set;
  */
 @Deprecated
 @ProviderType
-public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<ResourceTypePermission>
+public class ResourceTypePermissionPersistenceImpl
+	extends BasePersistenceImpl<ResourceTypePermission>
 	implements ResourceTypePermissionPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ResourceTypePermissionUtil</code> to access the resource type permission persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = ResourceTypePermissionImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		ResourceTypePermissionImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -107,8 +113,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByRoleId(long roleId, int start,
-		int end) {
+	public List<ResourceTypePermission> findByRoleId(
+		long roleId, int start, int end) {
+
 		return findByRoleId(roleId, start, end, null);
 	}
 
@@ -126,8 +133,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByRoleId(long roleId, int start,
-		int end, OrderByComparator<ResourceTypePermission> orderByComparator) {
+	public List<ResourceTypePermission> findByRoleId(
+		long roleId, int start, int end,
+		OrderByComparator<ResourceTypePermission> orderByComparator) {
+
 		return findByRoleId(roleId, start, end, orderByComparator, true);
 	}
 
@@ -146,29 +155,32 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByRoleId(long roleId, int start,
-		int end, OrderByComparator<ResourceTypePermission> orderByComparator,
+	public List<ResourceTypePermission> findByRoleId(
+		long roleId, int start, int end,
+		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByRoleId;
-			finderArgs = new Object[] { roleId };
+			finderArgs = new Object[] {roleId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByRoleId;
-			finderArgs = new Object[] { roleId, start, end, orderByComparator };
+			finderArgs = new Object[] {roleId, start, end, orderByComparator};
 		}
 
 		List<ResourceTypePermission> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceTypePermission resourceTypePermission : list) {
@@ -185,8 +197,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -197,11 +209,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			query.append(_FINDER_COLUMN_ROLEID_ROLEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -219,16 +230,16 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				qPos.add(roleId);
 
 				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -257,11 +268,13 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @throws NoSuchResourceTypePermissionException if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission findByRoleId_First(long roleId,
-		OrderByComparator<ResourceTypePermission> orderByComparator)
+	public ResourceTypePermission findByRoleId_First(
+			long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByRoleId_First(roleId,
-				orderByComparator);
+
+		ResourceTypePermission resourceTypePermission = fetchByRoleId_First(
+			roleId, orderByComparator);
 
 		if (resourceTypePermission != null) {
 			return resourceTypePermission;
@@ -287,10 +300,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the first matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByRoleId_First(long roleId,
+	public ResourceTypePermission fetchByRoleId_First(
+		long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
-		List<ResourceTypePermission> list = findByRoleId(roleId, 0, 1,
-				orderByComparator);
+
+		List<ResourceTypePermission> list = findByRoleId(
+			roleId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -308,11 +323,13 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @throws NoSuchResourceTypePermissionException if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission findByRoleId_Last(long roleId,
-		OrderByComparator<ResourceTypePermission> orderByComparator)
+	public ResourceTypePermission findByRoleId_Last(
+			long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByRoleId_Last(roleId,
-				orderByComparator);
+
+		ResourceTypePermission resourceTypePermission = fetchByRoleId_Last(
+			roleId, orderByComparator);
 
 		if (resourceTypePermission != null) {
 			return resourceTypePermission;
@@ -338,16 +355,18 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the last matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByRoleId_Last(long roleId,
+	public ResourceTypePermission fetchByRoleId_Last(
+		long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
+
 		int count = countByRoleId(roleId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ResourceTypePermission> list = findByRoleId(roleId, count - 1,
-				count, orderByComparator);
+		List<ResourceTypePermission> list = findByRoleId(
+			roleId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -367,10 +386,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public ResourceTypePermission[] findByRoleId_PrevAndNext(
-		long resourceTypePermissionId, long roleId,
-		OrderByComparator<ResourceTypePermission> orderByComparator)
+			long resourceTypePermissionId, long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = findByPrimaryKey(resourceTypePermissionId);
+
+		ResourceTypePermission resourceTypePermission = findByPrimaryKey(
+			resourceTypePermissionId);
 
 		Session session = null;
 
@@ -379,13 +400,15 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			ResourceTypePermission[] array = new ResourceTypePermissionImpl[3];
 
-			array[0] = getByRoleId_PrevAndNext(session, resourceTypePermission,
-					roleId, orderByComparator, true);
+			array[0] = getByRoleId_PrevAndNext(
+				session, resourceTypePermission, roleId, orderByComparator,
+				true);
 
 			array[1] = resourceTypePermission;
 
-			array[2] = getByRoleId_PrevAndNext(session, resourceTypePermission,
-					roleId, orderByComparator, false);
+			array[2] = getByRoleId_PrevAndNext(
+				session, resourceTypePermission, roleId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -397,15 +420,17 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		}
 	}
 
-	protected ResourceTypePermission getByRoleId_PrevAndNext(Session session,
-		ResourceTypePermission resourceTypePermission, long roleId,
+	protected ResourceTypePermission getByRoleId_PrevAndNext(
+		Session session, ResourceTypePermission resourceTypePermission,
+		long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -417,7 +442,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		query.append(_FINDER_COLUMN_ROLEID_ROLEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -487,8 +513,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		qPos.add(roleId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					resourceTypePermission)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						resourceTypePermission)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -510,8 +538,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public void removeByRoleId(long roleId) {
-		for (ResourceTypePermission resourceTypePermission : findByRoleId(
-				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ResourceTypePermission resourceTypePermission :
+				findByRoleId(
+					roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(resourceTypePermission);
 		}
 	}
@@ -526,10 +556,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	public int countByRoleId(long roleId) {
 		FinderPath finderPath = _finderPathCountByRoleId;
 
-		Object[] finderArgs = new Object[] { roleId };
+		Object[] finderArgs = new Object[] {roleId};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -568,7 +598,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_ROLEID_ROLEID_2 = "resourceTypePermission.roleId = ?";
+	private static final String _FINDER_COLUMN_ROLEID_ROLEID_2 =
+		"resourceTypePermission.roleId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_N_R;
 	private FinderPath _finderPathWithoutPaginationFindByC_N_R;
 	private FinderPath _finderPathCountByC_N_R;
@@ -582,10 +614,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByC_N_R(long companyId,
-		String name, long roleId) {
-		return findByC_N_R(companyId, name, roleId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<ResourceTypePermission> findByC_N_R(
+		long companyId, String name, long roleId) {
+
+		return findByC_N_R(
+			companyId, name, roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -603,8 +637,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByC_N_R(long companyId,
-		String name, long roleId, int start, int end) {
+	public List<ResourceTypePermission> findByC_N_R(
+		long companyId, String name, long roleId, int start, int end) {
+
 		return findByC_N_R(companyId, name, roleId, start, end, null);
 	}
 
@@ -624,11 +659,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByC_N_R(long companyId,
-		String name, long roleId, int start, int end,
+	public List<ResourceTypePermission> findByC_N_R(
+		long companyId, String name, long roleId, int start, int end,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
-		return findByC_N_R(companyId, name, roleId, start, end,
-			orderByComparator, true);
+
+		return findByC_N_R(
+			companyId, name, roleId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -648,10 +684,11 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of matching resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findByC_N_R(long companyId,
-		String name, long roleId, int start, int end,
+	public List<ResourceTypePermission> findByC_N_R(
+		long companyId, String name, long roleId, int start, int end,
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
 		boolean pagination = true;
@@ -659,31 +696,31 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_N_R;
-			finderArgs = new Object[] { companyId, name, roleId };
+			finderArgs = new Object[] {companyId, name, roleId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_N_R;
 			finderArgs = new Object[] {
-					companyId, name, roleId,
-					
-					start, end, orderByComparator
-				};
+				companyId, name, roleId, start, end, orderByComparator
+			};
 		}
 
 		List<ResourceTypePermission> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceTypePermission resourceTypePermission : list) {
 					if ((companyId != resourceTypePermission.getCompanyId()) ||
-							!name.equals(resourceTypePermission.getName()) ||
-							(roleId != resourceTypePermission.getRoleId())) {
+						!name.equals(resourceTypePermission.getName()) ||
+						(roleId != resourceTypePermission.getRoleId())) {
+
 						list = null;
 
 						break;
@@ -696,8 +733,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -721,11 +758,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			query.append(_FINDER_COLUMN_C_N_R_ROLEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -749,16 +785,16 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				qPos.add(roleId);
 
 				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -789,12 +825,13 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @throws NoSuchResourceTypePermissionException if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission findByC_N_R_First(long companyId,
-		String name, long roleId,
-		OrderByComparator<ResourceTypePermission> orderByComparator)
+	public ResourceTypePermission findByC_N_R_First(
+			long companyId, String name, long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByC_N_R_First(companyId,
-				name, roleId, orderByComparator);
+
+		ResourceTypePermission resourceTypePermission = fetchByC_N_R_First(
+			companyId, name, roleId, orderByComparator);
 
 		if (resourceTypePermission != null) {
 			return resourceTypePermission;
@@ -828,11 +865,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the first matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByC_N_R_First(long companyId,
-		String name, long roleId,
+	public ResourceTypePermission fetchByC_N_R_First(
+		long companyId, String name, long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
-		List<ResourceTypePermission> list = findByC_N_R(companyId, name,
-				roleId, 0, 1, orderByComparator);
+
+		List<ResourceTypePermission> list = findByC_N_R(
+			companyId, name, roleId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -852,11 +890,13 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @throws NoSuchResourceTypePermissionException if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission findByC_N_R_Last(long companyId, String name,
-		long roleId, OrderByComparator<ResourceTypePermission> orderByComparator)
+	public ResourceTypePermission findByC_N_R_Last(
+			long companyId, String name, long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByC_N_R_Last(companyId,
-				name, roleId, orderByComparator);
+
+		ResourceTypePermission resourceTypePermission = fetchByC_N_R_Last(
+			companyId, name, roleId, orderByComparator);
 
 		if (resourceTypePermission != null) {
 			return resourceTypePermission;
@@ -890,17 +930,18 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the last matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByC_N_R_Last(long companyId,
-		String name, long roleId,
+	public ResourceTypePermission fetchByC_N_R_Last(
+		long companyId, String name, long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
+
 		int count = countByC_N_R(companyId, name, roleId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ResourceTypePermission> list = findByC_N_R(companyId, name,
-				roleId, count - 1, count, orderByComparator);
+		List<ResourceTypePermission> list = findByC_N_R(
+			companyId, name, roleId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -922,12 +963,15 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public ResourceTypePermission[] findByC_N_R_PrevAndNext(
-		long resourceTypePermissionId, long companyId, String name,
-		long roleId, OrderByComparator<ResourceTypePermission> orderByComparator)
+			long resourceTypePermissionId, long companyId, String name,
+			long roleId,
+			OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
+
 		name = Objects.toString(name, "");
 
-		ResourceTypePermission resourceTypePermission = findByPrimaryKey(resourceTypePermissionId);
+		ResourceTypePermission resourceTypePermission = findByPrimaryKey(
+			resourceTypePermissionId);
 
 		Session session = null;
 
@@ -936,13 +980,15 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			ResourceTypePermission[] array = new ResourceTypePermissionImpl[3];
 
-			array[0] = getByC_N_R_PrevAndNext(session, resourceTypePermission,
-					companyId, name, roleId, orderByComparator, true);
+			array[0] = getByC_N_R_PrevAndNext(
+				session, resourceTypePermission, companyId, name, roleId,
+				orderByComparator, true);
 
 			array[1] = resourceTypePermission;
 
-			array[2] = getByC_N_R_PrevAndNext(session, resourceTypePermission,
-					companyId, name, roleId, orderByComparator, false);
+			array[2] = getByC_N_R_PrevAndNext(
+				session, resourceTypePermission, companyId, name, roleId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -954,16 +1000,17 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		}
 	}
 
-	protected ResourceTypePermission getByC_N_R_PrevAndNext(Session session,
-		ResourceTypePermission resourceTypePermission, long companyId,
-		String name, long roleId,
+	protected ResourceTypePermission getByC_N_R_PrevAndNext(
+		Session session, ResourceTypePermission resourceTypePermission,
+		long companyId, String name, long roleId,
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -988,7 +1035,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		query.append(_FINDER_COLUMN_C_N_R_ROLEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1064,8 +1112,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		qPos.add(roleId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					resourceTypePermission)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						resourceTypePermission)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1089,9 +1139,11 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public void removeByC_N_R(long companyId, String name, long roleId) {
-		for (ResourceTypePermission resourceTypePermission : findByC_N_R(
-				companyId, name, roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+		for (ResourceTypePermission resourceTypePermission :
+				findByC_N_R(
+					companyId, name, roleId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(resourceTypePermission);
 		}
 	}
@@ -1110,10 +1162,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 		FinderPath finderPath = _finderPathCountByC_N_R;
 
-		Object[] finderArgs = new Object[] { companyId, name, roleId };
+		Object[] finderArgs = new Object[] {companyId, name, roleId};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -1171,10 +1223,18 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_N_R_COMPANYID_2 = "resourceTypePermission.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_N_R_NAME_2 = "resourceTypePermission.name = ? AND ";
-	private static final String _FINDER_COLUMN_C_N_R_NAME_3 = "(resourceTypePermission.name IS NULL OR resourceTypePermission.name = '') AND ";
-	private static final String _FINDER_COLUMN_C_N_R_ROLEID_2 = "resourceTypePermission.roleId = ?";
+	private static final String _FINDER_COLUMN_C_N_R_COMPANYID_2 =
+		"resourceTypePermission.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_N_R_NAME_2 =
+		"resourceTypePermission.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_N_R_NAME_3 =
+		"(resourceTypePermission.name IS NULL OR resourceTypePermission.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_C_N_R_ROLEID_2 =
+		"resourceTypePermission.roleId = ?";
+
 	private FinderPath _finderPathFetchByC_G_N_R;
 	private FinderPath _finderPathCountByC_G_N_R;
 
@@ -1189,10 +1249,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @throws NoSuchResourceTypePermissionException if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission findByC_G_N_R(long companyId, long groupId,
-		String name, long roleId) throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByC_G_N_R(companyId,
-				groupId, name, roleId);
+	public ResourceTypePermission findByC_G_N_R(
+			long companyId, long groupId, String name, long roleId)
+		throws NoSuchResourceTypePermissionException {
+
+		ResourceTypePermission resourceTypePermission = fetchByC_G_N_R(
+			companyId, groupId, name, roleId);
 
 		if (resourceTypePermission == null) {
 			StringBundler msg = new StringBundler(10);
@@ -1233,8 +1295,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByC_G_N_R(long companyId, long groupId,
-		String name, long roleId) {
+	public ResourceTypePermission fetchByC_G_N_R(
+		long companyId, long groupId, String name, long roleId) {
+
 		return fetchByC_G_N_R(companyId, groupId, name, roleId, true);
 	}
 
@@ -1249,26 +1312,30 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the matching resource type permission, or <code>null</code> if a matching resource type permission could not be found
 	 */
 	@Override
-	public ResourceTypePermission fetchByC_G_N_R(long companyId, long groupId,
-		String name, long roleId, boolean retrieveFromCache) {
+	public ResourceTypePermission fetchByC_G_N_R(
+		long companyId, long groupId, String name, long roleId,
+		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
-		Object[] finderArgs = new Object[] { companyId, groupId, name, roleId };
+		Object[] finderArgs = new Object[] {companyId, groupId, name, roleId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(_finderPathFetchByC_G_N_R,
-					finderArgs, this);
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByC_G_N_R, finderArgs, this);
 		}
 
 		if (result instanceof ResourceTypePermission) {
-			ResourceTypePermission resourceTypePermission = (ResourceTypePermission)result;
+			ResourceTypePermission resourceTypePermission =
+				(ResourceTypePermission)result;
 
 			if ((companyId != resourceTypePermission.getCompanyId()) ||
-					(groupId != resourceTypePermission.getGroupId()) ||
-					!Objects.equals(name, resourceTypePermission.getName()) ||
-					(roleId != resourceTypePermission.getRoleId())) {
+				(groupId != resourceTypePermission.getGroupId()) ||
+				!Objects.equals(name, resourceTypePermission.getName()) ||
+				(roleId != resourceTypePermission.getRoleId())) {
+
 				result = null;
 			}
 		}
@@ -1319,8 +1386,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				List<ResourceTypePermission> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(_finderPathFetchByC_G_N_R,
-						finderArgs, list);
+					FinderCacheUtil.putResult(
+						_finderPathFetchByC_G_N_R, finderArgs, list);
 				}
 				else {
 					ResourceTypePermission resourceTypePermission = list.get(0);
@@ -1331,8 +1398,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_R,
-					finderArgs);
+				FinderCacheUtil.removeResult(
+					_finderPathFetchByC_G_N_R, finderArgs);
 
 				throw processException(e);
 			}
@@ -1359,10 +1426,12 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the resource type permission that was removed
 	 */
 	@Override
-	public ResourceTypePermission removeByC_G_N_R(long companyId, long groupId,
-		String name, long roleId) throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = findByC_G_N_R(companyId,
-				groupId, name, roleId);
+	public ResourceTypePermission removeByC_G_N_R(
+			long companyId, long groupId, String name, long roleId)
+		throws NoSuchResourceTypePermissionException {
+
+		ResourceTypePermission resourceTypePermission = findByC_G_N_R(
+			companyId, groupId, name, roleId);
 
 		return remove(resourceTypePermission);
 	}
@@ -1377,16 +1446,17 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the number of matching resource type permissions
 	 */
 	@Override
-	public int countByC_G_N_R(long companyId, long groupId, String name,
-		long roleId) {
+	public int countByC_G_N_R(
+		long companyId, long groupId, String name, long roleId) {
+
 		name = Objects.toString(name, "");
 
 		FinderPath finderPath = _finderPathCountByC_G_N_R;
 
-		Object[] finderArgs = new Object[] { companyId, groupId, name, roleId };
+		Object[] finderArgs = new Object[] {companyId, groupId, name, roleId};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -1448,11 +1518,20 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_G_N_R_COMPANYID_2 = "resourceTypePermission.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_R_GROUPID_2 = "resourceTypePermission.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_R_NAME_2 = "resourceTypePermission.name = ? AND ";
-	private static final String _FINDER_COLUMN_C_G_N_R_NAME_3 = "(resourceTypePermission.name IS NULL OR resourceTypePermission.name = '') AND ";
-	private static final String _FINDER_COLUMN_C_G_N_R_ROLEID_2 = "resourceTypePermission.roleId = ?";
+	private static final String _FINDER_COLUMN_C_G_N_R_COMPANYID_2 =
+		"resourceTypePermission.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_R_GROUPID_2 =
+		"resourceTypePermission.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_R_NAME_2 =
+		"resourceTypePermission.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_R_NAME_3 =
+		"(resourceTypePermission.name IS NULL OR resourceTypePermission.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_C_G_N_R_ROLEID_2 =
+		"resourceTypePermission.roleId = ?";
 
 	public ResourceTypePermissionPersistenceImpl() {
 		setModelClass(ResourceTypePermission.class);
@@ -1465,17 +1544,20 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public void cacheResult(ResourceTypePermission resourceTypePermission) {
-		EntityCacheUtil.putResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceTypePermissionImpl.class,
 			resourceTypePermission.getPrimaryKey(), resourceTypePermission);
 
-		FinderCacheUtil.putResult(_finderPathFetchByC_G_N_R,
+		FinderCacheUtil.putResult(
+			_finderPathFetchByC_G_N_R,
 			new Object[] {
 				resourceTypePermission.getCompanyId(),
 				resourceTypePermission.getGroupId(),
 				resourceTypePermission.getName(),
 				resourceTypePermission.getRoleId()
-			}, resourceTypePermission);
+			},
+			resourceTypePermission);
 
 		resourceTypePermission.resetOriginalValues();
 	}
@@ -1488,11 +1570,15 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public void cacheResult(
 		List<ResourceTypePermission> resourceTypePermissions) {
-		for (ResourceTypePermission resourceTypePermission : resourceTypePermissions) {
+
+		for (ResourceTypePermission resourceTypePermission :
+				resourceTypePermissions) {
+
 			if (EntityCacheUtil.getResult(
-						ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-						ResourceTypePermissionImpl.class,
-						resourceTypePermission.getPrimaryKey()) == null) {
+					ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+					ResourceTypePermissionImpl.class,
+					resourceTypePermission.getPrimaryKey()) == null) {
+
 				cacheResult(resourceTypePermission);
 			}
 			else {
@@ -1526,70 +1612,80 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public void clearCache(ResourceTypePermission resourceTypePermission) {
-		EntityCacheUtil.removeResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceTypePermissionImpl.class,
 			resourceTypePermission.getPrimaryKey());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((ResourceTypePermissionModelImpl)resourceTypePermission,
-			true);
+		clearUniqueFindersCache(
+			(ResourceTypePermissionModelImpl)resourceTypePermission, true);
 	}
 
 	@Override
-	public void clearCache(List<ResourceTypePermission> resourceTypePermissions) {
+	public void clearCache(
+		List<ResourceTypePermission> resourceTypePermissions) {
+
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (ResourceTypePermission resourceTypePermission : resourceTypePermissions) {
-			EntityCacheUtil.removeResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+		for (ResourceTypePermission resourceTypePermission :
+				resourceTypePermissions) {
+
+			EntityCacheUtil.removeResult(
+				ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 				ResourceTypePermissionImpl.class,
 				resourceTypePermission.getPrimaryKey());
 
-			clearUniqueFindersCache((ResourceTypePermissionModelImpl)resourceTypePermission,
-				true);
+			clearUniqueFindersCache(
+				(ResourceTypePermissionModelImpl)resourceTypePermission, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		ResourceTypePermissionModelImpl resourceTypePermissionModelImpl) {
+
 		Object[] args = new Object[] {
+			resourceTypePermissionModelImpl.getCompanyId(),
+			resourceTypePermissionModelImpl.getGroupId(),
+			resourceTypePermissionModelImpl.getName(),
+			resourceTypePermissionModelImpl.getRoleId()
+		};
+
+		FinderCacheUtil.putResult(
+			_finderPathCountByC_G_N_R, args, Long.valueOf(1), false);
+		FinderCacheUtil.putResult(
+			_finderPathFetchByC_G_N_R, args, resourceTypePermissionModelImpl,
+			false);
+	}
+
+	protected void clearUniqueFindersCache(
+		ResourceTypePermissionModelImpl resourceTypePermissionModelImpl,
+		boolean clearCurrent) {
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
 				resourceTypePermissionModelImpl.getCompanyId(),
 				resourceTypePermissionModelImpl.getGroupId(),
 				resourceTypePermissionModelImpl.getName(),
 				resourceTypePermissionModelImpl.getRoleId()
 			};
 
-		FinderCacheUtil.putResult(_finderPathCountByC_G_N_R, args,
-			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(_finderPathFetchByC_G_N_R, args,
-			resourceTypePermissionModelImpl, false);
-	}
-
-	protected void clearUniqueFindersCache(
-		ResourceTypePermissionModelImpl resourceTypePermissionModelImpl,
-		boolean clearCurrent) {
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-					resourceTypePermissionModelImpl.getCompanyId(),
-					resourceTypePermissionModelImpl.getGroupId(),
-					resourceTypePermissionModelImpl.getName(),
-					resourceTypePermissionModelImpl.getRoleId()
-				};
-
 			FinderCacheUtil.removeResult(_finderPathCountByC_G_N_R, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_R, args);
 		}
 
 		if ((resourceTypePermissionModelImpl.getColumnBitmask() &
-				_finderPathFetchByC_G_N_R.getColumnBitmask()) != 0) {
+			 _finderPathFetchByC_G_N_R.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					resourceTypePermissionModelImpl.getOriginalCompanyId(),
-					resourceTypePermissionModelImpl.getOriginalGroupId(),
-					resourceTypePermissionModelImpl.getOriginalName(),
-					resourceTypePermissionModelImpl.getOriginalRoleId()
-				};
+				resourceTypePermissionModelImpl.getOriginalCompanyId(),
+				resourceTypePermissionModelImpl.getOriginalGroupId(),
+				resourceTypePermissionModelImpl.getOriginalName(),
+				resourceTypePermissionModelImpl.getOriginalRoleId()
+			};
 
 			FinderCacheUtil.removeResult(_finderPathCountByC_G_N_R, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByC_G_N_R, args);
@@ -1604,7 +1700,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public ResourceTypePermission create(long resourceTypePermissionId) {
-		ResourceTypePermission resourceTypePermission = new ResourceTypePermissionImpl();
+		ResourceTypePermission resourceTypePermission =
+			new ResourceTypePermissionImpl();
 
 		resourceTypePermission.setNew(true);
 		resourceTypePermission.setPrimaryKey(resourceTypePermissionId);
@@ -1624,6 +1721,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission remove(long resourceTypePermissionId)
 		throws NoSuchResourceTypePermissionException {
+
 		return remove((Serializable)resourceTypePermissionId);
 	}
 
@@ -1637,21 +1735,23 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission remove(Serializable primaryKey)
 		throws NoSuchResourceTypePermissionException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ResourceTypePermission resourceTypePermission = (ResourceTypePermission)session.get(ResourceTypePermissionImpl.class,
-					primaryKey);
+			ResourceTypePermission resourceTypePermission =
+				(ResourceTypePermission)session.get(
+					ResourceTypePermissionImpl.class, primaryKey);
 
 			if (resourceTypePermission == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchResourceTypePermissionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchResourceTypePermissionException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(resourceTypePermission);
@@ -1670,14 +1770,16 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	protected ResourceTypePermission removeImpl(
 		ResourceTypePermission resourceTypePermission) {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			if (!session.contains(resourceTypePermission)) {
-				resourceTypePermission = (ResourceTypePermission)session.get(ResourceTypePermissionImpl.class,
-						resourceTypePermission.getPrimaryKeyObj());
+				resourceTypePermission = (ResourceTypePermission)session.get(
+					ResourceTypePermissionImpl.class,
+					resourceTypePermission.getPrimaryKeyObj());
 			}
 
 			if (resourceTypePermission != null) {
@@ -1701,25 +1803,30 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission updateImpl(
 		ResourceTypePermission resourceTypePermission) {
+
 		boolean isNew = resourceTypePermission.isNew();
 
-		if (!(resourceTypePermission instanceof ResourceTypePermissionModelImpl)) {
+		if (!(resourceTypePermission instanceof
+				ResourceTypePermissionModelImpl)) {
+
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(resourceTypePermission.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(resourceTypePermission);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					resourceTypePermission);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in resourceTypePermission proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom ResourceTypePermission implementation " +
-				resourceTypePermission.getClass());
+					resourceTypePermission.getClass());
 		}
 
-		ResourceTypePermissionModelImpl resourceTypePermissionModelImpl = (ResourceTypePermissionModelImpl)resourceTypePermission;
+		ResourceTypePermissionModelImpl resourceTypePermissionModelImpl =
+			(ResourceTypePermissionModelImpl)resourceTypePermission;
 
 		Session session = null;
 
@@ -1732,7 +1839,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				resourceTypePermission.setNew(false);
 			}
 			else {
-				resourceTypePermission = (ResourceTypePermission)session.merge(resourceTypePermission);
+				resourceTypePermission = (ResourceTypePermission)session.merge(
+					resourceTypePermission);
 			}
 		}
 		catch (Exception e) {
@@ -1745,76 +1853,83 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (!ResourceTypePermissionModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			FinderCacheUtil.clearCache(
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				resourceTypePermissionModelImpl.getRoleId()
+			};
+
+			FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByRoleId, args);
+
+			args = new Object[] {
+				resourceTypePermissionModelImpl.getCompanyId(),
+				resourceTypePermissionModelImpl.getName(),
+				resourceTypePermissionModelImpl.getRoleId()
+			};
+
+			FinderCacheUtil.removeResult(_finderPathCountByC_N_R, args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByC_N_R, args);
+
+			FinderCacheUtil.removeResult(
+				_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((resourceTypePermissionModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByRoleId.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					resourceTypePermissionModelImpl.getOriginalRoleId()
+				};
+
+				FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByRoleId, args);
+
+				args = new Object[] {
 					resourceTypePermissionModelImpl.getRoleId()
 				};
 
-			FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByRoleId,
-				args);
+				FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByRoleId, args);
+			}
 
-			args = new Object[] {
+			if ((resourceTypePermissionModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_N_R.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					resourceTypePermissionModelImpl.getOriginalCompanyId(),
+					resourceTypePermissionModelImpl.getOriginalName(),
+					resourceTypePermissionModelImpl.getOriginalRoleId()
+				};
+
+				FinderCacheUtil.removeResult(_finderPathCountByC_N_R, args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_N_R, args);
+
+				args = new Object[] {
 					resourceTypePermissionModelImpl.getCompanyId(),
 					resourceTypePermissionModelImpl.getName(),
 					resourceTypePermissionModelImpl.getRoleId()
 				};
 
-			FinderCacheUtil.removeResult(_finderPathCountByC_N_R, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N_R,
-				args);
-
-			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((resourceTypePermissionModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByRoleId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						resourceTypePermissionModelImpl.getOriginalRoleId()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByRoleId,
-					args);
-
-				args = new Object[] { resourceTypePermissionModelImpl.getRoleId() };
-
-				FinderCacheUtil.removeResult(_finderPathCountByRoleId, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByRoleId,
-					args);
-			}
-
-			if ((resourceTypePermissionModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_N_R.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						resourceTypePermissionModelImpl.getOriginalCompanyId(),
-						resourceTypePermissionModelImpl.getOriginalName(),
-						resourceTypePermissionModelImpl.getOriginalRoleId()
-					};
-
 				FinderCacheUtil.removeResult(_finderPathCountByC_N_R, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N_R,
-					args);
-
-				args = new Object[] {
-						resourceTypePermissionModelImpl.getCompanyId(),
-						resourceTypePermissionModelImpl.getName(),
-						resourceTypePermissionModelImpl.getRoleId()
-					};
-
-				FinderCacheUtil.removeResult(_finderPathCountByC_N_R, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_N_R,
-					args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByC_N_R, args);
 			}
 		}
 
-		EntityCacheUtil.putResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceTypePermissionImpl.class,
 			resourceTypePermission.getPrimaryKey(), resourceTypePermission,
 			false);
@@ -1837,15 +1952,17 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchResourceTypePermissionException {
-		ResourceTypePermission resourceTypePermission = fetchByPrimaryKey(primaryKey);
+
+		ResourceTypePermission resourceTypePermission = fetchByPrimaryKey(
+			primaryKey);
 
 		if (resourceTypePermission == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchResourceTypePermissionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchResourceTypePermissionException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return resourceTypePermission;
@@ -1860,8 +1977,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public ResourceTypePermission findByPrimaryKey(
-		long resourceTypePermissionId)
+			long resourceTypePermissionId)
 		throws NoSuchResourceTypePermissionException {
+
 		return findByPrimaryKey((Serializable)resourceTypePermissionId);
 	}
 
@@ -1873,14 +1991,16 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public ResourceTypePermission fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = EntityCacheUtil.getResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class, primaryKey);
+		Serializable serializable = EntityCacheUtil.getResult(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
 		}
 
-		ResourceTypePermission resourceTypePermission = (ResourceTypePermission)serializable;
+		ResourceTypePermission resourceTypePermission =
+			(ResourceTypePermission)serializable;
 
 		if (resourceTypePermission == null) {
 			Session session = null;
@@ -1888,19 +2008,22 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			try {
 				session = openSession();
 
-				resourceTypePermission = (ResourceTypePermission)session.get(ResourceTypePermissionImpl.class,
-						primaryKey);
+				resourceTypePermission = (ResourceTypePermission)session.get(
+					ResourceTypePermissionImpl.class, primaryKey);
 
 				if (resourceTypePermission != null) {
 					cacheResult(resourceTypePermission);
 				}
 				else {
-					EntityCacheUtil.putResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-						ResourceTypePermissionImpl.class, primaryKey, nullModel);
+					EntityCacheUtil.putResult(
+						ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+						ResourceTypePermissionImpl.class, primaryKey,
+						nullModel);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(
+					ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceTypePermissionImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1922,24 +2045,28 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission fetchByPrimaryKey(
 		long resourceTypePermissionId) {
+
 		return fetchByPrimaryKey((Serializable)resourceTypePermissionId);
 	}
 
 	@Override
 	public Map<Serializable, ResourceTypePermission> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, ResourceTypePermission> map = new HashMap<Serializable, ResourceTypePermission>();
+		Map<Serializable, ResourceTypePermission> map =
+			new HashMap<Serializable, ResourceTypePermission>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
 
 			Serializable primaryKey = iterator.next();
 
-			ResourceTypePermission resourceTypePermission = fetchByPrimaryKey(primaryKey);
+			ResourceTypePermission resourceTypePermission = fetchByPrimaryKey(
+				primaryKey);
 
 			if (resourceTypePermission != null) {
 				map.put(primaryKey, resourceTypePermission);
@@ -1951,8 +2078,9 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = EntityCacheUtil.getResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-					ResourceTypePermissionImpl.class, primaryKey);
+			Serializable serializable = EntityCacheUtil.getResult(
+				ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+				ResourceTypePermissionImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1972,8 +2100,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_RESOURCETYPEPERMISSION_WHERE_PKS_IN);
 
@@ -1996,17 +2124,22 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			Query q = session.createQuery(sql);
 
-			for (ResourceTypePermission resourceTypePermission : (List<ResourceTypePermission>)q.list()) {
-				map.put(resourceTypePermission.getPrimaryKeyObj(),
+			for (ResourceTypePermission resourceTypePermission :
+					(List<ResourceTypePermission>)q.list()) {
+
+				map.put(
+					resourceTypePermission.getPrimaryKeyObj(),
 					resourceTypePermission);
 
 				cacheResult(resourceTypePermission);
 
-				uncachedPrimaryKeys.remove(resourceTypePermission.getPrimaryKeyObj());
+				uncachedPrimaryKeys.remove(
+					resourceTypePermission.getPrimaryKeyObj());
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.putResult(
+					ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceTypePermissionImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -2059,8 +2192,10 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findAll(int start, int end,
+	public List<ResourceTypePermission> findAll(
+		int start, int end,
 		OrderByComparator<ResourceTypePermission> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -2078,29 +2213,32 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * @return the ordered range of resource type permissions
 	 */
 	@Override
-	public List<ResourceTypePermission> findAll(int start, int end,
+	public List<ResourceTypePermission> findAll(
+		int start, int end,
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ResourceTypePermission> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceTypePermission>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -2108,13 +2246,13 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_RESOURCETYPEPERMISSION);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -2122,7 +2260,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				sql = _SQL_SELECT_RESOURCETYPEPERMISSION;
 
 				if (pagination) {
-					sql = sql.concat(ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
+					sql = sql.concat(
+						ResourceTypePermissionModelImpl.ORDER_BY_JPQL);
 				}
 			}
 
@@ -2134,16 +2273,16 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceTypePermission>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ResourceTypePermission>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2181,8 +2320,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2190,16 +2329,17 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(_SQL_COUNT_RESOURCETYPEPERMISSION);
+				Query q = session.createQuery(
+					_SQL_COUNT_RESOURCETYPEPERMISSION);
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY, count);
+				FinderCacheUtil.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY);
+				FinderCacheUtil.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2220,99 +2360,104 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 * Initializes the resource type permission persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countAll", new String[0]);
+		_finderPathCountAll = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByRoleId = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRoleId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByRoleId = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRoleId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByRoleId = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRoleId",
-				new String[] { Long.class.getName() },
-				ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByRoleId = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRoleId",
+			new String[] {Long.class.getName()},
+			ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
 
-		_finderPathCountByRoleId = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByRoleId", new String[] { Long.class.getName() });
+		_finderPathCountByRoleId = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRoleId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByC_N_R = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_N_R",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByC_N_R = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_N_R",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_N_R = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_N_R",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Long.class.getName()
-				},
-				ResourceTypePermissionModelImpl.COMPANYID_COLUMN_BITMASK |
-				ResourceTypePermissionModelImpl.NAME_COLUMN_BITMASK |
-				ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_N_R = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_N_R",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Long.class.getName()
+			},
+			ResourceTypePermissionModelImpl.COMPANYID_COLUMN_BITMASK |
+			ResourceTypePermissionModelImpl.NAME_COLUMN_BITMASK |
+			ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
 
-		_finderPathCountByC_N_R = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByC_N_R",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Long.class.getName()
-				});
+		_finderPathCountByC_N_R = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_N_R",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Long.class.getName()
+			});
 
-		_finderPathFetchByC_G_N_R = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceTypePermissionImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByC_G_N_R",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), Long.class.getName()
-				},
-				ResourceTypePermissionModelImpl.COMPANYID_COLUMN_BITMASK |
-				ResourceTypePermissionModelImpl.GROUPID_COLUMN_BITMASK |
-				ResourceTypePermissionModelImpl.NAME_COLUMN_BITMASK |
-				ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
+		_finderPathFetchByC_G_N_R = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceTypePermissionImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC_G_N_R",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName()
+			},
+			ResourceTypePermissionModelImpl.COMPANYID_COLUMN_BITMASK |
+			ResourceTypePermissionModelImpl.GROUPID_COLUMN_BITMASK |
+			ResourceTypePermissionModelImpl.NAME_COLUMN_BITMASK |
+			ResourceTypePermissionModelImpl.ROLEID_COLUMN_BITMASK);
 
-		_finderPathCountByC_G_N_R = new FinderPath(ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByC_G_N_R",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(), Long.class.getName()
-				});
+		_finderPathCountByC_G_N_R = new FinderPath(
+			ResourceTypePermissionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceTypePermissionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_G_N_R",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -2324,13 +2469,33 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
-	private static final String _SQL_SELECT_RESOURCETYPEPERMISSION = "SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission";
-	private static final String _SQL_SELECT_RESOURCETYPEPERMISSION_WHERE_PKS_IN = "SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission WHERE resourceTypePermissionId IN (";
-	private static final String _SQL_SELECT_RESOURCETYPEPERMISSION_WHERE = "SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission WHERE ";
-	private static final String _SQL_COUNT_RESOURCETYPEPERMISSION = "SELECT COUNT(resourceTypePermission) FROM ResourceTypePermission resourceTypePermission";
-	private static final String _SQL_COUNT_RESOURCETYPEPERMISSION_WHERE = "SELECT COUNT(resourceTypePermission) FROM ResourceTypePermission resourceTypePermission WHERE ";
-	private static final String _ORDER_BY_ENTITY_ALIAS = "resourceTypePermission.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ResourceTypePermission exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ResourceTypePermission exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(ResourceTypePermissionPersistenceImpl.class);
+
+	private static final String _SQL_SELECT_RESOURCETYPEPERMISSION =
+		"SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission";
+
+	private static final String
+		_SQL_SELECT_RESOURCETYPEPERMISSION_WHERE_PKS_IN =
+			"SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission WHERE resourceTypePermissionId IN (";
+
+	private static final String _SQL_SELECT_RESOURCETYPEPERMISSION_WHERE =
+		"SELECT resourceTypePermission FROM ResourceTypePermission resourceTypePermission WHERE ";
+
+	private static final String _SQL_COUNT_RESOURCETYPEPERMISSION =
+		"SELECT COUNT(resourceTypePermission) FROM ResourceTypePermission resourceTypePermission";
+
+	private static final String _SQL_COUNT_RESOURCETYPEPERMISSION_WHERE =
+		"SELECT COUNT(resourceTypePermission) FROM ResourceTypePermission resourceTypePermission WHERE ";
+
+	private static final String _ORDER_BY_ENTITY_ALIAS =
+		"resourceTypePermission.";
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No ResourceTypePermission exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No ResourceTypePermission exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceTypePermissionPersistenceImpl.class);
+
 }

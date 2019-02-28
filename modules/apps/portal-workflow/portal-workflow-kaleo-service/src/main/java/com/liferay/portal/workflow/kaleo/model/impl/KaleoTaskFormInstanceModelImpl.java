@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,34 +56,33 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormInstance>
+public class KaleoTaskFormInstanceModelImpl
+	extends BaseModelImpl<KaleoTaskFormInstance>
 	implements KaleoTaskFormInstanceModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo task form instance model instance should use the <code>KaleoTaskFormInstance</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoTaskFormInstance";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskFormInstanceId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionVersionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "kaleoTaskInstanceTokenId", Types.BIGINT },
-			{ "kaleoTaskFormId", Types.BIGINT },
-			{ "formValues", Types.VARCHAR },
-			{ "formValueEntryGroupId", Types.BIGINT },
-			{ "formValueEntryId", Types.BIGINT },
-			{ "formValueEntryUuid", Types.VARCHAR },
-			{ "metadata", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoTaskFormInstanceId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP},
+		{"kaleoDefinitionVersionId", Types.BIGINT},
+		{"kaleoInstanceId", Types.BIGINT}, {"kaleoTaskId", Types.BIGINT},
+		{"kaleoTaskInstanceTokenId", Types.BIGINT},
+		{"kaleoTaskFormId", Types.BIGINT}, {"formValues", Types.VARCHAR},
+		{"formValueEntryGroupId", Types.BIGINT},
+		{"formValueEntryId", Types.BIGINT},
+		{"formValueEntryUuid", Types.VARCHAR}, {"metadata", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoTaskFormInstanceId", Types.BIGINT);
@@ -106,31 +104,56 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 		TABLE_COLUMNS_MAP.put("metadata", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoTaskFormInstance (kaleoTaskFormInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionVersionId LONG,kaleoInstanceId LONG,kaleoTaskId LONG,kaleoTaskInstanceTokenId LONG,kaleoTaskFormId LONG,formValues STRING null,formValueEntryGroupId LONG,formValueEntryId LONG,formValueEntryUuid VARCHAR(75) null,metadata STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table KaleoTaskFormInstance";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskFormInstance.kaleoTaskFormInstanceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskFormInstance.kaleoTaskFormInstanceId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoTaskFormInstance (kaleoTaskFormInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionVersionId LONG,kaleoInstanceId LONG,kaleoTaskId LONG,kaleoTaskInstanceTokenId LONG,kaleoTaskFormId LONG,formValues STRING null,formValueEntryGroupId LONG,formValueEntryId LONG,formValueEntryUuid VARCHAR(75) null,metadata STRING null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table KaleoTaskFormInstance";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoTaskFormInstance.kaleoTaskFormInstanceId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoTaskFormInstance.kaleoTaskFormInstanceId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long KALEODEFINITIONVERSIONID_COLUMN_BITMASK = 2L;
+
 	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 4L;
+
 	public static final long KALEOTASKFORMID_COLUMN_BITMASK = 8L;
+
 	public static final long KALEOTASKID_COLUMN_BITMASK = 16L;
+
 	public static final long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 32L;
+
 	public static final long KALEOTASKFORMINSTANCEID_COLUMN_BITMASK = 64L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoTaskFormInstance"));
 
 	public KaleoTaskFormInstanceModelImpl() {
 	}
@@ -169,14 +192,18 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((KaleoTaskFormInstance)this));
 		}
 
@@ -188,45 +215,58 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoTaskFormInstance, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoTaskFormInstance, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoTaskFormInstance, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoTaskFormInstance, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoTaskFormInstance)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoTaskFormInstance)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoTaskFormInstance, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoTaskFormInstance, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoTaskFormInstance, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoTaskFormInstance, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoTaskFormInstance, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoTaskFormInstance, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoTaskFormInstance, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoTaskFormInstance, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<KaleoTaskFormInstance, Object>>();
-		Map<String, BiConsumer<KaleoTaskFormInstance, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<KaleoTaskFormInstance, ?>>();
-
+		Map<String, Function<KaleoTaskFormInstance, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<KaleoTaskFormInstance, Object>>();
+		Map<String, BiConsumer<KaleoTaskFormInstance, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<KaleoTaskFormInstance, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoTaskFormInstanceId",
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoTaskFormInstanceId();
 				}
 
@@ -236,8 +276,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskFormInstanceId) {
-					kaleoTaskFormInstance.setKaleoTaskFormInstanceId((Long)kaleoTaskFormInstanceId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoTaskFormInstanceId) {
+
+					kaleoTaskFormInstance.setKaleoTaskFormInstanceId(
+						(Long)kaleoTaskFormInstanceId);
 				}
 
 			});
@@ -246,7 +290,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getGroupId();
 				}
 
@@ -256,7 +302,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object groupId) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object groupId) {
+
 					kaleoTaskFormInstance.setGroupId((Long)groupId);
 				}
 
@@ -266,7 +315,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getCompanyId();
 				}
 
@@ -276,7 +327,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object companyId) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object companyId) {
+
 					kaleoTaskFormInstance.setCompanyId((Long)companyId);
 				}
 
@@ -286,7 +340,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getUserId();
 				}
 
@@ -296,7 +352,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object userId) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object userId) {
+
 					kaleoTaskFormInstance.setUserId((Long)userId);
 				}
 
@@ -306,7 +365,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getUserName();
 				}
 
@@ -316,7 +377,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object userName) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object userName) {
+
 					kaleoTaskFormInstance.setUserName((String)userName);
 				}
 
@@ -326,7 +390,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getCreateDate();
 				}
 
@@ -336,7 +402,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object createDate) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object createDate) {
+
 					kaleoTaskFormInstance.setCreateDate((Date)createDate);
 				}
 
@@ -346,7 +415,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getModifiedDate();
 				}
 
@@ -356,7 +427,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object modifiedDate) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object modifiedDate) {
+
 					kaleoTaskFormInstance.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -366,7 +440,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoDefinitionVersionId();
 				}
 
@@ -376,8 +452,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoDefinitionVersionId) {
-					kaleoTaskFormInstance.setKaleoDefinitionVersionId((Long)kaleoDefinitionVersionId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoDefinitionVersionId) {
+
+					kaleoTaskFormInstance.setKaleoDefinitionVersionId(
+						(Long)kaleoDefinitionVersionId);
 				}
 
 			});
@@ -386,7 +466,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoInstanceId();
 				}
 
@@ -396,8 +478,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoInstanceId) {
-					kaleoTaskFormInstance.setKaleoInstanceId((Long)kaleoInstanceId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoInstanceId) {
+
+					kaleoTaskFormInstance.setKaleoInstanceId(
+						(Long)kaleoInstanceId);
 				}
 
 			});
@@ -406,7 +492,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoTaskId();
 				}
 
@@ -416,7 +504,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskId) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoTaskId) {
+
 					kaleoTaskFormInstance.setKaleoTaskId((Long)kaleoTaskId);
 				}
 
@@ -426,7 +517,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoTaskInstanceTokenId();
 				}
 
@@ -436,8 +529,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskInstanceTokenId) {
-					kaleoTaskFormInstance.setKaleoTaskInstanceTokenId((Long)kaleoTaskInstanceTokenId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoTaskInstanceTokenId) {
+
+					kaleoTaskFormInstance.setKaleoTaskInstanceTokenId(
+						(Long)kaleoTaskInstanceTokenId);
 				}
 
 			});
@@ -446,7 +543,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getKaleoTaskFormId();
 				}
 
@@ -456,8 +555,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object kaleoTaskFormId) {
-					kaleoTaskFormInstance.setKaleoTaskFormId((Long)kaleoTaskFormId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object kaleoTaskFormId) {
+
+					kaleoTaskFormInstance.setKaleoTaskFormId(
+						(Long)kaleoTaskFormId);
 				}
 
 			});
@@ -466,7 +569,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getFormValues();
 				}
 
@@ -476,7 +581,10 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValues) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object formValues) {
+
 					kaleoTaskFormInstance.setFormValues((String)formValues);
 				}
 
@@ -486,7 +594,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getFormValueEntryGroupId();
 				}
 
@@ -496,8 +606,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryGroupId) {
-					kaleoTaskFormInstance.setFormValueEntryGroupId((Long)formValueEntryGroupId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object formValueEntryGroupId) {
+
+					kaleoTaskFormInstance.setFormValueEntryGroupId(
+						(Long)formValueEntryGroupId);
 				}
 
 			});
@@ -506,7 +620,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getFormValueEntryId();
 				}
 
@@ -516,8 +632,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryId) {
-					kaleoTaskFormInstance.setFormValueEntryId((Long)formValueEntryId);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object formValueEntryId) {
+
+					kaleoTaskFormInstance.setFormValueEntryId(
+						(Long)formValueEntryId);
 				}
 
 			});
@@ -526,7 +646,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getFormValueEntryUuid();
 				}
 
@@ -536,8 +658,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object formValueEntryUuid) {
-					kaleoTaskFormInstance.setFormValueEntryUuid((String)formValueEntryUuid);
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object formValueEntryUuid) {
+
+					kaleoTaskFormInstance.setFormValueEntryUuid(
+						(String)formValueEntryUuid);
 				}
 
 			});
@@ -546,7 +672,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new Function<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public Object apply(KaleoTaskFormInstance kaleoTaskFormInstance) {
+				public Object apply(
+					KaleoTaskFormInstance kaleoTaskFormInstance) {
+
 					return kaleoTaskFormInstance.getMetadata();
 				}
 
@@ -556,15 +684,19 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			new BiConsumer<KaleoTaskFormInstance, Object>() {
 
 				@Override
-				public void accept(KaleoTaskFormInstance kaleoTaskFormInstance, Object metadata) {
+				public void accept(
+					KaleoTaskFormInstance kaleoTaskFormInstance,
+					Object metadata) {
+
 					kaleoTaskFormInstance.setMetadata((String)metadata);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -859,8 +991,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoTaskFormInstance.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoTaskFormInstance.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -873,8 +1006,9 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	@Override
 	public KaleoTaskFormInstance toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoTaskFormInstance)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoTaskFormInstance)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -882,24 +1016,30 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public Object clone() {
-		KaleoTaskFormInstanceImpl kaleoTaskFormInstanceImpl = new KaleoTaskFormInstanceImpl();
+		KaleoTaskFormInstanceImpl kaleoTaskFormInstanceImpl =
+			new KaleoTaskFormInstanceImpl();
 
-		kaleoTaskFormInstanceImpl.setKaleoTaskFormInstanceId(getKaleoTaskFormInstanceId());
+		kaleoTaskFormInstanceImpl.setKaleoTaskFormInstanceId(
+			getKaleoTaskFormInstanceId());
 		kaleoTaskFormInstanceImpl.setGroupId(getGroupId());
 		kaleoTaskFormInstanceImpl.setCompanyId(getCompanyId());
 		kaleoTaskFormInstanceImpl.setUserId(getUserId());
 		kaleoTaskFormInstanceImpl.setUserName(getUserName());
 		kaleoTaskFormInstanceImpl.setCreateDate(getCreateDate());
 		kaleoTaskFormInstanceImpl.setModifiedDate(getModifiedDate());
-		kaleoTaskFormInstanceImpl.setKaleoDefinitionVersionId(getKaleoDefinitionVersionId());
+		kaleoTaskFormInstanceImpl.setKaleoDefinitionVersionId(
+			getKaleoDefinitionVersionId());
 		kaleoTaskFormInstanceImpl.setKaleoInstanceId(getKaleoInstanceId());
 		kaleoTaskFormInstanceImpl.setKaleoTaskId(getKaleoTaskId());
-		kaleoTaskFormInstanceImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
+		kaleoTaskFormInstanceImpl.setKaleoTaskInstanceTokenId(
+			getKaleoTaskInstanceTokenId());
 		kaleoTaskFormInstanceImpl.setKaleoTaskFormId(getKaleoTaskFormId());
 		kaleoTaskFormInstanceImpl.setFormValues(getFormValues());
-		kaleoTaskFormInstanceImpl.setFormValueEntryGroupId(getFormValueEntryGroupId());
+		kaleoTaskFormInstanceImpl.setFormValueEntryGroupId(
+			getFormValueEntryGroupId());
 		kaleoTaskFormInstanceImpl.setFormValueEntryId(getFormValueEntryId());
-		kaleoTaskFormInstanceImpl.setFormValueEntryUuid(getFormValueEntryUuid());
+		kaleoTaskFormInstanceImpl.setFormValueEntryUuid(
+			getFormValueEntryUuid());
 		kaleoTaskFormInstanceImpl.setMetadata(getMetadata());
 
 		kaleoTaskFormInstanceImpl.resetOriginalValues();
@@ -911,10 +1051,14 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	public int compareTo(KaleoTaskFormInstance kaleoTaskFormInstance) {
 		int value = 0;
 
-		if (getKaleoTaskFormInstanceId() < kaleoTaskFormInstance.getKaleoTaskFormInstanceId()) {
+		if (getKaleoTaskFormInstanceId() <
+				kaleoTaskFormInstance.getKaleoTaskFormInstanceId()) {
+
 			value = -1;
 		}
-		else if (getKaleoTaskFormInstanceId() > kaleoTaskFormInstance.getKaleoTaskFormInstanceId()) {
+		else if (getKaleoTaskFormInstanceId() >
+					kaleoTaskFormInstance.getKaleoTaskFormInstanceId()) {
+
 			value = 1;
 		}
 		else {
@@ -938,7 +1082,8 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			return false;
 		}
 
-		KaleoTaskFormInstance kaleoTaskFormInstance = (KaleoTaskFormInstance)obj;
+		KaleoTaskFormInstance kaleoTaskFormInstance =
+			(KaleoTaskFormInstance)obj;
 
 		long primaryKey = kaleoTaskFormInstance.getPrimaryKey();
 
@@ -969,29 +1114,37 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	public void resetOriginalValues() {
 		KaleoTaskFormInstanceModelImpl kaleoTaskFormInstanceModelImpl = this;
 
-		kaleoTaskFormInstanceModelImpl._originalCompanyId = kaleoTaskFormInstanceModelImpl._companyId;
+		kaleoTaskFormInstanceModelImpl._originalCompanyId =
+			kaleoTaskFormInstanceModelImpl._companyId;
 
 		kaleoTaskFormInstanceModelImpl._setOriginalCompanyId = false;
 
 		kaleoTaskFormInstanceModelImpl._setModifiedDate = false;
 
-		kaleoTaskFormInstanceModelImpl._originalKaleoDefinitionVersionId = kaleoTaskFormInstanceModelImpl._kaleoDefinitionVersionId;
+		kaleoTaskFormInstanceModelImpl._originalKaleoDefinitionVersionId =
+			kaleoTaskFormInstanceModelImpl._kaleoDefinitionVersionId;
 
-		kaleoTaskFormInstanceModelImpl._setOriginalKaleoDefinitionVersionId = false;
+		kaleoTaskFormInstanceModelImpl._setOriginalKaleoDefinitionVersionId =
+			false;
 
-		kaleoTaskFormInstanceModelImpl._originalKaleoInstanceId = kaleoTaskFormInstanceModelImpl._kaleoInstanceId;
+		kaleoTaskFormInstanceModelImpl._originalKaleoInstanceId =
+			kaleoTaskFormInstanceModelImpl._kaleoInstanceId;
 
 		kaleoTaskFormInstanceModelImpl._setOriginalKaleoInstanceId = false;
 
-		kaleoTaskFormInstanceModelImpl._originalKaleoTaskId = kaleoTaskFormInstanceModelImpl._kaleoTaskId;
+		kaleoTaskFormInstanceModelImpl._originalKaleoTaskId =
+			kaleoTaskFormInstanceModelImpl._kaleoTaskId;
 
 		kaleoTaskFormInstanceModelImpl._setOriginalKaleoTaskId = false;
 
-		kaleoTaskFormInstanceModelImpl._originalKaleoTaskInstanceTokenId = kaleoTaskFormInstanceModelImpl._kaleoTaskInstanceTokenId;
+		kaleoTaskFormInstanceModelImpl._originalKaleoTaskInstanceTokenId =
+			kaleoTaskFormInstanceModelImpl._kaleoTaskInstanceTokenId;
 
-		kaleoTaskFormInstanceModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
+		kaleoTaskFormInstanceModelImpl._setOriginalKaleoTaskInstanceTokenId =
+			false;
 
-		kaleoTaskFormInstanceModelImpl._originalKaleoTaskFormId = kaleoTaskFormInstanceModelImpl._kaleoTaskFormId;
+		kaleoTaskFormInstanceModelImpl._originalKaleoTaskFormId =
+			kaleoTaskFormInstanceModelImpl._kaleoTaskFormId;
 
 		kaleoTaskFormInstanceModelImpl._setOriginalKaleoTaskFormId = false;
 
@@ -1000,9 +1153,11 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public CacheModel<KaleoTaskFormInstance> toCacheModel() {
-		KaleoTaskFormInstanceCacheModel kaleoTaskFormInstanceCacheModel = new KaleoTaskFormInstanceCacheModel();
+		KaleoTaskFormInstanceCacheModel kaleoTaskFormInstanceCacheModel =
+			new KaleoTaskFormInstanceCacheModel();
 
-		kaleoTaskFormInstanceCacheModel.kaleoTaskFormInstanceId = getKaleoTaskFormInstanceId();
+		kaleoTaskFormInstanceCacheModel.kaleoTaskFormInstanceId =
+			getKaleoTaskFormInstanceId();
 
 		kaleoTaskFormInstanceCacheModel.groupId = getGroupId();
 
@@ -1030,19 +1185,22 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			kaleoTaskFormInstanceCacheModel.modifiedDate = modifiedDate.getTime();
+			kaleoTaskFormInstanceCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			kaleoTaskFormInstanceCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		kaleoTaskFormInstanceCacheModel.kaleoDefinitionVersionId = getKaleoDefinitionVersionId();
+		kaleoTaskFormInstanceCacheModel.kaleoDefinitionVersionId =
+			getKaleoDefinitionVersionId();
 
 		kaleoTaskFormInstanceCacheModel.kaleoInstanceId = getKaleoInstanceId();
 
 		kaleoTaskFormInstanceCacheModel.kaleoTaskId = getKaleoTaskId();
 
-		kaleoTaskFormInstanceCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+		kaleoTaskFormInstanceCacheModel.kaleoTaskInstanceTokenId =
+			getKaleoTaskInstanceTokenId();
 
 		kaleoTaskFormInstanceCacheModel.kaleoTaskFormId = getKaleoTaskFormId();
 
@@ -1054,15 +1212,21 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 			kaleoTaskFormInstanceCacheModel.formValues = null;
 		}
 
-		kaleoTaskFormInstanceCacheModel.formValueEntryGroupId = getFormValueEntryGroupId();
+		kaleoTaskFormInstanceCacheModel.formValueEntryGroupId =
+			getFormValueEntryGroupId();
 
-		kaleoTaskFormInstanceCacheModel.formValueEntryId = getFormValueEntryId();
+		kaleoTaskFormInstanceCacheModel.formValueEntryId =
+			getFormValueEntryId();
 
-		kaleoTaskFormInstanceCacheModel.formValueEntryUuid = getFormValueEntryUuid();
+		kaleoTaskFormInstanceCacheModel.formValueEntryUuid =
+			getFormValueEntryUuid();
 
-		String formValueEntryUuid = kaleoTaskFormInstanceCacheModel.formValueEntryUuid;
+		String formValueEntryUuid =
+			kaleoTaskFormInstanceCacheModel.formValueEntryUuid;
 
-		if ((formValueEntryUuid != null) && (formValueEntryUuid.length() == 0)) {
+		if ((formValueEntryUuid != null) &&
+			(formValueEntryUuid.length() == 0)) {
+
 			kaleoTaskFormInstanceCacheModel.formValueEntryUuid = null;
 		}
 
@@ -1079,21 +1243,25 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply((KaleoTaskFormInstance)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTaskFormInstance)this));
 			sb.append(", ");
 		}
 
@@ -1108,24 +1276,28 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoTaskFormInstance, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<KaleoTaskFormInstance, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoTaskFormInstance, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoTaskFormInstance, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoTaskFormInstance, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply((KaleoTaskFormInstance)this));
+			sb.append(
+				attributeGetterFunction.apply((KaleoTaskFormInstance)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1134,10 +1306,12 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoTaskFormInstance.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoTaskFormInstance.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoTaskFormInstance.class, ModelWrapper.class
-		};
+		KaleoTaskFormInstance.class, ModelWrapper.class
+	};
+
 	private long _kaleoTaskFormInstanceId;
 	private long _groupId;
 	private long _companyId;
@@ -1170,4 +1344,5 @@ public class KaleoTaskFormInstanceModelImpl extends BaseModelImpl<KaleoTaskFormI
 	private String _metadata;
 	private long _columnBitmask;
 	private KaleoTaskFormInstance _escapedModel;
+
 }

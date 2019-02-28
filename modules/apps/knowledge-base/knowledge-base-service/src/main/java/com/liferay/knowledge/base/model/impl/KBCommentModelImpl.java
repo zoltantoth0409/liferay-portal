@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.knowledge.base.model.KBComment;
 import com.liferay.knowledge.base.model.KBCommentModel;
 import com.liferay.knowledge.base.model.KBCommentSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -68,31 +65,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class KBCommentModelImpl extends BaseModelImpl<KBComment>
-	implements KBCommentModel {
+public class KBCommentModelImpl
+	extends BaseModelImpl<KBComment> implements KBCommentModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kb comment model instance should use the <code>KBComment</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KBComment";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "kbCommentId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "content", Types.VARCHAR },
-			{ "userRating", Types.INTEGER },
-			{ "lastPublishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"kbCommentId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
+		{"content", Types.VARCHAR}, {"userRating", Types.INTEGER},
+		{"lastPublishDate", Types.TIMESTAMP}, {"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -111,29 +105,52 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,userRating INTEGER,lastPublishDate DATE null,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KBComment (uuid_ VARCHAR(75) null,kbCommentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,content STRING null,userRating INTEGER,lastPublishDate DATE null,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table KBComment";
-	public static final String ORDER_BY_JPQL = " ORDER BY kbComment.modifiedDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY KBComment.modifiedDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kbComment.modifiedDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KBComment.modifiedDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.knowledge.base.model.KBComment"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.knowledge.base.model.KBComment"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.knowledge.base.model.KBComment"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.knowledge.base.model.KBComment"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.knowledge.base.model.KBComment"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.knowledge.base.model.KBComment"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long STATUS_COLUMN_BITMASK = 16L;
+
 	public static final long USERID_COLUMN_BITMASK = 32L;
+
 	public static final long UUID_COLUMN_BITMASK = 64L;
+
 	public static final long MODIFIEDDATE_COLUMN_BITMASK = 128L;
 
 	/**
@@ -187,8 +204,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.knowledge.base.model.KBComment"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.knowledge.base.model.KBComment"));
 
 	public KBCommentModelImpl() {
 	}
@@ -227,14 +245,18 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KBComment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBComment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KBComment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBComment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBComment, Object> attributeGetterFunction = entry.getValue();
+			Function<KBComment, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((KBComment)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((KBComment)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -245,35 +267,44 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KBComment, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KBComment, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KBComment, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KBComment, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KBComment)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KBComment)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KBComment, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KBComment, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KBComment, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KBComment, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KBComment, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KBComment, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KBComment, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KBComment, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KBComment, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KBComment, Object>>();
-		Map<String, BiConsumer<KBComment, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KBComment, ?>>();
-
+		Map<String, Function<KBComment, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KBComment, Object>>();
+		Map<String, BiConsumer<KBComment, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KBComment, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -530,7 +561,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 			new BiConsumer<KBComment, Object>() {
 
 				@Override
-				public void accept(KBComment kbComment, Object lastPublishDate) {
+				public void accept(
+					KBComment kbComment, Object lastPublishDate) {
+
 					kbComment.setLastPublishDate((Date)lastPublishDate);
 				}
 
@@ -556,9 +589,10 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -858,8 +892,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				KBComment.class.getName()), getClassNameId());
+		return new StagedModelType(
+			PortalUtil.getClassNameId(KBComment.class.getName()),
+			getClassNameId());
 	}
 
 	public long getColumnBitmask() {
@@ -868,8 +903,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KBComment.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KBComment.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -882,8 +917,9 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	@Override
 	public KBComment toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KBComment)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KBComment)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -917,8 +953,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	public int compareTo(KBComment kbComment) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getModifiedDate(),
-				kbComment.getModifiedDate());
+		value = DateUtil.compareTo(
+			getModifiedDate(), kbComment.getModifiedDate());
 
 		value = value * -1;
 
@@ -986,7 +1022,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 		kbCommentModelImpl._setModifiedDate = false;
 
-		kbCommentModelImpl._originalClassNameId = kbCommentModelImpl._classNameId;
+		kbCommentModelImpl._originalClassNameId =
+			kbCommentModelImpl._classNameId;
 
 		kbCommentModelImpl._setOriginalClassNameId = false;
 
@@ -1077,16 +1114,20 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KBComment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBComment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KBComment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBComment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBComment, Object> attributeGetterFunction = entry.getValue();
+			Function<KBComment, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1105,18 +1146,22 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KBComment, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBComment, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KBComment, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBComment, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBComment, Object> attributeGetterFunction = entry.getValue();
+			Function<KBComment, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1130,10 +1175,12 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KBComment.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KBComment.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KBComment.class, ModelWrapper.class
-		};
+		KBComment.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbCommentId;
@@ -1164,4 +1211,5 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private KBComment _escapedModel;
+
 }

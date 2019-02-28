@@ -17,7 +17,6 @@ package com.liferay.calendar.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -46,8 +45,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface CalendarResourceModel extends AttachedModel,
-	BaseModel<CalendarResource>, LocalizedModel, ShardedModel, StagedGroupedModel {
+public interface CalendarResourceModel
+	extends AttachedModel, BaseModel<CalendarResource>, LocalizedModel,
+			ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -463,8 +464,8 @@ public interface CalendarResourceModel extends AttachedModel,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -481,8 +482,8 @@ public interface CalendarResourceModel extends AttachedModel,
 	 * @param descriptionMap the locales and localized descriptions of this calendar resource
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the active of this calendar resource.
@@ -590,4 +591,5 @@ public interface CalendarResourceModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.sync.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -38,7 +37,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SyncDLFileVersionDiffModel extends BaseModel<SyncDLFileVersionDiff> {
+public interface SyncDLFileVersionDiffModel
+	extends BaseModel<SyncDLFileVersionDiff> {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -213,4 +214,5 @@ public interface SyncDLFileVersionDiffModel extends BaseModel<SyncDLFileVersionD
 
 	@Override
 	public String toXmlString();
+
 }

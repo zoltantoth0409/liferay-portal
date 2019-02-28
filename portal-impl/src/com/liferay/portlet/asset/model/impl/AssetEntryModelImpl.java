@@ -19,10 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetEntryModel;
 import com.liferay.asset.kernel.model.AssetEntrySoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -71,44 +69,35 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
-	implements AssetEntryModel {
+public class AssetEntryModelImpl
+	extends BaseModelImpl<AssetEntry> implements AssetEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a asset entry model instance should use the <code>AssetEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "AssetEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "entryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "classUuid", Types.VARCHAR },
-			{ "classTypeId", Types.BIGINT },
-			{ "listable", Types.BOOLEAN },
-			{ "visible", Types.BOOLEAN },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
-			{ "publishDate", Types.TIMESTAMP },
-			{ "expirationDate", Types.TIMESTAMP },
-			{ "mimeType", Types.VARCHAR },
-			{ "title", Types.VARCHAR },
-			{ "description", Types.CLOB },
-			{ "summary", Types.CLOB },
-			{ "url", Types.VARCHAR },
-			{ "layoutUuid", Types.VARCHAR },
-			{ "height", Types.INTEGER },
-			{ "width", Types.INTEGER },
-			{ "priority", Types.DOUBLE },
-			{ "viewCount", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"entryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}, {"classUuid", Types.VARCHAR},
+		{"classTypeId", Types.BIGINT}, {"listable", Types.BOOLEAN},
+		{"visible", Types.BOOLEAN}, {"startDate", Types.TIMESTAMP},
+		{"endDate", Types.TIMESTAMP}, {"publishDate", Types.TIMESTAMP},
+		{"expirationDate", Types.TIMESTAMP}, {"mimeType", Types.VARCHAR},
+		{"title", Types.VARCHAR}, {"description", Types.CLOB},
+		{"summary", Types.CLOB}, {"url", Types.VARCHAR},
+		{"layoutUuid", Types.VARCHAR}, {"height", Types.INTEGER},
+		{"width", Types.INTEGER}, {"priority", Types.DOUBLE},
+		{"viewCount", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("entryId", Types.BIGINT);
@@ -140,31 +129,56 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 		TABLE_COLUMNS_MAP.put("viewCount", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table AssetEntry (entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,classUuid VARCHAR(75) null,classTypeId LONG,listable BOOLEAN,visible BOOLEAN,startDate DATE null,endDate DATE null,publishDate DATE null,expirationDate DATE null,mimeType VARCHAR(75) null,title STRING null,description TEXT null,summary TEXT null,url STRING null,layoutUuid VARCHAR(75) null,height INTEGER,width INTEGER,priority DOUBLE,viewCount INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table AssetEntry (entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,classUuid VARCHAR(75) null,classTypeId LONG,listable BOOLEAN,visible BOOLEAN,startDate DATE null,endDate DATE null,publishDate DATE null,expirationDate DATE null,mimeType VARCHAR(75) null,title STRING null,description TEXT null,summary TEXT null,url STRING null,layoutUuid VARCHAR(75) null,height INTEGER,width INTEGER,priority DOUBLE,viewCount INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table AssetEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY assetEntry.entryId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY AssetEntry.entryId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY assetEntry.entryId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY AssetEntry.entryId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.asset.kernel.model.AssetEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.asset.kernel.model.AssetEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.asset.kernel.model.AssetEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.asset.kernel.model.AssetEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.asset.kernel.model.AssetEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.asset.kernel.model.AssetEntry"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long CLASSUUID_COLUMN_BITMASK = 4L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 8L;
+
 	public static final long EXPIRATIONDATE_COLUMN_BITMASK = 16L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 32L;
+
 	public static final long LAYOUTUUID_COLUMN_BITMASK = 64L;
+
 	public static final long PUBLISHDATE_COLUMN_BITMASK = 128L;
+
 	public static final long VISIBLE_COLUMN_BITMASK = 256L;
+
 	public static final long ENTRYID_COLUMN_BITMASK = 512L;
 
 	/**
@@ -231,31 +245,47 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_NAME = "AssetEntries_AssetCategories";
-	public static final Object[][] MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_COLUMNS =
-		{
-			{ "companyId", Types.BIGINT },
-			{ "categoryId", Types.BIGINT },
-			{ "entryId", Types.BIGINT }
+	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_NAME =
+		"AssetEntries_AssetCategories";
+
+	public static final Object[][]
+		MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_COLUMNS = {
+			{"companyId", Types.BIGINT}, {"categoryId", Types.BIGINT},
+			{"entryId", Types.BIGINT}
 		};
-	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_SQL_CREATE =
-		"create table AssetEntries_AssetCategories (companyId LONG not null,categoryId LONG not null,entryId LONG not null,primary key (categoryId, entryId))";
-	public static final boolean FINDER_CACHE_ENABLED_ASSETENTRIES_ASSETCATEGORIES =
-		GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.AssetEntries_AssetCategories"),
-			true);
-	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_NAME = "AssetEntries_AssetTags";
-	public static final Object[][] MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_COLUMNS = {
-			{ "companyId", Types.BIGINT },
-			{ "entryId", Types.BIGINT },
-			{ "tagId", Types.BIGINT }
+
+	public static final String
+		MAPPING_TABLE_ASSETENTRIES_ASSETCATEGORIES_SQL_CREATE =
+			"create table AssetEntries_AssetCategories (companyId LONG not null,categoryId LONG not null,entryId LONG not null,primary key (categoryId, entryId))";
+
+	public static final boolean
+		FINDER_CACHE_ENABLED_ASSETENTRIES_ASSETCATEGORIES =
+			GetterUtil.getBoolean(
+				com.liferay.portal.util.PropsUtil.get(
+					"value.object.finder.cache.enabled.AssetEntries_AssetCategories"),
+				true);
+
+	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_NAME =
+		"AssetEntries_AssetTags";
+
+	public static final Object[][]
+		MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_COLUMNS = {
+			{"companyId", Types.BIGINT}, {"entryId", Types.BIGINT},
+			{"tagId", Types.BIGINT}
 		};
-	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_SQL_CREATE = "create table AssetEntries_AssetTags (companyId LONG not null,entryId LONG not null,tagId LONG not null,primary key (entryId, tagId))";
-	public static final boolean FINDER_CACHE_ENABLED_ASSETENTRIES_ASSETTAGS = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
+
+	public static final String MAPPING_TABLE_ASSETENTRIES_ASSETTAGS_SQL_CREATE =
+		"create table AssetEntries_AssetTags (companyId LONG not null,entryId LONG not null,tagId LONG not null,primary key (entryId, tagId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_ASSETENTRIES_ASSETTAGS =
+		GetterUtil.getBoolean(
+			com.liferay.portal.util.PropsUtil.get(
 				"value.object.finder.cache.enabled.AssetEntries_AssetTags"),
 			true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.asset.kernel.model.AssetEntry"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.asset.kernel.model.AssetEntry"));
 
 	public AssetEntryModelImpl() {
 	}
@@ -294,14 +324,18 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((AssetEntry)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((AssetEntry)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -312,35 +346,44 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<AssetEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<AssetEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<AssetEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<AssetEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((AssetEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(AssetEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<AssetEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<AssetEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<AssetEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<AssetEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<AssetEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<AssetEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<AssetEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<AssetEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<AssetEntry, Object>>();
-		Map<String, BiConsumer<AssetEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<AssetEntry, ?>>();
-
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<AssetEntry, Object>>();
+		Map<String, BiConsumer<AssetEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<AssetEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"entryId",
@@ -677,7 +720,9 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 			new BiConsumer<AssetEntry, Object>() {
 
 				@Override
-				public void accept(AssetEntry assetEntry, Object expirationDate) {
+				public void accept(
+					AssetEntry assetEntry, Object expirationDate) {
+
 					assetEntry.setExpirationDate((Date)expirationDate);
 				}
 
@@ -883,9 +928,10 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1277,8 +1323,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String getTitle(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getTitle(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getTitle(), languageId, useDefault);
 	}
 
 	@Override
@@ -1315,12 +1361,14 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(title)) {
-			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
-					title, languageId, defaultLanguageId));
+			setTitle(
+				LocalizationUtil.updateLocalization(
+					getTitle(), "Title", title, languageId, defaultLanguageId));
 		}
 		else {
-			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
-					languageId));
+			setTitle(
+				LocalizationUtil.removeLocalization(
+					getTitle(), "Title", languageId));
 		}
 	}
 
@@ -1335,13 +1383,17 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	}
 
 	@Override
-	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
+	public void setTitleMap(
+		Map<Locale, String> titleMap, Locale defaultLocale) {
+
 		if (titleMap == null) {
 			return;
 		}
 
-		setTitle(LocalizationUtil.updateLocalization(titleMap, getTitle(),
-				"Title", LocaleUtil.toLanguageId(defaultLocale)));
+		setTitle(
+			LocalizationUtil.updateLocalization(
+				titleMap, getTitle(), "Title",
+				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
 	@JSON
@@ -1376,8 +1428,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getDescription(), languageId, useDefault);
 	}
 
 	@Override
@@ -1409,18 +1461,21 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	}
 
 	@Override
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale) {
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale) {
+
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(description)) {
-			setDescription(LocalizationUtil.updateLocalization(
+			setDescription(
+				LocalizationUtil.updateLocalization(
 					getDescription(), "Description", description, languageId,
 					defaultLanguageId));
 		}
 		else {
-			setDescription(LocalizationUtil.removeLocalization(
+			setDescription(
+				LocalizationUtil.removeLocalization(
 					getDescription(), "Description", languageId));
 		}
 	}
@@ -1436,14 +1491,16 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	}
 
 	@Override
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale) {
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale) {
+
 		if (descriptionMap == null) {
 			return;
 		}
 
-		setDescription(LocalizationUtil.updateLocalization(descriptionMap,
-				getDescription(), "Description",
+		setDescription(
+			LocalizationUtil.updateLocalization(
+				descriptionMap, getDescription(), "Description",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -1479,8 +1536,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String getSummary(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getSummary(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getSummary(), languageId, useDefault);
 	}
 
 	@Override
@@ -1512,17 +1569,22 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	}
 
 	@Override
-	public void setSummary(String summary, Locale locale, Locale defaultLocale) {
+	public void setSummary(
+		String summary, Locale locale, Locale defaultLocale) {
+
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(summary)) {
-			setSummary(LocalizationUtil.updateLocalization(getSummary(),
-					"Summary", summary, languageId, defaultLanguageId));
+			setSummary(
+				LocalizationUtil.updateLocalization(
+					getSummary(), "Summary", summary, languageId,
+					defaultLanguageId));
 		}
 		else {
-			setSummary(LocalizationUtil.removeLocalization(getSummary(),
-					"Summary", languageId));
+			setSummary(
+				LocalizationUtil.removeLocalization(
+					getSummary(), "Summary", languageId));
 		}
 	}
 
@@ -1537,14 +1599,17 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	}
 
 	@Override
-	public void setSummaryMap(Map<Locale, String> summaryMap,
-		Locale defaultLocale) {
+	public void setSummaryMap(
+		Map<Locale, String> summaryMap, Locale defaultLocale) {
+
 		if (summaryMap == null) {
 			return;
 		}
 
-		setSummary(LocalizationUtil.updateLocalization(summaryMap,
-				getSummary(), "Summary", LocaleUtil.toLanguageId(defaultLocale)));
+		setSummary(
+			LocalizationUtil.updateLocalization(
+				summaryMap, getSummary(), "Summary",
+				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
 	@JSON
@@ -1639,8 +1704,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			AssetEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), AssetEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1687,7 +1752,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 			}
 		}
 
-		return availableLanguageIds.toArray(new String[availableLanguageIds.size()]);
+		return availableLanguageIds.toArray(
+			new String[availableLanguageIds.size()]);
 	}
 
 	@Override
@@ -1705,12 +1771,15 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public void prepareLocalizedFieldsForImport() throws LocaleException {
-		Locale defaultLocale = LocaleUtil.fromLanguageId(getDefaultLanguageId());
+		Locale defaultLocale = LocaleUtil.fromLanguageId(
+			getDefaultLanguageId());
 
-		Locale[] availableLocales = LocaleUtil.fromLanguageIds(getAvailableLanguageIds());
+		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
+			getAvailableLanguageIds());
 
-		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(AssetEntry.class.getName(),
-				getPrimaryKey(), defaultLocale, availableLocales);
+		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
+			AssetEntry.class.getName(), getPrimaryKey(), defaultLocale,
+			availableLocales);
 
 		prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
@@ -1719,6 +1788,7 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
+
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
@@ -1735,11 +1805,12 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 		String description = getDescription(defaultLocale);
 
 		if (Validator.isNull(description)) {
-			setDescription(getDescription(modelDefaultLanguageId), defaultLocale);
+			setDescription(
+				getDescription(modelDefaultLanguageId), defaultLocale);
 		}
 		else {
-			setDescription(getDescription(defaultLocale), defaultLocale,
-				defaultLocale);
+			setDescription(
+				getDescription(defaultLocale), defaultLocale, defaultLocale);
 		}
 
 		String summary = getSummary(defaultLocale);
@@ -1755,8 +1826,9 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	@Override
 	public AssetEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (AssetEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (AssetEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1865,7 +1937,8 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 		assetEntryModelImpl._setModifiedDate = false;
 
-		assetEntryModelImpl._originalClassNameId = assetEntryModelImpl._classNameId;
+		assetEntryModelImpl._originalClassNameId =
+			assetEntryModelImpl._classNameId;
 
 		assetEntryModelImpl._setOriginalClassNameId = false;
 
@@ -1879,11 +1952,14 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 		assetEntryModelImpl._setOriginalVisible = false;
 
-		assetEntryModelImpl._originalPublishDate = assetEntryModelImpl._publishDate;
+		assetEntryModelImpl._originalPublishDate =
+			assetEntryModelImpl._publishDate;
 
-		assetEntryModelImpl._originalExpirationDate = assetEntryModelImpl._expirationDate;
+		assetEntryModelImpl._originalExpirationDate =
+			assetEntryModelImpl._expirationDate;
 
-		assetEntryModelImpl._originalLayoutUuid = assetEntryModelImpl._layoutUuid;
+		assetEntryModelImpl._originalLayoutUuid =
+			assetEntryModelImpl._layoutUuid;
 
 		assetEntryModelImpl._columnBitmask = 0;
 	}
@@ -2041,16 +2117,20 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -2069,18 +2149,22 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<AssetEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<AssetEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<AssetEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<AssetEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<AssetEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -2094,10 +2178,12 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = AssetEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		AssetEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			AssetEntry.class, ModelWrapper.class
-		};
+		AssetEntry.class, ModelWrapper.class
+	};
+
 	private long _entryId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -2145,4 +2231,5 @@ public class AssetEntryModelImpl extends BaseModelImpl<AssetEntry>
 	private int _viewCount;
 	private long _columnBitmask;
 	private AssetEntry _escapedModel;
+
 }

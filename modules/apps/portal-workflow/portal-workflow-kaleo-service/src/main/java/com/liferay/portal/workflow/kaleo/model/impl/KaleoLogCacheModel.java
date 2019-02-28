@@ -35,7 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class KaleoLogCacheModel implements CacheModel<KaleoLog>, Externalizable {
+public class KaleoLogCacheModel
+	implements CacheModel<KaleoLog>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -209,7 +211,8 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog>, Externalizable 
 			kaleoLogImpl.setPreviousAssigneeClassName("");
 		}
 		else {
-			kaleoLogImpl.setPreviousAssigneeClassName(previousAssigneeClassName);
+			kaleoLogImpl.setPreviousAssigneeClassName(
+				previousAssigneeClassName);
 		}
 
 		kaleoLogImpl.setPreviousAssigneeClassPK(previousAssigneeClassPK);
@@ -314,8 +317,7 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog>, Externalizable 
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(kaleoLogId);
 
 		objectOutput.writeLong(groupId);
@@ -460,4 +462,5 @@ public class KaleoLogCacheModel implements CacheModel<KaleoLog>, Externalizable 
 	public long endDate;
 	public long duration;
 	public String workflowContext;
+
 }

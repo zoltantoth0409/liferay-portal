@@ -17,7 +17,6 @@ package com.liferay.mobile.device.rules.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.mobile.device.rules.model.MDRAction;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class MDRActionCacheModel implements CacheModel<MDRAction>,
-	Externalizable {
+public class MDRActionCacheModel
+	implements CacheModel<MDRAction>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -212,8 +212,7 @@ public class MDRActionCacheModel implements CacheModel<MDRAction>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -292,4 +291,5 @@ public class MDRActionCacheModel implements CacheModel<MDRAction>,
 	public String type;
 	public String typeSettings;
 	public long lastPublishDate;
+
 }

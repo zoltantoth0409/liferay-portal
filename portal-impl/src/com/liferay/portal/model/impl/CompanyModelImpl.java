@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,28 +57,26 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class CompanyModelImpl extends BaseModelImpl<Company>
-	implements CompanyModel {
+public class CompanyModelImpl
+	extends BaseModelImpl<Company> implements CompanyModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a company model instance should use the <code>Company</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Company";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "accountId", Types.BIGINT },
-			{ "webId", Types.VARCHAR },
-			{ "key_", Types.CLOB },
-			{ "mx", Types.VARCHAR },
-			{ "homeURL", Types.VARCHAR },
-			{ "logoId", Types.BIGINT },
-			{ "system", Types.BOOLEAN },
-			{ "maxUsers", Types.INTEGER },
-			{ "active_", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"accountId", Types.BIGINT}, {"webId", Types.VARCHAR},
+		{"key_", Types.CLOB}, {"mx", Types.VARCHAR}, {"homeURL", Types.VARCHAR},
+		{"logoId", Types.BIGINT}, {"system", Types.BOOLEAN},
+		{"maxUsers", Types.INTEGER}, {"active_", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -95,26 +92,45 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Company (mvccVersion LONG default 0 not null,companyId LONG not null primary key,accountId LONG,webId VARCHAR(75) null,key_ TEXT null,mx VARCHAR(200) null,homeURL STRING null,logoId LONG,system BOOLEAN,maxUsers INTEGER,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Company (mvccVersion LONG default 0 not null,companyId LONG not null primary key,accountId LONG,webId VARCHAR(75) null,key_ TEXT null,mx VARCHAR(200) null,homeURL STRING null,logoId LONG,system BOOLEAN,maxUsers INTEGER,active_ BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table Company";
-	public static final String ORDER_BY_JPQL = " ORDER BY company.companyId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY company.companyId ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY Company.companyId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Company"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Company"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Company"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Company"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Company"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Company"),
+		true);
+
 	public static final long LOGOID_COLUMN_BITMASK = 1L;
+
 	public static final long MX_COLUMN_BITMASK = 2L;
+
 	public static final long SYSTEM_COLUMN_BITMASK = 4L;
+
 	public static final long WEBID_COLUMN_BITMASK = 8L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -165,8 +181,9 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.Company"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.Company"));
 
 	public CompanyModelImpl() {
 	}
@@ -205,14 +222,18 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Company, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Company, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Company, Object> attributeGetterFunction = entry.getValue();
+			Function<Company, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Company)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Company)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -223,34 +244,44 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Company, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Company, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Company, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Company, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Company)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Company)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Company, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Company, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Company, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Company, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Company, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Company, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Company, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Company, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Company, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Company, Object>>();
-		Map<String, BiConsumer<Company, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Company, ?>>();
-
+		Map<String, Function<Company, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Company, Object>>();
+		Map<String, BiConsumer<Company, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Company, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -473,9 +504,10 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -703,8 +735,8 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Company.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Company.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -717,8 +749,9 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 	@Override
 	public Company toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Company)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Company)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -883,16 +916,20 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Company, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Company, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Company, Object> attributeGetterFunction = entry.getValue();
+			Function<Company, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -911,18 +948,22 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Company, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Company, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Company, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Company, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Company, Object> attributeGetterFunction = entry.getValue();
+			Function<Company, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -936,10 +977,12 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Company.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Company.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Company.class, ModelWrapper.class
-		};
+		Company.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _companyId;
 	private long _accountId;
@@ -959,4 +1002,5 @@ public class CompanyModelImpl extends BaseModelImpl<Company>
 	private boolean _active;
 	private long _columnBitmask;
 	private Company _escapedModel;
+
 }

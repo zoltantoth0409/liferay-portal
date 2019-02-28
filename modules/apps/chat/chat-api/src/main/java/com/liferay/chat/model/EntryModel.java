@@ -17,7 +17,6 @@ package com.liferay.chat.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,6 +37,7 @@ import java.io.Serializable;
  */
 @ProviderType
 public interface EntryModel extends BaseModel<Entry> {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -227,4 +227,5 @@ public interface EntryModel extends BaseModel<Entry> {
 
 	@Override
 	public String toXmlString();
+
 }

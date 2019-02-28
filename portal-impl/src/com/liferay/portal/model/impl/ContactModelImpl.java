@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -64,46 +63,36 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class ContactModelImpl extends BaseModelImpl<Contact>
-	implements ContactModel {
+public class ContactModelImpl
+	extends BaseModelImpl<Contact> implements ContactModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a contact model instance should use the <code>Contact</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Contact_";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "contactId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "accountId", Types.BIGINT },
-			{ "parentContactId", Types.BIGINT },
-			{ "emailAddress", Types.VARCHAR },
-			{ "firstName", Types.VARCHAR },
-			{ "middleName", Types.VARCHAR },
-			{ "lastName", Types.VARCHAR },
-			{ "prefixId", Types.BIGINT },
-			{ "suffixId", Types.BIGINT },
-			{ "male", Types.BOOLEAN },
-			{ "birthday", Types.TIMESTAMP },
-			{ "smsSn", Types.VARCHAR },
-			{ "facebookSn", Types.VARCHAR },
-			{ "jabberSn", Types.VARCHAR },
-			{ "skypeSn", Types.VARCHAR },
-			{ "twitterSn", Types.VARCHAR },
-			{ "employeeStatusId", Types.VARCHAR },
-			{ "employeeNumber", Types.VARCHAR },
-			{ "jobTitle", Types.VARCHAR },
-			{ "jobClass", Types.VARCHAR },
-			{ "hoursOfOperation", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"contactId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}, {"accountId", Types.BIGINT},
+		{"parentContactId", Types.BIGINT}, {"emailAddress", Types.VARCHAR},
+		{"firstName", Types.VARCHAR}, {"middleName", Types.VARCHAR},
+		{"lastName", Types.VARCHAR}, {"prefixId", Types.BIGINT},
+		{"suffixId", Types.BIGINT}, {"male", Types.BOOLEAN},
+		{"birthday", Types.TIMESTAMP}, {"smsSn", Types.VARCHAR},
+		{"facebookSn", Types.VARCHAR}, {"jabberSn", Types.VARCHAR},
+		{"skypeSn", Types.VARCHAR}, {"twitterSn", Types.VARCHAR},
+		{"employeeStatusId", Types.VARCHAR}, {"employeeNumber", Types.VARCHAR},
+		{"jobTitle", Types.VARCHAR}, {"jobClass", Types.VARCHAR},
+		{"hoursOfOperation", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -137,26 +126,46 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 		TABLE_COLUMNS_MAP.put("hoursOfOperation", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Contact_ (mvccVersion LONG default 0 not null,contactId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,accountId LONG,parentContactId LONG,emailAddress VARCHAR(254) null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,prefixId LONG,suffixId LONG,male BOOLEAN,birthday DATE null,smsSn VARCHAR(75) null,facebookSn VARCHAR(75) null,jabberSn VARCHAR(75) null,skypeSn VARCHAR(75) null,twitterSn VARCHAR(75) null,employeeStatusId VARCHAR(75) null,employeeNumber VARCHAR(75) null,jobTitle VARCHAR(100) null,jobClass VARCHAR(75) null,hoursOfOperation VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Contact_ (mvccVersion LONG default 0 not null,contactId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,accountId LONG,parentContactId LONG,emailAddress VARCHAR(254) null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,prefixId LONG,suffixId LONG,male BOOLEAN,birthday DATE null,smsSn VARCHAR(75) null,facebookSn VARCHAR(75) null,jabberSn VARCHAR(75) null,skypeSn VARCHAR(75) null,twitterSn VARCHAR(75) null,employeeStatusId VARCHAR(75) null,employeeNumber VARCHAR(75) null,jobTitle VARCHAR(100) null,jobClass VARCHAR(75) null,hoursOfOperation VARCHAR(75) null)";
+
 	public static final String TABLE_SQL_DROP = "drop table Contact_";
-	public static final String ORDER_BY_JPQL = " ORDER BY contact.contactId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Contact_.contactId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY contact.contactId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY Contact_.contactId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Contact"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Contact"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Contact"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.Contact"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.Contact"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.Contact"),
+		true);
+
 	public static final long ACCOUNTID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 2L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 4L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 8L;
+
 	public static final long CONTACTID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -225,8 +234,9 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.Contact"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.Contact"));
 
 	public ContactModelImpl() {
 	}
@@ -265,14 +275,18 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Contact, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Contact, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+			Function<Contact, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Contact)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Contact)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -283,34 +297,44 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Contact, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Contact, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Contact, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Contact, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Contact)this, entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Contact)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Contact, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Contact, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Contact, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Contact, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Contact, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Contact, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Contact, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Contact, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Contact, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Contact, Object>>();
-		Map<String, BiConsumer<Contact, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Contact, ?>>();
-
+		Map<String, Function<Contact, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Contact, Object>>();
+		Map<String, BiConsumer<Contact, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Contact, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -893,9 +917,10 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -1396,8 +1421,8 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Contact.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Contact.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1410,8 +1435,9 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 	@Override
 	public Contact toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Contact)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Contact)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1717,16 +1743,20 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Contact, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Contact, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+			Function<Contact, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1745,18 +1775,22 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Contact, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Contact, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Contact, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Contact, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Contact, Object> attributeGetterFunction = entry.getValue();
+			Function<Contact, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1770,10 +1804,12 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Contact.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Contact.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Contact.class, ModelWrapper.class
-		};
+		Contact.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _contactId;
 	private long _companyId;
@@ -1814,4 +1850,5 @@ public class ContactModelImpl extends BaseModelImpl<Contact>
 	private String _hoursOfOperation;
 	private long _columnBitmask;
 	private Contact _escapedModel;
+
 }

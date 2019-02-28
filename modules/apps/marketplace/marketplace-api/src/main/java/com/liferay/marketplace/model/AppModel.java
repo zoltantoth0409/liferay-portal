@@ -17,7 +17,6 @@ package com.liferay.marketplace.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AppModel extends BaseModel<App>, ShardedModel,
-	StagedAuditedModel {
+public interface AppModel
+	extends BaseModel<App>, ShardedModel, StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -357,4 +357,5 @@ public interface AppModel extends BaseModel<App>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

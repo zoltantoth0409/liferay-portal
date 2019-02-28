@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecordModel;
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecordSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -66,32 +63,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanceRecord>
+public class DDMFormInstanceRecordModelImpl
+	extends BaseModelImpl<DDMFormInstanceRecord>
 	implements DDMFormInstanceRecordModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ddm form instance record model instance should use the <code>DDMFormInstanceRecord</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DDMFormInstanceRecord";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "formInstanceRecordId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "versionUserId", Types.BIGINT },
-			{ "versionUserName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "formInstanceId", Types.BIGINT },
-			{ "formInstanceVersion", Types.VARCHAR },
-			{ "storageId", Types.BIGINT },
-			{ "version", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"formInstanceRecordId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"versionUserId", Types.BIGINT}, {"versionUserName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"formInstanceId", Types.BIGINT},
+		{"formInstanceVersion", Types.VARCHAR}, {"storageId", Types.BIGINT},
+		{"version", Types.VARCHAR}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -111,28 +106,51 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DDMFormInstanceRecord (uuid_ VARCHAR(75) null,formInstanceRecordId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,formInstanceId LONG,formInstanceVersion VARCHAR(75) null,storageId LONG,version VARCHAR(75) null,lastPublishDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table DDMFormInstanceRecord";
-	public static final String ORDER_BY_JPQL = " ORDER BY ddmFormInstanceRecord.formInstanceRecordId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DDMFormInstanceRecord.formInstanceRecordId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table DDMFormInstanceRecord (uuid_ VARCHAR(75) null,formInstanceRecordId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,formInstanceId LONG,formInstanceVersion VARCHAR(75) null,storageId LONG,version VARCHAR(75) null,lastPublishDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table DDMFormInstanceRecord";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY ddmFormInstanceRecord.formInstanceRecordId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DDMFormInstanceRecord.formInstanceRecordId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FORMINSTANCEID_COLUMN_BITMASK = 2L;
+
 	public static final long FORMINSTANCEVERSION_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long FORMINSTANCERECORDID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -143,6 +161,7 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	 */
 	public static DDMFormInstanceRecord toModel(
 		DDMFormInstanceRecordSoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
@@ -176,11 +195,13 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	 */
 	public static List<DDMFormInstanceRecord> toModels(
 		DDMFormInstanceRecordSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<DDMFormInstanceRecord> models = new ArrayList<DDMFormInstanceRecord>(soapModels.length);
+		List<DDMFormInstanceRecord> models =
+			new ArrayList<DDMFormInstanceRecord>(soapModels.length);
 
 		for (DDMFormInstanceRecordSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -189,8 +210,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.dynamic.data.mapping.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord"));
 
 	public DDMFormInstanceRecordModelImpl() {
 	}
@@ -229,14 +251,18 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DDMFormInstanceRecord, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstanceRecord, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstanceRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstanceRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DDMFormInstanceRecord)this));
 		}
 
@@ -248,45 +274,58 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DDMFormInstanceRecord, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DDMFormInstanceRecord, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DDMFormInstanceRecord, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DDMFormInstanceRecord, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DDMFormInstanceRecord)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DDMFormInstanceRecord)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DDMFormInstanceRecord, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DDMFormInstanceRecord, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DDMFormInstanceRecord, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DDMFormInstanceRecord, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DDMFormInstanceRecord, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DDMFormInstanceRecord, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DDMFormInstanceRecord, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDMFormInstanceRecord, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DDMFormInstanceRecord, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<DDMFormInstanceRecord, Object>>();
-		Map<String, BiConsumer<DDMFormInstanceRecord, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<DDMFormInstanceRecord, ?>>();
-
+		Map<String, Function<DDMFormInstanceRecord, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<DDMFormInstanceRecord, Object>>();
+		Map<String, BiConsumer<DDMFormInstanceRecord, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<DDMFormInstanceRecord, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getUuid();
 				}
 
@@ -296,7 +335,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object uuid) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord, Object uuid) {
+
 					ddmFormInstanceRecord.setUuid((String)uuid);
 				}
 
@@ -306,7 +347,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getFormInstanceRecordId();
 				}
 
@@ -316,8 +359,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object formInstanceRecordId) {
-					ddmFormInstanceRecord.setFormInstanceRecordId((Long)formInstanceRecordId);
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object formInstanceRecordId) {
+
+					ddmFormInstanceRecord.setFormInstanceRecordId(
+						(Long)formInstanceRecordId);
 				}
 
 			});
@@ -326,7 +373,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getGroupId();
 				}
 
@@ -336,7 +385,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object groupId) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object groupId) {
+
 					ddmFormInstanceRecord.setGroupId((Long)groupId);
 				}
 
@@ -346,7 +398,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getCompanyId();
 				}
 
@@ -356,7 +410,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object companyId) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object companyId) {
+
 					ddmFormInstanceRecord.setCompanyId((Long)companyId);
 				}
 
@@ -366,7 +423,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getUserId();
 				}
 
@@ -376,7 +435,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object userId) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object userId) {
+
 					ddmFormInstanceRecord.setUserId((Long)userId);
 				}
 
@@ -386,7 +448,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getUserName();
 				}
 
@@ -396,7 +460,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object userName) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object userName) {
+
 					ddmFormInstanceRecord.setUserName((String)userName);
 				}
 
@@ -406,7 +473,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getVersionUserId();
 				}
 
@@ -416,7 +485,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object versionUserId) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object versionUserId) {
+
 					ddmFormInstanceRecord.setVersionUserId((Long)versionUserId);
 				}
 
@@ -426,7 +498,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getVersionUserName();
 				}
 
@@ -436,8 +510,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object versionUserName) {
-					ddmFormInstanceRecord.setVersionUserName((String)versionUserName);
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object versionUserName) {
+
+					ddmFormInstanceRecord.setVersionUserName(
+						(String)versionUserName);
 				}
 
 			});
@@ -446,7 +524,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getCreateDate();
 				}
 
@@ -456,7 +536,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object createDate) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object createDate) {
+
 					ddmFormInstanceRecord.setCreateDate((Date)createDate);
 				}
 
@@ -466,7 +549,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getModifiedDate();
 				}
 
@@ -476,7 +561,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object modifiedDate) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object modifiedDate) {
+
 					ddmFormInstanceRecord.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -486,7 +574,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getFormInstanceId();
 				}
 
@@ -496,8 +586,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object formInstanceId) {
-					ddmFormInstanceRecord.setFormInstanceId((Long)formInstanceId);
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object formInstanceId) {
+
+					ddmFormInstanceRecord.setFormInstanceId(
+						(Long)formInstanceId);
 				}
 
 			});
@@ -506,7 +600,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getFormInstanceVersion();
 				}
 
@@ -516,8 +612,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object formInstanceVersion) {
-					ddmFormInstanceRecord.setFormInstanceVersion((String)formInstanceVersion);
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object formInstanceVersion) {
+
+					ddmFormInstanceRecord.setFormInstanceVersion(
+						(String)formInstanceVersion);
 				}
 
 			});
@@ -526,7 +626,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getStorageId();
 				}
 
@@ -536,7 +638,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object storageId) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object storageId) {
+
 					ddmFormInstanceRecord.setStorageId((Long)storageId);
 				}
 
@@ -546,7 +651,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getVersion();
 				}
 
@@ -556,7 +663,10 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object version) {
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object version) {
+
 					ddmFormInstanceRecord.setVersion((String)version);
 				}
 
@@ -566,7 +676,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new Function<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public Object apply(DDMFormInstanceRecord ddmFormInstanceRecord) {
+				public Object apply(
+					DDMFormInstanceRecord ddmFormInstanceRecord) {
+
 					return ddmFormInstanceRecord.getLastPublishDate();
 				}
 
@@ -576,15 +688,20 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			new BiConsumer<DDMFormInstanceRecord, Object>() {
 
 				@Override
-				public void accept(DDMFormInstanceRecord ddmFormInstanceRecord, Object lastPublishDate) {
-					ddmFormInstanceRecord.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					DDMFormInstanceRecord ddmFormInstanceRecord,
+					Object lastPublishDate) {
+
+					ddmFormInstanceRecord.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -885,8 +1002,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DDMFormInstanceRecord.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DDMFormInstanceRecord.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -895,8 +1012,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DDMFormInstanceRecord.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DDMFormInstanceRecord.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -909,8 +1027,9 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	@Override
 	public DDMFormInstanceRecord toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DDMFormInstanceRecord)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DDMFormInstanceRecord)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -918,10 +1037,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public Object clone() {
-		DDMFormInstanceRecordImpl ddmFormInstanceRecordImpl = new DDMFormInstanceRecordImpl();
+		DDMFormInstanceRecordImpl ddmFormInstanceRecordImpl =
+			new DDMFormInstanceRecordImpl();
 
 		ddmFormInstanceRecordImpl.setUuid(getUuid());
-		ddmFormInstanceRecordImpl.setFormInstanceRecordId(getFormInstanceRecordId());
+		ddmFormInstanceRecordImpl.setFormInstanceRecordId(
+			getFormInstanceRecordId());
 		ddmFormInstanceRecordImpl.setGroupId(getGroupId());
 		ddmFormInstanceRecordImpl.setCompanyId(getCompanyId());
 		ddmFormInstanceRecordImpl.setUserId(getUserId());
@@ -931,7 +1052,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		ddmFormInstanceRecordImpl.setCreateDate(getCreateDate());
 		ddmFormInstanceRecordImpl.setModifiedDate(getModifiedDate());
 		ddmFormInstanceRecordImpl.setFormInstanceId(getFormInstanceId());
-		ddmFormInstanceRecordImpl.setFormInstanceVersion(getFormInstanceVersion());
+		ddmFormInstanceRecordImpl.setFormInstanceVersion(
+			getFormInstanceVersion());
 		ddmFormInstanceRecordImpl.setStorageId(getStorageId());
 		ddmFormInstanceRecordImpl.setVersion(getVersion());
 		ddmFormInstanceRecordImpl.setLastPublishDate(getLastPublishDate());
@@ -966,7 +1088,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			return false;
 		}
 
-		DDMFormInstanceRecord ddmFormInstanceRecord = (DDMFormInstanceRecord)obj;
+		DDMFormInstanceRecord ddmFormInstanceRecord =
+			(DDMFormInstanceRecord)obj;
 
 		long primaryKey = ddmFormInstanceRecord.getPrimaryKey();
 
@@ -997,34 +1120,41 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	public void resetOriginalValues() {
 		DDMFormInstanceRecordModelImpl ddmFormInstanceRecordModelImpl = this;
 
-		ddmFormInstanceRecordModelImpl._originalUuid = ddmFormInstanceRecordModelImpl._uuid;
+		ddmFormInstanceRecordModelImpl._originalUuid =
+			ddmFormInstanceRecordModelImpl._uuid;
 
-		ddmFormInstanceRecordModelImpl._originalGroupId = ddmFormInstanceRecordModelImpl._groupId;
+		ddmFormInstanceRecordModelImpl._originalGroupId =
+			ddmFormInstanceRecordModelImpl._groupId;
 
 		ddmFormInstanceRecordModelImpl._setOriginalGroupId = false;
 
-		ddmFormInstanceRecordModelImpl._originalCompanyId = ddmFormInstanceRecordModelImpl._companyId;
+		ddmFormInstanceRecordModelImpl._originalCompanyId =
+			ddmFormInstanceRecordModelImpl._companyId;
 
 		ddmFormInstanceRecordModelImpl._setOriginalCompanyId = false;
 
-		ddmFormInstanceRecordModelImpl._originalUserId = ddmFormInstanceRecordModelImpl._userId;
+		ddmFormInstanceRecordModelImpl._originalUserId =
+			ddmFormInstanceRecordModelImpl._userId;
 
 		ddmFormInstanceRecordModelImpl._setOriginalUserId = false;
 
 		ddmFormInstanceRecordModelImpl._setModifiedDate = false;
 
-		ddmFormInstanceRecordModelImpl._originalFormInstanceId = ddmFormInstanceRecordModelImpl._formInstanceId;
+		ddmFormInstanceRecordModelImpl._originalFormInstanceId =
+			ddmFormInstanceRecordModelImpl._formInstanceId;
 
 		ddmFormInstanceRecordModelImpl._setOriginalFormInstanceId = false;
 
-		ddmFormInstanceRecordModelImpl._originalFormInstanceVersion = ddmFormInstanceRecordModelImpl._formInstanceVersion;
+		ddmFormInstanceRecordModelImpl._originalFormInstanceVersion =
+			ddmFormInstanceRecordModelImpl._formInstanceVersion;
 
 		ddmFormInstanceRecordModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<DDMFormInstanceRecord> toCacheModel() {
-		DDMFormInstanceRecordCacheModel ddmFormInstanceRecordCacheModel = new DDMFormInstanceRecordCacheModel();
+		DDMFormInstanceRecordCacheModel ddmFormInstanceRecordCacheModel =
+			new DDMFormInstanceRecordCacheModel();
 
 		ddmFormInstanceRecordCacheModel.uuid = getUuid();
 
@@ -1034,7 +1164,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 			ddmFormInstanceRecordCacheModel.uuid = null;
 		}
 
-		ddmFormInstanceRecordCacheModel.formInstanceRecordId = getFormInstanceRecordId();
+		ddmFormInstanceRecordCacheModel.formInstanceRecordId =
+			getFormInstanceRecordId();
 
 		ddmFormInstanceRecordCacheModel.groupId = getGroupId();
 
@@ -1054,7 +1185,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 		ddmFormInstanceRecordCacheModel.versionUserName = getVersionUserName();
 
-		String versionUserName = ddmFormInstanceRecordCacheModel.versionUserName;
+		String versionUserName =
+			ddmFormInstanceRecordCacheModel.versionUserName;
 
 		if ((versionUserName != null) && (versionUserName.length() == 0)) {
 			ddmFormInstanceRecordCacheModel.versionUserName = null;
@@ -1072,7 +1204,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			ddmFormInstanceRecordCacheModel.modifiedDate = modifiedDate.getTime();
+			ddmFormInstanceRecordCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			ddmFormInstanceRecordCacheModel.modifiedDate = Long.MIN_VALUE;
@@ -1080,12 +1213,15 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 		ddmFormInstanceRecordCacheModel.formInstanceId = getFormInstanceId();
 
-		ddmFormInstanceRecordCacheModel.formInstanceVersion = getFormInstanceVersion();
+		ddmFormInstanceRecordCacheModel.formInstanceVersion =
+			getFormInstanceVersion();
 
-		String formInstanceVersion = ddmFormInstanceRecordCacheModel.formInstanceVersion;
+		String formInstanceVersion =
+			ddmFormInstanceRecordCacheModel.formInstanceVersion;
 
 		if ((formInstanceVersion != null) &&
-				(formInstanceVersion.length() == 0)) {
+			(formInstanceVersion.length() == 0)) {
+
 			ddmFormInstanceRecordCacheModel.formInstanceVersion = null;
 		}
 
@@ -1102,7 +1238,8 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			ddmFormInstanceRecordCacheModel.lastPublishDate = lastPublishDate.getTime();
+			ddmFormInstanceRecordCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			ddmFormInstanceRecordCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1113,21 +1250,25 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public String toString() {
-		Map<String, Function<DDMFormInstanceRecord, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstanceRecord, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstanceRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstanceRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply((DDMFormInstanceRecord)this));
+			sb.append(
+				attributeGetterFunction.apply((DDMFormInstanceRecord)this));
 			sb.append(", ");
 		}
 
@@ -1142,24 +1283,28 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DDMFormInstanceRecord, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDMFormInstanceRecord, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDMFormInstanceRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDMFormInstanceRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDMFormInstanceRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply((DDMFormInstanceRecord)this));
+			sb.append(
+				attributeGetterFunction.apply((DDMFormInstanceRecord)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1168,10 +1313,12 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DDMFormInstanceRecord.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DDMFormInstanceRecord.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DDMFormInstanceRecord.class, ModelWrapper.class
-		};
+		DDMFormInstanceRecord.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _formInstanceRecordId;
@@ -1200,4 +1347,5 @@ public class DDMFormInstanceRecordModelImpl extends BaseModelImpl<DDMFormInstanc
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private DDMFormInstanceRecord _escapedModel;
+
 }

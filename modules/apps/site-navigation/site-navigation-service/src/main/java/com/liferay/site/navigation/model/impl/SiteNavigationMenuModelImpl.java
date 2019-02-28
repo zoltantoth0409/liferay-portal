@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -34,7 +32,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.site.navigation.model.SiteNavigationMenu;
 import com.liferay.site.navigation.model.SiteNavigationMenuModel;
 import com.liferay.site.navigation.model.SiteNavigationMenuSoap;
@@ -66,29 +63,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMenu>
+public class SiteNavigationMenuModelImpl
+	extends BaseModelImpl<SiteNavigationMenu>
 	implements SiteNavigationMenuModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a site navigation menu model instance should use the <code>SiteNavigationMenu</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SiteNavigationMenu";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "siteNavigationMenuId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "type_", Types.INTEGER },
-			{ "auto_", Types.BOOLEAN },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"siteNavigationMenuId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR}, {"type_", Types.INTEGER},
+		{"auto_", Types.BOOLEAN}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -105,28 +101,50 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SiteNavigationMenu (uuid_ VARCHAR(75) null,siteNavigationMenuId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,type_ INTEGER,auto_ BOOLEAN,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SiteNavigationMenu (uuid_ VARCHAR(75) null,siteNavigationMenuId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,type_ INTEGER,auto_ BOOLEAN,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table SiteNavigationMenu";
-	public static final String ORDER_BY_JPQL = " ORDER BY siteNavigationMenu.siteNavigationMenuId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY SiteNavigationMenu.siteNavigationMenuId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY siteNavigationMenu.siteNavigationMenuId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SiteNavigationMenu.siteNavigationMenuId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.site.navigation.model.SiteNavigationMenu"),
+		true);
+
 	public static final long AUTO_COLUMN_BITMASK = 1L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long NAME_COLUMN_BITMASK = 8L;
+
 	public static final long TYPE_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long SITENAVIGATIONMENUID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -166,11 +184,13 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 	 */
 	public static List<SiteNavigationMenu> toModels(
 		SiteNavigationMenuSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<SiteNavigationMenu> models = new ArrayList<SiteNavigationMenu>(soapModels.length);
+		List<SiteNavigationMenu> models = new ArrayList<SiteNavigationMenu>(
+			soapModels.length);
 
 		for (SiteNavigationMenuSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -179,8 +199,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.site.navigation.model.SiteNavigationMenu"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.site.navigation.model.SiteNavigationMenu"));
 
 	public SiteNavigationMenuModelImpl() {
 	}
@@ -219,14 +240,18 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<SiteNavigationMenu, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenu, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenu, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenu, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((SiteNavigationMenu)this));
 		}
 
@@ -238,38 +263,47 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<SiteNavigationMenu, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<SiteNavigationMenu, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<SiteNavigationMenu, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<SiteNavigationMenu, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((SiteNavigationMenu)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(SiteNavigationMenu)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<SiteNavigationMenu, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<SiteNavigationMenu, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<SiteNavigationMenu, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<SiteNavigationMenu, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<SiteNavigationMenu, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<SiteNavigationMenu, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<SiteNavigationMenu, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SiteNavigationMenu, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<SiteNavigationMenu, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<SiteNavigationMenu, Object>>();
-		Map<String, BiConsumer<SiteNavigationMenu, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<SiteNavigationMenu, ?>>();
-
+		Map<String, Function<SiteNavigationMenu, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<SiteNavigationMenu, Object>>();
+		Map<String, BiConsumer<SiteNavigationMenu, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<SiteNavigationMenu, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -286,7 +320,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object uuid) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object uuid) {
+
 					siteNavigationMenu.setUuid((String)uuid);
 				}
 
@@ -306,8 +342,12 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object siteNavigationMenuId) {
-					siteNavigationMenu.setSiteNavigationMenuId((Long)siteNavigationMenuId);
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu,
+					Object siteNavigationMenuId) {
+
+					siteNavigationMenu.setSiteNavigationMenuId(
+						(Long)siteNavigationMenuId);
 				}
 
 			});
@@ -326,7 +366,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object groupId) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object groupId) {
+
 					siteNavigationMenu.setGroupId((Long)groupId);
 				}
 
@@ -346,7 +388,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object companyId) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object companyId) {
+
 					siteNavigationMenu.setCompanyId((Long)companyId);
 				}
 
@@ -366,7 +410,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object userId) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object userId) {
+
 					siteNavigationMenu.setUserId((Long)userId);
 				}
 
@@ -386,7 +432,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object userName) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object userName) {
+
 					siteNavigationMenu.setUserName((String)userName);
 				}
 
@@ -406,7 +454,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object createDate) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object createDate) {
+
 					siteNavigationMenu.setCreateDate((Date)createDate);
 				}
 
@@ -426,7 +476,10 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object modifiedDate) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu,
+					Object modifiedDate) {
+
 					siteNavigationMenu.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -446,7 +499,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object name) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object name) {
+
 					siteNavigationMenu.setName((String)name);
 				}
 
@@ -466,7 +521,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object type) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object type) {
+
 					siteNavigationMenu.setType((Integer)type);
 				}
 
@@ -486,7 +543,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object auto) {
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu, Object auto) {
+
 					siteNavigationMenu.setAuto((Boolean)auto);
 				}
 
@@ -506,15 +565,20 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			new BiConsumer<SiteNavigationMenu, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenu siteNavigationMenu, Object lastPublishDate) {
-					siteNavigationMenu.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					SiteNavigationMenu siteNavigationMenu,
+					Object lastPublishDate) {
+
+					siteNavigationMenu.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -762,8 +826,8 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				SiteNavigationMenu.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(SiteNavigationMenu.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -772,8 +836,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			SiteNavigationMenu.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), SiteNavigationMenu.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -786,8 +851,9 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 	@Override
 	public SiteNavigationMenu toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (SiteNavigationMenu)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (SiteNavigationMenu)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -795,10 +861,12 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public Object clone() {
-		SiteNavigationMenuImpl siteNavigationMenuImpl = new SiteNavigationMenuImpl();
+		SiteNavigationMenuImpl siteNavigationMenuImpl =
+			new SiteNavigationMenuImpl();
 
 		siteNavigationMenuImpl.setUuid(getUuid());
-		siteNavigationMenuImpl.setSiteNavigationMenuId(getSiteNavigationMenuId());
+		siteNavigationMenuImpl.setSiteNavigationMenuId(
+			getSiteNavigationMenuId());
 		siteNavigationMenuImpl.setGroupId(getGroupId());
 		siteNavigationMenuImpl.setCompanyId(getCompanyId());
 		siteNavigationMenuImpl.setUserId(getUserId());
@@ -871,25 +939,31 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 	public void resetOriginalValues() {
 		SiteNavigationMenuModelImpl siteNavigationMenuModelImpl = this;
 
-		siteNavigationMenuModelImpl._originalUuid = siteNavigationMenuModelImpl._uuid;
+		siteNavigationMenuModelImpl._originalUuid =
+			siteNavigationMenuModelImpl._uuid;
 
-		siteNavigationMenuModelImpl._originalGroupId = siteNavigationMenuModelImpl._groupId;
+		siteNavigationMenuModelImpl._originalGroupId =
+			siteNavigationMenuModelImpl._groupId;
 
 		siteNavigationMenuModelImpl._setOriginalGroupId = false;
 
-		siteNavigationMenuModelImpl._originalCompanyId = siteNavigationMenuModelImpl._companyId;
+		siteNavigationMenuModelImpl._originalCompanyId =
+			siteNavigationMenuModelImpl._companyId;
 
 		siteNavigationMenuModelImpl._setOriginalCompanyId = false;
 
 		siteNavigationMenuModelImpl._setModifiedDate = false;
 
-		siteNavigationMenuModelImpl._originalName = siteNavigationMenuModelImpl._name;
+		siteNavigationMenuModelImpl._originalName =
+			siteNavigationMenuModelImpl._name;
 
-		siteNavigationMenuModelImpl._originalType = siteNavigationMenuModelImpl._type;
+		siteNavigationMenuModelImpl._originalType =
+			siteNavigationMenuModelImpl._type;
 
 		siteNavigationMenuModelImpl._setOriginalType = false;
 
-		siteNavigationMenuModelImpl._originalAuto = siteNavigationMenuModelImpl._auto;
+		siteNavigationMenuModelImpl._originalAuto =
+			siteNavigationMenuModelImpl._auto;
 
 		siteNavigationMenuModelImpl._setOriginalAuto = false;
 
@@ -898,7 +972,8 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public CacheModel<SiteNavigationMenu> toCacheModel() {
-		SiteNavigationMenuCacheModel siteNavigationMenuCacheModel = new SiteNavigationMenuCacheModel();
+		SiteNavigationMenuCacheModel siteNavigationMenuCacheModel =
+			new SiteNavigationMenuCacheModel();
 
 		siteNavigationMenuCacheModel.uuid = getUuid();
 
@@ -908,7 +983,8 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 			siteNavigationMenuCacheModel.uuid = null;
 		}
 
-		siteNavigationMenuCacheModel.siteNavigationMenuId = getSiteNavigationMenuId();
+		siteNavigationMenuCacheModel.siteNavigationMenuId =
+			getSiteNavigationMenuId();
 
 		siteNavigationMenuCacheModel.groupId = getGroupId();
 
@@ -957,7 +1033,8 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			siteNavigationMenuCacheModel.lastPublishDate = lastPublishDate.getTime();
+			siteNavigationMenuCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			siteNavigationMenuCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -968,17 +1045,20 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public String toString() {
-		Map<String, Function<SiteNavigationMenu, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenu, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenu, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenu, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -997,19 +1077,22 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<SiteNavigationMenu, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenu, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenu, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenu, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenu, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1023,10 +1106,12 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = SiteNavigationMenu.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		SiteNavigationMenu.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			SiteNavigationMenu.class, ModelWrapper.class
-		};
+		SiteNavigationMenu.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _siteNavigationMenuId;
@@ -1052,4 +1137,5 @@ public class SiteNavigationMenuModelImpl extends BaseModelImpl<SiteNavigationMen
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private SiteNavigationMenu _escapedModel;
+
 }

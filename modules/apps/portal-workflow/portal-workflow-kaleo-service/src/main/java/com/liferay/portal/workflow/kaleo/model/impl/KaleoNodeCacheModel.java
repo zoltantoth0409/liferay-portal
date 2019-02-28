@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
-	Externalizable {
+public class KaleoNodeCacheModel
+	implements CacheModel<KaleoNode>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -191,8 +192,7 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(kaleoNodeId);
 
 		objectOutput.writeLong(groupId);
@@ -260,4 +260,5 @@ public class KaleoNodeCacheModel implements CacheModel<KaleoNode>,
 	public String type;
 	public boolean initial;
 	public boolean terminal;
+
 }

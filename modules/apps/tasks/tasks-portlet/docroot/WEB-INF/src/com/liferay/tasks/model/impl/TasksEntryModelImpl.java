@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.model.TasksEntryModel;
 import com.liferay.tasks.model.TasksEntrySoap;
@@ -64,31 +62,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
-	implements TasksEntryModel {
+public class TasksEntryModelImpl
+	extends BaseModelImpl<TasksEntry> implements TasksEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a tasks entry model instance should use the <code>TasksEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "TMS_TasksEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "tasksEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "title", Types.VARCHAR },
-			{ "priority", Types.INTEGER },
-			{ "assigneeUserId", Types.BIGINT },
-			{ "resolverUserId", Types.BIGINT },
-			{ "dueDate", Types.TIMESTAMP },
-			{ "finishDate", Types.TIMESTAMP },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"tasksEntryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"title", Types.VARCHAR},
+		{"priority", Types.INTEGER}, {"assigneeUserId", Types.BIGINT},
+		{"resolverUserId", Types.BIGINT}, {"dueDate", Types.TIMESTAMP},
+		{"finishDate", Types.TIMESTAMP}, {"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("tasksEntryId", Types.BIGINT);
@@ -107,29 +102,52 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table TMS_TasksEntry (tasksEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,priority INTEGER,assigneeUserId LONG,resolverUserId LONG,dueDate DATE null,finishDate DATE null,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table TMS_TasksEntry (tasksEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,title VARCHAR(75) null,priority INTEGER,assigneeUserId LONG,resolverUserId LONG,dueDate DATE null,finishDate DATE null,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table TMS_TasksEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY tasksEntry.priority ASC, tasksEntry.dueDate ASC, tasksEntry.createDate ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY tasksEntry.priority ASC, tasksEntry.dueDate ASC, tasksEntry.createDate ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.tasks.model.TasksEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.tasks.model.TasksEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.tasks.model.TasksEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.tasks.model.TasksEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.tasks.model.TasksEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.tasks.model.TasksEntry"),
+		true);
+
 	public static final long ASSIGNEEUSERID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long RESOLVERUSERID_COLUMN_BITMASK = 4L;
+
 	public static final long STATUS_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long PRIORITY_COLUMN_BITMASK = 32L;
+
 	public static final long DUEDATE_COLUMN_BITMASK = 64L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 128L;
 
 	/**
@@ -183,8 +201,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.tasks.model.TasksEntry"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.util.service.ServiceProps.get(
+			"lock.expiration.time.com.liferay.tasks.model.TasksEntry"));
 
 	public TasksEntryModelImpl() {
 	}
@@ -223,14 +242,18 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TasksEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((TasksEntry)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((TasksEntry)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -241,35 +264,44 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<TasksEntry, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<TasksEntry, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<TasksEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<TasksEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((TasksEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(TasksEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<TasksEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<TasksEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<TasksEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<TasksEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<TasksEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<TasksEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<TasksEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<TasksEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<TasksEntry, Object>>();
-		Map<String, BiConsumer<TasksEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<TasksEntry, ?>>();
-
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<TasksEntry, Object>>();
+		Map<String, BiConsumer<TasksEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<TasksEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"tasksEntryId",
@@ -466,7 +498,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object assigneeUserId) {
+				public void accept(
+					TasksEntry tasksEntry, Object assigneeUserId) {
+
 					tasksEntry.setAssigneeUserId((Long)assigneeUserId);
 				}
 
@@ -486,7 +520,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 			new BiConsumer<TasksEntry, Object>() {
 
 				@Override
-				public void accept(TasksEntry tasksEntry, Object resolverUserId) {
+				public void accept(
+					TasksEntry tasksEntry, Object resolverUserId) {
+
 					tasksEntry.setResolverUserId((Long)resolverUserId);
 				}
 
@@ -552,9 +588,10 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -847,8 +884,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			TasksEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), TasksEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -861,8 +898,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	@Override
 	public TasksEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (TasksEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (TasksEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -976,11 +1014,13 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 		tasksEntryModelImpl._setModifiedDate = false;
 
-		tasksEntryModelImpl._originalAssigneeUserId = tasksEntryModelImpl._assigneeUserId;
+		tasksEntryModelImpl._originalAssigneeUserId =
+			tasksEntryModelImpl._assigneeUserId;
 
 		tasksEntryModelImpl._setOriginalAssigneeUserId = false;
 
-		tasksEntryModelImpl._originalResolverUserId = tasksEntryModelImpl._resolverUserId;
+		tasksEntryModelImpl._originalResolverUserId =
+			tasksEntryModelImpl._resolverUserId;
 
 		tasksEntryModelImpl._setOriginalResolverUserId = false;
 
@@ -1068,16 +1108,20 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TasksEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1096,18 +1140,22 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TasksEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<TasksEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TasksEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TasksEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<TasksEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1121,10 +1169,12 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = TasksEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		TasksEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			TasksEntry.class, ModelWrapper.class
-		};
+		TasksEntry.class, ModelWrapper.class
+	};
+
 	private long _tasksEntryId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -1152,4 +1202,5 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private TasksEntry _escapedModel;
+
 }

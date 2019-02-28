@@ -17,7 +17,6 @@ package com.liferay.mail.reader.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.mail.reader.model.Message;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -37,6 +36,7 @@ import java.util.Date;
  */
 @ProviderType
 public class MessageCacheModel implements CacheModel<Message>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -251,8 +251,7 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(messageId);
 
 		objectOutput.writeLong(companyId);
@@ -363,4 +362,5 @@ public class MessageCacheModel implements CacheModel<Message>, Externalizable {
 	public long size;
 	public long remoteMessageId;
 	public String contentType;
+
 }

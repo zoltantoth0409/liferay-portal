@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -45,8 +44,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface DDMFormInstanceVersionModel extends BaseModel<DDMFormInstanceVersion>,
-	LocalizedModel, ShardedModel, WorkflowedModel {
+public interface DDMFormInstanceVersionModel
+	extends BaseModel<DDMFormInstanceVersion>, LocalizedModel, ShardedModel,
+			WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -375,8 +376,8 @@ public interface DDMFormInstanceVersionModel extends BaseModel<DDMFormInstanceVe
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -393,8 +394,8 @@ public interface DDMFormInstanceVersionModel extends BaseModel<DDMFormInstanceVe
 	 * @param descriptionMap the locales and localized descriptions of this ddm form instance version
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the settings of this ddm form instance version.
@@ -640,4 +641,5 @@ public interface DDMFormInstanceVersionModel extends BaseModel<DDMFormInstanceVe
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.oauth2.provider.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -40,8 +39,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface OAuth2ApplicationScopeAliasesModel extends BaseModel<OAuth2ApplicationScopeAliases>,
-	ShardedModel {
+public interface OAuth2ApplicationScopeAliasesModel
+	extends BaseModel<OAuth2ApplicationScopeAliases>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -250,4 +250,5 @@ public interface OAuth2ApplicationScopeAliasesModel extends BaseModel<OAuth2Appl
 
 	@Override
 	public String toXmlString();
+
 }

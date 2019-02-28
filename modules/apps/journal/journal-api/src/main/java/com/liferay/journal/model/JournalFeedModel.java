@@ -17,7 +17,6 @@ package com.liferay.journal.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface JournalFeedModel extends BaseModel<JournalFeed>, ShardedModel,
-	StagedGroupedModel {
+public interface JournalFeedModel
+	extends BaseModel<JournalFeed>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -486,4 +486,5 @@ public interface JournalFeedModel extends BaseModel<JournalFeed>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

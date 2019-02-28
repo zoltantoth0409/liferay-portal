@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.lists.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface DDLRecordModel extends BaseModel<DDLRecord>, ShardedModel,
-	StagedGroupedModel {
+public interface DDLRecordModel
+	extends BaseModel<DDLRecord>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -394,4 +394,5 @@ public interface DDLRecordModel extends BaseModel<DDLRecord>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

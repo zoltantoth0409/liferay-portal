@@ -37,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface ExpandoValueModel extends AttachedModel, BaseModel<ExpandoValue>,
-	ShardedModel {
+public interface ExpandoValueModel
+	extends AttachedModel, BaseModel<ExpandoValue>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -244,4 +245,5 @@ public interface ExpandoValueModel extends AttachedModel, BaseModel<ExpandoValue
 
 	@Override
 	public String toXmlString();
+
 }

@@ -18,12 +18,9 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.message.boards.model.MBMailingList;
 import com.liferay.message.boards.model.MBMailingListModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -61,43 +58,34 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
-	implements MBMailingListModel {
+public class MBMailingListModelImpl
+	extends BaseModelImpl<MBMailingList> implements MBMailingListModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a message boards mailing list model instance should use the <code>MBMailingList</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "MBMailingList";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "mailingListId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "categoryId", Types.BIGINT },
-			{ "emailAddress", Types.VARCHAR },
-			{ "inProtocol", Types.VARCHAR },
-			{ "inServerName", Types.VARCHAR },
-			{ "inServerPort", Types.INTEGER },
-			{ "inUseSSL", Types.BOOLEAN },
-			{ "inUserName", Types.VARCHAR },
-			{ "inPassword", Types.VARCHAR },
-			{ "inReadInterval", Types.INTEGER },
-			{ "outEmailAddress", Types.VARCHAR },
-			{ "outCustom", Types.BOOLEAN },
-			{ "outServerName", Types.VARCHAR },
-			{ "outServerPort", Types.INTEGER },
-			{ "outUseSSL", Types.BOOLEAN },
-			{ "outUserName", Types.VARCHAR },
-			{ "outPassword", Types.VARCHAR },
-			{ "allowAnonymous", Types.BOOLEAN },
-			{ "active_", Types.BOOLEAN }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"mailingListId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"categoryId", Types.BIGINT}, {"emailAddress", Types.VARCHAR},
+		{"inProtocol", Types.VARCHAR}, {"inServerName", Types.VARCHAR},
+		{"inServerPort", Types.INTEGER}, {"inUseSSL", Types.BOOLEAN},
+		{"inUserName", Types.VARCHAR}, {"inPassword", Types.VARCHAR},
+		{"inReadInterval", Types.INTEGER}, {"outEmailAddress", Types.VARCHAR},
+		{"outCustom", Types.BOOLEAN}, {"outServerName", Types.VARCHAR},
+		{"outServerPort", Types.INTEGER}, {"outUseSSL", Types.BOOLEAN},
+		{"outUserName", Types.VARCHAR}, {"outPassword", Types.VARCHAR},
+		{"allowAnonymous", Types.BOOLEAN}, {"active_", Types.BOOLEAN}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -128,30 +116,53 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table MBMailingList (uuid_ VARCHAR(75) null,mailingListId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,categoryId LONG,emailAddress VARCHAR(254) null,inProtocol VARCHAR(75) null,inServerName VARCHAR(75) null,inServerPort INTEGER,inUseSSL BOOLEAN,inUserName VARCHAR(75) null,inPassword VARCHAR(75) null,inReadInterval INTEGER,outEmailAddress VARCHAR(254) null,outCustom BOOLEAN,outServerName VARCHAR(75) null,outServerPort INTEGER,outUseSSL BOOLEAN,outUserName VARCHAR(75) null,outPassword VARCHAR(75) null,allowAnonymous BOOLEAN,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE =
+		"create table MBMailingList (uuid_ VARCHAR(75) null,mailingListId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,categoryId LONG,emailAddress VARCHAR(254) null,inProtocol VARCHAR(75) null,inServerName VARCHAR(75) null,inServerPort INTEGER,inUseSSL BOOLEAN,inUserName VARCHAR(75) null,inPassword VARCHAR(75) null,inReadInterval INTEGER,outEmailAddress VARCHAR(254) null,outCustom BOOLEAN,outServerName VARCHAR(75) null,outServerPort INTEGER,outUseSSL BOOLEAN,outUserName VARCHAR(75) null,outPassword VARCHAR(75) null,allowAnonymous BOOLEAN,active_ BOOLEAN)";
+
 	public static final String TABLE_SQL_DROP = "drop table MBMailingList";
-	public static final String ORDER_BY_JPQL = " ORDER BY mbMailingList.mailingListId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY MBMailingList.mailingListId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY mbMailingList.mailingListId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY MBMailingList.mailingListId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.message.boards.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.message.boards.model.MBMailingList"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.message.boards.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.message.boards.model.MBMailingList"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.message.boards.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.message.boards.model.MBMailingList"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.message.boards.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.message.boards.model.MBMailingList"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.message.boards.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.message.boards.model.MBMailingList"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.message.boards.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.message.boards.model.MBMailingList"),
+		true);
+
 	public static final long ACTIVE_COLUMN_BITMASK = 1L;
+
 	public static final long CATEGORYID_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long MAILINGLISTID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.message.boards.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.message.boards.model.MBMailingList"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.message.boards.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.message.boards.model.MBMailingList"));
 
 	public MBMailingListModelImpl() {
 	}
@@ -190,13 +201,18 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MBMailingList, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBMailingList, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBMailingList, Object> attributeGetterFunction = entry.getValue();
+			Function<MBMailingList, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MBMailingList)this));
 		}
 
@@ -208,36 +224,44 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MBMailingList, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MBMailingList, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MBMailingList, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MBMailingList, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MBMailingList)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MBMailingList)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MBMailingList, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MBMailingList, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MBMailingList, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MBMailingList, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MBMailingList, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MBMailingList, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MBMailingList, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MBMailingList, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MBMailingList, Object>>();
-		Map<String, BiConsumer<MBMailingList, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MBMailingList, ?>>();
-
+		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MBMailingList, Object>>();
+		Map<String, BiConsumer<MBMailingList, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MBMailingList, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -274,7 +298,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object mailingListId) {
+				public void accept(
+					MBMailingList mbMailingList, Object mailingListId) {
+
 					mbMailingList.setMailingListId((Long)mailingListId);
 				}
 
@@ -294,7 +320,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object groupId) {
+				public void accept(
+					MBMailingList mbMailingList, Object groupId) {
+
 					mbMailingList.setGroupId((Long)groupId);
 				}
 
@@ -314,7 +342,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object companyId) {
+				public void accept(
+					MBMailingList mbMailingList, Object companyId) {
+
 					mbMailingList.setCompanyId((Long)companyId);
 				}
 
@@ -354,7 +384,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object userName) {
+				public void accept(
+					MBMailingList mbMailingList, Object userName) {
+
 					mbMailingList.setUserName((String)userName);
 				}
 
@@ -374,7 +406,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object createDate) {
+				public void accept(
+					MBMailingList mbMailingList, Object createDate) {
+
 					mbMailingList.setCreateDate((Date)createDate);
 				}
 
@@ -394,7 +428,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object modifiedDate) {
+				public void accept(
+					MBMailingList mbMailingList, Object modifiedDate) {
+
 					mbMailingList.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -414,7 +450,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object categoryId) {
+				public void accept(
+					MBMailingList mbMailingList, Object categoryId) {
+
 					mbMailingList.setCategoryId((Long)categoryId);
 				}
 
@@ -434,7 +472,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object emailAddress) {
+				public void accept(
+					MBMailingList mbMailingList, Object emailAddress) {
+
 					mbMailingList.setEmailAddress((String)emailAddress);
 				}
 
@@ -454,7 +494,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inProtocol) {
+				public void accept(
+					MBMailingList mbMailingList, Object inProtocol) {
+
 					mbMailingList.setInProtocol((String)inProtocol);
 				}
 
@@ -474,7 +516,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inServerName) {
+				public void accept(
+					MBMailingList mbMailingList, Object inServerName) {
+
 					mbMailingList.setInServerName((String)inServerName);
 				}
 
@@ -494,7 +538,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inServerPort) {
+				public void accept(
+					MBMailingList mbMailingList, Object inServerPort) {
+
 					mbMailingList.setInServerPort((Integer)inServerPort);
 				}
 
@@ -514,7 +560,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inUseSSL) {
+				public void accept(
+					MBMailingList mbMailingList, Object inUseSSL) {
+
 					mbMailingList.setInUseSSL((Boolean)inUseSSL);
 				}
 
@@ -534,7 +582,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inUserName) {
+				public void accept(
+					MBMailingList mbMailingList, Object inUserName) {
+
 					mbMailingList.setInUserName((String)inUserName);
 				}
 
@@ -554,7 +604,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inPassword) {
+				public void accept(
+					MBMailingList mbMailingList, Object inPassword) {
+
 					mbMailingList.setInPassword((String)inPassword);
 				}
 
@@ -574,7 +626,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object inReadInterval) {
+				public void accept(
+					MBMailingList mbMailingList, Object inReadInterval) {
+
 					mbMailingList.setInReadInterval((Integer)inReadInterval);
 				}
 
@@ -594,7 +648,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outEmailAddress) {
+				public void accept(
+					MBMailingList mbMailingList, Object outEmailAddress) {
+
 					mbMailingList.setOutEmailAddress((String)outEmailAddress);
 				}
 
@@ -614,7 +670,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outCustom) {
+				public void accept(
+					MBMailingList mbMailingList, Object outCustom) {
+
 					mbMailingList.setOutCustom((Boolean)outCustom);
 				}
 
@@ -634,7 +692,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outServerName) {
+				public void accept(
+					MBMailingList mbMailingList, Object outServerName) {
+
 					mbMailingList.setOutServerName((String)outServerName);
 				}
 
@@ -654,7 +714,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outServerPort) {
+				public void accept(
+					MBMailingList mbMailingList, Object outServerPort) {
+
 					mbMailingList.setOutServerPort((Integer)outServerPort);
 				}
 
@@ -674,7 +736,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outUseSSL) {
+				public void accept(
+					MBMailingList mbMailingList, Object outUseSSL) {
+
 					mbMailingList.setOutUseSSL((Boolean)outUseSSL);
 				}
 
@@ -694,7 +758,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outUserName) {
+				public void accept(
+					MBMailingList mbMailingList, Object outUserName) {
+
 					mbMailingList.setOutUserName((String)outUserName);
 				}
 
@@ -714,7 +780,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object outPassword) {
+				public void accept(
+					MBMailingList mbMailingList, Object outPassword) {
+
 					mbMailingList.setOutPassword((String)outPassword);
 				}
 
@@ -734,7 +802,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 			new BiConsumer<MBMailingList, Object>() {
 
 				@Override
-				public void accept(MBMailingList mbMailingList, Object allowAnonymous) {
+				public void accept(
+					MBMailingList mbMailingList, Object allowAnonymous) {
+
 					mbMailingList.setAllowAnonymous((Boolean)allowAnonymous);
 				}
 
@@ -760,9 +830,10 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -1187,8 +1258,8 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				MBMailingList.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(MBMailingList.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -1197,8 +1268,8 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MBMailingList.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MBMailingList.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1211,8 +1282,9 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 	@Override
 	public MBMailingList toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MBMailingList)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MBMailingList)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1312,17 +1384,20 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 		mbMailingListModelImpl._originalUuid = mbMailingListModelImpl._uuid;
 
-		mbMailingListModelImpl._originalGroupId = mbMailingListModelImpl._groupId;
+		mbMailingListModelImpl._originalGroupId =
+			mbMailingListModelImpl._groupId;
 
 		mbMailingListModelImpl._setOriginalGroupId = false;
 
-		mbMailingListModelImpl._originalCompanyId = mbMailingListModelImpl._companyId;
+		mbMailingListModelImpl._originalCompanyId =
+			mbMailingListModelImpl._companyId;
 
 		mbMailingListModelImpl._setOriginalCompanyId = false;
 
 		mbMailingListModelImpl._setModifiedDate = false;
 
-		mbMailingListModelImpl._originalCategoryId = mbMailingListModelImpl._categoryId;
+		mbMailingListModelImpl._originalCategoryId =
+			mbMailingListModelImpl._categoryId;
 
 		mbMailingListModelImpl._setOriginalCategoryId = false;
 
@@ -1335,7 +1410,8 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public CacheModel<MBMailingList> toCacheModel() {
-		MBMailingListCacheModel mbMailingListCacheModel = new MBMailingListCacheModel();
+		MBMailingListCacheModel mbMailingListCacheModel =
+			new MBMailingListCacheModel();
 
 		mbMailingListCacheModel.uuid = getUuid();
 
@@ -1474,16 +1550,20 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public String toString() {
-		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MBMailingList, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBMailingList, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBMailingList, Object> attributeGetterFunction = entry.getValue();
+			Function<MBMailingList, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1502,18 +1582,22 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MBMailingList, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MBMailingList, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MBMailingList, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MBMailingList, Object> attributeGetterFunction = entry.getValue();
+			Function<MBMailingList, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1527,10 +1611,12 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MBMailingList.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MBMailingList.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MBMailingList.class, ModelWrapper.class
-		};
+		MBMailingList.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _mailingListId;
@@ -1569,4 +1655,5 @@ public class MBMailingListModelImpl extends BaseModelImpl<MBMailingList>
 	private boolean _setOriginalActive;
 	private long _columnBitmask;
 	private MBMailingList _escapedModel;
+
 }

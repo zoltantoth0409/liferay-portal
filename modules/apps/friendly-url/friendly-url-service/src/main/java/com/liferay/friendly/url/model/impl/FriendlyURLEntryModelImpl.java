@@ -18,14 +18,11 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.friendly.url.model.FriendlyURLEntry;
 import com.liferay.friendly.url.model.FriendlyURLEntryLocalization;
 import com.liferay.friendly.url.model.FriendlyURLEntryModel;
 import com.liferay.friendly.url.service.FriendlyURLEntryLocalServiceUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -63,27 +60,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
-	implements FriendlyURLEntryModel {
+public class FriendlyURLEntryModelImpl
+	extends BaseModelImpl<FriendlyURLEntry> implements FriendlyURLEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a friendly url entry model instance should use the <code>FriendlyURLEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "FriendlyURLEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "uuid_", Types.VARCHAR },
-			{ "defaultLanguageId", Types.VARCHAR },
-			{ "friendlyURLEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"uuid_", Types.VARCHAR},
+		{"defaultLanguageId", Types.VARCHAR},
+		{"friendlyURLEntryId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -98,30 +95,53 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 		TABLE_COLUMNS_MAP.put("classPK", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table FriendlyURLEntry (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,defaultLanguageId VARCHAR(75) null,friendlyURLEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table FriendlyURLEntry (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,defaultLanguageId VARCHAR(75) null,friendlyURLEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table FriendlyURLEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY friendlyURLEntry.friendlyURLEntryId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY FriendlyURLEntry.friendlyURLEntryId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY friendlyURLEntry.friendlyURLEntryId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY FriendlyURLEntry.friendlyURLEntryId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.friendly.url.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.friendly.url.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.friendly.url.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.friendly.url.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.friendly.url.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.friendly.url.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.friendly.url.model.FriendlyURLEntry"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long FRIENDLYURLENTRYID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.friendly.url.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.friendly.url.model.FriendlyURLEntry"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.friendly.url.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.friendly.url.model.FriendlyURLEntry"));
 
 	public FriendlyURLEntryModelImpl() {
 	}
@@ -160,14 +180,18 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<FriendlyURLEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<FriendlyURLEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<FriendlyURLEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<FriendlyURLEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((FriendlyURLEntry)this));
 		}
 
@@ -179,37 +203,46 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<FriendlyURLEntry, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<FriendlyURLEntry, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<FriendlyURLEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<FriendlyURLEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((FriendlyURLEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(FriendlyURLEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<FriendlyURLEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<FriendlyURLEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<FriendlyURLEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<FriendlyURLEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<FriendlyURLEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<FriendlyURLEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<FriendlyURLEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<FriendlyURLEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<FriendlyURLEntry, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<FriendlyURLEntry, Object>>();
-		Map<String, BiConsumer<FriendlyURLEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<FriendlyURLEntry, ?>>();
-
+		Map<String, Function<FriendlyURLEntry, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<FriendlyURLEntry, Object>>();
+		Map<String, BiConsumer<FriendlyURLEntry, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<FriendlyURLEntry, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -226,7 +259,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object mvccVersion) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object mvccVersion) {
+
 					friendlyURLEntry.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -246,7 +281,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object uuid) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object uuid) {
+
 					friendlyURLEntry.setUuid((String)uuid);
 				}
 
@@ -266,8 +303,12 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object defaultLanguageId) {
-					friendlyURLEntry.setDefaultLanguageId((String)defaultLanguageId);
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry,
+					Object defaultLanguageId) {
+
+					friendlyURLEntry.setDefaultLanguageId(
+						(String)defaultLanguageId);
 				}
 
 			});
@@ -286,8 +327,12 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object friendlyURLEntryId) {
-					friendlyURLEntry.setFriendlyURLEntryId((Long)friendlyURLEntryId);
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry,
+					Object friendlyURLEntryId) {
+
+					friendlyURLEntry.setFriendlyURLEntryId(
+						(Long)friendlyURLEntryId);
 				}
 
 			});
@@ -306,7 +351,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object groupId) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object groupId) {
+
 					friendlyURLEntry.setGroupId((Long)groupId);
 				}
 
@@ -326,7 +373,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object companyId) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object companyId) {
+
 					friendlyURLEntry.setCompanyId((Long)companyId);
 				}
 
@@ -346,7 +395,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object createDate) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object createDate) {
+
 					friendlyURLEntry.setCreateDate((Date)createDate);
 				}
 
@@ -366,7 +417,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object modifiedDate) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object modifiedDate) {
+
 					friendlyURLEntry.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -386,7 +439,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object classNameId) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object classNameId) {
+
 					friendlyURLEntry.setClassNameId((Long)classNameId);
 				}
 
@@ -406,27 +461,35 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 			new BiConsumer<FriendlyURLEntry, Object>() {
 
 				@Override
-				public void accept(FriendlyURLEntry friendlyURLEntry, Object classPK) {
+				public void accept(
+					FriendlyURLEntry friendlyURLEntry, Object classPK) {
+
 					friendlyURLEntry.setClassPK((Long)classPK);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
 	public String[] getAvailableLanguageIds() {
-		List<FriendlyURLEntryLocalization> friendlyURLEntryLocalizations = FriendlyURLEntryLocalServiceUtil.getFriendlyURLEntryLocalizations(getPrimaryKey());
+		List<FriendlyURLEntryLocalization> friendlyURLEntryLocalizations =
+			FriendlyURLEntryLocalServiceUtil.getFriendlyURLEntryLocalizations(
+				getPrimaryKey());
 
-		String[] availableLanguageIds = new String[friendlyURLEntryLocalizations.size()];
+		String[] availableLanguageIds =
+			new String[friendlyURLEntryLocalizations.size()];
 
 		for (int i = 0; i < availableLanguageIds.length; i++) {
-			FriendlyURLEntryLocalization friendlyURLEntryLocalization = friendlyURLEntryLocalizations.get(i);
+			FriendlyURLEntryLocalization friendlyURLEntryLocalization =
+				friendlyURLEntryLocalizations.get(i);
 
-			availableLanguageIds[i] = friendlyURLEntryLocalization.getLanguageId();
+			availableLanguageIds[i] =
+				friendlyURLEntryLocalization.getLanguageId();
 		}
 
 		return availableLanguageIds;
@@ -445,12 +508,16 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	@Override
 	public String getUrlTitle(String languageId, boolean useDefault) {
 		if (useDefault) {
-			return LocalizationUtil.getLocalization(new Function<String, String>() {
+			return LocalizationUtil.getLocalization(
+				new Function<String, String>() {
+
 					@Override
 					public String apply(String languageId) {
 						return _getUrlTitle(languageId);
 					}
-				}, languageId, getDefaultLanguageId());
+
+				},
+				languageId, getDefaultLanguageId());
 		}
 
 		return _getUrlTitle(languageId);
@@ -458,18 +525,24 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public String getUrlTitleMapAsXML() {
-		return LocalizationUtil.getXml(getLanguageIdToUrlTitleMap(),
-			getDefaultLanguageId(), "UrlTitle");
+		return LocalizationUtil.getXml(
+			getLanguageIdToUrlTitleMap(), getDefaultLanguageId(), "UrlTitle");
 	}
 
 	@Override
 	public Map<String, String> getLanguageIdToUrlTitleMap() {
-		Map<String, String> languageIdToUrlTitleMap = new HashMap<String, String>();
+		Map<String, String> languageIdToUrlTitleMap =
+			new HashMap<String, String>();
 
-		List<FriendlyURLEntryLocalization> friendlyURLEntryLocalizations = FriendlyURLEntryLocalServiceUtil.getFriendlyURLEntryLocalizations(getPrimaryKey());
+		List<FriendlyURLEntryLocalization> friendlyURLEntryLocalizations =
+			FriendlyURLEntryLocalServiceUtil.getFriendlyURLEntryLocalizations(
+				getPrimaryKey());
 
-		for (FriendlyURLEntryLocalization friendlyURLEntryLocalization : friendlyURLEntryLocalizations) {
-			languageIdToUrlTitleMap.put(friendlyURLEntryLocalization.getLanguageId(),
+		for (FriendlyURLEntryLocalization friendlyURLEntryLocalization :
+				friendlyURLEntryLocalizations) {
+
+			languageIdToUrlTitleMap.put(
+				friendlyURLEntryLocalization.getLanguageId(),
 				friendlyURLEntryLocalization.getUrlTitle());
 		}
 
@@ -477,8 +550,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	}
 
 	private String _getUrlTitle(String languageId) {
-		FriendlyURLEntryLocalization friendlyURLEntryLocalization = FriendlyURLEntryLocalServiceUtil.fetchFriendlyURLEntryLocalization(getPrimaryKey(),
-				languageId);
+		FriendlyURLEntryLocalization friendlyURLEntryLocalization =
+			FriendlyURLEntryLocalServiceUtil.fetchFriendlyURLEntryLocalization(
+				getPrimaryKey(), languageId);
 
 		if (friendlyURLEntryLocalization == null) {
 			return "";
@@ -683,8 +757,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				FriendlyURLEntry.class.getName()), getClassNameId());
+		return new StagedModelType(
+			PortalUtil.getClassNameId(FriendlyURLEntry.class.getName()),
+			getClassNameId());
 	}
 
 	public long getColumnBitmask() {
@@ -693,8 +768,8 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			FriendlyURLEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), FriendlyURLEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -707,8 +782,9 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	@Override
 	public FriendlyURLEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (FriendlyURLEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (FriendlyURLEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -790,23 +866,28 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	public void resetOriginalValues() {
 		FriendlyURLEntryModelImpl friendlyURLEntryModelImpl = this;
 
-		friendlyURLEntryModelImpl._originalUuid = friendlyURLEntryModelImpl._uuid;
+		friendlyURLEntryModelImpl._originalUuid =
+			friendlyURLEntryModelImpl._uuid;
 
-		friendlyURLEntryModelImpl._originalGroupId = friendlyURLEntryModelImpl._groupId;
+		friendlyURLEntryModelImpl._originalGroupId =
+			friendlyURLEntryModelImpl._groupId;
 
 		friendlyURLEntryModelImpl._setOriginalGroupId = false;
 
-		friendlyURLEntryModelImpl._originalCompanyId = friendlyURLEntryModelImpl._companyId;
+		friendlyURLEntryModelImpl._originalCompanyId =
+			friendlyURLEntryModelImpl._companyId;
 
 		friendlyURLEntryModelImpl._setOriginalCompanyId = false;
 
 		friendlyURLEntryModelImpl._setModifiedDate = false;
 
-		friendlyURLEntryModelImpl._originalClassNameId = friendlyURLEntryModelImpl._classNameId;
+		friendlyURLEntryModelImpl._originalClassNameId =
+			friendlyURLEntryModelImpl._classNameId;
 
 		friendlyURLEntryModelImpl._setOriginalClassNameId = false;
 
-		friendlyURLEntryModelImpl._originalClassPK = friendlyURLEntryModelImpl._classPK;
+		friendlyURLEntryModelImpl._originalClassPK =
+			friendlyURLEntryModelImpl._classPK;
 
 		friendlyURLEntryModelImpl._setOriginalClassPK = false;
 
@@ -815,7 +896,8 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public CacheModel<FriendlyURLEntry> toCacheModel() {
-		FriendlyURLEntryCacheModel friendlyURLEntryCacheModel = new FriendlyURLEntryCacheModel();
+		FriendlyURLEntryCacheModel friendlyURLEntryCacheModel =
+			new FriendlyURLEntryCacheModel();
 
 		friendlyURLEntryCacheModel.mvccVersion = getMvccVersion();
 
@@ -868,17 +950,20 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<FriendlyURLEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<FriendlyURLEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<FriendlyURLEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<FriendlyURLEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -897,19 +982,22 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<FriendlyURLEntry, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<FriendlyURLEntry, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<FriendlyURLEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<FriendlyURLEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<FriendlyURLEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -923,10 +1011,12 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = FriendlyURLEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		FriendlyURLEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			FriendlyURLEntry.class, ModelWrapper.class
-		};
+		FriendlyURLEntry.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private String _uuid;
 	private String _originalUuid;
@@ -949,4 +1039,5 @@ public class FriendlyURLEntryModelImpl extends BaseModelImpl<FriendlyURLEntry>
 	private boolean _setOriginalClassPK;
 	private long _columnBitmask;
 	private FriendlyURLEntry _escapedModel;
+
 }

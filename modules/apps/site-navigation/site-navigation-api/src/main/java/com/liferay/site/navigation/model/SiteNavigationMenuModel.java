@@ -17,7 +17,6 @@ package com.liferay.site.navigation.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SiteNavigationMenuModel extends BaseModel<SiteNavigationMenu>,
-	ShardedModel, StagedGroupedModel {
+public interface SiteNavigationMenuModel
+	extends BaseModel<SiteNavigationMenu>, ShardedModel, StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -329,4 +329,5 @@ public interface SiteNavigationMenuModel extends BaseModel<SiteNavigationMenu>,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.ratings.kernel.model.RatingsEntry;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class RatingsEntryCacheModel implements CacheModel<RatingsEntry>,
-	Externalizable {
+public class RatingsEntryCacheModel
+	implements CacheModel<RatingsEntry>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class RatingsEntryCacheModel implements CacheModel<RatingsEntry>,
 			return false;
 		}
 
-		RatingsEntryCacheModel ratingsEntryCacheModel = (RatingsEntryCacheModel)obj;
+		RatingsEntryCacheModel ratingsEntryCacheModel =
+			(RatingsEntryCacheModel)obj;
 
 		if (entryId == ratingsEntryCacheModel.entryId) {
 			return true;
@@ -157,8 +158,7 @@ public class RatingsEntryCacheModel implements CacheModel<RatingsEntry>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -199,4 +199,5 @@ public class RatingsEntryCacheModel implements CacheModel<RatingsEntry>,
 	public long classNameId;
 	public long classPK;
 	public double score;
+
 }

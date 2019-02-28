@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.trash.model.TrashVersion;
 
 import java.io.Externalizable;
@@ -34,8 +33,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class TrashVersionCacheModel implements CacheModel<TrashVersion>,
-	Externalizable {
+public class TrashVersionCacheModel
+	implements CacheModel<TrashVersion>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -46,7 +46,8 @@ public class TrashVersionCacheModel implements CacheModel<TrashVersion>,
 			return false;
 		}
 
-		TrashVersionCacheModel trashVersionCacheModel = (TrashVersionCacheModel)obj;
+		TrashVersionCacheModel trashVersionCacheModel =
+			(TrashVersionCacheModel)obj;
 
 		if (versionId == trashVersionCacheModel.versionId) {
 			return true;
@@ -124,8 +125,7 @@ public class TrashVersionCacheModel implements CacheModel<TrashVersion>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(versionId);
 
 		objectOutput.writeLong(companyId);
@@ -153,4 +153,5 @@ public class TrashVersionCacheModel implements CacheModel<TrashVersion>,
 	public long classPK;
 	public String typeSettings;
 	public int status;
+
 }

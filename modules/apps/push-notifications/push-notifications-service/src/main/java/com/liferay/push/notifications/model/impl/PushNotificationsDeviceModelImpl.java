@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -31,7 +30,6 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.push.notifications.model.PushNotificationsDevice;
 import com.liferay.push.notifications.model.PushNotificationsDeviceModel;
 import com.liferay.push.notifications.model.PushNotificationsDeviceSoap;
@@ -63,23 +61,26 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotificationsDevice>
+public class PushNotificationsDeviceModelImpl
+	extends BaseModelImpl<PushNotificationsDevice>
 	implements PushNotificationsDeviceModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a push notifications device model instance should use the <code>PushNotificationsDevice</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PushNotificationsDevice";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "pushNotificationsDeviceId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "platform", Types.VARCHAR },
-			{ "token", Types.VARCHAR }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"pushNotificationsDeviceId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"createDate", Types.TIMESTAMP}, {"platform", Types.VARCHAR},
+		{"token", Types.VARCHAR}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("pushNotificationsDeviceId", Types.BIGINT);
@@ -90,25 +91,45 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 		TABLE_COLUMNS_MAP.put("token", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PushNotificationsDevice (pushNotificationsDeviceId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,platform VARCHAR(75) null,token STRING null)";
-	public static final String TABLE_SQL_DROP = "drop table PushNotificationsDevice";
-	public static final String ORDER_BY_JPQL = " ORDER BY pushNotificationsDevice.pushNotificationsDeviceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PushNotificationsDevice.pushNotificationsDeviceId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table PushNotificationsDevice (pushNotificationsDeviceId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,platform VARCHAR(75) null,token STRING null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table PushNotificationsDevice";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY pushNotificationsDevice.pushNotificationsDeviceId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PushNotificationsDevice.pushNotificationsDeviceId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.push.notifications.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.push.notifications.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.push.notifications.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.push.notifications.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.push.notifications.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.push.notifications.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.push.notifications.model.PushNotificationsDevice"),
+		true);
+
 	public static final long PLATFORM_COLUMN_BITMASK = 1L;
+
 	public static final long TOKEN_COLUMN_BITMASK = 2L;
+
 	public static final long USERID_COLUMN_BITMASK = 4L;
+
 	public static final long PUSHNOTIFICATIONSDEVICEID_COLUMN_BITMASK = 8L;
 
 	/**
@@ -119,13 +140,15 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	 */
 	public static PushNotificationsDevice toModel(
 		PushNotificationsDeviceSoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
 
 		PushNotificationsDevice model = new PushNotificationsDeviceImpl();
 
-		model.setPushNotificationsDeviceId(soapModel.getPushNotificationsDeviceId());
+		model.setPushNotificationsDeviceId(
+			soapModel.getPushNotificationsDeviceId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setCreateDate(soapModel.getCreateDate());
@@ -143,11 +166,13 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	 */
 	public static List<PushNotificationsDevice> toModels(
 		PushNotificationsDeviceSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<PushNotificationsDevice> models = new ArrayList<PushNotificationsDevice>(soapModels.length);
+		List<PushNotificationsDevice> models =
+			new ArrayList<PushNotificationsDevice>(soapModels.length);
 
 		for (PushNotificationsDeviceSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -156,8 +181,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.push.notifications.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.push.notifications.model.PushNotificationsDevice"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.push.notifications.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.push.notifications.model.PushNotificationsDevice"));
 
 	public PushNotificationsDeviceModelImpl() {
 	}
@@ -196,14 +222,18 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PushNotificationsDevice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PushNotificationsDevice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PushNotificationsDevice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PushNotificationsDevice, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PushNotificationsDevice, Object> attributeGetterFunction = entry.getValue();
+			Function<PushNotificationsDevice, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PushNotificationsDevice)this));
 		}
 
@@ -215,47 +245,61 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PushNotificationsDevice, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PushNotificationsDevice, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PushNotificationsDevice, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PushNotificationsDevice, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PushNotificationsDevice)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PushNotificationsDevice)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PushNotificationsDevice, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PushNotificationsDevice, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PushNotificationsDevice, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PushNotificationsDevice, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PushNotificationsDevice, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PushNotificationsDevice, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PushNotificationsDevice, Object>>
+		_attributeGetterFunctions;
+	private static final Map
+		<String, BiConsumer<PushNotificationsDevice, Object>>
+			_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PushNotificationsDevice, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<PushNotificationsDevice, Object>>();
-		Map<String, BiConsumer<PushNotificationsDevice, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<PushNotificationsDevice, ?>>();
-
+		Map<String, Function<PushNotificationsDevice, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<PushNotificationsDevice, Object>>();
+		Map<String, BiConsumer<PushNotificationsDevice, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<PushNotificationsDevice, ?>>();
 
 		attributeGetterFunctions.put(
 			"pushNotificationsDeviceId",
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
-					return pushNotificationsDevice.getPushNotificationsDeviceId();
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
+					return pushNotificationsDevice.
+						getPushNotificationsDeviceId();
 				}
 
 			});
@@ -264,8 +308,12 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object pushNotificationsDeviceId) {
-					pushNotificationsDevice.setPushNotificationsDeviceId((Long)pushNotificationsDeviceId);
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object pushNotificationsDeviceId) {
+
+					pushNotificationsDevice.setPushNotificationsDeviceId(
+						(Long)pushNotificationsDeviceId);
 				}
 
 			});
@@ -274,7 +322,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
 					return pushNotificationsDevice.getCompanyId();
 				}
 
@@ -284,7 +334,10 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object companyId) {
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object companyId) {
+
 					pushNotificationsDevice.setCompanyId((Long)companyId);
 				}
 
@@ -294,7 +347,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
 					return pushNotificationsDevice.getUserId();
 				}
 
@@ -304,7 +359,10 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object userId) {
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object userId) {
+
 					pushNotificationsDevice.setUserId((Long)userId);
 				}
 
@@ -314,7 +372,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
 					return pushNotificationsDevice.getCreateDate();
 				}
 
@@ -324,7 +384,10 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object createDate) {
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object createDate) {
+
 					pushNotificationsDevice.setCreateDate((Date)createDate);
 				}
 
@@ -334,7 +397,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
 					return pushNotificationsDevice.getPlatform();
 				}
 
@@ -344,7 +409,10 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object platform) {
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object platform) {
+
 					pushNotificationsDevice.setPlatform((String)platform);
 				}
 
@@ -354,7 +422,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new Function<PushNotificationsDevice, Object>() {
 
 				@Override
-				public Object apply(PushNotificationsDevice pushNotificationsDevice) {
+				public Object apply(
+					PushNotificationsDevice pushNotificationsDevice) {
+
 					return pushNotificationsDevice.getToken();
 				}
 
@@ -364,15 +434,19 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			new BiConsumer<PushNotificationsDevice, Object>() {
 
 				@Override
-				public void accept(PushNotificationsDevice pushNotificationsDevice, Object token) {
+				public void accept(
+					PushNotificationsDevice pushNotificationsDevice,
+					Object token) {
+
 					pushNotificationsDevice.setToken((String)token);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -505,8 +579,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PushNotificationsDevice.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PushNotificationsDevice.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -519,8 +594,9 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	@Override
 	public PushNotificationsDevice toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PushNotificationsDevice)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PushNotificationsDevice)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -528,9 +604,11 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public Object clone() {
-		PushNotificationsDeviceImpl pushNotificationsDeviceImpl = new PushNotificationsDeviceImpl();
+		PushNotificationsDeviceImpl pushNotificationsDeviceImpl =
+			new PushNotificationsDeviceImpl();
 
-		pushNotificationsDeviceImpl.setPushNotificationsDeviceId(getPushNotificationsDeviceId());
+		pushNotificationsDeviceImpl.setPushNotificationsDeviceId(
+			getPushNotificationsDeviceId());
 		pushNotificationsDeviceImpl.setCompanyId(getCompanyId());
 		pushNotificationsDeviceImpl.setUserId(getUserId());
 		pushNotificationsDeviceImpl.setCreateDate(getCreateDate());
@@ -567,7 +645,8 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 			return false;
 		}
 
-		PushNotificationsDevice pushNotificationsDevice = (PushNotificationsDevice)obj;
+		PushNotificationsDevice pushNotificationsDevice =
+			(PushNotificationsDevice)obj;
 
 		long primaryKey = pushNotificationsDevice.getPrimaryKey();
 
@@ -596,24 +675,30 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public void resetOriginalValues() {
-		PushNotificationsDeviceModelImpl pushNotificationsDeviceModelImpl = this;
+		PushNotificationsDeviceModelImpl pushNotificationsDeviceModelImpl =
+			this;
 
-		pushNotificationsDeviceModelImpl._originalUserId = pushNotificationsDeviceModelImpl._userId;
+		pushNotificationsDeviceModelImpl._originalUserId =
+			pushNotificationsDeviceModelImpl._userId;
 
 		pushNotificationsDeviceModelImpl._setOriginalUserId = false;
 
-		pushNotificationsDeviceModelImpl._originalPlatform = pushNotificationsDeviceModelImpl._platform;
+		pushNotificationsDeviceModelImpl._originalPlatform =
+			pushNotificationsDeviceModelImpl._platform;
 
-		pushNotificationsDeviceModelImpl._originalToken = pushNotificationsDeviceModelImpl._token;
+		pushNotificationsDeviceModelImpl._originalToken =
+			pushNotificationsDeviceModelImpl._token;
 
 		pushNotificationsDeviceModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<PushNotificationsDevice> toCacheModel() {
-		PushNotificationsDeviceCacheModel pushNotificationsDeviceCacheModel = new PushNotificationsDeviceCacheModel();
+		PushNotificationsDeviceCacheModel pushNotificationsDeviceCacheModel =
+			new PushNotificationsDeviceCacheModel();
 
-		pushNotificationsDeviceCacheModel.pushNotificationsDeviceId = getPushNotificationsDeviceId();
+		pushNotificationsDeviceCacheModel.pushNotificationsDeviceId =
+			getPushNotificationsDeviceId();
 
 		pushNotificationsDeviceCacheModel.companyId = getCompanyId();
 
@@ -649,22 +734,25 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public String toString() {
-		Map<String, Function<PushNotificationsDevice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PushNotificationsDevice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PushNotificationsDevice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PushNotificationsDevice, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PushNotificationsDevice, Object> attributeGetterFunction = entry.getValue();
+			Function<PushNotificationsDevice, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(PushNotificationsDevice)this));
+			sb.append(
+				attributeGetterFunction.apply((PushNotificationsDevice)this));
 			sb.append(", ");
 		}
 
@@ -679,25 +767,28 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PushNotificationsDevice, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<PushNotificationsDevice, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PushNotificationsDevice, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PushNotificationsDevice, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PushNotificationsDevice, Object> attributeGetterFunction = entry.getValue();
+			Function<PushNotificationsDevice, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(PushNotificationsDevice)this));
+			sb.append(
+				attributeGetterFunction.apply((PushNotificationsDevice)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -706,10 +797,12 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PushNotificationsDevice.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PushNotificationsDevice.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PushNotificationsDevice.class, ModelWrapper.class
-		};
+		PushNotificationsDevice.class, ModelWrapper.class
+	};
+
 	private long _pushNotificationsDeviceId;
 	private long _companyId;
 	private long _userId;
@@ -722,4 +815,5 @@ public class PushNotificationsDeviceModelImpl extends BaseModelImpl<PushNotifica
 	private String _originalToken;
 	private long _columnBitmask;
 	private PushNotificationsDevice _escapedModel;
+
 }

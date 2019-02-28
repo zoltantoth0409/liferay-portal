@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -39,8 +38,10 @@ import java.util.Date;
  */
 @Deprecated
 @ProviderType
-public interface SubscriptionModel extends AttachedModel, BaseModel<Subscription>,
-	GroupedModel, MVCCModel, ShardedModel {
+public interface SubscriptionModel
+	extends AttachedModel, BaseModel<Subscription>, GroupedModel, MVCCModel,
+			ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -317,4 +318,5 @@ public interface SubscriptionModel extends AttachedModel, BaseModel<Subscription
 
 	@Override
 	public String toXmlString();
+
 }

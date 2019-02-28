@@ -17,9 +17,7 @@ package com.liferay.portlet.documentlibrary.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.document.library.kernel.service.DLTrashLocalService;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -45,8 +43,10 @@ import javax.sql.DataSource;
  * @generated
  */
 @ProviderType
-public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
+public abstract class DLTrashLocalServiceBaseImpl
+	extends BaseLocalServiceImpl
 	implements DLTrashLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -67,7 +67,9 @@ public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dlTrashLocalService the dl trash local service
 	 */
-	public void setDLTrashLocalService(DLTrashLocalService dlTrashLocalService) {
+	public void setDLTrashLocalService(
+		DLTrashLocalService dlTrashLocalService) {
+
 		this.dlTrashLocalService = dlTrashLocalService;
 	}
 
@@ -76,7 +78,9 @@ public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -86,7 +90,9 @@ public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -138,8 +144,8 @@ public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -150,8 +156,14 @@ public abstract class DLTrashLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	@BeanReference(type = DLTrashLocalService.class)
 	protected DLTrashLocalService dlTrashLocalService;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
+
 }

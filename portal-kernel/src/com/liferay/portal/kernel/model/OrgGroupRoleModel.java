@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.persistence.OrgGroupRolePK;
 
@@ -35,8 +34,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface OrgGroupRoleModel extends BaseModel<OrgGroupRole>, MVCCModel,
-	ShardedModel {
+public interface OrgGroupRoleModel
+	extends BaseModel<OrgGroupRole>, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -187,4 +187,5 @@ public interface OrgGroupRoleModel extends BaseModel<OrgGroupRole>, MVCCModel,
 
 	@Override
 	public String toXmlString();
+
 }

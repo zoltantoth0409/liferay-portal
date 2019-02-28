@@ -17,7 +17,6 @@ package com.liferay.message.boards.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ShardedModel;
@@ -40,6 +39,7 @@ import java.util.Date;
  */
 @ProviderType
 public interface MBStatsUserModel extends BaseModel<MBStatsUser>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -230,4 +230,5 @@ public interface MBStatsUserModel extends BaseModel<MBStatsUser>, ShardedModel {
 
 	@Override
 	public String toXmlString();
+
 }

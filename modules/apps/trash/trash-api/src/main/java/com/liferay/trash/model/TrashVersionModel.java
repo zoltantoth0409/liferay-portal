@@ -17,7 +17,6 @@ package com.liferay.trash.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -39,8 +38,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface TrashVersionModel extends AttachedModel, BaseModel<TrashVersion>,
-	ShardedModel {
+public interface TrashVersionModel
+	extends AttachedModel, BaseModel<TrashVersion>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -232,4 +232,5 @@ public interface TrashVersionModel extends AttachedModel, BaseModel<TrashVersion
 
 	@Override
 	public String toXmlString();
+
 }

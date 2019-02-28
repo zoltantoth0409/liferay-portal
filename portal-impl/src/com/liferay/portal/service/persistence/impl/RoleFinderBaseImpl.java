@@ -32,12 +32,13 @@ import java.util.Set;
  * @generated
  */
 public class RoleFinderBaseImpl extends BasePersistenceImpl<Role> {
+
 	public RoleFinderBaseImpl() {
 		setModelClass(Role.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -80,5 +81,8 @@ public class RoleFinderBaseImpl extends BasePersistenceImpl<Role> {
 
 	@BeanReference(type = RolePersistence.class)
 	protected RolePersistence rolePersistence;
-	private static final Log _log = LogFactoryUtil.getLog(RoleFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		RoleFinderBaseImpl.class);
+
 }

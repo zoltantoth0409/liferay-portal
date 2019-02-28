@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class KaleoTaskFormCacheModel implements CacheModel<KaleoTaskForm>,
-	Externalizable {
+public class KaleoTaskFormCacheModel
+	implements CacheModel<KaleoTaskForm>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,7 +48,8 @@ public class KaleoTaskFormCacheModel implements CacheModel<KaleoTaskForm>,
 			return false;
 		}
 
-		KaleoTaskFormCacheModel kaleoTaskFormCacheModel = (KaleoTaskFormCacheModel)obj;
+		KaleoTaskFormCacheModel kaleoTaskFormCacheModel =
+			(KaleoTaskFormCacheModel)obj;
 
 		if (kaleoTaskFormId == kaleoTaskFormCacheModel.kaleoTaskFormId) {
 			return true;
@@ -233,8 +235,7 @@ public class KaleoTaskFormCacheModel implements CacheModel<KaleoTaskForm>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(kaleoTaskFormId);
 
 		objectOutput.writeLong(groupId);
@@ -330,4 +331,5 @@ public class KaleoTaskFormCacheModel implements CacheModel<KaleoTaskForm>,
 	public String formUuid;
 	public String metadata;
 	public int priority;
+
 }

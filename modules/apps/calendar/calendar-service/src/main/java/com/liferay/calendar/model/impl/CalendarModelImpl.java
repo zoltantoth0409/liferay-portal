@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarModel;
 import com.liferay.calendar.model.CalendarSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -73,34 +70,30 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class CalendarModelImpl extends BaseModelImpl<Calendar>
-	implements CalendarModel {
+public class CalendarModelImpl
+	extends BaseModelImpl<Calendar> implements CalendarModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a calendar model instance should use the <code>Calendar</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "Calendar";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "calendarId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "calendarResourceId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "timeZoneId", Types.VARCHAR },
-			{ "color", Types.INTEGER },
-			{ "defaultCalendar", Types.BOOLEAN },
-			{ "enableComments", Types.BOOLEAN },
-			{ "enableRatings", Types.BOOLEAN },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"calendarId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"calendarResourceId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"description", Types.VARCHAR}, {"timeZoneId", Types.VARCHAR},
+		{"color", Types.INTEGER}, {"defaultCalendar", Types.BOOLEAN},
+		{"enableComments", Types.BOOLEAN}, {"enableRatings", Types.BOOLEAN},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -122,27 +115,46 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarResourceId LONG,name STRING null,description STRING null,timeZoneId VARCHAR(75) null,color INTEGER,defaultCalendar BOOLEAN,enableComments BOOLEAN,enableRatings BOOLEAN,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table Calendar (uuid_ VARCHAR(75) null,calendarId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarResourceId LONG,name STRING null,description STRING null,timeZoneId VARCHAR(75) null,color INTEGER,defaultCalendar BOOLEAN,enableComments BOOLEAN,enableRatings BOOLEAN,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table Calendar";
+
 	public static final String ORDER_BY_JPQL = " ORDER BY calendar.name ASC";
+
 	public static final String ORDER_BY_SQL = " ORDER BY Calendar.name ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.calendar.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.calendar.model.Calendar"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.calendar.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.calendar.model.Calendar"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.calendar.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.calendar.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.calendar.model.Calendar"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.calendar.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.calendar.model.Calendar"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.calendar.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.calendar.model.Calendar"),
+		true);
+
 	public static final long CALENDARRESOURCEID_COLUMN_BITMASK = 1L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 2L;
+
 	public static final long DEFAULTCALENDAR_COLUMN_BITMASK = 4L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long NAME_COLUMN_BITMASK = 32L;
 
 	/**
@@ -199,8 +211,9 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.calendar.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.calendar.model.Calendar"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.calendar.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.calendar.model.Calendar"));
 
 	public CalendarModelImpl() {
 	}
@@ -239,14 +252,18 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Calendar, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+			Function<Calendar, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((Calendar)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((Calendar)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -257,35 +274,44 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<Calendar, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<Calendar, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<Calendar, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<Calendar, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((Calendar)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(Calendar)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<Calendar, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<Calendar, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<Calendar, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<Calendar, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<Calendar, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<Calendar, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<Calendar, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<Calendar, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<Calendar, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<Calendar, Object>>();
-		Map<String, BiConsumer<Calendar, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<Calendar, ?>>();
-
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<Calendar, Object>>();
+		Map<String, BiConsumer<Calendar, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<Calendar, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -462,7 +488,9 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 			new BiConsumer<Calendar, Object>() {
 
 				@Override
-				public void accept(Calendar calendar, Object calendarResourceId) {
+				public void accept(
+					Calendar calendar, Object calendarResourceId) {
+
 					calendar.setCalendarResourceId((Long)calendarResourceId);
 				}
 
@@ -628,9 +656,10 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -842,8 +871,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String getName(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getName(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getName(), languageId, useDefault);
 	}
 
 	@Override
@@ -882,12 +911,14 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(name)) {
-			setName(LocalizationUtil.updateLocalization(getName(), "Name",
-					name, languageId, defaultLanguageId));
+			setName(
+				LocalizationUtil.updateLocalization(
+					getName(), "Name", name, languageId, defaultLanguageId));
 		}
 		else {
-			setName(LocalizationUtil.removeLocalization(getName(), "Name",
-					languageId));
+			setName(
+				LocalizationUtil.removeLocalization(
+					getName(), "Name", languageId));
 		}
 	}
 
@@ -907,7 +938,9 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 			return;
 		}
 
-		setName(LocalizationUtil.updateLocalization(nameMap, getName(), "Name",
+		setName(
+			LocalizationUtil.updateLocalization(
+				nameMap, getName(), "Name",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -943,8 +976,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String getDescription(String languageId, boolean useDefault) {
-		return LocalizationUtil.getLocalization(getDescription(), languageId,
-			useDefault);
+		return LocalizationUtil.getLocalization(
+			getDescription(), languageId, useDefault);
 	}
 
 	@Override
@@ -976,18 +1009,21 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	@Override
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale) {
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale) {
+
 		String languageId = LocaleUtil.toLanguageId(locale);
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(description)) {
-			setDescription(LocalizationUtil.updateLocalization(
+			setDescription(
+				LocalizationUtil.updateLocalization(
 					getDescription(), "Description", description, languageId,
 					defaultLanguageId));
 		}
 		else {
-			setDescription(LocalizationUtil.removeLocalization(
+			setDescription(
+				LocalizationUtil.removeLocalization(
 					getDescription(), "Description", languageId));
 		}
 	}
@@ -1003,14 +1039,16 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	}
 
 	@Override
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale) {
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale) {
+
 		if (descriptionMap == null) {
 			return;
 		}
 
-		setDescription(LocalizationUtil.updateLocalization(descriptionMap,
-				getDescription(), "Description",
+		setDescription(
+			LocalizationUtil.updateLocalization(
+				descriptionMap, getDescription(), "Description",
 				LocaleUtil.toLanguageId(defaultLocale)));
 	}
 
@@ -1117,8 +1155,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				Calendar.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(Calendar.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -1127,8 +1165,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			Calendar.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), Calendar.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1164,7 +1202,8 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 			}
 		}
 
-		return availableLanguageIds.toArray(new String[availableLanguageIds.size()]);
+		return availableLanguageIds.toArray(
+			new String[availableLanguageIds.size()]);
 	}
 
 	@Override
@@ -1182,12 +1221,15 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public void prepareLocalizedFieldsForImport() throws LocaleException {
-		Locale defaultLocale = LocaleUtil.fromLanguageId(getDefaultLanguageId());
+		Locale defaultLocale = LocaleUtil.fromLanguageId(
+			getDefaultLanguageId());
 
-		Locale[] availableLocales = LocaleUtil.fromLanguageIds(getAvailableLanguageIds());
+		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
+			getAvailableLanguageIds());
 
-		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(Calendar.class.getName(),
-				getPrimaryKey(), defaultLocale, availableLocales);
+		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
+			Calendar.class.getName(), getPrimaryKey(), defaultLocale,
+			availableLocales);
 
 		prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
@@ -1196,6 +1238,7 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	@SuppressWarnings("unused")
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException {
+
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String modelDefaultLanguageId = getDefaultLanguageId();
@@ -1212,19 +1255,21 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		String description = getDescription(defaultLocale);
 
 		if (Validator.isNull(description)) {
-			setDescription(getDescription(modelDefaultLanguageId), defaultLocale);
+			setDescription(
+				getDescription(modelDefaultLanguageId), defaultLocale);
 		}
 		else {
-			setDescription(getDescription(defaultLocale), defaultLocale,
-				defaultLocale);
+			setDescription(
+				getDescription(defaultLocale), defaultLocale, defaultLocale);
 		}
 	}
 
 	@Override
 	public Calendar toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (Calendar)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (Calendar)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1323,11 +1368,13 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 		calendarModelImpl._setModifiedDate = false;
 
-		calendarModelImpl._originalCalendarResourceId = calendarModelImpl._calendarResourceId;
+		calendarModelImpl._originalCalendarResourceId =
+			calendarModelImpl._calendarResourceId;
 
 		calendarModelImpl._setOriginalCalendarResourceId = false;
 
-		calendarModelImpl._originalDefaultCalendar = calendarModelImpl._defaultCalendar;
+		calendarModelImpl._originalDefaultCalendar =
+			calendarModelImpl._defaultCalendar;
 
 		calendarModelImpl._setOriginalDefaultCalendar = false;
 
@@ -1428,16 +1475,20 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String toString() {
-		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Calendar, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+			Function<Calendar, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1456,18 +1507,22 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<Calendar, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<Calendar, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<Calendar, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<Calendar, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<Calendar, Object> attributeGetterFunction = entry.getValue();
+			Function<Calendar, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1481,10 +1536,12 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = Calendar.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		Calendar.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			Calendar.class, ModelWrapper.class
-		};
+		Calendar.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _calendarId;
@@ -1516,4 +1573,5 @@ public class CalendarModelImpl extends BaseModelImpl<Calendar>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private Calendar _escapedModel;
+
 }

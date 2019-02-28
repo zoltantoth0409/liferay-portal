@@ -18,10 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.invitation.invite.members.model.MemberRequest;
 import com.liferay.invitation.invite.members.model.MemberRequestModel;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -59,29 +57,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
-	implements MemberRequestModel {
+public class MemberRequestModelImpl
+	extends BaseModelImpl<MemberRequest> implements MemberRequestModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a member request model instance should use the <code>MemberRequest</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "IM_MemberRequest";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "memberRequestId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "key_", Types.VARCHAR },
-			{ "receiverUserId", Types.BIGINT },
-			{ "invitedRoleId", Types.BIGINT },
-			{ "invitedTeamId", Types.BIGINT },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"memberRequestId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"key_", Types.VARCHAR},
+		{"receiverUserId", Types.BIGINT}, {"invitedRoleId", Types.BIGINT},
+		{"invitedTeamId", Types.BIGINT}, {"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("memberRequestId", Types.BIGINT);
@@ -98,29 +94,51 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table IM_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,invitedRoleId LONG,invitedTeamId LONG,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table IM_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,invitedRoleId LONG,invitedTeamId LONG,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table IM_MemberRequest";
-	public static final String ORDER_BY_JPQL = " ORDER BY memberRequest.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY IM_MemberRequest.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY memberRequest.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY IM_MemberRequest.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.invitation.invite.members.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.invitation.invite.members.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.invitation.invite.members.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.invitation.invite.members.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.invitation.invite.members.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.invitation.invite.members.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.invitation.invite.members.model.MemberRequest"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long KEY_COLUMN_BITMASK = 2L;
+
 	public static final long RECEIVERUSERID_COLUMN_BITMASK = 4L;
+
 	public static final long STATUS_COLUMN_BITMASK = 8L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.invitation.invite.members.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.invitation.invite.members.model.MemberRequest"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.invitation.invite.members.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.invitation.invite.members.model.MemberRequest"));
 
 	public MemberRequestModelImpl() {
 	}
@@ -159,13 +177,18 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<MemberRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MemberRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MemberRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MemberRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((MemberRequest)this));
 		}
 
@@ -177,36 +200,44 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<MemberRequest, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<MemberRequest, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<MemberRequest, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<MemberRequest, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((MemberRequest)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(MemberRequest)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<MemberRequest, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<MemberRequest, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<MemberRequest, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<MemberRequest, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<MemberRequest, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<MemberRequest, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<MemberRequest, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<MemberRequest, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<MemberRequest, Object>>();
-		Map<String, BiConsumer<MemberRequest, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<MemberRequest, ?>>();
-
+		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<MemberRequest, Object>>();
+		Map<String, BiConsumer<MemberRequest, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<MemberRequest, ?>>();
 
 		attributeGetterFunctions.put(
 			"memberRequestId",
@@ -223,7 +254,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object memberRequestId) {
+				public void accept(
+					MemberRequest memberRequest, Object memberRequestId) {
+
 					memberRequest.setMemberRequestId((Long)memberRequestId);
 				}
 
@@ -243,7 +276,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object groupId) {
+				public void accept(
+					MemberRequest memberRequest, Object groupId) {
+
 					memberRequest.setGroupId((Long)groupId);
 				}
 
@@ -263,7 +298,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object companyId) {
+				public void accept(
+					MemberRequest memberRequest, Object companyId) {
+
 					memberRequest.setCompanyId((Long)companyId);
 				}
 
@@ -303,7 +340,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object userName) {
+				public void accept(
+					MemberRequest memberRequest, Object userName) {
+
 					memberRequest.setUserName((String)userName);
 				}
 
@@ -323,7 +362,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object createDate) {
+				public void accept(
+					MemberRequest memberRequest, Object createDate) {
+
 					memberRequest.setCreateDate((Date)createDate);
 				}
 
@@ -343,7 +384,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object modifiedDate) {
+				public void accept(
+					MemberRequest memberRequest, Object modifiedDate) {
+
 					memberRequest.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -383,7 +426,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object receiverUserId) {
+				public void accept(
+					MemberRequest memberRequest, Object receiverUserId) {
+
 					memberRequest.setReceiverUserId((Long)receiverUserId);
 				}
 
@@ -403,7 +448,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object invitedRoleId) {
+				public void accept(
+					MemberRequest memberRequest, Object invitedRoleId) {
+
 					memberRequest.setInvitedRoleId((Long)invitedRoleId);
 				}
 
@@ -423,7 +470,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 			new BiConsumer<MemberRequest, Object>() {
 
 				@Override
-				public void accept(MemberRequest memberRequest, Object invitedTeamId) {
+				public void accept(
+					MemberRequest memberRequest, Object invitedTeamId) {
+
 					memberRequest.setInvitedTeamId((Long)invitedTeamId);
 				}
 
@@ -449,9 +498,10 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -676,8 +726,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			MemberRequest.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), MemberRequest.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -690,8 +740,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	@Override
 	public MemberRequest toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (MemberRequest)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (MemberRequest)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -723,8 +774,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public int compareTo(MemberRequest memberRequest) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				memberRequest.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), memberRequest.getCreateDate());
 
 		value = value * -1;
 
@@ -776,7 +827,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public void resetOriginalValues() {
 		MemberRequestModelImpl memberRequestModelImpl = this;
 
-		memberRequestModelImpl._originalGroupId = memberRequestModelImpl._groupId;
+		memberRequestModelImpl._originalGroupId =
+			memberRequestModelImpl._groupId;
 
 		memberRequestModelImpl._setOriginalGroupId = false;
 
@@ -784,7 +836,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 		memberRequestModelImpl._originalKey = memberRequestModelImpl._key;
 
-		memberRequestModelImpl._originalReceiverUserId = memberRequestModelImpl._receiverUserId;
+		memberRequestModelImpl._originalReceiverUserId =
+			memberRequestModelImpl._receiverUserId;
 
 		memberRequestModelImpl._setOriginalReceiverUserId = false;
 
@@ -797,7 +850,8 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public CacheModel<MemberRequest> toCacheModel() {
-		MemberRequestCacheModel memberRequestCacheModel = new MemberRequestCacheModel();
+		MemberRequestCacheModel memberRequestCacheModel =
+			new MemberRequestCacheModel();
 
 		memberRequestCacheModel.memberRequestId = getMemberRequestId();
 
@@ -854,16 +908,20 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public String toString() {
-		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<MemberRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MemberRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MemberRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MemberRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -882,18 +940,22 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<MemberRequest, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<MemberRequest, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<MemberRequest, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<MemberRequest, Object> attributeGetterFunction = entry.getValue();
+			Function<MemberRequest, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -907,10 +969,12 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = MemberRequest.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		MemberRequest.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			MemberRequest.class, ModelWrapper.class
-		};
+		MemberRequest.class, ModelWrapper.class
+	};
+
 	private long _memberRequestId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -933,4 +997,5 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private MemberRequest _escapedModel;
+
 }

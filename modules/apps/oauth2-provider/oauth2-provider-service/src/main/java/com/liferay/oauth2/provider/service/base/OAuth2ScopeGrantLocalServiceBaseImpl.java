@@ -21,7 +21,6 @@ import com.liferay.oauth2.provider.service.OAuth2ScopeGrantLocalService;
 import com.liferay.oauth2.provider.service.persistence.OAuth2AuthorizationPersistence;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ScopeGrantFinder;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ScopeGrantPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -65,8 +64,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements OAuth2ScopeGrantLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements OAuth2ScopeGrantLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -83,6 +83,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public OAuth2ScopeGrant addOAuth2ScopeGrant(
 		OAuth2ScopeGrant oAuth2ScopeGrant) {
+
 		oAuth2ScopeGrant.setNew(true);
 
 		return oAuth2ScopeGrantPersistence.update(oAuth2ScopeGrant);
@@ -111,6 +112,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public OAuth2ScopeGrant deleteOAuth2ScopeGrant(long oAuth2ScopeGrantId)
 		throws PortalException {
+
 		return oAuth2ScopeGrantPersistence.remove(oAuth2ScopeGrantId);
 	}
 
@@ -124,6 +126,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public OAuth2ScopeGrant deleteOAuth2ScopeGrant(
 		OAuth2ScopeGrant oAuth2ScopeGrant) {
+
 		return oAuth2ScopeGrantPersistence.remove(oAuth2ScopeGrant);
 	}
 
@@ -131,8 +134,8 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(OAuth2ScopeGrant.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			OAuth2ScopeGrant.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -159,10 +162,11 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return oAuth2ScopeGrantPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return oAuth2ScopeGrantPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -179,10 +183,12 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return oAuth2ScopeGrantPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return oAuth2ScopeGrantPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -204,15 +210,17 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return oAuth2ScopeGrantPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return oAuth2ScopeGrantPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public OAuth2ScopeGrant fetchOAuth2ScopeGrant(long oAuth2ScopeGrantId) {
-		return oAuth2ScopeGrantPersistence.fetchByPrimaryKey(oAuth2ScopeGrantId);
+		return oAuth2ScopeGrantPersistence.fetchByPrimaryKey(
+			oAuth2ScopeGrantId);
 	}
 
 	/**
@@ -225,14 +233,17 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public OAuth2ScopeGrant getOAuth2ScopeGrant(long oAuth2ScopeGrantId)
 		throws PortalException {
+
 		return oAuth2ScopeGrantPersistence.findByPrimaryKey(oAuth2ScopeGrantId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(oAuth2ScopeGrantLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			oAuth2ScopeGrantLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuth2ScopeGrant.class);
 
@@ -242,10 +253,14 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(oAuth2ScopeGrantLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			oAuth2ScopeGrantLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(OAuth2ScopeGrant.class);
 
@@ -257,7 +272,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(oAuth2ScopeGrantLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			oAuth2ScopeGrantLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuth2ScopeGrant.class);
 
@@ -270,12 +287,15 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return oAuth2ScopeGrantLocalService.deleteOAuth2ScopeGrant((OAuth2ScopeGrant)persistedModel);
+
+		return oAuth2ScopeGrantLocalService.deleteOAuth2ScopeGrant(
+			(OAuth2ScopeGrant)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return oAuth2ScopeGrantPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -315,6 +335,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public OAuth2ScopeGrant updateOAuth2ScopeGrant(
 		OAuth2ScopeGrant oAuth2ScopeGrant) {
+
 		return oAuth2ScopeGrantPersistence.update(oAuth2ScopeGrant);
 	}
 
@@ -323,8 +344,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void addOAuth2AuthorizationOAuth2ScopeGrant(
 		long oAuth2AuthorizationId, long oAuth2ScopeGrantId) {
-		oAuth2AuthorizationPersistence.addOAuth2ScopeGrant(oAuth2AuthorizationId,
-			oAuth2ScopeGrantId);
+
+		oAuth2AuthorizationPersistence.addOAuth2ScopeGrant(
+			oAuth2AuthorizationId, oAuth2ScopeGrantId);
 	}
 
 	/**
@@ -332,8 +354,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void addOAuth2AuthorizationOAuth2ScopeGrant(
 		long oAuth2AuthorizationId, OAuth2ScopeGrant oAuth2ScopeGrant) {
-		oAuth2AuthorizationPersistence.addOAuth2ScopeGrant(oAuth2AuthorizationId,
-			oAuth2ScopeGrant);
+
+		oAuth2AuthorizationPersistence.addOAuth2ScopeGrant(
+			oAuth2AuthorizationId, oAuth2ScopeGrant);
 	}
 
 	/**
@@ -341,8 +364,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void addOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, long[] oAuth2ScopeGrantIds) {
-		oAuth2AuthorizationPersistence.addOAuth2ScopeGrants(oAuth2AuthorizationId,
-			oAuth2ScopeGrantIds);
+
+		oAuth2AuthorizationPersistence.addOAuth2ScopeGrants(
+			oAuth2AuthorizationId, oAuth2ScopeGrantIds);
 	}
 
 	/**
@@ -350,8 +374,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void addOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, List<OAuth2ScopeGrant> oAuth2ScopeGrants) {
-		oAuth2AuthorizationPersistence.addOAuth2ScopeGrants(oAuth2AuthorizationId,
-			oAuth2ScopeGrants);
+
+		oAuth2AuthorizationPersistence.addOAuth2ScopeGrants(
+			oAuth2AuthorizationId, oAuth2ScopeGrants);
 	}
 
 	/**
@@ -359,7 +384,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void clearOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId) {
-		oAuth2AuthorizationPersistence.clearOAuth2ScopeGrants(oAuth2AuthorizationId);
+
+		oAuth2AuthorizationPersistence.clearOAuth2ScopeGrants(
+			oAuth2AuthorizationId);
 	}
 
 	/**
@@ -367,8 +394,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void deleteOAuth2AuthorizationOAuth2ScopeGrant(
 		long oAuth2AuthorizationId, long oAuth2ScopeGrantId) {
-		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrant(oAuth2AuthorizationId,
-			oAuth2ScopeGrantId);
+
+		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrant(
+			oAuth2AuthorizationId, oAuth2ScopeGrantId);
 	}
 
 	/**
@@ -376,8 +404,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void deleteOAuth2AuthorizationOAuth2ScopeGrant(
 		long oAuth2AuthorizationId, OAuth2ScopeGrant oAuth2ScopeGrant) {
-		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrant(oAuth2AuthorizationId,
-			oAuth2ScopeGrant);
+
+		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrant(
+			oAuth2AuthorizationId, oAuth2ScopeGrant);
 	}
 
 	/**
@@ -385,8 +414,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void deleteOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, long[] oAuth2ScopeGrantIds) {
-		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrants(oAuth2AuthorizationId,
-			oAuth2ScopeGrantIds);
+
+		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrants(
+			oAuth2AuthorizationId, oAuth2ScopeGrantIds);
 	}
 
 	/**
@@ -394,8 +424,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void deleteOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, List<OAuth2ScopeGrant> oAuth2ScopeGrants) {
-		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrants(oAuth2AuthorizationId,
-			oAuth2ScopeGrants);
+
+		oAuth2AuthorizationPersistence.removeOAuth2ScopeGrants(
+			oAuth2AuthorizationId, oAuth2ScopeGrants);
 	}
 
 	/**
@@ -406,7 +437,8 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 */
 	@Override
 	public long[] getOAuth2AuthorizationPrimaryKeys(long oAuth2ScopeGrantId) {
-		return oAuth2ScopeGrantPersistence.getOAuth2AuthorizationPrimaryKeys(oAuth2ScopeGrantId);
+		return oAuth2ScopeGrantPersistence.getOAuth2AuthorizationPrimaryKeys(
+			oAuth2ScopeGrantId);
 	}
 
 	/**
@@ -414,7 +446,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public List<OAuth2ScopeGrant> getOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId) {
-		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(oAuth2AuthorizationId);
+
+		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(
+			oAuth2AuthorizationId);
 	}
 
 	/**
@@ -422,8 +456,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public List<OAuth2ScopeGrant> getOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, int start, int end) {
-		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(oAuth2AuthorizationId,
-			start, end);
+
+		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(
+			oAuth2AuthorizationId, start, end);
 	}
 
 	/**
@@ -432,8 +467,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	public List<OAuth2ScopeGrant> getOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, int start, int end,
 		OrderByComparator<OAuth2ScopeGrant> orderByComparator) {
-		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(oAuth2AuthorizationId,
-			start, end, orderByComparator);
+
+		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrants(
+			oAuth2AuthorizationId, start, end, orderByComparator);
 	}
 
 	/**
@@ -441,7 +477,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public int getOAuth2AuthorizationOAuth2ScopeGrantsCount(
 		long oAuth2AuthorizationId) {
-		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrantsSize(oAuth2AuthorizationId);
+
+		return oAuth2AuthorizationPersistence.getOAuth2ScopeGrantsSize(
+			oAuth2AuthorizationId);
 	}
 
 	/**
@@ -449,8 +487,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public boolean hasOAuth2AuthorizationOAuth2ScopeGrant(
 		long oAuth2AuthorizationId, long oAuth2ScopeGrantId) {
-		return oAuth2AuthorizationPersistence.containsOAuth2ScopeGrant(oAuth2AuthorizationId,
-			oAuth2ScopeGrantId);
+
+		return oAuth2AuthorizationPersistence.containsOAuth2ScopeGrant(
+			oAuth2AuthorizationId, oAuth2ScopeGrantId);
 	}
 
 	/**
@@ -458,7 +497,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public boolean hasOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId) {
-		return oAuth2AuthorizationPersistence.containsOAuth2ScopeGrants(oAuth2AuthorizationId);
+
+		return oAuth2AuthorizationPersistence.containsOAuth2ScopeGrants(
+			oAuth2AuthorizationId);
 	}
 
 	/**
@@ -466,8 +507,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	@Override
 	public void setOAuth2AuthorizationOAuth2ScopeGrants(
 		long oAuth2AuthorizationId, long[] oAuth2ScopeGrantIds) {
-		oAuth2AuthorizationPersistence.setOAuth2ScopeGrants(oAuth2AuthorizationId,
-			oAuth2ScopeGrantIds);
+
+		oAuth2AuthorizationPersistence.setOAuth2ScopeGrants(
+			oAuth2AuthorizationId, oAuth2ScopeGrantIds);
 	}
 
 	/**
@@ -486,6 +528,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 */
 	public void setOAuth2ScopeGrantLocalService(
 		OAuth2ScopeGrantLocalService oAuth2ScopeGrantLocalService) {
+
 		this.oAuth2ScopeGrantLocalService = oAuth2ScopeGrantLocalService;
 	}
 
@@ -505,6 +548,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 */
 	public void setOAuth2ScopeGrantPersistence(
 		OAuth2ScopeGrantPersistence oAuth2ScopeGrantPersistence) {
+
 		this.oAuth2ScopeGrantPersistence = oAuth2ScopeGrantPersistence;
 	}
 
@@ -524,6 +568,7 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 */
 	public void setOAuth2ScopeGrantFinder(
 		OAuth2ScopeGrantFinder oAuth2ScopeGrantFinder) {
+
 		this.oAuth2ScopeGrantFinder = oAuth2ScopeGrantFinder;
 	}
 
@@ -532,7 +577,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -542,7 +589,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -551,7 +600,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 *
 	 * @return the o auth2 authorization local service
 	 */
-	public com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService getOAuth2AuthorizationLocalService() {
+	public com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+		getOAuth2AuthorizationLocalService() {
+
 		return oAuth2AuthorizationLocalService;
 	}
 
@@ -561,7 +612,9 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 * @param oAuth2AuthorizationLocalService the o auth2 authorization local service
 	 */
 	public void setOAuth2AuthorizationLocalService(
-		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService oAuth2AuthorizationLocalService) {
+		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+			oAuth2AuthorizationLocalService) {
+
 		this.oAuth2AuthorizationLocalService = oAuth2AuthorizationLocalService;
 	}
 
@@ -581,11 +634,13 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 	 */
 	public void setOAuth2AuthorizationPersistence(
 		OAuth2AuthorizationPersistence oAuth2AuthorizationPersistence) {
+
 		this.oAuth2AuthorizationPersistence = oAuth2AuthorizationPersistence;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.oauth2.provider.model.OAuth2ScopeGrant",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.oauth2.provider.model.OAuth2ScopeGrant",
 			oAuth2ScopeGrantLocalService);
 	}
 
@@ -626,8 +681,8 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -638,16 +693,31 @@ public abstract class OAuth2ScopeGrantLocalServiceBaseImpl
 
 	@BeanReference(type = OAuth2ScopeGrantLocalService.class)
 	protected OAuth2ScopeGrantLocalService oAuth2ScopeGrantLocalService;
+
 	@BeanReference(type = OAuth2ScopeGrantPersistence.class)
 	protected OAuth2ScopeGrantPersistence oAuth2ScopeGrantPersistence;
+
 	@BeanReference(type = OAuth2ScopeGrantFinder.class)
 	protected OAuth2ScopeGrantFinder oAuth2ScopeGrantFinder;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@BeanReference(type = com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService.class)
-	protected com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService oAuth2AuthorizationLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@BeanReference(
+		type = com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService.class
+	)
+	protected
+		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+			oAuth2AuthorizationLocalService;
+
 	@BeanReference(type = OAuth2AuthorizationPersistence.class)
 	protected OAuth2AuthorizationPersistence oAuth2AuthorizationPersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

@@ -18,13 +18,10 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.knowledge.base.model.KBFolder;
 import com.liferay.knowledge.base.model.KBFolderModel;
 import com.liferay.knowledge.base.model.KBFolderSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -66,30 +63,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
-	implements KBFolderModel {
+public class KBFolderModelImpl
+	extends BaseModelImpl<KBFolder> implements KBFolderModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kb folder model instance should use the <code>KBFolder</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KBFolder";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "kbFolderId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "parentKBFolderId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "urlTitle", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"kbFolderId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"parentKBFolderId", Types.BIGINT}, {"name", Types.VARCHAR},
+		{"urlTitle", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -107,28 +102,50 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,urlTitle VARCHAR(75) null,description STRING null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KBFolder (uuid_ VARCHAR(75) null,kbFolderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentKBFolderId LONG,name VARCHAR(75) null,urlTitle VARCHAR(75) null,description STRING null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table KBFolder";
-	public static final String ORDER_BY_JPQL = " ORDER BY kbFolder.kbFolderId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KBFolder.kbFolderId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kbFolder.kbFolderId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KBFolder.kbFolderId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.knowledge.base.model.KBFolder"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.knowledge.base.model.KBFolder"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.knowledge.base.model.KBFolder"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.knowledge.base.model.KBFolder"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.knowledge.base.model.KBFolder"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.knowledge.base.model.KBFolder"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long PARENTKBFOLDERID_COLUMN_BITMASK = 8L;
+
 	public static final long URLTITLE_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long KBFOLDERID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -181,8 +198,9 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.knowledge.base.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.knowledge.base.model.KBFolder"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.knowledge.base.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.knowledge.base.model.KBFolder"));
 
 	public KBFolderModelImpl() {
 	}
@@ -221,14 +239,18 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<KBFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((KBFolder)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((KBFolder)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -239,35 +261,44 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KBFolder, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KBFolder, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KBFolder, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KBFolder, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KBFolder)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KBFolder)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KBFolder, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KBFolder, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KBFolder, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KBFolder, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KBFolder, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KBFolder, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KBFolder, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KBFolder, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KBFolder, Object>>();
-		Map<String, BiConsumer<KBFolder, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KBFolder, ?>>();
-
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KBFolder, Object>>();
+		Map<String, BiConsumer<KBFolder, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KBFolder, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -530,9 +561,10 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -793,8 +825,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				KBFolder.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(KBFolder.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -803,8 +835,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KBFolder.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KBFolder.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -817,8 +849,9 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	@Override
 	public KBFolder toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KBFolder)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KBFolder)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -915,7 +948,8 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 		kbFolderModelImpl._setModifiedDate = false;
 
-		kbFolderModelImpl._originalParentKBFolderId = kbFolderModelImpl._parentKBFolderId;
+		kbFolderModelImpl._originalParentKBFolderId =
+			kbFolderModelImpl._parentKBFolderId;
 
 		kbFolderModelImpl._setOriginalParentKBFolderId = false;
 
@@ -1012,16 +1046,20 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<KBFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1040,18 +1078,22 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KBFolder, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KBFolder, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KBFolder, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KBFolder, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KBFolder, Object> attributeGetterFunction = entry.getValue();
+			Function<KBFolder, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1065,10 +1107,12 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KBFolder.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KBFolder.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KBFolder.class, ModelWrapper.class
-		};
+		KBFolder.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _kbFolderId;
@@ -1094,4 +1138,5 @@ public class KBFolderModelImpl extends BaseModelImpl<KBFolder>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private KBFolder _escapedModel;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.reading.time.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -44,8 +43,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface ReadingTimeEntryModel extends AttachedModel,
-	BaseModel<ReadingTimeEntry>, ShardedModel, StagedModel, TrashedModel {
+public interface ReadingTimeEntryModel
+	extends AttachedModel, BaseModel<ReadingTimeEntry>, ShardedModel,
+			StagedModel, TrashedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -328,4 +329,5 @@ public interface ReadingTimeEntryModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

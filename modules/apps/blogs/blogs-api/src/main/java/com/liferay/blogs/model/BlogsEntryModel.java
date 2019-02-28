@@ -17,7 +17,6 @@ package com.liferay.blogs.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -44,8 +43,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface BlogsEntryModel extends BaseModel<BlogsEntry>, ShardedModel,
-	StagedGroupedModel, TrashedModel, WorkflowedModel {
+public interface BlogsEntryModel
+	extends BaseModel<BlogsEntry>, ShardedModel, StagedGroupedModel,
+			TrashedModel, WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -730,4 +731,5 @@ public interface BlogsEntryModel extends BaseModel<BlogsEntry>, ShardedModel,
 
 	@Override
 	public String toXmlString();
+
 }

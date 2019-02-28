@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.mapping.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormInstanceRecord;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstanceRecord>,
-	Externalizable {
+public class DDMFormInstanceRecordCacheModel
+	implements CacheModel<DDMFormInstanceRecord>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,9 +48,12 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 			return false;
 		}
 
-		DDMFormInstanceRecordCacheModel ddmFormInstanceRecordCacheModel = (DDMFormInstanceRecordCacheModel)obj;
+		DDMFormInstanceRecordCacheModel ddmFormInstanceRecordCacheModel =
+			(DDMFormInstanceRecordCacheModel)obj;
 
-		if (formInstanceRecordId == ddmFormInstanceRecordCacheModel.formInstanceRecordId) {
+		if (formInstanceRecordId ==
+				ddmFormInstanceRecordCacheModel.formInstanceRecordId) {
+
 			return true;
 		}
 
@@ -103,7 +106,8 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 
 	@Override
 	public DDMFormInstanceRecord toEntityModel() {
-		DDMFormInstanceRecordImpl ddmFormInstanceRecordImpl = new DDMFormInstanceRecordImpl();
+		DDMFormInstanceRecordImpl ddmFormInstanceRecordImpl =
+			new DDMFormInstanceRecordImpl();
 
 		if (uuid == null) {
 			ddmFormInstanceRecordImpl.setUuid("");
@@ -153,7 +157,8 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 			ddmFormInstanceRecordImpl.setFormInstanceVersion("");
 		}
 		else {
-			ddmFormInstanceRecordImpl.setFormInstanceVersion(formInstanceVersion);
+			ddmFormInstanceRecordImpl.setFormInstanceVersion(
+				formInstanceVersion);
 		}
 
 		ddmFormInstanceRecordImpl.setStorageId(storageId);
@@ -169,8 +174,8 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 			ddmFormInstanceRecordImpl.setLastPublishDate(null);
 		}
 		else {
-			ddmFormInstanceRecordImpl.setLastPublishDate(new Date(
-					lastPublishDate));
+			ddmFormInstanceRecordImpl.setLastPublishDate(
+				new Date(lastPublishDate));
 		}
 
 		ddmFormInstanceRecordImpl.resetOriginalValues();
@@ -205,8 +210,7 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -277,4 +281,5 @@ public class DDMFormInstanceRecordCacheModel implements CacheModel<DDMFormInstan
 	public long storageId;
 	public String version;
 	public long lastPublishDate;
+
 }

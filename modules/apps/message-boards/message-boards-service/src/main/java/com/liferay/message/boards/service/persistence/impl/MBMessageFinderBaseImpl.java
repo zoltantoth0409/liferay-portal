@@ -16,7 +16,6 @@ package com.liferay.message.boards.service.persistence.impl;
 
 import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.service.persistence.MBMessagePersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -33,12 +32,13 @@ import java.util.Set;
  * @generated
  */
 public class MBMessageFinderBaseImpl extends BasePersistenceImpl<MBMessage> {
+
 	public MBMessageFinderBaseImpl() {
 		setModelClass(MBMessage.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +76,14 @@ public class MBMessageFinderBaseImpl extends BasePersistenceImpl<MBMessage> {
 	 */
 	public void setMBMessagePersistence(
 		MBMessagePersistence mbMessagePersistence) {
+
 		this.mbMessagePersistence = mbMessagePersistence;
 	}
 
 	@BeanReference(type = MBMessagePersistence.class)
 	protected MBMessagePersistence mbMessagePersistence;
-	private static final Log _log = LogFactoryUtil.getLog(MBMessageFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBMessageFinderBaseImpl.class);
+
 }

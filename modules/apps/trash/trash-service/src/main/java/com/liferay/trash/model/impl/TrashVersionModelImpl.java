@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -29,7 +28,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
-
 import com.liferay.trash.model.TrashVersion;
 import com.liferay.trash.model.TrashVersionModel;
 
@@ -56,24 +54,25 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
-	implements TrashVersionModel {
+public class TrashVersionModelImpl
+	extends BaseModelImpl<TrashVersion> implements TrashVersionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a trash version model instance should use the <code>TrashVersion</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "TrashVersion";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "versionId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "entryId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "typeSettings", Types.CLOB },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"versionId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"entryId", Types.BIGINT}, {"classNameId", Types.BIGINT},
+		{"classPK", Types.BIGINT}, {"typeSettings", Types.CLOB},
+		{"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("versionId", Types.BIGINT);
@@ -85,28 +84,49 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table TrashVersion (versionId LONG not null primary key,companyId LONG,entryId LONG,classNameId LONG,classPK LONG,typeSettings TEXT null,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table TrashVersion (versionId LONG not null primary key,companyId LONG,entryId LONG,classNameId LONG,classPK LONG,typeSettings TEXT null,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table TrashVersion";
-	public static final String ORDER_BY_JPQL = " ORDER BY trashVersion.versionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY TrashVersion.versionId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY trashVersion.versionId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY TrashVersion.versionId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.trash.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.trash.model.TrashVersion"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.trash.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.trash.model.TrashVersion"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.trash.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.trash.model.TrashVersion"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.trash.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.trash.model.TrashVersion"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.trash.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.trash.model.TrashVersion"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.trash.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.trash.model.TrashVersion"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long ENTRYID_COLUMN_BITMASK = 4L;
+
 	public static final long VERSIONID_COLUMN_BITMASK = 8L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.trash.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.trash.model.TrashVersion"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.trash.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.trash.model.TrashVersion"));
 
 	public TrashVersionModelImpl() {
 	}
@@ -145,13 +165,18 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((TrashVersion)this));
 		}
 
@@ -163,36 +188,44 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<TrashVersion, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<TrashVersion, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<TrashVersion, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<TrashVersion, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((TrashVersion)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(TrashVersion)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<TrashVersion, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<TrashVersion, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<TrashVersion, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<TrashVersion, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<TrashVersion, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<TrashVersion, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<TrashVersion, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<TrashVersion, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<TrashVersion, Object>>();
-		Map<String, BiConsumer<TrashVersion, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<TrashVersion, ?>>();
-
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<TrashVersion, Object>>();
+		Map<String, BiConsumer<TrashVersion, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<TrashVersion, ?>>();
 
 		attributeGetterFunctions.put(
 			"versionId",
@@ -209,7 +242,9 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object versionId) {
+				public void accept(
+					TrashVersion trashVersion, Object versionId) {
+
 					trashVersion.setVersionId((Long)versionId);
 				}
 
@@ -229,7 +264,9 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object companyId) {
+				public void accept(
+					TrashVersion trashVersion, Object companyId) {
+
 					trashVersion.setCompanyId((Long)companyId);
 				}
 
@@ -269,7 +306,9 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object classNameId) {
+				public void accept(
+					TrashVersion trashVersion, Object classNameId) {
+
 					trashVersion.setClassNameId((Long)classNameId);
 				}
 
@@ -309,7 +348,9 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 			new BiConsumer<TrashVersion, Object>() {
 
 				@Override
-				public void accept(TrashVersion trashVersion, Object typeSettings) {
+				public void accept(
+					TrashVersion trashVersion, Object typeSettings) {
+
 					trashVersion.setTypeSettings((String)typeSettings);
 				}
 
@@ -335,9 +376,10 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -477,8 +519,8 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			TrashVersion.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), TrashVersion.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -491,8 +533,9 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 	@Override
 	public TrashVersion toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (TrashVersion)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (TrashVersion)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -575,7 +618,8 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 		trashVersionModelImpl._setOriginalEntryId = false;
 
-		trashVersionModelImpl._originalClassNameId = trashVersionModelImpl._classNameId;
+		trashVersionModelImpl._originalClassNameId =
+			trashVersionModelImpl._classNameId;
 
 		trashVersionModelImpl._setOriginalClassNameId = false;
 
@@ -588,7 +632,8 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public CacheModel<TrashVersion> toCacheModel() {
-		TrashVersionCacheModel trashVersionCacheModel = new TrashVersionCacheModel();
+		TrashVersionCacheModel trashVersionCacheModel =
+			new TrashVersionCacheModel();
 
 		trashVersionCacheModel.versionId = getVersionId();
 
@@ -615,16 +660,20 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public String toString() {
-		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -643,18 +692,22 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<TrashVersion, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<TrashVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<TrashVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<TrashVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<TrashVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -668,10 +721,12 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = TrashVersion.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		TrashVersion.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			TrashVersion.class, ModelWrapper.class
-		};
+		TrashVersion.class, ModelWrapper.class
+	};
+
 	private long _versionId;
 	private long _companyId;
 	private long _entryId;
@@ -687,4 +742,5 @@ public class TrashVersionModelImpl extends BaseModelImpl<TrashVersion>
 	private int _status;
 	private long _columnBitmask;
 	private TrashVersion _escapedModel;
+
 }

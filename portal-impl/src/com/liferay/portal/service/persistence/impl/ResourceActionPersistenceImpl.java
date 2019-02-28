@@ -59,18 +59,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceAction>
+public class ResourceActionPersistenceImpl
+	extends BasePersistenceImpl<ResourceAction>
 	implements ResourceActionPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>ResourceActionUtil</code> to access the resource action persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = ResourceActionImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		ResourceActionImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -120,8 +126,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the ordered range of matching resource actions
 	 */
 	@Override
-	public List<ResourceAction> findByName(String name, int start, int end,
+	public List<ResourceAction> findByName(
+		String name, int start, int end,
 		OrderByComparator<ResourceAction> orderByComparator) {
+
 		return findByName(name, start, end, orderByComparator, true);
 	}
 
@@ -140,9 +148,11 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the ordered range of matching resource actions
 	 */
 	@Override
-	public List<ResourceAction> findByName(String name, int start, int end,
+	public List<ResourceAction> findByName(
+		String name, int start, int end,
 		OrderByComparator<ResourceAction> orderByComparator,
 		boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 
 		boolean pagination = true;
@@ -150,21 +160,22 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByName;
-			finderArgs = new Object[] { name };
+			finderArgs = new Object[] {name};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByName;
-			finderArgs = new Object[] { name, start, end, orderByComparator };
+			finderArgs = new Object[] {name, start, end, orderByComparator};
 		}
 
 		List<ResourceAction> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceAction>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceAction>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceAction resourceAction : list) {
@@ -181,8 +192,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -202,11 +213,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(ResourceActionModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -226,16 +236,16 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 				}
 
 				if (!pagination) {
-					list = (List<ResourceAction>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ResourceAction>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceAction>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ResourceAction>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -264,11 +274,12 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @throws NoSuchResourceActionException if a matching resource action could not be found
 	 */
 	@Override
-	public ResourceAction findByName_First(String name,
-		OrderByComparator<ResourceAction> orderByComparator)
+	public ResourceAction findByName_First(
+			String name, OrderByComparator<ResourceAction> orderByComparator)
 		throws NoSuchResourceActionException {
-		ResourceAction resourceAction = fetchByName_First(name,
-				orderByComparator);
+
+		ResourceAction resourceAction = fetchByName_First(
+			name, orderByComparator);
 
 		if (resourceAction != null) {
 			return resourceAction;
@@ -294,8 +305,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the first matching resource action, or <code>null</code> if a matching resource action could not be found
 	 */
 	@Override
-	public ResourceAction fetchByName_First(String name,
-		OrderByComparator<ResourceAction> orderByComparator) {
+	public ResourceAction fetchByName_First(
+		String name, OrderByComparator<ResourceAction> orderByComparator) {
+
 		List<ResourceAction> list = findByName(name, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -314,10 +326,12 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @throws NoSuchResourceActionException if a matching resource action could not be found
 	 */
 	@Override
-	public ResourceAction findByName_Last(String name,
-		OrderByComparator<ResourceAction> orderByComparator)
+	public ResourceAction findByName_Last(
+			String name, OrderByComparator<ResourceAction> orderByComparator)
 		throws NoSuchResourceActionException {
-		ResourceAction resourceAction = fetchByName_Last(name, orderByComparator);
+
+		ResourceAction resourceAction = fetchByName_Last(
+			name, orderByComparator);
 
 		if (resourceAction != null) {
 			return resourceAction;
@@ -343,16 +357,17 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the last matching resource action, or <code>null</code> if a matching resource action could not be found
 	 */
 	@Override
-	public ResourceAction fetchByName_Last(String name,
-		OrderByComparator<ResourceAction> orderByComparator) {
+	public ResourceAction fetchByName_Last(
+		String name, OrderByComparator<ResourceAction> orderByComparator) {
+
 		int count = countByName(name);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<ResourceAction> list = findByName(name, count - 1, count,
-				orderByComparator);
+		List<ResourceAction> list = findByName(
+			name, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -371,9 +386,11 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @throws NoSuchResourceActionException if a resource action with the primary key could not be found
 	 */
 	@Override
-	public ResourceAction[] findByName_PrevAndNext(long resourceActionId,
-		String name, OrderByComparator<ResourceAction> orderByComparator)
+	public ResourceAction[] findByName_PrevAndNext(
+			long resourceActionId, String name,
+			OrderByComparator<ResourceAction> orderByComparator)
 		throws NoSuchResourceActionException {
+
 		name = Objects.toString(name, "");
 
 		ResourceAction resourceAction = findByPrimaryKey(resourceActionId);
@@ -385,13 +402,13 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 
 			ResourceAction[] array = new ResourceActionImpl[3];
 
-			array[0] = getByName_PrevAndNext(session, resourceAction, name,
-					orderByComparator, true);
+			array[0] = getByName_PrevAndNext(
+				session, resourceAction, name, orderByComparator, true);
 
 			array[1] = resourceAction;
 
-			array[2] = getByName_PrevAndNext(session, resourceAction, name,
-					orderByComparator, false);
+			array[2] = getByName_PrevAndNext(
+				session, resourceAction, name, orderByComparator, false);
 
 			return array;
 		}
@@ -403,14 +420,15 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		}
 	}
 
-	protected ResourceAction getByName_PrevAndNext(Session session,
-		ResourceAction resourceAction, String name,
+	protected ResourceAction getByName_PrevAndNext(
+		Session session, ResourceAction resourceAction, String name,
 		OrderByComparator<ResourceAction> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -431,7 +449,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -503,8 +522,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					resourceAction)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						resourceAction)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -526,8 +547,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 */
 	@Override
 	public void removeByName(String name) {
-		for (ResourceAction resourceAction : findByName(name,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (ResourceAction resourceAction :
+				findByName(name, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(resourceAction);
 		}
 	}
@@ -544,10 +566,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 
 		FinderPath finderPath = _finderPathCountByName;
 
-		Object[] finderArgs = new Object[] { name };
+		Object[] finderArgs = new Object[] {name};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -597,8 +619,12 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_NAME_NAME_2 = "resourceAction.name = ?";
-	private static final String _FINDER_COLUMN_NAME_NAME_3 = "(resourceAction.name IS NULL OR resourceAction.name = '')";
+	private static final String _FINDER_COLUMN_NAME_NAME_2 =
+		"resourceAction.name = ?";
+
+	private static final String _FINDER_COLUMN_NAME_NAME_3 =
+		"(resourceAction.name IS NULL OR resourceAction.name = '')";
+
 	private FinderPath _finderPathFetchByN_A;
 	private FinderPath _finderPathCountByN_A;
 
@@ -613,6 +639,7 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction findByN_A(String name, String actionId)
 		throws NoSuchResourceActionException {
+
 		ResourceAction resourceAction = fetchByN_A(name, actionId);
 
 		if (resourceAction == null) {
@@ -659,25 +686,27 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the matching resource action, or <code>null</code> if a matching resource action could not be found
 	 */
 	@Override
-	public ResourceAction fetchByN_A(String name, String actionId,
-		boolean retrieveFromCache) {
+	public ResourceAction fetchByN_A(
+		String name, String actionId, boolean retrieveFromCache) {
+
 		name = Objects.toString(name, "");
 		actionId = Objects.toString(actionId, "");
 
-		Object[] finderArgs = new Object[] { name, actionId };
+		Object[] finderArgs = new Object[] {name, actionId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(_finderPathFetchByN_A,
-					finderArgs, this);
+			result = FinderCacheUtil.getResult(
+				_finderPathFetchByN_A, finderArgs, this);
 		}
 
 		if (result instanceof ResourceAction) {
 			ResourceAction resourceAction = (ResourceAction)result;
 
 			if (!Objects.equals(name, resourceAction.getName()) ||
-					!Objects.equals(actionId, resourceAction.getActionId())) {
+				!Objects.equals(actionId, resourceAction.getActionId())) {
+
 				result = null;
 			}
 		}
@@ -731,8 +760,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 				List<ResourceAction> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(_finderPathFetchByN_A,
-						finderArgs, list);
+					FinderCacheUtil.putResult(
+						_finderPathFetchByN_A, finderArgs, list);
 				}
 				else {
 					ResourceAction resourceAction = list.get(0);
@@ -770,6 +799,7 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction removeByN_A(String name, String actionId)
 		throws NoSuchResourceActionException {
+
 		ResourceAction resourceAction = findByN_A(name, actionId);
 
 		return remove(resourceAction);
@@ -789,10 +819,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 
 		FinderPath finderPath = _finderPathCountByN_A;
 
-		Object[] finderArgs = new Object[] { name, actionId };
+		Object[] finderArgs = new Object[] {name, actionId};
 
-		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
-				this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			finderPath, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -857,10 +887,17 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_N_A_NAME_2 = "resourceAction.name = ? AND ";
-	private static final String _FINDER_COLUMN_N_A_NAME_3 = "(resourceAction.name IS NULL OR resourceAction.name = '') AND ";
-	private static final String _FINDER_COLUMN_N_A_ACTIONID_2 = "resourceAction.actionId = ?";
-	private static final String _FINDER_COLUMN_N_A_ACTIONID_3 = "(resourceAction.actionId IS NULL OR resourceAction.actionId = '')";
+	private static final String _FINDER_COLUMN_N_A_NAME_2 =
+		"resourceAction.name = ? AND ";
+
+	private static final String _FINDER_COLUMN_N_A_NAME_3 =
+		"(resourceAction.name IS NULL OR resourceAction.name = '') AND ";
+
+	private static final String _FINDER_COLUMN_N_A_ACTIONID_2 =
+		"resourceAction.actionId = ?";
+
+	private static final String _FINDER_COLUMN_N_A_ACTIONID_3 =
+		"(resourceAction.actionId IS NULL OR resourceAction.actionId = '')";
 
 	public ResourceActionPersistenceImpl() {
 		setModelClass(ResourceAction.class);
@@ -873,12 +910,16 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 */
 	@Override
 	public void cacheResult(ResourceAction resourceAction) {
-		EntityCacheUtil.putResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceActionImpl.class, resourceAction.getPrimaryKey(),
 			resourceAction);
 
-		FinderCacheUtil.putResult(_finderPathFetchByN_A,
-			new Object[] { resourceAction.getName(), resourceAction.getActionId() },
+		FinderCacheUtil.putResult(
+			_finderPathFetchByN_A,
+			new Object[] {
+				resourceAction.getName(), resourceAction.getActionId()
+			},
 			resourceAction);
 
 		resourceAction.resetOriginalValues();
@@ -893,8 +934,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	public void cacheResult(List<ResourceAction> resourceActions) {
 		for (ResourceAction resourceAction : resourceActions) {
 			if (EntityCacheUtil.getResult(
-						ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-						ResourceActionImpl.class, resourceAction.getPrimaryKey()) == null) {
+					ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+					ResourceActionImpl.class, resourceAction.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(resourceAction);
 			}
 			else {
@@ -928,7 +971,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 */
 	@Override
 	public void clearCache(ResourceAction resourceAction) {
-		EntityCacheUtil.removeResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceActionImpl.class, resourceAction.getPrimaryKey());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -943,45 +987,49 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (ResourceAction resourceAction : resourceActions) {
-			EntityCacheUtil.removeResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(
+				ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 				ResourceActionImpl.class, resourceAction.getPrimaryKey());
 
-			clearUniqueFindersCache((ResourceActionModelImpl)resourceAction,
-				true);
+			clearUniqueFindersCache(
+				(ResourceActionModelImpl)resourceAction, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		ResourceActionModelImpl resourceActionModelImpl) {
-		Object[] args = new Object[] {
-				resourceActionModelImpl.getName(),
-				resourceActionModelImpl.getActionId()
-			};
 
-		FinderCacheUtil.putResult(_finderPathCountByN_A, args, Long.valueOf(1),
-			false);
-		FinderCacheUtil.putResult(_finderPathFetchByN_A, args,
-			resourceActionModelImpl, false);
+		Object[] args = new Object[] {
+			resourceActionModelImpl.getName(),
+			resourceActionModelImpl.getActionId()
+		};
+
+		FinderCacheUtil.putResult(
+			_finderPathCountByN_A, args, Long.valueOf(1), false);
+		FinderCacheUtil.putResult(
+			_finderPathFetchByN_A, args, resourceActionModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		ResourceActionModelImpl resourceActionModelImpl, boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					resourceActionModelImpl.getName(),
-					resourceActionModelImpl.getActionId()
-				};
+				resourceActionModelImpl.getName(),
+				resourceActionModelImpl.getActionId()
+			};
 
 			FinderCacheUtil.removeResult(_finderPathCountByN_A, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByN_A, args);
 		}
 
 		if ((resourceActionModelImpl.getColumnBitmask() &
-				_finderPathFetchByN_A.getColumnBitmask()) != 0) {
+			 _finderPathFetchByN_A.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					resourceActionModelImpl.getOriginalName(),
-					resourceActionModelImpl.getOriginalActionId()
-				};
+				resourceActionModelImpl.getOriginalName(),
+				resourceActionModelImpl.getOriginalActionId()
+			};
 
 			FinderCacheUtil.removeResult(_finderPathCountByN_A, args);
 			FinderCacheUtil.removeResult(_finderPathFetchByN_A, args);
@@ -1014,6 +1062,7 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction remove(long resourceActionId)
 		throws NoSuchResourceActionException {
+
 		return remove((Serializable)resourceActionId);
 	}
 
@@ -1027,21 +1076,22 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction remove(Serializable primaryKey)
 		throws NoSuchResourceActionException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			ResourceAction resourceAction = (ResourceAction)session.get(ResourceActionImpl.class,
-					primaryKey);
+			ResourceAction resourceAction = (ResourceAction)session.get(
+				ResourceActionImpl.class, primaryKey);
 
 			if (resourceAction == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchResourceActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchResourceActionException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(resourceAction);
@@ -1065,8 +1115,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			session = openSession();
 
 			if (!session.contains(resourceAction)) {
-				resourceAction = (ResourceAction)session.get(ResourceActionImpl.class,
-						resourceAction.getPrimaryKeyObj());
+				resourceAction = (ResourceAction)session.get(
+					ResourceActionImpl.class,
+					resourceAction.getPrimaryKeyObj());
 			}
 
 			if (resourceAction != null) {
@@ -1095,19 +1146,21 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(resourceAction.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(resourceAction);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					resourceAction);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in resourceAction proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom ResourceAction implementation " +
-				resourceAction.getClass());
+					resourceAction.getClass());
 		}
 
-		ResourceActionModelImpl resourceActionModelImpl = (ResourceActionModelImpl)resourceAction;
+		ResourceActionModelImpl resourceActionModelImpl =
+			(ResourceActionModelImpl)resourceAction;
 
 		Session session = null;
 
@@ -1133,41 +1186,44 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (!ResourceActionModelImpl.COLUMN_BITMASK_ENABLED) {
-			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			FinderCacheUtil.clearCache(
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { resourceActionModelImpl.getName() };
+		else if (isNew) {
+			Object[] args = new Object[] {resourceActionModelImpl.getName()};
 
 			FinderCacheUtil.removeResult(_finderPathCountByName, args);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByName,
-				args);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindByName, args);
 
-			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(
+				_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
 		}
-
 		else {
 			if ((resourceActionModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByName.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByName.getColumnBitmask()) !=
+					 0) {
+
 				Object[] args = new Object[] {
-						resourceActionModelImpl.getOriginalName()
-					};
+					resourceActionModelImpl.getOriginalName()
+				};
 
 				FinderCacheUtil.removeResult(_finderPathCountByName, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByName,
-					args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByName, args);
 
-				args = new Object[] { resourceActionModelImpl.getName() };
+				args = new Object[] {resourceActionModelImpl.getName()};
 
 				FinderCacheUtil.removeResult(_finderPathCountByName, args);
-				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByName,
-					args);
+				FinderCacheUtil.removeResult(
+					_finderPathWithoutPaginationFindByName, args);
 			}
 		}
 
-		EntityCacheUtil.putResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 			ResourceActionImpl.class, resourceAction.getPrimaryKey(),
 			resourceAction, false);
 
@@ -1189,6 +1245,7 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchResourceActionException {
+
 		ResourceAction resourceAction = fetchByPrimaryKey(primaryKey);
 
 		if (resourceAction == null) {
@@ -1196,8 +1253,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchResourceActionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchResourceActionException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return resourceAction;
@@ -1213,6 +1270,7 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public ResourceAction findByPrimaryKey(long resourceActionId)
 		throws NoSuchResourceActionException {
+
 		return findByPrimaryKey((Serializable)resourceActionId);
 	}
 
@@ -1224,8 +1282,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 */
 	@Override
 	public ResourceAction fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = EntityCacheUtil.getResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionImpl.class, primaryKey);
+		Serializable serializable = EntityCacheUtil.getResult(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -1239,19 +1298,21 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			try {
 				session = openSession();
 
-				resourceAction = (ResourceAction)session.get(ResourceActionImpl.class,
-						primaryKey);
+				resourceAction = (ResourceAction)session.get(
+					ResourceActionImpl.class, primaryKey);
 
 				if (resourceAction != null) {
 					cacheResult(resourceAction);
 				}
 				else {
-					EntityCacheUtil.putResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+					EntityCacheUtil.putResult(
+						ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 						ResourceActionImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				EntityCacheUtil.removeResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(
+					ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceActionImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1278,11 +1339,13 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	@Override
 	public Map<Serializable, ResourceAction> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, ResourceAction> map = new HashMap<Serializable, ResourceAction>();
+		Map<Serializable, ResourceAction> map =
+			new HashMap<Serializable, ResourceAction>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -1301,8 +1364,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = EntityCacheUtil.getResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-					ResourceActionImpl.class, primaryKey);
+			Serializable serializable = EntityCacheUtil.getResult(
+				ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+				ResourceActionImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1322,8 +1386,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_RESOURCEACTION_WHERE_PKS_IN);
 
@@ -1346,7 +1410,9 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 
 			Query q = session.createQuery(sql);
 
-			for (ResourceAction resourceAction : (List<ResourceAction>)q.list()) {
+			for (ResourceAction resourceAction :
+					(List<ResourceAction>)q.list()) {
+
 				map.put(resourceAction.getPrimaryKeyObj(), resourceAction);
 
 				cacheResult(resourceAction);
@@ -1355,7 +1421,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				EntityCacheUtil.putResult(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.putResult(
+					ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
 					ResourceActionImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -1408,8 +1475,10 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the ordered range of resource actions
 	 */
 	@Override
-	public List<ResourceAction> findAll(int start, int end,
+	public List<ResourceAction> findAll(
+		int start, int end,
 		OrderByComparator<ResourceAction> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1427,29 +1496,31 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * @return the ordered range of resource actions
 	 */
 	@Override
-	public List<ResourceAction> findAll(int start, int end,
-		OrderByComparator<ResourceAction> orderByComparator,
+	public List<ResourceAction> findAll(
+		int start, int end, OrderByComparator<ResourceAction> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<ResourceAction> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<ResourceAction>)FinderCacheUtil.getResult(finderPath,
-					finderArgs, this);
+			list = (List<ResourceAction>)FinderCacheUtil.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1457,13 +1528,13 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_RESOURCEACTION);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1483,16 +1554,16 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<ResourceAction>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<ResourceAction>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<ResourceAction>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<ResourceAction>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1530,8 +1601,8 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)FinderCacheUtil.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1543,12 +1614,12 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY, count);
+				FinderCacheUtil.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(_finderPathCountAll,
-					FINDER_ARGS_EMPTY);
+				FinderCacheUtil.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -1569,58 +1640,61 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 	 * Initializes the resource action persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceActionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceActionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceActionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceActionImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathCountAll = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByName = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceActionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByName",
-				new String[] {
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByName = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceActionImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByName",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByName = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceActionImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByName",
-				new String[] { String.class.getName() },
-				ResourceActionModelImpl.NAME_COLUMN_BITMASK |
-				ResourceActionModelImpl.BITWISEVALUE_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByName = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceActionImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByName", new String[] {String.class.getName()},
+			ResourceActionModelImpl.NAME_COLUMN_BITMASK |
+			ResourceActionModelImpl.BITWISEVALUE_COLUMN_BITMASK);
 
-		_finderPathCountByName = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByName",
-				new String[] { String.class.getName() });
+		_finderPathCountByName = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByName",
+			new String[] {String.class.getName()});
 
-		_finderPathFetchByN_A = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED,
-				ResourceActionImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByN_A",
-				new String[] { String.class.getName(), String.class.getName() },
-				ResourceActionModelImpl.NAME_COLUMN_BITMASK |
-				ResourceActionModelImpl.ACTIONID_COLUMN_BITMASK);
+		_finderPathFetchByN_A = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED,
+			ResourceActionImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByN_A",
+			new String[] {String.class.getName(), String.class.getName()},
+			ResourceActionModelImpl.NAME_COLUMN_BITMASK |
+			ResourceActionModelImpl.ACTIONID_COLUMN_BITMASK);
 
-		_finderPathCountByN_A = new FinderPath(ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
-				ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByN_A",
-				new String[] { String.class.getName(), String.class.getName() });
+		_finderPathCountByN_A = new FinderPath(
+			ResourceActionModelImpl.ENTITY_CACHE_ENABLED,
+			ResourceActionModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByN_A",
+			new String[] {String.class.getName(), String.class.getName()});
 	}
 
 	public void destroy() {
@@ -1630,13 +1704,30 @@ public class ResourceActionPersistenceImpl extends BasePersistenceImpl<ResourceA
 		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
-	private static final String _SQL_SELECT_RESOURCEACTION = "SELECT resourceAction FROM ResourceAction resourceAction";
-	private static final String _SQL_SELECT_RESOURCEACTION_WHERE_PKS_IN = "SELECT resourceAction FROM ResourceAction resourceAction WHERE resourceActionId IN (";
-	private static final String _SQL_SELECT_RESOURCEACTION_WHERE = "SELECT resourceAction FROM ResourceAction resourceAction WHERE ";
-	private static final String _SQL_COUNT_RESOURCEACTION = "SELECT COUNT(resourceAction) FROM ResourceAction resourceAction";
-	private static final String _SQL_COUNT_RESOURCEACTION_WHERE = "SELECT COUNT(resourceAction) FROM ResourceAction resourceAction WHERE ";
+	private static final String _SQL_SELECT_RESOURCEACTION =
+		"SELECT resourceAction FROM ResourceAction resourceAction";
+
+	private static final String _SQL_SELECT_RESOURCEACTION_WHERE_PKS_IN =
+		"SELECT resourceAction FROM ResourceAction resourceAction WHERE resourceActionId IN (";
+
+	private static final String _SQL_SELECT_RESOURCEACTION_WHERE =
+		"SELECT resourceAction FROM ResourceAction resourceAction WHERE ";
+
+	private static final String _SQL_COUNT_RESOURCEACTION =
+		"SELECT COUNT(resourceAction) FROM ResourceAction resourceAction";
+
+	private static final String _SQL_COUNT_RESOURCEACTION_WHERE =
+		"SELECT COUNT(resourceAction) FROM ResourceAction resourceAction WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "resourceAction.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ResourceAction exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ResourceAction exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(ResourceActionPersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No ResourceAction exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No ResourceAction exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ResourceActionPersistenceImpl.class);
+
 }

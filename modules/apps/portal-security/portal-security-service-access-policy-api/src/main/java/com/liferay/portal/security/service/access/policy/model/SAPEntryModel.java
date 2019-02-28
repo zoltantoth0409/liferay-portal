@@ -17,7 +17,6 @@ package com.liferay.portal.security.service.access.policy.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -45,8 +44,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface SAPEntryModel extends BaseModel<SAPEntry>, LocalizedModel,
-	ShardedModel, StagedAuditedModel {
+public interface SAPEntryModel
+	extends BaseModel<SAPEntry>, LocalizedModel, ShardedModel,
+			StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -435,4 +436,5 @@ public interface SAPEntryModel extends BaseModel<SAPEntry>, LocalizedModel,
 
 	@Override
 	public String toXmlString();
+
 }

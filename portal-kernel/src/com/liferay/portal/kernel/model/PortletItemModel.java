@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -37,8 +36,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface PortletItemModel extends BaseModel<PortletItem>, GroupedModel,
-	MVCCModel, ShardedModel, TypedModel {
+public interface PortletItemModel
+	extends BaseModel<PortletItem>, GroupedModel, MVCCModel, ShardedModel,
+			TypedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -314,4 +315,5 @@ public interface PortletItemModel extends BaseModel<PortletItem>, GroupedModel,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.model.DDMContent;
 import com.liferay.dynamic.data.mapping.model.impl.DDMContentImpl;
 import com.liferay.dynamic.data.mapping.model.impl.DDMContentModelImpl;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMContentPersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -70,18 +69,23 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
-	implements DDMContentPersistence {
+public class DDMContentPersistenceImpl
+	extends BasePersistenceImpl<DDMContent> implements DDMContentPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DDMContentUtil</code> to access the ddm content persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = DDMContentImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		DDMContentImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -131,8 +135,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByUuid(String uuid, int start, int end,
+	public List<DDMContent> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -151,9 +157,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByUuid(String uuid, int start, int end,
+	public List<DDMContent> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -161,21 +169,22 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DDMContent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMContent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMContent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
@@ -192,8 +201,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -213,11 +222,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMContentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -237,16 +245,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				}
 
 				if (!pagination) {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -275,9 +283,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByUuid_First(String uuid,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByUuid_First(
+			String uuid, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = fetchByUuid_First(uuid, orderByComparator);
 
 		if (ddmContent != null) {
@@ -304,8 +313,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the first matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByUuid_First(String uuid,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public DDMContent fetchByUuid_First(
+		String uuid, OrderByComparator<DDMContent> orderByComparator) {
+
 		List<DDMContent> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -324,9 +334,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByUuid_Last(String uuid,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByUuid_Last(
+			String uuid, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (ddmContent != null) {
@@ -353,16 +364,17 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the last matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByUuid_Last(String uuid,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public DDMContent fetchByUuid_Last(
+		String uuid, OrderByComparator<DDMContent> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMContent> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<DDMContent> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -381,9 +393,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a ddm content with the primary key could not be found
 	 */
 	@Override
-	public DDMContent[] findByUuid_PrevAndNext(long contentId, String uuid,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent[] findByUuid_PrevAndNext(
+			long contentId, String uuid,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDMContent ddmContent = findByPrimaryKey(contentId);
@@ -395,13 +409,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 			DDMContent[] array = new DDMContentImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, ddmContent, uuid,
-					orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, ddmContent, uuid, orderByComparator, true);
 
 			array[1] = ddmContent;
 
-			array[2] = getByUuid_PrevAndNext(session, ddmContent, uuid,
-					orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, ddmContent, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -413,14 +427,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 	}
 
-	protected DDMContent getByUuid_PrevAndNext(Session session,
-		DDMContent ddmContent, String uuid,
+	protected DDMContent getByUuid_PrevAndNext(
+		Session session, DDMContent ddmContent, String uuid,
 		OrderByComparator<DDMContent> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -441,7 +456,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -513,8 +529,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmContent)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmContent)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -536,8 +553,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (DDMContent ddmContent : findByUuid(uuid, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
+		for (DDMContent ddmContent :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmContent);
 		}
 	}
@@ -554,7 +572,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -606,8 +624,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "ddmContent.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(ddmContent.uuid IS NULL OR ddmContent.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"ddmContent.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(ddmContent.uuid IS NULL OR ddmContent.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -622,6 +644,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public DDMContent findByUUID_G(String uuid, long groupId)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = fetchByUUID_G(uuid, groupId);
 
 		if (ddmContent == null) {
@@ -668,24 +691,26 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public DDMContent fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof DDMContent) {
 			DDMContent ddmContent = (DDMContent)result;
 
 			if (!Objects.equals(uuid, ddmContent.getUuid()) ||
-					(groupId != ddmContent.getGroupId())) {
+				(groupId != ddmContent.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -728,8 +753,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				List<DDMContent> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					DDMContent ddmContent = list.get(0);
@@ -767,6 +792,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public DDMContent removeByUUID_G(String uuid, long groupId)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = findByUUID_G(uuid, groupId);
 
 		return remove(ddmContent);
@@ -785,7 +811,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -841,9 +867,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "ddmContent.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(ddmContent.uuid IS NULL OR ddmContent.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "ddmContent.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"ddmContent.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(ddmContent.uuid IS NULL OR ddmContent.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"ddmContent.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -857,8 +889,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public List<DDMContent> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -875,8 +907,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	public List<DDMContent> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -895,9 +928,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<DDMContent> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	public List<DDMContent> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDMContent> orderByComparator) {
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -916,9 +952,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<DDMContent> orderByComparator,
+	public List<DDMContent> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDMContent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -926,30 +964,30 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMContent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMContent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMContent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
 					if (!uuid.equals(ddmContent.getUuid()) ||
-							(companyId != ddmContent.getCompanyId())) {
+						(companyId != ddmContent.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -962,8 +1000,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -985,11 +1023,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMContentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1011,16 +1048,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1050,11 +1087,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
-		DDMContent ddmContent = fetchByUuid_C_First(uuid, companyId,
-				orderByComparator);
+
+		DDMContent ddmContent = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (ddmContent != null) {
 			return ddmContent;
@@ -1084,10 +1123,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the first matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByUuid_C_First(String uuid, long companyId,
+	public DDMContent fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<DDMContent> orderByComparator) {
-		List<DDMContent> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<DDMContent> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1106,11 +1147,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
-		DDMContent ddmContent = fetchByUuid_C_Last(uuid, companyId,
-				orderByComparator);
+
+		DDMContent ddmContent = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (ddmContent != null) {
 			return ddmContent;
@@ -1140,16 +1183,18 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the last matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByUuid_C_Last(String uuid, long companyId,
+	public DDMContent fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<DDMContent> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMContent> list = findByUuid_C(uuid, companyId, count - 1, count,
-				orderByComparator);
+		List<DDMContent> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1169,9 +1214,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a ddm content with the primary key could not be found
 	 */
 	@Override
-	public DDMContent[] findByUuid_C_PrevAndNext(long contentId, String uuid,
-		long companyId, OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent[] findByUuid_C_PrevAndNext(
+			long contentId, String uuid, long companyId,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDMContent ddmContent = findByPrimaryKey(contentId);
@@ -1183,13 +1230,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 			DDMContent[] array = new DDMContentImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, ddmContent, uuid,
-					companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, ddmContent, uuid, companyId, orderByComparator, true);
 
 			array[1] = ddmContent;
 
-			array[2] = getByUuid_C_PrevAndNext(session, ddmContent, uuid,
-					companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, ddmContent, uuid, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -1201,14 +1248,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 	}
 
-	protected DDMContent getByUuid_C_PrevAndNext(Session session,
-		DDMContent ddmContent, String uuid, long companyId,
+	protected DDMContent getByUuid_C_PrevAndNext(
+		Session session, DDMContent ddmContent, String uuid, long companyId,
 		OrderByComparator<DDMContent> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1231,7 +1279,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1305,8 +1354,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmContent)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmContent)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1329,8 +1379,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (DDMContent ddmContent : findByUuid_C(uuid, companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMContent ddmContent :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddmContent);
 		}
 	}
@@ -1348,7 +1401,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1404,9 +1457,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "ddmContent.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(ddmContent.uuid IS NULL OR ddmContent.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "ddmContent.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"ddmContent.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(ddmContent.uuid IS NULL OR ddmContent.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"ddmContent.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByGroupId;
 	private FinderPath _finderPathWithoutPaginationFindByGroupId;
 	private FinderPath _finderPathCountByGroupId;
@@ -1419,7 +1478,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public List<DDMContent> findByGroupId(long groupId) {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1453,8 +1513,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByGroupId(long groupId, int start, int end,
+	public List<DDMContent> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator) {
+
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
@@ -1473,29 +1535,32 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByGroupId(long groupId, int start, int end,
+	public List<DDMContent> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId };
+			finderArgs = new Object[] {groupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId, start, end, orderByComparator };
+			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<DDMContent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMContent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMContent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
@@ -1512,8 +1577,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1524,11 +1589,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMContentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1546,16 +1610,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1584,10 +1648,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByGroupId_First(long groupId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByGroupId_First(
+			long groupId, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
-		DDMContent ddmContent = fetchByGroupId_First(groupId, orderByComparator);
+
+		DDMContent ddmContent = fetchByGroupId_First(
+			groupId, orderByComparator);
 
 		if (ddmContent != null) {
 			return ddmContent;
@@ -1613,8 +1679,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the first matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByGroupId_First(long groupId,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public DDMContent fetchByGroupId_First(
+		long groupId, OrderByComparator<DDMContent> orderByComparator) {
+
 		List<DDMContent> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1633,9 +1700,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByGroupId_Last(long groupId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByGroupId_Last(
+			long groupId, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (ddmContent != null) {
@@ -1662,16 +1730,17 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the last matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByGroupId_Last(long groupId,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public DDMContent fetchByGroupId_Last(
+		long groupId, OrderByComparator<DDMContent> orderByComparator) {
+
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMContent> list = findByGroupId(groupId, count - 1, count,
-				orderByComparator);
+		List<DDMContent> list = findByGroupId(
+			groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1690,9 +1759,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a ddm content with the primary key could not be found
 	 */
 	@Override
-	public DDMContent[] findByGroupId_PrevAndNext(long contentId, long groupId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent[] findByGroupId_PrevAndNext(
+			long contentId, long groupId,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = findByPrimaryKey(contentId);
 
 		Session session = null;
@@ -1702,13 +1773,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 			DDMContent[] array = new DDMContentImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(session, ddmContent, groupId,
-					orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(
+				session, ddmContent, groupId, orderByComparator, true);
 
 			array[1] = ddmContent;
 
-			array[2] = getByGroupId_PrevAndNext(session, ddmContent, groupId,
-					orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(
+				session, ddmContent, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -1720,14 +1791,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 	}
 
-	protected DDMContent getByGroupId_PrevAndNext(Session session,
-		DDMContent ddmContent, long groupId,
+	protected DDMContent getByGroupId_PrevAndNext(
+		Session session, DDMContent ddmContent, long groupId,
 		OrderByComparator<DDMContent> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1739,7 +1811,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1809,8 +1882,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmContent)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmContent)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1832,8 +1906,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (DDMContent ddmContent : findByGroupId(groupId, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
+		for (DDMContent ddmContent :
+				findByGroupId(
+					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmContent);
 		}
 	}
@@ -1848,7 +1924,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] { groupId };
+		Object[] finderArgs = new Object[] {groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1889,7 +1965,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "ddmContent.groupId = ?";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
+		"ddmContent.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByCompanyId;
 	private FinderPath _finderPathWithoutPaginationFindByCompanyId;
 	private FinderPath _finderPathCountByCompanyId;
@@ -1902,8 +1980,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public List<DDMContent> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1919,7 +1997,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByCompanyId(long companyId, int start, int end) {
+	public List<DDMContent> findByCompanyId(
+		long companyId, int start, int end) {
+
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -1937,8 +2017,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByCompanyId(long companyId, int start, int end,
+	public List<DDMContent> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -1957,29 +2039,34 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of matching ddm contents
 	 */
 	@Override
-	public List<DDMContent> findByCompanyId(long companyId, int start, int end,
+	public List<DDMContent> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<DDMContent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<DDMContent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMContent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMContent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDMContent ddmContent : list) {
@@ -1996,8 +2083,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2008,11 +2095,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDMContentModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2030,16 +2116,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2068,11 +2154,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByCompanyId_First(long companyId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByCompanyId_First(
+			long companyId, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
-		DDMContent ddmContent = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		DDMContent ddmContent = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (ddmContent != null) {
 			return ddmContent;
@@ -2098,10 +2185,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the first matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByCompanyId_First(long companyId,
-		OrderByComparator<DDMContent> orderByComparator) {
-		List<DDMContent> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public DDMContent fetchByCompanyId_First(
+		long companyId, OrderByComparator<DDMContent> orderByComparator) {
+
+		List<DDMContent> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2119,11 +2207,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent findByCompanyId_Last(long companyId,
-		OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent findByCompanyId_Last(
+			long companyId, OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
-		DDMContent ddmContent = fetchByCompanyId_Last(companyId,
-				orderByComparator);
+
+		DDMContent ddmContent = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (ddmContent != null) {
 			return ddmContent;
@@ -2149,16 +2238,17 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the last matching ddm content, or <code>null</code> if a matching ddm content could not be found
 	 */
 	@Override
-	public DDMContent fetchByCompanyId_Last(long companyId,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public DDMContent fetchByCompanyId_Last(
+		long companyId, OrderByComparator<DDMContent> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDMContent> list = findByCompanyId(companyId, count - 1, count,
-				orderByComparator);
+		List<DDMContent> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2177,9 +2267,11 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @throws NoSuchContentException if a ddm content with the primary key could not be found
 	 */
 	@Override
-	public DDMContent[] findByCompanyId_PrevAndNext(long contentId,
-		long companyId, OrderByComparator<DDMContent> orderByComparator)
+	public DDMContent[] findByCompanyId_PrevAndNext(
+			long contentId, long companyId,
+			OrderByComparator<DDMContent> orderByComparator)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = findByPrimaryKey(contentId);
 
 		Session session = null;
@@ -2189,13 +2281,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 			DDMContent[] array = new DDMContentImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, ddmContent,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, ddmContent, companyId, orderByComparator, true);
 
 			array[1] = ddmContent;
 
-			array[2] = getByCompanyId_PrevAndNext(session, ddmContent,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, ddmContent, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -2207,14 +2299,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		}
 	}
 
-	protected DDMContent getByCompanyId_PrevAndNext(Session session,
-		DDMContent ddmContent, long companyId,
+	protected DDMContent getByCompanyId_PrevAndNext(
+		Session session, DDMContent ddmContent, long companyId,
 		OrderByComparator<DDMContent> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2226,7 +2319,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2296,8 +2390,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddmContent)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddmContent)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2319,8 +2414,10 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (DDMContent ddmContent : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDMContent ddmContent :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddmContent);
 		}
 	}
@@ -2335,7 +2432,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2376,14 +2473,15 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "ddmContent.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"ddmContent.companyId = ?";
 
 	public DDMContentPersistenceImpl() {
 		setModelClass(DDMContent.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -2408,11 +2506,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void cacheResult(DDMContent ddmContent) {
-		entityCache.putResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-			DDMContentImpl.class, ddmContent.getPrimaryKey(), ddmContent);
+		entityCache.putResult(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+			ddmContent.getPrimaryKey(), ddmContent);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
-			new Object[] { ddmContent.getUuid(), ddmContent.getGroupId() },
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
+			new Object[] {ddmContent.getUuid(), ddmContent.getGroupId()},
 			ddmContent);
 
 		ddmContent.resetOriginalValues();
@@ -2427,8 +2527,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	public void cacheResult(List<DDMContent> ddmContents) {
 		for (DDMContent ddmContent : ddmContents) {
 			if (entityCache.getResult(
-						DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-						DDMContentImpl.class, ddmContent.getPrimaryKey()) == null) {
+					DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+					DDMContentImpl.class, ddmContent.getPrimaryKey()) == null) {
+
 				cacheResult(ddmContent);
 			}
 			else {
@@ -2462,8 +2563,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public void clearCache(DDMContent ddmContent) {
-		entityCache.removeResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-			DDMContentImpl.class, ddmContent.getPrimaryKey());
+		entityCache.removeResult(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+			ddmContent.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -2477,8 +2579,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (DDMContent ddmContent : ddmContents) {
-			entityCache.removeResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentImpl.class, ddmContent.getPrimaryKey());
+			entityCache.removeResult(
+				DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+				ddmContent.getPrimaryKey());
 
 			clearUniqueFindersCache((DDMContentModelImpl)ddmContent, true);
 		}
@@ -2486,34 +2589,36 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 	protected void cacheUniqueFindersCache(
 		DDMContentModelImpl ddmContentModelImpl) {
-		Object[] args = new Object[] {
-				ddmContentModelImpl.getUuid(), ddmContentModelImpl.getGroupId()
-			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			ddmContentModelImpl, false);
+		Object[] args = new Object[] {
+			ddmContentModelImpl.getUuid(), ddmContentModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, ddmContentModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		DDMContentModelImpl ddmContentModelImpl, boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					ddmContentModelImpl.getUuid(),
-					ddmContentModelImpl.getGroupId()
-				};
+				ddmContentModelImpl.getUuid(), ddmContentModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((ddmContentModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					ddmContentModelImpl.getOriginalUuid(),
-					ddmContentModelImpl.getOriginalGroupId()
-				};
+				ddmContentModelImpl.getOriginalUuid(),
+				ddmContentModelImpl.getOriginalGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
@@ -2564,21 +2669,22 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public DDMContent remove(Serializable primaryKey)
 		throws NoSuchContentException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDMContent ddmContent = (DDMContent)session.get(DDMContentImpl.class,
-					primaryKey);
+			DDMContent ddmContent = (DDMContent)session.get(
+				DDMContentImpl.class, primaryKey);
 
 			if (ddmContent == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchContentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchContentException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(ddmContent);
@@ -2602,8 +2708,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			session = openSession();
 
 			if (!session.contains(ddmContent)) {
-				ddmContent = (DDMContent)session.get(DDMContentImpl.class,
-						ddmContent.getPrimaryKeyObj());
+				ddmContent = (DDMContent)session.get(
+					DDMContentImpl.class, ddmContent.getPrimaryKeyObj());
 			}
 
 			if (ddmContent != null) {
@@ -2636,15 +2742,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in ddmContent proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom DDMContent implementation " +
-				ddmContent.getClass());
+					ddmContent.getClass());
 		}
 
-		DDMContentModelImpl ddmContentModelImpl = (DDMContentModelImpl)ddmContent;
+		DDMContentModelImpl ddmContentModelImpl =
+			(DDMContentModelImpl)ddmContent;
 
 		if (Validator.isNull(ddmContent.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -2652,7 +2759,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			ddmContent.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -2700,116 +2808,123 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		if (!DDMContentModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { ddmContentModelImpl.getUuid() };
+		else if (isNew) {
+			Object[] args = new Object[] {ddmContentModelImpl.getUuid()};
 
 			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
 
 			args = new Object[] {
+				ddmContentModelImpl.getUuid(),
+				ddmContentModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			args = new Object[] {ddmContentModelImpl.getGroupId()};
+
+			finderCache.removeResult(_finderPathCountByGroupId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByGroupId, args);
+
+			args = new Object[] {ddmContentModelImpl.getCompanyId()};
+
+			finderCache.removeResult(_finderPathCountByCompanyId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((ddmContentModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmContentModelImpl.getOriginalUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {ddmContentModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((ddmContentModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddmContentModelImpl.getOriginalUuid(),
+					ddmContentModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					ddmContentModelImpl.getUuid(),
 					ddmContentModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
-
-			args = new Object[] { ddmContentModelImpl.getGroupId() };
-
-			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-				args);
-
-			args = new Object[] { ddmContentModelImpl.getCompanyId() };
-
-			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((ddmContentModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmContentModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { ddmContentModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
 			}
 
 			if ((ddmContentModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByGroupId.
+					 getColumnBitmask()) != 0) {
+
 				Object[] args = new Object[] {
-						ddmContentModelImpl.getOriginalUuid(),
-						ddmContentModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						ddmContentModelImpl.getUuid(),
-						ddmContentModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-			}
-
-			if ((ddmContentModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddmContentModelImpl.getOriginalGroupId()
-					};
+					ddmContentModelImpl.getOriginalGroupId()
+				};
 
 				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
 
-				args = new Object[] { ddmContentModelImpl.getGroupId() };
+				args = new Object[] {ddmContentModelImpl.getGroupId()};
 
 				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
 			}
 
 			if ((ddmContentModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
+
 				Object[] args = new Object[] {
-						ddmContentModelImpl.getOriginalCompanyId()
-					};
+					ddmContentModelImpl.getOriginalCompanyId()
+				};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 
-				args = new Object[] { ddmContentModelImpl.getCompanyId() };
+				args = new Object[] {ddmContentModelImpl.getCompanyId()};
 
 				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 			}
 		}
 
-		entityCache.putResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-			DDMContentImpl.class, ddmContent.getPrimaryKey(), ddmContent, false);
+		entityCache.putResult(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+			ddmContent.getPrimaryKey(), ddmContent, false);
 
 		clearUniqueFindersCache(ddmContentModelImpl, false);
 		cacheUniqueFindersCache(ddmContentModelImpl);
@@ -2829,6 +2944,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public DDMContent findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchContentException {
+
 		DDMContent ddmContent = fetchByPrimaryKey(primaryKey);
 
 		if (ddmContent == null) {
@@ -2836,8 +2952,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchContentException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchContentException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return ddmContent;
@@ -2853,6 +2969,7 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public DDMContent findByPrimaryKey(long contentId)
 		throws NoSuchContentException {
+
 		return findByPrimaryKey((Serializable)contentId);
 	}
 
@@ -2864,8 +2981,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public DDMContent fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+			primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -2879,19 +2997,21 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			try {
 				session = openSession();
 
-				ddmContent = (DDMContent)session.get(DDMContentImpl.class,
-						primaryKey);
+				ddmContent = (DDMContent)session.get(
+					DDMContentImpl.class, primaryKey);
 
 				if (ddmContent != null) {
 					cacheResult(ddmContent);
 				}
 				else {
-					entityCache.putResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						DDMContentModelImpl.ENTITY_CACHE_ENABLED,
 						DDMContentImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					DDMContentModelImpl.ENTITY_CACHE_ENABLED,
 					DDMContentImpl.class, primaryKey);
 
 				throw processException(e);
@@ -2918,11 +3038,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	@Override
 	public Map<Serializable, DDMContent> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, DDMContent> map = new HashMap<Serializable, DDMContent>();
+		Map<Serializable, DDMContent> map =
+			new HashMap<Serializable, DDMContent>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -2941,8 +3063,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-					DDMContentImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				DDMContentModelImpl.ENTITY_CACHE_ENABLED, DDMContentImpl.class,
+				primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -2962,8 +3085,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_DDMCONTENT_WHERE_PKS_IN);
 
@@ -2995,7 +3118,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					DDMContentModelImpl.ENTITY_CACHE_ENABLED,
 					DDMContentImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -3048,8 +3172,9 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of ddm contents
 	 */
 	@Override
-	public List<DDMContent> findAll(int start, int end,
-		OrderByComparator<DDMContent> orderByComparator) {
+	public List<DDMContent> findAll(
+		int start, int end, OrderByComparator<DDMContent> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -3067,29 +3192,31 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * @return the ordered range of ddm contents
 	 */
 	@Override
-	public List<DDMContent> findAll(int start, int end,
-		OrderByComparator<DDMContent> orderByComparator,
+	public List<DDMContent> findAll(
+		int start, int end, OrderByComparator<DDMContent> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDMContent> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDMContent>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDMContent>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -3097,13 +3224,13 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_DDMCONTENT);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -3123,16 +3250,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDMContent>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDMContent>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3170,8 +3297,8 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -3183,11 +3310,12 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -3213,116 +3341,126 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	 * Initializes the ddm content persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] {String.class.getName()},
+			DDMContentModelImpl.UUID_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDMContentModelImpl.UUID_COLUMN_BITMASK |
+			DDMContentModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				DDMContentModelImpl.UUID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDMContentModelImpl.UUID_COLUMN_BITMASK |
+			DDMContentModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDMContentModelImpl.UUID_COLUMN_BITMASK |
-				DDMContentModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithPaginationFindByGroupId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathCountByUUID_G = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+			new String[] {Long.class.getName()},
+			DDMContentModelImpl.GROUPID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathCountByGroupId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDMContentModelImpl.UUID_COLUMN_BITMASK |
-				DDMContentModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathCountByUuid_C = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] {Long.class.getName()},
+			DDMContentModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-				new String[] { Long.class.getName() },
-				DDMContentModelImpl.GROUPID_COLUMN_BITMASK);
-
-		_finderPathCountByGroupId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
-
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, DDMContentImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				DDMContentModelImpl.COMPANYID_COLUMN_BITMASK);
-
-		_finderPathCountByCompanyId = new FinderPath(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
-				DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByCompanyId = new FinderPath(
+			DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+			DDMContentModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
 	}
 
 	public void destroy() {
@@ -3334,20 +3472,40 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_DDMCONTENT = "SELECT ddmContent FROM DDMContent ddmContent";
-	private static final String _SQL_SELECT_DDMCONTENT_WHERE_PKS_IN = "SELECT ddmContent FROM DDMContent ddmContent WHERE contentId IN (";
-	private static final String _SQL_SELECT_DDMCONTENT_WHERE = "SELECT ddmContent FROM DDMContent ddmContent WHERE ";
-	private static final String _SQL_COUNT_DDMCONTENT = "SELECT COUNT(ddmContent) FROM DDMContent ddmContent";
-	private static final String _SQL_COUNT_DDMCONTENT_WHERE = "SELECT COUNT(ddmContent) FROM DDMContent ddmContent WHERE ";
+
+	private static final String _SQL_SELECT_DDMCONTENT =
+		"SELECT ddmContent FROM DDMContent ddmContent";
+
+	private static final String _SQL_SELECT_DDMCONTENT_WHERE_PKS_IN =
+		"SELECT ddmContent FROM DDMContent ddmContent WHERE contentId IN (";
+
+	private static final String _SQL_SELECT_DDMCONTENT_WHERE =
+		"SELECT ddmContent FROM DDMContent ddmContent WHERE ";
+
+	private static final String _SQL_COUNT_DDMCONTENT =
+		"SELECT COUNT(ddmContent) FROM DDMContent ddmContent";
+
+	private static final String _SQL_COUNT_DDMCONTENT_WHERE =
+		"SELECT COUNT(ddmContent) FROM DDMContent ddmContent WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "ddmContent.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No DDMContent exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMContent exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(DDMContentPersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid", "data"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No DDMContent exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No DDMContent exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDMContentPersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid", "data"});
+
 }

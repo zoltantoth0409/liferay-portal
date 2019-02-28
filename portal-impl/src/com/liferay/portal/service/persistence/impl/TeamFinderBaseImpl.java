@@ -32,12 +32,13 @@ import java.util.Set;
  * @generated
  */
 public class TeamFinderBaseImpl extends BasePersistenceImpl<Team> {
+
 	public TeamFinderBaseImpl() {
 		setModelClass(Team.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -79,5 +80,8 @@ public class TeamFinderBaseImpl extends BasePersistenceImpl<Team> {
 
 	@BeanReference(type = TeamPersistence.class)
 	protected TeamPersistence teamPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(TeamFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TeamFinderBaseImpl.class);
+
 }

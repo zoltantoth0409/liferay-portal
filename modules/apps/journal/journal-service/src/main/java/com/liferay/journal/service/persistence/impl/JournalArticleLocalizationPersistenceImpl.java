@@ -21,7 +21,6 @@ import com.liferay.journal.model.JournalArticleLocalization;
 import com.liferay.journal.model.impl.JournalArticleLocalizationImpl;
 import com.liferay.journal.model.impl.JournalArticleLocalizationModelImpl;
 import com.liferay.journal.service.persistence.JournalArticleLocalizationPersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -66,16 +65,21 @@ import java.util.Set;
 public class JournalArticleLocalizationPersistenceImpl
 	extends BasePersistenceImpl<JournalArticleLocalization>
 	implements JournalArticleLocalizationPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>JournalArticleLocalizationUtil</code> to access the journal article localization persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = JournalArticleLocalizationImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		JournalArticleLocalizationImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -91,8 +95,8 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public List<JournalArticleLocalization> findByArticlePK(long articlePK) {
-		return findByArticlePK(articlePK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByArticlePK(
+			articlePK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -108,8 +112,9 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the range of matching journal article localizations
 	 */
 	@Override
-	public List<JournalArticleLocalization> findByArticlePK(long articlePK,
-		int start, int end) {
+	public List<JournalArticleLocalization> findByArticlePK(
+		long articlePK, int start, int end) {
+
 		return findByArticlePK(articlePK, start, end, null);
 	}
 
@@ -127,9 +132,10 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the ordered range of matching journal article localizations
 	 */
 	@Override
-	public List<JournalArticleLocalization> findByArticlePK(long articlePK,
-		int start, int end,
+	public List<JournalArticleLocalization> findByArticlePK(
+		long articlePK, int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator) {
+
 		return findByArticlePK(articlePK, start, end, orderByComparator, true);
 	}
 
@@ -148,34 +154,42 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the ordered range of matching journal article localizations
 	 */
 	@Override
-	public List<JournalArticleLocalization> findByArticlePK(long articlePK,
-		int start, int end,
+	public List<JournalArticleLocalization> findByArticlePK(
+		long articlePK, int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByArticlePK;
-			finderArgs = new Object[] { articlePK };
+			finderArgs = new Object[] {articlePK};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByArticlePK;
-			finderArgs = new Object[] { articlePK, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				articlePK, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticleLocalization> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticleLocalization>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticleLocalization>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
-				for (JournalArticleLocalization journalArticleLocalization : list) {
-					if ((articlePK != journalArticleLocalization.getArticlePK())) {
+				for (JournalArticleLocalization journalArticleLocalization :
+						list) {
+
+					if ((articlePK !=
+							journalArticleLocalization.getArticlePK())) {
+
 						list = null;
 
 						break;
@@ -188,8 +202,8 @@ public class JournalArticleLocalizationPersistenceImpl
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -200,11 +214,10 @@ public class JournalArticleLocalizationPersistenceImpl
 			query.append(_FINDER_COLUMN_ARTICLEPK_ARTICLEPK_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -222,16 +235,16 @@ public class JournalArticleLocalizationPersistenceImpl
 				qPos.add(articlePK);
 
 				if (!pagination) {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticleLocalization>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticleLocalization>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -260,11 +273,13 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @throws NoSuchArticleLocalizationException if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization findByArticlePK_First(long articlePK,
-		OrderByComparator<JournalArticleLocalization> orderByComparator)
+	public JournalArticleLocalization findByArticlePK_First(
+			long articlePK,
+			OrderByComparator<JournalArticleLocalization> orderByComparator)
 		throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = fetchByArticlePK_First(articlePK,
-				orderByComparator);
+
+		JournalArticleLocalization journalArticleLocalization =
+			fetchByArticlePK_First(articlePK, orderByComparator);
 
 		if (journalArticleLocalization != null) {
 			return journalArticleLocalization;
@@ -290,10 +305,12 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the first matching journal article localization, or <code>null</code> if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization fetchByArticlePK_First(long articlePK,
+	public JournalArticleLocalization fetchByArticlePK_First(
+		long articlePK,
 		OrderByComparator<JournalArticleLocalization> orderByComparator) {
-		List<JournalArticleLocalization> list = findByArticlePK(articlePK, 0,
-				1, orderByComparator);
+
+		List<JournalArticleLocalization> list = findByArticlePK(
+			articlePK, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -311,11 +328,13 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @throws NoSuchArticleLocalizationException if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization findByArticlePK_Last(long articlePK,
-		OrderByComparator<JournalArticleLocalization> orderByComparator)
+	public JournalArticleLocalization findByArticlePK_Last(
+			long articlePK,
+			OrderByComparator<JournalArticleLocalization> orderByComparator)
 		throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = fetchByArticlePK_Last(articlePK,
-				orderByComparator);
+
+		JournalArticleLocalization journalArticleLocalization =
+			fetchByArticlePK_Last(articlePK, orderByComparator);
 
 		if (journalArticleLocalization != null) {
 			return journalArticleLocalization;
@@ -341,16 +360,18 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the last matching journal article localization, or <code>null</code> if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization fetchByArticlePK_Last(long articlePK,
+	public JournalArticleLocalization fetchByArticlePK_Last(
+		long articlePK,
 		OrderByComparator<JournalArticleLocalization> orderByComparator) {
+
 		int count = countByArticlePK(articlePK);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticleLocalization> list = findByArticlePK(articlePK,
-				count - 1, count, orderByComparator);
+		List<JournalArticleLocalization> list = findByArticlePK(
+			articlePK, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -370,27 +391,30 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public JournalArticleLocalization[] findByArticlePK_PrevAndNext(
-		long articleLocalizationId, long articlePK,
-		OrderByComparator<JournalArticleLocalization> orderByComparator)
+			long articleLocalizationId, long articlePK,
+			OrderByComparator<JournalArticleLocalization> orderByComparator)
 		throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = findByPrimaryKey(articleLocalizationId);
+
+		JournalArticleLocalization journalArticleLocalization =
+			findByPrimaryKey(articleLocalizationId);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			JournalArticleLocalization[] array = new JournalArticleLocalizationImpl[3];
+			JournalArticleLocalization[] array =
+				new JournalArticleLocalizationImpl[3];
 
-			array[0] = getByArticlePK_PrevAndNext(session,
-					journalArticleLocalization, articlePK, orderByComparator,
-					true);
+			array[0] = getByArticlePK_PrevAndNext(
+				session, journalArticleLocalization, articlePK,
+				orderByComparator, true);
 
 			array[1] = journalArticleLocalization;
 
-			array[2] = getByArticlePK_PrevAndNext(session,
-					journalArticleLocalization, articlePK, orderByComparator,
-					false);
+			array[2] = getByArticlePK_PrevAndNext(
+				session, journalArticleLocalization, articlePK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -407,11 +431,12 @@ public class JournalArticleLocalizationPersistenceImpl
 		long articlePK,
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
 		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -423,7 +448,8 @@ public class JournalArticleLocalizationPersistenceImpl
 		query.append(_FINDER_COLUMN_ARTICLEPK_ARTICLEPK_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -493,8 +519,10 @@ public class JournalArticleLocalizationPersistenceImpl
 		qPos.add(articlePK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticleLocalization)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticleLocalization)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -516,8 +544,10 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public void removeByArticlePK(long articlePK) {
-		for (JournalArticleLocalization journalArticleLocalization : findByArticlePK(
-				articlePK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticleLocalization journalArticleLocalization :
+				findByArticlePK(
+					articlePK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticleLocalization);
 		}
 	}
@@ -532,7 +562,7 @@ public class JournalArticleLocalizationPersistenceImpl
 	public int countByArticlePK(long articlePK) {
 		FinderPath finderPath = _finderPathCountByArticlePK;
 
-		Object[] finderArgs = new Object[] { articlePK };
+		Object[] finderArgs = new Object[] {articlePK};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -573,7 +603,9 @@ public class JournalArticleLocalizationPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_ARTICLEPK_ARTICLEPK_2 = "journalArticleLocalization.articlePK = ?";
+	private static final String _FINDER_COLUMN_ARTICLEPK_ARTICLEPK_2 =
+		"journalArticleLocalization.articlePK = ?";
+
 	private FinderPath _finderPathFetchByA_L;
 	private FinderPath _finderPathCountByA_L;
 
@@ -586,10 +618,12 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @throws NoSuchArticleLocalizationException if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization findByA_L(long articlePK,
-		String languageId) throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = fetchByA_L(articlePK,
-				languageId);
+	public JournalArticleLocalization findByA_L(
+			long articlePK, String languageId)
+		throws NoSuchArticleLocalizationException {
+
+		JournalArticleLocalization journalArticleLocalization = fetchByA_L(
+			articlePK, languageId);
 
 		if (journalArticleLocalization == null) {
 			StringBundler msg = new StringBundler(6);
@@ -622,8 +656,9 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the matching journal article localization, or <code>null</code> if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization fetchByA_L(long articlePK,
-		String languageId) {
+	public JournalArticleLocalization fetchByA_L(
+		long articlePK, String languageId) {
+
 		return fetchByA_L(articlePK, languageId, true);
 	}
 
@@ -636,25 +671,28 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the matching journal article localization, or <code>null</code> if a matching journal article localization could not be found
 	 */
 	@Override
-	public JournalArticleLocalization fetchByA_L(long articlePK,
-		String languageId, boolean retrieveFromCache) {
+	public JournalArticleLocalization fetchByA_L(
+		long articlePK, String languageId, boolean retrieveFromCache) {
+
 		languageId = Objects.toString(languageId, "");
 
-		Object[] finderArgs = new Object[] { articlePK, languageId };
+		Object[] finderArgs = new Object[] {articlePK, languageId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByA_L, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByA_L, finderArgs, this);
 		}
 
 		if (result instanceof JournalArticleLocalization) {
-			JournalArticleLocalization journalArticleLocalization = (JournalArticleLocalization)result;
+			JournalArticleLocalization journalArticleLocalization =
+				(JournalArticleLocalization)result;
 
 			if ((articlePK != journalArticleLocalization.getArticlePK()) ||
-					!Objects.equals(languageId,
-						journalArticleLocalization.getLanguageId())) {
+				!Objects.equals(
+					languageId, journalArticleLocalization.getLanguageId())) {
+
 				result = null;
 			}
 		}
@@ -697,11 +735,12 @@ public class JournalArticleLocalizationPersistenceImpl
 				List<JournalArticleLocalization> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByA_L, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByA_L, finderArgs, list);
 				}
 				else {
-					JournalArticleLocalization journalArticleLocalization = list.get(0);
+					JournalArticleLocalization journalArticleLocalization =
+						list.get(0);
 
 					result = journalArticleLocalization;
 
@@ -734,10 +773,12 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the journal article localization that was removed
 	 */
 	@Override
-	public JournalArticleLocalization removeByA_L(long articlePK,
-		String languageId) throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = findByA_L(articlePK,
-				languageId);
+	public JournalArticleLocalization removeByA_L(
+			long articlePK, String languageId)
+		throws NoSuchArticleLocalizationException {
+
+		JournalArticleLocalization journalArticleLocalization = findByA_L(
+			articlePK, languageId);
 
 		return remove(journalArticleLocalization);
 	}
@@ -755,7 +796,7 @@ public class JournalArticleLocalizationPersistenceImpl
 
 		FinderPath finderPath = _finderPathCountByA_L;
 
-		Object[] finderArgs = new Object[] { articlePK, languageId };
+		Object[] finderArgs = new Object[] {articlePK, languageId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -811,9 +852,14 @@ public class JournalArticleLocalizationPersistenceImpl
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_A_L_ARTICLEPK_2 = "journalArticleLocalization.articlePK = ? AND ";
-	private static final String _FINDER_COLUMN_A_L_LANGUAGEID_2 = "journalArticleLocalization.languageId = ?";
-	private static final String _FINDER_COLUMN_A_L_LANGUAGEID_3 = "(journalArticleLocalization.languageId IS NULL OR journalArticleLocalization.languageId = '')";
+	private static final String _FINDER_COLUMN_A_L_ARTICLEPK_2 =
+		"journalArticleLocalization.articlePK = ? AND ";
+
+	private static final String _FINDER_COLUMN_A_L_LANGUAGEID_2 =
+		"journalArticleLocalization.languageId = ?";
+
+	private static final String _FINDER_COLUMN_A_L_LANGUAGEID_3 =
+		"(journalArticleLocalization.languageId IS NULL OR journalArticleLocalization.languageId = '')";
 
 	public JournalArticleLocalizationPersistenceImpl() {
 		setModelClass(JournalArticleLocalization.class);
@@ -827,16 +873,20 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public void cacheResult(
 		JournalArticleLocalization journalArticleLocalization) {
-		entityCache.putResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+
+		entityCache.putResult(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleLocalizationImpl.class,
 			journalArticleLocalization.getPrimaryKey(),
 			journalArticleLocalization);
 
-		finderCache.putResult(_finderPathFetchByA_L,
+		finderCache.putResult(
+			_finderPathFetchByA_L,
 			new Object[] {
 				journalArticleLocalization.getArticlePK(),
 				journalArticleLocalization.getLanguageId()
-			}, journalArticleLocalization);
+			},
+			journalArticleLocalization);
 
 		journalArticleLocalization.resetOriginalValues();
 	}
@@ -849,11 +899,15 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public void cacheResult(
 		List<JournalArticleLocalization> journalArticleLocalizations) {
-		for (JournalArticleLocalization journalArticleLocalization : journalArticleLocalizations) {
+
+		for (JournalArticleLocalization journalArticleLocalization :
+				journalArticleLocalizations) {
+
 			if (entityCache.getResult(
-						JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-						JournalArticleLocalizationImpl.class,
-						journalArticleLocalization.getPrimaryKey()) == null) {
+					JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+					JournalArticleLocalizationImpl.class,
+					journalArticleLocalization.getPrimaryKey()) == null) {
+
 				cacheResult(journalArticleLocalization);
 			}
 			else {
@@ -888,65 +942,78 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public void clearCache(
 		JournalArticleLocalization journalArticleLocalization) {
-		entityCache.removeResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+
+		entityCache.removeResult(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleLocalizationImpl.class,
 			journalArticleLocalization.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		clearUniqueFindersCache((JournalArticleLocalizationModelImpl)journalArticleLocalization,
+		clearUniqueFindersCache(
+			(JournalArticleLocalizationModelImpl)journalArticleLocalization,
 			true);
 	}
 
 	@Override
 	public void clearCache(
 		List<JournalArticleLocalization> journalArticleLocalizations) {
+
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (JournalArticleLocalization journalArticleLocalization : journalArticleLocalizations) {
-			entityCache.removeResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+		for (JournalArticleLocalization journalArticleLocalization :
+				journalArticleLocalizations) {
+
+			entityCache.removeResult(
+				JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
 				JournalArticleLocalizationImpl.class,
 				journalArticleLocalization.getPrimaryKey());
 
-			clearUniqueFindersCache((JournalArticleLocalizationModelImpl)journalArticleLocalization,
+			clearUniqueFindersCache(
+				(JournalArticleLocalizationModelImpl)journalArticleLocalization,
 				true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
-		JournalArticleLocalizationModelImpl journalArticleLocalizationModelImpl) {
-		Object[] args = new Object[] {
-				journalArticleLocalizationModelImpl.getArticlePK(),
-				journalArticleLocalizationModelImpl.getLanguageId()
-			};
+		JournalArticleLocalizationModelImpl
+			journalArticleLocalizationModelImpl) {
 
-		finderCache.putResult(_finderPathCountByA_L, args, Long.valueOf(1),
+		Object[] args = new Object[] {
+			journalArticleLocalizationModelImpl.getArticlePK(),
+			journalArticleLocalizationModelImpl.getLanguageId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByA_L, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByA_L, args, journalArticleLocalizationModelImpl,
 			false);
-		finderCache.putResult(_finderPathFetchByA_L, args,
-			journalArticleLocalizationModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		JournalArticleLocalizationModelImpl journalArticleLocalizationModelImpl,
 		boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					journalArticleLocalizationModelImpl.getArticlePK(),
-					journalArticleLocalizationModelImpl.getLanguageId()
-				};
+				journalArticleLocalizationModelImpl.getArticlePK(),
+				journalArticleLocalizationModelImpl.getLanguageId()
+			};
 
 			finderCache.removeResult(_finderPathCountByA_L, args);
 			finderCache.removeResult(_finderPathFetchByA_L, args);
 		}
 
 		if ((journalArticleLocalizationModelImpl.getColumnBitmask() &
-				_finderPathFetchByA_L.getColumnBitmask()) != 0) {
+			 _finderPathFetchByA_L.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					journalArticleLocalizationModelImpl.getOriginalArticlePK(),
-					journalArticleLocalizationModelImpl.getOriginalLanguageId()
-				};
+				journalArticleLocalizationModelImpl.getOriginalArticlePK(),
+				journalArticleLocalizationModelImpl.getOriginalLanguageId()
+			};
 
 			finderCache.removeResult(_finderPathCountByA_L, args);
 			finderCache.removeResult(_finderPathFetchByA_L, args);
@@ -961,7 +1028,8 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public JournalArticleLocalization create(long articleLocalizationId) {
-		JournalArticleLocalization journalArticleLocalization = new JournalArticleLocalizationImpl();
+		JournalArticleLocalization journalArticleLocalization =
+			new JournalArticleLocalizationImpl();
 
 		journalArticleLocalization.setNew(true);
 		journalArticleLocalization.setPrimaryKey(articleLocalizationId);
@@ -981,6 +1049,7 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public JournalArticleLocalization remove(long articleLocalizationId)
 		throws NoSuchArticleLocalizationException {
+
 		return remove((Serializable)articleLocalizationId);
 	}
 
@@ -994,21 +1063,23 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public JournalArticleLocalization remove(Serializable primaryKey)
 		throws NoSuchArticleLocalizationException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			JournalArticleLocalization journalArticleLocalization = (JournalArticleLocalization)session.get(JournalArticleLocalizationImpl.class,
-					primaryKey);
+			JournalArticleLocalization journalArticleLocalization =
+				(JournalArticleLocalization)session.get(
+					JournalArticleLocalizationImpl.class, primaryKey);
 
 			if (journalArticleLocalization == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchArticleLocalizationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchArticleLocalizationException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(journalArticleLocalization);
@@ -1027,13 +1098,16 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	protected JournalArticleLocalization removeImpl(
 		JournalArticleLocalization journalArticleLocalization) {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			if (!session.contains(journalArticleLocalization)) {
-				journalArticleLocalization = (JournalArticleLocalization)session.get(JournalArticleLocalizationImpl.class,
+				journalArticleLocalization =
+					(JournalArticleLocalization)session.get(
+						JournalArticleLocalizationImpl.class,
 						journalArticleLocalization.getPrimaryKeyObj());
 			}
 
@@ -1058,25 +1132,31 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public JournalArticleLocalization updateImpl(
 		JournalArticleLocalization journalArticleLocalization) {
+
 		boolean isNew = journalArticleLocalization.isNew();
 
-		if (!(journalArticleLocalization instanceof JournalArticleLocalizationModelImpl)) {
+		if (!(journalArticleLocalization instanceof
+				JournalArticleLocalizationModelImpl)) {
+
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(journalArticleLocalization.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(journalArticleLocalization);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					journalArticleLocalization);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in journalArticleLocalization proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom JournalArticleLocalization implementation " +
-				journalArticleLocalization.getClass());
+					journalArticleLocalization.getClass());
 		}
 
-		JournalArticleLocalizationModelImpl journalArticleLocalizationModelImpl = (JournalArticleLocalizationModelImpl)journalArticleLocalization;
+		JournalArticleLocalizationModelImpl
+			journalArticleLocalizationModelImpl =
+				(JournalArticleLocalizationModelImpl)journalArticleLocalization;
 
 		Session session = null;
 
@@ -1089,7 +1169,9 @@ public class JournalArticleLocalizationPersistenceImpl
 				journalArticleLocalization.setNew(false);
 			}
 			else {
-				journalArticleLocalization = (JournalArticleLocalization)session.merge(journalArticleLocalization);
+				journalArticleLocalization =
+					(JournalArticleLocalization)session.merge(
+						journalArticleLocalization);
 			}
 		}
 		catch (Exception e) {
@@ -1104,43 +1186,44 @@ public class JournalArticleLocalizationPersistenceImpl
 		if (!JournalArticleLocalizationModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				journalArticleLocalizationModelImpl.getArticlePK()
+			};
+
+			finderCache.removeResult(_finderPathCountByArticlePK, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByArticlePK, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((journalArticleLocalizationModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByArticlePK.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleLocalizationModelImpl.getOriginalArticlePK()
+				};
+
+				finderCache.removeResult(_finderPathCountByArticlePK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByArticlePK, args);
+
+				args = new Object[] {
 					journalArticleLocalizationModelImpl.getArticlePK()
 				};
 
-			finderCache.removeResult(_finderPathCountByArticlePK, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByArticlePK,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((journalArticleLocalizationModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByArticlePK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleLocalizationModelImpl.getOriginalArticlePK()
-					};
-
 				finderCache.removeResult(_finderPathCountByArticlePK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByArticlePK,
-					args);
-
-				args = new Object[] {
-						journalArticleLocalizationModelImpl.getArticlePK()
-					};
-
-				finderCache.removeResult(_finderPathCountByArticlePK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByArticlePK,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByArticlePK, args);
 			}
 		}
 
-		entityCache.putResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleLocalizationImpl.class,
 			journalArticleLocalization.getPrimaryKey(),
 			journalArticleLocalization, false);
@@ -1163,15 +1246,17 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public JournalArticleLocalization findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchArticleLocalizationException {
-		JournalArticleLocalization journalArticleLocalization = fetchByPrimaryKey(primaryKey);
+
+		JournalArticleLocalization journalArticleLocalization =
+			fetchByPrimaryKey(primaryKey);
 
 		if (journalArticleLocalization == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchArticleLocalizationException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchArticleLocalizationException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return journalArticleLocalization;
@@ -1186,7 +1271,9 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public JournalArticleLocalization findByPrimaryKey(
-		long articleLocalizationId) throws NoSuchArticleLocalizationException {
+			long articleLocalizationId)
+		throws NoSuchArticleLocalizationException {
+
 		return findByPrimaryKey((Serializable)articleLocalizationId);
 	}
 
@@ -1197,15 +1284,19 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the journal article localization, or <code>null</code> if a journal article localization with the primary key could not be found
 	 */
 	@Override
-	public JournalArticleLocalization fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class, primaryKey);
+	public JournalArticleLocalization fetchByPrimaryKey(
+		Serializable primaryKey) {
+
+		Serializable serializable = entityCache.getResult(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
 		}
 
-		JournalArticleLocalization journalArticleLocalization = (JournalArticleLocalization)serializable;
+		JournalArticleLocalization journalArticleLocalization =
+			(JournalArticleLocalization)serializable;
 
 		if (journalArticleLocalization == null) {
 			Session session = null;
@@ -1213,20 +1304,24 @@ public class JournalArticleLocalizationPersistenceImpl
 			try {
 				session = openSession();
 
-				journalArticleLocalization = (JournalArticleLocalization)session.get(JournalArticleLocalizationImpl.class,
-						primaryKey);
+				journalArticleLocalization =
+					(JournalArticleLocalization)session.get(
+						JournalArticleLocalizationImpl.class, primaryKey);
 
 				if (journalArticleLocalization != null) {
 					cacheResult(journalArticleLocalization);
 				}
 				else {
-					entityCache.putResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						JournalArticleLocalizationModelImpl.
+							ENTITY_CACHE_ENABLED,
 						JournalArticleLocalizationImpl.class, primaryKey,
 						nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
 					JournalArticleLocalizationImpl.class, primaryKey);
 
 				throw processException(e);
@@ -1248,24 +1343,28 @@ public class JournalArticleLocalizationPersistenceImpl
 	@Override
 	public JournalArticleLocalization fetchByPrimaryKey(
 		long articleLocalizationId) {
+
 		return fetchByPrimaryKey((Serializable)articleLocalizationId);
 	}
 
 	@Override
 	public Map<Serializable, JournalArticleLocalization> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, JournalArticleLocalization> map = new HashMap<Serializable, JournalArticleLocalization>();
+		Map<Serializable, JournalArticleLocalization> map =
+			new HashMap<Serializable, JournalArticleLocalization>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
 
 			Serializable primaryKey = iterator.next();
 
-			JournalArticleLocalization journalArticleLocalization = fetchByPrimaryKey(primaryKey);
+			JournalArticleLocalization journalArticleLocalization =
+				fetchByPrimaryKey(primaryKey);
 
 			if (journalArticleLocalization != null) {
 				map.put(primaryKey, journalArticleLocalization);
@@ -1277,8 +1376,9 @@ public class JournalArticleLocalizationPersistenceImpl
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-					JournalArticleLocalizationImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+				JournalArticleLocalizationImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -1289,7 +1389,8 @@ public class JournalArticleLocalizationPersistenceImpl
 					uncachedPrimaryKeys.add(primaryKey);
 				}
 				else {
-					map.put(primaryKey, (JournalArticleLocalization)serializable);
+					map.put(
+						primaryKey, (JournalArticleLocalization)serializable);
 				}
 			}
 		}
@@ -1298,8 +1399,8 @@ public class JournalArticleLocalizationPersistenceImpl
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_JOURNALARTICLELOCALIZATION_WHERE_PKS_IN);
 
@@ -1322,18 +1423,24 @@ public class JournalArticleLocalizationPersistenceImpl
 
 			Query q = session.createQuery(sql);
 
-			for (JournalArticleLocalization journalArticleLocalization : (List<JournalArticleLocalization>)q.list()) {
-				map.put(journalArticleLocalization.getPrimaryKeyObj(),
+			for (JournalArticleLocalization journalArticleLocalization :
+					(List<JournalArticleLocalization>)q.list()) {
+
+				map.put(
+					journalArticleLocalization.getPrimaryKeyObj(),
 					journalArticleLocalization);
 
 				cacheResult(journalArticleLocalization);
 
-				uncachedPrimaryKeys.remove(journalArticleLocalization.getPrimaryKeyObj());
+				uncachedPrimaryKeys.remove(
+					journalArticleLocalization.getPrimaryKeyObj());
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-					JournalArticleLocalizationImpl.class, primaryKey, nullModel);
+				entityCache.putResult(
+					JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+					JournalArticleLocalizationImpl.class, primaryKey,
+					nullModel);
 			}
 		}
 		catch (Exception e) {
@@ -1385,8 +1492,10 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the ordered range of journal article localizations
 	 */
 	@Override
-	public List<JournalArticleLocalization> findAll(int start, int end,
+	public List<JournalArticleLocalization> findAll(
+		int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1404,29 +1513,32 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * @return the ordered range of journal article localizations
 	 */
 	@Override
-	public List<JournalArticleLocalization> findAll(int start, int end,
+	public List<JournalArticleLocalization> findAll(
+		int start, int end,
 		OrderByComparator<JournalArticleLocalization> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<JournalArticleLocalization> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticleLocalization>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticleLocalization>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1434,13 +1546,13 @@ public class JournalArticleLocalizationPersistenceImpl
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_JOURNALARTICLELOCALIZATION);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1448,7 +1560,8 @@ public class JournalArticleLocalizationPersistenceImpl
 				sql = _SQL_SELECT_JOURNALARTICLELOCALIZATION;
 
 				if (pagination) {
-					sql = sql.concat(JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
+					sql = sql.concat(
+						JournalArticleLocalizationModelImpl.ORDER_BY_JPQL);
 				}
 			}
 
@@ -1460,16 +1573,16 @@ public class JournalArticleLocalizationPersistenceImpl
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticleLocalization>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticleLocalization>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticleLocalization>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1495,7 +1608,9 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public void removeAll() {
-		for (JournalArticleLocalization journalArticleLocalization : findAll()) {
+		for (JournalArticleLocalization journalArticleLocalization :
+				findAll()) {
+
 			remove(journalArticleLocalization);
 		}
 	}
@@ -1507,8 +1622,8 @@ public class JournalArticleLocalizationPersistenceImpl
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1516,15 +1631,17 @@ public class JournalArticleLocalizationPersistenceImpl
 			try {
 				session = openSession();
 
-				Query q = session.createQuery(_SQL_COUNT_JOURNALARTICLELOCALIZATION);
+				Query q = session.createQuery(
+					_SQL_COUNT_JOURNALARTICLELOCALIZATION);
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -1545,58 +1662,63 @@ public class JournalArticleLocalizationPersistenceImpl
 	 * Initializes the journal article localization persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countAll", new String[0]);
+		_finderPathCountAll = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByArticlePK = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByArticlePK",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByArticlePK = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByArticlePK",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByArticlePK = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByArticlePK",
-				new String[] { Long.class.getName() },
-				JournalArticleLocalizationModelImpl.ARTICLEPK_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByArticlePK = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByArticlePK",
+			new String[] {Long.class.getName()},
+			JournalArticleLocalizationModelImpl.ARTICLEPK_COLUMN_BITMASK);
 
-		_finderPathCountByArticlePK = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByArticlePK", new String[] { Long.class.getName() });
+		_finderPathCountByArticlePK = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByArticlePK", new String[] {Long.class.getName()});
 
-		_finderPathFetchByA_L = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleLocalizationImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByA_L",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleLocalizationModelImpl.ARTICLEPK_COLUMN_BITMASK |
-				JournalArticleLocalizationModelImpl.LANGUAGEID_COLUMN_BITMASK);
+		_finderPathFetchByA_L = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleLocalizationImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByA_L",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleLocalizationModelImpl.ARTICLEPK_COLUMN_BITMASK |
+			JournalArticleLocalizationModelImpl.LANGUAGEID_COLUMN_BITMASK);
 
-		_finderPathCountByA_L = new FinderPath(JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
-				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByA_L",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByA_L = new FinderPath(
+			JournalArticleLocalizationModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleLocalizationModelImpl.FINDER_CACHE_ENABLED,
+			Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByA_L",
+			new String[] {Long.class.getName(), String.class.getName()});
 	}
 
 	public void destroy() {
@@ -1608,18 +1730,39 @@ public class JournalArticleLocalizationPersistenceImpl
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_JOURNALARTICLELOCALIZATION = "SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization";
-	private static final String _SQL_SELECT_JOURNALARTICLELOCALIZATION_WHERE_PKS_IN =
-		"SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization WHERE articleLocalizationId IN (";
-	private static final String _SQL_SELECT_JOURNALARTICLELOCALIZATION_WHERE = "SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization WHERE ";
-	private static final String _SQL_COUNT_JOURNALARTICLELOCALIZATION = "SELECT COUNT(journalArticleLocalization) FROM JournalArticleLocalization journalArticleLocalization";
-	private static final String _SQL_COUNT_JOURNALARTICLELOCALIZATION_WHERE = "SELECT COUNT(journalArticleLocalization) FROM JournalArticleLocalization journalArticleLocalization WHERE ";
-	private static final String _ORDER_BY_ENTITY_ALIAS = "journalArticleLocalization.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JournalArticleLocalization exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JournalArticleLocalization exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(JournalArticleLocalizationPersistenceImpl.class);
+
+	private static final String _SQL_SELECT_JOURNALARTICLELOCALIZATION =
+		"SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization";
+
+	private static final String
+		_SQL_SELECT_JOURNALARTICLELOCALIZATION_WHERE_PKS_IN =
+			"SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization WHERE articleLocalizationId IN (";
+
+	private static final String _SQL_SELECT_JOURNALARTICLELOCALIZATION_WHERE =
+		"SELECT journalArticleLocalization FROM JournalArticleLocalization journalArticleLocalization WHERE ";
+
+	private static final String _SQL_COUNT_JOURNALARTICLELOCALIZATION =
+		"SELECT COUNT(journalArticleLocalization) FROM JournalArticleLocalization journalArticleLocalization";
+
+	private static final String _SQL_COUNT_JOURNALARTICLELOCALIZATION_WHERE =
+		"SELECT COUNT(journalArticleLocalization) FROM JournalArticleLocalization journalArticleLocalization WHERE ";
+
+	private static final String _ORDER_BY_ENTITY_ALIAS =
+		"journalArticleLocalization.";
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No JournalArticleLocalization exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No JournalArticleLocalization exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticleLocalizationPersistenceImpl.class);
+
 }

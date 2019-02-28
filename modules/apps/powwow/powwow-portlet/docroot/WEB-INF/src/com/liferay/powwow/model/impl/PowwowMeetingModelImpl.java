@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -32,7 +31,6 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.powwow.model.PowwowMeeting;
 import com.liferay.powwow.model.PowwowMeetingModel;
 import com.liferay.powwow.model.PowwowMeetingSoap;
@@ -64,32 +62,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
-	implements PowwowMeetingModel {
+public class PowwowMeetingModelImpl
+	extends BaseModelImpl<PowwowMeeting> implements PowwowMeetingModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a powwow meeting model instance should use the <code>PowwowMeeting</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PowwowMeeting";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "powwowMeetingId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "powwowServerId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "providerType", Types.VARCHAR },
-			{ "providerTypeMetadata", Types.VARCHAR },
-			{ "languageId", Types.VARCHAR },
-			{ "calendarBookingId", Types.BIGINT },
-			{ "status", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"powwowMeetingId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"powwowServerId", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"description", Types.VARCHAR},
+		{"providerType", Types.VARCHAR},
+		{"providerTypeMetadata", Types.VARCHAR}, {"languageId", Types.VARCHAR},
+		{"calendarBookingId", Types.BIGINT}, {"status", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("powwowMeetingId", Types.BIGINT);
@@ -109,26 +104,46 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PowwowMeeting (powwowMeetingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,powwowServerId LONG,name VARCHAR(75) null,description STRING null,providerType VARCHAR(75) null,providerTypeMetadata STRING null,languageId VARCHAR(75) null,calendarBookingId LONG,status INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PowwowMeeting (powwowMeetingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,powwowServerId LONG,name VARCHAR(75) null,description STRING null,providerType VARCHAR(75) null,providerTypeMetadata STRING null,languageId VARCHAR(75) null,calendarBookingId LONG,status INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table PowwowMeeting";
-	public static final String ORDER_BY_JPQL = " ORDER BY powwowMeeting.createDate DESC";
-	public static final String ORDER_BY_SQL = " ORDER BY PowwowMeeting.createDate DESC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY powwowMeeting.createDate DESC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PowwowMeeting.createDate DESC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.powwow.model.PowwowMeeting"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.powwow.model.PowwowMeeting"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.powwow.model.PowwowMeeting"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.powwow.model.PowwowMeeting"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.powwow.model.PowwowMeeting"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.util.service.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.powwow.model.PowwowMeeting"),
+		true);
+
 	public static final long GROUPID_COLUMN_BITMASK = 1L;
+
 	public static final long POWWOWSERVERID_COLUMN_BITMASK = 2L;
+
 	public static final long STATUS_COLUMN_BITMASK = 4L;
+
 	public static final long USERID_COLUMN_BITMASK = 8L;
+
 	public static final long CREATEDATE_COLUMN_BITMASK = 16L;
 
 	/**
@@ -174,7 +189,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			return null;
 		}
 
-		List<PowwowMeeting> models = new ArrayList<PowwowMeeting>(soapModels.length);
+		List<PowwowMeeting> models = new ArrayList<PowwowMeeting>(
+			soapModels.length);
 
 		for (PowwowMeetingSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -183,8 +199,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
-				"lock.expiration.time.com.liferay.powwow.model.PowwowMeeting"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.util.service.ServiceProps.get(
+			"lock.expiration.time.com.liferay.powwow.model.PowwowMeeting"));
 
 	public PowwowMeetingModelImpl() {
 	}
@@ -223,13 +240,18 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowMeeting, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowMeeting, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PowwowMeeting)this));
 		}
 
@@ -241,36 +263,44 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PowwowMeeting, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PowwowMeeting, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PowwowMeeting, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PowwowMeeting, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PowwowMeeting)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PowwowMeeting)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PowwowMeeting, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PowwowMeeting, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PowwowMeeting, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PowwowMeeting, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PowwowMeeting, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PowwowMeeting, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PowwowMeeting, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PowwowMeeting, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PowwowMeeting, Object>>();
-		Map<String, BiConsumer<PowwowMeeting, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PowwowMeeting, ?>>();
-
+		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<PowwowMeeting, Object>>();
+		Map<String, BiConsumer<PowwowMeeting, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<PowwowMeeting, ?>>();
 
 		attributeGetterFunctions.put(
 			"powwowMeetingId",
@@ -287,7 +317,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object powwowMeetingId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object powwowMeetingId) {
+
 					powwowMeeting.setPowwowMeetingId((Long)powwowMeetingId);
 				}
 
@@ -307,7 +339,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object groupId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object groupId) {
+
 					powwowMeeting.setGroupId((Long)groupId);
 				}
 
@@ -327,7 +361,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object companyId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object companyId) {
+
 					powwowMeeting.setCompanyId((Long)companyId);
 				}
 
@@ -367,7 +403,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object userName) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object userName) {
+
 					powwowMeeting.setUserName((String)userName);
 				}
 
@@ -387,7 +425,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object createDate) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object createDate) {
+
 					powwowMeeting.setCreateDate((Date)createDate);
 				}
 
@@ -407,7 +447,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object modifiedDate) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object modifiedDate) {
+
 					powwowMeeting.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -427,7 +469,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object powwowServerId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object powwowServerId) {
+
 					powwowMeeting.setPowwowServerId((Long)powwowServerId);
 				}
 
@@ -467,7 +511,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object description) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object description) {
+
 					powwowMeeting.setDescription((String)description);
 				}
 
@@ -487,7 +533,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object providerType) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object providerType) {
+
 					powwowMeeting.setProviderType((String)providerType);
 				}
 
@@ -507,8 +555,11 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object providerTypeMetadata) {
-					powwowMeeting.setProviderTypeMetadata((String)providerTypeMetadata);
+				public void accept(
+					PowwowMeeting powwowMeeting, Object providerTypeMetadata) {
+
+					powwowMeeting.setProviderTypeMetadata(
+						(String)providerTypeMetadata);
 				}
 
 			});
@@ -527,7 +578,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object languageId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object languageId) {
+
 					powwowMeeting.setLanguageId((String)languageId);
 				}
 
@@ -547,7 +600,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			new BiConsumer<PowwowMeeting, Object>() {
 
 				@Override
-				public void accept(PowwowMeeting powwowMeeting, Object calendarBookingId) {
+				public void accept(
+					PowwowMeeting powwowMeeting, Object calendarBookingId) {
+
 					powwowMeeting.setCalendarBookingId((Long)calendarBookingId);
 				}
 
@@ -573,9 +628,10 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -851,8 +907,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PowwowMeeting.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PowwowMeeting.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -865,8 +921,9 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 	@Override
 	public PowwowMeeting toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PowwowMeeting)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PowwowMeeting)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -901,8 +958,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 	public int compareTo(PowwowMeeting powwowMeeting) {
 		int value = 0;
 
-		value = DateUtil.compareTo(getCreateDate(),
-				powwowMeeting.getCreateDate());
+		value = DateUtil.compareTo(
+			getCreateDate(), powwowMeeting.getCreateDate());
 
 		value = value * -1;
 
@@ -954,7 +1011,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 	public void resetOriginalValues() {
 		PowwowMeetingModelImpl powwowMeetingModelImpl = this;
 
-		powwowMeetingModelImpl._originalGroupId = powwowMeetingModelImpl._groupId;
+		powwowMeetingModelImpl._originalGroupId =
+			powwowMeetingModelImpl._groupId;
 
 		powwowMeetingModelImpl._setOriginalGroupId = false;
 
@@ -964,7 +1022,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 		powwowMeetingModelImpl._setModifiedDate = false;
 
-		powwowMeetingModelImpl._originalPowwowServerId = powwowMeetingModelImpl._powwowServerId;
+		powwowMeetingModelImpl._originalPowwowServerId =
+			powwowMeetingModelImpl._powwowServerId;
 
 		powwowMeetingModelImpl._setOriginalPowwowServerId = false;
 
@@ -977,7 +1036,8 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 	@Override
 	public CacheModel<PowwowMeeting> toCacheModel() {
-		PowwowMeetingCacheModel powwowMeetingCacheModel = new PowwowMeetingCacheModel();
+		PowwowMeetingCacheModel powwowMeetingCacheModel =
+			new PowwowMeetingCacheModel();
 
 		powwowMeetingCacheModel.powwowMeetingId = getPowwowMeetingId();
 
@@ -1039,12 +1099,15 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 			powwowMeetingCacheModel.providerType = null;
 		}
 
-		powwowMeetingCacheModel.providerTypeMetadata = getProviderTypeMetadata();
+		powwowMeetingCacheModel.providerTypeMetadata =
+			getProviderTypeMetadata();
 
-		String providerTypeMetadata = powwowMeetingCacheModel.providerTypeMetadata;
+		String providerTypeMetadata =
+			powwowMeetingCacheModel.providerTypeMetadata;
 
 		if ((providerTypeMetadata != null) &&
-				(providerTypeMetadata.length() == 0)) {
+			(providerTypeMetadata.length() == 0)) {
+
 			powwowMeetingCacheModel.providerTypeMetadata = null;
 		}
 
@@ -1065,16 +1128,20 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowMeeting, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowMeeting, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1093,18 +1160,22 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PowwowMeeting, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PowwowMeeting, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PowwowMeeting, Object> attributeGetterFunction = entry.getValue();
+			Function<PowwowMeeting, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1118,10 +1189,12 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PowwowMeeting.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PowwowMeeting.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PowwowMeeting.class, ModelWrapper.class
-		};
+		PowwowMeeting.class, ModelWrapper.class
+	};
+
 	private long _powwowMeetingId;
 	private long _groupId;
 	private long _originalGroupId;
@@ -1148,4 +1221,5 @@ public class PowwowMeetingModelImpl extends BaseModelImpl<PowwowMeeting>
 	private boolean _setOriginalStatus;
 	private long _columnBitmask;
 	private PowwowMeeting _escapedModel;
+
 }

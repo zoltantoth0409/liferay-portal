@@ -30,7 +30,10 @@ import java.util.List;
  */
 @ProviderType
 public class DDLRecordSetVersionSoap implements Serializable {
-	public static DDLRecordSetVersionSoap toSoapModel(DDLRecordSetVersion model) {
+
+	public static DDLRecordSetVersionSoap toSoapModel(
+		DDLRecordSetVersion model) {
+
 		DDLRecordSetVersionSoap soapModel = new DDLRecordSetVersionSoap();
 
 		soapModel.setRecordSetVersionId(model.getRecordSetVersionId());
@@ -55,7 +58,9 @@ public class DDLRecordSetVersionSoap implements Serializable {
 
 	public static DDLRecordSetVersionSoap[] toSoapModels(
 		DDLRecordSetVersion[] models) {
-		DDLRecordSetVersionSoap[] soapModels = new DDLRecordSetVersionSoap[models.length];
+
+		DDLRecordSetVersionSoap[] soapModels =
+			new DDLRecordSetVersionSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -66,10 +71,12 @@ public class DDLRecordSetVersionSoap implements Serializable {
 
 	public static DDLRecordSetVersionSoap[][] toSoapModels(
 		DDLRecordSetVersion[][] models) {
+
 		DDLRecordSetVersionSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new DDLRecordSetVersionSoap[models.length][models[0].length];
+			soapModels =
+				new DDLRecordSetVersionSoap[models.length][models[0].length];
 		}
 		else {
 			soapModels = new DDLRecordSetVersionSoap[0][0];
@@ -84,13 +91,16 @@ public class DDLRecordSetVersionSoap implements Serializable {
 
 	public static DDLRecordSetVersionSoap[] toSoapModels(
 		List<DDLRecordSetVersion> models) {
-		List<DDLRecordSetVersionSoap> soapModels = new ArrayList<DDLRecordSetVersionSoap>(models.size());
+
+		List<DDLRecordSetVersionSoap> soapModels =
+			new ArrayList<DDLRecordSetVersionSoap>(models.size());
 
 		for (DDLRecordSetVersion model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new DDLRecordSetVersionSoap[soapModels.size()]);
+		return soapModels.toArray(
+			new DDLRecordSetVersionSoap[soapModels.size()]);
 	}
 
 	public DDLRecordSetVersionSoap() {
@@ -248,4 +258,5 @@ public class DDLRecordSetVersionSoap implements Serializable {
 	private long _statusByUserId;
 	private String _statusByUserName;
 	private Date _statusDate;
+
 }

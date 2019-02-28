@@ -17,7 +17,6 @@ package com.liferay.asset.display.page.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -43,9 +42,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AssetDisplayPageEntryModel extends AttachedModel,
-	BaseModel<AssetDisplayPageEntry>, GroupedModel, ShardedModel,
-	StagedAuditedModel {
+public interface AssetDisplayPageEntryModel
+	extends AttachedModel, BaseModel<AssetDisplayPageEntry>, GroupedModel,
+			ShardedModel, StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -336,4 +336,5 @@ public interface AssetDisplayPageEntryModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

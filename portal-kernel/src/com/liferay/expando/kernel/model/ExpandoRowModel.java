@@ -38,6 +38,7 @@ import java.util.Date;
  */
 @ProviderType
 public interface ExpandoRowModel extends BaseModel<ExpandoRow>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -186,4 +187,5 @@ public interface ExpandoRowModel extends BaseModel<ExpandoRow>, ShardedModel {
 
 	@Override
 	public String toXmlString();
+
 }

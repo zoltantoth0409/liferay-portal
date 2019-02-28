@@ -17,7 +17,6 @@ package com.liferay.polls.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.polls.model.PollsChoice;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class PollsChoiceCacheModel implements CacheModel<PollsChoice>,
-	Externalizable {
+public class PollsChoiceCacheModel
+	implements CacheModel<PollsChoice>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class PollsChoiceCacheModel implements CacheModel<PollsChoice>,
 			return false;
 		}
 
-		PollsChoiceCacheModel pollsChoiceCacheModel = (PollsChoiceCacheModel)obj;
+		PollsChoiceCacheModel pollsChoiceCacheModel =
+			(PollsChoiceCacheModel)obj;
 
 		if (choiceId == pollsChoiceCacheModel.choiceId) {
 			return true;
@@ -182,8 +183,7 @@ public class PollsChoiceCacheModel implements CacheModel<PollsChoice>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -240,4 +240,5 @@ public class PollsChoiceCacheModel implements CacheModel<PollsChoice>,
 	public String name;
 	public String description;
 	public long lastPublishDate;
+
 }

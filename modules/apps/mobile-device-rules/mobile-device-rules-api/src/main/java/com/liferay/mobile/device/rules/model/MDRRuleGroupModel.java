@@ -17,7 +17,6 @@ package com.liferay.mobile.device.rules.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -45,8 +44,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface MDRRuleGroupModel extends BaseModel<MDRRuleGroup>,
-	LocalizedModel, ShardedModel, StagedGroupedModel {
+public interface MDRRuleGroupModel
+	extends BaseModel<MDRRuleGroup>, LocalizedModel, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -390,8 +391,8 @@ public interface MDRRuleGroupModel extends BaseModel<MDRRuleGroup>,
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -408,8 +409,8 @@ public interface MDRRuleGroupModel extends BaseModel<MDRRuleGroup>,
 	 * @param descriptionMap the locales and localized descriptions of this mdr rule group
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the last publish date of this mdr rule group.
@@ -496,4 +497,5 @@ public interface MDRRuleGroupModel extends BaseModel<MDRRuleGroup>,
 
 	@Override
 	public String toXmlString();
+
 }

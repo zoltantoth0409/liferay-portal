@@ -17,7 +17,6 @@ package com.liferay.portal.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -65,8 +64,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class UserNotificationDeliveryLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements UserNotificationDeliveryLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements UserNotificationDeliveryLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -83,9 +83,11 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Override
 	public UserNotificationDelivery addUserNotificationDelivery(
 		UserNotificationDelivery userNotificationDelivery) {
+
 		userNotificationDelivery.setNew(true);
 
-		return userNotificationDeliveryPersistence.update(userNotificationDelivery);
+		return userNotificationDeliveryPersistence.update(
+			userNotificationDelivery);
 	}
 
 	/**
@@ -98,7 +100,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Transactional(enabled = false)
 	public UserNotificationDelivery createUserNotificationDelivery(
 		long userNotificationDeliveryId) {
-		return userNotificationDeliveryPersistence.create(userNotificationDeliveryId);
+
+		return userNotificationDeliveryPersistence.create(
+			userNotificationDeliveryId);
 	}
 
 	/**
@@ -111,8 +115,11 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public UserNotificationDelivery deleteUserNotificationDelivery(
-		long userNotificationDeliveryId) throws PortalException {
-		return userNotificationDeliveryPersistence.remove(userNotificationDeliveryId);
+			long userNotificationDeliveryId)
+		throws PortalException {
+
+		return userNotificationDeliveryPersistence.remove(
+			userNotificationDeliveryId);
 	}
 
 	/**
@@ -125,15 +132,17 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Override
 	public UserNotificationDelivery deleteUserNotificationDelivery(
 		UserNotificationDelivery userNotificationDelivery) {
-		return userNotificationDeliveryPersistence.remove(userNotificationDelivery);
+
+		return userNotificationDeliveryPersistence.remove(
+			userNotificationDelivery);
 	}
 
 	@Override
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(UserNotificationDelivery.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			UserNotificationDelivery.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -144,7 +153,8 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 */
 	@Override
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
-		return userNotificationDeliveryPersistence.findWithDynamicQuery(dynamicQuery);
+		return userNotificationDeliveryPersistence.findWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -160,10 +170,11 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return userNotificationDeliveryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return userNotificationDeliveryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -180,10 +191,12 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return userNotificationDeliveryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return userNotificationDeliveryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -194,7 +207,8 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
-		return userNotificationDeliveryPersistence.countWithDynamicQuery(dynamicQuery);
+		return userNotificationDeliveryPersistence.countWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -205,16 +219,19 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return userNotificationDeliveryPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return userNotificationDeliveryPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public UserNotificationDelivery fetchUserNotificationDelivery(
 		long userNotificationDeliveryId) {
-		return userNotificationDeliveryPersistence.fetchByPrimaryKey(userNotificationDeliveryId);
+
+		return userNotificationDeliveryPersistence.fetchByPrimaryKey(
+			userNotificationDeliveryId);
 	}
 
 	/**
@@ -226,15 +243,20 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 */
 	@Override
 	public UserNotificationDelivery getUserNotificationDelivery(
-		long userNotificationDeliveryId) throws PortalException {
-		return userNotificationDeliveryPersistence.findByPrimaryKey(userNotificationDeliveryId);
+			long userNotificationDeliveryId)
+		throws PortalException {
+
+		return userNotificationDeliveryPersistence.findByPrimaryKey(
+			userNotificationDeliveryId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(userNotificationDeliveryLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			userNotificationDeliveryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(UserNotificationDelivery.class);
 
@@ -245,12 +267,17 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(userNotificationDeliveryLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			userNotificationDeliveryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
-		indexableActionableDynamicQuery.setModelClass(UserNotificationDelivery.class);
+		indexableActionableDynamicQuery.setModelClass(
+			UserNotificationDelivery.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
 			"userNotificationDeliveryId");
@@ -260,7 +287,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(userNotificationDeliveryLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			userNotificationDeliveryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(UserNotificationDelivery.class);
 
@@ -274,13 +303,18 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return userNotificationDeliveryLocalService.deleteUserNotificationDelivery((UserNotificationDelivery)persistedModel);
+
+		return userNotificationDeliveryLocalService.
+			deleteUserNotificationDelivery(
+				(UserNotificationDelivery)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
-		return userNotificationDeliveryPersistence.findByPrimaryKey(primaryKeyObj);
+
+		return userNotificationDeliveryPersistence.findByPrimaryKey(
+			primaryKeyObj);
 	}
 
 	/**
@@ -297,6 +331,7 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Override
 	public List<UserNotificationDelivery> getUserNotificationDeliveries(
 		int start, int end) {
+
 		return userNotificationDeliveryPersistence.findAll(start, end);
 	}
 
@@ -320,7 +355,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	@Override
 	public UserNotificationDelivery updateUserNotificationDelivery(
 		UserNotificationDelivery userNotificationDelivery) {
-		return userNotificationDeliveryPersistence.update(userNotificationDelivery);
+
+		return userNotificationDeliveryPersistence.update(
+			userNotificationDelivery);
 	}
 
 	/**
@@ -328,7 +365,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 *
 	 * @return the user notification delivery local service
 	 */
-	public UserNotificationDeliveryLocalService getUserNotificationDeliveryLocalService() {
+	public UserNotificationDeliveryLocalService
+		getUserNotificationDeliveryLocalService() {
+
 		return userNotificationDeliveryLocalService;
 	}
 
@@ -338,8 +377,11 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @param userNotificationDeliveryLocalService the user notification delivery local service
 	 */
 	public void setUserNotificationDeliveryLocalService(
-		UserNotificationDeliveryLocalService userNotificationDeliveryLocalService) {
-		this.userNotificationDeliveryLocalService = userNotificationDeliveryLocalService;
+		UserNotificationDeliveryLocalService
+			userNotificationDeliveryLocalService) {
+
+		this.userNotificationDeliveryLocalService =
+			userNotificationDeliveryLocalService;
 	}
 
 	/**
@@ -347,7 +389,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 *
 	 * @return the user notification delivery persistence
 	 */
-	public UserNotificationDeliveryPersistence getUserNotificationDeliveryPersistence() {
+	public UserNotificationDeliveryPersistence
+		getUserNotificationDeliveryPersistence() {
+
 		return userNotificationDeliveryPersistence;
 	}
 
@@ -357,8 +401,11 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @param userNotificationDeliveryPersistence the user notification delivery persistence
 	 */
 	public void setUserNotificationDeliveryPersistence(
-		UserNotificationDeliveryPersistence userNotificationDeliveryPersistence) {
-		this.userNotificationDeliveryPersistence = userNotificationDeliveryPersistence;
+		UserNotificationDeliveryPersistence
+			userNotificationDeliveryPersistence) {
+
+		this.userNotificationDeliveryPersistence =
+			userNotificationDeliveryPersistence;
 	}
 
 	/**
@@ -366,7 +413,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -376,7 +425,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -403,7 +454,9 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -414,6 +467,7 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -454,7 +508,8 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.portal.kernel.model.UserNotificationDelivery",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.portal.kernel.model.UserNotificationDelivery",
 			userNotificationDeliveryLocalService);
 	}
 
@@ -488,15 +543,16 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = userNotificationDeliveryPersistence.getDataSource();
+			DataSource dataSource =
+				userNotificationDeliveryPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -506,19 +562,36 @@ public abstract class UserNotificationDeliveryLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = UserNotificationDeliveryLocalService.class)
-	protected UserNotificationDeliveryLocalService userNotificationDeliveryLocalService;
+	protected UserNotificationDeliveryLocalService
+		userNotificationDeliveryLocalService;
+
 	@BeanReference(type = UserNotificationDeliveryPersistence.class)
-	protected UserNotificationDeliveryPersistence userNotificationDeliveryPersistence;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	protected UserNotificationDeliveryPersistence
+		userNotificationDeliveryPersistence;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@BeanReference(type = UserFinder.class)
 	protected UserFinder userFinder;
+
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

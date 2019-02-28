@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.impl.DDLRecordImpl;
 import com.liferay.dynamic.data.lists.model.impl.DDLRecordModelImpl;
 import com.liferay.dynamic.data.lists.service.persistence.DDLRecordPersistence;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -70,18 +69,23 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
-	implements DDLRecordPersistence {
+public class DDLRecordPersistenceImpl
+	extends BasePersistenceImpl<DDLRecord> implements DDLRecordPersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>DDLRecordUtil</code> to access the ddl record persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = DDLRecordImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		DDLRecordImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -131,8 +135,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByUuid(String uuid, int start, int end,
+	public List<DDLRecord> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDLRecord> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -151,9 +157,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByUuid(String uuid, int start, int end,
+	public List<DDLRecord> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -161,21 +169,22 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
@@ -192,8 +201,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -213,11 +222,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -237,16 +245,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				}
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -275,9 +283,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByUuid_First(String uuid,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByUuid_First(
+			String uuid, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = fetchByUuid_First(uuid, orderByComparator);
 
 		if (ddlRecord != null) {
@@ -304,8 +313,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByUuid_First(String uuid,
-		OrderByComparator<DDLRecord> orderByComparator) {
+	public DDLRecord fetchByUuid_First(
+		String uuid, OrderByComparator<DDLRecord> orderByComparator) {
+
 		List<DDLRecord> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -324,9 +334,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByUuid_Last(String uuid,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByUuid_Last(
+			String uuid, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (ddlRecord != null) {
@@ -353,16 +364,17 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByUuid_Last(String uuid,
-		OrderByComparator<DDLRecord> orderByComparator) {
+	public DDLRecord fetchByUuid_Last(
+		String uuid, OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<DDLRecord> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -381,9 +393,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByUuid_PrevAndNext(long recordId, String uuid,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByUuid_PrevAndNext(
+			long recordId, String uuid,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
@@ -395,13 +409,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, ddlRecord, uuid,
-					orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, ddlRecord, uuid, orderByComparator, true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByUuid_PrevAndNext(session, ddlRecord, uuid,
-					orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, ddlRecord, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -413,14 +427,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByUuid_PrevAndNext(Session session,
-		DDLRecord ddlRecord, String uuid,
+	protected DDLRecord getByUuid_PrevAndNext(
+		Session session, DDLRecord ddlRecord, String uuid,
 		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -441,7 +456,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -513,8 +529,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -536,8 +553,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (DDLRecord ddlRecord : findByUuid(uuid, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -554,7 +572,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -606,8 +624,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "ddlRecord.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"ddlRecord.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -622,6 +644,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord findByUUID_G(String uuid, long groupId)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = fetchByUUID_G(uuid, groupId);
 
 		if (ddlRecord == null) {
@@ -668,24 +691,26 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public DDLRecord fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof DDLRecord) {
 			DDLRecord ddlRecord = (DDLRecord)result;
 
 			if (!Objects.equals(uuid, ddlRecord.getUuid()) ||
-					(groupId != ddlRecord.getGroupId())) {
+				(groupId != ddlRecord.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -728,8 +753,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				List<DDLRecord> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					DDLRecord ddlRecord = list.get(0);
@@ -767,6 +792,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord removeByUUID_G(String uuid, long groupId)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = findByUUID_G(uuid, groupId);
 
 		return remove(ddlRecord);
@@ -785,7 +811,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -841,9 +867,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "ddlRecord.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "ddlRecord.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"ddlRecord.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"ddlRecord.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -857,8 +889,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public List<DDLRecord> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -875,8 +907,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByUuid_C(String uuid, long companyId, int start,
-		int end) {
+	public List<DDLRecord> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -895,9 +928,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	public List<DDLRecord> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator) {
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -916,9 +952,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator,
+	public List<DDLRecord> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -926,30 +964,30 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
 					if (!uuid.equals(ddlRecord.getUuid()) ||
-							(companyId != ddlRecord.getCompanyId())) {
+						(companyId != ddlRecord.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -962,8 +1000,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -985,11 +1023,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1011,16 +1048,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1050,11 +1087,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByUuid_C_First(uuid, companyId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -1084,10 +1123,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByUuid_C_First(String uuid, long companyId,
+	public DDLRecord fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<DDLRecord> orderByComparator) {
-		List<DDLRecord> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<DDLRecord> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1106,11 +1147,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByUuid_C_Last(uuid, companyId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -1140,16 +1183,18 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByUuid_C_Last(String uuid, long companyId,
+	public DDLRecord fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByUuid_C(uuid, companyId, count - 1, count,
-				orderByComparator);
+		List<DDLRecord> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1169,9 +1214,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByUuid_C_PrevAndNext(long recordId, String uuid,
-		long companyId, OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByUuid_C_PrevAndNext(
+			long recordId, String uuid, long companyId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		uuid = Objects.toString(uuid, "");
 
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
@@ -1183,13 +1230,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, ddlRecord, uuid,
-					companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, ddlRecord, uuid, companyId, orderByComparator, true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByUuid_C_PrevAndNext(session, ddlRecord, uuid,
-					companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, ddlRecord, uuid, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -1201,14 +1248,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByUuid_C_PrevAndNext(Session session,
-		DDLRecord ddlRecord, String uuid, long companyId,
+	protected DDLRecord getByUuid_C_PrevAndNext(
+		Session session, DDLRecord ddlRecord, String uuid, long companyId,
 		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1231,7 +1279,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1305,8 +1354,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1329,8 +1379,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (DDLRecord ddlRecord : findByUuid_C(uuid, companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -1348,7 +1401,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1404,9 +1457,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "ddlRecord.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "ddlRecord.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"ddlRecord.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"ddlRecord.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByCompanyId;
 	private FinderPath _finderPathWithoutPaginationFindByCompanyId;
 	private FinderPath _finderPathCountByCompanyId;
@@ -1419,8 +1478,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public List<DDLRecord> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1454,8 +1513,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByCompanyId(long companyId, int start, int end,
+	public List<DDLRecord> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<DDLRecord> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -1474,29 +1535,34 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByCompanyId(long companyId, int start, int end,
+	public List<DDLRecord> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
@@ -1513,8 +1579,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -1525,11 +1591,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1547,16 +1612,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1585,11 +1650,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByCompanyId_First(long companyId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByCompanyId_First(
+			long companyId, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -1615,10 +1681,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByCompanyId_First(long companyId,
-		OrderByComparator<DDLRecord> orderByComparator) {
-		List<DDLRecord> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public DDLRecord fetchByCompanyId_First(
+		long companyId, OrderByComparator<DDLRecord> orderByComparator) {
+
+		List<DDLRecord> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1636,10 +1703,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByCompanyId_Last(long companyId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByCompanyId_Last(
+			long companyId, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByCompanyId_Last(companyId, orderByComparator);
+
+		DDLRecord ddlRecord = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -1665,16 +1734,17 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByCompanyId_Last(long companyId,
-		OrderByComparator<DDLRecord> orderByComparator) {
+	public DDLRecord fetchByCompanyId_Last(
+		long companyId, OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByCompanyId(companyId, count - 1, count,
-				orderByComparator);
+		List<DDLRecord> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1693,9 +1763,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByCompanyId_PrevAndNext(long recordId,
-		long companyId, OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByCompanyId_PrevAndNext(
+			long recordId, long companyId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -1705,13 +1777,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, ddlRecord,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, ddlRecord, companyId, orderByComparator, true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByCompanyId_PrevAndNext(session, ddlRecord,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, ddlRecord, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -1723,14 +1795,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByCompanyId_PrevAndNext(Session session,
-		DDLRecord ddlRecord, long companyId,
+	protected DDLRecord getByCompanyId_PrevAndNext(
+		Session session, DDLRecord ddlRecord, long companyId,
 		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1742,7 +1815,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1812,8 +1886,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1835,8 +1910,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (DDLRecord ddlRecord : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -1851,7 +1928,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1892,7 +1969,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "ddlRecord.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"ddlRecord.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByRecordSetId;
 	private FinderPath _finderPathWithoutPaginationFindByRecordSetId;
 	private FinderPath _finderPathCountByRecordSetId;
@@ -1905,8 +1984,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public List<DDLRecord> findByRecordSetId(long recordSetId) {
-		return findByRecordSetId(recordSetId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByRecordSetId(
+			recordSetId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1922,8 +2001,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByRecordSetId(long recordSetId, int start,
-		int end) {
+	public List<DDLRecord> findByRecordSetId(
+		long recordSetId, int start, int end) {
+
 		return findByRecordSetId(recordSetId, start, end, null);
 	}
 
@@ -1941,10 +2021,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByRecordSetId(long recordSetId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator) {
-		return findByRecordSetId(recordSetId, start, end, orderByComparator,
-			true);
+	public List<DDLRecord> findByRecordSetId(
+		long recordSetId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator) {
+
+		return findByRecordSetId(
+			recordSetId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1962,29 +2044,34 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByRecordSetId(long recordSetId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator,
+	public List<DDLRecord> findByRecordSetId(
+		long recordSetId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByRecordSetId;
-			finderArgs = new Object[] { recordSetId };
+			finderArgs = new Object[] {recordSetId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByRecordSetId;
-			finderArgs = new Object[] { recordSetId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				recordSetId, start, end, orderByComparator
+			};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
@@ -2001,8 +2088,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2013,11 +2100,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			query.append(_FINDER_COLUMN_RECORDSETID_RECORDSETID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2035,16 +2121,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				qPos.add(recordSetId);
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2073,11 +2159,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByRecordSetId_First(long recordSetId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByRecordSetId_First(
+			long recordSetId, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByRecordSetId_First(recordSetId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByRecordSetId_First(
+			recordSetId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -2103,10 +2190,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByRecordSetId_First(long recordSetId,
-		OrderByComparator<DDLRecord> orderByComparator) {
-		List<DDLRecord> list = findByRecordSetId(recordSetId, 0, 1,
-				orderByComparator);
+	public DDLRecord fetchByRecordSetId_First(
+		long recordSetId, OrderByComparator<DDLRecord> orderByComparator) {
+
+		List<DDLRecord> list = findByRecordSetId(
+			recordSetId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2124,11 +2212,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByRecordSetId_Last(long recordSetId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByRecordSetId_Last(
+			long recordSetId, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByRecordSetId_Last(recordSetId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByRecordSetId_Last(
+			recordSetId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -2154,16 +2243,17 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByRecordSetId_Last(long recordSetId,
-		OrderByComparator<DDLRecord> orderByComparator) {
+	public DDLRecord fetchByRecordSetId_Last(
+		long recordSetId, OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByRecordSetId(recordSetId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByRecordSetId(recordSetId, count - 1, count,
-				orderByComparator);
+		List<DDLRecord> list = findByRecordSetId(
+			recordSetId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2182,9 +2272,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByRecordSetId_PrevAndNext(long recordId,
-		long recordSetId, OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByRecordSetId_PrevAndNext(
+			long recordId, long recordSetId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -2194,13 +2286,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByRecordSetId_PrevAndNext(session, ddlRecord,
-					recordSetId, orderByComparator, true);
+			array[0] = getByRecordSetId_PrevAndNext(
+				session, ddlRecord, recordSetId, orderByComparator, true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByRecordSetId_PrevAndNext(session, ddlRecord,
-					recordSetId, orderByComparator, false);
+			array[2] = getByRecordSetId_PrevAndNext(
+				session, ddlRecord, recordSetId, orderByComparator, false);
 
 			return array;
 		}
@@ -2212,14 +2304,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByRecordSetId_PrevAndNext(Session session,
-		DDLRecord ddlRecord, long recordSetId,
+	protected DDLRecord getByRecordSetId_PrevAndNext(
+		Session session, DDLRecord ddlRecord, long recordSetId,
 		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2231,7 +2324,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		query.append(_FINDER_COLUMN_RECORDSETID_RECORDSETID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2301,8 +2395,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		qPos.add(recordSetId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2324,8 +2419,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByRecordSetId(long recordSetId) {
-		for (DDLRecord ddlRecord : findByRecordSetId(recordSetId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByRecordSetId(
+					recordSetId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -2340,7 +2437,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public int countByRecordSetId(long recordSetId) {
 		FinderPath finderPath = _finderPathCountByRecordSetId;
 
-		Object[] finderArgs = new Object[] { recordSetId };
+		Object[] finderArgs = new Object[] {recordSetId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2381,7 +2478,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_RECORDSETID_RECORDSETID_2 = "ddlRecord.recordSetId = ?";
+	private static final String _FINDER_COLUMN_RECORDSETID_RECORDSETID_2 =
+		"ddlRecord.recordSetId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByR_U;
 	private FinderPath _finderPathWithoutPaginationFindByR_U;
 	private FinderPath _finderPathCountByR_U;
@@ -2395,8 +2494,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public List<DDLRecord> findByR_U(long recordSetId, long userId) {
-		return findByR_U(recordSetId, userId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByR_U(
+			recordSetId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2413,8 +2512,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_U(long recordSetId, long userId, int start,
-		int end) {
+	public List<DDLRecord> findByR_U(
+		long recordSetId, long userId, int start, int end) {
+
 		return findByR_U(recordSetId, userId, start, end, null);
 	}
 
@@ -2433,10 +2533,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_U(long recordSetId, long userId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator) {
-		return findByR_U(recordSetId, userId, start, end, orderByComparator,
-			true);
+	public List<DDLRecord> findByR_U(
+		long recordSetId, long userId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator) {
+
+		return findByR_U(
+			recordSetId, userId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2455,38 +2557,40 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_U(long recordSetId, long userId, int start,
-		int end, OrderByComparator<DDLRecord> orderByComparator,
+	public List<DDLRecord> findByR_U(
+		long recordSetId, long userId, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByR_U;
-			finderArgs = new Object[] { recordSetId, userId };
+			finderArgs = new Object[] {recordSetId, userId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByR_U;
 			finderArgs = new Object[] {
-					recordSetId, userId,
-					
-					start, end, orderByComparator
-				};
+				recordSetId, userId, start, end, orderByComparator
+			};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
 					if ((recordSetId != ddlRecord.getRecordSetId()) ||
-							(userId != ddlRecord.getUserId())) {
+						(userId != ddlRecord.getUserId())) {
+
 						list = null;
 
 						break;
@@ -2499,8 +2603,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -2513,11 +2617,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			query.append(_FINDER_COLUMN_R_U_USERID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2537,16 +2640,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				qPos.add(userId);
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2576,11 +2679,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByR_U_First(long recordSetId, long userId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByR_U_First(
+			long recordSetId, long userId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByR_U_First(recordSetId, userId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByR_U_First(
+			recordSetId, userId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -2610,10 +2715,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByR_U_First(long recordSetId, long userId,
+	public DDLRecord fetchByR_U_First(
+		long recordSetId, long userId,
 		OrderByComparator<DDLRecord> orderByComparator) {
-		List<DDLRecord> list = findByR_U(recordSetId, userId, 0, 1,
-				orderByComparator);
+
+		List<DDLRecord> list = findByR_U(
+			recordSetId, userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2632,11 +2739,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByR_U_Last(long recordSetId, long userId,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByR_U_Last(
+			long recordSetId, long userId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByR_U_Last(recordSetId, userId,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByR_U_Last(
+			recordSetId, userId, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -2666,16 +2775,18 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByR_U_Last(long recordSetId, long userId,
+	public DDLRecord fetchByR_U_Last(
+		long recordSetId, long userId,
 		OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByR_U(recordSetId, userId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByR_U(recordSetId, userId, count - 1, count,
-				orderByComparator);
+		List<DDLRecord> list = findByR_U(
+			recordSetId, userId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2695,9 +2806,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByR_U_PrevAndNext(long recordId, long recordSetId,
-		long userId, OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByR_U_PrevAndNext(
+			long recordId, long recordSetId, long userId,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -2707,13 +2820,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByR_U_PrevAndNext(session, ddlRecord, recordSetId,
-					userId, orderByComparator, true);
+			array[0] = getByR_U_PrevAndNext(
+				session, ddlRecord, recordSetId, userId, orderByComparator,
+				true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByR_U_PrevAndNext(session, ddlRecord, recordSetId,
-					userId, orderByComparator, false);
+			array[2] = getByR_U_PrevAndNext(
+				session, ddlRecord, recordSetId, userId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -2725,14 +2840,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByR_U_PrevAndNext(Session session,
-		DDLRecord ddlRecord, long recordSetId, long userId,
+	protected DDLRecord getByR_U_PrevAndNext(
+		Session session, DDLRecord ddlRecord, long recordSetId, long userId,
 		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2746,7 +2862,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		query.append(_FINDER_COLUMN_R_U_USERID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2818,8 +2935,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2842,8 +2960,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByR_U(long recordSetId, long userId) {
-		for (DDLRecord ddlRecord : findByR_U(recordSetId, userId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByR_U(
+					recordSetId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -2859,7 +2980,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public int countByR_U(long recordSetId, long userId) {
 		FinderPath finderPath = _finderPathCountByR_U;
 
-		Object[] finderArgs = new Object[] { recordSetId, userId };
+		Object[] finderArgs = new Object[] {recordSetId, userId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2904,8 +3025,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_R_U_RECORDSETID_2 = "ddlRecord.recordSetId = ? AND ";
-	private static final String _FINDER_COLUMN_R_U_USERID_2 = "ddlRecord.userId = ?";
+	private static final String _FINDER_COLUMN_R_U_RECORDSETID_2 =
+		"ddlRecord.recordSetId = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_U_USERID_2 =
+		"ddlRecord.userId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByR_R;
 	private FinderPath _finderPathWithoutPaginationFindByR_R;
 	private FinderPath _finderPathCountByR_R;
@@ -2918,9 +3043,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_R(long recordSetId, String recordSetVersion) {
-		return findByR_R(recordSetId, recordSetVersion, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<DDLRecord> findByR_R(
+		long recordSetId, String recordSetVersion) {
+
+		return findByR_R(
+			recordSetId, recordSetVersion, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -2937,8 +3065,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_R(long recordSetId, String recordSetVersion,
-		int start, int end) {
+	public List<DDLRecord> findByR_R(
+		long recordSetId, String recordSetVersion, int start, int end) {
+
 		return findByR_R(recordSetId, recordSetVersion, start, end, null);
 	}
 
@@ -2957,10 +3086,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_R(long recordSetId, String recordSetVersion,
-		int start, int end, OrderByComparator<DDLRecord> orderByComparator) {
-		return findByR_R(recordSetId, recordSetVersion, start, end,
-			orderByComparator, true);
+	public List<DDLRecord> findByR_R(
+		long recordSetId, String recordSetVersion, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator) {
+
+		return findByR_R(
+			recordSetId, recordSetVersion, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -2979,9 +3110,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of matching ddl records
 	 */
 	@Override
-	public List<DDLRecord> findByR_R(long recordSetId, String recordSetVersion,
-		int start, int end, OrderByComparator<DDLRecord> orderByComparator,
+	public List<DDLRecord> findByR_R(
+		long recordSetId, String recordSetVersion, int start, int end,
+		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		recordSetVersion = Objects.toString(recordSetVersion, "");
 
 		boolean pagination = true;
@@ -2989,31 +3122,31 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByR_R;
-			finderArgs = new Object[] { recordSetId, recordSetVersion };
+			finderArgs = new Object[] {recordSetId, recordSetVersion};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByR_R;
 			finderArgs = new Object[] {
-					recordSetId, recordSetVersion,
-					
-					start, end, orderByComparator
-				};
+				recordSetId, recordSetVersion, start, end, orderByComparator
+			};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
 					if ((recordSetId != ddlRecord.getRecordSetId()) ||
-							!recordSetVersion.equals(
-								ddlRecord.getRecordSetVersion())) {
+						!recordSetVersion.equals(
+							ddlRecord.getRecordSetVersion())) {
+
 						list = null;
 
 						break;
@@ -3026,8 +3159,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -3049,11 +3182,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(DDLRecordModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3075,16 +3207,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				}
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3114,11 +3246,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByR_R_First(long recordSetId, String recordSetVersion,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByR_R_First(
+			long recordSetId, String recordSetVersion,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByR_R_First(recordSetId, recordSetVersion,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByR_R_First(
+			recordSetId, recordSetVersion, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -3148,10 +3282,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByR_R_First(long recordSetId,
-		String recordSetVersion, OrderByComparator<DDLRecord> orderByComparator) {
-		List<DDLRecord> list = findByR_R(recordSetId, recordSetVersion, 0, 1,
-				orderByComparator);
+	public DDLRecord fetchByR_R_First(
+		long recordSetId, String recordSetVersion,
+		OrderByComparator<DDLRecord> orderByComparator) {
+
+		List<DDLRecord> list = findByR_R(
+			recordSetId, recordSetVersion, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3170,11 +3306,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord findByR_R_Last(long recordSetId, String recordSetVersion,
-		OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord findByR_R_Last(
+			long recordSetId, String recordSetVersion,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
-		DDLRecord ddlRecord = fetchByR_R_Last(recordSetId, recordSetVersion,
-				orderByComparator);
+
+		DDLRecord ddlRecord = fetchByR_R_Last(
+			recordSetId, recordSetVersion, orderByComparator);
 
 		if (ddlRecord != null) {
 			return ddlRecord;
@@ -3204,16 +3342,18 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	 */
 	@Override
-	public DDLRecord fetchByR_R_Last(long recordSetId, String recordSetVersion,
+	public DDLRecord fetchByR_R_Last(
+		long recordSetId, String recordSetVersion,
 		OrderByComparator<DDLRecord> orderByComparator) {
+
 		int count = countByR_R(recordSetId, recordSetVersion);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<DDLRecord> list = findByR_R(recordSetId, recordSetVersion,
-				count - 1, count, orderByComparator);
+		List<DDLRecord> list = findByR_R(
+			recordSetId, recordSetVersion, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3233,9 +3373,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	 */
 	@Override
-	public DDLRecord[] findByR_R_PrevAndNext(long recordId, long recordSetId,
-		String recordSetVersion, OrderByComparator<DDLRecord> orderByComparator)
+	public DDLRecord[] findByR_R_PrevAndNext(
+			long recordId, long recordSetId, String recordSetVersion,
+			OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+
 		recordSetVersion = Objects.toString(recordSetVersion, "");
 
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
@@ -3247,13 +3389,15 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			DDLRecord[] array = new DDLRecordImpl[3];
 
-			array[0] = getByR_R_PrevAndNext(session, ddlRecord, recordSetId,
-					recordSetVersion, orderByComparator, true);
+			array[0] = getByR_R_PrevAndNext(
+				session, ddlRecord, recordSetId, recordSetVersion,
+				orderByComparator, true);
 
 			array[1] = ddlRecord;
 
-			array[2] = getByR_R_PrevAndNext(session, ddlRecord, recordSetId,
-					recordSetVersion, orderByComparator, false);
+			array[2] = getByR_R_PrevAndNext(
+				session, ddlRecord, recordSetId, recordSetVersion,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -3265,14 +3409,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 	}
 
-	protected DDLRecord getByR_R_PrevAndNext(Session session,
-		DDLRecord ddlRecord, long recordSetId, String recordSetVersion,
-		OrderByComparator<DDLRecord> orderByComparator, boolean previous) {
+	protected DDLRecord getByR_R_PrevAndNext(
+		Session session, DDLRecord ddlRecord, long recordSetId,
+		String recordSetVersion, OrderByComparator<DDLRecord> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3295,7 +3441,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3369,8 +3516,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ddlRecord)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(ddlRecord)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3393,8 +3541,11 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void removeByR_R(long recordSetId, String recordSetVersion) {
-		for (DDLRecord ddlRecord : findByR_R(recordSetId, recordSetVersion,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (DDLRecord ddlRecord :
+				findByR_R(
+					recordSetId, recordSetVersion, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ddlRecord);
 		}
 	}
@@ -3412,7 +3563,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		FinderPath finderPath = _finderPathCountByR_R;
 
-		Object[] finderArgs = new Object[] { recordSetId, recordSetVersion };
+		Object[] finderArgs = new Object[] {recordSetId, recordSetVersion};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -3468,16 +3619,21 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_R_R_RECORDSETID_2 = "ddlRecord.recordSetId = ? AND ";
-	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_2 = "ddlRecord.recordSetVersion = ?";
-	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_3 = "(ddlRecord.recordSetVersion IS NULL OR ddlRecord.recordSetVersion = '')";
+	private static final String _FINDER_COLUMN_R_R_RECORDSETID_2 =
+		"ddlRecord.recordSetId = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_2 =
+		"ddlRecord.recordSetVersion = ?";
+
+	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_3 =
+		"(ddlRecord.recordSetVersion IS NULL OR ddlRecord.recordSetVersion = '')";
 
 	public DDLRecordPersistenceImpl() {
 		setModelClass(DDLRecord.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -3501,11 +3657,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void cacheResult(DDLRecord ddlRecord) {
-		entityCache.putResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-			DDLRecordImpl.class, ddlRecord.getPrimaryKey(), ddlRecord);
+		entityCache.putResult(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+			ddlRecord.getPrimaryKey(), ddlRecord);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
-			new Object[] { ddlRecord.getUuid(), ddlRecord.getGroupId() },
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
+			new Object[] {ddlRecord.getUuid(), ddlRecord.getGroupId()},
 			ddlRecord);
 
 		ddlRecord.resetOriginalValues();
@@ -3519,8 +3677,10 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public void cacheResult(List<DDLRecord> ddlRecords) {
 		for (DDLRecord ddlRecord : ddlRecords) {
-			if (entityCache.getResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-						DDLRecordImpl.class, ddlRecord.getPrimaryKey()) == null) {
+			if (entityCache.getResult(
+					DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+					DDLRecordImpl.class, ddlRecord.getPrimaryKey()) == null) {
+
 				cacheResult(ddlRecord);
 			}
 			else {
@@ -3554,8 +3714,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public void clearCache(DDLRecord ddlRecord) {
-		entityCache.removeResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-			DDLRecordImpl.class, ddlRecord.getPrimaryKey());
+		entityCache.removeResult(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+			ddlRecord.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -3569,8 +3730,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (DDLRecord ddlRecord : ddlRecords) {
-			entityCache.removeResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordImpl.class, ddlRecord.getPrimaryKey());
+			entityCache.removeResult(
+				DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+				ddlRecord.getPrimaryKey());
 
 			clearUniqueFindersCache((DDLRecordModelImpl)ddlRecord, true);
 		}
@@ -3578,34 +3740,36 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 	protected void cacheUniqueFindersCache(
 		DDLRecordModelImpl ddlRecordModelImpl) {
-		Object[] args = new Object[] {
-				ddlRecordModelImpl.getUuid(), ddlRecordModelImpl.getGroupId()
-			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			ddlRecordModelImpl, false);
+		Object[] args = new Object[] {
+			ddlRecordModelImpl.getUuid(), ddlRecordModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, ddlRecordModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
 		DDLRecordModelImpl ddlRecordModelImpl, boolean clearCurrent) {
+
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					ddlRecordModelImpl.getUuid(),
-					ddlRecordModelImpl.getGroupId()
-				};
+				ddlRecordModelImpl.getUuid(), ddlRecordModelImpl.getGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((ddlRecordModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					ddlRecordModelImpl.getOriginalUuid(),
-					ddlRecordModelImpl.getOriginalGroupId()
-				};
+				ddlRecordModelImpl.getOriginalUuid(),
+				ddlRecordModelImpl.getOriginalGroupId()
+			};
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
@@ -3656,21 +3820,22 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord remove(Serializable primaryKey)
 		throws NoSuchRecordException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			DDLRecord ddlRecord = (DDLRecord)session.get(DDLRecordImpl.class,
-					primaryKey);
+			DDLRecord ddlRecord = (DDLRecord)session.get(
+				DDLRecordImpl.class, primaryKey);
 
 			if (ddlRecord == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchRecordException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchRecordException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(ddlRecord);
@@ -3694,8 +3859,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			session = openSession();
 
 			if (!session.contains(ddlRecord)) {
-				ddlRecord = (DDLRecord)session.get(DDLRecordImpl.class,
-						ddlRecord.getPrimaryKeyObj());
+				ddlRecord = (DDLRecord)session.get(
+					DDLRecordImpl.class, ddlRecord.getPrimaryKeyObj());
 			}
 
 			if (ddlRecord != null) {
@@ -3728,12 +3893,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in ddlRecord proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom DDLRecord implementation " +
-				ddlRecord.getClass());
+					ddlRecord.getClass());
 		}
 
 		DDLRecordModelImpl ddlRecordModelImpl = (DDLRecordModelImpl)ddlRecord;
@@ -3744,7 +3909,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			ddlRecord.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -3792,174 +3958,186 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		if (!DDLRecordModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { ddlRecordModelImpl.getUuid() };
+		else if (isNew) {
+			Object[] args = new Object[] {ddlRecordModelImpl.getUuid()};
 
 			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
 
 			args = new Object[] {
+				ddlRecordModelImpl.getUuid(), ddlRecordModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			args = new Object[] {ddlRecordModelImpl.getCompanyId()};
+
+			finderCache.removeResult(_finderPathCountByCompanyId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
+
+			args = new Object[] {ddlRecordModelImpl.getRecordSetId()};
+
+			finderCache.removeResult(_finderPathCountByRecordSetId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByRecordSetId, args);
+
+			args = new Object[] {
+				ddlRecordModelImpl.getRecordSetId(),
+				ddlRecordModelImpl.getUserId()
+			};
+
+			finderCache.removeResult(_finderPathCountByR_U, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByR_U, args);
+
+			args = new Object[] {
+				ddlRecordModelImpl.getRecordSetId(),
+				ddlRecordModelImpl.getRecordSetVersion()
+			};
+
+			finderCache.removeResult(_finderPathCountByR_R, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByR_R, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {ddlRecordModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalUuid(),
+					ddlRecordModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					ddlRecordModelImpl.getUuid(),
 					ddlRecordModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+			}
 
-			args = new Object[] { ddlRecordModelImpl.getCompanyId() };
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
 
-			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalCompanyId()
+				};
 
-			args = new Object[] { ddlRecordModelImpl.getRecordSetId() };
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 
-			finderCache.removeResult(_finderPathCountByRecordSetId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByRecordSetId,
-				args);
+				args = new Object[] {ddlRecordModelImpl.getCompanyId()};
 
-			args = new Object[] {
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
+			}
+
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByRecordSetId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalRecordSetId()
+				};
+
+				finderCache.removeResult(_finderPathCountByRecordSetId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByRecordSetId, args);
+
+				args = new Object[] {ddlRecordModelImpl.getRecordSetId()};
+
+				finderCache.removeResult(_finderPathCountByRecordSetId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByRecordSetId, args);
+			}
+
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByR_U.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalRecordSetId(),
+					ddlRecordModelImpl.getOriginalUserId()
+				};
+
+				finderCache.removeResult(_finderPathCountByR_U, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_U, args);
+
+				args = new Object[] {
 					ddlRecordModelImpl.getRecordSetId(),
 					ddlRecordModelImpl.getUserId()
 				};
 
-			finderCache.removeResult(_finderPathCountByR_U, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByR_U, args);
+				finderCache.removeResult(_finderPathCountByR_U, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_U, args);
+			}
 
-			args = new Object[] {
+			if ((ddlRecordModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByR_R.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ddlRecordModelImpl.getOriginalRecordSetId(),
+					ddlRecordModelImpl.getOriginalRecordSetVersion()
+				};
+
+				finderCache.removeResult(_finderPathCountByR_R, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_R, args);
+
+				args = new Object[] {
 					ddlRecordModelImpl.getRecordSetId(),
 					ddlRecordModelImpl.getRecordSetVersion()
 				};
 
-			finderCache.removeResult(_finderPathCountByR_R, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByR_R, args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { ddlRecordModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-			}
-
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalUuid(),
-						ddlRecordModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						ddlRecordModelImpl.getUuid(),
-						ddlRecordModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-			}
-
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-
-				args = new Object[] { ddlRecordModelImpl.getCompanyId() };
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-			}
-
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByRecordSetId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalRecordSetId()
-					};
-
-				finderCache.removeResult(_finderPathCountByRecordSetId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByRecordSetId,
-					args);
-
-				args = new Object[] { ddlRecordModelImpl.getRecordSetId() };
-
-				finderCache.removeResult(_finderPathCountByRecordSetId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByRecordSetId,
-					args);
-			}
-
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByR_U.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalRecordSetId(),
-						ddlRecordModelImpl.getOriginalUserId()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_U, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_U,
-					args);
-
-				args = new Object[] {
-						ddlRecordModelImpl.getRecordSetId(),
-						ddlRecordModelImpl.getUserId()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_U, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_U,
-					args);
-			}
-
-			if ((ddlRecordModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByR_R.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ddlRecordModelImpl.getOriginalRecordSetId(),
-						ddlRecordModelImpl.getOriginalRecordSetVersion()
-					};
-
 				finderCache.removeResult(_finderPathCountByR_R, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_R,
-					args);
-
-				args = new Object[] {
-						ddlRecordModelImpl.getRecordSetId(),
-						ddlRecordModelImpl.getRecordSetVersion()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_R, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_R,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_R, args);
 			}
 		}
 
-		entityCache.putResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-			DDLRecordImpl.class, ddlRecord.getPrimaryKey(), ddlRecord, false);
+		entityCache.putResult(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+			ddlRecord.getPrimaryKey(), ddlRecord, false);
 
 		clearUniqueFindersCache(ddlRecordModelImpl, false);
 		cacheUniqueFindersCache(ddlRecordModelImpl);
@@ -3979,6 +4157,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchRecordException {
+
 		DDLRecord ddlRecord = fetchByPrimaryKey(primaryKey);
 
 		if (ddlRecord == null) {
@@ -3986,8 +4165,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchRecordException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchRecordException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return ddlRecord;
@@ -4003,6 +4182,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord findByPrimaryKey(long recordId)
 		throws NoSuchRecordException {
+
 		return findByPrimaryKey((Serializable)recordId);
 	}
 
@@ -4014,8 +4194,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public DDLRecord fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordImpl.class, primaryKey);
+		Serializable serializable = entityCache.getResult(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+			primaryKey);
 
 		if (serializable == nullModel) {
 			return null;
@@ -4029,19 +4210,21 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			try {
 				session = openSession();
 
-				ddlRecord = (DDLRecord)session.get(DDLRecordImpl.class,
-						primaryKey);
+				ddlRecord = (DDLRecord)session.get(
+					DDLRecordImpl.class, primaryKey);
 
 				if (ddlRecord != null) {
 					cacheResult(ddlRecord);
 				}
 				else {
-					entityCache.putResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+					entityCache.putResult(
+						DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
 						DDLRecordImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.removeResult(
+					DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
 					DDLRecordImpl.class, primaryKey);
 
 				throw processException(e);
@@ -4068,11 +4251,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public Map<Serializable, DDLRecord> fetchByPrimaryKeys(
 		Set<Serializable> primaryKeys) {
+
 		if (primaryKeys.isEmpty()) {
 			return Collections.emptyMap();
 		}
 
-		Map<Serializable, DDLRecord> map = new HashMap<Serializable, DDLRecord>();
+		Map<Serializable, DDLRecord> map =
+			new HashMap<Serializable, DDLRecord>();
 
 		if (primaryKeys.size() == 1) {
 			Iterator<Serializable> iterator = primaryKeys.iterator();
@@ -4091,8 +4276,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-					DDLRecordImpl.class, primaryKey);
+			Serializable serializable = entityCache.getResult(
+				DDLRecordModelImpl.ENTITY_CACHE_ENABLED, DDLRecordImpl.class,
+				primaryKey);
 
 			if (serializable != nullModel) {
 				if (serializable == null) {
@@ -4112,8 +4298,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			return map;
 		}
 
-		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
-				1);
+		StringBundler query = new StringBundler(
+			uncachedPrimaryKeys.size() * 2 + 1);
 
 		query.append(_SQL_SELECT_DDLRECORD_WHERE_PKS_IN);
 
@@ -4145,7 +4331,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+				entityCache.putResult(
+					DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
 					DDLRecordImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -4198,8 +4385,9 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of ddl records
 	 */
 	@Override
-	public List<DDLRecord> findAll(int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator) {
+	public List<DDLRecord> findAll(
+		int start, int end, OrderByComparator<DDLRecord> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -4217,29 +4405,31 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * @return the ordered range of ddl records
 	 */
 	@Override
-	public List<DDLRecord> findAll(int start, int end,
-		OrderByComparator<DDLRecord> orderByComparator,
+	public List<DDLRecord> findAll(
+		int start, int end, OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<DDLRecord> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DDLRecord>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<DDLRecord>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -4247,13 +4437,13 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_DDLRECORD);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -4273,16 +4463,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<DDLRecord>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<DDLRecord>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -4320,8 +4510,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -4333,11 +4523,12 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -4363,160 +4554,174 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 * Initializes the ddl record persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+			new String[] {String.class.getName()},
+			DDLRecordModelImpl.UUID_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDLRecordModelImpl.UUID_COLUMN_BITMASK |
+			DDLRecordModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				DDLRecordModelImpl.UUID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			DDLRecordModelImpl.UUID_COLUMN_BITMASK |
+			DDLRecordModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDLRecordModelImpl.UUID_COLUMN_BITMASK |
-				DDLRecordModelImpl.GROUPID_COLUMN_BITMASK);
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathCountByUUID_G = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] {Long.class.getName()},
+			DDLRecordModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
+		_finderPathCountByCompanyId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByRecordSetId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRecordSetId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByRecordSetId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRecordSetId",
+			new String[] {Long.class.getName()},
+			DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK);
+
+		_finderPathCountByRecordSetId = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByRecordSetId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByR_U = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_U",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				DDLRecordModelImpl.UUID_COLUMN_BITMASK |
-				DDLRecordModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByR_U = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_U",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK |
+			DDLRecordModelImpl.USERID_COLUMN_BITMASK);
 
-		_finderPathCountByUuid_C = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathCountByR_U = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_U",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByR_R = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_R",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				DDLRecordModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByR_R = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_R",
+			new String[] {Long.class.getName(), String.class.getName()},
+			DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK |
+			DDLRecordModelImpl.RECORDSETVERSION_COLUMN_BITMASK);
 
-		_finderPathCountByCompanyId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
-
-		_finderPathWithPaginationFindByRecordSetId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByRecordSetId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByRecordSetId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByRecordSetId",
-				new String[] { Long.class.getName() },
-				DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK);
-
-		_finderPathCountByRecordSetId = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByRecordSetId", new String[] { Long.class.getName() });
-
-		_finderPathWithPaginationFindByR_U = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_U",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByR_U = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_U",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK |
-				DDLRecordModelImpl.USERID_COLUMN_BITMASK);
-
-		_finderPathCountByR_U = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_U",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByR_R = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_R",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByR_R = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, DDLRecordImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_R",
-				new String[] { Long.class.getName(), String.class.getName() },
-				DDLRecordModelImpl.RECORDSETID_COLUMN_BITMASK |
-				DDLRecordModelImpl.RECORDSETVERSION_COLUMN_BITMASK);
-
-		_finderPathCountByR_R = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
-				DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_R",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByR_R = new FinderPath(
+			DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+			DDLRecordModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_R",
+			new String[] {Long.class.getName(), String.class.getName()});
 	}
 
 	public void destroy() {
@@ -4528,20 +4733,40 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_DDLRECORD = "SELECT ddlRecord FROM DDLRecord ddlRecord";
-	private static final String _SQL_SELECT_DDLRECORD_WHERE_PKS_IN = "SELECT ddlRecord FROM DDLRecord ddlRecord WHERE recordId IN (";
-	private static final String _SQL_SELECT_DDLRECORD_WHERE = "SELECT ddlRecord FROM DDLRecord ddlRecord WHERE ";
-	private static final String _SQL_COUNT_DDLRECORD = "SELECT COUNT(ddlRecord) FROM DDLRecord ddlRecord";
-	private static final String _SQL_COUNT_DDLRECORD_WHERE = "SELECT COUNT(ddlRecord) FROM DDLRecord ddlRecord WHERE ";
+
+	private static final String _SQL_SELECT_DDLRECORD =
+		"SELECT ddlRecord FROM DDLRecord ddlRecord";
+
+	private static final String _SQL_SELECT_DDLRECORD_WHERE_PKS_IN =
+		"SELECT ddlRecord FROM DDLRecord ddlRecord WHERE recordId IN (";
+
+	private static final String _SQL_SELECT_DDLRECORD_WHERE =
+		"SELECT ddlRecord FROM DDLRecord ddlRecord WHERE ";
+
+	private static final String _SQL_COUNT_DDLRECORD =
+		"SELECT COUNT(ddlRecord) FROM DDLRecord ddlRecord";
+
+	private static final String _SQL_COUNT_DDLRECORD_WHERE =
+		"SELECT COUNT(ddlRecord) FROM DDLRecord ddlRecord WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "ddlRecord.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No DDLRecord exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDLRecord exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(DDLRecordPersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No DDLRecord exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No DDLRecord exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DDLRecordPersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid"});
+
 }

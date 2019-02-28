@@ -17,7 +17,6 @@ package com.liferay.layout.page.template.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -43,8 +42,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface LayoutPageTemplateEntryModel extends BaseModel<LayoutPageTemplateEntry>,
-	ShardedModel, StagedGroupedModel, TypedModel, WorkflowedModel {
+public interface LayoutPageTemplateEntryModel
+	extends BaseModel<LayoutPageTemplateEntry>, ShardedModel,
+			StagedGroupedModel, TypedModel, WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -559,4 +560,5 @@ public interface LayoutPageTemplateEntryModel extends BaseModel<LayoutPageTempla
 
 	@Override
 	public String toXmlString();
+
 }

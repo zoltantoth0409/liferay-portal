@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -33,7 +31,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.site.model.SiteFriendlyURL;
 import com.liferay.site.model.SiteFriendlyURLModel;
 
@@ -61,28 +58,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
-	implements SiteFriendlyURLModel {
+public class SiteFriendlyURLModelImpl
+	extends BaseModelImpl<SiteFriendlyURL> implements SiteFriendlyURLModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a site friendly url model instance should use the <code>SiteFriendlyURL</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SiteFriendlyURL";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "siteFriendlyURLId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "groupId", Types.BIGINT },
-			{ "friendlyURL", Types.VARCHAR },
-			{ "languageId", Types.VARCHAR },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"siteFriendlyURLId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"groupId", Types.BIGINT},
+		{"friendlyURL", Types.VARCHAR}, {"languageId", Types.VARCHAR},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -98,30 +94,53 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SiteFriendlyURL (uuid_ VARCHAR(75) null,siteFriendlyURLId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,groupId LONG,friendlyURL VARCHAR(75) null,languageId VARCHAR(75) null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SiteFriendlyURL (uuid_ VARCHAR(75) null,siteFriendlyURLId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,groupId LONG,friendlyURL VARCHAR(75) null,languageId VARCHAR(75) null,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table SiteFriendlyURL";
-	public static final String ORDER_BY_JPQL = " ORDER BY siteFriendlyURL.siteFriendlyURLId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY SiteFriendlyURL.siteFriendlyURLId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY siteFriendlyURL.siteFriendlyURLId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SiteFriendlyURL.siteFriendlyURLId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.site.model.SiteFriendlyURL"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.site.model.SiteFriendlyURL"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.site.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.site.model.SiteFriendlyURL"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.site.model.SiteFriendlyURL"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.site.model.SiteFriendlyURL"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.site.model.SiteFriendlyURL"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long FRIENDLYURL_COLUMN_BITMASK = 2L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 4L;
+
 	public static final long LANGUAGEID_COLUMN_BITMASK = 8L;
+
 	public static final long UUID_COLUMN_BITMASK = 16L;
+
 	public static final long SITEFRIENDLYURLID_COLUMN_BITMASK = 32L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.site.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.site.model.SiteFriendlyURL"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.site.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.site.model.SiteFriendlyURL"));
 
 	public SiteFriendlyURLModelImpl() {
 	}
@@ -160,13 +179,18 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<SiteFriendlyURL, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SiteFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((SiteFriendlyURL)this));
 		}
 
@@ -178,36 +202,45 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<SiteFriendlyURL, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<SiteFriendlyURL, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<SiteFriendlyURL, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<SiteFriendlyURL, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((SiteFriendlyURL)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(SiteFriendlyURL)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<SiteFriendlyURL, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<SiteFriendlyURL, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<SiteFriendlyURL, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<SiteFriendlyURL, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<SiteFriendlyURL, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<SiteFriendlyURL, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<SiteFriendlyURL, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SiteFriendlyURL, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<SiteFriendlyURL, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<SiteFriendlyURL, Object>>();
-		Map<String, BiConsumer<SiteFriendlyURL, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<SiteFriendlyURL, ?>>();
-
+		Map<String, Function<SiteFriendlyURL, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<SiteFriendlyURL, Object>>();
+		Map<String, BiConsumer<SiteFriendlyURL, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<SiteFriendlyURL, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -224,7 +257,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object uuid) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object uuid) {
+
 					siteFriendlyURL.setUuid((String)uuid);
 				}
 
@@ -244,8 +279,11 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object siteFriendlyURLId) {
-					siteFriendlyURL.setSiteFriendlyURLId((Long)siteFriendlyURLId);
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object siteFriendlyURLId) {
+
+					siteFriendlyURL.setSiteFriendlyURLId(
+						(Long)siteFriendlyURLId);
 				}
 
 			});
@@ -264,7 +302,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object companyId) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object companyId) {
+
 					siteFriendlyURL.setCompanyId((Long)companyId);
 				}
 
@@ -284,7 +324,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object userId) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object userId) {
+
 					siteFriendlyURL.setUserId((Long)userId);
 				}
 
@@ -304,7 +346,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object userName) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object userName) {
+
 					siteFriendlyURL.setUserName((String)userName);
 				}
 
@@ -324,7 +368,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object createDate) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object createDate) {
+
 					siteFriendlyURL.setCreateDate((Date)createDate);
 				}
 
@@ -344,7 +390,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object modifiedDate) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object modifiedDate) {
+
 					siteFriendlyURL.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -364,7 +412,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object groupId) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object groupId) {
+
 					siteFriendlyURL.setGroupId((Long)groupId);
 				}
 
@@ -384,7 +434,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object friendlyURL) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object friendlyURL) {
+
 					siteFriendlyURL.setFriendlyURL((String)friendlyURL);
 				}
 
@@ -404,7 +456,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object languageId) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object languageId) {
+
 					siteFriendlyURL.setLanguageId((String)languageId);
 				}
 
@@ -424,15 +478,18 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 			new BiConsumer<SiteFriendlyURL, Object>() {
 
 				@Override
-				public void accept(SiteFriendlyURL siteFriendlyURL, Object lastPublishDate) {
+				public void accept(
+					SiteFriendlyURL siteFriendlyURL, Object lastPublishDate) {
+
 					siteFriendlyURL.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -643,8 +700,8 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				SiteFriendlyURL.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(SiteFriendlyURL.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -653,8 +710,8 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			SiteFriendlyURL.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), SiteFriendlyURL.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -667,8 +724,9 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 	@Override
 	public SiteFriendlyURL toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (SiteFriendlyURL)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (SiteFriendlyURL)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -753,26 +811,31 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 		siteFriendlyURLModelImpl._originalUuid = siteFriendlyURLModelImpl._uuid;
 
-		siteFriendlyURLModelImpl._originalCompanyId = siteFriendlyURLModelImpl._companyId;
+		siteFriendlyURLModelImpl._originalCompanyId =
+			siteFriendlyURLModelImpl._companyId;
 
 		siteFriendlyURLModelImpl._setOriginalCompanyId = false;
 
 		siteFriendlyURLModelImpl._setModifiedDate = false;
 
-		siteFriendlyURLModelImpl._originalGroupId = siteFriendlyURLModelImpl._groupId;
+		siteFriendlyURLModelImpl._originalGroupId =
+			siteFriendlyURLModelImpl._groupId;
 
 		siteFriendlyURLModelImpl._setOriginalGroupId = false;
 
-		siteFriendlyURLModelImpl._originalFriendlyURL = siteFriendlyURLModelImpl._friendlyURL;
+		siteFriendlyURLModelImpl._originalFriendlyURL =
+			siteFriendlyURLModelImpl._friendlyURL;
 
-		siteFriendlyURLModelImpl._originalLanguageId = siteFriendlyURLModelImpl._languageId;
+		siteFriendlyURLModelImpl._originalLanguageId =
+			siteFriendlyURLModelImpl._languageId;
 
 		siteFriendlyURLModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<SiteFriendlyURL> toCacheModel() {
-		SiteFriendlyURLCacheModel siteFriendlyURLCacheModel = new SiteFriendlyURLCacheModel();
+		SiteFriendlyURLCacheModel siteFriendlyURLCacheModel =
+			new SiteFriendlyURLCacheModel();
 
 		siteFriendlyURLCacheModel.uuid = getUuid();
 
@@ -835,7 +898,8 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			siteFriendlyURLCacheModel.lastPublishDate = lastPublishDate.getTime();
+			siteFriendlyURLCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			siteFriendlyURLCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -846,16 +910,20 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 	@Override
 	public String toString() {
-		Map<String, Function<SiteFriendlyURL, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SiteFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -874,18 +942,22 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<SiteFriendlyURL, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SiteFriendlyURL, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteFriendlyURL, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteFriendlyURL, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteFriendlyURL, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -899,10 +971,12 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = SiteFriendlyURL.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		SiteFriendlyURL.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			SiteFriendlyURL.class, ModelWrapper.class
-		};
+		SiteFriendlyURL.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _siteFriendlyURLId;
@@ -924,4 +998,5 @@ public class SiteFriendlyURLModelImpl extends BaseModelImpl<SiteFriendlyURL>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private SiteFriendlyURL _escapedModel;
+
 }

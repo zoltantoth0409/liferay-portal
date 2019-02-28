@@ -19,12 +19,9 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordModel;
 import com.liferay.dynamic.data.lists.model.DDLRecordSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -66,33 +63,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
-	implements DDLRecordModel {
+public class DDLRecordModelImpl
+	extends BaseModelImpl<DDLRecord> implements DDLRecordModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ddl record model instance should use the <code>DDLRecord</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DDLRecord";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "recordId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "versionUserId", Types.BIGINT },
-			{ "versionUserName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "DDMStorageId", Types.BIGINT },
-			{ "recordSetId", Types.BIGINT },
-			{ "recordSetVersion", Types.VARCHAR },
-			{ "version", Types.VARCHAR },
-			{ "displayIndex", Types.INTEGER },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"recordId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"versionUserId", Types.BIGINT}, {"versionUserName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"DDMStorageId", Types.BIGINT}, {"recordSetId", Types.BIGINT},
+		{"recordSetVersion", Types.VARCHAR}, {"version", Types.VARCHAR},
+		{"displayIndex", Types.INTEGER}, {"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -113,28 +106,50 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DDLRecord (uuid_ VARCHAR(75) null,recordId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,DDMStorageId LONG,recordSetId LONG,recordSetVersion VARCHAR(75) null,version VARCHAR(75) null,displayIndex INTEGER,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DDLRecord (uuid_ VARCHAR(75) null,recordId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,versionUserId LONG,versionUserName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,DDMStorageId LONG,recordSetId LONG,recordSetVersion VARCHAR(75) null,version VARCHAR(75) null,displayIndex INTEGER,lastPublishDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DDLRecord";
-	public static final String ORDER_BY_JPQL = " ORDER BY ddlRecord.recordId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DDLRecord.recordId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY ddlRecord.recordId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DDLRecord.recordId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.dynamic.data.lists.model.DDLRecord"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long RECORDSETID_COLUMN_BITMASK = 4L;
+
 	public static final long RECORDSETVERSION_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long RECORDID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -190,8 +205,9 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.dynamic.data.lists.model.DDLRecord"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.dynamic.data.lists.model.DDLRecord"));
 
 	public DDLRecordModelImpl() {
 	}
@@ -230,14 +246,18 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DDLRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((DDLRecord)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((DDLRecord)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -248,35 +268,44 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DDLRecord, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DDLRecord, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DDLRecord, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DDLRecord, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DDLRecord)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DDLRecord)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DDLRecord, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DDLRecord, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DDLRecord, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DDLRecord, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DDLRecord, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DDLRecord, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DDLRecord, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDLRecord, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<DDLRecord, Object>>();
-		Map<String, BiConsumer<DDLRecord, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DDLRecord, ?>>();
-
+		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<DDLRecord, Object>>();
+		Map<String, BiConsumer<DDLRecord, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<DDLRecord, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
@@ -433,7 +462,9 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object versionUserName) {
+				public void accept(
+					DDLRecord ddlRecord, Object versionUserName) {
+
 					ddlRecord.setVersionUserName((String)versionUserName);
 				}
 
@@ -533,7 +564,9 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object recordSetVersion) {
+				public void accept(
+					DDLRecord ddlRecord, Object recordSetVersion) {
+
 					ddlRecord.setRecordSetVersion((String)recordSetVersion);
 				}
 
@@ -593,15 +626,18 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 			new BiConsumer<DDLRecord, Object>() {
 
 				@Override
-				public void accept(DDLRecord ddlRecord, Object lastPublishDate) {
+				public void accept(
+					DDLRecord ddlRecord, Object lastPublishDate) {
+
 					ddlRecord.setLastPublishDate((Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -913,8 +949,8 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				DDLRecord.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(DDLRecord.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -923,8 +959,8 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DDLRecord.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DDLRecord.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -937,8 +973,9 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 	@Override
 	public DDLRecord toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DDLRecord)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DDLRecord)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1042,11 +1079,13 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 		ddlRecordModelImpl._setModifiedDate = false;
 
-		ddlRecordModelImpl._originalRecordSetId = ddlRecordModelImpl._recordSetId;
+		ddlRecordModelImpl._originalRecordSetId =
+			ddlRecordModelImpl._recordSetId;
 
 		ddlRecordModelImpl._setOriginalRecordSetId = false;
 
-		ddlRecordModelImpl._originalRecordSetVersion = ddlRecordModelImpl._recordSetVersion;
+		ddlRecordModelImpl._originalRecordSetVersion =
+			ddlRecordModelImpl._recordSetVersion;
 
 		ddlRecordModelImpl._columnBitmask = 0;
 	}
@@ -1143,16 +1182,20 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DDLRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1171,18 +1214,22 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<DDLRecord, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DDLRecord, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecord, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecord, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecord, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1196,10 +1243,12 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DDLRecord.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DDLRecord.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DDLRecord.class, ModelWrapper.class
-		};
+		DDLRecord.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _recordId;
@@ -1229,4 +1278,5 @@ public class DDLRecordModelImpl extends BaseModelImpl<DDLRecord>
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private DDLRecord _escapedModel;
+
 }

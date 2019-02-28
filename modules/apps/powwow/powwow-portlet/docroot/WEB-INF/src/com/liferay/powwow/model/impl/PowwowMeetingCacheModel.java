@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.powwow.model.PowwowMeeting;
 
 import java.io.Externalizable;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class PowwowMeetingCacheModel implements CacheModel<PowwowMeeting>,
-	Externalizable {
+public class PowwowMeetingCacheModel
+	implements CacheModel<PowwowMeeting>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,7 +48,8 @@ public class PowwowMeetingCacheModel implements CacheModel<PowwowMeeting>,
 			return false;
 		}
 
-		PowwowMeetingCacheModel powwowMeetingCacheModel = (PowwowMeetingCacheModel)obj;
+		PowwowMeetingCacheModel powwowMeetingCacheModel =
+			(PowwowMeetingCacheModel)obj;
 
 		if (powwowMeetingId == powwowMeetingCacheModel.powwowMeetingId) {
 			return true;
@@ -202,8 +203,7 @@ public class PowwowMeetingCacheModel implements CacheModel<PowwowMeeting>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(powwowMeetingId);
 
 		objectOutput.writeLong(groupId);
@@ -279,4 +279,5 @@ public class PowwowMeetingCacheModel implements CacheModel<PowwowMeeting>,
 	public String languageId;
 	public long calendarBookingId;
 	public int status;
+
 }

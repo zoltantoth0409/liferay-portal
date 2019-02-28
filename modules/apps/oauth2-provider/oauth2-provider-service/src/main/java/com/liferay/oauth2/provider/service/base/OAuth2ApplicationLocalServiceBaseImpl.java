@@ -21,7 +21,6 @@ import com.liferay.oauth2.provider.service.OAuth2ApplicationLocalService;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ApplicationPersistence;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ApplicationScopeAliasesPersistence;
 import com.liferay.oauth2.provider.service.persistence.OAuth2AuthorizationPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -67,8 +66,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class OAuth2ApplicationLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements OAuth2ApplicationLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements OAuth2ApplicationLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -85,6 +85,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public OAuth2Application addOAuth2Application(
 		OAuth2Application oAuth2Application) {
+
 		oAuth2Application.setNew(true);
 
 		return oAuth2ApplicationPersistence.update(oAuth2Application);
@@ -113,6 +114,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public OAuth2Application deleteOAuth2Application(long oAuth2ApplicationId)
 		throws PortalException {
+
 		return oAuth2ApplicationPersistence.remove(oAuth2ApplicationId);
 	}
 
@@ -126,6 +128,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public OAuth2Application deleteOAuth2Application(
 		OAuth2Application oAuth2Application) {
+
 		return oAuth2ApplicationPersistence.remove(oAuth2Application);
 	}
 
@@ -133,8 +136,8 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(OAuth2Application.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			OAuth2Application.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -161,10 +164,11 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return oAuth2ApplicationPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return oAuth2ApplicationPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -181,10 +185,12 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return oAuth2ApplicationPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return oAuth2ApplicationPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -206,15 +212,17 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return oAuth2ApplicationPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return oAuth2ApplicationPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public OAuth2Application fetchOAuth2Application(long oAuth2ApplicationId) {
-		return oAuth2ApplicationPersistence.fetchByPrimaryKey(oAuth2ApplicationId);
+		return oAuth2ApplicationPersistence.fetchByPrimaryKey(
+			oAuth2ApplicationId);
 	}
 
 	/**
@@ -227,14 +235,18 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public OAuth2Application getOAuth2Application(long oAuth2ApplicationId)
 		throws PortalException {
-		return oAuth2ApplicationPersistence.findByPrimaryKey(oAuth2ApplicationId);
+
+		return oAuth2ApplicationPersistence.findByPrimaryKey(
+			oAuth2ApplicationId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(oAuth2ApplicationLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			oAuth2ApplicationLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuth2Application.class);
 
@@ -244,10 +256,14 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(oAuth2ApplicationLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			oAuth2ApplicationLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(OAuth2Application.class);
 
@@ -259,7 +275,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(oAuth2ApplicationLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			oAuth2ApplicationLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(OAuth2Application.class);
 
@@ -272,12 +290,15 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return oAuth2ApplicationLocalService.deleteOAuth2Application((OAuth2Application)persistedModel);
+
+		return oAuth2ApplicationLocalService.deleteOAuth2Application(
+			(OAuth2Application)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return oAuth2ApplicationPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -317,6 +338,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	@Override
 	public OAuth2Application updateOAuth2Application(
 		OAuth2Application oAuth2Application) {
+
 		return oAuth2ApplicationPersistence.update(oAuth2Application);
 	}
 
@@ -336,6 +358,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	public void setOAuth2ApplicationLocalService(
 		OAuth2ApplicationLocalService oAuth2ApplicationLocalService) {
+
 		this.oAuth2ApplicationLocalService = oAuth2ApplicationLocalService;
 	}
 
@@ -355,6 +378,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	public void setOAuth2ApplicationPersistence(
 		OAuth2ApplicationPersistence oAuth2ApplicationPersistence) {
+
 		this.oAuth2ApplicationPersistence = oAuth2ApplicationPersistence;
 	}
 
@@ -363,7 +387,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -373,7 +399,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -382,7 +410,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the group local service
 	 */
-	public com.liferay.portal.kernel.service.GroupLocalService getGroupLocalService() {
+	public com.liferay.portal.kernel.service.GroupLocalService
+		getGroupLocalService() {
+
 		return groupLocalService;
 	}
 
@@ -393,6 +423,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	public void setGroupLocalService(
 		com.liferay.portal.kernel.service.GroupLocalService groupLocalService) {
+
 		this.groupLocalService = groupLocalService;
 	}
 
@@ -419,7 +450,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the resource local service
 	 */
-	public com.liferay.portal.kernel.service.ResourceLocalService getResourceLocalService() {
+	public com.liferay.portal.kernel.service.ResourceLocalService
+		getResourceLocalService() {
+
 		return resourceLocalService;
 	}
 
@@ -429,7 +462,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @param resourceLocalService the resource local service
 	 */
 	public void setResourceLocalService(
-		com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService) {
+		com.liferay.portal.kernel.service.ResourceLocalService
+			resourceLocalService) {
+
 		this.resourceLocalService = resourceLocalService;
 	}
 
@@ -438,7 +473,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -449,6 +486,7 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -475,7 +513,10 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the o auth2 application scope aliases local service
 	 */
-	public com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService getOAuth2ApplicationScopeAliasesLocalService() {
+	public com.liferay.oauth2.provider.service.
+		OAuth2ApplicationScopeAliasesLocalService
+			getOAuth2ApplicationScopeAliasesLocalService() {
+
 		return oAuth2ApplicationScopeAliasesLocalService;
 	}
 
@@ -485,8 +526,12 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @param oAuth2ApplicationScopeAliasesLocalService the o auth2 application scope aliases local service
 	 */
 	public void setOAuth2ApplicationScopeAliasesLocalService(
-		com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService oAuth2ApplicationScopeAliasesLocalService) {
-		this.oAuth2ApplicationScopeAliasesLocalService = oAuth2ApplicationScopeAliasesLocalService;
+		com.liferay.oauth2.provider.service.
+			OAuth2ApplicationScopeAliasesLocalService
+				oAuth2ApplicationScopeAliasesLocalService) {
+
+		this.oAuth2ApplicationScopeAliasesLocalService =
+			oAuth2ApplicationScopeAliasesLocalService;
 	}
 
 	/**
@@ -494,7 +539,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the o auth2 application scope aliases persistence
 	 */
-	public OAuth2ApplicationScopeAliasesPersistence getOAuth2ApplicationScopeAliasesPersistence() {
+	public OAuth2ApplicationScopeAliasesPersistence
+		getOAuth2ApplicationScopeAliasesPersistence() {
+
 		return oAuth2ApplicationScopeAliasesPersistence;
 	}
 
@@ -504,8 +551,11 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @param oAuth2ApplicationScopeAliasesPersistence the o auth2 application scope aliases persistence
 	 */
 	public void setOAuth2ApplicationScopeAliasesPersistence(
-		OAuth2ApplicationScopeAliasesPersistence oAuth2ApplicationScopeAliasesPersistence) {
-		this.oAuth2ApplicationScopeAliasesPersistence = oAuth2ApplicationScopeAliasesPersistence;
+		OAuth2ApplicationScopeAliasesPersistence
+			oAuth2ApplicationScopeAliasesPersistence) {
+
+		this.oAuth2ApplicationScopeAliasesPersistence =
+			oAuth2ApplicationScopeAliasesPersistence;
 	}
 
 	/**
@@ -513,7 +563,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 *
 	 * @return the o auth2 authorization local service
 	 */
-	public com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService getOAuth2AuthorizationLocalService() {
+	public com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+		getOAuth2AuthorizationLocalService() {
+
 		return oAuth2AuthorizationLocalService;
 	}
 
@@ -523,7 +575,9 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 * @param oAuth2AuthorizationLocalService the o auth2 authorization local service
 	 */
 	public void setOAuth2AuthorizationLocalService(
-		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService oAuth2AuthorizationLocalService) {
+		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+			oAuth2AuthorizationLocalService) {
+
 		this.oAuth2AuthorizationLocalService = oAuth2AuthorizationLocalService;
 	}
 
@@ -543,11 +597,13 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	public void setOAuth2AuthorizationPersistence(
 		OAuth2AuthorizationPersistence oAuth2AuthorizationPersistence) {
+
 		this.oAuth2AuthorizationPersistence = oAuth2AuthorizationPersistence;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.oauth2.provider.model.OAuth2Application",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.oauth2.provider.model.OAuth2Application",
 			oAuth2ApplicationLocalService);
 	}
 
@@ -581,15 +637,16 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = oAuth2ApplicationPersistence.getDataSource();
+			DataSource dataSource =
+				oAuth2ApplicationPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -600,28 +657,63 @@ public abstract class OAuth2ApplicationLocalServiceBaseImpl
 
 	@BeanReference(type = OAuth2ApplicationLocalService.class)
 	protected OAuth2ApplicationLocalService oAuth2ApplicationLocalService;
+
 	@BeanReference(type = OAuth2ApplicationPersistence.class)
 	protected OAuth2ApplicationPersistence oAuth2ApplicationPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.GroupLocalService.class)
-	protected com.liferay.portal.kernel.service.GroupLocalService groupLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.GroupLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.GroupLocalService
+		groupLocalService;
+
 	@ServiceReference(type = GroupPersistence.class)
 	protected GroupPersistence groupPersistence;
-	@ServiceReference(type = com.liferay.portal.kernel.service.ResourceLocalService.class)
-	protected com.liferay.portal.kernel.service.ResourceLocalService resourceLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.ResourceLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ResourceLocalService
+		resourceLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
-	@BeanReference(type = com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService.class)
-	protected com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService oAuth2ApplicationScopeAliasesLocalService;
+
+	@BeanReference(
+		type = com.liferay.oauth2.provider.service.OAuth2ApplicationScopeAliasesLocalService.class
+	)
+	protected com.liferay.oauth2.provider.service.
+		OAuth2ApplicationScopeAliasesLocalService
+			oAuth2ApplicationScopeAliasesLocalService;
+
 	@BeanReference(type = OAuth2ApplicationScopeAliasesPersistence.class)
-	protected OAuth2ApplicationScopeAliasesPersistence oAuth2ApplicationScopeAliasesPersistence;
-	@BeanReference(type = com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService.class)
-	protected com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService oAuth2AuthorizationLocalService;
+	protected OAuth2ApplicationScopeAliasesPersistence
+		oAuth2ApplicationScopeAliasesPersistence;
+
+	@BeanReference(
+		type = com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService.class
+	)
+	protected
+		com.liferay.oauth2.provider.service.OAuth2AuthorizationLocalService
+			oAuth2AuthorizationLocalService;
+
 	@BeanReference(type = OAuth2AuthorizationPersistence.class)
 	protected OAuth2AuthorizationPersistence oAuth2AuthorizationPersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

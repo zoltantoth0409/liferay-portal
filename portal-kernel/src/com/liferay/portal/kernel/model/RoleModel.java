@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -40,8 +39,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface RoleModel extends AttachedModel, BaseModel<Role>, LocalizedModel,
-	MVCCModel, ShardedModel, StagedAuditedModel {
+public interface RoleModel
+	extends AttachedModel, BaseModel<Role>, LocalizedModel, MVCCModel,
+			ShardedModel, StagedAuditedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -442,8 +443,8 @@ public interface RoleModel extends AttachedModel, BaseModel<Role>, LocalizedMode
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -460,8 +461,8 @@ public interface RoleModel extends AttachedModel, BaseModel<Role>, LocalizedMode
 	 * @param descriptionMap the locales and localized descriptions of this role
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the type of this role.
@@ -561,4 +562,5 @@ public interface RoleModel extends AttachedModel, BaseModel<Role>, LocalizedMode
 
 	@Override
 	public String toXmlString();
+
 }

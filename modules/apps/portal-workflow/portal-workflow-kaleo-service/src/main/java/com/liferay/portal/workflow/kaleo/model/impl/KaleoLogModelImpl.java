@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -57,47 +56,42 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
-	implements KaleoLogModel {
+public class KaleoLogModelImpl
+	extends BaseModelImpl<KaleoLog> implements KaleoLogModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a kaleo log model instance should use the <code>KaleoLog</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "KaleoLog";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoLogId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoClassName", Types.VARCHAR },
-			{ "kaleoClassPK", Types.BIGINT },
-			{ "kaleoDefinitionVersionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "kaleoInstanceTokenId", Types.BIGINT },
-			{ "kaleoTaskInstanceTokenId", Types.BIGINT },
-			{ "kaleoNodeName", Types.VARCHAR },
-			{ "terminalKaleoNode", Types.BOOLEAN },
-			{ "kaleoActionId", Types.BIGINT },
-			{ "kaleoActionName", Types.VARCHAR },
-			{ "kaleoActionDescription", Types.VARCHAR },
-			{ "previousKaleoNodeId", Types.BIGINT },
-			{ "previousKaleoNodeName", Types.VARCHAR },
-			{ "previousAssigneeClassName", Types.VARCHAR },
-			{ "previousAssigneeClassPK", Types.BIGINT },
-			{ "currentAssigneeClassName", Types.VARCHAR },
-			{ "currentAssigneeClassPK", Types.BIGINT },
-			{ "type_", Types.VARCHAR },
-			{ "comment_", Types.CLOB },
-			{ "startDate", Types.TIMESTAMP },
-			{ "endDate", Types.TIMESTAMP },
-			{ "duration", Types.BIGINT },
-			{ "workflowContext", Types.CLOB }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"kaleoLogId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"modifiedDate", Types.TIMESTAMP}, {"kaleoClassName", Types.VARCHAR},
+		{"kaleoClassPK", Types.BIGINT},
+		{"kaleoDefinitionVersionId", Types.BIGINT},
+		{"kaleoInstanceId", Types.BIGINT},
+		{"kaleoInstanceTokenId", Types.BIGINT},
+		{"kaleoTaskInstanceTokenId", Types.BIGINT},
+		{"kaleoNodeName", Types.VARCHAR}, {"terminalKaleoNode", Types.BOOLEAN},
+		{"kaleoActionId", Types.BIGINT}, {"kaleoActionName", Types.VARCHAR},
+		{"kaleoActionDescription", Types.VARCHAR},
+		{"previousKaleoNodeId", Types.BIGINT},
+		{"previousKaleoNodeName", Types.VARCHAR},
+		{"previousAssigneeClassName", Types.VARCHAR},
+		{"previousAssigneeClassPK", Types.BIGINT},
+		{"currentAssigneeClassName", Types.VARCHAR},
+		{"currentAssigneeClassPK", Types.BIGINT}, {"type_", Types.VARCHAR},
+		{"comment_", Types.CLOB}, {"startDate", Types.TIMESTAMP},
+		{"endDate", Types.TIMESTAMP}, {"duration", Types.BIGINT},
+		{"workflowContext", Types.CLOB}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("kaleoLogId", Types.BIGINT);
@@ -132,33 +126,59 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		TABLE_COLUMNS_MAP.put("workflowContext", Types.CLOB);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table KaleoLog (kaleoLogId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionVersionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription STRING null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment_ TEXT null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table KaleoLog (kaleoLogId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionVersionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription STRING null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment_ TEXT null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
+
 	public static final String TABLE_SQL_DROP = "drop table KaleoLog";
-	public static final String ORDER_BY_JPQL = " ORDER BY kaleoLog.kaleoLogId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY KaleoLog.kaleoLogId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY kaleoLog.kaleoLogId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY KaleoLog.kaleoLogId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.workflow.kaleo.model.KaleoLog"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long KALEOCLASSNAME_COLUMN_BITMASK = 2L;
+
 	public static final long KALEOCLASSPK_COLUMN_BITMASK = 4L;
+
 	public static final long KALEODEFINITIONVERSIONID_COLUMN_BITMASK = 8L;
+
 	public static final long KALEOINSTANCEID_COLUMN_BITMASK = 16L;
+
 	public static final long KALEOINSTANCETOKENID_COLUMN_BITMASK = 32L;
+
 	public static final long KALEOTASKINSTANCETOKENID_COLUMN_BITMASK = 64L;
+
 	public static final long TYPE_COLUMN_BITMASK = 128L;
+
 	public static final long KALEOLOGID_COLUMN_BITMASK = 256L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoLog"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.workflow.kaleo.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.portal.workflow.kaleo.model.KaleoLog"));
 
 	public KaleoLogModelImpl() {
 	}
@@ -197,14 +217,18 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<KaleoLog, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoLog, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoLog, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoLog, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((KaleoLog)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((KaleoLog)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -215,35 +239,44 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<KaleoLog, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<KaleoLog, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<KaleoLog, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<KaleoLog, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((KaleoLog)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(KaleoLog)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<KaleoLog, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<KaleoLog, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<KaleoLog, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<KaleoLog, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<KaleoLog, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<KaleoLog, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<KaleoLog, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<KaleoLog, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<KaleoLog, Object>>();
-		Map<String, BiConsumer<KaleoLog, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<KaleoLog, ?>>();
-
+		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<KaleoLog, Object>>();
+		Map<String, BiConsumer<KaleoLog, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<KaleoLog, ?>>();
 
 		attributeGetterFunctions.put(
 			"kaleoLogId",
@@ -440,8 +473,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoDefinitionVersionId) {
-					kaleoLog.setKaleoDefinitionVersionId((Long)kaleoDefinitionVersionId);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoDefinitionVersionId) {
+
+					kaleoLog.setKaleoDefinitionVersionId(
+						(Long)kaleoDefinitionVersionId);
 				}
 
 			});
@@ -480,8 +516,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoInstanceTokenId) {
-					kaleoLog.setKaleoInstanceTokenId((Long)kaleoInstanceTokenId);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoInstanceTokenId) {
+
+					kaleoLog.setKaleoInstanceTokenId(
+						(Long)kaleoInstanceTokenId);
 				}
 
 			});
@@ -500,8 +539,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoTaskInstanceTokenId) {
-					kaleoLog.setKaleoTaskInstanceTokenId((Long)kaleoTaskInstanceTokenId);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoTaskInstanceTokenId) {
+
+					kaleoLog.setKaleoTaskInstanceTokenId(
+						(Long)kaleoTaskInstanceTokenId);
 				}
 
 			});
@@ -540,7 +582,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object terminalKaleoNode) {
+				public void accept(
+					KaleoLog kaleoLog, Object terminalKaleoNode) {
+
 					kaleoLog.setTerminalKaleoNode((Boolean)terminalKaleoNode);
 				}
 
@@ -600,8 +644,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object kaleoActionDescription) {
-					kaleoLog.setKaleoActionDescription((String)kaleoActionDescription);
+				public void accept(
+					KaleoLog kaleoLog, Object kaleoActionDescription) {
+
+					kaleoLog.setKaleoActionDescription(
+						(String)kaleoActionDescription);
 				}
 
 			});
@@ -620,7 +667,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object previousKaleoNodeId) {
+				public void accept(
+					KaleoLog kaleoLog, Object previousKaleoNodeId) {
+
 					kaleoLog.setPreviousKaleoNodeId((Long)previousKaleoNodeId);
 				}
 
@@ -640,8 +689,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object previousKaleoNodeName) {
-					kaleoLog.setPreviousKaleoNodeName((String)previousKaleoNodeName);
+				public void accept(
+					KaleoLog kaleoLog, Object previousKaleoNodeName) {
+
+					kaleoLog.setPreviousKaleoNodeName(
+						(String)previousKaleoNodeName);
 				}
 
 			});
@@ -660,8 +712,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object previousAssigneeClassName) {
-					kaleoLog.setPreviousAssigneeClassName((String)previousAssigneeClassName);
+				public void accept(
+					KaleoLog kaleoLog, Object previousAssigneeClassName) {
+
+					kaleoLog.setPreviousAssigneeClassName(
+						(String)previousAssigneeClassName);
 				}
 
 			});
@@ -680,8 +735,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object previousAssigneeClassPK) {
-					kaleoLog.setPreviousAssigneeClassPK((Long)previousAssigneeClassPK);
+				public void accept(
+					KaleoLog kaleoLog, Object previousAssigneeClassPK) {
+
+					kaleoLog.setPreviousAssigneeClassPK(
+						(Long)previousAssigneeClassPK);
 				}
 
 			});
@@ -700,8 +758,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object currentAssigneeClassName) {
-					kaleoLog.setCurrentAssigneeClassName((String)currentAssigneeClassName);
+				public void accept(
+					KaleoLog kaleoLog, Object currentAssigneeClassName) {
+
+					kaleoLog.setCurrentAssigneeClassName(
+						(String)currentAssigneeClassName);
 				}
 
 			});
@@ -720,8 +781,11 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 			new BiConsumer<KaleoLog, Object>() {
 
 				@Override
-				public void accept(KaleoLog kaleoLog, Object currentAssigneeClassPK) {
-					kaleoLog.setCurrentAssigneeClassPK((Long)currentAssigneeClassPK);
+				public void accept(
+					KaleoLog kaleoLog, Object currentAssigneeClassPK) {
+
+					kaleoLog.setCurrentAssigneeClassPK(
+						(Long)currentAssigneeClassPK);
 				}
 
 			});
@@ -846,9 +910,10 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -1333,8 +1398,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			KaleoLog.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), KaleoLog.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1347,8 +1412,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	@Override
 	public KaleoLog toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (KaleoLog)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (KaleoLog)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1378,7 +1444,8 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		kaleoLogImpl.setKaleoActionDescription(getKaleoActionDescription());
 		kaleoLogImpl.setPreviousKaleoNodeId(getPreviousKaleoNodeId());
 		kaleoLogImpl.setPreviousKaleoNodeName(getPreviousKaleoNodeName());
-		kaleoLogImpl.setPreviousAssigneeClassName(getPreviousAssigneeClassName());
+		kaleoLogImpl.setPreviousAssigneeClassName(
+			getPreviousAssigneeClassName());
 		kaleoLogImpl.setPreviousAssigneeClassPK(getPreviousAssigneeClassPK());
 		kaleoLogImpl.setCurrentAssigneeClassName(getCurrentAssigneeClassName());
 		kaleoLogImpl.setCurrentAssigneeClassPK(getCurrentAssigneeClassPK());
@@ -1462,25 +1529,31 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 		kaleoLogModelImpl._setModifiedDate = false;
 
-		kaleoLogModelImpl._originalKaleoClassName = kaleoLogModelImpl._kaleoClassName;
+		kaleoLogModelImpl._originalKaleoClassName =
+			kaleoLogModelImpl._kaleoClassName;
 
-		kaleoLogModelImpl._originalKaleoClassPK = kaleoLogModelImpl._kaleoClassPK;
+		kaleoLogModelImpl._originalKaleoClassPK =
+			kaleoLogModelImpl._kaleoClassPK;
 
 		kaleoLogModelImpl._setOriginalKaleoClassPK = false;
 
-		kaleoLogModelImpl._originalKaleoDefinitionVersionId = kaleoLogModelImpl._kaleoDefinitionVersionId;
+		kaleoLogModelImpl._originalKaleoDefinitionVersionId =
+			kaleoLogModelImpl._kaleoDefinitionVersionId;
 
 		kaleoLogModelImpl._setOriginalKaleoDefinitionVersionId = false;
 
-		kaleoLogModelImpl._originalKaleoInstanceId = kaleoLogModelImpl._kaleoInstanceId;
+		kaleoLogModelImpl._originalKaleoInstanceId =
+			kaleoLogModelImpl._kaleoInstanceId;
 
 		kaleoLogModelImpl._setOriginalKaleoInstanceId = false;
 
-		kaleoLogModelImpl._originalKaleoInstanceTokenId = kaleoLogModelImpl._kaleoInstanceTokenId;
+		kaleoLogModelImpl._originalKaleoInstanceTokenId =
+			kaleoLogModelImpl._kaleoInstanceTokenId;
 
 		kaleoLogModelImpl._setOriginalKaleoInstanceTokenId = false;
 
-		kaleoLogModelImpl._originalKaleoTaskInstanceTokenId = kaleoLogModelImpl._kaleoTaskInstanceTokenId;
+		kaleoLogModelImpl._originalKaleoTaskInstanceTokenId =
+			kaleoLogModelImpl._kaleoTaskInstanceTokenId;
 
 		kaleoLogModelImpl._setOriginalKaleoTaskInstanceTokenId = false;
 
@@ -1537,13 +1610,15 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 		kaleoLogCacheModel.kaleoClassPK = getKaleoClassPK();
 
-		kaleoLogCacheModel.kaleoDefinitionVersionId = getKaleoDefinitionVersionId();
+		kaleoLogCacheModel.kaleoDefinitionVersionId =
+			getKaleoDefinitionVersionId();
 
 		kaleoLogCacheModel.kaleoInstanceId = getKaleoInstanceId();
 
 		kaleoLogCacheModel.kaleoInstanceTokenId = getKaleoInstanceTokenId();
 
-		kaleoLogCacheModel.kaleoTaskInstanceTokenId = getKaleoTaskInstanceTokenId();
+		kaleoLogCacheModel.kaleoTaskInstanceTokenId =
+			getKaleoTaskInstanceTokenId();
 
 		kaleoLogCacheModel.kaleoNodeName = getKaleoNodeName();
 
@@ -1567,10 +1642,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 		kaleoLogCacheModel.kaleoActionDescription = getKaleoActionDescription();
 
-		String kaleoActionDescription = kaleoLogCacheModel.kaleoActionDescription;
+		String kaleoActionDescription =
+			kaleoLogCacheModel.kaleoActionDescription;
 
 		if ((kaleoActionDescription != null) &&
-				(kaleoActionDescription.length() == 0)) {
+			(kaleoActionDescription.length() == 0)) {
+
 			kaleoLogCacheModel.kaleoActionDescription = null;
 		}
 
@@ -1581,27 +1658,35 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		String previousKaleoNodeName = kaleoLogCacheModel.previousKaleoNodeName;
 
 		if ((previousKaleoNodeName != null) &&
-				(previousKaleoNodeName.length() == 0)) {
+			(previousKaleoNodeName.length() == 0)) {
+
 			kaleoLogCacheModel.previousKaleoNodeName = null;
 		}
 
-		kaleoLogCacheModel.previousAssigneeClassName = getPreviousAssigneeClassName();
+		kaleoLogCacheModel.previousAssigneeClassName =
+			getPreviousAssigneeClassName();
 
-		String previousAssigneeClassName = kaleoLogCacheModel.previousAssigneeClassName;
+		String previousAssigneeClassName =
+			kaleoLogCacheModel.previousAssigneeClassName;
 
 		if ((previousAssigneeClassName != null) &&
-				(previousAssigneeClassName.length() == 0)) {
+			(previousAssigneeClassName.length() == 0)) {
+
 			kaleoLogCacheModel.previousAssigneeClassName = null;
 		}
 
-		kaleoLogCacheModel.previousAssigneeClassPK = getPreviousAssigneeClassPK();
+		kaleoLogCacheModel.previousAssigneeClassPK =
+			getPreviousAssigneeClassPK();
 
-		kaleoLogCacheModel.currentAssigneeClassName = getCurrentAssigneeClassName();
+		kaleoLogCacheModel.currentAssigneeClassName =
+			getCurrentAssigneeClassName();
 
-		String currentAssigneeClassName = kaleoLogCacheModel.currentAssigneeClassName;
+		String currentAssigneeClassName =
+			kaleoLogCacheModel.currentAssigneeClassName;
 
 		if ((currentAssigneeClassName != null) &&
-				(currentAssigneeClassName.length() == 0)) {
+			(currentAssigneeClassName.length() == 0)) {
+
 			kaleoLogCacheModel.currentAssigneeClassName = null;
 		}
 
@@ -1656,16 +1741,20 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public String toString() {
-		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<KaleoLog, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoLog, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoLog, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoLog, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1684,18 +1773,22 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<KaleoLog, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<KaleoLog, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<KaleoLog, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<KaleoLog, Object> attributeGetterFunction = entry.getValue();
+			Function<KaleoLog, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1709,10 +1802,12 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = KaleoLog.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		KaleoLog.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			KaleoLog.class, ModelWrapper.class
-		};
+		KaleoLog.class, ModelWrapper.class
+	};
+
 	private long _kaleoLogId;
 	private long _groupId;
 	private long _companyId;
@@ -1760,4 +1855,5 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	private String _workflowContext;
 	private long _columnBitmask;
 	private KaleoLog _escapedModel;
+
 }

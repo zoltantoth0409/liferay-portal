@@ -17,7 +17,6 @@ package com.liferay.message.boards.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.message.boards.model.MBMessage;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class MBMessageCacheModel implements CacheModel<MBMessage>,
-	Externalizable {
+public class MBMessageCacheModel
+	implements CacheModel<MBMessage>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -269,8 +269,7 @@ public class MBMessageCacheModel implements CacheModel<MBMessage>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -378,4 +377,5 @@ public class MBMessageCacheModel implements CacheModel<MBMessage>,
 	public long statusByUserId;
 	public String statusByUserName;
 	public long statusDate;
+
 }

@@ -16,7 +16,6 @@ package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -32,13 +31,15 @@ import java.util.Set;
  * @author Eduardo Lundgren
  * @generated
  */
-public class CalendarBookingFinderBaseImpl extends BasePersistenceImpl<CalendarBooking> {
+public class CalendarBookingFinderBaseImpl
+	extends BasePersistenceImpl<CalendarBooking> {
+
 	public CalendarBookingFinderBaseImpl() {
 		setModelClass(CalendarBooking.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +77,14 @@ public class CalendarBookingFinderBaseImpl extends BasePersistenceImpl<CalendarB
 	 */
 	public void setCalendarBookingPersistence(
 		CalendarBookingPersistence calendarBookingPersistence) {
+
 		this.calendarBookingPersistence = calendarBookingPersistence;
 	}
 
 	@BeanReference(type = CalendarBookingPersistence.class)
 	protected CalendarBookingPersistence calendarBookingPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(CalendarBookingFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarBookingFinderBaseImpl.class);
+
 }

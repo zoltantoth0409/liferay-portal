@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -34,7 +32,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.site.navigation.model.SiteNavigationMenuItem;
 import com.liferay.site.navigation.model.SiteNavigationMenuItemModel;
 import com.liferay.site.navigation.model.SiteNavigationMenuItemSoap;
@@ -66,32 +63,31 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigationMenuItem>
+public class SiteNavigationMenuItemModelImpl
+	extends BaseModelImpl<SiteNavigationMenuItem>
 	implements SiteNavigationMenuItemModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a site navigation menu item model instance should use the <code>SiteNavigationMenuItem</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SiteNavigationMenuItem";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "siteNavigationMenuItemId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "siteNavigationMenuId", Types.BIGINT },
-			{ "parentSiteNavigationMenuItemId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "type_", Types.VARCHAR },
-			{ "typeSettings", Types.CLOB },
-			{ "order_", Types.INTEGER },
-			{ "lastPublishDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"siteNavigationMenuItemId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"siteNavigationMenuId", Types.BIGINT},
+		{"parentSiteNavigationMenuItemId", Types.BIGINT},
+		{"name", Types.VARCHAR}, {"type_", Types.VARCHAR},
+		{"typeSettings", Types.CLOB}, {"order_", Types.INTEGER},
+		{"lastPublishDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -111,28 +107,51 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SiteNavigationMenuItem (uuid_ VARCHAR(75) null,siteNavigationMenuItemId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,siteNavigationMenuId LONG,parentSiteNavigationMenuItemId LONG,name VARCHAR(255) null,type_ VARCHAR(75) null,typeSettings TEXT null,order_ INTEGER,lastPublishDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table SiteNavigationMenuItem";
-	public static final String ORDER_BY_JPQL = " ORDER BY siteNavigationMenuItem.siteNavigationMenuItemId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY SiteNavigationMenuItem.siteNavigationMenuItemId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table SiteNavigationMenuItem (uuid_ VARCHAR(75) null,siteNavigationMenuItemId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,siteNavigationMenuId LONG,parentSiteNavigationMenuItemId LONG,name VARCHAR(255) null,type_ VARCHAR(75) null,typeSettings TEXT null,order_ INTEGER,lastPublishDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table SiteNavigationMenuItem";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY siteNavigationMenuItem.siteNavigationMenuItemId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SiteNavigationMenuItem.siteNavigationMenuItemId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.site.navigation.model.SiteNavigationMenuItem"),
+		true);
+
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long PARENTSITENAVIGATIONMENUITEMID_COLUMN_BITMASK = 8L;
+
 	public static final long SITENAVIGATIONMENUID_COLUMN_BITMASK = 16L;
+
 	public static final long UUID_COLUMN_BITMASK = 32L;
+
 	public static final long SITENAVIGATIONMENUITEMID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -143,6 +162,7 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	 */
 	public static SiteNavigationMenuItem toModel(
 		SiteNavigationMenuItemSoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
@@ -150,7 +170,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		SiteNavigationMenuItem model = new SiteNavigationMenuItemImpl();
 
 		model.setUuid(soapModel.getUuid());
-		model.setSiteNavigationMenuItemId(soapModel.getSiteNavigationMenuItemId());
+		model.setSiteNavigationMenuItemId(
+			soapModel.getSiteNavigationMenuItemId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
@@ -158,7 +179,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setSiteNavigationMenuId(soapModel.getSiteNavigationMenuId());
-		model.setParentSiteNavigationMenuItemId(soapModel.getParentSiteNavigationMenuItemId());
+		model.setParentSiteNavigationMenuItemId(
+			soapModel.getParentSiteNavigationMenuItemId());
 		model.setName(soapModel.getName());
 		model.setType(soapModel.getType());
 		model.setTypeSettings(soapModel.getTypeSettings());
@@ -176,11 +198,13 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	 */
 	public static List<SiteNavigationMenuItem> toModels(
 		SiteNavigationMenuItemSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<SiteNavigationMenuItem> models = new ArrayList<SiteNavigationMenuItem>(soapModels.length);
+		List<SiteNavigationMenuItem> models =
+			new ArrayList<SiteNavigationMenuItem>(soapModels.length);
 
 		for (SiteNavigationMenuItemSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -189,8 +213,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.site.navigation.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.site.navigation.model.SiteNavigationMenuItem"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.site.navigation.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.site.navigation.model.SiteNavigationMenuItem"));
 
 	public SiteNavigationMenuItemModelImpl() {
 	}
@@ -229,14 +254,18 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<SiteNavigationMenuItem, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenuItem, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenuItem, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenuItem, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((SiteNavigationMenuItem)this));
 		}
 
@@ -248,46 +277,58 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<SiteNavigationMenuItem, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<SiteNavigationMenuItem, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<SiteNavigationMenuItem, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<SiteNavigationMenuItem, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((SiteNavigationMenuItem)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(SiteNavigationMenuItem)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<SiteNavigationMenuItem, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<SiteNavigationMenuItem, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<SiteNavigationMenuItem, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<SiteNavigationMenuItem, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<SiteNavigationMenuItem, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<SiteNavigationMenuItem, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<SiteNavigationMenuItem, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SiteNavigationMenuItem, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<SiteNavigationMenuItem, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<SiteNavigationMenuItem, Object>>();
-		Map<String, BiConsumer<SiteNavigationMenuItem, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<SiteNavigationMenuItem, ?>>();
-
+		Map<String, Function<SiteNavigationMenuItem, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<SiteNavigationMenuItem, Object>>();
+		Map<String, BiConsumer<SiteNavigationMenuItem, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<SiteNavigationMenuItem, ?>>();
 
 		attributeGetterFunctions.put(
 			"uuid",
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getUuid();
 				}
 
@@ -297,7 +338,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object uuid) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object uuid) {
+
 					siteNavigationMenuItem.setUuid((String)uuid);
 				}
 
@@ -307,7 +351,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getSiteNavigationMenuItemId();
 				}
 
@@ -317,8 +363,12 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object siteNavigationMenuItemId) {
-					siteNavigationMenuItem.setSiteNavigationMenuItemId((Long)siteNavigationMenuItemId);
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object siteNavigationMenuItemId) {
+
+					siteNavigationMenuItem.setSiteNavigationMenuItemId(
+						(Long)siteNavigationMenuItemId);
 				}
 
 			});
@@ -327,7 +377,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getGroupId();
 				}
 
@@ -337,7 +389,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object groupId) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object groupId) {
+
 					siteNavigationMenuItem.setGroupId((Long)groupId);
 				}
 
@@ -347,7 +402,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getCompanyId();
 				}
 
@@ -357,7 +414,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object companyId) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object companyId) {
+
 					siteNavigationMenuItem.setCompanyId((Long)companyId);
 				}
 
@@ -367,7 +427,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getUserId();
 				}
 
@@ -377,7 +439,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object userId) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object userId) {
+
 					siteNavigationMenuItem.setUserId((Long)userId);
 				}
 
@@ -387,7 +452,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getUserName();
 				}
 
@@ -397,7 +464,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object userName) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object userName) {
+
 					siteNavigationMenuItem.setUserName((String)userName);
 				}
 
@@ -407,7 +477,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getCreateDate();
 				}
 
@@ -417,7 +489,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object createDate) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object createDate) {
+
 					siteNavigationMenuItem.setCreateDate((Date)createDate);
 				}
 
@@ -427,7 +502,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getModifiedDate();
 				}
 
@@ -437,7 +514,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object modifiedDate) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object modifiedDate) {
+
 					siteNavigationMenuItem.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -447,7 +527,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getSiteNavigationMenuId();
 				}
 
@@ -457,8 +539,12 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object siteNavigationMenuId) {
-					siteNavigationMenuItem.setSiteNavigationMenuId((Long)siteNavigationMenuId);
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object siteNavigationMenuId) {
+
+					siteNavigationMenuItem.setSiteNavigationMenuId(
+						(Long)siteNavigationMenuId);
 				}
 
 			});
@@ -467,8 +553,11 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
-					return siteNavigationMenuItem.getParentSiteNavigationMenuItemId();
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
+					return siteNavigationMenuItem.
+						getParentSiteNavigationMenuItemId();
 				}
 
 			});
@@ -477,8 +566,12 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object parentSiteNavigationMenuItemId) {
-					siteNavigationMenuItem.setParentSiteNavigationMenuItemId((Long)parentSiteNavigationMenuItemId);
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object parentSiteNavigationMenuItemId) {
+
+					siteNavigationMenuItem.setParentSiteNavigationMenuItemId(
+						(Long)parentSiteNavigationMenuItemId);
 				}
 
 			});
@@ -487,7 +580,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getName();
 				}
 
@@ -497,7 +592,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object name) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object name) {
+
 					siteNavigationMenuItem.setName((String)name);
 				}
 
@@ -507,7 +605,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getType();
 				}
 
@@ -517,7 +617,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object type) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object type) {
+
 					siteNavigationMenuItem.setType((String)type);
 				}
 
@@ -527,7 +630,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getTypeSettings();
 				}
 
@@ -537,8 +642,12 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object typeSettings) {
-					siteNavigationMenuItem.setTypeSettings((String)typeSettings);
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object typeSettings) {
+
+					siteNavigationMenuItem.setTypeSettings(
+						(String)typeSettings);
 				}
 
 			});
@@ -547,7 +656,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getOrder();
 				}
 
@@ -557,7 +668,10 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object order) {
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object order) {
+
 					siteNavigationMenuItem.setOrder((Integer)order);
 				}
 
@@ -567,7 +681,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new Function<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public Object apply(SiteNavigationMenuItem siteNavigationMenuItem) {
+				public Object apply(
+					SiteNavigationMenuItem siteNavigationMenuItem) {
+
 					return siteNavigationMenuItem.getLastPublishDate();
 				}
 
@@ -577,15 +693,20 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			new BiConsumer<SiteNavigationMenuItem, Object>() {
 
 				@Override
-				public void accept(SiteNavigationMenuItem siteNavigationMenuItem, Object lastPublishDate) {
-					siteNavigationMenuItem.setLastPublishDate((Date)lastPublishDate);
+				public void accept(
+					SiteNavigationMenuItem siteNavigationMenuItem,
+					Object lastPublishDate) {
+
+					siteNavigationMenuItem.setLastPublishDate(
+						(Date)lastPublishDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -774,12 +895,14 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	@Override
 	public void setParentSiteNavigationMenuItemId(
 		long parentSiteNavigationMenuItemId) {
+
 		_columnBitmask |= PARENTSITENAVIGATIONMENUITEMID_COLUMN_BITMASK;
 
 		if (!_setOriginalParentSiteNavigationMenuItemId) {
 			_setOriginalParentSiteNavigationMenuItemId = true;
 
-			_originalParentSiteNavigationMenuItemId = _parentSiteNavigationMenuItemId;
+			_originalParentSiteNavigationMenuItemId =
+				_parentSiteNavigationMenuItemId;
 		}
 
 		_parentSiteNavigationMenuItemId = parentSiteNavigationMenuItemId;
@@ -871,8 +994,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				SiteNavigationMenuItem.class.getName()));
+		return new StagedModelType(
+			PortalUtil.getClassNameId(SiteNavigationMenuItem.class.getName()));
 	}
 
 	public long getColumnBitmask() {
@@ -881,8 +1004,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			SiteNavigationMenuItem.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), SiteNavigationMenuItem.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -895,8 +1019,9 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	@Override
 	public SiteNavigationMenuItem toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (SiteNavigationMenuItem)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (SiteNavigationMenuItem)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -904,18 +1029,22 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public Object clone() {
-		SiteNavigationMenuItemImpl siteNavigationMenuItemImpl = new SiteNavigationMenuItemImpl();
+		SiteNavigationMenuItemImpl siteNavigationMenuItemImpl =
+			new SiteNavigationMenuItemImpl();
 
 		siteNavigationMenuItemImpl.setUuid(getUuid());
-		siteNavigationMenuItemImpl.setSiteNavigationMenuItemId(getSiteNavigationMenuItemId());
+		siteNavigationMenuItemImpl.setSiteNavigationMenuItemId(
+			getSiteNavigationMenuItemId());
 		siteNavigationMenuItemImpl.setGroupId(getGroupId());
 		siteNavigationMenuItemImpl.setCompanyId(getCompanyId());
 		siteNavigationMenuItemImpl.setUserId(getUserId());
 		siteNavigationMenuItemImpl.setUserName(getUserName());
 		siteNavigationMenuItemImpl.setCreateDate(getCreateDate());
 		siteNavigationMenuItemImpl.setModifiedDate(getModifiedDate());
-		siteNavigationMenuItemImpl.setSiteNavigationMenuId(getSiteNavigationMenuId());
-		siteNavigationMenuItemImpl.setParentSiteNavigationMenuItemId(getParentSiteNavigationMenuItemId());
+		siteNavigationMenuItemImpl.setSiteNavigationMenuId(
+			getSiteNavigationMenuId());
+		siteNavigationMenuItemImpl.setParentSiteNavigationMenuItemId(
+			getParentSiteNavigationMenuItemId());
 		siteNavigationMenuItemImpl.setName(getName());
 		siteNavigationMenuItemImpl.setType(getType());
 		siteNavigationMenuItemImpl.setTypeSettings(getTypeSettings());
@@ -952,7 +1081,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			return false;
 		}
 
-		SiteNavigationMenuItem siteNavigationMenuItem = (SiteNavigationMenuItem)obj;
+		SiteNavigationMenuItem siteNavigationMenuItem =
+			(SiteNavigationMenuItem)obj;
 
 		long primaryKey = siteNavigationMenuItem.getPrimaryKey();
 
@@ -983,34 +1113,44 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	public void resetOriginalValues() {
 		SiteNavigationMenuItemModelImpl siteNavigationMenuItemModelImpl = this;
 
-		siteNavigationMenuItemModelImpl._originalUuid = siteNavigationMenuItemModelImpl._uuid;
+		siteNavigationMenuItemModelImpl._originalUuid =
+			siteNavigationMenuItemModelImpl._uuid;
 
-		siteNavigationMenuItemModelImpl._originalGroupId = siteNavigationMenuItemModelImpl._groupId;
+		siteNavigationMenuItemModelImpl._originalGroupId =
+			siteNavigationMenuItemModelImpl._groupId;
 
 		siteNavigationMenuItemModelImpl._setOriginalGroupId = false;
 
-		siteNavigationMenuItemModelImpl._originalCompanyId = siteNavigationMenuItemModelImpl._companyId;
+		siteNavigationMenuItemModelImpl._originalCompanyId =
+			siteNavigationMenuItemModelImpl._companyId;
 
 		siteNavigationMenuItemModelImpl._setOriginalCompanyId = false;
 
 		siteNavigationMenuItemModelImpl._setModifiedDate = false;
 
-		siteNavigationMenuItemModelImpl._originalSiteNavigationMenuId = siteNavigationMenuItemModelImpl._siteNavigationMenuId;
+		siteNavigationMenuItemModelImpl._originalSiteNavigationMenuId =
+			siteNavigationMenuItemModelImpl._siteNavigationMenuId;
 
-		siteNavigationMenuItemModelImpl._setOriginalSiteNavigationMenuId = false;
+		siteNavigationMenuItemModelImpl._setOriginalSiteNavigationMenuId =
+			false;
 
-		siteNavigationMenuItemModelImpl._originalParentSiteNavigationMenuItemId = siteNavigationMenuItemModelImpl._parentSiteNavigationMenuItemId;
+		siteNavigationMenuItemModelImpl.
+			_originalParentSiteNavigationMenuItemId =
+				siteNavigationMenuItemModelImpl._parentSiteNavigationMenuItemId;
 
-		siteNavigationMenuItemModelImpl._setOriginalParentSiteNavigationMenuItemId = false;
+		siteNavigationMenuItemModelImpl.
+			_setOriginalParentSiteNavigationMenuItemId = false;
 
-		siteNavigationMenuItemModelImpl._originalName = siteNavigationMenuItemModelImpl._name;
+		siteNavigationMenuItemModelImpl._originalName =
+			siteNavigationMenuItemModelImpl._name;
 
 		siteNavigationMenuItemModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<SiteNavigationMenuItem> toCacheModel() {
-		SiteNavigationMenuItemCacheModel siteNavigationMenuItemCacheModel = new SiteNavigationMenuItemCacheModel();
+		SiteNavigationMenuItemCacheModel siteNavigationMenuItemCacheModel =
+			new SiteNavigationMenuItemCacheModel();
 
 		siteNavigationMenuItemCacheModel.uuid = getUuid();
 
@@ -1020,7 +1160,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 			siteNavigationMenuItemCacheModel.uuid = null;
 		}
 
-		siteNavigationMenuItemCacheModel.siteNavigationMenuItemId = getSiteNavigationMenuItemId();
+		siteNavigationMenuItemCacheModel.siteNavigationMenuItemId =
+			getSiteNavigationMenuItemId();
 
 		siteNavigationMenuItemCacheModel.groupId = getGroupId();
 
@@ -1048,15 +1189,18 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		Date modifiedDate = getModifiedDate();
 
 		if (modifiedDate != null) {
-			siteNavigationMenuItemCacheModel.modifiedDate = modifiedDate.getTime();
+			siteNavigationMenuItemCacheModel.modifiedDate =
+				modifiedDate.getTime();
 		}
 		else {
 			siteNavigationMenuItemCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
-		siteNavigationMenuItemCacheModel.siteNavigationMenuId = getSiteNavigationMenuId();
+		siteNavigationMenuItemCacheModel.siteNavigationMenuId =
+			getSiteNavigationMenuId();
 
-		siteNavigationMenuItemCacheModel.parentSiteNavigationMenuItemId = getParentSiteNavigationMenuItemId();
+		siteNavigationMenuItemCacheModel.parentSiteNavigationMenuItemId =
+			getParentSiteNavigationMenuItemId();
 
 		siteNavigationMenuItemCacheModel.name = getName();
 
@@ -1087,7 +1231,8 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		Date lastPublishDate = getLastPublishDate();
 
 		if (lastPublishDate != null) {
-			siteNavigationMenuItemCacheModel.lastPublishDate = lastPublishDate.getTime();
+			siteNavigationMenuItemCacheModel.lastPublishDate =
+				lastPublishDate.getTime();
 		}
 		else {
 			siteNavigationMenuItemCacheModel.lastPublishDate = Long.MIN_VALUE;
@@ -1098,22 +1243,25 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public String toString() {
-		Map<String, Function<SiteNavigationMenuItem, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenuItem, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenuItem, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenuItem, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(SiteNavigationMenuItem)this));
+			sb.append(
+				attributeGetterFunction.apply((SiteNavigationMenuItem)this));
 			sb.append(", ");
 		}
 
@@ -1128,25 +1276,28 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<SiteNavigationMenuItem, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<SiteNavigationMenuItem, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SiteNavigationMenuItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SiteNavigationMenuItem, Object> attributeGetterFunction = entry.getValue();
+			Function<SiteNavigationMenuItem, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(SiteNavigationMenuItem)this));
+			sb.append(
+				attributeGetterFunction.apply((SiteNavigationMenuItem)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -1155,10 +1306,12 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = SiteNavigationMenuItem.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		SiteNavigationMenuItem.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			SiteNavigationMenuItem.class, ModelWrapper.class
-		};
+		SiteNavigationMenuItem.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _siteNavigationMenuItemId;
@@ -1187,4 +1340,5 @@ public class SiteNavigationMenuItemModelImpl extends BaseModelImpl<SiteNavigatio
 	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private SiteNavigationMenuItem _escapedModel;
+
 }

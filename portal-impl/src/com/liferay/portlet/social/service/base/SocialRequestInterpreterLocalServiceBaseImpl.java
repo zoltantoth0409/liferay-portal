@@ -17,7 +17,6 @@ package com.liferay.portlet.social.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -28,7 +27,6 @@ import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiServic
 import com.liferay.portal.kernel.service.BaseLocalServiceImpl;
 import com.liferay.portal.kernel.util.InfrastructureUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-
 import com.liferay.social.kernel.service.SocialRequestInterpreterLocalService;
 
 import javax.sql.DataSource;
@@ -46,8 +44,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class SocialRequestInterpreterLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements SocialRequestInterpreterLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements SocialRequestInterpreterLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -59,7 +58,9 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	 *
 	 * @return the social request interpreter local service
 	 */
-	public SocialRequestInterpreterLocalService getSocialRequestInterpreterLocalService() {
+	public SocialRequestInterpreterLocalService
+		getSocialRequestInterpreterLocalService() {
+
 		return socialRequestInterpreterLocalService;
 	}
 
@@ -69,8 +70,11 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	 * @param socialRequestInterpreterLocalService the social request interpreter local service
 	 */
 	public void setSocialRequestInterpreterLocalService(
-		SocialRequestInterpreterLocalService socialRequestInterpreterLocalService) {
-		this.socialRequestInterpreterLocalService = socialRequestInterpreterLocalService;
+		SocialRequestInterpreterLocalService
+			socialRequestInterpreterLocalService) {
+
+		this.socialRequestInterpreterLocalService =
+			socialRequestInterpreterLocalService;
 	}
 
 	/**
@@ -78,7 +82,9 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -88,7 +94,9 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -140,8 +148,8 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -151,9 +159,16 @@ public abstract class SocialRequestInterpreterLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = SocialRequestInterpreterLocalService.class)
-	protected SocialRequestInterpreterLocalService socialRequestInterpreterLocalService;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	protected SocialRequestInterpreterLocalService
+		socialRequestInterpreterLocalService;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
+
 }

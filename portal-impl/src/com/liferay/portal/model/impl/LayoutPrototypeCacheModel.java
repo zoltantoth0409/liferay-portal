@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class LayoutPrototypeCacheModel implements CacheModel<LayoutPrototype>,
-	Externalizable, MVCCModel {
+public class LayoutPrototypeCacheModel
+	implements CacheModel<LayoutPrototype>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -48,10 +49,13 @@ public class LayoutPrototypeCacheModel implements CacheModel<LayoutPrototype>,
 			return false;
 		}
 
-		LayoutPrototypeCacheModel layoutPrototypeCacheModel = (LayoutPrototypeCacheModel)obj;
+		LayoutPrototypeCacheModel layoutPrototypeCacheModel =
+			(LayoutPrototypeCacheModel)obj;
 
-		if ((layoutPrototypeId == layoutPrototypeCacheModel.layoutPrototypeId) &&
-				(mvccVersion == layoutPrototypeCacheModel.mvccVersion)) {
+		if ((layoutPrototypeId ==
+				layoutPrototypeCacheModel.layoutPrototypeId) &&
+			(mvccVersion == layoutPrototypeCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -195,8 +199,7 @@ public class LayoutPrototypeCacheModel implements CacheModel<LayoutPrototype>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		if (uuid == null) {
@@ -258,4 +261,5 @@ public class LayoutPrototypeCacheModel implements CacheModel<LayoutPrototype>,
 	public String description;
 	public String settings;
 	public boolean active;
+
 }

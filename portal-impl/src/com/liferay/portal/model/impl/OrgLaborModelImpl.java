@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -58,36 +57,31 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
-	implements OrgLaborModel {
+public class OrgLaborModelImpl
+	extends BaseModelImpl<OrgLabor> implements OrgLaborModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a org labor model instance should use the <code>OrgLabor</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "OrgLabor";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "orgLaborId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "organizationId", Types.BIGINT },
-			{ "typeId", Types.BIGINT },
-			{ "sunOpen", Types.INTEGER },
-			{ "sunClose", Types.INTEGER },
-			{ "monOpen", Types.INTEGER },
-			{ "monClose", Types.INTEGER },
-			{ "tueOpen", Types.INTEGER },
-			{ "tueClose", Types.INTEGER },
-			{ "wedOpen", Types.INTEGER },
-			{ "wedClose", Types.INTEGER },
-			{ "thuOpen", Types.INTEGER },
-			{ "thuClose", Types.INTEGER },
-			{ "friOpen", Types.INTEGER },
-			{ "friClose", Types.INTEGER },
-			{ "satOpen", Types.INTEGER },
-			{ "satClose", Types.INTEGER }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"orgLaborId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"organizationId", Types.BIGINT},
+		{"typeId", Types.BIGINT}, {"sunOpen", Types.INTEGER},
+		{"sunClose", Types.INTEGER}, {"monOpen", Types.INTEGER},
+		{"monClose", Types.INTEGER}, {"tueOpen", Types.INTEGER},
+		{"tueClose", Types.INTEGER}, {"wedOpen", Types.INTEGER},
+		{"wedClose", Types.INTEGER}, {"thuOpen", Types.INTEGER},
+		{"thuClose", Types.INTEGER}, {"friOpen", Types.INTEGER},
+		{"friClose", Types.INTEGER}, {"satOpen", Types.INTEGER},
+		{"satClose", Types.INTEGER}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -111,23 +105,40 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 		TABLE_COLUMNS_MAP.put("satClose", Types.INTEGER);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OrgLabor (mvccVersion LONG default 0 not null,orgLaborId LONG not null primary key,companyId LONG,organizationId LONG,typeId LONG,sunOpen INTEGER,sunClose INTEGER,monOpen INTEGER,monClose INTEGER,tueOpen INTEGER,tueClose INTEGER,wedOpen INTEGER,wedClose INTEGER,thuOpen INTEGER,thuClose INTEGER,friOpen INTEGER,friClose INTEGER,satOpen INTEGER,satClose INTEGER)";
+	public static final String TABLE_SQL_CREATE =
+		"create table OrgLabor (mvccVersion LONG default 0 not null,orgLaborId LONG not null primary key,companyId LONG,organizationId LONG,typeId LONG,sunOpen INTEGER,sunClose INTEGER,monOpen INTEGER,monClose INTEGER,tueOpen INTEGER,tueClose INTEGER,wedOpen INTEGER,wedClose INTEGER,thuOpen INTEGER,thuClose INTEGER,friOpen INTEGER,friClose INTEGER,satOpen INTEGER,satClose INTEGER)";
+
 	public static final String TABLE_SQL_DROP = "drop table OrgLabor";
-	public static final String ORDER_BY_JPQL = " ORDER BY orgLabor.organizationId ASC, orgLabor.typeId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY OrgLabor.organizationId ASC, OrgLabor.typeId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY orgLabor.organizationId ASC, orgLabor.typeId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY OrgLabor.organizationId ASC, OrgLabor.typeId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.OrgLabor"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.OrgLabor"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.OrgLabor"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.OrgLabor"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.OrgLabor"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.OrgLabor"),
+		true);
+
 	public static final long ORGANIZATIONID_COLUMN_BITMASK = 1L;
+
 	public static final long TYPEID_COLUMN_BITMASK = 2L;
 
 	/**
@@ -186,8 +197,9 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.OrgLabor"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.OrgLabor"));
 
 	public OrgLaborModelImpl() {
 	}
@@ -226,14 +238,18 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<OrgLabor, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgLabor, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgLabor, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgLabor, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
-				attributeGetterFunction.apply((OrgLabor)this));
+			attributes.put(
+				attributeName, attributeGetterFunction.apply((OrgLabor)this));
 		}
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -244,35 +260,44 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<OrgLabor, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<OrgLabor, Object>> attributeSetterBiConsumers =
+			getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<OrgLabor, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<OrgLabor, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((OrgLabor)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(OrgLabor)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<OrgLabor, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<OrgLabor, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<OrgLabor, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<OrgLabor, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<OrgLabor, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<OrgLabor, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<OrgLabor, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<OrgLabor, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<OrgLabor, Object>>();
-		Map<String, BiConsumer<OrgLabor, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<OrgLabor, ?>>();
-
+		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<OrgLabor, Object>>();
+		Map<String, BiConsumer<OrgLabor, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<OrgLabor, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -655,9 +680,10 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -889,8 +915,8 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			OrgLabor.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), OrgLabor.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -903,8 +929,9 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 	@Override
 	public OrgLabor toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (OrgLabor)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (OrgLabor)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1015,7 +1042,8 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 	public void resetOriginalValues() {
 		OrgLaborModelImpl orgLaborModelImpl = this;
 
-		orgLaborModelImpl._originalOrganizationId = orgLaborModelImpl._organizationId;
+		orgLaborModelImpl._originalOrganizationId =
+			orgLaborModelImpl._organizationId;
 
 		orgLaborModelImpl._setOriginalOrganizationId = false;
 
@@ -1069,16 +1097,20 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 
 	@Override
 	public String toString() {
-		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<OrgLabor, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgLabor, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgLabor, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgLabor, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1097,18 +1129,22 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<OrgLabor, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<OrgLabor, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OrgLabor, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OrgLabor, Object> attributeGetterFunction = entry.getValue();
+			Function<OrgLabor, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1122,10 +1158,12 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = OrgLabor.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		OrgLabor.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			OrgLabor.class, ModelWrapper.class
-		};
+		OrgLabor.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _orgLaborId;
 	private long _companyId;
@@ -1149,4 +1187,5 @@ public class OrgLaborModelImpl extends BaseModelImpl<OrgLabor>
 	private int _satClose;
 	private long _columnBitmask;
 	private OrgLabor _escapedModel;
+
 }

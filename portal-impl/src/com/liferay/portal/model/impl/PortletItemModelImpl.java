@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -59,28 +58,27 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
-	implements PortletItemModel {
+public class PortletItemModelImpl
+	extends BaseModelImpl<PortletItem> implements PortletItemModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a portlet item model instance should use the <code>PortletItem</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "PortletItem";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "portletItemId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "name", Types.VARCHAR },
-			{ "portletId", Types.VARCHAR },
-			{ "classNameId", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT}, {"portletItemId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"name", Types.VARCHAR}, {"portletId", Types.VARCHAR},
+		{"classNameId", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -96,29 +94,51 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 		TABLE_COLUMNS_MAP.put("classNameId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table PortletItem (mvccVersion LONG default 0 not null,portletItemId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletId VARCHAR(200) null,classNameId LONG)";
+	public static final String TABLE_SQL_CREATE =
+		"create table PortletItem (mvccVersion LONG default 0 not null,portletItemId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletId VARCHAR(200) null,classNameId LONG)";
+
 	public static final String TABLE_SQL_DROP = "drop table PortletItem";
-	public static final String ORDER_BY_JPQL = " ORDER BY portletItem.portletItemId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY PortletItem.portletItemId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY portletItem.portletItemId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY PortletItem.portletItemId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PortletItem"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PortletItem"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PortletItem"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.PortletItem"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.PortletItem"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.PortletItem"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
+
 	public static final long NAME_COLUMN_BITMASK = 4L;
+
 	public static final long PORTLETID_COLUMN_BITMASK = 8L;
+
 	public static final long PORTLETITEMID_COLUMN_BITMASK = 16L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.PortletItem"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.PortletItem"));
 
 	public PortletItemModelImpl() {
 	}
@@ -157,13 +177,18 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<PortletItem, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PortletItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<PortletItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PortletItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PortletItem, Object> attributeGetterFunction = entry.getValue();
+			Function<PortletItem, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((PortletItem)this));
 		}
 
@@ -175,35 +200,44 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<PortletItem, Object>> attributeSetterBiConsumers = getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<PortletItem, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<PortletItem, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<PortletItem, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((PortletItem)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(PortletItem)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<PortletItem, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<PortletItem, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<PortletItem, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<PortletItem, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<PortletItem, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<PortletItem, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<PortletItem, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<PortletItem, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<PortletItem, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<PortletItem, Object>>();
-		Map<String, BiConsumer<PortletItem, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<PortletItem, ?>>();
-
+		Map<String, Function<PortletItem, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<PortletItem, Object>>();
+		Map<String, BiConsumer<PortletItem, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<PortletItem, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
@@ -220,7 +254,9 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object mvccVersion) {
+				public void accept(
+					PortletItem portletItem, Object mvccVersion) {
+
 					portletItem.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -240,7 +276,9 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object portletItemId) {
+				public void accept(
+					PortletItem portletItem, Object portletItemId) {
+
 					portletItem.setPortletItemId((Long)portletItemId);
 				}
 
@@ -360,7 +398,9 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object modifiedDate) {
+				public void accept(
+					PortletItem portletItem, Object modifiedDate) {
+
 					portletItem.setModifiedDate((Date)modifiedDate);
 				}
 
@@ -420,15 +460,18 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 			new BiConsumer<PortletItem, Object>() {
 
 				@Override
-				public void accept(PortletItem portletItem, Object classNameId) {
+				public void accept(
+					PortletItem portletItem, Object classNameId) {
+
 					portletItem.setClassNameId((Long)classNameId);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -648,8 +691,8 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			PortletItem.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), PortletItem.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -662,8 +705,9 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 	@Override
 	public PortletItem toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (PortletItem)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (PortletItem)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -754,9 +798,11 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 		portletItemModelImpl._originalName = portletItemModelImpl._name;
 
-		portletItemModelImpl._originalPortletId = portletItemModelImpl._portletId;
+		portletItemModelImpl._originalPortletId =
+			portletItemModelImpl._portletId;
 
-		portletItemModelImpl._originalClassNameId = portletItemModelImpl._classNameId;
+		portletItemModelImpl._originalClassNameId =
+			portletItemModelImpl._classNameId;
 
 		portletItemModelImpl._setOriginalClassNameId = false;
 
@@ -765,7 +811,8 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 	@Override
 	public CacheModel<PortletItem> toCacheModel() {
-		PortletItemCacheModel portletItemCacheModel = new PortletItemCacheModel();
+		PortletItemCacheModel portletItemCacheModel =
+			new PortletItemCacheModel();
 
 		portletItemCacheModel.mvccVersion = getMvccVersion();
 
@@ -826,16 +873,20 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 	@Override
 	public String toString() {
-		Map<String, Function<PortletItem, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PortletItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<PortletItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PortletItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PortletItem, Object> attributeGetterFunction = entry.getValue();
+			Function<PortletItem, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -854,18 +905,22 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<PortletItem, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<PortletItem, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<PortletItem, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<PortletItem, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<PortletItem, Object> attributeGetterFunction = entry.getValue();
+			Function<PortletItem, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -879,10 +934,12 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = PortletItem.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		PortletItem.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			PortletItem.class, ModelWrapper.class
-		};
+		PortletItem.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _portletItemId;
 	private long _groupId;
@@ -903,4 +960,5 @@ public class PortletItemModelImpl extends BaseModelImpl<PortletItem>
 	private boolean _setOriginalClassNameId;
 	private long _columnBitmask;
 	private PortletItem _escapedModel;
+
 }

@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -37,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SystemEventModel extends AttachedModel, BaseModel<SystemEvent>,
-	MVCCModel, ShardedModel {
+public interface SystemEventModel
+	extends AttachedModel, BaseModel<SystemEvent>, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -360,4 +360,5 @@ public interface SystemEventModel extends AttachedModel, BaseModel<SystemEvent>,
 
 	@Override
 	public String toXmlString();
+
 }

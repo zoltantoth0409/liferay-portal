@@ -17,7 +17,6 @@ package com.liferay.ratings.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface RatingsStatsModel extends AttachedModel, BaseModel<RatingsStats>,
-	ShardedModel {
+public interface RatingsStatsModel
+	extends AttachedModel, BaseModel<RatingsStats>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -230,4 +230,5 @@ public interface RatingsStatsModel extends AttachedModel, BaseModel<RatingsStats
 
 	@Override
 	public String toXmlString();
+
 }

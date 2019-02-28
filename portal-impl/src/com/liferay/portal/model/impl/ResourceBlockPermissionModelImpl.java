@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
@@ -55,23 +54,26 @@ import java.util.function.Function;
  */
 @Deprecated
 @ProviderType
-public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBlockPermission>
+public class ResourceBlockPermissionModelImpl
+	extends BaseModelImpl<ResourceBlockPermission>
 	implements ResourceBlockPermissionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a resource block permission model instance should use the <code>ResourceBlockPermission</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "ResourceBlockPermission";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "mvccVersion", Types.BIGINT },
-			{ "resourceBlockPermissionId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "resourceBlockId", Types.BIGINT },
-			{ "roleId", Types.BIGINT },
-			{ "actionIds", Types.BIGINT }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"mvccVersion", Types.BIGINT},
+		{"resourceBlockPermissionId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"resourceBlockId", Types.BIGINT},
+		{"roleId", Types.BIGINT}, {"actionIds", Types.BIGINT}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
@@ -82,27 +84,48 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 		TABLE_COLUMNS_MAP.put("actionIds", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table ResourceBlockPermission (mvccVersion LONG default 0 not null,resourceBlockPermissionId LONG not null primary key,companyId LONG,resourceBlockId LONG,roleId LONG,actionIds LONG)";
-	public static final String TABLE_SQL_DROP = "drop table ResourceBlockPermission";
-	public static final String ORDER_BY_JPQL = " ORDER BY resourceBlockPermission.resourceBlockPermissionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY ResourceBlockPermission.resourceBlockPermissionId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table ResourceBlockPermission (mvccVersion LONG default 0 not null,resourceBlockPermissionId LONG not null primary key,companyId LONG,resourceBlockId LONG,roleId LONG,actionIds LONG)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table ResourceBlockPermission";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY resourceBlockPermission.resourceBlockPermissionId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY ResourceBlockPermission.resourceBlockPermissionId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.portal.util.PropsUtil.get(
-				"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.entity.cache.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.finder.cache.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.portal.util.PropsUtil.get(
+			"value.object.column.bitmask.enabled.com.liferay.portal.kernel.model.ResourceBlockPermission"),
+		true);
+
 	public static final long RESOURCEBLOCKID_COLUMN_BITMASK = 1L;
+
 	public static final long ROLEID_COLUMN_BITMASK = 2L;
+
 	public static final long RESOURCEBLOCKPERMISSIONID_COLUMN_BITMASK = 4L;
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.portal.util.PropsUtil.get(
-				"lock.expiration.time.com.liferay.portal.kernel.model.ResourceBlockPermission"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.portal.util.PropsUtil.get(
+			"lock.expiration.time.com.liferay.portal.kernel.model.ResourceBlockPermission"));
 
 	public ResourceBlockPermissionModelImpl() {
 	}
@@ -141,14 +164,18 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<ResourceBlockPermission, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ResourceBlockPermission, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<ResourceBlockPermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ResourceBlockPermission, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ResourceBlockPermission, Object> attributeGetterFunction = entry.getValue();
+			Function<ResourceBlockPermission, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((ResourceBlockPermission)this));
 		}
 
@@ -160,46 +187,59 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<ResourceBlockPermission, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<ResourceBlockPermission, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<ResourceBlockPermission, Object> attributeSetterBiConsumer =
-				attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<ResourceBlockPermission, Object>
+				attributeSetterBiConsumer = attributeSetterBiConsumers.get(
+					attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((ResourceBlockPermission)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(ResourceBlockPermission)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<ResourceBlockPermission, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<ResourceBlockPermission, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<ResourceBlockPermission, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<ResourceBlockPermission, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<ResourceBlockPermission, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<ResourceBlockPermission, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<ResourceBlockPermission, Object>>
+		_attributeGetterFunctions;
+	private static final Map
+		<String, BiConsumer<ResourceBlockPermission, Object>>
+			_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<ResourceBlockPermission, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<ResourceBlockPermission, Object>>();
-		Map<String, BiConsumer<ResourceBlockPermission, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<ResourceBlockPermission, ?>>();
-
+		Map<String, Function<ResourceBlockPermission, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<ResourceBlockPermission, Object>>();
+		Map<String, BiConsumer<ResourceBlockPermission, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap
+					<String, BiConsumer<ResourceBlockPermission, ?>>();
 
 		attributeGetterFunctions.put(
 			"mvccVersion",
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
 					return resourceBlockPermission.getMvccVersion();
 				}
 
@@ -209,7 +249,10 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object mvccVersion) {
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object mvccVersion) {
+
 					resourceBlockPermission.setMvccVersion((Long)mvccVersion);
 				}
 
@@ -219,8 +262,11 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
-					return resourceBlockPermission.getResourceBlockPermissionId();
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
+					return resourceBlockPermission.
+						getResourceBlockPermissionId();
 				}
 
 			});
@@ -229,8 +275,12 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object resourceBlockPermissionId) {
-					resourceBlockPermission.setResourceBlockPermissionId((Long)resourceBlockPermissionId);
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object resourceBlockPermissionId) {
+
+					resourceBlockPermission.setResourceBlockPermissionId(
+						(Long)resourceBlockPermissionId);
 				}
 
 			});
@@ -239,7 +289,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
 					return resourceBlockPermission.getCompanyId();
 				}
 
@@ -249,7 +301,10 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object companyId) {
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object companyId) {
+
 					resourceBlockPermission.setCompanyId((Long)companyId);
 				}
 
@@ -259,7 +314,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
 					return resourceBlockPermission.getResourceBlockId();
 				}
 
@@ -269,8 +326,12 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object resourceBlockId) {
-					resourceBlockPermission.setResourceBlockId((Long)resourceBlockId);
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object resourceBlockId) {
+
+					resourceBlockPermission.setResourceBlockId(
+						(Long)resourceBlockId);
 				}
 
 			});
@@ -279,7 +340,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
 					return resourceBlockPermission.getRoleId();
 				}
 
@@ -289,7 +352,10 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object roleId) {
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object roleId) {
+
 					resourceBlockPermission.setRoleId((Long)roleId);
 				}
 
@@ -299,7 +365,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new Function<ResourceBlockPermission, Object>() {
 
 				@Override
-				public Object apply(ResourceBlockPermission resourceBlockPermission) {
+				public Object apply(
+					ResourceBlockPermission resourceBlockPermission) {
+
 					return resourceBlockPermission.getActionIds();
 				}
 
@@ -309,15 +377,19 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			new BiConsumer<ResourceBlockPermission, Object>() {
 
 				@Override
-				public void accept(ResourceBlockPermission resourceBlockPermission, Object actionIds) {
+				public void accept(
+					ResourceBlockPermission resourceBlockPermission,
+					Object actionIds) {
+
 					resourceBlockPermission.setActionIds((Long)actionIds);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -410,8 +482,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			ResourceBlockPermission.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), ResourceBlockPermission.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -424,8 +497,9 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 	@Override
 	public ResourceBlockPermission toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (ResourceBlockPermission)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (ResourceBlockPermission)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -433,10 +507,12 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public Object clone() {
-		ResourceBlockPermissionImpl resourceBlockPermissionImpl = new ResourceBlockPermissionImpl();
+		ResourceBlockPermissionImpl resourceBlockPermissionImpl =
+			new ResourceBlockPermissionImpl();
 
 		resourceBlockPermissionImpl.setMvccVersion(getMvccVersion());
-		resourceBlockPermissionImpl.setResourceBlockPermissionId(getResourceBlockPermissionId());
+		resourceBlockPermissionImpl.setResourceBlockPermissionId(
+			getResourceBlockPermissionId());
 		resourceBlockPermissionImpl.setCompanyId(getCompanyId());
 		resourceBlockPermissionImpl.setResourceBlockId(getResourceBlockId());
 		resourceBlockPermissionImpl.setRoleId(getRoleId());
@@ -472,7 +548,8 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 			return false;
 		}
 
-		ResourceBlockPermission resourceBlockPermission = (ResourceBlockPermission)obj;
+		ResourceBlockPermission resourceBlockPermission =
+			(ResourceBlockPermission)obj;
 
 		long primaryKey = resourceBlockPermission.getPrimaryKey();
 
@@ -501,13 +578,16 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public void resetOriginalValues() {
-		ResourceBlockPermissionModelImpl resourceBlockPermissionModelImpl = this;
+		ResourceBlockPermissionModelImpl resourceBlockPermissionModelImpl =
+			this;
 
-		resourceBlockPermissionModelImpl._originalResourceBlockId = resourceBlockPermissionModelImpl._resourceBlockId;
+		resourceBlockPermissionModelImpl._originalResourceBlockId =
+			resourceBlockPermissionModelImpl._resourceBlockId;
 
 		resourceBlockPermissionModelImpl._setOriginalResourceBlockId = false;
 
-		resourceBlockPermissionModelImpl._originalRoleId = resourceBlockPermissionModelImpl._roleId;
+		resourceBlockPermissionModelImpl._originalRoleId =
+			resourceBlockPermissionModelImpl._roleId;
 
 		resourceBlockPermissionModelImpl._setOriginalRoleId = false;
 
@@ -516,15 +596,18 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public CacheModel<ResourceBlockPermission> toCacheModel() {
-		ResourceBlockPermissionCacheModel resourceBlockPermissionCacheModel = new ResourceBlockPermissionCacheModel();
+		ResourceBlockPermissionCacheModel resourceBlockPermissionCacheModel =
+			new ResourceBlockPermissionCacheModel();
 
 		resourceBlockPermissionCacheModel.mvccVersion = getMvccVersion();
 
-		resourceBlockPermissionCacheModel.resourceBlockPermissionId = getResourceBlockPermissionId();
+		resourceBlockPermissionCacheModel.resourceBlockPermissionId =
+			getResourceBlockPermissionId();
 
 		resourceBlockPermissionCacheModel.companyId = getCompanyId();
 
-		resourceBlockPermissionCacheModel.resourceBlockId = getResourceBlockId();
+		resourceBlockPermissionCacheModel.resourceBlockId =
+			getResourceBlockId();
 
 		resourceBlockPermissionCacheModel.roleId = getRoleId();
 
@@ -535,22 +618,25 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public String toString() {
-		Map<String, Function<ResourceBlockPermission, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ResourceBlockPermission, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<ResourceBlockPermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ResourceBlockPermission, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ResourceBlockPermission, Object> attributeGetterFunction = entry.getValue();
+			Function<ResourceBlockPermission, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
-			sb.append(attributeGetterFunction.apply(
-					(ResourceBlockPermission)this));
+			sb.append(
+				attributeGetterFunction.apply((ResourceBlockPermission)this));
 			sb.append(", ");
 		}
 
@@ -565,25 +651,28 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<ResourceBlockPermission, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<ResourceBlockPermission, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<ResourceBlockPermission, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<ResourceBlockPermission, Object>>
+				entry : attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<ResourceBlockPermission, Object> attributeGetterFunction = entry.getValue();
+			Function<ResourceBlockPermission, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
 			sb.append("</column-name><column-value><![CDATA[");
-			sb.append(attributeGetterFunction.apply(
-					(ResourceBlockPermission)this));
+			sb.append(
+				attributeGetterFunction.apply((ResourceBlockPermission)this));
 			sb.append("]]></column-value></column>");
 		}
 
@@ -592,10 +681,12 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = ResourceBlockPermission.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		ResourceBlockPermission.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			ResourceBlockPermission.class, ModelWrapper.class
-		};
+		ResourceBlockPermission.class, ModelWrapper.class
+	};
+
 	private long _mvccVersion;
 	private long _resourceBlockPermissionId;
 	private long _companyId;
@@ -608,4 +699,5 @@ public class ResourceBlockPermissionModelImpl extends BaseModelImpl<ResourceBloc
 	private long _actionIds;
 	private long _columnBitmask;
 	private ResourceBlockPermission _escapedModel;
+
 }

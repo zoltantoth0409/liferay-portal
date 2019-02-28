@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -37,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface WebDAVPropsModel extends AttachedModel, BaseModel<WebDAVProps>,
-	MVCCModel, ShardedModel {
+public interface WebDAVPropsModel
+	extends AttachedModel, BaseModel<WebDAVProps>, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -246,4 +246,5 @@ public interface WebDAVPropsModel extends AttachedModel, BaseModel<WebDAVProps>,
 
 	@Override
 	public String toXmlString();
+
 }

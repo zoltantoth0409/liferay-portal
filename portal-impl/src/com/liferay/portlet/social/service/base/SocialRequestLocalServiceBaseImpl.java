@@ -17,7 +17,6 @@ package com.liferay.portlet.social.service.base;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.counter.kernel.service.persistence.CounterPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -43,7 +42,6 @@ import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
-
 import com.liferay.social.kernel.model.SocialRequest;
 import com.liferay.social.kernel.service.SocialRequestLocalService;
 import com.liferay.social.kernel.service.persistence.SocialRequestPersistence;
@@ -67,8 +65,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class SocialRequestLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements SocialRequestLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements SocialRequestLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -112,6 +111,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	@Override
 	public SocialRequest deleteSocialRequest(long requestId)
 		throws PortalException {
+
 		return socialRequestPersistence.remove(requestId);
 	}
 
@@ -131,8 +131,8 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(SocialRequest.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			SocialRequest.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -159,10 +159,11 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return socialRequestPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return socialRequestPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -179,10 +180,12 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return socialRequestPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return socialRequestPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -204,10 +207,11 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return socialRequestPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return socialRequestPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -223,8 +227,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
 	 */
 	@Override
-	public SocialRequest fetchSocialRequestByUuidAndGroupId(String uuid,
-		long groupId) {
+	public SocialRequest fetchSocialRequestByUuidAndGroupId(
+		String uuid, long groupId) {
+
 		return socialRequestPersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -238,12 +243,14 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	@Override
 	public SocialRequest getSocialRequest(long requestId)
 		throws PortalException {
+
 		return socialRequestPersistence.findByPrimaryKey(requestId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(socialRequestLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -255,10 +262,14 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(socialRequestLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			socialRequestLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(SocialRequest.class);
 
@@ -269,6 +280,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
+
 		actionableDynamicQuery.setBaseLocalService(socialRequestLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(SocialRequest.class);
@@ -282,12 +294,15 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return socialRequestLocalService.deleteSocialRequest((SocialRequest)persistedModel);
+
+		return socialRequestLocalService.deleteSocialRequest(
+			(SocialRequest)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return socialRequestPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -301,6 +316,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	@Override
 	public List<SocialRequest> getSocialRequestsByUuidAndCompanyId(
 		String uuid, long companyId) {
+
 		return socialRequestPersistence.findByUuid_C(uuid, companyId);
 	}
 
@@ -318,8 +334,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	public List<SocialRequest> getSocialRequestsByUuidAndCompanyId(
 		String uuid, long companyId, int start, int end,
 		OrderByComparator<SocialRequest> orderByComparator) {
-		return socialRequestPersistence.findByUuid_C(uuid, companyId, start,
-			end, orderByComparator);
+
+		return socialRequestPersistence.findByUuid_C(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -331,8 +348,10 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @throws PortalException if a matching social request could not be found
 	 */
 	@Override
-	public SocialRequest getSocialRequestByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException {
+	public SocialRequest getSocialRequestByUuidAndGroupId(
+			String uuid, long groupId)
+		throws PortalException {
+
 		return socialRequestPersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -390,6 +409,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 */
 	public void setSocialRequestLocalService(
 		SocialRequestLocalService socialRequestLocalService) {
+
 		this.socialRequestLocalService = socialRequestLocalService;
 	}
 
@@ -409,6 +429,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 */
 	public void setSocialRequestPersistence(
 		SocialRequestPersistence socialRequestPersistence) {
+
 		this.socialRequestPersistence = socialRequestPersistence;
 	}
 
@@ -417,7 +438,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -427,7 +450,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -454,7 +479,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 *
 	 * @return the class name local service
 	 */
-	public com.liferay.portal.kernel.service.ClassNameLocalService getClassNameLocalService() {
+	public com.liferay.portal.kernel.service.ClassNameLocalService
+		getClassNameLocalService() {
+
 		return classNameLocalService;
 	}
 
@@ -464,7 +491,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @param classNameLocalService the class name local service
 	 */
 	public void setClassNameLocalService(
-		com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService) {
+		com.liferay.portal.kernel.service.ClassNameLocalService
+			classNameLocalService) {
+
 		this.classNameLocalService = classNameLocalService;
 	}
 
@@ -484,6 +513,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 */
 	public void setClassNamePersistence(
 		ClassNamePersistence classNamePersistence) {
+
 		this.classNamePersistence = classNamePersistence;
 	}
 
@@ -492,7 +522,9 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -503,6 +535,7 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -547,7 +580,10 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 *
 	 * @return the social request interpreter local service
 	 */
-	public com.liferay.social.kernel.service.SocialRequestInterpreterLocalService getSocialRequestInterpreterLocalService() {
+	public
+		com.liferay.social.kernel.service.SocialRequestInterpreterLocalService
+			getSocialRequestInterpreterLocalService() {
+
 		return socialRequestInterpreterLocalService;
 	}
 
@@ -557,12 +593,16 @@ public abstract class SocialRequestLocalServiceBaseImpl
 	 * @param socialRequestInterpreterLocalService the social request interpreter local service
 	 */
 	public void setSocialRequestInterpreterLocalService(
-		com.liferay.social.kernel.service.SocialRequestInterpreterLocalService socialRequestInterpreterLocalService) {
-		this.socialRequestInterpreterLocalService = socialRequestInterpreterLocalService;
+		com.liferay.social.kernel.service.SocialRequestInterpreterLocalService
+			socialRequestInterpreterLocalService) {
+
+		this.socialRequestInterpreterLocalService =
+			socialRequestInterpreterLocalService;
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.social.kernel.model.SocialRequest",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.social.kernel.model.SocialRequest",
 			socialRequestLocalService);
 	}
 
@@ -603,8 +643,8 @@ public abstract class SocialRequestLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -615,24 +655,49 @@ public abstract class SocialRequestLocalServiceBaseImpl
 
 	@BeanReference(type = SocialRequestLocalService.class)
 	protected SocialRequestLocalService socialRequestLocalService;
+
 	@BeanReference(type = SocialRequestPersistence.class)
 	protected SocialRequestPersistence socialRequestPersistence;
-	@BeanReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+
+	@BeanReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@BeanReference(type = CounterPersistence.class)
 	protected CounterPersistence counterPersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
-	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.ClassNameLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.ClassNameLocalService
+		classNameLocalService;
+
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
-	@BeanReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@BeanReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@BeanReference(type = UserFinder.class)
 	protected UserFinder userFinder;
-	@BeanReference(type = com.liferay.social.kernel.service.SocialRequestInterpreterLocalService.class)
-	protected com.liferay.social.kernel.service.SocialRequestInterpreterLocalService socialRequestInterpreterLocalService;
+
+	@BeanReference(
+		type = com.liferay.social.kernel.service.SocialRequestInterpreterLocalService.class
+	)
+	protected
+		com.liferay.social.kernel.service.SocialRequestInterpreterLocalService
+			socialRequestInterpreterLocalService;
+
 	@BeanReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

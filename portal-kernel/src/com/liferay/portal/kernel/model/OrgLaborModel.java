@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
@@ -34,8 +33,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface OrgLaborModel extends BaseModel<OrgLabor>, MVCCModel,
-	ShardedModel {
+public interface OrgLaborModel
+	extends BaseModel<OrgLabor>, MVCCModel, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -382,4 +382,5 @@ public interface OrgLaborModel extends BaseModel<OrgLabor>, MVCCModel,
 
 	@Override
 	public String toXmlString();
+
 }

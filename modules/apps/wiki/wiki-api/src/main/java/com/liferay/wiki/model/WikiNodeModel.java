@@ -17,7 +17,6 @@ package com.liferay.wiki.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -45,8 +44,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface WikiNodeModel extends BaseModel<WikiNode>, ContainerModel,
-	ShardedModel, StagedGroupedModel, TrashedModel, WorkflowedModel {
+public interface WikiNodeModel
+	extends BaseModel<WikiNode>, ContainerModel, ShardedModel,
+			StagedGroupedModel, TrashedModel, WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -561,4 +562,5 @@ public interface WikiNodeModel extends BaseModel<WikiNode>, ContainerModel,
 
 	@Override
 	public String toXmlString();
+
 }

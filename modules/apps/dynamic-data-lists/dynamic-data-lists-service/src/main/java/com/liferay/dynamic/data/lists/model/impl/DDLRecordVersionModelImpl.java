@@ -19,10 +19,8 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersion;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersionModel;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersionSoap;
-
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -64,33 +62,29 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
-	implements DDLRecordVersionModel {
+public class DDLRecordVersionModelImpl
+	extends BaseModelImpl<DDLRecordVersion> implements DDLRecordVersionModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a ddl record version model instance should use the <code>DDLRecordVersion</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "DDLRecordVersion";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "recordVersionId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "DDMStorageId", Types.BIGINT },
-			{ "recordSetId", Types.BIGINT },
-			{ "recordSetVersion", Types.VARCHAR },
-			{ "recordId", Types.BIGINT },
-			{ "version", Types.VARCHAR },
-			{ "displayIndex", Types.INTEGER },
-			{ "status", Types.INTEGER },
-			{ "statusByUserId", Types.BIGINT },
-			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"recordVersionId", Types.BIGINT}, {"groupId", Types.BIGINT},
+		{"companyId", Types.BIGINT}, {"userId", Types.BIGINT},
+		{"userName", Types.VARCHAR}, {"createDate", Types.TIMESTAMP},
+		{"DDMStorageId", Types.BIGINT}, {"recordSetId", Types.BIGINT},
+		{"recordSetVersion", Types.VARCHAR}, {"recordId", Types.BIGINT},
+		{"version", Types.VARCHAR}, {"displayIndex", Types.INTEGER},
+		{"status", Types.INTEGER}, {"statusByUserId", Types.BIGINT},
+		{"statusByUserName", Types.VARCHAR}, {"statusDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("recordVersionId", Types.BIGINT);
@@ -111,28 +105,50 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table DDLRecordVersion (recordVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,DDMStorageId LONG,recordSetId LONG,recordSetVersion VARCHAR(75) null,recordId LONG,version VARCHAR(75) null,displayIndex INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table DDLRecordVersion (recordVersionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,DDMStorageId LONG,recordSetId LONG,recordSetVersion VARCHAR(75) null,recordId LONG,version VARCHAR(75) null,displayIndex INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table DDLRecordVersion";
-	public static final String ORDER_BY_JPQL = " ORDER BY ddlRecordVersion.recordVersionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY DDLRecordVersion.recordVersionId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY ddlRecordVersion.recordVersionId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY DDLRecordVersion.recordVersionId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
+		true);
+
 	public static final long RECORDID_COLUMN_BITMASK = 1L;
+
 	public static final long RECORDSETID_COLUMN_BITMASK = 2L;
+
 	public static final long RECORDSETVERSION_COLUMN_BITMASK = 4L;
+
 	public static final long STATUS_COLUMN_BITMASK = 8L;
+
 	public static final long USERID_COLUMN_BITMASK = 16L;
+
 	public static final long VERSION_COLUMN_BITMASK = 32L;
+
 	public static final long RECORDVERSIONID_COLUMN_BITMASK = 64L;
 
 	/**
@@ -176,11 +192,13 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 	 */
 	public static List<DDLRecordVersion> toModels(
 		DDLRecordVersionSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<DDLRecordVersion> models = new ArrayList<DDLRecordVersion>(soapModels.length);
+		List<DDLRecordVersion> models = new ArrayList<DDLRecordVersion>(
+			soapModels.length);
 
 		for (DDLRecordVersionSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -189,8 +207,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.dynamic.data.lists.model.DDLRecordVersion"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.dynamic.data.lists.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.dynamic.data.lists.model.DDLRecordVersion"));
 
 	public DDLRecordVersionModelImpl() {
 	}
@@ -229,14 +248,18 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<DDLRecordVersion, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDLRecordVersion, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecordVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecordVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((DDLRecordVersion)this));
 		}
 
@@ -248,37 +271,46 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<DDLRecordVersion, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<DDLRecordVersion, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<DDLRecordVersion, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<DDLRecordVersion, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((DDLRecordVersion)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(DDLRecordVersion)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<DDLRecordVersion, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<DDLRecordVersion, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<DDLRecordVersion, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<DDLRecordVersion, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<DDLRecordVersion, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<DDLRecordVersion, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<DDLRecordVersion, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<DDLRecordVersion, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<DDLRecordVersion, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<DDLRecordVersion, Object>>();
-		Map<String, BiConsumer<DDLRecordVersion, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<DDLRecordVersion, ?>>();
-
+		Map<String, Function<DDLRecordVersion, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap<String, Function<DDLRecordVersion, Object>>();
+		Map<String, BiConsumer<DDLRecordVersion, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<DDLRecordVersion, ?>>();
 
 		attributeGetterFunctions.put(
 			"recordVersionId",
@@ -295,7 +327,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object recordVersionId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object recordVersionId) {
+
 					ddlRecordVersion.setRecordVersionId((Long)recordVersionId);
 				}
 
@@ -315,7 +349,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object groupId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object groupId) {
+
 					ddlRecordVersion.setGroupId((Long)groupId);
 				}
 
@@ -335,7 +371,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object companyId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object companyId) {
+
 					ddlRecordVersion.setCompanyId((Long)companyId);
 				}
 
@@ -355,7 +393,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object userId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object userId) {
+
 					ddlRecordVersion.setUserId((Long)userId);
 				}
 
@@ -375,7 +415,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object userName) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object userName) {
+
 					ddlRecordVersion.setUserName((String)userName);
 				}
 
@@ -395,7 +437,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object createDate) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object createDate) {
+
 					ddlRecordVersion.setCreateDate((Date)createDate);
 				}
 
@@ -415,7 +459,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object DDMStorageId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object DDMStorageId) {
+
 					ddlRecordVersion.setDDMStorageId((Long)DDMStorageId);
 				}
 
@@ -435,7 +481,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object recordSetId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object recordSetId) {
+
 					ddlRecordVersion.setRecordSetId((Long)recordSetId);
 				}
 
@@ -455,8 +503,12 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object recordSetVersion) {
-					ddlRecordVersion.setRecordSetVersion((String)recordSetVersion);
+				public void accept(
+					DDLRecordVersion ddlRecordVersion,
+					Object recordSetVersion) {
+
+					ddlRecordVersion.setRecordSetVersion(
+						(String)recordSetVersion);
 				}
 
 			});
@@ -475,7 +527,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object recordId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object recordId) {
+
 					ddlRecordVersion.setRecordId((Long)recordId);
 				}
 
@@ -495,7 +549,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object version) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object version) {
+
 					ddlRecordVersion.setVersion((String)version);
 				}
 
@@ -515,7 +571,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object displayIndex) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object displayIndex) {
+
 					ddlRecordVersion.setDisplayIndex((Integer)displayIndex);
 				}
 
@@ -535,7 +593,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object status) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object status) {
+
 					ddlRecordVersion.setStatus((Integer)status);
 				}
 
@@ -555,7 +615,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object statusByUserId) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object statusByUserId) {
+
 					ddlRecordVersion.setStatusByUserId((Long)statusByUserId);
 				}
 
@@ -575,8 +637,12 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object statusByUserName) {
-					ddlRecordVersion.setStatusByUserName((String)statusByUserName);
+				public void accept(
+					DDLRecordVersion ddlRecordVersion,
+					Object statusByUserName) {
+
+					ddlRecordVersion.setStatusByUserName(
+						(String)statusByUserName);
 				}
 
 			});
@@ -595,15 +661,18 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 			new BiConsumer<DDLRecordVersion, Object>() {
 
 				@Override
-				public void accept(DDLRecordVersion ddlRecordVersion, Object statusDate) {
+				public void accept(
+					DDLRecordVersion ddlRecordVersion, Object statusDate) {
+
 					ddlRecordVersion.setStatusDate((Date)statusDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -988,8 +1057,8 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			DDLRecordVersion.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), DDLRecordVersion.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -1002,8 +1071,9 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 	@Override
 	public DDLRecordVersion toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (DDLRecordVersion)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (DDLRecordVersion)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -1091,23 +1161,29 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 	public void resetOriginalValues() {
 		DDLRecordVersionModelImpl ddlRecordVersionModelImpl = this;
 
-		ddlRecordVersionModelImpl._originalUserId = ddlRecordVersionModelImpl._userId;
+		ddlRecordVersionModelImpl._originalUserId =
+			ddlRecordVersionModelImpl._userId;
 
 		ddlRecordVersionModelImpl._setOriginalUserId = false;
 
-		ddlRecordVersionModelImpl._originalRecordSetId = ddlRecordVersionModelImpl._recordSetId;
+		ddlRecordVersionModelImpl._originalRecordSetId =
+			ddlRecordVersionModelImpl._recordSetId;
 
 		ddlRecordVersionModelImpl._setOriginalRecordSetId = false;
 
-		ddlRecordVersionModelImpl._originalRecordSetVersion = ddlRecordVersionModelImpl._recordSetVersion;
+		ddlRecordVersionModelImpl._originalRecordSetVersion =
+			ddlRecordVersionModelImpl._recordSetVersion;
 
-		ddlRecordVersionModelImpl._originalRecordId = ddlRecordVersionModelImpl._recordId;
+		ddlRecordVersionModelImpl._originalRecordId =
+			ddlRecordVersionModelImpl._recordId;
 
 		ddlRecordVersionModelImpl._setOriginalRecordId = false;
 
-		ddlRecordVersionModelImpl._originalVersion = ddlRecordVersionModelImpl._version;
+		ddlRecordVersionModelImpl._originalVersion =
+			ddlRecordVersionModelImpl._version;
 
-		ddlRecordVersionModelImpl._originalStatus = ddlRecordVersionModelImpl._status;
+		ddlRecordVersionModelImpl._originalStatus =
+			ddlRecordVersionModelImpl._status;
 
 		ddlRecordVersionModelImpl._setOriginalStatus = false;
 
@@ -1116,7 +1192,8 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 
 	@Override
 	public CacheModel<DDLRecordVersion> toCacheModel() {
-		DDLRecordVersionCacheModel ddlRecordVersionCacheModel = new DDLRecordVersionCacheModel();
+		DDLRecordVersionCacheModel ddlRecordVersionCacheModel =
+			new DDLRecordVersionCacheModel();
 
 		ddlRecordVersionCacheModel.recordVersionId = getRecordVersionId();
 
@@ -1193,17 +1270,20 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 
 	@Override
 	public String toString() {
-		Map<String, Function<DDLRecordVersion, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDLRecordVersion, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecordVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecordVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1222,19 +1302,22 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<DDLRecordVersion, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<DDLRecordVersion, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<DDLRecordVersion, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<DDLRecordVersion, Object> attributeGetterFunction = entry.getValue();
+			Function<DDLRecordVersion, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1248,10 +1331,12 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = DDLRecordVersion.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		DDLRecordVersion.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			DDLRecordVersion.class, ModelWrapper.class
-		};
+		DDLRecordVersion.class, ModelWrapper.class
+	};
+
 	private long _recordVersionId;
 	private long _groupId;
 	private long _companyId;
@@ -1280,4 +1365,5 @@ public class DDLRecordVersionModelImpl extends BaseModelImpl<DDLRecordVersion>
 	private Date _statusDate;
 	private long _columnBitmask;
 	private DDLRecordVersion _escapedModel;
+
 }

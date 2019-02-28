@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class UserCacheModel implements CacheModel<User>, Externalizable,
-	MVCCModel {
+public class UserCacheModel
+	implements CacheModel<User>, Externalizable, MVCCModel {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -51,7 +52,8 @@ public class UserCacheModel implements CacheModel<User>, Externalizable,
 		UserCacheModel userCacheModel = (UserCacheModel)obj;
 
 		if ((userId == userCacheModel.userId) &&
-				(mvccVersion == userCacheModel.mvccVersion)) {
+			(mvccVersion == userCacheModel.mvccVersion)) {
+
 			return true;
 		}
 
@@ -457,8 +459,7 @@ public class UserCacheModel implements CacheModel<User>, Externalizable,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
 		if (uuid == null) {
@@ -685,4 +686,5 @@ public class UserCacheModel implements CacheModel<User>, Externalizable,
 	public boolean agreedToTermsOfUse;
 	public boolean emailAddressVerified;
 	public int status;
+
 }

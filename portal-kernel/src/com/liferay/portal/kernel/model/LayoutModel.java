@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -40,8 +39,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCModel,
-	ShardedModel, StagedGroupedModel {
+public interface LayoutModel
+	extends BaseModel<Layout>, LocalizedModel, MVCCModel, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -549,8 +550,8 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescription(String description, Locale locale,
-		Locale defaultLocale);
+	public void setDescription(
+		String description, Locale locale, Locale defaultLocale);
 
 	public void setDescriptionCurrentLanguageId(String languageId);
 
@@ -567,8 +568,8 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 	 * @param descriptionMap the locales and localized descriptions of this layout
 	 * @param defaultLocale the default locale
 	 */
-	public void setDescriptionMap(Map<Locale, String> descriptionMap,
-		Locale defaultLocale);
+	public void setDescriptionMap(
+		Map<Locale, String> descriptionMap, Locale defaultLocale);
 
 	/**
 	 * Returns the keywords of this layout.
@@ -650,7 +651,8 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 	 * @param locale the locale of the language
 	 * @param defaultLocale the default locale
 	 */
-	public void setKeywords(String keywords, Locale locale, Locale defaultLocale);
+	public void setKeywords(
+		String keywords, Locale locale, Locale defaultLocale);
 
 	public void setKeywordsCurrentLanguageId(String languageId);
 
@@ -667,8 +669,8 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 	 * @param keywordsMap the locales and localized keywordses of this layout
 	 * @param defaultLocale the default locale
 	 */
-	public void setKeywordsMap(Map<Locale, String> keywordsMap,
-		Locale defaultLocale);
+	public void setKeywordsMap(
+		Map<Locale, String> keywordsMap, Locale defaultLocale);
 
 	/**
 	 * Returns the robots of this layout.
@@ -767,7 +769,8 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 	 * @param robotsMap the locales and localized robotses of this layout
 	 * @param defaultLocale the default locale
 	 */
-	public void setRobotsMap(Map<Locale, String> robotsMap, Locale defaultLocale);
+	public void setRobotsMap(
+		Map<Locale, String> robotsMap, Locale defaultLocale);
 
 	/**
 	 * Returns the type of this layout.
@@ -1045,4 +1048,5 @@ public interface LayoutModel extends BaseModel<Layout>, LocalizedModel, MVCCMode
 
 	@Override
 	public String toXmlString();
+
 }

@@ -17,7 +17,6 @@ package com.liferay.document.library.content.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.document.library.content.model.DLContent;
-
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -34,8 +33,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class DLContentCacheModel implements CacheModel<DLContent>,
-	Externalizable {
+public class DLContentCacheModel
+	implements CacheModel<DLContent>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -129,8 +129,7 @@ public class DLContentCacheModel implements CacheModel<DLContent>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(contentId);
 
 		objectOutput.writeLong(groupId);
@@ -163,4 +162,5 @@ public class DLContentCacheModel implements CacheModel<DLContent>,
 	public String path;
 	public String version;
 	public long size;
+
 }

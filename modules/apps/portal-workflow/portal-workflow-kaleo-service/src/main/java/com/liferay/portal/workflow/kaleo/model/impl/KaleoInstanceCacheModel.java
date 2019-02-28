@@ -35,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
-	Externalizable {
+public class KaleoInstanceCacheModel
+	implements CacheModel<KaleoInstance>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,7 +48,8 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
 			return false;
 		}
 
-		KaleoInstanceCacheModel kaleoInstanceCacheModel = (KaleoInstanceCacheModel)obj;
+		KaleoInstanceCacheModel kaleoInstanceCacheModel =
+			(KaleoInstanceCacheModel)obj;
 
 		if (kaleoInstanceId == kaleoInstanceCacheModel.kaleoInstanceId) {
 			return true;
@@ -202,8 +204,7 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(kaleoInstanceId);
 
 		objectOutput.writeLong(groupId);
@@ -271,4 +272,5 @@ public class KaleoInstanceCacheModel implements CacheModel<KaleoInstance>,
 	public boolean completed;
 	public long completionDate;
 	public String workflowContext;
+
 }

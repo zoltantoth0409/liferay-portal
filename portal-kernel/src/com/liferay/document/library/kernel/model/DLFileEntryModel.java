@@ -17,7 +17,6 @@ package com.liferay.document.library.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.AttachedModel;
@@ -44,8 +43,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface DLFileEntryModel extends AttachedModel, BaseModel<DLFileEntry>,
-	ShardedModel, StagedGroupedModel, TrashedModel {
+public interface DLFileEntryModel
+	extends AttachedModel, BaseModel<DLFileEntry>, ShardedModel,
+			StagedGroupedModel, TrashedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -663,4 +664,5 @@ public interface DLFileEntryModel extends AttachedModel, BaseModel<DLFileEntry>,
 
 	@Override
 	public String toXmlString();
+
 }

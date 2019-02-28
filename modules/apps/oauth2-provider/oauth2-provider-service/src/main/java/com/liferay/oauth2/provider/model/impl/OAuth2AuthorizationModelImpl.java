@@ -18,11 +18,9 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.oauth2.provider.model.OAuth2Authorization;
 import com.liferay.oauth2.provider.model.OAuth2AuthorizationModel;
 import com.liferay.oauth2.provider.model.OAuth2AuthorizationSoap;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -61,33 +59,34 @@ import java.util.function.Function;
  * @generated
  */
 @ProviderType
-public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorization>
+public class OAuth2AuthorizationModelImpl
+	extends BaseModelImpl<OAuth2Authorization>
 	implements OAuth2AuthorizationModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a o auth2 authorization model instance should use the <code>OAuth2Authorization</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "OAuth2Authorization";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oAuth2AuthorizationId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "oAuth2ApplicationId", Types.BIGINT },
-			{ "oA2AScopeAliasesId", Types.BIGINT },
-			{ "accessTokenContent", Types.CLOB },
-			{ "accessTokenContentHash", Types.BIGINT },
-			{ "accessTokenCreateDate", Types.TIMESTAMP },
-			{ "accessTokenExpirationDate", Types.TIMESTAMP },
-			{ "remoteIPInfo", Types.VARCHAR },
-			{ "refreshTokenContent", Types.CLOB },
-			{ "refreshTokenContentHash", Types.BIGINT },
-			{ "refreshTokenCreateDate", Types.TIMESTAMP },
-			{ "refreshTokenExpirationDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"oAuth2AuthorizationId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
+		{"createDate", Types.TIMESTAMP}, {"oAuth2ApplicationId", Types.BIGINT},
+		{"oA2AScopeAliasesId", Types.BIGINT},
+		{"accessTokenContent", Types.CLOB},
+		{"accessTokenContentHash", Types.BIGINT},
+		{"accessTokenCreateDate", Types.TIMESTAMP},
+		{"accessTokenExpirationDate", Types.TIMESTAMP},
+		{"remoteIPInfo", Types.VARCHAR}, {"refreshTokenContent", Types.CLOB},
+		{"refreshTokenContentHash", Types.BIGINT},
+		{"refreshTokenCreateDate", Types.TIMESTAMP},
+		{"refreshTokenExpirationDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("oAuth2AuthorizationId", Types.BIGINT);
@@ -108,26 +107,47 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 		TABLE_COLUMNS_MAP.put("refreshTokenExpirationDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table OAuth2Authorization (oAuth2AuthorizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,oAuth2ApplicationId LONG,oA2AScopeAliasesId LONG,accessTokenContent TEXT null,accessTokenContentHash LONG,accessTokenCreateDate DATE null,accessTokenExpirationDate DATE null,remoteIPInfo VARCHAR(75) null,refreshTokenContent TEXT null,refreshTokenContentHash LONG,refreshTokenCreateDate DATE null,refreshTokenExpirationDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table OAuth2Authorization";
-	public static final String ORDER_BY_JPQL = " ORDER BY oAuth2Authorization.oAuth2AuthorizationId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY OAuth2Authorization.oAuth2AuthorizationId ASC";
+	public static final String TABLE_SQL_CREATE =
+		"create table OAuth2Authorization (oAuth2AuthorizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,oAuth2ApplicationId LONG,oA2AScopeAliasesId LONG,accessTokenContent TEXT null,accessTokenContentHash LONG,accessTokenCreateDate DATE null,accessTokenExpirationDate DATE null,remoteIPInfo VARCHAR(75) null,refreshTokenContent TEXT null,refreshTokenContentHash LONG,refreshTokenCreateDate DATE null,refreshTokenExpirationDate DATE null)";
+
+	public static final String TABLE_SQL_DROP =
+		"drop table OAuth2Authorization";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY oAuth2Authorization.oAuth2AuthorizationId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY OAuth2Authorization.oAuth2AuthorizationId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.oauth2.provider.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.oauth2.provider.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.oauth2.provider.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.oauth2.provider.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.oauth2.provider.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.oauth2.provider.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.oauth2.provider.model.OAuth2Authorization"),
+		true);
+
 	public static final long ACCESSTOKENCONTENTHASH_COLUMN_BITMASK = 1L;
+
 	public static final long OAUTH2APPLICATIONID_COLUMN_BITMASK = 2L;
+
 	public static final long REFRESHTOKENCONTENTHASH_COLUMN_BITMASK = 4L;
+
 	public static final long USERID_COLUMN_BITMASK = 8L;
+
 	public static final long OAUTH2AUTHORIZATIONID_COLUMN_BITMASK = 16L;
 
 	/**
@@ -136,7 +156,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	 * @param soapModel the soap model instance to convert
 	 * @return the normal model instance
 	 */
-	public static OAuth2Authorization toModel(OAuth2AuthorizationSoap soapModel) {
+	public static OAuth2Authorization toModel(
+		OAuth2AuthorizationSoap soapModel) {
+
 		if (soapModel == null) {
 			return null;
 		}
@@ -149,16 +171,20 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setOAuth2ApplicationId(soapModel.getOAuth2ApplicationId());
-		model.setOAuth2ApplicationScopeAliasesId(soapModel.getOAuth2ApplicationScopeAliasesId());
+		model.setOAuth2ApplicationScopeAliasesId(
+			soapModel.getOAuth2ApplicationScopeAliasesId());
 		model.setAccessTokenContent(soapModel.getAccessTokenContent());
 		model.setAccessTokenContentHash(soapModel.getAccessTokenContentHash());
 		model.setAccessTokenCreateDate(soapModel.getAccessTokenCreateDate());
-		model.setAccessTokenExpirationDate(soapModel.getAccessTokenExpirationDate());
+		model.setAccessTokenExpirationDate(
+			soapModel.getAccessTokenExpirationDate());
 		model.setRemoteIPInfo(soapModel.getRemoteIPInfo());
 		model.setRefreshTokenContent(soapModel.getRefreshTokenContent());
-		model.setRefreshTokenContentHash(soapModel.getRefreshTokenContentHash());
+		model.setRefreshTokenContentHash(
+			soapModel.getRefreshTokenContentHash());
 		model.setRefreshTokenCreateDate(soapModel.getRefreshTokenCreateDate());
-		model.setRefreshTokenExpirationDate(soapModel.getRefreshTokenExpirationDate());
+		model.setRefreshTokenExpirationDate(
+			soapModel.getRefreshTokenExpirationDate());
 
 		return model;
 	}
@@ -171,11 +197,13 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	 */
 	public static List<OAuth2Authorization> toModels(
 		OAuth2AuthorizationSoap[] soapModels) {
+
 		if (soapModels == null) {
 			return null;
 		}
 
-		List<OAuth2Authorization> models = new ArrayList<OAuth2Authorization>(soapModels.length);
+		List<OAuth2Authorization> models = new ArrayList<OAuth2Authorization>(
+			soapModels.length);
 
 		for (OAuth2AuthorizationSoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -184,19 +212,29 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 		return models;
 	}
 
-	public static final String MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_NAME = "OA2Auths_OA2ScopeGrants";
-	public static final Object[][] MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_COLUMNS =
-		{
-			{ "companyId", Types.BIGINT },
-			{ "oAuth2AuthorizationId", Types.BIGINT },
-			{ "oAuth2ScopeGrantId", Types.BIGINT }
+	public static final String MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_NAME =
+		"OA2Auths_OA2ScopeGrants";
+
+	public static final Object[][]
+		MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_COLUMNS = {
+			{"companyId", Types.BIGINT},
+			{"oAuth2AuthorizationId", Types.BIGINT},
+			{"oAuth2ScopeGrantId", Types.BIGINT}
 		};
-	public static final String MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_SQL_CREATE = "create table OA2Auths_OA2ScopeGrants (companyId LONG not null,oAuth2AuthorizationId LONG not null,oAuth2ScopeGrantId LONG not null,primary key (oAuth2AuthorizationId, oAuth2ScopeGrantId))";
-	public static final boolean FINDER_CACHE_ENABLED_OA2AUTHS_OA2SCOPEGRANTS = GetterUtil.getBoolean(com.liferay.oauth2.provider.service.util.ServiceProps.get(
+
+	public static final String
+		MAPPING_TABLE_OA2AUTHS_OA2SCOPEGRANTS_SQL_CREATE =
+			"create table OA2Auths_OA2ScopeGrants (companyId LONG not null,oAuth2AuthorizationId LONG not null,oAuth2ScopeGrantId LONG not null,primary key (oAuth2AuthorizationId, oAuth2ScopeGrantId))";
+
+	public static final boolean FINDER_CACHE_ENABLED_OA2AUTHS_OA2SCOPEGRANTS =
+		GetterUtil.getBoolean(
+			com.liferay.oauth2.provider.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.OA2Auths_OA2ScopeGrants"),
 			true);
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.oauth2.provider.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.oauth2.provider.model.OAuth2Authorization"));
+
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.oauth2.provider.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.oauth2.provider.model.OAuth2Authorization"));
 
 	public OAuth2AuthorizationModelImpl() {
 	}
@@ -235,14 +273,18 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<OAuth2Authorization, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<OAuth2Authorization, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuth2Authorization, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuth2Authorization, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((OAuth2Authorization)this));
 		}
 
@@ -254,38 +296,47 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<OAuth2Authorization, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<OAuth2Authorization, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<OAuth2Authorization, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<OAuth2Authorization, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((OAuth2Authorization)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(OAuth2Authorization)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<OAuth2Authorization, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<OAuth2Authorization, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<OAuth2Authorization, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<OAuth2Authorization, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<OAuth2Authorization, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<OAuth2Authorization, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<OAuth2Authorization, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<OAuth2Authorization, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<OAuth2Authorization, Object>> attributeGetterFunctions =
-			new LinkedHashMap<String, Function<OAuth2Authorization, Object>>();
-		Map<String, BiConsumer<OAuth2Authorization, ?>> attributeSetterBiConsumers =
-			new LinkedHashMap<String, BiConsumer<OAuth2Authorization, ?>>();
-
+		Map<String, Function<OAuth2Authorization, Object>>
+			attributeGetterFunctions =
+				new LinkedHashMap
+					<String, Function<OAuth2Authorization, Object>>();
+		Map<String, BiConsumer<OAuth2Authorization, ?>>
+			attributeSetterBiConsumers =
+				new LinkedHashMap<String, BiConsumer<OAuth2Authorization, ?>>();
 
 		attributeGetterFunctions.put(
 			"oAuth2AuthorizationId",
@@ -302,8 +353,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object oAuth2AuthorizationId) {
-					oAuth2Authorization.setOAuth2AuthorizationId((Long)oAuth2AuthorizationId);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object oAuth2AuthorizationId) {
+
+					oAuth2Authorization.setOAuth2AuthorizationId(
+						(Long)oAuth2AuthorizationId);
 				}
 
 			});
@@ -322,7 +377,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object companyId) {
+				public void accept(
+					OAuth2Authorization oAuth2Authorization, Object companyId) {
+
 					oAuth2Authorization.setCompanyId((Long)companyId);
 				}
 
@@ -342,7 +399,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object userId) {
+				public void accept(
+					OAuth2Authorization oAuth2Authorization, Object userId) {
+
 					oAuth2Authorization.setUserId((Long)userId);
 				}
 
@@ -362,7 +421,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object userName) {
+				public void accept(
+					OAuth2Authorization oAuth2Authorization, Object userName) {
+
 					oAuth2Authorization.setUserName((String)userName);
 				}
 
@@ -382,7 +443,10 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object createDate) {
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object createDate) {
+
 					oAuth2Authorization.setCreateDate((Date)createDate);
 				}
 
@@ -402,8 +466,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object oAuth2ApplicationId) {
-					oAuth2Authorization.setOAuth2ApplicationId((Long)oAuth2ApplicationId);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object oAuth2ApplicationId) {
+
+					oAuth2Authorization.setOAuth2ApplicationId(
+						(Long)oAuth2ApplicationId);
 				}
 
 			});
@@ -413,7 +481,8 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 				@Override
 				public Object apply(OAuth2Authorization oAuth2Authorization) {
-					return oAuth2Authorization.getOAuth2ApplicationScopeAliasesId();
+					return oAuth2Authorization.
+						getOAuth2ApplicationScopeAliasesId();
 				}
 
 			});
@@ -422,8 +491,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object oAuth2ApplicationScopeAliasesId) {
-					oAuth2Authorization.setOAuth2ApplicationScopeAliasesId((Long)oAuth2ApplicationScopeAliasesId);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object oAuth2ApplicationScopeAliasesId) {
+
+					oAuth2Authorization.setOAuth2ApplicationScopeAliasesId(
+						(Long)oAuth2ApplicationScopeAliasesId);
 				}
 
 			});
@@ -442,8 +515,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object accessTokenContent) {
-					oAuth2Authorization.setAccessTokenContent((String)accessTokenContent);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object accessTokenContent) {
+
+					oAuth2Authorization.setAccessTokenContent(
+						(String)accessTokenContent);
 				}
 
 			});
@@ -462,8 +539,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object accessTokenContentHash) {
-					oAuth2Authorization.setAccessTokenContentHash((Long)accessTokenContentHash);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object accessTokenContentHash) {
+
+					oAuth2Authorization.setAccessTokenContentHash(
+						(Long)accessTokenContentHash);
 				}
 
 			});
@@ -482,8 +563,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object accessTokenCreateDate) {
-					oAuth2Authorization.setAccessTokenCreateDate((Date)accessTokenCreateDate);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object accessTokenCreateDate) {
+
+					oAuth2Authorization.setAccessTokenCreateDate(
+						(Date)accessTokenCreateDate);
 				}
 
 			});
@@ -502,8 +587,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object accessTokenExpirationDate) {
-					oAuth2Authorization.setAccessTokenExpirationDate((Date)accessTokenExpirationDate);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object accessTokenExpirationDate) {
+
+					oAuth2Authorization.setAccessTokenExpirationDate(
+						(Date)accessTokenExpirationDate);
 				}
 
 			});
@@ -522,7 +611,10 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object remoteIPInfo) {
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object remoteIPInfo) {
+
 					oAuth2Authorization.setRemoteIPInfo((String)remoteIPInfo);
 				}
 
@@ -542,8 +634,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object refreshTokenContent) {
-					oAuth2Authorization.setRefreshTokenContent((String)refreshTokenContent);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object refreshTokenContent) {
+
+					oAuth2Authorization.setRefreshTokenContent(
+						(String)refreshTokenContent);
 				}
 
 			});
@@ -562,8 +658,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object refreshTokenContentHash) {
-					oAuth2Authorization.setRefreshTokenContentHash((Long)refreshTokenContentHash);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object refreshTokenContentHash) {
+
+					oAuth2Authorization.setRefreshTokenContentHash(
+						(Long)refreshTokenContentHash);
 				}
 
 			});
@@ -582,8 +682,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object refreshTokenCreateDate) {
-					oAuth2Authorization.setRefreshTokenCreateDate((Date)refreshTokenCreateDate);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object refreshTokenCreateDate) {
+
+					oAuth2Authorization.setRefreshTokenCreateDate(
+						(Date)refreshTokenCreateDate);
 				}
 
 			});
@@ -602,15 +706,20 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			new BiConsumer<OAuth2Authorization, Object>() {
 
 				@Override
-				public void accept(OAuth2Authorization oAuth2Authorization, Object refreshTokenExpirationDate) {
-					oAuth2Authorization.setRefreshTokenExpirationDate((Date)refreshTokenExpirationDate);
+				public void accept(
+					OAuth2Authorization oAuth2Authorization,
+					Object refreshTokenExpirationDate) {
+
+					oAuth2Authorization.setRefreshTokenExpirationDate(
+						(Date)refreshTokenExpirationDate);
 				}
 
 			});
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@Override
@@ -726,6 +835,7 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	@Override
 	public void setOAuth2ApplicationScopeAliasesId(
 		long oAuth2ApplicationScopeAliasesId) {
+
 		_oAuth2ApplicationScopeAliasesId = oAuth2ApplicationScopeAliasesId;
 	}
 
@@ -864,8 +974,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			OAuth2Authorization.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), OAuth2Authorization.class.getName(),
+			getPrimaryKey());
 	}
 
 	@Override
@@ -878,8 +989,9 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	@Override
 	public OAuth2Authorization toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (OAuth2Authorization)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (OAuth2Authorization)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -887,24 +999,35 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 	@Override
 	public Object clone() {
-		OAuth2AuthorizationImpl oAuth2AuthorizationImpl = new OAuth2AuthorizationImpl();
+		OAuth2AuthorizationImpl oAuth2AuthorizationImpl =
+			new OAuth2AuthorizationImpl();
 
-		oAuth2AuthorizationImpl.setOAuth2AuthorizationId(getOAuth2AuthorizationId());
+		oAuth2AuthorizationImpl.setOAuth2AuthorizationId(
+			getOAuth2AuthorizationId());
 		oAuth2AuthorizationImpl.setCompanyId(getCompanyId());
 		oAuth2AuthorizationImpl.setUserId(getUserId());
 		oAuth2AuthorizationImpl.setUserName(getUserName());
 		oAuth2AuthorizationImpl.setCreateDate(getCreateDate());
-		oAuth2AuthorizationImpl.setOAuth2ApplicationId(getOAuth2ApplicationId());
-		oAuth2AuthorizationImpl.setOAuth2ApplicationScopeAliasesId(getOAuth2ApplicationScopeAliasesId());
+		oAuth2AuthorizationImpl.setOAuth2ApplicationId(
+			getOAuth2ApplicationId());
+		oAuth2AuthorizationImpl.setOAuth2ApplicationScopeAliasesId(
+			getOAuth2ApplicationScopeAliasesId());
 		oAuth2AuthorizationImpl.setAccessTokenContent(getAccessTokenContent());
-		oAuth2AuthorizationImpl.setAccessTokenContentHash(getAccessTokenContentHash());
-		oAuth2AuthorizationImpl.setAccessTokenCreateDate(getAccessTokenCreateDate());
-		oAuth2AuthorizationImpl.setAccessTokenExpirationDate(getAccessTokenExpirationDate());
+		oAuth2AuthorizationImpl.setAccessTokenContentHash(
+			getAccessTokenContentHash());
+		oAuth2AuthorizationImpl.setAccessTokenCreateDate(
+			getAccessTokenCreateDate());
+		oAuth2AuthorizationImpl.setAccessTokenExpirationDate(
+			getAccessTokenExpirationDate());
 		oAuth2AuthorizationImpl.setRemoteIPInfo(getRemoteIPInfo());
-		oAuth2AuthorizationImpl.setRefreshTokenContent(getRefreshTokenContent());
-		oAuth2AuthorizationImpl.setRefreshTokenContentHash(getRefreshTokenContentHash());
-		oAuth2AuthorizationImpl.setRefreshTokenCreateDate(getRefreshTokenCreateDate());
-		oAuth2AuthorizationImpl.setRefreshTokenExpirationDate(getRefreshTokenExpirationDate());
+		oAuth2AuthorizationImpl.setRefreshTokenContent(
+			getRefreshTokenContent());
+		oAuth2AuthorizationImpl.setRefreshTokenContentHash(
+			getRefreshTokenContentHash());
+		oAuth2AuthorizationImpl.setRefreshTokenCreateDate(
+			getRefreshTokenCreateDate());
+		oAuth2AuthorizationImpl.setRefreshTokenExpirationDate(
+			getRefreshTokenExpirationDate());
 
 		oAuth2AuthorizationImpl.resetOriginalValues();
 
@@ -967,30 +1090,37 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	public void resetOriginalValues() {
 		OAuth2AuthorizationModelImpl oAuth2AuthorizationModelImpl = this;
 
-		oAuth2AuthorizationModelImpl._originalUserId = oAuth2AuthorizationModelImpl._userId;
+		oAuth2AuthorizationModelImpl._originalUserId =
+			oAuth2AuthorizationModelImpl._userId;
 
 		oAuth2AuthorizationModelImpl._setOriginalUserId = false;
 
-		oAuth2AuthorizationModelImpl._originalOAuth2ApplicationId = oAuth2AuthorizationModelImpl._oAuth2ApplicationId;
+		oAuth2AuthorizationModelImpl._originalOAuth2ApplicationId =
+			oAuth2AuthorizationModelImpl._oAuth2ApplicationId;
 
 		oAuth2AuthorizationModelImpl._setOriginalOAuth2ApplicationId = false;
 
-		oAuth2AuthorizationModelImpl._originalAccessTokenContentHash = oAuth2AuthorizationModelImpl._accessTokenContentHash;
+		oAuth2AuthorizationModelImpl._originalAccessTokenContentHash =
+			oAuth2AuthorizationModelImpl._accessTokenContentHash;
 
 		oAuth2AuthorizationModelImpl._setOriginalAccessTokenContentHash = false;
 
-		oAuth2AuthorizationModelImpl._originalRefreshTokenContentHash = oAuth2AuthorizationModelImpl._refreshTokenContentHash;
+		oAuth2AuthorizationModelImpl._originalRefreshTokenContentHash =
+			oAuth2AuthorizationModelImpl._refreshTokenContentHash;
 
-		oAuth2AuthorizationModelImpl._setOriginalRefreshTokenContentHash = false;
+		oAuth2AuthorizationModelImpl._setOriginalRefreshTokenContentHash =
+			false;
 
 		oAuth2AuthorizationModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<OAuth2Authorization> toCacheModel() {
-		OAuth2AuthorizationCacheModel oAuth2AuthorizationCacheModel = new OAuth2AuthorizationCacheModel();
+		OAuth2AuthorizationCacheModel oAuth2AuthorizationCacheModel =
+			new OAuth2AuthorizationCacheModel();
 
-		oAuth2AuthorizationCacheModel.oAuth2AuthorizationId = getOAuth2AuthorizationId();
+		oAuth2AuthorizationCacheModel.oAuth2AuthorizationId =
+			getOAuth2AuthorizationId();
 
 		oAuth2AuthorizationCacheModel.companyId = getCompanyId();
 
@@ -1013,36 +1143,47 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			oAuth2AuthorizationCacheModel.createDate = Long.MIN_VALUE;
 		}
 
-		oAuth2AuthorizationCacheModel.oAuth2ApplicationId = getOAuth2ApplicationId();
+		oAuth2AuthorizationCacheModel.oAuth2ApplicationId =
+			getOAuth2ApplicationId();
 
-		oAuth2AuthorizationCacheModel.oAuth2ApplicationScopeAliasesId = getOAuth2ApplicationScopeAliasesId();
+		oAuth2AuthorizationCacheModel.oAuth2ApplicationScopeAliasesId =
+			getOAuth2ApplicationScopeAliasesId();
 
-		oAuth2AuthorizationCacheModel.accessTokenContent = getAccessTokenContent();
+		oAuth2AuthorizationCacheModel.accessTokenContent =
+			getAccessTokenContent();
 
-		String accessTokenContent = oAuth2AuthorizationCacheModel.accessTokenContent;
+		String accessTokenContent =
+			oAuth2AuthorizationCacheModel.accessTokenContent;
 
-		if ((accessTokenContent != null) && (accessTokenContent.length() == 0)) {
+		if ((accessTokenContent != null) &&
+			(accessTokenContent.length() == 0)) {
+
 			oAuth2AuthorizationCacheModel.accessTokenContent = null;
 		}
 
-		oAuth2AuthorizationCacheModel.accessTokenContentHash = getAccessTokenContentHash();
+		oAuth2AuthorizationCacheModel.accessTokenContentHash =
+			getAccessTokenContentHash();
 
 		Date accessTokenCreateDate = getAccessTokenCreateDate();
 
 		if (accessTokenCreateDate != null) {
-			oAuth2AuthorizationCacheModel.accessTokenCreateDate = accessTokenCreateDate.getTime();
+			oAuth2AuthorizationCacheModel.accessTokenCreateDate =
+				accessTokenCreateDate.getTime();
 		}
 		else {
-			oAuth2AuthorizationCacheModel.accessTokenCreateDate = Long.MIN_VALUE;
+			oAuth2AuthorizationCacheModel.accessTokenCreateDate =
+				Long.MIN_VALUE;
 		}
 
 		Date accessTokenExpirationDate = getAccessTokenExpirationDate();
 
 		if (accessTokenExpirationDate != null) {
-			oAuth2AuthorizationCacheModel.accessTokenExpirationDate = accessTokenExpirationDate.getTime();
+			oAuth2AuthorizationCacheModel.accessTokenExpirationDate =
+				accessTokenExpirationDate.getTime();
 		}
 		else {
-			oAuth2AuthorizationCacheModel.accessTokenExpirationDate = Long.MIN_VALUE;
+			oAuth2AuthorizationCacheModel.accessTokenExpirationDate =
+				Long.MIN_VALUE;
 		}
 
 		oAuth2AuthorizationCacheModel.remoteIPInfo = getRemoteIPInfo();
@@ -1053,33 +1194,41 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 			oAuth2AuthorizationCacheModel.remoteIPInfo = null;
 		}
 
-		oAuth2AuthorizationCacheModel.refreshTokenContent = getRefreshTokenContent();
+		oAuth2AuthorizationCacheModel.refreshTokenContent =
+			getRefreshTokenContent();
 
-		String refreshTokenContent = oAuth2AuthorizationCacheModel.refreshTokenContent;
+		String refreshTokenContent =
+			oAuth2AuthorizationCacheModel.refreshTokenContent;
 
 		if ((refreshTokenContent != null) &&
-				(refreshTokenContent.length() == 0)) {
+			(refreshTokenContent.length() == 0)) {
+
 			oAuth2AuthorizationCacheModel.refreshTokenContent = null;
 		}
 
-		oAuth2AuthorizationCacheModel.refreshTokenContentHash = getRefreshTokenContentHash();
+		oAuth2AuthorizationCacheModel.refreshTokenContentHash =
+			getRefreshTokenContentHash();
 
 		Date refreshTokenCreateDate = getRefreshTokenCreateDate();
 
 		if (refreshTokenCreateDate != null) {
-			oAuth2AuthorizationCacheModel.refreshTokenCreateDate = refreshTokenCreateDate.getTime();
+			oAuth2AuthorizationCacheModel.refreshTokenCreateDate =
+				refreshTokenCreateDate.getTime();
 		}
 		else {
-			oAuth2AuthorizationCacheModel.refreshTokenCreateDate = Long.MIN_VALUE;
+			oAuth2AuthorizationCacheModel.refreshTokenCreateDate =
+				Long.MIN_VALUE;
 		}
 
 		Date refreshTokenExpirationDate = getRefreshTokenExpirationDate();
 
 		if (refreshTokenExpirationDate != null) {
-			oAuth2AuthorizationCacheModel.refreshTokenExpirationDate = refreshTokenExpirationDate.getTime();
+			oAuth2AuthorizationCacheModel.refreshTokenExpirationDate =
+				refreshTokenExpirationDate.getTime();
 		}
 		else {
-			oAuth2AuthorizationCacheModel.refreshTokenExpirationDate = Long.MIN_VALUE;
+			oAuth2AuthorizationCacheModel.refreshTokenExpirationDate =
+				Long.MIN_VALUE;
 		}
 
 		return oAuth2AuthorizationCacheModel;
@@ -1087,17 +1236,20 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 	@Override
 	public String toString() {
-		Map<String, Function<OAuth2Authorization, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<OAuth2Authorization, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuth2Authorization, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuth2Authorization, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -1116,19 +1268,22 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<OAuth2Authorization, Object>> attributeGetterFunctions =
-			getAttributeGetterFunctions();
+		Map<String, Function<OAuth2Authorization, Object>>
+			attributeGetterFunctions = getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<OAuth2Authorization, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<OAuth2Authorization, Object> attributeGetterFunction = entry.getValue();
+			Function<OAuth2Authorization, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -1142,10 +1297,12 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = OAuth2Authorization.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		OAuth2Authorization.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			OAuth2Authorization.class, ModelWrapper.class
-		};
+		OAuth2Authorization.class, ModelWrapper.class
+	};
+
 	private long _oAuth2AuthorizationId;
 	private long _companyId;
 	private long _userId;
@@ -1172,4 +1329,5 @@ public class OAuth2AuthorizationModelImpl extends BaseModelImpl<OAuth2Authorizat
 	private Date _refreshTokenExpirationDate;
 	private long _columnBitmask;
 	private OAuth2Authorization _escapedModel;
+
 }

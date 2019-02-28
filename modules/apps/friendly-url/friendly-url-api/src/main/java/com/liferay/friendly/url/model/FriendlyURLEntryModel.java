@@ -17,7 +17,6 @@ package com.liferay.friendly.url.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AttachedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -44,8 +43,10 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface FriendlyURLEntryModel extends AttachedModel,
-	BaseModel<FriendlyURLEntry>, MVCCModel, ShardedModel, StagedModel {
+public interface FriendlyURLEntryModel
+	extends AttachedModel, BaseModel<FriendlyURLEntry>, MVCCModel, ShardedModel,
+			StagedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -300,4 +301,5 @@ public interface FriendlyURLEntryModel extends AttachedModel,
 
 	@Override
 	public String toXmlString();
+
 }

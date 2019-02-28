@@ -17,7 +17,6 @@ package com.liferay.social.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -38,8 +37,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface SocialActivityAchievementModel extends BaseModel<SocialActivityAchievement>,
-	ShardedModel {
+public interface SocialActivityAchievementModel
+	extends BaseModel<SocialActivityAchievement>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -238,4 +238,5 @@ public interface SocialActivityAchievementModel extends BaseModel<SocialActivity
 
 	@Override
 	public String toXmlString();
+
 }

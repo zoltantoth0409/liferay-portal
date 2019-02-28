@@ -16,7 +16,6 @@ package com.liferay.portlet.asset.service.persistence.impl;
 
 import com.liferay.asset.kernel.model.AssetLink;
 import com.liferay.asset.kernel.service.persistence.AssetLinkPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -33,12 +32,13 @@ import java.util.Set;
  * @generated
  */
 public class AssetLinkFinderBaseImpl extends BasePersistenceImpl<AssetLink> {
+
 	public AssetLinkFinderBaseImpl() {
 		setModelClass(AssetLink.class);
 
 		try {
 			Field field = BasePersistenceImpl.class.getDeclaredField(
-					"_dbColumnNames");
+				"_dbColumnNames");
 
 			field.setAccessible(true);
 
@@ -76,10 +76,14 @@ public class AssetLinkFinderBaseImpl extends BasePersistenceImpl<AssetLink> {
 	 */
 	public void setAssetLinkPersistence(
 		AssetLinkPersistence assetLinkPersistence) {
+
 		this.assetLinkPersistence = assetLinkPersistence;
 	}
 
 	@BeanReference(type = AssetLinkPersistence.class)
 	protected AssetLinkPersistence assetLinkPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(AssetLinkFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetLinkFinderBaseImpl.class);
+
 }

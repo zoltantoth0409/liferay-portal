@@ -17,7 +17,6 @@ package com.liferay.asset.category.property.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -41,8 +40,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AssetCategoryPropertyModel extends AuditedModel,
-	BaseModel<AssetCategoryProperty>, ShardedModel {
+public interface AssetCategoryPropertyModel
+	extends AuditedModel, BaseModel<AssetCategoryProperty>, ShardedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -274,4 +274,5 @@ public interface AssetCategoryPropertyModel extends AuditedModel,
 
 	@Override
 	public String toXmlString();
+
 }

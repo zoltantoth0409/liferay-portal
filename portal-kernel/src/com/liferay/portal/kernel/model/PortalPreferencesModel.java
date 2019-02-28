@@ -17,7 +17,6 @@ package com.liferay.portal.kernel.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.service.ServiceContext;
 
@@ -35,8 +34,9 @@ import java.io.Serializable;
  * @generated
  */
 @ProviderType
-public interface PortalPreferencesModel extends BaseModel<PortalPreferences>,
-	MVCCModel {
+public interface PortalPreferencesModel
+	extends BaseModel<PortalPreferences>, MVCCModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -186,4 +186,5 @@ public interface PortalPreferencesModel extends BaseModel<PortalPreferences>,
 
 	@Override
 	public String toXmlString();
+
 }

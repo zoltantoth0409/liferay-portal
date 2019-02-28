@@ -17,7 +17,6 @@ package com.liferay.fragment.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -42,8 +41,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface FragmentEntryModel extends BaseModel<FragmentEntry>,
-	ShardedModel, StagedGroupedModel, WorkflowedModel {
+public interface FragmentEntryModel
+	extends BaseModel<FragmentEntry>, ShardedModel, StagedGroupedModel,
+			WorkflowedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -528,4 +529,5 @@ public interface FragmentEntryModel extends BaseModel<FragmentEntry>,
 
 	@Override
 	public String toXmlString();
+
 }

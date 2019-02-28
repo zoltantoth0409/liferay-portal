@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-
 import com.liferay.social.kernel.model.SocialRelation;
 
 import java.io.Externalizable;
@@ -34,8 +33,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class SocialRelationCacheModel implements CacheModel<SocialRelation>,
-	Externalizable {
+public class SocialRelationCacheModel
+	implements CacheModel<SocialRelation>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -46,7 +46,8 @@ public class SocialRelationCacheModel implements CacheModel<SocialRelation>,
 			return false;
 		}
 
-		SocialRelationCacheModel socialRelationCacheModel = (SocialRelationCacheModel)obj;
+		SocialRelationCacheModel socialRelationCacheModel =
+			(SocialRelationCacheModel)obj;
 
 		if (relationId == socialRelationCacheModel.relationId) {
 			return true;
@@ -124,8 +125,7 @@ public class SocialRelationCacheModel implements CacheModel<SocialRelation>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -153,4 +153,5 @@ public class SocialRelationCacheModel implements CacheModel<SocialRelation>,
 	public long userId1;
 	public long userId2;
 	public int type;
+
 }
