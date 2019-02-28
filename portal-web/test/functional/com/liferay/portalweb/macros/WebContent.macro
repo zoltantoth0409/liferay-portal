@@ -1956,10 +1956,9 @@ definition {
 			webContentTitle = "${webContentTitle}"
 		);
 
-		key_status = "Pending";
-
 		AssertElementPresent(
-			locator1 = "WCEditWebContent#WORKFLOW_STATUS"
+			locator1 = "WCEditWebContent#WORKFLOW_STATUS",
+			key_status = "Pending"
 		);
 
 		AssertTextEquals(locator1 = "TextInput#TITLE", value1 = "${webContentTitle}");
