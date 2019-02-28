@@ -5,8 +5,7 @@
 
 	<macrodef name="configure-elasticsearch-properties">
 		<sequential>
-			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}bootstrap.system_call_filter: false
-cluster.name: LiferayElasticsearchCluster</echo>
+			<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster</echo>
 		</sequential>
 	</macrodef>
 
@@ -101,7 +100,7 @@ xpack.security.sessionTimeout: 600000</echo>
 
 	<macrodef name="configure-portal-elasticsearch-osgi-properties">
 		<sequential>
-			<echo append="true" file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch6.configuration.ElasticsearchConfiguration.config">${line.separator}operationMode=&quot;REMOTE&quot;</echo>
+			<echo append="true" file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch6.configuration.ElasticsearchConfiguration.config">${line.separator}operationMode="REMOTE"</echo>
 		</sequential>
 	</macrodef>
 
@@ -178,8 +177,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</macrodef>
 
 	<macrodef name="generate-x-pack-security-certificates">
-		<attribute default="liferay" name="certificate.password" />
-
 		<sequential>
 			<if>
 				<os family="unix" />
@@ -596,9 +593,7 @@ xpack.monitoring.collection.enabled: true</echo>
 		<if>
 			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
 			<then>
-				<property name="xpack.certificate.password" value="liferay" />
-
-				<generate-x-pack-security-certificates certificate.password="${xpack.certificate.password}" />
+				<generate-x-pack-security-certificates />
 
 				<configure-elasticsearch-x-pack-security-properties />
 			</then>
