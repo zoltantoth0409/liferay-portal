@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
-
 import com.liferay.wiki.model.WikiPage;
 import com.liferay.wiki.service.persistence.WikiPagePersistence;
 
@@ -29,6 +28,7 @@ import java.util.Set;
  * @generated
  */
 public class WikiPageFinderBaseImpl extends BasePersistenceImpl<WikiPage> {
+
 	public WikiPageFinderBaseImpl() {
 		setModelClass(WikiPage.class);
 	}
@@ -52,11 +52,16 @@ public class WikiPageFinderBaseImpl extends BasePersistenceImpl<WikiPage> {
 	 *
 	 * @param wikiPagePersistence the wiki page persistence
 	 */
-	public void setWikiPagePersistence(WikiPagePersistence wikiPagePersistence) {
+	public void setWikiPagePersistence(
+		WikiPagePersistence wikiPagePersistence) {
+
 		this.wikiPagePersistence = wikiPagePersistence;
 	}
 
 	@BeanReference(type = WikiPagePersistence.class)
 	protected WikiPagePersistence wikiPagePersistence;
-	private static final Log _log = LogFactoryUtil.getLog(WikiPageFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		WikiPageFinderBaseImpl.class);
+
 }

@@ -17,11 +17,8 @@ package com.liferay.change.tracking.uad.exporter;
 import com.liferay.change.tracking.model.CTEntryAggregate;
 import com.liferay.change.tracking.service.CTEntryAggregateLocalService;
 import com.liferay.change.tracking.uad.constants.CTUADConstants;
-
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-
 import com.liferay.user.associated.data.exporter.DynamicQueryUADExporter;
 
 import org.osgi.service.component.annotations.Reference;
@@ -40,6 +37,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 public abstract class BaseCTEntryAggregateUADExporter
 	extends DynamicQueryUADExporter<CTEntryAggregate> {
+
 	@Override
 	public Class<CTEntryAggregate> getTypeClass() {
 		return CTEntryAggregate.class;
@@ -83,4 +81,5 @@ public abstract class BaseCTEntryAggregateUADExporter
 
 	@Reference
 	protected CTEntryAggregateLocalService ctEntryAggregateLocalService;
+
 }

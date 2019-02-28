@@ -36,8 +36,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface SharingEntryModel extends AttachedModel, BaseModel<SharingEntry>,
-	ShardedModel, StagedModel {
+public interface SharingEntryModel
+	extends AttachedModel, BaseModel<SharingEntry>, ShardedModel, StagedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -297,4 +298,5 @@ public interface SharingEntryModel extends AttachedModel, BaseModel<SharingEntry
 	 * @param expirationDate the expiration date of this sharing entry
 	 */
 	public void setExpirationDate(Date expirationDate);
+
 }

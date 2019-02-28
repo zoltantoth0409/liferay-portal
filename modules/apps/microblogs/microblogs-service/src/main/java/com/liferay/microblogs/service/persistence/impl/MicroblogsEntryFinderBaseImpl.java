@@ -16,7 +16,6 @@ package com.liferay.microblogs.service.persistence.impl;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.persistence.MicroblogsEntryPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -28,7 +27,9 @@ import java.util.Set;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class MicroblogsEntryFinderBaseImpl extends BasePersistenceImpl<MicroblogsEntry> {
+public class MicroblogsEntryFinderBaseImpl
+	extends BasePersistenceImpl<MicroblogsEntry> {
+
 	public MicroblogsEntryFinderBaseImpl() {
 		setModelClass(MicroblogsEntry.class);
 	}
@@ -54,10 +55,14 @@ public class MicroblogsEntryFinderBaseImpl extends BasePersistenceImpl<Microblog
 	 */
 	public void setMicroblogsEntryPersistence(
 		MicroblogsEntryPersistence microblogsEntryPersistence) {
+
 		this.microblogsEntryPersistence = microblogsEntryPersistence;
 	}
 
 	@BeanReference(type = MicroblogsEntryPersistence.class)
 	protected MicroblogsEntryPersistence microblogsEntryPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(MicroblogsEntryFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		MicroblogsEntryFinderBaseImpl.class);
+
 }

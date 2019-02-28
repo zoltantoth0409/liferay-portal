@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.model.CacheModel;
-
 import com.liferay.sharing.model.SharingEntry;
 
 import java.io.Externalizable;
@@ -37,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class SharingEntryCacheModel implements CacheModel<SharingEntry>,
-	Externalizable {
+public class SharingEntryCacheModel
+	implements CacheModel<SharingEntry>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -49,7 +48,8 @@ public class SharingEntryCacheModel implements CacheModel<SharingEntry>,
 			return false;
 		}
 
-		SharingEntryCacheModel sharingEntryCacheModel = (SharingEntryCacheModel)obj;
+		SharingEntryCacheModel sharingEntryCacheModel =
+			(SharingEntryCacheModel)obj;
 
 		if (sharingEntryId == sharingEntryCacheModel.sharingEntryId) {
 			return true;
@@ -173,8 +173,7 @@ public class SharingEntryCacheModel implements CacheModel<SharingEntry>,
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		if (uuid == null) {
 			objectOutput.writeUTF("");
 		}
@@ -217,4 +216,5 @@ public class SharingEntryCacheModel implements CacheModel<SharingEntry>,
 	public boolean shareable;
 	public long actionIds;
 	public long expirationDate;
+
 }

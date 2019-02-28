@@ -19,7 +19,6 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.service.AMImageEntryLocalService;
 import com.liferay.adaptive.media.image.service.persistence.AMImageEntryPersistence;
-
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -43,13 +42,13 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-import org.osgi.service.component.annotations.Reference;
-
 import java.io.Serializable;
 
 import java.util.List;
 
 import javax.sql.DataSource;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * Provides the base implementation for the am image entry local service.
@@ -64,8 +63,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class AMImageEntryLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements AMImageEntryLocalService,
-		AopService, IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements AMImageEntryLocalService, AopService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -109,6 +109,7 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	@Override
 	public AMImageEntry deleteAMImageEntry(long amImageEntryId)
 		throws PortalException {
+
 		return amImageEntryPersistence.remove(amImageEntryId);
 	}
 
@@ -128,8 +129,8 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(AMImageEntry.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			AMImageEntry.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -156,10 +157,11 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return amImageEntryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return amImageEntryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -176,10 +178,12 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return amImageEntryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return amImageEntryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -201,10 +205,11 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return amImageEntryPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return amImageEntryPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
@@ -220,8 +225,9 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the matching am image entry, or <code>null</code> if a matching am image entry could not be found
 	 */
 	@Override
-	public AMImageEntry fetchAMImageEntryByUuidAndGroupId(String uuid,
-		long groupId) {
+	public AMImageEntry fetchAMImageEntryByUuidAndGroupId(
+		String uuid, long groupId) {
+
 		return amImageEntryPersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -235,12 +241,14 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	@Override
 	public AMImageEntry getAMImageEntry(long amImageEntryId)
 		throws PortalException {
+
 		return amImageEntryPersistence.findByPrimaryKey(amImageEntryId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(amImageEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -252,10 +260,14 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(amImageEntryLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			amImageEntryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(AMImageEntry.class);
 
@@ -267,6 +279,7 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
+
 		actionableDynamicQuery.setBaseLocalService(amImageEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(AMImageEntry.class);
@@ -280,12 +293,15 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return amImageEntryLocalService.deleteAMImageEntry((AMImageEntry)persistedModel);
+
+		return amImageEntryLocalService.deleteAMImageEntry(
+			(AMImageEntry)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return amImageEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -297,8 +313,9 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the matching am image entries, or an empty list if no matches were found
 	 */
 	@Override
-	public List<AMImageEntry> getAMImageEntriesByUuidAndCompanyId(String uuid,
-		long companyId) {
+	public List<AMImageEntry> getAMImageEntriesByUuidAndCompanyId(
+		String uuid, long companyId) {
+
 		return amImageEntryPersistence.findByUuid_C(uuid, companyId);
 	}
 
@@ -313,11 +330,12 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @return the range of matching am image entries, or an empty list if no matches were found
 	 */
 	@Override
-	public List<AMImageEntry> getAMImageEntriesByUuidAndCompanyId(String uuid,
-		long companyId, int start, int end,
+	public List<AMImageEntry> getAMImageEntriesByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<AMImageEntry> orderByComparator) {
-		return amImageEntryPersistence.findByUuid_C(uuid, companyId, start,
-			end, orderByComparator);
+
+		return amImageEntryPersistence.findByUuid_C(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -329,8 +347,10 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	 * @throws PortalException if a matching am image entry could not be found
 	 */
 	@Override
-	public AMImageEntry getAMImageEntryByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException {
+	public AMImageEntry getAMImageEntryByUuidAndGroupId(
+			String uuid, long groupId)
+		throws PortalException {
+
 		return amImageEntryPersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -417,8 +437,8 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -428,8 +448,12 @@ public abstract class AMImageEntryLocalServiceBaseImpl
 	}
 
 	protected AMImageEntryLocalService amImageEntryLocalService;
+
 	@Reference
 	protected AMImageEntryPersistence amImageEntryPersistence;
+
 	@Reference
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 }

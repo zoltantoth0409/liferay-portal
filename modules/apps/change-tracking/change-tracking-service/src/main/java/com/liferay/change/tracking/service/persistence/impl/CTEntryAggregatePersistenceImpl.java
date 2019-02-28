@@ -22,9 +22,7 @@ import com.liferay.change.tracking.model.impl.CTEntryAggregateImpl;
 import com.liferay.change.tracking.model.impl.CTEntryAggregateModelImpl;
 import com.liferay.change.tracking.service.persistence.CTEntryAggregatePersistence;
 import com.liferay.change.tracking.service.persistence.CTEntryPersistence;
-
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
@@ -71,18 +69,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntryAggregate>
+public class CTEntryAggregatePersistenceImpl
+	extends BasePersistenceImpl<CTEntryAggregate>
 	implements CTEntryAggregatePersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>CTEntryAggregateUtil</code> to access the ct entry aggregate persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = CTEntryAggregateImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		CTEntryAggregateImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -98,9 +102,11 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByC_O(long ctCollectionId,
-		long ownerCTEntryId) {
-		return findByC_O(ctCollectionId, ownerCTEntryId, QueryUtil.ALL_POS,
+	public List<CTEntryAggregate> findByC_O(
+		long ctCollectionId, long ownerCTEntryId) {
+
+		return findByC_O(
+			ctCollectionId, ownerCTEntryId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
@@ -118,8 +124,9 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByC_O(long ctCollectionId,
-		long ownerCTEntryId, int start, int end) {
+	public List<CTEntryAggregate> findByC_O(
+		long ctCollectionId, long ownerCTEntryId, int start, int end) {
+
 		return findByC_O(ctCollectionId, ownerCTEntryId, start, end, null);
 	}
 
@@ -138,11 +145,13 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the ordered range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByC_O(long ctCollectionId,
-		long ownerCTEntryId, int start, int end,
+	public List<CTEntryAggregate> findByC_O(
+		long ctCollectionId, long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
-		return findByC_O(ctCollectionId, ownerCTEntryId, start, end,
-			orderByComparator, true);
+
+		return findByC_O(
+			ctCollectionId, ownerCTEntryId, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -161,39 +170,42 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the ordered range of matching ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findByC_O(long ctCollectionId,
-		long ownerCTEntryId, int start, int end,
+	public List<CTEntryAggregate> findByC_O(
+		long ctCollectionId, long ownerCTEntryId, int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_O;
-			finderArgs = new Object[] { ctCollectionId, ownerCTEntryId };
+			finderArgs = new Object[] {ctCollectionId, ownerCTEntryId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_O;
 			finderArgs = new Object[] {
-					ctCollectionId, ownerCTEntryId,
-					
-					start, end, orderByComparator
-				};
+				ctCollectionId, ownerCTEntryId, start, end, orderByComparator
+			};
 		}
 
 		List<CTEntryAggregate> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<CTEntryAggregate>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<CTEntryAggregate>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CTEntryAggregate ctEntryAggregate : list) {
-					if ((ctCollectionId != ctEntryAggregate.getCtCollectionId()) ||
-							(ownerCTEntryId != ctEntryAggregate.getOwnerCTEntryId())) {
+					if ((ctCollectionId !=
+							ctEntryAggregate.getCtCollectionId()) ||
+						(ownerCTEntryId !=
+							ctEntryAggregate.getOwnerCTEntryId())) {
+
 						list = null;
 
 						break;
@@ -206,8 +218,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -220,11 +232,10 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			query.append(_FINDER_COLUMN_C_O_OWNERCTENTRYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(CTEntryAggregateModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -244,16 +255,16 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				qPos.add(ownerCTEntryId);
 
 				if (!pagination) {
-					list = (List<CTEntryAggregate>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<CTEntryAggregate>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<CTEntryAggregate>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<CTEntryAggregate>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -283,12 +294,13 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate findByC_O_First(long ctCollectionId,
-		long ownerCTEntryId,
-		OrderByComparator<CTEntryAggregate> orderByComparator)
+	public CTEntryAggregate findByC_O_First(
+			long ctCollectionId, long ownerCTEntryId,
+			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
-		CTEntryAggregate ctEntryAggregate = fetchByC_O_First(ctCollectionId,
-				ownerCTEntryId, orderByComparator);
+
+		CTEntryAggregate ctEntryAggregate = fetchByC_O_First(
+			ctCollectionId, ownerCTEntryId, orderByComparator);
 
 		if (ctEntryAggregate != null) {
 			return ctEntryAggregate;
@@ -318,11 +330,12 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the first matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate fetchByC_O_First(long ctCollectionId,
-		long ownerCTEntryId,
+	public CTEntryAggregate fetchByC_O_First(
+		long ctCollectionId, long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
-		List<CTEntryAggregate> list = findByC_O(ctCollectionId, ownerCTEntryId,
-				0, 1, orderByComparator);
+
+		List<CTEntryAggregate> list = findByC_O(
+			ctCollectionId, ownerCTEntryId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -341,12 +354,13 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @throws NoSuchEntryAggregateException if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate findByC_O_Last(long ctCollectionId,
-		long ownerCTEntryId,
-		OrderByComparator<CTEntryAggregate> orderByComparator)
+	public CTEntryAggregate findByC_O_Last(
+			long ctCollectionId, long ownerCTEntryId,
+			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
-		CTEntryAggregate ctEntryAggregate = fetchByC_O_Last(ctCollectionId,
-				ownerCTEntryId, orderByComparator);
+
+		CTEntryAggregate ctEntryAggregate = fetchByC_O_Last(
+			ctCollectionId, ownerCTEntryId, orderByComparator);
 
 		if (ctEntryAggregate != null) {
 			return ctEntryAggregate;
@@ -376,17 +390,19 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the last matching ct entry aggregate, or <code>null</code> if a matching ct entry aggregate could not be found
 	 */
 	@Override
-	public CTEntryAggregate fetchByC_O_Last(long ctCollectionId,
-		long ownerCTEntryId,
+	public CTEntryAggregate fetchByC_O_Last(
+		long ctCollectionId, long ownerCTEntryId,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
+
 		int count = countByC_O(ctCollectionId, ownerCTEntryId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<CTEntryAggregate> list = findByC_O(ctCollectionId, ownerCTEntryId,
-				count - 1, count, orderByComparator);
+		List<CTEntryAggregate> list = findByC_O(
+			ctCollectionId, ownerCTEntryId, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -406,11 +422,13 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @throws NoSuchEntryAggregateException if a ct entry aggregate with the primary key could not be found
 	 */
 	@Override
-	public CTEntryAggregate[] findByC_O_PrevAndNext(long ctEntryAggregateId,
-		long ctCollectionId, long ownerCTEntryId,
-		OrderByComparator<CTEntryAggregate> orderByComparator)
+	public CTEntryAggregate[] findByC_O_PrevAndNext(
+			long ctEntryAggregateId, long ctCollectionId, long ownerCTEntryId,
+			OrderByComparator<CTEntryAggregate> orderByComparator)
 		throws NoSuchEntryAggregateException {
-		CTEntryAggregate ctEntryAggregate = findByPrimaryKey(ctEntryAggregateId);
+
+		CTEntryAggregate ctEntryAggregate = findByPrimaryKey(
+			ctEntryAggregateId);
 
 		Session session = null;
 
@@ -419,13 +437,15 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 
 			CTEntryAggregate[] array = new CTEntryAggregateImpl[3];
 
-			array[0] = getByC_O_PrevAndNext(session, ctEntryAggregate,
-					ctCollectionId, ownerCTEntryId, orderByComparator, true);
+			array[0] = getByC_O_PrevAndNext(
+				session, ctEntryAggregate, ctCollectionId, ownerCTEntryId,
+				orderByComparator, true);
 
 			array[1] = ctEntryAggregate;
 
-			array[2] = getByC_O_PrevAndNext(session, ctEntryAggregate,
-					ctCollectionId, ownerCTEntryId, orderByComparator, false);
+			array[2] = getByC_O_PrevAndNext(
+				session, ctEntryAggregate, ctCollectionId, ownerCTEntryId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -437,15 +457,17 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		}
 	}
 
-	protected CTEntryAggregate getByC_O_PrevAndNext(Session session,
-		CTEntryAggregate ctEntryAggregate, long ctCollectionId,
+	protected CTEntryAggregate getByC_O_PrevAndNext(
+		Session session, CTEntryAggregate ctEntryAggregate, long ctCollectionId,
 		long ownerCTEntryId,
-		OrderByComparator<CTEntryAggregate> orderByComparator, boolean previous) {
+		OrderByComparator<CTEntryAggregate> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -459,7 +481,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		query.append(_FINDER_COLUMN_C_O_OWNERCTENTRYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -531,8 +554,10 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		qPos.add(ownerCTEntryId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					ctEntryAggregate)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						ctEntryAggregate)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -555,8 +580,11 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public void removeByC_O(long ctCollectionId, long ownerCTEntryId) {
-		for (CTEntryAggregate ctEntryAggregate : findByC_O(ctCollectionId,
-				ownerCTEntryId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (CTEntryAggregate ctEntryAggregate :
+				findByC_O(
+					ctCollectionId, ownerCTEntryId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(ctEntryAggregate);
 		}
 	}
@@ -572,7 +600,7 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	public int countByC_O(long ctCollectionId, long ownerCTEntryId) {
 		FinderPath finderPath = _finderPathCountByC_O;
 
-		Object[] finderArgs = new Object[] { ctCollectionId, ownerCTEntryId };
+		Object[] finderArgs = new Object[] {ctCollectionId, ownerCTEntryId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -617,8 +645,11 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_O_CTCOLLECTIONID_2 = "ctEntryAggregate.ctCollectionId = ? AND ";
-	private static final String _FINDER_COLUMN_C_O_OWNERCTENTRYID_2 = "ctEntryAggregate.ownerCTEntryId = ?";
+	private static final String _FINDER_COLUMN_C_O_CTCOLLECTIONID_2 =
+		"ctEntryAggregate.ctCollectionId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_O_OWNERCTENTRYID_2 =
+		"ctEntryAggregate.ownerCTEntryId = ?";
 
 	public CTEntryAggregatePersistenceImpl() {
 		setModelClass(CTEntryAggregate.class);
@@ -635,7 +666,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public void cacheResult(CTEntryAggregate ctEntryAggregate) {
-		entityCache.putResult(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateImpl.class, ctEntryAggregate.getPrimaryKey(),
 			ctEntryAggregate);
 
@@ -651,9 +683,10 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	public void cacheResult(List<CTEntryAggregate> ctEntryAggregates) {
 		for (CTEntryAggregate ctEntryAggregate : ctEntryAggregates) {
 			if (entityCache.getResult(
-						CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-						CTEntryAggregateImpl.class,
-						ctEntryAggregate.getPrimaryKey()) == null) {
+					CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+					CTEntryAggregateImpl.class,
+					ctEntryAggregate.getPrimaryKey()) == null) {
+
 				cacheResult(ctEntryAggregate);
 			}
 			else {
@@ -687,7 +720,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public void clearCache(CTEntryAggregate ctEntryAggregate) {
-		entityCache.removeResult(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateImpl.class, ctEntryAggregate.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -700,7 +734,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (CTEntryAggregate ctEntryAggregate : ctEntryAggregates) {
-			entityCache.removeResult(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 				CTEntryAggregateImpl.class, ctEntryAggregate.getPrimaryKey());
 		}
 	}
@@ -733,6 +768,7 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public CTEntryAggregate remove(long ctEntryAggregateId)
 		throws NoSuchEntryAggregateException {
+
 		return remove((Serializable)ctEntryAggregateId);
 	}
 
@@ -746,21 +782,22 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public CTEntryAggregate remove(Serializable primaryKey)
 		throws NoSuchEntryAggregateException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			CTEntryAggregate ctEntryAggregate = (CTEntryAggregate)session.get(CTEntryAggregateImpl.class,
-					primaryKey);
+			CTEntryAggregate ctEntryAggregate = (CTEntryAggregate)session.get(
+				CTEntryAggregateImpl.class, primaryKey);
 
 			if (ctEntryAggregate == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchEntryAggregateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchEntryAggregateException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(ctEntryAggregate);
@@ -778,7 +815,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 
 	@Override
 	protected CTEntryAggregate removeImpl(CTEntryAggregate ctEntryAggregate) {
-		ctEntryAggregateToCTEntryTableMapper.deleteLeftPrimaryKeyTableMappings(ctEntryAggregate.getPrimaryKey());
+		ctEntryAggregateToCTEntryTableMapper.deleteLeftPrimaryKeyTableMappings(
+			ctEntryAggregate.getPrimaryKey());
 
 		Session session = null;
 
@@ -786,8 +824,9 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			session = openSession();
 
 			if (!session.contains(ctEntryAggregate)) {
-				ctEntryAggregate = (CTEntryAggregate)session.get(CTEntryAggregateImpl.class,
-						ctEntryAggregate.getPrimaryKeyObj());
+				ctEntryAggregate = (CTEntryAggregate)session.get(
+					CTEntryAggregateImpl.class,
+					ctEntryAggregate.getPrimaryKeyObj());
 			}
 
 			if (ctEntryAggregate != null) {
@@ -816,21 +855,24 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(ctEntryAggregate.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(ctEntryAggregate);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					ctEntryAggregate);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in ctEntryAggregate proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom CTEntryAggregate implementation " +
-				ctEntryAggregate.getClass());
+					ctEntryAggregate.getClass());
 		}
 
-		CTEntryAggregateModelImpl ctEntryAggregateModelImpl = (CTEntryAggregateModelImpl)ctEntryAggregate;
+		CTEntryAggregateModelImpl ctEntryAggregateModelImpl =
+			(CTEntryAggregateModelImpl)ctEntryAggregate;
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -839,7 +881,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				ctEntryAggregate.setCreateDate(now);
 			}
 			else {
-				ctEntryAggregate.setCreateDate(serviceContext.getCreateDate(now));
+				ctEntryAggregate.setCreateDate(
+					serviceContext.getCreateDate(now));
 			}
 		}
 
@@ -848,8 +891,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				ctEntryAggregate.setModifiedDate(now);
 			}
 			else {
-				ctEntryAggregate.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				ctEntryAggregate.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -864,7 +907,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				ctEntryAggregate.setNew(false);
 			}
 			else {
-				ctEntryAggregate = (CTEntryAggregate)session.merge(ctEntryAggregate);
+				ctEntryAggregate = (CTEntryAggregate)session.merge(
+					ctEntryAggregate);
 			}
 		}
 		catch (Exception e) {
@@ -879,45 +923,47 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		if (!CTEntryAggregateModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				ctEntryAggregateModelImpl.getCtCollectionId(),
+				ctEntryAggregateModelImpl.getOwnerCTEntryId()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_O, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_O, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((ctEntryAggregateModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_O.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					ctEntryAggregateModelImpl.getOriginalCtCollectionId(),
+					ctEntryAggregateModelImpl.getOriginalOwnerCTEntryId()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_O, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_O, args);
+
+				args = new Object[] {
 					ctEntryAggregateModelImpl.getCtCollectionId(),
 					ctEntryAggregateModelImpl.getOwnerCTEntryId()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_O, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_O, args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((ctEntryAggregateModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_O.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						ctEntryAggregateModelImpl.getOriginalCtCollectionId(),
-						ctEntryAggregateModelImpl.getOriginalOwnerCTEntryId()
-					};
-
 				finderCache.removeResult(_finderPathCountByC_O, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_O,
-					args);
-
-				args = new Object[] {
-						ctEntryAggregateModelImpl.getCtCollectionId(),
-						ctEntryAggregateModelImpl.getOwnerCTEntryId()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_O, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_O,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_O, args);
 			}
 		}
 
-		entityCache.putResult(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
 			CTEntryAggregateImpl.class, ctEntryAggregate.getPrimaryKey(),
 			ctEntryAggregate, false);
 
@@ -936,6 +982,7 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public CTEntryAggregate findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchEntryAggregateException {
+
 		CTEntryAggregate ctEntryAggregate = fetchByPrimaryKey(primaryKey);
 
 		if (ctEntryAggregate == null) {
@@ -943,8 +990,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchEntryAggregateException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchEntryAggregateException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return ctEntryAggregate;
@@ -960,6 +1007,7 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public CTEntryAggregate findByPrimaryKey(long ctEntryAggregateId)
 		throws NoSuchEntryAggregateException {
+
 		return findByPrimaryKey((Serializable)ctEntryAggregateId);
 	}
 
@@ -1013,8 +1061,10 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the ordered range of ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findAll(int start, int end,
+	public List<CTEntryAggregate> findAll(
+		int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -1032,29 +1082,32 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the ordered range of ct entry aggregates
 	 */
 	@Override
-	public List<CTEntryAggregate> findAll(int start, int end,
+	public List<CTEntryAggregate> findAll(
+		int start, int end,
 		OrderByComparator<CTEntryAggregate> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<CTEntryAggregate> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<CTEntryAggregate>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<CTEntryAggregate>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -1062,13 +1115,13 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_CTENTRYAGGREGATE);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -1088,16 +1141,16 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<CTEntryAggregate>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<CTEntryAggregate>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<CTEntryAggregate>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<CTEntryAggregate>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1135,8 +1188,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -1148,11 +1201,12 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -1172,7 +1226,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public long[] getCTEntryPrimaryKeys(long pk) {
-		long[] pks = ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(pk);
+		long[] pks = ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(
+			pk);
 
 		return pks.clone();
 	}
@@ -1184,7 +1239,9 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @return the ct entries associated with the ct entry aggregate
 	 */
 	@Override
-	public List<com.liferay.change.tracking.model.CTEntry> getCTEntries(long pk) {
+	public List<com.liferay.change.tracking.model.CTEntry> getCTEntries(
+		long pk) {
+
 		return getCTEntries(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
@@ -1203,6 +1260,7 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public List<com.liferay.change.tracking.model.CTEntry> getCTEntries(
 		long pk, int start, int end) {
+
 		return getCTEntries(pk, start, end, null);
 	}
 
@@ -1222,9 +1280,11 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public List<com.liferay.change.tracking.model.CTEntry> getCTEntries(
 		long pk, int start, int end,
-		OrderByComparator<com.liferay.change.tracking.model.CTEntry> orderByComparator) {
-		return ctEntryAggregateToCTEntryTableMapper.getRightBaseModels(pk,
-			start, end, orderByComparator);
+		OrderByComparator<com.liferay.change.tracking.model.CTEntry>
+			orderByComparator) {
+
+		return ctEntryAggregateToCTEntryTableMapper.getRightBaseModels(
+			pk, start, end, orderByComparator);
 	}
 
 	/**
@@ -1235,7 +1295,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public int getCTEntriesSize(long pk) {
-		long[] pks = ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(pk);
+		long[] pks = ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(
+			pk);
 
 		return pks.length;
 	}
@@ -1249,8 +1310,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public boolean containsCTEntry(long pk, long ctEntryPK) {
-		return ctEntryAggregateToCTEntryTableMapper.containsTableMapping(pk,
-			ctEntryPK);
+		return ctEntryAggregateToCTEntryTableMapper.containsTableMapping(
+			pk, ctEntryPK);
 	}
 
 	/**
@@ -1280,12 +1341,12 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 		CTEntryAggregate ctEntryAggregate = fetchByPrimaryKey(pk);
 
 		if (ctEntryAggregate == null) {
-			ctEntryAggregateToCTEntryTableMapper.addTableMapping(companyProvider.getCompanyId(),
-				pk, ctEntryPK);
+			ctEntryAggregateToCTEntryTableMapper.addTableMapping(
+				companyProvider.getCompanyId(), pk, ctEntryPK);
 		}
 		else {
-			ctEntryAggregateToCTEntryTableMapper.addTableMapping(ctEntryAggregate.getCompanyId(),
-				pk, ctEntryPK);
+			ctEntryAggregateToCTEntryTableMapper.addTableMapping(
+				ctEntryAggregate.getCompanyId(), pk, ctEntryPK);
 		}
 	}
 
@@ -1296,17 +1357,18 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @param ctEntry the ct entry
 	 */
 	@Override
-	public void addCTEntry(long pk,
-		com.liferay.change.tracking.model.CTEntry ctEntry) {
+	public void addCTEntry(
+		long pk, com.liferay.change.tracking.model.CTEntry ctEntry) {
+
 		CTEntryAggregate ctEntryAggregate = fetchByPrimaryKey(pk);
 
 		if (ctEntryAggregate == null) {
-			ctEntryAggregateToCTEntryTableMapper.addTableMapping(companyProvider.getCompanyId(),
-				pk, ctEntry.getPrimaryKey());
+			ctEntryAggregateToCTEntryTableMapper.addTableMapping(
+				companyProvider.getCompanyId(), pk, ctEntry.getPrimaryKey());
 		}
 		else {
-			ctEntryAggregateToCTEntryTableMapper.addTableMapping(ctEntryAggregate.getCompanyId(),
-				pk, ctEntry.getPrimaryKey());
+			ctEntryAggregateToCTEntryTableMapper.addTableMapping(
+				ctEntryAggregate.getCompanyId(), pk, ctEntry.getPrimaryKey());
 		}
 	}
 
@@ -1329,8 +1391,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			companyId = ctEntryAggregate.getCompanyId();
 		}
 
-		ctEntryAggregateToCTEntryTableMapper.addTableMappings(companyId, pk,
-			ctEntryPKs);
+		ctEntryAggregateToCTEntryTableMapper.addTableMappings(
+			companyId, pk, ctEntryPKs);
 	}
 
 	/**
@@ -1340,11 +1402,15 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @param ctEntries the ct entries
 	 */
 	@Override
-	public void addCTEntries(long pk,
-		List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
-		addCTEntries(pk,
-			ListUtil.toLongArray(ctEntries,
-				com.liferay.change.tracking.model.CTEntry.CT_ENTRY_ID_ACCESSOR));
+	public void addCTEntries(
+		long pk, List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
+
+		addCTEntries(
+			pk,
+			ListUtil.toLongArray(
+				ctEntries,
+				com.liferay.change.tracking.model.CTEntry.
+					CT_ENTRY_ID_ACCESSOR));
 	}
 
 	/**
@@ -1354,7 +1420,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public void clearCTEntries(long pk) {
-		ctEntryAggregateToCTEntryTableMapper.deleteLeftPrimaryKeyTableMappings(pk);
+		ctEntryAggregateToCTEntryTableMapper.deleteLeftPrimaryKeyTableMappings(
+			pk);
 	}
 
 	/**
@@ -1375,10 +1442,11 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @param ctEntry the ct entry
 	 */
 	@Override
-	public void removeCTEntry(long pk,
-		com.liferay.change.tracking.model.CTEntry ctEntry) {
-		ctEntryAggregateToCTEntryTableMapper.deleteTableMapping(pk,
-			ctEntry.getPrimaryKey());
+	public void removeCTEntry(
+		long pk, com.liferay.change.tracking.model.CTEntry ctEntry) {
+
+		ctEntryAggregateToCTEntryTableMapper.deleteTableMapping(
+			pk, ctEntry.getPrimaryKey());
 	}
 
 	/**
@@ -1389,7 +1457,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 */
 	@Override
 	public void removeCTEntries(long pk, long[] ctEntryPKs) {
-		ctEntryAggregateToCTEntryTableMapper.deleteTableMappings(pk, ctEntryPKs);
+		ctEntryAggregateToCTEntryTableMapper.deleteTableMappings(
+			pk, ctEntryPKs);
 	}
 
 	/**
@@ -1399,11 +1468,15 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @param ctEntries the ct entries
 	 */
 	@Override
-	public void removeCTEntries(long pk,
-		List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
-		removeCTEntries(pk,
-			ListUtil.toLongArray(ctEntries,
-				com.liferay.change.tracking.model.CTEntry.CT_ENTRY_ID_ACCESSOR));
+	public void removeCTEntries(
+		long pk, List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
+
+		removeCTEntries(
+			pk,
+			ListUtil.toLongArray(
+				ctEntries,
+				com.liferay.change.tracking.model.CTEntry.
+					CT_ENTRY_ID_ACCESSOR));
 	}
 
 	/**
@@ -1415,15 +1488,15 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	@Override
 	public void setCTEntries(long pk, long[] ctEntryPKs) {
 		Set<Long> newCTEntryPKsSet = SetUtil.fromArray(ctEntryPKs);
-		Set<Long> oldCTEntryPKsSet = SetUtil.fromArray(ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(
-					pk));
+		Set<Long> oldCTEntryPKsSet = SetUtil.fromArray(
+			ctEntryAggregateToCTEntryTableMapper.getRightPrimaryKeys(pk));
 
 		Set<Long> removeCTEntryPKsSet = new HashSet<Long>(oldCTEntryPKsSet);
 
 		removeCTEntryPKsSet.removeAll(newCTEntryPKsSet);
 
-		ctEntryAggregateToCTEntryTableMapper.deleteTableMappings(pk,
-			ArrayUtil.toLongArray(removeCTEntryPKsSet));
+		ctEntryAggregateToCTEntryTableMapper.deleteTableMappings(
+			pk, ArrayUtil.toLongArray(removeCTEntryPKsSet));
 
 		newCTEntryPKsSet.removeAll(oldCTEntryPKsSet);
 
@@ -1438,8 +1511,8 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 			companyId = ctEntryAggregate.getCompanyId();
 		}
 
-		ctEntryAggregateToCTEntryTableMapper.addTableMappings(companyId, pk,
-			ArrayUtil.toLongArray(newCTEntryPKsSet));
+		ctEntryAggregateToCTEntryTableMapper.addTableMappings(
+			companyId, pk, ArrayUtil.toLongArray(newCTEntryPKsSet));
 	}
 
 	/**
@@ -1449,13 +1522,15 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * @param ctEntries the ct entries to be associated with the ct entry aggregate
 	 */
 	@Override
-	public void setCTEntries(long pk,
-		List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
+	public void setCTEntries(
+		long pk, List<com.liferay.change.tracking.model.CTEntry> ctEntries) {
+
 		try {
 			long[] ctEntryPKs = new long[ctEntries.size()];
 
 			for (int i = 0; i < ctEntries.size(); i++) {
-				com.liferay.change.tracking.model.CTEntry ctEntry = ctEntries.get(i);
+				com.liferay.change.tracking.model.CTEntry ctEntry =
+					ctEntries.get(i);
 
 				ctEntryPKs[i] = ctEntry.getPrimaryKey();
 			}
@@ -1491,49 +1566,55 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 	 * Initializes the ct entry aggregate persistence.
 	 */
 	public void afterPropertiesSet() {
-		ctEntryAggregateToCTEntryTableMapper = TableMapperFactory.getTableMapper("CTEntryAggregates_CTEntries",
-				"companyId", "ctEntryAggregateId", "ctEntryId", this,
-				ctEntryPersistence);
+		ctEntryAggregateToCTEntryTableMapper =
+			TableMapperFactory.getTableMapper(
+				"CTEntryAggregates_CTEntries", "companyId",
+				"ctEntryAggregateId", "ctEntryId", this, ctEntryPersistence);
 
-		_finderPathWithPaginationFindAll = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
-				CTEntryAggregateImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
+			CTEntryAggregateImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
-				CTEntryAggregateImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
+			CTEntryAggregateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByC_O = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
-				CTEntryAggregateImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_O",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
+		_finderPathWithPaginationFindByC_O = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
+			CTEntryAggregateImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_O",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_O = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
-				CTEntryAggregateImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_O",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				CTEntryAggregateModelImpl.CTCOLLECTIONID_COLUMN_BITMASK |
-				CTEntryAggregateModelImpl.OWNERCTENTRYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_O = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED,
+			CTEntryAggregateImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_O",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			CTEntryAggregateModelImpl.CTCOLLECTIONID_COLUMN_BITMASK |
+			CTEntryAggregateModelImpl.OWNERCTENTRYID_COLUMN_BITMASK);
 
-		_finderPathCountByC_O = new FinderPath(CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
-				CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_O",
-				new String[] { Long.class.getName(), Long.class.getName() });
+		_finderPathCountByC_O = new FinderPath(
+			CTEntryAggregateModelImpl.ENTITY_CACHE_ENABLED,
+			CTEntryAggregateModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_O",
+			new String[] {Long.class.getName(), Long.class.getName()});
 	}
 
 	public void destroy() {
@@ -1547,19 +1628,41 @@ public class CTEntryAggregatePersistenceImpl extends BasePersistenceImpl<CTEntry
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
+
 	@BeanReference(type = CTEntryPersistence.class)
 	protected CTEntryPersistence ctEntryPersistence;
-	protected TableMapper<CTEntryAggregate, com.liferay.change.tracking.model.CTEntry> ctEntryAggregateToCTEntryTableMapper;
-	private static final String _SQL_SELECT_CTENTRYAGGREGATE = "SELECT ctEntryAggregate FROM CTEntryAggregate ctEntryAggregate";
-	private static final String _SQL_SELECT_CTENTRYAGGREGATE_WHERE = "SELECT ctEntryAggregate FROM CTEntryAggregate ctEntryAggregate WHERE ";
-	private static final String _SQL_COUNT_CTENTRYAGGREGATE = "SELECT COUNT(ctEntryAggregate) FROM CTEntryAggregate ctEntryAggregate";
-	private static final String _SQL_COUNT_CTENTRYAGGREGATE_WHERE = "SELECT COUNT(ctEntryAggregate) FROM CTEntryAggregate ctEntryAggregate WHERE ";
+
+	protected TableMapper
+		<CTEntryAggregate, com.liferay.change.tracking.model.CTEntry>
+			ctEntryAggregateToCTEntryTableMapper;
+
+	private static final String _SQL_SELECT_CTENTRYAGGREGATE =
+		"SELECT ctEntryAggregate FROM CTEntryAggregate ctEntryAggregate";
+
+	private static final String _SQL_SELECT_CTENTRYAGGREGATE_WHERE =
+		"SELECT ctEntryAggregate FROM CTEntryAggregate ctEntryAggregate WHERE ";
+
+	private static final String _SQL_COUNT_CTENTRYAGGREGATE =
+		"SELECT COUNT(ctEntryAggregate) FROM CTEntryAggregate ctEntryAggregate";
+
+	private static final String _SQL_COUNT_CTENTRYAGGREGATE_WHERE =
+		"SELECT COUNT(ctEntryAggregate) FROM CTEntryAggregate ctEntryAggregate WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "ctEntryAggregate.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No CTEntryAggregate exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No CTEntryAggregate exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(CTEntryAggregatePersistenceImpl.class);
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No CTEntryAggregate exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No CTEntryAggregate exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CTEntryAggregatePersistenceImpl.class);
+
 }

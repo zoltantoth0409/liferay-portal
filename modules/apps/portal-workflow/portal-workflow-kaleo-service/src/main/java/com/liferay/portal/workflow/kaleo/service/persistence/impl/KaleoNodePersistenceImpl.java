@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -63,18 +62,23 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
-	implements KaleoNodePersistence {
+public class KaleoNodePersistenceImpl
+	extends BasePersistenceImpl<KaleoNode> implements KaleoNodePersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>KaleoNodeUtil</code> to access the kaleo node persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = KaleoNodeImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		KaleoNodeImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -90,8 +94,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public List<KaleoNode> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -125,8 +129,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByCompanyId(long companyId, int start, int end,
+	public List<KaleoNode> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -145,29 +151,34 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByCompanyId(long companyId, int start, int end,
+	public List<KaleoNode> findByCompanyId(
+		long companyId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<KaleoNode> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoNode>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoNode>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNode kaleoNode : list) {
@@ -184,8 +195,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -196,11 +207,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(KaleoNodeModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -218,16 +228,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -256,11 +266,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode findByCompanyId_First(long companyId,
-		OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode findByCompanyId_First(
+			long companyId, OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		KaleoNode kaleoNode = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -286,10 +297,11 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode fetchByCompanyId_First(long companyId,
-		OrderByComparator<KaleoNode> orderByComparator) {
-		List<KaleoNode> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public KaleoNode fetchByCompanyId_First(
+		long companyId, OrderByComparator<KaleoNode> orderByComparator) {
+
+		List<KaleoNode> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -307,10 +319,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode findByCompanyId_Last(long companyId,
-		OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode findByCompanyId_Last(
+			long companyId, OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByCompanyId_Last(companyId, orderByComparator);
+
+		KaleoNode kaleoNode = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -336,16 +350,17 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode fetchByCompanyId_Last(long companyId,
-		OrderByComparator<KaleoNode> orderByComparator) {
+	public KaleoNode fetchByCompanyId_Last(
+		long companyId, OrderByComparator<KaleoNode> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<KaleoNode> list = findByCompanyId(companyId, count - 1, count,
-				orderByComparator);
+		List<KaleoNode> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -364,9 +379,11 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	 */
 	@Override
-	public KaleoNode[] findByCompanyId_PrevAndNext(long kaleoNodeId,
-		long companyId, OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode[] findByCompanyId_PrevAndNext(
+			long kaleoNodeId, long companyId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
+
 		KaleoNode kaleoNode = findByPrimaryKey(kaleoNodeId);
 
 		Session session = null;
@@ -376,13 +393,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 			KaleoNode[] array = new KaleoNodeImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, kaleoNode,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, kaleoNode, companyId, orderByComparator, true);
 
 			array[1] = kaleoNode;
 
-			array[2] = getByCompanyId_PrevAndNext(session, kaleoNode,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, kaleoNode, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -394,14 +411,15 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
-	protected KaleoNode getByCompanyId_PrevAndNext(Session session,
-		KaleoNode kaleoNode, long companyId,
+	protected KaleoNode getByCompanyId_PrevAndNext(
+		Session session, KaleoNode kaleoNode, long companyId,
 		OrderByComparator<KaleoNode> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -413,7 +431,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -483,8 +502,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					kaleoNode)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(kaleoNode)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -506,8 +526,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (KaleoNode kaleoNode : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (KaleoNode kaleoNode :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(kaleoNode);
 		}
 	}
@@ -522,7 +544,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -563,9 +585,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoNode.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"kaleoNode.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByKaleoDefinitionVersionId;
-	private FinderPath _finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
+	private FinderPath
+		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
 	private FinderPath _finderPathCountByKaleoDefinitionVersionId;
 
 	/**
@@ -577,8 +602,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public List<KaleoNode> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -596,8 +623,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public List<KaleoNode> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId, start,
-			end, null);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, start, end, null);
 	}
 
 	/**
@@ -617,8 +645,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public List<KaleoNode> findByKaleoDefinitionVersionId(
 		long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator) {
-		return findByKaleoDefinitionVersionId(kaleoDefinitionVersionId, start,
-			end, orderByComparator, true);
+
+		return findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -640,34 +669,38 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
-			finderArgs = new Object[] { kaleoDefinitionVersionId };
+			finderPath =
+				_finderPathWithoutPaginationFindByKaleoDefinitionVersionId;
+			finderArgs = new Object[] {kaleoDefinitionVersionId};
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByKaleoDefinitionVersionId;
+			finderPath =
+				_finderPathWithPaginationFindByKaleoDefinitionVersionId;
 			finderArgs = new Object[] {
-					kaleoDefinitionVersionId,
-					
-					start, end, orderByComparator
-				};
+				kaleoDefinitionVersionId, start, end, orderByComparator
+			};
 		}
 
 		List<KaleoNode> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoNode>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoNode>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNode kaleoNode : list) {
-					if ((kaleoDefinitionVersionId != kaleoNode.getKaleoDefinitionVersionId())) {
+					if ((kaleoDefinitionVersionId !=
+							kaleoNode.getKaleoDefinitionVersionId())) {
+
 						list = null;
 
 						break;
@@ -680,8 +713,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -689,14 +722,14 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 			query.append(_SQL_SELECT_KALEONODE_WHERE);
 
-			query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+			query.append(
+				_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(KaleoNodeModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -714,16 +747,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				qPos.add(kaleoDefinitionVersionId);
 
 				if (!pagination) {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -753,11 +786,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public KaleoNode findByKaleoDefinitionVersionId_First(
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+			long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByKaleoDefinitionVersionId_First(kaleoDefinitionVersionId,
-				orderByComparator);
+
+		KaleoNode kaleoNode = fetchByKaleoDefinitionVersionId_First(
+			kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -786,8 +820,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public KaleoNode fetchByKaleoDefinitionVersionId_First(
 		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator) {
-		List<KaleoNode> list = findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-				0, 1, orderByComparator);
+
+		List<KaleoNode> list = findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -806,11 +841,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public KaleoNode findByKaleoDefinitionVersionId_Last(
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+			long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByKaleoDefinitionVersionId_Last(kaleoDefinitionVersionId,
-				orderByComparator);
+
+		KaleoNode kaleoNode = fetchByKaleoDefinitionVersionId_Last(
+			kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -839,14 +875,15 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public KaleoNode fetchByKaleoDefinitionVersionId_Last(
 		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator) {
+
 		int count = countByKaleoDefinitionVersionId(kaleoDefinitionVersionId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<KaleoNode> list = findByKaleoDefinitionVersionId(kaleoDefinitionVersionId,
-				count - 1, count, orderByComparator);
+		List<KaleoNode> list = findByKaleoDefinitionVersionId(
+			kaleoDefinitionVersionId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -866,9 +903,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public KaleoNode[] findByKaleoDefinitionVersionId_PrevAndNext(
-		long kaleoNodeId, long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+			long kaleoNodeId, long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
+
 		KaleoNode kaleoNode = findByPrimaryKey(kaleoNodeId);
 
 		Session session = null;
@@ -878,14 +916,15 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 			KaleoNode[] array = new KaleoNodeImpl[3];
 
-			array[0] = getByKaleoDefinitionVersionId_PrevAndNext(session,
-					kaleoNode, kaleoDefinitionVersionId, orderByComparator, true);
+			array[0] = getByKaleoDefinitionVersionId_PrevAndNext(
+				session, kaleoNode, kaleoDefinitionVersionId, orderByComparator,
+				true);
 
 			array[1] = kaleoNode;
 
-			array[2] = getByKaleoDefinitionVersionId_PrevAndNext(session,
-					kaleoNode, kaleoDefinitionVersionId, orderByComparator,
-					false);
+			array[2] = getByKaleoDefinitionVersionId_PrevAndNext(
+				session, kaleoNode, kaleoDefinitionVersionId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -900,11 +939,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	protected KaleoNode getByKaleoDefinitionVersionId_PrevAndNext(
 		Session session, KaleoNode kaleoNode, long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -913,10 +953,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 		query.append(_SQL_SELECT_KALEONODE_WHERE);
 
-		query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+		query.append(
+			_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -986,8 +1028,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		qPos.add(kaleoDefinitionVersionId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					kaleoNode)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(kaleoNode)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1008,10 +1051,14 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @param kaleoDefinitionVersionId the kaleo definition version ID
 	 */
 	@Override
-	public void removeByKaleoDefinitionVersionId(long kaleoDefinitionVersionId) {
-		for (KaleoNode kaleoNode : findByKaleoDefinitionVersionId(
-				kaleoDefinitionVersionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+	public void removeByKaleoDefinitionVersionId(
+		long kaleoDefinitionVersionId) {
+
+		for (KaleoNode kaleoNode :
+				findByKaleoDefinitionVersionId(
+					kaleoDefinitionVersionId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(kaleoNode);
 		}
 	}
@@ -1026,7 +1073,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public int countByKaleoDefinitionVersionId(long kaleoDefinitionVersionId) {
 		FinderPath finderPath = _finderPathCountByKaleoDefinitionVersionId;
 
-		Object[] finderArgs = new Object[] { kaleoDefinitionVersionId };
+		Object[] finderArgs = new Object[] {kaleoDefinitionVersionId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1035,7 +1082,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 			query.append(_SQL_COUNT_KALEONODE_WHERE);
 
-			query.append(_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
+			query.append(
+				_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2);
 
 			String sql = query.toString();
 
@@ -1067,8 +1115,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2 =
-		"kaleoNode.kaleoDefinitionVersionId = ?";
+	private static final String
+		_FINDER_COLUMN_KALEODEFINITIONVERSIONID_KALEODEFINITIONVERSIONID_2 =
+			"kaleoNode.kaleoDefinitionVersionId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_KDVI;
 	private FinderPath _finderPathWithoutPaginationFindByC_KDVI;
 	private FinderPath _finderPathCountByC_KDVI;
@@ -1081,10 +1131,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByC_KDVI(long companyId,
-		long kaleoDefinitionVersionId) {
-		return findByC_KDVI(companyId, kaleoDefinitionVersionId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<KaleoNode> findByC_KDVI(
+		long companyId, long kaleoDefinitionVersionId) {
+
+		return findByC_KDVI(
+			companyId, kaleoDefinitionVersionId, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1101,10 +1153,11 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the range of matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByC_KDVI(long companyId,
-		long kaleoDefinitionVersionId, int start, int end) {
-		return findByC_KDVI(companyId, kaleoDefinitionVersionId, start, end,
-			null);
+	public List<KaleoNode> findByC_KDVI(
+		long companyId, long kaleoDefinitionVersionId, int start, int end) {
+
+		return findByC_KDVI(
+			companyId, kaleoDefinitionVersionId, start, end, null);
 	}
 
 	/**
@@ -1122,11 +1175,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByC_KDVI(long companyId,
-		long kaleoDefinitionVersionId, int start, int end,
+	public List<KaleoNode> findByC_KDVI(
+		long companyId, long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator) {
-		return findByC_KDVI(companyId, kaleoDefinitionVersionId, start, end,
-			orderByComparator, true);
+
+		return findByC_KDVI(
+			companyId, kaleoDefinitionVersionId, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -1145,39 +1200,42 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of matching kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findByC_KDVI(long companyId,
-		long kaleoDefinitionVersionId, int start, int end,
+	public List<KaleoNode> findByC_KDVI(
+		long companyId, long kaleoDefinitionVersionId, int start, int end,
 		OrderByComparator<KaleoNode> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_KDVI;
-			finderArgs = new Object[] { companyId, kaleoDefinitionVersionId };
+			finderArgs = new Object[] {companyId, kaleoDefinitionVersionId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_KDVI;
 			finderArgs = new Object[] {
-					companyId, kaleoDefinitionVersionId,
-					
-					start, end, orderByComparator
-				};
+				companyId, kaleoDefinitionVersionId, start, end,
+				orderByComparator
+			};
 		}
 
 		List<KaleoNode> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoNode>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoNode>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KaleoNode kaleoNode : list) {
 					if ((companyId != kaleoNode.getCompanyId()) ||
-							(kaleoDefinitionVersionId != kaleoNode.getKaleoDefinitionVersionId())) {
+						(kaleoDefinitionVersionId !=
+							kaleoNode.getKaleoDefinitionVersionId())) {
+
 						list = null;
 
 						break;
@@ -1190,8 +1248,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1204,11 +1262,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			query.append(_FINDER_COLUMN_C_KDVI_KALEODEFINITIONVERSIONID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(KaleoNodeModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1228,16 +1285,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				qPos.add(kaleoDefinitionVersionId);
 
 				if (!pagination) {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1267,12 +1324,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode findByC_KDVI_First(long companyId,
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode findByC_KDVI_First(
+			long companyId, long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByC_KDVI_First(companyId,
-				kaleoDefinitionVersionId, orderByComparator);
+
+		KaleoNode kaleoNode = fetchByC_KDVI_First(
+			companyId, kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -1302,11 +1360,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the first matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode fetchByC_KDVI_First(long companyId,
-		long kaleoDefinitionVersionId,
+	public KaleoNode fetchByC_KDVI_First(
+		long companyId, long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator) {
-		List<KaleoNode> list = findByC_KDVI(companyId,
-				kaleoDefinitionVersionId, 0, 1, orderByComparator);
+
+		List<KaleoNode> list = findByC_KDVI(
+			companyId, kaleoDefinitionVersionId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1325,12 +1384,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode findByC_KDVI_Last(long companyId,
-		long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode findByC_KDVI_Last(
+			long companyId, long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
-		KaleoNode kaleoNode = fetchByC_KDVI_Last(companyId,
-				kaleoDefinitionVersionId, orderByComparator);
+
+		KaleoNode kaleoNode = fetchByC_KDVI_Last(
+			companyId, kaleoDefinitionVersionId, orderByComparator);
 
 		if (kaleoNode != null) {
 			return kaleoNode;
@@ -1360,17 +1420,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the last matching kaleo node, or <code>null</code> if a matching kaleo node could not be found
 	 */
 	@Override
-	public KaleoNode fetchByC_KDVI_Last(long companyId,
-		long kaleoDefinitionVersionId,
+	public KaleoNode fetchByC_KDVI_Last(
+		long companyId, long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator) {
+
 		int count = countByC_KDVI(companyId, kaleoDefinitionVersionId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<KaleoNode> list = findByC_KDVI(companyId,
-				kaleoDefinitionVersionId, count - 1, count, orderByComparator);
+		List<KaleoNode> list = findByC_KDVI(
+			companyId, kaleoDefinitionVersionId, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1390,10 +1452,11 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	 */
 	@Override
-	public KaleoNode[] findByC_KDVI_PrevAndNext(long kaleoNodeId,
-		long companyId, long kaleoDefinitionVersionId,
-		OrderByComparator<KaleoNode> orderByComparator)
+	public KaleoNode[] findByC_KDVI_PrevAndNext(
+			long kaleoNodeId, long companyId, long kaleoDefinitionVersionId,
+			OrderByComparator<KaleoNode> orderByComparator)
 		throws NoSuchNodeException {
+
 		KaleoNode kaleoNode = findByPrimaryKey(kaleoNodeId);
 
 		Session session = null;
@@ -1403,13 +1466,15 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 			KaleoNode[] array = new KaleoNodeImpl[3];
 
-			array[0] = getByC_KDVI_PrevAndNext(session, kaleoNode, companyId,
-					kaleoDefinitionVersionId, orderByComparator, true);
+			array[0] = getByC_KDVI_PrevAndNext(
+				session, kaleoNode, companyId, kaleoDefinitionVersionId,
+				orderByComparator, true);
 
 			array[1] = kaleoNode;
 
-			array[2] = getByC_KDVI_PrevAndNext(session, kaleoNode, companyId,
-					kaleoDefinitionVersionId, orderByComparator, false);
+			array[2] = getByC_KDVI_PrevAndNext(
+				session, kaleoNode, companyId, kaleoDefinitionVersionId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -1421,14 +1486,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
-	protected KaleoNode getByC_KDVI_PrevAndNext(Session session,
-		KaleoNode kaleoNode, long companyId, long kaleoDefinitionVersionId,
+	protected KaleoNode getByC_KDVI_PrevAndNext(
+		Session session, KaleoNode kaleoNode, long companyId,
+		long kaleoDefinitionVersionId,
 		OrderByComparator<KaleoNode> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1442,7 +1509,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		query.append(_FINDER_COLUMN_C_KDVI_KALEODEFINITIONVERSIONID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1514,8 +1582,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		qPos.add(kaleoDefinitionVersionId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					kaleoNode)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(kaleoNode)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1538,9 +1607,11 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public void removeByC_KDVI(long companyId, long kaleoDefinitionVersionId) {
-		for (KaleoNode kaleoNode : findByC_KDVI(companyId,
-				kaleoDefinitionVersionId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+		for (KaleoNode kaleoNode :
+				findByC_KDVI(
+					companyId, kaleoDefinitionVersionId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(kaleoNode);
 		}
 	}
@@ -1556,7 +1627,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public int countByC_KDVI(long companyId, long kaleoDefinitionVersionId) {
 		FinderPath finderPath = _finderPathCountByC_KDVI;
 
-		Object[] finderArgs = new Object[] { companyId, kaleoDefinitionVersionId };
+		Object[] finderArgs = new Object[] {
+			companyId, kaleoDefinitionVersionId
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1601,9 +1674,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_KDVI_COMPANYID_2 = "kaleoNode.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_KDVI_KALEODEFINITIONVERSIONID_2 =
-		"kaleoNode.kaleoDefinitionVersionId = ?";
+	private static final String _FINDER_COLUMN_C_KDVI_COMPANYID_2 =
+		"kaleoNode.companyId = ? AND ";
+
+	private static final String
+		_FINDER_COLUMN_C_KDVI_KALEODEFINITIONVERSIONID_2 =
+			"kaleoNode.kaleoDefinitionVersionId = ?";
 
 	public KaleoNodePersistenceImpl() {
 		setModelClass(KaleoNode.class);
@@ -1620,8 +1696,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public void cacheResult(KaleoNode kaleoNode) {
-		entityCache.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode);
+		entityCache.putResult(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED, KaleoNodeImpl.class,
+			kaleoNode.getPrimaryKey(), kaleoNode);
 
 		kaleoNode.resetOriginalValues();
 	}
@@ -1634,8 +1711,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public void cacheResult(List<KaleoNode> kaleoNodes) {
 		for (KaleoNode kaleoNode : kaleoNodes) {
-			if (entityCache.getResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-						KaleoNodeImpl.class, kaleoNode.getPrimaryKey()) == null) {
+			if (entityCache.getResult(
+					KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+					KaleoNodeImpl.class, kaleoNode.getPrimaryKey()) == null) {
+
 				cacheResult(kaleoNode);
 			}
 			else {
@@ -1669,8 +1748,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public void clearCache(KaleoNode kaleoNode) {
-		entityCache.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+		entityCache.removeResult(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED, KaleoNodeImpl.class,
+			kaleoNode.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
@@ -1682,8 +1762,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (KaleoNode kaleoNode : kaleoNodes) {
-			entityCache.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
+			entityCache.removeResult(
+				KaleoNodeModelImpl.ENTITY_CACHE_ENABLED, KaleoNodeImpl.class,
+				kaleoNode.getPrimaryKey());
 		}
 	}
 
@@ -1725,22 +1806,24 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @throws NoSuchNodeException if a kaleo node with the primary key could not be found
 	 */
 	@Override
-	public KaleoNode remove(Serializable primaryKey) throws NoSuchNodeException {
+	public KaleoNode remove(Serializable primaryKey)
+		throws NoSuchNodeException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			KaleoNode kaleoNode = (KaleoNode)session.get(KaleoNodeImpl.class,
-					primaryKey);
+			KaleoNode kaleoNode = (KaleoNode)session.get(
+				KaleoNodeImpl.class, primaryKey);
 
 			if (kaleoNode == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchNodeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchNodeException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(kaleoNode);
@@ -1764,8 +1847,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			session = openSession();
 
 			if (!session.contains(kaleoNode)) {
-				kaleoNode = (KaleoNode)session.get(KaleoNodeImpl.class,
-						kaleoNode.getPrimaryKeyObj());
+				kaleoNode = (KaleoNode)session.get(
+					KaleoNodeImpl.class, kaleoNode.getPrimaryKeyObj());
 			}
 
 			if (kaleoNode != null) {
@@ -1798,17 +1881,18 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in kaleoNode proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom KaleoNode implementation " +
-				kaleoNode.getClass());
+					kaleoNode.getClass());
 		}
 
 		KaleoNodeModelImpl kaleoNodeModelImpl = (KaleoNodeModelImpl)kaleoNode;
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -1856,98 +1940,108 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		if (!KaleoNodeModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
-			Object[] args = new Object[] { kaleoNodeModelImpl.getCompanyId() };
+		else if (isNew) {
+			Object[] args = new Object[] {kaleoNodeModelImpl.getCompanyId()};
 
 			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
 
-			args = new Object[] { kaleoNodeModelImpl.getKaleoDefinitionVersionId() };
+			args = new Object[] {
+				kaleoNodeModelImpl.getKaleoDefinitionVersionId()
+			};
 
-			finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-				args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+			finderCache.removeResult(
+				_finderPathCountByKaleoDefinitionVersionId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
 				args);
 
 			args = new Object[] {
+				kaleoNodeModelImpl.getCompanyId(),
+				kaleoNodeModelImpl.getKaleoDefinitionVersionId()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_KDVI, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_KDVI, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((kaleoNodeModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					kaleoNodeModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
+
+				args = new Object[] {kaleoNodeModelImpl.getCompanyId()};
+
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
+			}
+
+			if ((kaleoNodeModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByKaleoDefinitionVersionId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					kaleoNodeModelImpl.getOriginalKaleoDefinitionVersionId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByKaleoDefinitionVersionId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+					args);
+
+				args = new Object[] {
+					kaleoNodeModelImpl.getKaleoDefinitionVersionId()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByKaleoDefinitionVersionId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
+					args);
+			}
+
+			if ((kaleoNodeModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_KDVI.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					kaleoNodeModelImpl.getOriginalCompanyId(),
+					kaleoNodeModelImpl.getOriginalKaleoDefinitionVersionId()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_KDVI, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_KDVI, args);
+
+				args = new Object[] {
 					kaleoNodeModelImpl.getCompanyId(),
 					kaleoNodeModelImpl.getKaleoDefinitionVersionId()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_KDVI, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_KDVI,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((kaleoNodeModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoNodeModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-
-				args = new Object[] { kaleoNodeModelImpl.getCompanyId() };
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-			}
-
-			if ((kaleoNodeModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByKaleoDefinitionVersionId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoNodeModelImpl.getOriginalKaleoDefinitionVersionId()
-					};
-
-				finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
-					args);
-
-				args = new Object[] {
-						kaleoNodeModelImpl.getKaleoDefinitionVersionId()
-					};
-
-				finderCache.removeResult(_finderPathCountByKaleoDefinitionVersionId,
-					args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByKaleoDefinitionVersionId,
-					args);
-			}
-
-			if ((kaleoNodeModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_KDVI.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						kaleoNodeModelImpl.getOriginalCompanyId(),
-						kaleoNodeModelImpl.getOriginalKaleoDefinitionVersionId()
-					};
-
 				finderCache.removeResult(_finderPathCountByC_KDVI, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_KDVI,
-					args);
-
-				args = new Object[] {
-						kaleoNodeModelImpl.getCompanyId(),
-						kaleoNodeModelImpl.getKaleoDefinitionVersionId()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_KDVI, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_KDVI,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_KDVI, args);
 			}
 		}
 
-		entityCache.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode, false);
+		entityCache.putResult(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED, KaleoNodeImpl.class,
+			kaleoNode.getPrimaryKey(), kaleoNode, false);
 
 		kaleoNode.resetOriginalValues();
 
@@ -1964,6 +2058,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public KaleoNode findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchNodeException {
+
 		KaleoNode kaleoNode = fetchByPrimaryKey(primaryKey);
 
 		if (kaleoNode == null) {
@@ -1971,8 +2066,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchNodeException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchNodeException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return kaleoNode;
@@ -1988,6 +2083,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	@Override
 	public KaleoNode findByPrimaryKey(long kaleoNodeId)
 		throws NoSuchNodeException {
+
 		return findByPrimaryKey((Serializable)kaleoNodeId);
 	}
 
@@ -2041,8 +2137,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findAll(int start, int end,
-		OrderByComparator<KaleoNode> orderByComparator) {
+	public List<KaleoNode> findAll(
+		int start, int end, OrderByComparator<KaleoNode> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -2060,29 +2157,31 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * @return the ordered range of kaleo nodes
 	 */
 	@Override
-	public List<KaleoNode> findAll(int start, int end,
-		OrderByComparator<KaleoNode> orderByComparator,
+	public List<KaleoNode> findAll(
+		int start, int end, OrderByComparator<KaleoNode> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<KaleoNode> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<KaleoNode>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<KaleoNode>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -2090,13 +2189,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_KALEONODE);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -2116,16 +2215,16 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end, false);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<KaleoNode>)QueryUtil.list(q, getDialect(),
-							start, end);
+					list = (List<KaleoNode>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2163,8 +2262,8 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -2176,11 +2275,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -2221,86 +2321,95 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	 * Initializes the kaleo node persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+			new String[0]);
 
-		_finderPathCountAll = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				KaleoNodeModelImpl.COMPANYID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+			new String[] {Long.class.getName()},
+			KaleoNodeModelImpl.COMPANYID_COLUMN_BITMASK);
 
-		_finderPathCountByCompanyId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByCompanyId = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByKaleoDefinitionVersionId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithPaginationFindByKaleoDefinitionVersionId =
+			new FinderPath(
+				KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
 				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 				"findByKaleoDefinitionVersionId",
 				new String[] {
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
+					Long.class.getName(), Integer.class.getName(),
+					Integer.class.getName(), OrderByComparator.class.getName()
 				});
 
-		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithoutPaginationFindByKaleoDefinitionVersionId =
+			new FinderPath(
+				KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
 				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 				"findByKaleoDefinitionVersionId",
-				new String[] { Long.class.getName() },
+				new String[] {Long.class.getName()},
 				KaleoNodeModelImpl.KALEODEFINITIONVERSIONID_COLUMN_BITMASK);
 
-		_finderPathCountByKaleoDefinitionVersionId = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByKaleoDefinitionVersionId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByKaleoDefinitionVersionId = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"countByKaleoDefinitionVersionId",
+			new String[] {Long.class.getName()});
 
-		_finderPathWithPaginationFindByC_KDVI = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_KDVI",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
+		_finderPathWithPaginationFindByC_KDVI = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_KDVI",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_KDVI = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_KDVI",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				KaleoNodeModelImpl.COMPANYID_COLUMN_BITMASK |
-				KaleoNodeModelImpl.KALEODEFINITIONVERSIONID_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_KDVI = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, KaleoNodeImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_KDVI",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			KaleoNodeModelImpl.COMPANYID_COLUMN_BITMASK |
+			KaleoNodeModelImpl.KALEODEFINITIONVERSIONID_COLUMN_BITMASK);
 
-		_finderPathCountByC_KDVI = new FinderPath(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-				KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_KDVI",
-				new String[] { Long.class.getName(), Long.class.getName() });
+		_finderPathCountByC_KDVI = new FinderPath(
+			KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
+			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_KDVI",
+			new String[] {Long.class.getName(), Long.class.getName()});
 	}
 
 	public void destroy() {
@@ -2312,19 +2421,37 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
-	private static final String _SQL_SELECT_KALEONODE = "SELECT kaleoNode FROM KaleoNode kaleoNode";
-	private static final String _SQL_SELECT_KALEONODE_WHERE = "SELECT kaleoNode FROM KaleoNode kaleoNode WHERE ";
-	private static final String _SQL_COUNT_KALEONODE = "SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode";
-	private static final String _SQL_COUNT_KALEONODE_WHERE = "SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode WHERE ";
+
+	private static final String _SQL_SELECT_KALEONODE =
+		"SELECT kaleoNode FROM KaleoNode kaleoNode";
+
+	private static final String _SQL_SELECT_KALEONODE_WHERE =
+		"SELECT kaleoNode FROM KaleoNode kaleoNode WHERE ";
+
+	private static final String _SQL_COUNT_KALEONODE =
+		"SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode";
+
+	private static final String _SQL_COUNT_KALEONODE_WHERE =
+		"SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode WHERE ";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoNode.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoNode exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoNode exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(KaleoNodePersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"type", "initial"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No KaleoNode exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No KaleoNode exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		KaleoNodePersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"type", "initial"});
+
 }

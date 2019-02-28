@@ -35,8 +35,10 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public interface AssetListEntryAssetEntryRelModel extends BaseModel<AssetListEntryAssetEntryRel>,
-	ShardedModel, StagedGroupedModel {
+public interface AssetListEntryAssetEntryRelModel
+	extends BaseModel<AssetListEntryAssetEntryRel>, ShardedModel,
+			StagedGroupedModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -259,4 +261,5 @@ public interface AssetListEntryAssetEntryRelModel extends BaseModel<AssetListEnt
 	 */
 	@Override
 	public void setLastPublishDate(Date lastPublishDate);
+
 }

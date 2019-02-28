@@ -16,7 +16,6 @@ package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.persistence.CalendarPersistence;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -29,6 +28,7 @@ import java.util.Set;
  * @generated
  */
 public class CalendarFinderBaseImpl extends BasePersistenceImpl<Calendar> {
+
 	public CalendarFinderBaseImpl() {
 		setModelClass(Calendar.class);
 	}
@@ -52,11 +52,16 @@ public class CalendarFinderBaseImpl extends BasePersistenceImpl<Calendar> {
 	 *
 	 * @param calendarPersistence the calendar persistence
 	 */
-	public void setCalendarPersistence(CalendarPersistence calendarPersistence) {
+	public void setCalendarPersistence(
+		CalendarPersistence calendarPersistence) {
+
 		this.calendarPersistence = calendarPersistence;
 	}
 
 	@BeanReference(type = CalendarPersistence.class)
 	protected CalendarPersistence calendarPersistence;
-	private static final Log _log = LogFactoryUtil.getLog(CalendarFinderBaseImpl.class);
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		CalendarFinderBaseImpl.class);
+
 }

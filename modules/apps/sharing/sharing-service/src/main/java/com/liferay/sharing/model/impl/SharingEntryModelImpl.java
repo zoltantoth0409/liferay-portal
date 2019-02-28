@@ -18,11 +18,8 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
-
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSON;
@@ -36,7 +33,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.Validator;
-
 import com.liferay.sharing.model.SharingEntry;
 import com.liferay.sharing.model.SharingEntryModel;
 import com.liferay.sharing.model.SharingEntrySoap;
@@ -68,30 +64,28 @@ import java.util.function.Function;
  */
 @JSON(strict = true)
 @ProviderType
-public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
-	implements SharingEntryModel {
+public class SharingEntryModelImpl
+	extends BaseModelImpl<SharingEntry> implements SharingEntryModel {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. All methods that expect a sharing entry model instance should use the <code>SharingEntry</code> interface instead.
 	 */
 	public static final String TABLE_NAME = "SharingEntry";
+
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
-			{ "sharingEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "fromUserId", Types.BIGINT },
-			{ "toUserId", Types.BIGINT },
-			{ "classNameId", Types.BIGINT },
-			{ "classPK", Types.BIGINT },
-			{ "shareable", Types.BOOLEAN },
-			{ "actionIds", Types.BIGINT },
-			{ "expirationDate", Types.TIMESTAMP }
-		};
-	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
+		{"uuid_", Types.VARCHAR}, {"sharingEntryId", Types.BIGINT},
+		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
+		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
+		{"fromUserId", Types.BIGINT}, {"toUserId", Types.BIGINT},
+		{"classNameId", Types.BIGINT}, {"classPK", Types.BIGINT},
+		{"shareable", Types.BOOLEAN}, {"actionIds", Types.BIGINT},
+		{"expirationDate", Types.TIMESTAMP}
+	};
+
+	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
+		new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
@@ -109,30 +103,54 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 		TABLE_COLUMNS_MAP.put("expirationDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SharingEntry (uuid_ VARCHAR(75) null,sharingEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,fromUserId LONG,toUserId LONG,classNameId LONG,classPK LONG,shareable BOOLEAN,actionIds LONG,expirationDate DATE null)";
+	public static final String TABLE_SQL_CREATE =
+		"create table SharingEntry (uuid_ VARCHAR(75) null,sharingEntryId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,fromUserId LONG,toUserId LONG,classNameId LONG,classPK LONG,shareable BOOLEAN,actionIds LONG,expirationDate DATE null)";
+
 	public static final String TABLE_SQL_DROP = "drop table SharingEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY sharingEntry.sharingEntryId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY SharingEntry.sharingEntryId ASC";
+
+	public static final String ORDER_BY_JPQL =
+		" ORDER BY sharingEntry.sharingEntryId ASC";
+
+	public static final String ORDER_BY_SQL =
+		" ORDER BY SharingEntry.sharingEntryId ASC";
+
 	public static final String DATA_SOURCE = "liferayDataSource";
+
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
+
 	public static final String TX_MANAGER = "liferayTransactionManager";
-	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.sharing.service.util.ServiceProps.get(
-				"value.object.entity.cache.enabled.com.liferay.sharing.model.SharingEntry"),
-			true);
-	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.sharing.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.com.liferay.sharing.model.SharingEntry"),
-			true);
-	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(com.liferay.sharing.service.util.ServiceProps.get(
-				"value.object.column.bitmask.enabled.com.liferay.sharing.model.SharingEntry"),
-			true);
+
+	public static final boolean ENTITY_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.sharing.service.util.ServiceProps.get(
+			"value.object.entity.cache.enabled.com.liferay.sharing.model.SharingEntry"),
+		true);
+
+	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(
+		com.liferay.sharing.service.util.ServiceProps.get(
+			"value.object.finder.cache.enabled.com.liferay.sharing.model.SharingEntry"),
+		true);
+
+	public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(
+		com.liferay.sharing.service.util.ServiceProps.get(
+			"value.object.column.bitmask.enabled.com.liferay.sharing.model.SharingEntry"),
+		true);
+
 	public static final long CLASSNAMEID_COLUMN_BITMASK = 1L;
+
 	public static final long CLASSPK_COLUMN_BITMASK = 2L;
+
 	public static final long COMPANYID_COLUMN_BITMASK = 4L;
+
 	public static final long EXPIRATIONDATE_COLUMN_BITMASK = 8L;
+
 	public static final long FROMUSERID_COLUMN_BITMASK = 16L;
+
 	public static final long GROUPID_COLUMN_BITMASK = 32L;
+
 	public static final long TOUSERID_COLUMN_BITMASK = 64L;
+
 	public static final long UUID_COLUMN_BITMASK = 128L;
+
 	public static final long SHARINGENTRYID_COLUMN_BITMASK = 256L;
 
 	/**
@@ -176,7 +194,8 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 			return null;
 		}
 
-		List<SharingEntry> models = new ArrayList<SharingEntry>(soapModels.length);
+		List<SharingEntry> models = new ArrayList<SharingEntry>(
+			soapModels.length);
 
 		for (SharingEntrySoap soapModel : soapModels) {
 			models.add(toModel(soapModel));
@@ -185,8 +204,9 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 		return models;
 	}
 
-	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.sharing.service.util.ServiceProps.get(
-				"lock.expiration.time.com.liferay.sharing.model.SharingEntry"));
+	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(
+		com.liferay.sharing.service.util.ServiceProps.get(
+			"lock.expiration.time.com.liferay.sharing.model.SharingEntry"));
 
 	public SharingEntryModelImpl() {
 	}
@@ -225,13 +245,18 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		for (Map.Entry<String, Function<SharingEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SharingEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SharingEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<SharingEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
-			attributes.put(attributeName,
+			attributes.put(
+				attributeName,
 				attributeGetterFunction.apply((SharingEntry)this));
 		}
 
@@ -243,67 +268,105 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Map<String, BiConsumer<SharingEntry, Object>> attributeSetterBiConsumers =
-			getAttributeSetterBiConsumers();
+		Map<String, BiConsumer<SharingEntry, Object>>
+			attributeSetterBiConsumers = getAttributeSetterBiConsumers();
 
 		for (Map.Entry<String, Object> entry : attributes.entrySet()) {
 			String attributeName = entry.getKey();
 
-			BiConsumer<SharingEntry, Object> attributeSetterBiConsumer = attributeSetterBiConsumers.get(attributeName);
+			BiConsumer<SharingEntry, Object> attributeSetterBiConsumer =
+				attributeSetterBiConsumers.get(attributeName);
 
 			if (attributeSetterBiConsumer != null) {
-				attributeSetterBiConsumer.accept((SharingEntry)this,
-					entry.getValue());
+				attributeSetterBiConsumer.accept(
+					(SharingEntry)this, entry.getValue());
 			}
 		}
 	}
 
-	public Map<String, Function<SharingEntry, Object>> getAttributeGetterFunctions() {
+	public Map<String, Function<SharingEntry, Object>>
+		getAttributeGetterFunctions() {
+
 		return _attributeGetterFunctions;
 	}
 
-	public Map<String, BiConsumer<SharingEntry, Object>> getAttributeSetterBiConsumers() {
+	public Map<String, BiConsumer<SharingEntry, Object>>
+		getAttributeSetterBiConsumers() {
+
 		return _attributeSetterBiConsumers;
 	}
 
-	private static final Map<String, Function<SharingEntry, Object>> _attributeGetterFunctions;
-	private static final Map<String, BiConsumer<SharingEntry, Object>> _attributeSetterBiConsumers;
+	private static final Map<String, Function<SharingEntry, Object>>
+		_attributeGetterFunctions;
+	private static final Map<String, BiConsumer<SharingEntry, Object>>
+		_attributeSetterBiConsumers;
 
 	static {
-		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions = new LinkedHashMap<String, Function<SharingEntry, Object>>();
-		Map<String, BiConsumer<SharingEntry, ?>> attributeSetterBiConsumers = new LinkedHashMap<String, BiConsumer<SharingEntry, ?>>();
-
+		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions =
+			new LinkedHashMap<String, Function<SharingEntry, Object>>();
+		Map<String, BiConsumer<SharingEntry, ?>> attributeSetterBiConsumers =
+			new LinkedHashMap<String, BiConsumer<SharingEntry, ?>>();
 
 		attributeGetterFunctions.put("uuid", SharingEntry::getUuid);
-		attributeSetterBiConsumers.put("uuid", (BiConsumer<SharingEntry, String>)SharingEntry::setUuid);
-		attributeGetterFunctions.put("sharingEntryId", SharingEntry::getSharingEntryId);
-		attributeSetterBiConsumers.put("sharingEntryId", (BiConsumer<SharingEntry, Long>)SharingEntry::setSharingEntryId);
+		attributeSetterBiConsumers.put(
+			"uuid", (BiConsumer<SharingEntry, String>)SharingEntry::setUuid);
+		attributeGetterFunctions.put(
+			"sharingEntryId", SharingEntry::getSharingEntryId);
+		attributeSetterBiConsumers.put(
+			"sharingEntryId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setSharingEntryId);
 		attributeGetterFunctions.put("groupId", SharingEntry::getGroupId);
-		attributeSetterBiConsumers.put("groupId", (BiConsumer<SharingEntry, Long>)SharingEntry::setGroupId);
+		attributeSetterBiConsumers.put(
+			"groupId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setGroupId);
 		attributeGetterFunctions.put("companyId", SharingEntry::getCompanyId);
-		attributeSetterBiConsumers.put("companyId", (BiConsumer<SharingEntry, Long>)SharingEntry::setCompanyId);
+		attributeSetterBiConsumers.put(
+			"companyId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setCompanyId);
 		attributeGetterFunctions.put("createDate", SharingEntry::getCreateDate);
-		attributeSetterBiConsumers.put("createDate", (BiConsumer<SharingEntry, Date>)SharingEntry::setCreateDate);
-		attributeGetterFunctions.put("modifiedDate", SharingEntry::getModifiedDate);
-		attributeSetterBiConsumers.put("modifiedDate", (BiConsumer<SharingEntry, Date>)SharingEntry::setModifiedDate);
+		attributeSetterBiConsumers.put(
+			"createDate",
+			(BiConsumer<SharingEntry, Date>)SharingEntry::setCreateDate);
+		attributeGetterFunctions.put(
+			"modifiedDate", SharingEntry::getModifiedDate);
+		attributeSetterBiConsumers.put(
+			"modifiedDate",
+			(BiConsumer<SharingEntry, Date>)SharingEntry::setModifiedDate);
 		attributeGetterFunctions.put("fromUserId", SharingEntry::getFromUserId);
-		attributeSetterBiConsumers.put("fromUserId", (BiConsumer<SharingEntry, Long>)SharingEntry::setFromUserId);
+		attributeSetterBiConsumers.put(
+			"fromUserId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setFromUserId);
 		attributeGetterFunctions.put("toUserId", SharingEntry::getToUserId);
-		attributeSetterBiConsumers.put("toUserId", (BiConsumer<SharingEntry, Long>)SharingEntry::setToUserId);
-		attributeGetterFunctions.put("classNameId", SharingEntry::getClassNameId);
-		attributeSetterBiConsumers.put("classNameId", (BiConsumer<SharingEntry, Long>)SharingEntry::setClassNameId);
+		attributeSetterBiConsumers.put(
+			"toUserId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setToUserId);
+		attributeGetterFunctions.put(
+			"classNameId", SharingEntry::getClassNameId);
+		attributeSetterBiConsumers.put(
+			"classNameId",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setClassNameId);
 		attributeGetterFunctions.put("classPK", SharingEntry::getClassPK);
-		attributeSetterBiConsumers.put("classPK", (BiConsumer<SharingEntry, Long>)SharingEntry::setClassPK);
+		attributeSetterBiConsumers.put(
+			"classPK",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setClassPK);
 		attributeGetterFunctions.put("shareable", SharingEntry::getShareable);
-		attributeSetterBiConsumers.put("shareable", (BiConsumer<SharingEntry, Boolean>)SharingEntry::setShareable);
+		attributeSetterBiConsumers.put(
+			"shareable",
+			(BiConsumer<SharingEntry, Boolean>)SharingEntry::setShareable);
 		attributeGetterFunctions.put("actionIds", SharingEntry::getActionIds);
-		attributeSetterBiConsumers.put("actionIds", (BiConsumer<SharingEntry, Long>)SharingEntry::setActionIds);
-		attributeGetterFunctions.put("expirationDate", SharingEntry::getExpirationDate);
-		attributeSetterBiConsumers.put("expirationDate", (BiConsumer<SharingEntry, Date>)SharingEntry::setExpirationDate);
+		attributeSetterBiConsumers.put(
+			"actionIds",
+			(BiConsumer<SharingEntry, Long>)SharingEntry::setActionIds);
+		attributeGetterFunctions.put(
+			"expirationDate", SharingEntry::getExpirationDate);
+		attributeSetterBiConsumers.put(
+			"expirationDate",
+			(BiConsumer<SharingEntry, Date>)SharingEntry::setExpirationDate);
 
-
-		_attributeGetterFunctions = Collections.unmodifiableMap(attributeGetterFunctions);
-		_attributeSetterBiConsumers = Collections.unmodifiableMap((Map)attributeSetterBiConsumers);
+		_attributeGetterFunctions = Collections.unmodifiableMap(
+			attributeGetterFunctions);
+		_attributeSetterBiConsumers = Collections.unmodifiableMap(
+			(Map)attributeSetterBiConsumers);
 	}
 
 	@JSON
@@ -612,8 +675,9 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 	@Override
 	public StagedModelType getStagedModelType() {
-		return new StagedModelType(PortalUtil.getClassNameId(
-				SharingEntry.class.getName()), getClassNameId());
+		return new StagedModelType(
+			PortalUtil.getClassNameId(SharingEntry.class.getName()),
+			getClassNameId());
 	}
 
 	public long getColumnBitmask() {
@@ -622,8 +686,8 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			SharingEntry.class.getName(), getPrimaryKey());
+		return ExpandoBridgeFactoryUtil.getExpandoBridge(
+			getCompanyId(), SharingEntry.class.getName(), getPrimaryKey());
 	}
 
 	@Override
@@ -636,8 +700,9 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 	@Override
 	public SharingEntry toEscapedModel() {
 		if (_escapedModel == null) {
-			_escapedModel = (SharingEntry)ProxyUtil.newProxyInstance(_classLoader,
-					_escapedModelInterfaces, new AutoEscapeBeanHandler(this));
+			_escapedModel = (SharingEntry)ProxyUtil.newProxyInstance(
+				_classLoader, _escapedModelInterfaces,
+				new AutoEscapeBeanHandler(this));
 		}
 
 		return _escapedModel;
@@ -728,21 +793,25 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 		sharingEntryModelImpl._setOriginalGroupId = false;
 
-		sharingEntryModelImpl._originalCompanyId = sharingEntryModelImpl._companyId;
+		sharingEntryModelImpl._originalCompanyId =
+			sharingEntryModelImpl._companyId;
 
 		sharingEntryModelImpl._setOriginalCompanyId = false;
 
 		sharingEntryModelImpl._setModifiedDate = false;
 
-		sharingEntryModelImpl._originalFromUserId = sharingEntryModelImpl._fromUserId;
+		sharingEntryModelImpl._originalFromUserId =
+			sharingEntryModelImpl._fromUserId;
 
 		sharingEntryModelImpl._setOriginalFromUserId = false;
 
-		sharingEntryModelImpl._originalToUserId = sharingEntryModelImpl._toUserId;
+		sharingEntryModelImpl._originalToUserId =
+			sharingEntryModelImpl._toUserId;
 
 		sharingEntryModelImpl._setOriginalToUserId = false;
 
-		sharingEntryModelImpl._originalClassNameId = sharingEntryModelImpl._classNameId;
+		sharingEntryModelImpl._originalClassNameId =
+			sharingEntryModelImpl._classNameId;
 
 		sharingEntryModelImpl._setOriginalClassNameId = false;
 
@@ -750,14 +819,16 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 		sharingEntryModelImpl._setOriginalClassPK = false;
 
-		sharingEntryModelImpl._originalExpirationDate = sharingEntryModelImpl._expirationDate;
+		sharingEntryModelImpl._originalExpirationDate =
+			sharingEntryModelImpl._expirationDate;
 
 		sharingEntryModelImpl._columnBitmask = 0;
 	}
 
 	@Override
 	public CacheModel<SharingEntry> toCacheModel() {
-		SharingEntryCacheModel sharingEntryCacheModel = new SharingEntryCacheModel();
+		SharingEntryCacheModel sharingEntryCacheModel =
+			new SharingEntryCacheModel();
 
 		sharingEntryCacheModel.uuid = getUuid();
 
@@ -817,16 +888,20 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 	@Override
 	public String toString() {
-		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((4 * attributeGetterFunctions.size()) +
-				2);
+		StringBundler sb = new StringBundler(
+			4 * attributeGetterFunctions.size() + 2);
 
 		sb.append("{");
 
-		for (Map.Entry<String, Function<SharingEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SharingEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SharingEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<SharingEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append(attributeName);
 			sb.append("=");
@@ -845,18 +920,22 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 
 	@Override
 	public String toXmlString() {
-		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions = getAttributeGetterFunctions();
+		Map<String, Function<SharingEntry, Object>> attributeGetterFunctions =
+			getAttributeGetterFunctions();
 
-		StringBundler sb = new StringBundler((5 * attributeGetterFunctions.size()) +
-				4);
+		StringBundler sb = new StringBundler(
+			5 * attributeGetterFunctions.size() + 4);
 
 		sb.append("<model><model-name>");
 		sb.append(getModelClassName());
 		sb.append("</model-name>");
 
-		for (Map.Entry<String, Function<SharingEntry, Object>> entry : attributeGetterFunctions.entrySet()) {
+		for (Map.Entry<String, Function<SharingEntry, Object>> entry :
+				attributeGetterFunctions.entrySet()) {
+
 			String attributeName = entry.getKey();
-			Function<SharingEntry, Object> attributeGetterFunction = entry.getValue();
+			Function<SharingEntry, Object> attributeGetterFunction =
+				entry.getValue();
 
 			sb.append("<column><column-name>");
 			sb.append(attributeName);
@@ -870,10 +949,12 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 		return sb.toString();
 	}
 
-	private static final ClassLoader _classLoader = SharingEntry.class.getClassLoader();
+	private static final ClassLoader _classLoader =
+		SharingEntry.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			SharingEntry.class, ModelWrapper.class
-		};
+		SharingEntry.class, ModelWrapper.class
+	};
+
 	private String _uuid;
 	private String _originalUuid;
 	private long _sharingEntryId;
@@ -904,4 +985,5 @@ public class SharingEntryModelImpl extends BaseModelImpl<SharingEntry>
 	private Date _originalExpirationDate;
 	private long _columnBitmask;
 	private SharingEntry _escapedModel;
+
 }

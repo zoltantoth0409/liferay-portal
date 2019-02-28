@@ -17,11 +17,9 @@ package com.liferay.change.tracking.uad.anonymizer;
 import com.liferay.change.tracking.model.CTEntryAggregate;
 import com.liferay.change.tracking.service.CTEntryAggregateLocalService;
 import com.liferay.change.tracking.uad.constants.CTUADConstants;
-
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
-
 import com.liferay.user.associated.data.anonymizer.DynamicQueryUADAnonymizer;
 
 import org.osgi.service.component.annotations.Reference;
@@ -40,9 +38,12 @@ import org.osgi.service.component.annotations.Reference;
  */
 public abstract class BaseCTEntryAggregateUADAnonymizer
 	extends DynamicQueryUADAnonymizer<CTEntryAggregate> {
+
 	@Override
-	public void autoAnonymize(CTEntryAggregate ctEntryAggregate, long userId,
-		User anonymousUser) throws PortalException {
+	public void autoAnonymize(
+			CTEntryAggregate ctEntryAggregate, long userId, User anonymousUser)
+		throws PortalException {
+
 		if (ctEntryAggregate.getUserId() == userId) {
 			ctEntryAggregate.setUserId(anonymousUser.getUserId());
 			ctEntryAggregate.setUserName(anonymousUser.getFullName());
@@ -54,6 +55,7 @@ public abstract class BaseCTEntryAggregateUADAnonymizer
 	@Override
 	public void delete(CTEntryAggregate ctEntryAggregate)
 		throws PortalException {
+
 		ctEntryAggregateLocalService.deleteCTEntryAggregate(ctEntryAggregate);
 	}
 
@@ -74,4 +76,5 @@ public abstract class BaseCTEntryAggregateUADAnonymizer
 
 	@Reference
 	protected CTEntryAggregateLocalService ctEntryAggregateLocalService;
+
 }

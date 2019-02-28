@@ -18,9 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.petra.lang.HashUtil;
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.model.CacheModel;
-
 import com.liferay.segments.model.SegmentsExperience;
 
 import java.io.Externalizable;
@@ -37,8 +35,9 @@ import java.util.Date;
  * @generated
  */
 @ProviderType
-public class SegmentsExperienceCacheModel implements CacheModel<SegmentsExperience>,
-	Externalizable {
+public class SegmentsExperienceCacheModel
+	implements CacheModel<SegmentsExperience>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -49,9 +48,12 @@ public class SegmentsExperienceCacheModel implements CacheModel<SegmentsExperien
 			return false;
 		}
 
-		SegmentsExperienceCacheModel segmentsExperienceCacheModel = (SegmentsExperienceCacheModel)obj;
+		SegmentsExperienceCacheModel segmentsExperienceCacheModel =
+			(SegmentsExperienceCacheModel)obj;
 
-		if (segmentsExperienceId == segmentsExperienceCacheModel.segmentsExperienceId) {
+		if (segmentsExperienceId ==
+				segmentsExperienceCacheModel.segmentsExperienceId) {
+
 			return true;
 		}
 
@@ -100,7 +102,8 @@ public class SegmentsExperienceCacheModel implements CacheModel<SegmentsExperien
 
 	@Override
 	public SegmentsExperience toEntityModel() {
-		SegmentsExperienceImpl segmentsExperienceImpl = new SegmentsExperienceImpl();
+		SegmentsExperienceImpl segmentsExperienceImpl =
+			new SegmentsExperienceImpl();
 
 		segmentsExperienceImpl.setSegmentsExperienceId(segmentsExperienceId);
 		segmentsExperienceImpl.setGroupId(groupId);
@@ -173,8 +176,7 @@ public class SegmentsExperienceCacheModel implements CacheModel<SegmentsExperien
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(segmentsExperienceId);
 
 		objectOutput.writeLong(groupId);
@@ -224,4 +226,5 @@ public class SegmentsExperienceCacheModel implements CacheModel<SegmentsExperien
 	public String name;
 	public int priority;
 	public boolean active;
+
 }

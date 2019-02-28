@@ -19,13 +19,11 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.asset.display.page.service.persistence.AssetDisplayPageEntryPersistence;
-
 import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -73,8 +71,9 @@ import javax.sql.DataSource;
  */
 @ProviderType
 public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
-	extends BaseLocalServiceImpl implements AssetDisplayPageEntryLocalService,
-		IdentifiableOSGiService {
+	extends BaseLocalServiceImpl
+	implements AssetDisplayPageEntryLocalService, IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -91,6 +90,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public AssetDisplayPageEntry addAssetDisplayPageEntry(
 		AssetDisplayPageEntry assetDisplayPageEntry) {
+
 		assetDisplayPageEntry.setNew(true);
 
 		return assetDisplayPageEntryPersistence.update(assetDisplayPageEntry);
@@ -106,6 +106,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Transactional(enabled = false)
 	public AssetDisplayPageEntry createAssetDisplayPageEntry(
 		long assetDisplayPageEntryId) {
+
 		return assetDisplayPageEntryPersistence.create(assetDisplayPageEntryId);
 	}
 
@@ -119,7 +120,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public AssetDisplayPageEntry deleteAssetDisplayPageEntry(
-		long assetDisplayPageEntryId) throws PortalException {
+			long assetDisplayPageEntryId)
+		throws PortalException {
+
 		return assetDisplayPageEntryPersistence.remove(assetDisplayPageEntryId);
 	}
 
@@ -133,6 +136,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public AssetDisplayPageEntry deleteAssetDisplayPageEntry(
 		AssetDisplayPageEntry assetDisplayPageEntry) {
+
 		return assetDisplayPageEntryPersistence.remove(assetDisplayPageEntry);
 	}
 
@@ -140,8 +144,8 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	public DynamicQuery dynamicQuery() {
 		Class<?> clazz = getClass();
 
-		return DynamicQueryFactoryUtil.forClass(AssetDisplayPageEntry.class,
-			clazz.getClassLoader());
+		return DynamicQueryFactoryUtil.forClass(
+			AssetDisplayPageEntry.class, clazz.getClassLoader());
 	}
 
 	/**
@@ -152,7 +156,8 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	@Override
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
-		return assetDisplayPageEntryPersistence.findWithDynamicQuery(dynamicQuery);
+		return assetDisplayPageEntryPersistence.findWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -168,10 +173,11 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end) {
-		return assetDisplayPageEntryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
+
+		return assetDisplayPageEntryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end);
 	}
 
 	/**
@@ -188,10 +194,12 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
-		int end, OrderByComparator<T> orderByComparator) {
-		return assetDisplayPageEntryPersistence.findWithDynamicQuery(dynamicQuery,
-			start, end, orderByComparator);
+	public <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
+
+		return assetDisplayPageEntryPersistence.findWithDynamicQuery(
+			dynamicQuery, start, end, orderByComparator);
 	}
 
 	/**
@@ -202,7 +210,8 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
-		return assetDisplayPageEntryPersistence.countWithDynamicQuery(dynamicQuery);
+		return assetDisplayPageEntryPersistence.countWithDynamicQuery(
+			dynamicQuery);
 	}
 
 	/**
@@ -213,16 +222,19 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the number of rows matching the dynamic query
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) {
-		return assetDisplayPageEntryPersistence.countWithDynamicQuery(dynamicQuery,
-			projection);
+	public long dynamicQueryCount(
+		DynamicQuery dynamicQuery, Projection projection) {
+
+		return assetDisplayPageEntryPersistence.countWithDynamicQuery(
+			dynamicQuery, projection);
 	}
 
 	@Override
 	public AssetDisplayPageEntry fetchAssetDisplayPageEntry(
 		long assetDisplayPageEntryId) {
-		return assetDisplayPageEntryPersistence.fetchByPrimaryKey(assetDisplayPageEntryId);
+
+		return assetDisplayPageEntryPersistence.fetchByPrimaryKey(
+			assetDisplayPageEntryId);
 	}
 
 	/**
@@ -235,6 +247,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public AssetDisplayPageEntry fetchAssetDisplayPageEntryByUuidAndGroupId(
 		String uuid, long groupId) {
+
 		return assetDisplayPageEntryPersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -247,15 +260,20 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	@Override
 	public AssetDisplayPageEntry getAssetDisplayPageEntry(
-		long assetDisplayPageEntryId) throws PortalException {
-		return assetDisplayPageEntryPersistence.findByPrimaryKey(assetDisplayPageEntryId);
+			long assetDisplayPageEntryId)
+		throws PortalException {
+
+		return assetDisplayPageEntryPersistence.findByPrimaryKey(
+			assetDisplayPageEntryId);
 	}
 
 	@Override
 	public ActionableDynamicQuery getActionableDynamicQuery() {
-		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+		ActionableDynamicQuery actionableDynamicQuery =
+			new DefaultActionableDynamicQuery();
 
-		actionableDynamicQuery.setBaseLocalService(assetDisplayPageEntryLocalService);
+		actionableDynamicQuery.setBaseLocalService(
+			assetDisplayPageEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(AssetDisplayPageEntry.class);
 
@@ -266,12 +284,17 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	}
 
 	@Override
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery = new IndexableActionableDynamicQuery();
+	public IndexableActionableDynamicQuery
+		getIndexableActionableDynamicQuery() {
 
-		indexableActionableDynamicQuery.setBaseLocalService(assetDisplayPageEntryLocalService);
+		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+			new IndexableActionableDynamicQuery();
+
+		indexableActionableDynamicQuery.setBaseLocalService(
+			assetDisplayPageEntryLocalService);
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
-		indexableActionableDynamicQuery.setModelClass(AssetDisplayPageEntry.class);
+		indexableActionableDynamicQuery.setModelClass(
+			AssetDisplayPageEntry.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
 			"assetDisplayPageEntryId");
@@ -281,7 +304,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 
 	protected void initActionableDynamicQuery(
 		ActionableDynamicQuery actionableDynamicQuery) {
-		actionableDynamicQuery.setBaseLocalService(assetDisplayPageEntryLocalService);
+
+		actionableDynamicQuery.setBaseLocalService(
+			assetDisplayPageEntryLocalService);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(AssetDisplayPageEntry.class);
 
@@ -292,67 +317,92 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		final PortletDataContext portletDataContext) {
-		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+
+		final ExportActionableDynamicQuery exportActionableDynamicQuery =
+			new ExportActionableDynamicQuery() {
+
 				@Override
 				public long performCount() throws PortalException {
-					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+					ManifestSummary manifestSummary =
+						portletDataContext.getManifestSummary();
 
 					StagedModelType stagedModelType = getStagedModelType();
 
 					long modelAdditionCount = super.performCount();
 
-					manifestSummary.addModelAdditionCount(stagedModelType,
-						modelAdditionCount);
+					manifestSummary.addModelAdditionCount(
+						stagedModelType, modelAdditionCount);
 
-					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
-							stagedModelType);
+					long modelDeletionCount =
+						ExportImportHelperUtil.getModelDeletionCount(
+							portletDataContext, stagedModelType);
 
-					manifestSummary.addModelDeletionCount(stagedModelType,
-						modelDeletionCount);
+					manifestSummary.addModelDeletionCount(
+						stagedModelType, modelDeletionCount);
 
 					return modelAdditionCount;
 				}
+
 			};
 
 		initActionableDynamicQuery(exportActionableDynamicQuery);
 
-		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+		exportActionableDynamicQuery.setAddCriteriaMethod(
+			new ActionableDynamicQuery.AddCriteriaMethod() {
+
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					portletDataContext.addDateRangeCriteria(dynamicQuery,
-						"modifiedDate");
+					portletDataContext.addDateRangeCriteria(
+						dynamicQuery, "modifiedDate");
 
-					StagedModelType stagedModelType = exportActionableDynamicQuery.getStagedModelType();
+					StagedModelType stagedModelType =
+						exportActionableDynamicQuery.getStagedModelType();
 
-					long referrerClassNameId = stagedModelType.getReferrerClassNameId();
+					long referrerClassNameId =
+						stagedModelType.getReferrerClassNameId();
 
 					Property classNameIdProperty = PropertyFactoryUtil.forName(
-							"classNameId");
+						"classNameId");
 
-					if ((referrerClassNameId != StagedModelType.REFERRER_CLASS_NAME_ID_ALL) &&
-							(referrerClassNameId != StagedModelType.REFERRER_CLASS_NAME_ID_ANY)) {
-						dynamicQuery.add(classNameIdProperty.eq(
+					if ((referrerClassNameId !=
+							StagedModelType.REFERRER_CLASS_NAME_ID_ALL) &&
+						(referrerClassNameId !=
+							StagedModelType.REFERRER_CLASS_NAME_ID_ANY)) {
+
+						dynamicQuery.add(
+							classNameIdProperty.eq(
 								stagedModelType.getReferrerClassNameId()));
 					}
-					else if (referrerClassNameId == StagedModelType.REFERRER_CLASS_NAME_ID_ANY) {
+					else if (referrerClassNameId ==
+								StagedModelType.REFERRER_CLASS_NAME_ID_ANY) {
+
 						dynamicQuery.add(classNameIdProperty.isNotNull());
 					}
 				}
+
 			});
 
-		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+		exportActionableDynamicQuery.setCompanyId(
+			portletDataContext.getCompanyId());
 
-		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod<AssetDisplayPageEntry>() {
+		exportActionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod
+				<AssetDisplayPageEntry>() {
+
 				@Override
 				public void performAction(
-					AssetDisplayPageEntry assetDisplayPageEntry)
+						AssetDisplayPageEntry assetDisplayPageEntry)
 					throws PortalException {
-					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
-						assetDisplayPageEntry);
+
+					StagedModelDataHandlerUtil.exportStagedModel(
+						portletDataContext, assetDisplayPageEntry);
 				}
+
 			});
-		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
-				PortalUtil.getClassNameId(AssetDisplayPageEntry.class.getName()),
+		exportActionableDynamicQuery.setStagedModelType(
+			new StagedModelType(
+				PortalUtil.getClassNameId(
+					AssetDisplayPageEntry.class.getName()),
 				StagedModelType.REFERRER_CLASS_NAME_ID_ALL));
 
 		return exportActionableDynamicQuery;
@@ -364,12 +414,15 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry((AssetDisplayPageEntry)persistedModel);
+
+		return assetDisplayPageEntryLocalService.deleteAssetDisplayPageEntry(
+			(AssetDisplayPageEntry)persistedModel);
 	}
 
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
+
 		return assetDisplayPageEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -381,8 +434,10 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the matching asset display page entries, or an empty list if no matches were found
 	 */
 	@Override
-	public List<AssetDisplayPageEntry> getAssetDisplayPageEntriesByUuidAndCompanyId(
-		String uuid, long companyId) {
+	public List<AssetDisplayPageEntry>
+		getAssetDisplayPageEntriesByUuidAndCompanyId(
+			String uuid, long companyId) {
+
 		return assetDisplayPageEntryPersistence.findByUuid_C(uuid, companyId);
 	}
 
@@ -397,11 +452,13 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the range of matching asset display page entries, or an empty list if no matches were found
 	 */
 	@Override
-	public List<AssetDisplayPageEntry> getAssetDisplayPageEntriesByUuidAndCompanyId(
-		String uuid, long companyId, int start, int end,
-		OrderByComparator<AssetDisplayPageEntry> orderByComparator) {
-		return assetDisplayPageEntryPersistence.findByUuid_C(uuid, companyId,
-			start, end, orderByComparator);
+	public List<AssetDisplayPageEntry>
+		getAssetDisplayPageEntriesByUuidAndCompanyId(
+			String uuid, long companyId, int start, int end,
+			OrderByComparator<AssetDisplayPageEntry> orderByComparator) {
+
+		return assetDisplayPageEntryPersistence.findByUuid_C(
+			uuid, companyId, start, end, orderByComparator);
 	}
 
 	/**
@@ -414,7 +471,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	@Override
 	public AssetDisplayPageEntry getAssetDisplayPageEntryByUuidAndGroupId(
-		String uuid, long groupId) throws PortalException {
+			String uuid, long groupId)
+		throws PortalException {
+
 		return assetDisplayPageEntryPersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -430,8 +489,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @return the range of asset display page entries
 	 */
 	@Override
-	public List<AssetDisplayPageEntry> getAssetDisplayPageEntries(int start,
-		int end) {
+	public List<AssetDisplayPageEntry> getAssetDisplayPageEntries(
+		int start, int end) {
+
 		return assetDisplayPageEntryPersistence.findAll(start, end);
 	}
 
@@ -455,6 +515,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	@Override
 	public AssetDisplayPageEntry updateAssetDisplayPageEntry(
 		AssetDisplayPageEntry assetDisplayPageEntry) {
+
 		return assetDisplayPageEntryPersistence.update(assetDisplayPageEntry);
 	}
 
@@ -463,7 +524,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 *
 	 * @return the asset display page entry local service
 	 */
-	public AssetDisplayPageEntryLocalService getAssetDisplayPageEntryLocalService() {
+	public AssetDisplayPageEntryLocalService
+		getAssetDisplayPageEntryLocalService() {
+
 		return assetDisplayPageEntryLocalService;
 	}
 
@@ -474,7 +537,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	public void setAssetDisplayPageEntryLocalService(
 		AssetDisplayPageEntryLocalService assetDisplayPageEntryLocalService) {
-		this.assetDisplayPageEntryLocalService = assetDisplayPageEntryLocalService;
+
+		this.assetDisplayPageEntryLocalService =
+			assetDisplayPageEntryLocalService;
 	}
 
 	/**
@@ -482,7 +547,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 *
 	 * @return the asset display page entry persistence
 	 */
-	public AssetDisplayPageEntryPersistence getAssetDisplayPageEntryPersistence() {
+	public AssetDisplayPageEntryPersistence
+		getAssetDisplayPageEntryPersistence() {
+
 		return assetDisplayPageEntryPersistence;
 	}
 
@@ -493,7 +560,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	public void setAssetDisplayPageEntryPersistence(
 		AssetDisplayPageEntryPersistence assetDisplayPageEntryPersistence) {
-		this.assetDisplayPageEntryPersistence = assetDisplayPageEntryPersistence;
+
+		this.assetDisplayPageEntryPersistence =
+			assetDisplayPageEntryPersistence;
 	}
 
 	/**
@@ -501,7 +570,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 *
 	 * @return the counter local service
 	 */
-	public com.liferay.counter.kernel.service.CounterLocalService getCounterLocalService() {
+	public com.liferay.counter.kernel.service.CounterLocalService
+		getCounterLocalService() {
+
 		return counterLocalService;
 	}
 
@@ -511,7 +582,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 * @param counterLocalService the counter local service
 	 */
 	public void setCounterLocalService(
-		com.liferay.counter.kernel.service.CounterLocalService counterLocalService) {
+		com.liferay.counter.kernel.service.CounterLocalService
+			counterLocalService) {
+
 		this.counterLocalService = counterLocalService;
 	}
 
@@ -520,7 +593,9 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 *
 	 * @return the user local service
 	 */
-	public com.liferay.portal.kernel.service.UserLocalService getUserLocalService() {
+	public com.liferay.portal.kernel.service.UserLocalService
+		getUserLocalService() {
+
 		return userLocalService;
 	}
 
@@ -531,6 +606,7 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	public void setUserLocalService(
 		com.liferay.portal.kernel.service.UserLocalService userLocalService) {
+
 		this.userLocalService = userLocalService;
 	}
 
@@ -553,7 +629,8 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	}
 
 	public void afterPropertiesSet() {
-		persistedModelLocalServiceRegistry.register("com.liferay.asset.display.page.model.AssetDisplayPageEntry",
+		persistedModelLocalServiceRegistry.register(
+			"com.liferay.asset.display.page.model.AssetDisplayPageEntry",
 			assetDisplayPageEntryLocalService);
 	}
 
@@ -587,15 +664,16 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = assetDisplayPageEntryPersistence.getDataSource();
+			DataSource dataSource =
+				assetDisplayPageEntryPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -605,15 +683,29 @@ public abstract class AssetDisplayPageEntryLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = AssetDisplayPageEntryLocalService.class)
-	protected AssetDisplayPageEntryLocalService assetDisplayPageEntryLocalService;
+	protected AssetDisplayPageEntryLocalService
+		assetDisplayPageEntryLocalService;
+
 	@BeanReference(type = AssetDisplayPageEntryPersistence.class)
 	protected AssetDisplayPageEntryPersistence assetDisplayPageEntryPersistence;
-	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.portal.kernel.service.UserLocalService.class)
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+
+	@ServiceReference(
+		type = com.liferay.counter.kernel.service.CounterLocalService.class
+	)
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
+	@ServiceReference(
+		type = com.liferay.portal.kernel.service.UserLocalService.class
+	)
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@ServiceReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+
 	@ServiceReference(type = PersistedModelLocalServiceRegistry.class)
-	protected PersistedModelLocalServiceRegistry persistedModelLocalServiceRegistry;
+	protected PersistedModelLocalServiceRegistry
+		persistedModelLocalServiceRegistry;
+
 }

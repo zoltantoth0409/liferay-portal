@@ -33,8 +33,9 @@ import java.io.ObjectOutput;
  * @generated
  */
 @ProviderType
-public class LVEntryLocalizationVersionCacheModel implements CacheModel<LVEntryLocalizationVersion>,
-	Externalizable {
+public class LVEntryLocalizationVersionCacheModel
+	implements CacheModel<LVEntryLocalizationVersion>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -45,10 +46,14 @@ public class LVEntryLocalizationVersionCacheModel implements CacheModel<LVEntryL
 			return false;
 		}
 
-		LVEntryLocalizationVersionCacheModel lvEntryLocalizationVersionCacheModel =
-			(LVEntryLocalizationVersionCacheModel)obj;
+		LVEntryLocalizationVersionCacheModel
+			lvEntryLocalizationVersionCacheModel =
+				(LVEntryLocalizationVersionCacheModel)obj;
 
-		if (lvEntryLocalizationVersionId == lvEntryLocalizationVersionCacheModel.lvEntryLocalizationVersionId) {
+		if (lvEntryLocalizationVersionId ==
+				lvEntryLocalizationVersionCacheModel.
+					lvEntryLocalizationVersionId) {
+
 			return true;
 		}
 
@@ -85,11 +90,14 @@ public class LVEntryLocalizationVersionCacheModel implements CacheModel<LVEntryL
 
 	@Override
 	public LVEntryLocalizationVersion toEntityModel() {
-		LVEntryLocalizationVersionImpl lvEntryLocalizationVersionImpl = new LVEntryLocalizationVersionImpl();
+		LVEntryLocalizationVersionImpl lvEntryLocalizationVersionImpl =
+			new LVEntryLocalizationVersionImpl();
 
-		lvEntryLocalizationVersionImpl.setLvEntryLocalizationVersionId(lvEntryLocalizationVersionId);
+		lvEntryLocalizationVersionImpl.setLvEntryLocalizationVersionId(
+			lvEntryLocalizationVersionId);
 		lvEntryLocalizationVersionImpl.setVersion(version);
-		lvEntryLocalizationVersionImpl.setLvEntryLocalizationId(lvEntryLocalizationId);
+		lvEntryLocalizationVersionImpl.setLvEntryLocalizationId(
+			lvEntryLocalizationId);
 		lvEntryLocalizationVersionImpl.setLvEntryId(lvEntryId);
 
 		if (languageId == null) {
@@ -133,8 +141,7 @@ public class LVEntryLocalizationVersionCacheModel implements CacheModel<LVEntryL
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(lvEntryLocalizationVersionId);
 
 		objectOutput.writeInt(version);
@@ -172,4 +179,5 @@ public class LVEntryLocalizationVersionCacheModel implements CacheModel<LVEntryL
 	public String languageId;
 	public String title;
 	public String content;
+
 }

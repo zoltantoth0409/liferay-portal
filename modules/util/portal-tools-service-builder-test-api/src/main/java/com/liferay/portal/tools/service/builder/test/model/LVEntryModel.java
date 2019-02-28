@@ -17,7 +17,6 @@ package com.liferay.portal.tools.service.builder.test.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
-
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.CacheModel;
@@ -41,8 +40,9 @@ import java.util.Map;
  * @generated
  */
 @ProviderType
-public interface LVEntryModel extends BaseModel<LVEntry>, MVCCModel,
-	VersionedModel<LVEntryVersion> {
+public interface LVEntryModel
+	extends BaseModel<LVEntry>, MVCCModel, VersionedModel<LVEntryVersion> {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -248,4 +248,5 @@ public interface LVEntryModel extends BaseModel<LVEntry>, MVCCModel,
 
 	@Override
 	public String toXmlString();
+
 }

@@ -34,6 +34,7 @@ import com.liferay.segments.service.SegmentsExperienceLocalServiceUtil;
 @ProviderType
 public abstract class SegmentsExperienceBaseImpl
 	extends SegmentsExperienceModelImpl implements SegmentsExperience {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -48,4 +49,5 @@ public abstract class SegmentsExperienceBaseImpl
 			SegmentsExperienceLocalServiceUtil.updateSegmentsExperience(this);
 		}
 	}
+
 }

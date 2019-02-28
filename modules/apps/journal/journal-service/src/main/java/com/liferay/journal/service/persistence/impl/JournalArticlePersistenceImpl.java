@@ -21,9 +21,7 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.impl.JournalArticleImpl;
 import com.liferay.journal.model.impl.JournalArticleModelImpl;
 import com.liferay.journal.service.persistence.JournalArticlePersistence;
-
 import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -74,18 +72,24 @@ import java.util.Set;
  * @generated
  */
 @ProviderType
-public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalArticle>
+public class JournalArticlePersistenceImpl
+	extends BasePersistenceImpl<JournalArticle>
 	implements JournalArticlePersistence {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never modify or reference this class directly. Always use <code>JournalArticleUtil</code> to access the journal article persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static final String FINDER_CLASS_NAME_ENTITY = JournalArticleImpl.class.getName();
-	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List1";
-	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
-		".List2";
+	public static final String FINDER_CLASS_NAME_ENTITY =
+		JournalArticleImpl.class.getName();
+
+	public static final String FINDER_CLASS_NAME_LIST_WITH_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List1";
+
+	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION =
+		FINDER_CLASS_NAME_ENTITY + ".List2";
+
 	private FinderPath _finderPathWithPaginationFindAll;
 	private FinderPath _finderPathWithoutPaginationFindAll;
 	private FinderPath _finderPathCountAll;
@@ -101,8 +105,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByResourcePrimKey(long resourcePrimKey) {
-		return findByResourcePrimKey(resourcePrimKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByResourcePrimKey(
+			resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -118,8 +122,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByResourcePrimKey(long resourcePrimKey,
-		int start, int end) {
+	public List<JournalArticle> findByResourcePrimKey(
+		long resourcePrimKey, int start, int end) {
+
 		return findByResourcePrimKey(resourcePrimKey, start, end, null);
 	}
 
@@ -137,10 +142,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByResourcePrimKey(long resourcePrimKey,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByResourcePrimKey(resourcePrimKey, start, end,
-			orderByComparator, true);
+	public List<JournalArticle> findByResourcePrimKey(
+		long resourcePrimKey, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByResourcePrimKey(
+			resourcePrimKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -158,38 +165,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByResourcePrimKey(long resourcePrimKey,
-		int start, int end,
+	public List<JournalArticle> findByResourcePrimKey(
+		long resourcePrimKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByResourcePrimKey;
-			finderArgs = new Object[] { resourcePrimKey };
+			finderArgs = new Object[] {resourcePrimKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByResourcePrimKey;
 			finderArgs = new Object[] {
-					resourcePrimKey,
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey())) {
+
 						list = null;
 
 						break;
@@ -202,8 +211,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -214,11 +223,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_RESOURCEPRIMKEY_RESOURCEPRIMKEY_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -236,16 +244,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(resourcePrimKey);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -274,11 +282,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByResourcePrimKey_First(long resourcePrimKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByResourcePrimKey_First(
+			long resourcePrimKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByResourcePrimKey_First(resourcePrimKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByResourcePrimKey_First(
+			resourcePrimKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -304,10 +314,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByResourcePrimKey_First(long resourcePrimKey,
+	public JournalArticle fetchByResourcePrimKey_First(
+		long resourcePrimKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByResourcePrimKey(resourcePrimKey, 0,
-				1, orderByComparator);
+
+		List<JournalArticle> list = findByResourcePrimKey(
+			resourcePrimKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -325,11 +337,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByResourcePrimKey_Last(long resourcePrimKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByResourcePrimKey_Last(
+			long resourcePrimKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByResourcePrimKey_Last(resourcePrimKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByResourcePrimKey_Last(
+			resourcePrimKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -355,16 +369,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByResourcePrimKey_Last(long resourcePrimKey,
+	public JournalArticle fetchByResourcePrimKey_Last(
+		long resourcePrimKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByResourcePrimKey(resourcePrimKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByResourcePrimKey(resourcePrimKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByResourcePrimKey(
+			resourcePrimKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -383,10 +399,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByResourcePrimKey_PrevAndNext(long id,
-		long resourcePrimKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByResourcePrimKey_PrevAndNext(
+			long id, long resourcePrimKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -396,13 +413,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByResourcePrimKey_PrevAndNext(session,
-					journalArticle, resourcePrimKey, orderByComparator, true);
+			array[0] = getByResourcePrimKey_PrevAndNext(
+				session, journalArticle, resourcePrimKey, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByResourcePrimKey_PrevAndNext(session,
-					journalArticle, resourcePrimKey, orderByComparator, false);
+			array[2] = getByResourcePrimKey_PrevAndNext(
+				session, journalArticle, resourcePrimKey, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -414,14 +433,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByResourcePrimKey_PrevAndNext(Session session,
-		JournalArticle journalArticle, long resourcePrimKey,
+	protected JournalArticle getByResourcePrimKey_PrevAndNext(
+		Session session, JournalArticle journalArticle, long resourcePrimKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -433,7 +453,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_RESOURCEPRIMKEY_RESOURCEPRIMKEY_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -503,8 +524,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(resourcePrimKey);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -526,8 +549,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByResourcePrimKey(long resourcePrimKey) {
-		for (JournalArticle journalArticle : findByResourcePrimKey(
-				resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByResourcePrimKey(
+					resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -542,7 +568,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByResourcePrimKey(long resourcePrimKey) {
 		FinderPath finderPath = _finderPathCountByResourcePrimKey;
 
-		Object[] finderArgs = new Object[] { resourcePrimKey };
+		Object[] finderArgs = new Object[] {resourcePrimKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -583,8 +609,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_RESOURCEPRIMKEY_RESOURCEPRIMKEY_2 =
-		"journalArticle.resourcePrimKey = ?";
+	private static final String
+		_FINDER_COLUMN_RESOURCEPRIMKEY_RESOURCEPRIMKEY_2 =
+			"journalArticle.resourcePrimKey = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid;
 	private FinderPath _finderPathWithoutPaginationFindByUuid;
 	private FinderPath _finderPathCountByUuid;
@@ -631,8 +659,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByUuid(String uuid, int start, int end,
+	public List<JournalArticle> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findByUuid(uuid, start, end, orderByComparator, true);
 	}
 
@@ -651,9 +681,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByUuid(String uuid, int start, int end,
+	public List<JournalArticle> findByUuid(
+		String uuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -661,21 +693,22 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid;
-			finderArgs = new Object[] { uuid };
+			finderArgs = new Object[] {uuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid;
-			finderArgs = new Object[] { uuid, start, end, orderByComparator };
+			finderArgs = new Object[] {uuid, start, end, orderByComparator};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
@@ -692,8 +725,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -713,11 +746,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -737,16 +769,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -775,11 +807,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByUuid_First(String uuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByUuid_First(
+			String uuid, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByUuid_First(uuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByUuid_First(
+			uuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -805,8 +838,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByUuid_First(String uuid,
-		OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByUuid_First(
+		String uuid, OrderByComparator<JournalArticle> orderByComparator) {
+
 		List<JournalArticle> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -825,10 +859,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByUuid_Last(String uuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByUuid_Last(
+			String uuid, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByUuid_Last(uuid, orderByComparator);
+
+		JournalArticle journalArticle = fetchByUuid_Last(
+			uuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -854,16 +890,17 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByUuid_Last(String uuid,
-		OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByUuid_Last(
+		String uuid, OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByUuid(uuid, count - 1, count,
-				orderByComparator);
+		List<JournalArticle> list = findByUuid(
+			uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -882,9 +919,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByUuid_PrevAndNext(long id, String uuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByUuid_PrevAndNext(
+			long id, String uuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		uuid = Objects.toString(uuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -896,13 +935,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByUuid_PrevAndNext(session, journalArticle, uuid,
-					orderByComparator, true);
+			array[0] = getByUuid_PrevAndNext(
+				session, journalArticle, uuid, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByUuid_PrevAndNext(session, journalArticle, uuid,
-					orderByComparator, false);
+			array[2] = getByUuid_PrevAndNext(
+				session, journalArticle, uuid, orderByComparator, false);
 
 			return array;
 		}
@@ -914,14 +953,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByUuid_PrevAndNext(Session session,
-		JournalArticle journalArticle, String uuid,
+	protected JournalArticle getByUuid_PrevAndNext(
+		Session session, JournalArticle journalArticle, String uuid,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -942,7 +982,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1014,8 +1055,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1037,8 +1080,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByUuid(String uuid) {
-		for (JournalArticle journalArticle : findByUuid(uuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -1055,7 +1099,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByUuid;
 
-		Object[] finderArgs = new Object[] { uuid };
+		Object[] finderArgs = new Object[] {uuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1107,8 +1151,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_2 = "journalArticle.uuid = ?";
-	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(journalArticle.uuid IS NULL OR journalArticle.uuid = '')";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 =
+		"journalArticle.uuid = ?";
+
+	private static final String _FINDER_COLUMN_UUID_UUID_3 =
+		"(journalArticle.uuid IS NULL OR journalArticle.uuid = '')";
+
 	private FinderPath _finderPathFetchByUUID_G;
 	private FinderPath _finderPathCountByUUID_G;
 
@@ -1123,6 +1171,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public JournalArticle findByUUID_G(String uuid, long groupId)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = fetchByUUID_G(uuid, groupId);
 
 		if (journalArticle == null) {
@@ -1169,24 +1218,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) {
+	public JournalArticle fetchByUUID_G(
+		String uuid, long groupId, boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByUUID_G,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByUUID_G, finderArgs, this);
 		}
 
 		if (result instanceof JournalArticle) {
 			JournalArticle journalArticle = (JournalArticle)result;
 
 			if (!Objects.equals(uuid, journalArticle.getUuid()) ||
-					(groupId != journalArticle.getGroupId())) {
+				(groupId != journalArticle.getGroupId())) {
+
 				result = null;
 			}
 		}
@@ -1229,8 +1280,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				List<JournalArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByUUID_G, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByUUID_G, finderArgs, list);
 				}
 				else {
 					JournalArticle journalArticle = list.get(0);
@@ -1268,6 +1319,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public JournalArticle removeByUUID_G(String uuid, long groupId)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByUUID_G(uuid, groupId);
 
 		return remove(journalArticle);
@@ -1286,7 +1338,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByUUID_G;
 
-		Object[] finderArgs = new Object[] { uuid, groupId };
+		Object[] finderArgs = new Object[] {uuid, groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1342,9 +1394,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "journalArticle.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(journalArticle.uuid IS NULL OR journalArticle.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "journalArticle.groupId = ?";
+	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
+		"journalArticle.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
+		"(journalArticle.uuid IS NULL OR journalArticle.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
+		"journalArticle.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByUuid_C;
 	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
 	private FinderPath _finderPathCountByUuid_C;
@@ -1358,8 +1416,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByUuid_C(String uuid, long companyId) {
-		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByUuid_C(
+			uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1376,8 +1434,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByUuid_C(String uuid, long companyId,
-		int start, int end) {
+	public List<JournalArticle> findByUuid_C(
+		String uuid, long companyId, int start, int end) {
+
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -1396,9 +1455,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByUuid_C(uuid, companyId, start, end, orderByComparator, true);
+	public List<JournalArticle> findByUuid_C(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByUuid_C(
+			uuid, companyId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -1417,10 +1479,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByUuid_C(String uuid, long companyId,
-		int start, int end,
+	public List<JournalArticle> findByUuid_C(
+		String uuid, long companyId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		uuid = Objects.toString(uuid, "");
 
 		boolean pagination = true;
@@ -1428,30 +1491,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByUuid_C;
-			finderArgs = new Object[] { uuid, companyId };
+			finderArgs = new Object[] {uuid, companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
-					uuid, companyId,
-					
-					start, end, orderByComparator
-				};
+				uuid, companyId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if (!uuid.equals(journalArticle.getUuid()) ||
-							(companyId != journalArticle.getCompanyId())) {
+						(companyId != journalArticle.getCompanyId())) {
+
 						list = null;
 
 						break;
@@ -1464,8 +1527,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -1487,11 +1550,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -1513,16 +1575,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -1552,11 +1614,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByUuid_C_First(
+			String uuid, long companyId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByUuid_C_First(uuid, companyId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByUuid_C_First(
+			uuid, companyId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -1586,10 +1650,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByUuid_C_First(String uuid, long companyId,
+	public JournalArticle fetchByUuid_C_First(
+		String uuid, long companyId,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByUuid_C(uuid, companyId, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByUuid_C(
+			uuid, companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1608,11 +1674,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByUuid_C_Last(
+			String uuid, long companyId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByUuid_C_Last(uuid, companyId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByUuid_C_Last(
+			uuid, companyId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -1642,16 +1710,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByUuid_C_Last(String uuid, long companyId,
+	public JournalArticle fetchByUuid_C_Last(
+		String uuid, long companyId,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByUuid_C(uuid, companyId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByUuid_C(
+			uuid, companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -1671,9 +1741,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByUuid_C_PrevAndNext(long id, String uuid,
-		long companyId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByUuid_C_PrevAndNext(
+			long id, String uuid, long companyId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		uuid = Objects.toString(uuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -1685,13 +1757,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByUuid_C_PrevAndNext(session, journalArticle, uuid,
-					companyId, orderByComparator, true);
+			array[0] = getByUuid_C_PrevAndNext(
+				session, journalArticle, uuid, companyId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByUuid_C_PrevAndNext(session, journalArticle, uuid,
-					companyId, orderByComparator, false);
+			array[2] = getByUuid_C_PrevAndNext(
+				session, journalArticle, uuid, companyId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -1703,14 +1777,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByUuid_C_PrevAndNext(Session session,
-		JournalArticle journalArticle, String uuid, long companyId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByUuid_C_PrevAndNext(
+		Session session, JournalArticle journalArticle, String uuid,
+		long companyId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -1733,7 +1809,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_UUID_C_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -1807,8 +1884,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -1831,8 +1910,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByUuid_C(String uuid, long companyId) {
-		for (JournalArticle journalArticle : findByUuid_C(uuid, companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByUuid_C(
+					uuid, companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -1850,7 +1932,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByUuid_C;
 
-		Object[] finderArgs = new Object[] { uuid, companyId };
+		Object[] finderArgs = new Object[] {uuid, companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -1906,9 +1988,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "journalArticle.uuid = ? AND ";
-	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(journalArticle.uuid IS NULL OR journalArticle.uuid = '') AND ";
-	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "journalArticle.companyId = ?";
+	private static final String _FINDER_COLUMN_UUID_C_UUID_2 =
+		"journalArticle.uuid = ? AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_UUID_3 =
+		"(journalArticle.uuid IS NULL OR journalArticle.uuid = '') AND ";
+
+	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
+		"journalArticle.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByGroupId;
 	private FinderPath _finderPathWithoutPaginationFindByGroupId;
 	private FinderPath _finderPathCountByGroupId;
@@ -1921,7 +2009,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByGroupId(long groupId) {
-		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		return findByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -1937,7 +2026,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByGroupId(long groupId, int start, int end) {
+	public List<JournalArticle> findByGroupId(
+		long groupId, int start, int end) {
+
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -1955,8 +2046,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByGroupId(long groupId, int start, int end,
+	public List<JournalArticle> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findByGroupId(groupId, start, end, orderByComparator, true);
 	}
 
@@ -1975,29 +2068,32 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByGroupId(long groupId, int start, int end,
+	public List<JournalArticle> findByGroupId(
+		long groupId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId };
+			finderArgs = new Object[] {groupId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByGroupId;
-			finderArgs = new Object[] { groupId, start, end, orderByComparator };
+			finderArgs = new Object[] {groupId, start, end, orderByComparator};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
@@ -2014,8 +2110,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2026,11 +2122,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2048,16 +2143,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2086,11 +2181,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByGroupId_First(long groupId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByGroupId_First(
+			long groupId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByGroupId_First(groupId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByGroupId_First(
+			groupId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -2116,10 +2212,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByGroupId_First(long groupId,
-		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByGroupId(groupId, 0, 1,
-				orderByComparator);
+	public JournalArticle fetchByGroupId_First(
+		long groupId, OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByGroupId(
+			groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2137,11 +2234,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByGroupId_Last(long groupId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByGroupId_Last(
+			long groupId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByGroupId_Last(groupId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByGroupId_Last(
+			groupId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -2167,16 +2265,17 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByGroupId_Last(long groupId,
-		OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByGroupId_Last(
+		long groupId, OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByGroupId(groupId, count - 1, count,
-				orderByComparator);
+		List<JournalArticle> list = findByGroupId(
+			groupId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2195,9 +2294,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByGroupId_PrevAndNext(long id, long groupId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByGroupId_PrevAndNext(
+			long id, long groupId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -2207,13 +2308,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByGroupId_PrevAndNext(session, journalArticle,
-					groupId, orderByComparator, true);
+			array[0] = getByGroupId_PrevAndNext(
+				session, journalArticle, groupId, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByGroupId_PrevAndNext(session, journalArticle,
-					groupId, orderByComparator, false);
+			array[2] = getByGroupId_PrevAndNext(
+				session, journalArticle, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -2225,14 +2326,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByGroupId_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId,
+	protected JournalArticle getByGroupId_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2244,7 +2346,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2314,8 +2417,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2338,8 +2443,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> filterFindByGroupId(long groupId) {
-		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByGroupId(
+			groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2355,8 +2460,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByGroupId(long groupId, int start,
-		int end) {
+	public List<JournalArticle> filterFindByGroupId(
+		long groupId, int start, int end) {
+
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -2374,8 +2480,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByGroupId(
+		long groupId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -2383,8 +2491,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(3 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				3 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(4);
@@ -2394,23 +2502,25 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -2422,9 +2532,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -2444,8 +2554,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(groupId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -2465,9 +2575,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByGroupId_PrevAndNext(long id,
-		long groupId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByGroupId_PrevAndNext(
+			long id, long groupId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(id, groupId, orderByComparator);
 		}
@@ -2481,13 +2593,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByGroupId_PrevAndNext(session, journalArticle,
-					groupId, orderByComparator, true);
+			array[0] = filterGetByGroupId_PrevAndNext(
+				session, journalArticle, groupId, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByGroupId_PrevAndNext(session, journalArticle,
-					groupId, orderByComparator, false);
+			array[2] = filterGetByGroupId_PrevAndNext(
+				session, journalArticle, groupId, orderByComparator, false);
 
 			return array;
 		}
@@ -2499,14 +2611,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByGroupId_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId,
+	protected JournalArticle filterGetByGroupId_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -2517,17 +2630,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -2535,12 +2651,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -2567,12 +2687,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -2602,9 +2724,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -2623,8 +2745,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -2646,8 +2770,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByGroupId(long groupId) {
-		for (JournalArticle journalArticle : findByGroupId(groupId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByGroupId(
+					groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -2662,7 +2788,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByGroupId(long groupId) {
 		FinderPath finderPath = _finderPathCountByGroupId;
 
-		Object[] finderArgs = new Object[] { groupId };
+		Object[] finderArgs = new Object[] {groupId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2721,9 +2847,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -2732,8 +2858,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -2751,7 +2877,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "journalArticle.groupId = ?";
+	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 =
+		"journalArticle.groupId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByCompanyId;
 	private FinderPath _finderPathWithoutPaginationFindByCompanyId;
 	private FinderPath _finderPathCountByCompanyId;
@@ -2764,8 +2892,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByCompanyId(long companyId) {
-		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByCompanyId(
+			companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -2781,8 +2909,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByCompanyId(long companyId, int start,
-		int end) {
+	public List<JournalArticle> findByCompanyId(
+		long companyId, int start, int end) {
+
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -2800,8 +2929,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findByCompanyId(companyId, start, end, orderByComparator, true);
 	}
 
@@ -2820,29 +2951,34 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByCompanyId(
+		long companyId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId };
+			finderArgs = new Object[] {companyId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByCompanyId;
-			finderArgs = new Object[] { companyId, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				companyId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
@@ -2859,8 +2995,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -2871,11 +3007,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -2893,16 +3028,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(companyId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -2931,11 +3066,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByCompanyId_First(long companyId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByCompanyId_First(
+			long companyId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByCompanyId_First(companyId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByCompanyId_First(
+			companyId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -2961,10 +3097,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByCompanyId_First(long companyId,
-		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByCompanyId(companyId, 0, 1,
-				orderByComparator);
+	public JournalArticle fetchByCompanyId_First(
+		long companyId, OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByCompanyId(
+			companyId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -2982,11 +3119,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByCompanyId_Last(long companyId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByCompanyId_Last(
+			long companyId, OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByCompanyId_Last(companyId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByCompanyId_Last(
+			companyId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -3012,16 +3150,17 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByCompanyId_Last(long companyId,
-		OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByCompanyId_Last(
+		long companyId, OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByCompanyId(companyId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByCompanyId(
+			companyId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3040,9 +3179,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByCompanyId_PrevAndNext(long id,
-		long companyId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByCompanyId_PrevAndNext(
+			long id, long companyId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -3052,13 +3193,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByCompanyId_PrevAndNext(session, journalArticle,
-					companyId, orderByComparator, true);
+			array[0] = getByCompanyId_PrevAndNext(
+				session, journalArticle, companyId, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByCompanyId_PrevAndNext(session, journalArticle,
-					companyId, orderByComparator, false);
+			array[2] = getByCompanyId_PrevAndNext(
+				session, journalArticle, companyId, orderByComparator, false);
 
 			return array;
 		}
@@ -3070,14 +3211,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByCompanyId_PrevAndNext(Session session,
-		JournalArticle journalArticle, long companyId,
+	protected JournalArticle getByCompanyId_PrevAndNext(
+		Session session, JournalArticle journalArticle, long companyId,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3089,7 +3231,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_COMPANYID_COMPANYID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3159,8 +3302,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3182,8 +3327,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByCompanyId(long companyId) {
-		for (JournalArticle journalArticle : findByCompanyId(companyId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByCompanyId(
+					companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -3198,7 +3345,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = _finderPathCountByCompanyId;
 
-		Object[] finderArgs = new Object[] { companyId };
+		Object[] finderArgs = new Object[] {companyId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -3239,7 +3386,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "journalArticle.companyId = ?";
+	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 =
+		"journalArticle.companyId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByDDMStructureKey;
 	private FinderPath _finderPathWithoutPaginationFindByDDMStructureKey;
 	private FinderPath _finderPathCountByDDMStructureKey;
@@ -3253,8 +3402,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByDDMStructureKey(String DDMStructureKey) {
-		return findByDDMStructureKey(DDMStructureKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByDDMStructureKey(
+			DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -3270,8 +3419,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMStructureKey(String DDMStructureKey,
-		int start, int end) {
+	public List<JournalArticle> findByDDMStructureKey(
+		String DDMStructureKey, int start, int end) {
+
 		return findByDDMStructureKey(DDMStructureKey, start, end, null);
 	}
 
@@ -3289,10 +3439,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMStructureKey(String DDMStructureKey,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByDDMStructureKey(DDMStructureKey, start, end,
-			orderByComparator, true);
+	public List<JournalArticle> findByDDMStructureKey(
+		String DDMStructureKey, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByDDMStructureKey(
+			DDMStructureKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3310,10 +3462,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMStructureKey(String DDMStructureKey,
-		int start, int end,
+	public List<JournalArticle> findByDDMStructureKey(
+		String DDMStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
 		boolean pagination = true;
@@ -3321,30 +3474,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByDDMStructureKey;
-			finderArgs = new Object[] { DDMStructureKey };
+			finderArgs = new Object[] {DDMStructureKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByDDMStructureKey;
 			finderArgs = new Object[] {
-					DDMStructureKey,
-					
-					start, end, orderByComparator
-				};
+				DDMStructureKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if (!DDMStructureKey.equals(
-								journalArticle.getDDMStructureKey())) {
+							journalArticle.getDDMStructureKey())) {
+
 						list = null;
 
 						break;
@@ -3357,8 +3510,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -3378,11 +3531,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3402,16 +3554,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -3440,11 +3592,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByDDMStructureKey_First(String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByDDMStructureKey_First(
+			String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByDDMStructureKey_First(DDMStructureKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByDDMStructureKey_First(
+			DDMStructureKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -3470,10 +3624,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByDDMStructureKey_First(String DDMStructureKey,
+	public JournalArticle fetchByDDMStructureKey_First(
+		String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByDDMStructureKey(DDMStructureKey, 0,
-				1, orderByComparator);
+
+		List<JournalArticle> list = findByDDMStructureKey(
+			DDMStructureKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3491,11 +3647,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByDDMStructureKey_Last(String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByDDMStructureKey_Last(
+			String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByDDMStructureKey_Last(DDMStructureKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByDDMStructureKey_Last(
+			DDMStructureKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -3521,16 +3679,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByDDMStructureKey_Last(String DDMStructureKey,
+	public JournalArticle fetchByDDMStructureKey_Last(
+		String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByDDMStructureKey(DDMStructureKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByDDMStructureKey(DDMStructureKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByDDMStructureKey(
+			DDMStructureKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -3549,10 +3709,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByDDMStructureKey_PrevAndNext(long id,
-		String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByDDMStructureKey_PrevAndNext(
+			long id, String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -3564,13 +3725,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByDDMStructureKey_PrevAndNext(session,
-					journalArticle, DDMStructureKey, orderByComparator, true);
+			array[0] = getByDDMStructureKey_PrevAndNext(
+				session, journalArticle, DDMStructureKey, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByDDMStructureKey_PrevAndNext(session,
-					journalArticle, DDMStructureKey, orderByComparator, false);
+			array[2] = getByDDMStructureKey_PrevAndNext(
+				session, journalArticle, DDMStructureKey, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -3582,14 +3745,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByDDMStructureKey_PrevAndNext(Session session,
-		JournalArticle journalArticle, String DDMStructureKey,
+	protected JournalArticle getByDDMStructureKey_PrevAndNext(
+		Session session, JournalArticle journalArticle, String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -3610,7 +3774,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -3682,8 +3847,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -3711,8 +3878,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public List<JournalArticle> findByDDMStructureKey(
 		String[] DDMStructureKeies) {
-		return findByDDMStructureKey(DDMStructureKeies, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+
+		return findByDDMStructureKey(
+			DDMStructureKeies, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -3730,6 +3898,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public List<JournalArticle> findByDDMStructureKey(
 		String[] DDMStructureKeies, int start, int end) {
+
 		return findByDDMStructureKey(DDMStructureKeies, start, end, null);
 	}
 
@@ -3750,8 +3919,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public List<JournalArticle> findByDDMStructureKey(
 		String[] DDMStructureKeies, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByDDMStructureKey(DDMStructureKeies, start, end,
-			orderByComparator, true);
+
+		return findByDDMStructureKey(
+			DDMStructureKeies, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -3773,12 +3943,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		String[] DDMStructureKeies, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (DDMStructureKeies == null) {
 			DDMStructureKeies = new String[0];
 		}
 		else if (DDMStructureKeies.length > 1) {
 			for (int i = 0; i < DDMStructureKeies.length; i++) {
-				DDMStructureKeies[i] = Objects.toString(DDMStructureKeies[i], "");
+				DDMStructureKeies[i] = Objects.toString(
+					DDMStructureKeies[i], "");
 			}
 
 			DDMStructureKeies = ArrayUtil.unique(DDMStructureKeies);
@@ -3787,36 +3959,39 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (DDMStructureKeies.length == 1) {
-			return findByDDMStructureKey(DDMStructureKeies[0], start, end,
-				orderByComparator);
+			return findByDDMStructureKey(
+				DDMStructureKeies[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderArgs = new Object[] { StringUtil.merge(DDMStructureKeies) };
+			finderArgs = new Object[] {StringUtil.merge(DDMStructureKeies)};
 		}
 		else {
 			finderArgs = new Object[] {
-					StringUtil.merge(DDMStructureKeies),
-					
-					start, end, orderByComparator
-				};
+				StringUtil.merge(DDMStructureKeies), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByDDMStructureKey,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByDDMStructureKey, finderArgs,
+				this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if (!ArrayUtil.contains(DDMStructureKeies,
-								journalArticle.getDDMStructureKey())) {
+					if (!ArrayUtil.contains(
+							DDMStructureKeies,
+							journalArticle.getDDMStructureKey())) {
+
 						list = null;
 
 						break;
@@ -3837,10 +4012,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 					String DDMStructureKey = DDMStructureKeies[i];
 
 					if (DDMStructureKey.isEmpty()) {
-						query.append(_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3);
+						query.append(
+							_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3);
 					}
 					else {
-						query.append(_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2);
+						query.append(
+							_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2);
 					}
 
 					if ((i + 1) < DDMStructureKeies.length) {
@@ -3851,15 +4028,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -3875,33 +4052,33 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String DDMStructureKey : DDMStructureKeies) {
-					if ((DDMStructureKey != null) &&
-							!DDMStructureKey.isEmpty()) {
+					if (DDMStructureKey != null && !DDMStructureKey.isEmpty()) {
 						qPos.add(DDMStructureKey);
 					}
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByDDMStructureKey,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByDDMStructureKey, finderArgs,
+					list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByDDMStructureKey,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByDDMStructureKey, finderArgs);
 
 				throw processException(e);
 			}
@@ -3920,8 +4097,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByDDMStructureKey(String DDMStructureKey) {
-		for (JournalArticle journalArticle : findByDDMStructureKey(
-				DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByDDMStructureKey(
+					DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -3938,7 +4118,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByDDMStructureKey;
 
-		Object[] finderArgs = new Object[] { DDMStructureKey };
+		Object[] finderArgs = new Object[] {DDMStructureKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -4003,7 +4183,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 		else if (DDMStructureKeies.length > 1) {
 			for (int i = 0; i < DDMStructureKeies.length; i++) {
-				DDMStructureKeies[i] = Objects.toString(DDMStructureKeies[i], "");
+				DDMStructureKeies[i] = Objects.toString(
+					DDMStructureKeies[i], "");
 			}
 
 			DDMStructureKeies = ArrayUtil.unique(DDMStructureKeies);
@@ -4011,10 +4192,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			Arrays.sort(DDMStructureKeies);
 		}
 
-		Object[] finderArgs = new Object[] { StringUtil.merge(DDMStructureKeies) };
+		Object[] finderArgs = new Object[] {
+			StringUtil.merge(DDMStructureKeies)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByDDMStructureKey,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByDDMStructureKey, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -4028,10 +4211,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 					String DDMStructureKey = DDMStructureKeies[i];
 
 					if (DDMStructureKey.isEmpty()) {
-						query.append(_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3);
+						query.append(
+							_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3);
 					}
 					else {
-						query.append(_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2);
+						query.append(
+							_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2);
 					}
 
 					if ((i + 1) < DDMStructureKeies.length) {
@@ -4042,8 +4227,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -4057,19 +4243,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				for (String DDMStructureKey : DDMStructureKeies) {
-					if ((DDMStructureKey != null) &&
-							!DDMStructureKey.isEmpty()) {
+					if (DDMStructureKey != null && !DDMStructureKey.isEmpty()) {
 						qPos.add(DDMStructureKey);
 					}
 				}
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByDDMStructureKey,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByDDMStructureKey, finderArgs,
+					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByDDMStructureKey,
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByDDMStructureKey,
 					finderArgs);
 
 				throw processException(e);
@@ -4082,10 +4269,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2 =
-		"journalArticle.DDMStructureKey = ?";
-	private static final String _FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3 =
-		"(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+	private static final String
+		_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_2 =
+			"journalArticle.DDMStructureKey = ?";
+
+	private static final String
+		_FINDER_COLUMN_DDMSTRUCTUREKEY_DDMSTRUCTUREKEY_3 =
+			"(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByDDMTemplateKey;
 	private FinderPath _finderPathWithoutPaginationFindByDDMTemplateKey;
 	private FinderPath _finderPathCountByDDMTemplateKey;
@@ -4098,8 +4289,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByDDMTemplateKey(String DDMTemplateKey) {
-		return findByDDMTemplateKey(DDMTemplateKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByDDMTemplateKey(
+			DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -4115,8 +4306,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMTemplateKey(String DDMTemplateKey,
-		int start, int end) {
+	public List<JournalArticle> findByDDMTemplateKey(
+		String DDMTemplateKey, int start, int end) {
+
 		return findByDDMTemplateKey(DDMTemplateKey, start, end, null);
 	}
 
@@ -4134,10 +4326,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMTemplateKey(String DDMTemplateKey,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByDDMTemplateKey(DDMTemplateKey, start, end,
-			orderByComparator, true);
+	public List<JournalArticle> findByDDMTemplateKey(
+		String DDMTemplateKey, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByDDMTemplateKey(
+			DDMTemplateKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -4155,10 +4349,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByDDMTemplateKey(String DDMTemplateKey,
-		int start, int end,
+	public List<JournalArticle> findByDDMTemplateKey(
+		String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		boolean pagination = true;
@@ -4166,30 +4361,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByDDMTemplateKey;
-			finderArgs = new Object[] { DDMTemplateKey };
+			finderArgs = new Object[] {DDMTemplateKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByDDMTemplateKey;
 			finderArgs = new Object[] {
-					DDMTemplateKey,
-					
-					start, end, orderByComparator
-				};
+				DDMTemplateKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if (!DDMTemplateKey.equals(
-								journalArticle.getDDMTemplateKey())) {
+							journalArticle.getDDMTemplateKey())) {
+
 						list = null;
 
 						break;
@@ -4202,8 +4397,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -4223,11 +4418,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4247,16 +4441,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -4285,11 +4479,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByDDMTemplateKey_First(String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByDDMTemplateKey_First(
+			String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByDDMTemplateKey_First(DDMTemplateKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByDDMTemplateKey_First(
+			DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -4315,10 +4511,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByDDMTemplateKey_First(String DDMTemplateKey,
+	public JournalArticle fetchByDDMTemplateKey_First(
+		String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByDDMTemplateKey(DDMTemplateKey, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByDDMTemplateKey(
+			DDMTemplateKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4336,11 +4534,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByDDMTemplateKey_Last(String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByDDMTemplateKey_Last(
+			String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByDDMTemplateKey_Last(DDMTemplateKey,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByDDMTemplateKey_Last(
+			DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -4366,16 +4566,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByDDMTemplateKey_Last(String DDMTemplateKey,
+	public JournalArticle fetchByDDMTemplateKey_Last(
+		String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByDDMTemplateKey(DDMTemplateKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByDDMTemplateKey(DDMTemplateKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByDDMTemplateKey(
+			DDMTemplateKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4394,10 +4596,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByDDMTemplateKey_PrevAndNext(long id,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByDDMTemplateKey_PrevAndNext(
+			long id, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -4409,13 +4612,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByDDMTemplateKey_PrevAndNext(session, journalArticle,
-					DDMTemplateKey, orderByComparator, true);
+			array[0] = getByDDMTemplateKey_PrevAndNext(
+				session, journalArticle, DDMTemplateKey, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByDDMTemplateKey_PrevAndNext(session, journalArticle,
-					DDMTemplateKey, orderByComparator, false);
+			array[2] = getByDDMTemplateKey_PrevAndNext(
+				session, journalArticle, DDMTemplateKey, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -4427,14 +4632,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByDDMTemplateKey_PrevAndNext(Session session,
-		JournalArticle journalArticle, String DDMTemplateKey,
+	protected JournalArticle getByDDMTemplateKey_PrevAndNext(
+		Session session, JournalArticle journalArticle, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -4455,7 +4661,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -4527,8 +4734,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -4550,8 +4759,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByDDMTemplateKey(String DDMTemplateKey) {
-		for (JournalArticle journalArticle : findByDDMTemplateKey(
-				DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByDDMTemplateKey(
+					DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -4568,7 +4780,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByDDMTemplateKey;
 
-		Object[] finderArgs = new Object[] { DDMTemplateKey };
+		Object[] finderArgs = new Object[] {DDMTemplateKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -4620,8 +4832,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_DDMTEMPLATEKEY_DDMTEMPLATEKEY_2 = "journalArticle.DDMTemplateKey = ?";
-	private static final String _FINDER_COLUMN_DDMTEMPLATEKEY_DDMTEMPLATEKEY_3 = "(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+	private static final String _FINDER_COLUMN_DDMTEMPLATEKEY_DDMTEMPLATEKEY_2 =
+		"journalArticle.DDMTemplateKey = ?";
+
+	private static final String _FINDER_COLUMN_DDMTEMPLATEKEY_DDMTEMPLATEKEY_3 =
+		"(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByLayoutUuid;
 	private FinderPath _finderPathWithoutPaginationFindByLayoutUuid;
 	private FinderPath _finderPathCountByLayoutUuid;
@@ -4634,8 +4850,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByLayoutUuid(String layoutUuid) {
-		return findByLayoutUuid(layoutUuid, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByLayoutUuid(
+			layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -4651,8 +4867,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLayoutUuid(String layoutUuid, int start,
-		int end) {
+	public List<JournalArticle> findByLayoutUuid(
+		String layoutUuid, int start, int end) {
+
 		return findByLayoutUuid(layoutUuid, start, end, null);
 	}
 
@@ -4670,9 +4887,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLayoutUuid(String layoutUuid, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByLayoutUuid(layoutUuid, start, end, orderByComparator, true);
+	public List<JournalArticle> findByLayoutUuid(
+		String layoutUuid, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByLayoutUuid(
+			layoutUuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -4690,9 +4910,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLayoutUuid(String layoutUuid, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByLayoutUuid(
+		String layoutUuid, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		boolean pagination = true;
@@ -4700,21 +4922,24 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByLayoutUuid;
-			finderArgs = new Object[] { layoutUuid };
+			finderArgs = new Object[] {layoutUuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByLayoutUuid;
-			finderArgs = new Object[] { layoutUuid, start, end, orderByComparator };
+			finderArgs = new Object[] {
+				layoutUuid, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
@@ -4731,8 +4956,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -4752,11 +4977,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -4776,16 +5000,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -4814,11 +5038,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByLayoutUuid_First(String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByLayoutUuid_First(
+			String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByLayoutUuid_First(layoutUuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByLayoutUuid_First(
+			layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -4844,10 +5070,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByLayoutUuid_First(String layoutUuid,
+	public JournalArticle fetchByLayoutUuid_First(
+		String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByLayoutUuid(layoutUuid, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByLayoutUuid(
+			layoutUuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4865,11 +5093,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByLayoutUuid_Last(String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByLayoutUuid_Last(
+			String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByLayoutUuid_Last(layoutUuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByLayoutUuid_Last(
+			layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -4895,16 +5125,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByLayoutUuid_Last(String layoutUuid,
+	public JournalArticle fetchByLayoutUuid_Last(
+		String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByLayoutUuid(layoutUuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByLayoutUuid(layoutUuid, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByLayoutUuid(
+			layoutUuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -4923,9 +5155,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByLayoutUuid_PrevAndNext(long id,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByLayoutUuid_PrevAndNext(
+			long id, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -4937,13 +5171,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByLayoutUuid_PrevAndNext(session, journalArticle,
-					layoutUuid, orderByComparator, true);
+			array[0] = getByLayoutUuid_PrevAndNext(
+				session, journalArticle, layoutUuid, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByLayoutUuid_PrevAndNext(session, journalArticle,
-					layoutUuid, orderByComparator, false);
+			array[2] = getByLayoutUuid_PrevAndNext(
+				session, journalArticle, layoutUuid, orderByComparator, false);
 
 			return array;
 		}
@@ -4955,14 +5189,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByLayoutUuid_PrevAndNext(Session session,
-		JournalArticle journalArticle, String layoutUuid,
+	protected JournalArticle getByLayoutUuid_PrevAndNext(
+		Session session, JournalArticle journalArticle, String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -4983,7 +5218,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -5055,8 +5291,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -5078,8 +5316,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByLayoutUuid(String layoutUuid) {
-		for (JournalArticle journalArticle : findByLayoutUuid(layoutUuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByLayoutUuid(
+					layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -5096,7 +5336,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByLayoutUuid;
 
-		Object[] finderArgs = new Object[] { layoutUuid };
+		Object[] finderArgs = new Object[] {layoutUuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -5148,8 +5388,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_LAYOUTUUID_LAYOUTUUID_2 = "journalArticle.layoutUuid = ?";
-	private static final String _FINDER_COLUMN_LAYOUTUUID_LAYOUTUUID_3 = "(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+	private static final String _FINDER_COLUMN_LAYOUTUUID_LAYOUTUUID_2 =
+		"journalArticle.layoutUuid = ?";
+
+	private static final String _FINDER_COLUMN_LAYOUTUUID_LAYOUTUUID_3 =
+		"(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+
 	private FinderPath _finderPathWithPaginationFindBySmallImageId;
 	private FinderPath _finderPathWithoutPaginationFindBySmallImageId;
 	private FinderPath _finderPathCountBySmallImageId;
@@ -5162,8 +5406,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findBySmallImageId(long smallImageId) {
-		return findBySmallImageId(smallImageId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findBySmallImageId(
+			smallImageId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -5179,8 +5423,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findBySmallImageId(long smallImageId,
-		int start, int end) {
+	public List<JournalArticle> findBySmallImageId(
+		long smallImageId, int start, int end) {
+
 		return findBySmallImageId(smallImageId, start, end, null);
 	}
 
@@ -5198,10 +5443,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findBySmallImageId(long smallImageId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findBySmallImageId(smallImageId, start, end, orderByComparator,
-			true);
+	public List<JournalArticle> findBySmallImageId(
+		long smallImageId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findBySmallImageId(
+			smallImageId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5219,34 +5466,34 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findBySmallImageId(long smallImageId,
-		int start, int end,
+	public List<JournalArticle> findBySmallImageId(
+		long smallImageId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindBySmallImageId;
-			finderArgs = new Object[] { smallImageId };
+			finderArgs = new Object[] {smallImageId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindBySmallImageId;
 			finderArgs = new Object[] {
-					smallImageId,
-					
-					start, end, orderByComparator
-				};
+				smallImageId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
@@ -5263,8 +5510,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(3 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(3);
@@ -5275,11 +5522,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_SMALLIMAGEID_SMALLIMAGEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5297,16 +5543,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(smallImageId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -5335,11 +5581,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findBySmallImageId_First(long smallImageId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findBySmallImageId_First(
+			long smallImageId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchBySmallImageId_First(smallImageId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchBySmallImageId_First(
+			smallImageId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -5365,10 +5613,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchBySmallImageId_First(long smallImageId,
+	public JournalArticle fetchBySmallImageId_First(
+		long smallImageId,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findBySmallImageId(smallImageId, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findBySmallImageId(
+			smallImageId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5386,11 +5636,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findBySmallImageId_Last(long smallImageId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findBySmallImageId_Last(
+			long smallImageId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchBySmallImageId_Last(smallImageId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchBySmallImageId_Last(
+			smallImageId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -5416,16 +5668,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchBySmallImageId_Last(long smallImageId,
+	public JournalArticle fetchBySmallImageId_Last(
+		long smallImageId,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countBySmallImageId(smallImageId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findBySmallImageId(smallImageId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findBySmallImageId(
+			smallImageId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5444,9 +5698,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findBySmallImageId_PrevAndNext(long id,
-		long smallImageId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findBySmallImageId_PrevAndNext(
+			long id, long smallImageId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -5456,13 +5712,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getBySmallImageId_PrevAndNext(session, journalArticle,
-					smallImageId, orderByComparator, true);
+			array[0] = getBySmallImageId_PrevAndNext(
+				session, journalArticle, smallImageId, orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getBySmallImageId_PrevAndNext(session, journalArticle,
-					smallImageId, orderByComparator, false);
+			array[2] = getBySmallImageId_PrevAndNext(
+				session, journalArticle, smallImageId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -5474,14 +5731,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getBySmallImageId_PrevAndNext(Session session,
-		JournalArticle journalArticle, long smallImageId,
+	protected JournalArticle getBySmallImageId_PrevAndNext(
+		Session session, JournalArticle journalArticle, long smallImageId,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -5493,7 +5751,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_SMALLIMAGEID_SMALLIMAGEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -5563,8 +5822,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(smallImageId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -5586,8 +5847,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeBySmallImageId(long smallImageId) {
-		for (JournalArticle journalArticle : findBySmallImageId(smallImageId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findBySmallImageId(
+					smallImageId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -5602,7 +5865,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countBySmallImageId(long smallImageId) {
 		FinderPath finderPath = _finderPathCountBySmallImageId;
 
-		Object[] finderArgs = new Object[] { smallImageId };
+		Object[] finderArgs = new Object[] {smallImageId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -5643,7 +5906,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_SMALLIMAGEID_SMALLIMAGEID_2 = "journalArticle.smallImageId = ?";
+	private static final String _FINDER_COLUMN_SMALLIMAGEID_SMALLIMAGEID_2 =
+		"journalArticle.smallImageId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByR_I;
 	private FinderPath _finderPathWithoutPaginationFindByR_I;
 	private FinderPath _finderPathCountByR_I;
@@ -5656,10 +5921,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I(long resourcePrimKey,
-		boolean indexable) {
-		return findByR_I(resourcePrimKey, indexable, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByR_I(
+		long resourcePrimKey, boolean indexable) {
+
+		return findByR_I(
+			resourcePrimKey, indexable, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -5676,8 +5943,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I(long resourcePrimKey,
-		boolean indexable, int start, int end) {
+	public List<JournalArticle> findByR_I(
+		long resourcePrimKey, boolean indexable, int start, int end) {
+
 		return findByR_I(resourcePrimKey, indexable, start, end, null);
 	}
 
@@ -5696,11 +5964,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I(long resourcePrimKey,
-		boolean indexable, int start, int end,
+	public List<JournalArticle> findByR_I(
+		long resourcePrimKey, boolean indexable, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByR_I(resourcePrimKey, indexable, start, end,
-			orderByComparator, true);
+
+		return findByR_I(
+			resourcePrimKey, indexable, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -5719,39 +5988,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I(long resourcePrimKey,
-		boolean indexable, int start, int end,
+	public List<JournalArticle> findByR_I(
+		long resourcePrimKey, boolean indexable, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByR_I;
-			finderArgs = new Object[] { resourcePrimKey, indexable };
+			finderArgs = new Object[] {resourcePrimKey, indexable};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByR_I;
 			finderArgs = new Object[] {
-					resourcePrimKey, indexable,
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, indexable, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey()) ||
-							(indexable != journalArticle.isIndexable())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey()) ||
+						(indexable != journalArticle.isIndexable())) {
+
 						list = null;
 
 						break;
@@ -5764,8 +6035,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -5778,11 +6049,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_R_I_INDEXABLE_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -5802,16 +6072,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(indexable);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -5841,11 +6111,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_I_First(long resourcePrimKey,
-		boolean indexable, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_I_First(
+			long resourcePrimKey, boolean indexable,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_I_First(resourcePrimKey,
-				indexable, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_I_First(
+			resourcePrimKey, indexable, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -5875,10 +6147,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_I_First(long resourcePrimKey,
-		boolean indexable, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByR_I(resourcePrimKey, indexable, 0, 1,
-				orderByComparator);
+	public JournalArticle fetchByR_I_First(
+		long resourcePrimKey, boolean indexable,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByR_I(
+			resourcePrimKey, indexable, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5897,11 +6171,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_I_Last(long resourcePrimKey,
-		boolean indexable, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_I_Last(
+			long resourcePrimKey, boolean indexable,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_I_Last(resourcePrimKey,
-				indexable, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_I_Last(
+			resourcePrimKey, indexable, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -5931,16 +6207,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_I_Last(long resourcePrimKey,
-		boolean indexable, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByR_I_Last(
+		long resourcePrimKey, boolean indexable,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByR_I(resourcePrimKey, indexable);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByR_I(resourcePrimKey, indexable,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByR_I(
+			resourcePrimKey, indexable, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -5960,10 +6238,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByR_I_PrevAndNext(long id,
-		long resourcePrimKey, boolean indexable,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByR_I_PrevAndNext(
+			long id, long resourcePrimKey, boolean indexable,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -5973,13 +6252,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByR_I_PrevAndNext(session, journalArticle,
-					resourcePrimKey, indexable, orderByComparator, true);
+			array[0] = getByR_I_PrevAndNext(
+				session, journalArticle, resourcePrimKey, indexable,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByR_I_PrevAndNext(session, journalArticle,
-					resourcePrimKey, indexable, orderByComparator, false);
+			array[2] = getByR_I_PrevAndNext(
+				session, journalArticle, resourcePrimKey, indexable,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -5991,14 +6272,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByR_I_PrevAndNext(Session session,
-		JournalArticle journalArticle, long resourcePrimKey, boolean indexable,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByR_I_PrevAndNext(
+		Session session, JournalArticle journalArticle, long resourcePrimKey,
+		boolean indexable, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -6012,7 +6295,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_R_I_INDEXABLE_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -6084,8 +6368,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(indexable);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -6108,8 +6394,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByR_I(long resourcePrimKey, boolean indexable) {
-		for (JournalArticle journalArticle : findByR_I(resourcePrimKey,
-				indexable, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByR_I(
+					resourcePrimKey, indexable, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -6125,7 +6414,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByR_I(long resourcePrimKey, boolean indexable) {
 		FinderPath finderPath = _finderPathCountByR_I;
 
-		Object[] finderArgs = new Object[] { resourcePrimKey, indexable };
+		Object[] finderArgs = new Object[] {resourcePrimKey, indexable};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -6170,8 +6459,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_R_I_RESOURCEPRIMKEY_2 = "journalArticle.resourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_R_I_INDEXABLE_2 = "journalArticle.indexable = ?";
+	private static final String _FINDER_COLUMN_R_I_RESOURCEPRIMKEY_2 =
+		"journalArticle.resourcePrimKey = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_I_INDEXABLE_2 =
+		"journalArticle.indexable = ?";
+
 	private FinderPath _finderPathWithPaginationFindByR_ST;
 	private FinderPath _finderPathWithoutPaginationFindByR_ST;
 	private FinderPath _finderPathCountByR_ST;
@@ -6186,8 +6479,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByR_ST(long resourcePrimKey, int status) {
-		return findByR_ST(resourcePrimKey, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByR_ST(
+			resourcePrimKey, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -6204,8 +6498,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey, int status,
-		int start, int end) {
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int status, int start, int end) {
+
 		return findByR_ST(resourcePrimKey, status, start, end, null);
 	}
 
@@ -6224,10 +6519,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey, int status,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByR_ST(resourcePrimKey, status, start, end,
-			orderByComparator, true);
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByR_ST(
+			resourcePrimKey, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -6246,39 +6543,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey, int status,
-		int start, int end,
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByR_ST;
-			finderArgs = new Object[] { resourcePrimKey, status };
+			finderArgs = new Object[] {resourcePrimKey, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByR_ST;
 			finderArgs = new Object[] {
-					resourcePrimKey, status,
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey()) ||
-							(status != journalArticle.getStatus())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -6291,8 +6590,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -6305,11 +6604,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_R_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6329,16 +6627,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -6368,11 +6666,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_ST_First(long resourcePrimKey, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_ST_First(
+			long resourcePrimKey, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_ST_First(resourcePrimKey,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_ST_First(
+			resourcePrimKey, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -6402,10 +6702,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_ST_First(long resourcePrimKey, int status,
+	public JournalArticle fetchByR_ST_First(
+		long resourcePrimKey, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByR_ST(resourcePrimKey, status, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByR_ST(
+			resourcePrimKey, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -6424,11 +6726,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_ST_Last(long resourcePrimKey, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_ST_Last(
+			long resourcePrimKey, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_ST_Last(resourcePrimKey,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_ST_Last(
+			resourcePrimKey, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -6458,16 +6762,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_ST_Last(long resourcePrimKey, int status,
+	public JournalArticle fetchByR_ST_Last(
+		long resourcePrimKey, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByR_ST(resourcePrimKey, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByR_ST(resourcePrimKey, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByR_ST(
+			resourcePrimKey, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -6487,10 +6793,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByR_ST_PrevAndNext(long id,
-		long resourcePrimKey, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByR_ST_PrevAndNext(
+			long id, long resourcePrimKey, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -6500,13 +6807,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByR_ST_PrevAndNext(session, journalArticle,
-					resourcePrimKey, status, orderByComparator, true);
+			array[0] = getByR_ST_PrevAndNext(
+				session, journalArticle, resourcePrimKey, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByR_ST_PrevAndNext(session, journalArticle,
-					resourcePrimKey, status, orderByComparator, false);
+			array[2] = getByR_ST_PrevAndNext(
+				session, journalArticle, resourcePrimKey, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -6518,14 +6827,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByR_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long resourcePrimKey, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByR_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long resourcePrimKey,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -6539,7 +6850,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_R_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -6611,8 +6923,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -6639,9 +6953,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey, int[] statuses) {
-		return findByR_ST(resourcePrimKey, statuses, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int[] statuses) {
+
+		return findByR_ST(
+			resourcePrimKey, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -6658,8 +6975,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey,
-		int[] statuses, int start, int end) {
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int[] statuses, int start, int end) {
+
 		return findByR_ST(resourcePrimKey, statuses, start, end, null);
 	}
 
@@ -6678,11 +6996,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByR_ST(resourcePrimKey, statuses, start, end,
-			orderByComparator, true);
+
+		return findByR_ST(
+			resourcePrimKey, statuses, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -6701,10 +7020,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_ST(long resourcePrimKey,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByR_ST(
+		long resourcePrimKey, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -6715,39 +7035,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (statuses.length == 1) {
-			return findByR_ST(resourcePrimKey, statuses[0], start, end,
-				orderByComparator);
+			return findByR_ST(
+				resourcePrimKey, statuses[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderArgs = new Object[] {
-					resourcePrimKey, StringUtil.merge(statuses)
-				};
+				resourcePrimKey, StringUtil.merge(statuses)
+			};
 		}
 		else {
 			finderArgs = new Object[] {
-					resourcePrimKey, StringUtil.merge(statuses),
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, StringUtil.merge(statuses), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByR_ST,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByR_ST, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey()) ||
-							!ArrayUtil.contains(statuses,
-								journalArticle.getStatus())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey()) ||
+						!ArrayUtil.contains(
+							statuses, journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -6775,15 +7097,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -6801,26 +7123,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(resourcePrimKey);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByR_ST,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_ST, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByR_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -6840,8 +7162,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByR_ST(long resourcePrimKey, int status) {
-		for (JournalArticle journalArticle : findByR_ST(resourcePrimKey,
-				status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByR_ST(
+					resourcePrimKey, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -6857,7 +7182,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByR_ST(long resourcePrimKey, int status) {
 		FinderPath finderPath = _finderPathCountByR_ST;
 
-		Object[] finderArgs = new Object[] { resourcePrimKey, status };
+		Object[] finderArgs = new Object[] {resourcePrimKey, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -6921,11 +7246,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		Object[] finderArgs = new Object[] {
-				resourcePrimKey, StringUtil.merge(statuses)
-			};
+			resourcePrimKey, StringUtil.merge(statuses)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByR_ST,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByR_ST, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -6946,8 +7271,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -6964,12 +7290,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByR_ST,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByR_ST, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByR_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByR_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -6981,9 +7307,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_R_ST_RESOURCEPRIMKEY_2 = "journalArticle.resourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_R_ST_STATUS_2 = "journalArticle.status = ?";
-	private static final String _FINDER_COLUMN_R_ST_STATUS_7 = "journalArticle.status IN (";
+	private static final String _FINDER_COLUMN_R_ST_RESOURCEPRIMKEY_2 =
+		"journalArticle.resourcePrimKey = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
+	private static final String _FINDER_COLUMN_R_ST_STATUS_7 =
+		"journalArticle.status IN (";
+
 	private FinderPath _finderPathWithPaginationFindByG_U;
 	private FinderPath _finderPathWithoutPaginationFindByG_U;
 	private FinderPath _finderPathCountByG_U;
@@ -6997,8 +7329,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_U(long groupId, long userId) {
-		return findByG_U(groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+		return findByG_U(
+			groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -7015,8 +7347,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U(long groupId, long userId, int start,
-		int end) {
+	public List<JournalArticle> findByG_U(
+		long groupId, long userId, int start, int end) {
+
 		return findByG_U(groupId, userId, start, end, null);
 	}
 
@@ -7035,8 +7368,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U(long groupId, long userId, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> findByG_U(
+		long groupId, long userId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findByG_U(groupId, userId, start, end, orderByComparator, true);
 	}
 
@@ -7056,38 +7391,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U(long groupId, long userId, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByG_U(
+		long groupId, long userId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_U;
-			finderArgs = new Object[] { groupId, userId };
+			finderArgs = new Object[] {groupId, userId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_U;
 			finderArgs = new Object[] {
-					groupId, userId,
-					
-					start, end, orderByComparator
-				};
+				groupId, userId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(userId != journalArticle.getUserId())) {
+						(userId != journalArticle.getUserId())) {
+
 						list = null;
 
 						break;
@@ -7100,8 +7437,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -7114,11 +7451,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -7138,16 +7474,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(userId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -7177,11 +7513,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_U_First(long groupId, long userId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_U_First(
+			long groupId, long userId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_U_First(groupId, userId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_U_First(
+			groupId, userId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -7211,10 +7549,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_U_First(long groupId, long userId,
+	public JournalArticle fetchByG_U_First(
+		long groupId, long userId,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_U(groupId, userId, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_U(
+			groupId, userId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -7233,11 +7573,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_U_Last(long groupId, long userId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_U_Last(
+			long groupId, long userId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_U_Last(groupId, userId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_U_Last(
+			groupId, userId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -7267,16 +7609,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_U_Last(long groupId, long userId,
+	public JournalArticle fetchByG_U_Last(
+		long groupId, long userId,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_U(groupId, userId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_U(groupId, userId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_U(
+			groupId, userId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -7296,9 +7640,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_U_PrevAndNext(long id, long groupId,
-		long userId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_U_PrevAndNext(
+			long id, long groupId, long userId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -7308,13 +7654,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_U_PrevAndNext(session, journalArticle, groupId,
-					userId, orderByComparator, true);
+			array[0] = getByG_U_PrevAndNext(
+				session, journalArticle, groupId, userId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_U_PrevAndNext(session, journalArticle, groupId,
-					userId, orderByComparator, false);
+			array[2] = getByG_U_PrevAndNext(
+				session, journalArticle, groupId, userId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -7326,14 +7674,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_U_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long userId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_U_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long userId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -7347,7 +7697,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -7419,8 +7770,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -7444,8 +7797,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> filterFindByG_U(long groupId, long userId) {
-		return filterFindByG_U(groupId, userId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByG_U(
+			groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -7462,8 +7815,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_U(long groupId, long userId,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_U(
+		long groupId, long userId, int start, int end) {
+
 		return filterFindByG_U(groupId, userId, start, end, null);
 	}
 
@@ -7482,8 +7836,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_U(long groupId, long userId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_U(
+		long groupId, long userId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_U(groupId, userId, start, end, orderByComparator);
 		}
@@ -7491,8 +7847,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -7502,7 +7858,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
@@ -7510,17 +7867,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -7532,9 +7890,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -7556,8 +7914,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(userId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -7578,11 +7936,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_U_PrevAndNext(long id, long groupId,
-		long userId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_U_PrevAndNext(
+			long id, long groupId, long userId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_U_PrevAndNext(id, groupId, userId, orderByComparator);
+			return findByG_U_PrevAndNext(
+				id, groupId, userId, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -7594,13 +7955,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_U_PrevAndNext(session, journalArticle,
-					groupId, userId, orderByComparator, true);
+			array[0] = filterGetByG_U_PrevAndNext(
+				session, journalArticle, groupId, userId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_U_PrevAndNext(session, journalArticle,
-					groupId, userId, orderByComparator, false);
+			array[2] = filterGetByG_U_PrevAndNext(
+				session, journalArticle, groupId, userId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -7612,14 +7975,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_U_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long userId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_U_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long userId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -7630,7 +7995,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_U_GROUPID_2);
@@ -7638,11 +8004,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -7650,12 +8018,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -7682,12 +8054,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -7717,9 +8091,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -7740,8 +8114,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -7764,8 +8140,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_U(long groupId, long userId) {
-		for (JournalArticle journalArticle : findByG_U(groupId, userId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_U(
+					groupId, userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -7781,7 +8160,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_U(long groupId, long userId) {
 		FinderPath finderPath = _finderPathCountByG_U;
 
-		Object[] finderArgs = new Object[] { groupId, userId };
+		Object[] finderArgs = new Object[] {groupId, userId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -7847,9 +8226,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_U_USERID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -7858,8 +8237,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -7879,8 +8258,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_U_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_U_USERID_2 = "journalArticle.userId = ?";
+	private static final String _FINDER_COLUMN_G_U_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_U_USERID_2 =
+		"journalArticle.userId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_F;
 	private FinderPath _finderPathWithoutPaginationFindByG_F;
 	private FinderPath _finderPathCountByG_F;
@@ -7895,8 +8278,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_F(long groupId, long folderId) {
-		return findByG_F(groupId, folderId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_F(
+			groupId, folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -7913,8 +8296,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long folderId,
-		int start, int end) {
+	public List<JournalArticle> findByG_F(
+		long groupId, long folderId, int start, int end) {
+
 		return findByG_F(groupId, folderId, start, end, null);
 	}
 
@@ -7933,9 +8317,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long folderId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_F(groupId, folderId, start, end, orderByComparator, true);
+	public List<JournalArticle> findByG_F(
+		long groupId, long folderId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_F(
+			groupId, folderId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -7954,39 +8341,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long folderId,
-		int start, int end,
+	public List<JournalArticle> findByG_F(
+		long groupId, long folderId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_F;
-			finderArgs = new Object[] { groupId, folderId };
+			finderArgs = new Object[] {groupId, folderId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_F;
 			finderArgs = new Object[] {
-					groupId, folderId,
-					
-					start, end, orderByComparator
-				};
+				groupId, folderId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(folderId != journalArticle.getFolderId())) {
+						(folderId != journalArticle.getFolderId())) {
+
 						list = null;
 
 						break;
@@ -7999,8 +8387,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -8013,11 +8401,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_F_FOLDERID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -8037,16 +8424,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(folderId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -8076,11 +8463,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_F_First(long groupId, long folderId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_F_First(
+			long groupId, long folderId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_F_First(groupId, folderId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_F_First(
+			groupId, folderId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -8110,10 +8499,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_F_First(long groupId, long folderId,
+	public JournalArticle fetchByG_F_First(
+		long groupId, long folderId,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_F(groupId, folderId, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_F(
+			groupId, folderId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8132,11 +8523,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_F_Last(long groupId, long folderId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_F_Last(
+			long groupId, long folderId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_F_Last(groupId, folderId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_F_Last(
+			groupId, folderId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -8166,16 +8559,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_F_Last(long groupId, long folderId,
+	public JournalArticle fetchByG_F_Last(
+		long groupId, long folderId,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_F(groupId, folderId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_F(groupId, folderId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_F(
+			groupId, folderId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -8195,9 +8590,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_F_PrevAndNext(long id, long groupId,
-		long folderId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_F_PrevAndNext(
+			long id, long groupId, long folderId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -8207,13 +8604,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_F_PrevAndNext(session, journalArticle, groupId,
-					folderId, orderByComparator, true);
+			array[0] = getByG_F_PrevAndNext(
+				session, journalArticle, groupId, folderId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_F_PrevAndNext(session, journalArticle, groupId,
-					folderId, orderByComparator, false);
+			array[2] = getByG_F_PrevAndNext(
+				session, journalArticle, groupId, folderId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -8225,14 +8624,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_F_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long folderId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_F_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long folderId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -8246,7 +8647,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_FOLDERID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -8318,8 +8720,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(folderId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -8343,8 +8747,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> filterFindByG_F(long groupId, long folderId) {
-		return filterFindByG_F(groupId, folderId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByG_F(
+			groupId, folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -8361,8 +8765,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F(long groupId, long folderId,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_F(
+		long groupId, long folderId, int start, int end) {
+
 		return filterFindByG_F(groupId, folderId, start, end, null);
 	}
 
@@ -8381,8 +8786,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F(long groupId, long folderId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_F(
+		long groupId, long folderId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_F(groupId, folderId, start, end, orderByComparator);
 		}
@@ -8390,8 +8797,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -8401,7 +8808,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_GROUPID_2);
@@ -8409,17 +8817,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_FOLDERID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -8431,9 +8840,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -8455,8 +8864,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(folderId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -8477,12 +8886,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_F_PrevAndNext(long id, long groupId,
-		long folderId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_F_PrevAndNext(
+			long id, long groupId, long folderId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_F_PrevAndNext(id, groupId, folderId,
-				orderByComparator);
+			return findByG_F_PrevAndNext(
+				id, groupId, folderId, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -8494,13 +8905,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_F_PrevAndNext(session, journalArticle,
-					groupId, folderId, orderByComparator, true);
+			array[0] = filterGetByG_F_PrevAndNext(
+				session, journalArticle, groupId, folderId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_F_PrevAndNext(session, journalArticle,
-					groupId, folderId, orderByComparator, false);
+			array[2] = filterGetByG_F_PrevAndNext(
+				session, journalArticle, groupId, folderId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -8512,14 +8925,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_F_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long folderId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_F_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long folderId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -8530,7 +8945,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_GROUPID_2);
@@ -8538,11 +8954,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_FOLDERID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -8550,12 +8968,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -8582,12 +9004,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -8617,9 +9041,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -8640,8 +9064,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(folderId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -8664,9 +9090,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F(long groupId, long[] folderIds) {
-		return filterFindByG_F(groupId, folderIds, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_F(
+		long groupId, long[] folderIds) {
+
+		return filterFindByG_F(
+			groupId, folderIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -8683,8 +9111,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F(long groupId, long[] folderIds,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_F(
+		long groupId, long[] folderIds, int start, int end) {
+
 		return filterFindByG_F(groupId, folderIds, start, end, null);
 	}
 
@@ -8703,8 +9132,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F(long groupId, long[] folderIds,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_F(
+		long groupId, long[] folderIds, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_F(groupId, folderIds, start, end, orderByComparator);
 		}
@@ -8724,7 +9155,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_GROUPID_2);
@@ -8741,21 +9173,23 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -8767,9 +9201,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -8789,8 +9223,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(groupId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -8813,8 +9247,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_F(long groupId, long[] folderIds) {
-		return findByG_F(groupId, folderIds, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_F(
+			groupId, folderIds, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -8831,8 +9265,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long[] folderIds,
-		int start, int end) {
+	public List<JournalArticle> findByG_F(
+		long groupId, long[] folderIds, int start, int end) {
+
 		return findByG_F(groupId, folderIds, start, end, null);
 	}
 
@@ -8851,9 +9286,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long[] folderIds,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_F(groupId, folderIds, start, end, orderByComparator, true);
+	public List<JournalArticle> findByG_F(
+		long groupId, long[] folderIds, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_F(
+			groupId, folderIds, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -8872,10 +9310,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F(long groupId, long[] folderIds,
-		int start, int end,
+	public List<JournalArticle> findByG_F(
+		long groupId, long[] folderIds, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (folderIds == null) {
 			folderIds = new long[0];
 		}
@@ -8886,37 +9325,38 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (folderIds.length == 1) {
-			return findByG_F(groupId, folderIds[0], start, end,
-				orderByComparator);
+			return findByG_F(
+				groupId, folderIds[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderArgs = new Object[] { groupId, StringUtil.merge(folderIds) };
+			finderArgs = new Object[] {groupId, StringUtil.merge(folderIds)};
 		}
 		else {
 			finderArgs = new Object[] {
-					groupId, StringUtil.merge(folderIds),
-					
-					start, end, orderByComparator
-				};
+				groupId, StringUtil.merge(folderIds), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByG_F,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_F, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!ArrayUtil.contains(folderIds,
-								journalArticle.getFolderId())) {
+						!ArrayUtil.contains(
+							folderIds, journalArticle.getFolderId())) {
+
 						list = null;
 
 						break;
@@ -8944,15 +9384,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -8970,26 +9410,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(groupId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_F,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_F, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_F,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_F, finderArgs);
 
 				throw processException(e);
 			}
@@ -9009,8 +9449,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_F(long groupId, long folderId) {
-		for (JournalArticle journalArticle : findByG_F(groupId, folderId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_F(
+					groupId, folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -9026,7 +9469,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_F(long groupId, long folderId) {
 		FinderPath finderPath = _finderPathCountByG_F;
 
-		Object[] finderArgs = new Object[] { groupId, folderId };
+		Object[] finderArgs = new Object[] {groupId, folderId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -9089,10 +9532,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			Arrays.sort(folderIds);
 		}
 
-		Object[] finderArgs = new Object[] { groupId, StringUtil.merge(folderIds) };
+		Object[] finderArgs = new Object[] {
+			groupId, StringUtil.merge(folderIds)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_F,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_F, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -9113,8 +9558,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -9131,12 +9577,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_F,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_F, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_F,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_F, finderArgs);
 
 				throw processException(e);
 			}
@@ -9169,9 +9615,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_F_FOLDERID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -9180,8 +9626,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -9241,12 +9687,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -9255,8 +9702,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -9274,9 +9721,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_F_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_F_FOLDERID_2 = "journalArticle.folderId = ?";
-	private static final String _FINDER_COLUMN_G_F_FOLDERID_7 = "journalArticle.folderId IN (";
+	private static final String _FINDER_COLUMN_G_F_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_F_FOLDERID_2 =
+		"journalArticle.folderId = ?";
+
+	private static final String _FINDER_COLUMN_G_F_FOLDERID_7 =
+		"journalArticle.folderId IN (";
+
 	private FinderPath _finderPathWithPaginationFindByG_A;
 	private FinderPath _finderPathWithoutPaginationFindByG_A;
 	private FinderPath _finderPathCountByG_A;
@@ -9290,8 +9743,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_A(long groupId, String articleId) {
-		return findByG_A(groupId, articleId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_A(
+			groupId, articleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -9308,8 +9761,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A(long groupId, String articleId,
-		int start, int end) {
+	public List<JournalArticle> findByG_A(
+		long groupId, String articleId, int start, int end) {
+
 		return findByG_A(groupId, articleId, start, end, null);
 	}
 
@@ -9328,9 +9782,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A(long groupId, String articleId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_A(groupId, articleId, start, end, orderByComparator, true);
+	public List<JournalArticle> findByG_A(
+		long groupId, String articleId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_A(
+			groupId, articleId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -9349,10 +9806,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A(long groupId, String articleId,
-		int start, int end,
+	public List<JournalArticle> findByG_A(
+		long groupId, String articleId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		articleId = Objects.toString(articleId, "");
 
 		boolean pagination = true;
@@ -9360,30 +9818,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_A;
-			finderArgs = new Object[] { groupId, articleId };
+			finderArgs = new Object[] {groupId, articleId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_A;
 			finderArgs = new Object[] {
-					groupId, articleId,
-					
-					start, end, orderByComparator
-				};
+				groupId, articleId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!articleId.equals(journalArticle.getArticleId())) {
+						!articleId.equals(journalArticle.getArticleId())) {
+
 						list = null;
 
 						break;
@@ -9396,8 +9854,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -9419,11 +9877,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -9445,16 +9902,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -9484,11 +9941,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_First(long groupId, String articleId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_First(
+			long groupId, String articleId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_First(groupId, articleId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_First(
+			groupId, articleId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -9518,10 +9977,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_First(long groupId, String articleId,
+	public JournalArticle fetchByG_A_First(
+		long groupId, String articleId,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_A(groupId, articleId, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_A(
+			groupId, articleId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -9540,11 +10001,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_Last(long groupId, String articleId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_Last(
+			long groupId, String articleId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_Last(groupId, articleId,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_Last(
+			groupId, articleId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -9574,16 +10037,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_Last(long groupId, String articleId,
+	public JournalArticle fetchByG_A_Last(
+		long groupId, String articleId,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_A(groupId, articleId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_A(groupId, articleId, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_A(
+			groupId, articleId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -9603,9 +10068,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_A_PrevAndNext(long id, long groupId,
-		String articleId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_A_PrevAndNext(
+			long id, long groupId, String articleId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		articleId = Objects.toString(articleId, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -9617,13 +10084,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_A_PrevAndNext(session, journalArticle, groupId,
-					articleId, orderByComparator, true);
+			array[0] = getByG_A_PrevAndNext(
+				session, journalArticle, groupId, articleId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_A_PrevAndNext(session, journalArticle, groupId,
-					articleId, orderByComparator, false);
+			array[2] = getByG_A_PrevAndNext(
+				session, journalArticle, groupId, articleId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -9635,14 +10104,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_A_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_A_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -9665,7 +10136,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -9739,8 +10211,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -9763,9 +10237,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A(long groupId, String articleId) {
-		return filterFindByG_A(groupId, articleId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_A(
+		long groupId, String articleId) {
+
+		return filterFindByG_A(
+			groupId, articleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -9782,8 +10258,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A(long groupId, String articleId,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_A(
+		long groupId, String articleId, int start, int end) {
+
 		return filterFindByG_A(groupId, articleId, start, end, null);
 	}
 
@@ -9802,8 +10279,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A(long groupId, String articleId,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_A(
+		long groupId, String articleId, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_A(groupId, articleId, start, end, orderByComparator);
 		}
@@ -9813,8 +10292,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -9824,7 +10303,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
@@ -9841,17 +10321,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -9863,9 +10344,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -9889,8 +10370,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(articleId);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -9911,12 +10392,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_A_PrevAndNext(long id, long groupId,
-		String articleId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_A_PrevAndNext(
+			long id, long groupId, String articleId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_PrevAndNext(id, groupId, articleId,
-				orderByComparator);
+			return findByG_A_PrevAndNext(
+				id, groupId, articleId, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -9930,13 +10413,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_A_PrevAndNext(session, journalArticle,
-					groupId, articleId, orderByComparator, true);
+			array[0] = filterGetByG_A_PrevAndNext(
+				session, journalArticle, groupId, articleId, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_A_PrevAndNext(session, journalArticle,
-					groupId, articleId, orderByComparator, false);
+			array[2] = filterGetByG_A_PrevAndNext(
+				session, journalArticle, groupId, articleId, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -9948,14 +10433,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_A_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_A_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -9966,7 +10453,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
@@ -9983,11 +10471,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -9995,12 +10485,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -10027,12 +10521,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -10062,9 +10558,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -10087,8 +10583,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -10111,8 +10609,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_A(long groupId, String articleId) {
-		for (JournalArticle journalArticle : findByG_A(groupId, articleId,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_A(
+					groupId, articleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -10130,7 +10631,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_A;
 
-		Object[] finderArgs = new Object[] { groupId, articleId };
+		Object[] finderArgs = new Object[] {groupId, articleId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -10218,9 +10719,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_A_ARTICLEID_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -10229,8 +10730,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -10252,9 +10753,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_A_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_ARTICLEID_2 = "journalArticle.articleId = ?";
-	private static final String _FINDER_COLUMN_G_A_ARTICLEID_3 = "(journalArticle.articleId IS NULL OR journalArticle.articleId = '')";
+	private static final String _FINDER_COLUMN_G_A_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_ARTICLEID_2 =
+		"journalArticle.articleId = ?";
+
+	private static final String _FINDER_COLUMN_G_A_ARTICLEID_3 =
+		"(journalArticle.articleId IS NULL OR journalArticle.articleId = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_UT;
 	private FinderPath _finderPathWithoutPaginationFindByG_UT;
 	private FinderPath _finderPathCountByG_UT;
@@ -10268,8 +10775,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_UT(long groupId, String urlTitle) {
-		return findByG_UT(groupId, urlTitle, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_UT(
+			groupId, urlTitle, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -10286,8 +10793,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
-		int start, int end) {
+	public List<JournalArticle> findByG_UT(
+		long groupId, String urlTitle, int start, int end) {
+
 		return findByG_UT(groupId, urlTitle, start, end, null);
 	}
 
@@ -10306,9 +10814,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_UT(groupId, urlTitle, start, end, orderByComparator, true);
+	public List<JournalArticle> findByG_UT(
+		long groupId, String urlTitle, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_UT(
+			groupId, urlTitle, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -10327,10 +10838,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT(long groupId, String urlTitle,
-		int start, int end,
+	public List<JournalArticle> findByG_UT(
+		long groupId, String urlTitle, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		urlTitle = Objects.toString(urlTitle, "");
 
 		boolean pagination = true;
@@ -10338,30 +10850,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_UT;
-			finderArgs = new Object[] { groupId, urlTitle };
+			finderArgs = new Object[] {groupId, urlTitle};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_UT;
 			finderArgs = new Object[] {
-					groupId, urlTitle,
-					
-					start, end, orderByComparator
-				};
+				groupId, urlTitle, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!urlTitle.equals(journalArticle.getUrlTitle())) {
+						!urlTitle.equals(journalArticle.getUrlTitle())) {
+
 						list = null;
 
 						break;
@@ -10374,8 +10886,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -10397,11 +10909,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -10423,16 +10934,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -10462,11 +10973,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_UT_First(long groupId, String urlTitle,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_UT_First(
+			long groupId, String urlTitle,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_UT_First(groupId, urlTitle,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_UT_First(
+			groupId, urlTitle, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -10496,10 +11009,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_UT_First(long groupId, String urlTitle,
+	public JournalArticle fetchByG_UT_First(
+		long groupId, String urlTitle,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_UT(groupId, urlTitle, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_UT(
+			groupId, urlTitle, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -10518,11 +11033,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_UT_Last(long groupId, String urlTitle,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_UT_Last(
+			long groupId, String urlTitle,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_UT_Last(groupId, urlTitle,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_UT_Last(
+			groupId, urlTitle, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -10552,16 +11069,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_UT_Last(long groupId, String urlTitle,
+	public JournalArticle fetchByG_UT_Last(
+		long groupId, String urlTitle,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_UT(groupId, urlTitle);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_UT(groupId, urlTitle, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_UT(
+			groupId, urlTitle, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -10581,9 +11100,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_UT_PrevAndNext(long id, long groupId,
-		String urlTitle, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_UT_PrevAndNext(
+			long id, long groupId, String urlTitle,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		urlTitle = Objects.toString(urlTitle, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -10595,13 +11116,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_UT_PrevAndNext(session, journalArticle, groupId,
-					urlTitle, orderByComparator, true);
+			array[0] = getByG_UT_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_UT_PrevAndNext(session, journalArticle, groupId,
-					urlTitle, orderByComparator, false);
+			array[2] = getByG_UT_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -10613,14 +11136,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_UT_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String urlTitle,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_UT_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String urlTitle, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -10643,7 +11168,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -10717,8 +11243,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -10741,9 +11269,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT(long groupId, String urlTitle) {
-		return filterFindByG_UT(groupId, urlTitle, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_UT(
+		long groupId, String urlTitle) {
+
+		return filterFindByG_UT(
+			groupId, urlTitle, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -10760,8 +11290,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT(long groupId, String urlTitle,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_UT(
+		long groupId, String urlTitle, int start, int end) {
+
 		return filterFindByG_UT(groupId, urlTitle, start, end, null);
 	}
 
@@ -10780,8 +11311,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT(long groupId, String urlTitle,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_UT(
+		long groupId, String urlTitle, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_UT(groupId, urlTitle, start, end, orderByComparator);
 		}
@@ -10791,8 +11324,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -10802,7 +11335,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_UT_GROUPID_2);
@@ -10819,17 +11353,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -10841,9 +11376,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -10867,8 +11402,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(urlTitle);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -10889,12 +11424,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_UT_PrevAndNext(long id, long groupId,
-		String urlTitle, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_UT_PrevAndNext(
+			long id, long groupId, String urlTitle,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_UT_PrevAndNext(id, groupId, urlTitle,
-				orderByComparator);
+			return findByG_UT_PrevAndNext(
+				id, groupId, urlTitle, orderByComparator);
 		}
 
 		urlTitle = Objects.toString(urlTitle, "");
@@ -10908,13 +11445,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_UT_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, orderByComparator, true);
+			array[0] = filterGetByG_UT_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_UT_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, orderByComparator, false);
+			array[2] = filterGetByG_UT_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -10926,14 +11465,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_UT_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String urlTitle,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_UT_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String urlTitle, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -10944,7 +11485,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_UT_GROUPID_2);
@@ -10961,11 +11503,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -10973,12 +11517,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -11005,12 +11553,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -11040,9 +11590,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -11065,8 +11615,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -11089,8 +11641,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_UT(long groupId, String urlTitle) {
-		for (JournalArticle journalArticle : findByG_UT(groupId, urlTitle,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_UT(
+					groupId, urlTitle, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -11108,7 +11663,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_UT;
 
-		Object[] finderArgs = new Object[] { groupId, urlTitle };
+		Object[] finderArgs = new Object[] {groupId, urlTitle};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -11196,9 +11751,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_UT_URLTITLE_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -11207,8 +11762,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -11230,9 +11785,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_UT_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_UT_URLTITLE_2 = "journalArticle.urlTitle = ?";
-	private static final String _FINDER_COLUMN_G_UT_URLTITLE_3 = "(journalArticle.urlTitle IS NULL OR journalArticle.urlTitle = '')";
+	private static final String _FINDER_COLUMN_G_UT_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_UT_URLTITLE_2 =
+		"journalArticle.urlTitle = ?";
+
+	private static final String _FINDER_COLUMN_G_UT_URLTITLE_3 =
+		"(journalArticle.urlTitle IS NULL OR journalArticle.urlTitle = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_DDMSK;
 	private FinderPath _finderPathWithoutPaginationFindByG_DDMSK;
 	private FinderPath _finderPathCountByG_DDMSK;
@@ -11245,10 +11806,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMSK(long groupId,
-		String DDMStructureKey) {
-		return findByG_DDMSK(groupId, DDMStructureKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_DDMSK(
+		long groupId, String DDMStructureKey) {
+
+		return findByG_DDMSK(
+			groupId, DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -11265,8 +11828,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMSK(long groupId,
-		String DDMStructureKey, int start, int end) {
+	public List<JournalArticle> findByG_DDMSK(
+		long groupId, String DDMStructureKey, int start, int end) {
+
 		return findByG_DDMSK(groupId, DDMStructureKey, start, end, null);
 	}
 
@@ -11285,11 +11849,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMSK(long groupId,
-		String DDMStructureKey, int start, int end,
+	public List<JournalArticle> findByG_DDMSK(
+		long groupId, String DDMStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_DDMSK(groupId, DDMStructureKey, start, end,
-			orderByComparator, true);
+
+		return findByG_DDMSK(
+			groupId, DDMStructureKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -11308,10 +11873,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMSK(long groupId,
-		String DDMStructureKey, int start, int end,
+	public List<JournalArticle> findByG_DDMSK(
+		long groupId, String DDMStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
 		boolean pagination = true;
@@ -11319,31 +11885,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_DDMSK;
-			finderArgs = new Object[] { groupId, DDMStructureKey };
+			finderArgs = new Object[] {groupId, DDMStructureKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_DDMSK;
 			finderArgs = new Object[] {
-					groupId, DDMStructureKey,
-					
-					start, end, orderByComparator
-				};
+				groupId, DDMStructureKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!DDMStructureKey.equals(
-								journalArticle.getDDMStructureKey())) {
+						!DDMStructureKey.equals(
+							journalArticle.getDDMStructureKey())) {
+
 						list = null;
 
 						break;
@@ -11356,8 +11922,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -11379,11 +11945,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -11405,16 +11970,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -11444,12 +12009,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_DDMSK_First(long groupId,
-		String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_DDMSK_First(
+			long groupId, String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_DDMSK_First(groupId,
-				DDMStructureKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_DDMSK_First(
+			groupId, DDMStructureKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -11479,11 +12045,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_DDMSK_First(long groupId,
-		String DDMStructureKey,
+	public JournalArticle fetchByG_DDMSK_First(
+		long groupId, String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_DDMSK(groupId, DDMStructureKey, 0,
-				1, orderByComparator);
+
+		List<JournalArticle> list = findByG_DDMSK(
+			groupId, DDMStructureKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -11502,12 +12069,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_DDMSK_Last(long groupId,
-		String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_DDMSK_Last(
+			long groupId, String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_DDMSK_Last(groupId,
-				DDMStructureKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_DDMSK_Last(
+			groupId, DDMStructureKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -11537,17 +12105,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_DDMSK_Last(long groupId,
-		String DDMStructureKey,
+	public JournalArticle fetchByG_DDMSK_Last(
+		long groupId, String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_DDMSK(groupId, DDMStructureKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_DDMSK(groupId, DDMStructureKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_DDMSK(
+			groupId, DDMStructureKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -11567,10 +12136,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_DDMSK_PrevAndNext(long id, long groupId,
-		String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_DDMSK_PrevAndNext(
+			long id, long groupId, String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -11582,13 +12152,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_DDMSK_PrevAndNext(session, journalArticle,
-					groupId, DDMStructureKey, orderByComparator, true);
+			array[0] = getByG_DDMSK_PrevAndNext(
+				session, journalArticle, groupId, DDMStructureKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_DDMSK_PrevAndNext(session, journalArticle,
-					groupId, DDMStructureKey, orderByComparator, false);
+			array[2] = getByG_DDMSK_PrevAndNext(
+				session, journalArticle, groupId, DDMStructureKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -11600,14 +12172,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_DDMSK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String DDMStructureKey,
+	protected JournalArticle getByG_DDMSK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -11630,7 +12204,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -11704,8 +12279,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -11728,10 +12305,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMSK(long groupId,
-		String DDMStructureKey) {
-		return filterFindByG_DDMSK(groupId, DDMStructureKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_DDMSK(
+		long groupId, String DDMStructureKey) {
+
+		return filterFindByG_DDMSK(
+			groupId, DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -11748,8 +12327,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMSK(long groupId,
-		String DDMStructureKey, int start, int end) {
+	public List<JournalArticle> filterFindByG_DDMSK(
+		long groupId, String DDMStructureKey, int start, int end) {
+
 		return filterFindByG_DDMSK(groupId, DDMStructureKey, start, end, null);
 	}
 
@@ -11768,12 +12348,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMSK(long groupId,
-		String DDMStructureKey, int start, int end,
+	public List<JournalArticle> filterFindByG_DDMSK(
+		long groupId, String DDMStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_DDMSK(groupId, DDMStructureKey, start, end,
-				orderByComparator);
+			return findByG_DDMSK(
+				groupId, DDMStructureKey, start, end, orderByComparator);
 		}
 
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
@@ -11781,8 +12362,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -11792,7 +12373,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_DDMSK_GROUPID_2);
@@ -11809,17 +12391,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -11831,9 +12414,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -11857,8 +12440,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(DDMStructureKey);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -11879,13 +12462,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_DDMSK_PrevAndNext(long id,
-		long groupId, String DDMStructureKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_DDMSK_PrevAndNext(
+			long id, long groupId, String DDMStructureKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_DDMSK_PrevAndNext(id, groupId, DDMStructureKey,
-				orderByComparator);
+			return findByG_DDMSK_PrevAndNext(
+				id, groupId, DDMStructureKey, orderByComparator);
 		}
 
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
@@ -11899,13 +12483,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_DDMSK_PrevAndNext(session, journalArticle,
-					groupId, DDMStructureKey, orderByComparator, true);
+			array[0] = filterGetByG_DDMSK_PrevAndNext(
+				session, journalArticle, groupId, DDMStructureKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_DDMSK_PrevAndNext(session, journalArticle,
-					groupId, DDMStructureKey, orderByComparator, false);
+			array[2] = filterGetByG_DDMSK_PrevAndNext(
+				session, journalArticle, groupId, DDMStructureKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -11917,14 +12503,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_DDMSK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String DDMStructureKey,
+	protected JournalArticle filterGetByG_DDMSK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String DDMStructureKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -11935,7 +12523,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_DDMSK_GROUPID_2);
@@ -11952,11 +12541,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -11964,12 +12555,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -11996,12 +12591,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -12031,9 +12628,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -12056,8 +12653,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -12080,8 +12679,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_DDMSK(long groupId, String DDMStructureKey) {
-		for (JournalArticle journalArticle : findByG_DDMSK(groupId,
-				DDMStructureKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_DDMSK(
+					groupId, DDMStructureKey, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -12099,7 +12701,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_DDMSK;
 
-		Object[] finderArgs = new Object[] { groupId, DDMStructureKey };
+		Object[] finderArgs = new Object[] {groupId, DDMStructureKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -12187,9 +12789,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_DDMSK_DDMSTRUCTUREKEY_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -12198,8 +12800,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -12221,9 +12823,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_DDMSK_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_DDMSK_DDMSTRUCTUREKEY_2 = "journalArticle.DDMStructureKey = ?";
-	private static final String _FINDER_COLUMN_G_DDMSK_DDMSTRUCTUREKEY_3 = "(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+	private static final String _FINDER_COLUMN_G_DDMSK_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_DDMSK_DDMSTRUCTUREKEY_2 =
+		"journalArticle.DDMStructureKey = ?";
+
+	private static final String _FINDER_COLUMN_G_DDMSK_DDMSTRUCTUREKEY_3 =
+		"(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_DDMTK;
 	private FinderPath _finderPathWithoutPaginationFindByG_DDMTK;
 	private FinderPath _finderPathCountByG_DDMTK;
@@ -12236,10 +12844,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMTK(long groupId,
-		String DDMTemplateKey) {
-		return findByG_DDMTK(groupId, DDMTemplateKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_DDMTK(
+		long groupId, String DDMTemplateKey) {
+
+		return findByG_DDMTK(
+			groupId, DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -12256,8 +12866,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMTK(long groupId,
-		String DDMTemplateKey, int start, int end) {
+	public List<JournalArticle> findByG_DDMTK(
+		long groupId, String DDMTemplateKey, int start, int end) {
+
 		return findByG_DDMTK(groupId, DDMTemplateKey, start, end, null);
 	}
 
@@ -12276,11 +12887,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMTK(long groupId,
-		String DDMTemplateKey, int start, int end,
+	public List<JournalArticle> findByG_DDMTK(
+		long groupId, String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_DDMTK(groupId, DDMTemplateKey, start, end,
-			orderByComparator, true);
+
+		return findByG_DDMTK(
+			groupId, DDMTemplateKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -12299,10 +12911,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_DDMTK(long groupId,
-		String DDMTemplateKey, int start, int end,
+	public List<JournalArticle> findByG_DDMTK(
+		long groupId, String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		boolean pagination = true;
@@ -12310,31 +12923,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_DDMTK;
-			finderArgs = new Object[] { groupId, DDMTemplateKey };
+			finderArgs = new Object[] {groupId, DDMTemplateKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_DDMTK;
 			finderArgs = new Object[] {
-					groupId, DDMTemplateKey,
-					
-					start, end, orderByComparator
-				};
+				groupId, DDMTemplateKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!DDMTemplateKey.equals(
-								journalArticle.getDDMTemplateKey())) {
+						!DDMTemplateKey.equals(
+							journalArticle.getDDMTemplateKey())) {
+
 						list = null;
 
 						break;
@@ -12347,8 +12960,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -12370,11 +12983,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -12396,16 +13008,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -12435,12 +13047,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_DDMTK_First(long groupId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_DDMTK_First(
+			long groupId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_DDMTK_First(groupId,
-				DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_DDMTK_First(
+			groupId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -12470,11 +13083,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_DDMTK_First(long groupId,
-		String DDMTemplateKey,
+	public JournalArticle fetchByG_DDMTK_First(
+		long groupId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_DDMTK(groupId, DDMTemplateKey, 0,
-				1, orderByComparator);
+
+		List<JournalArticle> list = findByG_DDMTK(
+			groupId, DDMTemplateKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -12493,12 +13107,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_DDMTK_Last(long groupId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_DDMTK_Last(
+			long groupId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_DDMTK_Last(groupId,
-				DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_DDMTK_Last(
+			groupId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -12528,17 +13143,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_DDMTK_Last(long groupId,
-		String DDMTemplateKey,
+	public JournalArticle fetchByG_DDMTK_Last(
+		long groupId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_DDMTK(groupId, DDMTemplateKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_DDMTK(groupId, DDMTemplateKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_DDMTK(
+			groupId, DDMTemplateKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -12558,10 +13174,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_DDMTK_PrevAndNext(long id, long groupId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_DDMTK_PrevAndNext(
+			long id, long groupId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -12573,13 +13190,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, DDMTemplateKey, orderByComparator, true);
+			array[0] = getByG_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, DDMTemplateKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, DDMTemplateKey, orderByComparator, false);
+			array[2] = getByG_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, DDMTemplateKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -12591,14 +13210,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_DDMTK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String DDMTemplateKey,
+	protected JournalArticle getByG_DDMTK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -12621,7 +13242,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -12695,8 +13317,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -12719,10 +13343,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMTK(long groupId,
-		String DDMTemplateKey) {
-		return filterFindByG_DDMTK(groupId, DDMTemplateKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_DDMTK(
+		long groupId, String DDMTemplateKey) {
+
+		return filterFindByG_DDMTK(
+			groupId, DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -12739,8 +13365,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMTK(long groupId,
-		String DDMTemplateKey, int start, int end) {
+	public List<JournalArticle> filterFindByG_DDMTK(
+		long groupId, String DDMTemplateKey, int start, int end) {
+
 		return filterFindByG_DDMTK(groupId, DDMTemplateKey, start, end, null);
 	}
 
@@ -12759,12 +13386,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_DDMTK(long groupId,
-		String DDMTemplateKey, int start, int end,
+	public List<JournalArticle> filterFindByG_DDMTK(
+		long groupId, String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_DDMTK(groupId, DDMTemplateKey, start, end,
-				orderByComparator);
+			return findByG_DDMTK(
+				groupId, DDMTemplateKey, start, end, orderByComparator);
 		}
 
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
@@ -12772,8 +13400,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -12783,7 +13411,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_DDMTK_GROUPID_2);
@@ -12800,17 +13429,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -12822,9 +13452,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -12848,8 +13478,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(DDMTemplateKey);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -12870,13 +13500,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_DDMTK_PrevAndNext(long id,
-		long groupId, String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_DDMTK_PrevAndNext(
+			long id, long groupId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_DDMTK_PrevAndNext(id, groupId, DDMTemplateKey,
-				orderByComparator);
+			return findByG_DDMTK_PrevAndNext(
+				id, groupId, DDMTemplateKey, orderByComparator);
 		}
 
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
@@ -12890,13 +13521,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, DDMTemplateKey, orderByComparator, true);
+			array[0] = filterGetByG_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, DDMTemplateKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, DDMTemplateKey, orderByComparator, false);
+			array[2] = filterGetByG_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, DDMTemplateKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -12908,14 +13541,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_DDMTK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String DDMTemplateKey,
+	protected JournalArticle filterGetByG_DDMTK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -12926,7 +13561,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_DDMTK_GROUPID_2);
@@ -12943,11 +13579,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -12955,12 +13593,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -12987,12 +13629,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -13022,9 +13666,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -13047,8 +13691,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -13071,8 +13717,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_DDMTK(long groupId, String DDMTemplateKey) {
-		for (JournalArticle journalArticle : findByG_DDMTK(groupId,
-				DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_DDMTK(
+					groupId, DDMTemplateKey, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -13090,7 +13739,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_DDMTK;
 
-		Object[] finderArgs = new Object[] { groupId, DDMTemplateKey };
+		Object[] finderArgs = new Object[] {groupId, DDMTemplateKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -13178,9 +13827,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_DDMTK_DDMTEMPLATEKEY_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -13189,8 +13838,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -13212,9 +13861,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_DDMTK_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_DDMTK_DDMTEMPLATEKEY_2 = "journalArticle.DDMTemplateKey = ?";
-	private static final String _FINDER_COLUMN_G_DDMTK_DDMTEMPLATEKEY_3 = "(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+	private static final String _FINDER_COLUMN_G_DDMTK_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_DDMTK_DDMTEMPLATEKEY_2 =
+		"journalArticle.DDMTemplateKey = ?";
+
+	private static final String _FINDER_COLUMN_G_DDMTK_DDMTEMPLATEKEY_3 =
+		"(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_L;
 	private FinderPath _finderPathWithoutPaginationFindByG_L;
 	private FinderPath _finderPathCountByG_L;
@@ -13228,8 +13883,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_L(long groupId, String layoutUuid) {
-		return findByG_L(groupId, layoutUuid, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_L(
+			groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -13246,8 +13901,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_L(long groupId, String layoutUuid,
-		int start, int end) {
+	public List<JournalArticle> findByG_L(
+		long groupId, String layoutUuid, int start, int end) {
+
 		return findByG_L(groupId, layoutUuid, start, end, null);
 	}
 
@@ -13266,10 +13922,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_L(long groupId, String layoutUuid,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_L(groupId, layoutUuid, start, end, orderByComparator,
-			true);
+	public List<JournalArticle> findByG_L(
+		long groupId, String layoutUuid, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_L(
+			groupId, layoutUuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -13288,10 +13946,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_L(long groupId, String layoutUuid,
-		int start, int end,
+	public List<JournalArticle> findByG_L(
+		long groupId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		boolean pagination = true;
@@ -13299,30 +13958,30 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_L;
-			finderArgs = new Object[] { groupId, layoutUuid };
+			finderArgs = new Object[] {groupId, layoutUuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_L;
 			finderArgs = new Object[] {
-					groupId, layoutUuid,
-					
-					start, end, orderByComparator
-				};
+				groupId, layoutUuid, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!layoutUuid.equals(journalArticle.getLayoutUuid())) {
+						!layoutUuid.equals(journalArticle.getLayoutUuid())) {
+
 						list = null;
 
 						break;
@@ -13335,8 +13994,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -13358,11 +14017,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -13384,16 +14042,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -13423,11 +14081,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_L_First(long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_L_First(
+			long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_L_First(groupId, layoutUuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_L_First(
+			groupId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -13457,10 +14117,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_L_First(long groupId, String layoutUuid,
+	public JournalArticle fetchByG_L_First(
+		long groupId, String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_L(groupId, layoutUuid, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_L(
+			groupId, layoutUuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -13479,11 +14141,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_L_Last(long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_L_Last(
+			long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_L_Last(groupId, layoutUuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_L_Last(
+			groupId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -13513,16 +14177,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_L_Last(long groupId, String layoutUuid,
+	public JournalArticle fetchByG_L_Last(
+		long groupId, String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_L(groupId, layoutUuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_L(groupId, layoutUuid, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_L(
+			groupId, layoutUuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -13542,9 +14208,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_L_PrevAndNext(long id, long groupId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_L_PrevAndNext(
+			long id, long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -13556,13 +14224,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_L_PrevAndNext(session, journalArticle, groupId,
-					layoutUuid, orderByComparator, true);
+			array[0] = getByG_L_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_L_PrevAndNext(session, journalArticle, groupId,
-					layoutUuid, orderByComparator, false);
+			array[2] = getByG_L_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -13574,14 +14244,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_L_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_L_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -13604,7 +14276,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -13678,8 +14351,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -13702,9 +14377,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_L(long groupId, String layoutUuid) {
-		return filterFindByG_L(groupId, layoutUuid, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_L(
+		long groupId, String layoutUuid) {
+
+		return filterFindByG_L(
+			groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -13721,8 +14398,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_L(long groupId,
-		String layoutUuid, int start, int end) {
+	public List<JournalArticle> filterFindByG_L(
+		long groupId, String layoutUuid, int start, int end) {
+
 		return filterFindByG_L(groupId, layoutUuid, start, end, null);
 	}
 
@@ -13741,11 +14419,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_L(long groupId,
-		String layoutUuid, int start, int end,
+	public List<JournalArticle> filterFindByG_L(
+		long groupId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L(groupId, layoutUuid, start, end, orderByComparator);
+			return findByG_L(
+				groupId, layoutUuid, start, end, orderByComparator);
 		}
 
 		layoutUuid = Objects.toString(layoutUuid, "");
@@ -13753,8 +14433,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -13764,7 +14444,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_L_GROUPID_2);
@@ -13781,17 +14462,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -13803,9 +14485,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -13829,8 +14511,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(layoutUuid);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -13851,12 +14533,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_L_PrevAndNext(long id, long groupId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_L_PrevAndNext(
+			long id, long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L_PrevAndNext(id, groupId, layoutUuid,
-				orderByComparator);
+			return findByG_L_PrevAndNext(
+				id, groupId, layoutUuid, orderByComparator);
 		}
 
 		layoutUuid = Objects.toString(layoutUuid, "");
@@ -13870,13 +14554,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_L_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, true);
+			array[0] = filterGetByG_L_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_L_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, false);
+			array[2] = filterGetByG_L_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -13888,14 +14574,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_L_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_L_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -13906,7 +14594,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_L_GROUPID_2);
@@ -13923,11 +14612,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -13935,12 +14626,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -13967,12 +14662,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -14002,9 +14699,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -14027,8 +14724,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -14051,8 +14750,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_L(long groupId, String layoutUuid) {
-		for (JournalArticle journalArticle : findByG_L(groupId, layoutUuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_L(
+					groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -14070,7 +14772,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_L;
 
-		Object[] finderArgs = new Object[] { groupId, layoutUuid };
+		Object[] finderArgs = new Object[] {groupId, layoutUuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -14158,9 +14860,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_L_LAYOUTUUID_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -14169,8 +14871,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -14192,9 +14894,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_L_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_L_LAYOUTUUID_2 = "journalArticle.layoutUuid = ?";
-	private static final String _FINDER_COLUMN_G_L_LAYOUTUUID_3 = "(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+	private static final String _FINDER_COLUMN_G_L_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_L_LAYOUTUUID_2 =
+		"journalArticle.layoutUuid = ?";
+
+	private static final String _FINDER_COLUMN_G_L_LAYOUTUUID_3 =
+		"(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_NotL;
 	private FinderPath _finderPathWithPaginationCountByG_NotL;
 
@@ -14207,8 +14915,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_NotL(long groupId, String layoutUuid) {
-		return findByG_NotL(groupId, layoutUuid, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_NotL(
+			groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -14225,8 +14933,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId, String layoutUuid,
-		int start, int end) {
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String layoutUuid, int start, int end) {
+
 		return findByG_NotL(groupId, layoutUuid, start, end, null);
 	}
 
@@ -14245,10 +14954,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId, String layoutUuid,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_NotL(groupId, layoutUuid, start, end, orderByComparator,
-			true);
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String layoutUuid, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_NotL(
+			groupId, layoutUuid, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -14267,10 +14978,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId, String layoutUuid,
-		int start, int end,
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		boolean pagination = true;
@@ -14279,21 +14991,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		finderPath = _finderPathWithPaginationFindByG_NotL;
 		finderArgs = new Object[] {
-				groupId, layoutUuid,
-				
-				start, end, orderByComparator
-			};
+			groupId, layoutUuid, start, end, orderByComparator
+		};
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							layoutUuid.equals(journalArticle.getLayoutUuid())) {
+						layoutUuid.equals(journalArticle.getLayoutUuid())) {
+
 						list = null;
 
 						break;
@@ -14306,8 +15017,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -14329,11 +15040,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -14355,16 +15065,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -14394,11 +15104,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_NotL_First(long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_NotL_First(
+			long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_NotL_First(groupId,
-				layoutUuid, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_NotL_First(
+			groupId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -14428,10 +15140,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_NotL_First(long groupId, String layoutUuid,
+	public JournalArticle fetchByG_NotL_First(
+		long groupId, String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_NotL(groupId, layoutUuid, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_NotL(
+			groupId, layoutUuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -14450,11 +15164,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_NotL_Last(long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_NotL_Last(
+			long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_NotL_Last(groupId, layoutUuid,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_NotL_Last(
+			groupId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -14484,16 +15200,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_NotL_Last(long groupId, String layoutUuid,
+	public JournalArticle fetchByG_NotL_Last(
+		long groupId, String layoutUuid,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_NotL(groupId, layoutUuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_NotL(groupId, layoutUuid,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_NotL(
+			groupId, layoutUuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -14513,9 +15231,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_NotL_PrevAndNext(long id, long groupId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_NotL_PrevAndNext(
+			long id, long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -14527,13 +15247,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_NotL_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, true);
+			array[0] = getByG_NotL_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_NotL_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, false);
+			array[2] = getByG_NotL_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -14545,14 +15267,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_NotL_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_NotL_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -14575,7 +15299,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -14649,8 +15374,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -14673,10 +15400,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String layoutUuid) {
-		return filterFindByG_NotL(groupId, layoutUuid, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String layoutUuid) {
+
+		return filterFindByG_NotL(
+			groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -14693,8 +15421,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String layoutUuid, int start, int end) {
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String layoutUuid, int start, int end) {
+
 		return filterFindByG_NotL(groupId, layoutUuid, start, end, null);
 	}
 
@@ -14713,12 +15442,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String layoutUuid, int start, int end,
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_NotL(groupId, layoutUuid, start, end,
-				orderByComparator);
+			return findByG_NotL(
+				groupId, layoutUuid, start, end, orderByComparator);
 		}
 
 		layoutUuid = Objects.toString(layoutUuid, "");
@@ -14726,8 +15456,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -14737,7 +15467,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_NOTL_GROUPID_2);
@@ -14754,17 +15485,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -14776,9 +15508,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -14802,8 +15534,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(layoutUuid);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -14824,13 +15556,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_NotL_PrevAndNext(long id,
-		long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_NotL_PrevAndNext(
+			long id, long groupId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_NotL_PrevAndNext(id, groupId, layoutUuid,
-				orderByComparator);
+			return findByG_NotL_PrevAndNext(
+				id, groupId, layoutUuid, orderByComparator);
 		}
 
 		layoutUuid = Objects.toString(layoutUuid, "");
@@ -14844,13 +15577,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_NotL_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, true);
+			array[0] = filterGetByG_NotL_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_NotL_PrevAndNext(session, journalArticle,
-					groupId, layoutUuid, orderByComparator, false);
+			array[2] = filterGetByG_NotL_PrevAndNext(
+				session, journalArticle, groupId, layoutUuid, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -14862,14 +15597,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_NotL_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_NotL_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -14880,7 +15617,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_NOTL_GROUPID_2);
@@ -14897,11 +15635,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -14909,12 +15649,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -14941,12 +15685,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -14976,9 +15722,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -15001,8 +15747,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -15025,10 +15773,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String[] layoutUuids) {
-		return filterFindByG_NotL(groupId, layoutUuids, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String[] layoutUuids) {
+
+		return filterFindByG_NotL(
+			groupId, layoutUuids, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -15045,8 +15794,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String[] layoutUuids, int start, int end) {
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end) {
+
 		return filterFindByG_NotL(groupId, layoutUuids, start, end, null);
 	}
 
@@ -15065,12 +15815,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_NotL(long groupId,
-		String[] layoutUuids, int start, int end,
+	public List<JournalArticle> filterFindByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_NotL(groupId, layoutUuids, start, end,
-				orderByComparator);
+			return findByG_NotL(
+				groupId, layoutUuids, start, end, orderByComparator);
 		}
 
 		if (layoutUuids == null) {
@@ -15092,7 +15843,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_NOTL_GROUPID_2);
@@ -15118,21 +15870,23 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -15144,9 +15898,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -15167,13 +15921,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			qPos.add(groupId);
 
 			for (String layoutUuid : layoutUuids) {
-				if ((layoutUuid != null) && !layoutUuid.isEmpty()) {
+				if (layoutUuid != null && !layoutUuid.isEmpty()) {
 					qPos.add(layoutUuid);
 				}
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -15195,9 +15949,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId, String[] layoutUuids) {
-		return findByG_NotL(groupId, layoutUuids, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String[] layoutUuids) {
+
+		return findByG_NotL(
+			groupId, layoutUuids, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -15214,8 +15970,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId,
-		String[] layoutUuids, int start, int end) {
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end) {
+
 		return findByG_NotL(groupId, layoutUuids, start, end, null);
 	}
 
@@ -15234,11 +15991,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId,
-		String[] layoutUuids, int start, int end,
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_NotL(groupId, layoutUuids, start, end,
-			orderByComparator, true);
+
+		return findByG_NotL(
+			groupId, layoutUuids, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -15257,10 +16015,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_NotL(long groupId,
-		String[] layoutUuids, int start, int end,
+	public List<JournalArticle> findByG_NotL(
+		long groupId, String[] layoutUuids, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (layoutUuids == null) {
 			layoutUuids = new String[0];
 		}
@@ -15275,37 +16034,38 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (layoutUuids.length == 1) {
-			return findByG_NotL(groupId, layoutUuids[0], start, end,
-				orderByComparator);
+			return findByG_NotL(
+				groupId, layoutUuids[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
-			finderArgs = new Object[] { groupId, StringUtil.merge(layoutUuids) };
+			finderArgs = new Object[] {groupId, StringUtil.merge(layoutUuids)};
 		}
 		else {
 			finderArgs = new Object[] {
-					groupId, StringUtil.merge(layoutUuids),
-					
-					start, end, orderByComparator
-				};
+				groupId, StringUtil.merge(layoutUuids), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByG_NotL,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_NotL, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!ArrayUtil.contains(layoutUuids,
-								journalArticle.getLayoutUuid())) {
+						!ArrayUtil.contains(
+							layoutUuids, journalArticle.getLayoutUuid())) {
+
 						list = null;
 
 						break;
@@ -15342,15 +16102,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -15368,32 +16128,32 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(groupId);
 
 				for (String layoutUuid : layoutUuids) {
-					if ((layoutUuid != null) && !layoutUuid.isEmpty()) {
+					if (layoutUuid != null && !layoutUuid.isEmpty()) {
 						qPos.add(layoutUuid);
 					}
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_NotL,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_NotL, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_NotL,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_NotL, finderArgs);
 
 				throw processException(e);
 			}
@@ -15413,8 +16173,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_NotL(long groupId, String layoutUuid) {
-		for (JournalArticle journalArticle : findByG_NotL(groupId, layoutUuid,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_NotL(
+					groupId, layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -15432,7 +16195,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathWithPaginationCountByG_NotL;
 
-		Object[] finderArgs = new Object[] { groupId, layoutUuid };
+		Object[] finderArgs = new Object[] {groupId, layoutUuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -15511,11 +16274,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(layoutUuids)
-			};
+			groupId, StringUtil.merge(layoutUuids)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_NotL,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_NotL, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -15545,8 +16308,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -15562,19 +16326,19 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(groupId);
 
 				for (String layoutUuid : layoutUuids) {
-					if ((layoutUuid != null) && !layoutUuid.isEmpty()) {
+					if (layoutUuid != null && !layoutUuid.isEmpty()) {
 						qPos.add(layoutUuid);
 					}
 				}
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_NotL,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_NotL, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_NotL,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_NotL, finderArgs);
 
 				throw processException(e);
 			}
@@ -15618,9 +16382,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_NOTL_LAYOUTUUID_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -15629,8 +16393,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -15705,12 +16469,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -15719,15 +16484,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(groupId);
 
 			for (String layoutUuid : layoutUuids) {
-				if ((layoutUuid != null) && !layoutUuid.isEmpty()) {
+				if (layoutUuid != null && !layoutUuid.isEmpty()) {
 					qPos.add(layoutUuid);
 				}
 			}
@@ -15744,9 +16509,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_NOTL_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_NOTL_LAYOUTUUID_2 = "journalArticle.layoutUuid != ?";
-	private static final String _FINDER_COLUMN_G_NOTL_LAYOUTUUID_3 = "(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid != '')";
+	private static final String _FINDER_COLUMN_G_NOTL_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_NOTL_LAYOUTUUID_2 =
+		"journalArticle.layoutUuid != ?";
+
+	private static final String _FINDER_COLUMN_G_NOTL_LAYOUTUUID_3 =
+		"(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid != '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_ST;
 	private FinderPath _finderPathWithoutPaginationFindByG_ST;
 	private FinderPath _finderPathCountByG_ST;
@@ -15760,8 +16531,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByG_ST(long groupId, int status) {
-		return findByG_ST(groupId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByG_ST(
+			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -15778,8 +16549,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_ST(long groupId, int status, int start,
-		int end) {
+	public List<JournalArticle> findByG_ST(
+		long groupId, int status, int start, int end) {
+
 		return findByG_ST(groupId, status, start, end, null);
 	}
 
@@ -15798,8 +16570,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_ST(long groupId, int status, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> findByG_ST(
+		long groupId, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findByG_ST(groupId, status, start, end, orderByComparator, true);
 	}
 
@@ -15819,38 +16593,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_ST(long groupId, int status, int start,
-		int end, OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByG_ST(
+		long groupId, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_ST;
-			finderArgs = new Object[] { groupId, status };
+			finderArgs = new Object[] {groupId, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_ST;
 			finderArgs = new Object[] {
-					groupId, status,
-					
-					start, end, orderByComparator
-				};
+				groupId, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(status != journalArticle.getStatus())) {
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -15863,8 +16639,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -15877,11 +16653,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -15901,16 +16676,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -15940,11 +16715,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_ST_First(long groupId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_ST_First(
+			long groupId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_ST_First(groupId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_ST_First(
+			groupId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -15974,10 +16751,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_ST_First(long groupId, int status,
+	public JournalArticle fetchByG_ST_First(
+		long groupId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_ST(groupId, status, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByG_ST(
+			groupId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -15996,11 +16775,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_ST_Last(long groupId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_ST_Last(
+			long groupId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_ST_Last(groupId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_ST_Last(
+			groupId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -16030,16 +16811,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_ST_Last(long groupId, int status,
+	public JournalArticle fetchByG_ST_Last(
+		long groupId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_ST(groupId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_ST(groupId, status, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByG_ST(
+			groupId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -16059,9 +16842,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_ST_PrevAndNext(long id, long groupId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_ST_PrevAndNext(
+			long id, long groupId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -16071,13 +16856,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_ST_PrevAndNext(session, journalArticle, groupId,
-					status, orderByComparator, true);
+			array[0] = getByG_ST_PrevAndNext(
+				session, journalArticle, groupId, status, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_ST_PrevAndNext(session, journalArticle, groupId,
-					status, orderByComparator, false);
+			array[2] = getByG_ST_PrevAndNext(
+				session, journalArticle, groupId, status, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -16089,14 +16876,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByG_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -16110,7 +16899,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -16182,8 +16972,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -16207,8 +16999,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> filterFindByG_ST(long groupId, int status) {
-		return filterFindByG_ST(groupId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return filterFindByG_ST(
+			groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -16225,8 +17017,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_ST(long groupId, int status,
-		int start, int end) {
+	public List<JournalArticle> filterFindByG_ST(
+		long groupId, int status, int start, int end) {
+
 		return filterFindByG_ST(groupId, status, start, end, null);
 	}
 
@@ -16245,8 +17038,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_ST(long groupId, int status,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_ST(
+		long groupId, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_ST(groupId, status, start, end, orderByComparator);
 		}
@@ -16254,8 +17049,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(4 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				4 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(5);
@@ -16265,7 +17060,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_ST_GROUPID_2);
@@ -16273,17 +17069,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -16295,9 +17092,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -16319,8 +17116,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(status);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -16341,11 +17138,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_ST_PrevAndNext(long id, long groupId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_ST_PrevAndNext(
+			long id, long groupId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_ST_PrevAndNext(id, groupId, status, orderByComparator);
+			return findByG_ST_PrevAndNext(
+				id, groupId, status, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -16357,13 +17157,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_ST_PrevAndNext(session, journalArticle,
-					groupId, status, orderByComparator, true);
+			array[0] = filterGetByG_ST_PrevAndNext(
+				session, journalArticle, groupId, status, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_ST_PrevAndNext(session, journalArticle,
-					groupId, status, orderByComparator, false);
+			array[2] = filterGetByG_ST_PrevAndNext(
+				session, journalArticle, groupId, status, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -16375,14 +17177,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle filterGetByG_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -16393,7 +17197,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_ST_GROUPID_2);
@@ -16401,11 +17206,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -16413,12 +17220,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -16445,12 +17256,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -16480,9 +17293,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -16503,8 +17316,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -16527,8 +17342,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_ST(long groupId, int status) {
-		for (JournalArticle journalArticle : findByG_ST(groupId, status,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_ST(
+					groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -16544,7 +17362,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_ST(long groupId, int status) {
 		FinderPath finderPath = _finderPathCountByG_ST;
 
-		Object[] finderArgs = new Object[] { groupId, status };
+		Object[] finderArgs = new Object[] {groupId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -16610,9 +17428,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_ST_STATUS_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -16621,8 +17439,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -16642,8 +17460,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_ST_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_ST_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_G_ST_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_V;
 	private FinderPath _finderPathWithoutPaginationFindByC_V;
 	private FinderPath _finderPathCountByC_V;
@@ -16657,8 +17479,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByC_V(long companyId, double version) {
-		return findByC_V(companyId, version, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByC_V(
+			companyId, version, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -16675,8 +17497,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V(long companyId, double version,
-		int start, int end) {
+	public List<JournalArticle> findByC_V(
+		long companyId, double version, int start, int end) {
+
 		return findByC_V(companyId, version, start, end, null);
 	}
 
@@ -16695,9 +17518,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V(long companyId, double version,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_V(companyId, version, start, end, orderByComparator, true);
+	public List<JournalArticle> findByC_V(
+		long companyId, double version, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByC_V(
+			companyId, version, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -16716,39 +17542,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V(long companyId, double version,
-		int start, int end,
+	public List<JournalArticle> findByC_V(
+		long companyId, double version, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_V;
-			finderArgs = new Object[] { companyId, version };
+			finderArgs = new Object[] {companyId, version};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_V;
 			finderArgs = new Object[] {
-					companyId, version,
-					
-					start, end, orderByComparator
-				};
+				companyId, version, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((companyId != journalArticle.getCompanyId()) ||
-							(version != journalArticle.getVersion())) {
+						(version != journalArticle.getVersion())) {
+
 						list = null;
 
 						break;
@@ -16761,8 +17588,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -16775,11 +17602,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_C_V_VERSION_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -16799,16 +17625,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(version);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -16838,11 +17664,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_V_First(long companyId, double version,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_V_First(
+			long companyId, double version,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_V_First(companyId, version,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_V_First(
+			companyId, version, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -16872,10 +17700,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_V_First(long companyId, double version,
+	public JournalArticle fetchByC_V_First(
+		long companyId, double version,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_V(companyId, version, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByC_V(
+			companyId, version, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -16894,11 +17724,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_V_Last(long companyId, double version,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_V_Last(
+			long companyId, double version,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_V_Last(companyId, version,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_V_Last(
+			companyId, version, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -16928,16 +17760,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_V_Last(long companyId, double version,
+	public JournalArticle fetchByC_V_Last(
+		long companyId, double version,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_V(companyId, version);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_V(companyId, version, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByC_V(
+			companyId, version, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -16957,9 +17791,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_V_PrevAndNext(long id, long companyId,
-		double version, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_V_PrevAndNext(
+			long id, long companyId, double version,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -16969,13 +17805,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_V_PrevAndNext(session, journalArticle, companyId,
-					version, orderByComparator, true);
+			array[0] = getByC_V_PrevAndNext(
+				session, journalArticle, companyId, version, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_V_PrevAndNext(session, journalArticle, companyId,
-					version, orderByComparator, false);
+			array[2] = getByC_V_PrevAndNext(
+				session, journalArticle, companyId, version, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -16987,14 +17825,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_V_PrevAndNext(Session session,
-		JournalArticle journalArticle, long companyId, double version,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByC_V_PrevAndNext(
+		Session session, JournalArticle journalArticle, long companyId,
+		double version, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -17008,7 +17848,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_C_V_VERSION_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -17080,8 +17921,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(version);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -17104,8 +17947,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByC_V(long companyId, double version) {
-		for (JournalArticle journalArticle : findByC_V(companyId, version,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByC_V(
+					companyId, version, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -17121,7 +17967,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByC_V(long companyId, double version) {
 		FinderPath finderPath = _finderPathCountByC_V;
 
-		Object[] finderArgs = new Object[] { companyId, version };
+		Object[] finderArgs = new Object[] {companyId, version};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -17166,8 +18012,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_V_COMPANYID_2 = "journalArticle.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_V_VERSION_2 = "journalArticle.version = ?";
+	private static final String _FINDER_COLUMN_C_V_COMPANYID_2 =
+		"journalArticle.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_V_VERSION_2 =
+		"journalArticle.version = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_ST;
 	private FinderPath _finderPathWithoutPaginationFindByC_ST;
 	private FinderPath _finderPathCountByC_ST;
@@ -17181,8 +18031,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByC_ST(long companyId, int status) {
-		return findByC_ST(companyId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByC_ST(
+			companyId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -17199,8 +18049,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ST(long companyId, int status,
-		int start, int end) {
+	public List<JournalArticle> findByC_ST(
+		long companyId, int status, int start, int end) {
+
 		return findByC_ST(companyId, status, start, end, null);
 	}
 
@@ -17219,9 +18070,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ST(long companyId, int status,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_ST(companyId, status, start, end, orderByComparator, true);
+	public List<JournalArticle> findByC_ST(
+		long companyId, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByC_ST(
+			companyId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -17240,39 +18094,40 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ST(long companyId, int status,
-		int start, int end,
+	public List<JournalArticle> findByC_ST(
+		long companyId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_ST;
-			finderArgs = new Object[] { companyId, status };
+			finderArgs = new Object[] {companyId, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_ST;
 			finderArgs = new Object[] {
-					companyId, status,
-					
-					start, end, orderByComparator
-				};
+				companyId, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((companyId != journalArticle.getCompanyId()) ||
-							(status != journalArticle.getStatus())) {
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -17285,8 +18140,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -17299,11 +18154,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_C_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -17323,16 +18177,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -17362,11 +18216,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_ST_First(long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_ST_First(
+			long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_ST_First(companyId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_ST_First(
+			companyId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -17396,10 +18252,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_ST_First(long companyId, int status,
+	public JournalArticle fetchByC_ST_First(
+		long companyId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_ST(companyId, status, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByC_ST(
+			companyId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -17418,11 +18276,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_ST_Last(long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_ST_Last(
+			long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_ST_Last(companyId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_ST_Last(
+			companyId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -17452,16 +18312,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_ST_Last(long companyId, int status,
+	public JournalArticle fetchByC_ST_Last(
+		long companyId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_ST(companyId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_ST(companyId, status, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByC_ST(
+			companyId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -17481,9 +18343,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_ST_PrevAndNext(long id, long companyId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_ST_PrevAndNext(
+			long id, long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -17493,13 +18357,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_ST_PrevAndNext(session, journalArticle,
-					companyId, status, orderByComparator, true);
+			array[0] = getByC_ST_PrevAndNext(
+				session, journalArticle, companyId, status, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_ST_PrevAndNext(session, journalArticle,
-					companyId, status, orderByComparator, false);
+			array[2] = getByC_ST_PrevAndNext(
+				session, journalArticle, companyId, status, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -17511,14 +18377,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByC_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long companyId,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -17532,7 +18400,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_C_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -17604,8 +18473,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -17628,8 +18499,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByC_ST(long companyId, int status) {
-		for (JournalArticle journalArticle : findByC_ST(companyId, status,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByC_ST(
+					companyId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -17645,7 +18519,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByC_ST(long companyId, int status) {
 		FinderPath finderPath = _finderPathCountByC_ST;
 
-		Object[] finderArgs = new Object[] { companyId, status };
+		Object[] finderArgs = new Object[] {companyId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -17690,8 +18564,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_ST_COMPANYID_2 = "journalArticle.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_ST_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_C_ST_COMPANYID_2 =
+		"journalArticle.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_NotST;
 	private FinderPath _finderPathWithPaginationCountByC_NotST;
 
@@ -17704,8 +18582,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByC_NotST(long companyId, int status) {
-		return findByC_NotST(companyId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByC_NotST(
+			companyId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -17722,8 +18600,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_NotST(long companyId, int status,
-		int start, int end) {
+	public List<JournalArticle> findByC_NotST(
+		long companyId, int status, int start, int end) {
+
 		return findByC_NotST(companyId, status, start, end, null);
 	}
 
@@ -17742,10 +18621,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_NotST(long companyId, int status,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_NotST(companyId, status, start, end, orderByComparator,
-			true);
+	public List<JournalArticle> findByC_NotST(
+		long companyId, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByC_NotST(
+			companyId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -17764,31 +18645,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_NotST(long companyId, int status,
-		int start, int end,
+	public List<JournalArticle> findByC_NotST(
+		long companyId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		finderPath = _finderPathWithPaginationFindByC_NotST;
 		finderArgs = new Object[] {
-				companyId, status,
-				
-				start, end, orderByComparator
-			};
+			companyId, status, start, end, orderByComparator
+		};
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((companyId != journalArticle.getCompanyId()) ||
-							(status == journalArticle.getStatus())) {
+						(status == journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -17801,8 +18682,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -17815,11 +18696,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_C_NOTST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -17839,16 +18719,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -17878,11 +18758,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_NotST_First(long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_NotST_First(
+			long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_NotST_First(companyId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_NotST_First(
+			companyId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -17912,10 +18794,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_NotST_First(long companyId, int status,
+	public JournalArticle fetchByC_NotST_First(
+		long companyId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_NotST(companyId, status, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByC_NotST(
+			companyId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -17934,11 +18818,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_NotST_Last(long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_NotST_Last(
+			long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_NotST_Last(companyId, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_NotST_Last(
+			companyId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -17968,16 +18854,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_NotST_Last(long companyId, int status,
+	public JournalArticle fetchByC_NotST_Last(
+		long companyId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_NotST(companyId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_NotST(companyId, status, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByC_NotST(
+			companyId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -17997,9 +18885,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_NotST_PrevAndNext(long id, long companyId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_NotST_PrevAndNext(
+			long id, long companyId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -18009,13 +18899,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_NotST_PrevAndNext(session, journalArticle,
-					companyId, status, orderByComparator, true);
+			array[0] = getByC_NotST_PrevAndNext(
+				session, journalArticle, companyId, status, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_NotST_PrevAndNext(session, journalArticle,
-					companyId, status, orderByComparator, false);
+			array[2] = getByC_NotST_PrevAndNext(
+				session, journalArticle, companyId, status, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -18027,14 +18919,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_NotST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long companyId, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByC_NotST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long companyId,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -18048,7 +18942,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_C_NOTST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -18120,8 +19015,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -18144,8 +19041,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByC_NotST(long companyId, int status) {
-		for (JournalArticle journalArticle : findByC_NotST(companyId, status,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByC_NotST(
+					companyId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -18161,7 +19061,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByC_NotST(long companyId, int status) {
 		FinderPath finderPath = _finderPathWithPaginationCountByC_NotST;
 
-		Object[] finderArgs = new Object[] { companyId, status };
+		Object[] finderArgs = new Object[] {companyId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -18206,8 +19106,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_NOTST_COMPANYID_2 = "journalArticle.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_NOTST_STATUS_2 = "journalArticle.status != ?";
+	private static final String _FINDER_COLUMN_C_NOTST_COMPANYID_2 =
+		"journalArticle.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_NOTST_STATUS_2 =
+		"journalArticle.status != ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_DDMTK;
 	private FinderPath _finderPathWithoutPaginationFindByC_DDMTK;
 	private FinderPath _finderPathCountByC_DDMTK;
@@ -18220,10 +19124,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_DDMTK(long classNameId,
-		String DDMTemplateKey) {
-		return findByC_DDMTK(classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByC_DDMTK(
+		long classNameId, String DDMTemplateKey) {
+
+		return findByC_DDMTK(
+			classNameId, DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -18240,8 +19146,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_DDMTK(long classNameId,
-		String DDMTemplateKey, int start, int end) {
+	public List<JournalArticle> findByC_DDMTK(
+		long classNameId, String DDMTemplateKey, int start, int end) {
+
 		return findByC_DDMTK(classNameId, DDMTemplateKey, start, end, null);
 	}
 
@@ -18260,11 +19167,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_DDMTK(long classNameId,
-		String DDMTemplateKey, int start, int end,
+	public List<JournalArticle> findByC_DDMTK(
+		long classNameId, String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_DDMTK(classNameId, DDMTemplateKey, start, end,
-			orderByComparator, true);
+
+		return findByC_DDMTK(
+			classNameId, DDMTemplateKey, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -18283,10 +19191,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_DDMTK(long classNameId,
-		String DDMTemplateKey, int start, int end,
+	public List<JournalArticle> findByC_DDMTK(
+		long classNameId, String DDMTemplateKey, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		boolean pagination = true;
@@ -18294,31 +19203,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_DDMTK;
-			finderArgs = new Object[] { classNameId, DDMTemplateKey };
+			finderArgs = new Object[] {classNameId, DDMTemplateKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_DDMTK;
 			finderArgs = new Object[] {
-					classNameId, DDMTemplateKey,
-					
-					start, end, orderByComparator
-				};
+				classNameId, DDMTemplateKey, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((classNameId != journalArticle.getClassNameId()) ||
-							!DDMTemplateKey.equals(
-								journalArticle.getDDMTemplateKey())) {
+						!DDMTemplateKey.equals(
+							journalArticle.getDDMTemplateKey())) {
+
 						list = null;
 
 						break;
@@ -18331,8 +19240,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -18354,11 +19263,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -18380,16 +19288,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -18419,12 +19327,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_DDMTK_First(long classNameId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_DDMTK_First(
+			long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_DDMTK_First(classNameId,
-				DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_DDMTK_First(
+			classNameId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -18454,11 +19363,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_DDMTK_First(long classNameId,
-		String DDMTemplateKey,
+	public JournalArticle fetchByC_DDMTK_First(
+		long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_DDMTK(classNameId, DDMTemplateKey,
-				0, 1, orderByComparator);
+
+		List<JournalArticle> list = findByC_DDMTK(
+			classNameId, DDMTemplateKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -18477,12 +19387,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_DDMTK_Last(long classNameId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_DDMTK_Last(
+			long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_DDMTK_Last(classNameId,
-				DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_DDMTK_Last(
+			classNameId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -18512,17 +19423,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_DDMTK_Last(long classNameId,
-		String DDMTemplateKey,
+	public JournalArticle fetchByC_DDMTK_Last(
+		long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_DDMTK(classNameId, DDMTemplateKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_DDMTK(classNameId, DDMTemplateKey,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByC_DDMTK(
+			classNameId, DDMTemplateKey, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -18542,10 +19454,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_DDMTK_PrevAndNext(long id,
-		long classNameId, String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_DDMTK_PrevAndNext(
+			long id, long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -18557,13 +19470,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_DDMTK_PrevAndNext(session, journalArticle,
-					classNameId, DDMTemplateKey, orderByComparator, true);
+			array[0] = getByC_DDMTK_PrevAndNext(
+				session, journalArticle, classNameId, DDMTemplateKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_DDMTK_PrevAndNext(session, journalArticle,
-					classNameId, DDMTemplateKey, orderByComparator, false);
+			array[2] = getByC_DDMTK_PrevAndNext(
+				session, journalArticle, classNameId, DDMTemplateKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -18575,14 +19490,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_DDMTK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long classNameId, String DDMTemplateKey,
+	protected JournalArticle getByC_DDMTK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long classNameId,
+		String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -18605,7 +19522,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -18679,8 +19597,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -18703,8 +19623,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByC_DDMTK(long classNameId, String DDMTemplateKey) {
-		for (JournalArticle journalArticle : findByC_DDMTK(classNameId,
-				DDMTemplateKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByC_DDMTK(
+					classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -18722,7 +19645,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByC_DDMTK;
 
-		Object[] finderArgs = new Object[] { classNameId, DDMTemplateKey };
+		Object[] finderArgs = new Object[] {classNameId, DDMTemplateKey};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -18778,9 +19701,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_DDMTK_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_C_DDMTK_DDMTEMPLATEKEY_2 = "journalArticle.DDMTemplateKey = ?";
-	private static final String _FINDER_COLUMN_C_DDMTK_DDMTEMPLATEKEY_3 = "(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+	private static final String _FINDER_COLUMN_C_DDMTK_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_DDMTK_DDMTEMPLATEKEY_2 =
+		"journalArticle.DDMTemplateKey = ?";
+
+	private static final String _FINDER_COLUMN_C_DDMTK_DDMTEMPLATEKEY_3 =
+		"(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByLtD_S;
 	private FinderPath _finderPathWithPaginationCountByLtD_S;
 
@@ -18793,8 +19722,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public List<JournalArticle> findByLtD_S(Date displayDate, int status) {
-		return findByLtD_S(displayDate, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByLtD_S(
+			displayDate, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -18811,8 +19740,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLtD_S(Date displayDate, int status,
-		int start, int end) {
+	public List<JournalArticle> findByLtD_S(
+		Date displayDate, int status, int start, int end) {
+
 		return findByLtD_S(displayDate, status, start, end, null);
 	}
 
@@ -18831,10 +19761,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLtD_S(Date displayDate, int status,
-		int start, int end, OrderByComparator<JournalArticle> orderByComparator) {
-		return findByLtD_S(displayDate, status, start, end, orderByComparator,
-			true);
+	public List<JournalArticle> findByLtD_S(
+		Date displayDate, int status, int start, int end,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByLtD_S(
+			displayDate, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -18853,32 +19785,32 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByLtD_S(Date displayDate, int status,
-		int start, int end,
+	public List<JournalArticle> findByLtD_S(
+		Date displayDate, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		finderPath = _finderPathWithPaginationFindByLtD_S;
 		finderArgs = new Object[] {
-				_getTime(displayDate), status,
-				
-				start, end, orderByComparator
-			};
+			_getTime(displayDate), status, start, end, orderByComparator
+		};
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((displayDate.getTime() <= journalArticle.getDisplayDate()
-																	.getTime()) ||
-							(status != journalArticle.getStatus())) {
+					if ((displayDate.getTime() <=
+							journalArticle.getDisplayDate().getTime()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -18891,8 +19823,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					4 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(4);
@@ -18914,11 +19846,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_LTD_S_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -18940,16 +19871,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -18979,11 +19910,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByLtD_S_First(Date displayDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByLtD_S_First(
+			Date displayDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByLtD_S_First(displayDate, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByLtD_S_First(
+			displayDate, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -19013,10 +19946,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByLtD_S_First(Date displayDate, int status,
+	public JournalArticle fetchByLtD_S_First(
+		Date displayDate, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByLtD_S(displayDate, status, 0, 1,
-				orderByComparator);
+
+		List<JournalArticle> list = findByLtD_S(
+			displayDate, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -19035,11 +19970,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByLtD_S_Last(Date displayDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByLtD_S_Last(
+			Date displayDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByLtD_S_Last(displayDate, status,
-				orderByComparator);
+
+		JournalArticle journalArticle = fetchByLtD_S_Last(
+			displayDate, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -19069,16 +20006,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByLtD_S_Last(Date displayDate, int status,
+	public JournalArticle fetchByLtD_S_Last(
+		Date displayDate, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByLtD_S(displayDate, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByLtD_S(displayDate, status, count - 1,
-				count, orderByComparator);
+		List<JournalArticle> list = findByLtD_S(
+			displayDate, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -19098,9 +20037,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByLtD_S_PrevAndNext(long id, Date displayDate,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByLtD_S_PrevAndNext(
+			long id, Date displayDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -19110,13 +20051,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByLtD_S_PrevAndNext(session, journalArticle,
-					displayDate, status, orderByComparator, true);
+			array[0] = getByLtD_S_PrevAndNext(
+				session, journalArticle, displayDate, status, orderByComparator,
+				true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByLtD_S_PrevAndNext(session, journalArticle,
-					displayDate, status, orderByComparator, false);
+			array[2] = getByLtD_S_PrevAndNext(
+				session, journalArticle, displayDate, status, orderByComparator,
+				false);
 
 			return array;
 		}
@@ -19128,14 +20071,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByLtD_S_PrevAndNext(Session session,
-		JournalArticle journalArticle, Date displayDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+	protected JournalArticle getByLtD_S_PrevAndNext(
+		Session session, JournalArticle journalArticle, Date displayDate,
+		int status, OrderByComparator<JournalArticle> orderByComparator,
+		boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -19158,7 +20103,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_LTD_S_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -19232,8 +20178,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -19256,8 +20204,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByLtD_S(Date displayDate, int status) {
-		for (JournalArticle journalArticle : findByLtD_S(displayDate, status,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByLtD_S(
+					displayDate, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -19273,7 +20224,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByLtD_S(Date displayDate, int status) {
 		FinderPath finderPath = _finderPathWithPaginationCountByLtD_S;
 
-		Object[] finderArgs = new Object[] { _getTime(displayDate), status };
+		Object[] finderArgs = new Object[] {_getTime(displayDate), status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -19329,9 +20280,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_LTD_S_DISPLAYDATE_1 = "journalArticle.displayDate IS NULL AND ";
-	private static final String _FINDER_COLUMN_LTD_S_DISPLAYDATE_2 = "journalArticle.displayDate < ? AND ";
-	private static final String _FINDER_COLUMN_LTD_S_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_LTD_S_DISPLAYDATE_1 =
+		"journalArticle.displayDate IS NULL AND ";
+
+	private static final String _FINDER_COLUMN_LTD_S_DISPLAYDATE_2 =
+		"journalArticle.displayDate < ? AND ";
+
+	private static final String _FINDER_COLUMN_LTD_S_STATUS_2 =
+		"journalArticle.status = ?";
+
 	private FinderPath _finderPathWithPaginationFindByR_I_S;
 	private FinderPath _finderPathWithoutPaginationFindByR_I_S;
 	private FinderPath _finderPathCountByR_I_S;
@@ -19346,10 +20303,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int status) {
-		return findByR_I_S(resourcePrimKey, indexable, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int status) {
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -19367,9 +20326,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int status, int start, int end) {
-		return findByR_I_S(resourcePrimKey, indexable, status, start, end, null);
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int status, int start,
+		int end) {
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, status, start, end, null);
 	}
 
 	/**
@@ -19388,11 +20350,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int status, int start, int end,
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByR_I_S(resourcePrimKey, indexable, status, start, end,
-			orderByComparator, true);
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, status, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -19412,40 +20376,43 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int status, int start, int end,
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByR_I_S;
-			finderArgs = new Object[] { resourcePrimKey, indexable, status };
+			finderArgs = new Object[] {resourcePrimKey, indexable, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByR_I_S;
 			finderArgs = new Object[] {
-					resourcePrimKey, indexable, status,
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, indexable, status, start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey()) ||
-							(indexable != journalArticle.isIndexable()) ||
-							(status != journalArticle.getStatus())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey()) ||
+						(indexable != journalArticle.isIndexable()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -19458,8 +20425,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -19474,11 +20441,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_R_I_S_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -19500,16 +20466,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -19540,12 +20506,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_I_S_First(long resourcePrimKey,
-		boolean indexable, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_I_S_First(
+			long resourcePrimKey, boolean indexable, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_I_S_First(resourcePrimKey,
-				indexable, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_I_S_First(
+			resourcePrimKey, indexable, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -19579,11 +20546,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_I_S_First(long resourcePrimKey,
-		boolean indexable, int status,
+	public JournalArticle fetchByR_I_S_First(
+		long resourcePrimKey, boolean indexable, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByR_I_S(resourcePrimKey, indexable,
-				status, 0, 1, orderByComparator);
+
+		List<JournalArticle> list = findByR_I_S(
+			resourcePrimKey, indexable, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -19603,12 +20571,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByR_I_S_Last(long resourcePrimKey,
-		boolean indexable, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByR_I_S_Last(
+			long resourcePrimKey, boolean indexable, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByR_I_S_Last(resourcePrimKey,
-				indexable, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByR_I_S_Last(
+			resourcePrimKey, indexable, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -19642,17 +20611,19 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByR_I_S_Last(long resourcePrimKey,
-		boolean indexable, int status,
+	public JournalArticle fetchByR_I_S_Last(
+		long resourcePrimKey, boolean indexable, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByR_I_S(resourcePrimKey, indexable, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByR_I_S(resourcePrimKey, indexable,
-				status, count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByR_I_S(
+			resourcePrimKey, indexable, status, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -19673,10 +20644,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByR_I_S_PrevAndNext(long id,
-		long resourcePrimKey, boolean indexable, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByR_I_S_PrevAndNext(
+			long id, long resourcePrimKey, boolean indexable, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -19686,13 +20658,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByR_I_S_PrevAndNext(session, journalArticle,
-					resourcePrimKey, indexable, status, orderByComparator, true);
+			array[0] = getByR_I_S_PrevAndNext(
+				session, journalArticle, resourcePrimKey, indexable, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByR_I_S_PrevAndNext(session, journalArticle,
-					resourcePrimKey, indexable, status, orderByComparator, false);
+			array[2] = getByR_I_S_PrevAndNext(
+				session, journalArticle, resourcePrimKey, indexable, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -19704,15 +20678,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByR_I_S_PrevAndNext(Session session,
-		JournalArticle journalArticle, long resourcePrimKey, boolean indexable,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByR_I_S_PrevAndNext(
+		Session session, JournalArticle journalArticle, long resourcePrimKey,
+		boolean indexable, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -19728,7 +20703,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_R_I_S_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -19802,8 +20778,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -19831,10 +20809,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int[] statuses) {
-		return findByR_I_S(resourcePrimKey, indexable, statuses,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses) {
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, statuses, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -19852,10 +20832,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int[] statuses, int start, int end) {
-		return findByR_I_S(resourcePrimKey, indexable, statuses, start, end,
-			null);
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses, int start,
+		int end) {
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, statuses, start, end, null);
 	}
 
 	/**
@@ -19874,11 +20856,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int[] statuses, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByR_I_S(resourcePrimKey, indexable, statuses, start, end,
-			orderByComparator, true);
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByR_I_S(
+			resourcePrimKey, indexable, statuses, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -19898,10 +20882,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByR_I_S(long resourcePrimKey,
-		boolean indexable, int[] statuses, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -19912,40 +20897,43 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (statuses.length == 1) {
-			return findByR_I_S(resourcePrimKey, indexable, statuses[0], start,
-				end, orderByComparator);
+			return findByR_I_S(
+				resourcePrimKey, indexable, statuses[0], start, end,
+				orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderArgs = new Object[] {
-					resourcePrimKey, indexable, StringUtil.merge(statuses)
-				};
+				resourcePrimKey, indexable, StringUtil.merge(statuses)
+			};
 		}
 		else {
 			finderArgs = new Object[] {
-					resourcePrimKey, indexable, StringUtil.merge(statuses),
-					
-					start, end, orderByComparator
-				};
+				resourcePrimKey, indexable, StringUtil.merge(statuses), start,
+				end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByR_I_S,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByR_I_S, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
-					if ((resourcePrimKey != journalArticle.getResourcePrimKey()) ||
-							(indexable != journalArticle.isIndexable()) ||
-							!ArrayUtil.contains(statuses,
-								journalArticle.getStatus())) {
+					if ((resourcePrimKey !=
+							journalArticle.getResourcePrimKey()) ||
+						(indexable != journalArticle.isIndexable()) ||
+						!ArrayUtil.contains(
+							statuses, journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -19975,15 +20963,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -20003,26 +20991,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(indexable);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByR_I_S,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByR_I_S, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByR_I_S,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByR_I_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -20042,10 +21030,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @param status the status
 	 */
 	@Override
-	public void removeByR_I_S(long resourcePrimKey, boolean indexable,
-		int status) {
-		for (JournalArticle journalArticle : findByR_I_S(resourcePrimKey,
-				indexable, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+	public void removeByR_I_S(
+		long resourcePrimKey, boolean indexable, int status) {
+
+		for (JournalArticle journalArticle :
+				findByR_I_S(
+					resourcePrimKey, indexable, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -20059,10 +21051,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles
 	 */
 	@Override
-	public int countByR_I_S(long resourcePrimKey, boolean indexable, int status) {
+	public int countByR_I_S(
+		long resourcePrimKey, boolean indexable, int status) {
+
 		FinderPath finderPath = _finderPathCountByR_I_S;
 
-		Object[] finderArgs = new Object[] { resourcePrimKey, indexable, status };
+		Object[] finderArgs = new Object[] {resourcePrimKey, indexable, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -20120,8 +21114,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles
 	 */
 	@Override
-	public int countByR_I_S(long resourcePrimKey, boolean indexable,
-		int[] statuses) {
+	public int countByR_I_S(
+		long resourcePrimKey, boolean indexable, int[] statuses) {
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -20132,11 +21127,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		Object[] finderArgs = new Object[] {
-				resourcePrimKey, indexable, StringUtil.merge(statuses)
-			};
+			resourcePrimKey, indexable, StringUtil.merge(statuses)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByR_I_S,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByR_I_S, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -20159,8 +21154,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -20179,12 +21175,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByR_I_S,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByR_I_S, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByR_I_S,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByR_I_S, finderArgs);
 
 				throw processException(e);
 			}
@@ -20196,10 +21192,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_R_I_S_RESOURCEPRIMKEY_2 = "journalArticle.resourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_R_I_S_INDEXABLE_2 = "journalArticle.indexable = ? AND ";
-	private static final String _FINDER_COLUMN_R_I_S_STATUS_2 = "journalArticle.status = ?";
-	private static final String _FINDER_COLUMN_R_I_S_STATUS_7 = "journalArticle.status IN (";
+	private static final String _FINDER_COLUMN_R_I_S_RESOURCEPRIMKEY_2 =
+		"journalArticle.resourcePrimKey = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_I_S_INDEXABLE_2 =
+		"journalArticle.indexable = ? AND ";
+
+	private static final String _FINDER_COLUMN_R_I_S_STATUS_2 =
+		"journalArticle.status = ?";
+
+	private static final String _FINDER_COLUMN_R_I_S_STATUS_7 =
+		"journalArticle.status IN (";
+
 	private FinderPath _finderPathWithPaginationFindByG_U_C;
 	private FinderPath _finderPathWithoutPaginationFindByG_U_C;
 	private FinderPath _finderPathCountByG_U_C;
@@ -20213,10 +21217,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U_C(long groupId, long userId,
-		long classNameId) {
-		return findByG_U_C(groupId, userId, classNameId, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_U_C(
+		long groupId, long userId, long classNameId) {
+
+		return findByG_U_C(
+			groupId, userId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -20234,8 +21240,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U_C(long groupId, long userId,
-		long classNameId, int start, int end) {
+	public List<JournalArticle> findByG_U_C(
+		long groupId, long userId, long classNameId, int start, int end) {
+
 		return findByG_U_C(groupId, userId, classNameId, start, end, null);
 	}
 
@@ -20255,11 +21262,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U_C(long groupId, long userId,
-		long classNameId, int start, int end,
+	public List<JournalArticle> findByG_U_C(
+		long groupId, long userId, long classNameId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_U_C(groupId, userId, classNameId, start, end,
-			orderByComparator, true);
+
+		return findByG_U_C(
+			groupId, userId, classNameId, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -20279,40 +21287,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_U_C(long groupId, long userId,
-		long classNameId, int start, int end,
+	public List<JournalArticle> findByG_U_C(
+		long groupId, long userId, long classNameId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_U_C;
-			finderArgs = new Object[] { groupId, userId, classNameId };
+			finderArgs = new Object[] {groupId, userId, classNameId};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_U_C;
 			finderArgs = new Object[] {
-					groupId, userId, classNameId,
-					
-					start, end, orderByComparator
-				};
+				groupId, userId, classNameId, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(userId != journalArticle.getUserId()) ||
-							(classNameId != journalArticle.getClassNameId())) {
+						(userId != journalArticle.getUserId()) ||
+						(classNameId != journalArticle.getClassNameId())) {
+
 						list = null;
 
 						break;
@@ -20325,8 +21334,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -20341,11 +21350,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_U_C_CLASSNAMEID_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -20367,16 +21375,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(classNameId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -20407,11 +21415,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_U_C_First(long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_U_C_First(
+			long groupId, long userId, long classNameId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_U_C_First(groupId, userId,
-				classNameId, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_U_C_First(
+			groupId, userId, classNameId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -20445,10 +21455,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_U_C_First(long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_U_C(groupId, userId, classNameId,
-				0, 1, orderByComparator);
+	public JournalArticle fetchByG_U_C_First(
+		long groupId, long userId, long classNameId,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_U_C(
+			groupId, userId, classNameId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -20468,11 +21480,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_U_C_Last(long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_U_C_Last(
+			long groupId, long userId, long classNameId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_U_C_Last(groupId, userId,
-				classNameId, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_U_C_Last(
+			groupId, userId, classNameId, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -20506,16 +21520,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_U_C_Last(long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_U_C_Last(
+		long groupId, long userId, long classNameId,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_U_C(groupId, userId, classNameId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_U_C(groupId, userId, classNameId,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_U_C(
+			groupId, userId, classNameId, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -20536,10 +21552,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_U_C_PrevAndNext(long id, long groupId,
-		long userId, long classNameId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_U_C_PrevAndNext(
+			long id, long groupId, long userId, long classNameId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -20549,13 +21566,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_U_C_PrevAndNext(session, journalArticle, groupId,
-					userId, classNameId, orderByComparator, true);
+			array[0] = getByG_U_C_PrevAndNext(
+				session, journalArticle, groupId, userId, classNameId,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_U_C_PrevAndNext(session, journalArticle, groupId,
-					userId, classNameId, orderByComparator, false);
+			array[2] = getByG_U_C_PrevAndNext(
+				session, journalArticle, groupId, userId, classNameId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -20567,15 +21586,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_U_C_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_U_C_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long userId, long classNameId,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -20591,7 +21611,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_C_CLASSNAMEID_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -20665,8 +21686,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -20690,10 +21713,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_U_C(long groupId, long userId,
-		long classNameId) {
-		return filterFindByG_U_C(groupId, userId, classNameId,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_U_C(
+		long groupId, long userId, long classNameId) {
+
+		return filterFindByG_U_C(
+			groupId, userId, classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -20711,9 +21736,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_U_C(long groupId, long userId,
-		long classNameId, int start, int end) {
-		return filterFindByG_U_C(groupId, userId, classNameId, start, end, null);
+	public List<JournalArticle> filterFindByG_U_C(
+		long groupId, long userId, long classNameId, int start, int end) {
+
+		return filterFindByG_U_C(
+			groupId, userId, classNameId, start, end, null);
 	}
 
 	/**
@@ -20732,19 +21759,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_U_C(long groupId, long userId,
-		long classNameId, int start, int end,
+	public List<JournalArticle> filterFindByG_U_C(
+		long groupId, long userId, long classNameId, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_U_C(groupId, userId, classNameId, start, end,
-				orderByComparator);
+			return findByG_U_C(
+				groupId, userId, classNameId, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -20754,7 +21782,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_U_C_GROUPID_2);
@@ -20764,17 +21793,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_C_CLASSNAMEID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -20786,9 +21816,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -20812,8 +21842,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(classNameId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -20835,13 +21865,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_U_C_PrevAndNext(long id,
-		long groupId, long userId, long classNameId,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_U_C_PrevAndNext(
+			long id, long groupId, long userId, long classNameId,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_U_C_PrevAndNext(id, groupId, userId, classNameId,
-				orderByComparator);
+			return findByG_U_C_PrevAndNext(
+				id, groupId, userId, classNameId, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -20853,13 +21884,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_U_C_PrevAndNext(session, journalArticle,
-					groupId, userId, classNameId, orderByComparator, true);
+			array[0] = filterGetByG_U_C_PrevAndNext(
+				session, journalArticle, groupId, userId, classNameId,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_U_C_PrevAndNext(session, journalArticle,
-					groupId, userId, classNameId, orderByComparator, false);
+			array[2] = filterGetByG_U_C_PrevAndNext(
+				session, journalArticle, groupId, userId, classNameId,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -20871,15 +21904,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_U_C_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long userId,
-		long classNameId, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_U_C_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long userId, long classNameId,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -20890,7 +21924,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_U_C_GROUPID_2);
@@ -20900,11 +21935,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_U_C_CLASSNAMEID_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -20912,12 +21949,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -20944,12 +21985,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -20979,9 +22022,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -21004,8 +22047,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -21029,8 +22074,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_U_C(long groupId, long userId, long classNameId) {
-		for (JournalArticle journalArticle : findByG_U_C(groupId, userId,
-				classNameId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_U_C(
+					groupId, userId, classNameId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -21047,7 +22095,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_U_C(long groupId, long userId, long classNameId) {
 		FinderPath finderPath = _finderPathCountByG_U_C;
 
-		Object[] finderArgs = new Object[] { groupId, userId, classNameId };
+		Object[] finderArgs = new Object[] {groupId, userId, classNameId};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -21120,9 +22168,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_U_C_CLASSNAMEID_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -21131,8 +22179,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -21154,9 +22202,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_U_C_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_U_C_USERID_2 = "journalArticle.userId = ? AND ";
-	private static final String _FINDER_COLUMN_G_U_C_CLASSNAMEID_2 = "journalArticle.classNameId = ?";
+	private static final String _FINDER_COLUMN_G_U_C_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_U_C_USERID_2 =
+		"journalArticle.userId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_U_C_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_F_ST;
 	private FinderPath _finderPathWithoutPaginationFindByG_F_ST;
 	private FinderPath _finderPathCountByG_F_ST;
@@ -21171,10 +22225,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int status) {
-		return findByG_F_ST(groupId, folderId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int status) {
+
+		return findByG_F_ST(
+			groupId, folderId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -21192,8 +22248,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int status, int start, int end) {
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int status, int start, int end) {
+
 		return findByG_F_ST(groupId, folderId, status, start, end, null);
 	}
 
@@ -21213,11 +22270,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_F_ST(groupId, folderId, status, start, end,
-			orderByComparator, true);
+
+		return findByG_F_ST(
+			groupId, folderId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -21237,40 +22295,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_F_ST;
-			finderArgs = new Object[] { groupId, folderId, status };
+			finderArgs = new Object[] {groupId, folderId, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_F_ST;
 			finderArgs = new Object[] {
-					groupId, folderId, status,
-					
-					start, end, orderByComparator
-				};
+				groupId, folderId, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(folderId != journalArticle.getFolderId()) ||
-							(status != journalArticle.getStatus())) {
+						(folderId != journalArticle.getFolderId()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -21283,8 +22342,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -21299,11 +22358,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_F_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -21325,16 +22383,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -21365,11 +22423,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_F_ST_First(long groupId, long folderId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_F_ST_First(
+			long groupId, long folderId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_F_ST_First(groupId, folderId,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_F_ST_First(
+			groupId, folderId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -21403,10 +22463,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_F_ST_First(long groupId, long folderId,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_F_ST(groupId, folderId, status, 0,
-				1, orderByComparator);
+	public JournalArticle fetchByG_F_ST_First(
+		long groupId, long folderId, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_F_ST(
+			groupId, folderId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -21426,11 +22488,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_F_ST_Last(long groupId, long folderId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_F_ST_Last(
+			long groupId, long folderId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_F_ST_Last(groupId, folderId,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_F_ST_Last(
+			groupId, folderId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -21464,16 +22528,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_F_ST_Last(long groupId, long folderId,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_F_ST_Last(
+		long groupId, long folderId, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_F_ST(groupId, folderId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_F_ST(groupId, folderId, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_F_ST(
+			groupId, folderId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -21494,10 +22560,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_F_ST_PrevAndNext(long id, long groupId,
-		long folderId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_F_ST_PrevAndNext(
+			long id, long groupId, long folderId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -21507,13 +22574,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_F_ST_PrevAndNext(session, journalArticle,
-					groupId, folderId, status, orderByComparator, true);
+			array[0] = getByG_F_ST_PrevAndNext(
+				session, journalArticle, groupId, folderId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_F_ST_PrevAndNext(session, journalArticle,
-					groupId, folderId, status, orderByComparator, false);
+			array[2] = getByG_F_ST_PrevAndNext(
+				session, journalArticle, groupId, folderId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -21525,14 +22594,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_F_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long folderId, int status,
+	protected JournalArticle getByG_F_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long folderId, int status,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -21548,7 +22619,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -21622,8 +22694,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -21647,10 +22721,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int status) {
-		return filterFindByG_F_ST(groupId, folderId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int status) {
+
+		return filterFindByG_F_ST(
+			groupId, folderId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -21668,8 +22744,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int status, int start, int end) {
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int status, int start, int end) {
+
 		return filterFindByG_F_ST(groupId, folderId, status, start, end, null);
 	}
 
@@ -21689,19 +22766,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int status, int start, int end,
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_F_ST(groupId, folderId, status, start, end,
-				orderByComparator);
+			return findByG_F_ST(
+				groupId, folderId, status, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -21711,7 +22789,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_ST_GROUPID_2);
@@ -21721,17 +22800,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -21743,9 +22823,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -21769,8 +22849,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(status);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -21792,13 +22872,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_F_ST_PrevAndNext(long id,
-		long groupId, long folderId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_F_ST_PrevAndNext(
+			long id, long groupId, long folderId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_F_ST_PrevAndNext(id, groupId, folderId, status,
-				orderByComparator);
+			return findByG_F_ST_PrevAndNext(
+				id, groupId, folderId, status, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -21810,13 +22891,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_F_ST_PrevAndNext(session, journalArticle,
-					groupId, folderId, status, orderByComparator, true);
+			array[0] = filterGetByG_F_ST_PrevAndNext(
+				session, journalArticle, groupId, folderId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_F_ST_PrevAndNext(session, journalArticle,
-					groupId, folderId, status, orderByComparator, false);
+			array[2] = filterGetByG_F_ST_PrevAndNext(
+				session, journalArticle, groupId, folderId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -21828,14 +22911,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_F_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long folderId, int status,
+	protected JournalArticle filterGetByG_F_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long folderId, int status,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -21846,7 +22931,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_ST_GROUPID_2);
@@ -21856,11 +22942,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_F_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -21868,12 +22956,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -21900,12 +22992,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -21935,9 +23029,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -21960,8 +23054,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -21985,10 +23081,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int[] statuses) {
-		return filterFindByG_F_ST(groupId, folderId, statuses,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int[] statuses) {
+
+		return filterFindByG_F_ST(
+			groupId, folderId, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -22006,9 +23104,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int[] statuses, int start, int end) {
-		return filterFindByG_F_ST(groupId, folderId, statuses, start, end, null);
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end) {
+
+		return filterFindByG_F_ST(
+			groupId, folderId, statuses, start, end, null);
 	}
 
 	/**
@@ -22027,12 +23127,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_F_ST(long groupId, long folderId,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> filterFindByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_F_ST(groupId, folderId, statuses, start, end,
-				orderByComparator);
+			return findByG_F_ST(
+				groupId, folderId, statuses, start, end, orderByComparator);
 		}
 
 		if (statuses == null) {
@@ -22050,7 +23151,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_F_ST_GROUPID_2);
@@ -22069,21 +23171,23 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -22095,9 +23199,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -22119,8 +23223,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(folderId);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -22143,10 +23247,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int[] statuses) {
-		return findByG_F_ST(groupId, folderId, statuses, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int[] statuses) {
+
+		return findByG_F_ST(
+			groupId, folderId, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -22164,8 +23270,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int[] statuses, int start, int end) {
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end) {
+
 		return findByG_F_ST(groupId, folderId, statuses, start, end, null);
 	}
 
@@ -22185,11 +23292,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_F_ST(groupId, folderId, statuses, start, end,
-			orderByComparator, true);
+
+		return findByG_F_ST(
+			groupId, folderId, statuses, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -22209,10 +23317,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_F_ST(long groupId, long folderId,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByG_F_ST(
+		long groupId, long folderId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -22223,40 +23332,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (statuses.length == 1) {
-			return findByG_F_ST(groupId, folderId, statuses[0], start, end,
-				orderByComparator);
+			return findByG_F_ST(
+				groupId, folderId, statuses[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderArgs = new Object[] {
-					groupId, folderId, StringUtil.merge(statuses)
-				};
+				groupId, folderId, StringUtil.merge(statuses)
+			};
 		}
 		else {
 			finderArgs = new Object[] {
-					groupId, folderId, StringUtil.merge(statuses),
-					
-					start, end, orderByComparator
-				};
+				groupId, folderId, StringUtil.merge(statuses), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByG_F_ST,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_F_ST, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(folderId != journalArticle.getFolderId()) ||
-							!ArrayUtil.contains(statuses,
-								journalArticle.getStatus())) {
+						(folderId != journalArticle.getFolderId()) ||
+						!ArrayUtil.contains(
+							statuses, journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -22286,15 +23396,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -22314,26 +23424,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(folderId);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_F_ST,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_F_ST, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_F_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_F_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -22354,8 +23464,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_F_ST(long groupId, long folderId, int status) {
-		for (JournalArticle journalArticle : findByG_F_ST(groupId, folderId,
-				status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_F_ST(
+					groupId, folderId, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -22372,7 +23485,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_F_ST(long groupId, long folderId, int status) {
 		FinderPath finderPath = _finderPathCountByG_F_ST;
 
-		Object[] finderArgs = new Object[] { groupId, folderId, status };
+		Object[] finderArgs = new Object[] {groupId, folderId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -22441,11 +23554,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		Object[] finderArgs = new Object[] {
-				groupId, folderId, StringUtil.merge(statuses)
-			};
+			groupId, folderId, StringUtil.merge(statuses)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_F_ST,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_F_ST, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -22468,8 +23581,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -22488,12 +23602,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_F_ST,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_F_ST, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_F_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_F_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -22529,9 +23643,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_F_ST_STATUS_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -22540,8 +23654,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -22572,7 +23686,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_F_ST(long groupId, long folderId, int[] statuses) {
+	public int filterCountByG_F_ST(
+		long groupId, long folderId, int[] statuses) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_F_ST(groupId, folderId, statuses);
 		}
@@ -22606,12 +23722,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -22620,8 +23737,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -22641,10 +23758,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_F_ST_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_F_ST_FOLDERID_2 = "journalArticle.folderId = ? AND ";
-	private static final String _FINDER_COLUMN_G_F_ST_STATUS_2 = "journalArticle.status = ?";
-	private static final String _FINDER_COLUMN_G_F_ST_STATUS_7 = "journalArticle.status IN (";
+	private static final String _FINDER_COLUMN_G_F_ST_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_F_ST_FOLDERID_2 =
+		"journalArticle.folderId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_F_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
+	private static final String _FINDER_COLUMN_G_F_ST_STATUS_7 =
+		"journalArticle.status IN (";
+
 	private FinderPath _finderPathWithPaginationFindByG_C_C;
 	private FinderPath _finderPathWithoutPaginationFindByG_C_C;
 	private FinderPath _finderPathCountByG_C_C;
@@ -22658,10 +23783,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_C(long groupId, long classNameId,
-		long classPK) {
-		return findByG_C_C(groupId, classNameId, classPK, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
+		return findByG_C_C(
+			groupId, classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -22679,8 +23806,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_C(long groupId, long classNameId,
-		long classPK, int start, int end) {
+	public List<JournalArticle> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end) {
+
 		return findByG_C_C(groupId, classNameId, classPK, start, end, null);
 	}
 
@@ -22700,11 +23828,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_C(long groupId, long classNameId,
-		long classPK, int start, int end,
+	public List<JournalArticle> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_C_C(groupId, classNameId, classPK, start, end,
-			orderByComparator, true);
+
+		return findByG_C_C(
+			groupId, classNameId, classPK, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -22724,40 +23853,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_C(long groupId, long classNameId,
-		long classPK, int start, int end,
+	public List<JournalArticle> findByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C_C;
-			finderArgs = new Object[] { groupId, classNameId, classPK };
+			finderArgs = new Object[] {groupId, classNameId, classPK};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C_C;
 			finderArgs = new Object[] {
-					groupId, classNameId, classPK,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, classPK, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(classNameId != journalArticle.getClassNameId()) ||
-							(classPK != journalArticle.getClassPK())) {
+						(classNameId != journalArticle.getClassNameId()) ||
+						(classPK != journalArticle.getClassPK())) {
+
 						list = null;
 
 						break;
@@ -22770,8 +23900,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -22786,11 +23916,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -22812,16 +23941,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(classPK);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -22852,11 +23981,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_C_First(long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_C_First(
+			long groupId, long classNameId, long classPK,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_C_First(groupId,
-				classNameId, classPK, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_C_First(
+			groupId, classNameId, classPK, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -22890,10 +24021,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_C_First(long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_C_C(groupId, classNameId, classPK,
-				0, 1, orderByComparator);
+	public JournalArticle fetchByG_C_C_First(
+		long groupId, long classNameId, long classPK,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_C_C(
+			groupId, classNameId, classPK, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -22913,11 +24046,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_C_Last(long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_C_Last(
+			long groupId, long classNameId, long classPK,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_C_Last(groupId, classNameId,
-				classPK, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_C_Last(
+			groupId, classNameId, classPK, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -22951,16 +24086,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_C_Last(long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_C_C_Last(
+		long groupId, long classNameId, long classPK,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_C_C(groupId, classNameId, classPK);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_C_C(groupId, classNameId, classPK,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_C_C(
+			groupId, classNameId, classPK, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -22981,10 +24118,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_C_C_PrevAndNext(long id, long groupId,
-		long classNameId, long classPK,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_C_C_PrevAndNext(
+			long id, long groupId, long classNameId, long classPK,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -22994,13 +24132,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_C_C_PrevAndNext(session, journalArticle, groupId,
-					classNameId, classPK, orderByComparator, true);
+			array[0] = getByG_C_C_PrevAndNext(
+				session, journalArticle, groupId, classNameId, classPK,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_C_C_PrevAndNext(session, journalArticle, groupId,
-					classNameId, classPK, orderByComparator, false);
+			array[2] = getByG_C_C_PrevAndNext(
+				session, journalArticle, groupId, classNameId, classPK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -23012,15 +24152,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_C_C_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_C_C_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, long classPK,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -23036,7 +24177,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -23110,8 +24252,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -23135,10 +24279,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK) {
-		return filterFindByG_C_C(groupId, classNameId, classPK,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
+		return filterFindByG_C_C(
+			groupId, classNameId, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -23156,9 +24302,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end) {
-		return filterFindByG_C_C(groupId, classNameId, classPK, start, end, null);
+	public List<JournalArticle> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end) {
+
+		return filterFindByG_C_C(
+			groupId, classNameId, classPK, start, end, null);
 	}
 
 	/**
@@ -23177,19 +24325,20 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_C(long groupId,
-		long classNameId, long classPK, int start, int end,
+	public List<JournalArticle> filterFindByG_C_C(
+		long groupId, long classNameId, long classPK, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_C(groupId, classNameId, classPK, start, end,
-				orderByComparator);
+			return findByG_C_C(
+				groupId, classNameId, classPK, start, end, orderByComparator);
 		}
 
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -23199,7 +24348,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_C_GROUPID_2);
@@ -23209,17 +24359,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -23231,9 +24382,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -23257,8 +24408,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(classPK);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -23280,13 +24431,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_C_C_PrevAndNext(long id,
-		long groupId, long classNameId, long classPK,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_C_C_PrevAndNext(
+			long id, long groupId, long classNameId, long classPK,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_C_PrevAndNext(id, groupId, classNameId, classPK,
-				orderByComparator);
+			return findByG_C_C_PrevAndNext(
+				id, groupId, classNameId, classPK, orderByComparator);
 		}
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -23298,13 +24450,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_C_C_PrevAndNext(session, journalArticle,
-					groupId, classNameId, classPK, orderByComparator, true);
+			array[0] = filterGetByG_C_C_PrevAndNext(
+				session, journalArticle, groupId, classNameId, classPK,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_C_C_PrevAndNext(session, journalArticle,
-					groupId, classNameId, classPK, orderByComparator, false);
+			array[2] = filterGetByG_C_C_PrevAndNext(
+				session, journalArticle, groupId, classNameId, classPK,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -23316,15 +24470,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_C_C_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		long classPK, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_C_C_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, long classPK,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -23335,7 +24490,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_C_GROUPID_2);
@@ -23345,11 +24501,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -23357,12 +24515,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -23389,12 +24551,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -23424,9 +24588,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -23449,8 +24613,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -23474,8 +24640,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_C_C(long groupId, long classNameId, long classPK) {
-		for (JournalArticle journalArticle : findByG_C_C(groupId, classNameId,
-				classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_C_C(
+					groupId, classNameId, classPK, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -23492,7 +24661,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByG_C_C(long groupId, long classNameId, long classPK) {
 		FinderPath finderPath = _finderPathCountByG_C_C;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, classPK };
+		Object[] finderArgs = new Object[] {groupId, classNameId, classPK};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -23550,7 +24719,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_C(long groupId, long classNameId, long classPK) {
+	public int filterCountByG_C_C(
+		long groupId, long classNameId, long classPK) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_C_C(groupId, classNameId, classPK);
 		}
@@ -23565,9 +24736,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_C_C_CLASSPK_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -23576,8 +24747,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -23599,9 +24770,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 = "journalArticle.classPK = ?";
+	private static final String _FINDER_COLUMN_G_C_C_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_C_CLASSPK_2 =
+		"journalArticle.classPK = ?";
+
 	private FinderPath _finderPathFetchByG_C_DDMSK;
 	private FinderPath _finderPathCountByG_C_DDMSK;
 
@@ -23615,10 +24792,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_DDMSK(long groupId, long classNameId,
-		String DDMStructureKey) throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_DDMSK(groupId, classNameId,
-				DDMStructureKey);
+	public JournalArticle findByG_C_DDMSK(
+			long groupId, long classNameId, String DDMStructureKey)
+		throws NoSuchArticleException {
+
+		JournalArticle journalArticle = fetchByG_C_DDMSK(
+			groupId, classNameId, DDMStructureKey);
 
 		if (journalArticle == null) {
 			StringBundler msg = new StringBundler(8);
@@ -23655,8 +24834,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_DDMSK(long groupId, long classNameId,
-		String DDMStructureKey) {
+	public JournalArticle fetchByG_C_DDMSK(
+		long groupId, long classNameId, String DDMStructureKey) {
+
 		return fetchByG_C_DDMSK(groupId, classNameId, DDMStructureKey, true);
 	}
 
@@ -23670,26 +24850,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_DDMSK(long groupId, long classNameId,
-		String DDMStructureKey, boolean retrieveFromCache) {
+	public JournalArticle fetchByG_C_DDMSK(
+		long groupId, long classNameId, String DDMStructureKey,
+		boolean retrieveFromCache) {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, DDMStructureKey };
+		Object[] finderArgs = new Object[] {
+			groupId, classNameId, DDMStructureKey
+		};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByG_C_DDMSK,
-					finderArgs, this);
+			result = finderCache.getResult(
+				_finderPathFetchByG_C_DDMSK, finderArgs, this);
 		}
 
 		if (result instanceof JournalArticle) {
 			JournalArticle journalArticle = (JournalArticle)result;
 
 			if ((groupId != journalArticle.getGroupId()) ||
-					(classNameId != journalArticle.getClassNameId()) ||
-					!Objects.equals(DDMStructureKey,
-						journalArticle.getDDMStructureKey())) {
+				(classNameId != journalArticle.getClassNameId()) ||
+				!Objects.equals(
+					DDMStructureKey, journalArticle.getDDMStructureKey())) {
+
 				result = null;
 			}
 		}
@@ -23736,8 +24921,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				List<JournalArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByG_C_DDMSK,
-						finderArgs, list);
+					finderCache.putResult(
+						_finderPathFetchByG_C_DDMSK, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -23746,8 +24931,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 						if (_log.isWarnEnabled()) {
 							_log.warn(
 								"JournalArticlePersistenceImpl.fetchByG_C_DDMSK(long, long, String, boolean) with parameters (" +
-								StringUtil.merge(finderArgs) +
-								") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+									StringUtil.merge(finderArgs) +
+										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 						}
 					}
 
@@ -23759,7 +24944,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathFetchByG_C_DDMSK, finderArgs);
+				finderCache.removeResult(
+					_finderPathFetchByG_C_DDMSK, finderArgs);
 
 				throw processException(e);
 			}
@@ -23785,10 +24971,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the journal article that was removed
 	 */
 	@Override
-	public JournalArticle removeByG_C_DDMSK(long groupId, long classNameId,
-		String DDMStructureKey) throws NoSuchArticleException {
-		JournalArticle journalArticle = findByG_C_DDMSK(groupId, classNameId,
-				DDMStructureKey);
+	public JournalArticle removeByG_C_DDMSK(
+			long groupId, long classNameId, String DDMStructureKey)
+		throws NoSuchArticleException {
+
+		JournalArticle journalArticle = findByG_C_DDMSK(
+			groupId, classNameId, DDMStructureKey);
 
 		return remove(journalArticle);
 	}
@@ -23802,13 +24990,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles
 	 */
 	@Override
-	public int countByG_C_DDMSK(long groupId, long classNameId,
-		String DDMStructureKey) {
+	public int countByG_C_DDMSK(
+		long groupId, long classNameId, String DDMStructureKey) {
+
 		DDMStructureKey = Objects.toString(DDMStructureKey, "");
 
 		FinderPath finderPath = _finderPathCountByG_C_DDMSK;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, DDMStructureKey };
+		Object[] finderArgs = new Object[] {
+			groupId, classNameId, DDMStructureKey
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -23868,10 +25059,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_C_DDMSK_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_DDMSK_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_DDMSK_DDMSTRUCTUREKEY_2 = "journalArticle.DDMStructureKey = ?";
-	private static final String _FINDER_COLUMN_G_C_DDMSK_DDMSTRUCTUREKEY_3 = "(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+	private static final String _FINDER_COLUMN_G_C_DDMSK_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_DDMSK_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_DDMSK_DDMSTRUCTUREKEY_2 =
+		"journalArticle.DDMStructureKey = ?";
+
+	private static final String _FINDER_COLUMN_G_C_DDMSK_DDMSTRUCTUREKEY_3 =
+		"(journalArticle.DDMStructureKey IS NULL OR journalArticle.DDMStructureKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_C_DDMTK;
 	private FinderPath _finderPathWithoutPaginationFindByG_C_DDMTK;
 	private FinderPath _finderPathCountByG_C_DDMTK;
@@ -23885,10 +25084,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey) {
-		return findByG_C_DDMTK(groupId, classNameId, DDMTemplateKey,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey) {
+
+		return findByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -23906,10 +25107,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey, int start, int end) {
-		return findByG_C_DDMTK(groupId, classNameId, DDMTemplateKey, start,
-			end, null);
+	public List<JournalArticle> findByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey, int start,
+		int end) {
+
+		return findByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, start, end, null);
 	}
 
 	/**
@@ -23928,11 +25131,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_C_DDMTK(groupId, classNameId, DDMTemplateKey, start,
-			end, orderByComparator, true);
+	public List<JournalArticle> findByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator) {
+
+		return findByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -23952,10 +25157,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		boolean pagination = true;
@@ -23963,32 +25169,33 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C_DDMTK;
-			finderArgs = new Object[] { groupId, classNameId, DDMTemplateKey };
+			finderArgs = new Object[] {groupId, classNameId, DDMTemplateKey};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C_DDMTK;
 			finderArgs = new Object[] {
-					groupId, classNameId, DDMTemplateKey,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, DDMTemplateKey, start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(classNameId != journalArticle.getClassNameId()) ||
-							!DDMTemplateKey.equals(
-								journalArticle.getDDMTemplateKey())) {
+						(classNameId != journalArticle.getClassNameId()) ||
+						!DDMTemplateKey.equals(
+							journalArticle.getDDMTemplateKey())) {
+
 						list = null;
 
 						break;
@@ -24001,8 +25208,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -24026,11 +25233,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -24054,16 +25260,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -24094,12 +25300,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_DDMTK_First(long groupId, long classNameId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_DDMTK_First(
+			long groupId, long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_DDMTK_First(groupId,
-				classNameId, DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_DDMTK_First(
+			groupId, classNameId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -24133,11 +25340,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_DDMTK_First(long groupId,
-		long classNameId, String DDMTemplateKey,
+	public JournalArticle fetchByG_C_DDMTK_First(
+		long groupId, long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_C_DDMTK(groupId, classNameId,
-				DDMTemplateKey, 0, 1, orderByComparator);
+
+		List<JournalArticle> list = findByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -24157,12 +25365,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_DDMTK_Last(long groupId, long classNameId,
-		String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_DDMTK_Last(
+			long groupId, long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_DDMTK_Last(groupId,
-				classNameId, DDMTemplateKey, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_DDMTK_Last(
+			groupId, classNameId, DDMTemplateKey, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -24196,17 +25405,19 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_DDMTK_Last(long groupId, long classNameId,
-		String DDMTemplateKey,
+	public JournalArticle fetchByG_C_DDMTK_Last(
+		long groupId, long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_C_DDMTK(groupId, classNameId, DDMTemplateKey);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_C_DDMTK(groupId, classNameId,
-				DDMTemplateKey, count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -24227,10 +25438,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_C_DDMTK_PrevAndNext(long id, long groupId,
-		long classNameId, String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_C_DDMTK_PrevAndNext(
+			long id, long groupId, long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -24242,15 +25454,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_C_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, classNameId, DDMTemplateKey, orderByComparator,
-					true);
+			array[0] = getByG_C_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, classNameId, DDMTemplateKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_C_DDMTK_PrevAndNext(session, journalArticle,
-					groupId, classNameId, DDMTemplateKey, orderByComparator,
-					false);
+			array[2] = getByG_C_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, classNameId, DDMTemplateKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -24262,15 +25474,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_C_DDMTK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		String DDMTemplateKey,
+	protected JournalArticle getByG_C_DDMTK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -24295,7 +25508,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -24371,8 +25585,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -24396,10 +25612,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_DDMTK(long groupId,
-		long classNameId, String DDMTemplateKey) {
-		return filterFindByG_C_DDMTK(groupId, classNameId, DDMTemplateKey,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey) {
+
+		return filterFindByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -24417,10 +25635,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_DDMTK(long groupId,
-		long classNameId, String DDMTemplateKey, int start, int end) {
-		return filterFindByG_C_DDMTK(groupId, classNameId, DDMTemplateKey,
-			start, end, null);
+	public List<JournalArticle> filterFindByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey, int start,
+		int end) {
+
+		return filterFindByG_C_DDMTK(
+			groupId, classNameId, DDMTemplateKey, start, end, null);
 	}
 
 	/**
@@ -24439,12 +25659,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_DDMTK(long groupId,
-		long classNameId, String DDMTemplateKey, int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator) {
+	public List<JournalArticle> filterFindByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey, int start,
+		int end, OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_DDMTK(groupId, classNameId, DDMTemplateKey, start,
-				end, orderByComparator);
+			return findByG_C_DDMTK(
+				groupId, classNameId, DDMTemplateKey, start, end,
+				orderByComparator);
 		}
 
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
@@ -24452,8 +25674,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -24463,7 +25685,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_DDMTK_GROUPID_2);
@@ -24482,17 +25705,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -24504,9 +25728,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -24532,8 +25756,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(DDMTemplateKey);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -24555,13 +25779,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_C_DDMTK_PrevAndNext(long id,
-		long groupId, long classNameId, String DDMTemplateKey,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_C_DDMTK_PrevAndNext(
+			long id, long groupId, long classNameId, String DDMTemplateKey,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_DDMTK_PrevAndNext(id, groupId, classNameId,
-				DDMTemplateKey, orderByComparator);
+			return findByG_C_DDMTK_PrevAndNext(
+				id, groupId, classNameId, DDMTemplateKey, orderByComparator);
 		}
 
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
@@ -24575,15 +25800,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_C_DDMTK_PrevAndNext(session,
-					journalArticle, groupId, classNameId, DDMTemplateKey,
-					orderByComparator, true);
+			array[0] = filterGetByG_C_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, classNameId, DDMTemplateKey,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_C_DDMTK_PrevAndNext(session,
-					journalArticle, groupId, classNameId, DDMTemplateKey,
-					orderByComparator, false);
+			array[2] = filterGetByG_C_DDMTK_PrevAndNext(
+				session, journalArticle, groupId, classNameId, DDMTemplateKey,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -24595,15 +25820,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_C_DDMTK_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		String DDMTemplateKey,
+	protected JournalArticle filterGetByG_C_DDMTK_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, String DDMTemplateKey,
 		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -24614,7 +25840,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_DDMTK_GROUPID_2);
@@ -24633,11 +25860,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -24645,12 +25874,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -24677,12 +25910,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -24712,9 +25947,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -24739,8 +25974,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -24763,11 +26000,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @param DDMTemplateKey the ddm template key
 	 */
 	@Override
-	public void removeByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey) {
-		for (JournalArticle journalArticle : findByG_C_DDMTK(groupId,
-				classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null)) {
+	public void removeByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey) {
+
+		for (JournalArticle journalArticle :
+				findByG_C_DDMTK(
+					groupId, classNameId, DDMTemplateKey, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -24781,13 +26021,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles
 	 */
 	@Override
-	public int countByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey) {
+	public int countByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey) {
+
 		DDMTemplateKey = Objects.toString(DDMTemplateKey, "");
 
 		FinderPath finderPath = _finderPathCountByG_C_DDMTK;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, DDMTemplateKey };
+		Object[] finderArgs = new Object[] {
+			groupId, classNameId, DDMTemplateKey
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -24856,8 +26099,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_DDMTK(long groupId, long classNameId,
-		String DDMTemplateKey) {
+	public int filterCountByG_C_DDMTK(
+		long groupId, long classNameId, String DDMTemplateKey) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_C_DDMTK(groupId, classNameId, DDMTemplateKey);
 		}
@@ -24883,9 +26127,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_C_DDMTK_DDMTEMPLATEKEY_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -24894,8 +26138,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -24919,10 +26163,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_DDMTK_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_DDMTK_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_DDMTK_DDMTEMPLATEKEY_2 = "journalArticle.DDMTemplateKey = ?";
-	private static final String _FINDER_COLUMN_G_C_DDMTK_DDMTEMPLATEKEY_3 = "(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+	private static final String _FINDER_COLUMN_G_C_DDMTK_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_DDMTK_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_DDMTK_DDMTEMPLATEKEY_2 =
+		"journalArticle.DDMTemplateKey = ?";
+
+	private static final String _FINDER_COLUMN_G_C_DDMTK_DDMTEMPLATEKEY_3 =
+		"(journalArticle.DDMTemplateKey IS NULL OR journalArticle.DDMTemplateKey = '')";
+
 	private FinderPath _finderPathWithPaginationFindByG_C_L;
 	private FinderPath _finderPathWithoutPaginationFindByG_C_L;
 	private FinderPath _finderPathCountByG_C_L;
@@ -24936,9 +26188,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_L(long groupId, long classNameId,
-		String layoutUuid) {
-		return findByG_C_L(groupId, classNameId, layoutUuid, QueryUtil.ALL_POS,
+	public List<JournalArticle> findByG_C_L(
+		long groupId, long classNameId, String layoutUuid) {
+
+		return findByG_C_L(
+			groupId, classNameId, layoutUuid, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
@@ -24957,8 +26211,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_L(long groupId, long classNameId,
-		String layoutUuid, int start, int end) {
+	public List<JournalArticle> findByG_C_L(
+		long groupId, long classNameId, String layoutUuid, int start, int end) {
+
 		return findByG_C_L(groupId, classNameId, layoutUuid, start, end, null);
 	}
 
@@ -24978,11 +26233,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_L(long groupId, long classNameId,
-		String layoutUuid, int start, int end,
+	public List<JournalArticle> findByG_C_L(
+		long groupId, long classNameId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_C_L(groupId, classNameId, layoutUuid, start, end,
-			orderByComparator, true);
+
+		return findByG_C_L(
+			groupId, classNameId, layoutUuid, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -25002,10 +26259,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_C_L(long groupId, long classNameId,
-		String layoutUuid, int start, int end,
+	public List<JournalArticle> findByG_C_L(
+		long groupId, long classNameId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		boolean pagination = true;
@@ -25013,31 +26271,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_C_L;
-			finderArgs = new Object[] { groupId, classNameId, layoutUuid };
+			finderArgs = new Object[] {groupId, classNameId, layoutUuid};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_C_L;
 			finderArgs = new Object[] {
-					groupId, classNameId, layoutUuid,
-					
-					start, end, orderByComparator
-				};
+				groupId, classNameId, layoutUuid, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							(classNameId != journalArticle.getClassNameId()) ||
-							!layoutUuid.equals(journalArticle.getLayoutUuid())) {
+						(classNameId != journalArticle.getClassNameId()) ||
+						!layoutUuid.equals(journalArticle.getLayoutUuid())) {
+
 						list = null;
 
 						break;
@@ -25050,8 +26308,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -25075,11 +26333,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -25103,16 +26360,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -25143,11 +26400,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_L_First(long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_L_First(
+			long groupId, long classNameId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_L_First(groupId,
-				classNameId, layoutUuid, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_L_First(
+			groupId, classNameId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -25181,10 +26440,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_L_First(long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_C_L(groupId, classNameId,
-				layoutUuid, 0, 1, orderByComparator);
+	public JournalArticle fetchByG_C_L_First(
+		long groupId, long classNameId, String layoutUuid,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_C_L(
+			groupId, classNameId, layoutUuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -25204,11 +26465,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_C_L_Last(long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_C_L_Last(
+			long groupId, long classNameId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_C_L_Last(groupId, classNameId,
-				layoutUuid, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_C_L_Last(
+			groupId, classNameId, layoutUuid, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -25242,16 +26505,19 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_C_L_Last(long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_C_L_Last(
+		long groupId, long classNameId, String layoutUuid,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_C_L(groupId, classNameId, layoutUuid);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_C_L(groupId, classNameId,
-				layoutUuid, count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_C_L(
+			groupId, classNameId, layoutUuid, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -25272,10 +26538,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_C_L_PrevAndNext(long id, long groupId,
-		long classNameId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_C_L_PrevAndNext(
+			long id, long groupId, long classNameId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		layoutUuid = Objects.toString(layoutUuid, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -25287,13 +26554,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_C_L_PrevAndNext(session, journalArticle, groupId,
-					classNameId, layoutUuid, orderByComparator, true);
+			array[0] = getByG_C_L_PrevAndNext(
+				session, journalArticle, groupId, classNameId, layoutUuid,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_C_L_PrevAndNext(session, journalArticle, groupId,
-					classNameId, layoutUuid, orderByComparator, false);
+			array[2] = getByG_C_L_PrevAndNext(
+				session, journalArticle, groupId, classNameId, layoutUuid,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -25305,15 +26574,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_C_L_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_C_L_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, String layoutUuid,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -25338,7 +26608,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -25414,8 +26685,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -25439,10 +26712,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_L(long groupId,
-		long classNameId, String layoutUuid) {
-		return filterFindByG_C_L(groupId, classNameId, layoutUuid,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_C_L(
+		long groupId, long classNameId, String layoutUuid) {
+
+		return filterFindByG_C_L(
+			groupId, classNameId, layoutUuid, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -25460,10 +26735,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_L(long groupId,
-		long classNameId, String layoutUuid, int start, int end) {
-		return filterFindByG_C_L(groupId, classNameId, layoutUuid, start, end,
-			null);
+	public List<JournalArticle> filterFindByG_C_L(
+		long groupId, long classNameId, String layoutUuid, int start, int end) {
+
+		return filterFindByG_C_L(
+			groupId, classNameId, layoutUuid, start, end, null);
 	}
 
 	/**
@@ -25482,11 +26758,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_C_L(long groupId,
-		long classNameId, String layoutUuid, int start, int end,
+	public List<JournalArticle> filterFindByG_C_L(
+		long groupId, long classNameId, String layoutUuid, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_L(groupId, classNameId, layoutUuid, start, end,
+			return findByG_C_L(
+				groupId, classNameId, layoutUuid, start, end,
 				orderByComparator);
 		}
 
@@ -25495,8 +26773,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -25506,7 +26784,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_L_GROUPID_2);
@@ -25525,17 +26804,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -25547,9 +26827,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -25575,8 +26855,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(layoutUuid);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -25598,13 +26878,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_C_L_PrevAndNext(long id,
-		long groupId, long classNameId, String layoutUuid,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_C_L_PrevAndNext(
+			long id, long groupId, long classNameId, String layoutUuid,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_C_L_PrevAndNext(id, groupId, classNameId,
-				layoutUuid, orderByComparator);
+			return findByG_C_L_PrevAndNext(
+				id, groupId, classNameId, layoutUuid, orderByComparator);
 		}
 
 		layoutUuid = Objects.toString(layoutUuid, "");
@@ -25618,13 +26899,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_C_L_PrevAndNext(session, journalArticle,
-					groupId, classNameId, layoutUuid, orderByComparator, true);
+			array[0] = filterGetByG_C_L_PrevAndNext(
+				session, journalArticle, groupId, classNameId, layoutUuid,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_C_L_PrevAndNext(session, journalArticle,
-					groupId, classNameId, layoutUuid, orderByComparator, false);
+			array[2] = filterGetByG_C_L_PrevAndNext(
+				session, journalArticle, groupId, classNameId, layoutUuid,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -25636,15 +26919,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_C_L_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, long classNameId,
-		String layoutUuid, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_C_L_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		long classNameId, String layoutUuid,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -25655,7 +26939,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_C_L_GROUPID_2);
@@ -25674,11 +26959,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -25686,12 +26973,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -25718,12 +27009,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -25753,9 +27046,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -25780,8 +27073,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -25804,9 +27099,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @param layoutUuid the layout uuid
 	 */
 	@Override
-	public void removeByG_C_L(long groupId, long classNameId, String layoutUuid) {
-		for (JournalArticle journalArticle : findByG_C_L(groupId, classNameId,
-				layoutUuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+	public void removeByG_C_L(
+		long groupId, long classNameId, String layoutUuid) {
+
+		for (JournalArticle journalArticle :
+				findByG_C_L(
+					groupId, classNameId, layoutUuid, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -25825,7 +27125,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_C_L;
 
-		Object[] finderArgs = new Object[] { groupId, classNameId, layoutUuid };
+		Object[] finderArgs = new Object[] {groupId, classNameId, layoutUuid};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -25894,8 +27194,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_C_L(long groupId, long classNameId,
-		String layoutUuid) {
+	public int filterCountByG_C_L(
+		long groupId, long classNameId, String layoutUuid) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_C_L(groupId, classNameId, layoutUuid);
 		}
@@ -25921,9 +27222,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_C_L_LAYOUTUUID_2);
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -25932,8 +27233,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -25957,10 +27258,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_C_L_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_L_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_L_LAYOUTUUID_2 = "journalArticle.layoutUuid = ?";
-	private static final String _FINDER_COLUMN_G_C_L_LAYOUTUUID_3 = "(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+	private static final String _FINDER_COLUMN_G_C_L_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_L_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_C_L_LAYOUTUUID_2 =
+		"journalArticle.layoutUuid = ?";
+
+	private static final String _FINDER_COLUMN_G_C_L_LAYOUTUUID_3 =
+		"(journalArticle.layoutUuid IS NULL OR journalArticle.layoutUuid = '')";
+
 	private FinderPath _finderPathFetchByG_A_V;
 	private FinderPath _finderPathCountByG_A_V;
 
@@ -25974,9 +27283,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_V(long groupId, String articleId,
-		double version) throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_V(groupId, articleId, version);
+	public JournalArticle findByG_A_V(
+			long groupId, String articleId, double version)
+		throws NoSuchArticleException {
+
+		JournalArticle journalArticle = fetchByG_A_V(
+			groupId, articleId, version);
 
 		if (journalArticle == null) {
 			StringBundler msg = new StringBundler(8);
@@ -26013,8 +27325,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_V(long groupId, String articleId,
-		double version) {
+	public JournalArticle fetchByG_A_V(
+		long groupId, String articleId, double version) {
+
 		return fetchByG_A_V(groupId, articleId, version, true);
 	}
 
@@ -26028,25 +27341,28 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_V(long groupId, String articleId,
-		double version, boolean retrieveFromCache) {
+	public JournalArticle fetchByG_A_V(
+		long groupId, String articleId, double version,
+		boolean retrieveFromCache) {
+
 		articleId = Objects.toString(articleId, "");
 
-		Object[] finderArgs = new Object[] { groupId, articleId, version };
+		Object[] finderArgs = new Object[] {groupId, articleId, version};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(_finderPathFetchByG_A_V, finderArgs,
-					this);
+			result = finderCache.getResult(
+				_finderPathFetchByG_A_V, finderArgs, this);
 		}
 
 		if (result instanceof JournalArticle) {
 			JournalArticle journalArticle = (JournalArticle)result;
 
 			if ((groupId != journalArticle.getGroupId()) ||
-					!Objects.equals(articleId, journalArticle.getArticleId()) ||
-					(version != journalArticle.getVersion())) {
+				!Objects.equals(articleId, journalArticle.getArticleId()) ||
+				(version != journalArticle.getVersion())) {
+
 				result = null;
 			}
 		}
@@ -26093,8 +27409,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				List<JournalArticle> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(_finderPathFetchByG_A_V, finderArgs,
-						list);
+					finderCache.putResult(
+						_finderPathFetchByG_A_V, finderArgs, list);
 				}
 				else {
 					JournalArticle journalArticle = list.get(0);
@@ -26131,9 +27447,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the journal article that was removed
 	 */
 	@Override
-	public JournalArticle removeByG_A_V(long groupId, String articleId,
-		double version) throws NoSuchArticleException {
-		JournalArticle journalArticle = findByG_A_V(groupId, articleId, version);
+	public JournalArticle removeByG_A_V(
+			long groupId, String articleId, double version)
+		throws NoSuchArticleException {
+
+		JournalArticle journalArticle = findByG_A_V(
+			groupId, articleId, version);
 
 		return remove(journalArticle);
 	}
@@ -26152,7 +27471,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_A_V;
 
-		Object[] finderArgs = new Object[] { groupId, articleId, version };
+		Object[] finderArgs = new Object[] {groupId, articleId, version};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -26212,10 +27531,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_G_A_V_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_2 = "journalArticle.articleId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_3 = "(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
-	private static final String _FINDER_COLUMN_G_A_V_VERSION_2 = "journalArticle.version = ?";
+	private static final String _FINDER_COLUMN_G_A_V_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_2 =
+		"journalArticle.articleId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_V_ARTICLEID_3 =
+		"(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_A_V_VERSION_2 =
+		"journalArticle.version = ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_A_ST;
 	private FinderPath _finderPathWithoutPaginationFindByG_A_ST;
 	private FinderPath _finderPathCountByG_A_ST;
@@ -26230,10 +27557,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int status) {
-		return findByG_A_ST(groupId, articleId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int status) {
+
+		return findByG_A_ST(
+			groupId, articleId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -26251,8 +27580,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int status, int start, int end) {
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int status, int start, int end) {
+
 		return findByG_A_ST(groupId, articleId, status, start, end, null);
 	}
 
@@ -26272,11 +27602,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_A_ST(groupId, articleId, status, start, end,
-			orderByComparator, true);
+
+		return findByG_A_ST(
+			groupId, articleId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -26296,10 +27627,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		articleId = Objects.toString(articleId, "");
 
 		boolean pagination = true;
@@ -26307,31 +27639,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_A_ST;
-			finderArgs = new Object[] { groupId, articleId, status };
+			finderArgs = new Object[] {groupId, articleId, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_A_ST;
 			finderArgs = new Object[] {
-					groupId, articleId, status,
-					
-					start, end, orderByComparator
-				};
+				groupId, articleId, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!articleId.equals(journalArticle.getArticleId()) ||
-							(status != journalArticle.getStatus())) {
+						!articleId.equals(journalArticle.getArticleId()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -26344,8 +27676,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -26369,11 +27701,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_A_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -26397,16 +27728,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -26437,11 +27768,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_ST_First(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_ST_First(
+			long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_ST_First(groupId, articleId,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_ST_First(
+			groupId, articleId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -26475,10 +27808,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_ST_First(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_A_ST(groupId, articleId, status, 0,
-				1, orderByComparator);
+	public JournalArticle fetchByG_A_ST_First(
+		long groupId, String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_A_ST(
+			groupId, articleId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -26498,11 +27833,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_ST_Last(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_ST_Last(
+			long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_ST_Last(groupId, articleId,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_ST_Last(
+			groupId, articleId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -26536,16 +27873,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_ST_Last(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_A_ST_Last(
+		long groupId, String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_A_ST(groupId, articleId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_A_ST(groupId, articleId, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_A_ST(
+			groupId, articleId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -26566,10 +27905,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_A_ST_PrevAndNext(long id, long groupId,
-		String articleId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_A_ST_PrevAndNext(
+			long id, long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		articleId = Objects.toString(articleId, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -26581,13 +27921,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_A_ST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, true);
+			array[0] = getByG_A_ST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_A_ST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, false);
+			array[2] = getByG_A_ST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -26599,15 +27941,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_A_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_A_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -26632,7 +27975,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -26708,8 +28052,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -26733,10 +28079,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int status) {
-		return filterFindByG_A_ST(groupId, articleId, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int status) {
+
+		return filterFindByG_A_ST(
+			groupId, articleId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -26754,8 +28102,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int status, int start, int end) {
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int status, int start, int end) {
+
 		return filterFindByG_A_ST(groupId, articleId, status, start, end, null);
 	}
 
@@ -26775,12 +28124,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int status, int start, int end,
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_ST(groupId, articleId, status, start, end,
-				orderByComparator);
+			return findByG_A_ST(
+				groupId, articleId, status, start, end, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -26788,8 +28138,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -26799,7 +28149,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_ST_GROUPID_2);
@@ -26818,17 +28169,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -26840,9 +28192,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -26868,8 +28220,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(status);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -26891,13 +28243,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_A_ST_PrevAndNext(long id,
-		long groupId, String articleId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_A_ST_PrevAndNext(
+			long id, long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_ST_PrevAndNext(id, groupId, articleId, status,
-				orderByComparator);
+			return findByG_A_ST_PrevAndNext(
+				id, groupId, articleId, status, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -26911,13 +28264,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_A_ST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, true);
+			array[0] = filterGetByG_A_ST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_A_ST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, false);
+			array[2] = filterGetByG_A_ST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -26929,15 +28284,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_A_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_A_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -26948,7 +28304,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_ST_GROUPID_2);
@@ -26967,11 +28324,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -26979,12 +28338,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -27011,12 +28374,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -27046,9 +28411,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -27073,8 +28438,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -27098,10 +28465,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int[] statuses) {
-		return filterFindByG_A_ST(groupId, articleId, statuses,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int[] statuses) {
+
+		return filterFindByG_A_ST(
+			groupId, articleId, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -27119,9 +28488,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int[] statuses, int start, int end) {
-		return filterFindByG_A_ST(groupId, articleId, statuses, start, end, null);
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end) {
+
+		return filterFindByG_A_ST(
+			groupId, articleId, statuses, start, end, null);
 	}
 
 	/**
@@ -27140,12 +28511,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_ST(long groupId,
-		String articleId, int[] statuses, int start, int end,
+	public List<JournalArticle> filterFindByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_ST(groupId, articleId, statuses, start, end,
-				orderByComparator);
+			return findByG_A_ST(
+				groupId, articleId, statuses, start, end, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -27165,7 +28537,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_ST_GROUPID_2);
@@ -27193,21 +28566,23 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -27219,9 +28594,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -27245,8 +28620,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(articleId);
 			}
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -27269,10 +28644,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int[] statuses) {
-		return findByG_A_ST(groupId, articleId, statuses, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int[] statuses) {
+
+		return findByG_A_ST(
+			groupId, articleId, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -27290,8 +28667,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int[] statuses, int start, int end) {
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end) {
+
 		return findByG_A_ST(groupId, articleId, statuses, start, end, null);
 	}
 
@@ -27311,11 +28689,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_A_ST(groupId, articleId, statuses, start, end,
-			orderByComparator, true);
+
+		return findByG_A_ST(
+			groupId, articleId, statuses, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -27335,10 +28714,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_ST(long groupId, String articleId,
-		int[] statuses, int start, int end,
+	public List<JournalArticle> findByG_A_ST(
+		long groupId, String articleId, int[] statuses, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		articleId = Objects.toString(articleId, "");
 
 		if (statuses == null) {
@@ -27351,40 +28731,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		if (statuses.length == 1) {
-			return findByG_A_ST(groupId, articleId, statuses[0], start, end,
-				orderByComparator);
+			return findByG_A_ST(
+				groupId, articleId, statuses[0], start, end, orderByComparator);
 		}
 
 		boolean pagination = true;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderArgs = new Object[] {
-					groupId, articleId, StringUtil.merge(statuses)
-				};
+				groupId, articleId, StringUtil.merge(statuses)
+			};
 		}
 		else {
 			finderArgs = new Object[] {
-					groupId, articleId, StringUtil.merge(statuses),
-					
-					start, end, orderByComparator
-				};
+				groupId, articleId, StringUtil.merge(statuses), start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(_finderPathWithPaginationFindByG_A_ST,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				_finderPathWithPaginationFindByG_A_ST, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!articleId.equals(journalArticle.getArticleId()) ||
-							!ArrayUtil.contains(statuses,
-								journalArticle.getStatus())) {
+						!articleId.equals(journalArticle.getArticleId()) ||
+						!ArrayUtil.contains(
+							statuses, journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -27423,15 +28804,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -27453,26 +28834,26 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				}
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
 
-				finderCache.putResult(_finderPathWithPaginationFindByG_A_ST,
-					finderArgs, list);
+				finderCache.putResult(
+					_finderPathWithPaginationFindByG_A_ST, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationFindByG_A_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationFindByG_A_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -27493,8 +28874,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_A_ST(long groupId, String articleId, int status) {
-		for (JournalArticle journalArticle : findByG_A_ST(groupId, articleId,
-				status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_A_ST(
+					groupId, articleId, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -27513,7 +28897,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_A_ST;
 
-		Object[] finderArgs = new Object[] { groupId, articleId, status };
+		Object[] finderArgs = new Object[] {groupId, articleId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -27595,11 +28979,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 
 		Object[] finderArgs = new Object[] {
-				groupId, articleId, StringUtil.merge(statuses)
-			};
+			groupId, articleId, StringUtil.merge(statuses)
+		};
 
-		Long count = (Long)finderCache.getResult(_finderPathWithPaginationCountByG_A_ST,
-				finderArgs, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathWithPaginationCountByG_A_ST, finderArgs, this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler();
@@ -27631,8 +29015,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				query.append(")");
 			}
 
-			query.setStringAt(removeConjunction(query.stringAt(query.index() -
-						1)), query.index() - 1);
+			query.setStringAt(
+				removeConjunction(query.stringAt(query.index() - 1)),
+				query.index() - 1);
 
 			String sql = query.toString();
 
@@ -27653,12 +29038,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathWithPaginationCountByG_A_ST,
-					finderArgs, count);
+				finderCache.putResult(
+					_finderPathWithPaginationCountByG_A_ST, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathWithPaginationCountByG_A_ST,
-					finderArgs);
+				finderCache.removeResult(
+					_finderPathWithPaginationCountByG_A_ST, finderArgs);
 
 				throw processException(e);
 			}
@@ -27705,9 +29090,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_A_ST_STATUS_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -27716,8 +29101,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -27750,8 +29135,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_A_ST(long groupId, String articleId,
-		int[] statuses) {
+	public int filterCountByG_A_ST(
+		long groupId, String articleId, int[] statuses) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_A_ST(groupId, articleId, statuses);
 		}
@@ -27796,12 +29182,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(")");
 		}
 
-		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+		query.setStringAt(
+			removeConjunction(query.stringAt(query.index() - 1)),
 			query.index() - 1);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -27810,8 +29197,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -27833,11 +29220,21 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_A_ST_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_ST_ARTICLEID_2 = "journalArticle.articleId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_ST_ARTICLEID_3 = "(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
-	private static final String _FINDER_COLUMN_G_A_ST_STATUS_2 = "journalArticle.status = ?";
-	private static final String _FINDER_COLUMN_G_A_ST_STATUS_7 = "journalArticle.status IN (";
+	private static final String _FINDER_COLUMN_G_A_ST_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_ST_ARTICLEID_2 =
+		"journalArticle.articleId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_ST_ARTICLEID_3 =
+		"(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_A_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
+	private static final String _FINDER_COLUMN_G_A_ST_STATUS_7 =
+		"journalArticle.status IN (";
+
 	private FinderPath _finderPathWithPaginationFindByG_A_NotST;
 	private FinderPath _finderPathWithPaginationCountByG_A_NotST;
 
@@ -27850,10 +29247,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_NotST(long groupId, String articleId,
-		int status) {
-		return findByG_A_NotST(groupId, articleId, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_A_NotST(
+		long groupId, String articleId, int status) {
+
+		return findByG_A_NotST(
+			groupId, articleId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -27871,8 +29270,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_NotST(long groupId, String articleId,
-		int status, int start, int end) {
+	public List<JournalArticle> findByG_A_NotST(
+		long groupId, String articleId, int status, int start, int end) {
+
 		return findByG_A_NotST(groupId, articleId, status, start, end, null);
 	}
 
@@ -27892,11 +29292,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_NotST(long groupId, String articleId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_A_NotST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_A_NotST(groupId, articleId, status, start, end,
-			orderByComparator, true);
+
+		return findByG_A_NotST(
+			groupId, articleId, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -27916,10 +29317,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_A_NotST(long groupId, String articleId,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_A_NotST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		articleId = Objects.toString(articleId, "");
 
 		boolean pagination = true;
@@ -27928,22 +29330,21 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		finderPath = _finderPathWithPaginationFindByG_A_NotST;
 		finderArgs = new Object[] {
-				groupId, articleId, status,
-				
-				start, end, orderByComparator
-			};
+			groupId, articleId, status, start, end, orderByComparator
+		};
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!articleId.equals(journalArticle.getArticleId()) ||
-							(status == journalArticle.getStatus())) {
+						!articleId.equals(journalArticle.getArticleId()) ||
+						(status == journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -27956,8 +29357,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -27981,11 +29382,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_A_NOTST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -28009,16 +29409,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -28049,11 +29449,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_NotST_First(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_NotST_First(
+			long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_NotST_First(groupId,
-				articleId, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_NotST_First(
+			groupId, articleId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -28087,11 +29489,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_NotST_First(long groupId,
-		String articleId, int status,
+	public JournalArticle fetchByG_A_NotST_First(
+		long groupId, String articleId, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_A_NotST(groupId, articleId, status,
-				0, 1, orderByComparator);
+
+		List<JournalArticle> list = findByG_A_NotST(
+			groupId, articleId, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -28111,11 +29514,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_A_NotST_Last(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_A_NotST_Last(
+			long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_A_NotST_Last(groupId,
-				articleId, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_A_NotST_Last(
+			groupId, articleId, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -28149,16 +29554,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_A_NotST_Last(long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_A_NotST_Last(
+		long groupId, String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_A_NotST(groupId, articleId, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_A_NotST(groupId, articleId, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_A_NotST(
+			groupId, articleId, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -28179,10 +29586,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_A_NotST_PrevAndNext(long id, long groupId,
-		String articleId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_A_NotST_PrevAndNext(
+			long id, long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		articleId = Objects.toString(articleId, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -28194,13 +29602,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_A_NotST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, true);
+			array[0] = getByG_A_NotST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_A_NotST_PrevAndNext(session, journalArticle,
-					groupId, articleId, status, orderByComparator, false);
+			array[2] = getByG_A_NotST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -28212,15 +29622,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_A_NotST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_A_NotST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -28245,7 +29656,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_NOTST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -28321,8 +29733,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -28346,10 +29760,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_NotST(long groupId,
-		String articleId, int status) {
-		return filterFindByG_A_NotST(groupId, articleId, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_A_NotST(
+		long groupId, String articleId, int status) {
+
+		return filterFindByG_A_NotST(
+			groupId, articleId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -28367,10 +29783,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_NotST(long groupId,
-		String articleId, int status, int start, int end) {
-		return filterFindByG_A_NotST(groupId, articleId, status, start, end,
-			null);
+	public List<JournalArticle> filterFindByG_A_NotST(
+		long groupId, String articleId, int status, int start, int end) {
+
+		return filterFindByG_A_NotST(
+			groupId, articleId, status, start, end, null);
 	}
 
 	/**
@@ -28389,12 +29806,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_A_NotST(long groupId,
-		String articleId, int status, int start, int end,
+	public List<JournalArticle> filterFindByG_A_NotST(
+		long groupId, String articleId, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_NotST(groupId, articleId, status, start, end,
-				orderByComparator);
+			return findByG_A_NotST(
+				groupId, articleId, status, start, end, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -28402,8 +29820,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -28413,7 +29831,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_NOTST_GROUPID_2);
@@ -28432,17 +29851,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_NOTST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -28454,9 +29874,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -28482,8 +29902,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(status);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -28505,13 +29925,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_A_NotST_PrevAndNext(long id,
-		long groupId, String articleId, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_A_NotST_PrevAndNext(
+			long id, long groupId, String articleId, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_A_NotST_PrevAndNext(id, groupId, articleId, status,
-				orderByComparator);
+			return findByG_A_NotST_PrevAndNext(
+				id, groupId, articleId, status, orderByComparator);
 		}
 
 		articleId = Objects.toString(articleId, "");
@@ -28525,15 +29946,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_A_NotST_PrevAndNext(session,
-					journalArticle, groupId, articleId, status,
-					orderByComparator, true);
+			array[0] = filterGetByG_A_NotST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_A_NotST_PrevAndNext(session,
-					journalArticle, groupId, articleId, status,
-					orderByComparator, false);
+			array[2] = filterGetByG_A_NotST_PrevAndNext(
+				session, journalArticle, groupId, articleId, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -28545,15 +29966,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_A_NotST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String articleId,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_A_NotST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String articleId, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -28564,7 +29986,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_A_NOTST_GROUPID_2);
@@ -28583,11 +30006,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_A_NOTST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -28595,12 +30020,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -28627,12 +30056,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -28662,9 +30093,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -28689,8 +30120,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -28714,8 +30147,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_A_NotST(long groupId, String articleId, int status) {
-		for (JournalArticle journalArticle : findByG_A_NotST(groupId,
-				articleId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_A_NotST(
+					groupId, articleId, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -28734,7 +30170,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathWithPaginationCountByG_A_NotST;
 
-		Object[] finderArgs = new Object[] { groupId, articleId, status };
+		Object[] finderArgs = new Object[] {groupId, articleId, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -28803,7 +30239,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public int filterCountByG_A_NotST(long groupId, String articleId, int status) {
+	public int filterCountByG_A_NotST(
+		long groupId, String articleId, int status) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_A_NotST(groupId, articleId, status);
 		}
@@ -28829,9 +30267,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_A_NOTST_STATUS_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -28840,8 +30278,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -28865,10 +30303,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_A_NOTST_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_NOTST_ARTICLEID_2 = "journalArticle.articleId = ? AND ";
-	private static final String _FINDER_COLUMN_G_A_NOTST_ARTICLEID_3 = "(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
-	private static final String _FINDER_COLUMN_G_A_NOTST_STATUS_2 = "journalArticle.status != ?";
+	private static final String _FINDER_COLUMN_G_A_NOTST_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_NOTST_ARTICLEID_2 =
+		"journalArticle.articleId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_A_NOTST_ARTICLEID_3 =
+		"(journalArticle.articleId IS NULL OR journalArticle.articleId = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_A_NOTST_STATUS_2 =
+		"journalArticle.status != ?";
+
 	private FinderPath _finderPathWithPaginationFindByG_UT_ST;
 	private FinderPath _finderPathWithoutPaginationFindByG_UT_ST;
 	private FinderPath _finderPathCountByG_UT_ST;
@@ -28882,10 +30328,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT_ST(long groupId, String urlTitle,
-		int status) {
-		return findByG_UT_ST(groupId, urlTitle, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByG_UT_ST(
+		long groupId, String urlTitle, int status) {
+
+		return findByG_UT_ST(
+			groupId, urlTitle, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -28903,8 +30351,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT_ST(long groupId, String urlTitle,
-		int status, int start, int end) {
+	public List<JournalArticle> findByG_UT_ST(
+		long groupId, String urlTitle, int status, int start, int end) {
+
 		return findByG_UT_ST(groupId, urlTitle, status, start, end, null);
 	}
 
@@ -28924,11 +30373,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT_ST(long groupId, String urlTitle,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_UT_ST(
+		long groupId, String urlTitle, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByG_UT_ST(groupId, urlTitle, status, start, end,
-			orderByComparator, true);
+
+		return findByG_UT_ST(
+			groupId, urlTitle, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -28948,10 +30398,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByG_UT_ST(long groupId, String urlTitle,
-		int status, int start, int end,
+	public List<JournalArticle> findByG_UT_ST(
+		long groupId, String urlTitle, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		urlTitle = Objects.toString(urlTitle, "");
 
 		boolean pagination = true;
@@ -28959,31 +30410,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByG_UT_ST;
-			finderArgs = new Object[] { groupId, urlTitle, status };
+			finderArgs = new Object[] {groupId, urlTitle, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByG_UT_ST;
 			finderArgs = new Object[] {
-					groupId, urlTitle, status,
-					
-					start, end, orderByComparator
-				};
+				groupId, urlTitle, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((groupId != journalArticle.getGroupId()) ||
-							!urlTitle.equals(journalArticle.getUrlTitle()) ||
-							(status != journalArticle.getStatus())) {
+						!urlTitle.equals(journalArticle.getUrlTitle()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -28996,8 +30447,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -29021,11 +30472,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_G_UT_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -29049,16 +30499,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -29089,11 +30539,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_UT_ST_First(long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_UT_ST_First(
+			long groupId, String urlTitle, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_UT_ST_First(groupId, urlTitle,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_UT_ST_First(
+			groupId, urlTitle, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -29127,10 +30579,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_UT_ST_First(long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByG_UT_ST(groupId, urlTitle, status, 0,
-				1, orderByComparator);
+	public JournalArticle fetchByG_UT_ST_First(
+		long groupId, String urlTitle, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByG_UT_ST(
+			groupId, urlTitle, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -29150,11 +30604,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByG_UT_ST_Last(long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByG_UT_ST_Last(
+			long groupId, String urlTitle, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByG_UT_ST_Last(groupId, urlTitle,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByG_UT_ST_Last(
+			groupId, urlTitle, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -29188,16 +30644,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByG_UT_ST_Last(long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByG_UT_ST_Last(
+		long groupId, String urlTitle, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByG_UT_ST(groupId, urlTitle, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByG_UT_ST(groupId, urlTitle, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByG_UT_ST(
+			groupId, urlTitle, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -29218,10 +30676,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByG_UT_ST_PrevAndNext(long id, long groupId,
-		String urlTitle, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByG_UT_ST_PrevAndNext(
+			long id, long groupId, String urlTitle, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		urlTitle = Objects.toString(urlTitle, "");
 
 		JournalArticle journalArticle = findByPrimaryKey(id);
@@ -29233,13 +30692,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByG_UT_ST_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, status, orderByComparator, true);
+			array[0] = getByG_UT_ST_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByG_UT_ST_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, status, orderByComparator, false);
+			array[2] = getByG_UT_ST_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -29251,15 +30712,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByG_UT_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByG_UT_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String urlTitle, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -29284,7 +30746,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_UT_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -29360,8 +30823,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -29385,10 +30850,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT_ST(long groupId,
-		String urlTitle, int status) {
-		return filterFindByG_UT_ST(groupId, urlTitle, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> filterFindByG_UT_ST(
+		long groupId, String urlTitle, int status) {
+
+		return filterFindByG_UT_ST(
+			groupId, urlTitle, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -29406,8 +30873,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT_ST(long groupId,
-		String urlTitle, int status, int start, int end) {
+	public List<JournalArticle> filterFindByG_UT_ST(
+		long groupId, String urlTitle, int status, int start, int end) {
+
 		return filterFindByG_UT_ST(groupId, urlTitle, status, start, end, null);
 	}
 
@@ -29427,12 +30895,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles that the user has permission to view
 	 */
 	@Override
-	public List<JournalArticle> filterFindByG_UT_ST(long groupId,
-		String urlTitle, int status, int start, int end,
+	public List<JournalArticle> filterFindByG_UT_ST(
+		long groupId, String urlTitle, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_UT_ST(groupId, urlTitle, status, start, end,
-				orderByComparator);
+			return findByG_UT_ST(
+				groupId, urlTitle, status, start, end, orderByComparator);
 		}
 
 		urlTitle = Objects.toString(urlTitle, "");
@@ -29440,8 +30909,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(5 +
-					(orderByComparator.getOrderByFields().length * 2));
+			query = new StringBundler(
+				5 + (orderByComparator.getOrderByFields().length * 2));
 		}
 		else {
 			query = new StringBundler(6);
@@ -29451,7 +30920,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_UT_ST_GROUPID_2);
@@ -29470,17 +30940,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_UT_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
 			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator, true);
 			}
 			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator, true);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_TABLE, orderByComparator, true);
 			}
 		}
 		else {
@@ -29492,9 +30963,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -29520,8 +30991,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			qPos.add(status);
 
-			return (List<JournalArticle>)QueryUtil.list(q, getDialect(), start,
-				end);
+			return (List<JournalArticle>)QueryUtil.list(
+				q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -29543,13 +31014,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] filterFindByG_UT_ST_PrevAndNext(long id,
-		long groupId, String urlTitle, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] filterFindByG_UT_ST_PrevAndNext(
+			long id, long groupId, String urlTitle, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_UT_ST_PrevAndNext(id, groupId, urlTitle, status,
-				orderByComparator);
+			return findByG_UT_ST_PrevAndNext(
+				id, groupId, urlTitle, status, orderByComparator);
 		}
 
 		urlTitle = Objects.toString(urlTitle, "");
@@ -29563,13 +31035,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = filterGetByG_UT_ST_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, status, orderByComparator, true);
+			array[0] = filterGetByG_UT_ST_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = filterGetByG_UT_ST_PrevAndNext(session, journalArticle,
-					groupId, urlTitle, status, orderByComparator, false);
+			array[2] = filterGetByG_UT_ST_PrevAndNext(
+				session, journalArticle, groupId, urlTitle, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -29581,15 +31055,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle filterGetByG_UT_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long groupId, String urlTitle,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle filterGetByG_UT_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long groupId,
+		String urlTitle, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(7 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				7 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -29600,7 +31075,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_G_UT_ST_GROUPID_2);
@@ -29619,11 +31095,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_G_UT_ST_STATUS_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+			query.append(
+				_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2);
 		}
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -29631,12 +31109,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByConditionFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByConditionFields[i],
+							true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByConditionFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByConditionFields[i],
+							true));
 				}
 
 				if ((i + 1) < orderByConditionFields.length) {
@@ -29663,12 +31145,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			for (int i = 0; i < orderByFields.length; i++) {
 				if (getDB().isSupportsInlineDistinct()) {
-					query.append(getColumnName(_ORDER_BY_ENTITY_ALIAS,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_ALIAS, orderByFields[i], true));
 				}
 				else {
-					query.append(getColumnName(_ORDER_BY_ENTITY_TABLE,
-							orderByFields[i], true));
+					query.append(
+						getColumnName(
+							_ORDER_BY_ENTITY_TABLE, orderByFields[i], true));
 				}
 
 				if ((i + 1) < orderByFields.length) {
@@ -29698,9 +31182,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			}
 		}
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -29725,8 +31209,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -29750,8 +31236,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByG_UT_ST(long groupId, String urlTitle, int status) {
-		for (JournalArticle journalArticle : findByG_UT_ST(groupId, urlTitle,
-				status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByG_UT_ST(
+					groupId, urlTitle, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -29770,7 +31259,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		FinderPath finderPath = _finderPathCountByG_UT_ST;
 
-		Object[] finderArgs = new Object[] { groupId, urlTitle, status };
+		Object[] finderArgs = new Object[] {groupId, urlTitle, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -29865,9 +31354,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 		query.append(_FINDER_COLUMN_G_UT_ST_STATUS_2);
 
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				JournalArticle.class.getName(),
-				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(
+			query.toString(), JournalArticle.class.getName(),
+			_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
 		Session session = null;
 
@@ -29876,8 +31365,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
+			q.addScalar(
+				COUNT_COLUMN_NAME, com.liferay.portal.kernel.dao.orm.Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -29901,10 +31390,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	private static final String _FINDER_COLUMN_G_UT_ST_GROUPID_2 = "journalArticle.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_UT_ST_URLTITLE_2 = "journalArticle.urlTitle = ? AND ";
-	private static final String _FINDER_COLUMN_G_UT_ST_URLTITLE_3 = "(journalArticle.urlTitle IS NULL OR journalArticle.urlTitle = '') AND ";
-	private static final String _FINDER_COLUMN_G_UT_ST_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_G_UT_ST_GROUPID_2 =
+		"journalArticle.groupId = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_UT_ST_URLTITLE_2 =
+		"journalArticle.urlTitle = ? AND ";
+
+	private static final String _FINDER_COLUMN_G_UT_ST_URLTITLE_3 =
+		"(journalArticle.urlTitle IS NULL OR journalArticle.urlTitle = '') AND ";
+
+	private static final String _FINDER_COLUMN_G_UT_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_V_ST;
 	private FinderPath _finderPathWithoutPaginationFindByC_V_ST;
 	private FinderPath _finderPathCountByC_V_ST;
@@ -29918,10 +31415,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V_ST(long companyId, double version,
-		int status) {
-		return findByC_V_ST(companyId, version, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByC_V_ST(
+		long companyId, double version, int status) {
+
+		return findByC_V_ST(
+			companyId, version, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
@@ -29939,8 +31438,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V_ST(long companyId, double version,
-		int status, int start, int end) {
+	public List<JournalArticle> findByC_V_ST(
+		long companyId, double version, int status, int start, int end) {
+
 		return findByC_V_ST(companyId, version, status, start, end, null);
 	}
 
@@ -29960,11 +31460,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V_ST(long companyId, double version,
-		int status, int start, int end,
+	public List<JournalArticle> findByC_V_ST(
+		long companyId, double version, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_V_ST(companyId, version, status, start, end,
-			orderByComparator, true);
+
+		return findByC_V_ST(
+			companyId, version, status, start, end, orderByComparator, true);
 	}
 
 	/**
@@ -29984,40 +31485,41 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_V_ST(long companyId, double version,
-		int status, int start, int end,
+	public List<JournalArticle> findByC_V_ST(
+		long companyId, double version, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_V_ST;
-			finderArgs = new Object[] { companyId, version, status };
+			finderArgs = new Object[] {companyId, version, status};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_V_ST;
 			finderArgs = new Object[] {
-					companyId, version, status,
-					
-					start, end, orderByComparator
-				};
+				companyId, version, status, start, end, orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((companyId != journalArticle.getCompanyId()) ||
-							(version != journalArticle.getVersion()) ||
-							(status != journalArticle.getStatus())) {
+						(version != journalArticle.getVersion()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -30030,8 +31532,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -30046,11 +31548,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_C_V_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -30072,16 +31573,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -30112,11 +31613,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_V_ST_First(long companyId, double version,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_V_ST_First(
+			long companyId, double version, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_V_ST_First(companyId, version,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_V_ST_First(
+			companyId, version, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -30150,10 +31653,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_V_ST_First(long companyId, double version,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_V_ST(companyId, version, status, 0,
-				1, orderByComparator);
+	public JournalArticle fetchByC_V_ST_First(
+		long companyId, double version, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
+		List<JournalArticle> list = findByC_V_ST(
+			companyId, version, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -30173,11 +31678,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_V_ST_Last(long companyId, double version,
-		int status, OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_V_ST_Last(
+			long companyId, double version, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_V_ST_Last(companyId, version,
-				status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_V_ST_Last(
+			companyId, version, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -30211,16 +31718,18 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_V_ST_Last(long companyId, double version,
-		int status, OrderByComparator<JournalArticle> orderByComparator) {
+	public JournalArticle fetchByC_V_ST_Last(
+		long companyId, double version, int status,
+		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_V_ST(companyId, version, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_V_ST(companyId, version, status,
-				count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByC_V_ST(
+			companyId, version, status, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -30241,10 +31750,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_V_ST_PrevAndNext(long id, long companyId,
-		double version, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_V_ST_PrevAndNext(
+			long id, long companyId, double version, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -30254,13 +31764,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_V_ST_PrevAndNext(session, journalArticle,
-					companyId, version, status, orderByComparator, true);
+			array[0] = getByC_V_ST_PrevAndNext(
+				session, journalArticle, companyId, version, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_V_ST_PrevAndNext(session, journalArticle,
-					companyId, version, status, orderByComparator, false);
+			array[2] = getByC_V_ST_PrevAndNext(
+				session, journalArticle, companyId, version, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -30272,15 +31784,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_V_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long companyId, double version,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByC_V_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long companyId,
+		double version, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -30296,7 +31809,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_C_V_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -30370,8 +31884,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -30395,8 +31911,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void removeByC_V_ST(long companyId, double version, int status) {
-		for (JournalArticle journalArticle : findByC_V_ST(companyId, version,
-				status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
+		for (JournalArticle journalArticle :
+				findByC_V_ST(
+					companyId, version, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -30413,7 +31932,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public int countByC_V_ST(long companyId, double version, int status) {
 		FinderPath finderPath = _finderPathCountByC_V_ST;
 
-		Object[] finderArgs = new Object[] { companyId, version, status };
+		Object[] finderArgs = new Object[] {companyId, version, status};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -30462,9 +31981,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_V_ST_COMPANYID_2 = "journalArticle.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_V_ST_VERSION_2 = "journalArticle.version = ? AND ";
-	private static final String _FINDER_COLUMN_C_V_ST_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_C_V_ST_COMPANYID_2 =
+		"journalArticle.companyId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_V_ST_VERSION_2 =
+		"journalArticle.version = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_V_ST_STATUS_2 =
+		"journalArticle.status = ?";
+
 	private FinderPath _finderPathWithPaginationFindByC_ED_ST;
 	private FinderPath _finderPathWithoutPaginationFindByC_ED_ST;
 	private FinderPath _finderPathCountByC_ED_ST;
@@ -30478,10 +32003,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ED_ST(long classNameId,
-		Date expirationDate, int status) {
-		return findByC_ED_ST(classNameId, expirationDate, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<JournalArticle> findByC_ED_ST(
+		long classNameId, Date expirationDate, int status) {
+
+		return findByC_ED_ST(
+			classNameId, expirationDate, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
 	}
 
 	/**
@@ -30499,10 +32026,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ED_ST(long classNameId,
-		Date expirationDate, int status, int start, int end) {
-		return findByC_ED_ST(classNameId, expirationDate, status, start, end,
-			null);
+	public List<JournalArticle> findByC_ED_ST(
+		long classNameId, Date expirationDate, int status, int start, int end) {
+
+		return findByC_ED_ST(
+			classNameId, expirationDate, status, start, end, null);
 	}
 
 	/**
@@ -30521,11 +32049,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ED_ST(long classNameId,
-		Date expirationDate, int status, int start, int end,
+	public List<JournalArticle> findByC_ED_ST(
+		long classNameId, Date expirationDate, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		return findByC_ED_ST(classNameId, expirationDate, status, start, end,
-			orderByComparator, true);
+
+		return findByC_ED_ST(
+			classNameId, expirationDate, status, start, end, orderByComparator,
+			true);
 	}
 
 	/**
@@ -30545,43 +32075,46 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of matching journal articles
 	 */
 	@Override
-	public List<JournalArticle> findByC_ED_ST(long classNameId,
-		Date expirationDate, int status, int start, int end,
+	public List<JournalArticle> findByC_ED_ST(
+		long classNameId, Date expirationDate, int status, int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindByC_ED_ST;
 			finderArgs = new Object[] {
-					classNameId, _getTime(expirationDate), status
-				};
+				classNameId, _getTime(expirationDate), status
+			};
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindByC_ED_ST;
 			finderArgs = new Object[] {
-					classNameId, _getTime(expirationDate), status,
-					
-					start, end, orderByComparator
-				};
+				classNameId, _getTime(expirationDate), status, start, end,
+				orderByComparator
+			};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
 				for (JournalArticle journalArticle : list) {
 					if ((classNameId != journalArticle.getClassNameId()) ||
-							!Objects.equals(expirationDate,
-								journalArticle.getExpirationDate()) ||
-							(status != journalArticle.getStatus())) {
+						!Objects.equals(
+							expirationDate,
+							journalArticle.getExpirationDate()) ||
+						(status != journalArticle.getStatus())) {
+
 						list = null;
 
 						break;
@@ -30594,8 +32127,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			StringBundler query = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					5 + (orderByComparator.getOrderByFields().length * 2));
 			}
 			else {
 				query = new StringBundler(5);
@@ -30619,11 +32152,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			query.append(_FINDER_COLUMN_C_ED_ST_STATUS_2);
 
 			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 			}
-			else
-			 if (pagination) {
+			else if (pagination) {
 				query.append(JournalArticleModelImpl.ORDER_BY_JPQL);
 			}
 
@@ -30647,16 +32179,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				qPos.add(status);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -30687,12 +32219,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_ED_ST_First(long classNameId,
-		Date expirationDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_ED_ST_First(
+			long classNameId, Date expirationDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_ED_ST_First(classNameId,
-				expirationDate, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_ED_ST_First(
+			classNameId, expirationDate, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -30726,11 +32259,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the first matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_ED_ST_First(long classNameId,
-		Date expirationDate, int status,
+	public JournalArticle fetchByC_ED_ST_First(
+		long classNameId, Date expirationDate, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
-		List<JournalArticle> list = findByC_ED_ST(classNameId, expirationDate,
-				status, 0, 1, orderByComparator);
+
+		List<JournalArticle> list = findByC_ED_ST(
+			classNameId, expirationDate, status, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -30750,12 +32284,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle findByC_ED_ST_Last(long classNameId,
-		Date expirationDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle findByC_ED_ST_Last(
+			long classNameId, Date expirationDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
-		JournalArticle journalArticle = fetchByC_ED_ST_Last(classNameId,
-				expirationDate, status, orderByComparator);
+
+		JournalArticle journalArticle = fetchByC_ED_ST_Last(
+			classNameId, expirationDate, status, orderByComparator);
 
 		if (journalArticle != null) {
 			return journalArticle;
@@ -30789,17 +32324,19 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the last matching journal article, or <code>null</code> if a matching journal article could not be found
 	 */
 	@Override
-	public JournalArticle fetchByC_ED_ST_Last(long classNameId,
-		Date expirationDate, int status,
+	public JournalArticle fetchByC_ED_ST_Last(
+		long classNameId, Date expirationDate, int status,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		int count = countByC_ED_ST(classNameId, expirationDate, status);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<JournalArticle> list = findByC_ED_ST(classNameId, expirationDate,
-				status, count - 1, count, orderByComparator);
+		List<JournalArticle> list = findByC_ED_ST(
+			classNameId, expirationDate, status, count - 1, count,
+			orderByComparator);
 
 		if (!list.isEmpty()) {
 			return list.get(0);
@@ -30820,10 +32357,11 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @throws NoSuchArticleException if a journal article with the primary key could not be found
 	 */
 	@Override
-	public JournalArticle[] findByC_ED_ST_PrevAndNext(long id,
-		long classNameId, Date expirationDate, int status,
-		OrderByComparator<JournalArticle> orderByComparator)
+	public JournalArticle[] findByC_ED_ST_PrevAndNext(
+			long id, long classNameId, Date expirationDate, int status,
+			OrderByComparator<JournalArticle> orderByComparator)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = findByPrimaryKey(id);
 
 		Session session = null;
@@ -30833,14 +32371,15 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 			JournalArticle[] array = new JournalArticleImpl[3];
 
-			array[0] = getByC_ED_ST_PrevAndNext(session, journalArticle,
-					classNameId, expirationDate, status, orderByComparator, true);
+			array[0] = getByC_ED_ST_PrevAndNext(
+				session, journalArticle, classNameId, expirationDate, status,
+				orderByComparator, true);
 
 			array[1] = journalArticle;
 
-			array[2] = getByC_ED_ST_PrevAndNext(session, journalArticle,
-					classNameId, expirationDate, status, orderByComparator,
-					false);
+			array[2] = getByC_ED_ST_PrevAndNext(
+				session, journalArticle, classNameId, expirationDate, status,
+				orderByComparator, false);
 
 			return array;
 		}
@@ -30852,15 +32391,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		}
 	}
 
-	protected JournalArticle getByC_ED_ST_PrevAndNext(Session session,
-		JournalArticle journalArticle, long classNameId, Date expirationDate,
-		int status, OrderByComparator<JournalArticle> orderByComparator,
-		boolean previous) {
+	protected JournalArticle getByC_ED_ST_PrevAndNext(
+		Session session, JournalArticle journalArticle, long classNameId,
+		Date expirationDate, int status,
+		OrderByComparator<JournalArticle> orderByComparator, boolean previous) {
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByConditionFields().length * 3) +
+			query = new StringBundler(
+				6 + (orderByComparator.getOrderByConditionFields().length * 3) +
 					(orderByComparator.getOrderByFields().length * 3));
 		}
 		else {
@@ -30885,7 +32425,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		query.append(_FINDER_COLUMN_C_ED_ST_STATUS_2);
 
 		if (orderByComparator != null) {
-			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
 
 			if (orderByConditionFields.length > 0) {
 				query.append(WHERE_AND);
@@ -30961,8 +32502,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
-					journalArticle)) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(
+						journalArticle)) {
+
 				qPos.add(orderByConditionValue);
 			}
 		}
@@ -30985,11 +32528,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @param status the status
 	 */
 	@Override
-	public void removeByC_ED_ST(long classNameId, Date expirationDate,
-		int status) {
-		for (JournalArticle journalArticle : findByC_ED_ST(classNameId,
-				expirationDate, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				null)) {
+	public void removeByC_ED_ST(
+		long classNameId, Date expirationDate, int status) {
+
+		for (JournalArticle journalArticle :
+				findByC_ED_ST(
+					classNameId, expirationDate, status, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null)) {
+
 			remove(journalArticle);
 		}
 	}
@@ -31003,12 +32549,14 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the number of matching journal articles
 	 */
 	@Override
-	public int countByC_ED_ST(long classNameId, Date expirationDate, int status) {
+	public int countByC_ED_ST(
+		long classNameId, Date expirationDate, int status) {
+
 		FinderPath finderPath = _finderPathCountByC_ED_ST;
 
 		Object[] finderArgs = new Object[] {
-				classNameId, _getTime(expirationDate), status
-			};
+			classNameId, _getTime(expirationDate), status
+		};
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -31068,10 +32616,17 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_ED_ST_CLASSNAMEID_2 = "journalArticle.classNameId = ? AND ";
-	private static final String _FINDER_COLUMN_C_ED_ST_EXPIRATIONDATE_1 = "journalArticle.expirationDate IS NULL AND ";
-	private static final String _FINDER_COLUMN_C_ED_ST_EXPIRATIONDATE_2 = "journalArticle.expirationDate = ? AND ";
-	private static final String _FINDER_COLUMN_C_ED_ST_STATUS_2 = "journalArticle.status = ?";
+	private static final String _FINDER_COLUMN_C_ED_ST_CLASSNAMEID_2 =
+		"journalArticle.classNameId = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_ED_ST_EXPIRATIONDATE_1 =
+		"journalArticle.expirationDate IS NULL AND ";
+
+	private static final String _FINDER_COLUMN_C_ED_ST_EXPIRATIONDATE_2 =
+		"journalArticle.expirationDate = ? AND ";
+
+	private static final String _FINDER_COLUMN_C_ED_ST_STATUS_2 =
+		"journalArticle.status = ?";
 
 	public JournalArticlePersistenceImpl() {
 		setModelClass(JournalArticle.class);
@@ -31088,25 +32643,33 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void cacheResult(JournalArticle journalArticle) {
-		entityCache.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleImpl.class, journalArticle.getPrimaryKey(),
 			journalArticle);
 
-		finderCache.putResult(_finderPathFetchByUUID_G,
-			new Object[] { journalArticle.getUuid(), journalArticle.getGroupId() },
+		finderCache.putResult(
+			_finderPathFetchByUUID_G,
+			new Object[] {
+				journalArticle.getUuid(), journalArticle.getGroupId()
+			},
 			journalArticle);
 
-		finderCache.putResult(_finderPathFetchByG_C_DDMSK,
+		finderCache.putResult(
+			_finderPathFetchByG_C_DDMSK,
 			new Object[] {
 				journalArticle.getGroupId(), journalArticle.getClassNameId(),
 				journalArticle.getDDMStructureKey()
-			}, journalArticle);
+			},
+			journalArticle);
 
-		finderCache.putResult(_finderPathFetchByG_A_V,
+		finderCache.putResult(
+			_finderPathFetchByG_A_V,
 			new Object[] {
 				journalArticle.getGroupId(), journalArticle.getArticleId(),
 				journalArticle.getVersion()
-			}, journalArticle);
+			},
+			journalArticle);
 
 		journalArticle.resetOriginalValues();
 	}
@@ -31120,8 +32683,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	public void cacheResult(List<JournalArticle> journalArticles) {
 		for (JournalArticle journalArticle : journalArticles) {
 			if (entityCache.getResult(
-						JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-						JournalArticleImpl.class, journalArticle.getPrimaryKey()) == null) {
+					JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+					JournalArticleImpl.class, journalArticle.getPrimaryKey()) ==
+						null) {
+
 				cacheResult(journalArticle);
 			}
 			else {
@@ -31155,7 +32720,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public void clearCache(JournalArticle journalArticle) {
-		entityCache.removeResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.removeResult(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleImpl.class, journalArticle.getPrimaryKey());
 
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -31170,113 +32736,119 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (JournalArticle journalArticle : journalArticles) {
-			entityCache.removeResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			entityCache.removeResult(
+				JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
 				JournalArticleImpl.class, journalArticle.getPrimaryKey());
 
-			clearUniqueFindersCache((JournalArticleModelImpl)journalArticle,
-				true);
+			clearUniqueFindersCache(
+				(JournalArticleModelImpl)journalArticle, true);
 		}
 	}
 
 	protected void cacheUniqueFindersCache(
 		JournalArticleModelImpl journalArticleModelImpl) {
+
 		Object[] args = new Object[] {
+			journalArticleModelImpl.getUuid(),
+			journalArticleModelImpl.getGroupId()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByUUID_G, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByUUID_G, args, journalArticleModelImpl, false);
+
+		args = new Object[] {
+			journalArticleModelImpl.getGroupId(),
+			journalArticleModelImpl.getClassNameId(),
+			journalArticleModelImpl.getDDMStructureKey()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByG_C_DDMSK, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByG_C_DDMSK, args, journalArticleModelImpl, false);
+
+		args = new Object[] {
+			journalArticleModelImpl.getGroupId(),
+			journalArticleModelImpl.getArticleId(),
+			journalArticleModelImpl.getVersion()
+		};
+
+		finderCache.putResult(
+			_finderPathCountByG_A_V, args, Long.valueOf(1), false);
+		finderCache.putResult(
+			_finderPathFetchByG_A_V, args, journalArticleModelImpl, false);
+	}
+
+	protected void clearUniqueFindersCache(
+		JournalArticleModelImpl journalArticleModelImpl, boolean clearCurrent) {
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
 				journalArticleModelImpl.getUuid(),
 				journalArticleModelImpl.getGroupId()
 			};
 
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByUUID_G, args,
-			journalArticleModelImpl, false);
+			finderCache.removeResult(_finderPathCountByUUID_G, args);
+			finderCache.removeResult(_finderPathFetchByUUID_G, args);
+		}
 
-		args = new Object[] {
+		if ((journalArticleModelImpl.getColumnBitmask() &
+			 _finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
+
+			Object[] args = new Object[] {
+				journalArticleModelImpl.getOriginalUuid(),
+				journalArticleModelImpl.getOriginalGroupId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUUID_G, args);
+			finderCache.removeResult(_finderPathFetchByUUID_G, args);
+		}
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
 				journalArticleModelImpl.getGroupId(),
 				journalArticleModelImpl.getClassNameId(),
 				journalArticleModelImpl.getDDMStructureKey()
 			};
 
-		finderCache.putResult(_finderPathCountByG_C_DDMSK, args,
-			Long.valueOf(1), false);
-		finderCache.putResult(_finderPathFetchByG_C_DDMSK, args,
-			journalArticleModelImpl, false);
+			finderCache.removeResult(_finderPathCountByG_C_DDMSK, args);
+			finderCache.removeResult(_finderPathFetchByG_C_DDMSK, args);
+		}
 
-		args = new Object[] {
+		if ((journalArticleModelImpl.getColumnBitmask() &
+			 _finderPathFetchByG_C_DDMSK.getColumnBitmask()) != 0) {
+
+			Object[] args = new Object[] {
+				journalArticleModelImpl.getOriginalGroupId(),
+				journalArticleModelImpl.getOriginalClassNameId(),
+				journalArticleModelImpl.getOriginalDDMStructureKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_DDMSK, args);
+			finderCache.removeResult(_finderPathFetchByG_C_DDMSK, args);
+		}
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
 				journalArticleModelImpl.getGroupId(),
 				journalArticleModelImpl.getArticleId(),
 				journalArticleModelImpl.getVersion()
 			};
-
-		finderCache.putResult(_finderPathCountByG_A_V, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(_finderPathFetchByG_A_V, args,
-			journalArticleModelImpl, false);
-	}
-
-	protected void clearUniqueFindersCache(
-		JournalArticleModelImpl journalArticleModelImpl, boolean clearCurrent) {
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-					journalArticleModelImpl.getUuid(),
-					journalArticleModelImpl.getGroupId()
-				};
-
-			finderCache.removeResult(_finderPathCountByUUID_G, args);
-			finderCache.removeResult(_finderPathFetchByUUID_G, args);
-		}
-
-		if ((journalArticleModelImpl.getColumnBitmask() &
-				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
-			Object[] args = new Object[] {
-					journalArticleModelImpl.getOriginalUuid(),
-					journalArticleModelImpl.getOriginalGroupId()
-				};
-
-			finderCache.removeResult(_finderPathCountByUUID_G, args);
-			finderCache.removeResult(_finderPathFetchByUUID_G, args);
-		}
-
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-					journalArticleModelImpl.getGroupId(),
-					journalArticleModelImpl.getClassNameId(),
-					journalArticleModelImpl.getDDMStructureKey()
-				};
-
-			finderCache.removeResult(_finderPathCountByG_C_DDMSK, args);
-			finderCache.removeResult(_finderPathFetchByG_C_DDMSK, args);
-		}
-
-		if ((journalArticleModelImpl.getColumnBitmask() &
-				_finderPathFetchByG_C_DDMSK.getColumnBitmask()) != 0) {
-			Object[] args = new Object[] {
-					journalArticleModelImpl.getOriginalGroupId(),
-					journalArticleModelImpl.getOriginalClassNameId(),
-					journalArticleModelImpl.getOriginalDDMStructureKey()
-				};
-
-			finderCache.removeResult(_finderPathCountByG_C_DDMSK, args);
-			finderCache.removeResult(_finderPathFetchByG_C_DDMSK, args);
-		}
-
-		if (clearCurrent) {
-			Object[] args = new Object[] {
-					journalArticleModelImpl.getGroupId(),
-					journalArticleModelImpl.getArticleId(),
-					journalArticleModelImpl.getVersion()
-				};
 
 			finderCache.removeResult(_finderPathCountByG_A_V, args);
 			finderCache.removeResult(_finderPathFetchByG_A_V, args);
 		}
 
 		if ((journalArticleModelImpl.getColumnBitmask() &
-				_finderPathFetchByG_A_V.getColumnBitmask()) != 0) {
+			 _finderPathFetchByG_A_V.getColumnBitmask()) != 0) {
+
 			Object[] args = new Object[] {
-					journalArticleModelImpl.getOriginalGroupId(),
-					journalArticleModelImpl.getOriginalArticleId(),
-					journalArticleModelImpl.getOriginalVersion()
-				};
+				journalArticleModelImpl.getOriginalGroupId(),
+				journalArticleModelImpl.getOriginalArticleId(),
+				journalArticleModelImpl.getOriginalVersion()
+			};
 
 			finderCache.removeResult(_finderPathCountByG_A_V, args);
 			finderCache.removeResult(_finderPathFetchByG_A_V, args);
@@ -31327,21 +32899,22 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public JournalArticle remove(Serializable primaryKey)
 		throws NoSuchArticleException {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			JournalArticle journalArticle = (JournalArticle)session.get(JournalArticleImpl.class,
-					primaryKey);
+			JournalArticle journalArticle = (JournalArticle)session.get(
+				JournalArticleImpl.class, primaryKey);
 
 			if (journalArticle == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					primaryKey);
+				throw new NoSuchArticleException(
+					_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
 			return remove(journalArticle);
@@ -31365,8 +32938,9 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			session = openSession();
 
 			if (!session.contains(journalArticle)) {
-				journalArticle = (JournalArticle)session.get(JournalArticleImpl.class,
-						journalArticle.getPrimaryKeyObj());
+				journalArticle = (JournalArticle)session.get(
+					JournalArticleImpl.class,
+					journalArticle.getPrimaryKeyObj());
 			}
 
 			if (journalArticle != null) {
@@ -31395,19 +32969,21 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			InvocationHandler invocationHandler = null;
 
 			if (ProxyUtil.isProxyClass(journalArticle.getClass())) {
-				invocationHandler = ProxyUtil.getInvocationHandler(journalArticle);
+				invocationHandler = ProxyUtil.getInvocationHandler(
+					journalArticle);
 
 				throw new IllegalArgumentException(
 					"Implement ModelWrapper in journalArticle proxy " +
-					invocationHandler.getClass());
+						invocationHandler.getClass());
 			}
 
 			throw new IllegalArgumentException(
 				"Implement ModelWrapper in custom JournalArticle implementation " +
-				journalArticle.getClass());
+					journalArticle.getClass());
 		}
 
-		JournalArticleModelImpl journalArticleModelImpl = (JournalArticleModelImpl)journalArticle;
+		JournalArticleModelImpl journalArticleModelImpl =
+			(JournalArticleModelImpl)journalArticle;
 
 		if (Validator.isNull(journalArticle.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -31415,7 +32991,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			journalArticle.setUuid(uuid);
 		}
 
-		ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		Date now = new Date();
 
@@ -31433,8 +33010,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				journalArticle.setModifiedDate(now);
 			}
 			else {
-				journalArticle.setModifiedDate(serviceContext.getModifiedDate(
-						now));
+				journalArticle.setModifiedDate(
+					serviceContext.getModifiedDate(now));
 			}
 		}
 
@@ -31464,946 +33041,1027 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		if (!JournalArticleModelImpl.COLUMN_BITMASK_ENABLED) {
 			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
-		else
-		 if (isNew) {
+		else if (isNew) {
 			Object[] args = new Object[] {
+				journalArticleModelImpl.getResourcePrimKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByResourcePrimKey, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByResourcePrimKey, args);
+
+			args = new Object[] {journalArticleModelImpl.getUuid()};
+
+			finderCache.removeResult(_finderPathCountByUuid, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getUuid(),
+				journalArticleModelImpl.getCompanyId()
+			};
+
+			finderCache.removeResult(_finderPathCountByUuid_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByUuid_C, args);
+
+			args = new Object[] {journalArticleModelImpl.getGroupId()};
+
+			finderCache.removeResult(_finderPathCountByGroupId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByGroupId, args);
+
+			args = new Object[] {journalArticleModelImpl.getCompanyId()};
+
+			finderCache.removeResult(_finderPathCountByCompanyId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByCompanyId, args);
+
+			args = new Object[] {journalArticleModelImpl.getDDMStructureKey()};
+
+			finderCache.removeResult(_finderPathCountByDDMStructureKey, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByDDMStructureKey, args);
+
+			args = new Object[] {journalArticleModelImpl.getDDMTemplateKey()};
+
+			finderCache.removeResult(_finderPathCountByDDMTemplateKey, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByDDMTemplateKey, args);
+
+			args = new Object[] {journalArticleModelImpl.getLayoutUuid()};
+
+			finderCache.removeResult(_finderPathCountByLayoutUuid, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByLayoutUuid, args);
+
+			args = new Object[] {journalArticleModelImpl.getSmallImageId()};
+
+			finderCache.removeResult(_finderPathCountBySmallImageId, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindBySmallImageId, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getResourcePrimKey(),
+				journalArticleModelImpl.isIndexable()
+			};
+
+			finderCache.removeResult(_finderPathCountByR_I, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByR_I, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getResourcePrimKey(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByR_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByR_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getUserId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_U, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_U, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getFolderId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_F, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_F, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getArticleId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_A, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_A, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getUrlTitle()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_UT, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_UT, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getDDMStructureKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_DDMSK, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_DDMSK, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getDDMTemplateKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_DDMTK, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_DDMTK, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getLayoutUuid()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_L, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_L, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getCompanyId(),
+				journalArticleModelImpl.getVersion()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_V, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_V, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getCompanyId(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getClassNameId(),
+				journalArticleModelImpl.getDDMTemplateKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_DDMTK, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_DDMTK, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getResourcePrimKey(),
+				journalArticleModelImpl.isIndexable(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByR_I_S, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByR_I_S, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getUserId(),
+				journalArticleModelImpl.getClassNameId()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_U_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_U_C, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getFolderId(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_F_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_F_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getClassNameId(),
+				journalArticleModelImpl.getClassPK()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_C, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C_C, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getClassNameId(),
+				journalArticleModelImpl.getDDMTemplateKey()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C_DDMTK, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getClassNameId(),
+				journalArticleModelImpl.getLayoutUuid()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_C_L, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_C_L, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getArticleId(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_A_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_A_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getGroupId(),
+				journalArticleModelImpl.getUrlTitle(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByG_UT_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByG_UT_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getCompanyId(),
+				journalArticleModelImpl.getVersion(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_V_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_V_ST, args);
+
+			args = new Object[] {
+				journalArticleModelImpl.getClassNameId(),
+				journalArticleModelImpl.getExpirationDate(),
+				journalArticleModelImpl.getStatus()
+			};
+
+			finderCache.removeResult(_finderPathCountByC_ED_ST, args);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindByC_ED_ST, args);
+
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(
+				_finderPathWithoutPaginationFindAll, FINDER_ARGS_EMPTY);
+		}
+		else {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByResourcePrimKey.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalResourcePrimKey()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByResourcePrimKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByResourcePrimKey, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getResourcePrimKey()
 				};
 
-			finderCache.removeResult(_finderPathCountByResourcePrimKey, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByResourcePrimKey,
-				args);
+				finderCache.removeResult(
+					_finderPathCountByResourcePrimKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByResourcePrimKey, args);
+			}
 
-			args = new Object[] { journalArticleModelImpl.getUuid() };
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid.getColumnBitmask()) !=
+					 0) {
 
-			finderCache.removeResult(_finderPathCountByUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-				args);
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalUuid()
+				};
 
-			args = new Object[] {
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+
+				args = new Object[] {journalArticleModelImpl.getUuid()};
+
+				finderCache.removeResult(_finderPathCountByUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid, args);
+			}
+
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalUuid(),
+					journalArticleModelImpl.getOriginalCompanyId()
+				};
+
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getUuid(),
 					journalArticleModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(_finderPathCountByUuid_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-				args);
+				finderCache.removeResult(_finderPathCountByUuid_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByUuid_C, args);
+			}
 
-			args = new Object[] { journalArticleModelImpl.getGroupId() };
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByGroupId.
+					 getColumnBitmask()) != 0) {
 
-			finderCache.removeResult(_finderPathCountByGroupId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-				args);
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId()
+				};
 
-			args = new Object[] { journalArticleModelImpl.getCompanyId() };
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
 
-			finderCache.removeResult(_finderPathCountByCompanyId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-				args);
+				args = new Object[] {journalArticleModelImpl.getGroupId()};
 
-			args = new Object[] { journalArticleModelImpl.getDDMStructureKey() };
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByGroupId, args);
+			}
 
-			finderCache.removeResult(_finderPathCountByDDMStructureKey, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByDDMStructureKey,
-				args);
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByCompanyId.
+					 getColumnBitmask()) != 0) {
 
-			args = new Object[] { journalArticleModelImpl.getDDMTemplateKey() };
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalCompanyId()
+				};
 
-			finderCache.removeResult(_finderPathCountByDDMTemplateKey, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByDDMTemplateKey,
-				args);
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
 
-			args = new Object[] { journalArticleModelImpl.getLayoutUuid() };
+				args = new Object[] {journalArticleModelImpl.getCompanyId()};
 
-			finderCache.removeResult(_finderPathCountByLayoutUuid, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutUuid,
-				args);
+				finderCache.removeResult(_finderPathCountByCompanyId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByCompanyId, args);
+			}
 
-			args = new Object[] { journalArticleModelImpl.getSmallImageId() };
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByDDMStructureKey.
+					 getColumnBitmask()) != 0) {
 
-			finderCache.removeResult(_finderPathCountBySmallImageId, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindBySmallImageId,
-				args);
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalDDMStructureKey()
+				};
 
-			args = new Object[] {
+				finderCache.removeResult(
+					_finderPathCountByDDMStructureKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDDMStructureKey, args);
+
+				args = new Object[] {
+					journalArticleModelImpl.getDDMStructureKey()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByDDMStructureKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDDMStructureKey, args);
+			}
+
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByDDMTemplateKey.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalDDMTemplateKey()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByDDMTemplateKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDDMTemplateKey, args);
+
+				args = new Object[] {
+					journalArticleModelImpl.getDDMTemplateKey()
+				};
+
+				finderCache.removeResult(
+					_finderPathCountByDDMTemplateKey, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByDDMTemplateKey, args);
+			}
+
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByLayoutUuid.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalLayoutUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByLayoutUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByLayoutUuid, args);
+
+				args = new Object[] {journalArticleModelImpl.getLayoutUuid()};
+
+				finderCache.removeResult(_finderPathCountByLayoutUuid, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByLayoutUuid, args);
+			}
+
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindBySmallImageId.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalSmallImageId()
+				};
+
+				finderCache.removeResult(_finderPathCountBySmallImageId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySmallImageId, args);
+
+				args = new Object[] {journalArticleModelImpl.getSmallImageId()};
+
+				finderCache.removeResult(_finderPathCountBySmallImageId, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindBySmallImageId, args);
+			}
+
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByR_I.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalResourcePrimKey(),
+					journalArticleModelImpl.getOriginalIndexable()
+				};
+
+				finderCache.removeResult(_finderPathCountByR_I, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_I, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getResourcePrimKey(),
 					journalArticleModelImpl.isIndexable()
 				};
 
-			finderCache.removeResult(_finderPathCountByR_I, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByR_I, args);
+				finderCache.removeResult(_finderPathCountByR_I, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_I, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByR_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalResourcePrimKey(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByR_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getResourcePrimKey(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByR_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByR_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByR_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_U.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalUserId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_U, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_U, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getUserId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_U, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_U, args);
+				finderCache.removeResult(_finderPathCountByG_U, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_U, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_F.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalFolderId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_F, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_F, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getFolderId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_F, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_F, args);
+				finderCache.removeResult(_finderPathCountByG_F, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_F, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_A.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalArticleId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_A, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_A, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getArticleId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_A, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_A, args);
+				finderCache.removeResult(_finderPathCountByG_A, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_A, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_UT.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalUrlTitle()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_UT, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_UT, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getUrlTitle()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_UT, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT,
-				args);
+				finderCache.removeResult(_finderPathCountByG_UT, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_UT, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_DDMSK.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalDDMStructureKey()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_DDMSK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_DDMSK, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getDDMStructureKey()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_DDMSK, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMSK,
-				args);
+				finderCache.removeResult(_finderPathCountByG_DDMSK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_DDMSK, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_DDMTK.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalDDMTemplateKey()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_DDMTK, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getDDMTemplateKey()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_DDMTK, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMTK,
-				args);
+				finderCache.removeResult(_finderPathCountByG_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_DDMTK, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_L.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalLayoutUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_L, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_L, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getLayoutUuid()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_L, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_L, args);
+				finderCache.removeResult(_finderPathCountByG_L, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_L, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByG_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_V.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalCompanyId(),
+					journalArticleModelImpl.getOriginalVersion()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_V, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_V, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getCompanyId(),
 					journalArticleModelImpl.getVersion()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_V, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_V, args);
+				finderCache.removeResult(_finderPathCountByC_V, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_V, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalCompanyId(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getCompanyId(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByC_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_DDMTK.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalClassNameId(),
+					journalArticleModelImpl.getOriginalDDMTemplateKey()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_DDMTK, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getClassNameId(),
 					journalArticleModelImpl.getDDMTemplateKey()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_DDMTK, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_DDMTK,
-				args);
+				finderCache.removeResult(_finderPathCountByC_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_DDMTK, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByR_I_S.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalResourcePrimKey(),
+					journalArticleModelImpl.getOriginalIndexable(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByR_I_S, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_I_S, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getResourcePrimKey(),
 					journalArticleModelImpl.isIndexable(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByR_I_S, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByR_I_S,
-				args);
+				finderCache.removeResult(_finderPathCountByR_I_S, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByR_I_S, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_U_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalUserId(),
+					journalArticleModelImpl.getOriginalClassNameId()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_U_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_U_C, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getUserId(),
 					journalArticleModelImpl.getClassNameId()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_U_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_C,
-				args);
+				finderCache.removeResult(_finderPathCountByG_U_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_U_C, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_F_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalFolderId(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_F_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_F_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getFolderId(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_F_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_F_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByG_F_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_F_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C_C.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalClassNameId(),
+					journalArticleModelImpl.getOriginalClassPK()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_C, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getClassNameId(),
 					journalArticleModelImpl.getClassPK()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C_C, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-				args);
+				finderCache.removeResult(_finderPathCountByG_C_C, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_C, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C_DDMTK.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalClassNameId(),
+					journalArticleModelImpl.getOriginalDDMTemplateKey()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_DDMTK, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getClassNameId(),
 					journalArticleModelImpl.getDDMTemplateKey()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_DDMTK,
-				args);
+				finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_DDMTK, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_C_L.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalClassNameId(),
+					journalArticleModelImpl.getOriginalLayoutUuid()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_C_L, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_L, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getClassNameId(),
 					journalArticleModelImpl.getLayoutUuid()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_C_L, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_L,
-				args);
+				finderCache.removeResult(_finderPathCountByG_C_L, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_C_L, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_A_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalArticleId(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_A_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_A_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getArticleId(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_A_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_A_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByG_A_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_A_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByG_UT_ST.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalGroupId(),
+					journalArticleModelImpl.getOriginalUrlTitle(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByG_UT_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_UT_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getGroupId(),
 					journalArticleModelImpl.getUrlTitle(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByG_UT_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByG_UT_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByG_UT_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_V_ST.getColumnBitmask()) !=
+					 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalCompanyId(),
+					journalArticleModelImpl.getOriginalVersion(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_V_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_V_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getCompanyId(),
 					journalArticleModelImpl.getVersion(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_V_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_V_ST,
-				args);
+				finderCache.removeResult(_finderPathCountByC_V_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_V_ST, args);
+			}
 
-			args = new Object[] {
+			if ((journalArticleModelImpl.getColumnBitmask() &
+				 _finderPathWithoutPaginationFindByC_ED_ST.
+					 getColumnBitmask()) != 0) {
+
+				Object[] args = new Object[] {
+					journalArticleModelImpl.getOriginalClassNameId(),
+					journalArticleModelImpl.getOriginalExpirationDate(),
+					journalArticleModelImpl.getOriginalStatus()
+				};
+
+				finderCache.removeResult(_finderPathCountByC_ED_ST, args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_ED_ST, args);
+
+				args = new Object[] {
 					journalArticleModelImpl.getClassNameId(),
 					journalArticleModelImpl.getExpirationDate(),
 					journalArticleModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(_finderPathCountByC_ED_ST, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByC_ED_ST,
-				args);
-
-			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
-				FINDER_ARGS_EMPTY);
-		}
-
-		else {
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByResourcePrimKey.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalResourcePrimKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByResourcePrimKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByResourcePrimKey,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getResourcePrimKey() };
-
-				finderCache.removeResult(_finderPathCountByResourcePrimKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByResourcePrimKey,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getUuid() };
-
-				finderCache.removeResult(_finderPathCountByUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalUuid(),
-						journalArticleModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getUuid(),
-						journalArticleModelImpl.getCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByUuid_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByUuid_C,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId()
-					};
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getGroupId() };
-
-				finderCache.removeResult(_finderPathCountByGroupId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalCompanyId()
-					};
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getCompanyId() };
-
-				finderCache.removeResult(_finderPathCountByCompanyId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByCompanyId,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByDDMStructureKey.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalDDMStructureKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByDDMStructureKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDDMStructureKey,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getDDMStructureKey() };
-
-				finderCache.removeResult(_finderPathCountByDDMStructureKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDDMStructureKey,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByDDMTemplateKey.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByDDMTemplateKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDDMTemplateKey,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getDDMTemplateKey() };
-
-				finderCache.removeResult(_finderPathCountByDDMTemplateKey, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByDDMTemplateKey,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByLayoutUuid.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalLayoutUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByLayoutUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutUuid,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getLayoutUuid() };
-
-				finderCache.removeResult(_finderPathCountByLayoutUuid, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutUuid,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindBySmallImageId.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalSmallImageId()
-					};
-
-				finderCache.removeResult(_finderPathCountBySmallImageId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindBySmallImageId,
-					args);
-
-				args = new Object[] { journalArticleModelImpl.getSmallImageId() };
-
-				finderCache.removeResult(_finderPathCountBySmallImageId, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindBySmallImageId,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByR_I.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalResourcePrimKey(),
-						journalArticleModelImpl.getOriginalIndexable()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_I, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_I,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getResourcePrimKey(),
-						journalArticleModelImpl.isIndexable()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_I, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_I,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByR_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalResourcePrimKey(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getResourcePrimKey(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_U.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalUserId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_U, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getUserId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_U, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_F.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalFolderId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_F, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_F,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getFolderId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_F, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_F,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_A.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalArticleId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_A, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_A,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getArticleId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_A, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_A,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_UT.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalUrlTitle()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_UT, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getUrlTitle()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_UT, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_DDMSK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalDDMStructureKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_DDMSK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMSK,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getDDMStructureKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_DDMSK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMSK,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_DDMTK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMTK,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_DDMTK,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_L.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalLayoutUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_L, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_L,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getLayoutUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_L, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_L,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_V.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalCompanyId(),
-						journalArticleModelImpl.getOriginalVersion()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_V, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_V,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getCompanyId(),
-						journalArticleModelImpl.getVersion()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_V, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_V,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalCompanyId(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getCompanyId(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_DDMTK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalClassNameId(),
-						journalArticleModelImpl.getOriginalDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_DDMTK,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getClassNameId(),
-						journalArticleModelImpl.getDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_DDMTK,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByR_I_S.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalResourcePrimKey(),
-						journalArticleModelImpl.getOriginalIndexable(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_I_S, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_I_S,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getResourcePrimKey(),
-						journalArticleModelImpl.isIndexable(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByR_I_S, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByR_I_S,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_U_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalUserId(),
-						journalArticleModelImpl.getOriginalClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_U_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_C,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getUserId(),
-						journalArticleModelImpl.getClassNameId()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_U_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_C,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_F_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalFolderId(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_F_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_F_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getFolderId(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_F_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_F_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C_C.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalClassNameId(),
-						journalArticleModelImpl.getOriginalClassPK()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getClassNameId(),
-						journalArticleModelImpl.getClassPK()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_C, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_C,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C_DDMTK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalClassNameId(),
-						journalArticleModelImpl.getOriginalDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_DDMTK,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getClassNameId(),
-						journalArticleModelImpl.getDDMTemplateKey()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_DDMTK, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_DDMTK,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_C_L.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalClassNameId(),
-						journalArticleModelImpl.getOriginalLayoutUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_L, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_L,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getClassNameId(),
-						journalArticleModelImpl.getLayoutUuid()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_C_L, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_C_L,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_A_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalArticleId(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_A_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_A_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getArticleId(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_A_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_A_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByG_UT_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalGroupId(),
-						journalArticleModelImpl.getOriginalUrlTitle(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_UT_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getGroupId(),
-						journalArticleModelImpl.getUrlTitle(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByG_UT_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByG_UT_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_V_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalCompanyId(),
-						journalArticleModelImpl.getOriginalVersion(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_V_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_V_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getCompanyId(),
-						journalArticleModelImpl.getVersion(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_V_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_V_ST,
-					args);
-			}
-
-			if ((journalArticleModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByC_ED_ST.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] {
-						journalArticleModelImpl.getOriginalClassNameId(),
-						journalArticleModelImpl.getOriginalExpirationDate(),
-						journalArticleModelImpl.getOriginalStatus()
-					};
-
 				finderCache.removeResult(_finderPathCountByC_ED_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_ED_ST,
-					args);
-
-				args = new Object[] {
-						journalArticleModelImpl.getClassNameId(),
-						journalArticleModelImpl.getExpirationDate(),
-						journalArticleModelImpl.getStatus()
-					};
-
-				finderCache.removeResult(_finderPathCountByC_ED_ST, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByC_ED_ST,
-					args);
+				finderCache.removeResult(
+					_finderPathWithoutPaginationFindByC_ED_ST, args);
 			}
 		}
 
-		entityCache.putResult(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+		entityCache.putResult(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
 			JournalArticleImpl.class, journalArticle.getPrimaryKey(),
 			journalArticle, false);
 
@@ -32425,6 +34083,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public JournalArticle findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchArticleException {
+
 		JournalArticle journalArticle = fetchByPrimaryKey(primaryKey);
 
 		if (journalArticle == null) {
@@ -32432,8 +34091,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchArticleException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				primaryKey);
+			throw new NoSuchArticleException(
+				_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 		}
 
 		return journalArticle;
@@ -32449,6 +34108,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	@Override
 	public JournalArticle findByPrimaryKey(long id)
 		throws NoSuchArticleException {
+
 		return findByPrimaryKey((Serializable)id);
 	}
 
@@ -32502,8 +34162,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of journal articles
 	 */
 	@Override
-	public List<JournalArticle> findAll(int start, int end,
+	public List<JournalArticle> findAll(
+		int start, int end,
 		OrderByComparator<JournalArticle> orderByComparator) {
+
 		return findAll(start, end, orderByComparator, true);
 	}
 
@@ -32521,29 +34183,31 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * @return the ordered range of journal articles
 	 */
 	@Override
-	public List<JournalArticle> findAll(int start, int end,
-		OrderByComparator<JournalArticle> orderByComparator,
+	public List<JournalArticle> findAll(
+		int start, int end, OrderByComparator<JournalArticle> orderByComparator,
 		boolean retrieveFromCache) {
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
-				(orderByComparator == null)) {
+			(orderByComparator == null)) {
+
 			pagination = false;
 			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
 			finderPath = _finderPathWithPaginationFindAll;
-			finderArgs = new Object[] { start, end, orderByComparator };
+			finderArgs = new Object[] {start, end, orderByComparator};
 		}
 
 		List<JournalArticle> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<JournalArticle>)finderCache.getResult(finderPath,
-					finderArgs, this);
+			list = (List<JournalArticle>)finderCache.getResult(
+				finderPath, finderArgs, this);
 		}
 
 		if (list == null) {
@@ -32551,13 +34215,13 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 			String sql = null;
 
 			if (orderByComparator != null) {
-				query = new StringBundler(2 +
-						(orderByComparator.getOrderByFields().length * 2));
+				query = new StringBundler(
+					2 + (orderByComparator.getOrderByFields().length * 2));
 
 				query.append(_SQL_SELECT_JOURNALARTICLE);
 
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
+				appendOrderByComparator(
+					query, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
 
 				sql = query.toString();
 			}
@@ -32577,16 +34241,16 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 				Query q = session.createQuery(sql);
 
 				if (!pagination) {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end, false);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end, false);
 
 					Collections.sort(list);
 
 					list = Collections.unmodifiableList(list);
 				}
 				else {
-					list = (List<JournalArticle>)QueryUtil.list(q,
-							getDialect(), start, end);
+					list = (List<JournalArticle>)QueryUtil.list(
+						q, getDialect(), start, end);
 				}
 
 				cacheResult(list);
@@ -32624,8 +34288,8 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(_finderPathCountAll,
-				FINDER_ARGS_EMPTY, this);
+		Long count = (Long)finderCache.getResult(
+			_finderPathCountAll, FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
 			Session session = null;
@@ -32637,11 +34301,12 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
-					count);
+				finderCache.putResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+				finderCache.removeResult(
+					_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
@@ -32682,1087 +34347,1130 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 	 * Initializes the journal article persistence.
 	 */
 	public void afterPropertiesSet() {
-		_finderPathWithPaginationFindAll = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+		_finderPathWithPaginationFindAll = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathWithoutPaginationFindAll = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
-				new String[0]);
+		_finderPathWithoutPaginationFindAll = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findAll", new String[0]);
 
-		_finderPathCountAll = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
-				new String[0]);
+		_finderPathCountAll = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+			new String[0]);
 
-		_finderPathWithPaginationFindByResourcePrimKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByResourcePrimKey",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByResourcePrimKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByResourcePrimKey",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByResourcePrimKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByResourcePrimKey", new String[] {Long.class.getName()},
+			JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByResourcePrimKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByResourcePrimKey",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByUuid", new String[] {String.class.getName()},
+			JournalArticleModelImpl.UUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathFetchByUUID_G = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()},
+			JournalArticleModelImpl.UUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK);
+
+		_finderPathCountByUUID_G = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
+			new String[] {String.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByUuid_C",
+			new String[] {
+				String.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByResourcePrimKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByResourcePrimKey", new String[] { Long.class.getName() },
-				JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()},
+			JournalArticleModelImpl.UUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByResourcePrimKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByResourcePrimKey", new String[] { Long.class.getName() });
+		_finderPathCountByUuid_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByGroupId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByGroupId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByGroupId", new String[] {Long.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByGroupId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByCompanyId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByCompanyId", new String[] {Long.class.getName()},
+			JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByCompanyId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByDDMStructureKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByDDMStructureKey",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByDDMStructureKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByDDMStructureKey", new String[] {String.class.getName()},
+			JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByDDMStructureKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByDDMStructureKey",
+			new String[] {String.class.getName()});
+
+		_finderPathWithPaginationCountByDDMStructureKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByDDMStructureKey",
+			new String[] {String.class.getName()});
+
+		_finderPathWithPaginationFindByDDMTemplateKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByDDMTemplateKey",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByDDMTemplateKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByDDMTemplateKey", new String[] {String.class.getName()},
+			JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByDDMTemplateKey = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByDDMTemplateKey",
+			new String[] {String.class.getName()});
+
+		_finderPathWithPaginationFindByLayoutUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByLayoutUuid",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByLayoutUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByLayoutUuid", new String[] {String.class.getName()},
+			JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByLayoutUuid = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByLayoutUuid",
+			new String[] {String.class.getName()});
+
+		_finderPathWithPaginationFindBySmallImageId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findBySmallImageId",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindBySmallImageId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findBySmallImageId", new String[] {Long.class.getName()},
+			JournalArticleModelImpl.SMALLIMAGEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountBySmallImageId = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countBySmallImageId",
+			new String[] {Long.class.getName()});
+
+		_finderPathWithPaginationFindByR_I = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByR_I",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-				new String[] { String.class.getName() },
-				JournalArticleModelImpl.UUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByR_I = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByR_I",
+			new String[] {Long.class.getName(), Boolean.class.getName()},
+			JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.INDEXABLE_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByR_I = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_I",
+			new String[] {Long.class.getName(), Boolean.class.getName()});
 
-		_finderPathFetchByUUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() },
-				JournalArticleModelImpl.UUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK);
-
-		_finderPathCountByUUID_G = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-				new String[] { String.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByUuid_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-				new String[] {
-					String.class.getName(), Long.class.getName(),
-					
+		_finderPathWithPaginationFindByR_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByR_ST",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() },
-				JournalArticleModelImpl.UUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByR_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByR_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()},
+			JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByUuid_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-				new String[] { String.class.getName(), Long.class.getName() });
+		_finderPathCountByR_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()});
 
-		_finderPathWithPaginationFindByGroupId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationCountByR_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByR_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()});
+
+		_finderPathWithPaginationFindByG_U = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_U",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByGroupId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-				new String[] { Long.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_U = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_U",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.USERID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByGroupId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByG_U = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByCompanyId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByG_F = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_F",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-				new String[] { Long.class.getName() },
-				JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_F = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_F",
+			new String[] {Long.class.getName(), Long.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.FOLDERID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByCompanyId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-				new String[] { Long.class.getName() });
+		_finderPathCountByG_F = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_F",
+			new String[] {Long.class.getName(), Long.class.getName()});
 
-		_finderPathWithPaginationFindByDDMStructureKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByDDMStructureKey",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationCountByG_F = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_F",
+			new String[] {Long.class.getName(), Long.class.getName()});
+
+		_finderPathWithPaginationFindByG_A = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_A",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByDDMStructureKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByDDMStructureKey",
-				new String[] { String.class.getName() },
-				JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_A = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_A",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByDDMStructureKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByDDMStructureKey",
-				new String[] { String.class.getName() });
+		_finderPathCountByG_A = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationCountByDDMStructureKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"countByDDMStructureKey",
-				new String[] { String.class.getName() });
-
-		_finderPathWithPaginationFindByDDMTemplateKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByDDMTemplateKey",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByG_UT = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_UT",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByDDMTemplateKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByDDMTemplateKey",
-				new String[] { String.class.getName() },
-				JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_UT = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_UT",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.URLTITLE_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByDDMTemplateKey = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByDDMTemplateKey", new String[] { String.class.getName() });
+		_finderPathCountByG_UT = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_UT",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindByLayoutUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByLayoutUuid",
-				new String[] {
-					String.class.getName(),
-					
+		_finderPathWithPaginationFindByG_DDMSK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_DDMSK",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByLayoutUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByLayoutUuid",
-				new String[] { String.class.getName() },
-				JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_DDMSK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_DDMSK",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByLayoutUuid = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByLayoutUuid",
-				new String[] { String.class.getName() });
+		_finderPathCountByG_DDMSK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_DDMSK",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindBySmallImageId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findBySmallImageId",
-				new String[] {
-					Long.class.getName(),
-					
+		_finderPathWithPaginationFindByG_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_DDMTK",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindBySmallImageId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findBySmallImageId", new String[] { Long.class.getName() },
-				JournalArticleModelImpl.SMALLIMAGEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_DDMTK",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountBySmallImageId = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countBySmallImageId", new String[] { Long.class.getName() });
+		_finderPathCountByG_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_DDMTK",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindByR_I = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_I",
-				new String[] {
-					Long.class.getName(), Boolean.class.getName(),
-					
+		_finderPathWithPaginationFindByG_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_L",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByR_I = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_I",
-				new String[] { Long.class.getName(), Boolean.class.getName() },
-				JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.INDEXABLE_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_L",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByR_I = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_I",
-				new String[] { Long.class.getName(), Boolean.class.getName() });
+		_finderPathCountByG_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_L",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindByR_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_ST",
-				new String[] {
-					Long.class.getName(), Integer.class.getName(),
-					
+		_finderPathWithPaginationFindByG_NotL = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_NotL",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByR_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() },
-				JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithPaginationCountByG_NotL = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_NotL",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathCountByR_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() });
-
-		_finderPathWithPaginationCountByR_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByR_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() });
-
-		_finderPathWithPaginationFindByG_U = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_U",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
+		_finderPathWithPaginationFindByG_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_ST",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_U = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_U",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.USERID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByG_U = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U",
-				new String[] { Long.class.getName(), Long.class.getName() });
+		_finderPathCountByG_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()});
 
-		_finderPathWithPaginationFindByG_F = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_F",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					
+		_finderPathWithPaginationFindByC_V = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_V",
+			new String[] {
+				Long.class.getName(), Double.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_F = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_F",
-				new String[] { Long.class.getName(), Long.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.FOLDERID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_V = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_V",
+			new String[] {Long.class.getName(), Double.class.getName()},
+			JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK);
 
-		_finderPathCountByG_F = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_F",
-				new String[] { Long.class.getName(), Long.class.getName() });
+		_finderPathCountByC_V = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_V",
+			new String[] {Long.class.getName(), Double.class.getName()});
 
-		_finderPathWithPaginationCountByG_F = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_F",
-				new String[] { Long.class.getName(), Long.class.getName() });
-
-		_finderPathWithPaginationFindByG_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_A",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByC_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_ST",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_A",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()},
+			JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByG_A = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByC_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_ST",
+			new String[] {Long.class.getName(), Integer.class.getName()});
 
-		_finderPathWithPaginationFindByG_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_UT",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByC_NotST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_NotST",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_UT",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.URLTITLE_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithPaginationCountByC_NotST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_NotST",
+			new String[] {Long.class.getName(), Integer.class.getName()});
 
-		_finderPathCountByG_UT = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_UT",
-				new String[] { Long.class.getName(), String.class.getName() });
-
-		_finderPathWithPaginationFindByG_DDMSK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_DDMSK",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByC_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_DDMTK",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_DDMSK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_DDMSK",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_DDMTK",
+			new String[] {Long.class.getName(), String.class.getName()},
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByG_DDMSK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_DDMSK",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByC_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_DDMTK",
+			new String[] {Long.class.getName(), String.class.getName()});
 
-		_finderPathWithPaginationFindByG_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_DDMTK",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByLtD_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByLtD_S",
+			new String[] {
+				Date.class.getName(), Integer.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_DDMTK",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithPaginationCountByLtD_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByLtD_S",
+			new String[] {Date.class.getName(), Integer.class.getName()});
 
-		_finderPathCountByG_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_DDMTK",
-				new String[] { Long.class.getName(), String.class.getName() });
-
-		_finderPathWithPaginationFindByG_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_L",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationFindByR_I_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByR_I_S",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_L",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByR_I_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByR_I_S",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.INDEXABLE_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByG_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_L",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathCountByR_I_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_I_S",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Integer.class.getName()
+			});
 
-		_finderPathWithPaginationFindByG_NotL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_NotL",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathWithPaginationCountByR_I_S = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByR_I_S",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				Integer.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_U_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_U_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByG_U_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_U_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.USERID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_U_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_F_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_F_ST",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithPaginationCountByG_NotL = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_NotL",
-				new String[] { Long.class.getName(), String.class.getName() });
+		_finderPathWithoutPaginationFindByG_F_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_F_ST",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.FOLDERID_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByG_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_ST",
-				new String[] {
-					Long.class.getName(), Integer.class.getName(),
-					
+		_finderPathCountByG_F_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_F_ST",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			});
+
+		_finderPathWithPaginationCountByG_F_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_F_ST",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Integer.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_C_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Long.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByG_C_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSPK_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_C_C = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
+
+		_finderPathFetchByG_C_DDMSK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByG_C_DDMSK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK);
+
+		_finderPathCountByG_C_DDMSK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_DDMSK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_C_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_C_DDMTK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByG_C_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_C_DDMTK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_C_DDMTK = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_DDMTK",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_C_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_C_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
+
+		_finderPathWithoutPaginationFindByG_C_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_C_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_C_L = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_L",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName()
+			});
+
+		_finderPathFetchByG_A_V = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_A_V",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Double.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+
+		_finderPathCountByG_A_V = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_V",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Double.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_A_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_A_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByG_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() },
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_A_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_A_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByG_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() });
+		_finderPathCountByG_A_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			});
 
-		_finderPathWithPaginationFindByC_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_V",
-				new String[] {
-					Long.class.getName(), Double.class.getName(),
-					
+		_finderPathWithPaginationCountByG_A_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_A_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			});
+
+		_finderPathWithPaginationFindByG_A_NotST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_A_NotST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_V",
-				new String[] { Long.class.getName(), Double.class.getName() },
-				JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK);
+		_finderPathWithPaginationCountByG_A_NotST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_A_NotST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			});
 
-		_finderPathCountByC_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_V",
-				new String[] { Long.class.getName(), Double.class.getName() });
-
-		_finderPathWithPaginationFindByC_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_ST",
-				new String[] {
-					Long.class.getName(), Integer.class.getName(),
-					
+		_finderPathWithPaginationFindByG_UT_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByG_UT_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() },
-				JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByG_UT_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByG_UT_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
+			JournalArticleModelImpl.URLTITLE_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByC_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_ST",
-				new String[] { Long.class.getName(), Integer.class.getName() });
+		_finderPathCountByG_UT_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_UT_ST",
+			new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName()
+			});
 
-		_finderPathWithPaginationFindByC_NotST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_NotST",
-				new String[] {
-					Long.class.getName(), Integer.class.getName(),
-					
+		_finderPathWithPaginationFindByC_V_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_V_ST",
+			new String[] {
+				Long.class.getName(), Double.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithPaginationCountByC_NotST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_NotST",
-				new String[] { Long.class.getName(), Integer.class.getName() });
+		_finderPathWithoutPaginationFindByC_V_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_V_ST",
+			new String[] {
+				Long.class.getName(), Double.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK);
 
-		_finderPathWithPaginationFindByC_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_DDMTK",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					
+		_finderPathCountByC_V_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_V_ST",
+			new String[] {
+				Long.class.getName(), Double.class.getName(),
+				Integer.class.getName()
+			});
+
+		_finderPathWithPaginationFindByC_ED_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByC_ED_ST",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
 				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
+				Integer.class.getName(), OrderByComparator.class.getName()
+			});
 
-		_finderPathWithoutPaginationFindByC_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_DDMTK",
-				new String[] { Long.class.getName(), String.class.getName() },
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
+		_finderPathWithoutPaginationFindByC_ED_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED,
+			JournalArticleImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+			"findByC_ED_ST",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
+				Integer.class.getName()
+			},
+			JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.EXPIRATIONDATE_COLUMN_BITMASK |
+			JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
+			JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
+			JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
 
-		_finderPathCountByC_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_DDMTK",
-				new String[] { Long.class.getName(), String.class.getName() });
-
-		_finderPathWithPaginationFindByLtD_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByLtD_S",
-				new String[] {
-					Date.class.getName(), Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithPaginationCountByLtD_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByLtD_S",
-				new String[] { Date.class.getName(), Integer.class.getName() });
-
-		_finderPathWithPaginationFindByR_I_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByR_I_S",
-				new String[] {
-					Long.class.getName(), Boolean.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByR_I_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByR_I_S",
-				new String[] {
-					Long.class.getName(), Boolean.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.INDEXABLE_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByR_I_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_I_S",
-				new String[] {
-					Long.class.getName(), Boolean.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationCountByR_I_S = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByR_I_S",
-				new String[] {
-					Long.class.getName(), Boolean.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_U_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_U_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_U_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_U_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.USERID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_U_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_F_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_F_ST",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_F_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_F_ST",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.FOLDERID_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_F_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_F_ST",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationCountByG_F_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_F_ST",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_C_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSPK_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_C = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_C",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					Long.class.getName()
-				});
-
-		_finderPathFetchByG_C_DDMSK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByG_C_DDMSK",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.DDMSTRUCTUREKEY_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_DDMSK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_DDMSK",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_C_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_DDMTK",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_DDMTK",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.DDMTEMPLATEKEY_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_DDMTK = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_DDMTK",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_C_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_L",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_C_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_C_L",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.LAYOUTUUID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_C_L = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_C_L",
-				new String[] {
-					Long.class.getName(), Long.class.getName(),
-					String.class.getName()
-				});
-
-		_finderPathFetchByG_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class, FINDER_CLASS_NAME_ENTITY,
-				"fetchByG_A_V",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Double.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_A_V = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_V",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Double.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_A_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_A_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_A_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_A_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_A_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_A_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationCountByG_A_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_A_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_A_NotST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_A_NotST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithPaginationCountByG_A_NotST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_A_NotST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByG_UT_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_UT_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByG_UT_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_UT_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.GROUPID_COLUMN_BITMASK |
-				JournalArticleModelImpl.URLTITLE_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByG_UT_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_UT_ST",
-				new String[] {
-					Long.class.getName(), String.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByC_V_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_V_ST",
-				new String[] {
-					Long.class.getName(), Double.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByC_V_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_V_ST",
-				new String[] {
-					Long.class.getName(), Double.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.COMPANYID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK);
-
-		_finderPathCountByC_V_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_V_ST",
-				new String[] {
-					Long.class.getName(), Double.class.getName(),
-					Integer.class.getName()
-				});
-
-		_finderPathWithPaginationFindByC_ED_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_ED_ST",
-				new String[] {
-					Long.class.getName(), Date.class.getName(),
-					Integer.class.getName(),
-					
-				Integer.class.getName(), Integer.class.getName(),
-					OrderByComparator.class.getName()
-				});
-
-		_finderPathWithoutPaginationFindByC_ED_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED,
-				JournalArticleImpl.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_ED_ST",
-				new String[] {
-					Long.class.getName(), Date.class.getName(),
-					Integer.class.getName()
-				},
-				JournalArticleModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.EXPIRATIONDATE_COLUMN_BITMASK |
-				JournalArticleModelImpl.STATUS_COLUMN_BITMASK |
-				JournalArticleModelImpl.ARTICLEID_COLUMN_BITMASK |
-				JournalArticleModelImpl.VERSION_COLUMN_BITMASK);
-
-		_finderPathCountByC_ED_ST = new FinderPath(JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
-				JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
-				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_ED_ST",
-				new String[] {
-					Long.class.getName(), Date.class.getName(),
-					Integer.class.getName()
-				});
+		_finderPathCountByC_ED_ST = new FinderPath(
+			JournalArticleModelImpl.ENTITY_CACHE_ENABLED,
+			JournalArticleModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_ED_ST",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
+				Integer.class.getName()
+			});
 	}
 
 	public void destroy() {
@@ -33774,8 +35482,10 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
+
 	@ServiceReference(type = EntityCache.class)
 	protected EntityCache entityCache;
+
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
 
@@ -33787,25 +35497,53 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		return date.getTime();
 	}
 
-	private static final String _SQL_SELECT_JOURNALARTICLE = "SELECT journalArticle FROM JournalArticle journalArticle";
-	private static final String _SQL_SELECT_JOURNALARTICLE_WHERE = "SELECT journalArticle FROM JournalArticle journalArticle WHERE ";
-	private static final String _SQL_COUNT_JOURNALARTICLE = "SELECT COUNT(journalArticle) FROM JournalArticle journalArticle";
-	private static final String _SQL_COUNT_JOURNALARTICLE_WHERE = "SELECT COUNT(journalArticle) FROM JournalArticle journalArticle WHERE ";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "journalArticle.resourcePrimKey";
-	private static final String _FILTER_SQL_SELECT_JOURNALARTICLE_WHERE = "SELECT DISTINCT {journalArticle.*} FROM JournalArticle journalArticle WHERE ";
-	private static final String _FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {JournalArticle.*} FROM (SELECT DISTINCT journalArticle.id_ FROM JournalArticle journalArticle WHERE ";
-	private static final String _FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN JournalArticle ON TEMP_TABLE.id_ = JournalArticle.id_";
-	private static final String _FILTER_SQL_COUNT_JOURNALARTICLE_WHERE = "SELECT COUNT(DISTINCT journalArticle.id_) AS COUNT_VALUE FROM JournalArticle journalArticle WHERE ";
+	private static final String _SQL_SELECT_JOURNALARTICLE =
+		"SELECT journalArticle FROM JournalArticle journalArticle";
+
+	private static final String _SQL_SELECT_JOURNALARTICLE_WHERE =
+		"SELECT journalArticle FROM JournalArticle journalArticle WHERE ";
+
+	private static final String _SQL_COUNT_JOURNALARTICLE =
+		"SELECT COUNT(journalArticle) FROM JournalArticle journalArticle";
+
+	private static final String _SQL_COUNT_JOURNALARTICLE_WHERE =
+		"SELECT COUNT(journalArticle) FROM JournalArticle journalArticle WHERE ";
+
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN =
+		"journalArticle.resourcePrimKey";
+
+	private static final String _FILTER_SQL_SELECT_JOURNALARTICLE_WHERE =
+		"SELECT DISTINCT {journalArticle.*} FROM JournalArticle journalArticle WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_1 =
+			"SELECT {JournalArticle.*} FROM (SELECT DISTINCT journalArticle.id_ FROM JournalArticle journalArticle WHERE ";
+
+	private static final String
+		_FILTER_SQL_SELECT_JOURNALARTICLE_NO_INLINE_DISTINCT_WHERE_2 =
+			") TEMP_TABLE INNER JOIN JournalArticle ON TEMP_TABLE.id_ = JournalArticle.id_";
+
+	private static final String _FILTER_SQL_COUNT_JOURNALARTICLE_WHERE =
+		"SELECT COUNT(DISTINCT journalArticle.id_) AS COUNT_VALUE FROM JournalArticle journalArticle WHERE ";
+
 	private static final String _FILTER_ENTITY_ALIAS = "journalArticle";
+
 	private static final String _FILTER_ENTITY_TABLE = "JournalArticle";
+
 	private static final String _ORDER_BY_ENTITY_ALIAS = "journalArticle.";
+
 	private static final String _ORDER_BY_ENTITY_TABLE = "JournalArticle.";
-	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No JournalArticle exists with the primary key ";
-	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No JournalArticle exists with the key {";
-	private static final Log _log = LogFactoryUtil.getLog(JournalArticlePersistenceImpl.class);
-	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"uuid", "id"
-			});
+
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY =
+		"No JournalArticle exists with the primary key ";
+
+	private static final String _NO_SUCH_ENTITY_WITH_KEY =
+		"No JournalArticle exists with the key {";
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		JournalArticlePersistenceImpl.class);
+
+	private static final Set<String> _badColumnNames = SetUtil.fromArray(
+		new String[] {"uuid", "id"});
+
 }

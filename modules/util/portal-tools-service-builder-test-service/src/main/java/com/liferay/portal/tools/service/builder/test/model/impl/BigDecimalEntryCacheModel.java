@@ -35,8 +35,9 @@ import java.math.BigDecimal;
  * @generated
  */
 @ProviderType
-public class BigDecimalEntryCacheModel implements CacheModel<BigDecimalEntry>,
-	Externalizable {
+public class BigDecimalEntryCacheModel
+	implements CacheModel<BigDecimalEntry>, Externalizable {
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -47,7 +48,8 @@ public class BigDecimalEntryCacheModel implements CacheModel<BigDecimalEntry>,
 			return false;
 		}
 
-		BigDecimalEntryCacheModel bigDecimalEntryCacheModel = (BigDecimalEntryCacheModel)obj;
+		BigDecimalEntryCacheModel bigDecimalEntryCacheModel =
+			(BigDecimalEntryCacheModel)obj;
 
 		if (bigDecimalEntryId == bigDecimalEntryCacheModel.bigDecimalEntryId) {
 			return true;
@@ -89,17 +91,18 @@ public class BigDecimalEntryCacheModel implements CacheModel<BigDecimalEntry>,
 	@Override
 	public void readExternal(ObjectInput objectInput)
 		throws ClassNotFoundException, IOException {
+
 		bigDecimalEntryId = objectInput.readLong();
 		bigDecimalValue = (BigDecimal)objectInput.readObject();
 	}
 
 	@Override
-	public void writeExternal(ObjectOutput objectOutput)
-		throws IOException {
+	public void writeExternal(ObjectOutput objectOutput) throws IOException {
 		objectOutput.writeLong(bigDecimalEntryId);
 		objectOutput.writeObject(bigDecimalValue);
 	}
 
 	public long bigDecimalEntryId;
 	public BigDecimal bigDecimalValue;
+
 }

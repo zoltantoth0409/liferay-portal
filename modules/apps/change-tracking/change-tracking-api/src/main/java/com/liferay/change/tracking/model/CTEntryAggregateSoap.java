@@ -30,6 +30,7 @@ import java.util.List;
  */
 @ProviderType
 public class CTEntryAggregateSoap implements Serializable {
+
 	public static CTEntryAggregateSoap toSoapModel(CTEntryAggregate model) {
 		CTEntryAggregateSoap soapModel = new CTEntryAggregateSoap();
 
@@ -45,8 +46,11 @@ public class CTEntryAggregateSoap implements Serializable {
 		return soapModel;
 	}
 
-	public static CTEntryAggregateSoap[] toSoapModels(CTEntryAggregate[] models) {
-		CTEntryAggregateSoap[] soapModels = new CTEntryAggregateSoap[models.length];
+	public static CTEntryAggregateSoap[] toSoapModels(
+		CTEntryAggregate[] models) {
+
+		CTEntryAggregateSoap[] soapModels =
+			new CTEntryAggregateSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -57,10 +61,12 @@ public class CTEntryAggregateSoap implements Serializable {
 
 	public static CTEntryAggregateSoap[][] toSoapModels(
 		CTEntryAggregate[][] models) {
+
 		CTEntryAggregateSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new CTEntryAggregateSoap[models.length][models[0].length];
+			soapModels =
+				new CTEntryAggregateSoap[models.length][models[0].length];
 		}
 		else {
 			soapModels = new CTEntryAggregateSoap[0][0];
@@ -75,7 +81,9 @@ public class CTEntryAggregateSoap implements Serializable {
 
 	public static CTEntryAggregateSoap[] toSoapModels(
 		List<CTEntryAggregate> models) {
-		List<CTEntryAggregateSoap> soapModels = new ArrayList<CTEntryAggregateSoap>(models.size());
+
+		List<CTEntryAggregateSoap> soapModels =
+			new ArrayList<CTEntryAggregateSoap>(models.size());
 
 		for (CTEntryAggregate model : models) {
 			soapModels.add(toSoapModel(model));
@@ -167,4 +175,5 @@ public class CTEntryAggregateSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _ctCollectionId;
 	private long _ownerCTEntryId;
+
 }

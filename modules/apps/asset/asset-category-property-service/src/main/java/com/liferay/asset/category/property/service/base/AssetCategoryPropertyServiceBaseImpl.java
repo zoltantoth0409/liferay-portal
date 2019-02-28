@@ -18,7 +18,6 @@ import com.liferay.asset.category.property.model.AssetCategoryProperty;
 import com.liferay.asset.category.property.service.AssetCategoryPropertyService;
 import com.liferay.asset.category.property.service.persistence.AssetCategoryPropertyFinder;
 import com.liferay.asset.category.property.service.persistence.AssetCategoryPropertyPersistence;
-
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -29,9 +28,9 @@ import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiServic
 import com.liferay.portal.kernel.service.BaseServiceImpl;
 import com.liferay.portal.kernel.util.PortalUtil;
 
-import org.osgi.service.component.annotations.Reference;
-
 import javax.sql.DataSource;
+
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * Provides the base implementation for the asset category property remote service.
@@ -45,8 +44,10 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class AssetCategoryPropertyServiceBaseImpl
-	extends BaseServiceImpl implements AssetCategoryPropertyService, AopService,
-		IdentifiableOSGiService {
+	extends BaseServiceImpl
+	implements AssetCategoryPropertyService, AopService,
+			   IdentifiableOSGiService {
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -89,15 +90,16 @@ public abstract class AssetCategoryPropertyServiceBaseImpl
 	 */
 	protected void runSQL(String sql) {
 		try {
-			DataSource dataSource = assetCategoryPropertyPersistence.getDataSource();
+			DataSource dataSource =
+				assetCategoryPropertyPersistence.getDataSource();
 
 			DB db = DBManagerUtil.getDB();
 
 			sql = db.buildSQL(sql);
 			sql = PortalUtil.transformSQL(sql);
 
-			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(dataSource,
-					sql);
+			SqlUpdate sqlUpdate = SqlUpdateFactoryUtil.getSqlUpdate(
+				dataSource, sql);
 
 			sqlUpdate.update();
 		}
@@ -107,16 +109,26 @@ public abstract class AssetCategoryPropertyServiceBaseImpl
 	}
 
 	@Reference
-	protected com.liferay.asset.category.property.service.AssetCategoryPropertyLocalService assetCategoryPropertyLocalService;
+	protected com.liferay.asset.category.property.service.
+		AssetCategoryPropertyLocalService assetCategoryPropertyLocalService;
+
 	protected AssetCategoryPropertyService assetCategoryPropertyService;
+
 	@Reference
 	protected AssetCategoryPropertyPersistence assetCategoryPropertyPersistence;
+
 	@Reference
 	protected AssetCategoryPropertyFinder assetCategoryPropertyFinder;
+
 	@Reference
-	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
+	protected com.liferay.counter.kernel.service.CounterLocalService
+		counterLocalService;
+
 	@Reference
-	protected com.liferay.portal.kernel.service.UserLocalService userLocalService;
+	protected com.liferay.portal.kernel.service.UserLocalService
+		userLocalService;
+
 	@Reference
 	protected com.liferay.portal.kernel.service.UserService userService;
+
 }
