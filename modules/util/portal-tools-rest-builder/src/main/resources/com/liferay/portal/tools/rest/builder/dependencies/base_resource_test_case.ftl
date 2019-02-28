@@ -84,13 +84,7 @@ public abstract class Base${schemaName}ResourceTestCase {
 		public void test${javaMethodSignature.methodName?cap_first}() throws Exception {
 			Assert.assertTrue(true);
 		}
-	</#list>
 
-	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
-		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
-	}
-
-	<#list freeMarkerTool.getResourceJavaMethodSignatures(configYAML, openAPIYAML, schemaName, false) as javaMethodSignature>
 		<#assign
 			arguments = freeMarkerTool.getResourceArguments(javaMethodSignature.javaParameters)
 			hasFilterAndSorts = false
@@ -180,6 +174,10 @@ public abstract class Base${schemaName}ResourceTestCase {
 			}
 		</#if>
 	</#list>
+
+	protected void assertResponseCode(int expectedResponseCode, Http.Response actualResponse) {
+		Assert.assertEquals(expectedResponseCode, actualResponse.getResponseCode());
+	}
 
 	protected void assertEquals(${schemaName} ${schemaVarName}1, ${schemaName} ${schemaVarName}2) {
 		Assert.assertTrue(${schemaVarName}1 + " does not equal " + ${schemaVarName}2, equals(${schemaVarName}1, ${schemaVarName}2));
